@@ -55,17 +55,17 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
-        <runTest>CommunitiesLandingControllerTest</runTest>
-        <runTest>CommunitiesLoginControllerTest</runTest>
-        <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
-        <runTest>CommunitiesSelfRegControllerTest</runTest>
-        <runTest>ExceptionLoggingHelper_Test</runTest>
-        <runTest>ExceptionsTest</runTest>
-        <runTest>TriggerFactoryTest</runTest>
-        <runTest>TestDataFactory</runTest>
-        <runTest>UserTestUtil</runTest>
-        <runTest>UserTrigger_Test</runTest>
-	<runTest>ExceptionLoggingHelper_Test</runTest>
+			<runTest>CommunitiesLandingControllerTest</runTest>
+			<runTest>CommunitiesLoginControllerTest</runTest>
+			<runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+			<runTest>CommunitiesSelfRegControllerTest</runTest>
+			<runTest>ExceptionLoggingHelper_Test</runTest>
+			<runTest>ExceptionsTest</runTest>
+			<runTest>TriggerFactoryTest</runTest>
+			<runTest>TestDataFactory</runTest>
+			<runTest>UserTestUtil</runTest>
+			<runTest>UserTrigger_Test</runTest>
+			<runTest>ExceptionLoggingHelper_Test</runTest>
 			<runTest>IPM_BD_BB_Report_Batch_Test</runTest>
 			<runTest>IPM_ChatterFeedHelper_Test</runTest>
 			<runTest>IPM_FinancialActionStandards_Test</runTest>
@@ -108,6 +108,10 @@
 			<runTest>IPM_ProjectOverviewCtrl_Test</runTest>
 			<runTest>IPM_ProjectOverviewCtrol_Test</runTest>
 			<runTest>IPM_ProjectDocumentSectionHandler_Test</runTest>
+			<runTest>IPM_EcoDesignSection_Test</runTest>
+			<runTest>IPM_ExportTeamMembersReportCntrl_Test</runTest>
+			<runTest>IPM_NewTask_Test</runTest>
+			<runTest>IPM_ValidationHelper_Test</runTest>
 	</sf:deploy>
   </target>  
 
