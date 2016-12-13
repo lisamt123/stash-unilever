@@ -780,42 +780,42 @@
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Multiple_Functional_Role__c</picklist>
-            <picklistValues>
+            <values>
                 <fullName>CD</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>CMI</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>Finance</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>R&amp;D</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>Supply Chain</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>PL</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>TPL</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>MKTG DEV</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>MKTG LOCAL</fullName>
                 <default>false</default>
-            </picklistValues>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Phase__c</picklist>
@@ -936,42 +936,42 @@
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Multiple_Functional_Role__c</picklist>
-            <picklistValues>
+            <values>
                 <fullName>CD</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>CMI</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>Finance</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>R&amp;D</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>Supply Chain</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>PL</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>TPL</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>MKTG DEV</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
+            </values>
+            <values>
                 <fullName>MKTG LOCAL</fullName>
                 <default>false</default>
-            </picklistValues>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Phase__c</picklist>
