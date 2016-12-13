@@ -481,12 +481,7 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
-			
-      <runTest>IPM_EcoDesignSection_Test</runTest>
       <runTest>IPM_ExportTeamMembersReportCntrl_Test</runTest>
-      <runTest>IPM_NewTask_Test</runTest>
-      <runTest>IPM_TaskHelper_Test</runTest>
-      <runTest>IPM_ValidationHelper_Test</runTest>
     </sf:deploy>
   </target>
   <!-- ***************************************************************************** -->
