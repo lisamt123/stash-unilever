@@ -1,4 +1,6 @@
 {
+    "label": "Daily Sales for Sales Rep",
+    "state": {
         "gridLayouts": [
             {
                 "name": "Default",
@@ -3115,4 +3117,13 @@
                 "type": "chart"
             }
         }
-    }
+    },
+    "datasets": [
+        {
+            "id": "0FbV0000000AxnMKAS",
+            "label": "DailySales",
+            "name": "DailySales",
+            "url": "/services/data/v38.0/wave/datasets/0FbV0000000AxnMKAS"
+        }
+    ]
+}
