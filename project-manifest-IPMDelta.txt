@@ -108,6 +108,7 @@ src/flows/IPM_Notify_Local_Rollout_Project_Created-19.flow
 src/labels
 src/labels/CustomLabels.labels
 src/objects
+src/objects/IPM_Project_Metadata__mdt.object
 src/objects/IPM_Analytics_OTIF__c.object
 src/objects/IPM_Analytics__c.object
 src/objects/IPM_Project_Rollout__c.object

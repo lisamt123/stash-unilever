@@ -307,14 +307,6 @@
         <label>IPM Multiple Functional Role</label>
         <picklist>
             <picklistValues>
-                <fullName>BB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>CD</fullName>
                 <default>false</default>
             </picklistValues>
@@ -340,6 +332,14 @@
             </picklistValues>
             <picklistValues>
                 <fullName>TPL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MKTG DEV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MKTG LOCAL</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>

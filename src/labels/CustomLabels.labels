@@ -1,5 +1,3 @@
-Ôªø<?xml version="1.0" encoding="UTF-8"?>
-<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
 <labels>
         <fullName>IPM_A_SEPERATE_COUNTRY</fullName>
         <language>en_US</language>
@@ -518,15 +516,15 @@ If you make no selection now the Sustainability Period will default to 3 years o
         <fullName>IPM_000</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>IPM_Ä &apos;000</shortDescription>
-        <value>Ä &apos;000</value>
+        <shortDescription>IPM_‚Ç¨ &apos;000</shortDescription>
+        <value>‚Ç¨ &apos;000</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_IN_PROGRESS_STATE</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ABOUT_IN_PROGRESS_STATE</shortDescription>
-        <value>ìIn Progressî means that a gate document is being written in anticipation of a gate proposal.  Select ìProposedî to check the completeness of the document; when all requirements have been met, click ìChangeî to activate the status change.  To archive a project, select ìStoppedî, then ìChangeî.</value>
+        <value>‚ÄúIn Progress‚Äù means that a gate document is being written in anticipation of a gate proposal.  Select ‚ÄúProposed‚Äù to check the completeness of the document; when all requirements have been met, click ‚ÄúChange‚Äù to activate the status change.  To archive a project, select ‚ÄúStopped‚Äù, then ‚ÄúChange‚Äù.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_PROJECT</fullName>
@@ -540,7 +538,7 @@ If you make no selection now the Sustainability Period will default to 3 years o
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ABOUT_PROPOSED_STATE</shortDescription>
-        <value>ìProposedî means that the gate document is ready to be presented for a gate decision. If your proposal has met all requirements, click the ìChangeî button to activate the status change.  The document will be sealed from further edits, unless the status changes to ìApproved with Editsî or ìPostpone Gateî.</value>
+        <value>‚ÄúProposed‚Äù means that the gate document is ready to be presented for a gate decision. If your proposal has met all requirements, click the ‚ÄúChange‚Äù button to activate the status change.  The document will be sealed from further edits, unless the status changes to ‚ÄúApproved with Edits‚Äù or ‚ÄúPostpone Gate‚Äù.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_STOPPED_STATE</fullName>
@@ -1637,7 +1635,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET Full Message</shortDescription>
-        <value>Please be aware that the Target Launch Date on your project might be prior to the Target Launch Date for the Toolkit‚Äôs lead project hence the BET First and final release might be too late.</value>
+        <value>Please be aware that the Target Launch Date on your project might be prior to the Target Launch Date for the Toolkit√¢‚Ç¨‚Ñ¢s lead project hence the BET First and final release might be too late.</value>
     </labels>
     <labels>
         <fullName>IPM_BET_Have_BETToolkit</fullName>
@@ -1758,7 +1756,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BET_TLD_Note</shortDescription>
-        <value>Please be aware that the Target Launch Date on your project might be prior to the Target Launch Date for the Toolkit‚Äôs lead project hence the BET First and final release might be too late.</value>
+        <value>Please be aware that the Target Launch Date on your project might be prior to the Target Launch Date for the Toolkit√¢‚Ç¨‚Ñ¢s lead project hence the BET First and final release might be too late.</value>
     </labels>
     <labels>
         <fullName>IPM_BET_TimeGap</fullName>
@@ -1835,7 +1833,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BOSSCARD_HIGHCONFIDENTIAL</shortDescription>
-        <value>© Unilever Highly Confidential and Proprietary Information - Production and Distribution is Prohibited.</value>
+        <value>¬© Unilever Highly Confidential and Proprietary Information - Production and Distribution is Prohibited.</value>
     </labels>
     <labels>
         <fullName>IPM_BOSSCARD_HOME_CARE</fullName>
@@ -1956,7 +1954,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Bosscard Approved Message</shortDescription>
-        <value>This selection indicates that Leadership has reviewed this Bosscard and stopped further work on it.  It will be stored as ìread onlyî in the All Projects tab for 6 months and then automatically deleted.  To revise and/or resubmit it, please create a new Bosscard.</value>
+        <value>This selection indicates that Leadership has reviewed this Bosscard and stopped further work on it.  It will be stored as ‚Äúread only‚Äù in the All Projects tab for 6 months and then automatically deleted.  To revise and/or resubmit it, please create a new Bosscard.</value>
     </labels>
     <labels>
         <fullName>IPM_Bosscard_Change</fullName>
@@ -2495,7 +2493,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_CONFIDENTIAL_INFO</shortDescription>
-        <value>© UNILEVER HIGHLY CONFIDENTIAL AND PROPRIETARY INFORMATION - REPRODUCTION AND DISTRIBUTION IS PROHIBITED</value>
+        <value>¬© UNILEVER HIGHLY CONFIDENTIAL AND PROPRIETARY INFORMATION - REPRODUCTION AND DISTRIBUTION IS PROHIBITED</value>
     </labels>
     <labels>
         <fullName>IPM_CONFIRMED</fullName>
@@ -3700,7 +3698,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_EXIT_PROJECT_SETUP</shortDescription>
-        <value>You are about to exit ìproject setupî and resume later? Are you sure want to quit now?</value>
+        <value>You are about to exit ‚Äúproject setup‚Äù and resume later? Are you sure want to quit now?</value>
     </labels>
     <labels>
         <fullName>IPM_EXPAND_ALL</fullName>
@@ -3890,7 +3888,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_EcoDesign_Take_Me_To_EcoDesign_Url</shortDescription>
-        <value>http://ecodesign-q.unilever.com/Project/GetIPMProject</value>
+        <value>http://ecodesign-q.unilever.com/Project/GetIPMProject</value> 
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_Waste</fullName>
@@ -4090,7 +4088,7 @@ If approved your project will be linked after your Charter gate has been approve
         <value>Fast Track projects are not expected to meet On Time requirements of 6 months between Market Ready Approval and Launch.
 
 
-White Space is a strategic classifier ñ it means launching an existing Unilever brand mix into a geography where it does not exist because there is a demonstrated consumer, market development, or growth opportunity (i.e. it can be an easy win).</value>
+White Space is a strategic classifier ‚Äì it means launching an existing Unilever brand mix into a geography where it does not exist because there is a demonstrated consumer, market development, or growth opportunity (i.e. it can be an easy win).</value>
     </labels>
     <labels>
         <fullName>IPM_FEASIBILITY</fullName>
@@ -5057,7 +5055,7 @@ White Space is a strategic classifier ñ it means launching an existing Unilever 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM INOPLAN USER QUERY</shortDescription>
-        <value>Youíll be able to access the short film by clicking the ìGo to IPM Portalî button to the right of this panel.</value>
+        <value>You‚Äôll be able to access the short film by clicking the ‚ÄúGo to IPM Portal‚Äù button to the right of this panel.</value>
     </labels>
     <labels>
         <fullName>IPM_INPUT</fullName>
@@ -6919,7 +6917,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PROVIDE_PRELIMINARY_VIEW</shortDescription>
-        <value>Provide a preliminary view on how this project could fit into Unileverís sustainability agenda.  Consider the potential impact across the entire value chain, from raw material sourcing, to manufacturing and distribution efficiency, to consumer use and disposal:  Reduce, Reuse, Recycle.  Include socioeconomic insights as applicable.</value>
+        <value>Provide a preliminary view on how this project could fit into Unilever‚Äôs sustainability agenda.  Consider the potential impact across the entire value chain, from raw material sourcing, to manufacturing and distribution efficiency, to consumer use and disposal:  Reduce, Reuse, Recycle.  Include socioeconomic insights as applicable.</value>
     </labels>
     <labels>
         <fullName>IPM_PaginationUIDisplay</fullName>
@@ -8068,14 +8066,14 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_SELECTING_IPM_FULL</shortDescription>
-        <value>Selecting ìIPM Fullî will provide all available gate document sections and To-do&apos;s.</value>
+        <value>Selecting ‚ÄúIPM Full‚Äù will provide all available gate document sections and To-do&apos;s.</value>
     </labels>
     <labels>
         <fullName>IPM_SELECTING_IPM_LITE</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_SELECTING_IPM_LITE</shortDescription>
-        <value>Selecting ìIPM Liteî will generate only non-negotiable gate document sections and corresponding suggested To-do&apos;s. This route is recommended for small, low risk projects using existing insights, technology, supply chain, and customer channels.</value>
+        <value>Selecting ‚ÄúIPM Lite‚Äù will generate only non-negotiable gate document sections and corresponding suggested To-do&apos;s. This route is recommended for small, low risk projects using existing insights, technology, supply chain, and customer channels.</value>
     </labels>
     <labels>
         <fullName>IPM_SELECT_3_CUSTOMER_CHANNEL</fullName>
@@ -8649,14 +8647,14 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Strategic Intent And CTM HelpText</shortDescription>
-        <value>Below is how your project plots in the Consumer/Technology Matrix (CTM) and its assigned Strategic Intent i.e. Innovation, Renovation, BLG or Operational. The strategic intent is based on your prior selections for Type of Project, Consumer Value Perception and Enabling Technology. This information will roll up to portfolio-level CTM views to illustrate the actual spread of multiple projects and collective implications on risk, growth, resources, investment, and ability to deliver strategic targets. Because portfolio decisions are made based on the CTM, it is essential that your Type of Project, CVP and ET be accurate ? please consult CMI and R&amp;D partners for input. Unlike Type of Project which is fixed now, CVP and ET may be edited as the project progresses, until Market Ready Gate is approved.</value>
+        <value>Below is how your project plots in the Consumer/Technology Matrix (CTM) and its assigned Strategic Intent i.e. Innovation, Renovation, BLG or Operational. The strategic intent is based on your prior selections for Type of Project, Consumer Value Perception and Enabling Technology. This information will roll up to portfolio-level CTM views to illustrate the actual spread of multiple projects and collective implications on risk, growth, resources, investment, and ability to deliver strategic targets. Because portfolio decisions are made based on the CTM, it is essential that your Type of Project, CVP and ET be accurate ¬ñ please consult CMI and R&amp;D partners for input. Unlike Type of Project which is fixed now, CVP and ET may be edited as the project progresses, until Market Ready Gate is approved.</value>
     </labels>
     <labels>
         <fullName>IPM_Strategic_Intent_message</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Strategic Intent message</shortDescription>
-        <value>&apos;Global Operationalí</value>
+        <value>&apos;Global Operational‚Äô</value>
     </labels>
     <labels>
         <fullName>IPM_Sub_Sector</fullName>
@@ -8985,7 +8983,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM TRAINING OR TECHNICAL</shortDescription>
-        <value>When you get to the portal, youíll also find links to BD and BB virtual tours of the IPM process, highlighting the benefits that the new system will provide, as well as IPM Navigator smartcards, showing you how to work with the system and the IPM Navigator functional cards that highlight responsibilities by each function.</value>
+        <value>When you get to the portal, you‚Äôll also find links to BD and BB virtual tours of the IPM process, highlighting the benefits that the new system will provide, as well as IPM Navigator smartcards, showing you how to work with the system and the IPM Navigator functional cards that highlight responsibilities by each function.</value>
     </labels>
     <labels>
         <fullName>IPM_TRUE</fullName>
@@ -9196,7 +9194,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_UNILEVER_HIGHLY_CONFIDENTIAL</shortDescription>
-        <value>© Unilever Highly Confidential and Proprietary Information - Production and Distribution is Prohibited.</value>
+        <value>¬© Unilever Highly Confidential and Proprietary Information - Production and Distribution is Prohibited.</value>
     </labels>
     <labels>
         <fullName>IPM_UPDATE_PRO_PHASE_CONFIRMATION</fullName>
@@ -9448,7 +9446,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_WHAT_WE_CANT_CHANGE</shortDescription>
-        <value>This section defines what we definitely canít change (i.e. ìthe givensî).  Are there any supply chain, technology, legal, regulatory, complexity, customer, cost, time, or other limitations?  Examples:  This project must leverage the existing bottle; the product/pack must reduce the environmental impact of the brand; must not be margin dilutive to either Unilever or our customers.</value>
+        <value>This section defines what we definitely can‚Äôt change (i.e. ‚Äúthe givens‚Äù).  Are there any supply chain, technology, legal, regulatory, complexity, customer, cost, time, or other limitations?  Examples:  This project must leverage the existing bottle; the product/pack must reduce the environmental impact of the brand; must not be margin dilutive to either Unilever or our customers.</value>
     </labels>
     <labels>
         <fullName>IPM_WHO_WILL_APPROVE_CHARTER_GATE</fullName>
@@ -9483,7 +9481,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>WhiteSpace HelpText</shortDescription>
-        <value>White Space is a strategic classifier ñ it means launching an existing Unilever brand mix into a geography where it does not exist because there is a demonstrated consumer, market development, or growth opportunity (i.e. it can be an easy win).</value>
+        <value>White Space is a strategic classifier ‚Äì it means launching an existing Unilever brand mix into a geography where it does not exist because there is a demonstrated consumer, market development, or growth opportunity (i.e. it can be an easy win).</value>
     </labels>
     <labels>
         <fullName>IPM_White_Space</fullName>
@@ -9816,7 +9814,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_MISSION_STATEMENT</shortDescription>
-        <value>Innovation is at the heart of Unileverís growth plans.</value>
+        <value>Innovation is at the heart of Unilever‚Äôs growth plans.</value>
     </labels>
     <labels>
         <fullName>IPM_Export_Milestones</fullName>
@@ -9948,8 +9946,8 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <fullName>IPM_Y3_iTO_notation</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Y3 iTO (mn Ä):</shortDescription>
-        <value>Y3 iTO (mn Ä):</value>
+        <shortDescription>Y3 iTO (mn ‚Ç¨):</shortDescription>
+        <value>Y3 iTO (mn ‚Ç¨):</value>
     </labels>
     <labels>
         <fullName>IPM_MCO_Rollout_Leader</fullName>
@@ -9963,7 +9961,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ipmFinSummaryGMbpsHelp</shortDescription>
-        <value>This is the difference between the Y1 GM of the project, compared against the average GM of the products (CUs) that are being replaced on shelf. Calculation: GM Y1 ñ DNDS GM Y1</value>
+        <value>This is the difference between the Y1 GM of the project, compared against the average GM of the products (CUs) that are being replaced on shelf. Calculation: GM Y1 ‚Äì DNDS GM Y1</value>
     </labels>
 	<labels>
         <fullName>IPM_BelowThresholdError_Msg</fullName>
@@ -10062,7 +10060,7 @@ If you take no further action after 72 hours from now this Project {0} will be s
 	<language>en_US</language>
 	<protected>false</protected>
 	<shortDescription>Reactivate Project Message</shortDescription>
-	<value>To reactivate this project you must complete the Project Initiation Wizard. Closing the Wizard now will stop reactivation. Any updates you have saved using the ëSave and continueí button will be retained.</value>
+	<value>To reactivate this project you must complete the Project Initiation Wizard. Closing the Wizard now will stop reactivation. Any updates you have saved using the ‚ÄòSave and continue‚Äô button will be retained.</value>
     </labels>
 	<labels>
         <fullName>IPM_ReactivatingProject</fullName>
@@ -10427,5 +10425,5 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>IPM_Fin_CopyPaste_Error_Message</shortDescription>
         <value>There was some problem saving the business case. Please try saving the business case again</value>
     </labels>
-</CustomLabels>
+
 	
