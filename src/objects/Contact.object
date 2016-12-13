@@ -5282,7 +5282,7 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <recordTypes>
+   <recordTypes>
         <fullName>WWP_contact_layout</fullName>
         <active>true</active>
         <label>WWP contact layout</label>

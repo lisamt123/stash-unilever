@@ -64,46 +64,6 @@
         <label>BSP</label>
         <picklist>
             <picklistValues>
-                <fullName>Joint Business Plans</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Establish Web Shops</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Execute Burger Route 3.0</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Front of House Promo</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Launch New Lipton FBIT Flavors</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Launch Pure Leaf FBIT</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Launch Pure Leaf Hot</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Execute Cat Man Initiatives</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Top Dish Activations</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sugar &amp; Tea Bundles</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>BSP 1</fullName>
                 <default>false</default>
                 <isActive>false</isActive>
@@ -128,8 +88,52 @@
                 <default>false</default>
                 <isActive>false</isActive>
             </picklistValues>
+            <picklistValues>
+                <fullName>Establish Web Shops</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Execute Burger Route 3.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Execute Cat Man Initiatives</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Front of House Promo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Joint Business Plans</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Launch New Lipton FBIT Flavors</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Launch Pure Leaf FBIT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Launch Pure Leaf Hot</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sugar &amp; Tea Bundles</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Top Dish Activations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trade Event</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
         </picklist>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1712,6 +1716,10 @@ ISPICKVAL(FS_Status__c, &apos;Completed&apos;) ,ISPICKVAL(FS_Status__c, &apos;Ap
                 <fullName>Top Dish Activations</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Trade Event</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>FS_Objective_Type__c</picklist>
@@ -2096,6 +2104,10 @@ ISPICKVAL(FS_Status__c, &apos;Completed&apos;) ,ISPICKVAL(FS_Status__c, &apos;Ap
             </values>
             <values>
                 <fullName>Top Dish Activations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Event</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

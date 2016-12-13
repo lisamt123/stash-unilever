@@ -186,7 +186,13 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     private IPM_Analytics_OTIF__c prepareAnalyticeRecord(IPM_Project__c proj, IPM_Analytics_OTIF__c otifAnalytic,  map<Id,list<IPM_Project_Document_Section_Content__c>> projDocSecContentMap){
         
         IPM_Analytics_OTIF__c otifAnalyticProj=otifAnalytic;
-        
+        //EPIC406
+      	if(String.isNotBlank(proj.Project_External_ID__c)){
+        	otifAnalyticProj.IPM_External_ID__c = proj.Project_External_ID__c;
+	    }else
+	    {
+	    	otifAnalyticProj.IPM_External_ID__c = proj.id;
+	    }
         otifAnalyticProj.IPM_Project_Id__c = proj.id;
         otifAnalyticProj.IPM_Project_Name__c = proj.IPM_Project_Name__c;
         otifAnalyticProj.IPM_Project_Phantom_Non_Key__c = IPM_ConstantUtils.Project;
@@ -236,7 +242,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         rolloutFinancialmap = new map<id,list<IPM_Financial__c>> ();
         try{
             list<IPM_Financial__c> projRolloutFinList = new list<IPM_Financial__c>([SELECT  id,name,Display_Name__c,Financial_External_ID__c,Business_Impact_Global__c,Business_Impact_Regional__c,Business_Impact_Local__c,Parent_Project__r.Name,Regional_Project__r.id, 
-                                                                                            Local_Project__r.id,Parent_Project__r.id,Regional_Project__r.Name,Local_Project__r.Name,IPM_Auto_Aligned_Fin_TLD__c,IPM_Project_Rollout__r.id,Global_External_Id__c,IPM_Parent_Company_Card__c 
+                                                                                            Local_Project__r.id,Parent_Project__r.id,Regional_Project__r.Name,Local_Project__r.Name,IPM_Auto_Aligned_Fin_TLD__c,IPM_Project_Rollout__r.id,Global_External_Id__c,IPM_Parent_Company_Card__c,Target_Launch_Date__c 
 
                                                                                             FROM IPM_Financial__c 
                                                                                             WHERE IPM_Project_Rollout__c IN: regionalRolloutset OR Regional_Project__c IN: regionalRolloutset  Limit 50000]);
@@ -341,10 +347,8 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         nonKeyAnalytic.IPM_Project_Id__c = parentAnalytic.IPM_Project_Id__c;
         nonKeyAnalytic.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
         nonKeyAnalytic.IPM_Project_Name__c = nonKeyFinancial.Display_Name__c;
-        //nonKeyAnalytic.IPM_Parent_Project_Name__c = parent.IPM_Project_Name__c;     
         nonKeyAnalytic.IPM_Project_Span__c = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
         nonKeyAnalytic.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-       // nonKeyAnalytic.IPM_Company__c = parent.IPM_Company__c;
         nonKeyAnalytic.IPM_Category_Group__c = parent.IPM_Category_Group__c;
         nonKeyAnalytic.IPM_Category__c = parent.IPM_Category__c;
         nonKeyAnalytic.IPM_Phase__c = parent.IPM_Phase__c;
@@ -353,8 +357,8 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         nonKeyAnalytic.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;
         nonKeyAnalytic.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;
         nonKeyAnalytic.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;              
-        nonKeyAnalytic.IPM_Target_Launch_Month_BD__c = parent.IPM_Target_Launch_Month_BD__c;
-        nonKeyAnalytic.IPM_Target_Launch_Year_BD__c = parent.IPM_Target_Launch_Year_BD__c;
+        nonKeyAnalytic.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(nonKeyFinancial.Target_Launch_Date__c.month());
+        nonKeyAnalytic.IPM_Target_Launch_Year_BD__c = nonKeyFinancial.Target_Launch_Date__c.year();
         if(parent.IPM_GKM__c==IPM_Utils.GATE_KEEPING_MODEL_3)
         {
         
@@ -1142,7 +1146,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                                                                                           Parent_Project__r.IPM_Project_Type__c,
                                                                                           Regional_Project__r.IPM_Project_Type__c,
                                                                                           Local_Project__r.IPM_Project_Type__c,
-                                                                                          Global_External_Id__c,IPM_Parent_Company_Card__c
+                                                                                          Global_External_Id__c,IPM_Parent_Company_Card__c,Target_Launch_Date__c
                                                                                                                                                                             
                                                                                   FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
         

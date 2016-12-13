@@ -437,8 +437,8 @@
         <fullName>IPM_External_ID__c</fullName>
         <description>To hold the external id of the project</description>
         <externalId>false</externalId>
-        <label>IPM_External_ID</label>
-        <length>255</length>
+ 		<label>Inoplan Project ID</label>
+ 		<length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
