@@ -109,6 +109,15 @@ src/objects
 src/objects/IPM_Analytics_OTIF__c.object
 src/objects/IPM_Analytics__c.object
 src/objects/IPM_Project_Rollout__c.object
+src/objects/IPM_Project_Document_Section__c.object
+src/objects/IPM_Project__c.object
+src/objects/IPM_Section__c.object
+src/objects/IPM_Task__c.object
+src/customMetadata
+src/customMetadata/IPM_Project_Metadata.GKM1.md
+src/customMetadata/IPM_Project_Metadata.GKM2.md
+src/customMetadata/IPM_Project_Metadata.GKM3.md
+src/customMetadata/IPM_Project_Metadata.GKM4.md
 src/pages
 src/pages/IPM_Download_Source_Plan.page
 src/pages/IPM_Download_Source_Plan.page-meta.xml
