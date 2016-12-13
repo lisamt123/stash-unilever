@@ -953,6 +953,39 @@
         <language>en_US</language>
     </listViews>
     <listViews>
+        <fullName>NA_Quality_Emailed_Alerts1</fullName>
+        <columns>NAME</columns>
+        <columns>Reason_Code__c</columns>
+        <columns>Active__c</columns>
+        <columns>L0_Product_Category__c</columns>
+        <columns>Threshold__c</columns>
+        <columns>L1_Product_Category__c</columns>
+        <columns>L2_Product_Category__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>organic mayo</value>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>NA</value>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>NA Survey Alerts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>TO_France_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>TO France Queue</label>
