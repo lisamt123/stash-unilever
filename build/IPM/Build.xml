@@ -108,6 +108,10 @@
 			<runTest>IPM_ProjectOverviewCtrl_Test</runTest>
 			<runTest>IPM_ProjectOverviewCtrol_Test</runTest>
 			<runTest>IPM_ProjectDocumentSectionHandler_Test</runTest>
+			<runTest>IPM_EcoDesignSection_Test</runTest>
+			<runTest>IPM_ExportTeamMembersReportCntrl_Test</runTest>
+			<runTest>IPM_NewTask_Test</runTest>
+			<runTest>IPM_ValidationHelper_Test</runTest>
 	</sf:deploy>
   </target>  
 
