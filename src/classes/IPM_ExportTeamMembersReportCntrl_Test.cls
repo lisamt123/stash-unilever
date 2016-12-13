@@ -61,7 +61,7 @@ private with sharing class IPM_ExportTeamMembersReportCntrl_Test {
 		//Running as Central Team Member as they are the ones using the report export functionality through the IPM_ExportTeamMembersReport page
 		system.runAs(centralTeamProfileUser) 
 		{
-			 Test.StartTest(); 
+			
 		     List<IPM_Project__c> reportRecords = IPM_TestFactory_Helper.projectSetUp(5,centralTeamProfileUser);
 			 
 			 for(IPM_Project__c reportPrj : reportRecords)  
@@ -70,16 +70,17 @@ private with sharing class IPM_ExportTeamMembersReportCntrl_Test {
 			 } 
 			 
 			 //inserting project records to be shown  in Excel
-			 
+			 IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
 			 insert  reportRecords; 
-			 
-             Test.StopTest(); 			 
-			
-			Test.setCurrentPage(pRef); 
-			IPM_ExportTeamMembersReportController expTeamMemRepCntrl = new  IPM_ExportTeamMembersReportController();
+			 IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
+             
+			  Test.StartTest(); 
+				Test.setCurrentPage(pRef); 
+				IPM_ExportTeamMembersReportController expTeamMemRepCntrl = new  IPM_ExportTeamMembersReportController();
 			  
-			//checking if report data is fetched onto the page
-			system.assert(expTeamMemRepCntrl.reportResults.getAllData(),'Unable to fetch the Report Records');    
+				//checking if report data is fetched onto the page
+				system.assert(expTeamMemRepCntrl.reportResults.getAllData(),'Unable to fetch the Report Records');    
+			Test.StopTest(); 			 
 		
 		} 
 	}

@@ -76,6 +76,8 @@ src/classes/IPM_TaskHelper_Test.cls
 src/classes/IPM_TaskHelper_Test.cls-meta.xml
 src/classes/IPM_TestFactory_Helper.cls
 src/classes/IPM_TestFactory_Helper.cls-meta.xml
+src/classes/IPM_ExportTeamMembersReportCntrl_Test.cls
+src/classes/IPM_ExportTeamMembersReportCntrl_Test.cls-meta.xml
 src/classes/IPM_Utils.cls
 src/classes/IPM_Utils.cls-meta.xml
 src/classes/IPM_ValidationHelper_Test.cls
