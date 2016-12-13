@@ -72,6 +72,8 @@ src/classes/IPM_SourcePlanController_Test.cls
 src/classes/IPM_SourcePlanController_Test.cls-meta.xml
 src/classes/IPM_TaskHelper.cls
 src/classes/IPM_TaskHelper.cls-meta.xml
+src/classes/IPM_ExportTeamMembersReportCntrl_Test.cls
+src/classes/IPM_ExportTeamMembersReportCntrl_Test.cls-meta.xml
 src/classes/IPM_TaskHelper_Test.cls
 src/classes/IPM_TaskHelper_Test.cls-meta.xml
 src/classes/IPM_TestFactory_Helper.cls
