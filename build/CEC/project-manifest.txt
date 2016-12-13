@@ -1,4 +1,8 @@
 src
+src/classes
 src/permissionsets
+src/classes/CEC_RetrievalRequestTriggerHelper.cls
+src/classes/CEC_RetrievalRequestTriggerHelper.cls-meta.xml
 src/permissionsets/CEC_User.permissionset
+
 
