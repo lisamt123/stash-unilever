@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
 <labels>
         <fullName>IPM_A_SEPERATE_COUNTRY</fullName>
         <language>en_US</language>
@@ -10425,5 +10427,5 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>IPM_Fin_CopyPaste_Error_Message</shortDescription>
         <value>There was some problem saving the business case. Please try saving the business case again</value>
     </labels>
-
+</CustomLabels>
 	
