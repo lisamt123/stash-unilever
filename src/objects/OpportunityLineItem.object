@@ -380,6 +380,7 @@
         <fullName>FS_OpTMICs__c</fullName>
         <externalId>false</externalId>
         <formula>FS_Rate__c  +  FS_HQRate__c  +  Opportunity.FS_MSCS__c +  IF( FS_FixedPrice__c = TRUE,  FS_DeltaBR1BR3__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>Operator discounts per case.</inlineHelpText>
         <label>Op TMI/Cs</label>
         <precision>18</precision>

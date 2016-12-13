@@ -25,14 +25,14 @@
                     <apex:outputText value="{!$Label.VPM_HomePageLink1}" /> <apex:outputText value="{!$User.FirstName}" />
                </apex:pageblockSectionItem> 
                <apex:pageblockSectionItem > 
-                   <apex:outputText value="{!$Label.VPM_HomePageLink2}" /> <apex:outputLink value="http://google.com/">Google</apex:outputLink>
+                   <apex:outputText value="{!$Label.VPM_HomePageLink2}" /> <apex:outputLink value="https://unilever.sharepoint.com/sites/ETS/FS/Pages/Supplier%20setup.aspx">Self-help materials</apex:outputLink>
                </apex:pageblockSectionItem>
          </apex:pageBlockSection>
      </apex:pageBlock>
       <apex:pageBlock title="{!$Label.VPM_ProcurementLink}" rendered="{!isProcure}">
           <apex:pageBlockSection >
                <apex:pageblockSectionItem > 
-                   <apex:outputText value="{!$Label.VPM_HomePageLink2}" /> <apex:outputLink value="http://google.com/">Google</apex:outputLink>
+                   <apex:outputText value="{!$Label.VPM_HomePageLink2}" /> <apex:outputLink value="https://unilever.sharepoint.com/sites/ETS/FS/Pages/Supplier%20setup.aspx">Self-help materials</apex:outputLink>
                </apex:pageblockSectionItem>
                <apex:pageblockSectionItem >
                        <apex:outputText value="{!$Label.VPM_LinkToReports}" /><apex:outputLink value="{!$Label.VPM_CommodityApprovReportLink}">Commodity Approver Records Assigned to me </apex:outputLink>

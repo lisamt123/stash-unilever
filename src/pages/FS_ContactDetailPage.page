@@ -63,7 +63,7 @@ function isNumberKey(evt)
                 
                 
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel value="{!$Label.FS_Email}}" />
+                    <apex:outputLabel value="{!$Label.FS_Email}" />
                     <apex:outputText value="{!varContactDetail.Email}" />
                 </apex:pageBlockSectionItem>
                 
