@@ -1,5 +1,7 @@
 src
 src/wave
+src/wave/Daily_Sales_for_Sales_Rep.wdash
+src/wave/Daily_Sales_for_Sales_Rep.wdash-meta.xml
 src/wave/FS_Daily_Sales_NA_for_Sales_Rep.wdash
 src/wave/FS_Daily_Sales_NA_for_Sales_Rep.wdash-meta.xml
 src/wave/FS_Daily_Sales_NA_Sales_Rep.wapp
