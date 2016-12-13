@@ -19,7 +19,7 @@ Property   :  UserProfile
 Purpose    :  To store User KUN Profile attribute in view State for page rendering purposes
 ****************************************************************************************************************************************/
     public KUN_Profile__C UserProfile{get;set;}
-    
+    public boolean flagIsSF1User {get;set;}
     
 /**************************************************************************************************************************************
 Property   : MyEvents
@@ -174,6 +174,7 @@ Purpose    : Read-only property to get the specific record type defined in the o
     public Kun_HomeView_CC(){
         try{
             IsTest =false;
+            flagIsSF1User = false;
             Date selectedDate=Date.today();//Give your date 
             Date firstDate=selectedDate.addMonths(-5).toStartOfMonth();
             Date lastDate=firstDate.addMonths(12).addDays(date.daysInMonth(firstDate.year(),firstDate.month())-1);
@@ -184,7 +185,7 @@ Purpose    : Read-only property to get the specific record type defined in the o
                 lastDate=firstDate.addDays(date.daysInMonth(selectedDate.year(),selectedDate.month())-1);
                 MyEvents=getEvents(firstDate,lastDate);
             }
-            LIST<KUN_Profile__c> moProfile=[SELECT Name,Capability__c,Cluster__c,Position__c,Unilever_Profile__r.email,Unilever_Profile__r.country,Unilever_Profile__r.Name,Unilever_Profile__r.FullPhotoUrl,Unilever_Profile__r.SmallPhotoUrl FROM KUN_Profile__c WHERE Unilever_Profile__c=:UserInfo.getUserId() LIMIT 1];
+            LIST<KUN_Profile__c> moProfile=[SELECT Name,Capability__c,Cluster__c,Position__c,Unilever_Profile__r.email,Unilever_Profile__r.country,Unilever_Profile__r.Name,Unilever_Profile__r.FullPhotoUrl,Unilever_Profile__r.SmallPhotoUrl,Is_Salesforce1_User__c FROM KUN_Profile__c WHERE Unilever_Profile__c=:UserInfo.getUserId() LIMIT 1];
             if(moProfile.size()<=0){
                 ApexPages.Message myMsg=new  ApexPages.Message(ApexPages.Severity.ERROR,'Your Key User Community Profile dose not exists, Please Contact Community Administrator for further Information.');
                 ApexPages.addMessage(myMsg);
@@ -548,4 +549,46 @@ Throws [Exceptions]:
         ConnectApi.Topics.assignTopicByName(null,feedElement.Id,ProcessTopic);
         ConnectApi.Topics.assignTopicByName(null,feedElement.Id,ProcessSubTopic);
     }
+    
+    /***************************************************************************************************************************************************
+        Purpose: This method is used to check if the user is logged in from the Salesforce app in past, if not we have to show popup stating start using SF1 app
+        Parameters: void
+        Returns: void
+        Throws [Exceptions]:
+    ***************************************************************************************************************************************************/
+     public void checkUserLoginHistory(){
+        system.debug('check login history');
+		try{
+            if(UserProfile.Is_Salesforce1_User__c){
+               return;
+            }
+            flagIsSF1User = false;
+            DateTime dt = Date.today();
+            dt = dt.addMonths(-3);
+            
+            system.debug(LoggingLevel.INFO,'past date --- ' + dt);
+            List<LoginHistory> loginHistory = [SELECT Id,Application,Browser,Platform,Status,UserId FROM LoginHistory WHERE UserId =:UserInfo.getUserId() AND LoginTime >=:dt];
+            system.debug(LoggingLevel.INFO, 'loginHistory' + loginHistory);
+            if(!LoginHistory.isEmpty()){
+                for(LoginHistory ls : loginHistory){
+                    if(ls.Status == 'Success' && ( ls.Application.equals('Salesforce1 for Android') || ls.Application.equals('Salesforce1 for iOS'))){
+                        flagIsSF1User = true;
+                        break;
+                    }
+                }
+            }
+            
+            if(flagIsSF1User){
+                UserProfile.Is_Salesforce1_User__c = true;
+                update UserProfile;
+            } else {
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,'Do you know that you can access the KUN app from your mobile'));
+            }
+        }
+        catch(Exception e){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'The following exception has occurred(Method Name::- checkUserLoginHistory):- '+e.getMessage()));
+        }
+    }
+    /***************************************************************************************************************************************************/
+
 }
