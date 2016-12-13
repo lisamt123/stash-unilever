@@ -5138,18 +5138,7 @@
         <field>Account_Relationship__c.FS_UniqueAccountID__c</field>
         <readable>true</readable>
     </fieldPermissions>         
-    
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.External_ID__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
 
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Agency_Fee_Field_History__c.Amended_By__c</field>

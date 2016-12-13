@@ -70,25 +70,27 @@ private class IPM_TaskHelper_Test{
         }
          // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(new List<User>{platformUserPL1,platformUserPL2,userBDRole}); 
-            
-        list<IPM_Project__c> projectList1 = IPM_TestFactory_Helper.projectSetUp(10,platformUserPL1);
         projectList = new list<IPM_Project__c> ();
+        
         System.runAs(platformUserPL1)
-        {  
-          for(IPM_Project__c  project: projectList1)
-          {
+        {
+        	list<IPM_Project__c> projectList1 = IPM_TestFactory_Helper.createOriginalProjectList(false,10);  
+          	for(IPM_Project__c  project: projectList1)
+          	{
+          	  project.IPM_Project_Leader__c = platformUserPL1.Id;
               project.Deputy_Project_Leader__c = platformUserPL2.id;
               projectList.add(project);
-          }
-          insert projectList;
-         //check if the created projects are having the same complexity type as assigned while creating
-          list<IPM_Project__c> projectsResultList = [SELECT Id,IPM_Phase__c,IPM_Complexity__c FROM IPM_Project__c where Name IN:projectNameSet];
-          for(IPM_Project__c project : projectsResultList)
-          {
-                system.assertEquals(project.IPM_Complexity__c,IPM_ConstantUtils.COMPLEXITY_FULL,'Project is not created');
-        }  
-      }
-         
+          	}
+      		insert projectList;
+          
+     		//check if the created projects are having the same complexity type as assigned while creating
+          	list<IPM_Project__c> projectsResultList = [SELECT Id,IPM_Phase__c,IPM_Complexity__c FROM IPM_Project__c where Name IN:projectNameSet];
+          
+          	for(IPM_Project__c project : projectsResultList)
+          	{
+          		system.assertEquals(project.IPM_Complexity__c,IPM_ConstantUtils.COMPLEXITY_FULL,'Project is not created');
+    	  	}  
+      	}
       }
     
     /***********************************
@@ -109,7 +111,7 @@ private class IPM_TaskHelper_Test{
 	    projectDetailList = [Select Id,IPM_Phase__c,IPMProject_Span__c,Name,IPM_Complexity__c,IPM_Project_Leader__c,Deputy_Project_Leader__c,IPM_GateKeeping_Model__c,
                             (Select Id from Project_Documents__r),
                             (Select Id from IPM_Financials_Consolidated__r ),
-                            (Select Id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,IPM_Project_Document_Section__c,IPM_Assignee__c,ExternalField__c,IPM_Active__c from Tasks__r),
+                            (Select Id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Type_of_Task__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,IPM_Project_Document_Section__c,IPM_Assignee__c,ExternalField__c,IPM_Active__c from Tasks__r),
                             (Select Id,Name,IPM_Due_Date__c,IPM_Planned_Date__c,IPM_Phase__c from IPM_Milestones__r)
                             from IPM_Project__c where Name in:projectNameSet];
           
@@ -291,58 +293,47 @@ private class IPM_TaskHelper_Test{
 		//share project's master data with users
         IPM_TestFactory_Helper.shareMasterProject(new List<User>{projectLeader1,projectLeader2}); 
         
-      
+        list<IPM_Task__c> OriginalPLTaskList = [SELECT Id,Name,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Assignee__c 
+                                          	FROM IPM_Task__c where IPM_Assignee__c = :projectLeader1.Id];
+     
         system.runAs(projectLeader1)
         {
-          Test.startTest();  
+      		Test.startTest();  
           
-              initializedData();
+          	initializedData();
               
-              list<IPM_Project__c> updateProjectList = new list<IPM_Project__c>();
-			  set<Id> projectIdSet = new set<Id>();
-            
-			 //change PL 
-            User globalPL = [Select Id,LastName,IsActive from User where LastName=:GLOBAL_PL2 limit 1];  
+          	list<IPM_Project__c> updateProjectList = new list<IPM_Project__c>();
+
+			 //change PL   
             for(IPM_Project__c project :projectDetailList)
             {
-              project.IPM_Project_Leader__c = globalPL.id;
-			  projectIdSet.add(project.id);
-                updateProjectList.add(project);
+              	project.IPM_Project_Leader__c = projectLeader2.id;
+            	updateProjectList.add(project);
             }
             
-            update updateProjectList;  
+            update updateProjectList; 
+             
             //Check if PL is changed successfully
-            list<IPM_Project__c> projDetailResult = [select Id,Name,IPM_Project_Leader__c,Deputy_Project_Leader__c FROM IPM_Project__c where Id IN:projectIdSet];
+            list<IPM_Project__c> projDetailResult = [select Id,Name,IPM_Project_Leader__c,Deputy_Project_Leader__c FROM IPM_Project__c where Id IN:updateProjectList];
+            
             for(IPM_Project__c proj :  projDetailResult)
             {
-                system.assertEquals(proj.IPM_Project_Leader__c,globalPL.id,'PL is not changed');
+                system.assertEquals(proj.IPM_Project_Leader__c,projectLeader2.id,'PL is not changed');
             }
-         Test.stopTest();
+         	Test.stopTest();
          
-    }
+    	}
 		 //login as chnaged PL
         system.runAs(projectLeader2)
-        {
-			//Get the project list where new user is assigned as PL
-            set<Id> projIdSet =  new set<Id>();
-            list<IPM_Project__c> projDetail = [select Id,Name,IPM_Project_Leader__c,Deputy_Project_Leader__c FROM IPM_Project__c where Name in:projectNameSet];
-            
-			 //Check if the PL is changed 
-            for(IPM_Project__c project : projDetail)
-            {   
-                projIdSet.add(project.id);
-                system.assertEquals(project.IPM_Project_Leader__c,userinfo.getuserid(),'PL is not updated ');
-            
-            }
-			// get task list where PL is assignee
+        { 
+			// get task list where PL was intially assigned and validate against new PL.
             list<IPM_Task__c> updatetaskList = [SELECT Id,Name,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Assignee__c 
-                                          FROM IPM_Task__c where IPM_Project__c IN :projIdSet];
+                                          FROM IPM_Task__c where Id in :OriginalPLTaskList];
             
 			//check if the task as also assigned to new PL
             for(IPM_Task__c task :updatetaskList)
             {
-              system.assertEquals(task.IPM_Assignee__c,userinfo.getuserid(),'Task assignee is not changed.');
-                 
+              system.assertEquals(task.IPM_Assignee__c,projectLeader2.Id,'Task assignee is not changed.');
             }
         }
      }

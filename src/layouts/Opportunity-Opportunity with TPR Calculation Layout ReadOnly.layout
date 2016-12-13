@@ -48,6 +48,10 @@
                 <behavior>Readonly</behavior>
                 <field>FS_casesPiece__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Description</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
