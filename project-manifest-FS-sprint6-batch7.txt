@@ -13,3 +13,4 @@ src/permissionsets/FS_RU_SCP.permissionset
 src/permissionsets/FS_RussiaSalesRep.permissionset
 src/permissionsets/FS_SCP_And_Corp.permissionset
 src/permissionsets/FS_Sales_Rep.permissionset
+src/profiles/Unilever Food Solution - NA.profile
