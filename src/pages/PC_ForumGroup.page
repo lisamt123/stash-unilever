@@ -16,7 +16,7 @@
     <div class="subnav">
         <div class="row topRow">
             <div class="col-md-12 col-lg-12">
-                <a href="{!$Page.PC_Forum}" title="Go back to Forum Page">&laquo; Go Back to Forum Page</a>
+                <a href="{!$Page.PC_Forum_clone}" title="Go back to Forum Page">&laquo; Go Back to Forum Page</a>
             </div>
         </div>
 
