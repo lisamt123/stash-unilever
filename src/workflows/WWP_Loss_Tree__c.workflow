@@ -9,7 +9,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/WWP_Supplier_Notification_Temp</template>
+        <template>WinWithPlanning/WWP_Supplier_Notification_Temp</template>
     </alerts>
     <fieldUpdates>
         <fullName>WWP_LossType_DC_FU</fullName>
@@ -415,6 +415,6 @@
             <field>WWP_Loss_Tree__c.Last_modified_planner_email__c</field>
             <operation>equals</operation>
         </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
+		<triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>
