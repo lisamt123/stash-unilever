@@ -1,11 +1,6 @@
 src
 src/wave
-src/wave/Daily_Sales_Stage.wapp
-src/wave/Daily_Sales_RU.wapp
-src/wave/Daily_Sales.wapp
+src/wave/FS_Daily_Sales_NA_for_Sales_Rep.wdash
+src/wave/FS_Daily_Sales_NA_for_Sales_Rep.wdash-meta.xml
 src/wave/DailySales.wds
-src/wave/DailySales_stage.wds
-src/wave/Data_Flow_Check.wlens
-src/wave/Data_Flow_Check.wlens-meta.xml
-src/wave/Data_Loader_Check.wlens
-src/wave/Data_Loader_Check.wlens-meta.xml
+src/wave/FS_Daily_Sales_NA_Sales_Rep.wapp
