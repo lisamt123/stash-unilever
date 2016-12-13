@@ -15,6 +15,7 @@ private with sharing class IPM_ExportTeamMembersReportCntrl_Test {
 	private static List<IPM_User_Profile__c> createUserProfileList;
 	
 	private static final String LAUNDRY = 'Laundry';  
+	private static final String IPM_ALL_USERS_GROUP = 'IPM_All Users';
 	
 	/***********************************************************************************************************************************************************
 	* @description To create test data to be used in test methods
@@ -35,6 +36,13 @@ private with sharing class IPM_ExportTeamMembersReportCntrl_Test {
 			createUserProfileList[1].IPM_Company_Card__c=regionalCompanyCard.ID;
 			createUserProfileList[0].IPM_User__c=createUserProfileList[1].IPM_User__c=centralTeamProfileUser.Id;
 			insert createUserProfileList; 
+			
+			//Adding user to the  IPM_All_Users public group,All IPM Reports are shared with this folder
+			GroupMember grpMember = new GroupMember();
+			List<Group> listGroup =[Select Id from Group where name=:IPM_ALL_USERS_GROUP];
+			grpMember.GroupId =listGroup[0].Id;
+			grpMember.UserOrGroupId=centralTeamProfileUser.Id;
+			insert grpMember;
 			
 			system.assertEquals([Select IPM_User__c from IPM_User_Profile__c where IPM_Company_Card__c=:globalCompanyCard.Id limit 1].IPM_User__c,centralTeamProfileUser.Id,'Unable to create user profile with the specified User');    
             
