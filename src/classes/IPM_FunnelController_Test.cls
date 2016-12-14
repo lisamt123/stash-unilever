@@ -41,12 +41,13 @@ private with sharing class IPM_FunnelController_Test {
         initializeData();
         test.startTest();
         system.runAs(testUser){
+           ApexPages.currentPage().getParameters().put('Id', project.Id);
             IPM_FunnelController funnelController = new IPM_FunnelController ();
-            funnelController.ipmProject = project;
+            IPM_FunnelController.ipmProject = project;
             funnelController.currentProjectPhaseSeq=4;
             funnelController.getAssociatedProjectPhases();
-            funnelController.ipmProject.IPM_CompanyCardText__c='Global Company Card';
-           system.assertEquals(funnelController.ipmProject, project, 'project record should be same');
+            IPM_FunnelController.ipmProject.IPM_CompanyCardText__c='Global Company Card';
+           system.assertEquals(IPM_FunnelController.ipmProject.Id, project.Id, 'project record should be same');
             
         }
         test.stopTest();

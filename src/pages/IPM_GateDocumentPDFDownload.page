@@ -670,6 +670,14 @@
             .goldenCheckcontainer label {width:100%;background: #999;padding:4px 18px;height: 29px;}  
             .alignCenter{text-align:center;}
             .srcbrkWord{word-wrap:break-word;word-break: break-word;background:#000;}
+            /* Local Source Plan Styles */
+            .srcPlanTitle{margin-bottom: 5px;color: #253b78;width: 100%;font-size: 14px;font-weight: bold;}
+            .greytxt{margin-bottom:10px;display:block;}
+            .srcingHeaderContainer{display:table;width:100%;}
+            .leftHeadWidthResp {width: 66%;float: left;position: relative;}
+            .rightHeadWidthResp {width: 34%;float: left;position: relative;}
+            .custSrcWidth{width:8%;}
+            .table>thead>tr>th>div.capcon {width: auto;margin: 0 auto;margin-top:-2px;background-color: #ececec;color: #555;padding: 2px 4px;vertical-align: middle;height: auto;border: 1px solid #ddd;}
         </style>
     </head>
     

@@ -1246,8 +1246,8 @@ If you make no selection now the Sustainability Period will default to 3 years o
         <fullName>IPM_BB</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>IPM_BB</shortDescription>
-        <value>BB</value>
+        <shortDescription>BC Confirmation</shortDescription>
+        <value>BC Confirmation</value>
     </labels>
     <labels>
         <fullName>IPM_BBRole_Team</fullName>
@@ -1274,8 +1274,8 @@ If you make no selection now the Sustainability Period will default to 3 years o
         <fullName>IPM_BB_Document</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>IPM BB Document</shortDescription>
-        <value>BB Document:</value>
+        <shortDescription>BC Confirmation Document</shortDescription>
+        <value>BC Confirmation Document :</value>
     </labels>
     <labels>
         <fullName>IPM_BB_MILESTONE_DATES</fullName>
@@ -1330,8 +1330,8 @@ If you make no selection now the Sustainability Period will default to 3 years o
         <fullName>IPM_BD_Marketing</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>BD Marketing</shortDescription>
-        <value>Brand Development Marketing (BD Marketing)</value>
+        <shortDescription>Marketing (Development)</shortDescription>
+        <value>Marketing (Development)</value>
     </labels>
     <labels>
         <fullName>IPM_BELOW_ARE_QUICK</fullName>
@@ -2100,15 +2100,15 @@ If approved your project will be linked after your Charter gate has been approve
         <fullName>IPM_Brand_Builders_BB</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Brand Builders (BB)</shortDescription>
-        <value>Brand Builders (BB)</value>
+        <shortDescription>Marketing (Deployment)</shortDescription>
+        <value>Marketing (Deployment)</value>
     </labels>
     <labels>
         <fullName>IPM_Brand_Development_Finance_BD_Finance</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Brand Development Finance (BD Finance)</shortDescription>
-        <value>Brand Development Finance (BD Finance)</value>
+        <shortDescription>Finance (Development)</shortDescription>
+        <value>Finance (Development)</value>
     </labels>
     <labels>
         <fullName>IPM_Brand_Led_Growth</fullName>
@@ -2451,14 +2451,14 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_COMPANY</shortDescription>
-        <value>Company</value>
+        <value>70-20-10 Classification</value>
     </labels>
     <labels>
         <fullName>IPM_COMPANY_CARD</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_COMPANY_CARD</shortDescription>
-        <value>Company</value>
+        <value>70-20-10 Classification</value>
     </labels>
     <labels>
         <fullName>IPM_COMP_CARD_NAME</fullName>
@@ -3447,6 +3447,13 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>IPM Description Restricted</shortDescription>
         <value>Description Restricted to 255 Characters</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Doc</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Doc</shortDescription>
+        <value>Doc</value>
     </labels>
     <labels>
         <fullName>IPM_Document</fullName>
@@ -4600,14 +4607,14 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_GCLT_AND_RCLT_ALL_APPROVAL</shortDescription>
-        <value>Select this option if the GCLT and RCLTs will gatekeep Contract and Market Ready Gates in parallel - i.e. GCLT gatekeeps global original projects and RCLTs gatekeep their own regional rollouts.</value>
+        <value>Select this option if the GCLT Leader and CCVPs will gatekeep Contract and Market Ready Gates in parallel - i.e. GCLT Leader gatekeeps global original projects and CCVPs gatekeep their own regional rollouts.</value>
     </labels>
     <labels>
         <fullName>IPM_GCLT_AND_RCLT_APPROVAL</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_GCLT_AND_RCLT_APPROVAL</shortDescription>
-        <value>Select this option if Contract and Market Ready will be gatekept at RCLT level ONLY.</value>
+        <value>Select this option if Contract and Market Ready will be gatekept at CCVP level ONLY.</value>
     </labels>
     <labels>
         <fullName>IPM_GCLT_APPROVAL</fullName>
@@ -7268,7 +7275,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ProjectTypeAndCompany_ReadOnlyWarning</shortDescription>
-        <value>Your selections for Type of Project and Company will be permanent once you hit Submit for Project Creation. Only proceed with project creation when you are certain which indicators to choose.</value>
+        <value>Please note that &lt;b&gt;AFTER&lt;/b&gt; clicking &apos;Submit for Project Creation&apos; the selection of &lt;b&gt;70-20-10 Classification&lt;/b&gt; (70: Global teams working on Global brands; 20: Regional/Local teams working on Global brands or 10: Local teams working on Local Jewels) as well as &lt;b&gt;Type of Project &lt;/b&gt;(Innovation/Renovation; Operational or BLG) &lt;b&gt;is PERMANENT and cannot be changed anymore&lt;/b&gt;.</value>
     </labels>
     <labels>
         <fullName>IPM_Project_Classified</fullName>
@@ -7401,7 +7408,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_RCLT_APPROVAL</shortDescription>
-        <value>Select this option if the RCLT will gatekeep Charter gate.</value>
+        <value>Select this option if the CCVP will gatekeep Charter gate.</value>
     </labels>
     <labels>
         <fullName>IPM_READY_TO_MOVE_TO</fullName>
@@ -8185,7 +8192,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_SELECT_THE_APPROVER</shortDescription>
-        <value>The BOSSCARD approver may be different from the Gatekeeper (global category leader), e.g. a global brand VP or regional category VP.</value>
+        <value>The BOSSCARD approver depends on the type of BOSSCARD (70-20-10 classification). The approver is 70: EVP/P of the category 20: EVP/P of the category for HPC projects, CCVP for Foods and Refreshment 10: CCVP (except for Home Care, where it is the EVP/P of the category). Please note that the BOSSCARD approver may be different to the gatekeeper of the subsequent gates.</value>
     </labels>
     <labels>
         <fullName>IPM_SELECT_TLD</fullName>
@@ -8409,7 +8416,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_SelectCompanyCard</shortDescription>
-        <value>Select Company Card</value>
+        <value>Select 70-20-10 Classification</value>
     </labels>
     <labels>
         <fullName>IPM_SelectGeoScopeLocal</fullName>
@@ -8822,7 +8829,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_THIS_WILL_DESCRIBE</shortDescription>
-        <value>This describes what part of the organization  you work for and the type of project.  Related options will be driven from your selections.</value>
+        <value>This describes what part of the organisation you work for and the type of Project you are about to create a BOSSCARD for: 70: Global teams working on Global brands 20: Regional/Local teams working on Global brands 10: Local teams working on Local Jewels Please note that once the BOSSCARD is approved in setting up your Project the choice made here will be copied over and can be changed if needed.</value>
     </labels>
     <labels>
         <fullName>IPM_TIMINGS</fullName>
@@ -10403,6 +10410,20 @@ If you discover that stopping this project was a mistake you can undo this actio
         <protected>false</protected>
         <shortDescription>IPM Sourced Into Help Text</shortDescription>
         <value>The countries available in this list are populated by the Product / Country Mapping column. If a required country is not present please work with the Project Marketer to have the countries mapped to the Product.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Fin_CopyPaste_ErrorMsg_Header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Fin_CopyPaste_ErrorMsg_Header</shortDescription>
+        <value>Unable to save business case</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Fin_CopyPaste_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Fin_CopyPaste_Error_Message</shortDescription>
+        <value>There was some problem saving the business case. Please try saving the business case again</value>
     </labels>
 
 	

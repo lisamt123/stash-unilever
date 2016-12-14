@@ -52,11 +52,11 @@
             <!-- Checking condition for editable -->
             <apex:outputPanel layout="block" styleClass="cuCount col-sm-12" rendered="{!IF(isEdit=true,true,false)}">
                 <!-- Checking condition for contract or market ready gate document, model gclt & rclt and span global -->
-                <apex:outputPanel rendered="{!IF(AND(proSpan='Global',proModel='GCLT & RCLT',OR(gateType='Contract',gateType='Market Ready')),true,false)}">
+                <apex:outputPanel rendered="{!IF(AND(proSpan='Global',proModel='GCLT Leader & CCVP',OR(gateType='Contract',gateType='Market Ready')),true,false)}">
                     <div>{!$Label.IPM_RES_REG_CON_GATE}</div>
                 </apex:outputPanel>
                 <!-- Checking condition for market ready gate document, model gclt & rclt and span global -->
-                <apex:outputPanel rendered="{!IF(AND(proSpan='Global',proModel='GCLT & RCLT',gateType='Market Ready'),true,false)}">
+                <apex:outputPanel rendered="{!IF(AND(proSpan='Global',proModel='GCLT Leader & CCVP',gateType='Market Ready'),true,false)}">
                     <div>{!$Label.IPM_RES_REG_MAR_GATE}</div>
                 </apex:outputPanel>
                 <div class="noOfCu">
