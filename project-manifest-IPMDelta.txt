@@ -108,7 +108,7 @@ src/email/IPM_Emails/IPM_Notify_Local_Leader_when_local_project_created.email-me
 src/flows
 src/flows/IPM_Notify_Local_Rollout_Project_Created-19.flow
 src/labels
-src/labels/IPM.labels
+src/labels/CustomLabels.labels
 src/objects
 src/objects/IPM_Project_Metadata__mdt.object
 src/objects/IPM_Analytics_OTIF__c.object
