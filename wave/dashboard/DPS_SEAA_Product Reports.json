@@ -3465,16 +3465,16 @@
             "KPI_Type_53": {
                 "datasets": [
                     {
-                        "id": "0Fb2C000000GmzxSAC",
-                        "label": "SUMMARY_OUTLET_VIEW",
-                        "name": "SUMMARY_OUTLET_VIEW",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzxSAC"
+                        "id": " 0Fb2C000000CanXSAS",
+                        "label": "SUMMARY_OUTLET_VIEW_TEST1",
+                        "name": "SUMMARY_OUTLET_VIEW_TEST1",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000CanXSAS"        
                     }
                 ],
                 "isFacet": true,
                 "isGlobal": false,
                 "query": {
-                    "pigql": "a=load \"SUMMARY_OUTLET_VIEW\";a = filter a by date('Month_Year_Number_Year','Month_Year_Number_Month','Month_Year_Number_Day') in {{selection(Date_Year_Date_Month_14) }}; a = filter a by 'Country' in {{selection(Country_21)}}; a = filter a by 'Country' in {{selection(Country_2)}}; a= group a by all;redline = foreach a generate \"Redline\" as 'Measure', avg(Redline_Perfect_Indicator) as summary_outlet; everbilled = foreach a generate \"Ever Billed\" as 'Measure', avg(Ever_Billed_Perfect_Indicator) as summary_outlet; widthpack = foreach a generate \"Width Pack\" as 'Measure', avg(Width_Pack_Perfect_Indicator) as summary_outlet; u = group redline by all, everbilled by all, widthpack by all;u = union redline, everbilled, widthpack;",
+                    "pigql": "a=load \"SUMMARY_OUTLET_VIEW_TEST1\";a = filter a by {{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Month_Year_Number_Year','Month_Year_Number_Month','Month_Year_Number_Day')\") }} && {{ column(Country_21.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(City_24.selection, [\"City\"]).asEquality(\"City\") }} && {{ column(Commune_45.selection, [\"Commune\"]).asEquality(\"Community\") }}; a= group a by all;redline = foreach a generate \"Redline\" as 'Measure', avg(Redline_Perfect_Indicator) as summary_outlet; everbilled = foreach a generate \"Ever Billed\" as 'Measure', avg(Ever_Billed_Perfect_Indicator) as summary_outlet; widthpack = foreach a generate \"Width Pack\" as 'Measure', avg(Width_Pack_Perfect_Indicator) as summary_outlet; u = group redline by all, everbilled by all, widthpack by all;u = union redline, everbilled, widthpack;",
                     "measures": [
                         [
                             "summary",
@@ -3487,7 +3487,7 @@
                     ]
                 },
                 "selectMode": "single",
-                "type": "aggregate",
+                "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
@@ -12482,6 +12482,12 @@
             "label": "SUMMARY_OUTLET_VIEW",
             "name": "SUMMARY_OUTLET_VIEW",
             "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzxSAC"
+        },
+        {
+            "id": " 0Fb2C000000CanXSAS",
+            "label": "SUMMARY_OUTLET_VIEW_TEST1",
+            "name": "SUMMARY_OUTLET_VIEW_TEST1",
+            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000CanXSAS"        
         }
     ]
 }
