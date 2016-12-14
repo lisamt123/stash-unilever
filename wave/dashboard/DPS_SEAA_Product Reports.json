@@ -3465,16 +3465,16 @@
             "KPI_Type_53": {
                 "datasets": [
                     {
-                        "id": " 0Fb2C000000CanXSAS",
-                        "label": "SUMMARY_OUTLET_VIEW_TEST1",
-                        "name": "SUMMARY_OUTLET_VIEW_TEST1",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000CanXSAS"        
-                    }
+                        "id": "0Fb2C000000GmzxSAC",
+                        "label": "SUMMARY_OUTLET_VIEW",
+                        "name": "SUMMARY_OUTLET_VIEW",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzxSAC"
+                    },
                 ],
                 "isFacet": true,
                 "isGlobal": false,
                 "query": {
-                    "pigql": "a=load \"SUMMARY_OUTLET_VIEW_TEST1\";a = filter a by {{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Month_Year_Number_Year','Month_Year_Number_Month','Month_Year_Number_Day')\") }} && {{ column(Country_21.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(City_24.selection, [\"City\"]).asEquality(\"City\") }} && {{ column(Commune_45.selection, [\"Commune\"]).asEquality(\"Community\") }}; a= group a by all;redline = foreach a generate \"Redline\" as 'Measure', avg(Redline_Perfect_Indicator) as summary_outlet; everbilled = foreach a generate \"Ever Billed\" as 'Measure', avg(Ever_Billed_Perfect_Indicator) as summary_outlet; widthpack = foreach a generate \"Width Pack\" as 'Measure', avg(Width_Pack_Perfect_Indicator) as summary_outlet; u = group redline by all, everbilled by all, widthpack by all;u = union redline, everbilled, widthpack;",
+                    "pigql": "a=load \"SUMMARY_OUTLET_VIEW\";a = filter a by {{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Month_Year_Number_Year','Month_Year_Number_Month','Month_Year_Number_Day')\") }} && {{ column(Country_21.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(City_24.selection, [\"City\"]).asEquality(\"City\") }} && {{ column(Commune_45.selection, [\"Commune\"]).asEquality(\"Community\") }} && {{ column(Customer_type_30.selection, [\"Customer_Type\"]).asEquality(\"Key_Customer_Type\") }} && {{ column(Trade_Format_27.selection, [\"Trade_Format\"]).asEquality(\"Trade_Format\") }} && {{ column(X4P_5P_6P_63.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Top_Customer_55.selection, [\"Top_Customer\"]).asEquality(\"Top_Customer\") }} && {{ column(Customer_32.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(Local_Outlet_Name_51.selection, [\"Local_Outlet_Name\"]).asEquality(\"Outlet_Name\") }} && {{ column(Channel_28.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Subchannel_29.selection, [\"Subchannel\"]).asEquality(\"Subchannel\") }} && {{ column(Store_type_49.selection, [\"Store_type\"]).asEquality(\"Store_Type\") }} && {{ column(Sales_region_47.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Sales_area_25.selection, [\"Sales_area\"]).asEquality(\"Sales_Area\") }} && {{ column(Sales_territory_26.selection, [\"Sales_territory\"]).asEquality(\"Sales_Territory\") }} && {{ column(Field_Execution_Manager_56.selection, [\"Field_Execution_Manager\"]).asEquality(\"Field_Execution_Manager\") }} && {{ column(Store_Operations_Manager_58.selection, [\"Store_Operations_Manager\"]).asEquality(\"Store_Operations_Manager\") }} && {{ column(Field_Sales_Manager_57.selection, [\"Field_Sales_Manager\"]).asEquality(\"Field_Sales_Manager\") }} && {{ column(Product_division_53.selection, [\"Product_Division\"]).asEquality(\"Country\") }} && {{ column(Product_category_54.selection, [\"Product_Category\"]).asEquality(\"Country\") }} && {{ column(Product_market_67.selection, [\"Product_Market\"]).asEquality(\"Country\") }} && {{ column(Product_sector_68.selection, [\"Product_sector\"]).asEquality(\"Country\") }} && {{ column(Product_brand_69.selection, [\"Product_brand\"]).asEquality(\"Country\") }} && {{ column(SKU_70.selection, [\"SKU\"]).asEquality(\"Country\") }}; a= group a by all;redline = foreach a generate \"Redline\" as 'Measure', avg(Redline_Perfect_Indicator) as summary_outlet; everbilled = foreach a generate \"Ever Billed\" as 'Measure', avg(Ever_Billed_Perfect_Indicator) as summary_outlet; widthpack = foreach a generate \"Width Pack\" as 'Measure', avg(Width_Pack_Perfect_Indicator) as summary_outlet; u = group redline by all, everbilled by all, widthpack by all;u = union redline, everbilled, widthpack;",
                     "measures": [
                         [
                             "summary",
@@ -12482,12 +12482,6 @@
             "label": "SUMMARY_OUTLET_VIEW",
             "name": "SUMMARY_OUTLET_VIEW",
             "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzxSAC"
-        },
-        {
-            "id": " 0Fb2C000000CanXSAS",
-            "label": "SUMMARY_OUTLET_VIEW_TEST1",
-            "name": "SUMMARY_OUTLET_VIEW_TEST1",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000CanXSAS"        
         }
     ]
 }
