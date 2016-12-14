@@ -225,6 +225,10 @@
             <translation><!-- Ghana --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Greece</masterLabel>
             <translation><!-- Greece --></translation>
         </picklistValues>

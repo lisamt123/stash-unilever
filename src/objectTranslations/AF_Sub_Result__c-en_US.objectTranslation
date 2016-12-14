@@ -9,6 +9,26 @@
         <value>Sub Result</value>
     </caseValues>
     <fields>
+        <label><!-- Adaptation --></label>
+        <name>AF_Adaptation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bonus Target --></label>
+        <name>AF_Bonus_Target__c</name>
+        <picklistValues>
+            <masterLabel>% Business winning</masterLabel>
+            <translation><!-- % Business winning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS MAT bps change</masterLabel>
+            <translation><!-- MS MAT bps change --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USG</masterLabel>
+            <translation><!-- USG --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Bonus Threshold --></label>
         <name>AF_Bonus_Threshold__c</name>
         <relationshipLabel><!-- Sub Result --></relationshipLabel>
@@ -126,6 +146,138 @@
         <name>AF_Traditional__c</name>
     </fields>
     <fields>
+        <label><!-- Country --></label>
+        <name>AF_UnileverCountry__c</name>
+        <picklistValues>
+            <masterLabel>Argentina</masterLabel>
+            <translation><!-- Argentina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bangladesh</masterLabel>
+            <translation><!-- Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canada</masterLabel>
+            <translation><!-- Canada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chile</masterLabel>
+            <translation><!-- Chile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>China</masterLabel>
+            <translation><!-- China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>France</masterLabel>
+            <translation><!-- France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italy</masterLabel>
+            <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mexico</masterLabel>
+            <translation><!-- Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Netherlands</masterLabel>
+            <translation><!-- Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pakistan</masterLabel>
+            <translation><!-- Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poland</masterLabel>
+            <translation><!-- Poland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Russia</masterLabel>
+            <translation><!-- Russia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Africa</masterLabel>
+            <translation><!-- South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spain</masterLabel>
+            <translation><!-- Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sri Lanka</masterLabel>
+            <translation><!-- Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UAE</masterLabel>
+            <translation><!-- UAE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UAPL Australia</masterLabel>
+            <translation><!-- UAPL Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UAPL Japan</masterLabel>
+            <translation><!-- UAPL Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UAPL Malaysia</masterLabel>
+            <translation><!-- UAPL Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UAPL Mayanmar</masterLabel>
+            <translation><!-- UAPL Mayanmar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UAPL New Zealand</masterLabel>
+            <translation><!-- UAPL New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UAPL Singapore</masterLabel>
+            <translation><!-- UAPL Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UAPL Thailand</masterLabel>
+            <translation><!-- UAPL Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UK</masterLabel>
+            <translation><!-- UK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USA</masterLabel>
+            <translation><!-- USA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vietnam</masterLabel>
+            <translation><!-- Vietnam --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Unique Key --></label>
         <name>AF_Unique_Key__c</name>
     </fields>
@@ -146,37 +298,53 @@
         <label><!-- Bonus Measure --></label>
         <name>Bonus_Measure__c</name>
         <picklistValues>
-            <masterLabel>% GREEN CELLS</masterLabel>
-            <translation><!-- % GREEN CELLS --></translation>
+            <masterLabel>Business Measure</masterLabel>
+            <translation><!-- Business Measure --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Bonus Measures --></label>
+        <name>Bonus_Measures__c</name>
+        <picklistValues>
+            <masterLabel>Brand Attribute</masterLabel>
+            <translation><!-- Brand Attribute --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>% of Turnover Gaining</masterLabel>
-            <translation><!-- % of Turnover Gaining --></translation>
+            <masterLabel>Business Measure</masterLabel>
+            <translation><!-- Business Measure --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Innovative/White Space Turnover (€M Absolute)</masterLabel>
-            <translation><!-- Innovative/White Space Turnover (€M Absolute) --></translation>
+            <masterLabel>Communication</masterLabel>
+            <translation><!-- Communication --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Bonus Targets --></label>
+        <name>Bonus_Targets__c</name>
+        <picklistValues>
+            <masterLabel>% Business winning</masterLabel>
+            <translation><!-- % Business winning --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Market Share MAT (% Absolute)</masterLabel>
-            <translation><!-- Market Share MAT (% Absolute) --></translation>
+            <masterLabel>Brand equity</masterLabel>
+            <translation><!-- Brand equity --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Market Share MAT (Bps Change)</masterLabel>
-            <translation><!-- Market Share MAT (Bps Change) --></translation>
+            <masterLabel>MS MAT bps change</masterLabel>
+            <translation><!-- MS MAT bps change --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Turnover (€M Absolute)</masterLabel>
-            <translation><!-- Turnover (€M Absolute) --></translation>
+            <masterLabel>Net Green Preview</masterLabel>
+            <translation><!-- Net Green Preview --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>USG%</masterLabel>
-            <translation><!-- USG% --></translation>
+            <masterLabel>USG</masterLabel>
+            <translation><!-- USG --></translation>
         </picklistValues>
-        <picklistValues>
-            <masterLabel>Weighted Average</masterLabel>
-            <translation><!-- Weighted Average --></translation>
-        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Brand Agency Uq Combination --></label>
+        <name>Brand_Agency_Uq_Combination__c</name>
     </fields>
     <fields>
         <label><!-- Qual Result --></label>

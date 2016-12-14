@@ -29,9 +29,9 @@
         <fullName>X3__c</fullName>
         <externalId>false</externalId>
         <label>3</label>
-        <precision>10</precision>
+        <precision>12</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -40,9 +40,9 @@
         <fullName>X4__c</fullName>
         <externalId>false</externalId>
         <label>4</label>
-        <precision>10</precision>
+        <precision>12</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>

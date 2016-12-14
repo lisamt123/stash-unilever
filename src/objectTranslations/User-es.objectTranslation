@@ -8,6 +8,10 @@
             <translation><!-- Agency --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Approver</masterLabel>
+            <translation><!-- Approver --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>CMCO Super User</masterLabel>
             <translation><!-- CMCO Super User --></translation>
         </picklistValues>
@@ -393,6 +397,10 @@
             <translation><!-- Japanese --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Korean</masterLabel>
+            <translation><!-- Korean --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Moldavian</masterLabel>
             <translation><!-- Moldavian --></translation>
         </picklistValues>
@@ -685,6 +693,10 @@
         <picklistValues>
             <masterLabel>Japan</masterLabel>
             <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea</masterLabel>
+            <translation><!-- Korea --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Middle Americas</masterLabel>

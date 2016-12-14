@@ -5,6 +5,32 @@
         <description>Alert CIMT of New Issue</description>
         <protected>false</protected>
         <recipients>
+            <field>Report_Issue_To_Email_2__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Report_Issue_To_Email_3__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Report_Issue_To_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>IM_Core_Issue_Management_Team</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_Emails/New_Issue_submitted</template>
+    </alerts>
+    <alerts>
+        <fullName>Alert_CIMT_of_New_Issue_old</fullName>
+        <description>Alert CIMT of New Issue</description>
+        <protected>false</protected>
+        <recipients>
             <field>Report_Issue_To_Email__c</field>
             <type>email</type>
         </recipients>
@@ -66,6 +92,17 @@
     </alerts>
     <fieldUpdates>
         <fullName>Change_Record_Type_to_Assigned_to_CIMT</fullName>
+        <description>Change Record Type to Assigned to CIMT</description>
+        <field>RecordTypeId</field>
+        <lookupValue>Assigned_to_CIMT</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Change Record Type to Assigned to CIMT</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Change_Record_Type_to_Assigned_to_CIMT_O</fullName>
         <description>Change Record Type to Assigned to CIMT</description>
         <field>RecordTypeId</field>
         <lookupValue>Assigned_to_CIMT</lookupValue>
@@ -246,9 +283,32 @@
             <value>False</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Issue%3A Submission Actions Not on Social Media Old</fullName>
+        <actions>
+            <name>Alert_CIMT_of_New_Issue_old</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Change_Record_Type_to_Assigned_to_CIMT_O</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>im_Issue__c.Issue_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>im_Issue__c.On_Social_Media__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>12</timeLength>
@@ -256,7 +316,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>5</timeLength>
@@ -264,7 +324,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>108</timeLength>
@@ -272,7 +332,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>1</timeLength>
@@ -280,7 +340,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>3</timeLength>
@@ -288,7 +348,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>4</timeLength>
@@ -296,7 +356,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>60</timeLength>
@@ -304,7 +364,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>2</timeLength>
@@ -312,7 +372,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>36</timeLength>
@@ -349,9 +409,32 @@
             <value>True</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Issue%3A Submission Actions On Social Media old</fullName>
+        <actions>
+            <name>Alert_CIMT_of_New_Issue_old</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Change_Record_Type_to_Assigned_to_CIMT_O</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>im_Issue__c.Issue_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>im_Issue__c.On_Social_Media__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>2</timeLength>
@@ -359,7 +442,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>20</timeLength>
@@ -367,7 +450,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>10</timeLength>
@@ -375,7 +458,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>16</timeLength>
@@ -383,7 +466,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>14</timeLength>
@@ -391,7 +474,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>12</timeLength>
@@ -399,7 +482,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>18</timeLength>
@@ -407,7 +490,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>4</timeLength>
@@ -415,7 +498,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>6</timeLength>
@@ -423,7 +506,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>8</timeLength>
@@ -440,7 +523,7 @@
             <name>Update_global_issue</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>im_Issue__c.Issue_Type__c</field>
             <operation>equals</operation>
