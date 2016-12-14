@@ -77,81 +77,10 @@
             <sourceValues>
                 <sourceValue>SAM_Query_Request_SAM_team</sourceValue>
             </sourceValues>
+            <sourceValues>
+                <sourceValue>SAM_Query_Request_SAM_Team_on_Open</sourceValue>
+            </sourceValues>
             <value>Query</value>
-        </values>
-    </buckets>
-    <buckets>
-        <bucketType>picklist</bucketType>
-        <developerName>BucketField_80153495</developerName>
-        <masterLabel>Status</masterLabel>
-        <nullTreatment>n</nullTreatment>
-        <sourceColumnName>SAM_Request__c.pkl_Ownership_Reporting__c</sourceColumnName>
-        <useOther>false</useOther>
-        <values>
-            <sourceValues>
-                <sourceValue>Pending-SAM</sourceValue>
-            </sourceValues>
-            <value>Pending-SAM</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Quote Provided</sourceValue>
-            </sourceValues>
-            <value>Quote -Provided</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Pending-Finance</sourceValue>
-            </sourceValues>
-            <value>Pending- Finance</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Pending-Requester</sourceValue>
-            </sourceValues>
-            <value>Pending- Requester</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Quote-Approved</sourceValue>
-            </sourceValues>
-            <value>Quote-Approved</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Charging-Completed</sourceValue>
-            </sourceValues>
-            <value>Charging-Completed</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Request-Onhold</sourceValue>
-            </sourceValues>
-            <value>Request-Onhold</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Request-Closed</sourceValue>
-            </sourceValues>
-            <value>Request-Closed</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Query-Resolved</sourceValue>
-            </sourceValues>
-            <value>Query-Resolved</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Query-Responded</sourceValue>
-            </sourceValues>
-            <value>Query-Responded</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Draft-Save</sourceValue>
-            </sourceValues>
-            <value>Draft-Save</value>
         </values>
     </buckets>
     <chart>
@@ -162,18 +91,16 @@
             <axisBinding>y</axisBinding>
             <column>RowCount</column>
         </chartSummaries>
-        <chartType>VerticalColumnStacked</chartType>
+        <chartType>VerticalColumn</chartType>
         <enableHoverLabels>true</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>SAM_Request__c.txt_Request_Type_for_UI__c</groupingColumn>
-        <legendPosition>Right</legendPosition>
+        <groupingColumn>BucketField_51012977</groupingColumn>
         <location>CHART_TOP</location>
-        <secondaryGroupingColumn>BucketField_80153495</secondaryGroupingColumn>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
-        <showValues>false</showValues>
-        <size>Medium</size>
+        <showValues>true</showValues>
+        <size>Small</size>
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
         <textSize>12</textSize>
@@ -181,26 +108,26 @@
         <titleSize>18</titleSize>
     </chart>
     <currency>EUR</currency>
-    <description>Request details by request type,it also has status and status count</description>
+    <description>Request Type Wise Count</description>
     <format>Matrix</format>
     <groupingsAcross>
         <dateGranularity>Day</dateGranularity>
-        <field>BucketField_80153495</field>
+        <field>SAM_Request__c.Record_Count_for_Report__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsAcross>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>SAM_Request__c.txt_Request_Type_for_UI__c</field>
+        <field>BucketField_51012977</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>SAM Request Details by Request Type</name>
+    <name>SAM Request Details by Numbers</name>
     <params>
         <name>co</name>
         <value>1</value>
     </params>
     <reportType>CustomEntity$SAM_Request__c</reportType>
     <scope>organization</scope>
-    <showDetails>false</showDetails>
+    <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>SAM_Request__c.date_Query_End_Date__c</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
