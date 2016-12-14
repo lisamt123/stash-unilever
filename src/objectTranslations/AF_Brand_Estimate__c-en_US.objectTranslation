@@ -294,12 +294,28 @@
         <name>AF_Digital__c</name>
     </fields>
     <fields>
+        <label><!-- AF_Disable_Contrycheckbox --></label>
+        <name>AF_Disable_Contrycheckbox__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_Disable_Exceptionaltargets --></label>
+        <name>AF_Disable_Exceptionaltargets__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_Disable_Globalcheckbox --></label>
+        <name>AF_Disable_Globalcheckbox__c</name>
+    </fields>
+    <fields>
         <label><!-- Dont Show on Report --></label>
         <name>AF_Dont_Show_on_Report__c</name>
     </fields>
     <fields>
         <label><!-- Entity Combination --></label>
         <name>AF_Entity_Combination__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_ExceptionalCountry --></label>
+        <name>AF_ExceptionalCountry__c</name>
     </fields>
     <fields>
         <label><!-- Fiscal Year Difference --></label>
@@ -326,6 +342,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- AF_Globalcheck_Disable --></label>
+        <name>AF_Globalcheck_Disable__c</name>
+    </fields>
+    <fields>
         <label><!-- Include in OOPS Adaptation --></label>
         <name>AF_Include_in_OOPS_Adaptation__c</name>
     </fields>
@@ -340,6 +360,10 @@
     <fields>
         <label><!-- AF Internal Link --></label>
         <name>AF_Internal_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_Is_Global_Bonus_Threshold_Checked --></label>
+        <name>AF_Is_Global_Bonus_Threshold_Checked__c</name>
     </fields>
     <fields>
         <label><!-- Locked --></label>
@@ -485,6 +509,10 @@
             <translation><!-- With Agency (Draft) --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>With Bonus Approver</masterLabel>
+            <translation><!-- With Bonus Approver --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>With CMCO</masterLabel>
             <translation><!-- With CMCO --></translation>
         </picklistValues>
@@ -600,6 +628,10 @@
     <fields>
         <label><!-- isFirsttime --></label>
         <name>AF_isFirsttime__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_iscountrymode --></label>
+        <name>AF_iscountrymode__c</name>
     </fields>
     <fields>
         <label><!-- Agency Base Fee --></label>

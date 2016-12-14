@@ -779,6 +779,11 @@
         <name>IsSocialMediaChecked__c</name>
     </fields>
     <fields>
+        <help><!-- Please confirm by ticking this box if a local media statement is available --></help>
+        <label><!-- Is local media statement available? --></label>
+        <name>Is_local_media_statement_available__c</name>
+    </fields>
+    <fields>
         <label><!-- Issue Description --></label>
         <name>Issue_Description__c</name>
     </fields>
@@ -871,24 +876,88 @@
         <label><!-- Issue Subject Group --></label>
         <name>Issue_Subject_Group__c</name>
         <picklistValues>
-            <masterLabel>Acting responsibly</masterLabel>
-            <translation><!-- Acting responsibly --></translation>
+            <masterLabel>Diet &amp; Health – Food Taxes</masterLabel>
+            <translation><!-- Diet &amp; Health – Food Taxes --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Consumer safety</masterLabel>
-            <translation><!-- Consumer safety --></translation>
+            <masterLabel>Diet &amp; Health – Labelling</masterLabel>
+            <translation><!-- Diet &amp; Health – Labelling --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Innovation</masterLabel>
-            <translation><!-- Innovation --></translation>
+            <masterLabel>Diet &amp; Health – Marketing to children</masterLabel>
+            <translation><!-- Diet &amp; Health – Marketing to children --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Obesity &amp; Health</masterLabel>
-            <translation><!-- Obesity &amp; Health --></translation>
+            <masterLabel>Diet &amp; Health – Other</masterLabel>
+            <translation><!-- Diet &amp; Health – Other --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Sustainability</masterLabel>
-            <translation><!-- Sustainability --></translation>
+            <masterLabel>Diet &amp; Health – Sugar, Salt, Fat</masterLabel>
+            <translation><!-- Diet &amp; Health – Sugar, Salt, Fat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Human &amp; Labour Rights</masterLabel>
+            <translation><!-- Human &amp; Labour Rights --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging &amp; Waste</masterLabel>
+            <translation><!-- Packaging &amp; Waste --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Quality / Incidents</masterLabel>
+            <translation><!-- Product Quality / Incidents --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Responsible Marketing – Other</masterLabel>
+            <translation><!-- Responsible Marketing – Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Responsible Marketing – Skin lightening</masterLabel>
+            <translation><!-- Responsible Marketing – Skin lightening --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Science &amp; Innovation – Animal Testing</masterLabel>
+            <translation><!-- Science &amp; Innovation – Animal Testing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Science &amp; Innovation – GMO</masterLabel>
+            <translation><!-- Science &amp; Innovation – GMO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Science &amp; Innovation – Other</masterLabel>
+            <translation><!-- Science &amp; Innovation – Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sustainable sourcing – Animal Welfare</masterLabel>
+            <translation><!-- Sustainable sourcing – Animal Welfare --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sustainable sourcing – Deforestation</masterLabel>
+            <translation><!-- Sustainable sourcing – Deforestation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sustainable sourcing – Other</masterLabel>
+            <translation><!-- Sustainable sourcing – Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sustainable sourcing – Palm Oil</masterLabel>
+            <translation><!-- Sustainable sourcing – Palm Oil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tax Transparency</masterLabel>
+            <translation><!-- Tax Transparency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trust in Ingredients – Foods &amp; Refreshments</masterLabel>
+            <translation><!-- Trust in Ingredients – Foods &amp; Refreshments --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trust in Ingredients – HPC</masterLabel>
+            <translation><!-- Trust in Ingredients – HPC --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1002,10 +1071,6 @@
     <fields>
         <label><!-- Issue Type --></label>
         <name>Issue_Type__c</name>
-        <picklistValues>
-            <masterLabel>Global and R&amp;D</masterLabel>
-            <translation><!-- Global and R&amp;D --></translation>
-        </picklistValues>
         <picklistValues>
             <masterLabel>New Created</masterLabel>
             <translation><!-- New Created --></translation>
@@ -1299,8 +1364,18 @@
         <name>Related_information_on_Unilever_com__c</name>
     </fields>
     <fields>
-        <help><!-- This issue will automatically be sent to the CIMT and CIPG do you want to inform anyone else? If so please add their email address here - Note: Must be a Unilever (@unilever) email address --></help>
-        <label><!-- Report Issue To (Email) --></label>
+        <help><!-- With ‘submitting’ the issue, it will automatically be sent to the Core Issue Management Team (CIMT). In the case you want to inform anyone else, please add their email address in the available field here. NOTE it must be a Unilever @unilever.com address. --></help>
+        <label><!-- Add additional recipient 2 --></label>
+        <name>Report_Issue_To_Email_2__c</name>
+    </fields>
+    <fields>
+        <help><!-- With ‘submitting’ the issue, it will automatically be sent to the Core Issue Management Team (CIMT). In the case you want to inform anyone else, please add their email address in the available field here. NOTE it must be a Unilever @unilever.com address. --></help>
+        <label><!-- Add additional recipient 3 --></label>
+        <name>Report_Issue_To_Email_3__c</name>
+    </fields>
+    <fields>
+        <help><!-- With ‘submitting’ the issue, it will automatically be sent to the Core Issue Management Team (CIMT). In the case you want to inform anyone else, please add their email address in the available field here. NOTE it must be a Unilever @unilever.com address. --></help>
+        <label><!-- Add additional recipient 1 --></label>
         <name>Report_Issue_To_Email__c</name>
     </fields>
     <fields>
@@ -1381,6 +1456,15 @@
         <name>Social_Media_Statement__c</name>
     </fields>
     <fields>
+        <help><!-- Please confirm by ticking this box if local social monitoring is in place --></help>
+        <label><!-- Local social media monitoring in place? --></label>
+        <name>Social_media_local_monitoring_available__c</name>
+    </fields>
+    <fields>
+        <label><!-- Social media local monitoring formula --></label>
+        <name>Social_media_local_monitoring_formula__c</name>
+    </fields>
+    <fields>
         <label><!-- Submitted --></label>
         <name>Submitted__c</name>
     </fields>
@@ -1404,6 +1488,14 @@
     <fields>
         <label><!-- Way Forward --></label>
         <name>Way_Forward__c</name>
+    </fields>
+    <fields>
+        <label><!-- Issue Age(In Days) --></label>
+        <name>im_Age__c</name>
+    </fields>
+    <fields>
+        <label><!-- local media statement available formula --></label>
+        <name>local_media_statement_available_formula__c</name>
     </fields>
     <fields>
         <label><!-- Current Flag --></label>
@@ -1432,20 +1524,12 @@
             <section>Issue Submission</section>
         </sections>
         <sections>
-            <label><!-- Links to SharePoint --></label>
-            <section>Links to SharePoint</section>
-        </sections>
-        <sections>
             <label><!-- Location(s) Affected --></label>
             <section>Location(s) Affected</section>
         </sections>
         <sections>
             <label><!-- Unilever Readiness to respond --></label>
             <section>Unilever Readiness to respond</section>
-        </sections>
-        <sections>
-            <label><!-- Unilever Stance --></label>
-            <section>Unilever Stance</section>
         </sections>
     </layouts>
     <layouts>
@@ -1486,20 +1570,12 @@
             <section>Issue Submission</section>
         </sections>
         <sections>
-            <label><!-- Links to SharePoint --></label>
-            <section>Links to SharePoint</section>
-        </sections>
-        <sections>
             <label><!-- Location(s) Affected --></label>
             <section>Location(s) Affected</section>
         </sections>
         <sections>
             <label><!-- Unilever Readiness to respond --></label>
             <section>Unilever Readiness to respond</section>
-        </sections>
-        <sections>
-            <label><!-- Unilever Stance --></label>
-            <section>Unilever Stance</section>
         </sections>
     </layouts>
     <layouts>
@@ -1525,20 +1601,12 @@
             <section>Issue Submission</section>
         </sections>
         <sections>
-            <label><!-- Links to SharePoint --></label>
-            <section>Links to SharePoint</section>
-        </sections>
-        <sections>
             <label><!-- Location(s) Affected --></label>
             <section>Location(s) Affected</section>
         </sections>
         <sections>
             <label><!-- Unilever Readiness to respond --></label>
             <section>Unilever Readiness to respond</section>
-        </sections>
-        <sections>
-            <label><!-- Unilever Stance --></label>
-            <section>Unilever Stance</section>
         </sections>
     </layouts>
     <recordTypes>
@@ -1569,6 +1637,14 @@
     <validationRules>
         <errorMessage><!-- You can only submit to a Unilever colleague with a &apos;@Unilever.com&apos; email address --></errorMessage>
         <name>Submitted_To_Unilever_Person</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can only submit to a Unilever colleague with a &apos;@Unilever.com&apos; email address --></errorMessage>
+        <name>Submitted_To_Unilever_Person2</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can only submit to a Unilever colleague with a &apos;@Unilever.com&apos; email address --></errorMessage>
+        <name>Submitted_To_Unilever_Person3</name>
     </validationRules>
     <webLinks>
         <label><!-- Report_an_Issue --></label>

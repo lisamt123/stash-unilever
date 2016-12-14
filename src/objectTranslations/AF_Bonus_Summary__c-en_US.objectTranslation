@@ -9,9 +9,34 @@
         <value>Bonus Summaries</value>
     </caseValues>
     <fields>
+        <label><!-- AgencyUser1 --></label>
+        <name>AF_AgencyUser1__c</name>
+    </fields>
+    <fields>
+        <label><!-- AgencyUser2 --></label>
+        <name>AF_AgencyUser2__c</name>
+    </fields>
+    <fields>
+        <label><!-- AgencyUser3 --></label>
+        <name>AF_AgencyUser3__c</name>
+    </fields>
+    <fields>
+        <label><!-- AgencyUser4 --></label>
+        <name>AF_AgencyUser4__c</name>
+    </fields>
+    <fields>
+        <label><!-- AgencyUser5 --></label>
+        <name>AF_AgencyUser5__c</name>
+    </fields>
+    <fields>
         <label><!-- Agency --></label>
         <name>AF_Agency__c</name>
         <relationshipLabel><!-- Bonus Summaries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approver1 --></label>
+        <name>AF_Approver1__c</name>
+        <relationshipLabel><!-- Bonus Summaries (Approver1) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Bonus Value --></label>
@@ -27,12 +52,91 @@
         <relationshipLabel><!-- Bonus Summaries --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- CMCO1 --></label>
+        <name>AF_CMCO1__c</name>
+        <relationshipLabel><!-- Bonus Summaries (CMCO1) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CMCO2 --></label>
+        <name>AF_CMCO2__c</name>
+        <relationshipLabel><!-- Bonus Summaries (CMCO2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CMCO3 --></label>
+        <name>AF_CMCO3__c</name>
+        <relationshipLabel><!-- Bonus Summaries (CMCO3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CMCO4 --></label>
+        <name>AF_CMCO4__c</name>
+        <relationshipLabel><!-- Bonus Summaries (CMCO4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CMCO5 --></label>
+        <name>AF_CMCO5__c</name>
+        <relationshipLabel><!-- Bonus Summaries (CMCO5) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance 10 --></label>
+        <name>AF_Cat_Finance_10__c</name>
+        <relationshipLabel><!-- Bonus Summaries (Cat Finance 10) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance 1 --></label>
+        <name>AF_Cat_Finance_1__c</name>
+        <relationshipLabel><!-- Bonus Summaries (Cat Finance 1) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance 2 --></label>
+        <name>AF_Cat_Finance_2__c</name>
+        <relationshipLabel><!-- Bonus Summaries (Cat Finance 2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance 3 --></label>
+        <name>AF_Cat_Finance_3__c</name>
+        <relationshipLabel><!-- Bonus Summaries (Cat Finance 3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance 4 --></label>
+        <name>AF_Cat_Finance_4__c</name>
+        <relationshipLabel><!-- Bonus Summaries (Cat Finance 4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance 5 --></label>
+        <name>AF_Cat_Finance_5__c</name>
+        <relationshipLabel><!-- Bonus Summaries (Cat Finance 5) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance 6 --></label>
+        <name>AF_Cat_Finance_6__c</name>
+        <relationshipLabel><!-- Bonus Summaries (Cat Finance 6) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance 7 --></label>
+        <name>AF_Cat_Finance_7__c</name>
+        <relationshipLabel><!-- Bonus Summaries (Cat Finance 7) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance 8 --></label>
+        <name>AF_Cat_Finance_8__c</name>
+        <relationshipLabel><!-- Bonus Summaries (Cat Finance 8) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance 9 --></label>
+        <name>AF_Cat_Finance_9__c</name>
+        <relationshipLabel><!-- Bonus Summaries (Cat Finance 9) --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Category View --></label>
         <name>AF_Category_View__c</name>
     </fields>
     <fields>
         <label><!-- Category --></label>
         <name>AF_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF Community Link --></label>
+        <name>AF_Community_Link__c</name>
     </fields>
     <fields>
         <label><!-- Fiscal Year Difference --></label>
@@ -43,12 +147,32 @@
         <name>AF_Fiscal_Year__c</name>
     </fields>
     <fields>
+        <label><!-- AF Internal Link --></label>
+        <name>AF_Internal_Link__c</name>
+    </fields>
+    <fields>
         <label><!-- Is Pilot Model? --></label>
         <name>AF_Is_Pilot_Model__c</name>
     </fields>
     <fields>
         <label><!-- No Of CrossBorders --></label>
         <name>AF_No_Of_CrossBorders__c</name>
+    </fields>
+    <fields>
+        <label><!-- RejectReason --></label>
+        <name>AF_RejectReason__c</name>
+    </fields>
+    <fields>
+        <label><!-- StatusFromApprover --></label>
+        <name>AF_StatusFromApprover__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Status --></label>
@@ -60,6 +184,14 @@
         <picklistValues>
             <masterLabel>W/Cat Finance</masterLabel>
             <translation><!-- W/Cat Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>With Approver</masterLabel>
+            <translation><!-- With Approver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>With CMCO</masterLabel>
+            <translation><!-- With CMCO --></translation>
         </picklistValues>
     </fields>
     <fields>

@@ -5337,6 +5337,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Japan1</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>PARENT.CASE_NUMBER</columns>
@@ -5354,7 +5355,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notContain</operation>
             <value>完了</value>
         </filters>
-        <label>CEC Japan - 担当分</label>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>CEC Japan - 自分（未完了＋当日受付）</label>
         <language>ja</language>
         <sharedTo>
             <role>CEC_Manager_Japan</role>
@@ -5420,32 +5426,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Japan5</fullName>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>PARENT.CASE_NUMBER</columns>
-        <columns>CASES.ORIGIN</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CEC_Product_Hierarchy__c</columns>
-        <columns>CEC_Reason_Code__c</columns>
-        <columns>OWNER_NAME</columns>
-        <columns>NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>contains</operation>
-            <value>エスカレーション中,承認待ち</value>
-        </filters>
-        <label>CEC Japan - 承認依頼中/エスカ中</label>
-        <language>ja</language>
-        <sharedTo>
-            <role>CEC_Manager_Japan</role>
-            <role>CEC_User_Japan</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_Japan6</fullName>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.CASE_NUMBER</columns>
@@ -5465,12 +5445,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>contains</operation>
             <value>ご指摘</value>
         </filters>
-        <filters>
-            <field>Reason_L2_desc__c</field>
-            <operation>notContain</operation>
-            <value>ビジネス</value>
-        </filters>
-        <label>CEC Japan - 当日受付（ご指摘 - ビジネス以外）</label>
+        <label>CEC Japan - 当日受付（ご指摘）</label>
         <language>ja</language>
         <sharedTo>
             <role>CEC_Manager_Japan</role>
@@ -8030,31 +8005,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <queue>CEC_South_Africa_Food_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
-            <role>CEC_Manager_South_Africa</role>
-            <role>CEC_User_South_Africa</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_South_Africa_HPC_queue</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <label>CEC South Africa Home &amp; Personal Care</label>
-        <language>en_US</language>
-        <queue>CEC_South_Africa_Home_and_Personal_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Africa</role>
             <role>CEC_Manager_South_Africa</role>
             <role>CEC_User_South_Africa</role>
         </sharedTo>

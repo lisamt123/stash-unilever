@@ -5788,6 +5788,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Bonus_Currency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>AF_Bonus_Matrix__c.AF_Bonus_Estimate_Local__c</field>
         <readable>true</readable>
@@ -5803,6 +5808,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Bonus_Local__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Bonus_Value_USD__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>AF_Bonus_Matrix__c.AF_BonusableFee__c</field>
         <readable>true</readable>
@@ -5816,6 +5831,16 @@
         <editable>true</editable>
         <field>AF_Bonus_Matrix__c.AF_CrossBorder_No__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Cross_Border__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Exchange_Rate__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -5959,6 +5984,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_overall__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Matrix__c.Agency_Entity_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -6001,6 +6031,16 @@
         <editable>false</editable>
         <field>AF_Bonus_Results__c.AF_Bonus_Value_Bm__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Results__c.AF_Bonus_overall__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Results__c.AF_BonusableFees__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -6104,6 +6144,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Results__c.AF_totalBonus__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Results__c.IDfromPilot__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6123,9 +6168,39 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_AgencyUser1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_AgencyUser2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_AgencyUser3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_AgencyUser4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_AgencyUser5__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>AF_Bonus_Summary__c.AF_Agency__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Approver1__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6144,6 +6219,81 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_CMCO1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_CMCO2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_CMCO3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_CMCO4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_CMCO5__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_10__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_5__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_6__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_7__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_8__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_9__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Summary__c.AF_Category_View__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -6151,6 +6301,11 @@
         <editable>false</editable>
         <field>AF_Bonus_Summary__c.AF_Category__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Community_Link__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6164,6 +6319,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Internal_Link__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Summary__c.AF_Is_Pilot_Model__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -6171,6 +6331,16 @@
         <editable>false</editable>
         <field>AF_Bonus_Summary__c.AF_No_Of_CrossBorders__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_RejectReason__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_StatusFromApprover__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -6209,8 +6379,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Threshold__c.AF_Adaptation__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Threshold__c.AF_Agency_Brand_Fiscal_Year__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Threshold__c.AF_Bonus_Target__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -6286,6 +6466,11 @@
         <editable>false</editable>
         <field>AF_Bonus_Threshold__c.AF_Traditional__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Threshold__c.AF_UnileverCountry__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6674,6 +6859,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Disable_Contrycheckbox__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Disable_Exceptionaltargets__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Disable_Globalcheckbox__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_Dont_Show_on_Report__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -6681,6 +6881,11 @@
         <editable>true</editable>
         <field>AF_Brand_Estimate__c.AF_Entity_Combination__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_ExceptionalCountry__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6696,6 +6901,11 @@
         <editable>true</editable>
         <field>AF_Brand_Estimate__c.AF_GR_Approval__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Globalcheck_Disable__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -6716,6 +6926,11 @@
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_Internal_Link__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Is_Global_Bonus_Threshold_Checked__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -6886,6 +7101,11 @@
         <editable>true</editable>
         <field>AF_Brand_Estimate__c.AF_isFirsttime__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_iscountrymode__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -8534,6 +8754,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Adaptation__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Bonus_Target__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Sub_Result__c.AF_Bonusable_Fees__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -8639,6 +8869,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_UnileverCountry__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Sub_Result__c.AF_Unique_Key__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -8661,6 +8896,21 @@
         <editable>false</editable>
         <field>AF_Sub_Result__c.Bonus_Measure__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.Bonus_Measures__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.Bonus_Targets__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.Brand_Agency_Uq_Combination__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -38549,6 +38799,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>im_Issue__c.Is_local_media_statement_available__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>im_Issue__c.Issue_Description__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -38719,6 +38974,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>im_Issue__c.Report_Issue_To_Email_2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>im_Issue__c.Report_Issue_To_Email_3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>im_Issue__c.Report_Issue_To_Email__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -38749,6 +39014,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>im_Issue__c.Social_media_local_monitoring_available__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>im_Issue__c.Social_media_local_monitoring_formula__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>im_Issue__c.Submitted__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -38775,6 +39050,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>im_Issue__c.Way_Forward__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>im_Issue__c.im_Age__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>im_Issue__c.local_media_statement_available_formula__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
