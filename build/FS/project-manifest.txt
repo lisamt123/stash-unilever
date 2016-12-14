@@ -79,12 +79,6 @@ src/pages/FS_MonthlyPlanningRussiaDetail.page
 src/pages/FS_MonthlyPlanningRussiaDetail.page-meta.xml
 src/pages/FS_MonthlyPlanningRussiaReport.page
 src/pages/FS_MonthlyPlanningRussiaReport.page-meta.xml
-src/objects/FS_CHD_GFCCode__c.object
-src/classes/FS_CHDUtility.cls
-src/classes/FS_CHDUtility.cls-meta.xml
-src/classes/FS_CHDUtilityTest.cls
-src/classes/FS_CHDUtilityTest.cls-meta.xml
-src/flows/FS_CHD_Segemetation_Call_Apex-10.flow
 src/classes/FS_AccountPlanningTest.cls
 src/classes/FS_AccountPlanningTest.cls-meta.xml
 src/quickActions/FS_Defined_Objective__c.Create_Risk.quickAction
