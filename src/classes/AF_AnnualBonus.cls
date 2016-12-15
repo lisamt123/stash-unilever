@@ -247,10 +247,12 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
       annualBonusQualQuantPerCalc(Bonus_SubResult_List);
          
         }
+        /*
         if(AF_Pilot_Model)
         {
             //annualBonusPilotModel(agency_id,Brand_id,current_year);
         } 
+        */
     }
  
     /*********************************************************************************
@@ -814,7 +816,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
                       
                            count = countryBMMap.get(countryDigital);
                            for(string s :EntityAmtMap.keyset()){
-                                if(s.contains('::D')){
+                                if(s.contains(AF_Constants.AF_Digital_Delim)){
                                     Amt = Amt+EntityAmtMap.get(s);
                                 }
                            }
@@ -848,7 +850,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
                         count = countryBMMap.get(countryAdap);
                          for(string s :EntityAmtMap.keyset()){
                            System.debug('s...@@@@'+s);
-                                if(s.contains('::A')){
+                                if(s.contains(AF_Constants.AF_Adaption_Delim)){
                                     System.debug('Inside AAAA');
                                     System.debug('Amt...22222'+Amt);
                                      System.debug('Amt...EntityAmtMap.get(s)'+EntityAmtMap.get(s));
