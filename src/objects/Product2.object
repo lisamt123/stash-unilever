@@ -1290,7 +1290,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>FS_Sample__c</fullName>
         <defaultValue>&apos;http://www.unileverfoodsolutions.ru/sample_order1.html&apos;</defaultValue>
         <externalId>false</externalId>
-        <label>Sample</label>
+        <label>Sample Order</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <type>Url</type>
@@ -2496,23 +2496,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <label>Product Type</label>
         <picklist>
             <picklistValues>
-                <fullName>Commodity</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Equipment</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Error - Unknown Type</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mexican Concept</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>POS</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2520,19 +2504,27 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Soupbar</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SVP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Unrestricted</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Unknown</fullName>
+                <fullName>Contract Pack</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exited/Disposed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Retail</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -7078,7 +7070,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>ProductType__c</picklist>
             <values>
-                <fullName>Commodity</fullName>
+                <fullName>Contract Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7086,15 +7082,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Error - Unknown Type</fullName>
+                <fullName>Exited%2FDisposed</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Mexican Concept</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POS</fullName>
+                <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7102,15 +7094,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>SVP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Soupbar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unknown</fullName>
+                <fullName>Retail</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10799,6 +10783,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <customTabListAdditionalFields>UID_Brand__c</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>PRODUCT2.NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>PRODUCT2.CUSTOMER_PRODUCT_ID</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Margin_Market_Description__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>PRODUCT2.DESCRIPTION</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>PRODUCT2.FAMILY</lookupDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>PRODUCT2.NAME</lookupPhoneDialogsAdditionalFields>

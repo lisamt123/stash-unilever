@@ -8965,6 +8965,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Agency_Discipline__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Agency_Expertise__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -9856,6 +9861,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.FS_SegmentRussia__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.FS_SoftServeDistrId__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -16005,6 +16015,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Campaign.DB_Campaign_Tactic__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Campaign.Description</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -18662,6 +18677,11 @@
         <editable>false</editable>
         <field>Event.Call_Type__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.DB_Activity_Type__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -27520,6 +27540,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Lead.DB_Created_Date_without_Time__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.DB_Lead_Age__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Lead.Description</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -30889,6 +30919,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.DB_Competitor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.DealApproved__c</field>
         <readable>false</readable>
@@ -31135,6 +31170,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Opportunity.FS_TotalTurnoverNA__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Opportunity.FS_TotalTurnover__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -31166,6 +31206,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.FS_Type_from_Objective__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.FS_amountCasePiece__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -31555,6 +31600,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>OpportunityLineItem.FS_listPriceCasePiece__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>OpportunityLineItem.FS_necessaryTPR__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -31581,6 +31631,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.FS_temporaryPriceReduction__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.FS_totalListPrice__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -32975,6 +33030,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Task.DB_Activity_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Task.Description</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -33607,6 +33667,11 @@
         <editable>false</editable>
         <field>User.CannotChangeMC__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User.DB_Region__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -40967,6 +41032,10 @@
         <recordType>Account.UID_Secondary_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Account-Account Layout</layout>
+        <recordType>Account.WWP_Account</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Account-Pitch Agency Layout</layout>
         <recordType>Account.Pitch_Agency</recordType>
     </layoutAssignments>
@@ -45801,6 +45870,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.UID_Secondary_Account</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.WWP_Account</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
