@@ -193,7 +193,7 @@
         <field>SAM_Request__c.txt_Request_Type_for_UI__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>SAM Demand: Request Details by Request T</name>
+    <name>SAM Request Details by Request Type</name>
     <params>
         <name>co</name>
         <value>1</value>

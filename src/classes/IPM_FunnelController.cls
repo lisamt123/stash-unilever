@@ -4,7 +4,12 @@
 */
 public with sharing class IPM_FunnelController 
 {
-    public IPM_Project__c ipmProject {get;set;}
+    public static IPM_Project__c ipmProject {
+        get {
+            return IPM_Utils.getProjectFullInfo(ApexPages.currentPage().getParameters().get('Id'));
+        }
+		set;
+    }
     public Integer currentProjectPhaseSeq{get; set;}
     
     // Array of Phases for that particular project. 
