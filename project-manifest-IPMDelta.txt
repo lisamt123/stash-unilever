@@ -113,9 +113,9 @@ src/objects
 src/objects/IPM_Project_Metadata__mdt.object
 src/objects/IPM_Analytics_OTIF__c.object
 src/objects/IPM_Analytics__c.object
-src/objects/IPM_Project_Rollout__c.object
+
 src/objects/IPM_Project_Document_Section__c.object
-src/objects/IPM_Project__c.object
+
 src/objects/IPM_Section__c.object
 src/objects/IPM_Task__c.object
 src/customMetadata
