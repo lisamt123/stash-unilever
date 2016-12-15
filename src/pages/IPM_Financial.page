@@ -6,7 +6,7 @@
 *@Copyright © 2015  Unilever   
 ************************************************************************************
 -->
-<apex:page controller="IPM_FinancialController" sidebar="false" standardStylesheets="false" extensions="IPM_GetHelpDoc" action="{!fetchUnprocessedFins}" cache="false" >   
+<apex:page controller="IPM_FinancialController" sidebar="false" standardStylesheets="false" action="{!fetchUnprocessedFins}" cache="false" >   
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Filter.css')}"/>  
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Financial.css')}"/>
     
@@ -28,9 +28,9 @@
                         <div class="panel-group pageHeadToolbar clearfix">
                             <div class="row">
                                 <!-- To place the help symbol in the top right hand corner of page -->
-                                 <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+                                <!-- <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
                                     <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
-                                </apex:outputPanel> 
+                                </apex:outputPanel> -->
                                 <div class="finTitle pull-left">
                                     <h2 class="pageTitle">{!$Label.IPM_FINANCIALS}</h2> 
                                 </div>
