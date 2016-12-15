@@ -79,6 +79,26 @@
         <name>CannotChangeMC__c</name>
     </fields>
     <fields>
+        <label><!-- DB Region --></label>
+        <name>DB_Region__c</name>
+        <picklistValues>
+            <masterLabel>APAC</masterLabel>
+            <translation><!-- APAC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EMEA</masterLabel>
+            <translation><!-- EMEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA</masterLabel>
+            <translation><!-- LA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Debit Card Refund Limit --></label>
         <name>Debit_Card_Refund_Limit__c</name>
     </fields>

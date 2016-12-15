@@ -229,6 +229,38 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>DB_Region__c</fullName>
+        <description>This is a field that is installed by and used with the Adoption Dashboard AppExchange package. If your org already has a similar field, you can change the reports that are part of the Adoption Dashboard package to use your custom field and then delete this field.</description>
+        <externalId>false</externalId>
+        <label>DB Region</label>
+        <picklist>
+            <picklistValues>
+                <fullName>NA</fullName>
+                <color>#009900</color>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EMEA</fullName>
+                <color>#3333FF</color>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>APAC</fullName>
+                <color>#CC6600</color>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LA</fullName>
+                <color>#990000</color>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Debit_Card_Refund_Limit__c</fullName>
         <description>CEC Debit Card Refund Limit is used to capture the user’s refund limit</description>
         <externalId>false</externalId>
