@@ -479,62 +479,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 			   getLocalProjectDetails(); 
         }
             
-        //All the validation Messages to be displayed on the UI. The below code base will be updated based on the NEW UI (after refactoring is over)
-        if(dueMilestones != NULL && !dueMilestones.isEmpty()){
-            showValidation=false;
-            milestoneError=true;
-        }
-        
-        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
-            if(rolloutFilledCount>0 && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-                showValidation=false;
-                rolloutRegionalPLFilledError=true;
-            }
-            if(rolloutCount<1 && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-                showValidation=false;
-                rolloutNotExistsError=true;
-            }
-	        if(invalidFinancialsCount>0){
-	            showValidation=false;
-	            financialError=true;
-	        }   
-        }
-            
-        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
-           if(rolloutCount<1 && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-                showValidation=false;
-                rolloutNotExistsError=true;
-            }
-            if(rolloutFilledCount>0 && project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-                showValidation=false;
-                rolloutCountryPLFilledError=true;
-            }
-	        if(invalidFinancialsCount>0){
-	            showValidation=false;
-	            financialError=true;
-	        }
-        } 
-        
-        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && invalidFinancialsCount>0){
-            showValidation=false;
-            financialError=true;
-        }
-        if(!isRiskComplete){
-            showValidation=false;
-            riskError=true;
-        }
-        if(!project.IPM_IsCompleted__c){
-            showValidation=false;
-            completedError=true;
-        }
-        if(String.isBlank(project.IPM_Project_Description__c)){
-            showValidation=false;
-            discriptionError=true;
-        }
-        if(!project.Exempt_from_Threshold__c  && project.IPM_Threshold_Status__c ==System.Label.IPM_BelowThreshold && project.IPM_Current_Gate_Name__c==IPM_ConstantUtils.FIELD_SUFFIX_CHARTER && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL )
-        {
-            belowThresholdError=true;   
-        }
+        showvalidationMethodHelper(); 
     }
         
     /***********************************************************************
@@ -666,56 +611,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                         }
                     }
                 }
-                // get the set of previos phases
-                Set<String> previousPhases = new Set<String>();
-                for(String phase : IPM_ConstantUtils.phaseSequence.KeySet()){
-                    if(currentPhaseMilestone.IPM_Phase__c!= null && phase == currentPhaseMilestone.IPM_Phase__c)
-                    {
-                        break;
-                    }
-                    previousPhases.add(phase);      
-                }
-                // This milestone list will contain recent changes of milestone and completed milestones of previous phases
-                List<IPM_Milestone__c> combinedmilestoneList = new List<IPM_Milestone__c>();
-                for(IPM_Milestone__c milestone : milestoneList){
-                    if(!previousPhases.isEmpty() && previousPhases.contains(milestone.IPM_Phase__c)){
-                        combinedmilestoneList.add(milestone);
-                    }
-                }
-                // Adding the list of pending milestones
-                combinedmilestoneList.addAll(pendingMilestoneList);
                 
-                for(IPM_Milestone__c pendingMilestone : pendingMilestoneList){
-                    Boolean flag = false;
-                    if(pendingMilestone.IPM_Planned_Date__c == null){
-                        showErrorMsg = system.label.IPM_PostponeDate_Required; 
-                        break;
-                    }
-                    if(pendingMilestone.IPM_Planned_Date__c < System.today()){
-                        showErrorMsg = system.label.IPM_PostponeDate_Validation; 
-                        break;
-                    }
-                    for(IPM_Milestone__c milestone : combinedmilestoneList){
-                        if(previousPhases.contains(milestone.IPM_Phase__c)){
-                            if(pendingMilestone.IPM_Planned_Date__c != null && pendingMilestone.IPM_Planned_Date__c < milestone.IPM_Planned_Date__c){
-                                showErrorMsg = Label.IPM_Milestone_Due_Date;
-                                flag = true;
-                                break;
-                            }
-                        }
-                        else{
-                            if(pendingMilestone.IPM_Planned_Date__c != null && pendingMilestone.IPM_Planned_Date__c > milestone.IPM_Planned_Date__c){
-                                showErrorMsg = Label.IPM_Postponed_Future_Date_Validation;
-                                flag = true;
-                                break;
-                            }
-                        }
-                    }
-                    previousPhases.add(pendingMilestone.IPM_Phase__c);
-                    if(flag){
-                        break;
-                    }
-                }
+                postponeProjectMethodHelper(currentPhaseMilestone,currentPhase,currentProjectPhaseSequence);
             }
             if(String.isBlank(showErrorMsg) && currentPhaseMilestone !=null && validPostpone)
             {
@@ -984,4 +881,176 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 		    }
 	    }
     }
+    
+     /***************************************************************************************
+    @ Description: Helper method of showvalidationMethod() for solving Napth complexity.
+    ****************************************************************************************/
+    
+    public void showvalidationMethodHelper()
+    {
+			//All the validation Messages to be displayed on the UI. The below code base will be updated based on the NEW UI (after refactoring is over)
+
+            if(dueMilestones != NULL && !dueMilestones.isEmpty())
+            {
+                showValidation=false;
+                milestoneError=true;
+            }
+           
+           showvalidationGlobalMethodHelper();
+		   showvalidationRegionalMethodHelper();
+			
+            
+        
+        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && invalidFinancialsCount>0)
+            {
+                showValidation=false;
+                financialError=true;
+            }
+            
+            if(!isRiskComplete)
+            {
+                showValidation=false;
+                riskError=true;
+            }
+               
+            if(!project.IPM_IsCompleted__c)
+            {
+                showValidation=false;
+                completedError=true;
+            }
+            if(String.isBlank(project.IPM_Project_Description__c))
+            {
+                showValidation=false;
+                discriptionError=true;
+            } 
+            if(!project.Exempt_from_Threshold__c  && project.IPM_Threshold_Status__c ==System.Label.IPM_BelowThreshold && project.IPM_Current_Gate_Name__c==IPM_ConstantUtils.FIELD_SUFFIX_CHARTER && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL )
+            {
+                belowThresholdError=true;   
+            }
+            
+    }
+
+	public void showvalidationGlobalMethodHelper()
+	{
+		if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+            {
+                if(rolloutFilledCount>0 && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+                {
+                    System.debug(LoggingLevel.Error,'validateMilestonevalidateMilestone'+showValidation+' rolloutRegionalPLFilledError::'+rolloutRegionalPLFilledError);
+                    showValidation=false;
+                     //if(project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3) 
+		    		 //{
+                     	rolloutRegionalPLFilledError=true;
+		    		 //}
+                    System.debug(LoggingLevel.Error,'validateMilestonevalidateMilestone'+showValidation+' rolloutRegionalPLFilledError::'+rolloutRegionalPLFilledError);
+                }
+            
+                if(rolloutCount<1 && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+                {
+                    showValidation=false;
+                    rolloutNotExistsError=true;
+                }
+	            if(invalidFinancialsCount>0)
+	            {
+	                showValidation=false;
+	                financialError=true;
+	            }   
+        	}
+	}
+	public void showvalidationRegionalMethodHelper()
+	{
+		if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+            {
+               if(rolloutCount<1 && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+                {
+                    showValidation=false;
+                    rolloutNotExistsError=true;
+                }
+               
+                if(rolloutFilledCount>0 && project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+                {
+                    showValidation=false;
+                    rolloutCountryPLFilledError=true;
+                }
+           
+            if(invalidFinancialsCount>0)
+            {
+                showValidation=false;
+                financialError=true;
+            }
+        }
+	}
+	/***************************************************************************************
+    @ Description: Helper method of postponeProjectMethodHelper() for solving Napth complexity.
+ ****************************************************************************************/
+	public void postponeProjectMethodHelper(IPM_Milestone__c currentPhaseMilestone,String currentPhase,Integer currentProjectPhaseSequence)
+	{
+		 // get the set of previos phases
+                Set<String> previousPhases = new Set<String>();
+                for(String phase : IPM_ConstantUtils.phaseSequence.KeySet()){
+                    if(currentPhaseMilestone.IPM_Phase__c!= null && phase == currentPhaseMilestone.IPM_Phase__c)
+                    {
+                        break;
+                    }
+                    previousPhases.add(phase);      
+                }
+                // This milestone list will contain recent changes of milestone and completed milestones of previous phases
+                List<IPM_Milestone__c> combinedmilestoneList = new List<IPM_Milestone__c>();
+                
+                for(IPM_Milestone__c milestone : milestoneList){
+                    if(!previousPhases.isEmpty() && previousPhases.contains(milestone.IPM_Phase__c)){
+                        combinedmilestoneList.add(milestone);
+                    }
+                }
+                
+                // Adding the list of pending milestones
+                combinedmilestoneList.addAll(pendingMilestoneList);
+                
+                postponeProjectSubMethod(combinedmilestoneList,previousPhases);
+               
+	}
+	/***************************************************************************************
+    @ Description: sub method of postponeProjectMethodHelper() for solving Napth complexity.
+ ***************************************************************************************/
+	public void postponeProjectSubMethod(List<IPM_Milestone__c> combinedmilestoneList , Set<String> previousPhases)
+	{
+	  for(IPM_Milestone__c pendingMilestone : pendingMilestoneList){
+                    
+                    Boolean flag = false;
+                    if(pendingMilestone.IPM_Planned_Date__c == null){
+                        showErrorMsg = system.label.IPM_PostponeDate_Required; 
+                        break;
+                    } 
+                    
+                    if(pendingMilestone.IPM_Planned_Date__c < System.today()){
+                        showErrorMsg = system.label.IPM_PostponeDate_Validation; 
+                        break;
+                    }
+                    
+
+                   for(IPM_Milestone__c milestone : combinedmilestoneList){
+                        
+                        if(previousPhases.contains(milestone.IPM_Phase__c)){
+                            
+                            if(pendingMilestone.IPM_Planned_Date__c != null && pendingMilestone.IPM_Planned_Date__c < milestone.IPM_Planned_Date__c){
+                                showErrorMsg = Label.IPM_Milestone_Due_Date;
+                                flag = true;
+                                break;
+                            }
+                        }
+                        else{
+                            if(pendingMilestone.IPM_Planned_Date__c != null && pendingMilestone.IPM_Planned_Date__c > milestone.IPM_Planned_Date__c){
+                                showErrorMsg = Label.IPM_Postponed_Future_Date_Validation;
+                                flag = true;
+                                break;
+                            }
+                        }
+                    }  
+                    previousPhases.add(pendingMilestone.IPM_Phase__c);
+                    if(flag){
+                        break;
+                    }
+                } 
+	 
+	}
 }
