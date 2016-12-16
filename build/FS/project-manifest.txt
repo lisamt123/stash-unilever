@@ -1,5 +1,3 @@
-src/
-src/layouts/
 src/layouts/Account-Operators Russia.layout
 src/layouts/Account-Operator Russia Read Only.layout
 src/layouts/Product2-Food Solutions Product Russia.layout
