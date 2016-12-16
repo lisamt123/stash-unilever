@@ -1,6 +1,14 @@
 src/dashboards
 src/dashboards/SAM_DashBoards/SAM_Dashbords.dashboard
 src/dashboards/SAM_DashBoards-meta.xml
+src/email
+src/email/SAM_Email_Template_Folder
+src/email/SAM_Email_Template_Folder/SAM_FinalQuoteProvided_By_SAMT.email
+src/email/SAM_Email_Template_Folder/SAM_FinalQuoteProvided_By_SAMT.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_FinalQuoteReSubmitted_To_Requester.email
+src/email/SAM_Email_Template_Folder/SAM_FinalQuoteReSubmitted_To_Requester.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_DraftQuote_By_SAMT_To_Requester.email
+src/email/SAM_Email_Template_Folder/SAM_DraftQuote_By_SAMT_To_Requester.email-meta.xml
 src/reports
 src/reports/SAM_Finance
 src/reports/SAM_Finance/SAM_Finance_Report.report
@@ -17,11 +25,3 @@ src/reports/SAM_Reports/SAM_Daily_Demand_Tracker_new1.report
 src/reports/SAM_Reports/SAM_Request_Type_SAM_Demand_Management_t.report
 src/reports/SAM_Reports/SAM_Query.report
 src/reports/SAM_Reports-meta.xml
-src/email
-src/email/SAM_Email_Template_Folder
-src/email/SAM_Email_Template_Folder/SAM_FinalQuoteProvided_By_SAMT.email
-src/email/SAM_Email_Template_Folder/SAM_FinalQuoteProvided_By_SAMT.email-meta.xml
-src/email/SAM_Email_Template_Folder/SAM_FinalQuoteReSubmitted_To_Requester.email
-src/email/SAM_Email_Template_Folder/SAM_FinalQuoteReSubmitted_To_Requester.email-meta.xml
-src/email/SAM_Email_Template_Folder/SAM_DraftQuote_By_SAMT_To_Requester.email
-src/email/SAM_Email_Template_Folder/SAM_DraftQuote_By_SAMT_To_Requester.email-meta.xml
