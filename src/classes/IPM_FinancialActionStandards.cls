@@ -188,12 +188,25 @@ public with sharing class IPM_FinancialActionStandards {
             IRRWrapper.actionStandardValue = ((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(3);
             PaybackWrapper.actionStandardValue = ((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_PAYBACK + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2);
     
+            getGateNames();
+            //1 Column (attributes) + 1 column (Action Standards) + 1 column (Comments) + Number of Gates to be made visible
+            Integer calcColSpan = IPM_ConstantUtils.CHANNEL_PRIORITY_THREE + lstGateNames.size();
+            colSpan = '' + calcColSpan;
+        }
+    }
+    
+    /*******************************************************************************************************
+    * @description                  Process List of relevant gate values
+    * @param        				NONE
+    * @return                       NONE
+    *******************************************************************************************************/
+     
+     private void getGateNames(){
             //Charter - Always Process Charter Results
             lstGateNames.add(IPM_ConstantUtils.CHARTER_GATE);
             if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) {
                 processWrapperListGateValues(fieldSuffix);
-            }
-            else {
+		} else {
                 processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_CHARTER);
             }
     
@@ -205,8 +218,7 @@ public with sharing class IPM_FinancialActionStandards {
                 lstGateNames.add(IPM_ConstantUtils.CONTRACT_GATE);
                 if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY){
                     processWrapperListGateValues(fieldSuffix);
-                }
-                else {
+			} else {
                     processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_CONTRACT);
                 }
             }
@@ -220,15 +232,9 @@ public with sharing class IPM_FinancialActionStandards {
                 lstGateNames.add(IPM_ConstantUtils.MARKET_READY_GATE);
                 if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY){
                     processWrapperListGateValues(fieldSuffix);
-                }
-                else {
+			} else {
                     processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_MARKET_READY);
                 }
-            }
-                
-            //1 Column (attributes) + 1 column (Action Standards) + 1 column (Comments) + Number of Gates to be made visible
-            Integer calcColSpan = IPM_ConstantUtils.CHANNEL_PRIORITY_THREE + lstGateNames.size();
-            colSpan = '' + calcColSpan;
         }
     }
     
