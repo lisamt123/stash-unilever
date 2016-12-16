@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>PACV Questionnaire</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>PACV Questionnaire</value>
+    </caseValues>
+    <fields>
+        <label><!-- Description --></label>
+        <name>PACV_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>PACV_Status__c</name>
+        <picklistValues>
+            <masterLabel>Not Published</masterLabel>
+            <translation><!-- Not Published --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Published</masterLabel>
+            <translation><!-- Published --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>PACV Risk Assessment Not Published Questionnaire Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PACV Risk Assessment Published Questionnaire Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Not Published --></label>
+        <name>Not_Published</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Published --></label>
+        <name>Published</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- PACV_Publish --></label>
+        <name>PACV_Publish</name>
+    </webLinks>
+</CustomObjectTranslation>

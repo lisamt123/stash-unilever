@@ -65,6 +65,122 @@
         <relationshipLabel><!-- Accounts --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Discipline --></label>
+        <name>Agency_Discipline__c</name>
+        <picklistValues>
+            <masterLabel>Activations and Promotions</masterLabel>
+            <translation><!-- Activations and Promotions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Advertising</masterLabel>
+            <translation><!-- Advertising --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Advertising Production</masterLabel>
+            <translation><!-- Advertising Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Artwork</masterLabel>
+            <translation><!-- Artwork --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Co-op marketing</masterLabel>
+            <translation><!-- Co-op marketing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumer &amp; Customer Response</masterLabel>
+            <translation><!-- Consumer &amp; Customer Response --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Care</masterLabel>
+            <translation><!-- Customer Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Design (Adaptive)</masterLabel>
+            <translation><!-- Design (Adaptive) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Design (Creative)</masterLabel>
+            <translation><!-- Design (Creative) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Distribution &amp; Mailing Services</masterLabel>
+            <translation><!-- Distribution &amp; Mailing Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Field Sales</masterLabel>
+            <translation><!-- Field Sales --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interactive (Digital)</masterLabel>
+            <translation><!-- Interactive (Digital) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing Materials</masterLabel>
+            <translation><!-- Marketing Materials --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media</masterLabel>
+            <translation><!-- Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media Agency</masterLabel>
+            <translation><!-- Media Agency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging Print Production</masterLabel>
+            <translation><!-- Packaging Print Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Point of Sale Materials (POSM)</masterLabel>
+            <translation><!-- Point of Sale Materials (POSM) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Premiums</masterLabel>
+            <translation><!-- Premiums --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Print Media Placement</masterLabel>
+            <translation><!-- Print Media Placement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Printed Material</masterLabel>
+            <translation><!-- Printed Material --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotional Merchandise</masterLabel>
+            <translation><!-- Promotional Merchandise --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Relations</masterLabel>
+            <translation><!-- Public Relations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Research - Ad hoc</masterLabel>
+            <translation><!-- Research - Ad hoc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Research – Continuous</masterLabel>
+            <translation><!-- Research – Continuous --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales &amp; Business Promotion Activities</masterLabel>
+            <translation><!-- Sales &amp; Business Promotion Activities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Channel Operations</masterLabel>
+            <translation><!-- Sales Channel Operations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Promotion Print Production</masterLabel>
+            <translation><!-- Sales Promotion Print Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Warehousing &amp; Logistics</masterLabel>
+            <translation><!-- Warehousing &amp; Logistics --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Agency Expertise --></label>
         <name>Agency_Expertise__c</name>
         <picklistValues>
@@ -72,12 +188,28 @@
             <translation><!-- Behaviour Design --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Digital Build</masterLabel>
-            <translation><!-- Digital Build --></translation>
+            <masterLabel>Digital Creative &amp; Strategic</masterLabel>
+            <translation><!-- Digital Creative &amp; Strategic --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Digital Design</masterLabel>
-            <translation><!-- Digital Design --></translation>
+            <masterLabel>Digital Mobile, Games &amp; Apps</masterLabel>
+            <translation><!-- Digital Mobile, Games &amp; Apps --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Search</masterLabel>
+            <translation><!-- Digital Search --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Social</masterLabel>
+            <translation><!-- Digital Social --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Web &amp; Microsites</masterLabel>
+            <translation><!-- Digital Web &amp; Microsites --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital – Other</masterLabel>
+            <translation><!-- Digital – Other --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Environment/Set Design</masterLabel>
@@ -1298,7 +1430,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Discipline --></label>
+        <label><!-- Discipline Old --></label>
         <name>Discipline__c</name>
         <picklistValues>
             <masterLabel>Activations and Promotions</masterLabel>
@@ -1730,7 +1862,7 @@ Customer Delivers Directly = 5 --></help>
         </picklistValues>
     </fields>
     <fields>
-        <label>RFS Регион</label>
+        <label>Регион</label>
         <name>FS_RusianRegion__c</name>
         <picklistValues>
             <masterLabel>Belarus</masterLabel>
@@ -1774,7 +1906,7 @@ Customer Delivers Directly = 5 --></help>
         </picklistValues>
     </fields>
     <fields>
-        <label>RFS Город</label>
+        <label>Город</label>
         <name>FS_RussianCity__c</name>
         <picklistValues>
             <masterLabel>ABAKAN</masterLabel>
@@ -2154,7 +2286,7 @@ Customer Delivers Directly = 5 --></help>
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- RFS Zone --></label>
+        <label>Зона</label>
         <name>FS_RussianZone__c</name>
         <picklistValues>
             <masterLabel>Moscow &amp; CFO</masterLabel>
@@ -2178,7 +2310,7 @@ Customer Delivers Directly = 5 --></help>
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Operator Segment(Russia) --></label>
+        <label>Segment</label>
         <name>FS_SegmentRussia__c</name>
         <picklistValues>
             <masterLabel>Canteens</masterLabel>
@@ -2226,6 +2358,10 @@ Customer Delivers Directly = 5 --></help>
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- SoftServe Distr Id --></label>
+        <name>FS_SoftServeDistrId__c</name>
+    </fields>
+    <fields>
         <label><!-- Sold-to code --></label>
         <name>FS_SoldToCode__c</name>
     </fields>
@@ -2249,7 +2385,7 @@ At least 3 out of 4 = 5 --></help>
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Operator Sub Segment(Russia) --></label>
+        <label>Sub Segment</label>
         <name>FS_SubSegmentRussia__c</name>
         <picklistValues>
             <masterLabel>Бар / Паб</masterLabel>
@@ -2795,10 +2931,6 @@ At least 3 out of 4 = 5 --></help>
         <label><!-- NFS Region --></label>
         <name>Region__c</name>
         <picklistValues>
-            <masterLabel>10007 Custom</masterLabel>
-            <translation><!-- 10007 Custom --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>10100 Non-Comm Region 2</masterLabel>
             <translation><!-- 10100 Non-Comm Region 2 --></translation>
         </picklistValues>
@@ -2807,40 +2939,36 @@ At least 3 out of 4 = 5 --></help>
             <translation><!-- 10200 Retail FS --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>10500 Redistribution - US</masterLabel>
-            <translation><!-- 10500 Redistribution - US --></translation>
+            <masterLabel>10600 Non-Com Leader</masterLabel>
+            <translation><!-- 10600 Non-Com Leader --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>10600 Travel</masterLabel>
-            <translation><!-- 10600 Travel --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>10610 Club Stores - US</masterLabel>
-            <translation><!-- 10610 Club Stores - US --></translation>
+            <masterLabel>10610 Club</masterLabel>
+            <translation><!-- 10610 Club --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>10620 Cash &amp; Carry</masterLabel>
             <translation><!-- 10620 Cash &amp; Carry --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>10800 C-Store</masterLabel>
-            <translation><!-- 10800 C-Store --></translation>
+            <masterLabel>53000 East Zone Leader</masterLabel>
+            <translation><!-- 53000 East Zone Leader --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>53000 East</masterLabel>
-            <translation><!-- 53000 East --></translation>
+            <masterLabel>53010 Carolina District</masterLabel>
+            <translation><!-- 53010 Carolina District --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>53010 Mid Atlantic</masterLabel>
-            <translation><!-- 53010 Mid Atlantic --></translation>
+            <masterLabel>53015 Tri-State Region</masterLabel>
+            <translation><!-- 53015 Tri-State Region --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>53015 Tri State</masterLabel>
-            <translation><!-- 53015 Tri State --></translation>
+            <masterLabel>53020 New England Region</masterLabel>
+            <translation><!-- 53020 New England Region --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>53020 New England</masterLabel>
-            <translation><!-- 53020 New England --></translation>
+            <masterLabel>53025 South District</masterLabel>
+            <translation><!-- 53025 South District --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>54100 Obsolete/Inactive</masterLabel>
@@ -2859,40 +2987,36 @@ At least 3 out of 4 = 5 --></help>
             <translation><!-- 55005 Non-Comm Region 3 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55015 Midwest</masterLabel>
-            <translation><!-- 55015 Midwest --></translation>
+            <masterLabel>55010 Balt/Wash District</masterLabel>
+            <translation><!-- 55010 Balt/Wash District --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55020 North central</masterLabel>
-            <translation><!-- 55020 North central --></translation>
+            <masterLabel>55015 Midwest District</masterLabel>
+            <translation><!-- 55015 Midwest District --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55030 South Central</masterLabel>
-            <translation><!-- 55030 South Central --></translation>
+            <masterLabel>55020 North Central Reg</masterLabel>
+            <translation><!-- 55020 North Central Reg --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55035 Mountain</masterLabel>
-            <translation><!-- 55035 Mountain --></translation>
+            <masterLabel>55030 Texas Region</masterLabel>
+            <translation><!-- 55030 Texas Region --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55040 West</masterLabel>
-            <translation><!-- 55040 West --></translation>
+            <masterLabel>55040 West Region</masterLabel>
+            <translation><!-- 55040 West Region --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55045 West Client delivery</masterLabel>
-            <translation><!-- 55045 West Client delivery --></translation>
+            <masterLabel>55050 Sysco/Pure Player</masterLabel>
+            <translation><!-- 55050 Sysco/Pure Player --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>56005 Non-Comm Region 1</masterLabel>
             <translation><!-- 56005 Non-Comm Region 1 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>56010 Military</masterLabel>
-            <translation><!-- 56010 Military --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>56015 Buying Groups</masterLabel>
-            <translation><!-- 56015 Buying Groups --></translation>
+            <masterLabel>56010 Military Region</masterLabel>
+            <translation><!-- 56010 Military Region --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>56020 Corporate Accounts</masterLabel>
@@ -2903,44 +3027,32 @@ At least 3 out of 4 = 5 --></help>
             <translation><!-- 56025 OCS --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59000 South CDM</masterLabel>
-            <translation><!-- 59000 South CDM --></translation>
+            <masterLabel>57100 Great Lakes Region</masterLabel>
+            <translation><!-- 57100 Great Lakes Region --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59005 East CDM</masterLabel>
-            <translation><!-- 59005 East CDM --></translation>
+            <masterLabel>59015 Florida Region</masterLabel>
+            <translation><!-- 59015 Florida Region --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59010 Redistribution - CA</masterLabel>
-            <translation><!-- 59010 Redistribution - CA --></translation>
+            <masterLabel>59020 Strategic Accts CA</masterLabel>
+            <translation><!-- 59020 Strategic Accts CA --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59015 Southeast</masterLabel>
-            <translation><!-- 59015 Southeast --></translation>
+            <masterLabel>59030 Rocky Mountain Dist</masterLabel>
+            <translation><!-- 59030 Rocky Mountain Dist --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59020 Canada CDM</masterLabel>
-            <translation><!-- 59020 Canada CDM --></translation>
+            <masterLabel>59035 South West Region</masterLabel>
+            <translation><!-- 59035 South West Region --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59025 Club Stores - CA</masterLabel>
-            <translation><!-- 59025 Club Stores - CA --></translation>
+            <masterLabel>59040 Strategic Accts US</masterLabel>
+            <translation><!-- 59040 Strategic Accts US --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59040 South</masterLabel>
-            <translation><!-- 59040 South --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>59045 Canada Zone Leader</masterLabel>
-            <translation><!-- 59045 Canada Zone Leader --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>82100 Disposal</masterLabel>
-            <translation><!-- 82100 Disposal --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>82200 Exited</masterLabel>
-            <translation><!-- 82200 Exited --></translation>
+            <masterLabel>83100 Corporate Accts CA</masterLabel>
+            <translation><!-- 83100 Corporate Accts CA --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>89010 Canada West</masterLabel>
@@ -2953,10 +3065,6 @@ At least 3 out of 4 = 5 --></help>
         <picklistValues>
             <masterLabel>89020 Canada East</masterLabel>
             <translation><!-- 89020 Canada East --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>89100 Intercompany</masterLabel>
-            <translation><!-- 89100 Intercompany --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -3029,16 +3137,24 @@ At least 3 out of 4 = 5 --></help>
             <translation><!-- C-Liquidator --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>C-Store</masterLabel>
+            <translation><!-- C-Store --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Canteens</masterLabel>
             <translation>Столовые</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Club, Cash &amp; Carry</masterLabel>
+            <translation><!-- Club, Cash &amp; Carry --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Contract Caterers</masterLabel>
             <translation>Кейтеринг</translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Cruise Travel Leisure</masterLabel>
-            <translation>Круизы</translation>
+            <masterLabel>Cruise, Travel &amp; Leisure</masterLabel>
+            <translation><!-- Cruise, Travel &amp; Leisure --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>D-Redistribution</masterLabel>
@@ -3049,8 +3165,8 @@ At least 3 out of 4 = 5 --></help>
             <translation><!-- E-Office Coffee System --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Education Healthcare BusInd</masterLabel>
-            <translation><!-- Education Healthcare BusInd --></translation>
+            <masterLabel>Education, Healthcare, B&amp;I</masterLabel>
+            <translation><!-- Education, Healthcare, B&amp;I --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>F-Specialty</masterLabel>
@@ -3097,6 +3213,10 @@ At least 3 out of 4 = 5 --></help>
             <translation>Офисы</translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Other Contracted</masterLabel>
+            <translation><!-- Other Contracted --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Pubs/Bars/Entertaining center/Caffee</masterLabel>
             <translation>Пабы/Бары/Развлекателбный центр/Кафе</translation>
         </picklistValues>
@@ -3111,6 +3231,10 @@ At least 3 out of 4 = 5 --></help>
         <picklistValues>
             <masterLabel>Restaurant</masterLabel>
             <translation>Ресторан</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restaurant Chains</masterLabel>
+            <translation><!-- Restaurant Chains --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Restaurants</masterLabel>
@@ -3147,6 +3271,10 @@ At least 3 out of 4 = 5 --></help>
         <picklistValues>
             <masterLabel>Active</masterLabel>
             <translation>Активный</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Marked For Deletion</masterLabel>
@@ -3449,172 +3577,804 @@ At least 3 out of 4 = 5 --></help>
         <label><!-- NFS Territory --></label>
         <name>Territory__c</name>
         <picklistValues>
-            <masterLabel>10007</masterLabel>
-            <translation><!-- 10007 --></translation>
+            <masterLabel>53011</masterLabel>
+            <translation><!-- 53011 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>10100</masterLabel>
-            <translation><!-- 10100 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>10200</masterLabel>
-            <translation><!-- 10200 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>10500</masterLabel>
-            <translation><!-- 10500 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>10600</masterLabel>
-            <translation><!-- 10600 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>10610</masterLabel>
-            <translation><!-- 10610 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>10620</masterLabel>
-            <translation><!-- 10620 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>10800</masterLabel>
-            <translation><!-- 10800 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>53000</masterLabel>
-            <translation><!-- 53000 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>53010</masterLabel>
-            <translation><!-- 53010 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>53015</masterLabel>
-            <translation><!-- 53015 --></translation>
+            <masterLabel>53012</masterLabel>
+            <translation><!-- 53012 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>53020</masterLabel>
             <translation><!-- 53020 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>54100</masterLabel>
-            <translation><!-- 54100 --></translation>
+            <masterLabel>53100</masterLabel>
+            <translation><!-- 53100 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>54200</masterLabel>
-            <translation><!-- 54200 --></translation>
+            <masterLabel>53102</masterLabel>
+            <translation><!-- 53102 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55000</masterLabel>
-            <translation><!-- 55000 --></translation>
+            <masterLabel>53106</masterLabel>
+            <translation><!-- 53106 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55005</masterLabel>
-            <translation><!-- 55005 --></translation>
+            <masterLabel>53109</masterLabel>
+            <translation><!-- 53109 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55015</masterLabel>
-            <translation><!-- 55015 --></translation>
+            <masterLabel>53110</masterLabel>
+            <translation><!-- 53110 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55020</masterLabel>
-            <translation><!-- 55020 --></translation>
+            <masterLabel>53111</masterLabel>
+            <translation><!-- 53111 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55030</masterLabel>
-            <translation><!-- 55030 --></translation>
+            <masterLabel>53112</masterLabel>
+            <translation><!-- 53112 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55035</masterLabel>
-            <translation><!-- 55035 --></translation>
+            <masterLabel>53113</masterLabel>
+            <translation><!-- 53113 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55040</masterLabel>
-            <translation><!-- 55040 --></translation>
+            <masterLabel>53116</masterLabel>
+            <translation><!-- 53116 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>55045</masterLabel>
-            <translation><!-- 55045 --></translation>
+            <masterLabel>53117</masterLabel>
+            <translation><!-- 53117 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>56005</masterLabel>
-            <translation><!-- 56005 --></translation>
+            <masterLabel>53118</masterLabel>
+            <translation><!-- 53118 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>56010</masterLabel>
-            <translation><!-- 56010 --></translation>
+            <masterLabel>53119</masterLabel>
+            <translation><!-- 53119 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>56015</masterLabel>
-            <translation><!-- 56015 --></translation>
+            <masterLabel>53120</masterLabel>
+            <translation><!-- 53120 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53121</masterLabel>
+            <translation><!-- 53121 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53123</masterLabel>
+            <translation><!-- 53123 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53400</masterLabel>
+            <translation><!-- 53400 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53402</masterLabel>
+            <translation><!-- 53402 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53403</masterLabel>
+            <translation><!-- 53403 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53406</masterLabel>
+            <translation><!-- 53406 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53408</masterLabel>
+            <translation><!-- 53408 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53410</masterLabel>
+            <translation><!-- 53410 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53414</masterLabel>
+            <translation><!-- 53414 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53421</masterLabel>
+            <translation><!-- 53421 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53422</masterLabel>
+            <translation><!-- 53422 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53702</masterLabel>
+            <translation><!-- 53702 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53703</masterLabel>
+            <translation><!-- 53703 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53704</masterLabel>
+            <translation><!-- 53704 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53707</masterLabel>
+            <translation><!-- 53707 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53711</masterLabel>
+            <translation><!-- 53711 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53713</masterLabel>
+            <translation><!-- 53713 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53714</masterLabel>
+            <translation><!-- 53714 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53719</masterLabel>
+            <translation><!-- 53719 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53720</masterLabel>
+            <translation><!-- 53720 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53910</masterLabel>
+            <translation><!-- 53910 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54000</masterLabel>
+            <translation><!-- 54000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54102</masterLabel>
+            <translation><!-- 54102 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54103</masterLabel>
+            <translation><!-- 54103 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54104</masterLabel>
+            <translation><!-- 54104 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54113</masterLabel>
+            <translation><!-- 54113 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54400</masterLabel>
+            <translation><!-- 54400 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54402</masterLabel>
+            <translation><!-- 54402 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54403</masterLabel>
+            <translation><!-- 54403 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54405</masterLabel>
+            <translation><!-- 54405 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54406</masterLabel>
+            <translation><!-- 54406 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54411</masterLabel>
+            <translation><!-- 54411 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54417</masterLabel>
+            <translation><!-- 54417 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54419</masterLabel>
+            <translation><!-- 54419 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54421</masterLabel>
+            <translation><!-- 54421 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54426</masterLabel>
+            <translation><!-- 54426 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54650</masterLabel>
+            <translation><!-- 54650 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54700</masterLabel>
+            <translation><!-- 54700 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54701</masterLabel>
+            <translation><!-- 54701 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54702</masterLabel>
+            <translation><!-- 54702 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54704</masterLabel>
+            <translation><!-- 54704 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54706</masterLabel>
+            <translation><!-- 54706 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54712</masterLabel>
+            <translation><!-- 54712 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54715</masterLabel>
+            <translation><!-- 54715 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54720</masterLabel>
+            <translation><!-- 54720 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54721</masterLabel>
+            <translation><!-- 54721 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54722</masterLabel>
+            <translation><!-- 54722 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54730</masterLabel>
+            <translation><!-- 54730 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55103</masterLabel>
+            <translation><!-- 55103 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55104</masterLabel>
+            <translation><!-- 55104 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55108</masterLabel>
+            <translation><!-- 55108 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55109</masterLabel>
+            <translation><!-- 55109 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55114</masterLabel>
+            <translation><!-- 55114 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55117</masterLabel>
+            <translation><!-- 55117 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55119</masterLabel>
+            <translation><!-- 55119 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55120</masterLabel>
+            <translation><!-- 55120 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55121</masterLabel>
+            <translation><!-- 55121 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55122</masterLabel>
+            <translation><!-- 55122 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55340</masterLabel>
+            <translation><!-- 55340 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55400</masterLabel>
+            <translation><!-- 55400 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55401</masterLabel>
+            <translation><!-- 55401 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55403</masterLabel>
+            <translation><!-- 55403 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55404</masterLabel>
+            <translation><!-- 55404 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55405</masterLabel>
+            <translation><!-- 55405 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55410</masterLabel>
+            <translation><!-- 55410 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55411</masterLabel>
+            <translation><!-- 55411 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55412</masterLabel>
+            <translation><!-- 55412 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55413</masterLabel>
+            <translation><!-- 55413 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55415</masterLabel>
+            <translation><!-- 55415 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55419</masterLabel>
+            <translation><!-- 55419 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55420</masterLabel>
+            <translation><!-- 55420 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55422</masterLabel>
+            <translation><!-- 55422 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55424</masterLabel>
+            <translation><!-- 55424 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55425</masterLabel>
+            <translation><!-- 55425 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55430</masterLabel>
+            <translation><!-- 55430 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55431</masterLabel>
+            <translation><!-- 55431 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55432</masterLabel>
+            <translation><!-- 55432 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55702</masterLabel>
+            <translation><!-- 55702 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55703</masterLabel>
+            <translation><!-- 55703 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55704</masterLabel>
+            <translation><!-- 55704 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55709</masterLabel>
+            <translation><!-- 55709 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55712</masterLabel>
+            <translation><!-- 55712 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55713</masterLabel>
+            <translation><!-- 55713 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55715</masterLabel>
+            <translation><!-- 55715 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55718</masterLabel>
+            <translation><!-- 55718 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55719</masterLabel>
+            <translation><!-- 55719 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55720</masterLabel>
+            <translation><!-- 55720 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55724</masterLabel>
+            <translation><!-- 55724 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55726</masterLabel>
+            <translation><!-- 55726 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55729</masterLabel>
+            <translation><!-- 55729 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55732</masterLabel>
+            <translation><!-- 55732 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56000</masterLabel>
+            <translation><!-- 56000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56001</masterLabel>
+            <translation><!-- 56001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56016</masterLabel>
+            <translation><!-- 56016 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56017</masterLabel>
+            <translation><!-- 56017 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>56020</masterLabel>
             <translation><!-- 56020 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>56025</masterLabel>
-            <translation><!-- 56025 --></translation>
+            <masterLabel>56040</masterLabel>
+            <translation><!-- 56040 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59000</masterLabel>
-            <translation><!-- 59000 --></translation>
+            <masterLabel>56090</masterLabel>
+            <translation><!-- 56090 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59005</masterLabel>
-            <translation><!-- 59005 --></translation>
+            <masterLabel>56101</masterLabel>
+            <translation><!-- 56101 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59010</masterLabel>
-            <translation><!-- 59010 --></translation>
+            <masterLabel>56103</masterLabel>
+            <translation><!-- 56103 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59015</masterLabel>
-            <translation><!-- 59015 --></translation>
+            <masterLabel>56105</masterLabel>
+            <translation><!-- 56105 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59020</masterLabel>
-            <translation><!-- 59020 --></translation>
+            <masterLabel>56106</masterLabel>
+            <translation><!-- 56106 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59025</masterLabel>
-            <translation><!-- 59025 --></translation>
+            <masterLabel>56107</masterLabel>
+            <translation><!-- 56107 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59040</masterLabel>
-            <translation><!-- 59040 --></translation>
+            <masterLabel>56113</masterLabel>
+            <translation><!-- 56113 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59045</masterLabel>
-            <translation><!-- 59045 --></translation>
+            <masterLabel>56114</masterLabel>
+            <translation><!-- 56114 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>82100</masterLabel>
-            <translation><!-- 82100 --></translation>
+            <masterLabel>56115</masterLabel>
+            <translation><!-- 56115 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>82200</masterLabel>
-            <translation><!-- 82200 --></translation>
+            <masterLabel>56116</masterLabel>
+            <translation><!-- 56116 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56117</masterLabel>
+            <translation><!-- 56117 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56151</masterLabel>
+            <translation><!-- 56151 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56155</masterLabel>
+            <translation><!-- 56155 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56156</masterLabel>
+            <translation><!-- 56156 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56161</masterLabel>
+            <translation><!-- 56161 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56162</masterLabel>
+            <translation><!-- 56162 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56163</masterLabel>
+            <translation><!-- 56163 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56411</masterLabel>
+            <translation><!-- 56411 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56413</masterLabel>
+            <translation><!-- 56413 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56417</masterLabel>
+            <translation><!-- 56417 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56421</masterLabel>
+            <translation><!-- 56421 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56423</masterLabel>
+            <translation><!-- 56423 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59102</masterLabel>
+            <translation><!-- 59102 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59103</masterLabel>
+            <translation><!-- 59103 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59105</masterLabel>
+            <translation><!-- 59105 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59106</masterLabel>
+            <translation><!-- 59106 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59107</masterLabel>
+            <translation><!-- 59107 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59112</masterLabel>
+            <translation><!-- 59112 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59113</masterLabel>
+            <translation><!-- 59113 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59114</masterLabel>
+            <translation><!-- 59114 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59115</masterLabel>
+            <translation><!-- 59115 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59119</masterLabel>
+            <translation><!-- 59119 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59120</masterLabel>
+            <translation><!-- 59120 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59401</masterLabel>
+            <translation><!-- 59401 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59403</masterLabel>
+            <translation><!-- 59403 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59404</masterLabel>
+            <translation><!-- 59404 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59407</masterLabel>
+            <translation><!-- 59407 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59412</masterLabel>
+            <translation><!-- 59412 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59413</masterLabel>
+            <translation><!-- 59413 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59414</masterLabel>
+            <translation><!-- 59414 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59418</masterLabel>
+            <translation><!-- 59418 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59419</masterLabel>
+            <translation><!-- 59419 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59420</masterLabel>
+            <translation><!-- 59420 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59700</masterLabel>
+            <translation><!-- 59700 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59702</masterLabel>
+            <translation><!-- 59702 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59703</masterLabel>
+            <translation><!-- 59703 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59704</masterLabel>
+            <translation><!-- 59704 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59705</masterLabel>
+            <translation><!-- 59705 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59706</masterLabel>
+            <translation><!-- 59706 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59713</masterLabel>
+            <translation><!-- 59713 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59714</masterLabel>
+            <translation><!-- 59714 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59716</masterLabel>
+            <translation><!-- 59716 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89001</masterLabel>
+            <translation><!-- 89001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89002</masterLabel>
+            <translation><!-- 89002 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89003</masterLabel>
+            <translation><!-- 89003 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>89004</masterLabel>
             <translation><!-- 89004 --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>89005</masterLabel>
+            <translation><!-- 89005 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89006</masterLabel>
+            <translation><!-- 89006 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89009</masterLabel>
+            <translation><!-- 89009 --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>89010</masterLabel>
             <translation><!-- 89010 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89011</masterLabel>
+            <translation><!-- 89011 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>89015</masterLabel>
             <translation><!-- 89015 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>89020</masterLabel>
-            <translation><!-- 89020 --></translation>
+            <masterLabel>89016</masterLabel>
+            <translation><!-- 89016 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>89100</masterLabel>
-            <translation><!-- 89100 --></translation>
+            <masterLabel>89018</masterLabel>
+            <translation><!-- 89018 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89021</masterLabel>
+            <translation><!-- 89021 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89023</masterLabel>
+            <translation><!-- 89023 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89024</masterLabel>
+            <translation><!-- 89024 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89030</masterLabel>
+            <translation><!-- 89030 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89032</masterLabel>
+            <translation><!-- 89032 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89034</masterLabel>
+            <translation><!-- 89034 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89040</masterLabel>
+            <translation><!-- 89040 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89046</masterLabel>
+            <translation><!-- 89046 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89052</masterLabel>
+            <translation><!-- 89052 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89054</masterLabel>
+            <translation><!-- 89054 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89055</masterLabel>
+            <translation><!-- 89055 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89057</masterLabel>
+            <translation><!-- 89057 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89058</masterLabel>
+            <translation><!-- 89058 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89062</masterLabel>
+            <translation><!-- 89062 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89063</masterLabel>
+            <translation><!-- 89063 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89069</masterLabel>
+            <translation><!-- 89069 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89070</masterLabel>
+            <translation><!-- 89070 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89071</masterLabel>
+            <translation><!-- 89071 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89087</masterLabel>
+            <translation><!-- 89087 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89089</masterLabel>
+            <translation><!-- 89089 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89101</masterLabel>
+            <translation><!-- 89101 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89102</masterLabel>
+            <translation><!-- 89102 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89103</masterLabel>
+            <translation><!-- 89103 --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -3984,60 +4744,44 @@ At least 3 out of 4 = 5 --></help>
         <label><!-- NFS Zone --></label>
         <name>Zone__c</name>
         <picklistValues>
-            <masterLabel>55 West</masterLabel>
-            <translation><!-- 55 West --></translation>
+            <masterLabel>53 Strategic Accounts US</masterLabel>
+            <translation><!-- 53 Strategic Accounts US --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>56 OCS</masterLabel>
-            <translation><!-- 56 OCS --></translation>
+            <masterLabel>54 Inactive/Obsolete</masterLabel>
+            <translation><!-- 54 Inactive/Obsolete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55 West Zone</masterLabel>
+            <translation><!-- 55 West Zone --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>57 Canada</masterLabel>
             <translation><!-- 57 Canada --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>58 South</masterLabel>
-            <translation><!-- 58 South --></translation>
+            <masterLabel>59 East Zone</masterLabel>
+            <translation><!-- 59 East Zone --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>59 East</masterLabel>
-            <translation><!-- 59 East --></translation>
+            <masterLabel>83 Non-Comm NA</masterLabel>
+            <translation><!-- 83 Non-Comm NA --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>80 Intercompany - FS</masterLabel>
-            <translation><!-- 80 Intercompany - FS --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>81 Redistribution</masterLabel>
-            <translation><!-- 81 Redistribution --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>82 Disposal/Exited</masterLabel>
-            <translation><!-- 82 Disposal/Exited --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>83 Non-Comm</masterLabel>
-            <translation><!-- 83 Non-Comm --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>84 Corp Accts/BG</masterLabel>
-            <translation><!-- 84 Corp Accts/BG --></translation>
+            <masterLabel>84 Corporate Accounts US</masterLabel>
+            <translation><!-- 84 Corporate Accounts US --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>85 Club, Cash &amp; Carry</masterLabel>
             <translation><!-- 85 Club, Cash &amp; Carry --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>86 Specialty Channels</masterLabel>
-            <translation><!-- 86 Specialty Channels --></translation>
+            <masterLabel>88 Retail Foodservice US</masterLabel>
+            <translation><!-- 88 Retail Foodservice US --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>87 Custom</masterLabel>
-            <translation><!-- 87 Custom --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>88 Retail Foodservice</masterLabel>
-            <translation><!-- 88 Retail Foodservice --></translation>
+            <masterLabel>89 Sysco/Pure Player</masterLabel>
+            <translation><!-- 89 Sysco/Pure Player --></translation>
         </picklistValues>
     </fields>
     <layouts>
@@ -4088,10 +4832,6 @@ At least 3 out of 4 = 5 --></help>
             <label><!-- Hierarchy Information --></label>
             <section>Hierarchy Information</section>
         </sections>
-        <sections>
-            <label><!-- Segmentation --></label>
-            <section>Segmentation</section>
-        </sections>
     </layouts>
     <layouts>
         <layout>Feed Based Operator</layout>
@@ -4123,7 +4863,7 @@ At least 3 out of 4 = 5 --></help>
             <section>Address Details</section>
         </sections>
         <sections>
-            <label><!-- Contact Detail --></label>
+            <label>Детали контактов</label>
             <section>Contact Detail</section>
         </sections>
         <sections>
@@ -4150,7 +4890,7 @@ At least 3 out of 4 = 5 --></help>
             <section>Address Details</section>
         </sections>
         <sections>
-            <label><!-- Contacts --></label>
+            <label>Детали контактов</label>
             <section>Contacts</section>
         </sections>
         <sections>
@@ -4246,8 +4986,12 @@ At least 3 out of 4 = 5 --></help>
         <label>Вторичный клиент</label>
         <name>UID_Secondary_Account</name>
     </recordTypes>
+    <recordTypes>
+        <label><!-- WWP Account --></label>
+        <name>WWP_Account</name>
+    </recordTypes>
     <validationRules>
-        <errorMessage><!-- Don&apos;t Update the Account Name / Account Currency . --></errorMessage>
+        <errorMessage>Нельзя менять Имя и Валюту организации</errorMessage>
         <name>FS_AccountNameChangeLock</name>
     </validationRules>
     <validationRules>
@@ -4261,6 +5005,10 @@ At least 3 out of 4 = 5 --></help>
     <validationRules>
         <errorMessage><!-- Вам необходимо заполнить адрес для создания новой учетной записи оператора. --></errorMessage>
         <name>FS_Billing_Street_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Недостаточно полномочий для изменения записи</errorMessage>
+        <name>FS_Distributor_Account_Lock</name>
     </validationRules>
     <validationRules>
         <errorMessage>У Вас нет доступа изменить город</errorMessage>

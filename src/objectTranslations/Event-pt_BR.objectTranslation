@@ -45,6 +45,10 @@
         <name>Call_Type__c</name>
     </fields>
     <fields>
+        <label><!-- DB Activity Type --></label>
+        <name>DB_Activity_Type__c</name>
+    </fields>
+    <fields>
         <label><!-- Account --></label>
         <name>FS_Account__c</name>
         <relationshipLabel><!-- Activities --></relationshipLabel>
@@ -59,7 +63,7 @@
         <relationshipLabel><!-- Activities --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Task Type --></label>
+        <label><!-- Event Type --></label>
         <name>FS_Task_Type__c</name>
     </fields>
     <fields>

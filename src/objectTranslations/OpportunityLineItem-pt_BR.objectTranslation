@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
+        <help><!-- Reflects actual shipped volume. --></help>
         <label><!-- Actual Quantity --></label>
         <name>Actual_Quantity__c</name>
     </fields>
@@ -27,6 +28,7 @@
         <name>Distributor_Address__c</name>
     </fields>
     <fields>
+        <help><!-- Distributor expected to supply products to operator. Used for determining distributor TMI. --></help>
         <label><!-- Distributor TMI --></label>
         <name>Distributor__c</name>
         <picklistValues>
@@ -87,18 +89,22 @@
         <name>FSNAMarginMarketCodeHelper__c</name>
     </fields>
     <fields>
+        <help><!-- Total Rebate Discount Spend --></help>
         <label><!-- Total Deviated Rate --></label>
         <name>FSNA_TotalDeviatedRate__c</name>
     </fields>
     <fields>
+        <help><!-- Total discount offered paid directly to HQ or Corporate Accounts. --></help>
         <label><!-- Total HQ Rate --></label>
         <name>FSNA_TotalHQRate__c</name>
     </fields>
     <fields>
+        <help><!-- Bracket One price: as determined by Price Terms --></help>
         <label><!-- B1 Price --></label>
         <name>FS_B1Price__c</name>
     </fields>
     <fields>
+        <help><!-- Bracket Three price: as determined by  Price Terms --></help>
         <label><!-- BR3 --></label>
         <name>FS_BR3__c</name>
     </fields>
@@ -107,14 +113,17 @@
         <name>FS_Copy_of_Total_COGS__c</name>
     </fields>
     <fields>
+        <help><!-- Expected Distributor Earnings from opportunity. --></help>
         <label><!-- DIST TMI --></label>
         <name>FS_DISTTMI__c</name>
     </fields>
     <fields>
+        <help><!-- Expected Distributor Earnings per case from product opportunity. --></help>
         <label><!-- DS TMI/Cs --></label>
         <name>FS_DSTMI__c</name>
     </fields>
     <fields>
+        <help><!-- Difference between BR1-BR3, used for calculations where fixed price is selected. --></help>
         <label><!-- Delta BR1-BR3 --></label>
         <name>FS_DeltaBR1BR3__c</name>
     </fields>
@@ -132,10 +141,12 @@
         <name>FS_Distributor_Address__c</name>
     </fields>
     <fields>
+        <help><!-- Fixed price offered to customer for this product. --></help>
         <label><!-- Fixed Price --></label>
         <name>FS_FixedPrice__c</name>
     </fields>
     <fields>
+        <help><!-- Discount to be paid directly to HQ or Corporate account. --></help>
         <label><!-- HQ Rate --></label>
         <name>FS_HQRate__c</name>
     </fields>
@@ -157,18 +168,22 @@
         <name>FS_NSV_CALCULATION__c</name>
     </fields>
     <fields>
+        <help><!-- List Price multiplied by quantity. --></help>
         <label><!-- NSV --></label>
         <name>FS_NSV__c</name>
     </fields>
     <fields>
+        <help><!-- List Price minus offered Operator Discounts. --></help>
         <label><!-- Net Price --></label>
         <name>FS_NetPrice__c</name>
     </fields>
     <fields>
+        <help><!-- Operator discounts per case. --></help>
         <label><!-- Op TMI/Cs --></label>
         <name>FS_OpTMICs__c</name>
     </fields>
     <fields>
+        <help><!-- Total Dollar value of discounts offered to operator. --></help>
         <label><!-- Op TMI --></label>
         <name>FS_OpTMI__c</name>
     </fields>
@@ -177,11 +192,12 @@
         <name>FS_Price1WithDiscountWithVAT__c</name>
     </fields>
     <fields>
+        <help><!-- Respective market for Product. --></help>
         <label><!-- Product Market --></label>
         <name>FS_ProductMarket__c</name>
     </fields>
     <fields>
-        <help><!-- Enter the currency for Rate --></help>
+        <help><!-- Rebate Discount provided on individual product. --></help>
         <label><!-- Rate --></label>
         <name>FS_Rate__c</name>
     </fields>
@@ -258,6 +274,10 @@
         <name>FS_grossSalesValue__c</name>
     </fields>
     <fields>
+        <label><!-- List Price (Case/Piece) --></label>
+        <name>FS_listPriceCasePiece__c</name>
+    </fields>
+    <fields>
         <label><!-- necessary TPR --></label>
         <name>FS_necessaryTPR__c</name>
     </fields>
@@ -282,6 +302,10 @@
         <name>FS_temporaryPriceReduction__c</name>
     </fields>
     <fields>
+        <label><!-- Total List Price --></label>
+        <name>FS_totalListPrice__c</name>
+    </fields>
+    <fields>
         <label><!-- Total TPR % --></label>
         <name>FS_totalTPRPercentage__c</name>
     </fields>
@@ -302,10 +326,12 @@
         <name>FS_vat__c</name>
     </fields>
     <fields>
+        <help><!-- Product Gross Margin % based on proposed discounts. --></help>
         <label><!-- Gross Profit % --></label>
         <name>GPPercent__c</name>
     </fields>
     <fields>
+        <help><!-- Expected Gross Profit (Net in Pocket less cost of products). --></help>
         <label><!-- Gross Profit --></label>
         <name>GrossProfit__c</name>
     </fields>
@@ -352,10 +378,12 @@
         <relationshipLabel><!-- Opportunity Product --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- Total Cost of Product, production and supply chain related costs. --></help>
         <label><!-- Total COGS --></label>
         <name>TotalCOGS__c</name>
     </fields>
     <fields>
+        <help><!-- Net in Pocket. Net in Pocket for UFS (NSV - Total TMI) --></help>
         <label><!-- Turnover --></label>
         <name>Turnover__c</name>
     </fields>

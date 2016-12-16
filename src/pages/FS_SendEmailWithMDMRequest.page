@@ -5,7 +5,7 @@
             <apex:outputPanel rendered="{!sendButton}">  
                 <apex:outputText >Opportunity Owner:{!opportunityRecord.Owner.Email}<br/> <br/></apex:outputText>
                 <apex:outputLabel for="Subject" value="Subject" >:<br/></apex:outputLabel>
-                <apex:inputtext id="Subject" value="{!emailSubject}" size="50" maxlength="50" styleclass="stylefont"/><br/><br/>
+                <apex:inputtext id="Subject" value="{!emailSubject}" size="50" maxlength="100" styleclass="stylefont"/><br/><br/>
                 <apex:outputLabel for="EmailBody" value="Body" rendered="{!sendButton}">:<br/></apex:outputLabel>
                 <apex:inputTextarea id="EmailBody" value="{!emailBody}" cols="80" rows="10" styleclass="stylefont"/><br/><br/>
                 <apex:outputLabel value="Attachments" rendered="{!sendButton}">:<br/></apex:outputLabel>

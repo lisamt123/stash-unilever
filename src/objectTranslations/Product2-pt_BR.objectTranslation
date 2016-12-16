@@ -1068,7 +1068,7 @@
         <name>FS_ProfitCenter__c</name>
     </fields>
     <fields>
-        <label><!-- Sample --></label>
+        <label><!-- Sample Order --></label>
         <name>FS_Sample__c</name>
     </fields>
     <fields>
@@ -1894,40 +1894,32 @@
         <label><!-- Product Type --></label>
         <name>ProductType__c</name>
         <picklistValues>
-            <masterLabel>Commodity</masterLabel>
-            <translation><!-- Commodity --></translation>
+            <masterLabel>Contract Pack</masterLabel>
+            <translation><!-- Contract Pack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Custom</masterLabel>
+            <translation><!-- Custom --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Equipment</masterLabel>
             <translation><!-- Equipment --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Error - Unknown Type</masterLabel>
-            <translation><!-- Error - Unknown Type --></translation>
+            <masterLabel>Exited/Disposed</masterLabel>
+            <translation><!-- Exited/Disposed --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Mexican Concept</masterLabel>
-            <translation><!-- Mexican Concept --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>POS</masterLabel>
-            <translation><!-- POS --></translation>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Restricted</masterLabel>
             <translation><!-- Restricted --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>SVP</masterLabel>
-            <translation><!-- SVP --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Soupbar</masterLabel>
-            <translation><!-- Soupbar --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Unknown</masterLabel>
-            <translation><!-- Unknown --></translation>
+            <masterLabel>Retail</masterLabel>
+            <translation><!-- Retail --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Unrestricted</masterLabel>

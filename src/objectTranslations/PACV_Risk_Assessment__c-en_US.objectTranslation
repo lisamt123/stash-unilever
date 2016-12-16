@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>PACV Risk Assessment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>PACV Risk Assessments</value>
+    </caseValues>
+    <fields>
+        <label><!-- IPM Project --></label>
+        <name>IPM_Project__c</name>
+        <relationshipLabel><!-- PACV Risk Assessments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Project End Date --></label>
+        <name>PACV_Project_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Name --></label>
+        <name>PACV_Project_Name1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Name --></label>
+        <name>PACV_Project_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Start Date --></label>
+        <name>PACV_Project_Start_Date1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Start Date --></label>
+        <name>PACV_Project_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Risk Assessment Link --></label>
+        <name>PACV_Risk_Assessment_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Risk Score % --></label>
+        <name>PACV_Risk_Score_X__c</name>
+    </fields>
+    <fields>
+        <label><!-- Risk Score --></label>
+        <name>PACV_Risk_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Risk Status --></label>
+        <name>PACV_Risk_Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Started</masterLabel>
+            <translation><!-- Not Started --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Solution Name --></label>
+        <name>PACV_Solution_Name__c</name>
+        <relationshipLabel><!-- PACV Risk Assessments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>PACV_Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Completed</masterLabel>
+            <translation><!-- Not Completed --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>PACV Risk Assessment Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

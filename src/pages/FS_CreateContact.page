@@ -19,28 +19,24 @@ function isNumberKey(evt)
             <apex:pageBlockButtons location="bottom">
                 <apex:commandButton action="{!createContact}" value="{!SAVETEXT}"/>
             </apex:pageBlockButtons> 
-            <apex:pageBlockSection title="Contact Information"  columns="1" >
-                <apex:outputText Value="{!$User.FirstName} {!$User.LastName}" label="{!OWNEREXT}" />
+            <apex:pageBlockSection title="{!$Label.FS_ContactInformationSection}"  columns="1" >
+                <apex:outputText Value="{!$User.FirstName} {!$User.LastName}" label="{!$Label.FS_Owner}" />
                 <apex:inputfield value="{!varContactDetail.FirstName}" />
-                <apex:inputfield value="{!varContactDetail.LastName}" label="{!lASTNAMETEXT}" />
+                <apex:inputfield value="{!varContactDetail.LastName}" label="{!$Label.FS_LastName}" />
                 <apex:inputfield value="{!varContactDetail.Accountid}" required="{!TRUETEXT}" />
-                <apex:inputfield value="{!varContactDetail.Phone}"  label="Mobile" onkeypress="return isNumberKey(event);" >
+                <apex:inputfield value="{!varContactDetail.Phone}"  label="{!$Label.FS_Mobile}" onkeypress="return isNumberKey(event);" >
                 </apex:inputfield>
-                <apex:inputText value="{!workPhoneNumber}" label="Work" onkeypress="return isNumberKey(event);"> 
+                <apex:inputText value="{!workPhoneNumber}" label="{!$Label.FS_Work}" onkeypress="return isNumberKey(event);"> 
                 </apex:inputText>
-                <apex:inputText value="{!personalPhoneNumber}" label="Personal" onkeypress="return isNumberKey(event);">
+                <apex:inputText value="{!personalPhoneNumber}" label="{!$Label.FS_Personal}" onkeypress="return isNumberKey(event);">
                 </apex:inputText>
                 <apex:inputfield value="{!varContactDetail.Email}" />
                 <apex:inputfield value="{!varContactDetail.FS_Position__c}" required="{!TRUETEXT}" />
                 <apex:inputfield value="{!varContactDetail.FS_Decision_Maker__c}"/>
                 
             </apex:pageBlockSection>
-            <apex:pageBlocksection title="Address Information" columns="1">
-                <apex:inputfield value="{!varContactDetail.MailingStreet}"  label="Comment"/>
-                <apex:inputfield value="{!varContactDetail.MailingCity}" />
-                <apex:inputfield value="{!varContactDetail.MailingState}" />
-                <apex:inputfield value="{!varContactDetail.MailingPostalCode}" /> 
-                <apex:inputfield value="{!varContactDetail.MailingCountry}" /> 
+            <apex:pageBlocksection title="{!$Label.FS_AdditionalInformationSection}" columns="1">
+                <apex:inputfield value="{!varContactDetail.MailingStreet}"  label="{!$Label.FS_Comment}"/>
             </apex:pageBlockSection>
         </apex:pageBlock>
     </apex:form> 

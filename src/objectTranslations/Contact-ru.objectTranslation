@@ -508,7 +508,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Decision Maker --></label>
+        <label>Принимающий решение</label>
         <name>FS_Decision_Maker__c</name>
     </fields>
     <fields>
@@ -516,27 +516,27 @@
         <name>FS_PIEncryptKey__c</name>
     </fields>
     <fields>
-        <label><!-- Position --></label>
+        <label>Должность</label>
         <name>FS_Position__c</name>
         <picklistValues>
             <masterLabel>Brand - chef</masterLabel>
-            <translation><!-- Brand - chef --></translation>
+            <translation>Бренд-шеф</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Buyer</masterLabel>
-            <translation><!-- Buyer --></translation>
+            <translation>Закупщик</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Chef</masterLabel>
-            <translation><!-- Chef --></translation>
+            <translation>Шеф-повар</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Director</masterLabel>
-            <translation><!-- Director --></translation>
+            <translation>Директор</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Manager</masterLabel>
-            <translation><!-- Manager --></translation>
+            <translation>Управляющий</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Seller</masterLabel>
@@ -544,11 +544,11 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Sous chef</masterLabel>
-            <translation><!-- Sous chef --></translation>
+            <translation>Су-шеф</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Technologist</masterLabel>
-            <translation><!-- Technologist --></translation>
+            <translation>Технолог</translation>
         </picklistValues>
     </fields>
     <fields>

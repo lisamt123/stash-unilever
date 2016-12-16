@@ -5733,6 +5733,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_CreatedDateFormulaField__c</name>
     </fields>
     <fields>
+        <label><!-- Creator is Current User --></label>
+        <name>VPM_CreatorIsCurrentUser__c</name>
+    </fields>
+    <fields>
         <label><!-- Credit Info Number --></label>
         <name>VPM_CreditInfoNumber__c</name>
     </fields>
@@ -8017,16 +8021,864 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <label><!-- Mode of Transport for Foreign Trade --></label>
         <name>VPM_ModeTransportForeignTrade__c</name>
         <picklistValues>
-            <masterLabel>1</masterLabel>
-            <translation><!-- 1 --></translation>
+            <masterLabel>0_Always use this code (NL)</masterLabel>
+            <translation><!-- 0_Always use this code (NL) --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>2</masterLabel>
-            <translation><!-- 2 --></translation>
+            <masterLabel>1_Air (JP)</masterLabel>
+            <translation><!-- 1_Air (JP) --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>3</masterLabel>
-            <translation><!-- 3 --></translation>
+            <masterLabel>1_Merikuljetus (FI)</masterLabel>
+            <translation><!-- 1_Merikuljetus (FI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (AT)</masterLabel>
+            <translation><!-- 1_Sea (AT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (BE)</masterLabel>
+            <translation><!-- 1_Sea (BE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (BG)</masterLabel>
+            <translation><!-- 1_Sea (BG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (CY)</masterLabel>
+            <translation><!-- 1_Sea (CY) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (CZ)</masterLabel>
+            <translation><!-- 1_Sea (CZ) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (DE)</masterLabel>
+            <translation><!-- 1_Sea (DE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (DK)</masterLabel>
+            <translation><!-- 1_Sea (DK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (EG)</masterLabel>
+            <translation><!-- 1_Sea (EG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (ES)</masterLabel>
+            <translation><!-- 1_Sea (ES) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (FR)</masterLabel>
+            <translation><!-- 1_Sea (FR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (GB)</masterLabel>
+            <translation><!-- 1_Sea (GB) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (GR)</masterLabel>
+            <translation><!-- 1_Sea (GR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (HR)</masterLabel>
+            <translation><!-- 1_Sea (HR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (IE)</masterLabel>
+            <translation><!-- 1_Sea (IE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (IT)</masterLabel>
+            <translation><!-- 1_Sea (IT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (LU)</masterLabel>
+            <translation><!-- 1_Sea (LU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (NO)</masterLabel>
+            <translation><!-- 1_Sea (NO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (PL)</masterLabel>
+            <translation><!-- 1_Sea (PL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (PT)</masterLabel>
+            <translation><!-- 1_Sea (PT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (RO)</masterLabel>
+            <translation><!-- 1_Sea (RO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (RS)</masterLabel>
+            <translation><!-- 1_Sea (RS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (SE)</masterLabel>
+            <translation><!-- 1_Sea (SE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (SI)</masterLabel>
+            <translation><!-- 1_Sea (SI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Sea (SK)</masterLabel>
+            <translation><!-- 1_Sea (SK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Tengeri hajózás (HU)</masterLabel>
+            <translation><!-- 1_Tengeri hajózás (HU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_Vervoer over zee (NL)</masterLabel>
+            <translation><!-- 1_Vervoer over zee (NL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Mail (JP)</masterLabel>
+            <translation><!-- 2_Mail (JP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (AT)</masterLabel>
+            <translation><!-- 2_Rail (AT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (BE)</masterLabel>
+            <translation><!-- 2_Rail (BE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (BG)</masterLabel>
+            <translation><!-- 2_Rail (BG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (CH)</masterLabel>
+            <translation><!-- 2_Rail (CH) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (CZ)</masterLabel>
+            <translation><!-- 2_Rail (CZ) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (DE)</masterLabel>
+            <translation><!-- 2_Rail (DE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (DK)</masterLabel>
+            <translation><!-- 2_Rail (DK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (ES)</masterLabel>
+            <translation><!-- 2_Rail (ES) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (FR)</masterLabel>
+            <translation><!-- 2_Rail (FR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (GB)</masterLabel>
+            <translation><!-- 2_Rail (GB) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (GR)</masterLabel>
+            <translation><!-- 2_Rail (GR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (HR)</masterLabel>
+            <translation><!-- 2_Rail (HR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (IE)</masterLabel>
+            <translation><!-- 2_Rail (IE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (IT)</masterLabel>
+            <translation><!-- 2_Rail (IT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (LU)</masterLabel>
+            <translation><!-- 2_Rail (LU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (NO)</masterLabel>
+            <translation><!-- 2_Rail (NO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (PL)</masterLabel>
+            <translation><!-- 2_Rail (PL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (PT)</masterLabel>
+            <translation><!-- 2_Rail (PT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (RO)</masterLabel>
+            <translation><!-- 2_Rail (RO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (RS)</masterLabel>
+            <translation><!-- 2_Rail (RS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (SE)</masterLabel>
+            <translation><!-- 2_Rail (SE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (SI)</masterLabel>
+            <translation><!-- 2_Rail (SI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rail (SK)</masterLabel>
+            <translation><!-- 2_Rail (SK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Rautatiekuljetus (FI)</masterLabel>
+            <translation><!-- 2_Rautatiekuljetus (FI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Vasúti forgalom (HU)</masterLabel>
+            <translation><!-- 2_Vasúti forgalom (HU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_Vervoer per spoor (NL)</masterLabel>
+            <translation><!-- 2_Vervoer per spoor (NL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Közúti forgalom (HU)</masterLabel>
+            <translation><!-- 3_Közúti forgalom (HU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Maantiekuljetus (FI)</masterLabel>
+            <translation><!-- 3_Maantiekuljetus (FI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (AT)</masterLabel>
+            <translation><!-- 3_Road (AT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (BE)</masterLabel>
+            <translation><!-- 3_Road (BE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (BG)</masterLabel>
+            <translation><!-- 3_Road (BG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (CH)</masterLabel>
+            <translation><!-- 3_Road (CH) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (CY)</masterLabel>
+            <translation><!-- 3_Road (CY) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (CZ)</masterLabel>
+            <translation><!-- 3_Road (CZ) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (DE)</masterLabel>
+            <translation><!-- 3_Road (DE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (DK)</masterLabel>
+            <translation><!-- 3_Road (DK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (EG)</masterLabel>
+            <translation><!-- 3_Road (EG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (ES)</masterLabel>
+            <translation><!-- 3_Road (ES) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (FR)</masterLabel>
+            <translation><!-- 3_Road (FR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (GB)</masterLabel>
+            <translation><!-- 3_Road (GB) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (GR)</masterLabel>
+            <translation><!-- 3_Road (GR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (HR)</masterLabel>
+            <translation><!-- 3_Road (HR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (IE)</masterLabel>
+            <translation><!-- 3_Road (IE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (IT)</masterLabel>
+            <translation><!-- 3_Road (IT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (LU)</masterLabel>
+            <translation><!-- 3_Road (LU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (NO)</masterLabel>
+            <translation><!-- 3_Road (NO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (PL)</masterLabel>
+            <translation><!-- 3_Road (PL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (PT)</masterLabel>
+            <translation><!-- 3_Road (PT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (RO)</masterLabel>
+            <translation><!-- 3_Road (RO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (RS)</masterLabel>
+            <translation><!-- 3_Road (RS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (SE)</masterLabel>
+            <translation><!-- 3_Road (SE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (SI)</masterLabel>
+            <translation><!-- 3_Road (SI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Road (SK)</masterLabel>
+            <translation><!-- 3_Road (SK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Transfer import (JP)</masterLabel>
+            <translation><!-- 3_Transfer import (JP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_Wegvervoer (NL)</masterLabel>
+            <translation><!-- 3_Wegvervoer (NL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (AT)</masterLabel>
+            <translation><!-- 4_Air (AT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (BE)</masterLabel>
+            <translation><!-- 4_Air (BE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (BG)</masterLabel>
+            <translation><!-- 4_Air (BG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (CH)</masterLabel>
+            <translation><!-- 4_Air (CH) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (CZ)</masterLabel>
+            <translation><!-- 4_Air (CZ) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (DE)</masterLabel>
+            <translation><!-- 4_Air (DE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (DK)</masterLabel>
+            <translation><!-- 4_Air (DK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (ES)</masterLabel>
+            <translation><!-- 4_Air (ES) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (FR)</masterLabel>
+            <translation><!-- 4_Air (FR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (GB)</masterLabel>
+            <translation><!-- 4_Air (GB) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (GR)</masterLabel>
+            <translation><!-- 4_Air (GR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (HR)</masterLabel>
+            <translation><!-- 4_Air (HR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (IE)</masterLabel>
+            <translation><!-- 4_Air (IE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (IT)</masterLabel>
+            <translation><!-- 4_Air (IT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (LU)</masterLabel>
+            <translation><!-- 4_Air (LU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (NO)</masterLabel>
+            <translation><!-- 4_Air (NO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (PL)</masterLabel>
+            <translation><!-- 4_Air (PL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (PT)</masterLabel>
+            <translation><!-- 4_Air (PT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (RO)</masterLabel>
+            <translation><!-- 4_Air (RO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (RS)</masterLabel>
+            <translation><!-- 4_Air (RS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (SE)</masterLabel>
+            <translation><!-- 4_Air (SE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (SI)</masterLabel>
+            <translation><!-- 4_Air (SI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Air (SK)</masterLabel>
+            <translation><!-- 4_Air (SK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Lentokuljetus (FI)</masterLabel>
+            <translation><!-- 4_Lentokuljetus (FI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Luchtvervoer (NL)</masterLabel>
+            <translation><!-- 4_Luchtvervoer (NL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Légi forgalom (HU)</masterLabel>
+            <translation><!-- 4_Légi forgalom (HU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_Others (JP)</masterLabel>
+            <translation><!-- 4_Others (JP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (AT)</masterLabel>
+            <translation><!-- 5_Mail (AT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (BE)</masterLabel>
+            <translation><!-- 5_Mail (BE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (BG)</masterLabel>
+            <translation><!-- 5_Mail (BG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (CH)</masterLabel>
+            <translation><!-- 5_Mail (CH) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (CZ)</masterLabel>
+            <translation><!-- 5_Mail (CZ) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (DE)</masterLabel>
+            <translation><!-- 5_Mail (DE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (DK)</masterLabel>
+            <translation><!-- 5_Mail (DK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (ES)</masterLabel>
+            <translation><!-- 5_Mail (ES) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (FR)</masterLabel>
+            <translation><!-- 5_Mail (FR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (GB)</masterLabel>
+            <translation><!-- 5_Mail (GB) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (GR)</masterLabel>
+            <translation><!-- 5_Mail (GR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (HR)</masterLabel>
+            <translation><!-- 5_Mail (HR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (IE)</masterLabel>
+            <translation><!-- 5_Mail (IE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (IT)</masterLabel>
+            <translation><!-- 5_Mail (IT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (LU)</masterLabel>
+            <translation><!-- 5_Mail (LU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (NO)</masterLabel>
+            <translation><!-- 5_Mail (NO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (PL)</masterLabel>
+            <translation><!-- 5_Mail (PL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (PT)</masterLabel>
+            <translation><!-- 5_Mail (PT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (RO)</masterLabel>
+            <translation><!-- 5_Mail (RO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (RS)</masterLabel>
+            <translation><!-- 5_Mail (RS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (SE)</masterLabel>
+            <translation><!-- 5_Mail (SE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (SI)</masterLabel>
+            <translation><!-- 5_Mail (SI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Mail (SK)</masterLabel>
+            <translation><!-- 5_Mail (SK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Postai forgalom (HU)</masterLabel>
+            <translation><!-- 5_Postai forgalom (HU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Postilahetykset (FI)</masterLabel>
+            <translation><!-- 5_Postilahetykset (FI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Postzendingen (NL)</masterLabel>
+            <translation><!-- 5_Postzendingen (NL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_Sea (JP)</masterLabel>
+            <translation><!-- 5_Sea (JP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransp. (PL)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransp. (PL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (AT)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (AT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (BE)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (BE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (BG)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (BG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (CH)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (CH) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (CZ)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (CZ) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (DE)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (DE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (DK)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (DK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (ES)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (ES) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (FR)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (FR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (GB)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (GB) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (GR)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (GR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (HR)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (HR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (IE)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (IE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (IT)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (IT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (LU)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (LU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (NO)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (NO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (PT)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (PT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (RO)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (RO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (RS)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (RS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (SE)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (SE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (SI)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (SI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_FixedMeansOfTransprt (SK)</masterLabel>
+            <translation><!-- 7_FixedMeansOfTransprt (SK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_Fixen szerelt sz.esz (HU)</masterLabel>
+            <translation><!-- 7_Fixen szerelt sz.esz (HU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_Kinteat kuljetuslait (FI)</masterLabel>
+            <translation><!-- 7_Kinteat kuljetuslait (FI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_Vaste transport (NL)</masterLabel>
+            <translation><!-- 7_Vaste transport (NL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Belvízi hajózás (HU)</masterLabel>
+            <translation><!-- 8_Belvízi hajózás (HU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (AT)</masterLabel>
+            <translation><!-- 8_Domestic shipping (AT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (BE)</masterLabel>
+            <translation><!-- 8_Domestic shipping (BE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (BG)</masterLabel>
+            <translation><!-- 8_Domestic shipping (BG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (CH)</masterLabel>
+            <translation><!-- 8_Domestic shipping (CH) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (CZ)</masterLabel>
+            <translation><!-- 8_Domestic shipping (CZ) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (DE)</masterLabel>
+            <translation><!-- 8_Domestic shipping (DE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (DK)</masterLabel>
+            <translation><!-- 8_Domestic shipping (DK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (ES)</masterLabel>
+            <translation><!-- 8_Domestic shipping (ES) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (FR)</masterLabel>
+            <translation><!-- 8_Domestic shipping (FR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (GB)</masterLabel>
+            <translation><!-- 8_Domestic shipping (GB) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (GR)</masterLabel>
+            <translation><!-- 8_Domestic shipping (GR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (HR)</masterLabel>
+            <translation><!-- 8_Domestic shipping (HR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (IE)</masterLabel>
+            <translation><!-- 8_Domestic shipping (IE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (IT)</masterLabel>
+            <translation><!-- 8_Domestic shipping (IT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (LU)</masterLabel>
+            <translation><!-- 8_Domestic shipping (LU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (NO)</masterLabel>
+            <translation><!-- 8_Domestic shipping (NO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (PL)</masterLabel>
+            <translation><!-- 8_Domestic shipping (PL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (PT)</masterLabel>
+            <translation><!-- 8_Domestic shipping (PT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (RO)</masterLabel>
+            <translation><!-- 8_Domestic shipping (RO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (RS)</masterLabel>
+            <translation><!-- 8_Domestic shipping (RS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (SE)</masterLabel>
+            <translation><!-- 8_Domestic shipping (SE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (SI)</masterLabel>
+            <translation><!-- 8_Domestic shipping (SI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Domestic shipping (SK)</masterLabel>
+            <translation><!-- 8_Domestic shipping (SK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Sisavesikuljetus (FI)</masterLabel>
+            <translation><!-- 8_Sisavesikuljetus (FI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_Vervoer binnenwatern (NL)</masterLabel>
+            <translation><!-- 8_Vervoer binnenwatern (NL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Itsenaisesti liikkuv (FI)</masterLabel>
+            <translation><!-- 9_Itsenaisesti liikkuv (FI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (AT)</masterLabel>
+            <translation><!-- 9_Own propulsion (AT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (BE)</masterLabel>
+            <translation><!-- 9_Own propulsion (BE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (BG)</masterLabel>
+            <translation><!-- 9_Own propulsion (BG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (CZ)</masterLabel>
+            <translation><!-- 9_Own propulsion (CZ) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (DE)</masterLabel>
+            <translation><!-- 9_Own propulsion (DE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (DK)</masterLabel>
+            <translation><!-- 9_Own propulsion (DK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (ES)</masterLabel>
+            <translation><!-- 9_Own propulsion (ES) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (FR)</masterLabel>
+            <translation><!-- 9_Own propulsion (FR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (GB)</masterLabel>
+            <translation><!-- 9_Own propulsion (GB) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (GR)</masterLabel>
+            <translation><!-- 9_Own propulsion (GR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (HR)</masterLabel>
+            <translation><!-- 9_Own propulsion (HR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (IE)</masterLabel>
+            <translation><!-- 9_Own propulsion (IE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (IT)</masterLabel>
+            <translation><!-- 9_Own propulsion (IT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (LU)</masterLabel>
+            <translation><!-- 9_Own propulsion (LU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (NO)</masterLabel>
+            <translation><!-- 9_Own propulsion (NO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (PL)</masterLabel>
+            <translation><!-- 9_Own propulsion (PL) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (PT)</masterLabel>
+            <translation><!-- 9_Own propulsion (PT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (RO)</masterLabel>
+            <translation><!-- 9_Own propulsion (RO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (RS)</masterLabel>
+            <translation><!-- 9_Own propulsion (RS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (SE)</masterLabel>
+            <translation><!-- 9_Own propulsion (SE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (SI)</masterLabel>
+            <translation><!-- 9_Own propulsion (SI) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Own propulsion (SK)</masterLabel>
+            <translation><!-- 9_Own propulsion (SK) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9_Saját hajtás (HU)</masterLabel>
+            <translation><!-- 9_Saját hajtás (HU) --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -12501,6 +13353,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_SAPBPMRequestID__c</name>
     </fields>
     <fields>
+        <label><!-- SAP Insert/Update Status Message --></label>
+        <name>VPM_SAPInsertUpdateStatusMessage__c</name>
+    </fields>
+    <fields>
         <label><!-- SCAC --></label>
         <name>VPM_SCAC__c</name>
     </fields>
@@ -12520,8 +13376,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <label><!-- SSI Status --></label>
         <name>VPM_SSIStatus__c</name>
         <picklistValues>
-            <masterLabel>&quot;X_	Flag set. Event has occurred.&quot;</masterLabel>
-            <translation><!-- &quot;X_	Flag set. Event has occurred.&quot; --></translation>
+            <masterLabel>&quot;X_Flag set. Event has occurred.&quot;</masterLabel>
+            <translation><!-- &quot;X_Flag set. Event has occurred.&quot; --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>0_9</masterLabel>
@@ -13243,6 +14099,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <picklistValues>
             <masterLabel>MDM Ops Review - Undelete</masterLabel>
             <translation><!-- MDM Ops Review - Undelete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MDM Ops Review Requested Re-Work</masterLabel>
+            <translation><!-- MDM Ops Review Requested Re-Work --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Procurement Approved</masterLabel>
@@ -16519,6 +17379,1038 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_ThirdPartyAddress4__c</name>
     </fields>
     <fields>
+        <label><!-- Third Party Country --></label>
+        <name>VPM_ThirdPartyCountry__c</name>
+        <picklistValues>
+            <masterLabel>AD_Andorra</masterLabel>
+            <translation><!-- AD_Andorra --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AE_Utd.Arab Emir (UAE)</masterLabel>
+            <translation><!-- AE_Utd.Arab Emir (UAE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AF_Afghanistan</masterLabel>
+            <translation><!-- AF_Afghanistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AG_Antigua/Barbuda</masterLabel>
+            <translation><!-- AG_Antigua/Barbuda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AI_Anguilla</masterLabel>
+            <translation><!-- AI_Anguilla --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AL_Albania</masterLabel>
+            <translation><!-- AL_Albania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AM_Armenia</masterLabel>
+            <translation><!-- AM_Armenia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AN_Dutch Antilles</masterLabel>
+            <translation><!-- AN_Dutch Antilles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AO_Angola</masterLabel>
+            <translation><!-- AO_Angola --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AQ_Antarctica</masterLabel>
+            <translation><!-- AQ_Antarctica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AR_Argentina</masterLabel>
+            <translation><!-- AR_Argentina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AS_Samoa, American</masterLabel>
+            <translation><!-- AS_Samoa, American --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AT_Austria</masterLabel>
+            <translation><!-- AT_Austria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AU_Australia</masterLabel>
+            <translation><!-- AU_Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AW_Aruba</masterLabel>
+            <translation><!-- AW_Aruba --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AZ_Azerbaijan</masterLabel>
+            <translation><!-- AZ_Azerbaijan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BA_Bosnia-Herz.</masterLabel>
+            <translation><!-- BA_Bosnia-Herz. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BB_Barbados</masterLabel>
+            <translation><!-- BB_Barbados --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BD_Bangladesh</masterLabel>
+            <translation><!-- BD_Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BE_Belgium</masterLabel>
+            <translation><!-- BE_Belgium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BF_Burkina-Faso</masterLabel>
+            <translation><!-- BF_Burkina-Faso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BG_Bulgaria</masterLabel>
+            <translation><!-- BG_Bulgaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BH_Bahrain</masterLabel>
+            <translation><!-- BH_Bahrain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BI_Burundi</masterLabel>
+            <translation><!-- BI_Burundi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BJ_Benin</masterLabel>
+            <translation><!-- BJ_Benin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BM_Bermuda</masterLabel>
+            <translation><!-- BM_Bermuda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BN_Brunei Dar-es-S (Brunei Daruss)</masterLabel>
+            <translation><!-- BN_Brunei Dar-es-S (Brunei Daruss) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BO_Bolivia</masterLabel>
+            <translation><!-- BO_Bolivia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BQ_Bon+Statia+Saba</masterLabel>
+            <translation><!-- BQ_Bon+Statia+Saba --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BR_Brazil</masterLabel>
+            <translation><!-- BR_Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BS_Bahamas</masterLabel>
+            <translation><!-- BS_Bahamas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BT_Bhutan</masterLabel>
+            <translation><!-- BT_Bhutan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BV_Bouvet Island</masterLabel>
+            <translation><!-- BV_Bouvet Island --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BW_Botswana</masterLabel>
+            <translation><!-- BW_Botswana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BY_Belarus</masterLabel>
+            <translation><!-- BY_Belarus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BZ_Belize</masterLabel>
+            <translation><!-- BZ_Belize --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA_Canada</masterLabel>
+            <translation><!-- CA_Canada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CC_Coconut Islands (Cocos Islands)</masterLabel>
+            <translation><!-- CC_Coconut Islands (Cocos Islands) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CD_Congo (Dem. Rep. Congo)</masterLabel>
+            <translation><!-- CD_Congo (Dem. Rep. Congo) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CF_Central Afr.Rep (CAR)</masterLabel>
+            <translation><!-- CF_Central Afr.Rep (CAR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CG_Congo</masterLabel>
+            <translation><!-- CG_Congo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CH_Switzerland</masterLabel>
+            <translation><!-- CH_Switzerland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CI_Cote d&apos;Ivoire (Ivory Coast)</masterLabel>
+            <translation><!-- CI_Cote d&apos;Ivoire (Ivory Coast) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CK_Cook Islands</masterLabel>
+            <translation><!-- CK_Cook Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CL_Chile</masterLabel>
+            <translation><!-- CL_Chile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CM_Cameroon</masterLabel>
+            <translation><!-- CM_Cameroon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CN_China</masterLabel>
+            <translation><!-- CN_China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CO_Colombia</masterLabel>
+            <translation><!-- CO_Colombia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CR_Costa Rica</masterLabel>
+            <translation><!-- CR_Costa Rica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CS_Serbia/Monten.</masterLabel>
+            <translation><!-- CS_Serbia/Monten. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CU_Cuba</masterLabel>
+            <translation><!-- CU_Cuba --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CV_Cape Verde</masterLabel>
+            <translation><!-- CV_Cape Verde --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CW_Curaçao</masterLabel>
+            <translation><!-- CW_Curaçao --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CX_Christmas Islnd</masterLabel>
+            <translation><!-- CX_Christmas Islnd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CY_Cyprus</masterLabel>
+            <translation><!-- CY_Cyprus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CZ_Czech Republic</masterLabel>
+            <translation><!-- CZ_Czech Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DE_Germany</masterLabel>
+            <translation><!-- DE_Germany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DJ_Djibouti</masterLabel>
+            <translation><!-- DJ_Djibouti --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DK_Denmark</masterLabel>
+            <translation><!-- DK_Denmark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DM_Dominica</masterLabel>
+            <translation><!-- DM_Dominica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DO_Dominican Rep.</masterLabel>
+            <translation><!-- DO_Dominican Rep. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DZ_Algeria</masterLabel>
+            <translation><!-- DZ_Algeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EC_Ecuador</masterLabel>
+            <translation><!-- EC_Ecuador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EE_Estonia</masterLabel>
+            <translation><!-- EE_Estonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EF_Estonia</masterLabel>
+            <translation><!-- EF_Estonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EG_Egypt</masterLabel>
+            <translation><!-- EG_Egypt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EH_Western Sahara</masterLabel>
+            <translation><!-- EH_Western Sahara --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ER_Eritrea</masterLabel>
+            <translation><!-- ER_Eritrea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ES_Spain</masterLabel>
+            <translation><!-- ES_Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ET_Ethiopia</masterLabel>
+            <translation><!-- ET_Ethiopia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FI_Finland</masterLabel>
+            <translation><!-- FI_Finland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FJ_Fiji</masterLabel>
+            <translation><!-- FJ_Fiji --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FK_Falkland Islnds</masterLabel>
+            <translation><!-- FK_Falkland Islnds --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FM_Micronesia</masterLabel>
+            <translation><!-- FM_Micronesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FO_Faroe Islands</masterLabel>
+            <translation><!-- FO_Faroe Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FR_France</masterLabel>
+            <translation><!-- FR_France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GA_Gabon</masterLabel>
+            <translation><!-- GA_Gabon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GB_United Kingdom</masterLabel>
+            <translation><!-- GB_United Kingdom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GD_Grenada</masterLabel>
+            <translation><!-- GD_Grenada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GE_Georgia</masterLabel>
+            <translation><!-- GE_Georgia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GF_French Guayana</masterLabel>
+            <translation><!-- GF_French Guayana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GG_Guernsey</masterLabel>
+            <translation><!-- GG_Guernsey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GH_Ghana</masterLabel>
+            <translation><!-- GH_Ghana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GI_Gibraltar</masterLabel>
+            <translation><!-- GI_Gibraltar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GL_Greenland</masterLabel>
+            <translation><!-- GL_Greenland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GM_Gambia</masterLabel>
+            <translation><!-- GM_Gambia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GN_Guinea</masterLabel>
+            <translation><!-- GN_Guinea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GP_Guadeloupe</masterLabel>
+            <translation><!-- GP_Guadeloupe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GQ_Equatorial Guin</masterLabel>
+            <translation><!-- GQ_Equatorial Guin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GR_Greece</masterLabel>
+            <translation><!-- GR_Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GS_S. Sandwich Ins</masterLabel>
+            <translation><!-- GS_S. Sandwich Ins --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GT_Guatemala</masterLabel>
+            <translation><!-- GT_Guatemala --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GU_Guam</masterLabel>
+            <translation><!-- GU_Guam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GW_Guinea-Bissau</masterLabel>
+            <translation><!-- GW_Guinea-Bissau --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GY_Guyana</masterLabel>
+            <translation><!-- GY_Guyana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HK_Hong Kong</masterLabel>
+            <translation><!-- HK_Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HM_Heard/McDon.Isl</masterLabel>
+            <translation><!-- HM_Heard/McDon.Isl --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HN_Honduras</masterLabel>
+            <translation><!-- HN_Honduras --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HR_Croatia</masterLabel>
+            <translation><!-- HR_Croatia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HT_Haiti</masterLabel>
+            <translation><!-- HT_Haiti --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HU_Hungary</masterLabel>
+            <translation><!-- HU_Hungary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ID_Indonesia</masterLabel>
+            <translation><!-- ID_Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IE_Ireland</masterLabel>
+            <translation><!-- IE_Ireland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IL_Israel</masterLabel>
+            <translation><!-- IL_Israel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IM_Isle of Man</masterLabel>
+            <translation><!-- IM_Isle of Man --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IN_India</masterLabel>
+            <translation><!-- IN_India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IO_Brit.Ind.Oc.Ter</masterLabel>
+            <translation><!-- IO_Brit.Ind.Oc.Ter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IQ_Iraq</masterLabel>
+            <translation><!-- IQ_Iraq --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IR_Iran</masterLabel>
+            <translation><!-- IR_Iran --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IS_Iceland</masterLabel>
+            <translation><!-- IS_Iceland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IT_Italy</masterLabel>
+            <translation><!-- IT_Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JE_Jersey</masterLabel>
+            <translation><!-- JE_Jersey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JM_Jamaica</masterLabel>
+            <translation><!-- JM_Jamaica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JO_Jordan</masterLabel>
+            <translation><!-- JO_Jordan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JP_Japan</masterLabel>
+            <translation><!-- JP_Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KE_Kenya</masterLabel>
+            <translation><!-- KE_Kenya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KG_Kyrgyzstan</masterLabel>
+            <translation><!-- KG_Kyrgyzstan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KH_Cambodia</masterLabel>
+            <translation><!-- KH_Cambodia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KI_Kiribati</masterLabel>
+            <translation><!-- KI_Kiribati --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KM_Comoros</masterLabel>
+            <translation><!-- KM_Comoros --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KN_St Kitts&amp;Nevis</masterLabel>
+            <translation><!-- KN_St Kitts&amp;Nevis --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KP_North Korea</masterLabel>
+            <translation><!-- KP_North Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KR_South Korea</masterLabel>
+            <translation><!-- KR_South Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KW_Kuwait</masterLabel>
+            <translation><!-- KW_Kuwait --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KY_Cayman Islands</masterLabel>
+            <translation><!-- KY_Cayman Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KZ_Kazakhstan</masterLabel>
+            <translation><!-- KZ_Kazakhstan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA_Laos</masterLabel>
+            <translation><!-- LA_Laos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LB_Lebanon</masterLabel>
+            <translation><!-- LB_Lebanon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LC_St. Lucia</masterLabel>
+            <translation><!-- LC_St. Lucia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LI_Liechtenstein</masterLabel>
+            <translation><!-- LI_Liechtenstein --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LK_Sri Lanka</masterLabel>
+            <translation><!-- LK_Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LR_Liberia</masterLabel>
+            <translation><!-- LR_Liberia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LS_Lesotho</masterLabel>
+            <translation><!-- LS_Lesotho --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LT_Lithuania</masterLabel>
+            <translation><!-- LT_Lithuania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LU_Luxembourg</masterLabel>
+            <translation><!-- LU_Luxembourg --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LV_Latvia</masterLabel>
+            <translation><!-- LV_Latvia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LY_Libya</masterLabel>
+            <translation><!-- LY_Libya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MA_Morocco</masterLabel>
+            <translation><!-- MA_Morocco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MB_Myanmar</masterLabel>
+            <translation><!-- MB_Myanmar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MC_Monaco</masterLabel>
+            <translation><!-- MC_Monaco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MD_Moldova (Moldavia)</masterLabel>
+            <translation><!-- MD_Moldova (Moldavia) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ME _Montenegro</masterLabel>
+            <translation><!-- ME _Montenegro --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MG_Madagascar</masterLabel>
+            <translation><!-- MG_Madagascar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MH_Marshall Islnds</masterLabel>
+            <translation><!-- MH_Marshall Islnds --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MK_Macedonia</masterLabel>
+            <translation><!-- MK_Macedonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ML_Mali</masterLabel>
+            <translation><!-- ML_Mali --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MM_Myanmar (Burma)</masterLabel>
+            <translation><!-- MM_Myanmar (Burma) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MN_Mongolia</masterLabel>
+            <translation><!-- MN_Mongolia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MO_Macau</masterLabel>
+            <translation><!-- MO_Macau --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MP_N.Mariana Islnd</masterLabel>
+            <translation><!-- MP_N.Mariana Islnd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MQ_Martinique</masterLabel>
+            <translation><!-- MQ_Martinique --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MR_Mauretania</masterLabel>
+            <translation><!-- MR_Mauretania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS_Montserrat</masterLabel>
+            <translation><!-- MS_Montserrat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MT_Malta</masterLabel>
+            <translation><!-- MT_Malta --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MU_Mauritius</masterLabel>
+            <translation><!-- MU_Mauritius --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MV_Maldives</masterLabel>
+            <translation><!-- MV_Maldives --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MW_Malawi</masterLabel>
+            <translation><!-- MW_Malawi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MX_Mexico</masterLabel>
+            <translation><!-- MX_Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MY_Malaysia</masterLabel>
+            <translation><!-- MY_Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MZ_Mozambique</masterLabel>
+            <translation><!-- MZ_Mozambique --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NA_Namibia</masterLabel>
+            <translation><!-- NA_Namibia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NC_New Caledonia</masterLabel>
+            <translation><!-- NC_New Caledonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NE_Niger</masterLabel>
+            <translation><!-- NE_Niger --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NF_Norfolk Islands</masterLabel>
+            <translation><!-- NF_Norfolk Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NG_Nigeria</masterLabel>
+            <translation><!-- NG_Nigeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NI_Nicaragua</masterLabel>
+            <translation><!-- NI_Nicaragua --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NL_Netherlands</masterLabel>
+            <translation><!-- NL_Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NO_Norway</masterLabel>
+            <translation><!-- NO_Norway --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NP_Nepal</masterLabel>
+            <translation><!-- NP_Nepal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NR_Nauru</masterLabel>
+            <translation><!-- NR_Nauru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NU _Niue Islands</masterLabel>
+            <translation><!-- NU _Niue Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NZ_New Zealand</masterLabel>
+            <translation><!-- NZ_New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OM_Oman</masterLabel>
+            <translation><!-- OM_Oman --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA_Panama</masterLabel>
+            <translation><!-- PA_Panama --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PE_Peru</masterLabel>
+            <translation><!-- PE_Peru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PF_French Polynesia</masterLabel>
+            <translation><!-- PF_French Polynesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PG_Papua New Guinea</masterLabel>
+            <translation><!-- PG_Papua New Guinea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PH_Philippines</masterLabel>
+            <translation><!-- PH_Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK_Pakistan</masterLabel>
+            <translation><!-- PK_Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PL_Poland</masterLabel>
+            <translation><!-- PL_Poland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PM_St.Pier,Miquel.</masterLabel>
+            <translation><!-- PM_St.Pier,Miquel. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PN_Pitcairn Islnds</masterLabel>
+            <translation><!-- PN_Pitcairn Islnds --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PR_Puerto Rico</masterLabel>
+            <translation><!-- PR_Puerto Rico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PS_Palestine</masterLabel>
+            <translation><!-- PS_Palestine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PT_Portugal</masterLabel>
+            <translation><!-- PT_Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PW_Palau</masterLabel>
+            <translation><!-- PW_Palau --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PY_Paraguay</masterLabel>
+            <translation><!-- PY_Paraguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QA_Qatar</masterLabel>
+            <translation><!-- QA_Qatar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RE_Reunion</masterLabel>
+            <translation><!-- RE_Reunion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RO_Romania</masterLabel>
+            <translation><!-- RO_Romania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RS _Serbia</masterLabel>
+            <translation><!-- RS _Serbia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RU_Russian Fed.</masterLabel>
+            <translation><!-- RU_Russian Fed. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RW_Rwanda</masterLabel>
+            <translation><!-- RW_Rwanda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SA_Saudi Arabia</masterLabel>
+            <translation><!-- SA_Saudi Arabia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SB_Solomon Islands</masterLabel>
+            <translation><!-- SB_Solomon Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SC_Seychelles</masterLabel>
+            <translation><!-- SC_Seychelles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SD_Sudan</masterLabel>
+            <translation><!-- SD_Sudan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SE_Sweden</masterLabel>
+            <translation><!-- SE_Sweden --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SG_Singapore</masterLabel>
+            <translation><!-- SG_Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SH_St. Helena</masterLabel>
+            <translation><!-- SH_St. Helena --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SI_Slovenia</masterLabel>
+            <translation><!-- SI_Slovenia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SJ_Svalbard</masterLabel>
+            <translation><!-- SJ_Svalbard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SK_Slovakia</masterLabel>
+            <translation><!-- SK_Slovakia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SL_Sierra Leone</masterLabel>
+            <translation><!-- SL_Sierra Leone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SM_San Marino</masterLabel>
+            <translation><!-- SM_San Marino --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SN_Senegal</masterLabel>
+            <translation><!-- SN_Senegal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SO_Somalia</masterLabel>
+            <translation><!-- SO_Somalia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SR_Suriname</masterLabel>
+            <translation><!-- SR_Suriname --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SS _South Sudan</masterLabel>
+            <translation><!-- SS _South Sudan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STL_stateless</masterLabel>
+            <translation><!-- STL_stateless --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ST_S.Tome,Principe</masterLabel>
+            <translation><!-- ST_S.Tome,Principe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SV_El Salvador</masterLabel>
+            <translation><!-- SV_El Salvador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SX_St Maarten</masterLabel>
+            <translation><!-- SX_St Maarten --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SY_Syria</masterLabel>
+            <translation><!-- SY_Syria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SZ_Swaziland</masterLabel>
+            <translation><!-- SZ_Swaziland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TC_Turks &amp; Caicos (Turksh Caicosin)</masterLabel>
+            <translation><!-- TC_Turks &amp; Caicos (Turksh Caicosin) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TD_Chad</masterLabel>
+            <translation><!-- TD_Chad --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TF_French S.Territ</masterLabel>
+            <translation><!-- TF_French S.Territ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TG_Togo</masterLabel>
+            <translation><!-- TG_Togo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TH_Thailand</masterLabel>
+            <translation><!-- TH_Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TJ_Tajikistan</masterLabel>
+            <translation><!-- TJ_Tajikistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TK_Tokelau Islands</masterLabel>
+            <translation><!-- TK_Tokelau Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TL_East Timor</masterLabel>
+            <translation><!-- TL_East Timor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TM_Turkmenistan</masterLabel>
+            <translation><!-- TM_Turkmenistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TN_Tunisia</masterLabel>
+            <translation><!-- TN_Tunisia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TO_Tonga</masterLabel>
+            <translation><!-- TO_Tonga --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TP_East Timor</masterLabel>
+            <translation><!-- TP_East Timor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TR_Turkey</masterLabel>
+            <translation><!-- TR_Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TT_Trinidad,Tobago</masterLabel>
+            <translation><!-- TT_Trinidad,Tobago --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TV_Tuvalu</masterLabel>
+            <translation><!-- TV_Tuvalu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TW_Taiwan</masterLabel>
+            <translation><!-- TW_Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TZ_Tanzania</masterLabel>
+            <translation><!-- TZ_Tanzania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UA_Ukraine</masterLabel>
+            <translation><!-- UA_Ukraine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UG_Uganda</masterLabel>
+            <translation><!-- UG_Uganda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UM _Minor Outl.Isl.</masterLabel>
+            <translation><!-- UM _Minor Outl.Isl. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US_USA</masterLabel>
+            <translation><!-- US_USA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UY_Uruguay</masterLabel>
+            <translation><!-- UY_Uruguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UZ_Uzbekistan</masterLabel>
+            <translation><!-- UZ_Uzbekistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VA_Vatican City</masterLabel>
+            <translation><!-- VA_Vatican City --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VC_St. Vincent</masterLabel>
+            <translation><!-- VC_St. Vincent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VE_Venezuela</masterLabel>
+            <translation><!-- VE_Venezuela --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VG_Brit.Virgin Is.</masterLabel>
+            <translation><!-- VG_Brit.Virgin Is. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VI_Amer.Virgin Is.</masterLabel>
+            <translation><!-- VI_Amer.Virgin Is. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VN_Vietnam</masterLabel>
+            <translation><!-- VN_Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VU_Vanuatu</masterLabel>
+            <translation><!-- VU_Vanuatu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WF_Wallis,Futuna</masterLabel>
+            <translation><!-- WF_Wallis,Futuna --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WS_Western Samoa</masterLabel>
+            <translation><!-- WS_Western Samoa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XK_Kosovo</masterLabel>
+            <translation><!-- XK_Kosovo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XM_Mayotte</masterLabel>
+            <translation><!-- XM_Mayotte --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YD_South Yemen</masterLabel>
+            <translation><!-- YD_South Yemen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YE_Yemen</masterLabel>
+            <translation><!-- YE_Yemen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YT_Mayotte</masterLabel>
+            <translation><!-- YT_Mayotte --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YU_Serbia &amp;Mtnegro (Yugosalvia)</masterLabel>
+            <translation><!-- YU_Serbia &amp;Mtnegro (Yugosalvia) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZA_South Africa</masterLabel>
+            <translation><!-- ZA_South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZM_Zambia</masterLabel>
+            <translation><!-- ZM_Zambia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZR_Zaire</masterLabel>
+            <translation><!-- ZR_Zaire --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZW_Zimbabwe</masterLabel>
+            <translation><!-- ZW_Zimbabwe --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Third Party Name --></label>
         <name>VPM_ThirdPartyName__c</name>
     </fields>
@@ -18868,8 +20760,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 005_Italy --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>006_United Kingdom</masterLabel>
-            <translation><!-- 006_United Kingdom --></translation>
+            <masterLabel>006_UnitedKingdom</masterLabel>
+            <translation><!-- 006_UnitedKingdom --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>007_Ireland</masterLabel>
@@ -18896,8 +20788,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 024_Iceland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>025_Faeroe Islands</masterLabel>
-            <translation><!-- 025_Faeroe Islands --></translation>
+            <masterLabel>025_FaeroeIslands</masterLabel>
+            <translation><!-- 025_FaeroeIslands --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>028_Norway</masterLabel>
@@ -18928,8 +20820,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 044_Gibraltar --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>045_Vatican City</masterLabel>
-            <translation><!-- 045_Vatican City --></translation>
+            <masterLabel>045_VaticanCity</masterLabel>
+            <translation><!-- 045_VaticanCity --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>046_Malta</masterLabel>
@@ -18988,8 +20880,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 090_Luxembourg --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>091_Channel Islands</masterLabel>
-            <translation><!-- 091_Channel Islands --></translation>
+            <masterLabel>091_ChannelIslands</masterLabel>
+            <translation><!-- 091_ChannelIslands --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>092_Liechtenstein</masterLabel>
@@ -19000,20 +20892,20 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 093_Monaco --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>094_San Marino</masterLabel>
-            <translation><!-- 094_San Marino --></translation>
+            <masterLabel>094_SanMarino</masterLabel>
+            <translation><!-- 094_SanMarino --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>095_Isle of Man</masterLabel>
-            <translation><!-- 095_Isle of Man --></translation>
+            <masterLabel>095_IsleofMan</masterLabel>
+            <translation><!-- 095_IsleofMan --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>096_Luxembourg</masterLabel>
             <translation><!-- 096_Luxembourg --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>099_Europe - other countries</masterLabel>
-            <translation><!-- 099_Europe - other countries --></translation>
+            <masterLabel>099_Europe-othercountries</masterLabel>
+            <translation><!-- 099_Europe-othercountries --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>204_Morocco</masterLabel>
@@ -19048,8 +20940,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 232_Mali --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>236_Burkina Faso</masterLabel>
-            <translation><!-- 236_Burkina Faso --></translation>
+            <masterLabel>236_BurkinaFaso</masterLabel>
+            <translation><!-- 236_BurkinaFaso --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>240_Niger</masterLabel>
@@ -19060,8 +20952,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 244_Chad --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>247_Cape Verde Republic</masterLabel>
-            <translation><!-- 247_Cape Verde Republic --></translation>
+            <masterLabel>247_CapeVerdeRepublic</masterLabel>
+            <translation><!-- 247_CapeVerdeRepublic --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>248_Senegal</masterLabel>
@@ -19080,16 +20972,16 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 260_Guinea --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>264_Sierra Leone</masterLabel>
-            <translation><!-- 264_Sierra Leone --></translation>
+            <masterLabel>264_SierraLeone</masterLabel>
+            <translation><!-- 264_SierraLeone --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>268_Liberia</masterLabel>
             <translation><!-- 268_Liberia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>272_Ivory Coast</masterLabel>
-            <translation><!-- 272_Ivory Coast --></translation>
+            <masterLabel>272_IvoryCoast</masterLabel>
+            <translation><!-- 272_IvoryCoast --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>276_Ghana</masterLabel>
@@ -19112,16 +21004,16 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 302_Cameroon --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>306_Central African Republic</masterLabel>
-            <translation><!-- 306_Central African Republic --></translation>
+            <masterLabel>306_CentralAfricanRepublic</masterLabel>
+            <translation><!-- 306_CentralAfricanRepublic --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>310_Equatorial Guinea</masterLabel>
-            <translation><!-- 310_Equatorial Guinea --></translation>
+            <masterLabel>310_EquatorialGuinea</masterLabel>
+            <translation><!-- 310_EquatorialGuinea --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>311_Santo Tome and Principe</masterLabel>
-            <translation><!-- 311_Santo Tome and Principe --></translation>
+            <masterLabel>311_SantoTomeandPrincipe</masterLabel>
+            <translation><!-- 311_SantoTomeandPrincipe --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>314_Gabon</masterLabel>
@@ -19144,8 +21036,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 328_Burundi --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>329_Saint Helena</masterLabel>
-            <translation><!-- 329_Saint Helena --></translation>
+            <masterLabel>329_SaintHelena</masterLabel>
+            <translation><!-- 329_SaintHelena --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>330_Angola</masterLabel>
@@ -19180,8 +21072,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 355_Seychelles --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>357_British Territ.in Indian Ocean</masterLabel>
-            <translation><!-- 357_British Territ.in Indian Ocean --></translation>
+            <masterLabel>357_BritishTerrit.inIndianOcean</masterLabel>
+            <translation><!-- 357_BritishTerrit.inIndianOcean --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>366_Mozambique</masterLabel>
@@ -19220,16 +21112,12 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 386_Malawi --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>388_South Africa</masterLabel>
-            <translation><!-- 388_South Africa --></translation>
+            <masterLabel>388_SouthAfrica</masterLabel>
+            <translation><!-- 388_SouthAfrica --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>389_Namibia</masterLabel>
             <translation><!-- 389_Namibia --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>39 _Italy</masterLabel>
-            <translation><!-- 39 _Italy --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>391_Botswana</masterLabel>
@@ -19244,16 +21132,20 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 395_Lesotho --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>399_Africa - other countries</masterLabel>
-            <translation><!-- 399_Africa - other countries --></translation>
+            <masterLabel>399_Africa-othercountries</masterLabel>
+            <translation><!-- 399_Africa-othercountries --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>400_United States</masterLabel>
-            <translation><!-- 400_United States --></translation>
+            <masterLabel>39_Italy</masterLabel>
+            <translation><!-- 39_Italy --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>401_Puerto Rico</masterLabel>
-            <translation><!-- 401_Puerto Rico --></translation>
+            <masterLabel>400_UnitedStates</masterLabel>
+            <translation><!-- 400_UnitedStates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>401_PuertoRico</masterLabel>
+            <translation><!-- 401_PuertoRico --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>404_Canada</masterLabel>
@@ -19264,8 +21156,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 406_Greenland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>408_St. Pierre and Miquelon</masterLabel>
-            <translation><!-- 408_St. Pierre and Miquelon --></translation>
+            <masterLabel>408_St.PierreandMiquelon</masterLabel>
+            <translation><!-- 408_St.PierreandMiquelon --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>412_Mexico</masterLabel>
@@ -19288,16 +21180,16 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 424_Honduras --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>428_El Salvador</masterLabel>
-            <translation><!-- 428_El Salvador --></translation>
+            <masterLabel>428_ElSalvador</masterLabel>
+            <translation><!-- 428_ElSalvador --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>432_Nicaragua</masterLabel>
             <translation><!-- 432_Nicaragua --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>436_Costa Rica</masterLabel>
-            <translation><!-- 436_Costa Rica --></translation>
+            <masterLabel>436_CostaRica</masterLabel>
+            <translation><!-- 436_CostaRica --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>442_Panama</masterLabel>
@@ -19312,8 +21204,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 448_Cuba --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>449_St. Kitts and Nevis</masterLabel>
-            <translation><!-- 449_St. Kitts and Nevis --></translation>
+            <masterLabel>449_St.KittsandNevis</masterLabel>
+            <translation><!-- 449_St.KittsandNevis --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>452_Haiti</masterLabel>
@@ -19324,60 +21216,60 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 453_Bahamas --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>454_Turks and Caicos Islands</masterLabel>
-            <translation><!-- 454_Turks and Caicos Islands --></translation>
+            <masterLabel>454_TurksandCaicosIslands</masterLabel>
+            <translation><!-- 454_TurksandCaicosIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>456_Dominican Republic</masterLabel>
-            <translation><!-- 456_Dominican Republic --></translation>
+            <masterLabel>456_DominicanRepublic</masterLabel>
+            <translation><!-- 456_DominicanRepublic --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>457_American Virgin Islands</masterLabel>
-            <translation><!-- 457_American Virgin Islands --></translation>
+            <masterLabel>457_AmericanVirginIslands</masterLabel>
+            <translation><!-- 457_AmericanVirginIslands --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>458_Guadeloupe</masterLabel>
             <translation><!-- 458_Guadeloupe --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>459_Antigua and Barbuda</masterLabel>
-            <translation><!-- 459_Antigua and Barbuda --></translation>
+            <masterLabel>459_AntiguaandBarbuda</masterLabel>
+            <translation><!-- 459_AntiguaandBarbuda --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>460_Dominica</masterLabel>
             <translation><!-- 460_Dominica --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>461_Brit.Virgin Islands and Monts.</masterLabel>
-            <translation><!-- 461_Brit.Virgin Islands and Monts. --></translation>
+            <masterLabel>461_Brit.VirginIslandsandMonts.</masterLabel>
+            <translation><!-- 461_Brit.VirginIslandsandMonts. --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>462_Martinique</masterLabel>
             <translation><!-- 462_Martinique --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>463_Cayman Islands</masterLabel>
-            <translation><!-- 463_Cayman Islands --></translation>
+            <masterLabel>463_CaymanIslands</masterLabel>
+            <translation><!-- 463_CaymanIslands --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>464_Jamaica</masterLabel>
             <translation><!-- 464_Jamaica --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>465_St. Lucia</masterLabel>
-            <translation><!-- 465_St. Lucia --></translation>
+            <masterLabel>465_St.Lucia</masterLabel>
+            <translation><!-- 465_St.Lucia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>467_St. Vincent</masterLabel>
-            <translation><!-- 467_St. Vincent --></translation>
+            <masterLabel>467_St.Vincent</masterLabel>
+            <translation><!-- 467_St.Vincent --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>469_Barbados</masterLabel>
             <translation><!-- 469_Barbados --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>472_Trinidad and Tobago</masterLabel>
-            <translation><!-- 472_Trinidad and Tobago --></translation>
+            <masterLabel>472_TrinidadandTobago</masterLabel>
+            <translation><!-- 472_TrinidadandTobago --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>473_Grenada</masterLabel>
@@ -19388,8 +21280,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 474_Aruba --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>478_Dutch Antilles (without Aruba)</masterLabel>
-            <translation><!-- 478_Dutch Antilles (without Aruba) --></translation>
+            <masterLabel>478_DutchAntilles(withoutAruba)</masterLabel>
+            <translation><!-- 478_DutchAntilles(withoutAruba) --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>480_Colombia</masterLabel>
@@ -19408,8 +21300,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 492_Suriname --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>496_French Guiana</masterLabel>
-            <translation><!-- 496_French Guiana --></translation>
+            <masterLabel>496_FrenchGuiana</masterLabel>
+            <translation><!-- 496_FrenchGuiana --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>500_Ecuador</masterLabel>
@@ -19444,12 +21336,12 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 528_Argentina --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>529_Falkland Islands</masterLabel>
-            <translation><!-- 529_Falkland Islands --></translation>
+            <masterLabel>529_FalklandIslands</masterLabel>
+            <translation><!-- 529_FalklandIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>599_America - other countries</masterLabel>
-            <translation><!-- 599_America - other countries --></translation>
+            <masterLabel>599_America-othercountries</masterLabel>
+            <translation><!-- 599_America-othercountries --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>600_Cyprus</masterLabel>
@@ -19480,8 +21372,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 628_Jordan --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>632_Saudi Arabia</masterLabel>
-            <translation><!-- 632_Saudi Arabia --></translation>
+            <masterLabel>632_SaudiArabia</masterLabel>
+            <translation><!-- 632_SaudiArabia --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>636_Kuwait</masterLabel>
@@ -19496,8 +21388,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 644_Qatar --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>647_United Arab Emirates</masterLabel>
-            <translation><!-- 647_United Arab Emirates --></translation>
+            <masterLabel>647_UnitedArabEmirates</masterLabel>
+            <translation><!-- 647_UnitedArabEmirates --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>649_Oman</masterLabel>
@@ -19528,8 +21420,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 667_Maldives --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>669_Sri Lanka</masterLabel>
-            <translation><!-- 669_Sri Lanka --></translation>
+            <masterLabel>669_SriLanka</masterLabel>
+            <translation><!-- 669_SriLanka --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>672_Nepal</masterLabel>
@@ -19588,12 +21480,12 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 720_China --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>724_North Korea</masterLabel>
-            <translation><!-- 724_North Korea --></translation>
+            <masterLabel>724_NorthKorea</masterLabel>
+            <translation><!-- 724_NorthKorea --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>728_South Korea</masterLabel>
-            <translation><!-- 728_South Korea --></translation>
+            <masterLabel>728_SouthKorea</masterLabel>
+            <translation><!-- 728_SouthKorea --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>732_Japan</masterLabel>
@@ -19604,60 +21496,60 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 736_Taiwan --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>740_Hong Kong</masterLabel>
-            <translation><!-- 740_Hong Kong --></translation>
+            <masterLabel>740_HongKong</masterLabel>
+            <translation><!-- 740_HongKong --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>743_Macau</masterLabel>
             <translation><!-- 743_Macau --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>799_Asia - other countries</masterLabel>
-            <translation><!-- 799_Asia - other countries --></translation>
+            <masterLabel>799_Asia-othercountries</masterLabel>
+            <translation><!-- 799_Asia-othercountries --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>800_Australia</masterLabel>
             <translation><!-- 800_Australia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>801_Papua New Guinea</masterLabel>
-            <translation><!-- 801_Papua New Guinea --></translation>
+            <masterLabel>801_PapuaNewGuinea</masterLabel>
+            <translation><!-- 801_PapuaNewGuinea --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>802_Australian Ocean</masterLabel>
-            <translation><!-- 802_Australian Ocean --></translation>
+            <masterLabel>802_AustralianOcean</masterLabel>
+            <translation><!-- 802_AustralianOcean --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>803_Nauru</masterLabel>
             <translation><!-- 803_Nauru --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>804_New Zealand</masterLabel>
-            <translation><!-- 804_New Zealand --></translation>
+            <masterLabel>804_NewZealand</masterLabel>
+            <translation><!-- 804_NewZealand --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>805_Mariana Islands</masterLabel>
-            <translation><!-- 805_Mariana Islands --></translation>
+            <masterLabel>805_MarianaIslands</masterLabel>
+            <translation><!-- 805_MarianaIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>806_Solomon Islands</masterLabel>
-            <translation><!-- 806_Solomon Islands --></translation>
+            <masterLabel>806_SolomonIslands</masterLabel>
+            <translation><!-- 806_SolomonIslands --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>807_Tuvalu</masterLabel>
             <translation><!-- 807_Tuvalu --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>808_American Ocean</masterLabel>
-            <translation><!-- 808_American Ocean --></translation>
+            <masterLabel>808_AmericanOcean</masterLabel>
+            <translation><!-- 808_AmericanOcean --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>809_New Calendonia</masterLabel>
-            <translation><!-- 809_New Calendonia --></translation>
+            <masterLabel>809_NewCalendonia</masterLabel>
+            <translation><!-- 809_NewCalendonia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>811_Wallis and Futuna Islands</masterLabel>
-            <translation><!-- 811_Wallis and Futuna Islands --></translation>
+            <masterLabel>811_WallisandFutunaIslands</masterLabel>
+            <translation><!-- 811_WallisandFutunaIslands --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>812_Ciribati</masterLabel>
@@ -19668,8 +21560,8 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 813_Pitcairn --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>814_New Zealand Ocean</masterLabel>
-            <translation><!-- 814_New Zealand Ocean --></translation>
+            <masterLabel>814_NewZealandOcean</masterLabel>
+            <translation><!-- 814_NewZealandOcean --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>815_Fiji</masterLabel>
@@ -19684,836 +21576,1132 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <translation><!-- 817_Tonga --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>818_Cook Islands</masterLabel>
-            <translation><!-- 818_Cook Islands --></translation>
+            <masterLabel>818_CookIslands</masterLabel>
+            <translation><!-- 818_CookIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>819_Western Samoa</masterLabel>
-            <translation><!-- 819_Western Samoa --></translation>
+            <masterLabel>819_WesternSamoa</masterLabel>
+            <translation><!-- 819_WesternSamoa --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>822_French Polynesia</masterLabel>
-            <translation><!-- 822_French Polynesia --></translation>
+            <masterLabel>822_FrenchPolynesia</masterLabel>
+            <translation><!-- 822_FrenchPolynesia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>890_Polar Regions</masterLabel>
-            <translation><!-- 890_Polar Regions --></translation>
+            <masterLabel>890_PolarRegions</masterLabel>
+            <translation><!-- 890_PolarRegions --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>899_Australia - other countries</masterLabel>
-            <translation><!-- 899_Australia - other countries --></translation>
+            <masterLabel>899_Australia-othercountries</masterLabel>
+            <translation><!-- 899_Australia-othercountries --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AA _Aruba</masterLabel>
-            <translation><!-- AA _Aruba --></translation>
+            <masterLabel>AA_Aruba</masterLabel>
+            <translation><!-- AA_Aruba --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AC _Antigua and Barbuda</masterLabel>
-            <translation><!-- AC _Antigua and Barbuda --></translation>
+            <masterLabel>AC_AntiguaandBarbuda</masterLabel>
+            <translation><!-- AC_AntiguaandBarbuda --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AF _Afghanistan</masterLabel>
-            <translation><!-- AF _Afghanistan --></translation>
+            <masterLabel>AF_Afghanistan</masterLabel>
+            <translation><!-- AF_Afghanistan --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AG _Algeria</masterLabel>
-            <translation><!-- AG _Algeria --></translation>
+            <masterLabel>AG_Algeria</masterLabel>
+            <translation><!-- AG_Algeria --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AJ _Azerbaijan</masterLabel>
-            <translation><!-- AJ _Azerbaijan --></translation>
+            <masterLabel>AJ_Azerbaijan</masterLabel>
+            <translation><!-- AJ_Azerbaijan --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AL _Albania</masterLabel>
-            <translation><!-- AL _Albania --></translation>
+            <masterLabel>AL_Albania</masterLabel>
+            <translation><!-- AL_Albania --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AM _Armenia</masterLabel>
-            <translation><!-- AM _Armenia --></translation>
+            <masterLabel>AM_Armenia</masterLabel>
+            <translation><!-- AM_Armenia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AN _Andorra</masterLabel>
-            <translation><!-- AN _Andorra --></translation>
+            <masterLabel>AN_Andorra</masterLabel>
+            <translation><!-- AN_Andorra --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AO _Angola</masterLabel>
-            <translation><!-- AO _Angola --></translation>
+            <masterLabel>AO_Angola</masterLabel>
+            <translation><!-- AO_Angola --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AQ _American Samoa</masterLabel>
-            <translation><!-- AQ _American Samoa --></translation>
+            <masterLabel>AQ_AmericanSamoa</masterLabel>
+            <translation><!-- AQ_AmericanSamoa --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AR _Argentina</masterLabel>
-            <translation><!-- AR _Argentina --></translation>
+            <masterLabel>AR_Argentina</masterLabel>
+            <translation><!-- AR_Argentina --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AS _Australia</masterLabel>
-            <translation><!-- AS _Australia --></translation>
+            <masterLabel>AS_Australia</masterLabel>
+            <translation><!-- AS_Australia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AT _Ashmore and Cartier Island</masterLabel>
-            <translation><!-- AT _Ashmore and Cartier Island --></translation>
+            <masterLabel>AT_AshmoreandCartierIsland</masterLabel>
+            <translation><!-- AT_AshmoreandCartierIsland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AT _Austria</masterLabel>
-            <translation><!-- AT _Austria --></translation>
+            <masterLabel>AT_Austria</masterLabel>
+            <translation><!-- AT_Austria --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AU _Australia</masterLabel>
-            <translation><!-- AU _Australia --></translation>
+            <masterLabel>AU_Australia</masterLabel>
+            <translation><!-- AU_Australia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AU _Austria</masterLabel>
-            <translation><!-- AU _Austria --></translation>
+            <masterLabel>AU_Austria</masterLabel>
+            <translation><!-- AU_Austria --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AV _Anguilla</masterLabel>
-            <translation><!-- AV _Anguilla --></translation>
+            <masterLabel>AV_Anguilla</masterLabel>
+            <translation><!-- AV_Anguilla --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>AY _Antarctica</masterLabel>
-            <translation><!-- AY _Antarctica --></translation>
+            <masterLabel>AY_Antarctica</masterLabel>
+            <translation><!-- AY_Antarctica --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BA _Bahrain</masterLabel>
-            <translation><!-- BA _Bahrain --></translation>
+            <masterLabel>BA_Bahrain</masterLabel>
+            <translation><!-- BA_Bahrain --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BB _Barbados</masterLabel>
-            <translation><!-- BB _Barbados --></translation>
+            <masterLabel>BB_Barbados</masterLabel>
+            <translation><!-- BB_Barbados --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BC _Botswana</masterLabel>
-            <translation><!-- BC _Botswana --></translation>
+            <masterLabel>BC_Botswana</masterLabel>
+            <translation><!-- BC_Botswana --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BD _Bangladesh</masterLabel>
-            <translation><!-- BD _Bangladesh --></translation>
+            <masterLabel>BD_Bangladesh</masterLabel>
+            <translation><!-- BD_Bangladesh --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BD _Bermuda</masterLabel>
-            <translation><!-- BD _Bermuda --></translation>
+            <masterLabel>BD_Bermuda</masterLabel>
+            <translation><!-- BD_Bermuda --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BE _Belgium</masterLabel>
-            <translation><!-- BE _Belgium --></translation>
+            <masterLabel>BE_Belgium</masterLabel>
+            <translation><!-- BE_Belgium --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BF _Bahamas, The</masterLabel>
-            <translation><!-- BF _Bahamas, The --></translation>
+            <masterLabel>BF_Bahamas,The</masterLabel>
+            <translation><!-- BF_Bahamas,The --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BG _Bangladesh</masterLabel>
-            <translation><!-- BG _Bangladesh --></translation>
+            <masterLabel>BG_Bangladesh</masterLabel>
+            <translation><!-- BG_Bangladesh --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BH _Belize</masterLabel>
-            <translation><!-- BH _Belize --></translation>
+            <masterLabel>BH_Belize</masterLabel>
+            <translation><!-- BH_Belize --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BK _Bosnia and Herzegovina</masterLabel>
-            <translation><!-- BK _Bosnia and Herzegovina --></translation>
+            <masterLabel>BK_BosniaandHerzegovina</masterLabel>
+            <translation><!-- BK_BosniaandHerzegovina --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BL _Bolivia</masterLabel>
-            <translation><!-- BL _Bolivia --></translation>
+            <masterLabel>BL_Bolivia</masterLabel>
+            <translation><!-- BL_Bolivia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BM _Burma</masterLabel>
-            <translation><!-- BM _Burma --></translation>
+            <masterLabel>BM_Burma</masterLabel>
+            <translation><!-- BM_Burma --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BN _Benin</masterLabel>
-            <translation><!-- BN _Benin --></translation>
+            <masterLabel>BN_Benin</masterLabel>
+            <translation><!-- BN_Benin --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BO _Belarus</masterLabel>
-            <translation><!-- BO _Belarus --></translation>
+            <masterLabel>BO_Belarus</masterLabel>
+            <translation><!-- BO_Belarus --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BP _Solomon Islands</masterLabel>
-            <translation><!-- BP _Solomon Islands --></translation>
+            <masterLabel>BP_SolomonIslands</masterLabel>
+            <translation><!-- BP_SolomonIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BQ _Navassa Island</masterLabel>
-            <translation><!-- BQ _Navassa Island --></translation>
+            <masterLabel>BQ_NavassaIsland</masterLabel>
+            <translation><!-- BQ_NavassaIsland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BR _Brazil</masterLabel>
-            <translation><!-- BR _Brazil --></translation>
+            <masterLabel>BR_Brazil</masterLabel>
+            <translation><!-- BR_Brazil --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BS _Bassas da India</masterLabel>
-            <translation><!-- BS _Bassas da India --></translation>
+            <masterLabel>BS_BassasdaIndia</masterLabel>
+            <translation><!-- BS_BassasdaIndia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BT _Bhutan</masterLabel>
-            <translation><!-- BT _Bhutan --></translation>
+            <masterLabel>BT_Bhutan</masterLabel>
+            <translation><!-- BT_Bhutan --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BU _Bulgaria</masterLabel>
-            <translation><!-- BU _Bulgaria --></translation>
+            <masterLabel>BU_Bulgaria</masterLabel>
+            <translation><!-- BU_Bulgaria --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BV _Bouvet Island</masterLabel>
-            <translation><!-- BV _Bouvet Island --></translation>
+            <masterLabel>BV_BouvetIsland</masterLabel>
+            <translation><!-- BV_BouvetIsland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BX _Brunei</masterLabel>
-            <translation><!-- BX _Brunei --></translation>
+            <masterLabel>BX_Brunei</masterLabel>
+            <translation><!-- BX_Brunei --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BY _Burundi</masterLabel>
-            <translation><!-- BY _Burundi --></translation>
+            <masterLabel>BY_Burundi</masterLabel>
+            <translation><!-- BY_Burundi --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CA _Canada</masterLabel>
-            <translation><!-- CA _Canada --></translation>
+            <masterLabel>CA_Canada</masterLabel>
+            <translation><!-- CA_Canada --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CB _Cambodia</masterLabel>
-            <translation><!-- CB _Cambodia --></translation>
+            <masterLabel>CB_Cambodia</masterLabel>
+            <translation><!-- CB_Cambodia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CD _Chad</masterLabel>
-            <translation><!-- CD _Chad --></translation>
+            <masterLabel>CD_Chad</masterLabel>
+            <translation><!-- CD_Chad --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CE _Sri Lanka</masterLabel>
-            <translation><!-- CE _Sri Lanka --></translation>
+            <masterLabel>CE_SriLanka</masterLabel>
+            <translation><!-- CE_SriLanka --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CF _Congo</masterLabel>
-            <translation><!-- CF _Congo --></translation>
+            <masterLabel>CF_Congo</masterLabel>
+            <translation><!-- CF_Congo --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CG _Zaire</masterLabel>
-            <translation><!-- CG _Zaire --></translation>
+            <masterLabel>CG_Zaire</masterLabel>
+            <translation><!-- CG_Zaire --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CH _China, People&apos;s Republic of</masterLabel>
-            <translation><!-- CH _China, People&apos;s Republic of --></translation>
+            <masterLabel>CH_China,People&apos;sRepublicof</masterLabel>
+            <translation><!-- CH_China,People&apos;sRepublicof --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CH _Switzerland</masterLabel>
-            <translation><!-- CH _Switzerland --></translation>
+            <masterLabel>CH_Switzerland</masterLabel>
+            <translation><!-- CH_Switzerland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CI _Chile</masterLabel>
-            <translation><!-- CI _Chile --></translation>
+            <masterLabel>CI_Chile</masterLabel>
+            <translation><!-- CI_Chile --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CJ _Cayman Islands</masterLabel>
-            <translation><!-- CJ _Cayman Islands --></translation>
+            <masterLabel>CJ_CaymanIslands</masterLabel>
+            <translation><!-- CJ_CaymanIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CK _Cocos (Keeling) Island</masterLabel>
-            <translation><!-- CK _Cocos (Keeling) Island --></translation>
+            <masterLabel>CK_Cocos(Keeling)Island</masterLabel>
+            <translation><!-- CK_Cocos(Keeling)Island --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CM _Cameroon</masterLabel>
-            <translation><!-- CM _Cameroon --></translation>
+            <masterLabel>CM_Cameroon</masterLabel>
+            <translation><!-- CM_Cameroon --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CN _Comoros</masterLabel>
-            <translation><!-- CN _Comoros --></translation>
+            <masterLabel>CN_Comoros</masterLabel>
+            <translation><!-- CN_Comoros --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CO _Colombia</masterLabel>
-            <translation><!-- CO _Colombia --></translation>
+            <masterLabel>CO_Colombia</masterLabel>
+            <translation><!-- CO_Colombia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CQ _Northern Mariana Islands</masterLabel>
-            <translation><!-- CQ _Northern Mariana Islands --></translation>
+            <masterLabel>CQ_NorthernMarianaIslands</masterLabel>
+            <translation><!-- CQ_NorthernMarianaIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CR _Coral Sea Islands Territory</masterLabel>
-            <translation><!-- CR _Coral Sea Islands Territory --></translation>
+            <masterLabel>CR_CoralSeaIslandsTerritory</masterLabel>
+            <translation><!-- CR_CoralSeaIslandsTerritory --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CS _Costa Rica</masterLabel>
-            <translation><!-- CS _Costa Rica --></translation>
+            <masterLabel>CS_CostaRica</masterLabel>
+            <translation><!-- CS_CostaRica --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CT _Central African Republic</masterLabel>
-            <translation><!-- CT _Central African Republic --></translation>
+            <masterLabel>CT_CentralAfricanRepublic</masterLabel>
+            <translation><!-- CT_CentralAfricanRepublic --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CU _Cuba</masterLabel>
-            <translation><!-- CU _Cuba --></translation>
+            <masterLabel>CU_Cuba</masterLabel>
+            <translation><!-- CU_Cuba --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CV _Cape Verde</masterLabel>
-            <translation><!-- CV _Cape Verde --></translation>
+            <masterLabel>CV_CapeVerde</masterLabel>
+            <translation><!-- CV_CapeVerde --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CW _Cook Islands</masterLabel>
-            <translation><!-- CW _Cook Islands --></translation>
+            <masterLabel>CW_CookIslands</masterLabel>
+            <translation><!-- CW_CookIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CY _Cyprus</masterLabel>
-            <translation><!-- CY _Cyprus --></translation>
+            <masterLabel>CY_Cyprus</masterLabel>
+            <translation><!-- CY_Cyprus --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>DA _Denmark</masterLabel>
-            <translation><!-- DA _Denmark --></translation>
+            <masterLabel>DA_Denmark</masterLabel>
+            <translation><!-- DA_Denmark --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>DE _Germany</masterLabel>
-            <translation><!-- DE _Germany --></translation>
+            <masterLabel>DE_Germany</masterLabel>
+            <translation><!-- DE_Germany --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>DJ _Djibouti</masterLabel>
-            <translation><!-- DJ _Djibouti --></translation>
+            <masterLabel>DJ_Djibouti</masterLabel>
+            <translation><!-- DJ_Djibouti --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>DK _Denmark</masterLabel>
-            <translation><!-- DK _Denmark --></translation>
+            <masterLabel>DK_Denmark</masterLabel>
+            <translation><!-- DK_Denmark --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>DO _Dominica</masterLabel>
-            <translation><!-- DO _Dominica --></translation>
+            <masterLabel>DO_Dominica</masterLabel>
+            <translation><!-- DO_Dominica --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>EC _Ecuador</masterLabel>
-            <translation><!-- EC _Ecuador --></translation>
+            <masterLabel>EC_Ecuador</masterLabel>
+            <translation><!-- EC_Ecuador --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>EG _Egypt</masterLabel>
-            <translation><!-- EG _Egypt --></translation>
+            <masterLabel>EG_Egypt</masterLabel>
+            <translation><!-- EG_Egypt --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>EI _Ireland</masterLabel>
-            <translation><!-- EI _Ireland --></translation>
+            <masterLabel>EI_Ireland</masterLabel>
+            <translation><!-- EI_Ireland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>EK _Equatorial Guinea</masterLabel>
-            <translation><!-- EK _Equatorial Guinea --></translation>
+            <masterLabel>EK_EquatorialGuinea</masterLabel>
+            <translation><!-- EK_EquatorialGuinea --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>EN _Estonia</masterLabel>
-            <translation><!-- EN _Estonia --></translation>
+            <masterLabel>EN_Estonia</masterLabel>
+            <translation><!-- EN_Estonia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>ER _Eritrea</masterLabel>
-            <translation><!-- ER _Eritrea --></translation>
+            <masterLabel>ER_Eritrea</masterLabel>
+            <translation><!-- ER_Eritrea --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>ET _Ethiopia</masterLabel>
-            <translation><!-- ET _Ethiopia --></translation>
+            <masterLabel>ET_Ethiopia</masterLabel>
+            <translation><!-- ET_Ethiopia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>EU _Europa Island</masterLabel>
-            <translation><!-- EU _Europa Island --></translation>
+            <masterLabel>EU_EuropaIsland</masterLabel>
+            <translation><!-- EU_EuropaIsland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>EZ _Czech Republik</masterLabel>
-            <translation><!-- EZ _Czech Republik --></translation>
+            <masterLabel>EZ_CzechRepublik</masterLabel>
+            <translation><!-- EZ_CzechRepublik --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>FG _French Guiana</masterLabel>
-            <translation><!-- FG _French Guiana --></translation>
+            <masterLabel>FG_FrenchGuiana</masterLabel>
+            <translation><!-- FG_FrenchGuiana --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>FI _Finland</masterLabel>
-            <translation><!-- FI _Finland --></translation>
+            <masterLabel>FI_Finland</masterLabel>
+            <translation><!-- FI_Finland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>FJ _Fiji</masterLabel>
-            <translation><!-- FJ _Fiji --></translation>
+            <masterLabel>FJ_Fiji</masterLabel>
+            <translation><!-- FJ_Fiji --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>FK _Falkland Islands (Malvinas)</masterLabel>
-            <translation><!-- FK _Falkland Islands (Malvinas) --></translation>
+            <masterLabel>FK_FalklandIslands(Malvinas)</masterLabel>
+            <translation><!-- FK_FalklandIslands(Malvinas) --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>FO _Faroe Islands</masterLabel>
-            <translation><!-- FO _Faroe Islands --></translation>
+            <masterLabel>FO_FaroeIslands</masterLabel>
+            <translation><!-- FO_FaroeIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>FP _French Polynesia</masterLabel>
-            <translation><!-- FP _French Polynesia --></translation>
+            <masterLabel>FP_FrenchPolynesia</masterLabel>
+            <translation><!-- FP_FrenchPolynesia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>FQ _Baker Island</masterLabel>
-            <translation><!-- FQ _Baker Island --></translation>
+            <masterLabel>FQ_BakerIsland</masterLabel>
+            <translation><!-- FQ_BakerIsland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>FR _France</masterLabel>
-            <translation><!-- FR _France --></translation>
+            <masterLabel>FR_France</masterLabel>
+            <translation><!-- FR_France --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>FS _French Southern and Antarctic</masterLabel>
-            <translation><!-- FS _French Southern and Antarctic --></translation>
+            <masterLabel>FS_FrenchSouthernandAntarctic</masterLabel>
+            <translation><!-- FS_FrenchSouthernandAntarctic --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GA _Gambia, The</masterLabel>
-            <translation><!-- GA _Gambia, The --></translation>
+            <masterLabel>GA_Gambia,The</masterLabel>
+            <translation><!-- GA_Gambia,The --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GB _Gabon</masterLabel>
-            <translation><!-- GB _Gabon --></translation>
+            <masterLabel>GB_Gabon</masterLabel>
+            <translation><!-- GB_Gabon --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GB _Great Britain</masterLabel>
-            <translation><!-- GB _Great Britain --></translation>
+            <masterLabel>GB_GreatBritain</masterLabel>
+            <translation><!-- GB_GreatBritain --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GB _United Kingdom</masterLabel>
-            <translation><!-- GB _United Kingdom --></translation>
+            <masterLabel>GB_UnitedKingdom</masterLabel>
+            <translation><!-- GB_UnitedKingdom --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GG _Georgia</masterLabel>
-            <translation><!-- GG _Georgia --></translation>
+            <masterLabel>GG_Georgia</masterLabel>
+            <translation><!-- GG_Georgia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GH _Ghana</masterLabel>
-            <translation><!-- GH _Ghana --></translation>
+            <masterLabel>GH_Ghana</masterLabel>
+            <translation><!-- GH_Ghana --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GI _Gibraltar</masterLabel>
-            <translation><!-- GI _Gibraltar --></translation>
+            <masterLabel>GI_Gibraltar</masterLabel>
+            <translation><!-- GI_Gibraltar --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GJ _Grenada</masterLabel>
-            <translation><!-- GJ _Grenada --></translation>
+            <masterLabel>GJ_Grenada</masterLabel>
+            <translation><!-- GJ_Grenada --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GK _Guernsey</masterLabel>
-            <translation><!-- GK _Guernsey --></translation>
+            <masterLabel>GK_Guernsey</masterLabel>
+            <translation><!-- GK_Guernsey --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GL _Greenland</masterLabel>
-            <translation><!-- GL _Greenland --></translation>
+            <masterLabel>GL_Greenland</masterLabel>
+            <translation><!-- GL_Greenland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GM _Germany</masterLabel>
-            <translation><!-- GM _Germany --></translation>
+            <masterLabel>GM_Germany</masterLabel>
+            <translation><!-- GM_Germany --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GO _Glorioso Islands</masterLabel>
-            <translation><!-- GO _Glorioso Islands --></translation>
+            <masterLabel>GO_GloriosoIslands</masterLabel>
+            <translation><!-- GO_GloriosoIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GP _Guadeloupe</masterLabel>
-            <translation><!-- GP _Guadeloupe --></translation>
+            <masterLabel>GP_Guadeloupe</masterLabel>
+            <translation><!-- GP_Guadeloupe --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GQ _Guam</masterLabel>
-            <translation><!-- GQ _Guam --></translation>
+            <masterLabel>GQ_Guam</masterLabel>
+            <translation><!-- GQ_Guam --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GR _Greece</masterLabel>
-            <translation><!-- GR _Greece --></translation>
+            <masterLabel>GR_Greece</masterLabel>
+            <translation><!-- GR_Greece --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GT _Guatemala</masterLabel>
-            <translation><!-- GT _Guatemala --></translation>
+            <masterLabel>GT_Guatemala</masterLabel>
+            <translation><!-- GT_Guatemala --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GV _Guinea</masterLabel>
-            <translation><!-- GV _Guinea --></translation>
+            <masterLabel>GV_Guinea</masterLabel>
+            <translation><!-- GV_Guinea --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GY _Guyana</masterLabel>
-            <translation><!-- GY _Guyana --></translation>
+            <masterLabel>GY_Guyana</masterLabel>
+            <translation><!-- GY_Guyana --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>GZ _Gaza Strip</masterLabel>
-            <translation><!-- GZ _Gaza Strip --></translation>
+            <masterLabel>GZ_GazaStrip</masterLabel>
+            <translation><!-- GZ_GazaStrip --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>HA _Haiti</masterLabel>
-            <translation><!-- HA _Haiti --></translation>
+            <masterLabel>HA_Haiti</masterLabel>
+            <translation><!-- HA_Haiti --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>HK _Hong Kong</masterLabel>
-            <translation><!-- HK _Hong Kong --></translation>
+            <masterLabel>HK_HongKong</masterLabel>
+            <translation><!-- HK_HongKong --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>HM _Heard Isl. and McDonald Isls.</masterLabel>
-            <translation><!-- HM _Heard Isl. and McDonald Isls. --></translation>
+            <masterLabel>HM_HeardIsl.andMcDonaldIsls.</masterLabel>
+            <translation><!-- HM_HeardIsl.andMcDonaldIsls. --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>HO _Honduras</masterLabel>
-            <translation><!-- HO _Honduras --></translation>
+            <masterLabel>HO_Honduras</masterLabel>
+            <translation><!-- HO_Honduras --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>HQ _Howland Island</masterLabel>
-            <translation><!-- HQ _Howland Island --></translation>
+            <masterLabel>HQ_HowlandIsland</masterLabel>
+            <translation><!-- HQ_HowlandIsland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>HR _Croatia</masterLabel>
-            <translation><!-- HR _Croatia --></translation>
+            <masterLabel>HR_Croatia</masterLabel>
+            <translation><!-- HR_Croatia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>HU _Hungary</masterLabel>
-            <translation><!-- HU _Hungary --></translation>
+            <masterLabel>HU_Hungary</masterLabel>
+            <translation><!-- HU_Hungary --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>IC _Iceland</masterLabel>
-            <translation><!-- IC _Iceland --></translation>
+            <masterLabel>IC_Iceland</masterLabel>
+            <translation><!-- IC_Iceland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>ID _Indonesia</masterLabel>
-            <translation><!-- ID _Indonesia --></translation>
+            <masterLabel>ID_Indonesia</masterLabel>
+            <translation><!-- ID_Indonesia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>IE _Ireland</masterLabel>
-            <translation><!-- IE _Ireland --></translation>
+            <masterLabel>IE_Ireland</masterLabel>
+            <translation><!-- IE_Ireland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>IM _Isle of Man</masterLabel>
-            <translation><!-- IM _Isle of Man --></translation>
+            <masterLabel>IM_IsleofMan</masterLabel>
+            <translation><!-- IM_IsleofMan --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>IN _India</masterLabel>
-            <translation><!-- IN _India --></translation>
+            <masterLabel>IN_India</masterLabel>
+            <translation><!-- IN_India --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>IO _British Indian Ocean Territory</masterLabel>
-            <translation><!-- IO _British Indian Ocean Territory --></translation>
+            <masterLabel>IO_BritishIndianOceanTerritory</masterLabel>
+            <translation><!-- IO_BritishIndianOceanTerritory --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>IP _Clipperton Island</masterLabel>
-            <translation><!-- IP _Clipperton Island --></translation>
+            <masterLabel>IP_ClippertonIsland</masterLabel>
+            <translation><!-- IP_ClippertonIsland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>IR _Iran</masterLabel>
-            <translation><!-- IR _Iran --></translation>
+            <masterLabel>IR_Iran</masterLabel>
+            <translation><!-- IR_Iran --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>IS _Israel</masterLabel>
-            <translation><!-- IS _Israel --></translation>
+            <masterLabel>IS_Israel</masterLabel>
+            <translation><!-- IS_Israel --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>IT _Italy</masterLabel>
-            <translation><!-- IT _Italy --></translation>
+            <masterLabel>IT_Italy</masterLabel>
+            <translation><!-- IT_Italy --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>IV _Ivory Coast</masterLabel>
-            <translation><!-- IV _Ivory Coast --></translation>
+            <masterLabel>IV_IvoryCoast</masterLabel>
+            <translation><!-- IV_IvoryCoast --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>IZ _Iraq</masterLabel>
-            <translation><!-- IZ _Iraq --></translation>
+            <masterLabel>IZ_Iraq</masterLabel>
+            <translation><!-- IZ_Iraq --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>JA _Japan</masterLabel>
-            <translation><!-- JA _Japan --></translation>
+            <masterLabel>JA_Japan</masterLabel>
+            <translation><!-- JA_Japan --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>JE _Jersey</masterLabel>
-            <translation><!-- JE _Jersey --></translation>
+            <masterLabel>JE_Jersey</masterLabel>
+            <translation><!-- JE_Jersey --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>JM _Jamaica</masterLabel>
-            <translation><!-- JM _Jamaica --></translation>
+            <masterLabel>JM_Jamaica</masterLabel>
+            <translation><!-- JM_Jamaica --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>JN _Jan Mayen</masterLabel>
-            <translation><!-- JN _Jan Mayen --></translation>
+            <masterLabel>JN_JanMayen</masterLabel>
+            <translation><!-- JN_JanMayen --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>JO _Jordan</masterLabel>
-            <translation><!-- JO _Jordan --></translation>
+            <masterLabel>JO_Jordan</masterLabel>
+            <translation><!-- JO_Jordan --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>JP _Japan</masterLabel>
-            <translation><!-- JP _Japan --></translation>
+            <masterLabel>JP_Japan</masterLabel>
+            <translation><!-- JP_Japan --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>JQ _Johnston Atoll</masterLabel>
-            <translation><!-- JQ _Johnston Atoll --></translation>
+            <masterLabel>JQ_JohnstonAtoll</masterLabel>
+            <translation><!-- JQ_JohnstonAtoll --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>JU _Juan de Nova Island</masterLabel>
-            <translation><!-- JU _Juan de Nova Island --></translation>
+            <masterLabel>JU_JuandeNovaIsland</masterLabel>
+            <translation><!-- JU_JuandeNovaIsland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>KE _Kenya</masterLabel>
-            <translation><!-- KE _Kenya --></translation>
+            <masterLabel>KE_Kenya</masterLabel>
+            <translation><!-- KE_Kenya --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>KG _Kirghizia</masterLabel>
-            <translation><!-- KG _Kirghizia --></translation>
+            <masterLabel>KG_Kirghizia</masterLabel>
+            <translation><!-- KG_Kirghizia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>KN _Korea, Democratic Peoples Rep.</masterLabel>
-            <translation><!-- KN _Korea, Democratic Peoples Rep. --></translation>
+            <masterLabel>KN_Korea,DemocraticPeoplesRep.</masterLabel>
+            <translation><!-- KN_Korea,DemocraticPeoplesRep. --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>KQ _Kingman Reef</masterLabel>
-            <translation><!-- KQ _Kingman Reef --></translation>
+            <masterLabel>KQ_KingmanReef</masterLabel>
+            <translation><!-- KQ_KingmanReef --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>KR _Kiribati / Christmas Isl(PacO)</masterLabel>
-            <translation><!-- KR _Kiribati / Christmas Isl(PacO) --></translation>
+            <masterLabel>KR_Kiribati/ChristmasIsl(PacO)</masterLabel>
+            <translation><!-- KR_Kiribati/ChristmasIsl(PacO) --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>KR _Korea</masterLabel>
-            <translation><!-- KR _Korea --></translation>
+            <masterLabel>KR_Korea</masterLabel>
+            <translation><!-- KR_Korea --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>KS _Korea, Republic of (South)</masterLabel>
-            <translation><!-- KS _Korea, Republic of (South) --></translation>
+            <masterLabel>KS_Korea,Republicof(South)</masterLabel>
+            <translation><!-- KS_Korea,Republicof(South) --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>KT _Christmas Isl. (Indian Ocean)</masterLabel>
-            <translation><!-- KT _Christmas Isl. (Indian Ocean) --></translation>
+            <masterLabel>KT_ChristmasIsl.(IndianOcean)</masterLabel>
+            <translation><!-- KT_ChristmasIsl.(IndianOcean) --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>KU _Kuwait</masterLabel>
-            <translation><!-- KU _Kuwait --></translation>
+            <masterLabel>KU_Kuwait</masterLabel>
+            <translation><!-- KU_Kuwait --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>KZ _Kazakhstan</masterLabel>
-            <translation><!-- KZ _Kazakhstan --></translation>
+            <masterLabel>KZ_Kazakhstan</masterLabel>
+            <translation><!-- KZ_Kazakhstan --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>LA _Laos</masterLabel>
-            <translation><!-- LA _Laos --></translation>
+            <masterLabel>LA_Laos</masterLabel>
+            <translation><!-- LA_Laos --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>LE _Lebanon</masterLabel>
-            <translation><!-- LE _Lebanon --></translation>
+            <masterLabel>LE_Lebanon</masterLabel>
+            <translation><!-- LE_Lebanon --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>LG _Latvia</masterLabel>
-            <translation><!-- LG _Latvia --></translation>
+            <masterLabel>LG_Latvia</masterLabel>
+            <translation><!-- LG_Latvia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>LH _Lithuania</masterLabel>
-            <translation><!-- LH _Lithuania --></translation>
+            <masterLabel>LH_Lithuania</masterLabel>
+            <translation><!-- LH_Lithuania --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>LI _Liberia</masterLabel>
-            <translation><!-- LI _Liberia --></translation>
+            <masterLabel>LI_Liberia</masterLabel>
+            <translation><!-- LI_Liberia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>LO _Slovakia</masterLabel>
-            <translation><!-- LO _Slovakia --></translation>
+            <masterLabel>LO_Slovakia</masterLabel>
+            <translation><!-- LO_Slovakia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>LQ _Palmyra Atoll</masterLabel>
-            <translation><!-- LQ _Palmyra Atoll --></translation>
+            <masterLabel>LQ_PalmyraAtoll</masterLabel>
+            <translation><!-- LQ_PalmyraAtoll --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>LS _Lichtenstein</masterLabel>
-            <translation><!-- LS _Lichtenstein --></translation>
+            <masterLabel>LS_Lichtenstein</masterLabel>
+            <translation><!-- LS_Lichtenstein --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>LT _Lesotho</masterLabel>
-            <translation><!-- LT _Lesotho --></translation>
+            <masterLabel>LT_Lesotho</masterLabel>
+            <translation><!-- LT_Lesotho --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>LU _Luxembourg</masterLabel>
-            <translation><!-- LU _Luxembourg --></translation>
+            <masterLabel>LU_Luxembourg</masterLabel>
+            <translation><!-- LU_Luxembourg --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>LY _Libya</masterLabel>
-            <translation><!-- LY _Libya --></translation>
+            <masterLabel>LY_Libya</masterLabel>
+            <translation><!-- LY_Libya --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MA _Madagascar</masterLabel>
-            <translation><!-- MA _Madagascar --></translation>
+            <masterLabel>MA_Madagascar</masterLabel>
+            <translation><!-- MA_Madagascar --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MB _Martinique</masterLabel>
-            <translation><!-- MB _Martinique --></translation>
+            <masterLabel>MB_Martinique</masterLabel>
+            <translation><!-- MB_Martinique --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MC _Macau</masterLabel>
-            <translation><!-- MC _Macau --></translation>
+            <masterLabel>MC_Macau</masterLabel>
+            <translation><!-- MC_Macau --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MD _Moldova</masterLabel>
-            <translation><!-- MD _Moldova --></translation>
+            <masterLabel>MD_Moldova</masterLabel>
+            <translation><!-- MD_Moldova --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MF _Mayotte</masterLabel>
-            <translation><!-- MF _Mayotte --></translation>
+            <masterLabel>MF_Mayotte</masterLabel>
+            <translation><!-- MF_Mayotte --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MG _Mongolia</masterLabel>
-            <translation><!-- MG _Mongolia --></translation>
+            <masterLabel>MG_Mongolia</masterLabel>
+            <translation><!-- MG_Mongolia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MH _Montserrat</masterLabel>
-            <translation><!-- MH _Montserrat --></translation>
+            <masterLabel>MH_Montserrat</masterLabel>
+            <translation><!-- MH_Montserrat --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MI _Malawi</masterLabel>
-            <translation><!-- MI _Malawi --></translation>
+            <masterLabel>MI_Malawi</masterLabel>
+            <translation><!-- MI_Malawi --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MK _Macedonia (Skopje)</masterLabel>
-            <translation><!-- MK _Macedonia (Skopje) --></translation>
+            <masterLabel>MK_Macedonia(Skopje)</masterLabel>
+            <translation><!-- MK_Macedonia(Skopje) --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>ML _Mali</masterLabel>
-            <translation><!-- ML _Mali --></translation>
+            <masterLabel>ML_Mali</masterLabel>
+            <translation><!-- ML_Mali --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MN _Monaco</masterLabel>
-            <translation><!-- MN _Monaco --></translation>
+            <masterLabel>MN_Monaco</masterLabel>
+            <translation><!-- MN_Monaco --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MO _Morocco</masterLabel>
-            <translation><!-- MO _Morocco --></translation>
+            <masterLabel>MO_Morocco</masterLabel>
+            <translation><!-- MO_Morocco --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MP _Mauritius</masterLabel>
-            <translation><!-- MP _Mauritius --></translation>
+            <masterLabel>MP_Mauritius</masterLabel>
+            <translation><!-- MP_Mauritius --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MQ _Midway Islands</masterLabel>
-            <translation><!-- MQ _Midway Islands --></translation>
+            <masterLabel>MQ_MidwayIslands</masterLabel>
+            <translation><!-- MQ_MidwayIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MR _Mauritania</masterLabel>
-            <translation><!-- MR _Mauritania --></translation>
+            <masterLabel>MR_Mauritania</masterLabel>
+            <translation><!-- MR_Mauritania --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MT _Malta</masterLabel>
-            <translation><!-- MT _Malta --></translation>
+            <masterLabel>MT_Malta</masterLabel>
+            <translation><!-- MT_Malta --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MU _Oman</masterLabel>
-            <translation><!-- MU _Oman --></translation>
+            <masterLabel>MU_Oman</masterLabel>
+            <translation><!-- MU_Oman --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MV _Maldives</masterLabel>
-            <translation><!-- MV _Maldives --></translation>
+            <masterLabel>MV_Maldives</masterLabel>
+            <translation><!-- MV_Maldives --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MW _Montenegro</masterLabel>
-            <translation><!-- MW _Montenegro --></translation>
+            <masterLabel>MW_Montenegro</masterLabel>
+            <translation><!-- MW_Montenegro --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MX _Mexico</masterLabel>
-            <translation><!-- MX _Mexico --></translation>
+            <masterLabel>MX_Mexico</masterLabel>
+            <translation><!-- MX_Mexico --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MY _Malaysia</masterLabel>
-            <translation><!-- MY _Malaysia --></translation>
+            <masterLabel>MY_Malaysia</masterLabel>
+            <translation><!-- MY_Malaysia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MZ _Mozambique</masterLabel>
-            <translation><!-- MZ _Mozambique --></translation>
+            <masterLabel>MZ_Mozambique</masterLabel>
+            <translation><!-- MZ_Mozambique --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NC _New Caledonia</masterLabel>
-            <translation><!-- NC _New Caledonia --></translation>
+            <masterLabel>NC_NewCaledonia</masterLabel>
+            <translation><!-- NC_NewCaledonia --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NE _Niue</masterLabel>
-            <translation><!-- NE _Niue --></translation>
+            <masterLabel>NE_Niue</masterLabel>
+            <translation><!-- NE_Niue --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NF _Norfolk Island</masterLabel>
-            <translation><!-- NF _Norfolk Island --></translation>
+            <masterLabel>NF_NorfolkIsland</masterLabel>
+            <translation><!-- NF_NorfolkIsland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NG _Niger</masterLabel>
-            <translation><!-- NG _Niger --></translation>
+            <masterLabel>NG_Niger</masterLabel>
+            <translation><!-- NG_Niger --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NH _Vanuatu</masterLabel>
-            <translation><!-- NH _Vanuatu --></translation>
+            <masterLabel>NH_Vanuatu</masterLabel>
+            <translation><!-- NH_Vanuatu --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NI _Nigeria</masterLabel>
-            <translation><!-- NI _Nigeria --></translation>
+            <masterLabel>NI_Nigeria</masterLabel>
+            <translation><!-- NI_Nigeria --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NL _Netherlands</masterLabel>
-            <translation><!-- NL _Netherlands --></translation>
+            <masterLabel>NL_Netherlands</masterLabel>
+            <translation><!-- NL_Netherlands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NO _Norway</masterLabel>
-            <translation><!-- NO _Norway --></translation>
+            <masterLabel>NO_Norway</masterLabel>
+            <translation><!-- NO_Norway --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NP _Nepal</masterLabel>
-            <translation><!-- NP _Nepal --></translation>
+            <masterLabel>NP_Nepal</masterLabel>
+            <translation><!-- NP_Nepal --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NR _Nauru</masterLabel>
-            <translation><!-- NR _Nauru --></translation>
+            <masterLabel>NR_Nauru</masterLabel>
+            <translation><!-- NR_Nauru --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NS _Suriname</masterLabel>
-            <translation><!-- NS _Suriname --></translation>
+            <masterLabel>NS_Suriname</masterLabel>
+            <translation><!-- NS_Suriname --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NT _Netherlands Antilles</masterLabel>
-            <translation><!-- NT _Netherlands Antilles --></translation>
+            <masterLabel>NT_NetherlandsAntilles</masterLabel>
+            <translation><!-- NT_NetherlandsAntilles --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NU _Nicaragua</masterLabel>
-            <translation><!-- NU _Nicaragua --></translation>
+            <masterLabel>NU_Nicaragua</masterLabel>
+            <translation><!-- NU_Nicaragua --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>NZ _New Zealand</masterLabel>
-            <translation><!-- NZ _New Zealand --></translation>
+            <masterLabel>NZ_NewZealand</masterLabel>
+            <translation><!-- NZ_NewZealand --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>OC _Other countries</masterLabel>
-            <translation><!-- OC _Other countries --></translation>
+            <masterLabel>OC_Othercountries</masterLabel>
+            <translation><!-- OC_Othercountries --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>PA _Paraguay</masterLabel>
-            <translation><!-- PA _Paraguay --></translation>
+            <masterLabel>PA_Paraguay</masterLabel>
+            <translation><!-- PA_Paraguay --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>PH _Philippines</masterLabel>
-            <translation><!-- PH _Philippines --></translation>
+            <masterLabel>PC_PitcairnIslands</masterLabel>
+            <translation><!-- PC_PitcairnIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>PK _Pakistan</masterLabel>
-            <translation><!-- PK _Pakistan --></translation>
+            <masterLabel>PE_Peru</masterLabel>
+            <translation><!-- PE_Peru --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>PL _Poland</masterLabel>
-            <translation><!-- PL _Poland --></translation>
+            <masterLabel>PF_ParacelIslands</masterLabel>
+            <translation><!-- PF_ParacelIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>SE _Sweden</masterLabel>
-            <translation><!-- SE _Sweden --></translation>
+            <masterLabel>PG_SpratlyIslands</masterLabel>
+            <translation><!-- PG_SpratlyIslands --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>SG _Singapore</masterLabel>
-            <translation><!-- SG _Singapore --></translation>
+            <masterLabel>PH_Philippines</masterLabel>
+            <translation><!-- PH_Philippines --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>SL _Sierra Leone</masterLabel>
-            <translation><!-- SL _Sierra Leone --></translation>
+            <masterLabel>PK_Pakistan</masterLabel>
+            <translation><!-- PK_Pakistan --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>TH _Thailand</masterLabel>
-            <translation><!-- TH _Thailand --></translation>
+            <masterLabel>PL_Poland</masterLabel>
+            <translation><!-- PL_Poland --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>TN _Tunisia</masterLabel>
-            <translation><!-- TN _Tunisia --></translation>
+            <masterLabel>PM_Panama</masterLabel>
+            <translation><!-- PM_Panama --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>TR _Turkey</masterLabel>
-            <translation><!-- TR _Turkey --></translation>
+            <masterLabel>PO_Portugal/Azores</masterLabel>
+            <translation><!-- PO_Portugal/Azores --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>US _USA</masterLabel>
-            <translation><!-- US _USA --></translation>
+            <masterLabel>PP_PapuaNewGuinea</masterLabel>
+            <translation><!-- PP_PapuaNewGuinea --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>US _United States of America</masterLabel>
-            <translation><!-- US _United States of America --></translation>
+            <masterLabel>PS_TrustTerr.ofthePacificIsl</masterLabel>
+            <translation><!-- PS_TrustTerr.ofthePacificIsl --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>_United Kingdom</masterLabel>
-            <translation><!-- _United Kingdom --></translation>
+            <masterLabel>PU_Guinea-Bissau</masterLabel>
+            <translation><!-- PU_Guinea-Bissau --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QA_Qatar</masterLabel>
+            <translation><!-- QA_Qatar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RE_Reunion</masterLabel>
+            <translation><!-- RE_Reunion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RM_MarshallIslands</masterLabel>
+            <translation><!-- RM_MarshallIslands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RO_Romania</masterLabel>
+            <translation><!-- RO_Romania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RP_Philippines</masterLabel>
+            <translation><!-- RP_Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RQ_PuertoRico</masterLabel>
+            <translation><!-- RQ_PuertoRico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RS_Russia</masterLabel>
+            <translation><!-- RS_Russia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RW_Rwanda</masterLabel>
+            <translation><!-- RW_Rwanda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SA_SaudiArabia</masterLabel>
+            <translation><!-- SA_SaudiArabia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SB_St.PierreandMiquelon</masterLabel>
+            <translation><!-- SB_St.PierreandMiquelon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SC_St.KittsandNewis</masterLabel>
+            <translation><!-- SC_St.KittsandNewis --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SE_Seychelles</masterLabel>
+            <translation><!-- SE_Seychelles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SE_Sweden</masterLabel>
+            <translation><!-- SE_Sweden --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SF_SouthAfrica</masterLabel>
+            <translation><!-- SF_SouthAfrica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SG_Senegal</masterLabel>
+            <translation><!-- SG_Senegal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SG_Singapore</masterLabel>
+            <translation><!-- SG_Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SH_St.Helena</masterLabel>
+            <translation><!-- SH_St.Helena --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SI_Slovenia</masterLabel>
+            <translation><!-- SI_Slovenia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SL_SierraLeone</masterLabel>
+            <translation><!-- SL_SierraLeone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SM_SanMarino</masterLabel>
+            <translation><!-- SM_SanMarino --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SN_Singapore</masterLabel>
+            <translation><!-- SN_Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SO_Somalia</masterLabel>
+            <translation><!-- SO_Somalia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SP_Spain/CanarayIslands</masterLabel>
+            <translation><!-- SP_Spain/CanarayIslands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SR_Serbia</masterLabel>
+            <translation><!-- SR_Serbia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ST_St.Lucia</masterLabel>
+            <translation><!-- ST_St.Lucia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SU_Sudan</masterLabel>
+            <translation><!-- SU_Sudan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SV_Svalbard</masterLabel>
+            <translation><!-- SV_Svalbard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SW_Sweden</masterLabel>
+            <translation><!-- SW_Sweden --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SX_SouthGeorgia</masterLabel>
+            <translation><!-- SX_SouthGeorgia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SY_Syria</masterLabel>
+            <translation><!-- SY_Syria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SZ_Swaziland</masterLabel>
+            <translation><!-- SZ_Swaziland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TC_UnitedArabEmirates</masterLabel>
+            <translation><!-- TC_UnitedArabEmirates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TD_TrinidadandTobago</masterLabel>
+            <translation><!-- TD_TrinidadandTobago --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TE_TromelinIsland</masterLabel>
+            <translation><!-- TE_TromelinIsland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TH_Thailand</masterLabel>
+            <translation><!-- TH_Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TI_Tadzhikistan</masterLabel>
+            <translation><!-- TI_Tadzhikistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TK_TurksandCaicosIslands</masterLabel>
+            <translation><!-- TK_TurksandCaicosIslands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TL_Tokelau</masterLabel>
+            <translation><!-- TL_Tokelau --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TN_Tonga</masterLabel>
+            <translation><!-- TN_Tonga --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TN_Tunisia</masterLabel>
+            <translation><!-- TN_Tunisia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TO_Togo</masterLabel>
+            <translation><!-- TO_Togo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TP_SaoTomeandPrincipe</masterLabel>
+            <translation><!-- TP_SaoTomeandPrincipe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TR_Turkey</masterLabel>
+            <translation><!-- TR_Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TS_Tunisia</masterLabel>
+            <translation><!-- TS_Tunisia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TU_Turkey</masterLabel>
+            <translation><!-- TU_Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TV_Tuvalu</masterLabel>
+            <translation><!-- TV_Tuvalu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TW_Taiwan</masterLabel>
+            <translation><!-- TW_Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TX_Turkmenistan</masterLabel>
+            <translation><!-- TX_Turkmenistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TZ_Tanzania,UnitedRepublicof</masterLabel>
+            <translation><!-- TZ_Tanzania,UnitedRepublicof --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UG_Uganda</masterLabel>
+            <translation><!-- UG_Uganda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UK_UnitedKingdom/NorthernIsl.</masterLabel>
+            <translation><!-- UK_UnitedKingdom/NorthernIsl. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UP_Ukraine</masterLabel>
+            <translation><!-- UP_Ukraine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US_USA</masterLabel>
+            <translation><!-- US_USA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US_UnitedStatesofAmerica</masterLabel>
+            <translation><!-- US_UnitedStatesofAmerica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UV_BurkinaFaso</masterLabel>
+            <translation><!-- UV_BurkinaFaso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UY_Uruguay</masterLabel>
+            <translation><!-- UY_Uruguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UZ_Uzbekistan</masterLabel>
+            <translation><!-- UZ_Uzbekistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VC_St.VincentandtheGrenadines</masterLabel>
+            <translation><!-- VC_St.VincentandtheGrenadines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VE_Venezuela</masterLabel>
+            <translation><!-- VE_Venezuela --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VI_VirginIslands(British)</masterLabel>
+            <translation><!-- VI_VirginIslands(British) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VM_Vietnam</masterLabel>
+            <translation><!-- VM_Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VQ_VirginIslands(U.S.)</masterLabel>
+            <translation><!-- VQ_VirginIslands(U.S.) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VT_VaticanCity</masterLabel>
+            <translation><!-- VT_VaticanCity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WA_Namibia</masterLabel>
+            <translation><!-- WA_Namibia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WE_WestBank</masterLabel>
+            <translation><!-- WE_WestBank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WF_WallisandFutuna</masterLabel>
+            <translation><!-- WF_WallisandFutuna --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WI_WesternSahara</masterLabel>
+            <translation><!-- WI_WesternSahara --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WQ_WakeIsland</masterLabel>
+            <translation><!-- WQ_WakeIsland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WS_WesternSamoa</masterLabel>
+            <translation><!-- WS_WesternSamoa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WZ_Swaziland</masterLabel>
+            <translation><!-- WZ_Swaziland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YM_Yemen</masterLabel>
+            <translation><!-- YM_Yemen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZA_Zambia</masterLabel>
+            <translation><!-- ZA_Zambia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZI_Zimbabwe</masterLabel>
+            <translation><!-- ZI_Zimbabwe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>_UnitedKingdom</masterLabel>
+            <translation><!-- _UnitedKingdom --></translation>
         </picklistValues>
     </fields>
     <fields>

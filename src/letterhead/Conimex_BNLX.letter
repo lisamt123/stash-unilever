@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Letterhead xmlns="http://soap.sforce.com/2006/04/metadata">
-    <available>false</available>
+    <available>true</available>
     <backgroundColor>#CCCCCC</backgroundColor>
     <bodyColor>#FFFFFF</bodyColor>
     <bottomLine>
@@ -24,7 +24,7 @@
         <color>#AAAAFF</color>
         <height>5</height>
     </middleLine>
-    <name>Conimex BNLX</name>
+    <name>CEC Conimex BNLX</name>
     <topLine>
         <color>#AAAAFF</color>
         <height>5</height>

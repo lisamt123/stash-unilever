@@ -92,6 +92,118 @@
         <name>Description__c</name>
     </fields>
     <fields>
+        <label><!-- Margin Market Code --></label>
+        <name>FSNA_Margin_Market_Code__c</name>
+        <picklistValues>
+            <masterLabel>6I DRESSINGS-CONDIMENTS-DIPS</masterLabel>
+            <translation><!-- 6I DRESSINGS-CONDIMENTS-DIPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6K SAUCES-GRAVIES</masterLabel>
+            <translation><!-- 6K SAUCES-GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8Z RETAIL</masterLabel>
+            <translation><!-- 8Z RETAIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>93 MAYONNAISE</masterLabel>
+            <translation><!-- 93 MAYONNAISE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D1 SOUPS</masterLabel>
+            <translation><!-- D1 SOUPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E1 BASES-BOUILLIONS</masterLabel>
+            <translation><!-- E1 BASES-BOUILLIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>F1 SPREADS AND TOPPING</masterLabel>
+            <translation><!-- F1 SPREADS AND TOPPING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FOH ACCELERATION</masterLabel>
+            <translation><!-- FOH ACCELERATION --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>G1 TEA-BEVERAGES</masterLabel>
+            <translation><!-- G1 TEA-BEVERAGES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>H1 FLAVOUR DELIVERY SYS-SEASONING</masterLabel>
+            <translation><!-- H1 FLAVOUR DELIVERY SYS-SEASONING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>K1 MEALS</masterLabel>
+            <translation><!-- K1 MEALS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>N1 CRYSTAL</masterLabel>
+            <translation><!-- N1 CRYSTAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q1 MISCELLANEOUS</masterLabel>
+            <translation><!-- Q1 MISCELLANEOUS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X1 US LCB</masterLabel>
+            <translation><!-- X1 US LCB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X2 SPECIALTY TEA CANADA</masterLabel>
+            <translation><!-- X2 SPECIALTY TEA CANADA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X3 SPECIALTY TEA US</masterLabel>
+            <translation><!-- X3 SPECIALTY TEA US --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X4 US SDJ</masterLabel>
+            <translation><!-- X4 US SDJ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z1 BOH MAYO</masterLabel>
+            <translation><!-- Z1 BOH MAYO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z2 CAN LCB</masterLabel>
+            <translation><!-- Z2 CAN LCB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z3 CAN SDJ</masterLabel>
+            <translation><!-- Z3 CAN SDJ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z5 FOH MAYO</masterLabel>
+            <translation><!-- Z5 FOH MAYO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z6 HOT TEA CANADA</masterLabel>
+            <translation><!-- Z6 HOT TEA CANADA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z7 HOT TEA US</masterLabel>
+            <translation><!-- Z7 HOT TEA US --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z8 ICED TEA</masterLabel>
+            <translation><!-- Z8 ICED TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z9 Knorr Ultimate Low/Reduced Sodium*</masterLabel>
+            <translation><!-- Z9 Knorr Ultimate Low/Reduced Sodium* --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Margin Market Target --></label>
+        <name>FSNA_Margin_Market_Target__c</name>
+    </fields>
+    <fields>
+        <label><!-- No of Products --></label>
+        <name>FS_No_of_Products__c</name>
+    </fields>
+    <fields>
         <label><!-- Sub Sector --></label>
         <name>FS_Sub_Sector__c</name>
     </fields>
@@ -148,13 +260,13 @@
     <layouts>
         <layout>Risk Layout</layout>
         <sections>
-            <label><!-- Choose product sector --></label>
-            <section>Choose product sector</section>
-        </sections>
-        <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
     </layouts>
     <nameFieldLabel><!-- Risk Name --></nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- Product is required if the profitability is greater the 75% --></errorMessage>
+        <name>FSNA_Product_Required</name>
+    </validationRules>
 </CustomObjectTranslation>

@@ -182,7 +182,7 @@ Is the customer growing?</inlineHelpText>
         <fullName>AgreementDate__c</fullName>
         <description>Created for Opportunity Forecasting and it is required before moving to stage=&apos;05-Won&apos;.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Required before moving to stage &apos;05-Won&apos;.</inlineHelpText>
+        <inlineHelpText>Expected date of customer commitment.</inlineHelpText>
         <label>Agreement Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -228,6 +228,7 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>ContractStartDate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Expected date of first shipment (agreement in force).</inlineHelpText>
         <label>Contract Start Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -240,6 +241,32 @@ Is the customer growing?</inlineHelpText>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>DB_Competitor__c</fullName>
+        <description>This is a field that is installed by and used with the Adoption Dashboard AppExchange package. If your org already has a similar field, you can change the reports that are part of the Adoption Dashboard package to use your custom field and can delete this field.</description>
+        <externalId>false</externalId>
+        <label>DB Competitor</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Competitor A</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Competitor B</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Competitor C</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>DealApproved__c</fullName>
@@ -280,6 +307,7 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>FSNA_BMI__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Brand Marketing Rewards</inlineHelpText>
         <label>BMI</label>
         <precision>18</precision>
         <required>false</required>
@@ -293,6 +321,7 @@ Is the customer growing?</inlineHelpText>
         <fullName>FSNA_Distributor_TMI__c</fullName>
         <description>Roll-up of the Product Level Distributor TMI</description>
         <externalId>false</externalId>
+        <inlineHelpText>Expected Distributor Earnings from opportunity.</inlineHelpText>
         <label>NA Distributor TMI</label>
         <summarizedField>OpportunityLineItem.Copy_of_DIST_TMI__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
@@ -304,11 +333,12 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>FSNA_Gross_Margin__c</fullName>
         <externalId>false</externalId>
-        <formula>(Amount - 
+        <formula>(Amount * 0.99 - 
 (FS_TotalRate__c+FSNA_Distributor_TMI__c+FS_TotalHQRate__c+FS_LumpSum__c)-
-Total_Opp_COGS__c) /(Amount - 
+Total_Opp_COGS__c) /(Amount * 0.99 - 
 (FS_TotalRate__c+FSNA_Distributor_TMI__c+FS_TotalHQRate__c+FS_LumpSum__c))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Average Gross Margin % for all products within opportunity.</inlineHelpText>
         <label>Gross Margin</label>
         <precision>18</precision>
         <required>false</required>
@@ -320,10 +350,11 @@ Total_Opp_COGS__c) /(Amount -
     <fields>
         <fullName>FSNA_Margin_Market_Code__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Respective Product groupings.</inlineHelpText>
         <label>Margin Market Code</label>
         <picklist>
             <picklistValues>
-                <fullName>6I</fullName>
+                <fullName>Z7 HOT TEA US</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -331,23 +362,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>6K</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>6K SAUCES-GRAVIES</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>8Z</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>8Z RETAIL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>93</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -355,19 +370,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>BOH MAYO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>D1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>D1 SOUPS</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>E1</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -375,23 +378,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>F1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>F1 SPREADS AND TOPPING</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>FOH ACCELERATION</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>FOH MAYO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>G1</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -399,23 +386,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>H1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>H1 FLAVOUR DELIVERY SYS-SEASONING</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>HOT TEA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ICED TEA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>K1</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -423,19 +394,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Knorr Ultimate Low/Reduced Sodium*</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>LCB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>N1 CRYSTAL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Q1</fullName>
+                <fullName>8Z RETAIL</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -443,47 +402,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SDJ</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SPECIALTY TEA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X1 US LCB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X2 SPECIALTY TEA CANADA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X3</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X3 SPECIALTY TEA US</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X4</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X4 US SDJ</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z1</fullName>
+                <fullName>Z5 FOH MAYO</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -491,15 +410,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z2 CAN LCB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z3</fullName>
+                <fullName>X4 US SDJ</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -507,15 +418,19 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z5</fullName>
+                <fullName>Z9 Knorr Ultimate Low/Reduced Sodium*</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z5 FOH MAYO</fullName>
+                <fullName>X1 US LCB</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z6</fullName>
+                <fullName>Z2 CAN LCB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X2 SPECIALTY TEA CANADA</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -523,15 +438,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z7</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z7 HOT TEA US</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z8</fullName>
+                <fullName>X3 SPECIALTY TEA US</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -539,15 +446,170 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z9</fullName>
+                <fullName>N1 CRYSTAL</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z9 Knorr Ultimate Low/Reduced Sodium*</fullName>
+                <fullName>FOH ACCELERATION</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>6I</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6K</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8Z</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>93</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BOH MAYO</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>F1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FOH MAYO</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>G1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>H1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HOT TEA</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ICED TEA</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>K1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Ultimate Low/Reduced Sodium*</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LCB</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Q1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SDJ</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SPECIALTY TEA</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X2</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X3</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X4</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z2</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z3</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z5</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z6</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z7</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z8</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z9</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -621,7 +683,7 @@ CASE(FSNA_Margin_Market_Code__c,
 0),
 0)
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Expected average profitability for opportunities within respective market.</inlineHelpText>
         <label>Margin Market Target</label>
         <precision>18</precision>
         <required>false</required>
@@ -633,6 +695,7 @@ CASE(FSNA_Margin_Market_Code__c,
     <fields>
         <fullName>FSNA_TMI__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>$ Value of Operator discounts from opportunity.</inlineHelpText>
         <label>Operator TMI</label>
         <precision>18</precision>
         <required>false</required>
@@ -645,8 +708,9 @@ CASE(FSNA_Margin_Market_Code__c,
     <fields>
         <fullName>FSNA_TotalSpend__c</fullName>
         <externalId>false</externalId>
-        <formula>FSNA_BMI__c  +  FS_TotalHQRate__c +  FS_TotalRate__c +  FSNA_Distributor_TMI__c+FS_LumpSum__c</formula>
+        <formula>FS_TotalHQRate__c +   FS_TotalRate__c  +   FSNA_Distributor_TMI__c   +  FS_LumpSum__c + FSNA_BMI__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Total TMI invested in opportunity (Sum of Distributor and Operator)</inlineHelpText>
         <label>Total Spend</label>
         <precision>18</precision>
         <required>false</required>
@@ -718,6 +782,7 @@ CASE(FSNA_Margin_Market_Code__c,
     <fields>
         <fullName>FS_DistributorTMI__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Distributor expected to supply products to operator. Used for determining distributor TMI.</inlineHelpText>
         <label>Distributor TMI</label>
         <picklist>
             <picklistValues>
@@ -887,7 +952,7 @@ DealApproved__c=true,
 IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;green&quot;, 20, 20),
 IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Green when fully approved and pricing ready for customer review.</inlineHelpText>
         <label>Approval Indicator</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -898,7 +963,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     <fields>
         <fullName>FS_LumpSum__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Lump Sum TMI (Not A&amp;P)</inlineHelpText>
+        <inlineHelpText>Incentive funds paid directly to Operator, not tied Branding Activation Activities.</inlineHelpText>
         <label>Lump Sum TMI</label>
         <precision>18</precision>
         <required>false</required>
@@ -923,7 +988,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <fullName>FS_MSCS__c</fullName>
         <externalId>false</externalId>
         <formula>IF(FS_TotalNumberOfCases__c&gt;0, FS_LumpSum__c / FS_TotalNumberOfCases__c, null)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Allocation (Rate / Case) to product of Lump sum payments.</inlineHelpText>
         <label>MS/CS</label>
         <precision>18</precision>
         <required>false</required>
@@ -989,6 +1054,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     <fields>
         <fullName>FS_Rate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Rebate Discount provided on individual product.</inlineHelpText>
         <label>Rate</label>
         <precision>18</precision>
         <required>false</required>
@@ -1095,7 +1161,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <fullName>FS_TotalDiscount__c</fullName>
         <externalId>false</externalId>
         <formula>FS_MSCS__c  + FS_TotalHQRate__c  +  FS_TotalRate__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Total discount offered to operator.</inlineHelpText>
         <label>Total Discount</label>
         <precision>18</precision>
         <required>false</required>
@@ -1149,6 +1215,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     <fields>
         <fullName>FS_TotalHQRate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Total discount offered paid directly to HQ or Corporate Accounts.</inlineHelpText>
         <label>Total HQ Rate</label>
         <summarizedField>OpportunityLineItem.FSNA_TotalHQRate__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
@@ -1160,7 +1227,8 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     <fields>
         <fullName>FS_TotalNumberOfCases__c</fullName>
         <externalId>false</externalId>
-        <label>Total Number of Cases</label>
+        <inlineHelpText>Total quantity count for opportunity.</inlineHelpText>
+        <label>Total Quantity</label>
         <summarizedField>OpportunityLineItem.Quantity</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
@@ -1171,6 +1239,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     <fields>
         <fullName>FS_TotalRate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Total rebate discount offered to operator.</inlineHelpText>
         <label>Total Rate</label>
         <summarizedField>OpportunityLineItem.FSNA_TotalDeviatedRate__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
@@ -1203,6 +1272,19 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_TotalTurnoverNA__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Net in Pocket for UFS (NSV - Total TMI)</inlineHelpText>
+        <label>Total Turnover (NA)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>FS_TotalTurnover__c</fullName>
@@ -1284,13 +1366,25 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
         <fullName>FS_Type_from_Objective__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT( Defined_Objective__r.FS_Objective_Type__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Opportunity Type as linked to Objective.</inlineHelpText>
         <label>Type from Objective</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_amountCasePiece__c</fullName>
+        <description>Roll-up Summary for the Total List Price for all Opportunity Products under Opportunity object</description>
+        <externalId>false</externalId>
+        <label>Amount (Case/Piece)</label>
+        <summarizedField>OpportunityLineItem.FS_totalListPrice__c</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>FS_casesPiece__c</fullName>
@@ -1634,7 +1728,7 @@ FSNA_Gross_Margin__c &gt;= FSNA_Margin_Market_Target__c,
 IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;green&quot;, 20, 20), 
 IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20) 
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Green is opportunity exceeds targeted opportunity margin.</inlineHelpText>
         <label>Margin Indicator</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -2405,6 +2499,7 @@ Enter competitor pricing if available</inlineHelpText>
         <fullName>Total_Opp_COGS__c</fullName>
         <description>Roll-up of Product Level COGS</description>
         <externalId>false</externalId>
+        <inlineHelpText>Total Cost of Product, production and supply chain related costs.</inlineHelpText>
         <label>Total Opportunity COGS</label>
         <summarizedField>OpportunityLineItem.FS_Copy_of_Total_COGS__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>

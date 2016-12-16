@@ -127,6 +127,9 @@
                     <apex:column headerValue="{!$Label.VPM_RecordID}">
                     <apex:inputCheckbox value="{!com1.setFlag}" disabled="{!com1.checkFlag}"/>
                     </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Code}">
+                    <apex:outputText value="{!com1.comApp.VPM_Code__c}" ></apex:outputText>
+                    </apex:column>
                     <apex:column headerValue="{!$Label.VPM_CommodityApprover}">
                     <apex:outputLink value="/{!com1.comApp}" target="_blank">{!com1.comApp.VPM_CommodityClass__c}</apex:outputLink>
                     </apex:column>
@@ -197,8 +200,14 @@
                     <apex:column headerValue="{!$Label.VPM_RecordID}" >
                     <apex:inputCheckbox value="{!com1.setFlag}" disabled="{!com1.checkFlag}"/>
                     </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Code}">
+                    <apex:outputText value="{!com1.comApp.VPM_Code__c}" ></apex:outputText>
+                    </apex:column>
                     <apex:column headerValue="{!$Label.VPM_CommodityApprover}">
                     <apex:outputLink value="/{!com1.comApp}" target="_blank">{!com1.comApp.VPM_CommodityClass__c}</apex:outputLink>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Country}">
+                    <apex:outputText value="{!com1.comApp.VPM_Country__c}" ></apex:outputText>
                     </apex:column>
                     <apex:column headerValue="{!$Label.VPM_TotalNumberApprover}">
                     <apex:outputText value="{!com1.comApp.VPM_ConfiguredApprovers__c}" ></apex:outputText>

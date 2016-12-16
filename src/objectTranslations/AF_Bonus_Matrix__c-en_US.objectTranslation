@@ -38,6 +38,10 @@
         <name>AF_BonusMatrixCode__c</name>
     </fields>
     <fields>
+        <label><!-- AF_Bonus_Currency --></label>
+        <name>AF_Bonus_Currency__c</name>
+    </fields>
+    <fields>
         <label><!-- Bonus Estimate Local --></label>
         <name>AF_Bonus_Estimate_Local__c</name>
     </fields>
@@ -50,6 +54,10 @@
         <name>AF_Bonus_Local_Value__c</name>
     </fields>
     <fields>
+        <label><!-- Bonus Local --></label>
+        <name>AF_Bonus_Local__c</name>
+    </fields>
+    <fields>
         <label><!-- Bonus Results --></label>
         <name>AF_Bonus_Results__c</name>
         <relationshipLabel><!-- Bonus Matrix --></relationshipLabel>
@@ -58,6 +66,10 @@
         <label><!-- Bonus Summary --></label>
         <name>AF_Bonus_Summary__c</name>
         <relationshipLabel><!-- Bonus Matrix --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- AF_Bonus Value USD --></label>
+        <name>AF_Bonus_Value_USD__c</name>
     </fields>
     <fields>
         <label><!-- BonusableFee --></label>
@@ -70,6 +82,14 @@
     <fields>
         <label><!-- CrossBorder No --></label>
         <name>AF_CrossBorder_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_Cross_Border --></label>
+        <name>AF_Cross_Border__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_Exchange_Rate --></label>
+        <name>AF_Exchange_Rate__c</name>
     </fields>
     <fields>
         <label><!-- Fiscal Year FF --></label>
@@ -151,6 +171,14 @@
             <translation><!-- Ready for PO --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>With Approver</masterLabel>
+            <translation><!-- With Approver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>With CMCO</masterLabel>
+            <translation><!-- With CMCO --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>With category finance</masterLabel>
             <translation><!-- With category finance --></translation>
         </picklistValues>
@@ -195,6 +223,10 @@
     <fields>
         <label><!-- isComment --></label>
         <name>AF_isComment__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_overall% --></label>
+        <name>AF_overall__c</name>
     </fields>
     <fields>
         <label><!-- Agency Entity Name --></label>

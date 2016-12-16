@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>PACV Solutions</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>PACV Solutions</value>
+    </caseValues>
+    <fields>
+        <label><!-- Benefits --></label>
+        <name>PACV_Benefits__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Deployed To --></label>
+        <name>PACV_Brand_Deployed_To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Address --></label>
+        <name>PACV_Contact_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Email --></label>
+        <name>PACV_Contact_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Name --></label>
+        <name>PACV_Contact_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Phone --></label>
+        <name>PACV_Contact_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>PACV_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Geography Deployed --></label>
+        <name>PACV_Geography_Deployed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Type --></label>
+        <name>PACV_Material_Type__c</name>
+        <picklistValues>
+            <masterLabel>Alu Can</masterLabel>
+            <translation><!-- Alu Can --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Carton</masterLabel>
+            <translation><!-- Carton --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corrugate</masterLabel>
+            <translation><!-- Corrugate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flexible</masterLabel>
+            <translation><!-- Flexible --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Glass</masterLabel>
+            <translation><!-- Glass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Label</masterLabel>
+            <translation><!-- Label --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rigids</masterLabel>
+            <translation><!-- Rigids --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tube</masterLabel>
+            <translation><!-- Tube --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Price Per Unit --></label>
+        <name>PACV_Price_Per_Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Solution Category --></label>
+        <name>PACV_Solution_Category__c</name>
+        <picklistValues>
+            <masterLabel>Covert</masterLabel>
+            <translation><!-- Covert --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dual</masterLabel>
+            <translation><!-- Dual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overt</masterLabel>
+            <translation><!-- Overt --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Solution Status --></label>
+        <name>PACV_Solution_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Archived</masterLabel>
+            <translation><!-- Archived --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Under Review</masterLabel>
+            <translation><!-- Under Review --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Solution Type --></label>
+        <name>PACV_Solution_Type__c</name>
+        <picklistValues>
+            <masterLabel>Taggents</masterLabel>
+            <translation><!-- Taggents --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Water Marks</masterLabel>
+            <translation><!-- Water Marks --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Solution in Use --></label>
+        <name>PACV_Solution_in_Use__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supplier Address --></label>
+        <name>PACV_Supplier_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supplier Email --></label>
+        <name>PACV_Supplier_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supplier Name --></label>
+        <name>PACV_Supplier_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supplier Phone --></label>
+        <name>PACV_Supplier_Phone__c</name>
+    </fields>
+    <layouts>
+        <layout>PACV Solution Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Supplier Contact Details --></label>
+            <section>Supplier Contact Details</section>
+        </sections>
+        <sections>
+            <label><!-- Unilever Contact Details --></label>
+            <section>Unilever Contact Details</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Generate_PDF --></label>
+        <name>Generate_PDF</name>
+    </webLinks>
+</CustomObjectTranslation>

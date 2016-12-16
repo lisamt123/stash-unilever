@@ -3,6 +3,7 @@
 @name : AF_Constants
 @CreateDate : 2/10/2014
 @Description : This is a common class used in the application to refer the user types and standard variables 
+TestClass : Refer : AA_Constants_Test
 @Version : 1.0
 @reference : none
 ****************************************************************************************************************************/
@@ -16,6 +17,8 @@ public class AF_Constants
     public static final String BASE_FEES_PROCUREMENT = 'Procurement';
     public static final String OOPS_ACTUAL_READYFORPO = 'Ready for PO';
     public static final String BONUS_SUMMARY_READYFORPO = 'Ready for PO';
+    public static final String BONUS_SUMMARY_WITHBONUSAPPROVER = 'With Approver'; // To include Approver for Annual bonus approvals
+    public static final String BONUS_SUMMARY_WITHCMCO = 'With CMCO';
     public static final String ANNUAL_BONUS_QUAL = '5';
     public static final String CATEGORY_FINANCE = 'With Category Finance'; 
     public static final string CATEGORY_FINANCE_Bonus_Quarterly='W/Cat Finance';
@@ -27,7 +30,8 @@ public class AF_Constants
     public static final String NULL_Key = 'Null';
     public static final String TRADITIONAL='Trad';
     public static final String DIGITAL='Digital';
-    public static final String TRADITIONAL_DIGITAL='TD';
+    public static final String ADAPTATION='Adap'; //Added by Saranya for AFO Release Enhancement
+    public static final String TRADITIONAL_DIGITAL_ADAPTATION='TDA'; // Updated by saranyA to include adaptation for annual bonus
     public static final String CATEGORY_OPTION='SCC';
     public static final String FISCALYEAR='2014';
     public static final String YTG_RED='red';
@@ -45,6 +49,72 @@ public class AF_Constants
     public static final String TOTAL='total';
     public static final String USERID='userid';
     //public static final String YEAR = 'year';
+    public static String Digita = AF_Constants.DIGITAL;
+    public static String Trad = AF_Constants.TRADITIONAL;
+    public static String Adap = AF_Constants.ADAPTATION; //Added by Saranya for AFO Release Enhancement
+
+    public static String Bonus_Thershold=AF_Constants.TEST_BONUS_THRESHOLD;
+    /* GET  VARIABLES*/
+    public static Boolean showmainblock{get;set;}
+    public static Decimal Sum_remuneration_val{get;set;}
+    public static Decimal Sum_remuneration_per{get;set;}
+    public static Boolean isAgency{get;set;}
+    public static Integer Totals_Traditional { get; set; }
+    public static Integer Totals_Digital { get; set; }
+    public static Boolean IsEditable{get;set;}
+    public static Boolean noDisplay{get;set;}
+    public static Boolean noDisplayQuarterly{get;set;}
+    public static Boolean showSubmit{get;set;}
+    public static Boolean No_Bonus_Check {get;set;}
+    public static Boolean AF_Pilot_Model { get; set; }
+    public static Decimal sum_of_qual_percent { get; set; }
+    public static decimal sum_of_bonus_per { get; set; }
+    public static Decimal bonusTradDigitalFee{get;set;}
+    public static Decimal sum_of_quant_qual_percent { get; set; }
+    public static decimal sum_of_bonus_val { get; set; }
+    public static set<string> agencyEstUnqStr = new set<string>();//set
+    Public static Set<String> Countryname_BT=new set<String>();
+    public static Integer Totals_BonusMeasureDigital { get; set; }
+    public static Integer Totals_BonusMeasureTrad { get; set; }
+    public static decimal sum_of_bonusable_fees_onload { get; set; }
+    public static Boolean isTraditional { get; set; }//Check for traditional value
+    public static Boolean isDigital { get; set; }//Check for digital value
+    Public static List<AF_Bonus_Summary__c> bonusSummaries{get;set;}//un used in class
+    Public static Boolean IsDrafted{get;set;}
+    /* Variables */
+    public static Double USDValue=0.0;
+    public static Double EURValue=0.0;
+    public static Integer colTotal;
+    public static Integer colTotalA;
+    public static Integer totalLocal;
+    public static Integer totalLocalA;
+    public static Integer totalA;
+    public static String currCode;
+    public static Integer colTotalVal;
+    public static String rowDetailToReturn;
+    public static Decimal totalWithoutRounding;
+    public static String crsBrdrImg;
+    public static String cmntImg;
+    public static String strongStrt;
+    public static String strongEnd;
+    public static String tdCloseTagEst;
+    public static String archiveImg;
+    public static String colDetail;
+    public static string spacer = ' ';
+    public static String href;
+    public static Decimal qual_per=0;
+    /* set used in class */
+    public static Boolean IsDraft{get;set;}
+    public static Set<String> fiscal_year = new set<String>();
+    public static Integer counter;
+    public static Set<String> QuaterSet = new Set<String>();
+    public static Set<String> quarterly= new Set<String>();
+    public static set<string> Uniquekey=new set<string>();
+    public static List<PermissionSetAssignment> pList;
+    public static string className_STR=AF_SubResultHandler.class.getName();
+    public static string classNameSTR=AF_RaisenewPO_Homepage_lightbox.class.getName();
+    public static string className=AF_MultiSelectComponent.class.getName();
+    public static string AF_AdjustQuater_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
     /*Attachment Types*/
     public static final String SOW='SOW';
     public static final String SCOPE_OF_WORK='Scope Of Work';
@@ -74,6 +144,7 @@ public class AF_Constants
     public static final String UT_AGENCY = 'Agency';
     public static final String UT_CONTROLLER = 'Controller';
     public static final String UT_CMCP_SUPERUSER = 'CMCO Super User';
+    public static final String UT_BONUS_APPROVER = 'Approver'; // To include approver for Annual bonus approvals 
     public static final String UT_REGIONAL_CATEGORY_FINANCE = 'Regional Category Finance';
     public static final String UT_PROCUREMENT = 'Procurement';
     /* Access Level*/
@@ -96,6 +167,8 @@ public class AF_Constants
     public static final String AF_BRAND_DELIM='--Brand--';
     public static final String AF_Agency_DELIM='--Agency--';
     public static final String AF_COUNTRY_DELIM='--Country--';
+    Public static final string AF_Digital_Delim='::D';
+    Public static final string AF_Adaption_Delim='::A';
     /*Page Reference*/
     public static final String CLOSE_REFRESH='/apex/AF_CloseAndRefresh?IsError=true';
     public static final String ADD_COMMENT='/apex/AF_AddComment?Id=';
@@ -172,6 +245,12 @@ public class AF_Constants
     public static final string ENTERACTUALS = 'EnterActuals';
     /*URL*/
     public static final string URL_HOMEPAGE = '/apex/AgencyHomePage?brandvalue=';
+    /*Custom setting record Name*/
+     public static final string TEST_BONUS_THRESHOLD ='Bonus Threshold';
+     public static final string TEST_BRAND_ATTRIBUTE ='Brand Attribute';
+     public static final string TEST_BUSINESS_MEASURE ='Business Measure';
+     public static final string TEST_COMMUNICATION='Communication';
+     public static final string Qualitative_Measure='Qualitative Measure';
     /*Test Class*/
     public static final string TEST_ASSERT_MSG = 'The account record is inserted';
     public static final String LocaleKey = 'en_US';
@@ -179,7 +258,6 @@ public class AF_Constants
     public static final String TEST_SUPER_CATEGORY = 'Drinks';
     public static final string TEST_ASSERT_MSG_CATEGORY = 'The Category record is inserted';
     public static final string TEST_QUAL_VALUE ='Qualitative Value';
-    public static final string TEST_BONUS_THRESHOLD ='Bonus Threshold';
     public static final string TEST_ANNUAL_BONUS='AF_AnnualBonus';
     public static final string TEST_CURRENCY_COUNTRY = 'Ecuador';
     public static final string TEST_COUNTRY_CODE = 'Eucador-USD';

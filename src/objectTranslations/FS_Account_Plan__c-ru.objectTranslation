@@ -82,6 +82,16 @@
         <name>FS_End_Date__c</name>
     </fields>
     <fields>
+        <help><!-- incremental # cases for the current year --></help>
+        <label><!-- Incremental Cases --></label>
+        <name>FS_Incremental_Cases__c</name>
+    </fields>
+    <fields>
+        <help><!-- incremental NSV for the current year --></help>
+        <label><!-- Incremental NSV --></label>
+        <name>FS_Incremental_NSV__c</name>
+    </fields>
+    <fields>
         <label>Количество выполненных целей</label>
         <name>FS_No_of_Completed_Objectives__c</name>
     </fields>
@@ -102,10 +112,12 @@
         <name>FS_Opportunity_Gain__c</name>
     </fields>
     <fields>
+        <help><!-- incremental NSV for the current year --></help>
         <label>План $</label>
         <name>FS_PlanDollars__c</name>
     </fields>
     <fields>
+        <help><!-- incremental plan growth % over previous year --></help>
         <label>План %</label>
         <name>FS_PlanPercent__c</name>
     </fields>
@@ -154,6 +166,7 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- incremental # cases for the current year --></help>
         <label>Планируемый объём</label>
         <name>FS_of_Units__c</name>
     </fields>

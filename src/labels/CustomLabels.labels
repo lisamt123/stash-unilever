@@ -22,6 +22,13 @@
         <value>Adaptation</value>
     </labels>
     <labels>
+        <fullName>AF_Adaptation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Adaptation</shortDescription>
+        <value>Adaptation</value>
+    </labels>
+    <labels>
         <fullName>AF_Adaptation_Value</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -155,6 +162,13 @@
         <value>You cannot edit as its in Approval process</value>
     </labels>
     <labels>
+        <fullName>AF_Approve_Reject_BonusMatrix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Approve/Reject BonusMatrix</shortDescription>
+        <value>You are about to either approve/reject these records. Do you wish to proceed?</value>
+    </labels>
+    <labels>
         <fullName>AF_Approve_record</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -235,6 +249,14 @@
         <value>please check the base fees</value>
     </labels>
     <labels>
+        <fullName>AF_BonusApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BonusApprover</shortDescription>
+        <value>Important : By APPROVING the annual bonus you are automatically signing off the bonus payout. As a result a Purchase Order will be issued to the agency by category finance.
+REJECTING the annual bonus would require category finance to revise and re-submit.</value>
+    </labels>
+    <labels>
         <fullName>AF_BonusMatrixHelp</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -263,6 +285,13 @@
         <value>The Thresholds entered do not match the Unilever entity/entities in the Base Fees matrix. Please resolve the following mismatches by setting Bonus Threshold for Unilever entities:</value>
     </labels>
     <labels>
+        <fullName>AF_BonusValidation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BonusValidation</shortDescription>
+        <value>The overall bonus (%) is more than 40%</value>
+    </labels>
+    <labels>
         <fullName>AF_Bonus_Matrix</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -275,6 +304,13 @@
         <protected>false</protected>
         <shortDescription>AF_Bonus_Quarterly</shortDescription>
         <value>Bonus Quarterly</value>
+    </labels>
+    <labels>
+        <fullName>AF_Bonus_Submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Bonus_Submit</shortDescription>
+        <value>You are about to submit this record for approval. Do you wish to proceed?</value>
     </labels>
     <labels>
         <fullName>AF_Bonus_Value</fullName>
@@ -302,7 +338,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_Bonusable_Fees</shortDescription>
-        <value>Bonusable Fees</value>
+        <value>Bonusable Fees :</value>
     </labels>
     <labels>
         <fullName>AF_BrandEstimateDisplayText</fullName>
@@ -423,6 +459,13 @@
         <protected>false</protected>
         <shortDescription>AF_Country_Breakdown</shortDescription>
         <value>Please indicate the country breakdown percentage within UK</value>
+    </labels>
+    <labels>
+        <fullName>AF_Country_Targets</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Country_Targets</shortDescription>
+        <value>Country Targets</value>
     </labels>
     <labels>
         <fullName>AF_Country_breakdown_percentage</fullName>
@@ -554,6 +597,13 @@ Are you sure you wish to proceed?</value>
         <value>You cannot flag the record</value>
     </labels>
     <labels>
+        <fullName>AF_Global_Targets</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Global_Targets</shortDescription>
+        <value>Global Targets</value>
+    </labels>
+    <labels>
         <fullName>AF_Insert</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -682,6 +732,13 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>AF_NoBonus</shortDescription>
         <value>No Bonus</value>
+    </labels>
+    <labels>
+        <fullName>AF_NoBonus_Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_NoBonus_Value</shortDescription>
+        <value>By selecting this option you are confirming that this brand will not be subjected to bonus.please engage with CMCO team for agreement for use</value>
     </labels>
     <labels>
         <fullName>AF_No_Bonus</fullName>
@@ -881,7 +938,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_Pilot_Model_Bonus</shortDescription>
-        <value>Pilot Model</value>
+        <value>Exceptional Targets</value>
     </labels>
     <labels>
         <fullName>AF_Pilot_Model_Instructions</fullName>
@@ -919,11 +976,18 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Please enter the Quant fields</value>
     </labels>
     <labels>
+        <fullName>AF_Quant_Bonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Quant_Bonus</shortDescription>
+        <value>The Quant Bonus (%) greater than 24%</value>
+    </labels>
+    <labels>
         <fullName>AF_Quant_Fields</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_Quant_Fields</shortDescription>
-        <value>Please enter the Quant and Qual fields</value>
+        <value>Please enter the Result field</value>
     </labels>
     <labels>
         <fullName>AF_Quantative_Bonus</fullName>
@@ -1254,7 +1318,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_UBFLB-Type_of_Fees</shortDescription>
-        <value>Now select which type of fees will be included in the Bonus calculations</value>
+        <value>By selecting Exceptional targets you can set up unique targets for your brand.This should only be used where the standard KPIs cannot be applied.</value>
     </labels>
     <labels>
         <fullName>AF_Uncheck_pilot</fullName>
@@ -1317,7 +1381,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_UrlLink</shortDescription>
-        <value>https://unilever.my.salesforce.com</value>
+        <value>https://unilever--cogdeployt.cs42.content.force.com</value>
     </labels>
     <labels>
         <fullName>AF_User_Access</fullName>
@@ -10930,12 +10994,33 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>FA-Participant-RR Customer service</value>
     </labels>
     <labels>
+        <fullName>FS_AccountName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Account Name</shortDescription>
+        <value>Account Name</value>
+    </labels>
+    <labels>
         <fullName>FS_AccountOperatorRecordType</fullName>
         <categories>FS Custom Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>FS Operator Record Type</shortDescription>
         <value>Operator</value>
+    </labels>
+    <labels>
+        <fullName>FS_ActionHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Action Header</shortDescription>
+        <value>Action</value>
+    </labels>
+    <labels>
+        <fullName>FS_AdditionalInformationSection</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Additional Information Section</shortDescription>
+        <value>Additional Information</value>
     </labels>
     <labels>
         <fullName>FS_ClientSecretKey</fullName>
@@ -10945,6 +11030,83 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>d51b83761ff54783B4C600143A323E1A</value>
     </labels>
     <labels>
+        <fullName>FS_Comment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Comment</shortDescription>
+        <value>Comment</value>
+    </labels>
+    <labels>
+        <fullName>FS_ContactInformationSection</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Contact Information Section</shortDescription>
+        <value>Contact Information</value>
+    </labels>
+    <labels>
+        <fullName>FS_ContactNameHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Contact Name Header</shortDescription>
+        <value>Contact Name</value>
+    </labels>
+    <labels>
+        <fullName>FS_ContactSection</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Contact Section</shortDescription>
+        <value>Contacts</value>
+    </labels>
+    <labels>
+        <fullName>FS_DecisionMakerHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Decision Maker Header</shortDescription>
+        <value>Decision Maker</value>
+    </labels>
+    <labels>
+        <fullName>FS_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>FS_FirstName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS First Name</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>FS_LastName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Last Name</shortDescription>
+        <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>FS_Mobile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Mobile</shortDescription>
+        <value>Mobile</value>
+    </labels>
+    <labels>
+        <fullName>FS_NewContactButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS New Contact Button</shortDescription>
+        <value>New Contact</value>
+    </labels>
+    <labels>
+        <fullName>FS_Owner</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Owner</shortDescription>
+        <value>Owner</value>
+    </labels>
+    <labels>
         <fullName>FS_PIIClientId</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10952,11 +11114,32 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>7bc7af29041645fe80aa5d16e71876e5</value>
     </labels>
     <labels>
+        <fullName>FS_Personal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Personal</shortDescription>
+        <value>Personal</value>
+    </labels>
+    <labels>
+        <fullName>FS_PositionHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Position Header</shortDescription>
+        <value>Position</value>
+    </labels>
+    <labels>
         <fullName>FS_UrlId</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>FS_UrlId</shortDescription>
         <value>https://frontierbi.eu.cloudhub.io/api/siteLead</value>
+    </labels>
+    <labels>
+        <fullName>FS_Work</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Work</shortDescription>
+        <value>Work</value>
     </labels>
     <labels>
         <fullName>FS_systemAdministrator</fullName>
@@ -24952,6 +25135,35 @@ the campaign covers more than 15 countries</value>
         <value>Update</value>
     </labels>
     <labels>
+        <fullName>PACV_Not_Published_RecTypeId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PACV Not Published RecTypeId</shortDescription>
+        <value>0120L0000002PHdQAM</value>
+    </labels>
+    <labels>
+        <fullName>PACV_Published_RecTypeId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PACV Published RecTypeId</shortDescription>
+        <value>0120L0000002PHeQAM</value>
+    </labels>
+    <labels>
+        <fullName>PACV_Questionnaire_ObjId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PACV Questionnaire ObjId</shortDescription>
+        <value>01I3C0000004McY</value>
+    </labels>
+    <labels>
+        <fullName>PACV_Trigger_Switch</fullName>
+        <categories>This switch is to turn On/Off the trigger. Change the value to False to inactivate the trigger and True to activate the trigger.</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PACV_Trigger_Switch</shortDescription>
+        <value>True</value>
+    </labels>
+    <labels>
         <fullName>PBS_CHATTER</fullName>
         <categories>PBS</categories>
         <language>en_US</language>
@@ -24973,6 +25185,28 @@ the campaign covers more than 15 countries</value>
         <protected>false</protected>
         <shortDescription>PBS_Library</shortDescription>
         <value>PlanWiki</value>
+    </labels>
+    <labels>
+        <fullName>PBS_Worklevel1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PBSWorklevel1</shortDescription>
+        <value>Supply Planner,Demand Planner,Demand &amp; Supply Planner,Repack Planner/Officer,Innovation Planner,Supply/Requirements Planner,Materials Planner,Distribution Planner</value>
+    </labels>
+    <labels>
+        <fullName>PBS_Worklevel2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PBSWorklevel2</shortDescription>
+        <value>Demand Planning Manager,Supply Planning Manager (MSO/MCO),Repack Operations Manager,S&amp;OP Manager,Demand &amp; Supply Planning Manager(MSO/MCO),Site Supply Planning Manager</value>
+    </labels>
+    <labels>
+        <fullName>PBS_Worklevel3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PBSWorklevel3</shortDescription>
+        <value>Planning Director (MSO/MCO),Category / Brand SC Director, 
+Strategic Planning Director Product Group</value>
     </labels>
     <labels>
         <fullName>PBS_soqllimit</fullName>
@@ -25921,11 +26155,18 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>Already added as Commodity approver for</value>
     </labels>
     <labels>
+        <fullName>VPM_AlreadyRework</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Already in Rework display message</shortDescription>
+        <value>Already send for rework</value>
+    </labels>
+    <labels>
         <fullName>VPM_AlreadySendApprovalMessage</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Record Already Send for Approval Message</shortDescription>
-        <value>The request is already send for Approval , you can&apos;t make changes before it Approved/Reworked ...</value>
+        <value>This request has already been sent for approval, so changes cannot be made. Once an approval decision is given, it may be possible to make changes.</value>
     </labels>
     <labels>
         <fullName>VPM_Alternative_payee_in_document</fullName>
@@ -26201,6 +26442,13 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>Please note if you complete and submit the Advanced Form, you will bypass your Front Line Services team and the request will route straight to approver/s.</value>
     </labels>
     <labels>
+        <fullName>VPM_CannotSendRework</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Business Requestor &amp; MDM Ops (Except Fusion Region) can&apos;t send Rework</shortDescription>
+        <value>Business Requestor &amp; MDM Ops (Except Fusion Region) cannot send for rework.</value>
+    </labels>
+    <labels>
         <fullName>VPM_CashManagementGroup</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -26219,7 +26467,7 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM Certificate Name</shortDescription>
-        <value>vendorbpm_client_test</value>
+        <value>VPM_Mulesoft_Callouts</value>
     </labels>
     <labels>
         <fullName>VPM_Certificate_Number_Tax_Exemption</fullName>
@@ -26324,7 +26572,7 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM_CommodityApprovReportLink</shortDescription>
-        <value>/00O0L000003QvH7</value>
+        <value>/00O19000000GqR7</value>
     </labels>
     <labels>
         <fullName>VPM_CommodityApprover</fullName>
@@ -26457,7 +26705,7 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM Country Label Proc Admin</shortDescription>
-        <value>Country :</value>
+        <value>Responsible Country</value>
     </labels>
     <labels>
         <fullName>VPM_CountryNotSelected</fullName>
@@ -26758,7 +27006,7 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM Home Page Link 2</shortDescription>
-        <value>Related Documentation</value>
+        <value>Click here for</value>
     </labels>
     <labels>
         <fullName>VPM_HomePageLink3</fullName>
@@ -26990,6 +27238,13 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <protected>false</protected>
         <shortDescription>VPM - Error Msg No Record Selected</shortDescription>
         <value>No records selected.Please try again by selecting the approver and country</value>
+    </labels>
+    <labels>
+        <fullName>VPM_OkForRework</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Are you sure you want to rework the request?</shortDescription>
+        <value>Are you sure you want to rework the request? Please provide guidance via the Chatter feed</value>
     </labels>
     <labels>
         <fullName>VPM_Old_Approver</fullName>
@@ -27396,6 +27651,13 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <protected>false</protected>
         <shortDescription>Rework alert</shortDescription>
         <value>This request is in a re-work process. If this was re-worked to you, please click the &apos;Recall&apos; button on the approval related list before continuing</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ReworkCancelled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Rework Cancelled Display Message</shortDescription>
+        <value>Rework Cancelled</value>
     </labels>
     <labels>
         <fullName>VPM_Rounding_Profile_Group</fullName>
@@ -28039,7 +28301,9 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM_VendorTypeTPTHelpText</shortDescription>
-        <value>Select Vendor Type, Global Authorisation Group and Trade Partner</value>
+        <value>Click next to confirm the default values. 
+
+It is recommended that the default values are left as they are, unless you need to make an update</value>
     </labels>
     <labels>
         <fullName>VPM_Vendor_Contact_Details</fullName>
@@ -28292,6 +28556,22 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <protected>false</protected>
         <shortDescription>WP User Admin Too Many Results Part 2</shortDescription>
         <value>results. Please refine your search criteria and try again.</value>
+    </labels>
+    <labels>
+        <fullName>WU_Active_WH</fullName>
+        <categories>WareHouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Active WH</shortDescription>
+        <value>Active WH</value>
+    </labels>
+    <labels>
+        <fullName>WU_Building_ContractType</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Building ContractType</shortDescription>
+        <value>In-House / 3PL</value>
     </labels>
     <labels>
         <fullName>WU_Category</fullName>

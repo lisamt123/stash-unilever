@@ -422,6 +422,10 @@
             <translation><!-- Travel and Accomodation --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Warehousing &amp; Logistics</masterLabel>
+            <translation><!-- Warehousing &amp; Logistics --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Warehousing &amp; Pallets</masterLabel>
             <translation><!-- Warehousing &amp; Pallets --></translation>
         </picklistValues>

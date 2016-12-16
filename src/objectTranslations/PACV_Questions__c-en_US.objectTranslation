@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>PACV Questions</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>PACV Questions</value>
+    </caseValues>
+    <fields>
+        <label><!-- Answering Method --></label>
+        <name>PACV_Answering_Method__c</name>
+        <picklistValues>
+            <masterLabel>Checkbox Objective Answering</masterLabel>
+            <translation><!-- Checkbox Objective Answering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Radio Button Objective Answering</masterLabel>
+            <translation><!-- Radio Button Objective Answering --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Please enter the values separated by semi-colon. --></help>
+        <label><!-- Answers --></label>
+        <name>PACV_Answers__c</name>
+    </fields>
+    <fields>
+        <label><!-- Help Text --></label>
+        <name>PACV_Help_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Question Status --></label>
+        <name>PACV_Question_Status__c</name>
+        <picklistValues>
+            <masterLabel>Activated</masterLabel>
+            <translation><!-- Activated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deactivated</masterLabel>
+            <translation><!-- Deactivated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Activated</masterLabel>
+            <translation><!-- Not Activated --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Question --></label>
+        <name>PACV_Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- Questionnaire --></label>
+        <name>PACV_Questionnaire__c</name>
+        <relationshipLabel><!-- PACV Questions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Please enter the values separated by semi-colon. --></help>
+        <label><!-- Scores --></label>
+        <name>PACV_Scores__c</name>
+    </fields>
+    <fields>
+        <label><!-- Weightage % --></label>
+        <name>PACV_Weightage__c</name>
+    </fields>
+    <layouts>
+        <layout>PACV Question Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Activate_Question --></label>
+        <name>Activate_Question</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -48,6 +48,10 @@
                 <behavior>Readonly</behavior>
                 <field>FS_casesPiece__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Description</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -76,7 +80,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Amount</field>
+                <field>FS_amountCasePiece__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -204,12 +208,7 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Description Information</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Description</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
@@ -364,9 +363,6 @@
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
-        <relatedList>RelatedCompetitorList</relatedList>
-    </relatedLists>
-    <relatedLists>
         <excludeButtons>AddProduct</excludeButtons>
         <excludeButtons>ChoosePricebook</excludeButtons>
         <excludeButtons>EditAllProduct</excludeButtons>
@@ -375,11 +371,11 @@
         <excludeButtons>Sort</excludeButtons>
         <fields>Product2</fields>
         <fields>Quantity</fields>
-        <fields>UnitPrice</fields>
+        <fields>FS_listPriceCasePiece__c</fields>
         <fields>FS_tprPercent__c</fields>
         <fields>FS_turnover__c</fields>
+        <fields>FS_grossMargin__c</fields>
         <fields>FS_gmWhenTPREqualsZero__c</fields>
-        <fields>ProdDistributor__c</fields>
         <fields>FS_Sample__c</fields>
         <relatedList>RelatedLineItemList</relatedList>
     </relatedLists>
@@ -388,15 +384,6 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedOpportunityHistoryList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>ORDERS.ORDER_NUMBER</fields>
-        <fields>ORDERS.STATUS</fields>
-        <fields>ORDERS.EFFECTIVE_DATE</fields>
-        <fields>CONTRACT.CONTRACT_NUMBER</fields>
-        <fields>ORDERS.TOTAL_AMOUNT</fields>
-        <relatedList>RelatedOrderList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>CreatedDate</fields>

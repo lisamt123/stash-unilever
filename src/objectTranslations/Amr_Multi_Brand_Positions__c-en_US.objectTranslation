@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Amr Multi Brand Positions</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Amr Multi Brand Positions</value>
+    </caseValues>
+    <fields>
+        <label><!-- Multi Brand Positioning --></label>
+        <name>Multi_Brand_Positioning__c</name>
+        <relationshipLabel><!-- Amr Multi Brand Positions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Multi Brand --></label>
+        <name>Multi_Brand__c</name>
+        <relationshipLabel><!-- Amr Multi Brand Positions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Multi Category --></label>
+        <name>Multi_Category__c</name>
+        <relationshipLabel><!-- Amr Multi Brand Positions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

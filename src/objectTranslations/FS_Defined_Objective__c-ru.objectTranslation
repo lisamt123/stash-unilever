@@ -61,28 +61,9 @@
         <value>Выбранные цели</value>
     </caseValues>
     <fields>
+        <help><!-- a particular strategy or thrust that positions UFS as a &quot;Best Solution Provider&quot; --></help>
         <label><!-- BSP --></label>
         <name>BSP__c</name>
-        <picklistValues>
-            <masterLabel>BSP 1</masterLabel>
-            <translation><!-- BSP 1 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BSP 2</masterLabel>
-            <translation><!-- BSP 2 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BSP 3</masterLabel>
-            <translation><!-- BSP 3 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BSP 4</masterLabel>
-            <translation><!-- BSP 4 --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BSP 5</masterLabel>
-            <translation><!-- BSP 5 --></translation>
-        </picklistValues>
         <picklistValues>
             <masterLabel>Establish Web Shops</masterLabel>
             <translation><!-- Establish Web Shops --></translation>
@@ -130,6 +111,7 @@
         <name>FS_Account_Plan_Statement_del__c</name>
     </fields>
     <fields>
+        <help><!-- expressed UFS business intentions with an account for a given year --></help>
         <label>Прогноз</label>
         <name>FS_Account_Plan__c</name>
         <relationshipLabel>Выбранные цели</relationshipLabel>
@@ -160,6 +142,10 @@
         <name>FS_Estimated_Timing__c</name>
     </fields>
     <fields>
+        <label><!-- Incremental Cases --></label>
+        <name>FS_IncrementalCases__c</name>
+    </fields>
+    <fields>
         <label><!-- NSV --></label>
         <name>FS_NSV__c</name>
     </fields>
@@ -168,6 +154,7 @@
         <name>FS_No_of_Opportunities__c</name>
     </fields>
     <fields>
+        <help><!-- expressed focus in a given quarter on a particular BSP --></help>
         <label>Описание цели</label>
         <name>FS_Objective_Description__c</name>
     </fields>
@@ -247,6 +234,10 @@
         <picklistValues>
             <masterLabel>Completed</masterLabel>
             <translation>Выполнено</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Planning</masterLabel>

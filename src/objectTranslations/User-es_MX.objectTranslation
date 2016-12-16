@@ -8,6 +8,10 @@
             <translation><!-- Agency --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Approver</masterLabel>
+            <translation><!-- Approver --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>CMCO Super User</masterLabel>
             <translation><!-- CMCO Super User --></translation>
         </picklistValues>
@@ -73,6 +77,26 @@
     <fields>
         <label><!-- CannotChangeMC --></label>
         <name>CannotChangeMC__c</name>
+    </fields>
+    <fields>
+        <label><!-- DB Region --></label>
+        <name>DB_Region__c</name>
+        <picklistValues>
+            <masterLabel>APAC</masterLabel>
+            <translation><!-- APAC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EMEA</masterLabel>
+            <translation><!-- EMEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA</masterLabel>
+            <translation><!-- LA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label>Límite reembolso tarjeta de débito</label>
@@ -393,6 +417,10 @@
             <translation><!-- Japanese --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Korean</masterLabel>
+            <translation><!-- Korean --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Moldavian</masterLabel>
             <translation><!-- Moldavian --></translation>
         </picklistValues>
@@ -685,6 +713,10 @@
         <picklistValues>
             <masterLabel>Japan</masterLabel>
             <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea</masterLabel>
+            <translation><!-- Korea --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Middle Americas</masterLabel>

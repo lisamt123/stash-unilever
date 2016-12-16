@@ -248,7 +248,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                               document.getElementById('{!$Component.feedbackForm.feedbackRating}').value = "";
                           });
                       });
-
+                   </script>
+                   <script>
                         function launchLearning(learningURL,target){
                             if(target == 'iframe'){
                                 $jk('#contentLink').unbind('click');

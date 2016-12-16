@@ -109,6 +109,10 @@
         <name>One_View_KPIs</name>
     </customApplications>
     <customApplications>
+        <label><!-- PACV --></label>
+        <name>PACV</name>
+    </customApplications>
+    <customApplications>
         <label><!-- PSAR --></label>
         <name>PSAR</name>
     </customApplications>
@@ -391,6 +395,10 @@
     <customTabs>
         <label><!-- Visitor Entry Portal --></label>
         <name>Visitor_Entry_Portal</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Warehouse Maps --></label>
+        <name>WU_Warehouse_Maps</name>
     </customTabs>
     <customTabs>
         <label><!-- Warehouse Search --></label>

@@ -18,6 +18,14 @@
         <name>AF_Bonus_Value_Bm__c</name>
     </fields>
     <fields>
+        <label><!-- AF_Bonus_overall% --></label>
+        <name>AF_Bonus_overall__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_BonusableFees --></label>
+        <name>AF_BonusableFees__c</name>
+    </fields>
+    <fields>
         <label><!-- Bonusable Fees --></label>
         <name>AF_Bonusable_Fees__c</name>
     </fields>
@@ -124,6 +132,10 @@
     <fields>
         <label><!-- # of Bonus Matrix --></label>
         <name>AF_of_Bonus_Matrix__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_totalBonus --></label>
+        <name>AF_totalBonus__c</name>
     </fields>
     <fields>
         <label><!-- IDfromPilot --></label>

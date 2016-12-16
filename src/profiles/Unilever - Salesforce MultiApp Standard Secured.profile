@@ -141,6 +141,11 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
+        <application>PACV</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
         <application>PSAR</application>
         <default>false</default>
         <visible>false</visible>
@@ -584,6 +589,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AF_BonusMatrix_BonusApproverController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AF_BonusMatrix_BonusApprover_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AF_BonusQuarterly</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -637,6 +650,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>AF_Bonus_ResultsHandler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AF_Bonus_SummaryHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -765,6 +782,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>AF_Constants</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AF_Constants_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -976,6 +997,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AF_UpdBonusSummaryCatApproverValues_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AF_UpdOopsEstCatApproverValues_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -993,6 +1018,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>AF_UpdateBonusEstimatesValues5_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AF_UpdateBonusSummaryCatApproverValues</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -5860,6 +5889,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PACV_Questionnaire_StatusUpdate_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PACV_Questions_AnswerCreation_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PBS_AccessController_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -7264,6 +7301,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>WU_SetWareHousePOCHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>WU_SetWarehousePOCHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -7281,6 +7322,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>WU_WarehouseSearchController_test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WU_WarehouseSearchGooglemapController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WU_WarehouseSearchGooglemapController_TC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -8694,6 +8743,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Bonus_Currency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Matrix__c.AF_Bonus_Estimate_Local__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8709,6 +8763,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Bonus_Local__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Bonus_Value_USD__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Matrix__c.AF_BonusableFee__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8720,6 +8784,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Bonus_Matrix__c.AF_CrossBorder_No__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Cross_Border__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Exchange_Rate__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8864,6 +8938,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_overall__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Matrix__c.Agency_Entity_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8905,6 +8984,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Bonus_Results__c.AF_Bonus_Value_Bm__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Results__c.AF_Bonus_overall__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Results__c.AF_BonusableFees__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9009,6 +9098,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Results__c.AF_totalBonus__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Results__c.IDfromPilot__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -9029,7 +9123,37 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_AgencyUser1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_AgencyUser2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_AgencyUser3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_AgencyUser4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_AgencyUser5__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Summary__c.AF_Agency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Approver1__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9049,12 +9173,92 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_CMCO1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_CMCO2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_CMCO3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_CMCO4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_CMCO5__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_10__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_5__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_6__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_7__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_8__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Cat_Finance_9__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Summary__c.AF_Category_View__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Bonus_Summary__c.AF_Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Community_Link__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9069,12 +9273,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Internal_Link__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Summary__c.AF_Is_Pilot_Model__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Bonus_Summary__c.AF_No_Of_CrossBorders__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_RejectReason__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_StatusFromApprover__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9114,7 +9333,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Threshold__c.AF_Adaptation__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Threshold__c.AF_Agency_Brand_Fiscal_Year__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Threshold__c.AF_Bonus_Target__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9190,6 +9419,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Bonus_Threshold__c.AF_Traditional__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Threshold__c.AF_UnileverCountry__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9579,12 +9813,32 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Disable_Contrycheckbox__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Disable_Exceptionaltargets__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Disable_Globalcheckbox__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_Dont_Show_on_Report__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_Entity_Combination__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_ExceptionalCountry__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9600,6 +9854,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_GR_Approval__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Globalcheck_Disable__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9620,6 +9879,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_Internal_Link__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Is_Global_Bonus_Threshold_Checked__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9790,6 +10054,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_isFirsttime__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_iscountrymode__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -11439,6 +11708,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Adaptation__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Bonus_Target__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Sub_Result__c.AF_Bonusable_Fees__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11544,6 +11823,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_UnileverCountry__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Sub_Result__c.AF_Unique_Key__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11565,6 +11849,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Sub_Result__c.Bonus_Measure__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.Bonus_Measures__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.Bonus_Targets__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.Brand_Agency_Uq_Combination__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -11615,6 +11914,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Agency_Contact__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Agency_Discipline__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -12514,6 +12818,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.FS_SoftServeDistrId__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.FS_SoldToCode__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -12979,17 +13288,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account_Relationship__c.External_ID__c</field>
+        <field>Account_Relationship__c.FS_MasterAccount__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account_Relationship__c.Secondary_Account__c</field>
+        <field>Account_Relationship__c.FS_MergedAccountName__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account_Relationship__c.Type__c</field>
+        <field>Account_Relationship__c.FS_UniqueAccountID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -14590,6 +14899,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Amr_Logging_Form_Setting__c.Introduction__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Amr_Multi_Brand_Positioning__c.Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Amr_Multi_Brand_Positions__c.Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Amr_Multi_Brand__c.Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Amr_Multi_Category__c.Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22764,6 +23093,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Campaign.DB_Campaign_Tactic__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Campaign.Description</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -25484,6 +25818,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Event.DB_Activity_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Event.Description</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -26909,6 +27248,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FS_Account_Plan__c.FS_Incremental_Cases__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Account_Plan__c.FS_Incremental_NSV__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FS_Account_Plan__c.FS_No_of_Completed_Objectives__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -27005,6 +27354,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FS_Defined_Objective__c.FS_Estimated_Timing__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Defined_Objective__c.FS_IncrementalCases__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -37354,6 +37708,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Lead.DB_Created_Date_without_Time__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.DB_Lead_Age__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Lead.Description</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -40853,6 +41217,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.DB_Competitor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.DealApproved__c</field>
         <readable>false</readable>
@@ -41099,6 +41468,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Opportunity.FS_TotalTurnoverNA__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Opportunity.FS_TotalTurnover__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -41130,6 +41504,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.FS_Type_from_Objective__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.FS_amountCasePiece__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -41519,6 +41898,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>OpportunityLineItem.FS_listPriceCasePiece__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>OpportunityLineItem.FS_necessaryTPR__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -41545,6 +41929,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.FS_temporaryPriceReduction__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.FS_totalListPrice__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -41650,6 +42039,191 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.Turnover__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Answers__c.PACV_Comments__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Case_Study__c.PACV_Risk_Assessment__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Case_Study__c.PACV_Solutions__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Questions__c.PACV_Answers__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Questions__c.PACV_Help_Text__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Questions__c.PACV_Question__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Questions__c.PACV_Questionnaire__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Questions__c.PACV_Scores__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Responses__c.PACV_Answer__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Responses__c.PACV_Question__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Risk_Assessment_Questionnaire__c.PACV_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Risk_Assessment_Questionnaire__c.PACV_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Risk_Assessment__c.IPM_Project__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Risk_Assessment__c.PACV_Project_Name1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Risk_Assessment__c.PACV_Project_Start_Date1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Risk_Assessment__c.PACV_Risk_Score__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Risk_Assessment__c.PACV_Risk_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Risk_Assessment__c.PACV_Solution_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Risk_Assessment__c.PACV_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Benefits__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Brand_Deployed_To__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Contact_Address__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Contact_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Contact_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Contact_Phone__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Geography_Deployed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Material_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Price_Per_Unit__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Solution_Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Solution_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Solution_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Solution_in_Use__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Supplier_Address__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Supplier_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Supplier_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_Supplier_Phone__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -44079,6 +44653,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Risk__c.FSNA_Margin_Market_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Risk__c.FSNA_Margin_Market_Target__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Risk__c.FS_No_of_Products__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Risk__c.FS_Sub_Sector__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -45779,6 +46368,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Task.DB_Activity_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Task.Description</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -46426,6 +47020,11 @@
         <editable>false</editable>
         <field>User.CannotChangeMC__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User.DB_Region__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -47639,6 +48238,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_CreatorIsCurrentUser__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_CreditInfoNumber__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -48814,6 +49418,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_SAPInsertUpdateStatusMessage__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_SCAC__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -49195,6 +49804,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_ThirdPartyAddress4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyCountry__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -49879,7 +50493,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>WU_Master_Warehouse__c.Current_Utilization__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WU_Master_Warehouse__c.Operations_ContractType__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>WU_Master_Warehouse__c.Submitted_by__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WU_Master_Warehouse__c.WH_Visibility_Process__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WU_Master_Warehouse__c.WU_Active_WH__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -49949,6 +50583,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>WU_Master_Warehouse__c.WU_Building_Contract_Expiry__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>WU_Master_Warehouse__c.WU_CityName__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -49985,6 +50624,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>WU_Master_Warehouse__c.WU_Current_Utilization__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WU_Master_Warehouse__c.WU_DC_Interface__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -50060,6 +50704,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>WU_Master_Warehouse__c.WU_Network__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WU_Master_Warehouse__c.WU_Operation_Contract_Expiry__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -55394,6 +56043,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>im_Issue__c.Is_local_media_statement_available__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>im_Issue__c.Issue_Description__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -55564,6 +56218,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>im_Issue__c.Report_Issue_To_Email_2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>im_Issue__c.Report_Issue_To_Email_3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>im_Issue__c.Report_Issue_To_Email__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -55594,6 +56258,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>im_Issue__c.Social_media_local_monitoring_available__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>im_Issue__c.Social_media_local_monitoring_formula__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>im_Issue__c.Submitted__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -55620,6 +56294,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>im_Issue__c.Way_Forward__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>im_Issue__c.im_Age__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>im_Issue__c.local_media_statement_available_formula__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -57636,6 +58320,10 @@
         <recordType>Account.UID_Secondary_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Account-Account Layout</layout>
+        <recordType>Account.WWP_Account</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Account-Pitch Agency Layout</layout>
         <recordType>Account.Pitch_Agency</recordType>
     </layoutAssignments>
@@ -57662,6 +58350,18 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Amr_Logging_Form_Setting__c-Amr Logging Form Setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_Multi_Brand_Positioning__c-Amr Multi Brand Positioning Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_Multi_Brand_Positions__c-Amr Multi Brand Positions Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_Multi_Brand__c-Amr Multi Brand Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Amr_Multi_Category__c-Amr Multi Category Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Amr_Project_Details__c-Amr Project Details Layout</layout>
@@ -59204,6 +59904,35 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>OrderItem-Order Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PACV_Answers__c-PACV Answer Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PACV_Case_Study__c-Case Study Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PACV_Questions__c-PACV Question Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PACV_Responses__c-PACV Response Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PACV_Risk_Assessment_Questionnaire__c-PACV Risk Assessment Not Published Questionnaire Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PACV_Risk_Assessment_Questionnaire__c-PACV Risk Assessment Not Published Questionnaire Layout</layout>
+        <recordType>PACV_Risk_Assessment_Questionnaire__c.Not_Published</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PACV_Risk_Assessment_Questionnaire__c-PACV Risk Assessment Not Published Questionnaire Layout</layout>
+        <recordType>PACV_Risk_Assessment_Questionnaire__c.Published</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PACV_Risk_Assessment__c-PACV Risk Assessment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PACV_Solutions__c-PACV Solution Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Achievement_Assignment__c-Achievement Assignment Layout</layout>
@@ -61497,6 +62226,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>AF_BonusMatrix_BonusApprover</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>AF_BrandAgencyCombination</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -62905,6 +63638,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>PACVSolutionPDF</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>PBS_AchievementWorkBadgeView</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -62937,6 +63674,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>PBS_Header_Template_clone</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>PBS_LMSStart</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -62946,6 +63687,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PBS_LMS_Template</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PBS_LMS_Template_clone</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -63097,6 +63842,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>PBS_WelcomePage_clone</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>PBS_Welcome_Home</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -63125,11 +63874,19 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>PC_ContainerPage_clone</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>PC_Forum</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PC_ForumGroup</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PC_Forum_clone</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -63434,6 +64191,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>WU_MultiCreateMultiEdit</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>WU_WarehouseGoogleMaps</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -63831,6 +64592,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.UID_Secondary_Account</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.WWP_Account</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -64801,6 +65567,16 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Order.UID_Secondary_Sales</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>PACV_Risk_Assessment_Questionnaire__c.Not_Published</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>PACV_Risk_Assessment_Questionnaire__c.Published</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -65962,6 +66738,34 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>PACV_Answers__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>PACV_Case_Study__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>PACV_Questions__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>PACV_Responses__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>PACV_Risk_Assessment_Questionnaire__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>PACV_Risk_Assessment__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>PACV_Solutions__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>PBS_Achievement_Category__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -66151,6 +66955,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>WU_Master_Warehouse__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>WU_Warehouse_Maps</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>

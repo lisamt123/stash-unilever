@@ -6,6 +6,14 @@
         <relationshipLabel><!-- Leads --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- DB Created Date without Time --></label>
+        <name>DB_Created_Date_without_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- DB Lead Age --></label>
+        <name>DB_Lead_Age__c</name>
+    </fields>
+    <fields>
         <name>Industry</name>
         <picklistValues>
             <masterLabel>Agriculture</masterLabel>

@@ -45,6 +45,10 @@
         <name>Call_Type__c</name>
     </fields>
     <fields>
+        <label><!-- DB Activity Type --></label>
+        <name>DB_Activity_Type__c</name>
+    </fields>
+    <fields>
         <label><!-- Account --></label>
         <name>FS_Account__c</name>
         <relationshipLabel><!-- Activities --></relationshipLabel>
@@ -59,7 +63,7 @@
         <relationshipLabel><!-- Activities --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Task Type --></label>
+        <label><!-- Event Type --></label>
         <name>FS_Task_Type__c</name>
     </fields>
     <fields>
@@ -207,8 +211,152 @@
             <translation><!-- Call --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>D - Conduct annual joint business planning session</masterLabel>
+            <translation><!-- D - Conduct annual joint business planning session --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - Conduct business review or program update</masterLabel>
+            <translation><!-- D - Conduct business review or program update --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - DSR Work-With</masterLabel>
+            <translation><!-- D - DSR Work-With --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - Development/execution of local promotion – center led</masterLabel>
+            <translation><!-- D - Development/execution of local promotion – center led --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - Development/execution of local promotion – local led</masterLabel>
+            <translation><!-- D - Development/execution of local promotion – local led --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - Distributor email communication</masterLabel>
+            <translation><!-- D - Distributor email communication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - District meeting</masterLabel>
+            <translation><!-- D - District meeting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - Foodshow</masterLabel>
+            <translation><!-- D - Foodshow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - General sales meeting</masterLabel>
+            <translation><!-- D - General sales meeting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - Lead follow up on behalf of distributor</masterLabel>
+            <translation><!-- D - Lead follow up on behalf of distributor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - Market blitz</masterLabel>
+            <translation><!-- D - Market blitz --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - Meet with key decision makers or management</masterLabel>
+            <translation><!-- D - Meet with key decision makers or management --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - Other</masterLabel>
+            <translation><!-- D - Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - Trade event - present and coordinate</masterLabel>
+            <translation><!-- D - Trade event - present and coordinate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - Trade event – check in (mid point, final)</masterLabel>
+            <translation><!-- D - Trade event – check in (mid point, final) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - Trade event – launch at general sales meeting</masterLabel>
+            <translation><!-- D - Trade event – launch at general sales meeting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - Trade event – local activity (ex: sample)</masterLabel>
+            <translation><!-- D - Trade event – local activity (ex: sample) --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Meeting</masterLabel>
             <translation><!-- Meeting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - Email/text - confirm appointment / agenda</masterLabel>
+            <translation><!-- O - Email/text - confirm appointment / agenda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - Email/text - provide follow up information</masterLabel>
+            <translation><!-- O - Email/text - provide follow up information --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - In person sales call - RAP/profile</masterLabel>
+            <translation><!-- O - In person sales call - RAP/profile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - In person sales call - general</masterLabel>
+            <translation><!-- O - In person sales call - general --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - In person sales call - present/review marketing program</masterLabel>
+            <translation><!-- O - In person sales call - present/review marketing program --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - In person sales call - product demo/cutting/ideation</masterLabel>
+            <translation><!-- O - In person sales call - product demo/cutting/ideation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - In person sales call - review pricing quote</masterLabel>
+            <translation><!-- O - In person sales call - review pricing quote --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - In person sales call - strategy meeting/top to top</masterLabel>
+            <translation><!-- O - In person sales call - strategy meeting/top to top --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - Order sample products</masterLabel>
+            <translation><!-- O - Order sample products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - Other</masterLabel>
+            <translation><!-- O - Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - Phone mtg - arrange appointment</masterLabel>
+            <translation><!-- O - Phone mtg - arrange appointment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - Phone mtg - discuss product/program</masterLabel>
+            <translation><!-- O - Phone mtg - discuss product/program --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - Phone mtg - follow up</masterLabel>
+            <translation><!-- O - Phone mtg - follow up --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - Restaurant visit - RAP</masterLabel>
+            <translation><!-- O - Restaurant visit - RAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - Virtual call - RAP/profile</masterLabel>
+            <translation><!-- O - Virtual call - RAP/profile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - Virtual call - discuss pricing</masterLabel>
+            <translation><!-- O - Virtual call - discuss pricing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - Virtual call - general</masterLabel>
+            <translation><!-- O - Virtual call - general --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - Virtual call - present/review marketing program</masterLabel>
+            <translation><!-- O - Virtual call - present/review marketing program --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O - Virtual call - strategy meeting/top to top</masterLabel>
+            <translation><!-- O - Virtual call - strategy meeting/top to top --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other</masterLabel>
@@ -234,6 +382,10 @@
         <label><!-- FS Task --></label>
         <name>FS_Task</name>
     </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Type is Mandatory, Please select a Type. --></errorMessage>
+        <name>FS_Type_Mandatory</name>
+    </validationRules>
     <webLinks>
         <label><!-- Send_Twitter_Message --></label>
         <name>sf4twitter__Send_Twitter_Message</name>

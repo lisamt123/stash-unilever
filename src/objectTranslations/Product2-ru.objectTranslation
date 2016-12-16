@@ -1048,7 +1048,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Net Weight --></label>
+        <label>Вес Нетто</label>
         <name>FS_NetWeight__c</name>
     </fields>
     <fields>
@@ -1068,7 +1068,7 @@
         <name>FS_ProfitCenter__c</name>
     </fields>
     <fields>
-        <label><!-- Sample --></label>
+        <label>Заказ образца</label>
         <name>FS_Sample__c</name>
     </fields>
     <fields>
@@ -1325,7 +1325,7 @@
         <name>FS_VATUA__c</name>
     </fields>
     <fields>
-        <label>кол-во в коробе</label>
+        <label>Кол-во в коробе</label>
         <name>FS_ZSU__c</name>
     </fields>
     <fields>
@@ -1883,7 +1883,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Product Image --></label>
+        <label>Изображение</label>
         <name>ProductImage__c</name>
     </fields>
     <fields>
@@ -1894,40 +1894,32 @@
         <label><!-- Product Type --></label>
         <name>ProductType__c</name>
         <picklistValues>
-            <masterLabel>Commodity</masterLabel>
-            <translation><!-- Commodity --></translation>
+            <masterLabel>Contract Pack</masterLabel>
+            <translation><!-- Contract Pack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Custom</masterLabel>
+            <translation><!-- Custom --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Equipment</masterLabel>
             <translation><!-- Equipment --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Error - Unknown Type</masterLabel>
-            <translation><!-- Error - Unknown Type --></translation>
+            <masterLabel>Exited/Disposed</masterLabel>
+            <translation><!-- Exited/Disposed --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Mexican Concept</masterLabel>
-            <translation><!-- Mexican Concept --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>POS</masterLabel>
-            <translation><!-- POS --></translation>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Restricted</masterLabel>
             <translation><!-- Restricted --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>SVP</masterLabel>
-            <translation><!-- SVP --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Soupbar</masterLabel>
-            <translation><!-- Soupbar --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Unknown</masterLabel>
-            <translation><!-- Unknown --></translation>
+            <masterLabel>Retail</masterLabel>
+            <translation><!-- Retail --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Unrestricted</masterLabel>
@@ -1971,7 +1963,7 @@
         <name>SalesProduct__c</name>
     </fields>
     <fields>
-        <label><!-- Sales Unit --></label>
+        <label>Товарная единица</label>
         <name>SalesUnit__c</name>
     </fields>
     <fields>
@@ -4468,15 +4460,15 @@
             <section>Financial Information</section>
         </sections>
         <sections>
-            <label><!-- Logistic Information --></label>
+            <label>Логистическая информация</label>
             <section>Logistic Information</section>
         </sections>
         <sections>
-            <label><!-- Product Hierarchy --></label>
+            <label>Продуктовая иерархия</label>
             <section>Product Hierarchy</section>
         </sections>
         <sections>
-            <label><!-- Product Visual --></label>
+            <label>Изображение</label>
             <section>Product Visual</section>
         </sections>
     </layouts>

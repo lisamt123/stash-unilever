@@ -3,18 +3,16 @@
 *@Date :            December 2015
 *@Description :     Handler class for trigger WU_SetWarehousePOC
 *************************************************************/
-public with sharing class WU_SetWarehousePOCHandler 
+public without sharing class WU_SetWarehousePOCHandler 
 {
     public static Boolean isInserted = false;
     private static Map<string, User> userMap=new Map<string, User>();
-    //private static Map<Id, User> mgrMap=new Map<Id, User>();
-    //private static List<WU_Master_Warehouse__c> errorWCU = new List<WU_Master_Warehouse__c>();
     
-    private WU_SetWarehousePOCHandler() {}
+    @Testvisible private WU_SetWarehousePOCHandler() {}
     public static void onBeforeInsert(List<WU_Master_Warehouse__c> InsertedItems, Map<Id, WU_Master_Warehouse__c> itemMap) {
+    
         isInserted = false;
         userMap=getUserMap(InsertedItems);
-        //mgrMap=GetManagerMap(InsertedItems);
         system.debug('@userMap--->'+userMap);
         for(WU_Master_Warehouse__c wc:InsertedItems){
             
@@ -27,7 +25,32 @@ public with sharing class WU_SetWarehousePOCHandler
             }
         }
         isInserted = true;
+        setOwner(InsertedItems);
     }
+    
+    public static void setOwner(List<WU_Master_Warehouse__c> InsertedItems) {
+        Set<String> sUser = new Set<String>();
+        for(WU_Master_Warehouse__c wareHouse: InsertedItems){
+            if(String.isNotBlank(wareHouse.WU_WarehousePOC_Email__c)){
+                sUser.add(wareHouse.WU_WarehousePOC_Email__c);
+                //sUser.add(wareHouse.WU_Warehouse_Secondary_POC_Email__c);                
+            }
+            
+        }
+        Map<String, Id> mUserIdByEmail= new Map<String, Id>();
+        for(User u : [SELECT ID, EMAIL FROM USER WHERE isActive=true and Email IN :sUser]){
+            mUserIdByEmail.put(u.Email, u.Id);
+        }
+        
+        for(WU_Master_Warehouse__c wareHouse: InsertedItems){
+            if(String.isNotBlank(wareHouse.WU_WarehousePOC_Email__c) && mUserIdByEmail.ContainsKey(wareHouse.WU_WarehousePOC_Email__c)){
+                wareHouse.OwnerId=mUserIdByEmail.get(wareHouse.WU_WarehousePOC_Email__c);
+            }
+        }
+        
+    }
+    
+  
     
     public static void onAfterInsert(List<WU_Master_Warehouse__c> InsertedItems) {
         list<WU_Warehouse_Capacity_Detail__c> warehouseCapacityDetailListToInsert = new list<WU_Warehouse_Capacity_Detail__c>();
@@ -68,8 +91,10 @@ public with sharing class WU_SetWarehousePOCHandler
             }
             IsNewMonth(wc);
             
+            
         }
-        
+        // changed on 15.09.2016
+        setOwner(updatedItems);
 
     }
     
@@ -107,29 +132,7 @@ public with sharing class WU_SetWarehousePOCHandler
         }
     }   
    
-   /*
-    public static Map<Id, User> GetManagerMap(List<WU_Master_Warehouse__c> lstWc){
-        set<string> sProfile=getManagerProfile();
-        system.debug('@@@sProfile--->'+sProfile);
-        set<string> eMailSet=new set<string>();
-        for(WU_Master_Warehouse__c w:lstWc){
-            eMailSet.add(w.WU_WarehousePOC_Email__c);
-        }
-        /*sProfile.add('WU-Logistics Leadership Team');
-        sProfile.add('WU-Warehouse Excellence Operations');        */
-       /* if(!sProfile.isEmpty())
-        {
-            Map<Id,Profile> pMap=new Map<Id,Profile>([Select Id from profile where name IN : sProfile]);
-            mgrMap=new Map<Id, User>([Select u.Profile.Name, u.ProfileId, u.Name, u.LastName, u.Id, u.FirstName, u.Email,u.ManagerId From User u 
-                            where u.IsActive=true
-                            and u.Email IN :eMailSet
-                            and u.ProfileId IN: pMap.keySet() LIMIT 2000]);
-        }
-        
-                        
-        return  mgrMap;              
-    }*/
-     
+   
     /** Get user mapping  **/
     private static Map<string, User> getUserMap(List<WU_Master_Warehouse__c> lstWc)
     {
@@ -152,20 +155,7 @@ public with sharing class WU_SetWarehousePOCHandler
                                 userMap.put(ur.Email, ur); 
                             }
         }
-        /*
-        if(!profileSet.isEmpty())
-        {
-            Map<Id,Profile> pMap=new Map<Id,Profile>([Select Id from profile where name IN : profileSet]);
-              
-            for(User ur:[Select  u.Profile.Name, u.ProfileId, u.Name, u.LastName, u.Id, u.FirstName, u.Email,u.ManagerId From User u 
-                            where u.IsActive=true
-                            and u.Email IN :eMailSet
-                            and u.ProfileId IN: pMap.keySet() LIMIT 2000]){
-                userMap.put(ur.Email, ur);
-               
-            }
-        }
-        */
+       
         return userMap;
     }
     
@@ -173,24 +163,7 @@ public with sharing class WU_SetWarehousePOCHandler
     
    /** Get user profile detaqils for warehouse POC **/ 
    /*
-    private static set<string> getUserProfile(){
-        set<string> profileSet=new set<string>();
-        WMS_Settings__c profileCode = WMS_Settings__c.getValues('WarehousePOC Profile'); 
-        if(profileCode!=null)
-        {
-            string aryProfile=profileCode.Warehouse_Profiles__c;
-            List<string> lstProfile=aryProfile.split(',');
-            if(!lstProfile.isEmpty()){
-                profileSet.addAll(lstProfile);
-            }
-            else{
-                profileSet.add(aryProfile);
-            }
-        }
-        
-        system.debug ('***profileSet-->'+profileSet);
-        return profileSet;
-    }
+   
     */
     private static Set<String> fetchUsersWithExcellencePermissions()
     {
@@ -222,28 +195,6 @@ public with sharing class WU_SetWarehousePOCHandler
         
         return UserIds;
     }
-    /** Get user profile detaqils for warehouse POC **/ 
-    /*
-    private static set<string> getManagerProfile(){
-        set<string> profileSet=new set<string>();
-        WMS_Settings__c profileCode = WMS_Settings__c.getValues('WarehousePOC Profile'); 
-        if(profileCode!=null)
-        {
-            string aryProfile=profileCode.Warehouse_ManagerProfiles__c;
-            List<string> lstProfile=aryProfile.split(','); 
-            if(!lstProfile.isEmpty()){
-                profileSet.addAll(lstProfile);
-            }
-            else{
-                profileSet.add(aryProfile);
-            }
-            
-        }
-        
-        system.debug ('***profileSet-->'+profileSet);
-        return profileSet;
-    }
-    */
     /*For Sharing Records with POC Email Owners*/
     
     
@@ -290,9 +241,9 @@ public with sharing class WU_SetWarehousePOCHandler
     }
 
     public static void updateWareHouseShare(List<WU_Master_Warehouse__Share> wareHouseShareList){
+    
         if(!wareHouseShareList.isEmpty()){
             list<string> lstExistingUsers = new list<string>();
-            //Map<string,list<string>> mapExistingUser = new Map<string,list<string>>();
             list<WU_Master_Warehouse__Share> lstShareToInsert = new list<WU_Master_Warehouse__Share>();
             
             
@@ -300,23 +251,17 @@ public with sharing class WU_SetWarehousePOCHandler
                 lstExistingUsers.add(objShare.ParentId);
             }
             list<WU_Master_Warehouse__Share> lstShared = [select id,ParentId,UserOrGroupId from WU_Master_Warehouse__Share Where ParentId in : lstExistingUsers ];
-            /*
-            for(string parentRecordRecId : lstExistingUsers ){
-                list<string> existingUserlst = new list<string>();
-                mapExistingUser.put(parentRecordRecId,existingUserlst);
-                for(WU_Master_Warehouse__Share objShare1: lstShared ){
-                    if(parentRecordRecId == objShare1.ParentId ){
-                        
-                    }
-                }
-            }
-            */
-            
+            System.debug('####wareHouseShareList (All )'+wareHouseShareList);
+            System.debug('####lstShared (Existing)'+lstShared);
             for(WU_Master_Warehouse__Share objShare : wareHouseShareList){
+                System.debug('####wareHouseShareList (Single )'+objShare);
                 boolean isRecordExists = false;
+                
                 for(WU_Master_Warehouse__Share objExistingShare : lstShared ){
+                    System.debug('####lstShared (Single Existing)'+objExistingShare);
                     if(objShare.ParentId == objExistingShare.ParentId &&  objShare.UserOrGroupId == objExistingShare.UserOrGroupId  ){
                         isRecordExists = true;
+                        System.debug('####objShare (Single after test)'+objShare);
                     }
                 }
                 
@@ -326,8 +271,288 @@ public with sharing class WU_SetWarehousePOCHandler
             }
             
             if(lstShareToInsert.size() > 0){
+            System.debug('####'+lstShareToInsert);
                 insert lstShareToInsert;
             }
         }
     }   
-}
+    
+    public static void sendEmailSecPOC(List<WU_Master_Warehouse__c> wareHouseSecPocList)
+    {
+        set<string>emailSet = new set<string>();
+        
+        if(!wareHouseSecPocList.isEmpty()){
+                
+            for(WU_Master_Warehouse__c masterWH : wareHouseSecPocList)
+            {
+         
+                                               
+                if(masterWH.WU_Warehouse_Secondary_POC_Email__c != Null && masterWH.WU_Committed_Max_PalletStorage__c <> masterWH.WU_Prior_CommittedPalletStorage__c)
+                {
+                    
+                    emailSet = retriveSetString(masterWH.WU_Warehouse_Secondary_POC_Email__c,emailSet);                             
+                }
+            }
+            
+            
+            sendMessage(wareHouseSecPocList,emailSet);
+        }
+    }
+    
+    private static set<string>retriveSetString(string commaSeperatedString,set<string>commaSeperatedSet){
+        if(!string.isBlank(commaSeperatedString)){
+            if(commaSeperatedString.contains(','))commaSeperatedSet.addAll(commaSeperatedString.split(','));
+            else commaSeperatedSet.add(commaSeperatedString);
+        }
+    return commaSeperatedSet;
+    }       
+    
+    private static void sendMessage(List<WU_Master_Warehouse__c> wareHouseSecPocList1,set<string>emailSet){
+        Map<string,Id> usersMap=new Map<string,Id>();
+        for(User usr:[SELECT Id,Email FROM User WHERE Email In:emailSet]){
+            usersMap.put(usr.Email,usr.Id);
+        }
+        List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
+        
+        OrgWideEmailAddress orgEmail = [select id, DisplayName, Address from OrgWideEmailAddress where DisplayName ='WH Visibility'];
+          
+          EmailTemplate warehouseTemplateId = [select Id, DeveloperName, Subject, HtmlValue, Body from EmailTemplate where DeveloperName=: 'WU_Warehouse_Committed_StoragetoPOC'];
+          System.debug(warehouseTemplateId +'warehouseTemplateId ************');
+          
+          
+          
+          for (WU_Master_Warehouse__c whLst : wareHouseSecPocList1) {
+            if (whLst.WU_Warehouse_Secondary_POC_Email__c != null && whLst.WU_Committed_Max_PalletStorage__c <> whLst.WU_Prior_CommittedPalletStorage__c) {
+              List<String> sendTo = new List<String>();
+              // Step 1: Create a new Email
+              Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+            
+              // Step 2: Set list of people who should get the email
+              //
+              for(String emailId:whLst.WU_Warehouse_Secondary_POC_Email__c.split(',')){
+                  sendTo.add(emailId);
+              }
+              // process the merge fields
+                String subject = warehouseTemplateId.Subject;
+                System.debug(whLst+'**************');
+                if(whLst.WU_LocationName__c!=null)
+                subject = subject.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', whLst.WU_LocationName__c);
+                else
+                subject = subject.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', '');
+            
+              
+                String plainBody = warehouseTemplateId.Body;
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.OwnerFullName}', 'User(s)');
+                if(whLst.WU_SAPCode_s__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_SAPCode_s__c}', whLst.WU_SAPCode_s__c);
+                if(whLst.Submitted_by__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.Submitted_by__c}', whLst.Submitted_by__c);
+                else
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.Submitted_by__c}', '');
+                
+                if(whLst.WU_LocationName__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', whLst.WU_LocationName__c);
+                else
+               plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', '');
+                if(whLst.WU_Prior_CommittedPalletStorage__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_Prior_CommittedPalletStorage__c}', String.valueOf(whLst.WU_Prior_CommittedPalletStorage__c));
+                if(whLst.WU_Committed_Max_PalletStorage__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_Committed_Max_PalletStorage__c}', String.valueOf(whLst.WU_Committed_Max_PalletStorage__c));
+    
+                mail.setSubject(subject);
+    mail.setPlainTextBody(plainBody);
+        
+              mail.setOrgWideEmailAddressId(orgEmail.Id);
+              mail.setToAddresses(sendTo); 
+                 mail.setOrgWideEmailAddressId(orgEmail.id);         
+              mail.setTargetObjectId(UserInfo.getUserId());
+              mail.setTreatTargetObjectAsRecipient(false);
+              mail.setTemplateid(warehouseTemplateId.ID);
+              mail.saveAsActivity = false;
+              mails.add(mail);
+            }
+          }
+      // Step 6: Send all emails in the master list
+      System.debug(mails+'**************mails************');
+      Messaging.sendEmail(mails);
+        
+    }
+      public static void sendRejectionEmailSecPOC(List<WU_Master_Warehouse__c> wareHouseSecPocList)
+    {
+        set<string>emailSet = new set<string>();
+        if(!wareHouseSecPocList.isEmpty()){
+                
+            for(WU_Master_Warehouse__c masterWH : wareHouseSecPocList)
+            {
+                System.debug(+'**************Rejection************'+masterWH );
+                if(masterWH.WU_Warehouse_Secondary_POC_Email__c != Null && !string.isblank(masterWH.WU_Approval_Status__c) &&  masterWH.WU_Approval_Status__c.equalsIgnoreCase('Rejected'))
+                {
+                    emailSet = retriveSetString(masterWH.WU_Warehouse_Secondary_POC_Email__c,emailSet);                             
+                }
+            }
+            
+            
+            sendRejectionMessage(wareHouseSecPocList,emailSet);
+        }
+    }
+
+
+ private static void sendRejectionMessage(List<WU_Master_Warehouse__c> wareHouseSecPocList1,set<string>emailSet){
+        Map<string,Id> usersMap=new Map<string,Id>();
+        for(User usr:[SELECT Id,Email FROM User WHERE Email In:emailSet]){
+            usersMap.put(usr.Email,usr.Id);
+        }
+        List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
+          
+          EmailTemplate warehouseTemplateId = [select Id, DeveloperName, Subject, HtmlValue, Body from EmailTemplate where DeveloperName=: 'WU_Warehouse_Committed_StoragetoPOC_Rejection'];
+          System.debug(warehouseTemplateId +'warehouseTemplateId ************');
+          
+          OrgWideEmailAddress  orgEmail = [SELECT Id, DisplayName, Address FROM OrgWideEmailAddress where DisplayName ='WH Visibility'];
+             
+          
+          for (WU_Master_Warehouse__c whLst : wareHouseSecPocList1) {
+            if (whLst.WU_Warehouse_Secondary_POC_Email__c != null && !string.isblank(whLst.WU_Approval_Status__c) && whLst.WU_Approval_Status__c.equalsIgnoreCase('Rejected')) {
+              List<String> sendTo = new List<String>();
+              // Step 1: Create a new Email
+              Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+            
+              // Step 2: Set list of people who should get the email
+              //
+              for(String emailId:whLst.WU_Warehouse_Secondary_POC_Email__c.split(',')){
+                  sendTo.add(emailId);
+              }
+              // process the merge fields
+                String subject = warehouseTemplateId.Subject;
+                System.debug(whLst+'**************');
+                if(whLst.WU_LocationName__c!=null)
+                subject = subject.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', whLst.WU_LocationName__c);
+                else
+                subject = subject.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', '');
+            
+          
+                String plainBody = warehouseTemplateId.Body;
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.OwnerFullName}', 'User(s)');
+               
+               if(whLst.WU_SAPCode_s__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_SAPCode_s__c}', whLst.WU_SAPCode_s__c);
+                if(whLst.Submitted_by__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.Submitted_by__c}', whLst.Submitted_by__c);
+                if(whLst.WU_LocationName__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', whLst.WU_LocationName__c);
+                else
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', '');
+                
+                if(whLst.WU_Committed_Max_PalletStorage__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_Committed_Max_PalletStorage__c}', String.valueOf(whLst.WU_Committed_Max_PalletStorage__c));
+                
+                        mail.setSubject(subject);
+                       mail.setPlainTextBody(plainBody);
+                        mail.setOrgWideEmailAddressId(orgEmail.id);
+               
+              mail.setToAddresses(sendTo); 
+              mail.setOrgWideEmailAddressId(orgEmail.id);
+              
+              mail.setTargetObjectId(UserInfo.getUserId());
+              mail.setTreatTargetObjectAsRecipient(false);
+              mail.setTemplateid(warehouseTemplateId.ID);
+              mail.saveAsActivity = false;
+              mails.add(mail);
+            }
+          }
+      // Step 6: Send all emails in the master list
+      System.debug(mails+'**************mails************');
+      Messaging.sendEmail(mails);
+        
+    }
+     public static void sendApprovalEmailSecPOC(List<WU_Master_Warehouse__c> wareHouseSecPocList)
+    {
+        set<string>emailSet = new set<string>();
+        if(!wareHouseSecPocList.isEmpty()){
+                
+            for(WU_Master_Warehouse__c masterWH : wareHouseSecPocList)
+            {
+                System.debug(+'**************Approved************'+masterWH );
+                if(masterWH.WU_Warehouse_Secondary_POC_Email__c != Null && !string.isblank(masterWH.WU_Approval_Status__c) &&  masterWH.WU_Approval_Status__c.equalsIgnoreCase('Approved'))
+                {
+                    emailSet = retriveSetString(masterWH.WU_Warehouse_Secondary_POC_Email__c,emailSet);                             
+                }
+            }
+            
+            
+            sendApprovalMessage(wareHouseSecPocList,emailSet);
+        }
+    }
+    private static void sendApprovalMessage(List<WU_Master_Warehouse__c> wareHouseSecPocList1,set<string>emailSet){
+        Map<string,Id> usersMap=new Map<string,Id>();
+        for(User usr:[SELECT Id,Email FROM User WHERE Email In:emailSet]){
+            usersMap.put(usr.Email,usr.Id);
+        }
+        List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
+        
+          
+          EmailTemplate warehouseTemplateId = [select Id, DeveloperName, Subject, HtmlValue, Body from EmailTemplate where DeveloperName=: 'WU_Warehouse_Committed_StoragetoPOC_for_Approval_Secondary_POC'];
+          System.debug(warehouseTemplateId +'warehouseTemplateId ************');
+          
+         OrgWideEmailAddress  orgEmail = [SELECT Id, DisplayName, Address FROM OrgWideEmailAddress where DisplayName ='WH Visibility'];
+             
+          
+          for (WU_Master_Warehouse__c whLst : wareHouseSecPocList1) {
+            if (whLst.WU_Warehouse_Secondary_POC_Email__c != null && !string.isblank(whLst.WU_Approval_Status__c) && whLst.WU_Approval_Status__c.equalsIgnoreCase('Approved')) {
+              List<String> sendTo = new List<String>();
+              // Step 1: Create a new Email
+              Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+            
+              // Step 2: Set list of people who should get the email
+              //
+              for(String emailId:whLst.WU_Warehouse_Secondary_POC_Email__c.split(',')){
+                  sendTo.add(emailId);
+              }
+              // process the merge fields
+                 String subject = warehouseTemplateId.Subject;
+                System.debug(whLst+'**************');
+                if(whLst.WU_LocationName__c!=null)
+                subject = subject.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', whLst.WU_LocationName__c);
+                else
+                subject = subject.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', '');
+            
+              
+                String plainBody = warehouseTemplateId.Body;
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.OwnerFullName}', 'User(s)');
+                if(whLst.WU_SAPCode_s__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_SAPCode_s__c}', whLst.WU_SAPCode_s__c);
+                if(whLst.Submitted_by__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.Submitted_by__c}', whLst.Submitted_by__c);
+                else
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.Submitted_by__c}', '');
+                
+                if(whLst.WU_LocationName__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', whLst.WU_LocationName__c);
+                else
+               plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', '');
+                //if(whLst.WU_Prior_CommittedPalletStorage__c!=null)
+                //plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_Prior_CommittedPalletStorage__c}', String.valueOf(whLst.WU_Prior_CommittedPalletStorage__c));
+                if(whLst.WU_Committed_Max_PalletStorage__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_Committed_Max_PalletStorage__c}', String.valueOf(whLst.WU_Committed_Max_PalletStorage__c));
+    
+                mail.setSubject(subject);
+                mail.setPlainTextBody(plainBody);
+
+              mail.setToAddresses(sendTo); 
+               mail.setOrgWideEmailAddressId(orgEmail.Id);          
+              mail.setTargetObjectId(UserInfo.getUserId());
+              mail.setTreatTargetObjectAsRecipient(false);
+              mail.setTemplateid(warehouseTemplateId.ID);
+              mail.saveAsActivity = false;
+              mail.setOrgWideEmailAddressId(orgEmail.id); 
+              mails.add(mail);
+            }
+          }
+      // Step 6: Send all emails in the master list
+      System.debug(mails+'**************mails************');
+      Messaging.sendEmail(mails);
+        
+    }
+    
+    
+    
+ }

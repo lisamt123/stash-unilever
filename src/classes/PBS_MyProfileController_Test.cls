@@ -66,7 +66,9 @@ private class PBS_MyProfileController_Test {
         Test.startTest();
 
             System.runAs(lmsUsers.get(0)){
-
+                 PBS_Standard_Job_Profile__c psp= new PBS_Standard_Job_Profile__c();
+            psp.name='Guest';
+            insert psp;
                 PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
                 System.assert(cont.oManager != null);
                 System.assert(cont.achievementType == 'Achievements');
@@ -131,7 +133,9 @@ private class PBS_MyProfileController_Test {
         Test.startTest();
 
             System.runAs(lmsUsers.get(0)){
-
+                     PBS_Standard_Job_Profile__c psp= new PBS_Standard_Job_Profile__c();
+            psp.name='Guest';
+            insert psp;
                 PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
                 System.assertEquals(1,cont.lcategories.size());
 
@@ -205,7 +209,9 @@ private class PBS_MyProfileController_Test {
         Test.startTest();
 
             System.runAs(lmsUsers.get(0)){
-
+                 PBS_Standard_Job_Profile__c psp= new PBS_Standard_Job_Profile__c();
+                    psp.name='Guest';
+                    insert psp;
                 PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
                 System.assertEquals(1,cont.lcategories.size());
 
@@ -238,13 +244,19 @@ private class PBS_MyProfileController_Test {
 
         Test.startTest();
 
-        System.runAs(lmsUsers.get(0)){
+        System.runAs(lmsUsers.get(0)){ 
+            PBS_Standard_Job_Profile__c psp= new PBS_Standard_Job_Profile__c();
+            psp.name='Guest';
+            insert psp;
             
             PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
-            System.assert(cont.getCategoryOptions().size()>=0);
-                System.assert(cont.getGeographyOptions().size()>=0);
-                System.assert(cont.getJobProfileOptions().size()>=0);
-                System.assert(cont.getWorkLevelOptions().size()>=0);
+            System.assert(cont.getCategoryOptions().size()>0);
+                System.assert(cont.getGeographyOptions().size()>0);
+                //cont.workLevel='Level 1';
+                System.assert(cont.getJobProfileOptions().size()>0);
+                System.assert(cont.getWorkLevelOptions().size()>0);
+                cont.jobprofileSelection();
+                //PBS_MyProfileController_Cc.updateUserDetails('test'  ,'test',null,'test');
         }
         Test.stopTest();
     }

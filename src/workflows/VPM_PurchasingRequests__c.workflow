@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>VPM_EmailForRework</fullName>
+        <description>VPM- Email For rework</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>VPM_ApprovalEmails/VPM_RequestrequestingforRework</template>
+    </alerts>
+    <alerts>
+        <fullName>VPM_EmailRequestCompleted</fullName>
+        <description>VPM- email for request completed</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>VPM_ApprovalEmails/VPM_Requesthasbeencompleted</template>
+    </alerts>
+    <alerts>
         <fullName>VPM_MDMRequestSubmitted</fullName>
         <description>VPM - Used to send Notification to the Business Requestor when the request (Bloc/Delete) is submitted manually</description>
         <protected>false</protected>
@@ -128,8 +150,7 @@
         <description>VPM Send email to Vendor Email</description>
         <protected>false</protected>
         <recipients>
-            <field>VPM_VendorContactDetail__c</field>
-            <type>email</type>
+            <type>creator</type>
         </recipients>
         <senderAddress>supplier.information@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
@@ -1202,6 +1223,36 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <active>false</active>
         <formula>ISCHANGED(VPM_Country__c)</formula>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM_EmailForRework</fullName>
+        <actions>
+            <name>VPM_EmailForRework</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
+            <operation>contains</operation>
+            <value>Bank Data Validation Requested Re-Work,Finance Requested Re-Work,FLS Requested Re-Work,Freight Requested Re-Work,MDM Ops Review Requested Re-Work,Procurement Requested Re-Work,Russian Custom Tax Requested Re-Work</value>
+        </criteriaItems>
+        <description>VPM - send email for rework to the record creator</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM_EmailNotificationForRequestCompleted</fullName>
+        <actions>
+            <name>VPM_EmailRequestCompleted</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
+            <operation>equals</operation>
+            <value>Request Completed</value>
+        </criteriaItems>
+        <description>VPM- email notification to record creator when the request is completed</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>VPM_ResetValuesOnCreate</fullName>

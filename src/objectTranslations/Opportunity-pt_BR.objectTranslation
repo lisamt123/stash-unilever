@@ -14,13 +14,30 @@ Is the customer growing? --></help>
         <relationshipLabel><!-- Opportunities --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Required before moving to stage &apos;05-Won&apos;. --></help>
+        <help><!-- Expected date of customer commitment. --></help>
         <label><!-- Agreement Date --></label>
         <name>AgreementDate__c</name>
     </fields>
     <fields>
+        <help><!-- Expected date of first shipment (agreement in force). --></help>
         <label><!-- Contract Start Date --></label>
         <name>ContractStartDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- DB Competitor --></label>
+        <name>DB_Competitor__c</name>
+        <picklistValues>
+            <masterLabel>Competitor A</masterLabel>
+            <translation><!-- Competitor A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Competitor B</masterLabel>
+            <translation><!-- Competitor B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Competitor C</masterLabel>
+            <translation><!-- Competitor C --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- DealApproved --></label>
@@ -33,75 +50,47 @@ Is the customer growing? --></help>
         <relationshipLabel><!-- Opportunities --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- Brand Marketing Rewards --></help>
         <label><!-- BMI --></label>
         <name>FSNA_BMI__c</name>
     </fields>
     <fields>
+        <help><!-- Expected Distributor Earnings from opportunity. --></help>
         <label><!-- NA Distributor TMI --></label>
         <name>FSNA_Distributor_TMI__c</name>
     </fields>
     <fields>
+        <help><!-- Average Gross Margin % for all products within opportunity. --></help>
         <label><!-- Gross Margin --></label>
         <name>FSNA_Gross_Margin__c</name>
     </fields>
     <fields>
+        <help><!-- Respective Product groupings. --></help>
         <label><!-- Margin Market Code --></label>
         <name>FSNA_Margin_Market_Code__c</name>
         <picklistValues>
-            <masterLabel>6I</masterLabel>
-            <translation><!-- 6I --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>6I DRESSINGS-CONDIMENTS-DIPS</masterLabel>
             <translation><!-- 6I DRESSINGS-CONDIMENTS-DIPS --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>6K</masterLabel>
-            <translation><!-- 6K --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>6K SAUCES-GRAVIES</masterLabel>
             <translation><!-- 6K SAUCES-GRAVIES --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>8Z</masterLabel>
-            <translation><!-- 8Z --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>8Z RETAIL</masterLabel>
             <translation><!-- 8Z RETAIL --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>93</masterLabel>
-            <translation><!-- 93 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>93 MAYONNAISE</masterLabel>
             <translation><!-- 93 MAYONNAISE --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BOH MAYO</masterLabel>
-            <translation><!-- BOH MAYO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>D1</masterLabel>
-            <translation><!-- D1 --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>D1 SOUPS</masterLabel>
             <translation><!-- D1 SOUPS --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>E1</masterLabel>
-            <translation><!-- E1 --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>E1 BASES-BOUILLIONS</masterLabel>
             <translation><!-- E1 BASES-BOUILLIONS --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>F1</masterLabel>
-            <translation><!-- F1 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>F1 SPREADS AND TOPPING</masterLabel>
@@ -112,160 +101,68 @@ Is the customer growing? --></help>
             <translation><!-- FOH ACCELERATION --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>FOH MAYO</masterLabel>
-            <translation><!-- FOH MAYO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>G1</masterLabel>
-            <translation><!-- G1 --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>G1 TEA-BEVERAGES</masterLabel>
             <translation><!-- G1 TEA-BEVERAGES --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>H1</masterLabel>
-            <translation><!-- H1 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>H1 FLAVOUR DELIVERY SYS-SEASONING</masterLabel>
             <translation><!-- H1 FLAVOUR DELIVERY SYS-SEASONING --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>HOT TEA</masterLabel>
-            <translation><!-- HOT TEA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>ICED TEA</masterLabel>
-            <translation><!-- ICED TEA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>K1</masterLabel>
-            <translation><!-- K1 --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>K1 MEALS</masterLabel>
             <translation><!-- K1 MEALS --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Knorr Ultimate Low/Reduced Sodium*</masterLabel>
-            <translation><!-- Knorr Ultimate Low/Reduced Sodium* --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>LCB</masterLabel>
-            <translation><!-- LCB --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>N1 CRYSTAL</masterLabel>
             <translation><!-- N1 CRYSTAL --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Q1</masterLabel>
-            <translation><!-- Q1 --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Q1 MISCELLANEOUS</masterLabel>
             <translation><!-- Q1 MISCELLANEOUS --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>SDJ</masterLabel>
-            <translation><!-- SDJ --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>SPECIALTY TEA</masterLabel>
-            <translation><!-- SPECIALTY TEA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>X1</masterLabel>
-            <translation><!-- X1 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>X1 US LCB</masterLabel>
             <translation><!-- X1 US LCB --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>X2</masterLabel>
-            <translation><!-- X2 --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>X2 SPECIALTY TEA CANADA</masterLabel>
             <translation><!-- X2 SPECIALTY TEA CANADA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>X3</masterLabel>
-            <translation><!-- X3 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>X3 SPECIALTY TEA US</masterLabel>
             <translation><!-- X3 SPECIALTY TEA US --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>X4</masterLabel>
-            <translation><!-- X4 --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>X4 US SDJ</masterLabel>
             <translation><!-- X4 US SDJ --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Z1</masterLabel>
-            <translation><!-- Z1 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Z1 BOH MAYO</masterLabel>
             <translation><!-- Z1 BOH MAYO --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Z2</masterLabel>
-            <translation><!-- Z2 --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Z2 CAN LCB</masterLabel>
             <translation><!-- Z2 CAN LCB --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Z3</masterLabel>
-            <translation><!-- Z3 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Z3 CAN SDJ</masterLabel>
             <translation><!-- Z3 CAN SDJ --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Z5</masterLabel>
-            <translation><!-- Z5 --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Z5 FOH MAYO</masterLabel>
             <translation><!-- Z5 FOH MAYO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Z6</masterLabel>
-            <translation><!-- Z6 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Z6 HOT TEA CANADA</masterLabel>
             <translation><!-- Z6 HOT TEA CANADA --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Z7</masterLabel>
-            <translation><!-- Z7 --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Z7 HOT TEA US</masterLabel>
             <translation><!-- Z7 HOT TEA US --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Z8</masterLabel>
-            <translation><!-- Z8 --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Z8 ICED TEA</masterLabel>
             <translation><!-- Z8 ICED TEA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Z9</masterLabel>
-            <translation><!-- Z9 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Z9 Knorr Ultimate Low/Reduced Sodium*</masterLabel>
@@ -273,14 +170,17 @@ Is the customer growing? --></help>
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Expected average profitability for opportunities within respective market. --></help>
         <label><!-- Margin Market Target --></label>
         <name>FSNA_Margin_Market_Target__c</name>
     </fields>
     <fields>
+        <help><!-- $ Value of Operator discounts from opportunity. --></help>
         <label><!-- Operator TMI --></label>
         <name>FSNA_TMI__c</name>
     </fields>
     <fields>
+        <help><!-- Total TMI invested in opportunity (Sum of Distributor and Operator) --></help>
         <label><!-- Total Spend --></label>
         <name>FSNA_TotalSpend__c</name>
     </fields>
@@ -305,6 +205,7 @@ Is the customer growing? --></help>
         <name>FS_Distributer_Payer_Code__c</name>
     </fields>
     <fields>
+        <help><!-- Distributor expected to supply products to operator. Used for determining distributor TMI. --></help>
         <label><!-- Distributor TMI --></label>
         <name>FS_DistributorTMI__c</name>
         <picklistValues>
@@ -397,11 +298,12 @@ Is the customer growing? --></help>
         <name>FS_GrossMarginTarget__c</name>
     </fields>
     <fields>
+        <help><!-- Green when fully approved and pricing ready for customer review. --></help>
         <label><!-- Approval Indicator --></label>
         <name>FS_Indicator__c</name>
     </fields>
     <fields>
-        <help><!-- Lump Sum TMI (Not A&amp;P) --></help>
+        <help><!-- Incentive funds paid directly to Operator, not tied Branding Activation Activities. --></help>
         <label><!-- Lump Sum TMI --></label>
         <name>FS_LumpSum__c</name>
     </fields>
@@ -410,6 +312,7 @@ Is the customer growing? --></help>
         <name>FS_MDMRequestSent__c</name>
     </fields>
     <fields>
+        <help><!-- Allocation (Rate / Case) to product of Lump sum payments. --></help>
         <label><!-- MS/CS --></label>
         <name>FS_MSCS__c</name>
     </fields>
@@ -431,6 +334,7 @@ Is the customer growing? --></help>
         <name>FS_Push_Counter__c</name>
     </fields>
     <fields>
+        <help><!-- Rebate Discount provided on individual product. --></help>
         <label><!-- Rate --></label>
         <name>FS_Rate__c</name>
     </fields>
@@ -467,6 +371,7 @@ Is the customer growing? --></help>
         <name>FS_TotalDiscountVolume__c</name>
     </fields>
     <fields>
+        <help><!-- Total discount offered to operator. --></help>
         <label><!-- Total Discount --></label>
         <name>FS_TotalDiscount__c</name>
     </fields>
@@ -483,14 +388,17 @@ Is the customer growing? --></help>
         <name>FS_TotalGrossSalesValue__c</name>
     </fields>
     <fields>
+        <help><!-- Total discount offered paid directly to HQ or Corporate Accounts. --></help>
         <label><!-- Total HQ Rate --></label>
         <name>FS_TotalHQRate__c</name>
     </fields>
     <fields>
-        <label><!-- Total Number of Cases --></label>
+        <help><!-- Total quantity count for opportunity. --></help>
+        <label><!-- Total Quantity --></label>
         <name>FS_TotalNumberOfCases__c</name>
     </fields>
     <fields>
+        <help><!-- Total rebate discount offered to operator. --></help>
         <label><!-- Total Rate --></label>
         <name>FS_TotalRate__c</name>
     </fields>
@@ -501,6 +409,11 @@ Is the customer growing? --></help>
     <fields>
         <label><!-- Total TPR --></label>
         <name>FS_TotalTPR__c</name>
+    </fields>
+    <fields>
+        <help><!-- Net in Pocket for UFS (NSV - Total TMI) --></help>
+        <label><!-- Total Turnover (NA) --></label>
+        <name>FS_TotalTurnoverNA__c</name>
     </fields>
     <fields>
         <label><!-- Total Turnover --></label>
@@ -527,8 +440,13 @@ Is the customer growing? --></help>
         <name>FS_TradeProContractID__c</name>
     </fields>
     <fields>
+        <help><!-- Opportunity Type as linked to Objective. --></help>
         <label><!-- Type from Objective --></label>
         <name>FS_Type_from_Objective__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount (Case/Piece) --></label>
+        <name>FS_amountCasePiece__c</name>
     </fields>
     <fields>
         <label><!-- Cases/piece --></label>
@@ -692,6 +610,7 @@ Is the customer growing? --></help>
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Green is opportunity exceeds targeted opportunity margin. --></help>
         <label><!-- Margin Indicator --></label>
         <name>Margin_Indicator__c</name>
     </fields>
@@ -1030,6 +949,7 @@ Enter competitor pricing if available --></help>
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Total Cost of Product, production and supply chain related costs. --></help>
         <label><!-- Total Opportunity COGS --></label>
         <name>Total_Opp_COGS__c</name>
     </fields>

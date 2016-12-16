@@ -9,37 +9,24 @@
         <value>Account Relationship</value>
     </caseValues>
     <fields>
-        <help><!-- StStore the external for Ship To, PoP and Store Id. (Cross Dock) --></help>
-        <label><!-- External ID --></label>
-        <name>External_ID__c</name>
-    </fields>
-    <fields>
-        <help><!-- Accounts under this Id. --></help>
-        <label><!-- Primary Account --></label>
-        <name>Primary_Account__c</name>
-        <relationshipLabel><!-- Account Relationship (Account) --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Secondary Account --></label>
-        <name>Secondary_Account__c</name>
+        <label><!-- Master Account --></label>
+        <name>FS_MasterAccount__c</name>
         <relationshipLabel><!-- Account Relationship (Secondary Account) --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Store the information about Cross Account Reference such as PoP, Ship To or Store Id. --></help>
-        <label><!-- Type --></label>
-        <name>Type__c</name>
-        <picklistValues>
-            <masterLabel>PoP Id.</masterLabel>
-            <translation><!-- PoP Id. --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Ship To Id.</masterLabel>
-            <translation><!-- Ship To Id. --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Store Id. (Cross Dock)</masterLabel>
-            <translation><!-- Store Id. (Cross Dock) --></translation>
-        </picklistValues>
+        <label><!-- Merged Account Name --></label>
+        <name>FS_MergedAccountName__c</name>
+    </fields>
+    <fields>
+        <help><!-- Accounts under this Id. --></help>
+        <label><!-- Merged Account --></label>
+        <name>FS_MergedAccount__c</name>
+        <relationshipLabel><!-- Account Relationship (Account) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Account External Id_SoftServe Distr Id --></help>
+        <label><!-- Unique Account ID --></label>
+        <name>FS_UniqueAccountID__c</name>
     </fields>
     <layouts>
         <layout>External PoP ID Layout</layout>
