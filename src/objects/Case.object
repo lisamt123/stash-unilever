@@ -3940,7 +3940,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New</value>
+            <value>New,Reopened</value>
         </filters>
         <label>CEC UKI Out of SLA Queue</label>
         <language>en_US</language>
@@ -5169,6 +5169,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>dotcomemails@unilever.com,noreplyca@unilever.com</value>
         </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>,New,In Progress,On Hold,Escalated,Review Needed,Awaiting Factory Response</value>
+        </filters>
         <label>CEC UKI Queue</label>
         <language>en_US</language>
         <queue>CEC_General_Queue</queue>
@@ -5983,7 +5988,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>notContain</operation>
-            <value>Privacy,Bertolli,Bazaar,Bluewater,IVR,Sunlight,Sun,Ragu,Facebook,Ben,WalMart</value>
+            <value>Privacy,Bertolli,Bazaar,IVR,Sunlight,Sun,Ragu,Facebook,Ben,WalMart</value>
         </filters>
         <filters>
             <field>OWNER_NAME</field>
@@ -6398,7 +6403,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New</value>
+            <value>New,Reopened</value>
         </filters>
         <label>CEC North America Maille US</label>
         <language>en_US</language>
@@ -6703,8 +6708,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notContain</operation>
-            <value>closed</value>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <label>CEC North America Ratings and Reviews</label>
         <language>en_US</language>
@@ -8436,20 +8441,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_UK_All_Cases</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
-        <label>CEC UKI All Cases</label>
-        <language>en_US</language>
-        <queue>CEC_General_Queue</queue>
-    </listViews>
-    <listViews>
         <fullName>CEC_UK_All_New_Cases</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Brand__c</columns>
@@ -8931,7 +8922,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>Foreign_Language</fullName>
-        <booleanFilter>1 AND (2 OR 3 or 4) and 5</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3 or 4)</booleanFilter>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
@@ -8948,24 +8939,19 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Closed,Closed as Duplicate</value>
         </filters>
         <filters>
-            <field>Language__c</field>
+            <field>Country__c</field>
             <operation>equals</operation>
-            <value>Spanish</value>
+            <value>United States - Spanish</value>
         </filters>
         <filters>
-            <field>Language__c</field>
+            <field>Country__c</field>
             <operation>equals</operation>
-            <value>French</value>
+            <value>Canada - French</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
             <value>Unilever French</value>
-        </filters>
-        <filters>
-            <field>Country_Name__c</field>
-            <operation>notEqual</operation>
-            <value>Mexico</value>
         </filters>
         <label>CEC North America Foreign Language</label>
         <language>en_US</language>
@@ -9907,7 +9893,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New</value>
+            <value>New,Reopened</value>
         </filters>
         <label>CEC UKI Within SLA Queue</label>
         <language>en_US</language>
@@ -9946,60 +9932,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_UK</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Within_SLA3</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>Brand__c</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.LAST_UPDATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>Case_Market__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>Email,Web,White Mail,Email UK</value>
-        </filters>
-        <filters>
-            <field>CASES.LAST_UPDATE_DATE_ONLY</field>
-            <operation>greaterOrEqual</operation>
-            <value>LAST_N_DAYS:2</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>notContain</operation>
-            <value>India,DACH,France,Spain,Nordic,Portugal,Czech,Italy,Greece,Poland</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>notContain</operation>
-            <value>Hungary,Slovakia,Baltics,Romania,Bulgaria,Serbia,Slovenia,Lanka,Croatia,Bosnia</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>notContain</operation>
-            <value>America,Brazil,Southern</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>notEqual</operation>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <label>Within SLA</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_UK</role>
-            <role>CEC_User_UK</role>
         </sharedTo>
     </listViews>
     <listViews>
