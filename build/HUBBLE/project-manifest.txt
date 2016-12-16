@@ -27,4 +27,3 @@ src/objects/CPA_Query_comment__c.object
 src/objects/CPA_Requirements_and_Deliverables__c.object
 src/objects/CPA_Resource_Requirement__c.object
 src/objects/CPA_User_Defined_Attribute__c.object
-
