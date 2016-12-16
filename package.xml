@@ -70,6 +70,7 @@
         <members>ContentVersion</members>
         <members>Contract</members>
         <members>ContractContactRole</members>
+        <members>Document</members>
         <members>DuplicateRecordItem</members>
         <members>DuplicateRecordSet</members>
         <members>Event</members>
