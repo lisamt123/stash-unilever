@@ -14,6 +14,8 @@ src/classes/CPA_ConstantsForContractingAppClasses.cls-meta.xml
 src/classes/CPA_Key_Contacts_TriggerUtil.cls-meta.xml
 src/classes/CPA_RequirementsDeliverables_TriggerUtil.cls-meta.xml
 src/classes/CPA_Resource_Requirement_TriggerUtil.cls-meta.xml
+src/classes/CPA_CR_TriggerUtil.cls
+src/classes/CPA_CR_TriggerUtil.cls-meta.xml
 src/objects
 src/objects/CPA_CR__c.object
 src/objects/CPA_HLE_Request__c.object
