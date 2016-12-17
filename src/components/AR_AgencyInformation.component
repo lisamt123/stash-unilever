@@ -4,16 +4,11 @@
     <apex:attribute name="internal" type="Boolean" description="Specify whether for internal or external user" required="false" />
 
     <section class="intro">
+    <b> <font size="4" color="#D8198D">Discipline: </font></b><apex:outputField value="{!agency.Agency_Discipline__c}" />
         <p style="font-size:16px;"><apex:outputField value="{!agency.Strategic_Capabilities__c}" /></p>
-        <apex:outputText rendered="{!internal}">
-            <a class="rate-agency">Rate &amp; Review this agency</a>
-            <a class="btn-agency-chatter activate-chatter" href="#chatter">Agency Chatter</a>
-        </apex:outputText>
-        <apex:outputText rendered="{!!internal}">
-            <a class="btn-edit-profile" href="{!$Page.AR_AgencyMyProfileEdit}?id={!agency.Id}">Edit Profile</a>
-        </apex:outputText>
-    </section>
-    <section class="contact">
+         <b> <font size="4" color="#D8198D"> Expertise: </font></b><apex:outputField value="{!agency.Agency_Expertise__c}" />
+         </section>
+         <section class="contact">
         <ul>
             <li class="areas"><apex:outputText value="{!offices}" /></li>
             <li class="staff"><apex:outputText value="{!numberEmployees}" /></li>
@@ -28,5 +23,16 @@
 
         </ul>
     </section>
+         <section class="intro">
+        
+        <apex:outputText rendered="{!internal}">
+            <a class="rate-agency">Rate &amp; Review this agency</a>
+            <a class="btn-agency-chatter activate-chatter" href="#chatter">Agency Chatter</a>
+        </apex:outputText>
+        <apex:outputText rendered="{!!internal}">
+            <a class="btn-edit-profile" href="{!$Page.AR_AgencyMyProfileEdit}?id={!agency.Id}">Edit Profile</a>
+        </apex:outputText>
+    </section>
+    
 
 </apex:component>

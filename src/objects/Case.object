@@ -4288,7 +4288,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>contains</operation>
-            <value>psoma</value>
+            <value>psoma,ahalt,agard,skui,rmast</value>
         </filters>
         <label>CEC Benelux Nachtteam</label>
         <language>nl_NL</language>
@@ -4447,9 +4447,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Benelux</value>
         </filters>
         <filters>
-            <field>OWNER_NAME</field>
+            <field>CORE.USERS.ALIAS</field>
             <operation>notContain</operation>
-            <value>queue,SOMA,HALT</value>
+            <value>queue,psoma,ahalt,agard,rmast,skui</value>
         </filters>
         <label>CEC Benelux WH Uitgedeeld</label>
         <language>nl_NL</language>
@@ -4498,19 +4498,19 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_queue_WH</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
-        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.CASE_NUMBER</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>CEC Benelux queue</label>
+        <label>CEC Benelux Queue</label>
         <language>en_US</language>
         <queue>CEC_Benelux_Queue</queue>
         <sharedTo>
@@ -8455,7 +8455,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New</value>
+            <value>New,Reopened</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
