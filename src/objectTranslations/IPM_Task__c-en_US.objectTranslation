@@ -50,14 +50,6 @@
         <label><!-- Function --></label>
         <name>IPM_Function__c</name>
         <picklistValues>
-            <masterLabel>BB</masterLabel>
-            <translation><!-- BB --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BD</masterLabel>
-            <translation><!-- BD --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>CD</masterLabel>
             <translation><!-- CD --></translation>
         </picklistValues>
@@ -68,6 +60,14 @@
         <picklistValues>
             <masterLabel>Finance</masterLabel>
             <translation><!-- Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MKTG DEV</masterLabel>
+            <translation><!-- MKTG DEV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MKTG LOCAL</masterLabel>
+            <translation><!-- MKTG LOCAL --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>PL</masterLabel>
@@ -107,14 +107,6 @@
         <label><!-- IPM Multiple Functional Role --></label>
         <name>IPM_Multiple_Functional_Role__c</name>
         <picklistValues>
-            <masterLabel>BB</masterLabel>
-            <translation><!-- BB --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BD</masterLabel>
-            <translation><!-- BD --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>CD</masterLabel>
             <translation><!-- CD --></translation>
         </picklistValues>
@@ -125,6 +117,14 @@
         <picklistValues>
             <masterLabel>Finance</masterLabel>
             <translation><!-- Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MKTG DEV</masterLabel>
+            <translation><!-- MKTG DEV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MKTG LOCAL</masterLabel>
+            <translation><!-- MKTG LOCAL --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>PL</masterLabel>

@@ -161,7 +161,7 @@
         <name>IPM_Expected_Market_Ready_Approval_Date__c</name>
     </fields>
     <fields>
-        <label><!-- IPM_External_ID --></label>
+        <label><!-- Inoplan Project ID --></label>
         <name>IPM_External_ID__c</name>
     </fields>
     <fields>

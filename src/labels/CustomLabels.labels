@@ -3227,8 +3227,8 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <fullName>IPM_BB</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>IPM_BB</shortDescription>
-        <value>BB</value>
+        <shortDescription>BC Confirmation</shortDescription>
+        <value>BC Confirmation</value>
     </labels>
     <labels>
         <fullName>IPM_BBRole_Team</fullName>
@@ -3304,8 +3304,8 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <fullName>IPM_BD_Marketing</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>BD Marketing</shortDescription>
-        <value>Brand Development Marketing (BD Marketing)</value>
+        <shortDescription>Marketing (Development)</shortDescription>
+        <value>Marketing (Development)</value>
     </labels>
     <labels>
         <fullName>IPM_BETAccessMsgRegionalLocal</fullName>
@@ -4036,15 +4036,15 @@ If approved your project will be linked after your Charter gate has been approve
         <fullName>IPM_Brand_Builders_BB</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Brand Builders (BB)</shortDescription>
-        <value>Brand Builders (BB)</value>
+        <shortDescription>Marketing (Deployment)</shortDescription>
+        <value>Marketing (Deployment)</value>
     </labels>
     <labels>
         <fullName>IPM_Brand_Development_Finance_BD_Finance</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Brand Development Finance (BD Finance)</shortDescription>
-        <value>Brand Development Finance (BD Finance)</value>
+        <shortDescription>Finance (Development)</shortDescription>
+        <value>Finance (Development)</value>
     </labels>
     <labels>
         <fullName>IPM_Brand_Led_Growth</fullName>
@@ -4387,14 +4387,14 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_COMPANY</shortDescription>
-        <value>Company</value>
+        <value>70-20-10 Classification</value>
     </labels>
     <labels>
         <fullName>IPM_COMPANY_CARD</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_COMPANY_CARD</shortDescription>
-        <value>Company</value>
+        <value>70-20-10 Classification</value>
     </labels>
     <labels>
         <fullName>IPM_COMP_CARD_NAME</fullName>
@@ -6370,14 +6370,14 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_GCLT_AND_RCLT_ALL_APPROVAL</shortDescription>
-        <value>Select this option if the GCLT and RCLTs will gatekeep Contract and Market Ready Gates in parallel - i.e. GCLT gatekeeps global original projects and RCLTs gatekeep their own regional rollouts.</value>
+        <value>Select this option if the GCLT Leader and CCVPs will gatekeep Contract and Market Ready Gates in parallel - i.e. GCLT Leader gatekeeps global original projects and CCVPs gatekeep their own regional rollouts.</value>
     </labels>
     <labels>
         <fullName>IPM_GCLT_AND_RCLT_APPROVAL</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_GCLT_AND_RCLT_APPROVAL</shortDescription>
-        <value>Select this option if Contract and Market Ready will be gatekept at RCLT level ONLY.</value>
+        <value>Select this option if Contract and Market Ready will be gatekept at CCVP level ONLY.</value>
     </labels>
     <labels>
         <fullName>IPM_GD_APPENDIX_MSG</fullName>
@@ -8797,7 +8797,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ProjectTypeAndCompany_ReadOnlyWarning</shortDescription>
-        <value>Your selections for Type of Project and Company will be permanent once you hit Submit for Project Creation. Only proceed with project creation when you are certain which indicators to choose.</value>
+        <value>Please note that &lt;b&gt;AFTER&lt;/b&gt; clicking &apos;Submit for Project Creation&apos; the selection of &lt;b&gt;70-20-10 Classification&lt;/b&gt; (70: Global teams working on Global brands; 20: Regional/Local teams working on Global brands or 10: Local teams working on Local Jewels) as well as &lt;b&gt;Type of Project &lt;/b&gt;(Innovation/Renovation; Operational or BLG) &lt;b&gt;is PERMANENT and cannot be changed anymore&lt;/b&gt;.</value>
     </labels>
     <labels>
         <fullName>IPM_Project_Classified</fullName>
@@ -9868,7 +9868,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_SelectCompanyCard</shortDescription>
-        <value>Select Company Card</value>
+        <value>Select 70-20-10 Classification</value>
     </labels>
     <labels>
         <fullName>IPM_SelectGeoScopeLocal</fullName>
