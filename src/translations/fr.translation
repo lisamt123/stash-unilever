@@ -2153,7 +2153,7 @@
         <name>IPM_BACKGROUNDPROCESS_INPROGRESS</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM_BB --></label>
+        <label><!-- BC Confirmation --></label>
         <name>IPM_BB</name>
     </customLabels>
     <customLabels>
@@ -2169,7 +2169,7 @@
         <name>IPM_BB_COMMENTS</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM BB Document --></label>
+        <label><!-- BC Confirmation Document --></label>
         <name>IPM_BB_Document</name>
     </customLabels>
     <customLabels>
@@ -2201,7 +2201,7 @@
         <name>IPM_BD_BB_MISALLIGNMENT_VISIBILITY</name>
     </customLabels>
     <customLabels>
-        <label><!-- BD Marketing --></label>
+        <label><!-- Marketing (Development) --></label>
         <name>IPM_BD_Marketing</name>
     </customLabels>
     <customLabels>
@@ -2641,11 +2641,11 @@
         <name>IPM_BrandPositioningHelpText</name>
     </customLabels>
     <customLabels>
-        <label><!-- Brand Builders (BB) --></label>
+        <label><!-- Marketing (Deployment) --></label>
         <name>IPM_Brand_Builders_BB</name>
     </customLabels>
     <customLabels>
-        <label><!-- Brand Development Finance (BD Finance) --></label>
+        <label><!-- Finance (Development) --></label>
         <name>IPM_Brand_Development_Finance_BD_Finance</name>
     </customLabels>
     <customLabels>
@@ -9578,10 +9578,6 @@
             <columns>
                 <label><!-- Project Description --></label>
                 <name>Project Description</name>
-            </columns>
-            <columns>
-                <label><!-- Project Id --></label>
-                <name>Project Id</name>
             </columns>
             <columns>
                 <label><!-- Project Id --></label>

@@ -762,7 +762,7 @@
             <name>Copy_IRR_Local_From_Global</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Copy_Global_to_Local__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -773,7 +773,7 @@
             <name>Copy_IRR_Regional_From_Global</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Copy_Global_to_Regional__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -784,7 +784,7 @@
             <name>Copy_IRR_Global_From_Local</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Copy_Local_to_Global__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -795,7 +795,7 @@
             <name>Copy_IRR_Regional_From_Local</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Copy_Local_to_Regional__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -806,7 +806,7 @@
             <name>Copy_IRR_Local_From_Regional</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Copy_Regional_to_Local__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -817,7 +817,7 @@
             <name>Financial_Copy_G2L_Volume_Unit_000_Unit</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>IPM_Financial__c.Copy_Global_to_Local__c</field>
             <operation>equals</operation>
@@ -836,7 +836,7 @@
             <name>Financial_Copy_G2R_Volume_Unit_000_Unit</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>IPM_Financial__c.Copy_Global_to_Regional__c</field>
             <operation>equals</operation>
@@ -855,7 +855,7 @@
             <name>Financial_Copy_L2R_Volume_Unit_000_Unit</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>IPM_Financial__c.Copy_Local_to_Regional__c</field>
             <operation>equals</operation>
@@ -874,7 +874,7 @@
             <name>Financial_Copy_R2L_Volume_Unit_000_Unit</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>IPM_Financial__c.Copy_Regional_to_Local__c</field>
             <operation>equals</operation>
@@ -893,7 +893,7 @@
             <name>IRR_Charter_Copy_Over</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Charter_Approved__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -904,7 +904,7 @@
             <name>IRR_Contract_Copy_Over</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Contract_Approved__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -915,7 +915,7 @@
             <name>IRR_Market_Deployment_Copy_Over</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>MD_Approved__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -926,7 +926,7 @@
             <name>IRR_Market_Ready_Copy_Over</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>MR_Approved__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -941,7 +941,7 @@
             <name>MisalignmentDateTime</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>IF(AND( Misaligned__c,  ISCHANGED( Misaligned__c )),  true, false)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>

@@ -86,13 +86,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <div class="modal-title">Unable to save business case</div>
+                <div class="modal-title">{!$Label.IPM_Fin_CopyPaste_ErrorMsg_Header}</div>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">    
                         <div class="col-sm-12">
-                            <span class="skipDesc">There was some problem saving the business case. Please try saving the busines case again</span>
+                            <span class="skipDesc">{!$Label.IPM_Fin_CopyPaste_Error_Message}</span>
                         </div>
                         <div class="deleteButtoncontainer txtAlignright pull-right"> 
                             <apex:outputPanel id="SkipBossC">

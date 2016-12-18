@@ -115,8 +115,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     String[] currencies = new String[]{};
     public decimal decMultFactor = 1;
     public decimal exRate{get;set;}
-    map<string,decimal> mapCurrency;   
+    map<string,decimal> mapCurrency;
     
+    //for soft/hard calculation on page laod
+    public Set<Id> allFinIdSet = new Set<Id>(); 
+    public List<Id> unprocessedFinIds{get;set;} 
+    public Integer finCounter{get;set;}
+    public static final Integer BATCH_SIZE = 20;
+
 	/**************************************************************************
     Name:getLocalCurrencyViewButtonVisibility()
     Function:This Method is used to show the LocalCurrencyView Button on IPM_FinancialPage
@@ -385,6 +391,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         exRate=1;
         showNonKeyBusinessCaseChangedAlert = false;  //initiating the variable to false
         
+        redValidationCellsString = IPM_ConstantUtils.BLANK;
+        yellowValidationCellsString = IPM_ConstantUtils.BLANK ;
         currentFinancialType = IPM_ConstantUtils.BLANK;
         isFinacialConsolidated = false;
         isCAPEXInvalid = false;
@@ -395,7 +403,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         projectType = IPM_ConstantUtils.BLANK ;
         isRolloutError = false;
         
-      
+        //constructor intialization of the variables for bacthed implementation of soft/hard financial validation calculation
+        finCounter = 0;
+        String externalIdLike = project.Source_Rollout_External_Id__c+'\\_'+'%';
+        allFinIdSet = (new Map<Id,IPM_Financial__c>([Select Id FROM IPM_Financial__c WHERE Financial_External_ID__c  Like: externalIdLike AND RecordType.Name = 'Default' Limit 1000])).keySet();
+        unprocessedFinIds = new List<Id>();
+        unprocessedFinIds.addAll(allFinIdSet);
+     
         try{
             if (projectId != null) 
             {
@@ -1770,10 +1784,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             project.Sustainability_Period_Changed__c = true;
             Database.update(project);
     
-            getSustainabilityPeriod();
-            getFinancials();
-            
-            setConsolidatedFinancialValidationCells();
+
             
         } catch (Exception eX){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
@@ -2936,9 +2947,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 update project;
                 setMisalignedValue();
             } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
-                localRolloutProject.MisAligned_Confirmed_By_Finance_Leader__c = true;
+                mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c = true;
                 showMisalignedConfirmbtn = true;  
-                update localRolloutProject;
+                update mcoCountryRolloutPlan; 
                 setMisalignedValue();
             } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL || project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
                 mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c =true;  
@@ -3342,8 +3353,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 existingNonCurrentFinancialRedValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.RED);
                 existingNonCurrentFinancialYellowValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.YELLOW);
                 
-                conFin.put(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingNonCurrentFinancialRedValues + redValidationCellsString);
-                conFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingNonCurrentFinancialYellowValues + yellowValidationCellsString);
+                conFin.put(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingNonCurrentFinancialRedValues + redValidationCellsString+IPM_ConstantUtils.SEMICOLON);
+                conFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingNonCurrentFinancialYellowValues + yellowValidationCellsString+IPM_ConstantUtils.SEMICOLON);
                 conFin.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,(((String)conFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).length()>1));
     
             }
@@ -3603,7 +3614,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * These validation give the list of Red and Yellow erroneous cells (comma seperated string)
     * This string is then used to populate the erroneous cell names in the consolidated financials on creation/page load of financials
     ************************************************************************************************************************/
-    public void setConsolidatedFinancialValidationCells()
+    public void setConsolidatedFinancialValidationCells(Set<Id> finIdsToProcess)
     {
         try
         {
@@ -3628,7 +3639,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
         
             queryString+= ' Id FROM IPM_Financial_Years__r ORDER BY Name)';
-            queryString+= 'FROM IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.Source_Rollout_External_Id__c+'%\' Limit 1000'; //Added For Update to obtain exclusive access to the record
+            queryString+= 'FROM IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.Source_Rollout_External_Id__c+'\\_%\' AND RecordType.Name = \'Default\' AND ID IN :finIdsToProcess AND isActive__c = true Limit 1000'; //Added For Update to obtain exclusive access to the record
         
             Map<String,String> finExtIdRedCellsMap= new Map<String,String>();
             Map<String,String> finExtIdYellowCellsMap= new Map<String,String>();
@@ -3643,13 +3654,19 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 //the map conatining the erroneous cells financial external Ids for red and soft validation
                 //this map is then used to populate these external ids in the redValidationCells and YellowValidation cells field on the consolidated financials for the project
 
-                getRedYellowCellsMap(queryString,finExtIdRedCellsMap,finExtIdYellowCellsMap);
+                getRedYellowCellsMap(queryString,finIdsToProcess,finExtIdRedCellsMap,finExtIdYellowCellsMap);
                 
                 //Work with the string containing list of erroneous cells to populate the cells on consolidated financials
                 //used map to avoid the duplicate Id error (becuase of child financial years fetch) while the update operation 
                 Map<Id,IPM_Financial__c> toUpdateFinancialsMap = new Map<Id,IPM_Financial__c>();
-                    
-                for(IPM_Financial__c currentFin: Database.query(queryString)){
+                
+                //Query to fecth all the Consolidated financials for the project
+                String consolidatedFinQuery = 'Select Id,Financial_External_ID__c,Red_Validation_Cells_Global__c,Red_Validation_Cells_Regional__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Global__c,Yellow_Validation_Cells_Regional__c,Yellow_Validation_Cells_Local__c from IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.Source_Rollout_External_Id__c+'\\_%CONSOLIDATED\' AND RecordType.name = \'Consolidated\' AND isActive__c = true Limit 1000';
+                
+                String existingRedCells = IPM_ConstantUtils.BLANK;
+                String existingYellowCells = IPM_ConstantUtils.BLANK;
+                  
+                for(IPM_Financial__c currentFin: Database.query(consolidatedFinQuery)){
                     
                     if(currentFin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) 
                         && !toUpdateFinancialsMap.containsKey(currentFin.Id)){
@@ -3676,9 +3693,26 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                             uniqueYellowCellsStr = uniqueYellowCellsStr + yellowStr + IPM_ConstantUtils.SEMICOLON;
                         }
 
-                        currentFin.put(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,uniqueRedCellsStr);
-                        currentFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,uniqueYellowCellsStr);
-                        currentFin.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,(((String)currentFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).length() > 1));
+			existingRedCells = (String) currentFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
+			existingYellowCells = (String) currentFin.get(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
+ 
+                        //During processing of the first batch, overwrite the existing values in the fields
+                        if(finCounter == BATCH_SIZE || finCounter < BATCH_SIZE ){
+                        	
+                        	currentFin.put(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,uniqueRedCellsStr);
+	                        currentFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,uniqueYellowCellsStr);
+	                        currentFin.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,(((String)currentFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).length() > 1));
+                        
+                        }
+                        
+                        ////During processing of the subsequent batches, append the new values to the  existing values in the fields
+                        else{
+                        	currentFin.put(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingRedCells+uniqueRedCellsStr);
+	                        currentFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingYellowCells+uniqueYellowCellsStr);
+	                        currentFin.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,(((String)currentFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).length() > 1));
+	                        
+                        }
+                        
                         toUpdateFinancialsMap.put(currentFin.Id,currentFin);
     
                     }
@@ -3689,7 +3723,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     update toUpdateFinancialsMap.Values();
                 }
                 
-                initializeFinancials();
+                
         	}
         }
         
@@ -3714,7 +3748,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     *             finExtIdRedCellsMap & finExtIdYellowCellsMap : the Maps containing the string conatining the red and yellow erroneous cells respectively(semi colon seperated)    
     **************************************************************************************************************/
 
-    public void getRedYellowCellsMap(string sQuery,Map<String,String> finExtIdRedCellsMap,Map<String,String> finExtIdYellowCellsMap){
+    public void getRedYellowCellsMap(string sQuery,Set<Id> finIdsToProcess,Map<String,String> finExtIdRedCellsMap,Map<String,String> finExtIdYellowCellsMap){
         
         //get the financial external Id present for the current tab view and  calculate the soft validation based on those financials only
         Set<String> financialExtIdsForCurrentTab = getFinExtIdsForCurrentTab();
@@ -4089,5 +4123,47 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             isChanged = true;
           }
           return isChanged;
-    }       
+    }
+    
+    
+    /************************************************************************************************************** 
+    * This method is used to calculate the soft/hard validation of consolidated financials on page load.
+    * Processes the default financials in batches 
+    * recursively called from action function
+    **************************************************************************************************************/
+    public void fetchUnprocessedFins()
+    {
+    	//if there are no financials to process then return
+    	If(unprocessedFinIds.isEmpty()){
+    		return;
+    	}
+    	
+    	Set<Id> processFinancialIds = new Set<Id>();
+    	
+    	//calculate the appropriate batch size
+    	Integer tempBatchSize = BATCH_SIZE;
+    	
+    	if( (unprocessedFinIds.size() - finCounter) < BATCH_SIZE)
+    	{
+    		tempBatchSize = unprocessedFinIds.size() - finCounter;
+    	}
+    	
+    	for(Integer counter=finCounter;counter< finCounter+tempBatchSize;counter++)
+    	{
+    		processFinancialIds.add(unprocessedFinIds[counter]);
+    	}
+    	
+    	//increment the counter for next iteration
+    	finCounter = finCounter+tempBatchSize;  
+    	
+    	//call the method which would process the financials in batches
+    	if(!processFinancialIds.isEmpty()){
+    		setConsolidatedFinancialValidationCells(processFinancialIds);
+    	}
+    	
+    	if(finCounter == unprocessedFinIds.size()){
+    		initializeFinancials();
+    	}
+    	
+    }      
 }

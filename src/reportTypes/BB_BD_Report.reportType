@@ -775,7 +775,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Project Id</displayNameOverride>
             <field>IPM_External_ID__c</field>
             <table>IPM_Analytics__c</table>
         </columns>

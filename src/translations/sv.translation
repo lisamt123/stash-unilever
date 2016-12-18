@@ -2153,7 +2153,7 @@
         <name>IPM_BACKGROUNDPROCESS_INPROGRESS</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM_BB --></label>
+        <label><!-- BC Confirmation --></label>
         <name>IPM_BB</name>
     </customLabels>
     <customLabels>
@@ -2169,7 +2169,7 @@
         <name>IPM_BB_COMMENTS</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM BB Document --></label>
+        <label><!-- BC Confirmation Document --></label>
         <name>IPM_BB_Document</name>
     </customLabels>
     <customLabels>
@@ -2201,7 +2201,7 @@
         <name>IPM_BD_BB_MISALLIGNMENT_VISIBILITY</name>
     </customLabels>
     <customLabels>
-        <label><!-- BD Marketing --></label>
+        <label><!-- Marketing (Development) --></label>
         <name>IPM_BD_Marketing</name>
     </customLabels>
     <customLabels>
@@ -2641,11 +2641,11 @@
         <name>IPM_BrandPositioningHelpText</name>
     </customLabels>
     <customLabels>
-        <label><!-- Brand Builders (BB) --></label>
+        <label><!-- Marketing (Deployment) --></label>
         <name>IPM_Brand_Builders_BB</name>
     </customLabels>
     <customLabels>
-        <label><!-- Brand Development Finance (BD Finance) --></label>
+        <label><!-- Finance (Development) --></label>
         <name>IPM_Brand_Development_Finance_BD_Finance</name>
     </customLabels>
     <customLabels>
@@ -9049,25 +9049,6 @@
         <name>im_Issues</name>
     </customTabs>
     <globalPicklists>
-        <name>VPM_ECC</name>
-        <picklistValues>
-            <masterLabel>Cordillera</masterLabel>
-            <translation><!-- Cordillera --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Fusion</masterLabel>
-            <translation><!-- Fusion --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Sirius</masterLabel>
-            <translation><!-- Sirius --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>U2K2</masterLabel>
-            <translation><!-- U2K2 --></translation>
-        </picklistValues>
-    </globalPicklists>
-    <globalPicklists>
         <name>Country</name>
         <picklistValues>
             <masterLabel>CAM</masterLabel>
@@ -9088,6 +9069,25 @@
         <picklistValues>
             <masterLabel>Venezuela</masterLabel>
             <translation><!-- Venezuela --></translation>
+        </picklistValues>
+    </globalPicklists>
+    <globalPicklists>
+        <name>VPM_ECC</name>
+        <picklistValues>
+            <masterLabel>Cordillera</masterLabel>
+            <translation><!-- Cordillera --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fusion</masterLabel>
+            <translation><!-- Fusion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sirius</masterLabel>
+            <translation><!-- Sirius --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U2K2</masterLabel>
+            <translation><!-- U2K2 --></translation>
         </picklistValues>
     </globalPicklists>
     <quickActions>
@@ -9578,10 +9578,6 @@
             <columns>
                 <label><!-- Project Description --></label>
                 <name>Project Description</name>
-            </columns>
-            <columns>
-                <label><!-- Project Id --></label>
-                <name>Project Id</name>
             </columns>
             <columns>
                 <label><!-- Project Id --></label>

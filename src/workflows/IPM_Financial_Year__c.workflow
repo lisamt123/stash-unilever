@@ -873,7 +873,7 @@
             <name>Copy_ValueMarketShare_Global_To_Local</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Copy_Global_to_Local__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -884,7 +884,7 @@
             <name>Copy_ValueMarketShare_GlobalToRegional</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Copy_Global_to_Regional__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -895,7 +895,7 @@
             <name>Copy_ValueMarketShare_Local_To_Global</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Copy_Local_to_Global__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -906,7 +906,7 @@
             <name>Copy_ValueMarketShare_Local_To_Regional</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Copy_Local_to_Regional__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -917,7 +917,7 @@
             <name>Copy_ValueMarketShare_Regional_To_Local</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Copy_Regional_to_Local__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -940,7 +940,7 @@
             <name>Value_Market_Share_Charter_Copy_Over</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Charter_Approved__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -963,7 +963,7 @@
             <name>Value_Market_Share_Contract_Copy_Over</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Contract_Approved__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -986,7 +986,7 @@
             <name>Value_Market_Share_MD_Copy_Over</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>MD_Approved__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -1009,7 +1009,7 @@
             <name>Value_Market_Share_MR_Copy_Over</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>MR_Approved__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>

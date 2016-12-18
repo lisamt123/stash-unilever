@@ -356,10 +356,6 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>BD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>CMI</fullName>
                 <default>false</default>
             </picklistValues>
@@ -384,7 +380,11 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>BB</fullName>
+                <fullName>MKTG DEV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MKTG LOCAL</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
