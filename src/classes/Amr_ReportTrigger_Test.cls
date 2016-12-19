@@ -31,7 +31,7 @@ public with sharing class Amr_ReportTrigger_Test{
         Amr_Summary_Plan__c plan1 = new Amr_Summary_Plan__c(ProductCategory__c = productCategory1.id, Year__c = String.valueOf(System.Today().year()));
         insert plan1;    
          
-         Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
+         Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(single_or_multiply_project__c='single',name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
                                             Digital_Agency_Name__c = 'test',Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
                                             Any_other_agencies_involved__c = 'abc',Budget_Allocated_Input_Value__c = 5,Campaign_Name__c = 'xyz',
                                             Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com',
@@ -39,7 +39,7 @@ public with sharing class Amr_ReportTrigger_Test{
                                             Project_Leader_Cluster__c = 'Africa',Stage_of_Production_Activity__c = 'Before briefing the agency',Budget_Responsibility__c = 'BD');
          insert jobDetailsObj;
          
-          Amr_Job_Details__c jobDetailsObjnew = new Amr_Job_Details__c(name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
+          Amr_Job_Details__c jobDetailsObjnew = new Amr_Job_Details__c(single_or_multiply_project__c='single',name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
                                             Digital_Agency_Name__c = 'test',Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
                                             Any_other_agencies_involved__c = 'abc',Budget_Allocated_Input_Value__c = 5,Campaign_Name__c = 'xyz',
                                             Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com',
@@ -47,7 +47,7 @@ public with sharing class Amr_ReportTrigger_Test{
                                             Project_Leader_Cluster__c = 'Africa',Stage_of_Production_Activity__c = 'Before briefing the agency',Budget_Responsibility__c= 'BD');
          insert jobDetailsObjnew;
         
-         Amr_Job_Details__c jobDetailsObj1 = new Amr_Job_Details__c(name = 'test2',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
+         Amr_Job_Details__c jobDetailsObj1 = new Amr_Job_Details__c(single_or_multiply_project__c='single',name = 'test2',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
                                             Digital_Agency_Name__c = 'test',Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
                                             Any_other_agencies_involved__c = 'abc',Budget_Allocated_Input_Value__c = 5,Campaign_Name__c = 'xyz',
                                             Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com',
@@ -55,7 +55,7 @@ public with sharing class Amr_ReportTrigger_Test{
                                             Project_Leader_Cluster__c = Amr_ConstantForAdManager.CLUSTERLA,Stage_of_Production_Activity__c = 'Before getting quotations',Budget_Responsibility__c = 'BB');
         insert jobDetailsObj1;  
          
-         Amr_Job_Details__c jobDetailsObj2 = new Amr_Job_Details__c(name = 'test2',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
+         Amr_Job_Details__c jobDetailsObj2 = new Amr_Job_Details__c(single_or_multiply_project__c='single',name = 'test2',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
                                             Digital_Agency_Name__c = 'test',Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
                                             Any_other_agencies_involved__c = 'abc',Budget_Allocated_Input_Value__c = 5,Campaign_Name__c = 'xyz',
                                             Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com',

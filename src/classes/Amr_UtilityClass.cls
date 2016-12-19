@@ -77,4 +77,63 @@ public with sharing class Amr_UtilityClass {
         return categorySet;
     }
     
+    // Multi Category start
+    public Set<Amr_Multi_Brand_Positioning__c> multiBrandPostitionValues(String Category){
+        
+        Set<String> categoryAndSubs = multiSubCategoriesForGivenCategory(category);
+        List<Amr_Multi_Brand_Positioning__c> brandPositionLst = [Select id, name from Amr_Multi_Brand_Positioning__c where id in (select Multi_Brand_Positioning__c from Amr_Multi_Brand_Positions__c where Multi_Category__c = :categoryAndSubs and status__c = 'Active') and status__c = 'Active' order by name asc];
+        Set<Amr_Multi_Brand_Positioning__c> brandPostitionSet = new Set<Amr_Multi_Brand_Positioning__c>();
+        
+        brandPostitionSet.addAll(brandPositionLst);
+        
+        return brandPostitionSet;
+    }
+
+    public static Set<String> multiSubCategoriesForGivenCategory(String subcategory){
+        
+        Set<String> subcategories = new Set<String>{};
+        if(!String.isBlank(subcategory)) {
+
+            List<Amr_Multi_Category__c> categoryid = [select id from Amr_Multi_Category__c  where name =:subcategory ORDER BY Name limit 50000];
+            
+            List<Amr_Multi_Category__c> firsAndSecondSublevels = [select id from Amr_Multi_Category__c where Id =: categoryid and status__c = 'Active'];
+            subcategories.add(subcategory);
+            for(Amr_Multi_Category__c cat : firsAndSecondSublevels){
+                subcategories.add(cat.id);
+            }
+        }
+        
+        return subcategories;
+    }
+   
+    public Set<Amr_Multi_Brand__c> multiBrandValues(String Category,String brandPosition){
+        
+        Set<String> subcategories = multiSubCategoriesForGivenCategory(Category);
+        
+        List<String> brandposlist = new List<String>();
+        List<Amr_Multi_Brand_Positioning__c> brandPositionid = [SELECT Id FROM Amr_Multi_Brand_Positioning__c WHERE Name =:brandPosition ORDER BY Name limit 50000];
+        for(Amr_Multi_Brand_Positioning__c bp : brandPositionid){
+            brandposlist.add(bp.id);
+        }
+        
+       
+        List<String> brandlist = new List<String>();
+        List<Amr_Multi_Brand_Positions__c> brandid =[select Multi_Brand__c from Amr_Multi_Brand_Positions__c where Multi_Brand_Positioning__c in :brandposlist and Multi_Category__c in :subcategories and status__c = 'Active'];
+        for(Amr_Multi_Brand_Positions__c bps : brandid){
+            brandlist.add(bps.Multi_Brand__c);
+        }
+        List<Amr_Multi_Brand__C> brandValues = [select id,name from Amr_Multi_Brand__c where id in :brandlist and status__c = 'Active' limit 50000];
+        Set<Amr_Multi_Brand__C> brandSet = new Set<Amr_Multi_Brand__C>();
+        brandSet.addAll(brandValues);
+        return brandSet;
+    }
+    
+    public Set<Amr_Multi_Category__c> multiCategoryValues(){
+        List<Amr_Multi_Category__c>   categoryLst = [select name from Amr_Multi_Category__c where status__c = 'Active' ORDER BY Name limit 50000];
+        
+        Set<Amr_Multi_Category__c> categorySet = new Set<Amr_Multi_Category__c>();
+        categorySet.addAll(categoryLst);
+        return categorySet;
+    }
+    
 }

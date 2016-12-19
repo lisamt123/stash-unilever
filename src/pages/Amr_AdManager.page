@@ -2,8 +2,8 @@
     <head>
         <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" />
         <apex:includeScript value="/support/console/31.0/integration.js" />
-        <script type="text/javascript">
-            $j = jQuery.noConflict();                                                                 
+        <script type="text/javascript">            
+            $j = jQuery.noConflict();        
         </script>        
         <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_menu_shift.js')}" />
         <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_production_activity.js')}" />
@@ -24,6 +24,12 @@
             }
             .lower-container {
 			    height: 20px !important;
+			}
+			.loading-category-image21 {
+			    display: none;
+			    width: 30px;
+			    border: none;
+			    margin-bottom: 5px;
 			}                  
         </style>
         <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/logging-form.css')}" />
@@ -218,8 +224,29 @@
                             </div>
                         </div>
                     </div>
+                    
+                    
                     <div class="form-field-parent">
                         <div class="form-field-level1">
+                            <div class="form-field">
+                                <apex:outputLabel styleclass="checkboxrmt-label logging-form-label" style="width:298px !important;padding:4px 18px 4px 0 !important">
+                                    Is this project Single, Multiply or Non
+                                    <strong style="right:5px;"></strong>
+                                    <div style="right:-8px;" title="{!$ObjectType.Amr_Job_Details__c.fields.Single_or_multiply_project__c.inlineHelpText}"></div>
+                                </apex:outputLabel>
+                            </div>
+                            <div class="form-radio margin-left-minus30 checkboxrmt margin-top5 left single_or_multiply">
+                            	<apex:selectRadio value="{!jobDetails.Single_or_multiply_project__c}" dir="RTL">
+                                    <apex:selectOption itemValue="single" itemLabel="Single category" />
+                                    <apex:selectOption itemValue="multiply" itemLabel="Multiply Categories/Non-Brand Specific" />
+                                </apex:selectRadio>                                
+                            </div>                            
+                            <div class="clear">
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="form-field-parent">
+                        <div class="form-field-level1 single_multiply_show_hide single_of_single_multiply">
                             <div class="form-field">
 
                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!if(categoryNameFlag || brandPosNameFlag || brandNameFromPageFlag,true,false)}" styleclass="loadError" />
@@ -271,8 +298,64 @@
                             </div>
                             <div class="clear">
                             </div>
-                        </div>
+             			</div>
+             			
                     </div>
+                    
+                    <div class="form-field-parent">
+                        <div class="form-field-level1 single_multiply_show_hide multiply_of_single_multiply">                            
+                            <!-- new changes -->                            
+                            <div class="form-field">
+                                <apex:outputlabel value="{!CheckWithCMI}" rendered="{!if(categoryNameFlag || brandPosNameFlag || brandNameFromPageFlag,true,false)}" styleclass="loadError" />
+                                <apex:outputLabel styleclass="logging-form-label">
+                                    	{!$label.Amr_Category_Brand_Positioning_Brand}
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.ProductCategory__c.inlineHelpText}"></div>
+                                </apex:outputLabel>
+                            </div>
+                            <!-- changes -->                              
+                            <div class="form-field margin-left-minus30">
+                                <apex:actionRegion >
+                                    <select id="MultiCategoryList" size="1" onchange="transferMultiCategoryValue(this.value)" reRender="multibrandPosPick" class="categorySelected"></select>
+                                    <apex:actionSupport event="onchange" reRender="multibrandPosPick,multibrandPick" status="counterStatus21" />                                    
+                                </apex:actionRegion>
+                                <apex:actionstatus id="counterStatus21">
+                                    <apex:facet name="start">
+                                        <img src="/img/loading.gif" alt="loading" />
+                                    </apex:facet>
+                                </apex:actionstatus>
+                                <div class="multiloading loading-category-image21">
+                                    <img src="/img/loading.gif" alt="loading" />
+                                </div>
+                            </div>                            
+                            <div class="form-field">
+                                <apex:actionRegion >
+                                    <apex:selectList id="multibrandPosPick" value="{!multiBrandPosName}" size="1">
+                                        <apex:selectOptions value="{!listOfMultiBrandPosition}" />
+                                        <apex:actionSupport event="onchange" reRender="multibrandPick" status="actStatusId21" />
+                                    </apex:selectList>
+                                </apex:actionRegion>
+                                <div class="w100ac">
+                                    <br/>
+                                    <apex:actionStatus id="actStatusId21">
+                                        <apex:facet name="start">
+                                            <img src="/img/loading.gif" alt="loading" />
+                                        </apex:facet>
+                                    </apex:actionStatus>
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <apex:actionRegion >
+                                    <apex:selectList id="multibrandPick" value="{!multibrandNameFromPage}" size="1">
+                                        <apex:selectOptions value="{!MultiBrandList}" />
+                                    </apex:selectList>
+                                </apex:actionRegion>
+                            </div>                            
+                            <div class="clear">
+                            </div>                            
+                            <!-- end of new changes -->
+                        </div>
+                    </div>                                        
                 </section>
                 <section>
                     <h2 class="margintop25">{!$Label.Amr_Agency_Information}</h2>
@@ -1193,6 +1276,9 @@
                 </apex:actionFunction>
                 <apex:actionFunction name="sendCategory" action="{!brandPositionListData}" reRender="brandPosPick,brandPick" oncomplete="closeloading()">
                     <apex:param id="catname" assignTo="{!categoryName}" name="categoryName" value="{!categoryName}" />
+                </apex:actionFunction>
+                <apex:actionFunction name="sendmultiCategory" action="{!multiBrandPositionListData}" reRender="multibrandPosPick,multibrandPick" oncomplete="closemultiloading()">
+                    <apex:param id="multicatname" assignTo="{!multicategoryName}" name="multicategoryName" value="{!multicategoryName}" />
                 </apex:actionFunction>                
                 <apex:actionFunction name="sendProductionActivity" action="{!prodActivity}" reRender="showmsg1" oncomplete="submitData()" status="actStatusId">
                     <apex:param id="patypename" assignTo="{!productionActivityData}" name="productionActivityData" value="{!productionActivityData}" />
@@ -1212,5 +1298,72 @@
             catProjectADM(stringArray,strArr,projFormPage,catName);
             //loadErrorParentCall();                                                
         });
+        
+        $j(function() {                        
+            var strMultiArr = {!MultiCategoryList};
+            //alert('categorylist'+strMultiArr);            
+            var multiCatName = '{!multicategoryName}';
+            //alert('multiCatName'+multiCatName);                       
+            multiCatProjectADM1(strMultiArr,multiCatName);
+           //multiCatProjectADM1();   
+           //alert('hello');                                                         
+        });
+        
+        function multiCatProjectADM(strMultiArr,multicatName) {	
+        	alert('here too');		
+			var none = $j('<option value="none">--None--</option>');
+			$j('#MultiCategoryList').append(none);					
+		}
+        function multiCatProjectADM1(strMultiArr,multicatName) {			
+			var newOp;			                        			
+			for (var j = 0; j < strMultiArr.length; j++) {
+				if (multicatName == strMultiArr[j] && multicatName !== null) {
+					newOp = $j('<option value="' + strMultiArr[j] + '">' + strMultiArr[j] + '</option>');
+					$j('#MultiCategoryList').append(newOp);
+				}
+			}
+			var none = $j('<option value="none">--None--</option>');
+			$j('#MultiCategoryList').append(none);
+		
+			for (var j = 0; j < strMultiArr.length; j++) {
+				if (multicatName == strMultiArr[j]) {
+					j = j + 1;
+				}
+				newOp = $j('<option value="' + strMultiArr[j] + '">' + strMultiArr[j] + '</option>');
+				$j('#MultiCategoryList').append(newOp);
+			}	
+		}
+		
+		function transferMultiCategoryValue(categoryValue){
+			sendmultiCategory(categoryValue);
+			$j('.multiloading').show();
+		}
+		
+		function closemultiloading() {
+			$j('.multiloading').hide();
+		}
+		
+		$j(function(){            	
+           	$j('.single_multiply_show_hide select').attr('disabled','disabled');   
+           	
+           	//alert($j('.single_or_multiply input[type="radio"]:checked').val());
+           	         	
+           	if($j('.single_or_multiply input[type="radio"]:checked').val() == 'multiply' ) {
+           		$j('.multiply_of_single_multiply select').removeAttr('disabled');           		
+           		$j('.single_of_single_multiply select').closest('.loadErrorParent').find('.loadError').remove();           		
+           		$j('.single_of_single_multiply select').closest('.loadErrorParent').attr('class','form-field-parent');           		
+           	} else {
+           		$j('.single_of_single_multiply select').removeAttr('disabled');
+           		$j('.single_or_multiply input[type="radio"][value="single"]').prop( "checked", true );           		
+           		$j('.multiply_of_single_multiply select').closest('.loadErrorParent').find('.loadError').remove();           		
+           		$j('.multiply_of_single_multiply select').closest('.loadErrorParent').attr('class','form-field-parent');           		
+           	}
+           	           	            	
+            $j('.single_or_multiply input[type="radio"]').change(function(){
+            	$j('.single_multiply_show_hide select').attr('disabled','disabled');	            	
+            	$j('.'+$j(this).val()+'_of_single_multiply select').removeAttr('disabled');
+            });
+        });
+		
     </script>
 </apex:page>

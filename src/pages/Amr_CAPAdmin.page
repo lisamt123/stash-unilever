@@ -49,6 +49,130 @@
                     </div>
                 </div>
             </div>
+        	<div class="main_inner_section margin-btwn-container bg-g1">
+        		<h4 class="main_inner_sectionh4">
+                    Multi cat checker                    
+                </h4>
+                <div class="submain_inner_section">
+                    <div class="inner_section">
+                        <div class="inner_sub_section" style="display: block;">
+                            <div class="inner_sub2_section">
+                            	<div class="margin-right20 left">
+                            		Category > Brand Positioning > Brand
+                            	</div>
+                            	<div class="margin-right20 left">
+	                            	<select><option>None</option></select>
+	                            	<select><option>None</option></select>
+	                            	<select><option>None</option></select>
+                            	</div>
+                            	<div class="clear">
+                            	</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+        	</div>
+        	<div class="main_inner_section margin-btwn-container bg-g1">
+        		<h4 class="main_inner_sectionh4">
+                    Add category                    
+                </h4>
+                <div class="submain_inner_section">
+                    <div class="inner_section">
+                        <div class="inner_sub_section" style="display: block;">
+                            <div class="inner_sub2_section">
+                            	<div class="left margin-right20" style="width:200px;text-align:right;">
+                            		Brand                            		
+                            	</div>
+                            	<div class="left" >
+                            		<input type="text" class="margin-right20" /><input type="text" class="margin-right20" /><input type="text" />
+                            	</div>
+                            	<div class="clear"></div>
+                            	<div class="left margin-right20 margin-top10" style="width:200px;text-align:right;">
+                            		Brand Positioning 
+                            	</div>
+                            	<div class="left" >
+                            		<input type="text" /> <a href="#">Add new</a>
+                            	</div>
+                            	<div class="clear"></div>
+                            	<div class="left margin-right20 margin-top10" style="width:200px;text-align:right;">
+                            		Category                          		
+                            	</div>
+                            	<div class="left" >
+                            		<input type="text" /> <a href="#">Add new</a>
+                            	</div>
+                            	<div class="clear"></div>                            	                             	                            	
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+        	</div>
         </div>
     </div>
+    
+    <script type="text/javascript">
+                
+        $j(function() {                        
+            var strMultiArr = {!MultiCategoryList};
+            //alert('categorylist'+strMultiArr);            
+            var multiCatName = '{!multicategoryName}';
+            //alert('multiCatName'+multiCatName);                       
+            multiCatProjectADM1(strMultiArr,multiCatName);
+           //multiCatProjectADM1();   
+           //alert('hello');                                                         
+        });
+        
+        function multiCatProjectADM(strMultiArr,multicatName) {	
+        	alert('here too');		
+			var none = $j('<option value="none">--None--</option>');
+			$j('#MultiCategoryList').append(none);					
+		}
+        function multiCatProjectADM1(strMultiArr,multicatName) {			
+			var newOp;			                        			
+			for (var j = 0; j < strMultiArr.length; j++) {
+				if (multicatName == strMultiArr[j] && multicatName !== null) {
+					newOp = $j('<option value="' + strMultiArr[j] + '">' + strMultiArr[j] + '</option>');
+					$j('#MultiCategoryList').append(newOp);
+				}
+			}
+			var none = $j('<option value="none">--None--</option>');
+			$j('#MultiCategoryList').append(none);
+		
+			for (var j = 0; j < strMultiArr.length; j++) {
+				if (multicatName == strMultiArr[j]) {
+					j = j + 1;
+				}
+				newOp = $j('<option value="' + strMultiArr[j] + '">' + strMultiArr[j] + '</option>');
+				$j('#MultiCategoryList').append(newOp);
+			}	
+		}
+		
+		function transferMultiCategoryValue(categoryValue){
+			sendmultiCategory(categoryValue);
+			$j('.loading').show();
+		}
+		
+		$j(function(){            	
+           	$j('.single_multiply_show_hide select').attr('disabled','disabled');   
+           	
+           	//alert($j('.single_or_multiply input[type="radio"]:checked').val());
+           	         	
+           	if($j('.single_or_multiply input[type="radio"]:checked').val() == 'multiply' ) {
+           		$j('.multiply_of_single_multiply select').removeAttr('disabled');           		
+           		$j('.single_of_single_multiply select').closest('.loadErrorParent').find('.loadError').remove();           		
+           		$j('.single_of_single_multiply select').closest('.loadErrorParent').attr('class','form-field-parent');           		
+           	} else {
+           		$j('.single_of_single_multiply select').removeAttr('disabled');
+           		$j('.single_or_multiply input[type="radio"][value="single"]').prop( "checked", true );           		
+           		$j('.multiply_of_single_multiply select').closest('.loadErrorParent').find('.loadError').remove();           		
+           		$j('.multiply_of_single_multiply select').closest('.loadErrorParent').attr('class','form-field-parent');           		
+           	}
+           	           	            	
+            $j('.single_or_multiply input[type="radio"]').change(function(){
+            	$j('.single_multiply_show_hide select').attr('disabled','disabled');	            	
+            	$j('.'+$j(this).val()+'_of_single_multiply select').removeAttr('disabled');
+            });
+        });
+		
+    </script>
+    
 </apex:page>
