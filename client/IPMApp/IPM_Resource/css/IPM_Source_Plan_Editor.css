@@ -328,7 +328,7 @@ table.table.table-bordered.productsourcegrey tr .alignAddicn{text-align:left;}
 div.custMarginTop{margin-top:6px;}
 .srcErrBox {width: 60%;clear: both;}
 .custSizeWidth span.ui-spinner.ui-state-default{width:42%;}
-input.btn.ipmButton.primary{padding: 6px;font-size: 12px;}
+input.btn.ipmButton.primary{border-radius:5px;}
 .ui-spinner.ui-state-default{background:#fff;border-radius: 0;height: 23px;}
 a.ui-state-default .ui-icon{position: relative;}
 a.icoButton.delete{margin-left: 0;}
