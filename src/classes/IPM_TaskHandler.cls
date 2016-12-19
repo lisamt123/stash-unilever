@@ -58,7 +58,20 @@ public with sharing class IPM_TaskHandler implements ITrigger{
                 sectionDetailMap = new Map<Id,IPM_Section__c>( (List<IPM_Section__c>) database.query(sectionQuery));
             }
    
-            //To assign default task owner as PL
+            partialBulkBeforeInsert(taskList);
+            partialBulkBeforeUpdate(taskList);
+        }
+    }
+    
+    /**********************************************************************
+    @Description: This method is created to resolve nPath Complexity issue
+    @Return: Void
+    **********************************************************************/
+    
+    
+    public void partialBulkBeforeInsert(List<IPM_Task__c> taskList)
+    {
+    	//To assign default task owner as PL
             if(Trigger.isInsert)
             {
                 List<IPM_Task__c> taskWithoutDueDate = new List<IPM_Task__c>();
@@ -83,8 +96,16 @@ public with sharing class IPM_TaskHandler implements ITrigger{
                     IPM_TaskHelper.updateTaskDueDateBasedOnMS(taskWithoutDueDate); // Task list to update based on Milestone Due Date 
                 }
             }
-            
-            if(Trigger.isUpdate)
+    }
+    
+    /**********************************************************************
+    @Description: This method is created to resolve nPath Complexity issue
+    @Return: Void
+    **********************************************************************/
+    
+    public void partialBulkBeforeUpdate(List<IPM_Task__c> taskList)
+    {
+    	if(Trigger.isUpdate)
             {
             	if(!taskList.isEmpty())
             	{
@@ -104,8 +125,8 @@ public with sharing class IPM_TaskHandler implements ITrigger{
                     }
             	}
             }
-        }
     }
+    
     /**
     * @Description:This method is called prior to execution of a AFTER trigger. Use this to cache
     * any data required into maps prior execution of the trigger.
