@@ -75,7 +75,34 @@ public with sharing class IPM_GateRiskSection{
             displayRQSQuestionsList=new List<IPM_Questionnaire__c>();
             displayCRQuestionsList=new List<IPM_Questionnaire__c>();
             riskCategories=new Set<String>();
-            //Getting list of POS,RQS questions
+            getRiskQuestions();
+            //Getting list of Corporate risk questions
+            if(projDocType==IPM_ConstantUtils.CONTRACT_GATE || projDocType==IPM_ConstantUtils.MARKET_READY_GATE || projDocType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE){
+                for(IPM_Questionnaire__c crs:questionsList){
+                    if(crs.RecordTypeId==recTypeIDCR && ((projDocType==IPM_ConstantUtils.CHARTER_GATE && crs.IPM_Charter_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
+                        (projDocType==IPM_ConstantUtils.CONTRACT_GATE && crs.IPM_Contract_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
+                        (projDocType==IPM_ConstantUtils.MARKET_READY_GATE && crs.IPM_Market_Ready_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
+                        (projDocType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE && crs.IPM_Market_Deployment_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE))){
+                            displayCRQuestionsList.add(crs);
+                    }
+                }
+                generateRisk=true;
+            }  
+        } 
+        catch (Exception ex) {
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                RMP_PLAN,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+        }
+    }
+    
+    /***************************************************************************************************************************************
+    *  @description Functions to Getting list of POS,RQS questions. 
+    *  @name getRiskQuestions
+    *  @param none
+    *  @return void 
+    */
+    private void getRiskQuestions(){
             if(questionsList!=null && !questionsList.isEmpty()){
                 for(IPM_Questionnaire__c ques:questionsList){
                     if(ques.RecordTypeId==recTypeIDPOS){
@@ -97,24 +124,6 @@ public with sharing class IPM_GateRiskSection{
                         generateRisk=true;
                     }
                 }
-            }
-            //Getting list of Corporate risk questions
-            if(projDocType==IPM_ConstantUtils.CONTRACT_GATE || projDocType==IPM_ConstantUtils.MARKET_READY_GATE || projDocType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE){
-                for(IPM_Questionnaire__c crs:questionsList){
-                    if(crs.RecordTypeId==recTypeIDCR && ((projDocType==IPM_ConstantUtils.CHARTER_GATE && crs.IPM_Charter_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
-                        (projDocType==IPM_ConstantUtils.CONTRACT_GATE && crs.IPM_Contract_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
-                        (projDocType==IPM_ConstantUtils.MARKET_READY_GATE && crs.IPM_Market_Ready_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
-                        (projDocType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE && crs.IPM_Market_Deployment_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE))){
-                            displayCRQuestionsList.add(crs);
-                    }
-                }
-                generateRisk=true;
-            }  
-        } 
-        catch (Exception ex) {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-                RMP_PLAN,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
     
