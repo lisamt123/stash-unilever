@@ -52,6 +52,8 @@ src/classes/IPM_GateCMI_Consolidated.cls
 src/classes/IPM_GateCMI_Consolidated.cls-meta.xml
 src/classes/IPM_GateDocumentRiskManagement.cls
 src/classes/IPM_GateDocumentRiskManagement.cls-meta.xml
+src/classes/IPM_GateDocumentController.cls
+src/classes/IPM_GateDocumentController.cls-meta.xml
 src/classes/IPM_GateRiskSection.cls
 src/classes/IPM_GateRiskSection.cls-meta.xml
 src/classes/IPM_Milestone.cls

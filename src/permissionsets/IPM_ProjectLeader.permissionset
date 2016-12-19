@@ -8222,11 +8222,7 @@
 		<field>IPM_Project__c.IPM_Stopped_At_Span__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>IPM_Project_Document_Section__c.Gate_With_Sequence__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
+	
 	<fieldPermissions>
 		<editable>true</editable>
 		<field>IPM_Project_Document_Section__c.IPM_Parent_Section_isNull__c</field>
