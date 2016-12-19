@@ -140,45 +140,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         } 
         
         // Check required Attributes for the project.
-        if(!projectAssociatedWithProjectTypesList.isEmpty())
-        {
-            List<IPM_Project_Metadata__mdt> projectMetadataList = IPM_Utils.getProjectTypeMetadata(projectAssociatedWithProjectTypesList);
-            List<String> mandatoryFieldArray = new List<String>();
-            
-            for(Integer counter=0;counter < projectAssociatedWithProjectTypesList.size();counter++)
-            {
-                IPM_Project_Metadata__mdt projectMetadata = projectMetadataList.get(counter);
-                IPM_Project__c project = projectAssociatedWithProjectTypesList.get(counter);   
-                if(project.IPM_IsSaved__c){
-                    Set<String> projectmandatoryFieldErrorSet = new Set<String>();
-                    if(projectMetadata!=null && projectMetadata.IPM_ProjectType__c !=null && !String.isBlank(projectMetadata.IPM_ProjectType__c))
-                    {
-                        if(projectMetadata.IPM_MandatoryFields__c !=null && !String.isBlank(projectMetadata.IPM_MandatoryFields__c))
-                        {
-                            mandatoryFieldArray = projectMetadata.IPM_MandatoryFields__c.split(IPM_ConstantUtils.COMMA);
-                            for(String fieldAPI : mandatoryFieldArray)
-                            {
-                                if(project.get(fieldAPI) == null && projectFieldDesc.containsKey(fieldAPI))
-                                {
-                                    String fieldLabel = projectFieldDesc.get(fieldAPI).getDescribe().getLabel();
-                                    projectmandatoryFieldErrorSet.add(fieldLabel);
-                                }   
-                            }
-                            
-                            if(!projectmandatoryFieldErrorSet.isEmpty())
-                            {
-                                 project.addError(String.format(Label.IPM_MandatoryFieldMissing,new List<String>(projectmandatoryFieldErrorSet) ) );
-                            }           
-                        }
-                    }
-                    else
-                    {
-                        project.addError(Label.IPM_ProjecTypeMissing);
-                    }
-               }
-            }
-        }
-        if(Trigger.isUpdate){
+        bulkbeforemethodhelper(projectAssociatedWithProjectTypesList);
+    	 if(Trigger.isUpdate){
             IPM_ProjectCountryDetails.checkAtLeastOneAssmnt((Map<Id,IPM_Project__c>)Trigger.newMap);
         }
         
@@ -947,38 +910,9 @@ public with sharing class IPM_ProjectHandler implements ITrigger
 	            }	
             }
         }
-       
         //populating project category threshold based on category,category group and few other parameters
-        if(insertedProject.IPM_Category_Text__c !=null && insertedProject.IPM_Category_Group__c !=null && insertedProject.IPMProject_Span__c !=null && insertedProject.IPM_Project_Type__c ==PROJECT_TYPE_ORIGINAL )
-        {
-            String mdtMapKey =  insertedProject.IPM_Category_Text__c + insertedProject.IPM_Category_Group__c +  insertedProject.IPMProject_Span__c;
-            
-            if(String.isNotBlank(insertedProject.Market_Cluster_Name__c) && mrktClusterCategoryMap.containsKey(insertedProject.IPM_Category_Text__c + insertedProject.IPMProject_Span__c) ) 
-            {
-            	if( mrktClusterCategoryMap.get(insertedProject.IPM_Category_Text__c + insertedProject.IPMProject_Span__c).IPM_Is_market_cluster_applicable__c)
-            	{
-            		mdtMapKey = mdtMapKey + insertedProject.Market_Cluster_Name__c;
-            	}
-            }
-              
-            if(masterCategoryThrshMap.containsKey(mdtMapKey))
-            {   
-                insertedProject.IPM_Category_Thresh__c = masterCategoryThrshMap.get(mdtMapKey).IPM_Category_threshhold__c/1000;
-            }
-            
-        }
-        
-        if(insertedProject.Exempt_from_Threshold__c !=null)
-        {
-            if(insertedProject.Exempt_from_Threshold__c)
-            {
-                insertedProject.IPM_Threshold_Value__c = IPM_ConstantUtils.YES;
-            }
-            else
-            {
-                insertedProject.IPM_Threshold_Value__c = IPM_ConstantUtils.NO;
-            }
-        }
+        beforeInsertMehtodHelper(insertedProject);
+     
     }
     
     /********************************************************************************************************************************************************
@@ -1005,44 +939,12 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         {
             incomingProject.Previous_Target_Launch_Date__c = oldProject.IPM_Target_Launch_Dates__c;
         }
+        /***************************************************************************************
+	    @ Description: First Helper method of beforeInsert() for solving Napth complexity.
+	   	***************************************************************************************/
+        // Get next phase for the project and based on that identify whther phase change is valid. 
+        beforeUpdateMethodFisrtHelper(oldProject,incomingProject);
         
-        // Get next phase for the project and based on that identify whther phase change is valid.
-        if(oldProject.IPM_Phase__c != incomingProject.IPM_Phase__c &&  !IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED && incomingProject.IPM_Project_Job_Status__c != IPM_ConstantUtils.JOB_STATUS_PROCESSING)
-        {
-            //Create a temporary Project instance and get the Project Type based on Current incoming Data except Phase information.
-            IPM_Project_Type__c currentProjectType = null;
-            IPM_Project_Type__c nextPhaseProjectType = null;
-            
-            if(oldProject.IPM_Phase__c != null)
-            {
-                currentProjectType = IPM_Utils.retrieveProjectType(oldProject);   
-                nextPhaseProjectType = IPM_Utils.getNextPhase(currentProjectType,false);  
-            }
-            
-            //Only check for next Phase if existing Phase is not blank.
-            if(oldProject.IPM_Phase__c == null || (nextPhaseProjectType != null && incomingProject.IPM_Phase__c == nextPhaseProjectType.IPM_Phase__c) )
-            { 
-                // Reset the incoming Phase with existing Phase. Phase change has to be in a single trasaction.
-                incomingProject.IPM_Temporary_Phase__c = incomingProject.IPM_Phase__c;
-                incomingProject.IPM_Current_Document_Status__c = oldProject.IPM_Current_Document_Status__c;
-                incomingProject.IPM_Phase__c = oldProject.IPM_Phase__c;
-                // This is project with Phase change request. Mark the project as Eligible for Status change.
-                incomingProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-                // If it is the First Phase
-                if(oldProject.IPM_Phase__c == null)
-                {
-                    incomingProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION;
-                }
-                else
-                {
-                    incomingProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
-                }
-            }
-            else
-            {
-                incomingProject.addError(string.format( Label.IPM_PROJECT_PHASE_VALIDATION,new String[]{nextPhaseProjectType.IPM_Phase__c,incomingProject.IPM_Phase__c}) );
-            }       
-        }
         if(incomingProject.IPM_Category_Text__c !=null && customSettingCategory!=null && customSettingCategory.containsKey(incomingProject.IPM_Category_Text__c))
         {
             //To add which category group the project belongs.
@@ -1061,25 +963,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             	incomingProject.IPM_GateKeeping_Model__c  = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
             }	
         }
-        
+         /***************************************************************************************
+	    @ Description: Seconde Helper method of beforeInsert() for solving Napth complexity.
+	   	***************************************************************************************/
         //populating project  category  threshold based on category,category group and few other parameters
-        if(incomingProject.IPM_Category_Text__c !=null && incomingProject.IPM_Category_Group__c !=null && incomingProject.IPMProject_Span__c !=null && incomingProject.IPM_Project_Type__c ==PROJECT_TYPE_ORIGINAL  )
-        {
-            String mdtMapKey =  incomingProject.IPM_Category_Text__c + incomingProject.IPM_Category_Group__c +  incomingProject.IPMProject_Span__c;
-            
-            if(String.isNotBlank(incomingProject.Market_Cluster_Name__c) && mrktClusterCategoryMap.containsKey(incomingProject.IPM_Category_Text__c + incomingProject.IPMProject_Span__c)) 
-            {
-            	if( mrktClusterCategoryMap.get(incomingProject.IPM_Category_Text__c + incomingProject.IPMProject_Span__c).IPM_Is_market_cluster_applicable__c)
-            	{
-            		mdtMapKey = mdtMapKey + incomingProject.Market_Cluster_Name__c;
-            	}
-            } 
-           
-            if(masterCategoryThrshMap.containsKey(mdtMapKey))  
-            {   
-                incomingProject.IPM_Category_Thresh__c = masterCategoryThrshMap.get(mdtMapKey).IPM_Category_threshhold__c/1000; 
-            }
-        } 
+        beforeUpdateMethodSecondeHelper(incomingProject);
         
         IPM_StopProjectHelper.prepareDataForArchiving(incomingProject,oldProject);
         IPM_StopProjectHelper.prepareDataForArchieve(incomingProject,oldProject);
@@ -1210,4 +1098,150 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         }
         ExceptionLoggingHelper.insertLogRecordList();
     }
+    /***************************************************************************************
+    @ Description: Helper method of bulkbefore() for solving Napth complexity.
+ ***************************************************************************************/
+    private void bulkbeforemethodhelper(List<IPM_Project__c> projectAssociatedWithProjectTypesList)
+	{
+	    	if(!projectAssociatedWithProjectTypesList.isEmpty())
+	        {
+	            List<IPM_Project_Metadata__mdt> projectMetadataList = IPM_Utils.getProjectTypeMetadata(projectAssociatedWithProjectTypesList);
+	            List<String> mandatoryFieldArray = new List<String>();
+	            
+	            for(Integer counter=0;counter < projectAssociatedWithProjectTypesList.size();counter++)
+	            {
+	                IPM_Project_Metadata__mdt projectMetadata = projectMetadataList.get(counter);
+	                IPM_Project__c project = projectAssociatedWithProjectTypesList.get(counter);   
+	                if(project.IPM_IsSaved__c){
+	                    Set<String> projectmandatoryFieldErrorSet = new Set<String>();
+	                    if(projectMetadata!=null && projectMetadata.IPM_ProjectType__c !=null && !String.isBlank(projectMetadata.IPM_ProjectType__c))
+	                    {
+	                        if(projectMetadata.IPM_MandatoryFields__c !=null && !String.isBlank(projectMetadata.IPM_MandatoryFields__c))
+	                        {
+	                            mandatoryFieldArray = projectMetadata.IPM_MandatoryFields__c.split(IPM_ConstantUtils.COMMA);
+	                            for(String fieldAPI : mandatoryFieldArray)
+	                            {
+	                                if(project.get(fieldAPI) == null && projectFieldDesc.containsKey(fieldAPI))
+	                                {
+	                                    String fieldLabel = projectFieldDesc.get(fieldAPI).getDescribe().getLabel();
+	                                    projectmandatoryFieldErrorSet.add(fieldLabel);
+	                                }   
+	                            }
+	                            
+	                            if(!projectmandatoryFieldErrorSet.isEmpty())
+	                            {
+	                                 project.addError(String.format(Label.IPM_MandatoryFieldMissing,new List<String>(projectmandatoryFieldErrorSet) ) );
+	                            }           
+	                        }
+	                    }
+	                    else
+	                    {
+	                        project.addError(Label.IPM_ProjecTypeMissing);
+	                    }
+	               }
+	            }
+	        }
+	 }
+	 /***************************************************************************************
+    @ Description: Helper method of beforeInsert() for solving Napth complexity.
+   ***************************************************************************************/
+	 private void beforeInsertMehtodHelper(IPM_Project__c insertedProject)
+	 {
+		 	if(insertedProject.IPM_Category_Text__c !=null && insertedProject.IPM_Category_Group__c !=null && insertedProject.IPMProject_Span__c !=null && insertedProject.IPM_Project_Type__c ==PROJECT_TYPE_ORIGINAL )
+	        {
+	            String mdtMapKey =  insertedProject.IPM_Category_Text__c + insertedProject.IPM_Category_Group__c +  insertedProject.IPMProject_Span__c;
+	            
+	            if(String.isNotBlank(insertedProject.Market_Cluster_Name__c) && mrktClusterCategoryMap.containsKey(insertedProject.IPM_Category_Text__c + insertedProject.IPMProject_Span__c) ) 
+	            {
+	            	if( mrktClusterCategoryMap.get(insertedProject.IPM_Category_Text__c + insertedProject.IPMProject_Span__c).IPM_Is_market_cluster_applicable__c)
+	            	{
+	            		mdtMapKey = mdtMapKey + insertedProject.Market_Cluster_Name__c;
+	            	}
+	            }
+	              
+	            if(masterCategoryThrshMap.containsKey(mdtMapKey))
+	            {   
+	                insertedProject.IPM_Category_Thresh__c = masterCategoryThrshMap.get(mdtMapKey).IPM_Category_threshhold__c/1000;
+	            }
+	            
+	        }
+	        
+	        if(insertedProject.Exempt_from_Threshold__c !=null)
+	        {
+	            if(insertedProject.Exempt_from_Threshold__c)
+	            {
+	                insertedProject.IPM_Threshold_Value__c = IPM_ConstantUtils.YES;
+	            }
+	            else
+	            {
+	                insertedProject.IPM_Threshold_Value__c = IPM_ConstantUtils.NO;
+	            }
+	        } 
+	}
+	 /***************************************************************************************
+    @ Description: Fisrt Helper method of beforeInsert() for solving Napth complexity.
+   ***************************************************************************************/
+	private void beforeUpdateMethodFisrtHelper(IPM_Project__c oldProject,IPM_Project__c incomingProject)
+	{
+		// Get next phase for the project and based on that identify whther phase change is valid.
+        if(oldProject.IPM_Phase__c != incomingProject.IPM_Phase__c &&  !IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED && incomingProject.IPM_Project_Job_Status__c != IPM_ConstantUtils.JOB_STATUS_PROCESSING)
+        {
+            //Create a temporary Project instance and get the Project Type based on Current incoming Data except Phase information.
+            IPM_Project_Type__c currentProjectType = null;
+            IPM_Project_Type__c nextPhaseProjectType = null;
+            
+            if(oldProject.IPM_Phase__c != null)
+            {
+                currentProjectType = IPM_Utils.retrieveProjectType(oldProject);   
+                nextPhaseProjectType = IPM_Utils.getNextPhase(currentProjectType,false);  
+            }
+            
+            //Only check for next Phase if existing Phase is not blank.
+            if(oldProject.IPM_Phase__c == null || (nextPhaseProjectType != null && incomingProject.IPM_Phase__c == nextPhaseProjectType.IPM_Phase__c) )
+            { 
+                // Reset the incoming Phase with existing Phase. Phase change has to be in a single trasaction.
+                incomingProject.IPM_Temporary_Phase__c = incomingProject.IPM_Phase__c;
+                incomingProject.IPM_Current_Document_Status__c = oldProject.IPM_Current_Document_Status__c;
+                incomingProject.IPM_Phase__c = oldProject.IPM_Phase__c;
+                // This is project with Phase change request. Mark the project as Eligible for Status change.
+                incomingProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+                // If it is the First Phase
+                if(oldProject.IPM_Phase__c == null)
+                {
+                    incomingProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION;
+                }
+                else
+                {
+                    incomingProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
+                }
+            }
+            else
+            {
+                incomingProject.addError(string.format( Label.IPM_PROJECT_PHASE_VALIDATION,new String[]{nextPhaseProjectType.IPM_Phase__c,incomingProject.IPM_Phase__c}) );
+            }       
+        }
+	}
+	 /***************************************************************************************
+    @ Description: Seconde Helper method of beforeInsert() for solving Napth complexity.
+   ***************************************************************************************/
+	private void beforeUpdateMethodSecondeHelper(IPM_Project__c incomingProject)
+	{
+		 if(incomingProject.IPM_Category_Text__c !=null && incomingProject.IPM_Category_Group__c !=null && incomingProject.IPMProject_Span__c !=null && incomingProject.IPM_Project_Type__c ==PROJECT_TYPE_ORIGINAL  )
+        {
+            String mdtMapKey =  incomingProject.IPM_Category_Text__c + incomingProject.IPM_Category_Group__c +  incomingProject.IPMProject_Span__c;
+            
+            if(String.isNotBlank(incomingProject.Market_Cluster_Name__c) && mrktClusterCategoryMap.containsKey(incomingProject.IPM_Category_Text__c + incomingProject.IPMProject_Span__c)) 
+            {
+            	if( mrktClusterCategoryMap.get(incomingProject.IPM_Category_Text__c + incomingProject.IPMProject_Span__c).IPM_Is_market_cluster_applicable__c)
+            	{
+            		mdtMapKey = mdtMapKey + incomingProject.Market_Cluster_Name__c;
+            	}
+            } 
+           
+            if(masterCategoryThrshMap.containsKey(mdtMapKey))  
+            {   
+                incomingProject.IPM_Category_Thresh__c = masterCategoryThrshMap.get(mdtMapKey).IPM_Category_threshhold__c/1000; 
+            }
+        }
+	}
 }
