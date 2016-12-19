@@ -9,3 +9,5 @@ src/wave/FS_Daily_Sales_for_Sales_Managers_Zone_Leaders.wdash
 src/wave/FS_Daily_Sales_for_Sales_Managers_Zone_Leaders.wdash-meta.xml
 src/wave/FS_Daily_Sales_NA_Sales_Rep.wdash
 src/wave/FS_Daily_Sales_NA_Sales_Rep.wdash-meta.xml
+src/groups/FS_DailySales_Sales_Manager_Group.group
+src/groups/FS_DailySales_Sales_Rep_Group.group
