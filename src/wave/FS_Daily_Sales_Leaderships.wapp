@@ -9,4 +9,9 @@
         <sharedToType>User</sharedToType>
     </shares>
 
+    <shares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>FS_DailySales_Sales_Manager_Group</sharedTo>
+        <sharedToType>Group</sharedToType>
+    </shares>
 </WaveApplication>
