@@ -264,12 +264,12 @@
         <label><!-- Approver of Charter --></label>
         <name>IPM_Approver_of_Charter__c</name>
         <picklistValues>
-            <masterLabel>GCLT</masterLabel>
-            <translation><!-- GCLT --></translation>
+            <masterLabel>CCVP</masterLabel>
+            <translation><!-- CCVP --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>RCLT</masterLabel>
-            <translation><!-- RCLT --></translation>
+            <masterLabel>GCLT Leader</masterLabel>
+            <translation><!-- GCLT Leader --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -863,12 +863,12 @@
         <label><!-- IPM GateKeeping Model --></label>
         <name>IPM_GateKeeping_Model__c</name>
         <picklistValues>
-            <masterLabel>GCLT &amp; RCLT</masterLabel>
-            <translation><!-- GCLT &amp; RCLT --></translation>
+            <masterLabel>CCVP</masterLabel>
+            <translation><!-- CCVP --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>RCLT</masterLabel>
-            <translation><!-- RCLT --></translation>
+            <masterLabel>GCLT Leader &amp; CCVP</masterLabel>
+            <translation><!-- GCLT Leader &amp; CCVP --></translation>
         </picklistValues>
     </fields>
     <fields>

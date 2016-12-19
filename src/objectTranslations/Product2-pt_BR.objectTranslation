@@ -4456,10 +4456,6 @@
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- Financial Information --></label>
-            <section>Financial Information</section>
-        </sections>
-        <sections>
             <label><!-- Logistic Information --></label>
             <section>Logistic Information</section>
         </sections>

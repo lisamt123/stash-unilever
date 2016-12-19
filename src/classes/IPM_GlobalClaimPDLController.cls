@@ -4,8 +4,13 @@
 @Author: Cognizant 
 @Referenced: Gate document pages
 ******************************************************************/
-public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectIntermediateController{
+public with sharing class IPM_GlobalClaimPDLController {
 
+    public static IPM_Project__c project {
+        get {
+            return IPM_Utils.getProjectFullInfo(ApexPages.currentPage().getParameters().get('Id'));
+        }
+    }
 	public Id projectId{get; set;}
 	public List<IPM_Project_Rollout__c> localRolloutList{get; set;}
 	public IPM_Country_Level_Claim__c countryLevelClaims;

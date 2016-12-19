@@ -174,15 +174,27 @@
         <label>GMK Question Answer</label>
         <picklist>
             <picklistValues>
-                <fullName>GCLT &amp; RCLT</fullName>
+                <fullName>GCLT Leader &amp; CCVP</fullName>
                 <default>true</default>
             </picklistValues>
             <picklistValues>
-                <fullName>RCLT</fullName>
+                <fullName>GCLT Leader</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>GCLT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GCLT &amp; RCLT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RCLT</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -200,15 +212,27 @@
         <label>GMK Question Default Answer</label>
         <picklist>
             <picklistValues>
-                <fullName>GCLT &amp; RCLT</fullName>
+                <fullName>GCLT Leader &amp; CCVP</fullName>
                 <default>true</default>
             </picklistValues>
             <picklistValues>
-                <fullName>RCLT</fullName>
+                <fullName>GCLT Leader</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>GCLT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GCLT &amp; RCLT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RCLT</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>

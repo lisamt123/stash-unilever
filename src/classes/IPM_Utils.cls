@@ -1765,4 +1765,73 @@ public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){
         }
     	return isEditAccess;
 	}
+    /************************************************************************************************
+    Method to Get full project data
+	**********************************/
+    public static IPM_Project__c projectFullInfoVar{get;set;}
+    public static IPM_Project__c getProjectFullInfo(Id projectId) {
+        If(projectFullInfoVar != NULL && projectFullInfoVar.Id ==  projectId) {
+            return projectFullInfoVar;
+        }
+        else {
+            Set<String> systemFields = new set<String>{'lastmodifiedbyid','isdeleted','createdbyid', 'lastmodifieddate', 'createddate','isdeleted'};
+                Set<String> userFields = new Set<String>{'Id','name','email','username'};
+                    String queryStr = ' SELECT ';
+            Map<String,Schema.SObjectField> fieldTypeMap = Schema.SObjectType.IPM_Project__c.fields.getMap();
+            Map<String,Schema.SObjectField> userFieldTypeMap = Schema.SObjectType.User.fields.getMap();
+            Set<String> userCustomfieldSet = new Set<String>();
+            /* Get User Custom Field Information */
+            for(String userfieldAPIName : userFieldTypeMap.keySet())
+            {
+                Schema.DescribeFieldResult userfieldDescribe = userFieldTypeMap.get(userfieldAPIName).getDescribe();
+                if(userfieldDescribe.isCustom())
+                {
+                    userCustomfieldSet.add(userfieldAPIName);
+                }
+            } 
+            /* Get Project Specific Field information */
+            for(String fieldAPIName : fieldTypeMap.keySet())
+            {
+                Schema.DescribeFieldResult fieldDescribe = fieldTypeMap.get(fieldAPIName).getDescribe();
+                if(!fieldDescribe.isNamePointing() &&  !fieldAPIName.equalsIgnoreCase('Id') && !systemFields.contains(fieldAPIName))
+                {
+                    queryStr += ' '+fieldAPIName+',';
+                }
+                /* Check if it is a Reference field, If yes, get asociated Data */
+                if(fieldDescribe.getType() == Schema.DisplayType.Reference && fieldDescribe.isCustom())
+                {
+                    List <Schema.sObjectType> relatedObjectList = fieldDescribe.getReferenceTo();
+                    String relationshipName = fieldDescribe.getRelationshipName();
+                    if(relatedObjectList!=null && !relatedObjectList.isEmpty() && relationshipName!=null)
+                    {
+                        Schema.DescribesObjectResult relatedObjDescribe =  relatedObjectList[0].getDescribe();
+                        String relatedObjectAPI = relatedObjDescribe.getName();
+                        Map<String,Schema.SObjectField> relatedfieldTypeMap = relatedObjDescribe.fields.getMap();     
+                        for(String relatedfieldAPIName : relatedfieldTypeMap.keySet())
+                        {
+                            Schema.DescribeFieldResult relatedFieldDescibe = relatedfieldTypeMap.get(relatedfieldAPIName).getDescribe();
+                            if(!relatedFieldDescibe.isNamePointing()  && !systemFields.contains(relatedfieldAPIName) )
+                            {
+                                if(relatedObjectAPI == 'User' && (userCustomfieldSet.contains(relatedfieldAPIName) || userFields.contains(relatedfieldAPIName) ))
+                                {
+                                    queryStr += ' ' + relationshipName+'.'+relatedfieldAPIName+',';
+                                }
+                                else
+                                {
+                                    queryStr += ' ' + relationshipName+'.'+relatedfieldAPIName+',';
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            queryStr += 'Id from IPM_Project__c where Id= :projectId';
+            List<IPM_Project__c> projectList = Database.query(queryStr);
+            if(projectList != null && !projectList.isEmpty())
+            {
+                projectFullInfoVar = projectList[0]; 
+            }
+            return projectFullInfoVar;
+        }
+    }
 }

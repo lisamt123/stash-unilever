@@ -169,6 +169,10 @@
         <name>IPM_Enabling_Technology__c</name>
     </fields>
     <fields>
+        <label><!-- Inoplan Project ID --></label>
+        <name>IPM_External_ID__c</name>
+    </fields>
+    <fields>
         <label><!-- Finance Member --></label>
         <name>IPM_Finance_Member__c</name>
     </fields>

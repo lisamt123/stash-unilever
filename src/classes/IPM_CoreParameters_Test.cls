@@ -155,7 +155,7 @@ private with sharing class IPM_CoreParameters_Test {
     
             ipmProjectResource2 = IPM_TestFactory_Helper.createIPMProjectResource(projectWithOutBoss.id, FALSE);
             ipmProjectResource2.IPM_User__c = u5.id;
-            ipmProjectResource2.IPM_Role_Type__c = 'BD';
+            ipmProjectResource2.IPM_Role_Type__c = 'MKTG DEV';
             projectResourceList.add(ipmProjectResource2);
     
             ipmProjectResource4 = IPM_TestFactory_Helper.createIPMProjectResource(projectWithOutBoss.id, FALSE);
@@ -393,8 +393,7 @@ private with sharing class IPM_CoreParameters_Test {
             sic.extraEditable=true;
             sic.getIpmuserType(); //get current logged in user access
             system.assert(sic.isEditCoreparam, editAccess); //positive test
-
-        }
+       }
         system.runAs(u7) {
 
             sic.project.IPM_Project_Gatekeeper__c = u7.id;

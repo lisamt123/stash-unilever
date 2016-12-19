@@ -105,12 +105,24 @@
         <label><!-- GMK Question Answer --></label>
         <name>IPM_GMKQuestionAns__c</name>
         <picklistValues>
+            <masterLabel>CCVP</masterLabel>
+            <translation><!-- CCVP --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>GCLT</masterLabel>
             <translation><!-- GCLT --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>GCLT &amp; RCLT</masterLabel>
             <translation><!-- GCLT &amp; RCLT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GCLT Leader</masterLabel>
+            <translation><!-- GCLT Leader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GCLT Leader &amp; CCVP</masterLabel>
+            <translation><!-- GCLT Leader &amp; CCVP --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>RCLT</masterLabel>
@@ -122,12 +134,24 @@
         <label><!-- GMK Question Default Answer --></label>
         <name>IPM_GMKQuestionDefaultAns__c</name>
         <picklistValues>
+            <masterLabel>CCVP</masterLabel>
+            <translation><!-- CCVP --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>GCLT</masterLabel>
             <translation><!-- GCLT --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>GCLT &amp; RCLT</masterLabel>
             <translation><!-- GCLT &amp; RCLT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GCLT Leader</masterLabel>
+            <translation><!-- GCLT Leader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GCLT Leader &amp; CCVP</masterLabel>
+            <translation><!-- GCLT Leader &amp; CCVP --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>RCLT</masterLabel>

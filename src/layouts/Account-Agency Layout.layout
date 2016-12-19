@@ -33,7 +33,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Discipline__c</field>
+                <field>Agency_Discipline__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

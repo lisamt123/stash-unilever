@@ -4373,6 +4373,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>IPM_FinancialUtils_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>IPM_FinancialValueWrapper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -28283,6 +28287,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics_OTIF__c.IPM_Enabling_Technology__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_External_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -67035,6 +67044,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>isll_Home</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>isll_Info_VF</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>

@@ -285,7 +285,7 @@
         <fullName>IPM_Project_GKM__c</fullName>
         <description>Gate keeping  model of the parent global project</description>
         <externalId>false</externalId>
-        <formula>text(IPM_Project__r.IPM_GateKeeping_Model__c)</formula>
+        <formula>IF(IPM_Project__c!=null,text(IPM_Project__r.IPM_GateKeeping_Model__c),TEXT(Regional_Project__r.IPM_GateKeeping_Model__c))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM Project GKM</label>
         <required>false</required>
@@ -20046,6 +20046,51 @@ Case(Global_Project_Phase__c,
         <filterScope>Queue</filterScope>
         <label>IPM_BUENOS AIRES2_EU</label>
         <queue>IPM_a7I0L000000H6HU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H6Hj_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PROJECT AURORA</label>
+        <queue>IPM_a7I0L000000H6Hj</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H6ID_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H6ID</label>
+        <queue>IPM_a7I0L000000H6ID</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H6II_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H6II</label>
+        <queue>IPM_a7I0L000000H6II</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H6zu_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H6zu</label>
+        <queue>IPM_a7I0L000000H6zu</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H704_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H704</label>
+        <queue>IPM_a7I0L000000H704</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
