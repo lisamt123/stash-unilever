@@ -487,10 +487,10 @@
             "NSV_PLANNED_MTD_1": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": true,
@@ -536,10 +536,10 @@
             "NSV_PLANNED_MTD_700": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": false,
@@ -635,10 +635,10 @@
             "Account_Name_1": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": true,
@@ -664,10 +664,10 @@
             "Parent_Name_1": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": true,
@@ -693,10 +693,10 @@
             "NSV_PLANNED_MTD_600": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": false,
@@ -806,9 +806,9 @@
             "NSV_CY_MTD_1": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": false,
@@ -839,10 +839,10 @@
             "NSV_CY_MTD_3": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": false,
@@ -888,10 +888,10 @@
             "NSV_PY_MTD_2": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": false,
@@ -937,10 +937,10 @@
             "PickupNSV_MTD_3": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": false,
@@ -986,10 +986,10 @@
             "PickupNSV_MTD_2": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": false,
@@ -1027,10 +1027,10 @@
             "Product_SubSector__c_1": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": true,
@@ -1056,10 +1056,10 @@
             "Account_Zone__c_Type_1": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": true,
@@ -1102,10 +1102,10 @@
             "Product_ProductCateg_200": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": true,
@@ -1144,10 +1144,10 @@
             "ORDER_DAYS_ELAPSED_1": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": false,
@@ -1170,10 +1170,10 @@
             "Parent_Name_Type_1": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": true,
@@ -1212,10 +1212,10 @@
             "Account_Region__c_3": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": true,
@@ -1241,10 +1241,10 @@
             "all_3": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": false,
@@ -1283,10 +1283,10 @@
             "CurrentDay_Year_Curr_100": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": true,
@@ -1317,10 +1317,10 @@
             "Account_Zone__c_2": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": true,
@@ -1346,10 +1346,10 @@
             "Product_ProductCateg_3": {
                 "datasets": [
                     {
-                        "id": "0FbV00000000Xi6KAE",
+                       
                         
                         "name": "DailySales",
-                        "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+                        
                     }
                 ],
                 "isFacet": true,
@@ -1980,10 +1980,10 @@
     },
     "datasets": [
         {
-            "id": "0FbV00000000Xi6KAE",
-            
-            "name": "DailySales",
+             "id": "0FbV00000000Xi6KAE",
+             "name": "DailySales",
             "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
+            
         }
     ]
 }
