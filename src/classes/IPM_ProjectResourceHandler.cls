@@ -69,20 +69,7 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
         
         //IPM EcoDesign Related Changes
         IPM_ProjectResourceTriggerHandler handler = new IPM_ProjectResourceTriggerHandler();
-        if(Trigger.isDelete ){
-        	map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;
-        	handler.setSyncProjectAftInsertDelete(oldResourceMap.values());
-        }
-        else if(Trigger.isInsert){
-        	map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
-        	handler.setSyncProjectAftInsertDelete(newResourceMap.values());
-        }
-        else if(Trigger.isUpdate){
-        	map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
-            map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;            
-            
-            handler.setSyncProjectAftUpdate(oldResourceMap,newResourceMap);
-        }
+        handler = echoDesignChanges();
         
         //IPM BET related changes.
         map<id, set<IPM_Project_Resource__c>> mapProjResources = new map<id, set<IPM_Project_Resource__c>>();
@@ -111,6 +98,30 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
        }
        //@@Data Sharing
     }
+    
+    /*
+    ** Function is created to remove the npath complexities. It is called from
+    ** bulkAfter() function to called to make BET Related Changes.
+    */ 
+    private IPM_ProjectResourceTriggerHandler echoDesignChanges(){
+    	IPM_ProjectResourceTriggerHandler prHandler = new IPM_ProjectResourceTriggerHandler();
+		if(Trigger.isDelete ){
+        	map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;
+        	prHandler.setSyncProjectAftInsertDelete(oldResourceMap.values());
+        }
+        else if(Trigger.isInsert){
+        	map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
+        	prHandler.setSyncProjectAftInsertDelete(newResourceMap.values());
+        }
+        else if(Trigger.isUpdate){
+        	map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
+            map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;            
+            
+            prHandler.setSyncProjectAftUpdate(oldResourceMap,newResourceMap);
+        }
+    	return prHandler;
+    }
+    
     /**
     * @description:beforeInsert
     * This method is called iteratively for each record to be insert during a AFTER
