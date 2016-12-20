@@ -18,6 +18,8 @@ src/classes/IPM_RolloutTriggerHandler.cls
 src/classes/IPM_RolloutTriggerHandler.cls-meta.xml
 src/classes/IPM_UpdateGlobalProjectName.cls
 src/classes/IPM_UpdateGlobalProjectName.cls-meta.xml
+src/objects
+src/objects/IPM_Financial__c.object
 src/pages
 src/pages/IPM_Financial.page
 src/pages/IPM_Financial.page-meta.xml
