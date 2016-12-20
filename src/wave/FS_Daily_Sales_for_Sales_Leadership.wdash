@@ -1982,7 +1982,7 @@
     "datasets": [
         {
             "id": "0FbV00000000Xi6KAE",
-            "label": "DailySales",
+           
             "name": "DailySales",
             "url": "/services/data/v38.0/wave/datasets/0FbV00000000Xi6KAE"
         }
