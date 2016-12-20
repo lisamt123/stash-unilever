@@ -21,8 +21,10 @@ public with sharing class BFM_PODHandler
     { 
         if(trigger.isUpdate){
             Id podRecordTypeId = Schema.SObjectType.BFM_POD__c.getRecordTypeInfosByName().get('POD').getRecordTypeId();
+            system.debug('podRecordTypeId:'+podRecordTypeId);
             BFM_POD__c pod = (BFM_POD__c)trigger.new[0];
-            if(pod.recordtypeid == podRecordTypeId || pod.POD_as_Receipt__c){        
+            system.debug('pod:'+pod);
+            if(pod.recordtypeid == podRecordTypeId || pod.POD_as_Receipt__c == false){        
                 BFM_ValidationController.podDuplicateRecordCheck(Trigger.New,trigger.isinsert, trigger.oldmap);  
             }  
         }      
@@ -30,39 +32,47 @@ public with sharing class BFM_PODHandler
     
     public void bulkAfter()
     {
-         //This method has been included as the class implements the ITrigger interface 
-    }
         
+    }    
     public void beforeInsert(SObject so)
     {
-        //This method has been included as the class implements the ITrigger interface    
+        
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        //This method has been included as the class implements the ITrigger interface    
+        
     }
      
 
     public void beforeDelete(SObject so)
-    {  
-        //This method has been included as the class implements the ITrigger interface 
+    {   
     }
     
     public void afterInsert(SObject so) 
     { 
+      BFM_POD__c pod = (BFM_POD__c) so;                 
+           if(pod.POD_Status__c=='provisional'&& pod.POD_Date__c!= null && pod.NF_e__c!=null){
+                BFM_SavePOD.sendPOD(pod.id);    
+            }  
         
-        //This method has been included as the class implements the ITrigger interface    
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        //This method has been included as the class implements the ITrigger interface
+        BFM_POD__c pod = (BFM_POD__c) so;                 
+           if((pod.POD_Status__c=='provisional' || pod.POD_Status__c=='Definitive' )&& pod.POD_Date__c!= null && pod.NF_e__c!=null){
+                BFM_SavePOD.sendPOD(pod.id);    
+            }
+      
     }
+    
+
+
+    
     
     public void afterDelete(SObject so)
     {
-        //This method has been included as the class implements the ITrigger interface
     }
     
     /**
@@ -73,7 +83,7 @@ public with sharing class BFM_PODHandler
      */
     public void andFinally()
     {
-         //This method has been included as the class implements the ITrigger interface   
+        
     }
 
 }

@@ -4,15 +4,15 @@
 
 public class BFM_UpdateFreightDataResponse {
 
-	public UpdateFreightResponse UpdateFreightResponse;
+  public UpdateFreightResponse UpdateFreightResponse;
 
-	public class UpdateFreightResponse {
-		public String errorMessage;
-		public String errorCode;
-	}
+  public class UpdateFreightResponse {
+    public String errorMessage;
+    public String errorCode;
+  }
 
-	
-	public static BFM_UpdateFreightDataResponse parse(String json) {
-		return (BFM_UpdateFreightDataResponse) System.JSON.deserialize(json, BFM_UpdateFreightDataResponse.class);
-	}
+  
+  public static BFM_UpdateFreightDataResponse parse(String json) {
+    return (BFM_UpdateFreightDataResponse) System.JSON.deserialize(json, BFM_UpdateFreightDataResponse.class);
+  }
 }

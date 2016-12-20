@@ -1,4 +1,4 @@
-public with sharing class BFM_RecordutilityController {
+public class BFM_RecordutilityController {
     public void cceCheck(Map<string,id> OldKeyMap,Map<string,id> NewRecordMap, string FileType , List<BFM_CC_e__c> CCeRecord ,set<string> CNPJId){
         List<BFM_Error_Log__c> errlist= New List<BFM_Error_Log__c>();
         set<string> accCNPJ = new set<string>();
@@ -32,9 +32,9 @@ public with sharing class BFM_RecordutilityController {
             BFM_Link_CCECTE.linkCCECTE(CCeRecord);
         }
     }
-     
     
-        public void cteCheck(Map<string,id> OldKeyMap,Map<string,id> NewRecordMap, string FileType , List<BFM_CT_e__c> CTeRecord ,set<string> CNPJId){
+    
+    public void cteCheck(Map<string,id> OldKeyMap,Map<string,id> NewRecordMap, string FileType , List<BFM_CT_e__c> CTeRecord ,set<string> CNPJId){
         List<BFM_Error_Log__c> errlist= New List<BFM_Error_Log__c>();
         set<string> accCNPJ = new set<string>();
         List<BFM_CT_e__c> CT_eUpdateRecordList=New List<BFM_CT_e__c>();
@@ -74,12 +74,12 @@ public with sharing class BFM_RecordutilityController {
             mapacc.put(ac.CNPJ__c,ac);
         }
         for(BFM_MDF_e__c mdfe : mdfeRecord){
-            /*if(mapacc.containskey(mdfe.Issuer_CNPJ__c) && mapacc.get(mdfe.Issuer_CNPJ__c)!=null){
-          //      mdfe.Carrier_Account__c = mapacc.get(mdfe.Issuer_CNPJ__c).id;
+            if(mapacc.containskey(mdfe.Issuer_CNPJ__c) && mapacc.get(mdfe.Issuer_CNPJ__c)!=null){
+                //      mdfe.Carrier_Account__c = mapacc.get(mdfe.Issuer_CNPJ__c).id;
             }
             if(mapacc.containskey(mdfe.Taker_CNPJ__c) && mapacc.get(mdfe.Taker_CNPJ__c)!=null){
-          //      mdfe.Unilever_Account__c = mapacc.get(mdfe.Taker_CNPJ__c).id;
-            }*/
+                //      mdfe.Unilever_Account__c = mapacc.get(mdfe.Taker_CNPJ__c).id;
+            }
             if(OldKeyMap.containsKey(mdfe.MDFE_Access_Key__c)){
                 mdfe.MDF_e_Duplicate_Record_Status__c= Label.BFM_Validation_Error; 
                 mdfe.MDF_e_Status__c = Label.BFM_Validation_Error;             
@@ -191,63 +191,76 @@ public with sharing class BFM_RecordutilityController {
     public void podCheck(Map<string,id> OldKeyMap,Map<string,BFM_NF_e__c> nferecordmap, string FileType , List<BFM_POD__c> podRecord ,set<string> CNPJId){
         set<string> accCNPJ = new set<string>();
         //map<string,account> mapAccount = new map<string,account>();
+        system.debug('OldKeyMap:'+OldKeyMap);
+        system.debug('nferecordmap:'+nferecordmap);
+        system.debug('FileType:'+FileType);
+        system.debug('podRecord:'+podRecord);
+        system.debug('CNPJId:'+CNPJId);
+        
+        
         List<Account> acclist=[Select id,CNPJ__c,Vendor__c,Company_Code__c from Account where CNPJ__c IN:CNPJId];
         for(Account ac : acclist){
             accCNPJ.add(ac.CNPJ__c);
-           // mapAccount.put(ac.CNPJ__c,ac);
+            // mapAccount.put(ac.CNPJ__c,ac);
         }
         
         for(BFM_POD__c pod : podRecord){
-           // if(pod.POD_Status__c== 'In Progress'){
-           if(pod.NF_e__c==null && nferecordmap.containskey(pod.NF_e_Access_Key__c)){
-               pod.NF_e__c = nferecordmap.get(pod.NF_e_Access_Key__c).id;
-           }
-            if(OldKeyMap.containsKey(pod.NF_e_Access_Key__c ) || !nferecordmap.containskey(pod.NF_e_Access_Key__c)){
+            system.debug('Pod inside for loop:'+pod);
+            system.debug('Podnfekey:'+pod.NF_e_Access_Key__c);
+            // if(pod.POD_Status__c== 'In Progress'){
+            if(pod.NF_e__c==null && nferecordmap.containskey(pod.NF_e_Access_Key__c)){
+                pod.NF_e__c = nferecordmap.get(pod.NF_e_Access_Key__c).id;
+            }  
+            if(OldKeyMap.containsKey(pod.NF_e_Access_Key__c ) && !nferecordmap.containskey(pod.NF_e_Access_Key__c)){
                 pod.POD_Duplicate_Check_Status__c= Label.BFM_Validation_Error;
-                pod.POD_Status__c= Label.BFM_Validation_Error;               
+                //pod.POD_Status__c= Label.BFM_Validation_Error;               
             } else{
                 pod.POD_Duplicate_Check_Status__c= Label.BFM_Validation_Ok;
-                pod.POD_Status__c= Label.BFM_Validation_Ok;
+                //pod.POD_Status__c= Label.BFM_Validation_Ok;
             }
+            system.debug('pod.POD_Duplicate_Check_Status__c:'+pod.POD_Duplicate_Check_Status__c+'~~~~~pod.POD_Status__c:'+pod.POD_Status__c);
             if(pod.POD_Duplicate_Check_Status__c==Label.BFM_Validation_Ok && pod.POD_Duplicate_Check_Status__c!=null){
-            system.debug(nferecordmap.get(pod.NF_e_Access_Key__c).CNPJ_destination__c);
-                if((nferecordmap.get(pod.NF_e_Access_Key__c).CNPJ_destination__c!=null && accCNPJ.contains(nferecordmap.get(pod.NF_e_Access_Key__c).CNPJ_destination__c)) && (nferecordmap.get(pod.NF_e_Access_Key__c).CNPJ_destination__c!=null && accCNPJ.contains(nferecordmap.get(pod.NF_e_Access_Key__c).CNPJ_destination__c)) ){
-                    pod.POD_CNPJ_Check_Status__c = 'Valid CNPJ';
-                    pod.POD_Status__c = 'Valid CNPJ';
-                } else{
-                    pod.POD_CNPJ_Check_Status__c= 'Invalid CNPJ';
-                    pod.POD_Status__c = 'Invalid CNPJ';
+                //system.debug(nferecordmap.get(pod.NF_e_Access_Key__c).CNPJ_destination__c);
+                //if((nferecordmap.get(pod.NF_e_Access_Key__c).CNPJ_destination__c!=null && accCNPJ.contains(nferecordmap.get(pod.NF_e_Access_Key__c).CNPJ_destination__c))){
+                if(nferecordmap.get(pod.NF_e_Access_Key__c)!=null){
+                    if(nferecordmap.get(pod.NF_e_Access_Key__c).CNPJ_destination__c!=null){
+                        pod.POD_CNPJ_Check_Status__c = 'Valid CNPJ';
+                        //pod.POD_Status__c = 'Valid CNPJ';
+                    } else{
+                        pod.POD_CNPJ_Check_Status__c= 'Invalid CNPJ';
+                        //pod.POD_Status__c = 'Invalid CNPJ';
+                    }
                 }
             }
+            system.debug('cnpjcheck'+pod.POD_CNPJ_Check_Status__c);
             if(pod.POD_CNPJ_Check_Status__c=='Valid CNPJ' && pod.POD_CNPJ_Check_Status__c!=null){           
-                if(pod.Upload_date__c!=null && pod.Upload_date__c.date()==nferecordmap.get(pod.NF_e_Access_Key__c).NF_e_creation_date__c.date()){                   
+                if(pod.Upload_date__c!=null && pod.Upload_date__c.date()==Date.valueOf(nferecordmap.get(pod.NF_e_Access_Key__c).NF_e_creation_date__c)){                   
                     pod.POD_Date__c= pod.Upload_date__c.date();
                 } 
-                if(pod.POD_Date__c>=nferecordmap.get(pod.NF_e_Access_Key__c).NF_e_creation_date__c.date()){
+                if(pod.POD_Date__c>=Date.valueOf(nferecordmap.get(pod.NF_e_Access_Key__c).NF_e_creation_date__c)){
                     pod.POD_Date_Check_Status__c = 'Date Ok';
-                    pod.POD_Status__c = 'Date Ok';
-                    
+                    //pod.POD_Status__c = 'Date Ok';                   
                 }
                 else{
                     pod.POD_Date_Check_Status__c = 'Date Not Ok';
-                    pod.POD_Status__c = 'Date Not Ok';
+                    //pod.POD_Status__c = 'Date Not Ok';
                 }
             }
-            
+            system.debug('datecheck'+pod.POD_Date_Check_Status__c+'statuscheck'+pod.POD_Status__c);
             if(pod.POD_Date_Check_Status__c =='Date Ok' && pod.POD_Status__c!=null){           
-                 
+                
                 if(nferecordmap.containskey(pod.NF_e_Access_Key__c) && nferecordmap.get(pod.NF_e_Access_Key__c).SES__c!=null){
                     pod.POD_Link_Check_Status__c = 'Link Ok';
-                    pod.POD_Status__c = 'Link Ok';
+                    //pod.POD_Status__c = 'Link Ok';
                     
                 }
                 else{
                     pod.POD_Link_Check_Status__c = 'Pending Link';
-                    pod.POD_Status__c = 'Pending Link';
+                    //pod.POD_Status__c = 'Pending Link';
                 }
             }
             
-           // }
+            // }
         }
         
     }

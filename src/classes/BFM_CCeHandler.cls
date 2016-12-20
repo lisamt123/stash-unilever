@@ -41,33 +41,30 @@ public with sharing class BFM_CCeHandler
         
     public void beforeInsert(SObject so)
     {
-         //This method has been included as the class implements the ITrigger interface   
+        
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        //This method has been included as the class implements the ITrigger interface    
+        
     }
      
 
     public void beforeDelete(SObject so)
-    { 
-        //This method has been included as the class implements the ITrigger interface  
+    {   
     }
     
     public void afterInsert(SObject so) 
     { 
-        //This method has been included as the class implements the ITrigger interface    
+        
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        //This method has been included as the class implements the ITrigger interface
     }
     
     public void afterDelete(SObject so)
     {
-        //This method has been included as the class implements the ITrigger interface
     }
     
     /**
@@ -78,7 +75,7 @@ public with sharing class BFM_CCeHandler
      */
     public void andFinally()
     {
-        //This method has been included as the class implements the ITrigger interface   
+        
     }
 
 }

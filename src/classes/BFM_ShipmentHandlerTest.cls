@@ -7,7 +7,7 @@ private static testMethod void testShipmentHandler(){
         acc.Vendor__c='11';
         acc.Company_Code__c='12';
         insert acc;
-        
+        system.assertEquals('11',acc.Vendor__c);
  BFM_Shipment__c shipment=new BFM_Shipment__c();
  shipment.Shipment_Number__c='12378';
  shipment.Carrier_Account__c=acc.id;

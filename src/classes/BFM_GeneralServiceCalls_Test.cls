@@ -24,6 +24,9 @@ public class BFM_GeneralServiceCalls_Test {
     
     BFM_GeneralServiceCalls.requestsefazCheck(shipmentRec.id,'fileUrl','objname','session');
     BFM_GeneralServiceCalls.getsefazcheckJSONBody(shipmentRec.id,'fileUrl','objname');
+    BFM_GeneralServiceCalls.publishXML(blob.valueOf('xml'),'filename','conlength');
+    BFM_GeneralServiceCalls.nfsUpload('filename',Date.valueOf('2016-10-17T12:22:22.904Z'),'filename','conlength',blob.valueOf('xml'));
+    BFM_GeneralServiceCalls.podUpload('filename',Date.valueOf('2016-10-17T12:22:22.904Z'),'filename','conlength',blob.valueOf('xml'));
     
     BFM_InvoiceProcessingRequest invpro = new BFM_InvoiceProcessingRequest();
     BFM_GeneralServiceCalls.performInvoiceProcessing(invpro );

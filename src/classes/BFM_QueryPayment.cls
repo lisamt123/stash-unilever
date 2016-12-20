@@ -1,5 +1,5 @@
 global class BFM_QueryPayment {
-	
+    
     private Set<Id> miroHeaderIds;
     private String TYPE_CTE = 'cte';
     private string TYPE_NFS = 'nfs';
@@ -14,21 +14,21 @@ global class BFM_QueryPayment {
         }catch(Exception ex){
             return 'Error ' + ex.getMessage();
         }
-        return 'ok';
+        return 'Payment Updated';
     }
     public void queryPayments(){
         Set<String> miroHeaderAccessKeys = new Set<String>();
         for(BFM_Miro_Header__c header: [SELECT Access_Key__c FROM BFM_MIRO_Header__c WHERE Id IN: miroHeaderIds]){
             miroHeaderAccessKeys.add(header.Access_Key__c);
         }
-    	HttpResponse response = BFM_GeneralServiceCalls.queryPayments(new List<String>(miroHeaderAccessKeys));
+        HttpResponse response = BFM_GeneralServiceCalls.queryPayments(new List<String>(miroHeaderAccessKeys));
         if(response.getStatusCode() == 200 || response.getStatusCode() == 201){
             if(String.isEmpty(response.getBody())){
-            	createErrorLogs(miroHeaderAccessKeys);
+                createErrorLogs(miroHeaderAccessKeys);
             } else{
                 BFM_QueryPaymentsResponse queryPaymentsResponse = BFM_QueryPaymentsResponse.parse(response.getBody());
                 try{
-                	updateQueryPayment(queryPaymentsResponse);
+                    updateQueryPayment(queryPaymentsResponse);
                 } catch (Exception ex){
                     System.debug('Exception: ' +ex.getMessage());
                     System.debug(ex.getStackTraceString());
@@ -36,8 +36,8 @@ global class BFM_QueryPayment {
             }
         }
     }
-
-
+    
+    
     private void createErrorLogs(Set<String> miroHeaderAccessKeys){
         List<BFM_Error_Log__c> errorLogs = new List<BFM_Error_Log__c>();
         for(String headerAccessKey: miroHeaderAccessKeys){
@@ -55,6 +55,7 @@ global class BFM_QueryPayment {
     private String convertFlag(boolean boolFlag){
         return boolFlag ? 'X' : '';
     }
+    
     private List<BFM_Miro_Header__c> updateQueryPayment(BFM_QueryPaymentsResponse queryPaymentsResponse){
         List<BFM_MIRO_Header__c> headers = new List<BFM_MIRO_Header__c>();
         List<BFM_MIRO_Item__c> miroItems = new List<BFM_Miro_Item__c>();
@@ -66,7 +67,7 @@ global class BFM_QueryPayment {
             if(objectType == TYPE_CTE){
                 header.Ct_e__r = new BFM_CT_e__c(CT_e_key__c = paymentResponse.accessKey);
             } /**else if(objectType == TYPE_NFS){
-                header.NFS__r = new BFM_NFS__c(NFS_Key__c = paymentResponse.accessKey);
+            header.NFS__r = new BFM_NFS__c(NFS_Key__c = paymentResponse.accessKey);
             } */
             header.MIRO_Number__c = paymentResponse.miroNumber;
             header.Invoice_Number__c = paymentResponse.invoiceDocNumberFI;
@@ -77,7 +78,13 @@ global class BFM_QueryPayment {
             header.Annulment_Fiscal_Doc_No__c = paymentResponse.annulationDocument;
             header.Annulment_Fiscal_Posting_Date__c = convertDate(paymentResponse.annulationPostingDate);
             header.Cancellation_Document_No__c = paymentResponse.cancellationDocument;
-            header.Cancellation_Posting_Date__c = paymentResponse.cancellationPostingDate;
+            //header.Cancellation_Posting_Date__c = paymentResponse.cancellationPostingDate;
+            /* try{
+            if(paymentResponse.cancellationPostingDate != null || paymentResponse.cancellationPostingDate !=Date.valueof('0000-00-00'))
+            header.Cancellation_Posting_Date__c = string.valueof(paymentResponse.cancellationPostingDate);
+            } catch(Exception ex){
+            System.debug('Exception: ' +ex.getMessage());  
+            }*/
             header.Annulment_NF_e_reference__c = paymentResponse.accessKeyAnnulationInvoice;
             header.NF_Writer_Document_Number__c = paymentResponse.nfWriterDocument;
             
@@ -86,10 +93,9 @@ global class BFM_QueryPayment {
             header.Posting_Date_in_the_Document__c = paymentResponse.postingDate;
             header.Net_Due_Date__c = Date.valueOf(paymentResponse.netDueDate);
             header.payment_method__c = paymentResponse.paymentMethod;
-            
-            
-            header.Cancellation_Flag__c = convertFlag(paymentResponse.cancellationFlag);
-            header.Annulment_Flag__c = convertFlag(paymentResponse.annulmentFlag);
+            system.debug('12121' +paymentResponse.cancellationFlag);
+            header.Cancellation_Flag__c = paymentResponse.cancellationFlag;
+            header.Annulment_Flag__c = paymentResponse.annulmentFlag;
             header.Payment_amount__c = paymentResponse.paymentAmount;
             for(BFM_QueryPaymentsResponse.PaidDocuments item: paymentResponse.paidDocuments){
                 BFM_Miro_Item__c miroItem = new BFM_Miro_Item__c();
@@ -107,22 +113,22 @@ global class BFM_QueryPayment {
                 // referenceNumber
                 // 
                 
-                	
+                
             }
             headers.add(header);
             //public String logMessage {get;set;} 
             
         }
         Database.UpsertResult[] srHeaders =  Database.upsert(headers, Schema.getGlobalDescribe().get('BFM_MIRO_Header__c')
-                        									.getDescribe()
-                        									.fields
-                        									.getMap()
-                        									.get('Access_Key__c'), true);
+                                                             .getDescribe()
+                                                             .fields
+                                                             .getMap()
+                                                             .get('Access_Key__c'), true);
         Database.UpsertResult[] srItems = Database.upsert(miroItems, Schema.getGlobalDescribe().get('BFM_MIRO_Item__c')
-                        									.getDescribe()
-                        									.fields
-                        									.getMap()
-                        									.get('Access_Key__c'), true);
+                                                          .getDescribe()
+                                                          .fields
+                                                          .getMap()
+                                                          .get('Document_Number__c'), true);
         for(Database.UpsertResult srHeader: srHeaders){
             if(!srHeader.isSuccess()){
                 for(Database.Error error :srheader.getErrors()){

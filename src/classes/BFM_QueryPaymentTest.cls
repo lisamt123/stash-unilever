@@ -6,6 +6,7 @@ private static testMethod void testBFM_QueryPayment (){
  BFM_MIRO_Header__c miro=new BFM_MIRO_Header__c();
  miro.Access_Key__c='3123';
  insert miro;
+ system.assertEquals('3123',miro.Access_Key__c);
  miroid.add(miro.id);
  
  

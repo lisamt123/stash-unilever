@@ -1,13 +1,14 @@
-public class BFM_SavePOD {
-
-    private Id podId;
+public with sharing class BFM_SavePOD {
     
+    private Id podId;
+    /*
     public BFM_SavePOD(Id PodId){
         this.podId = podId;
         
-    }
+    }*/
     
-    public void sendPOD(){
+    @future(callout=true)
+    public static void sendPOD(Id PodId){
         BFM_Pod__c pod = [SELECT POD_Date__c, POD_Status__c,
                           NF_e__r.Delivery__r.Delivery_Number__c,
                           NF_e__r.Delivery__r.Stage__r.Shipment__r.Shipment_Number__c FROM BFM_Pod__c WHERE Id =: podId];
@@ -22,7 +23,7 @@ public class BFM_SavePOD {
                 newError.Error_code__c = response.SavePODResponse.errorCode;
                 newError.Error_log__c = response.savePODResponse.errorMessage;
                 newError.BFM_POD__c = podId;
-                System.debug('Error: ' + response.SavePODResponse.errorCode + '	' + response.savePODResponse.errorMessage);
+                System.debug('Error: ' + response.SavePODResponse.errorCode + ' ' + response.savePODResponse.errorMessage);
                 
                 insert newError;
             }

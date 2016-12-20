@@ -52,6 +52,7 @@ public class BFM_Link_MDFCTe_Onsave_Test{
         test.starttest();
         insert linkList;
         insert listCTe;
+        system.assertEquals('Validation Ok',mdf3.MDF_e_Duplicate_Record_Status__c);
         BFM_Link_MDFCTe_onsave.linkmdfcte(linkList);
         test.stoptest();
         //insert mdfcte;  

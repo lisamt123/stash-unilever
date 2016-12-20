@@ -49,20 +49,20 @@ public without sharing class BFM_SendEmailToCarrierApprover {
     
     public Contact getEmailContact(){
         Contact contactEmail;
-        
-        for(Account account : [SELECT Id, 
+        string masterCNPJ=desiredCarriers[0].cnpj__c;
+        String cnpjPrefix = masterCNPJ.substring(0,8) + '%';
+        system.debug('cnpjPrefix:'+cnpjPrefix);
+        for(Account acc : [SELECT Id, 
                                 (SELECT email 
-                                 FROM Contacts WHERE title = 'SF_Approver') 
-                                	FROM Account
-                               		WHERE Id IN :desiredCarriers]){
-            
-        	if(!account.Contacts.isEmpty()){
-            	contactEmail = account.Contacts[0];                           
+                                 FROM Contacts WHERE title = 'SF_APPROVAL' AND email != null) 
+                                  FROM Account
+                                   WHERE cnpj__c =:masterCNPJ Limit 1]){
+                if(!acc.Contacts.isEmpty()){
+                    contactEmail = acc.Contacts;    
+                }
             }                           
-        }
         if(contactEmail == null){
-            errors = Label.BFM_Self_Service_No_Carrier_Email;
-            
+            errors = Label.BFM_Self_Service_No_Carrier_Email;           
         }
         return contactEmail;
     }
@@ -79,7 +79,7 @@ public without sharing class BFM_SendEmailToCarrierApprover {
         Set<Id> idsUsersGovernanceGroup = GetUserIdsFromGroup(groupId);
         List<User> usersGovernanceGroup = [SELECT Id FROM User WHERE Id IN: idsUsersGovernanceGroup ORDER BY username];
         AggregateResult res = [select count(id) from BFM_UserCreationRequest__c];
-		Integer count = integer.valueof(res.get('expr0'));
+    Integer count = integer.valueof(res.get('expr0'));
         Integer turn = Math.mod(count, usersGovernanceGroup.size());
         t.OwnerId = usersGovernanceGroup[turn].Id;
         
@@ -116,5 +116,5 @@ public without sharing class BFM_SendEmailToCarrierApprover {
         }
         
         return result;  
-	}
+  }
 }

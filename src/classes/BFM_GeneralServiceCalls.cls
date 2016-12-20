@@ -35,7 +35,7 @@ public class BFM_GeneralServiceCalls {
         
     }
     
-    public static HttpResponse requestQueryOccurrence(BFM_QueryOccurrencesRequest queryOccurrencesRequest){
+    public static HttpResponse requestQueryOccurrence(List<String> occurrenceNumbers, String queryType){
         HttpRequest request = new HttpRequest();
         
         String customSettingEndpoint; //= System.Url.getSalesforceBaseURL().toExternalForm() +'/services/apexrest/MulesoftMock/v1/queryFreight';
@@ -48,8 +48,10 @@ public class BFM_GeneralServiceCalls {
         request.setHeader('client_id', 'dummyId');
         request.setHeader('client_secret', 'dummySecret');
         request.setMethod('POST');
-        request.setBody(JSON.serialize(queryOccurrencesRequest));
+        BFM_QueryOccurrencesRequest requestBody = new BFM_QueryOccurrencesRequest(occurrenceNumbers, queryType);
+        request.setBody(JSON.serialize(requestBody));
         Http httpConnection = new Http();
+        request.setTimeout(120000);
         System.debug('Endpoint of the request ' +request.getEndpoint());
         System.debug('body of the request ' + request.getBody());
         HttpResponse response = httpConnection.send(request);
@@ -71,6 +73,7 @@ public class BFM_GeneralServiceCalls {
         request.setHeader('Authorization', 'OAuth '+sessionid);
         request.setHeader('Content-Type', 'application/json');
         request.setMethod('POST');
+        request.setTimeout(120000);
         request.setBody(getsefazcheckJSONBody(objectId, fileUrl, objectName));
         system.debug('sssssss'+getsefazcheckJSONBody(objectId, fileUrl, objectName));
         Http httpConnection = new Http();
@@ -110,7 +113,7 @@ public class BFM_GeneralServiceCalls {
         request.setHeader('fileName', fileName);
         request.setHeader('Content-Type', 'application/xml');
         request.setHeader('Content-Length',contentLenght);
-        
+        request.setTimeout(120000);
         request.setBodyAsBlob(xmlBody);
        
         
@@ -123,8 +126,8 @@ public class BFM_GeneralServiceCalls {
         return response;  
     }
     
-    public static HttpResponse nfsUpload(String filename, Datetime timeStamp, String contentType, String size, Blob file){
-       
+    public static HttpResponse nfsUpload(String cnjp,String filename, Datetime timeStamp, String contentType, String size, Blob file){
+       system.debug(' CNJP is '+cnjp);
         HttpRequest request = new HttpRequest();
         BFM_Mulesoft_Endpoint__mdt endpointMetadata = [SELECT Endpoint_URL__c 
                                                                 FROM BFM_Mulesoft_Endpoint__mdt 
@@ -134,7 +137,7 @@ public class BFM_GeneralServiceCalls {
         request.setEndpoint(endpoint);
         request.setHeader('client_id', 'value');
         request.setHeader('client_secret', 'value');
-        request.setHeader('taxIdentifier', 'value');
+        request.setHeader('taxIdentifier', cnjp);
         request.setHeader('fileName', fileName);
         request.setHeader('timeStamp', String.valueOf(timeStamp));
         request.setHeader('Content-Type', contentType);
@@ -148,22 +151,23 @@ public class BFM_GeneralServiceCalls {
         return response;
     }
     
-    public static HttpResponse podUpload(String filename, Datetime timestamp, String contentType, String size, blob file){
+    public static HttpResponse podUpload(String cnjp,String filename, Datetime timestamp, String contentType, String size, blob file){
         HttpRequest request = new HttpRequest();
         BFM_Mulesoft_Endpoint__mdt endpointMetadata = [SELECT Endpoint_URL__c 
                                                                 FROM BFM_Mulesoft_Endpoint__mdt 
                                                                     WHERE QualifiedAPIName = 'Publish_POD' LIMIT 1];
         String endpoint = endpointMetadata.endpoint_URL__c;
-        
+        system.debug(' cnjp is '+cnjp);
         request.setEndpoint(endpoint);
         request.setHeader('client_id', 'value');
         request.setHeader('client_secret', 'value');
-        request.setHeader('taxIdentifier', 'value');
+        request.setHeader('taxIdentifier', cnjp);
         request.setHeader('fileName', fileName);
         request.setHeader('timeStamp', String.valueOf(timeStamp));
         request.setHeader('Content-Type', contentType);
         request.setHeader('Content-Lenght', size);
         request.setMethod('POST');
+        request.setTimeout(120000);
         request.setBodyAsBlob(file);
         Http httpConnection = new Http();
         system.debug('endpoint of the request ' + request.getEndpoint());
@@ -232,6 +236,25 @@ public class BFM_GeneralServiceCalls {
         
         HttpResponse response = h.send(request);
         System.debug('Body of the response ' + response.getBody());
+        return response;
+    }
+    
+    public static httpResponse sendShipmentUpdate(BFM_UpdateFreightDataRequest request){
+        HttpRequest hRequest = new HttpRequest();
+        BFM_Mulesoft_Endpoint__mdt customSettingEndpoint = [SELECT Endpoint_URL__c FROM BFM_Mulesoft_Endpoint__mdt 
+                                                                    WHERE QualifiedAPIName = 'Update_Freight_Data' LIMIT 1];
+        String endpoint = customSettingEndpoint.endpoint_URL__c + request.UpdateFreightData.shipment.shipmentID;
+        hRequest.setHeader('client_id', 'client_id');
+        hRequest.setHeader('client_secret', 'client_secret');
+        hRequest.setHeader('Content-Type', 'application/json');
+        hRequest.setMethod('POST');
+        hRequest.setEndpoint(endpoint);
+        boolean suppressApexNulls = true;
+        hRequest.setBody(JSON.serialize(request, suppressApexNulls));
+        System.debug('Body of the Request ' + hRequest.getBody());
+        Http h = new Http();
+        HttpResponse response = h.send(hRequest);
+        System.debug('Body of the Response ' + response.getBody());
         return response;
     }
     

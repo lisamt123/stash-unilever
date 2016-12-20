@@ -1,4 +1,4 @@
-<apex:page controller="BFM_NFSManualLink_CC" tabStyle="Account">
+<apex:page StandardController="BFM_NFS__c" extensions="BFM_NFSManualLink_CC" tabStyle="Account">
 <script>
          
          $ = jQuery.noConflict();
@@ -34,26 +34,26 @@
                          });
                      });
  </script>
-  <apex:sectionHeader title="NFS" subtitle="Manual Link"/>
+  <apex:sectionHeader title="{!$Label.BFM_NFS}" subtitle="{!$Label.BFM_Manual_Link}"/>
   <apex:form >
   <apex:pageBlock >
   <apex:pageBlockButtons >
-      <apex:commandButton action="{!linkNFS_SES}" value="Update"/>
+      <apex:commandButton action="{!linkNFS_SES}" value="{!$Label.BFM_Update}"/>
   </apex:pageBlockButtons>
-<apex:pageblocksection title="NFS" showheader="true" collapsible="true" columns="1">
+<apex:pageblocksection title="{!$Label.BFM_NFS}" showheader="true" collapsible="true" columns="1">
 
     <apex:pageBlockTable value="{!nfs_list }" var="n" StyleClass="styleships" >
-        <apex:column headerValue="NFS Record">
+        <apex:column headerValue="{!$Label.BFM_NFS_Record}">
             <a href="/{!n.nfs.id}" target="_blank">{!n.nfs.name}</a>         
         </apex:column>
         <apex:column value="{!n.nfs.Shipment__c}"/>
         <apex:column value="{!n.nfs.NFS_Emission_Date_Time__c}"/>
        <!-- <apex:column breakBefore="true" colspan="2">-->
        <apex:column >
-            <apex:pageblocksection title="SES Information" showheader="true" collapsible="true" columns="1">
+            <apex:pageblocksection title="{!$Label.BFM_SES_Information}" showheader="true" collapsible="true" columns="1">
                 <apex:pageBlockTable value="{!n.ses_list}" var="s">
                 <apex:column > <apex:inputcheckbox value="{!s.isselected}"/></apex:column>
-                    <apex:column headerValue="SES Record">
+                    <apex:column headerValue="{!$Label.BFM_SES_Record}">
                         <a href="/{!s.ses.Id}" target="_blank">{!s.ses.name}</a>         
                     </apex:column>                    
                     <apex:column value="{!s.ses.SES_Number__c}"/>

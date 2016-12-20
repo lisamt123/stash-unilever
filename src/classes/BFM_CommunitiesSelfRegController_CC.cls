@@ -1,8 +1,8 @@
 /**
- * An apex page controller that supports self registration of users in communities that allow self registration
- */
+* An apex page controller that supports self registration of users in communities that allow self registration
+*/
 public with sharing class BFM_CommunitiesSelfRegController_CC {
-
+    
     public String firstName {get; set;}
     public String lastName {get; set;}
     public String email {get; set;}
@@ -24,10 +24,10 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         firstName = '';
         lastName = '';
         readOnlyForm = false;
-        supportEmail = system.label.BFM_supportEmail;
+        supportEmail = system.label.BFM_Support_Email;
         sendEmail = 'mailto:'+supportEmail ;
     }
-   
+    
     public class RequestLine{
         
         public boolean isSelected{get;set;}
@@ -74,8 +74,8 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         }
         else{
             //Added by Abhinav: Capture the errror if CNPJ length is less than 8 digit.
-        ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, Label.BFM_CNPJ_Length_Error_Message);
-        ApexPages.addMessage(msg);
+            ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, Label.BFM_CNPJ_Length_Error_Message);
+            ApexPages.addMessage(msg);
         }
     }
     
@@ -99,25 +99,43 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
                         resetVF();
                     } else{
                         insert newCarrierUserRequest;
+                        system.debug('---->'+newCarrierUserRequest);
                         // Creates the accessRequests
                         new BFM_CreateAccessRequest(newCarrierUserRequest, desiredCarriers).createAccessRequests();
                         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, Label.BFM_Self_Service_Request_Created 
-                                                               + ' ' +carrierEmail)) ;
+                                                                   + ' ' +carrierEmail)) ;
                         allDone = true;
                         readOnlyForm = false;
                         resetVF();
                     }
                 }
-            }catch(Exception e){
+            }catch (DMLException e){
+                if(StatusCode.DUPLICATE_VALUE ==  e.getDmlType(0)){
+                    
+                    
+                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
+                                                               Label.BFM_Error_Creating_Access_Request + ' '+
+                                                               'Duplicated value on field e-mail'));
+                } 
+            }
+            catch(Exception e){
+                
+                System.debug(Label.BFM_Error_Creating_Access_Request + ' ' + e.getMessage() +' ' +e.getStackTraceString());
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                                                           Label.BFM_Error_Creating_Access_Request));
+                  Label.BFM_Error_Creating_Access_Request + ' ' + e.getMessage() +' ' +e.getStackTraceString() +e.getTypeName()));
             }
         }
-
+        
     }
     
     public boolean validateCarrierRequest( BFM_UserCreationRequest__c newCarrierUserRequest ){
         boolean isValid = true;
+        if(taxUser == false && operationalUser == false){
+            isValid = false;
+            ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, Label.BFM_At_Least_one_Permission);
+            ApexPages.addMessage(msg);
+            return isValid;
+        }
         //validates if CPF is valid and not duplicated
         BFM_CPFValidator cpfValidator = new BFM_CPFValidator(newCarrierUserRequest.cpf__c);
         if(!cpfValidator.validateCPF() ){
@@ -127,10 +145,10 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         }
         // validates duplicated nicknames
         List<User> duplicatedNicknames = [SELECT Id FROM User WHERE CommunityNickname =:newCarrierUserRequest.CommunityNickname__c 
-                                                                                        LIMIT 1];
+                                          LIMIT 1];
         if(!duplicatedNicknames.isEmpty()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                                                           Label.BFM_Self_Service_Nickname_Already_Used ));
+                                                       Label.BFM_Self_Service_Nickname_Already_Used ));
             isValid = false;
         }
         
@@ -142,24 +160,24 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         
         if(!duplicateUsernames.isEmpty() || !duplicatedUsernamesOnUsers.isEmpty()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                                                           Label.BFM_Self_Service_Duplicated_Email ));
+                                                       Label.BFM_Self_Service_Duplicated_Email ));
             isValid = false;
         }
         // validates email format
         if(!validateEmail(newCarrierUserRequest.Email__c)){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                                                           Label.BFM_Self_Service_Invalid_Email));
+                                                       Label.BFM_Self_Service_Invalid_Email));
             isValid = false;
         }
         return isValid;
     }
-     
+    
     public Boolean validateEmail(String email) {
         Boolean res = true;
         String emailRegex = '^[a-zA-Z0-9._|\\\\%#~`=?&/$^*!}{+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'; // source: <a href="http://www.regular-expressions.info/email.html" target="_blank" rel="nofollow">http://www.regular-expressions.info/email.html</a>
         Pattern MyPattern = Pattern.compile(emailRegex);
         Matcher MyMatcher = MyPattern.matcher(email);
-    
+        
         if (!MyMatcher.matches()){ 
             res = false;
         }
@@ -169,10 +187,11 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
     public list<Account> getDesiredCarriers(){
         list<Account> desiredCarriers = new List<Account>();
         for(RequestLine reqLine: this.requestLines.values()){
-                if(reqLine.isSelected){
+            if(reqLine.isSelected){
                 desiredCarriers.add(reqLine.branch);
             }
-            }
+        }
+        system.debug('--->'+desiredCarriers);
         return desiredCarriers;
     }    
     
@@ -195,5 +214,5 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         
         requestLines = null;
     }
-
+    
 }

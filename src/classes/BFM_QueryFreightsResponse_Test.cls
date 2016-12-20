@@ -1,10 +1,11 @@
 @isTest
 public class BFM_QueryFreightsResponse_Test{
     private static testMethod void testQueryFreightsRequest(){
-         test.startTest();
          
          Account acc= new Account();
          acc.name = 'testname';
+         test.startTest();
+         system.assertEquals('testname', acc.name);
          insert acc;
          
          set<string> setShipment = new set<string>();
@@ -19,11 +20,10 @@ public class BFM_QueryFreightsResponse_Test{
          insert shipmentty;
          
          BFM_Occurrence__c occur = new BFM_Occurrence__c();
-         occur.name='testname';
+         //occur.name='testname';
          occur.Shipment__c = shipmentty.id;
          insert occur;
-         system.assertEquals('testname', occur.name);
-                  
+                          
          BFM_SES__c ses = new BFM_SES__c();
          ses.SES_Number__c='123454566';
          ses.PO_Type__c='12345678900000';

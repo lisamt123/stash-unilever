@@ -5,10 +5,10 @@ set<id> setShipmentids = new set<id>();
 Map<id,List<BFM_SES__c>> mapShipses = new Map<id,List<BFM_SES__c>>();
 public list <NFSwrapper> nfs_list {get; set;}
       // public list<SESwrapper> ses_list {get; set;}
-    public BFM_NFSManualLink_CC(){
+    public BFM_NFSManualLink_CC(ApexPages.StandardController controller){
         listNFS = new List<BFM_NFS__c>();
         nfs_list = new list <NFSwrapper>();
-        listNFS = [select id,Shipment__c,NFS_Series__c,NFS_Emission_Date_Time__c,name from BFM_NFS__c where NFS_Link_Check_Status__c ='Pending link' limit 1000]; 
+        listNFS = [select id,Shipment__c,NFS_Series__c,NFS_Emission_Date_Time__c,name from BFM_NFS__c where NFS_Link_Check_Status__c ='Pending link' and id=:ApexPages.currentPage().getParameters().get('id')]; 
         for(BFM_NFS__c nfs: listNFS){
             setShipmentids.add(nfs.Shipment__c);
         }
@@ -23,7 +23,7 @@ public list <NFSwrapper> nfs_list {get; set;}
                 List<BFM_SES__c> listShipses = new List<BFM_SES__c>();
                 if( mapShipses.get(stg.Shipment__c)!=null){
                 listShipses.addAll(mapShipses.get(stg.Shipment__c));
-                system.debug('llllllllllllllll'+listShipses);
+                system.debug('llllllllllllllll'+listShipses);  
                 }
                 if(!stg.BFM_SESs__r.isEmpty()){
                     listShipses.addAll(stg.BFM_SESs__r);
@@ -79,7 +79,7 @@ public list <NFSwrapper> nfs_list {get; set;}
            for(NFSwrapper nw: nfs_list){
                if(!nw.ses_list.isEmpty()){
                    for(SESwrapper sw: nw.ses_list){
-                       if(sw.isselected){
+                       if(sw.isselected == true){
                            BFM_SES__c sesu = new BFM_SES__c(id = sw.ses.id);
                            sesu.NFS__c = nw.nfs.id;
                            listsesupfdate.add(sesu);

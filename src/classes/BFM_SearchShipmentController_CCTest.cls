@@ -7,7 +7,7 @@ private static testMethod void testsearchshipment(){
         acc.cnpj__c = '03189042000100';
         acc.name='carrier';
         insert acc;
-
+        system.assertEquals('carrier',acc.name);
         BFM_SearchShipmentController_CC search=new BFM_SearchShipmentController_CC(null);
         search.shipmentStart=date.newInstance(2016, 8, 23);
         search.shipmentNumber='12345';

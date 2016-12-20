@@ -1,7 +1,6 @@
 public with sharing class BFM_SearchShipmentController_CC{
     public ApexPages.StandardSetController con{get; set;}
     public BFM_Shipment__c searchShipment{get;set;}
-    
     public String shipmentNumber{get;set;}
     public Date shipmentStart{get;set;}
     public String unileverCompanyAccountName{get;set;}
@@ -35,7 +34,7 @@ public with sharing class BFM_SearchShipmentController_CC{
                                                                          '(SELECT Name,Origin_city__c, Destination_City__c, Gross_value_from_cost_preview__c FROM Stages__r) '+
                                                                            'FROM BFM_Shipment__c LIMIT 10000'));
         */
-        //mySearch();
+        mySearch();
         getshipments();
     }
     
@@ -43,16 +42,16 @@ public with sharing class BFM_SearchShipmentController_CC{
     {  
         get  
         {  
-            if(con != null)  
-                return (List<BFM_Shipment__c>)con.getRecords();            
+            if(con != null)
+                return (List<BFM_Shipment__c>)con.getRecords();                         
             else  
                 return null ;             
         }  
-        set;
+        set;   
     }
     public void mySearch(){       
         
-        String ShipmentString = 'SELECT id,name,Shipment_Number__c,Shipment_Type__c,Shipment_Start__c,Display__c, '+
+        String ShipmentString = 'SELECT id,name,Shipment_Number__c,Company_Code__c,Shipment_Type__c,Unilever_Company__r.name,Unilever_Company__r.CNPJ__c,Unilever_Company__r.Vendor__c,Shipment_Start__c,Display__c, '+
             ' (SELECT Name, Origin_city__c, Destination_City__c, Gross_value_from_cost_preview__c FROM Stages__r';
         if(plantCode != null){
             String strPlantCode = String.escapeSingleQuotes(plantCode);
@@ -61,34 +60,33 @@ public with sharing class BFM_SearchShipmentController_CC{
         shipmentString += ') FROM BFM_Shipment__c ';
                 
         String searchClauses = 'WHERE';
-        
-        System.debug('shipmentNumber ' + shipmentNumber);
-        if(!String.isEmpty(shipmentNumber)){
-            //shipmentNumber = String.escapeSingleQuotes(searchShipment.shipment_Number__c);
-            searchClauses += ' Shipment_Number__c = :shipmentNumber OR ';
+       
+        if(!String.isEmpty(shipmentNumber) && shipmentNumber!=null){
+            searchClauses += ' Shipment_Number__c = :shipmentNumber AND ';
+            system.debug('--->'+shipmentNumber);
         }
-        if(shipmentStart != null){
+        if(shipmentStart!= null){
             //shipmentStart = searchShipment.Shipment_Start__c; 
-            searchClauses += ' Shipment_Start__c = :shipmentStart OR ';
+            searchClauses += ' Shipment_Start__c = :shipmentStart AND ';
         }
-        if(unileverCompanyAccountName != null){
+        if(!String.isEmpty(unileverCompanyAccountName) && unileverCompanyAccountName!= null){
             //unileverCompanyAccountName = String.escapeSingleQuotes(unileverCompanyAccount.Name);
-            searchClauses += ' Unilever_Company__r.Name = :unileverCompanyAccountName OR ';
+            searchClauses += ' Unilever_Company__r.Name = :unileverCompanyAccountName AND ';
         }
-        if(carrierCompanyAccountName != null){
+        if(!String.isEmpty(carrierCompanyAccountName) &&  carrierCompanyAccountName!= null){
             //carrierCompanyAccountName = String.escapeSingleQuotes(vendorAccount.Name);
-            searchClauses += ' Carrier_Account__r.Name = :carrierCompanyAccountName OR ';
+            searchClauses += ' Unilever_Company__r.CNPJ__c = :carrierCompanyAccountName AND ';
         }
-        if(unileverCompanyAccountCNPJ != null){
+        if(!String.isEmpty(unileverCompanyAccountCNPJ) && unileverCompanyAccountCNPJ!= null){
             //unileverCompanyAccountCNPJ = String.escapeSingleQuotes(unileverCompanyAccount.CNPJ__c);
-            searchClauses += ' Unilever_Company__r.Name = :unileverCompanyAccountCNPJ OR ';
+            searchClauses += ' Carrier_Account__r.CNPJ__c = :unileverCompanyAccountCNPJ AND ';
         }
-        if(vendorAccountCNPJ != null){
-            vendorAccountCNPJ = String.escapeSingleQuotes(vendorAccountCNPJ);
-            searchClauses += ' Carrier_Account__r.CNPJ__c = :vendorAccountCNPJ OR ';
+        if(!String.isEmpty(vendorAccountCNPJ) && vendorAccountCNPJ!= null){
+            //vendorAccountCNPJ = String.escapeSingleQuotes(vendorAccountCNPJ);
+            searchClauses += ' Carrier_Account__r.CNPJ__c = :vendorAccountCNPJ AND ';
         }
         
-        searchClauses = searchClauses.trim().removeEndIgnoreCase('OR');
+        searchClauses = searchClauses.trim().removeEndIgnoreCase('AND');
         if(searchClauses == 'WHERE'){
             searchClauses = '';
         }
@@ -97,9 +95,10 @@ public with sharing class BFM_SearchShipmentController_CC{
         shipmentString += ' ORDER BY CreatedDate ';
         // Sanitizing to avoid SOQL injection
         
-        system.debug('ShipmentString----->'+ShipmentString);
+        
         try{
-                con = new ApexPages.StandardSetController(Database.getQueryLocator(ShipmentString));
+           con = new ApexPages.StandardSetController(Database.getQueryLocator(ShipmentString));
+           system.debug('ShipmentString----->'+ShipmentString);
         } catch(QueryException ex){
             String errorMessage = ex.getMessage() + ' ' + ex.getStackTraceString()+' /n \n'+shipmentString;
             ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, errorMessage));
@@ -109,7 +108,12 @@ public with sharing class BFM_SearchShipmentController_CC{
         setPaginationSettings();
         //resetSearch();      
     }
-    
+    public pageReference redirectPage(){
+        PageReference pageRef = new PageReference(ApexPages.currentPage().getUrl());
+        pageRef.setRedirect(true);
+        return pageRef;
+    }    
+
     
     public void resetSearch(){
         searchShipment = new BFM_Shipment__c(); 

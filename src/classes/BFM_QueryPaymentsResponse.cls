@@ -20,7 +20,7 @@ public class BFM_QueryPaymentsResponse {
     public class PaidDocuments {
         public String referenceNumber {get;set;} 
         public String date_z {get;set;} 
-        public Integer amount {get;set;} 
+        public string amount {get;set;} 
         public String documentNumber {get;set;} 
         
         public PaidDocuments(JSONParser parser) {
@@ -33,7 +33,7 @@ public class BFM_QueryPaymentsResponse {
                         } else if (text == 'date') {
                             date_z = parser.getText();
                         } else if (text == 'amount') {
-                            amount = parser.getIntegerValue();
+                            amount = parser.getText();
                         } else if (text == 'documentNumber') {
                             documentNumber = parser.getText();
                         } else {
@@ -72,7 +72,7 @@ public class BFM_QueryPaymentsResponse {
         public Date postingDate {get;set;} 
         public String paymentBlock {get;set;} 
         public String cancellationDocument {get;set;} 
-        public Date cancellationPostingDate {get;set;} 
+        public String cancellationPostingDate {get;set;} 
         public String annulationDocument {get;set;} 
         public String annulationPostingDate {get;set;} 
         public String accessKeyAnnulationInvoice {get;set;} 
@@ -108,7 +108,7 @@ public class BFM_QueryPaymentsResponse {
                         } else if (text == 'cancellationDocument') {
                             cancellationDocument = parser.getText();
                         } else if (text == 'cancellationPostingDate') {
-                            cancellationPostingDate = parser.getDateValue();
+                            //cancellationPostingDate = parser.getDateValue();
                         } else if (text == 'annulationDocument') {
                             annulationDocument = parser.getText();
                         } else if (text == 'annulationPostingDate') {
@@ -127,12 +127,13 @@ public class BFM_QueryPaymentsResponse {
                             paymentMethod = parser.getText();
                         } else if (text == 'netDueDate') {
                             netDueDate = parser.getText();
-                        } else if (text == 'cancellationFlag ') {
+                        } else if (text == 'cancellationFlag') {
+                            system.debug('8989898 '+parser.getBooleanValue());
                             cancellationFlag  = parser.getBooleanValue();
                         } else if (text == 'annulmentFlag') {
                             annulmentFlag = parser.getBooleanValue();
                         } else if (text == 'paymentAmount') {
-                            paymentAmount = parser.getIntegerValue();
+                            //paymentAmount = parser.getIntegerValue();
                         } else if (text == 'logMessage') {
                             logMessage = parser.getText();
                         } else if (text == 'paidDocuments') {
@@ -177,4 +178,4 @@ public class BFM_QueryPaymentsResponse {
     public static BFM_QueryPaymentsResponse parse(String json) {
         return new BFM_QueryPaymentsResponse(System.JSON.createParser(json));
     }
-}
+ }

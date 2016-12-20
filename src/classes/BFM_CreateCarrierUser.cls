@@ -3,7 +3,7 @@
  * */
 
 global with sharing class BFM_CreateCarrierUser {
-	@InvocableMethod 
+    @InvocableMethod 
     public static void createUserShareAccounts(List<BFM_UserCreationRequest__c> userRequests){
         if(userRequests != null){
             BFM_UserCreationRequest__c userRequest = userRequests[0];

@@ -1,15 +1,16 @@
 @isTest
 private class BFM_QueryFreightsRequest_Test{
     private static testMethod void testQueryFreightsRequest(){
-        test.startTest();
+        
         Account acc= new Account();
         acc.name = 'testname';
+        test.startTest();
         insert acc;
         system.assertEquals('testname', acc.name);
         
         BFM_Shipment__c shipmentRec = new BFM_Shipment__c();
         shipmentRec.Shipment_Number__c='65624565';
-        shipmentRec.Carrier_Account__c = acc.id;      
+        shipmentRec.Carrier_Account__c = acc.id;
         insert shipmentRec;
         
         set<string> setShipment = new set<string>();

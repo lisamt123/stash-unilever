@@ -139,6 +139,13 @@ public without sharing class BFM_TriggerFactory
         if(soType == BFM_Shipment__c.sObjectType){
             return new BFM_ShipmentHandler();    
         }
+        if(soType == BFM_Occurrence__c.sObjectType){
+            return new BFM_OccurrenceHandler();
+        }
+         if(soType == BFM_NF_e__c.sObjectType){
+            return new BFM_NFEHandler();
+        }
+        
         return null;
     }
 

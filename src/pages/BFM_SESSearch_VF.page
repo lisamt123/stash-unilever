@@ -1,36 +1,36 @@
-<apex:page controller="BFM_SESSearch_CC" action="{!searchses}" tabStyle="BFM_SES__c">
-	<apex:form >
-		<apex:pageBlock id="thePb" title="SES Search">
-   			<apex:pageblockSection id="thepbs">
-    			<apex:inputText value="{!ses.Name}"/>
-    			<apex:inputField value="{!ses.SES_Number__c}" />
-   			</apex:pageblockSection>
-   			<apex:pageblockButtons location="bottom">
-      			<apex:commandButton value="Search" action="{!searchses}" />
-     		</apex:pageblockButtons>  
-  		</apex:pageBlock>
-   		<apex:pageBlock title="SES Details" id="noRec" rendered="{! IF( sesList != null && sesList.size ==0 , true, false)}" >
+<apex:page controller="BFM_SESSearch_CC" action="{!searchses}"  tabStyle="BFM_SES__c">
+    <apex:form >
+        <apex:pageBlock id="thePb" title="SES Search">
+            <apex:pageblockSection id="thepbs">
+                <apex:inputText value="{!ses.Name}"/>
+                <apex:inputField value="{!ses.SES_Number__c}" />
+            </apex:pageblockSection>
+            <apex:pageblockButtons location="bottom">
+                <apex:commandButton value="Search" action="{!searchses}" />
+            </apex:pageblockButtons>  
+        </apex:pageBlock>
+        <apex:pageBlock title="SES Details" id="noRec" rendered="{! IF( sesList != null && sesList.size ==0 , true, false)}" >
             <apex:outputPanel >
                 <h1>No Records Found </h1>
             </apex:outputPanel>
-  		</apex:pageBlock>
+        </apex:pageBlock>
  
   <apex:pageBlock title="SES Details" id="details" rendered="{! IF( sesList != null && sesList.size >0, true, false)}" mode="edit">
        <apex:pageBlockTable value="{!sesList}" var="s">
-       	<apex:column headerValue="SES Name">
-        	<apex:outputLink target="_blank" value="/{!s.id}">{!s.Name}</apex:outputLink> 
-       	</apex:column>   
-    	<apex:column value="{!s.SES_Number__c}"/>  
-    	<apex:column value="{!s.CT_E__c}"/>  
-    	<apex:column value="{!s.NFS__c}"/>        
-   		</apex:pageBlockTable>
+        <apex:column headerValue="SES Name">
+            <apex:outputLink target="_blank" value="/{!s.id}">{!s.Name}</apex:outputLink> 
+        </apex:column>   
+        <apex:column value="{!s.SES_Number__c}"/>  
+        <apex:column value="{!s.CT_E__c}"/>  
+        <apex:column value="{!s.NFS__c}"/>        
+        </apex:pageBlockTable>
    
     <apex:pageblockButtons >
          <apex:commandButton value="First Page" rerender="details" action="{!FirstPage}" disabled="{!prev}"/>
         <apex:commandButton value="Previous" rerender="details" action="{!previous}" disabled="{!prev}"/>
         <apex:commandButton value="Next" rerender="details" action="{!next}" disabled="{!nxt}"/>
         <apex:commandButton value="Last Page" rerender="details" action="{!LastPage}" disabled="{!nxt}"/>
-	</apex:pageblockButtons>   
+    </apex:pageblockButtons>   
   </apex:pageBlock>
  </apex:form>
 </apex:page>

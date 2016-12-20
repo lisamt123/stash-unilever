@@ -37,11 +37,12 @@ insert ctelst ;
 
 BFM_Shipment__c ship=new BFM_Shipment__c();
 ship.Carrier_Account__c=acc.id;
-ship.Unilever_Company__c=acc.id;
+//ship.Unilever_Company__c=acc.id;
 insert ship;
 
 BFM_Stage__c stg=new BFM_Stage__c();
 stg.Shipment__c=ship.id;
+stg.Unilever_Account__c = acc.Id;
 insert stg;
 
 BFM_SES__c ses=new BFM_SES__c();

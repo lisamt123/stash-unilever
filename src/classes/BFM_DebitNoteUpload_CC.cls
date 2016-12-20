@@ -14,8 +14,8 @@ public class BFM_DebitNoteUpload_CC{
         string urlstring='';
         string filename='';
         if(objR=='DebitNote' ){
-            BFM_Debit_Note__c debitn = [select id,name from BFM_Debit_Note__c where id=: recordId];
-            filename = debitn.name; 
+            BFM_Debit_Note__c debitn = [select id,name,File_Name__c from BFM_Debit_Note__c where id=: recordId];
+            filename = debitn.File_Name__c; 
         }
         if(objR=='PODReceipt' ){
             BFM_POD__c podrec = [select id,name from BFM_POD__c where id=: recordId];
@@ -36,7 +36,7 @@ public class BFM_DebitNoteUpload_CC{
                 issuccess =false;
             }
             newAttachment = new Attachment();
-            if(issuccess){
+            if(issuccess == true){
                 if(objR=='DebitNote'){
                 system.debug('uuuuuuuuuuu'+urlstring);
                     BFM_Debit_Note__c dn = new BFM_Debit_Note__c(id=recordId);

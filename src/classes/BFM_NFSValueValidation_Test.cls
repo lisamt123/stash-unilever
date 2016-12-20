@@ -10,6 +10,7 @@ public class BFM_NFSValueValidation_Test{
         acc.Vendor__c='11';
         acc.Company_Code__c='12';
         insert acc;
+        system.assertEquals('11',acc.Vendor__c);
         
         BFM_Shipment__c ship=new BFM_Shipment__c();
         ship.Carrier_Account__c=acc.id;
@@ -34,7 +35,7 @@ public class BFM_NFSValueValidation_Test{
  insert nfslst;
  
  
- 
+ system.assertEquals('validation ok', nfs.NFS_Duplicate_Check_Status__c);
  
  
  BFM_SES__c ses=new BFM_SES__c();

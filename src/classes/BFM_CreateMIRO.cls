@@ -13,7 +13,7 @@ global with sharing class BFM_CreateMIRO {
         Map<Id, List<BFM_IVA__c>> ivasBySES = new Map<Id, List<BFM_IVA__c>>();
         for(BFM_IVA__c iva: [SELECT SES__c,Other_Base__c, Excluded_Base__c, Tax_Base__c FROM BFM_IVA__c WHERE SES__c IN: sesList]){
             if(!ivasBySES.containsKey(iva.SES__c)){
-            	ivasBySES.put(iva.SES__c, new List<BFM_IVA__c>());
+                ivasBySES.put(iva.SES__c, new List<BFM_IVA__c>());
             }
             ivasBySes.get(iva.SES__c).add(iva);
         }
@@ -24,7 +24,7 @@ global with sharing class BFM_CreateMIRO {
         this.cancellationFlag = cancellationFlag;
         this.annulmentFlag = annulmentFlag;
     }
-	
+    
     public BFM_MIRO_Header__c createMIRO(){
         if(invoiceId.getSobjectType() == BFM_CT_e__c.sObjectType){
             createdMIRO = createMIROforCTe();
@@ -56,7 +56,7 @@ global with sharing class BFM_CreateMIRO {
             miro.Company_Code__c = cte.Unilever_Company_Code__c;
             miro.Reference_Document_Category__c = '4';
             miro.Transaction__c = '1';
-            miro.Total_Amount__c = cte.Receivable_Amount__c;
+            //miro.Total_Amount__c = cte.Receivable_Amount__c;
             //miro.Header_Text__c won't be sent
             miro.Header_Text_Summary__c = cte.CT_e_Auto_Number__c;
             //miro.Value_Net__c pending
@@ -67,10 +67,11 @@ global with sharing class BFM_CreateMIRO {
             //miro.RandomNumber
             miro.NF_e_Random_Number__c = cte.Random_Number__c;
             miro.Baseline_Date_for_Due_Date_Calculation__c = getLatestDate(cte);
-            miro.Cancellation_Flag__c = ' ';
-            miro.Annulment_Flag__c = ' ';
+            miro.Cancellation_Flag__c = false;
+            //miro.Annulment_Flag__c = ' ';
             miro.Annulment_Reason__c = '';
             miro.Complement_SES_Flag__c = ' ';
+            miro.CT_e__c = cte.id;
             insert miro;
             if(!cte.SESs__r.isEmpty()){
                 for(BFM_SES__c ses : cte.SESs__r){
@@ -102,7 +103,7 @@ global with sharing class BFM_CreateMIRO {
                     }
                 }
                 if(miroItemTaxes != null){
-                	insert miroItemTaxes;
+                    insert miroItemTaxes;
                 } else {
                     System.debug('miroItemTaxes was null');
                 }
@@ -121,12 +122,12 @@ global with sharing class BFM_CreateMIRO {
         
         BFM_MIRO_Header__c miroHeader = new BFM_MIRO_Header__c();
         if(theNFS.NFS_Emission_Date_Time__c != null){
-        	miroHeader.Access_Key__c = theNFS.Vendor_s_CNPJ_or_CPF__c + ''
-            					+theNFS.NFS_Emission_Date_Time__c.year() +''
-            					+theNFS.NFS_Emission_Date_Time__c.month() +''
-            					+theNFS.NFS_Emission_Date_Time__c.day()+''
-            					+theNFS.NFS_Number__c+''
-            					+theNFS.NFS_Series__c;
+            miroHeader.Access_Key__c = theNFS.Vendor_s_CNPJ_or_CPF__c + ''
+                                +theNFS.NFS_Emission_Date_Time__c.year() +''
+                                +theNFS.NFS_Emission_Date_Time__c.month() +''
+                                +theNFS.NFS_Emission_Date_Time__c.day()+''
+                                +theNFS.NFS_Number__c+''
+                                +theNFS.NFS_Series__c;
             miroHeader.NF_Type__c = 'ZS';
             miroHeader.Invoice_Date__c = Date.newInstance(theNFS.NFS_Emission_Date_Time__c.year(),
                                                           theNFS.NFS_Emission_Date_Time__c.month(), 
@@ -143,7 +144,7 @@ global with sharing class BFM_CreateMIRO {
             //miroHeader.nfeIssType = N/A;
             //miroHeader.randomNumber = N/A;
             miroHeader.Baseline_Date_for_Due_Date_Calculation__c = getLatestDate(theNfs);    
-            //miroHeader.Cancellation_Flag__c;
+          //  miroHeader.Cancellation_Flag__c;
             //miroHeader.Annulment_Flag__c
             //miroHeader.Annulment_Reason__c
             //miroHeader.In_State_Out_State__c
@@ -175,7 +176,7 @@ global with sharing class BFM_CreateMIRO {
                 }
             }
             if(miroItemTaxes != null){
-            	insert miroItemTaxes;
+                insert miroItemTaxes;
             } else{
                 System.debug('There were no taxes!');
             }
@@ -190,10 +191,10 @@ global with sharing class BFM_CreateMIRO {
         Map<Id, List<BFM_IVA__c>> ivasBySES = new Map<Id, List<BFM_IVA__c>>();
         
         header.Access_Key__c = debitNote.Vendor_s_CNPJ_or_CPF__c +
-            			''+debitNote.DN_Emission_date_time__c.year()+
-            			''+debitNote.DN_Emission_date_time__c.month()+
-            			''+debitNote.DN_Emission_date_time__c.year()+
-        				''+debitNote.DN_Number__c;
+                        ''+debitNote.DN_Emission_date_time__c.year()+
+                        ''+debitNote.DN_Emission_date_time__c.month()+
+                        ''+debitNote.DN_Emission_date_time__c.year()+
+                        ''+debitNote.DN_Number__c;
         //header.NF_Type__c = 'N/A'
         header.Invoice_Date__c = Date.newInstance(debitNote.DN_Emission_date_time__c.year(),
                                                   debitNote.DN_Emission_date_time__c.month(),
@@ -202,12 +203,12 @@ global with sharing class BFM_CreateMIRO {
         header.Company_Code__c = debitNote.Unilever_Account__r.Company_Code__c;
         header.Reference_Document_Category__c = '4';
         header.Transaction__c = '1';
-        header.Total_Amount__c = debitNote.DN_total_value__c;
+        //header.Total_Amount__c = debitNote.DN_total_value__c;
         header.Header_Text_Summary__c = debitNote.DN_Auto_Number__c;
         //header.valueNet;
         //header.Baseline_Date_for_Due_Date_Calculation__c = N/A;
-        header.Cancellation_Flag__c = this.cancellationFlag ? 'x' : ' ';
-        header.Annulment_Flag__c = this.annulmentFlag ? 'x' : ' ';
+        header.Cancellation_Flag__c = this.cancellationFlag;
+        //header.Annulment_Flag__c = this.annulmentFlag ? 'x' : ' ';
         //header.Annulment_Reason__c = this.annulmentReason;
         //header.In_State_Out_State__c 
         List<BFM_SES__c> sesList = [SELECT Id FROM BFM_SES__c WHERE Occurrence__c = :debitNote.Occurrence__c];
@@ -247,13 +248,13 @@ global with sharing class BFM_CreateMIRO {
                 System.debug('miroItemTaxes was null');
             }
         }
-		
+        
         return header;
     }
     
     /**
-	 * Gets most recent date from the related PODs dates
-	 * */ 
+     * Gets most recent date from the related PODs dates
+     * */ 
     private Date getLatestDate(BFM_Ct_e__c cte){
         Date latestDate = Date.newInstance(1901, 1, 1);
         for(BFM_POD__c pod: [SELECT id, POD_Date__c FROM BFM_POD__c WHERE NF_e__r.CT_e__c = :cte.Id]){
@@ -264,9 +265,9 @@ global with sharing class BFM_CreateMIRO {
         return latestDate;
     }
 
-	/**
-	 * Gets most recent date from the related PODs dates
-	 * */     
+    /**
+     * Gets most recent date from the related PODs dates
+     * */     
     private Date getLatestDate(BFM_NFS__c nfs){
         Date latestDate = Date.newInstance(1901, 1, 1);
         for(BFM_POD__c pod: [SELECT id, POD_Date__c FROM BFM_POD__c WHERE NF_e__r.NFS__c = :nfs.Id]){

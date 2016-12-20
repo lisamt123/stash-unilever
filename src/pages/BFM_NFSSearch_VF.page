@@ -1,36 +1,46 @@
-<apex:page controller="BFM_NFSSearch_CC" action="{!searchnfs}" tabStyle="BFM_NFS__c">
-	<apex:form >
-		<apex:pageBlock title="NFS Search">
-   			<apex:pageblockSection >
-    			<apex:inputText value="{!nfs.Name}"/>
-    			<apex:inputField value="{!nfs.NFS_Number__c}" />
-   			</apex:pageblockSection>
-   			<apex:pageblockButtons location="bottom">
-      			<apex:commandButton value="Search" action="{!searchnfs}" />
-     		</apex:pageblockButtons>  
-  		</apex:pageBlock>
-   		<apex:pageBlock title="NFS Details" id="noRec" rendered="{! IF( nfsList != null && nfsList.size ==0 , true, false)}" >
+<apex:page controller="BFM_NFSSearch_CC" action="{!searchnfs}" tabStyle="BFM_NFS__c" doctype="html-5.0">
+    <apex:form >
+        <apex:pageBlock title="{!$Label.BFM_Nfs_Search}">
+            <apex:pageblockSection >
+                <apex:inputText value="{!nfs.Name}"/>
+                <apex:inputText value="{!nfs.Service_Taker_CNPJ__c}" />
+                <apex:inputText value="{!nfs.NFS_Key__c}" />
+                <apex:inputText value="{!nfs.NFS_Number__c}" />
+            </apex:pageblockSection>
+            <apex:pageblockSection columns="1">
+                <apex:input type="date" value="{!createDate}" label="Date de Criação de"/> <!-- TODO: needs to add custom label -->
+                <apex:input type="date" value="{!toDate}" label="Data de Criação Até"/> <!-- TODO: needs to add custom label -->
+            </apex:pageblockSection>
+            <apex:pageblockButtons location="bottom">
+                <apex:commandButton value="{!$Label.BFM_Search}" action="{!searchnfs}" />
+            </apex:pageblockButtons> 
+            <p>
+                Para efetuar pesquisa de vários itens, insira vírgula seguida pelo código desejado. <!-- TODO : ADD CUSTOM LABEL -->
+            </p>
+        </apex:pageBlock>
+        <apex:pageBlock title="{!$Label.BFM_NFS_Details}" id="noRec" rendered="{! IF( nfsList != null && nfsList.size ==0 , true, false)}" >
             <apex:outputPanel >
-                <h1>No Records Found </h1>
+                <h1>{!$Label.BFM_No_Records}</h1>
             </apex:outputPanel>
-  		</apex:pageBlock>
+        </apex:pageBlock>
  
-  <apex:pageBlock title="NFS Details" id="details" rendered="{! IF( nfsList != null && nfsList.size >0, true, false)}" mode="edit">
+  <apex:pageBlock title="{!$Label.BFM_NFS_Details}" id="details" rendered="{! IF( nfsList != null && nfsList.size >0, true, false)}" mode="edit">
        <apex:pageBlockTable value="{!nfsList}" var="nf">
-       	<apex:column headerValue="NFS Name">
-        	<apex:outputLink target="_blank" value="/{!nf.id}">{!nf.Name}</apex:outputLink> 
-       	</apex:column>   
-    	<apex:column value="{!nf.NFS_Number__c}"/>  
-    	<apex:column value="{!nf.NFS_Status__c}"/>  
-    	<apex:column value="{!nf.Tax_Status__c}"/>        
-   		</apex:pageBlockTable>
+        <apex:column headerValue="{!$Label.BFM_NFS_Name}">
+            <apex:outputLink target="_blank" value="/{!nf.id}">{!nf.Name}</apex:outputLink> 
+        </apex:column>   
+        <apex:column value="{!nf.NFS_Number__c}"/>  
+        <apex:column value="{!nf.NFS_Status__c}"/>  
+        <apex:column value="{!nf.Tax_Status__c}"/>
+        <apex:column value="{!nf.Service_Detailed_Description__c}"/>        
+        </apex:pageBlockTable>
    
     <apex:pageblockButtons >
-         <apex:commandButton value="First Page" rerender="details" action="{!FirstPage}" disabled="{!prev}"/>
-        <apex:commandButton value="Previous" rerender="details" action="{!previous}" disabled="{!prev}"/>
-        <apex:commandButton value="Next" rerender="details" action="{!next}" disabled="{!nxt}"/>
-        <apex:commandButton value="Last Page" rerender="details" action="{!LastPage}" disabled="{!nxt}"/>
-	</apex:pageblockButtons>   
+         <apex:commandButton value="{!$Label.BFM_First_Page}" rerender="details" action="{!FirstPage}" disabled="{!prev}"/>
+        <apex:commandButton value="{!$Label.BFm_Previous}" rerender="details" action="{!previous}" disabled="{!prev}"/>
+        <apex:commandButton value="{!$Label.BFM_Next}" rerender="details" action="{!next}" disabled="{!nxt}"/>
+        <apex:commandButton value="{!$Label.BFM_Last_Page}" rerender="details" action="{!LastPage}" disabled="{!nxt}"/>
+    </apex:pageblockButtons>   
   </apex:pageBlock>
  </apex:form>
 </apex:page>

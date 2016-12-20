@@ -45,10 +45,13 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
                      insert psa;
                  }*/
             } 
-            // using Database.Insert it should never throw an exception, right? if so, let's remove the try-catch block
+           
             catch(DMLException e){
                 errorMessage = e.getDmlMessage(0);
-                
+                if(usr.contactId != null){
+                    Contact contactToDelete = new Contact(Id = usr.ContactId);
+                    delete contactToDelete;
+                }
                 System.debug('eeee'+errorMessage);
                 insert new BFM_User_Creation_Request_Error__c(BFM_User_Creation_Request__c = userRequest.Id, 
                                                        Error_Message__c = errorMessage );

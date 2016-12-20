@@ -4,41 +4,41 @@
 
 public class BFM_QueryTaxResponse {
 
-	public QueryTaxCalculationResponse QueryTaxCalculationResponse;
+  public QueryTaxCalculationResponse QueryTaxCalculationResponse;
 
-	public class SesList {
-		public String id;
-		public String taxCode;
-		public String cfop;
-		public String icmsLaw;
-		public String ipiLaw;
-		public String cofinsLaw;
-		public String pisLaw;
-		public List<IvaList> ivaList;
-	}
+  public class SesList {
+    public String id;
+    public String taxCode;
+    public String cfop;
+    public String icmsLaw;
+    public String ipiLaw;
+    public String cofinsLaw;
+    public String pisLaw;
+    public List<IvaList> ivaList;
+  }
 
-	public class QueryTaxCalculationResponse {
-		public String cteAccessKey;
-		public String nfsNumber;
-		public String debitNoteNumber;
-		public String itemType;
-		public String message;
-		public List<SesList> sesList;
-	}
+  public class QueryTaxCalculationResponse {
+    public String cteAccessKey;
+    public String nfsNumber;
+    public String debitNoteNumber;
+    public String itemType;
+    public String message;
+    public List<SesList> sesList;
+  }
 
-	public class IvaList {
-		public String taxType;
-		public String taxGroup;
-		public String description;
-		public Decimal taxBase;
-		public Decimal taxRate;
-		public Decimal taxAmount;
-		public Decimal otherBase;
-		public Decimal excludedBase;
-	}
+  public class IvaList {
+    public String taxType;
+    public String taxGroup;
+    public String description;
+    public Decimal taxBase;
+    public Decimal taxRate;
+    public Decimal taxAmount;
+    public Decimal otherBase;
+    public Decimal excludedBase;
+  }
 
-	
-	public static BFM_QueryTaxResponse parse(String json) {
-		return (BFM_QueryTaxResponse) System.JSON.deserialize(json, BFM_QueryTaxResponse.class);
-	}
+  
+  public static BFM_QueryTaxResponse parse(String json) {
+    return (BFM_QueryTaxResponse) System.JSON.deserialize(json, BFM_QueryTaxResponse.class);
+  }
 }

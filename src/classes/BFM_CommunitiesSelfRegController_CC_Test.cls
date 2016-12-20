@@ -19,13 +19,13 @@ private class BFM_CommunitiesSelfRegController_CC_Test {
         acc.name='carrier';
         acc.cnpj__c = '03189042000100';
         insert acc;
-       
+        string testname = 'testname';
         
 
         list<BFM_UserCreationRequest__c> userlist=new list<BFM_UserCreationRequest__c>();
         list<user> usr=new list<user>();
         BFM_UserCreationRequest__c userreq = new BFM_UserCreationRequest__c();
-        userreq.FirstName__c ='testname';
+        userreq.FirstName__c =testname;
         userreq.CPF__c='12345678909';
         userreq.Email__c='test@capg.com';
         userreq.CommunityNickname__c='test879';
@@ -33,7 +33,7 @@ private class BFM_CommunitiesSelfRegController_CC_Test {
         //insert userreq;
         
         BFM_UserCreationRequest__c userreq1 = new BFM_UserCreationRequest__c();
-        userreq1.FirstName__c ='testname';
+        userreq1.FirstName__c =testname;
         userreq1.CPF__c='12345678909';
         userreq1.Email__c='test@capg.com';
         userreq1.CommunityNickname__c='test879';
@@ -43,19 +43,19 @@ private class BFM_CommunitiesSelfRegController_CC_Test {
         
         userlist.add(userreq1);
         insert userlist;
-         system.assertEquals('testname', userreq.FirstName__c );
+         system.assertEquals(testname, userreq.FirstName__c );
         try{
         insert usr;
         }catch(DmlException e){system.debug('test');}
         
         BFM_UserCreationRequest__c userreq2 = new BFM_UserCreationRequest__c();
-        userreq2.FirstName__c ='testname';
+        userreq2.FirstName__c =testname;
         userreq2.CPF__c='12345678';
         userreq2.Email__c='test@capg.com';
         userreq2.CommunityNickname__c='test';
         userreq2.CNPJ__c='0318';
         insert userreq2;     
-        system.assertEquals('testname',userreq2.FirstName__c);
+        system.assertEquals(testname,userreq2.FirstName__c);
         
         // BFM_CommunitiesSelfRegController_CC controller = new BFM_CommunitiesSelfRegController_CC();
         BFM_CommunitiesSelfRegController_CC controller = new BFM_CommunitiesSelfRegController_CC();

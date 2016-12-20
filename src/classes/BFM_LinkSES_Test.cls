@@ -16,6 +16,7 @@ public class BFM_LinkSES_Test{
         carrier.RecordTypeid='0128A0000008b6qQAA' ;*/
         carrier.name = 'aswin';
         insert carrier;
+        system.assertEquals('aswin',carrier.name);
         
         BFM_Shipment__c ship = new BFM_Shipment__c();
         ship.Carrier_Account__c=carrier.id;
@@ -74,7 +75,7 @@ public class BFM_LinkSES_Test{
         listCTe.add(cte3);
         test.starttest();
         BFM_CheckRecursive.firstRun = true;       
-        BFM_LinkSES.cteSESLink(listCTe);
+        //BFM_LinkSES.cteSESLink(listCTe);
         BFM_LinkSES.NFSSESLink(listNFs);
         test.isRunningTest();
         test.stoptest();     

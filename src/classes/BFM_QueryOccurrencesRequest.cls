@@ -4,19 +4,20 @@
 
 public class BFM_QueryOccurrencesRequest {
 
-	public class QueryOccurrences {
-		public List<String> occurrenceNumbers;
-		public String queryType;
-	}
+    public class QueryOccurrences {
+        public List<String> occurrenceNumbers;
+        public String queryType;
+    }
 
-	public QueryOccurrences QueryOccurrences;
+    public QueryOccurrences QueryOccurrences;
 
     public BFM_QueryOccurrencesRequest(List<String> occurrenceNumbers, String queryType){
         this.QueryOccurrences = new QueryOccurrences();
         this.QueryOccurrences.occurrenceNumbers = occurrenceNumbers;
-        this.QueryOccurrences.queryType = queryType;
+        //this.QueryOccurrences.queryType = queryType;
+        this.QueryOccurrences.queryType = 'ALL';
     }
-	public static BFM_QueryOccurrencesRequest parse(String json) {
-		return (BFM_QueryOccurrencesRequest) System.JSON.deserialize(json, BFM_QueryOccurrencesRequest.class);
-	}
+    public static BFM_QueryOccurrencesRequest parse(String json) {
+        return (BFM_QueryOccurrencesRequest) System.JSON.deserialize(json, BFM_QueryOccurrencesRequest.class);
+    }
 }

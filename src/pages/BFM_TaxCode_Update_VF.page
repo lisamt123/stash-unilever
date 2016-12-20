@@ -1,22 +1,22 @@
 <apex:page controller="BFM_TaxCode_Update_CC" docType="html-5.0" >
-    <apex:sectionHeader title="CTe" subtitle="Verify Tax Code"/>
+    <apex:sectionHeader title="{!$Label.BFM_CTe}" subtitle="{!$Label.BFM_Taxcode}"/>
     <apex:form id="frm">
         <apex:pageBlock rendered="{!if(listCTeW.size>0,true,false)}">
             <apex:pageblockButtons >
-                <apex:commandButton value="Update" action="{!cteUpdate}" rerender="frm"/>
+                <apex:commandButton value="{!$Label.BFM_Update}" action="{!cteUpdate}" rerender="frm"/>
             </apex:pageblockButtons>
             <apex:pageBlockTable Value="{!listCTeW}" var="p" >
-            <apex:column headerValue="CT-e">
+            <apex:column headerValue="{!$Label.BFM_CTe}">
                 <a href="/{!p.cte.id}" target="_blank">{!p.cte.CT_e_key__c}</a>         
           </apex:column>
-                <apex:column headerValue="CT-e Status" value="{!p.CteStatus}"/>                
-                <apex:column headerValue="Tax Code" value="{!p.taxCode}"/>              
+                <apex:column headerValue="{!$Label.BFM_CTestatus}" value="{!p.CteStatus}"/>                
+                <apex:column headerValue="{!$Label.BFM_Tax_Code}" value="{!p.taxCode}"/>              
             </apex:pageBlockTable>       
         </apex:pageBlock>
         <apex:pageBlock rendered="{!if(listCTeW.size>0,false,true)}">
-             <b> No records meeting the criteria</b>
+             <b> {!$Label.BFM_Norecords} </b>
              <apex:pageblockButtons location="bottom" >
-                <left><apex:commandButton value="Back" /></left>    
+                <left><apex:commandButton value="{!$Label.BFM_Back}" /></left>    
              </apex:pageblockButtons>
         </apex:pageBlock>
         

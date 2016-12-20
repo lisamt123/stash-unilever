@@ -60,7 +60,7 @@
                 <!---input id="pac-input" class="controls" type="searchWord" placeholder="Search..."/--->
                 <apex:inputText value="{!searchWord}"/> 
                 <!--input id="pac-input" class="controls" type="searchWord" placeholder="Search..."/--->
-                <apex:commandButton action="{!searchSES}" value="Search SES"/>
+                <apex:commandButton action="{!searchSES}" value="{!$Label.BFM_Search_SES}"/>
                 <apex:commandButton action="{!redirectPage}" value="Clear"/>                     
             </form>           
            </div>
@@ -68,19 +68,26 @@
               <table id="myTable" class="table table-striped" border="1" cellpadding="1" cellspacing="1" >
                 <thead align="center">  
                     <tr class="headerRow" > 
-                        <th class="headerRow" align="center">SES</th> 
-                        <th class="headerRow" align="center">Origin</th>
-                        <th class="headerRow" align="center">Destination</th>
-                        <th class="headerRow" align="center">Pricing Calculation Date</th>    
-                        <th class="headerRow" align="center">Gross value</th>  
+                        <th class="headerRow" align="center">{!$Label.BFM_SES}</th> 
+                        <th class="headerRow" align="center">{!$Label.BFM_Origin}</th>
+                        <th class="headerRow" align="center">{!$Label.BFM_Destination}</th>
+                        <th class="headerRow" align="center">{!$Label.BFM_Pricing_Calculation_Date}</th>    
+                        <th class="headerRow" align="center">{!$Label.BFM_Gross_value}</th>  
                         <!--<th class="headerRow" align="center">File Upload</th>-->  
-                        <th class="headerRow" align="center">Link</th>
-                        <th class="headerRow" align="center">Validation</th>
-                        <th class="headerRow" align="center">POD</th>
-                        <th class="headerRow" align="center">Payment</th>
+                        <th class="headerRow" align="center">{!$Label.BFM_Link}</th>
+                        <th class="headerRow" align="center">{!$label.BFM_Validation}</th>
+                        <th class="headerRow" align="center">{!$Label.BFM_Pod}</th>
+                        <th class="headerRow" align="center">{!$Label.BFM_Payment}</th>
                     </tr>  
                  </thead>
-                 <apex:repeat value="{!wrapper}" var="w"> 
+                 
+                <apex:pageBlock title="{!$Label.BFM_Search_Result}" rendered="{! IF(wrapper!= null && wrapper.size ==0,true,false)}" id="pgSes">
+                <apex:outputPanel >
+                <h1> {!$Label.BFM_No_Records} </h1>
+                </apex:outputPanel>
+                </apex:pageBlock>
+                 
+                 <apex:repeat value="{!wrapper}" var="w" rendered="{!IF(AND(NOT(ISBLANK(sesList)),sesList.size>0),true,false)}" id="pgSes1"> 
                     <tr class="dataRow">
                      <td class="dataCell"><apex:outputlink target="_blank" value="/{!w.ses.id}">{!w.ses.Name}</apex:outputlink></td>                            
                      <td class="dataCell">{!w.ses.stage__r.Origin_city__c}</td>
@@ -95,7 +102,30 @@
                      <td align="center"><apex:image id="theImag4" value="{!If(w.PaymentStatus == 'OK', $Resource.BFM_Green, If(w.PaymentStatus =='NOTOK', $Resource.BFM_Red, $Resource.BFM_White))}"/></td>
                   </tr>
                  </apex:repeat>
-             </table>             
+             </table>
+                 <div style="text-align:right">
+                     {!$Label.BFM_Totalrecords} {!Con.resultSize}          
+                    <apex:selectList value="{!recordscount}" multiselect="false" size="1">                
+                        <apex:selectOptions value="{!recordsize}"/>
+                        <apex:actionSupport event="onchange" action="{!getses}" reRender="pgSes,pgSes1"/>
+                   </apex:selectList>  
+              
+             <apex:commandLink action="{!First}" title="{!$Label.BFM_First}" value="{!$Label.BFM_First}" rendered="{!Con.HasPrevious}"/>&nbsp;    
+             <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">{!$Label.BFM_First}</apex:outputPanel>&nbsp;
+              
+             <apex:image url="/img/search_prevarrow_disabled.gif" styleClass="prevArrow" rendered="{!NOT(Con.HasPrevious)}"/> 
+             <apex:image url="/img/search_prevarrow.gif" title="Previous Page" styleClass="prevArrow" rendered="{!Con.HasPrevious}"/>&nbsp;  
+             <apex:commandLink action="{!Previous}" title="{!$Label.BFm_Previous}" value="{!$Label.BFm_Previous}" rendered="{!Con.HasPrevious}"/>&nbsp;    
+             <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">{!$Label.BFm_Previous}</apex:outputPanel>&nbsp;
+                       
+             <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">{!$Label.BFM_Next}</apex:outputPanel>          
+             <apex:commandLink title="{!$Label.BFM_Next}" value="{!$Label.BFM_Next}" rendered="{!Con.HasNext}" action="{!Next}"/>&nbsp;  
+             <apex:image url="/img/search_nextarrow.gif" title="{!$Label.BFM_Next}" styleClass="nextArrow" rendered="{!Con.HasNext}"/>&nbsp; 
+             <apex:image url="/img/search_nextarrow_disabled.gif" rendered="{!NOT(Con.HasNext)}"/> 
+          
+             <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">{!$Label.BFM_Last}</apex:outputPanel> 
+             <apex:commandLink title="{!$Label.BFM_Last}"  value="{!$Label.BFM_Last}" rendered="{!Con.HasNext}" action="{!last}"/>  
+             </div>          
   </body>
     </apex:form>
 </apex:page>

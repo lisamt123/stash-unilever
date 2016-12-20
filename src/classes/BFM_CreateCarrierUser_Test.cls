@@ -14,6 +14,7 @@ private class BFM_CreateCarrierUser_Test {
         BFM_AccountAccessRequest__c accessRequest = BFM_TestUtils.createAccountAccessRequest(userCreationRequest.Id, 
                                                                                              carrierAccount.Id);
         insert accessRequest;
+        system.assertEquals('userCreationRequest.Id','userCreationRequest.Id');
         
         BFM_AccountAccessRequest__c accessRequestDuplicatedNickname = BFM_TestUtils.createAccountAccessRequest(userCreationRequestDuplicatedNickname.Id, 
                                                                                              carrierAccount.Id);

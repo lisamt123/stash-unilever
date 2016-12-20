@@ -1,9 +1,11 @@
 public with sharing class BFM_SESSummaryScreen_CC {
 
     public BFM_SES__c ses{get;set;}
+    public String seslistString {get;set;}
+    public string recordscount{get;set;}
     public List<BFM_SES__c> seslist {get;set;}
     public List<BFM_CT_e__c> ctelist {get;set;}
-    public List<BFM_Stage__c> stlist {get;set;}
+    public string stlist {get;set;}
     public List<wrappercls> wrapper {get; set;}   
     public string searchWord{get; set;}
     public string lStatus {get; set;}
@@ -11,14 +13,95 @@ public with sharing class BFM_SESSummaryScreen_CC {
     public string PStatus {get; set;}
     public string PayStatus {get; set;}
     public list<BFM_SES__c> sesId;
+    public ApexPages.StandardSetController con{get; set;}
+    public List<SelectOption> statusOptions {get;set;}
+    public List<SelectOption> recordsize{get;set;}
     
 
+    public BFM_SESSummaryScreen_CC(ApexPages.StandardSetController controller){
+    
+
+    
+    seslistString ='Select id,name,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,CT_E__r.UF_Goods_Sender__c,CT_E__r.CT_e_Number__c,CT_E__r.Link_Status__c,CT_E__r.Company_Code_Status__c,CT_E__r.CT_e_Duplicate_Record_Status__c, CT_E__r.CT_e_Sefaz_Check_Status__c,CT_E__r.Cte_Status__c,CT_E__r.CT_e_Valid_CNPJ_Status__c from BFM_SES__c';
+    try{
+                con = new ApexPages.StandardSetController(Database.getQueryLocator(seslistString));
+                system.debug('con---->'+con);
+        } catch(QueryException ex){
+            String errorMessage = ex.getMessage();
+            ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, errorMessage));
+            System.debug(errorMessage);
+        }
+        setPaginationSettings();
+            
+    }
+    
+    
+        public void setPaginationSettings(){
+        ses = new BFM_SES__c();        
+        statusOptions = new List<SelectOption>();
+      
+        Schema.DescribeFieldResult statusFieldDescription = BFM_SES__c.Display__c.getDescribe();
+        for (Schema.Picklistentry picklistEntry:statusFieldDescription.getPicklistValues())
+        {
+                statusOptions.add(new SelectOption(pickListEntry.getValue(),pickListEntry.getLabel()));
+                // obtain and assign default value
+                if (picklistEntry.defaultValue){
+                ses.Display__c= pickListEntry.getValue();
+            }  
+        }    
+        // sets the number of records in each page set
+                if(ses.Display__c != null ){
+                con.setPageSize(integer.ValueOf(ses.Display__c));
+        } else{
+                con.setPageSize(2);
+        }
+    }
+    
+        public void getses(){
+        if(recordscount=='10'){
+         con.setPageSize(10);   
+        }
+        else if(recordscount=='25'){
+         con.setPageSize(25);   
+        }
+        else if(recordscount=='50'){
+         con.setPageSize(50);   
+        }
+        else if(recordscount=='100'){
+         con.setPageSize(100);   
+        }
+        else if(recordscount=='200'){
+         con.setPageSize(200);   
+        }
+    }
+    
     public BFM_SESSummaryScreen_CC(){
-        data = new List<PieWedgeData>();
+    
+            recordsize = new List<SelectOption>(); 
+        recordsize.add(new SelectOption('10','10'));
+        recordsize.add(new SelectOption('25','25'));
+        recordsize.add(new SelectOption('50','50'));
+        recordsize.add(new SelectOption('100','100'));
+        recordsize.add(new SelectOption('200','200'));
         searchWord='';
+        
         seslist =[Select id,name,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,CT_E__r.UF_Goods_Sender__c,CT_E__r.CT_e_Number__c,CT_E__r.Link_Status__c,CT_E__r.Company_Code_Status__c,CT_E__r.CT_e_Duplicate_Record_Status__c, CT_E__r.CT_e_Sefaz_Check_Status__c,CT_E__r.Cte_Status__c,CT_E__r.CT_e_Valid_CNPJ_Status__c from BFM_SES__c];
+            
     SESView(seslist);
     }
+    
+    
+    public List<BFM_SES__c> SESVfList
+        {  
+            get  
+            {  
+                if(con != null)  
+                    return (List<BFM_SES__c>)con.getRecords();            
+                else  
+                    return null ;             
+            }  
+            set;
+        }
     
     public void searchSES(){
 
@@ -86,29 +169,44 @@ public with sharing class BFM_SESSummaryScreen_CC {
         } 
     }
   
-    //Pie chart data
-    public List<PieWedgeData> data {get;set;}
-    public List<PieWedgeData> getPieData() {
-        List<PieWedgeData> data = new List<PieWedgeData>();
-        AggregateResult[] groupedResults  = [SELECT Cte_Status__c ,Sum(Net_Value__c) FROM BFM_CT_e__c Group by Cte_Status__c];
-        for (AggregateResult ar : groupedResults)  {            
-                    if(ar.get('Cte_Status__c')!=null)
-                    {
-                     data.add(new PieWedgeData(
-                         String.ValueOf(ar.get('Cte_Status__c')),
-                         Double.ValueOf(ar.get('expr0'))
-                         ));
-                    }    
-             }      
-             return data;
-    }
-   
-    public class PieWedgeData {
-        public String name { get; set; }
-        public Decimal data { get; set; }
-        public PieWedgeData(String name, Decimal data) {
-                 this.name = name;
-                 this.data = data;
-        }
-    }
+    // returns the first page of records
+     public void first() {
+         con.first();
+     }
+
+     // returns the last page of records
+     public void last() {
+         con.last();
+     }
+
+     // returns the previous page of records
+     public void previous() {
+         con.previous();
+     }
+
+     // returns the next page of records
+     public void next() {
+         con.next();
+     }
+
+     // returns the PageReference of the original page, if known, or the home page.
+     public void cancel() {
+         con.cancel();
+     }
+    public Boolean hasNext  
+    {  
+        get  
+        {  
+            return con.getHasNext();  
+        }  
+        set;  
+    }  
+    public Boolean hasPrevious  
+    {  
+        get  
+        {  
+            return con.getHasPrevious();  
+        }  
+        set;  
+    }  
 }

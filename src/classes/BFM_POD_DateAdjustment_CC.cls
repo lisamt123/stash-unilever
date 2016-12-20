@@ -14,7 +14,7 @@ public class BFM_POD_DateAdjustment_CC{
     
     public BFM_POD_DateAdjustment_CC(){
         listPODW = new List<podWrapper>();
-        listPOD = [select id,POD_Date__c,POD_Number__c,Upload_date__c,NF_E__r.NF_e_creation_date__c,NF_E__r.NFS__c,NF_e_Access_Key__c,NF_E__r.CT_E__c,NF_E__r.CT_E__r.CTE_Status__c,NF_E__r.NFS__r.NFS_Status__c from BFM_POD__c where POD_Date_Check_Status__c ='Date Not Ok' limit 100];
+        listPOD = [select id,name,POD_Date__c,POD_Number__c,Upload_date__c,NF_E__r.NFS__c,NF_e_Access_Key__c,NF_E__r.CT_E__c,NF_E__r.CT_E__r.CTE_Status__c,NF_E__r.NFS__r.NFS_Status__c from BFM_POD__c where POD_Date_Check_Status__c ='Date Not Ok' limit 100];
         for(BFM_POD__c pod: listPOD){
             //if((pod.NF_E__r.NFS__r.NFS_Status__c !='Invoice Posted') ){
                 podWrapper p = new podWrapper(pod);     
@@ -30,8 +30,9 @@ public class BFM_POD_DateAdjustment_CC{
         
         public string nfeDate{get; set;}
         public podWrapper(BFM_POD__c p){
+        
             if(p.NF_E__r.NF_e_creation_date__c!=null){
-                nfeDate = p.NF_E__r.NF_e_creation_date__c.date().format();
+                nfeDate = Date.ValueOf(p.NF_E__r.NF_e_creation_date__c).format();
             }
             if(p.POD_Date__c!=null){
                 oldpodDate = p.POD_Date__c.format();

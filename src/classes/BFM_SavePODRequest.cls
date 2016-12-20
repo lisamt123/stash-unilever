@@ -4,14 +4,14 @@
 
 public class BFM_SavePODRequest {
 
-	public class SavePOD {
-		public String remessa;
-		public String shipmentNumber;
-		public Date podDate;
-		public String podStatus;
-	}
+  public class SavePOD {
+    public String remessa;
+    public String shipmentNumber;
+    public Date podDate;
+    public String podStatus;
+  }
 
-	public SavePOD savePOD;
+  public SavePOD savePOD;
 
     public BFM_SavePODRequest(String deliveryNumber, String shipmentNumber, Date podDate, String podStatus){
         this.savePOD = new BFM_SavePODRequest.SavePOD();
@@ -20,7 +20,7 @@ public class BFM_SavePODRequest {
         savePOD.podDate = podDate;
         savePOD.podStatus = podStatus;
     }
-	public static BFM_SavePODRequest parse(String json) {
-		return (BFM_SavePODRequest) System.JSON.deserialize(json, BFM_SavePODRequest.class);
-	}
+  public static BFM_SavePODRequest parse(String json) {
+    return (BFM_SavePODRequest) System.JSON.deserialize(json, BFM_SavePODRequest.class);
+  }
 }

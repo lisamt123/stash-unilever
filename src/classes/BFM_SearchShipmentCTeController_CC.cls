@@ -1,15 +1,22 @@
 public with sharing class BFM_SearchShipmentCTeController_CC{
     public ApexPages.StandardSetController con{get; set;}
     public BFM_Shipment__c searchShipment{get;set;}
-    
+    public BFM_Shipment__c shipments{get;set;}
+    public List<String> vendorAccountCNPJList=new List<String>();
+    public List<String> unileverCompanyAccountCNPJList=new List<String>();
+    public List<String> shipmentNumberList ;
+    public List<String> plantCodeList = new List<String>();
     public String shipmentNumber{get;set;}
     public Date shipmentStart{get;set;}
+    public Date shipmentStartTo{get;set;}
     public String unileverCompanyAccountName{get;set;}
     public String carrierCompanyAccountName{get;set;}
     public String unileverCompanyAccountCNPJ{get;set;}
     public String vendorAccountCNPJ{get;set;}
-    
-    
+    public id shipmentId{get;set;}
+    public string shipId{get;set;}
+    public List<Id> selectedShipList = new List<Id>();
+    List<accountwrapper> shipWrapperList = new List<accountwrapper>();
     
     public Account unileverCompanyAccount{get;set;}
     public Account vendorAccount{get;set;}
@@ -18,8 +25,10 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
     public List<SelectOption> statusOptions {get;set;}
     public List<SelectOption> recordsize{get;set;}
     public BFM_Shipment__c invoiceStatement {get;set;}
-    
+        
+    public Report cteIssuingReport{get;set;}
     public BFM_SearchShipmentCTeController_CC(ApexPages.StandardSetController controller) {
+        //this.BFM_Shipment__c = (BFM_Shipment__c)controller.getRecord();
         SearchShipment = New BFM_Shipment__c();
         unileverCompanyAccount = new Account();
         vendorAccount = new Account();
@@ -29,92 +38,110 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
         recordsize.add(new SelectOption('50','50'));
         recordsize.add(new SelectOption('100','100'));
         recordsize.add(new SelectOption('200','200'));
-        
-        /*
-con = new ApexPages.StandardSetController(Database.getQueryLocator('SELECT id,name,Shipment_Number__c,Shipment_Type__c,Shipment_Start__c,Display__c,'+
-'(SELECT Name,Origin_city__c, Destination_City__c, Gross_value_from_cost_preview__c FROM Stages__r) '+
-'FROM BFM_Shipment__c LIMIT 10000'));
-*/
+        List<Report> reportsList = [SELECT Id FROM Report WHERE DeveloperName = 'Ct_e_Issuing'];
+        if(reportsList.size() == 1){
+            cteIssuingReport = reportsList[0];
+        }
         mySearch();
         getshipments();
     }
     
-    public List<BFM_Shipment__c> shipList
-    {  
-        get  
-        {  
+    public List<BFM_Shipment__c> shipList{  
+        get  {  
             if(con != null)  
                 return (List<BFM_Shipment__c>)con.getRecords();            
             else  
                 return null ;             
         }  
-        set;
-    }
-    public void mySearch(){       
         
-        String ShipmentString = 'SELECT id,name,Shipment_Number__c,Shipment_Type__c,Shipment_Start__c,Display__c, '+
-            ' (SELECT Name, Origin_city__c, Destination_City__c, Gross_value_from_cost_preview__c FROM Stages__r';
-        if(plantCode != null){
-            String strPlantCode = String.escapeSingleQuotes(plantCode);
-            shipmentString += ' WHERE Origin_plant_code__c = \''+ strPlantCode +'\'' ;
+        set{
+            system.debug('list:--->'+value);
         }
-        shipmentString += ') FROM BFM_Shipment__c ';
-        
-        String searchClauses = 'WHERE';
+    }
+    
+    public void mySearch(){       
+        shipmentNumberList =  new List<String>();
+        String ShipmentString = 'SELECT id,name,Shipment_Number__c,Shipment_Status__c,Last_Shipment_Update__c,Shipment_Type__c,Shipment_Start__c,Display__c, Carrier_Account__c, Origin_plant_code__c ' +
+            ' FROM BFM_Shipment__c ';
+
+       // String searchClauses = 'WHERE Shipment_Start__c  != NULL AND'; /* Only show shipments where Shipment_Start__c  = NULL */
+        String searchClauses = 'WHERE '; 
+        System.debug('plantCode ' + plantCode);
+        if(plantCode != null&&plantCode!='') {
+            for(string str:plantCode.split(',')){
+                string plantCodeSplit= '\''+String.escapeSingleQuotes(str.trim())+'\'' ;
+                plantCodeList.add(plantCodeSplit);
+            }
+            searchClauses += ' Origin_plant_code__c IN ' + plantCodeList + ' AND ';
+        } 
         
         System.debug('shipmentNumber ' + shipmentNumber);
         if(!String.isEmpty(shipmentNumber)){
-            //shipmentNumber = String.escapeSingleQuotes(searchShipment.shipment_Number__c);
-            searchClauses += ' Shipment_Number__c = :shipmentNumber OR ';
-        }
-        if(shipmentStart != null){
-            //shipmentStart = searchShipment.Shipment_Start__c; 
-            searchClauses += ' Shipment_Start__c = :shipmentStart OR ';
-        }
-        if(unileverCompanyAccountName != null){
-            //unileverCompanyAccountName = String.escapeSingleQuotes(unileverCompanyAccount.Name);
-            searchClauses += ' Unilever_Company__r.Name = :unileverCompanyAccountName OR ';
-        }
-        if(carrierCompanyAccountName != null){
-            //carrierCompanyAccountName = String.escapeSingleQuotes(vendorAccount.Name);
-            searchClauses += ' Carrier_Account__r.Name = :carrierCompanyAccountName OR ';
-        }
-        if(unileverCompanyAccountCNPJ != null){
-            //unileverCompanyAccountCNPJ = String.escapeSingleQuotes(unileverCompanyAccount.CNPJ__c);
-            searchClauses += ' Unilever_Company__r.Name = :unileverCompanyAccountCNPJ OR ';
-        }
-        if(vendorAccountCNPJ != null){
-            vendorAccountCNPJ = String.escapeSingleQuotes(vendorAccountCNPJ);
-            searchClauses += ' Carrier_Account__r.CNPJ__c = :vendorAccountCNPJ OR ';
+            for(string str:shipmentNumber.split(',')){
+                string shipmentNumberSplit= '\''+String.escapeSingleQuotes(str.trim())+'\'' ;
+                shipmentNumberList.add(shipmentNumberSplit);
+            }
+            searchClauses += ' Shipment_Number__c IN ' + shipmentNumberList + ' AND ';
         }
         
-        searchClauses = searchClauses.trim().removeEndIgnoreCase('OR');
+        System.debug('shipmentStart ' + shipmentStart);
+        if(shipmentStart != null){
+            searchClauses += ' Shipment_Start__c >:shipmentStart AND Shipment_Start__c <:shipmentStartTo AND ';
+        } 
+        
+        System.debug('carrierCompanyAccountName ' + carrierCompanyAccountName);
+        if(!String.isEmpty(carrierCompanyAccountName)){
+            //carrierCompanyAccountName = String.escapeSingleQuotes(vendorAccount.Name);
+            //searchClauses += ' Carrier_Account__r.Name = :carrierCompanyAccountName AND ';
+            String val1 = '\'%' + String.escapeSingleQuotes(carrierCompanyAccountName.trim()) + '%\'';
+            searchClauses += ' Carrier_Account__r.Name LIKE ' + val1 + ' AND ';
+        }
+        
+        System.debug('unileverCompanyAccountCNPJ ' + unileverCompanyAccountCNPJ);
+        if(!String.isEmpty(unileverCompanyAccountCNPJ)){
+            for(string str:unileverCompanyAccountCNPJ.split(',')){
+                string unileverCompanySplit = '\''+String.escapeSingleQuotes(str.trim())+'\'' ;
+                unileverCompanyAccountCNPJList.add(unileverCompanySplit);
+            }
+            searchClauses += ' Unilever_Company__r.CNPJ__c IN ' + unileverCompanyAccountCNPJList + ' AND ';
+        }
+        
+        System.debug('vendorAccountCNPJ ' + vendorAccountCNPJ);
+        if(!String.isEmpty(vendorAccountCNPJ)){
+            //vendorAccountCNPJ = String.escapeSingleQuotes(vendorAccountCNPJ);
+            //String val3 = '\'%' + String.escapeSingleQuotes(vendorAccountCNPJ.trim()) + '%\'';
+            //searchClauses += ' Carrier_Account__r.CNPJ__c Like ' + val3 + ' AND ';
+            for(string str:vendorAccountCNPJ.split(',')){
+                string vendorCodeSplit = '\''+String.escapeSingleQuotes(str.trim())+'\'' ;
+            vendorAccountCNPJList.add(vendorCodeSplit);
+                }
+            searchClauses += ' Carrier_Account__r.CNPJ__c IN ' + vendorAccountCNPJList + ' AND ';
+        }
+           
+        System.debug('searchClauses ' + searchClauses);
+
+        searchClauses = searchClauses.trim().removeEndIgnoreCase('AND');
         if(searchClauses == 'WHERE'){
             searchClauses = '';
         }
         
         shipmentString += searchClauses;
-        shipmentString += ' ORDER BY CreatedDate ';
+        shipmentString += 'ORDER BY CreatedDate ';
         // Sanitizing to avoid SOQL injection
         
-        system.debug('ShipmentString----->'+ShipmentString);
+        System.debug('ShipmentString----->'+ShipmentString);
         try{
+            System.debug('shipments queried ' + database.query(shipmentString));
             con = new ApexPages.StandardSetController(Database.getQueryLocator(ShipmentString));
+            shipmentString = null;
+            searchClauses = null;
         } catch(QueryException ex){
             String errorMessage = ex.getMessage() + ' ' + ex.getStackTraceString()+' /n \n'+shipmentString;
             ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, errorMessage));
             System.debug(errorMessage);
         }
-        
+ 
         setPaginationSettings();
-        //resetSearch();      
-    }
-    
-    
-    public void resetSearch(){
-        searchShipment = new BFM_Shipment__c(); 
-        unileverCompanyAccount = new Account();
-        vendorAccount = new Account();
     }
     
     public void setPaginationSettings(){
@@ -122,8 +149,7 @@ con = new ApexPages.StandardSetController(Database.getQueryLocator('SELECT id,na
         statusOptions = new List<SelectOption>();
         
         Schema.DescribeFieldResult statusFieldDescription = BFM_Shipment__c.Display__c.getDescribe();
-        for (Schema.Picklistentry picklistEntry:statusFieldDescription.getPicklistValues())
-        {
+        for (Schema.Picklistentry picklistEntry:statusFieldDescription.getPicklistValues()) {
             statusOptions.add(new SelectOption(pickListEntry.getValue(),pickListEntry.getLabel()));
             // obtain and assign default value
             if (picklistEntry.defaultValue){
@@ -136,6 +162,31 @@ con = new ApexPages.StandardSetController(Database.getQueryLocator('SELECT id,na
         } else{
             con.setPageSize(10);
         }
+    }
+   
+    
+    public PageReference updateship(){
+       /* BFM_QueryFreights.callQueryFreightsButton(shipId);*/
+        Set<Id> ssIds = new Set<Id>();
+        for(Id ac:selectedShipList) {
+            ssIds.add(ac);
+        }
+        Id batchJobId = Database.executeBatch(new BFM_BulkShipmentQuery(ssIds), 200);
+
+        System.debug('shipmentParamValue--->'+ssIds);
+        /*if(!String.isBlank(shipId))
+        {
+            shipments = [SELECT Shipment_Number__c,LastModifiedDate,Last_Shipment_Update__c FROM BFM_Shipment__c WHERE Id= :shipId LIMIT 1];
+            BFM_Shipment__c ship = new BFM_Shipment__c();
+            ship.Id = shipId;
+            ship.Last_Shipment_Update__c = shipments.LastModifiedDate;       
+            update ship;
+            system.debug('shipments:--->'+ship);
+        }*/
+        PageReference pageRef = new PageReference('/apex/BFM_SearchShipmentCTe_VF');
+        pageRef.setRedirect(true);
+        return pageRef;
+   
     }
     
     public PageReference redirectFileUpload(){
@@ -184,27 +235,52 @@ con = new ApexPages.StandardSetController(Database.getQueryLocator('SELECT id,na
     public void cancel() {
         con.cancel();
     }
-    public Boolean hasNext  
-    {  
-        get  
-        {  
+    public Boolean hasNext  {  
+        get {  
             return con.getHasNext();  
         }  
         set;  
     }  
-    public Boolean hasPrevious  
-    {  
-        get  
-        {  
+    public Boolean hasPrevious {  
+        get {  
             return con.getHasPrevious();  
         }  
         set;  
     }  
     public Map<Id, boolean> hasCte{get;set;}
     
+    public Map<String, List<BFM_NFS__c>> nfsByShipment{
+        get{
+            
+            nfsByShipment = new Map<String, List<BFM_NFS__c>>();
+            List<BFM_SES__c> theSES = [SELECT NFS__c, Stage__r.Shipment__c FROM BFM_SES__c WHERE Stage__r.Shipment__c IN: shipList];
+            Set<Id> idsNFS = new Set<ID>();
+            for(BFM_SES__c ses: theSES){
+                idsNFS.add(ses.NFS__c);
+            }
+            Map<Id, BFM_NFS__c> nfss = new Map<Id, BFM_NFS__c>([SELECT Id, Name FROM BFM_NFS__c WHERE Id IN: idsNFS]);
+            Map<String, List<BFM_NFS__c>> returnMap = new Map<String, List<BFM_NFS__c>>();
+            for(BFM_SES__c ses : theSES){
+                if(!nfsByShipment.containsKey(ses.stage__r.shipment__c)){
+                    nfsByShipment.put(ses.stage__r.shipment__c, new List<BFM_NFS__c>());
+                }
+                BFM_NFS__c relatedNFS = nfss.get(ses.NFS__c);
+                nfsByShipment.get(ses.stage__r.shipment__c).add(relatedNFS);
+            }
+            for(BFM_Shipment__c shipment: this.shipList ){
+                if(!nfsByShipment.containsKey(shipment.Id)){
+                    nfsByShipment.put(shipment.Id,new List<BFM_NFS__c>());
+                }
+            }
+            
+            return nfsByShipment;
+        } 
+        
+        set;
+    }
+    
     public Map<String, List<BFM_CT_e__c>> ctesByShipment{
         get{
-            if(ctesByShipment == null){
                 ctesByShipment = new Map<String, List<BFM_CT_e__c>>();
                 List<BFM_SES__c> theSESs = [SELECT CT_e__c, Stage__r.Shipment__c FROM BFM_SES__c WHERE Stage__r.Shipment__c IN: shipList];
                 Set<Id> idsCtes = new Set<Id>();
@@ -221,13 +297,54 @@ con = new ApexPages.StandardSetController(Database.getQueryLocator('SELECT id,na
                     ctesByShipment.get(ses.stage__r.shipment__c).add(relatedCTe);
                 }
                 for(BFM_Shipment__c shipment: this.shipList ){
+                    System.debug('shipment Id on shiplist' + shipment.Id);
                     if(!ctesByShipment.containsKey(shipment.Id)){
                         ctesByShipment.put(shipment.Id,new List<BFM_CT_e__c>());
                     }
                 }
-            }
             return ctesByShipment;        
              
         }set;
     }
+    
+   public PageReference getSelected(){
+        selectedShipList.clear();
+        for(accountwrapper accwrapper : shipWrapperList)
+        if(accwrapper.selected)
+        selectedShipList.add(accwrapper.accId);
+        return null;
+    }
+
+    public List<Id> GetSelectedShipments(){
+        if(selectedShipList.size()>0) return selectedShipList;
+        else return null;
+    }    
+
+    public class accountwrapper{
+        public Id accId{get; set;}
+        public Boolean selected {get; set;}
+        public accountwrapper(Id sId){
+            accId = sId;
+            selected = false;
+        }
+    }
+    
+    @RemoteAction
+    public static List<String> updateShipments(String ShipIds) {
+        Set<Id> ssIds = new Set<Id>();
+        List<String> lstUrls=new List<String>();
+        lstUrls.addAll(ShipIds.split(','));
+        //system.debug('lstUrls'+lstUrls);
+        for(String str:lstUrls)
+        {
+            //system.debug('str'+str);
+            ssIds.add(Id.valueOf(str));   
+        }
+        system.debug('ssIds'+ssIds);
+        Id batchJobId = Database.executeBatch(new BFM_BulkShipmentQuery(ssIds), 200);
+        
+        //system.debug('shipmentParamValue--->'+ssIds);
+        return lstUrls; 
+    }
+
 }

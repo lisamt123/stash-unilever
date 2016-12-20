@@ -4,15 +4,15 @@
 
 public class BFM_InvoiceProcessingResponse {
 
-	public RequestInvoiceProcessingResponse RequestInvoiceProcessingResponse;
+    public RequestInvoiceProcessingResponse RequestInvoiceProcessingResponse;
 
-	public class RequestInvoiceProcessingResponse {
-		public String errorCode;
-		public String errorMessage;
-	}
+    public class RequestInvoiceProcessingResponse {
+        public String errorCode;
+        public String errorMessage;
+    }
 
-	
-	public static BFM_InvoiceProcessingResponse parse(String json) {
-		return (BFM_InvoiceProcessingResponse) System.JSON.deserialize(json, BFM_InvoiceProcessingResponse.class);
-	}
+    
+    public static BFM_InvoiceProcessingResponse parse(String json) {
+        return (BFM_InvoiceProcessingResponse) System.JSON.deserialize(json, BFM_InvoiceProcessingResponse.class);
+    }
 }

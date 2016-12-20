@@ -1,0 +1,15 @@
+<apex:page sidebar="true" controller="BFM_PurgeRecords_CC">
+
+    <apex:sectionHeader title="{!$Label.BFM_Records}" subtitle="{!$Label.BFM_Purge}"/>
+    <apex:form id="frm">
+    
+        <apex:pageBlock >
+            {!$Label.BFM_5_years_records}<br/><br/>
+            <apex:commandButton value="{!$Label.BFM_Delete}" action="{!purge_rec}" />
+            <br/><br/>
+            <apex:outputPanel rendered="{!showmsg}">
+            <apex:outputText style="color:green">{!$Label.BFM_Recs_del}</apex:outputText>
+            </apex:outputPanel>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

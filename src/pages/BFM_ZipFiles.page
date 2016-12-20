@@ -1,0 +1,168 @@
+<apex:page controller="BFM_ZipFile" showHeader="true" sidebar="false">
+
+<head>
+	<script type="text/javascript" src="/soap/ajax/26.0/connection.js"> </script>
+
+<!--	<apex:includeScript value="{!URLFOR($Resource.jQuery, '/jquery-1.8.2.min.js')}"/>-->
+        
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+
+	<apex:includeScript value="{!URLFOR($Resource.js_zip, '/jszip.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.js_zip, '/jszip-load.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.js_zip, '/jszip-deflate.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.js_zip, '/jszip-inflate.js')}"/>
+
+    <script type="text/javascript">
+        var j$ = jQuery.noConflict();
+
+        j$(document).ready(function() {
+        	//Hide upload button
+        	var uploadZipButton = j$('input[id$=uploadZipButton]');
+        	uploadZipButton.css('display', 'none');
+        	
+        	//Instantiate JSZip
+        	var zipFile = new JSZip();
+
+			//Intercept click event
+        	j$('a[id=generateZipLink]').click(function() {
+
+				var checkedSize = j$("input[name='att_ids_group[]']:checked").size();
+				var count = 0;
+
+				//Iterate over each selected file				
+				j$("input[name='att_ids_group[]']:checked").each(function() {
+					//Refresh zip process status
+					j$('span[id$=zipStatus]').text('Getting file...');
+                    if(j$(this).val() == null  ||   j$(this).val() == '')
+                        {
+                            alert("please choose with valid external links only");
+                        return
+                        }
+					//Get file using javascript remoting
+					Visualforce.remoting.Manager.invokeAction(
+						'{!$RemoteAction.BFM_ZipFile.getAttachment}',
+						j$(this).val(),
+						function(result, event){
+							if (event.status) {
+								//Refresh zip process status
+                                //	j$('span[id$=zipStatus]').text('Compressing file "' + result.attName + '"...');
+
+								count++;
+								
+								//Add the file
+								compressFile(zipFile, result.attName, result.attEncodedBody);
+								
+								//Once all the selected files have been compressed
+								if (count == checkedSize) {
+									//Refresh zip process status
+                                    // alert("compressed");
+									j$('span[id$=zipStatus]').text('Generating zip file...');
+									
+									//Send form
+									sendZip(zipFile);
+								}
+							} else if (event.type === 'exception') {
+								alert('Exception: ' + event.message);
+							} else {
+								alert('Message: ' + event.message);
+							}
+						}, 
+						{escape: true}
+					);//End getAttachment
+
+				});//end each selected attId
+        	});//end click
+			
+			//Compress one single file
+			function compressFile(zipFile, name, data) {
+				zipFile.file(name, data, {base64:true});
+			}
+
+			//Generate and upload zip file
+			function sendZip(zipFile) {
+                
+                 if ( window.webkitURL ) {
+                        var dataChrome = zipFile.generate();
+                     download("data:application/zip;base64," + dataChrome,'Files.zip');
+                     //location.href="data:application/zip;base64," + data;	
+               
+                     }
+                else{
+                  var data = zipFile.generate({type:"blob"});
+                  downloadFile(data ,'NFSFolder.zip');
+                     
+                    }
+                //location.href="data:application/zip;base64," + data;	
+                
+                /*	var zipContent = j$('input[id$=zipContent]');
+				zipContent.val(data);*/
+                
+				
+                /*//Refresh zip process status
+				j$('span[id$=zipStatus]').text('Uploading zip file...');
+				
+				var uploadZipButton = j$('input[id$=uploadZipButton]');
+				uploadZipButton.trigger('click');*/
+			}
+        });
+    
+    
+    
+function downloadFile(csvContent,filename)
+{
+
+     var blob = new Blob([csvContent]);
+    var needsClick = true;
+        if(needsClick) {
+            console.log('IE');
+            window.navigator.msSaveBlob(csvContent, filename); 
+        }
+}
+    
+    
+    
+    
+    function download( url, filename ) {
+	var link = document.createElement('a');
+	link.setAttribute('href',url);
+	link.setAttribute('download',filename);
+	var event = document.createEvent('MouseEvents');
+	event.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+	link.dispatchEvent(event);
+}
+    </script>
+</head>
+
+<apex:form id="uploadZipForm" enctype="multipart/form-data">
+	
+	<apex:inputHidden id="zipContent" value="{!zipContent}" />
+	
+	<apex:commandButton id="uploadZipButton" value="Upload" action="{!uploadZip}" reRender="thePageBlock" />
+	
+	<apex:pageBlock id="thePageBlock" title="My Content">
+		<apex:pageBlockTable value="{!attachments}" var="att">
+			
+			<apex:column >
+				<input type="checkbox" name="att_ids_group[]" value="{!att.External_File_Path__c}" />
+			</apex:column>
+			<apex:column value="{!att.Name}" />
+			<apex:column value="{!att.External_File_Path__c}" />
+			<apex:column value="{!att.Issuer_CNPJ__c}" />
+		</apex:pageBlockTable>
+	</apex:pageBlock>
+
+	<apex:outputLabel for="zipFileName" value="File name: " />
+	<apex:inputText id="zipFileName" value="{!zipFileName}" />.zip
+	
+	<p>
+		<a id="generateZipLink" href="#">Generate zip</a>
+	</p>
+	<p>
+		<span>Status: </span>
+		<span id="zipStatus"></span>
+	</p>
+	
+</apex:form>
+
+</apex:page>

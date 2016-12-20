@@ -36,7 +36,7 @@ public class BFM_CPFValidator {
             return false;
         }
         
-        //Integer totalValue = 0;
+        Integer totalValue = 0;
         Integer verifyingDigit1 = calculateVerifyingDigit1();
         Integer verifyingDigit2 = calculateVerifyingDigit2();
         

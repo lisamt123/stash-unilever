@@ -1,15 +1,5 @@
-public with sharing class BFM_MDFeHandler
-    implements ITrigger
-{   
-    public BFM_MDFeHandler() {    
-    }
-
-    
-
-  
-    
-    
-
+public with sharing class BFM_MDFeHandler implements ITrigger {   
+    public BFM_MDFeHandler() {    }
 
     /**
      * bulkBefore
@@ -17,10 +7,8 @@ public with sharing class BFM_MDFeHandler
      * This method is called prior to execution of a BEFORE trigger. Use this to cache
      * any data required into maps prior execution of the trigger.
      */
-    public void bulkBefore()
-    {
+    public void bulkBefore() {
         if(trigger.isInsert){ 
-            
             BFM_ValidationController.mdfeDuplicateRecordCheck(Trigger.New);
         } 
         if(trigger.isupdate){
@@ -37,8 +25,7 @@ public with sharing class BFM_MDFeHandler
         } 
     }
     
-    public void bulkAfter()
-    { 
+    public void bulkAfter() { 
          if(trigger.isInsert){
              set<id> setmdfeids = new set<id>();
              for(BFM_MDF_e__c mdfe: (List<BFM_MDF_e__c> )trigger.new){             
@@ -52,38 +39,19 @@ public with sharing class BFM_MDFeHandler
          }
     }
         
-    public void beforeInsert(SObject so)
-    {
-        
-         //This method has been included as the class implements the ITrigger interface   
-    }
+    public void beforeInsert(SObject so) {}
     
-    public void beforeUpdate(SObject oldSo, SObject so)
-    {
-          //This method has been included as the class implements the ITrigger interface   
-    }
+    public void beforeUpdate(SObject oldSo, SObject so){}
      
-
-    public void beforeDelete(SObject so)
-    {
-         //This method has been included as the class implements the ITrigger interface   
-    }
+    public void beforeDelete(SObject so){}
     
-    public void afterInsert(SObject so) 
-    {
-         //This method has been included as the class implements the ITrigger interface
+    public void afterInsert(SObject so) {
         //BFM_SefazCheck_Utility_CC.sefazcheck(mdfeRecord[0].id,'ddsfas','MDFE',userInfo.getSessionId());   
     }
     
-    public void afterUpdate(SObject oldSo, SObject so)
-    {
-         //This method has been included as the class implements the ITrigger interface
-    }
+    public void afterUpdate(SObject oldSo, SObject so){}
     
-    public void afterDelete(SObject so)
-    {
-         //This method has been included as the class implements the ITrigger interface
-    }
+    public void afterDelete(SObject so){}
     
     /**
      * andFinally
@@ -91,9 +59,6 @@ public with sharing class BFM_MDFeHandler
      * This method is called once all records have been processed by the trigger. Use this 
      * method to accomplish any final operations such as creation or updates of other records.
      */
-    public void andFinally()
-    {
-          //This method has been included as the class implements the ITrigger interface   
-    }
+    public void andFinally(){}
 
 }

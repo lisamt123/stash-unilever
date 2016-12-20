@@ -1,13 +1,18 @@
 @isTest
 private class BFM_NFSSearch_CC_Test{   
     private static testMethod void testBFM_NFSSearch_CC(){
-       Test.startTest();
+       
        list<BFM_NFS__c>nfslst=new list<BFM_NFS__c>();
+       account carrier = new account();
+       carrier.name = 'aswin';
+       insert carrier;
+       system.assertequals('aswin',carrier.name);
 
 BFM_NFS__c nfs=new BFM_NFS__c();
 //nfs.Name='test';
 nfs.NFS_Number__c='1234';
 nfs.NFS_Series__c='123';
+nfs.Carrier__c=carrier.id;
 //nfs.Shipment__c=ship.id;
 nfs.NFS_Emission_Date_Time__c=datetime.newInstance(2016, 9, 15, 12, 30, 0);
 nfs.Vendor_s_CNPJ_or_CPF__c='12345678900000';
@@ -19,8 +24,9 @@ nfs.Vendor_s_CNPJ_or_CPF__c='11';
 nfs.NFS_Link_Check_Status__c='Pending link';
 //insert nfs;
 nfslst.add(nfs);
-
- insert nfslst; 
+Test.startTest();
+system.assertEquals('1234',nfs.NFS_Number__c);
+insert nfslst; 
  
         BFM_NFSSearch_CC nfssearch=new BFM_NFSSearch_CC();
         nfssearch.nfs=nfs;

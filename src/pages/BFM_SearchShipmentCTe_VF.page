@@ -14,11 +14,7 @@
         <script>
         
         $ = jQuery.noConflict();
-        
         </script>
-        
-        
-        
         <script>
         $(document).ready(function()
                           {
@@ -70,37 +66,48 @@
             </apex:facet>
         </apex:actionstatus>
         
-        <apex:pageBlock title="Filtros de Busca de Documento de Transporte" id="pb1">
+        <apex:pageBlock title="Buscar Documento de Transporte" id="pb1"> <!-- TODO : ADD CUSTOM LABEL -->
             <apex:pageBlockSection columns="2" id="pbs">
                 <apex:inputtext value="{!shipmentNumber}" id="shpn" label="{!$ObjectType.BFM_Shipment__c.fields.Shipment_Number__c.label}" />
-                <apex:input type="date" value="{!shipmentStart}" id="shpd" label="{!$ObjectType.BFM_Shipment__c.fields.Shipment_Start__c.label}"/>
+                <apex:input type="date" value="{!shipmentStart}" id="shpd" label="Início de transporte De"/> <!-- TODO : Add custom label -->
             </apex:pageBlockSection>
             <apex:pageBlockSection columns="2" >
-                <apex:inputText value="{!unileverCompanyAccountName}" label="{!$Label.BFM_Unilever_Account_Name}" id="shpucn" required="false" />
                 <apex:inputText value="{!unileverCompanyAccountCNPJ}" label="{!$Label.BFM_Unilever_Account_CNPJ}" id="shpucc" />
+                <apex:input type="date" value="{!shipmentStartTo}" id="shpd1" label="Início de tranposrte Até"/> <!-- TODO : Add custom label -->          
             </apex:pageBlockSection>
             <apex:pageBlockSection columns="2" >  
                 <apex:inputText value="{!carrierCompanyAccountName}" label="{!$Label.BFM_Vendor_Name}" id="shpvan" required="false" />
                 <apex:inputtext value="{!vendorAccountCNPJ}" label="{!$Label.BFM_Vendor_CNPJ}" id="shpvac" />
             </apex:pageBlockSection>
-            <apex:pageBlockSection columns="2" >  
-                <apex:inputText value="{!plantCode}" label="{!$ObjectType.BFM_Stage__c.fields.Origin_plant_code__c.label}" id="shppc" required="false" />
+            <apex:pageBlockSection columns="1" >  
+                <apex:inputText value="{!plantCode}" label="{!$Label.BFM_Origin_Plant}" id="originplant" required="false" />
             </apex:pageBlockSection>
             <div align="center">
-                <apex:commandButton value="Search Shipment" id="searchButton" action="{!mySearch}" status="status" rerender="frm,pb1,pbs,shpd,shpn,ships,ships1"/>
+                <apex:commandButton value="{!$Label.BFM_Search_Shipment}" id="searchButton" action="{!mySearch}" status="status" rerender="frm,pb1,pbs,shpd,shpn,ships,ships1"/>
+                
+                <apex:commandButton id="btnFileUpload" value="{!$Label.BFM_Filleupload}"  onclick="window.open('{!$Site.prefix}/apex/BFM_Fileupload_VF');"/>
+                <button class="btn" style="padding:4px;">{!$Label.Update_Shipment}</button>
+                <button class="btnRep" style="padding:4px;">Gerar prévia de custo</button> <!-- TODO : add custom label -->
             </div>
         </apex:pageBlock>
         
-        <apex:pageBlock title="Search Result" id="noRec" rendered="{! IF(shipList!= null && shipList.size ==0,true,false)}" >
+        <apex:pageBlock title="{!$Label.BFM_Search_Result}" id="noRec" rendered="{! IF(shipList!= null && shipList.size ==0,true,false)}" >
             <apex:outputPanel >
-                <h1>No Records Found </h1>
+                <h1>{!$Label.BFM_No_Records} </h1>
             </apex:outputPanel>
         </apex:pageBlock>
         <!-- going to iterate over Stage instead --> 
-        <apex:pageblock title="Search Result" rendered="{!IF(AND(NOT(ISBLANK(shipList)),shipList.size>0),true,false)}" id="pgShips">
+        <apex:pageblock title="{!$Label.BFM_Search_Result}" rendered="{!IF(AND(NOT(ISBLANK(shipList)),shipList.size>0),true,false)}" id="pgShips">
+            
             <apex:outputPanel id="ships" >
-                <apex:pageBlockTable value="{!shipList}" var="shp" id="ships1" StyleClass="styleships" >
-                    <apex:column headerValue="Name">  
+                <apex:pageBlockTable value="{!shipList}" var="shp" id="ships1" StyleClass="styleships">
+                    <apex:column >
+                        <apex:facet name="header">
+                            <input type="checkbox" value="0" onclick="selectAllCheckboxes(this,'inputId')"/>
+                        </apex:facet>
+                        <input type="checkbox" id="inputId" value="{!shp.id}"/>
+                    </apex:column>
+                    <apex:column headerValue="Número do DT Sf">  
                         <apex:outputlink target="_blank" value="/{!shp.id}">
                             {!shp.Name}
                         </apex:outputlink>  
@@ -108,77 +115,84 @@
                     <apex:column value="{!shp.Shipment_Number__c}"/>
                     <apex:column value="{!shp.Shipment_Start__c}"/>
                     <apex:column value="{!shp.Shipment_Type__c}"/>
-                    <apex:column >
-                        <apex:commandButton style="width:25px;height:25px;" value="File Upload" image="{!$Resource.BFM_FileUpload}" onclick="window.open('/apex/BFM_Fileupload_VF');"/>
+                    <apex:column headerValue="Última atualização">
+                        <apex:OutputText value="{!shp.Last_Shipment_Update__c}"/>
                     </apex:column>
-                    <apex:column breakBefore="true"  colspan="7">
-                        <apex:variable value="{!ctesByShipment[shp.Id]}" var="cteList"/>
-                        <apex:pageBlockTable rendered="{!NOT(cteList.empty)}" value="{!cteList}" var="cte">
-                            <apex:column style="width:20%"  value="{!cte.Name}"/>
-                            <apex:column style="width:20%" headerValue="POD OK">
-                                <apex:image id="theImage1" value="{!$Resource.BFM_Green}"/>
-                            </apex:column>
-                            <apex:column style="width:20%" headerValue="SES Link OK" >
-                                <apex:image id="theImage2" value="{!$Resource.BFM_Red}"/>
-                            </apex:column>
-                            <apex:column style="width:20%" headerValue="SEFAZ Check OK" >
-                                <apex:image id="theImage3" value="{!$Resource.BFM_White}"/>
-                            </apex:column>
-                            <apex:column style="width:20%" headerValue="Payment Done">
-                                <apex:image id="theImage4" value="{!$Resource.BFM_Red}"/>
-                            </apex:column>
-                            
-                        </apex:pageBlockTable>
-                    </apex:column>
-                    <!--             
-<apex:column breakBefore="true" rendered="{!NOT(CtesByShipment[shp.Id].empty)}" colspan="7">
-
-</apex:column>
-
-<apex:column breakBefore="true" rendered="{!NOT(shp.stages__r.empty)}" colspan="7">
-<apex:pageBlockSection title="Stages" collapsible="true"  columns="1" id="pgStages">
-<apex:pageBlockTable value="{!shp.stages__r}" var="stage">
-<apex:column headerValue="{!$ObjectType.BFM_Stage__c.fields.Name.Label}">
-<apex:outputLink target="_blank" value="/{!stage.Id}">
-{!stage.Name}
-</apex:outputLink>
-</apex:column>
-<apex:column value="{!stage.Origin_city__c}"/>
-<apex:column value="{!stage.Destination_city__c}"/>
-<apex:column value="{!stage.Gross_value_from_cost_preview__c}"/>
-</apex:pageBlockTable>
-</apex:pageBlockSection>
-</apex:column>
--->
+                    <apex:column value="{!shp.Shipment_Status__c}"/>
                 </apex:pageBlockTable>
             </apex:outputPanel>
             <apex:pageBlockButtons location="top">
                 <div style="text-align:right">
-                    Total Records Found: {!Con.resultSize}          
+                    Total de Registros: {!Con.resultSize}     <!-- TODO : ADD CUSTOM LABEL -->     
                     <apex:selectList value="{!recordscount}" multiselect="false" size="1">                
                         <apex:selectOptions value="{!recordsize}"/>
                         <apex:actionSupport event="onchange" action="{!getshipments}" reRender="ships,ships1"/>
                     </apex:selectList>         
-                    
-                    <apex:commandLink action="{!First}" title="First" value="First" rendered="{!Con.HasPrevious}"/>&nbsp;    
-                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">First</apex:outputPanel>&nbsp;
-                    
+                    <!-- TODO : ADD CUSTOM LABEL -->
+                    <apex:commandLink action="{!First}" title="{!$Label.BFM_First_Page}" value="First" rendered="{!Con.HasPrevious}"/>&nbsp;    
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">Primeira</apex:outputPanel>&nbsp;
+                    <!-- TODO : ADD CUSTOM LABEL -->
                     <apex:image url="/img/search_prevarrow_disabled.gif" styleClass="prevArrow" rendered="{!NOT(Con.HasPrevious)}"/> 
-                    <apex:image url="/img/search_prevarrow.gif" title="Previous Page" styleClass="prevArrow" rendered="{!Con.HasPrevious}"/>&nbsp;  
-                    <apex:commandLink action="{!Previous}" title="Previous Page" value="Previous Page" rendered="{!Con.HasPrevious}"/>&nbsp;    
-                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">Previous Page</apex:outputPanel>&nbsp;
-                    
-                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">Next Page</apex:outputPanel>          
-                    <apex:commandLink title="Next Page" value="Next Page" rendered="{!Con.HasNext}" action="{!Next}"/>&nbsp;  
-                    <apex:image url="/img/search_nextarrow.gif" title="Next Page" styleClass="nextArrow" rendered="{!Con.HasNext}"/>&nbsp; 
+                    <apex:image url="/img/search_prevarrow.gif" title="{!$Label.BFm_Previous}" styleClass="prevArrow" rendered="{!Con.HasPrevious}"/>&nbsp;  
+                    <apex:commandLink action="{!Previous}" value="Previous Page" rendered="{!Con.HasPrevious}"/>&nbsp;    
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">Página anterior</apex:outputPanel>&nbsp;
+                    <!-- TODO : ADD CUSTOM LABEL -->
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">Próxima página</apex:outputPanel>          
+                    <apex:commandLink title="{!$Label.BFM_Next}" value="Próxima página" rendered="{!Con.HasNext}" action="{!Next}"/>&nbsp;  
+                    <apex:image url="/img/search_nextarrow.gif" styleClass="nextArrow" rendered="{!Con.HasNext}"/>&nbsp; 
                     <apex:image url="/img/search_nextarrow_disabled.gif" rendered="{!NOT(Con.HasNext)}"/> 
-                    
-                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">Last</apex:outputPanel> 
-                    <apex:commandLink title="Last"  value="Last" rendered="{!Con.HasNext}" action="{!last}"/>
+                    <!-- TODO : ADD CUSTOM LABEL -->
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">Ultima</apex:outputPanel> 
+                    <apex:commandLink title="{!$Label.BFM_Last_Page}"  value="Ultima" rendered="{!Con.HasNext}" action="{!last}"/>
                     
                 </div>
             </apex:pageBlockButtons>    
             
         </apex:pageblock>
+        
     </apex:form>
+    <script type="text/javascript">
+    function selectAllCheckboxes(obj,receivedInputID){
+        var inputCheckBox = document.getElementsByTagName("input");                  
+        for(var i=0; i<inputCheckBox.length; i++){          
+            if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                     
+                inputCheckBox[i].checked = obj.checked;
+            }
+        }
+    }
+    $('.btn').click(function(){
+        var str='';
+        $("input[type=checkbox]:checked").each(function() {
+            if($(this).val()!='0' && $(this).val()!=null)
+            {
+                str+=$(this).val()+',';
+            }
+        });
+        str=str.slice(0,-1);
+        //alert('str'+str);
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.BFM_SearchShipmentCTeController_CC.updateShipments}', 
+            str, 
+            function(result, event){
+                //alert('result'+result);
+            }, 
+            {escape: true}
+        );
+    }); 
+    
+    
+    $('.btnRep').click(function(){
+        var str='';
+        $("input[type=checkbox]:checked").each(function() {
+            if($(this).val()!='0' && $(this).val()!=null) {
+                str+=$(this).val().substring(0, 15)+',';
+            }
+        });
+        str=str.slice(0,-1);
+        //alert(str);
+        window.open("/{!cteIssuingReport.Id}?pv0="+str,"_blank");
+    });     
+    
+    
+    </script>
 </apex:page>

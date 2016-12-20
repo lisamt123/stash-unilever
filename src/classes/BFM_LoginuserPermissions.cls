@@ -6,7 +6,7 @@ Public class BFM_LoginuserPermissions{
                                                    FROM BFM_UserCreationRequest__c WHERE Id = :userRequestId];
     
         string psName ='';
-        if(userRequest.Operational_User__c){
+        if(userRequest.Operational_User__c == true){
             psName = 'BFM_Carrier_Operational_User';
         }
          PermissionSet ps = new PermissionSet();

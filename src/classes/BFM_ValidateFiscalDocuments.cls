@@ -1,4 +1,4 @@
-public class BFM_ValidateFiscalDocuments {
+public with sharing class BFM_ValidateFiscalDocuments {
 
     private Set<Id> ctesIds;
     private Map<String,Id> accessKeyById;
@@ -12,21 +12,22 @@ public class BFM_ValidateFiscalDocuments {
     }
     public boolean callValidateFiscalDocuments(){
         List<String> accessKeys = new List<String>();
- 		isSuccess = true;
+        isSuccess = true;
         for (BFM_CT_e__c cte :[SELECT CT_e_Key__c FROM BFM_CT_e__c WHERE Id IN :ctesIds]){
             accessKeys.add(cte.CT_e_Key__c);
             accessKeyById.put(cte.CT_e_Key__c, cte.Id);
+            system.debug(accessKeys);
         }
         
         HttpResponse hResponse = BFM_GeneralServiceCalls.validateFiscalDocuments(accessKeys);
         List<BFM_CT_e__c> returningCTes;
         if(hResponse.getStatusCode() == 200 || hResponse.getStatusCode() == 201){
             returningCTes = new List<BFM_CT_e__c>();
-        	BFM_ValidateFiscalDocumentsResponse response = BFM_ValidateFiscalDocumentsResponse.parse(hResponse.getBody());
+            BFM_ValidateFiscalDocumentsResponse response = BFM_ValidateFiscalDocumentsResponse.parse(hResponse.getBody());
             for(BFM_ValidateFiscalDocumentsResponse.Cte oneCteResponse :response.ValidateFiscalDocumentResponse.cte){
                 BFM_CT_e__c newCte = new BFM_CT_e__c();
                 newCte.Id = accessKeyById.get(oneCteResponse.accessKey);
-                newCte.SEFAZ_Return_Status__c =  oneCteResponse.validationStatusCode;
+                newCte.SEFAZ_Return_Status__c =  oneCteResponse.itemErrorMessage;
                 returningCTes.add(newCTe);
             }
             Database.saveResult[] updateCtesResult = Database.update(returningCTes);
@@ -49,6 +50,7 @@ public class BFM_ValidateFiscalDocuments {
         return isSuccess;
     }
     
+    @ TestVisible
     private void generateIntegrationFailureErrorLogs(Integer statusCode, String status){
         List<BFM_Error_Log__c> integrationErrorLogs = new List<BFM_Error_Log__c>();
         for(Id idCte: ctesIds){

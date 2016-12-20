@@ -6,28 +6,26 @@ public class BFM_Sefazvalidation_CC{
         List<string> errors = new List<string>();  
         
         listmdfe = [select id,MDFE_Access_Key__c,External_File_Path__c from BFM_MDF_e__c where id in: setids];        
-                     
         
-                       
         for(BFM_MDF_e__c mdf: listmdfe){            
             string xmlBody = BFM_AmazonConnector.getFile(mdf.External_File_Path__c);
             string accessKey = mdf.MDFE_Access_Key__c;
-            system.debug('sssssssssssss'+xmlBody);
-            system.debug('sssssssssssss'+accesskey);
+            system.debug('XML Body'+xmlBody);
+            system.debug('access key '+accesskey);
             HttpResponse response = BFM_GeneralServiceCalls.publishXMLforValidation(xmlBody,accessKey);
             if(response.getStatusCode() == 200 || response.getStatusCode() == 201){
-               // isSuccess = true;
-               mdf.MDF_e_Sefaz_Status__c = 'Sefaz Ok';
-               mdf.MDF_e_Status__c = 'Sefaz Ok';
-               listupdatemdfe.add(mdf);
-                    
+                // isSuccess = true;
+                mdf.MDF_e_Sefaz_Status__c = 'Sefaz Status Requested';
+                mdf.MDF_e_Status__c = 'Sefaz Status Requested';
+                listupdatemdfe.add(mdf);
+                
             } else{
                 //isSuccess = false;
-                mdf.MDF_e_Sefaz_Status__c = 'Sefaz Invalid';
-                mdf.MDF_e_Status__c = 'Sefaz Invalid';
+                mdf.MDF_e_Sefaz_Status__c = 'Sefaz Request Invalid';
+                mdf.MDF_e_Status__c = 'Sefaz Request Invalid';
                 String errorMessage = String.format(Label.BFM_Integration_Failure, new List<String>{String.valueOf(response.getStatusCode()),  
-                                                                                response.getStatus(),
-                                                                                response.getBody()});
+                    response.getStatus(),
+                    response.getBody()});
                 errors.add(errorMessage);
                 listupdatemdfe.add(mdf);
                 
@@ -36,7 +34,7 @@ public class BFM_Sefazvalidation_CC{
         if(!listupdatemdfe.isEmpty()){
             update listupdatemdfe;
         }
-                 
+        
     }
     @future(callout=true)
     public static void sendCCEtoSefaz(set<id> setids,string objname){
@@ -45,26 +43,28 @@ public class BFM_Sefazvalidation_CC{
         List<string> errors = new List<string>();  
         
         listcce = [select id,CC_e_Key__c,External_File_Path__c,CC_e_Status__c,CC_e_Sefaz_Check_Status__c from BFM_CC_e__c where id in: setids];        
-                                            
+        String bucketname = 'adefr-d-freightbrazil001-bucket';
+        String host = 's3.eu-central-1.amazonaws.com';
+        String aURL = 'https://' + bucketname + '.' + host+'/';
         for(BFM_CC_e__c cce: listcce){            
-            string xmlBody = BFM_AmazonConnector.getFile(cce.External_File_Path__c);
+            string xmlBody = BFM_AmazonConnector.getFile(aURL+cce.External_File_Path__c);
             string accessKey = cce.CC_e_Key__c;
-            system.debug('sssssssssssss'+xmlBody);
-            system.debug('sssssssssssss'+accesskey);
+            system.debug('XML Body'+xmlBody);
+            system.debug('access key '+accesskey);
             HttpResponse response = BFM_GeneralServiceCalls.publishXMLforValidation(xmlBody,accessKey);
             if(response.getStatusCode() == 200 || response.getStatusCode() == 201){
-               // isSuccess = true;
-               cce.CC_e_Sefaz_Check_Status__c = 'Sefaz Ok';
-               cce.CC_e_Status__c = 'Sefaz Ok';              
-               listupdatecce.add(cce);
-                    
+                // isSuccess = true;
+                cce.CC_e_Sefaz_Check_Status__c = 'Sefaz Status Requested';
+                cce.CC_e_Status__c = 'Sefaz Status Requested';              
+                listupdatecce.add(cce);
+                
             } else{
                 //isSuccess = false;
-                cce.CC_e_Sefaz_Check_Status__c = 'Sefaz Invalid';
-                cce.CC_e_Status__c = 'Sefaz Invalid';
+                cce.CC_e_Sefaz_Check_Status__c = 'Sefaz Request Invalid';
+                cce.CC_e_Status__c = 'Sefaz Request Invalid';
                 String errorMessage = String.format(Label.BFM_Integration_Failure, new List<String>{String.valueOf(response.getStatusCode()),  
-                                                                                response.getStatus(),
-                                                                                response.getBody()});
+                    response.getStatus(),
+                    response.getBody()});
                 errors.add(errorMessage);
                 listupdatecce.add(cce);
                 
@@ -73,42 +73,41 @@ public class BFM_Sefazvalidation_CC{
         if(!listupdatecce.isEmpty()){
             update listupdatecce;
         }
-                 
+        
     }
-     @future(callout=true)
+    @future(callout=true)
     public static void sendCTEtoSefaz(set<id> setids,string objname){
         List<BFM_CT_e__c> listcte = new List<BFM_CT_e__c>();
         list<BFM_CT_e__c> listupdatecte = new List<BFM_CT_e__c>();
         List<string> errors = new List<string>();  
         
         listcte = [select id,CT_e_key__c,External_File_Path__c,CT_e_Sefaz_Check_Status__c,Cte_Status__c from BFM_CT_e__c where id in: setids];        
-                     
+        system.debug('listcte '+ listcte);            
+        String bucketname = 'adefr-d-freightbrazil001-bucket';
+        String host = 's3.eu-central-1.amazonaws.com';
+        String aURL = 'https://' + bucketname + '.' + host+'/';
         
-                       
         for(BFM_CT_e__c cte: listcte){            
-            string xmlBody = BFM_AmazonConnector.getFile(cte.External_File_Path__c);
+            string xmlBody = BFM_AmazonConnector.getFile(aURL+cte.External_File_Path__c);
             string accessKey = cte.CT_e_key__c;
-            //system.debug('sssssssssssss'+xmlBody);
-            //system.debug('sssssssssssss'+accesskey);
+            system.debug('xmlBody '+ xmlBody);
+            system.debug('accesskey '+accesskey);
             
             HttpResponse response = BFM_GeneralServiceCalls.publishXMLforValidation(xmlBody,accessKey);
             
-            
-            
-            
             if(response.getStatusCode() == 200 || response.getStatusCode() == 201){
-               // isSuccess = true;
-               cte.CT_e_Sefaz_Check_Status__c= 'Sefaz Ok';
-               cte.Cte_Status__c = 'Sefaz Ok';
-               listupdatecte.add(cte);
-                    
+                // isSuccess = true;
+                cte.CT_e_Sefaz_Check_Status__c= 'Sefaz Status Requested';
+                cte.Cte_Status__c = 'Sefaz Status Requested';
+                listupdatecte.add(cte);
+                
             } else{
                 //isSuccess = false;
-                cte.CT_e_Sefaz_Check_Status__c = 'Sefaz Invalid';
-                cte.Cte_Status__c = 'Sefaz Invalid';
+                cte.CT_e_Sefaz_Check_Status__c = 'Sefaz Request Invalid';
+                cte.Cte_Status__c = 'Sefaz Request Invalid';
                 String errorMessage = String.format(Label.BFM_Integration_Failure, new List<String>{String.valueOf(response.getStatusCode()),  
-                                                                                response.getStatus(),
-                                                                                response.getBody()});
+                    response.getStatus(),
+                    response.getBody()});
                 errors.add(errorMessage);
                 listupdatecte.add(cte);
                 
@@ -117,7 +116,7 @@ public class BFM_Sefazvalidation_CC{
         if(!listupdatecte.isEmpty()){
             update listupdatecte;
         }
-                 
+        
     }
-
+    
 }

@@ -1,37 +1,61 @@
-<apex:page controller="BFM_CTeSearch_CC" action="{!searchCTe}" tabStyle="BFM_CT_e__c">
-	<apex:form >
-		<apex:pageBlock id="thePb" title="CT-e Search">
-   			<apex:pageblockSection id="thepbs">
-    			<apex:inputText value="{!cte.Name}"/>
-    			<apex:inputField value="{!cte.CT_e_Number__c}" />
-   			</apex:pageblockSection>
-   			<apex:pageblockButtons location="bottom">
-      			<apex:commandButton value="Search" action="{!searchCTe}" />
-     		</apex:pageblockButtons>  
-  		</apex:pageBlock>
-   		<apex:pageBlock title="CT-e Details" id="noRec" rendered="{! IF( cteList != null && cteList.size ==0 , true, false)}" >
+<apex:page controller="BFM_CTeSearch_CC" action="{!searchCTe}" tabStyle="BFM_CT_e__c" doctype="html-5.0">
+    <apex:form >
+        <apex:pageBlock id="thePb" title="{!$Label.BFM_CT_e_Search}">
+            <apex:pageblockSection id="thepbs">
+                <apex:inputText value="{!cte.Name}"/>
+                <apex:inputText value="{!cte.CT_e_Number__c}" />
+                <apex:inputText value="{!cte.CNPJ_Service_Taker__c}" />
+                <apex:inputText value="{!cte.CNPJ_issuer__c}" />
+                <apex:inputText value="{!cte.Unilever_company_code__c}" />
+                <apex:inputText value="{!cte.CT_e_key__c}" />
+                <apex:inputText value="{!cte.Vendor_code__c}" />
+            </apex:pageblockSection>
+            <apex:pageblockSection columns="1">
+                <apex:input type="date" value="{!createDate}" label="Date de Criação de"/> <!-- TODO: needs to add custom label -->
+                <apex:input type="date" value="{!toDate}" label="Data de Criação Até"/> <!-- TODO: needs to add custom label -->
+            </apex:pageblockSection>            
+            <apex:pageblockButtons location="bottom">
+                <apex:commandButton value="{!$Label.BFM_Search}" action="{!searchCTe}" />
+            </apex:pageblockButtons>  
+            <p>
+                Para efetuar pesquisa de vários itens, insira vírgula seguida pelo código desejado. <!-- TODO : ADD CUSTOM LABEL -->
+            </p>
+        </apex:pageBlock>
+        <apex:pageBlock title="{!$Label.BFM_CT_e_Details}" id="noRec" rendered="{! IF( cteList != null && cteList.size ==0 , true, false)}" >
             <apex:outputPanel >
-                <h1>No Records Found </h1>
+                <h1>{!$Label.BFM_No_Records} </h1>
             </apex:outputPanel>
-  		</apex:pageBlock>
+        </apex:pageBlock>
  
-  <apex:pageBlock title="CT-e Details" id="details" rendered="{! IF( cteList != null && cteList.size >0, true, false)}" mode="edit">
+  <apex:pageBlock title="{!$Label.BFM_CT_e_Details}" id="details" rendered="{! IF( cteList != null && cteList.size >0, true, false)}" mode="edit">
        <apex:pageBlockTable value="{!cteList}" var="ct">
-       	<apex:column headerValue="CT-e Name">
-        	<apex:outputLink target="_blank" value="/{!ct.id}">{!ct.Name}</apex:outputLink> 
-       	</apex:column>   
-    	<apex:column value="{!ct.CT_e_Number__c}"/>  
-    	<apex:column value="{!ct.CT_e_key__c}"/>  
-    	<apex:column value="{!ct.CNPJ_issuer__c}"/>  
-		<apex:column value="{!ct.CNPJ_Service_Taker__c}"/>      
-   		</apex:pageBlockTable>
+        <apex:column headerValue="{!$ObjectType.BFM_CT_e__c.fields.Name.label}">
+            <apex:outputLink target="_blank" value="/{!ct.id}">{!ct.Name}</apex:outputLink> 
+        </apex:column>   
+        <apex:column value="{!ct.CT_e_Number__c}"/>  
+        <apex:column value="{!ct.CT_e_key__c}"/>  
+        <apex:column value="{!ct.CNPJ_issuer__c}"/>  
+        <apex:column value="{!ct.CNPJ_Service_Taker__c}"/>
+        <apex:column headerValue="Duplicate Record Status">
+            <apex:image id="img" value="{!If(ct.CT_e_Duplicate_Record_Status__c == "Validation Ok", $Resource.BFM_Green,If(ct.CT_e_Duplicate_Record_Status__c == " ",$Resource.BFM_White, $Resource.BFM_Red))}"/>
+        </apex:column>
+        <apex:column headerValue="CNPJ Status">
+            <apex:image id="img1" value="{!If(ct.CT_e_Valid_CNPJ_Status__c == "Valid CNPJ", $Resource.BFM_Green,If(ct.CT_e_Valid_CNPJ_Status__c == " ",$Resource.BFM_White, $Resource.BFM_Red))}"/>
+        </apex:column>
+        <apex:column headerValue="Link Status">
+            <apex:image id="img2" value="{!If(ct.Link_Status__c == "Link Ok", $Resource.BFM_Green,If(ct.Link_Status__c == " ",$Resource.BFM_White, $Resource.BFM_Red))}"/>
+        </apex:column>
+        <apex:column headerValue="Sefaz Status">
+            <apex:image id="img3" value="{!If(ct.CT_e_Sefaz_Check_Status__c == "Sefaz Ok", $Resource.BFM_Green,If(ct.CT_e_Sefaz_Check_Status__c == " ",$Resource.BFM_White,$Resource.BFM_Red))}"/>
+        </apex:column>
+        </apex:pageBlockTable>
    
     <apex:pageblockButtons >
-         <apex:commandButton value="First Page" rerender="details" action="{!FirstPage}" disabled="{!prev}"/>
-        <apex:commandButton value="Previous" rerender="details" action="{!previous}" disabled="{!prev}"/>
-        <apex:commandButton value="Next" rerender="details" action="{!next}" disabled="{!nxt}"/>
-        <apex:commandButton value="Last Page" rerender="details" action="{!LastPage}" disabled="{!nxt}"/>
-	</apex:pageblockButtons>   
+         <apex:commandButton value="{!$Label.BFM_First_Page}" rerender="details" action="{!FirstPage}" disabled="{!prev}"/>
+        <apex:commandButton value="{!$Label.BFm_Previous}" rerender="details" action="{!previous}" disabled="{!prev}"/>
+        <apex:commandButton value="{!$Label.BFM_Next}" rerender="details" action="{!next}" disabled="{!nxt}"/>
+        <apex:commandButton value="{!$Label.BFM_Last_Page}" rerender="details" action="{!LastPage}" disabled="{!nxt}"/>
+    </apex:pageblockButtons>   
   </apex:pageBlock>
  </apex:form>
 </apex:page>

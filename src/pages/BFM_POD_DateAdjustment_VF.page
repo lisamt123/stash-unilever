@@ -1,28 +1,28 @@
 <apex:page controller="BFM_POD_DateAdjustment_CC" docType="html-5.0" >
-    <apex:sectionHeader title="POD" subtitle="Date Adjustment"/>
+    <apex:sectionHeader title="{!$Label.BFM_Pod}" subtitle="{!$Label.BFM_Dateadjust}"/>
     <apex:form id="frm">
         <apex:pageBlock rendered="{!if(listPODW.size>0,true,false)}">
             <apex:pageblockButtons >
-                <apex:commandButton value="Update" action="{!podupdate}" rerender="frm"/>
+                <apex:commandButton value="{!$Label.BFM_Update}" action="{!podupdate}" rerender="frm"/>
             </apex:pageblockButtons>
             <apex:pageBlockTable Value="{!listPODW}" var="p" >
-            <apex:column headerValue="POD Name">
+            <apex:column headerValue="{!$Label.BFM_Podname}">
                 <a href="/{!p.pod.id}" target="_blank">{!p.pod.name}</a>         
           </apex:column>
                 <apex:column value="{!p.pod.POD_Number__c}"/>
                 
                 <apex:column value="{!p.pod.NF_e_Access_Key__c}"/>
-                <apex:column headerValue="NF-e Creation Date" value="{!p.nfedate}"/>
-                <apex:column headerValue="POD Date(old)" value="{!p.oldpodDate }"/>
-                <apex:column headervalue="POD"><apex:inputField value="{!p.pod.POD_Date__c}"/></apex:column>
+                <apex:column headerValue="{!$Label.BFM_NFe_Create_Date}" value="{!p.nfedate}"/>
+                <apex:column headerValue="{!$Label.BFM_Old_Pod_Date}" value="{!p.oldpodDate }"/>
+                <apex:column headervalue="{!$Label.BFM_Pod}"><apex:inputField value="{!p.pod.POD_Date__c}"/></apex:column>
             </apex:pageBlockTable>
             
          
         </apex:pageBlock>
         <apex:pageBlock rendered="{!if(listPODW.size>0,false,true)}">
-             <b> No records meeting the criteria</b>
+             <b> {!$Label.BFM_Norecords} </b>
              <apex:pageblockButtons location="bottom" >
-                <left><apex:commandButton value="Back" /></left>    
+                <left><apex:commandButton value="{!$Label.BFM_Back}" /></left>    
              </apex:pageblockButtons>
         </apex:pageBlock>
         
