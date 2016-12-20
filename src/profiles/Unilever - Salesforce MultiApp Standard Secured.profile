@@ -58998,6 +58998,9 @@
         <layout>Download_Statistics__c-WINatPOS Download Statistics Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>DuplicateRecordItem-Повторяющийся элемент записи%3A макет</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>DuplicateRecordSet-Duplicate Record Set Layout</layout>
     </layoutAssignments>
     <layoutAssignments>

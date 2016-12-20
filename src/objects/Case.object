@@ -9300,9 +9300,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>My_Open_Cases_EMAIL_WEB_DO_NOT_EDIT</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.ORIGIN</columns>
+        <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>Action_Taken__c</columns>
         <columns>CORE.USERS.ALIAS</columns>

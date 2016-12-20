@@ -2,7 +2,7 @@
 <WaveLens xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <content xsi:nil="true"/>
     <application>UL_Reports</application>
-    <datasets>IPM_DataSet_Report_11_SFDC</datasets>
+    <datasets>IPM_Dataset_Report_11_SFDC</datasets>
     <masterLabel>New lens: IPM Approved Documents</masterLabel>
     <visualizationType>hbar</visualizationType>
 </WaveLens>
