@@ -1,6 +1,4 @@
-{
-    "label": "FS Daily Sales for Sales Leadership",
-    "state": {
+{ "state": {
         "gridLayouts": [
             {
                 "name": "Default",
