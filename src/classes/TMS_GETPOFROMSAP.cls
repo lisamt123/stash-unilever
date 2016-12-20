@@ -1,16 +1,16 @@
-public with sharing class TMS_GETPOFROMSAP{
-    public static string testdoc;
+global with sharing class TMS_GETPOFROMSAP{
+    global static string testdoc;
     public TMS_GETPOFROMSAP(TMS_Documentvalidation_CC controller) {
         
-		  testdoc = System.currentPageReference().getParameters().get('testdoc');
+          testdoc = System.currentPageReference().getParameters().get('testdoc');
     }
     public TMS_GETPOFROMSAP(TMS_dispatchScreen_CC controller) {
-		  testdoc = System.currentPageReference().getParameters().get('testdoc');
+          testdoc = System.currentPageReference().getParameters().get('testdoc');
     }
 
 
     @RemoteAction
-    public static Map<String, Object> retrievePO(String type, List<String> fields, Map<String, Object> criteria) {
+    global static Map<String, Object> retrievePO(String type, List<String> fields, Map<String, Object> criteria) {
          
        
         // Retrieve using the standard retrieve

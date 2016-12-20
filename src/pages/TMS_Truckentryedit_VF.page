@@ -1,0 +1,44 @@
+<apex:page standardController="TMS_Truck_Entry_Checklist__c" sidebar="false" showHeader="true" doctype="HTML-5.0" extensions="TMS_Truckentryedit_cc">
+    <apex:form >
+        <apex:sectionHeader title="TMS_Truck Entry Screen Edit" subtitle="{!trucklist.Truck__c}"/>
+            <apex:pageBlock title="TMS_Truck Entry Screen Edit" mode="edit">
+                <apex:pageBlockButtons >
+                    <apex:commandButton value="Save" action="{!updatelist}"/>
+                    <apex:commandButton value="Cancel" action="{!cancel}"/>
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection title="Information" columns="2">
+                    <apex:inputField value="{!trucklist.Truck__c}"/>
+                    <apex:inputField value="{!trucklist.owner.name}" label="Owner" required="true"/>
+                    <apex:inputField value="{!trucklist.Action__c}"/>
+                    <apex:inputField value="{!trucklist.Driver_License_Number__c}" required="true"/>
+                    <apex:inputField value="{!trucklist.Challan_Number__c}" required="true"/>
+                    <apex:inputField value="{!trucklist.Vendor__c}" required="true"/>
+                    <apex:inputField value="{!trucklist.LR_Number__c}"/>
+                    <apex:inputField value="{!trucklist.Vehicle_Number__c}" required="true"/>
+                    <apex:inputField value="{!trucklist.PO_Number__c}" required="true"/>
+                    <apex:inputField value="{!trucklist.Name}"/>
+                    <apex:inputField value="{!trucklist.RFID__c}"/>
+                    <apex:inputField value="{!trucklist.Material_Desc__c}"/>
+                    <apex:inputField value="{!trucklist.Status__c}"/>
+                    <apex:inputField value="{!trucklist.Transporters__c}" required="true"/>
+                    <apex:inputField value="{!trucklist.Serial_Num__c}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Check List">
+                    <apex:inputField value="{!trucklist.Question__c}"/>
+                    <apex:inputField value="{!trucklist.Answer__c}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Truck Actions">
+                    <apex:inputField value="{!trucklist.truck_Action__c}"/>                    
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Weights">
+                    <apex:inputField value="{!trucklist.Initial_Wt__c}"/>
+                    <apex:inputField value="{!trucklist.TMS_Current_Weight__c}"/>
+                    <apex:inputField value="{!trucklist.Final_Wt__c}"/>
+                    <apex:inputField value="{!trucklist.Relay_Item_Id__c}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Detention Reason">
+                    <apex:inputField value="{!trucklist.Detention_Reason__c}"/>                    
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,72 @@
+<apex:page cache="false" sidebar="false" showHeader="false" docType="html-5.0" standardStylesheets="false" >  
+<!-- Static Resources for CSS -->
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/font-awesome.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/animate.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/select2.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/style.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/flat-blue.css')}" />
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_jquery_1_11_2, '/jquery-1.11.2/dist/jquery.min.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_Bootstrap, '/bootstrap-3.3.5/dist/js/bootstrap.min.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.js')}"></script> 
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/app.js')}"></script>
+    <body class="flat-blue">
+        <div class="app-container">
+            <div class="row content-container">
+                <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-expand-toggle">
+                                <i class="fa fa-bars icon"></i>
+                            </button>
+                            <ol class="breadcrumb navbar-breadcrumb">
+                                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}" alt="Unilever Logo"/>
+                                <li > Truck Screen                           
+                                </li>
+                            </ol>                           
+                        </div>                
+                    </div>
+                </nav>  
+                <div class="side-menu sidebar-inverse">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="side-menu-container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">
+                                <div class="icon fa fa-hand-o-right"></div>
+                                <div class="title">Truck Management</div>
+                            </a>
+                            <button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                                <i class="fa fa-times icon"></i>
+                            </button>
+                        </div>
+                        
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </nav>
+                </div> 
+                <div class="container-fluid">
+                <div class="side-body padding-top">
+                <div class="row">
+                
+                
+                <!-- Logic Here-->
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                </div>
+                </div>
+                </div>
+                                           
+            </div>
+        </div>
+    </body>
+</apex:page>

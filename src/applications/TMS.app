@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <description>Application for the Truck Management Solution</description>
+    <label>TMS</label>
+    <tab>TMS_Home</tab>
+    <tab>TMS_Activity_Standard_Time__c</tab>
+    <tab>TMS_Vendor_Transporter_Customer_Mast__c</tab>
+    <tab>TMS_Reason__c</tab>
+    <tab>TMS_Detention_Reason_Code__c</tab>
+    <tab>TMS_Site_Code__c</tab>
+    <tab>TMS_Material_Type__c</tab>
+    <tab>TMS_RFID__c</tab>
+    <tab>TMS_Site__c</tab>
+    <tab>TMS_Plant_Code__c</tab>
+    <tab>TMS_RFID_terminal_Location__c</tab>
+    <tab>TMS_UOM__c</tab>
+    <tab>TMS_Detention_Cutover__c</tab>
+    <tab>TMS_Truck_Entry_Checklist__c</tab>
+    <tab>TMS_Truck_Type__c</tab>
+    <tab>TMS_Bay_Master__c</tab>
+    <tab>TMS_Master_Truck_Type__c</tab>
+    <tab>GEL_Global_Exception_Log__c</tab>
+    <tab>TMS_PO__c</tab>
+    <tab>TMS_Shipment__c</tab>
+    <tab>TMS_PO_items__c</tab>
+    <tab>TMS_Shipment_Items__c</tab>
+    <tab>TMS_Transporter_Management_Screen__c</tab>
+    <tab>TMS_Depot__c</tab>
+    <tab>Visitor_Dashboard</tab>
+    <tab>TMS_Material__c</tab>
+    <tab>TMS_Checklist__c</tab>
+    <tab>standard-report</tab>
+    <tab>standard-Dashboard</tab>
+    <tab>Audit_Questions__c</tab>
+    <tab>Audit_RS__c</tab>
+    <tab>Audit_Qs__c</tab>
+    <tab>Case_Notification__c</tab>
+    <tab>Business_Connections__c</tab>
+</CustomApplication>

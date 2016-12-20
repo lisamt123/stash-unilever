@@ -1,0 +1,326 @@
+<apex:page cache="true" sidebar="false" showHeader="false"   docType="" standardStylesheets="true" controller="TMS_Documentvalidation_CC">
+<apex:form >
+<head>
+    <meta charset="utf-8" />        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/font-awesome.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/animate.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/select2.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/style.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/flat-blue.css')}" />
+    <link href="{!URLFOR($Resource.Vep_dataTables, '/DataTables-1.10.10/media/css/jquery.dataTables.min.css')}" rel="stylesheet"/>
+    
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_jquery_1_11_2, '/jquery-1.11.2/dist/jquery.min.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_Bootstrap, '/bootstrap-3.3.5/dist/js/bootstrap.min.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.js')}"></script> 
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/app.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.Vep_dataTables, '/DataTables-1.10.10/media/js/jquery.dataTables.min.js')}"></script>
+   
+</head>
+<script type="text/javascript">
+        function selectAllCheckboxes(obj,receivedInputID){
+            var inputCheckBox = document.getElementsByTagName("input");
+            for(var i=0; i<inputCheckBox.length; i++){
+                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){
+                    inputCheckBox[i].checked = obj.checked;
+                }
+            }
+        }
+    
+/* function showhide()
+    {
+        // var div = document.getElementById("about");
+        //var div = document.getElementById("about1");
+        document.getElementById("about").style.display = 'block';
+        document.getElementById("about1").style.display = 'block';
+        /*if (div.style.display !== "block") {
+        div.style.display = "block";
+        }
+        else {
+        div.style.display = "none";
+        }  
+    }*/
+    function calc(A,B,SUM) {
+       var one = document.getElementById(A).value;
+       var two = document.getElementById(B).value; 
+       document.getElementById(SUM).value = one - two;
+    }
+
+</script>
+<script>
+  function myFunction() {
+    var y = document.getElementById("txt1").value;
+    var z = document.getElementById("txt2").value;
+    var x = +y + +z;
+    document.getElementById("demo").innerHTML = x;
+  }
+</script>
+    <script>
+        $(document).ready(function(){
+    $("#button").click(function(){
+        $("#about").toggle();
+    });
+     $("#button").click(function(){
+        $("#about01").hide();
+     });
+});
+        $(document).ready(function(){
+    $("#button").click(function(){
+        $("#about1").toggle();
+    });
+     $("#button").click(function(){
+        $("#about02").toggle();
+    });
+});
+ </script>
+
+<style type="text/css">
+
+    .row1
+    {
+    padding-left: 5%;
+    padding-right: 5%;yyyy
+    padding-top: 5%;
+    }
+    td
+    {
+    
+    background-color:white;
+    }
+    table
+    {
+    background-color:white;
+    }
+    
+.myClass{
+color:black !important;
+background:#AC33FF !important;
+}    
+
+.myinput { width: 70px; }
+
+.mybutton { height:20px; width: 25px; }
+.errorClass {
+color:white !important;
+    background: #69ca02 !important;
+}
+.normalClass {
+color:white !important;
+    background: #fd6730 !important;
+}
+
+</style>
+
+<body class="flat-blue" >
+            <div class="app-container">
+            <div class="row content-container">
+                <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <ol class="breadcrumb navbar-breadcrumb">
+                                <li> 
+                                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}"/>
+                                Quantity Validation screen
+                                <!-- Sitecode need to remove after assigning User to Particluar Site-->
+                                </li>
+                                <li style="margin-left:700px;">{!$User.Division}</li>
+                            </ol>
+                           <!-- <ol class="breadcrumb navbar-breadcrumb" style="margin-left:700px;">
+                                <li>HPC- Chiplun Plant</li>
+                            </ol>-->
+                        </div> 
+                        <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        </ul>              
+                    </div>
+                </nav>  
+                <div class="side-menu sidebar-inverse" >
+                <nav class="navbar navbar-default" role="navigation" >
+                    <div class="side-menu-container" style="width:400px;">
+                        <div class="navbar-header" >
+                            <a class="navbar-brand" href="#">
+                                <div class="icon fa fa-hand-o-right"></div>
+                                <div class="title">Truck Management</div>
+                            </a>
+                            <button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                                <i class="fa fa-times icon"></i>
+                            </button>
+                        </div>
+                        <ul class="nav navbar-nav">
+              <li>
+                  <a href="/apex/TMS_TruckSummaryScreen_VF" target="_self">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Home
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="/setup/ui/recordtypeselect.jsp?ent=01Ic00000001ywJ&retURL=%2Fa8r%2Fo&save_new_url=%2Fa8r%2Fe%3FretURL%3D%252Fa8r%252Fo" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Truck Entry Screen
+                  </span>
+                </a>
+              </li>
+               <!--<li>
+                <a href="apex/TMS_DocumentValidation_VF?core.apexpages.request.devconsole=1" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Document Validation Screen
+                  </span>
+                </a>
+              </li>-->
+               <li>
+                <a href="/a8j/l?retURL=https%3A%2F%2Funilever--SCPaperles--c.cs14.visual.force.com%2Fapex%2FTMS_transportMngmtView_VF%3Fsave_new%3D1%26sfdc.override%3D1&_CONFIRMATIONTOKEN=VmpFPSxNakF4Tmkwd05TMHhNbFF4TVRveE16b3pOaTQ1TnpaYSw1OVpUcGNGcjhUWlF0VVItczRjbmpxLE5qVXlNemN6" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Transporter Mgmnt Screen
+                  </span>
+                </a>
+              </li>
+             <!-- <li>
+                <a href="apex/TMS_dispatchScreen_VF?core.apexpages.request.devconsole=1" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Dispatch Screen
+                  </span>
+                </a>
+              </li>-->
+              
+              <li>
+                <a href="apex/TMS_BayDisplay_VF?core.apexpages.request.devconsole=1" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Bay Display
+                  </span>
+                </a>
+              </li>
+            </ul>
+                    </div>
+                </nav>
+                </div>
+            <div class="container-fluid">
+            <div class="side-body padding-top" >                   
+                <!-- content -->                      
+            <div class="row1">
+            <div class="panel-body">
+            <div class="table-responsive" style="width: 1150px; margin-left:-80px;">
+            <apex:pageBlock tabStyle="Masterbrand__tab" mode="edit" id="pgtruck">
+                <apex:pageBlockTable value="{!DocumentList1}" var="doc">
+                    <apex:column headerValue="Vehicle Number :">
+                        <apex:outputField value="{!doc.Vehicle_Number__c}" />
+                    </apex:column>
+                   <!-- <apex:column headerValue="Truck Material Type :">
+                        <apex:outputField value="{!doc.Record__c}" />
+                    </apex:column>-->
+                    <apex:column headerValue="Transporter :">
+                        <apex:outputField value="{!doc.Transporter__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Challan NO. :">
+                        <apex:outputField value="{!doc.Challan_Number__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Vendor :">
+                        <apex:outputField value="{!doc.Vendor_Customer__c}" />
+                    </apex:column>
+                    </apex:pageBlockTable><br/>
+                <apex:pageBlockSection columns="3" >
+            <apex:selectRadio value="{!searchCategory}" layout="table" >
+                <apex:selectOption itemLabel="PO" itemValue="PO" />
+                <apex:selectOption itemLabel="Manual Entry" itemValue="Manual Entry"/>
+               <!-- <input type="radio" name="Manual Entry" value="Manual Entry" checked="checked"/>Manual Entry-->
+            </apex:selectRadio>
+            <apex:outputLabel value="Delay Reason:" for="accts">&nbsp;&nbsp;
+            <apex:selectList value="{!Delay}"  multiselect="false" size="1" id="accts">
+                <apex:selectOption itemValue="None" itemLabel="-None-"/>
+                <apex:selectOption itemValue="No PO/DO" itemLabel="No PO/DO"/>
+                <apex:selectOption itemValue="User not available" itemLabel="User not available"/>
+                <apex:selectOption itemValue="Network down" itemLabel="Network down"/>
+                <apex:selectOption itemValue="Incorrect documents by transporter" itemLabel="Incorrect documents by transporter"/>
+            </apex:selectList>
+            </apex:outputLabel>
+            </apex:pageBlockSection>
+                <div id="about" style="display: none;">
+                            <apex:inputText style="width:70px;" value="{!initialwt}" onchange="netVal2()"/>
+                        </div>
+               <apex:pageBlockTable value="{!poItem}" var="add">    
+                    <apex:column headerValue="Plant code">
+                        <apex:outputText >{!add.TMS_PO__r.Plant_Code__c}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Po Number">
+                        <apex:outputText >{!add.TMS_PO__r.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Po Item">
+                       <apex:outputText >{!add.Po_Item__c}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Invoice No.">
+                       <apex:outputText >{!add.TMS_PO__r.Invoice_No__c}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Invoice Qty.">
+                       <apex:outputText >{!add.TMS_PO__r.Invoice_Qty__c}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="UOM">
+                       <apex:outputText >{!add.TMS_PO__r.UOM__c}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Material Code">
+                        <apex:outputText >{!add.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Material Description">
+                       <apex:outputText >{!add.Material_Description__c}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Initial Wt.">
+                        <div id="about01">
+                        <apex.outputText>{!add.Initial__c}</apex.outputText>
+                        </div>
+                        <div id="about" style="display: none;">
+                            <apex:inputText style="width:70px;" value="{!initialwt}" onchange="netVal2()"/>
+                        </div>
+                    </apex:column>
+                    <apex:column headerValue="Final Wt.">
+                        <div id="about02">
+                        <apex.outputText>{!add.Final_Wt__c}</apex.outputText>
+                         </div>
+                        <div id="about1" style="display: none;">
+                            <apex:inputText style="width:70px;" value="{!finalwt}" onchange="netVal2()" />
+                        </div>
+                    </apex:column>
+                    <apex:column headerValue="Net Quantity">
+                        <apex.outputText>{!add.Net_Quantity__c}</apex.outputText>
+                    </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock>
+                <!--<div align="center" draggable="false" >
+                        <apex:commandButton value=" Add PO Item " action="{!addFilter}" style="float:center;"/>
+                </div> -->
+            
+                 
+                <table align='right' id="potab">
+                <tr><td><apex:commandButton value="Get Data - SAP" styleClass="myClass" disabled="true" /></td><td style="width:30px;"></td>
+                <td><apex:commandButton value="Accept Truck" action="{!acceptTruck}" styleClass="myClass" disabled="true" /></td><td style="width:30px;"></td>
+                <td><input type="button" value="Manual Weight" id="button" style="background-color:#AC33FF;color:black;border: none;height:26px;font-weight: bold; border-radius: 3px;" /></td><td style="width:30px;"></td>
+                <td><apex:commandButton value="Qty. Validated" action="{!qtyValidate}"  styleClass="myClass" /></td></tr>                
+                </table>                
+               
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>                     
+            </div>
+            </div>
+                                
+</body>
+
+</apex:form>
+</apex:page>

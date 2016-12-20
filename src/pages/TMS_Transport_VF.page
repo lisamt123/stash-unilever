@@ -1,23 +1,52 @@
-<apex:page standardController="TMS_Transporter_Management_Screen__c" >
-    <apex:form >
+<apex:page standardController="TMS_Transporter_Management_Screen__c" extensions="TMS_Transport_CC" id="pgid">
+
+    <apex:form id="frm" >
+        
+            
+    <script>
+    function checkDup(e){
+        var vhNum = document.getElementById(e).value;t
+        
+        onFormSubmit(vhNum);
+        
+}
+    </script>
+        
         <div align="right">
-              <b>Plant Name : </b>{!$User.Division} <br/>          
+              <b>Plant Name : </b>{!$Setup.Tms_PlantCode__c.Plant_Code__c} <br/>          
         </div>
-        <apex:pageblock title="Transporter Management Screen" mode="edit">
+        <apex:pageblock title="Transporter Management Screen" mode="edit" id="theBlock">
             <apex:pageMessages ></apex:pageMessages>
             <apex:pageBlockButtons >
-                <apex:commandButton value="save" action="{!save}"/>
+                <apex:commandButton value="save"  action="{!checkDuplicate}"/>
                 <apex:commandButton value="Cancel" action="{!cancel}"/>
             </apex:pageBlockButtons>
             <apex:pageblockSection >
                 
                 <!--<apex:outputField value=""/>-->
                 <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Placement_Date__c}"/>
-                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Destination__c}"/>
+                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Customer__c}"/>
                 <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Transporter__c}"/>
                 <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Truck_Type__c}"/>
                 <!--<apex:inputField value="{!TMS_Transporter_Management_Screen__c.Date_Time__c}"/>-->
             </apex:pageblockSection>
+            <apex:pageBlockSection title="Transporter Placement" rendered="{!NOT(ISBLANK(TMS_Transporter_Management_Screen__c.Id))}" id="theSection" >
+                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Truck_Number__c}" id="vhNumber" required="true"  />
+                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Actual_Truck_Type__c}"/>
+                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.Reporting_Time__c}"/>
+                <apex:inputField value="{!TMS_Transporter_Management_Screen__c.LR_Number__c}" required="true" />
+            </apex:pageBlockSection>
         </apex:pageblock>
+        
+        <apex:actionFunction name="onFormSubmit" 
+                     action="{!checkDuplicate}" 
+                     reRender="frm" >
+            
+            <apex:param name="fparam" assignTo="{!vehicleNum}" value="" />
+        </apex:actionFunction>
+        
     </apex:form>
+    
+    
+
 </apex:page>

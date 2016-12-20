@@ -1,0 +1,246 @@
+<apex:page controller="TMS_GETPOFROMSAP">
+
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/redmond/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+<link href="{!URLFOR($Resource.jtable, 'jtable.2.4.0/themes/jqueryui/jtable_jqueryui.min.css')}" rel="stylesheet" type="text/css" />
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"/>
+
+<apex:includeScript value="{!URLFOR($Resource.jtable, 'jtable.2.4.0/jquery.jtable.min.js')}"/>
+
+<apex:remoteObjects >
+    <apex:remoteObjectModel jsShortHand="acct" name="TMS_PO__c" fields="Id,Truck_Entry_Checklist__c,Name,PO_Number__c,Invoice_Qty__c,UOM__c"
+        retrieve="{!$RemoteAction.TMS_GETPOFROMSAP.retrievePO}"/>
+        
+    <apex:remoteObjectModel jsShortHand="opp" name="TMS_PO_items__c" fields="Id,TMS_PO__c,Name,Initial__c,Material_Description__c,choosePO__c"/>
+
+</apex:remoteObjects>
+
+<script>
+
+var $j = jQuery.noConflict();
+$j(document).ready(function() {
+    $j("#records").jtable({
+        title: "PO Details",
+        jqueryuiTheme: true, 
+        saveUserPreferences: false,
+        paging: true,
+        pageSize: 10,
+        pageSizes: [10, 25, 50, 75, 100],
+        
+        fields: {
+            Truck_Entry_Checklist__c: {
+                    type:"hidden",
+                    edit: false,
+                    defaultValue: 'a8rc00000008U9V'
+                },
+
+             Id: {
+                key: true,
+                list: false
+            },
+            TMS_PO_items__c: {
+                title: "",
+                width: "1%",
+                sorting: false,
+                openChildAsAccordion: true,
+                create: false,
+                edit: false,
+                display: function(account) {
+                    return setupChildren(account, opportunityConfig);
+                }
+            },
+            PO_Number__c : { title: "PO Number"},
+            Invoice_Qty__c: { title: "Invoice Quantity" },
+            Name: { title: "Invoice Number" },
+            UOM__c: { title: "UOM" }
+                   
+           
+        },
+        actions: {
+            listAction: function (postData, jtParams) {
+                return listAccounts(postData, jtParams);
+            },
+            createAction: function (postData) {
+                return upsert(new SObjectModel.acct(getFields(postData)), getAccountObject);  
+            },
+            updateAction: function(postData) {
+                return upsert(new SObjectModel.acct(getFields(postData)), getAccountObject);
+            }
+        }
+    });
+    
+    $j("#records").jtable("load");
+    
+        
+        function listAccounts(postData, jtParams) {
+            var limitVal = jtParams.jtPageSize;
+            var offsetVal = jtParams.jtStartIndex;
+            
+            var criteria = {
+                limit: limitVal,
+                where: { Truck_Entry_Checklist__c: { eq: 'a8rc00000008U9V' } }, 
+                orderby: [ {Id: 'DESC'} ]
+            };
+            // offsetVal must be at least 1
+            if (offsetVal >= 1) {
+                criteria.offset = offsetVal;
+            }
+            
+            return retrieve(new SObjectModel.acct(), getAccountObject, criteria);
+        }
+        
+        function getAccountObject(record) {
+            return {
+                Name : record.get("Name"),
+                Id:record.get("Id"),
+                PO_Number__c : record.get("PO_Number__c"),
+                Invoice_Qty__c : record.get("Invoice_Qty__c"),
+                Truck_Entry_Checklist__c : record.get("Truck_Entry_Checklist__c"),
+                UOM__c : record.get("UOM__c")
+            };
+        }
+      
+    
+    function setupChildren(account, configFunc) {
+        var config = configFunc(account);
+        var openLink = $j("<img src='" + "http://www.kniessmediagroup.de/kmg/pro.png" + "' title='" + config.title + "' alt='" + config.title + "' />");
+        openLink.click(function(event) {
+            event.preventDefault();
+            
+            $j("#records").jtable("openChildTable", openLink.closest("tr"), config, function(data) {
+                data.childTable.jtable("load");
+            });
+        });
+        
+        return openLink;
+    }
+    
+    function opportunityConfig(account) {
+        var config = {
+            title:  account.record.PO_Number__c + " - Line Items",
+            img: "{!URLFOR($Resource.TableIcons, 'opportunities32.png')}",
+            actions: {
+                listAction: function(data) { 
+                    return listOpportunities(account);
+                },
+                updateAction: function(postData) {
+                    return upsert(new SObjectModel.opp(getFields(postData)), getOpportunityObject);  
+                },
+                createAction: function(postData) {
+                    return upsert(new SObjectModel.opp(getFields(postData)), getOpportunityObject);  
+                }
+                
+            },
+            fields: {
+                TMS_PO__c: {
+                    type:"hidden",
+                    edit: false,
+                    defaultValue: account.record.Id
+                },
+                Id: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+                Name: {
+                    title: "Name",
+                    width: "30%"
+                },
+                Initial__c : {
+                    title: "Weight",
+                    type: "number"
+                }
+            }
+        };
+        
+        function listOpportunities(account) {
+            return retrieve(new SObjectModel.opp(), getOpportunityObject, { 
+                limit: 100 ,
+                where: { TMS_PO__c: { eq: account.record.Id } } 
+            });
+        }
+            
+        function getOpportunityObject(record) {
+            return {
+                Id : record.get("Id"),
+                Name : record.get("Name"),
+                TMS_PO__c:record.get("TMS_PO__c"),
+                Initial__c : record.get("Initial__c")
+                
+            };
+        }
+        
+        return config;
+    }
+    
+    
+    
+    function retrieve(modelVar, objectConverterFunc, config) {
+        return $j.Deferred(function (dfd) {
+            modelVar.retrieve(config,
+                function(err, records, event) {
+                    if (err) {
+                        handleErr(dfd, err);
+                    } else {
+                        // construct the result in the jTable expected format
+                        var data = {
+                            Result: "OK",
+                            Records: [],
+                            TotalRecordCount: event.result.TotalRecordCount
+                        };
+                        // add the records to the results
+                        records.forEach(function(record) {
+                            data.Records.push(objectConverterFunc(record));
+                        });
+                        dfd.resolve(data);
+                    }
+                }
+            );
+        });
+    }
+
+    function upsert(modelVar, objectConverterFunc) {
+        return $j.Deferred(function(dfd) { 
+            modelVar.upsert(function(err, result) {
+                if (err) {
+                    handleErr(dfd, err);
+                } else {
+                    var rec = objectConverterFunc(modelVar);
+                    rec.Id = result[0];
+                    dfd.resolve({
+                        Result: "OK",
+                        Record: rec
+                    });
+                }
+            });
+        });
+    }
+    
+    function handleErr(dfd, err) {
+        var data = {
+            Result: "ERROR",
+            Message: err
+        };
+        dfd.resolve(data);
+    }
+    
+    function getFields(postData) {
+       // extract the fields (simple name/values)
+       // from the postData query string
+       var rec = {};
+       var pairs = postData.split("&");
+       var i, pair;
+       for (i = 0; i < pairs.length; i++) {
+           pair = pairs[i].split("=");
+           rec[pair[0]] = decodeURIComponent( pair[1].replace(/\+/g, ' ') );
+       }
+       return rec;
+    }
+});
+</script>
+
+<div id="records"></div>
+
+</apex:page>

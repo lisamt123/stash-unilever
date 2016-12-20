@@ -1,58 +1,310 @@
 <apex:page standardController="TMS_Truck_Entry_Checklist__c" standardStylesheets="true" extensions="TMS_truckentryscreen" action="{!truckentryscreen}">
-<apex:form id="frm">
+<apex:form id="frm" >
+<apex:stylesheet value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css"/>
+ 
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+ 
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"/>
  <script type = "text/javascript">
-    function checkField(chall)
+    function checkchall(chall)
     {
-    if (/[^0-9a-bA-B\s]/gi.test(chall.value))
-    {
-    alert ("Only alphanumeric characters are valid for Challan Number");
-    fieldname.value = "";
-    fieldname.focus();
-    return false;
+        if (!/^[0-9a-zA-Z]+$/gi.test(chall.value))
+        {
+        alert ("Only alphanumeric(without Space and Special characters) are valid for Challan");
+        chall.value = "";
+        chall.focus();
+        return false;
+        }
     }
-}
+    function checkdr(drlic)
+    {
+        if (!/^[0-9a-zA-Z]+$/gi.test(drlic.value))
+        {
+        alert ("Only alphanumeric(without Space and Special characters) are valid for Driver License Number");
+        drlic.value = "";
+        drlic.focus();
+        return false;
+        }
+    }
+    function checklr(lr)
+    {
+        if (!/^[0-9a-zA-Z]+$/gi.test(lr.value))
+        {
+        alert ("Only alphanumeric(without Space and Special characters) are valid for LR Number");
+        lr.value = "";
+        lr.focus();
+        return false;
+        }
+    }
+    function checkpo(po)
+    {
+        if (!/^[0-9]+$/gi.test(po.value))
+        {
+        alert ("Only numeric(without Space and Special characters) are valid for PO Number");
+        po.value = "";
+        po.focus();
+        return false;
+        }
+    }
+    
+    function checkdriver(driver)
+    {
+        if (!/^[a-zA-Z]/gi.test(driver.value))
+        {
+        alert ("Only alphabets(without Space and Special characters) are valid for Driver Name");
+        driver.value = "";
+        driver.focus();
+        return false;
+        }
+    }
+    function alerfun(){
+        alert("Truck Entry Details Saved Successfully");   
+    }
 </script>
+<script>
+    function checkveh(vehno)
+    {   var veh = /^[0-9a-zA-Z]\w{5,}$/;
+        if (!(vehno.value.match(veh)) )
+        {
+        alert ("Only alphanumeric(without Space and Special characters) must be minimum 6 characters are valid for Vehicle Number");
+        vehno.value = "";
+        vehno.focus();
+        return true;
+        }
+    }
+</script>
+ 
+<apex:outputPanel id="scriptpanel">
+ 
+<script>
+ 
+$(function() {
+ 
+//creating a array of all available object of organization
+ 
+var tags= [{!myList}];
+ 
+//convertinga input field into autocomplete
+ 
+$( "#auto" ).autocomplete({
+ 
+source: function( request, response ) {
+ 
+//applying regex to search only most matching elements
+ 
+var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+ 
+response( $.grep( tags, function( item ){
+ 
+return matcher.test( item );
+ 
+}) );
+ 
+}
+ 
+});
 
+
+//creating select event on autocomplete input box to get available
+ 
+$( "#auto" ).on( "autocompleteselect", function( event, ui ) {
+ 
+showfields(ui.item.value); 
+ 
+} );
+ 
+}); 
+</script>
+</apex:outputPanel>
+<apex:outputPanel id="scriptpanel1">
+ 
+<script>
+ 
+$(function() {
+ 
+//creating a array of all available object of organization
+ 
+var tags= [{!myList1}];
+ 
+//convertinga input field into autocomplete
+ 
+$( "#auto1" ).autocomplete({
+ 
+source: function( request, response ) {
+ 
+//applying regex to search only most matching elements
+ 
+var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+ 
+response( $.grep( tags, function( item ){
+ 
+return matcher.test( item );
+ 
+}) );
+ 
+}
+ 
+});
+
+
+//creating select event on autocomplete input box to get available
+ 
+$( "#auto1" ).on( "autocompleteselect", function( event, ui ) {
+ 
+showfields1(ui.item.value); 
+ 
+} );
+ 
+}); 
+</script>
+</apex:outputPanel>    
+<apex:outputPanel id="scriptpanel2"> 
+<script> 
+$(function() {
+ 
+//creating a array of all available object of organization
+ 
+var tags= [{!myList2}];
+ 
+//convertinga input field into autocomplete
+ 
+$( "#auto2" ).autocomplete({
+ 
+source: function( request, response ) {
+ 
+//applying regex to search only most matching elements
+ 
+var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+ 
+response( $.grep( tags, function( item ){
+ 
+return matcher.test( item );
+ 
+}) );
+ 
+}
+ 
+});
+
+
+//creating select event on autocomplete input box to get available
+ 
+$( "#auto2" ).on( "autocompleteselect", function( event, ui ) {
+ 
+showfields2(ui.item.value); 
+ 
+} );
+ 
+});
+
+ 
+</script>
+</apex:outputPanel>    
+       
     <apex:sectionHeader title="TMS_Truck Entry Screen" subtitle="New TMS_Truck Entry Screen"/>
+    <apex:pageMessages ></apex:pageMessages>
+    <div align="right">
+              <b>Plant Name : </b>{!$Setup.Tms_PlantCode__c.Plant_Code__c} <br/>          
+    </div>
+    
     <apex:pageBlock title="TMS_Truck Entry Screen Edit" mode="edit">
+    <apex:actionFunction name="showfields" action="{!showfields}" reRender="listpanel,tablesection,msg" status="loadingfields" >
+        <apex:param name="vendname" value="" assignTo="{!vendname}"/>
+    </apex:actionFunction>
+    <apex:actionFunction name="showfields1" action="{!showfields1}" reRender="listpanel,tablesection,msg" status="loadingfields" >
+        <apex:param name="vendname1" value="" assignTo="{!vendname1}"/>
+    </apex:actionFunction>
+    <apex:actionFunction name="showfields2" action="{!showfields2}" reRender="listpanel,tablesection,msg" status="loadingfields" >
+        <apex:param name="materialdescname" value="" assignTo="{!materialdescname}"/>
+    </apex:actionFunction>
         <apex:pageblockbuttons >
-            <apex:pageMessages ></apex:pageMessages>
-            <apex:commandButton value="Save" action="{!save}" reRender="frm"/>
+            <!--<apex:pageMessages ></apex:pageMessages>-->
+            <apex:commandButton value="Save" action="{!save}" reRender="frm" />
             <apex:commandButton value="Cancel" action="{!cancel}"/>
-            {!$Setup.Tms_PlantCode__c.Plant_Code__c}
+    
         </apex:pageblockbuttons>
-        <apex:pageBlockSection title="Information" columns="2" collapsible="false">
-            <apex:outputField value="{!TMS_Truck_Entry_Checklist__c.recordtypeid}">
-                <!--<apex:param value="{!TMS_Truck_Entry_Checklist__c.recordtypeid}" name="recType" assignTo="{!recdtype}"/>-->             
-            </apex:outputField>
-            <!--<apex:outputText label="Truck Type">{!recdtype}</apex:outputText>-->
-            <apex:inputField value="{!truckentry.Challan_Number__c}" id="chall" required="true" rendered="{!challan}" onblur="checkField(this)"/>
-            <apex:inputField value="{!truckentry.Vendor__c}" required="true" rendered="{!vendor}"/>
-            <apex:inputField value="{!truckentry.LR_Number__c}" required="true" rendered="lrnum"/>
-            <apex:inputField value="{!truckentry.Transporter__c}" rendered="{!transporter}"/>
-            <apex:inputField value="{!truckentry.PO_Number__c}" required="true" rendered="{!ponumber}"/>
-            <apex:inputField value="{!truckentry.Vehicle_Number__c}" required="true"/>
-            <!--<apex:inputField value="{!truckentry.RFID__c}" rendered="{!IF(TMS_Truck_Entry_Checklist__c.recordtype.Name=='Engineering_Materials_Truck',false,true)}"/>-->
-            <apex:inputField value="{!truckentry.Name}" required="true"/>
-           <!-- <apex:inputField value="{!truckentry.Status__c}" rendered="{!status}"/>-->
-            <apex:inputField value="{!truckentry.Material_Desc__c}" required="true"/>
-           <!-- <apex:inputField value="{!truckentry.Action__c}" rendered="{!action}"/>-->
-            <!--<apex:inputField value="{!truckentry.Relay_Item_Id__c}"/>-->
-           <!-- <apex:inputField value="{!truckentry.Initial_Wt__c}" rendered="{!initialwt}"/>-->
-           <!-- <apex:inputhidden value="{!truckentry.Relay_Item_Id__c}" rendered="{!relayitem}"/>-->
-           <!-- <apex:inputField value="{!truckentry.TMS_Current_Weight__c}" rendered="{!currentwt}"/>-->
-           <!-- <apex:inputhidden value="{!truckentry.Relay_Item_Id__c}" rendered="{!relayitem}"/>-->
-           <!-- <apex:inputField value="{!truckentry.TMS_ItemWeight__c}" rendered="{!itemwt}"/>-->
+        <apex:pageBlockSection title="Information" columns="2" collapsible="false">            
+            <apex:outputField value="{!TMS_Truck_Entry_Checklist__c.recordtypeid}" rendered="{!ISBLANK(TMS_Truck_Entry_Checklist__c.Id) }"/>
+            <apex:outputField value="{!TMS_Truck_Entry_Checklist__c.Truck__c}" rendered="{!NOT(ISBLANK(TMS_Truck_Entry_Checklist__c.Id))}"/>
+            <!--<apex:outputText label="Truck Type">{!recdtype}</apex:outputText>--> 
+            <apex:pageBlockSectionItem >
+            <apex:outputlabel >Driver Name</apex:outputlabel>
+                <apex:outputpanel layout="block" styleClass="requiredInput">
+                    <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                        <apex:inputField value="{!TMS_Truck_Entry_Checklist__c.Name}"  id="driver" onchange="checkdriver(this)"/>
+                </apex:outputpanel>            
+            </apex:pageBlockSectionItem>                                                       
+            <apex:inputField value="{!TMS_Truck_Entry_Checklist__c.Vehicle_Number__c}"  id="vehno" onchange="checkveh(this)"/>
+            <apex:pageBlockSectionItem rendered="{!license}">
+            <apex:outputlabel >Driver License Number</apex:outputlabel>
+                <apex:outputpanel layout="block" styleClass="requiredInput">
+                    <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                        <apex:inputField value="{!TMS_Truck_Entry_Checklist__c.Driver_License_Number__c}"  id="drlic" onchange="checkdr(this)" />
+                </apex:outputpanel>            
+            </apex:pageBlockSectionItem>
+                        
+            <apex:pageBlockSectionItem rendered="{!vendor}">            
+            <apex:outputLabel >Vendor/Customer</apex:outputLabel>            
+            <div class="requiredInput">
+            <div class="requiredBlock"></div>               
+                <input id="auto"/> &nbsp;&nbsp;{!TMS_Truck_Entry_Checklist__c.Vendor__r.Name}            
+            </div>
+            </apex:pageBlockSectionItem>
+            <!--<apex:pageBlockSectionItem rendered="{!vendor}"> 
+                <apex:outputLabel >Vendor/Customer</apex:outputLabel>            
+                <apex:outputText value="{!TMS_Truck_Entry_Checklist__c.Vendor__r.Name}"/>
+            </apex:pageBlockSectionItem> -->           
+            <apex:pageBlockSectionItem rendered="{!transporter}">
+            <apex:outputLabel >Transporters</apex:outputLabel>           
+            <div class="requiredInput">
+            <div class="requiredBlock"></div>
+            <div>               
+                <input id="auto1"/>&nbsp;&nbsp;{!TMS_Truck_Entry_Checklist__c.Transporters__r.Name}         
+            </div>
+            </div>
+            </apex:pageBlockSectionItem>
+            <!--<apex:inputField value="{!TMS_Truck_Entry_Checklist__c.Transporters__c}" required="true" rendered="{!transporter}"/>-->
+            <apex:pageBlockSectionItem rendered="{!challan}" >
+            <apex:outputlabel >Challan Number</apex:outputlabel>
+                <apex:outputpanel layout="block" styleClass="requiredInput">
+                    <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                        <apex:inputField value="{!TMS_Truck_Entry_Checklist__c.Challan_Number__c}" id="chall"   onchange="checkchall(this)"/>
+                </apex:outputpanel>            
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem rendered="{!lrnum}">
+            <apex:outputlabel >LR Number</apex:outputlabel>
+                <apex:outputpanel layout="block" styleClass="requiredInput">
+                    <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                        <apex:inputField value="{!TMS_Truck_Entry_Checklist__c.LR_Number__c}"  id="lr" onchange="checklr(this)" /> 
+                </apex:outputpanel>            
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem rendered="{!ponumber && rectype!='FG Dispatch Truck'}">
+            <apex:outputlabel >Po/Annexure Number</apex:outputlabel>
+                <apex:outputpanel layout="block" styleClass="requiredInput">
+                    <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                        <apex:inputField value="{!TMS_Truck_Entry_Checklist__c.PO_Number__c}" label="Po/Annexure Number"  id="po" onchange="checkpo(this)"/>  
+                </apex:outputpanel>            
+            </apex:pageBlockSectionItem>
             
+            <!--<apex:inputField value="{!TMS_Truck_Entry_Checklist__c.Material_Desc__c}" rendered="{!matdesc}"/>-->
+            <apex:pageBlockSectionItem rendered="{!matdesc}">
+            <apex:outputLabel >Material Desc</apex:outputLabel>           
+            <div class="requiredInput">
+            <div class="requiredBlock"></div>
+            <div>               
+                <input id="auto2"/> &nbsp;&nbsp;{!TMS_Truck_Entry_Checklist__c.Material_Desc__r.Name}           
+            </div>
+            </div>
+            </apex:pageBlockSectionItem>
+             
         </apex:pageBlockSection>
-            
-            <apex:pageBlockSection id="rfsec" title="RFID Information" columns="1"  rendered="{!truckentry.truck_Action__c=='Accept'}">
-                    <apex:inputField value="{!truckentry.RFID__c}" rendered="{!IF(TMS_Truck_Entry_Checklist__c.recordtype.Name=='Engineering_Materials_Truck',false,true)}"/>
-                    <apex:commandButton id="Update" value="Get RFID" action="{!getRFID}" reRender="rfsec" />
+        <apex:outputPanel id="ajaxrequest1" >
+            <apex:pageBlockSection id="frm1" title="RFID Information" columns="1"  rendered="{!TMS_Truck_Entry_Checklist__c.truck_Action__c=='Accept' && rectype!='General Vehicle'}">
+                    <apex:inputField value="{!TMS_Truck_Entry_Checklist__c.RFID__c}" />
+                    <apex:commandButton value="Get RFID" action="{!getRFID}" reRender="frm1"/>
         </apex:pageBlockSection>
-            
-            
-        <apex:pageBlockSection title="Checklist" columns="2">
+         </apex:outputPanel>
+        <apex:pageBlockSection title="Checklist" columns="2" >
             <apex:pageBlockTable value="{!tmschklists}" var="chk" columnsWidth="400,200*">
                 <apex:column headerValue="Questions">
                     <apex:outputText value="{!chk.Name}"/>
@@ -60,24 +312,39 @@
                 <apex:column headerValue="Answer">
                     <apex:inputField value="{!chk.Expected_Answer__c}"/>
                 </apex:column>
+                <apex:column headerValue="Dates">
+                    <apex:inputField value="{!chk.Date__c}" rendered="{!IF(chk.Date_Flag__c=='X',True,False)}"/>
+                </apex:column>
             </apex:pageBlockTable>                
         </apex:pageBlockSection>
-        
+        <apex:pageBlockSection title="Detention Reason" rendered="{!NOT(ISBLANK(TMS_Truck_Entry_Checklist__c.Id))}">
+                    <apex:inputField value="{!TMS_Truck_Entry_Checklist__c.Detention_Reason__c}"/>                    
+                </apex:pageBlockSection>
         <apex:pageblocksection title="Truck Actions">
             <apex:PageBlockSectionItem >
                 <apex:outputLabel value="Truck Action" />
-                    <apex:actionRegion >
-                        <apex:inputField value="{!truckentry.truck_Action__c}" required="true">
-                        <apex:actionSupport event="onchange" reRender="ajaxrequest" /></apex:inputField>
+                    <apex:actionRegion >                    
+                        <apex:outputpanel layout="block" styleClass="requiredInput">
+                            <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputField value="{!TMS_Truck_Entry_Checklist__c.truck_Action__c}">                        
+                                    <apex:actionSupport event="onchange" reRender="ajaxrequest,ajaxrequest1" />
+                                </apex:inputField>
+                        </apex:outputpanel> 
                     </apex:actionRegion>
             </apex:PageBlockSectionItem>    
         </apex:pageblocksection>
         
         <apex:outputPanel id="ajaxrequest">
-        <apex:pageBlockSection rendered="{!truckentry.truck_Action__c=='Reject'}">
-          <apex:inputField value="{!truckentry.Reject_Reason__c}" /> </apex:pageBlockSection>
+        <apex:pageBlockSection rendered="{!TMS_Truck_Entry_Checklist__c.truck_Action__c=='Reject'}">
+          <apex:inputField value="{!TMS_Truck_Entry_Checklist__c.Reject_Reason__c}" /> </apex:pageBlockSection>
       </apex:outputPanel>
-            
+       
+       <apex:pageblocksection title="Weights">
+            <apex:outputField value="{!TMS_Truck_Entry_Checklist__c.Initial_Wt__c}"/> 
+            <apex:outputField value="{!TMS_Truck_Entry_Checklist__c.TMS_Current_Weight__c}"/>
+            <apex:outputField value="{!TMS_Truck_Entry_Checklist__c.Final_Wt__c}"/>       
+       </apex:pageblocksection>
+       
     </apex:pageBlock>
 </apex:form>
 </apex:page>

@@ -1,10 +1,10 @@
-<apex:page cache="true" sidebar="false" showHeader="false"   docType="" standardStylesheets="true" controller="TMS_Documentvalidation_CC" extensions="TMS_GETPOFROMSAP">
+<apex:page cache="true" sidebar="false" showHeader="false" docType="html-5.0" standardStylesheets="true" controller="TMS_Documentvalidation_CC" extensions="TMS_GETPOFROMSAP">
 
 <apex:remoteObjects >
-    <apex:remoteObjectModel jsShortHand="acct" name="TMS_PO__c" fields="Id,Truck_Entry_Checklist__c,Name,PO_Number__c,Invoice_Qty__c,UOM__c"
+    <apex:remoteObjectModel jsShortHand="acct" name="TMS_PO__c" fields="Id,Truck_Entry_Checklist__c,Name,PO_Number__c,Invoice_No__c,UOM__c,Plant_Code__c"
         retrieve="{!$RemoteAction.TMS_GETPOFROMSAP.retrievePO}"/>
         
-    <apex:remoteObjectModel jsShortHand="opp" name="TMS_PO_items__c" fields="Id,TMS_PO__c,Name,Initial__c,Material_Description__c,choosePO__c"/>
+    <apex:remoteObjectModel jsShortHand="opp" name="TMS_PO_items__c" fields="Id,TMS_PO__c,Name,Initial__c,Material_Description__c,choosePO__c,Invoice_Qty__c,UOM__c,Po_Item__c,Final_Wt__c"/>
 
 </apex:remoteObjects>
 <apex:form >
@@ -12,9 +12,9 @@
     <meta charset="utf-8" />        
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- CSS Libs -->
-    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/redmond/jquery-ui.css" rel="stylesheet" type="text/css" />
 
-    <link href="{!URLFOR($Resource.jtable, 'jtable.2.4.0/themes/jqueryui/jtable_jqueryui.min.css')}" rel="stylesheet" type="text/css" />
+
+
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap.min.css')}" />
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/font-awesome.min.css')}" />
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/animate.min.css')}" />
@@ -25,9 +25,13 @@
 
 
     <script type="text/javascript" src="{!URLFOR($Resource.VEP_Bootstrap, '/bootstrap-3.3.5/dist/js/bootstrap.min.js')}"></script>
+       
     <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.js')}"></script> 
     <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/app.js')}"></script>
 
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/redmond/jquery-ui.css" rel="stylesheet" type="text/css" />
+ <link href="{!URLFOR($Resource.jtable, 'jtable.2.4.0/themes/jqueryui/jtable_jqueryui.min.css')}" rel="stylesheet" type="text/css" />
+ 
 <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
 <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"/>
 <apex:includeScript value="{!URLFOR($Resource.jtable, 'jtable.2.4.0/jquery.jtable.min.js')}"/>
@@ -35,11 +39,13 @@
    
 </head>
 
-
 <script>
 
 var $ = jQuery.noConflict();
+$.fn.bootstrapBtn = $.fn.button.noConflict();
 $(document).ready(function() {
+   
+    var opt = ["Ton","KG","EA","PC","Ltr","Mtr","Roll","CS"];
     $("#records").jtable({
         title: "PO Details",
         jqueryuiTheme: true, 
@@ -71,39 +77,73 @@ $(document).ready(function() {
                 edit: false,
                 display: function(account) {
                     return setupChildren(account, opportunityConfig);
+                   
                 }
             },
-            PO_Number__c : { title: "PO Number"},
-            Invoice_Qty__c: { title: "Invoice Quantity" },
-            Name: { title: "Invoice Number" },
-            UOM__c: { title: "UOM" 
-                    	
-                    },
-            Gender: {
-                    title: 'Gender',
-                    options: { 'M': 'Male', 'F': 'Female' },
-                    list: false
-                }
-                   
-           
+            Plant_Code__c : {   title: "Plant Code",
+                                create: false,
+                                edit: false,
+                                display: function (data) {
+                                return '{!$Setup.Tms_PlantCode__c.Plant_Code__c}';
+                                }
+                            },
+            Name : { title: "PO/Annexure Number",
+                    type: "number",
+                    inputClass : 'validate[required]'
+                    
+                    
+            },
+            Invoice_No__c: { title: "Invoice Number",
+                             inputClass : 'validate[required]'   
+             }
+            
         },
         actions: {
             listAction: function (postData, jtParams) {
                 return listAccounts(postData, jtParams);
             },
             createAction: function (postData) {
+                //  alert(getFields(postData).Invoice_No__c.length);
+                if(getFields(postData).Name.length < 1 )
+                {
+                    return $.Deferred(function(dfd) { 
+                        handleErr(dfd,"PO/Annexure Number cannot be blank");
+                    });
+
+                }
+                else if( getFields(postData).Invoice_No__c.length < 1)
+                 {
+                     return $.Deferred(function(dfd) { 
+                        handleErr(dfd,"Invoice Number cannot be blank");
+                    });
+                 }
+                else
                 return upsert(new SObjectModel.acct(getFields(postData)), getAccountObject);  
             },
             updateAction: function(postData) {
-            alert(postData);
+            if(getFields(postData).Name.length < 1 )
+                {
+                    return $.Deferred(function(dfd) { 
+                        handleErr(dfd,"PO/Annexure Number cannot be blank");
+                    });
+
+                }
+                else if( getFields(postData).Invoice_No__c.length < 1)
+                 {
+                     return $.Deferred(function(dfd) { 
+                        handleErr(dfd,"Invoice Number cannot be blank");
+                    });
+                 }
+                else
                 return upsert(new SObjectModel.acct(getFields(postData)), getAccountObject);
             },
-            deleteAction: function(postData) {
-                alert(data.record.Id);
-                 return upsert(new SObjectModel.acct(getFields(postData)), getAccountObject);
-            }
+             deleteAction :  function (data) {
+            DeletePORecord(data.Id);
+            location.reload();
+      }
+             
         },
-        
+
         
                 //Register to selectionChanged event to hanlde events
             selectionChanged: function () {
@@ -153,16 +193,23 @@ $(document).ready(function() {
         function getAccountObject(record) {
             return {
                 Name : record.get("Name"),
+                Invoice_No__c : record.get("Invoice_No__c"),
                 Id:record.get("Id"),
-                PO_Number__c : record.get("PO_Number__c"),
-                Invoice_Qty__c : record.get("Invoice_Qty__c"),
-                Truck_Entry_Checklist__c : record.get("Truck_Entry_Checklist__c"),
-                UOM__c : record.get("UOM__c")
+                Truck_Entry_Checklist__c : record.get("Truck_Entry_Checklist__c")
+                
             };
         }
       
     
     function setupChildren(account, configFunc) {
+        var dList =   '{!tAction}';
+        
+               if(dList == 'Qnty Val')
+                   document.getElementsByClassName('jtable-toolbar-item')[0].style.visibility = 'hidden'; 
+               if(dList != 'Doc Val')
+                   document.getElementsByClassName('jtable-toolbar-item')[0].style.visibility = 'hidden';         
+               
+        
         var config = configFunc(account);
         var openLink = $("<img src='" + "http://www.kniessmediagroup.de/kmg/pro.png" + "' title='" + config.title + "' alt='" + config.title + "' />");
         openLink.click(function(event) {
@@ -170,26 +217,79 @@ $(document).ready(function() {
             
             $("#records").jtable("openChildTable", openLink.closest("tr"), config, function(data) {
                 data.childTable.jtable("load");
+              
+              
+                //alert(dList);
+          if(dList == 'Qnty Val')
+               document.getElementsByClassName('jtable-toolbar-item')[1].style.visibility = 'hidden';
+          if(dList != 'Doc Val'){
+               document.getElementsByClassName('jtable-toolbar-item')[1].style.visibility = 'hidden';
+               }         
             });
         });
         
+          
+         
         return openLink;
     }
     
     function opportunityConfig(account) {
+        
+        
+
+    var test1="{!testString}";
+    var matdesc = "{!matDesc}";
+    var arr = test1.split(',');
+  
+    var matText = matdesc.split(',');
+    
+    var text="";
+ 
         var config = {
-            title:  account.record.PO_Number__c + " - Line Items",
+            title:  account.record.Name + " - Line Items",
             img: "{!URLFOR($Resource.TableIcons, 'opportunities32.png')}",
             actions: {
                 listAction: function(data) { 
                     return listOpportunities(account);
                 },
                 updateAction: function(postData) {
-                    return upsert(new SObjectModel.opp(getFields(postData)), getOpportunityObject);  
+                    if(getFields(postData).Po_Item__c.length < 1 )
+                    {
+                        return $.Deferred(function(dfd) { 
+                            handleErr(dfd,"Item details cannot be blank");
+                        });
+
+                    }
+                    else if( getFields(postData).Invoice_Qty__c.length < 1)
+                     {
+                         return $.Deferred(function(dfd) { 
+                            handleErr(dfd,"Invoice quantity cannot be blank");
+                        });
+                     }
+                     else
+                        return upsert(new SObjectModel.opp(getFields(postData)), getOpportunityObject);  
                 },
                 createAction: function(postData) {
+                        if(getFields(postData).Po_Item__c.length < 1 )
+                    {
+                        return $.Deferred(function(dfd) { 
+                            handleErr(dfd,"Item details cannot be blank");
+                        });
+
+                    }
+                    else if( getFields(postData).Invoice_Qty__c.length < 1)
+                     {
+                         return $.Deferred(function(dfd) { 
+                            handleErr(dfd,"Invoice quantity cannot be blank");
+                        });
+                     }
+                     else
                     return upsert(new SObjectModel.opp(getFields(postData)), getOpportunityObject);  
-                }
+                },
+                deleteAction :  function (data) {
+                     DeletePOItemRecord(data.Id);
+                      location.reload();
+             }
                 
             },
             fields: {
@@ -204,19 +304,61 @@ $(document).ready(function() {
                     edit: false,
                     list: false
                 },
-                Name: {
-                    title: "Material Code",
-                    type:"text"
+                Po_Item__c: {
+                    title: "Po Item",
+                    type:"text",
+                    inputClass : 'validate[required]'
                     
+                },
+                Invoice_Qty__c : {
+                    title: "Invoice Quantity",
+                    type: "number",
+                    inputClass : 'validate[required]'
+                },
+                Name:{
+                    title: "Material Code",
+                    inputClass : 'validate[required]',
+                    
+                    options: function(data)
+                    {
+                         if(data.source == 'list')
+                         {
+                         return arr;
+                         }
+                        
+                     return arr;
+                    }
+                
                 },
                 Material_Description__c: {
                     title: "Material Desc",
-                    type: "text"
+                    inputClass : 'validate[required]',
+                    dependsOn:'Name',
+                    options: function(data)
+                    {
+                         var dep = data.dependedValues.Name;
+                         if(data.source == 'list')
+                         {
+                         return matText;
+                         }
+                        
+                     return matText;
+                    }
+                    
+                     
+                     
+                },
+                UOM__c: {
+                    title: 'UOM ',
+                    options: opt,
+                    inputClass : 'validate[required]'
                 },
                 Initial__c : {
-                    title: "Initial Weight",
+                    title: "Item Weight",
                     type: "number"
+                      
                 }
+
             }
         };
         
@@ -230,10 +372,13 @@ $(document).ready(function() {
         function getOpportunityObject(record) {
             return {
                 Id : record.get("Id"),
-                Name : record.get("Name"),
+                Po_Item__c : record.get("Po_Item__c"),
+                Invoice_Qty__c : record.get("Invoice_Qty__c"),
                 TMS_PO__c:record.get("TMS_PO__c"),
                 Initial__c : record.get("Initial__c"),
+                UOM__c : record.get("UOM__c"),
                 Truck_Entry_Checklist__c : record.get("Truck_Entry_Checklist__c"),
+                Name :record.get("Name"),
                 Material_Description__c :record.get("Material_Description__c")
                 
             };
@@ -275,6 +420,7 @@ $(document).ready(function() {
                     handleErr(dfd, err);
                 } else {
                     var rec = objectConverterFunc(modelVar);
+                    
                     rec.Id = result[0];
                     dfd.resolve({
                         Result: "OK",
@@ -286,7 +432,7 @@ $(document).ready(function() {
     }
     
     function remove(objectConverterFunc) {
-    alert(objectConverterFunc);
+        // alert(objectConverterFunc);
 
     }
     
@@ -310,11 +456,12 @@ $(document).ready(function() {
        }
        return rec;
     }
+    
+    
+    //document.getElementsByClassName('jtable-toolbar')[0].style.visibility = 'hidden';
+    
 });
 </script>
-
-
-
 
 <script type="text/javascript">
         function selectAllCheckboxes(obj,receivedInputID){
@@ -325,20 +472,7 @@ $(document).ready(function() {
                 }
             }
         }
-    
-/* function showhide()
-    {
-        // var div = document.getElementById("about");
-        //var div = document.getElementById("about1");
-        document.getElementById("about").style.display = 'block';
-        document.getElementById("about1").style.display = 'block';
-        /*if (div.style.display !== "block") {
-        div.style.display = "block";
-        }
-        else {
-        div.style.display = "none";
-        }  
-    }*/
+
     function calc(A,B,SUM) {
        var one = document.getElementById(A).value;
        var two = document.getElementById(B).value; 
@@ -346,26 +480,7 @@ $(document).ready(function() {
     }
 
 </script>
-<script>
-  function myFunction() {
-    var y = document.getElementById("txt1").value;
-    var z = document.getElementById("txt2").value;
-    var x = +y + +z;
-    document.getElementById("demo").innerHTML = x;
-  }
-</script>
-    <script>
-        $(document).ready(function(){
-    $("#button").click(function(){
-        $("#about").toggle();
-    });
-});
-        $(document).ready(function(){
-    $("#button").click(function(){
-        $("#about1").toggle();
-    });
-});
- </script>
+
 
 <style type="text/css">
 
@@ -414,9 +529,8 @@ color:white !important;
                                 <li> 
                                 <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}"/>
                                 Document Validation screen
-                                <!-- Sitecode need to remove after assigning User to Particluar Site-->
                                 </li>
-                                <!--<li style="margin-left:700px;">{!$User.Division}</li>-->
+                                <li >{!$Setup.Tms_PlantCode__c.Plant_Code__c}</li>
                             </ol>
                            <!-- <ol class="breadcrumb navbar-breadcrumb" style="margin-left:700px;">
                                 <li>HPC- Chiplun Plant</li>
@@ -475,7 +589,8 @@ color:white !important;
                   <span class="icon fa fa-hand-o-up">
                   </span>
                   <span class="title">
-                    Transporter Mgmnt Screen
+                    
+                    Truck Mgmnt Screen
                   </span>
                 </a>
               </li>
@@ -510,6 +625,7 @@ color:white !important;
             <div class="row1">
              
             <div class="panel-body">
+            <apex:pageMessages ></apex:pageMessages>
             <div class="table-responsive" style="width: 1150px; margin-left:-80px;">
             <apex:pageBlock tabStyle="Masterbrand__tab" mode="edit" id="pgtruck">
                 <apex:pageBlockTable value="{!DocumentList}" var="doc">
@@ -529,35 +645,85 @@ color:white !important;
                         <apex:outputField value="{!doc.Vendor_Customer__c}" />
                     </apex:column>
                     </apex:pageBlockTable><br/>
-                <apex:pageBlockSection columns="3" >
+                 
+            <apex:pageBlockSection columns="3">
             <apex:selectRadio value="{!searchCategory}" layout="table" >
                 <apex:selectOption itemLabel="PO" itemValue="PO" />
                 <apex:selectOption itemLabel="Manual Entry" itemValue="Manual Entry"/>
                <!-- <input type="radio" name="Manual Entry" value="Manual Entry" checked="checked"/>Manual Entry-->
             </apex:selectRadio>
-            <apex:outputLabel value="Delay Reason:" for="accts">&nbsp;&nbsp;
-            <apex:selectList value="{!Delay}"  multiselect="false" size="1" id="accts">
+            
+            <apex:pageMessages />
+            <apex:repeat value="{!DocumentList}" var="doc">
+                <apex:outputPanel id="panel">
+                <apex:outputPanel rendered="{!wtpanel1}">
+                <table>
+                    <tr>
+                        <td ><apex:outputText >Initial Wt:{!doc.Initial_Wt__c}</apex:outputText></td>
+                        <td width="20%"></td>
+                        <td><apex:outputText >Final Wt:{!doc.Final_Wt__c}</apex:outputText></td>
+                    </tr>
+                </table>
+                </apex:outputPanel>
+                </apex:outputPanel>
+                <apex:outputPanel id="panel1">                
+                <apex:outputPanel rendered="{!wtpanel}">                
+                <table>
+                    <tr>
+                        <td ><apex:outputLabel >Initial Wt:</apex:outputLabel><apex:inputtext value="{!intweight}"></apex:inputtext></td>
+                        <td width="20%"></td>
+                        <td><apex:outputLabel >Final Wt:</apex:outputLabel><apex:inputtext value="{!finalweight}"></apex:inputtext></td>
+                    </tr>
+                </table>
+                </apex:outputPanel>                
+                </apex:outputPanel>                
+            </apex:repeat>
+            <apex:outputPanel rendered="{!delayreason}">
+            <apex:outputLabel value="Delay Reason:" for="accts">            
+            <apex:outputPanel layout="block" styleClass="requiredInput"> 
+            <apex:outputPanel layout="block" styleClass="requiredBlock"/>                      
+            <apex:selectList value="{!Delay}"  multiselect="false" size="1" id="accts" required="true">
                 <apex:selectOption itemValue="None" itemLabel="-None-"/>
                 <apex:selectOption itemValue="No PO/DO" itemLabel="No PO/DO"/>
                 <apex:selectOption itemValue="User not available" itemLabel="User not available"/>
                 <apex:selectOption itemValue="Network down" itemLabel="Network down"/>
                 <apex:selectOption itemValue="Incorrect documents by transporter" itemLabel="Incorrect documents by transporter"/>
             </apex:selectList>
+            </apex:outputPanel>
             </apex:outputLabel>
+            </apex:outputPanel>            
+            
+            <apex:outputPanel rendered="{!delayreason1}">
+            <apex:outputLabel value="Delay Reason:" for="accts">                      
+            <apex:selectList value="{!Delay}"  multiselect="false" size="1" id="accts1">
+                <apex:selectOption itemValue="None" itemLabel="-None-"/>
+                <apex:selectOption itemValue="No PO/DO" itemLabel="No PO/DO"/>
+                <apex:selectOption itemValue="User not available" itemLabel="User not available"/>
+                <apex:selectOption itemValue="Network down" itemLabel="Network down"/>
+                <apex:selectOption itemValue="Incorrect documents by transporter" itemLabel="Incorrect documents by transporter"/>
+            </apex:selectList>
+            </apex:outputLabel>            
+            </apex:outputPanel>
+            
             </apex:pageBlockSection>
             
                 </apex:pageBlock>
-                    
+                    <apex:outputPanel id="op">  
                     <div id="records"></div>
+                    </apex:outputPanel>
+
                 <apex:repeat value="{!DocumentList}" var="doc">
                 <table align='right' id="potab">
                 <tr>
-                    <td><apex:commandButton value="Get Data - SAP" styleClass="myClass" /></td><td style="width:30px;"></td>
-                	<td><apex:commandButton value="Accept Truck" action="{!acceptTruck}" styleClass="myClass" rendered="{!IF(doc.Action__c == 'Doc Val',true,false)}"/></td><td style="width:30px;"></td>
-                	<td><apex:commandButton value="Accept Truck" disabled="true" rendered="{!IF(doc.Action__c != 'Doc Val',true,false)}" styleClass="myClass" /></td><td style="width:30px;"></td>
-                    <td><apex:commandButton value="Manual Weight" disabled="true" styleClass="myClass"/></td><td style="width:30px;"></td>
-                	<td><apex:commandButton value="Qty. Validated" action="{!qtyValidate}" rendered="{!IF(doc.Action__c == 'Qnty Val',true,false)}" styleClass="myClass" /></td>                   
-                    <td><apex:commandButton value="Qty. Validated"  disabled="true" rendered="{!IF(doc.Action__c != 'Qnty Val',true,false)}" styleClass="myClass" /></td>
+                    <td><apex:commandButton value="Get Data - SAP" styleClass="myClass" style="cursor:not-allowed" disabled="true" /></td><td style="width:30px;"></td>
+                    <td><apex:commandButton value="Accept Truck" action="{!acceptTruck}" styleClass="myClass" rendered="{!IF(doc.Action__c == 'Doc Val',true,false)}"/></td><td style="width:30px;"></td>
+                    <td><apex:commandButton value="Accept Truck" disabled="true" rendered="{!IF(doc.Action__c != 'Doc Val',true,false)}" styleClass="myClass" style="cursor:not-allowed"/></td><td style="width:30px;"></td>
+                    <td><apex:commandButton value="Manual Weight" disabled="true" rendered="{!IF(doc.Action__c=='Qnty Val'&&initialwt!=null&&finwt!=null,true,false)}" style="cursor:not-allowed" styleClass="myClass" />
+                        <apex:commandButton value="Manual Weight" action="{!manualweight}" rendered="{!IF(doc.Action__c=='Qnty Val'&&initialwt==null&&finwt==null,true,false)}" styleClass="myClass" reRender="panel,panel1"/>
+                        <apex:commandButton value="Manual Weight" disabled="true" rendered="{!IF(doc.Action__c!='Doc Val'&&doc.Action__c!='Qnty Val',true,false)}" style="cursor:not-allowed" styleClass="myClass" />
+                        <apex:commandButton value="Manual Weight" disabled="true" rendered="{!IF(doc.Action__c=='Doc Val',true,false)}" style="cursor:not-allowed" styleClass="myClass" /></td><td style="width:30px;"></td>
+                    <td><apex:commandButton value="Qty. Validated" action="{!qtyValidate}" rendered="{!IF(doc.Action__c == 'Qnty Val',true,false)}" styleClass="myClass" /></td>                   
+                    <td><apex:commandButton value="Qty. Validated"  disabled="true" rendered="{!IF(doc.Action__c != 'Qnty Val',true,false)}" styleClass="myClass" style="cursor:not-allowed"/></td>
                 </tr>                
                 </table>                
                 </apex:repeat>
@@ -570,6 +736,14 @@ color:white !important;
             </div>
                                 
 </body>
+
+
+<apex:actionFunction action="{!deletePORecord}" name="DeletePORecord" rerender="">
+        <apex:param name="firstParam" assignTo="{!poId}" value="" />
+    </apex:actionFunction>
+<apex:actionFunction action="{!deletePOLineRecord}" name="DeletePOItemRecord" rerender="">
+        <apex:param name="firstParam" assignTo="{!plId}" value="" />
+    </apex:actionFunction>
 
 </apex:form>
 </apex:page>

@@ -1,5 +1,6 @@
 <apex:page cache="true" sidebar="false" showHeader="false" docType="html-5.0" standardStylesheets="true" standardController="TMS_Truck_Entry_Checklist__c" extensions="TMS_BayDisplay_CC" >
 <apex:form id="thform">
+<meta http-equiv="refresh" content="15" />
 <head>
     <meta charset="utf-8" />        
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,15 +29,16 @@
     padding-right: 5%;
     padding-top: 5%;
     }
-    tr:nth-child(odd){background-color: white !important;}
-    tr:nth-child(even){background-color: #f2f2f2 !important;}
+    <!--tr:nth-child(odd){background-color: white !important;}
+    tr:nth-child(even){background-color: grey !important;color:yellow !important;}-->
     .tb1
     {
     background-color:#047cbc;
     }
     td
     {
-     	font-size: 30px;   
+        font-size: 30px;  
+        color: Black; 
     }
     .fix
     {
@@ -63,10 +65,10 @@ background:#bf4040 !important;
                         <div class="navbar-header">
                             <ol class="breadcrumb navbar-breadcrumb">
                                 <li> 
-                                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}"/>
+                                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px;" src="{!URLFOR($Resource.VEP_UnileverLogo)}"/>
                                 Bay Display
                                 </li>
-                                <!--<li style="margin-left:500px;">{!$User.Division}</li>-->
+                                <li >{!$Setup.Tms_PlantCode__c.Plant_Code__c}</li>
                             </ol>
                         </div> 
                                     
@@ -81,25 +83,50 @@ background:#bf4040 !important;
             <div class="panel-body">
             <div class="table-responsive" style="width:1200px;margin-left:-50px;">
               <table id="myTable" class="display table tb1" style="table-layout: auto;">
-                	<thead>  
+                    <thead>  
                     <tr>                  
                         <th>Truck No</th>
+                        <th>Plant</th>
                        <!-- <th>Truck Material Type</th>-->
                         <th>Bay Details</th>
                         <!--<th>Bay Description</th>-->
-                        <th>Truck Action</th>                         
-                        <th>Time</th>
+                        <!--<th>Truck Action</th>  -->
+                        <th>Arrival</th>
+                        <th> Status</th>
                     </tr>  
                     </thead>  
                      <tbody> 
                         <apex:repeat value="{!Bay}" var="tr">
-                               <tr>   
+                               <tr style="{!if(CONTAINS(tr.Bay_Number_Updated__c,'Wait'),'background-color:#FFC200;font-weight:bold;color:white;', 'background-color:#6DF918;font-weight:bold;color:white;')}">   
                                     <td>{!tr.Vehicle_Number__c}</td>
-                                    <!--<td>{!tr.Truck_Type__c}</td> -->                                 
-                                    <td>{!tr.Bay_Number__c}</td> 
-                                   <!-- <td>{!tr.Bay_Description__c}</td>-->
-                                    <td>{!tr.Action__c}</td>                                     
+                                    <td>{!$Setup.Tms_PlantCode__c.Plant_Code__c}</td>
+                                    <!--<td>{!tr.Truck_Type__c}</td> --> 
+                                   <!-- <apex:outputPanel rendered="{!IF(!CONTAINS(tr.Bay_Number_Updated__c,'Wait'),true,false)}">                              
+                                    <td ><apex:outputText value="{!tr.Bay_Number__c}" />
+                                    </td> 
+                                    </apex:outputPanel>-->  
+                                    <!--<apex:outputPanel rendered="{!IF(CONTAINS(tr.Bay_Number_Updated__c,'Wait'),true,false)}">  -->                            
+                                    <td >
+                                    <apex:outputText value="{!tr.Bay_Number__c}" />
+                                    </td> 
+                                    <!--</apex:outputPanel>-->
                                     <td>{!tr.Bay_Wait_Time__c}</td>
+                                    <td width="170px">
+                                        <apex:outputPanel rendered="{!IF(CONTAINS(tr.Bay_Number_Updated__c,'Wait'),true,false)}">
+                                        <apex:outputText value="{!right(tr.Bay_Number_Updated__c,7)}" />
+                                       <!-- <apex:outputText value="{!tr.Bay_Number_Updated__c}" />-->
+                                       </apex:outputPanel>
+                                       <apex:outputPanel rendered="{!IF(tr.Bay_Number_Updated__c==null,true,false)}">
+                                        <!--<apex:outputText value="{!right(tr.Bay_Number_Updated__c,7)}" />
+                                        <apex:outputText value="{!tr.Bay_Number_Updated__c}" />-->
+                                        Arrived
+                                       </apex:outputPanel>
+                                    </td>
+                                    
+                                   <!-- <td>{!tr.Bay_Description__c}</td>-->
+                                    <!--<td><apex:outputText value="{!tr.Action__c}" rendered="{!IF(!CONTAINS(tr.Bay_Number_Updated__c,'Wait'),true,false)}"/></td>      -->                               
+                                   
+                                    
                                </tr>  
                         </apex:repeat>
                     </tbody>  

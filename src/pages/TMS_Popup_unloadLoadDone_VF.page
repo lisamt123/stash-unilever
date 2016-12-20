@@ -1,7 +1,7 @@
-<apex:page standardController="TMS_PO_items__c" extensions="TMS_Popup_unloadLoadDone_CC" sidebar="false" showHeader="false">
+<apex:page standardController="TMS_PO_items__c" extensions="TMS_Popup_unloadLoadDone_CC" sidebar="false" showHeader="false" docType="html-5.0">
    <apex:form >
      <script language="JavaScript" type="text/javascript">
-    	function CloseWindow(){  
+        function CloseWindow(){  
             if(window.parent){
                 window.parent.opener.location.href = window.parent.opener.location.href;
                 window.parent.close();
@@ -12,11 +12,18 @@
                 window.close();   
             }   
         }
-	</script>
-    <apex:pageBlock >
-    	<apex:pageBlockSection >
-        	<apex:pageBlockTable value="{!Tsentryload}" var="ts" columns="2">
-            	<apex:column headerValue="Truck Number">
+        function valthisform()
+            {
+                
+                confirm('hai');
+            }
+       
+    </script>
+    <apex:pageBlock > 
+    <apex:pageMessages />
+        <apex:pageBlockSection >
+            <apex:pageBlockTable value="{!Tsentryload}" var="ts" columns="2">
+                <apex:column headerValue="Truck Number">
                     {!ts.Vehicle_Number__c}
                 </apex:column>
                 <apex:column headerValue="Bay">
@@ -25,22 +32,33 @@
             </apex:pageBlockTable>
             </apex:pageBlockSection>
             <br/>
-        	<apex:pageBlockSection >
+            <apex:pageBlockSection >
                 <apex:pageBlockTable value="{!poItem}" var="p">
                     <apex:column headerValue="Po Number">
                         {!p.TMS_PO__r.Name}
                     </apex:column>
-                    <apex:column headerValue="Invoice Number">
-                        {!p.TMS_PO__r.Invoice_No__c}
+                    <apex:column headerValue="Po Item">
+                        {!p.Po_Item__c}
+                    </apex:column>
+                    <apex:column headerValue="UOM">
+                        {!p.UOM__c}
+                    </apex:column>
+                    <apex:column headerValue="Material">
+                        {!p.Material_Description__c}
+                    </apex:column>
+                    <apex:column headerValue="Quantity" >
+                        <apex:inputField value="{!p.Quantity_Rcvd__c}" style="width:75px;" rendered="{!p.UOM__c == 'PC' || p.UOM__c == 'EA' || p.UOM__c == 'CS'}"/>
                     </apex:column>
                     <apex:column headerValue="Choose">
-                        <apex:inputField value="{!p.choosePO__c}"/> 
-                    </apex:column>
+                         <apex:inputCheckbox value="{!p.choosePO__c}" id="inputId"/>
+                   </apex:column>
+                    
                 </apex:pageBlockTable>
                 
         </apex:pageBlockSection>
             <apex:pageBlockButtons >
-        	<apex:commandButton action="{!save}" value="Save" oncomplete="CloseWindow()"/>
+            <apex:commandButton action="{!save}" value="Save" oncomplete="CloseWindow()"/>
+               
             <apex:commandButton value="Cancel" onclick="CloseWindow()"/>
             </apex:pageBlockButtons>
     

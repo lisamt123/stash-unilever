@@ -14,6 +14,7 @@
         }
     </script>
     <apex:pageBlock >
+    <apex:pageMessages ></apex:pageMessages>
         <apex:pageBlockSection >
             <apex:pageBlockTable value="{!Tsentryload}" var="ts" columns="2">
                 <apex:column headerValue="Truck Number">
@@ -27,11 +28,17 @@
             <br/>
             <apex:pageBlockSection >
                 <apex:pageBlockTable value="{!shipItem}" var="p">
-                    <apex:column headerValue="Po Number">
+                    <apex:column headerValue="Shipment Number">
                         {!p.TMS_Shipment__r.Name}
                     </apex:column>
-                    <apex:column headerValue="Invoice Number">
-                        {!p.TMS_Shipment__r.Item_No__c}
+                    <apex:column headerValue="Item No">
+                        {!p.Item_No__c}
+                    </apex:column>
+                    <apex:column headerValue="Material Description">
+                        {!p.Material_Description__c}
+                    </apex:column>
+                    <apex:column headerValue="Quantity Received" >
+                        <apex:inputField value="{!p.Quantity_Rcvd__c}" style="width:75px;" rendered="{!IF(p.UOM__c == 'EA' || p.UOM__c == 'PC' || p.UOM__c == 'CS',True,False)}"/>
                     </apex:column>
                     <apex:column headerValue="Choose">
                         <apex:inputField value="{!p.Choose_ShipItem__c}"/> 

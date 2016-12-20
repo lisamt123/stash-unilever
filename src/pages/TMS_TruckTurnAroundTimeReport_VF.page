@@ -1,0 +1,129 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" controller="TMS_TruckTurnAroundTimeReport_CC" readOnly="true">
+<apex:form >
+<style>
+#tablestyle1 {
+  width: 10%;
+  border: 1px solid #000;
+  float:left;
+  height: 200px;
+}
+#tablestyle2 {
+  width: 90%;
+  border: 1px solid #000;
+  float:right;
+  height: 200px;
+}
+#tablestyle {
+  width: 25%;
+  border: 1px solid #000;
+  float:left; 
+  height: 200px;
+}
+#thstyle {
+  width: 10%;
+  text-align: left; 
+  vertical-align: top; 
+  border-spacing: 0;
+}
+#tdstyle {
+  width: 10%;  
+}
+    
+    /*Custom Table Styles*/
+    .custom__table {
+        width: 100%;
+    }
+    .custom__table thead tr th, .custom__table tbody tr th {
+        background: skyblue;
+        color: white;
+        padding: 10px;
+    font-size: 16px;
+    }
+    .custom__table tbody tr td {
+        font-size: 15px;
+        padding: 10px 8px;
+        border-bottom: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+    }
+    .custom__table tbody tr td:nth-child(2), .custom__table tbody tr td:nth-child(3), .custom__table tbody tr td:nth-child(4),
+    .custom__table tbody tr td:nth-child(5), .custom__table tbody tr td:nth-child(6) {
+        border-bottom: 0;
+    }
+    .custom__table tbody tr:nth-last-child(1) td:nth-child(2), .custom__table tbody tr:nth-last-child(1) td:nth-child(3), 
+    .custom__table tbody tr:nth-last-child(1) td:nth-child(4), .custom__table tbody tr:nth-last-child(1) td:nth-child(5),
+    .custom__table tbody tr:nth-last-child(1) td:nth-child(6) {
+        border-bottom: 1px solid #ccc;
+    }
+    .bPageBlock .pbTitle {
+        width:50%;
+        text-align: center;
+    }
+</style>
+<script>
+    function exportExcel(){
+        window.open('/apex/TMS_TruckTurnAroundTimeReport1_VF');
+    }
+</script>
+    <apex:pageBlock title="Truck Turn Around Time">
+       <apex:input type="date" value="{!fromDate}" style="width:200px;" title="From Date" ><b>From Date :</b></apex:input>
+       <apex:input type="date" value="{!ToDate}" style="width:200px;" title="To date"><b>To Date :</b></apex:input>
+       <apex:commandButton value="Get Report" action="{!getvalues}"/>
+       <apex:commandButton onclick="exportExcel()" value="Export To Excel"/>
+        <apex:repeat value="{!truckList}" var="truck">
+            <table class="custom__table">
+                <thead>
+                <tr>
+                    <th>Report</th>
+                    <th>Plant</th>
+                    <th>Truck Type</th>
+                    <th>Truck Number</th>
+                    <th>Transporter</th>
+                    <th>Serial Number</th>
+                    <th>Truck in Date time</th>
+                    <th>Truck out Date time</th>
+                    <th>Truck total time in mins</th>
+                    <th>Reject reason</th>
+                    <th>Terminate Reason</th>
+                    <th>Parking time</th>
+                    <th>Document Validation Time</th>
+                    <!--<th>Qc bay Allocation</th>-->
+                    <th>Sample Accepted</th>
+                    <th>QA Accepted</th>
+                    <!--<th>Bay Allocation</th>-->
+                    <th>QC Bay Time</th>
+                    <th>UnLoad/Load Done</th>
+                    <th>Interim Exit</th>
+                    <th>Interim Entry</th>
+                    <th>Quantity Validate</th>
+                    <!--<th>Exit</th>   -->                 
+                </tr>
+            </thead>
+            <tr>
+                <th>Std time in mins</th>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>                
+                <td></td><td>{!truck.stddoc}</td><!--<td></td>--><td></td><td>{!truck.qcsample}</td><td>{!truck.bayassign}</td><td>{!truck.loadval}</td><td>{!truck.iexit}</td><td></td><td>{!truck.stdquantity}</td>
+            </tr>
+            <tr>
+                <th>Actual Time</th>
+                <td>{!truck.plantname}</td>
+                <td>{!truck.trucktype}</td>
+                <td>{!truck.trucknum}</td>
+                <td>{!truck.transport}</td>
+                <td>{!truck.serialnum}</td>
+                <td>{!truck.intime}</td><td>{!truck.outtime}</td><td>{!truck.detention}</td><td>{!truck.reject}</td><td>{!truck.terminate}</td><td></td><td>{!truck.doctime}</td><!--<td>{!truck.baytime}</td>--><td>{!truck.sample}</td><td>{!truck.qaaccept}</td><td></td><td>{!truck.unload}</td><td>{!truck.interim}</td><td>{!truck.interimentry}</td><td>{!truck.quantity}</td>
+            </tr>
+            <tr>
+                <th>Delay Time in mins</th>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>                
+                <td></td><td>{!truck.docdelaytime}</td><!--<td></td>--><td>{!truck.sampleacceptdelaytime}</td><td>{!truck.qaaccptime}</td><td></td><td>{!truck.bayreachtime}</td><td>{!truck.interimtime}</td><td>{!truck.inentrytime}</td><td></td>
+            </tr>
+            <tr>
+                <th>Reason Code for Delay</th>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>                
+                <td></td><td></td><!--<td></td>--><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            </table>
+        </apex:repeat>  
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

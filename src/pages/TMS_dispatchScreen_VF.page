@@ -1,9 +1,9 @@
 <apex:page cache="true" sidebar="false" showHeader="false"   docType="html-5.0" standardStylesheets="true" controller="TMS_dispatchScreen_CC" extensions="TMS_GETPOFROMSAP">
 <apex:remoteObjects >
-    <apex:remoteObjectModel jsShortHand="acct" name="TMS_Shipment__c" fields="Id,Truck_Entry_Checklist__c,Name,Item_No__c,Quantity__c,UOM__c"
+    <apex:remoteObjectModel jsShortHand="acct" name="TMS_Shipment__c" fields="Id,Truck_Entry_Checklist__c,Name,GRR_No__c,Item_No__c,Quantity__c,UOM__c,Plant_Code__c"
         retrieve="{!$RemoteAction.TMS_GETPOFROMSAP.retrievePO}"/>
         
-    <apex:remoteObjectModel jsShortHand="opp" name="TMS_Shipment_Items__c" fields="Id,TMS_Shipment__c,Material_Code__c,Initial__c,Material_Description__c"/>
+    <apex:remoteObjectModel jsShortHand="opp" name="TMS_Shipment_Items__c" fields="Id,TMS_Shipment__c,Material_Code__c,Initial__c,Material_Description__c,Item_No__c,Quantity__c,UOM__c"/>
 
 </apex:remoteObjects>
 <apex:form >
@@ -38,11 +38,9 @@
 <script>
 
 var $ = jQuery.noConflict();
+$.fn.bootstrapBtn = $.fn.button.noConflict();
 $(document).ready(function() {
-var sList = [
-   {'hello':'where'},
-    {'hello1':'where1'}
-];
+var opt = ["Ton","KG","EA","PC","Ltr","Mtr","Roll","CS"];
 
     $("#records").jtable({
         title: "Shipment Details",
@@ -77,13 +75,20 @@ var sList = [
                     return setupChildren(account, opportunityConfig);
                 }
             },
-            Name : { title: "Shipment Number"},
-            Item_No__c: { title: "Item No." },
-            Quantity__c: { title: "Quantity" },
-            UOM__c: { title: "UOM",
-                    options: sList,
-                    list: false
-                    }
+            
+            Plant_Code__c : {title: "Plant Code",
+                                create: false,
+                                edit: false,
+                                display: function (data) {
+                                return '{!$Setup.Tms_PlantCode__c.Plant_Code__c}';
+                                }
+                            },
+            Name : { title: "Shipment Number",
+                    type: "number"
+            },
+            GRR_No__c : { title: "GRR No",
+                        type: "number"
+                        }
                    
            
         },
@@ -92,16 +97,44 @@ var sList = [
                 return listAccounts(postData, jtParams);
             },
             createAction: function (postData) {
+                
+                 if(getFields(postData).Name.length < 1 )
+                    {
+                        return $.Deferred(function(dfd) { 
+                            handleErr(dfd,"Shipment Number cannot be blank");
+                        });
+
+                    }
+                    else if( getFields(postData).GRR_No__c.length < 1)
+                     {
+                         return $.Deferred(function(dfd) { 
+                            handleErr(dfd,"GRR Number cannot be blank");
+                        });
+                     }
+                     else
                 return upsert(new SObjectModel.acct(getFields(postData)), getAccountObject);  
             },
             updateAction: function(postData) {
-            alert(postData);
+             if(getFields(postData).Name.length < 1 )
+                    {
+                        return $.Deferred(function(dfd) { 
+                            handleErr(dfd,"Shipment Number cannot be blank");
+                        });
+
+                    }
+                    else if( getFields(postData).GRR_No__c.length < 1)
+                     {
+                         return $.Deferred(function(dfd) { 
+                            handleErr(dfd,"GRR Number cannot be blank");
+                        });
+                     }
+                     else
                 return upsert(new SObjectModel.acct(getFields(postData)), getAccountObject);
             },
-            deleteAction: function(postData) {
-                alert(data.record.Id);
-                 return upsert(new SObjectModel.acct(getFields(postData)), getAccountObject);
-            }
+             deleteAction :  function (data) {
+            DeletePORecord(data.Id);
+            location.reload();
+      }
         },
         
         
@@ -154,15 +187,18 @@ var sList = [
             return {
                 Id:record.get("Id"),
                 Name : record.get("Name"),
-                Item_No__c : record.get("Item_No__c"),
-                Quantity__c : record.get("Quantity__c"),
-                Truck_Entry_Checklist__c : record.get("Truck_Entry_Checklist__c"),
-                UOM__c : record.get("UOM__c")
+                GRR_No__c : record.get("GRR_No__c"),
+                Truck_Entry_Checklist__c : record.get("Truck_Entry_Checklist__c")
             };
         }
       
     
     function setupChildren(account, configFunc) {
+        var dList =   '{!tAction}';
+        if(dList == 'Qnty Val')
+               document.getElementsByClassName('jtable-toolbar-item')[0].style.visibility = 'hidden';
+        if(dList != 'Create Shipment')
+               document.getElementsByClassName('jtable-toolbar-item')[0].style.visibility = 'hidden';
         var config = configFunc(account);
         var openLink = $("<img src='" + "http://www.kniessmediagroup.de/kmg/pro.png" + "' title='" + config.title + "' alt='" + config.title + "' />");
         openLink.click(function(event) {
@@ -170,6 +206,11 @@ var sList = [
             
             $("#records").jtable("openChildTable", openLink.closest("tr"), config, function(data) {
                 data.childTable.jtable("load");
+                
+            if(dList == 'Qnty Val')
+               document.getElementsByClassName('jtable-toolbar-item')[1].style.visibility = 'hidden';
+            if(dList != 'Create Shipment')
+               document.getElementsByClassName('jtable-toolbar-item')[1].style.visibility = 'hidden';
             });
         });
         
@@ -177,6 +218,13 @@ var sList = [
     }
     
     function opportunityConfig(account) {
+        var test1="{!testString}";
+        var matdesc = "{!matDesc}";
+        var arr = test1.split(',');
+      
+        var matText = matdesc.split(',');
+        
+        var text="";
         var config = {
             title:  account.record.Name + " - Line Items",
             img: "{!URLFOR($Resource.TableIcons, 'opportunities32.png')}",
@@ -185,11 +233,44 @@ var sList = [
                     return listOpportunities(account);
                 },
                 updateAction: function(postData) {
+                     if(getFields(postData).Item_No__c.length < 1 )
+                    {
+                        return $.Deferred(function(dfd) { 
+                            handleErr(dfd,"Item Number cannot be blank");
+                        });
+
+                    }
+                    else if( getFields(postData).Quantity__c.length < 1)
+                     {
+                         return $.Deferred(function(dfd) { 
+                            handleErr(dfd,"Quantity cannot be blank");
+                        });
+                     }
+                     else
                     return upsert(new SObjectModel.opp(getFields(postData)), getOpportunityObject);  
                 },
                 createAction: function(postData) {
+                                        if(getFields(postData).Item_No__c.length < 1 )
+                    {
+                        return $.Deferred(function(dfd) { 
+                            handleErr(dfd,"Item Number cannot be blank");
+                        });
+
+                    }
+                    else if( getFields(postData).Quantity__c.length < 1)
+                     {
+                         return $.Deferred(function(dfd) { 
+                            handleErr(dfd,"Quantity cannot be blank");
+                        });
+                     }
+                     else
+ 
                     return upsert(new SObjectModel.opp(getFields(postData)), getOpportunityObject);  
-                }
+                },
+                deleteAction :  function (data) {
+                     DeletePOItemRecord(data.Id);
+                      location.reload();
+             }
                 
             },
             fields: {
@@ -204,17 +285,50 @@ var sList = [
                     edit: false,
                     list: false
                 },
+                Item_No__c: {
+                    title: "Item No",
+                    type:"text"
+                },
+                Quantity__c: {
+                    title: "Quantity",
+                    type:"number"
+                },
+                UOM__c: {
+                    title: "UOM",
+                    options: opt
+                },
                 Material_Code__c: {
                     title: "Material Code",
-                    type:"text"
+                    options: function(data)
+                    {
+                         if(data.source == 'list')
+                         {
+                         return arr;
+                         }
+                        
+                     return arr;
+                    }
+                
                 },
                 Material_Description__c: {
                     title: "Material Desc",
-                    type:"text"
+                    dependsOn:'Material_Code__c',
+                    options: function(data)
+                    {
+                         var dep = data.dependedValues.Material_Code__c;
+                         if(data.source == 'list')
+                         {
+                         return matText;
+                         }
+                        
+                     return matText;
+                    }
                 },
                 Initial__c : {
                     title: "Weight",
-                    type: "number"
+                    type: "number",
+                    create: false,
+                    edit: false  
                 }
             }
         };
@@ -229,6 +343,9 @@ var sList = [
         function getOpportunityObject(record) {
             return {
                 Id : record.get("Id"),
+                Item_No__c : record.get("Item_No__c"),
+                Quantity__c : record.get("Quantity__c"),
+                UOM__c : record.get("UOM__c"),
                 Material_Code__c : record.get("Material_Code__c"),
                 Material_Description__c : record.get("Material_Description__c"),
                 TMS_Shipment__c:record.get("TMS_Shipment__c"),
@@ -381,13 +498,9 @@ color:white !important;
                                 <li> 
                                 <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}"/>
                                 Dispatch screen
-                                <!-- Sitecode need to remove after assigning User to Particluar Site-->
                                 </li>
-                                <li style="margin-left:700px;">{!$User.Division}</li>
+                                <li >{!$Setup.Tms_PlantCode__c.Plant_Code__c}</li>
                             </ol>
-                           <!-- <ol class="breadcrumb navbar-breadcrumb" style="margin-left:700px;">
-                                <li>HPC- Chiplun Plant</li>
-                            </ol>-->
                         </div> 
                         <ul class="nav navbar-nav navbar-right">
                         <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
@@ -498,10 +611,35 @@ color:white !important;
                     </apex:pageBlockTable><br/>
                 <apex:pageBlockSection columns="3" >
             <apex:selectRadio value="{!searchCategory}" layout="table" >
-                <apex:selectOption itemLabel="PO" itemValue="PO" />
+                <apex:selectOption itemLabel="Shipment" itemValue="Shipment" />
                 <apex:selectOption itemLabel="Manual Entry" itemValue="Manual Entry"/>
                <!-- <input type="radio" name="Manual Entry" value="Manual Entry" checked="checked"/>Manual Entry-->
             </apex:selectRadio>
+            <apex:pageMessages />
+            <apex:repeat value="{!DocumentList}" var="doc">
+                <apex:outputPanel id="panel">
+                <apex:outputPanel rendered="{!wtpanel1}">
+                <table>
+                    <tr>
+                        <td ><apex:outputText >Initial Wt:{!doc.Initial_Wt__c}</apex:outputText></td>
+                        <td width="20%"></td>
+                        <td><apex:outputText >Final Wt:{!doc.Final_Wt__c}</apex:outputText></td>
+                    </tr>
+                </table>
+                </apex:outputPanel>
+                </apex:outputPanel>
+                <apex:outputPanel id="panel1">                
+                <apex:outputPanel rendered="{!wtpanel}">                
+                <table>
+                    <tr>
+                        <td ><apex:outputLabel >Initial Wt:</apex:outputLabel><apex:inputtext value="{!intweight}"></apex:inputtext></td>
+                        <td width="20%"></td>
+                        <td><apex:outputLabel >Final Wt:</apex:outputLabel><apex:inputtext value="{!finalweight}"></apex:inputtext></td>
+                    </tr>
+                </table>
+                </apex:outputPanel>                
+                </apex:outputPanel>                
+            </apex:repeat>
             <apex:outputLabel value="Delay Reason:" for="accts">&nbsp;&nbsp;
             <apex:selectList value="{!Delay}"  multiselect="false" size="1" id="accts">
                 <apex:selectOption itemValue="None" itemLabel="-None-"/>
@@ -521,12 +659,18 @@ color:white !important;
                 <div id="records"></div>
                 <apex:repeat value="{!DocumentList}" var="doc">
                 <table align='right' id="potab">
-                <tr><td><apex:commandButton value="Get Data - SAP" styleClass="myClass" /></td><td style="width:30px;"></td>
+                <tr><td><apex:commandButton value="Get Data - SAP" disabled="true" style="cursor:not-allowed" styleClass="myClass" /></td><td style="width:30px;"></td>
                 <td><apex:commandButton value="Accept Truck" action="{!acceptTruck}" styleClass="myClass" rendered="{!IF(doc.Action__c == 'Create Shipment',true,false)}"/></td><td style="width:30px;"></td>
-                <td><apex:commandButton value="Accept Truck" disabled="true" rendered="{!IF(doc.Action__c != 'Create Shipment',true,false)}" styleClass="myClass" /></td><td style="width:30px;"></td>
-                <td><apex:commandButton value="Manual Weight" styleClass="myClass" disabled="true"/></td><td style="width:30px;"></td>
-                <td><apex:commandButton value="Qty. Validated" styleClass="myClass" rendered="{!IF(doc.Action__c == 'Qnty Val',true,false)}"/></td>
-                <td><apex:commandButton value="Qty. Validated"  disabled="true"  styleClass="myClass" rendered="{!IF(doc.Action__c != 'Qnty Val',true,false)}"/></td> 
+                <td><apex:commandButton value="Accept Truck" disabled="true" rendered="{!IF(doc.Action__c != 'Create Shipment',true,false)}" styleClass="myClass" style="cursor:not-allowed"/></td><td style="width:30px;"></td>
+                <td>
+                        <apex:commandButton value="Manual Weight" disabled="true" rendered="{!IF(doc.Action__c=='Qnty Val'&&initialwt!=null&&finwt!=null,true,false)}" style="cursor:not-allowed" styleClass="myClass" />
+                        <apex:commandButton value="Manual Weight" action="{!manualweight}" rendered="{!IF(doc.Action__c=='Qnty Val'&&initialwt==null&&finwt==null,true,false)}" styleClass="myClass" reRender="panel,panel1"/>
+                        <apex:commandButton value="Manual Weight" disabled="true" rendered="{!IF(doc.Action__c!='Create Shipment'&&doc.Action__c!='Qnty Val',true,false)}" style="cursor:not-allowed" styleClass="myClass" />
+                        <apex:commandButton value="Manual Weight" disabled="true" rendered="{!IF(doc.Action__c=='Create Shipment',true,false)}" style="cursor:not-allowed" styleClass="myClass" />
+                </td>
+                <td style="width:30px;"></td>
+                <td><apex:commandButton value="Qty. Validated" styleClass="myClass" rendered="{!IF(doc.Action__c == 'Qnty Val',true,false)}" action="{!qtyValidate}"/></td>
+                <td><apex:commandButton value="Qty. Validated"  disabled="true"  styleClass="myClass" rendered="{!IF(doc.Action__c != 'Qnty Val',true,false)}" style="cursor:not-allowed"/></td> 
                 </tr>                
                 </table>                               
                 </apex:repeat>
@@ -539,6 +683,13 @@ color:white !important;
             </div>
                                 
 </body>
+
+<apex:actionFunction action="{!deletePORecord}" name="DeletePORecord" rerender="">
+        <apex:param name="firstParam" assignTo="{!poId}" value="" />
+    </apex:actionFunction>
+<apex:actionFunction action="{!deletePOLineRecord}" name="DeletePOItemRecord" rerender="">
+        <apex:param name="firstParam" assignTo="{!plId}" value="" />
+    </apex:actionFunction>
 
 </apex:form>
 </apex:page>
