@@ -33,6 +33,10 @@ src/labels
 src/labels/TPMSOCOUK.labels
 src/labels/CustomLabels.labels
 src/classes
+src/classes/MyContractRemoteActionExtension.cls
+src/classes/MyContractRemoteActionExtension.cls-meta.xml
+src/classes/MyPromotionRemoteActionExtension.cls
+src/classes/MyPromotionRemoteActionExtension.cls-meta.xml
 src/classes/UL_AccountTriggerHandler.cls
 src/classes/UL_AccountTriggerHandler.cls-meta.xml
 src/classes/UL_AddNewCustomer_Test.cls
@@ -113,6 +117,8 @@ src/triggers/UL_ProductTrigger.trigger-meta.xml
 src/triggers/UL_Tactic_trigger.trigger
 src/triggers/UL_Tactic_trigger.trigger-meta.xml
 src/pages
+src/pages/MyPromotionPlanning.page
+src/pages/MyPromotionPlanning.page-meta.xml
 src/pages/UL_AddCustomer.page
 src/pages/UL_AddCustomer.page-meta.xml
 src/pages/UL_CreatePromotion.page
