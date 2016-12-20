@@ -434,11 +434,33 @@ public with sharing class IPM_Resource_Allocation {
               uQuery=uQuery+' AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
               
           }
-          
-          else if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY){
-            
-            
-            if(ipmproject.IPM_ProjectGKM__c==GKM3 )
+          else if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY)
+          {
+            partialFilterTeamMember1(uQuery);
+          }
+        else if(searchTeambyCat==IPM_ConstantUtils.TEAM_ALLCATEGORY )
+        {
+            partialFilterTeamMember2(uQuery);
+        }
+        try
+        {
+            partialFilterTeamMember3(uQuery,lstuser,querySearchTeamMem,uniqueUsers);
+        }
+        catch(QueryException ex)
+        {
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
+            'filterTeamMember',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null); 
+        }
+    }
+    
+    /*****************************************************************************
+        @Description: This method is created to resolve nPath Complexity issue  
+        @Return: Void
+    *****************************************************************************/
+    private void partialFilterTeamMember1(string uQuery){
+        
+        if(ipmproject.IPM_ProjectGKM__c==GKM3 )
             {
               String filterCat = ipmproject.IPM_ProjectGKM__c==GKM3 ? filterCatList :CAT_STRNG; 
                 UQuery=IPM_ConstantUtils.BLANK;
@@ -471,11 +493,16 @@ public with sharing class IPM_Resource_Allocation {
               uQuery=uQuery+' AND (IPM_User__r.name LIKE :querySearchTeamMem  OR ';
               uQuery=uQuery+SRCH_FILTER;
               uQuery=uQuery+' AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
-             
-          }
-        else if(searchTeambyCat==IPM_ConstantUtils.TEAM_ALLCATEGORY )
-        {
-            if(roleType==IPM_ConstantUtils.TEAM_GUEST)
+    }
+    
+    
+    /*****************************************************************************
+        @Description: This method is created to resolve nPath Complexity issue  
+        @Return: Void
+    *****************************************************************************/
+    private void partialFilterTeamMember2(string uQuery)
+    {
+        if(roleType==IPM_ConstantUtils.TEAM_GUEST)
             {
                 uQuery=uQuery+' IPM_HoldCategory__c !=null AND';
                 uQuery=uQuery+'(IPM_User__r.name LIKE :querySearchTeamMem  OR IPM_User__r.email LIKE :querySearchTeamMem OR ';
@@ -488,10 +515,15 @@ public with sharing class IPM_Resource_Allocation {
                 uQuery=uQuery+SRCH_FILTER;
                 uQuery=uQuery+'AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT; 
             }
-        }
-        try
-        {
-            
+    }
+    
+    
+    /*****************************************************************************
+        @Description: This method is created to resolve nPath Complexity issue  
+        @Return: Void
+    *****************************************************************************/
+    private void partialFilterTeamMember3(string uQuery,list<IPM_User_Profile__c>lstuser,string querySearchTeamMem,map<id,id>uniqueUsers)
+    {
             lstuser=database.query(uQuery);
             List<IPM_User_Profile__c>plDPLUserList=new List<IPM_User_Profile__c>();
             if(!projectPLDPLSet.isEmpty()){
@@ -529,14 +561,10 @@ public with sharing class IPM_Resource_Allocation {
         {
             teamMembers.add(new wrapperclass(u));
             }
-        }
-        catch(QueryException ex)
-        {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
-            'filterTeamMember',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null); 
-        }
+        
+        
     }
+    
     /*************************************************************************************************************
     * @description:Add members FROM same category which are SELECTed FROM page
     */

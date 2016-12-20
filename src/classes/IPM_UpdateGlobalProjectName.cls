@@ -53,7 +53,51 @@ public with sharing class IPM_UpdateGlobalProjectName {
             //list of all projects that has been updated the project name till Ideas phase
             for(IPM_Project__c proj:projectList)
             {    
-                for(IPM_Project_Rollout__c roll:proj.IPM_Project_Rollout__r)
+                partialUpdateProjectName1 (proj,rolloutId,updateRolloutList,updateFinList);
+                partialUpdateProjectName2 (proj,updateFinList,updateCountryList,updateMilesList,updateTaskList,updateProDocList);
+            }
+        } 
+          
+      skipTiggerExecution(true);
+        
+        List<IPM_Project_Document__c> ProDocUpdateList = new List<IPM_Project_Document__c>();
+        ProDocUpdateList = updateDocNSecName(updatedProNameMap,updateProDocList,oldprojectnameMap);
+        
+        List<IPM_Task__c>taskUpdateList = new List<IPM_Task__c>();
+        taskUpdateList = updateTaskName(updatedProNameMap,updateTaskList,oldprojectnameMap);//get list of all tasks, those values have been updated
+        
+        List<IPM_Milestone__c> milestoneUpdateList = new List<IPM_Milestone__c>();
+        milestoneUpdateList = updateMilesName(updatedProNameMap,updateMilesList,oldprojectnameMap);//get list of all milestones, those values have been updated
+        
+        Set<Id> existingFinancialYear = new Set<Id>();
+        List<IPM_Financial__c> updateFinanceList = new List<IPM_Financial__c>();
+        updateFinanceList = updateFinName(updatedProNameMap,updateFinList,oldprojectnameMap,existingFinancialYear);//get list of all finance, those values have been updated
+        
+        List<IPM_Project_Rollout__c> updateRollList = new List<IPM_Project_Rollout__c>();
+        updateRollList = updateRollOut(updatedProNameMap,updateRolloutList,oldprojectnameMap,rolloutId,existingFinancialYear);//get list of all rollout, those values have been updated
+        
+        List<IPM_Country__c>updateCountriesList=new List<IPM_Country__c>();
+        updateCountriesList=updateCountryName(updatedProNameMap,updateCountryList,oldprojectnameMap);
+     
+     update ProDocUpdateList;
+        update taskUpdateList;
+        update milestoneUpdateList;
+        update updateFinanceList;
+        update updateRollList;
+        update updateCountriesList;
+        skipTiggerExecution(false);
+        updateChildProjects(updatedProNameMap,oldprojectnameMap);
+        
+    }
+    
+    /*******************************************************************************
+    @Description: This method is created to resolve nPath complexity issue  
+    @Return: void
+    *******************************************************************************/
+    
+    private static void partialUpdateProjectName1 (IPM_Project__c proj,set<id> rolloutId,List<IPM_Project_Rollout__c> updateRolloutList,List<IPM_Financial__c> updateFinList)
+    {
+      for(IPM_Project_Rollout__c roll:proj.IPM_Project_Rollout__r)
                 {
                     updateRolloutList.add(roll);
                     rolloutId.add(roll.id);
@@ -74,12 +118,19 @@ public with sharing class IPM_UpdateGlobalProjectName {
                 
                 for(IPM_Financial__c prodoc:proj.IPM_Financials_Regional__r)
                 {
-                	
                      if(prodoc.Financial_External_ID__c!=null){
                     updateFinList.add(prodoc);
                     }
                 }
-                
+    }
+    
+    /*******************************************************************************
+    @Description: This method is created to resolve nPath complexity issue  
+    @Return: void
+    *******************************************************************************/
+    
+    private static void partialUpdateProjectName2 (IPM_Project__c proj,List<IPM_Financial__c> updateFinList,List<IPM_Country__c> updateCountryList,List<IPM_Milestone__c> updateMilesList,List<IPM_Task__c> updateTaskList,List<IPM_Project_Document__c> updateProDocList)
+    {
                 for(IPM_Financial__c prodoc:proj.IPM_Financials_Local__r)
                 {
                      if(prodoc.Financial_External_ID__c!=null){
@@ -112,39 +163,6 @@ public with sharing class IPM_UpdateGlobalProjectName {
                 {
                     updateProDocList.add(prodoc);
                 }
-            }
-        } 
-        	
-    	skipTiggerExecution(true);
-        
-        List<IPM_Project_Document__c> ProDocUpdateList = new List<IPM_Project_Document__c>();
-        ProDocUpdateList = updateDocNSecName(updatedProNameMap,updateProDocList,oldprojectnameMap);
-        
-        List<IPM_Task__c>taskUpdateList = new List<IPM_Task__c>();
-        taskUpdateList = updateTaskName(updatedProNameMap,updateTaskList,oldprojectnameMap);//get list of all tasks, those values have been updated
-        
-        List<IPM_Milestone__c> milestoneUpdateList = new List<IPM_Milestone__c>();
-        milestoneUpdateList = updateMilesName(updatedProNameMap,updateMilesList,oldprojectnameMap);//get list of all milestones, those values have been updated
-        
-        Set<Id> existingFinancialYear = new Set<Id>();
-        List<IPM_Financial__c> updateFinanceList = new List<IPM_Financial__c>();
-        updateFinanceList = updateFinName(updatedProNameMap,updateFinList,oldprojectnameMap,existingFinancialYear);//get list of all finance, those values have been updated
-        
-        List<IPM_Project_Rollout__c> updateRollList = new List<IPM_Project_Rollout__c>();
-        updateRollList = updateRollOut(updatedProNameMap,updateRolloutList,oldprojectnameMap,rolloutId,existingFinancialYear);//get list of all rollout, those values have been updated
-        
-        List<IPM_Country__c>updateCountriesList=new List<IPM_Country__c>();
-        updateCountriesList=updateCountryName(updatedProNameMap,updateCountryList,oldprojectnameMap);
- 		
- 		update ProDocUpdateList;
-        update taskUpdateList;
-        update milestoneUpdateList;
-        update updateFinanceList;
-        update updateRollList;
-        update updateCountriesList;
-        skipTiggerExecution(false);
-        updateChildProjects(updatedProNameMap,oldprojectnameMap);
-        
     }
     
     /********************************************************************************
