@@ -54,6 +54,9 @@ global class IPM_ProjectOwnerUpdate_Batch implements Database.Batchable<sObject>
         Set<string> grpnameSet=new Set<string>();
         Map<id,id>ChildParentProjectMap= new Map<id,id>();
         projectidstr = '';
+        List<IPM_Financial__c> updateFinanceOwnerList=new List<IPM_Financial__c>();
+        List<IPM_Bosscard__c> updatebosscardOwnerList=new List<IPM_Bosscard__c>();          
+        List<IPM_Project_Document_Section_Content__c> updateDocSecConOwnerList=new List<IPM_Project_Document_Section_Content__c>();
                   
           for(IPM_Project__c proj:ProjectList){
                 projectidstr = proj.id;
@@ -77,40 +80,9 @@ global class IPM_ProjectOwnerUpdate_Batch implements Database.Batchable<sObject>
           map <string,id> projectowneridmap = new map <string,id>();
           map <id,id> bosscardprojectidmap = new map <id,id>();
           
-          for(IPM_Project__c proj:ProjectList){
-              projectidstr = proj.id;
-              if(grpMap.get(IPM_ConstantUtils.IPM_IPMNNAME+projectidstr.Substring(0,15))!=null ){
-              
-                  proj.OwnerId=grpMap.get(IPM_ConstantUtils.IPM_IPMNNAME+projectidstr.Substring(0,15)).Id;
-                  projectowneridmap.put(proj.id,proj.OwnerId);
-                  projectidstr = proj.id;
-                  projectowneridmap.put(projectidstr.Substring(0,15),proj.OwnerId);
-                  if(projectidtobeprocess.contains(proj.id)){
-                    updateProjectOwnerList.add(proj);
-                    bosscardprojectidmap.put(proj.IPM_Bosscard__r.id,proj.id);
-                  }
-              }
-                else if(grpMap.get(IPM_ConstantUtils.IPM_IPMNNAME+proj.name)!=null){
-                    proj.OwnerId=grpMap.get(IPM_ConstantUtils.IPM_IPMNNAME+proj.Name).Id;
-                    projectowneridmap.put(proj.id,proj.OwnerId);
-                    projectidstr = proj.id;
-                    projectowneridmap.put(projectidstr.Substring(0,15),proj.OwnerId);
-                    if(projectidtobeprocess.contains(proj.id)){
-                        updateProjectOwnerList.add(proj);
-                        bosscardprojectidmap.put(proj.IPM_Bosscard__r.id,proj.id);
-                    }
-                }
-                    else if(ChildParentProjectMap.get(proj.id)!=null){
-                        proj.OwnerId=ChildParentProjectMap.get(proj.id);
-                       
-                        projectowneridmap.put(proj.id,proj.OwnerId);
-                        projectidstr = proj.id;
-                        projectowneridmap.put(projectidstr.Substring(0,15),proj.OwnerId);
-                        if(projectidtobeprocess.contains(proj.id)){
-                            updateProjectOwnerList.add(proj);
-                            bosscardprojectidmap.put(proj.IPM_Bosscard__r.id,proj.id);
-                        }
-                    }              
+          for(IPM_Project__c proj:ProjectList)
+          {
+            getProjOwnerNBossCardPrjList (ChildParentProjectMap,grpMap,proj,projectowneridmap,updateProjectOwnerList,bosscardprojectidmap);
           }          
           
           if(updateProjectOwnerList != null && !updateProjectOwnerList.isEmpty()){
@@ -121,8 +93,72 @@ global class IPM_ProjectOwnerUpdate_Batch implements Database.Batchable<sObject>
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,executeMethod,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);
             }
           
-          //Update the ownerid of financial records to Queueid i.e. ownerid of the project
-            List<IPM_Financial__c> updateFinanceOwnerList=new List<IPM_Financial__c>();          
+            getFinOwnerNBossCardPrjList(updateFinanceOwnerList,updatebosscardOwnerList,updateDocSecConOwnerList,projectowneridmap,bosscardprojectidmap);
+            updateOwners(updateFinanceOwnerList,updatebosscardOwnerList,updateDocSecConOwnerList);
+                    
+    }
+   } 
+
+    /*****************************************************************************************
+      @Description:  This Method is used to get Project Owners and Bosscard Project IDs
+      @Return:       void
+      @Note:         This method is created to resolve nPath Complexity Issue
+    *****************************************************************************************/
+    
+    private void getProjOwnerNBossCardPrjList (Map<id,id>ChildParentProjectMap,Map<String,Group> grpMap,IPM_Project__c proj,map <string,id> projectowneridmap,list <IPM_Project__c> updateProjectOwnerList,map <id,id> bosscardprojectidmap)
+    {
+        
+              projectidstr = proj.id;
+              if(grpMap.get(IPM_ConstantUtils.IPM_IPMNNAME+projectidstr.Substring(0,15))!=null )
+              {
+                    proj.OwnerId=grpMap.get(IPM_ConstantUtils.IPM_IPMNNAME+projectidstr.Substring(0,15)).Id;
+                    projectowneridmap.put(proj.id,proj.OwnerId);
+                    projectidstr = proj.id;
+                    projectowneridmap.put(projectidstr.Substring(0,15),proj.OwnerId);
+                    if(projectidtobeprocess.contains(proj.id))
+                    {
+                        updateProjectOwnerList.add(proj);
+                        bosscardprojectidmap.put(proj.IPM_Bosscard__r.id,proj.id);
+                    }
+              }
+              else if(grpMap.get(IPM_ConstantUtils.IPM_IPMNNAME+proj.name)!=null)
+              {
+                    proj.OwnerId=grpMap.get(IPM_ConstantUtils.IPM_IPMNNAME+proj.Name).Id;
+                    projectowneridmap.put(proj.id,proj.OwnerId);
+                    projectidstr = proj.id;
+                    projectowneridmap.put(projectidstr.Substring(0,15),proj.OwnerId);
+                    if(projectidtobeprocess.contains(proj.id))
+                    {
+                        updateProjectOwnerList.add(proj);
+                        bosscardprojectidmap.put(proj.IPM_Bosscard__r.id,proj.id);
+                    }
+              }
+              else if(ChildParentProjectMap.get(proj.id)!=null)
+              {
+                    proj.OwnerId=ChildParentProjectMap.get(proj.id);
+                    projectowneridmap.put(proj.id,proj.OwnerId);
+                    projectidstr = proj.id;
+                    projectowneridmap.put(projectidstr.Substring(0,15),proj.OwnerId);
+                    if(projectidtobeprocess.contains(proj.id))
+                    {
+                        updateProjectOwnerList.add(proj);
+                        bosscardprojectidmap.put(proj.IPM_Bosscard__r.id,proj.id);
+                    }
+              }              
+          
+    }
+
+
+    /*****************************************************************************************
+      @Description:  This Method is used to get Finance/Bosscard/Document_Section_Content Owners
+      @Return:       void
+      @Note:         This method is created to resolve nPath Complexity Issue
+    *****************************************************************************************/
+    
+    private void getFinOwnerNBossCardPrjList (List<IPM_Financial__c> updateFinanceOwnerList,List<IPM_Bosscard__c> updatebosscardOwnerList,List<IPM_Project_Document_Section_Content__c> updateDocSecConOwnerList,map <string,id> projectowneridmap,map <id,id> bosscardprojectidmap)
+    {
+        //Update the ownerid of financial records to Queueid i.e. ownerid of the project
+                      
             
             //New Code-from the migration prospect
             for(IPM_Financial__c finance:[select id, ownerid, Parent_Project__r.id, Regional_Project__r.id, Local_Project__r.id, Global_Project_Id__c from IPM_Financial__c where Parent_Project__c IN:projectidtobeprocess or Regional_Project__c IN:projectidtobeprocess or Local_Project__c IN:projectidtobeprocess]){
@@ -139,7 +175,7 @@ global class IPM_ProjectOwnerUpdate_Batch implements Database.Batchable<sObject>
             }
             
             //Update the ownerid of boscard to Queueid i.e. ownerid of the project
-            List<IPM_Bosscard__c> updatebosscardOwnerList=new List<IPM_Bosscard__c>();
+            
             if(bosscardprojectidmap.keyset() != null && bosscardprojectidmap.keyset().size()>0){
                 for(IPM_Bosscard__c boss:[select id, ownerid from IPM_Bosscard__c where id IN:bosscardprojectidmap.keyset()]){
                     if(bosscardprojectidmap.containskey(boss.id)){
@@ -150,18 +186,31 @@ global class IPM_ProjectOwnerUpdate_Batch implements Database.Batchable<sObject>
              }
             
             //Update the ownerid of Document Section Content to Queueid i.e. ownerid of the project
-            List<IPM_Project_Document_Section_Content__c> updateDocSecConOwnerList=new List<IPM_Project_Document_Section_Content__c>(); 
+             
             for(IPM_Project_Document_Section_Content__c  DocSecCon:[SELECT id,ownerid,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.ownerid 
                                             FROM IPM_Project_Document_Section_Content__c
-                                            //WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.id IN: projectowneridmap.keyset()]){
+                                            
                                             WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.id IN: projectidtobeprocess]){
               if(DocSecCon.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.ownerid !=null){
                 DocSecCon.ownerid = DocSecCon.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.ownerid;
                 updateDocSecConOwnerList.add(DocSecCon);
               }                                           
             }
-
-            if(updateFinanceOwnerList != null && !updateFinanceOwnerList.isEmpty()){
+              
+            
+    }
+    
+    
+    
+    /*****************************************************************************************
+      @Description:  This Method is used to update Finance/Bosscard/Document_Section_Content Owners
+      @Return:       void
+      @Note:         This method is created to resolve nPath Complexity Issue
+    *****************************************************************************************/
+    
+    private void updateOwners (List<IPM_Financial__c> updateFinanceOwnerList,List<IPM_Bosscard__c> updatebosscardOwnerList,List<IPM_Project_Document_Section_Content__c> updateDocSecConOwnerList)
+    {
+        if(updateFinanceOwnerList != null && !updateFinanceOwnerList.isEmpty()){
                 try{    
                     Update updateFinanceOwnerList;
                 }catch(Exception ex)
@@ -189,8 +238,6 @@ global class IPM_ProjectOwnerUpdate_Batch implements Database.Batchable<sObject>
                   } 
           }          
     }
-   } 
-
     //finish Mehtod
     global void finish(Database.BatchableContext BC)
     {       
