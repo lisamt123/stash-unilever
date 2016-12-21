@@ -1,5 +1,5 @@
 public with sharing class BFM_SESSummaryScreen_CC {
-
+    
     public BFM_SES__c ses{get;set;}
     public String seslistString {get;set;}
     public string recordscount{get;set;}
@@ -17,67 +17,67 @@ public with sharing class BFM_SESSummaryScreen_CC {
     public List<SelectOption> statusOptions {get;set;}
     public List<SelectOption> recordsize{get;set;}
     
-
+    
     public BFM_SESSummaryScreen_CC(ApexPages.StandardSetController controller){
-    
-
-    
-    seslistString ='Select id,name,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,CT_E__r.UF_Goods_Sender__c,CT_E__r.CT_e_Number__c,CT_E__r.Link_Status__c,CT_E__r.Company_Code_Status__c,CT_E__r.CT_e_Duplicate_Record_Status__c, CT_E__r.CT_e_Sefaz_Check_Status__c,CT_E__r.Cte_Status__c,CT_E__r.CT_e_Valid_CNPJ_Status__c from BFM_SES__c';
-    try{
-                con = new ApexPages.StandardSetController(Database.getQueryLocator(seslistString));
-                system.debug('con---->'+con);
+        
+        
+        
+        seslistString ='Select id,name,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,CT_E__r.UF_Goods_Sender__c,CT_E__r.CT_e_Number__c,CT_E__r.Link_Status__c,CT_E__r.Company_Code_Status__c,CT_E__r.Is_Duplicated__c, CT_E__r.CT_e_Sefaz_Check_Status__c,CT_E__r.Cte_Status__c,CT_E__r.Is_CNPJ_Invalid__c from BFM_SES__c';
+        try{
+            con = new ApexPages.StandardSetController(Database.getQueryLocator(seslistString));
+            system.debug('con---->'+con);
         } catch(QueryException ex){
             String errorMessage = ex.getMessage();
             ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, errorMessage));
             System.debug(errorMessage);
         }
         setPaginationSettings();
-            
+        
     }
     
     
-        public void setPaginationSettings(){
+    public void setPaginationSettings(){
         ses = new BFM_SES__c();        
         statusOptions = new List<SelectOption>();
-      
+        
         Schema.DescribeFieldResult statusFieldDescription = BFM_SES__c.Display__c.getDescribe();
         for (Schema.Picklistentry picklistEntry:statusFieldDescription.getPicklistValues())
         {
-                statusOptions.add(new SelectOption(pickListEntry.getValue(),pickListEntry.getLabel()));
-                // obtain and assign default value
-                if (picklistEntry.defaultValue){
+            statusOptions.add(new SelectOption(pickListEntry.getValue(),pickListEntry.getLabel()));
+            // obtain and assign default value
+            if (picklistEntry.defaultValue){
                 ses.Display__c= pickListEntry.getValue();
             }  
         }    
         // sets the number of records in each page set
-                if(ses.Display__c != null ){
-                con.setPageSize(integer.ValueOf(ses.Display__c));
+        if(ses.Display__c != null ){
+            con.setPageSize(integer.ValueOf(ses.Display__c));
         } else{
-                con.setPageSize(2);
+            con.setPageSize(2);
         }
     }
     
-        public void getses(){
+    public void getses(){
         if(recordscount=='10'){
-         con.setPageSize(10);   
+            con.setPageSize(10);   
         }
         else if(recordscount=='25'){
-         con.setPageSize(25);   
+            con.setPageSize(25);   
         }
         else if(recordscount=='50'){
-         con.setPageSize(50);   
+            con.setPageSize(50);   
         }
         else if(recordscount=='100'){
-         con.setPageSize(100);   
+            con.setPageSize(100);   
         }
         else if(recordscount=='200'){
-         con.setPageSize(200);   
+            con.setPageSize(200);   
         }
     }
     
     public BFM_SESSummaryScreen_CC(){
-    
-            recordsize = new List<SelectOption>(); 
+        
+        recordsize = new List<SelectOption>(); 
         recordsize.add(new SelectOption('10','10'));
         recordsize.add(new SelectOption('25','25'));
         recordsize.add(new SelectOption('50','50'));
@@ -85,73 +85,73 @@ public with sharing class BFM_SESSummaryScreen_CC {
         recordsize.add(new SelectOption('200','200'));
         searchWord='';
         
-        seslist =[Select id,name,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,CT_E__r.UF_Goods_Sender__c,CT_E__r.CT_e_Number__c,CT_E__r.Link_Status__c,CT_E__r.Company_Code_Status__c,CT_E__r.CT_e_Duplicate_Record_Status__c, CT_E__r.CT_e_Sefaz_Check_Status__c,CT_E__r.Cte_Status__c,CT_E__r.CT_e_Valid_CNPJ_Status__c from BFM_SES__c];
-            
-    SESView(seslist);
+        seslist =[Select id,name,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,CT_E__r.UF_Goods_Sender__c,CT_E__r.CT_e_Number__c,CT_E__r.Link_Status__c,CT_E__r.Company_Code_Status__c,CT_E__r.Is_Duplicated__c, CT_E__r.CT_e_Sefaz_Check_Status__c,CT_E__r.Cte_Status__c ,CT_E__r.Is_CNPJ_Invalid__c from BFM_SES__c];
+        
+        SESView(seslist);
     }
     
     
     public List<BFM_SES__c> SESVfList
+    {  
+        get  
         {  
-            get  
-            {  
-                if(con != null)  
-                    return (List<BFM_SES__c>)con.getRecords();            
-                else  
-                    return null ;             
-            }  
-            set;
-        }
+            if(con != null)  
+                return (List<BFM_SES__c>)con.getRecords();            
+            else  
+                return null ;             
+        }  
+        set;
+    }
     
     public void searchSES(){
-
+        
         if(searchWord!=null && searchWord.length()>1 ){    
-         List<List <sObject>> searchList = [FIND :searchWord IN ALL FIELDS RETURNING  BFM_SES__c(Id)];
-          sesId=searchList[0];
-         } 
-    else{
+            List<List <sObject>> searchList = [FIND :searchWord IN ALL FIELDS RETURNING  BFM_SES__c(Id)];
+            sesId=searchList[0];
+        } 
+        else{
             ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, 'search term must be longer than one character'));
         } 
         
-         if(sesId!=null){     
-        seslist =[Select id,name,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,CT_E__r.Link_Status__c,CT_E__r.Company_Code_Status__c,CT_E__r.CT_e_Duplicate_Record_Status__c, CT_E__r.CT_e_Sefaz_Check_Status__c,CT_E__r.Cte_Status__c,CT_E__r.CT_e_Valid_CNPJ_Status__c from BFM_SES__c where id in:sesId];
-        SESView(seslist);
+        if(sesId!=null){     
+            seslist =[Select id,name,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,CT_E__r.Link_Status__c,CT_E__r.Company_Code_Status__c,CT_E__r.Is_Duplicated__c, CT_E__r.CT_e_Sefaz_Check_Status__c,CT_E__r.Cte_Status__c, CT_E__r.Is_CNPJ_Invalid__c from BFM_SES__c where id in:sesId];
+            SESView(seslist);
         }
         
-
-   } 
+        
+    } 
     
     public pageReference redirectPage(){
         PageReference pageRef = new PageReference(ApexPages.currentPage().getUrl());
         pageRef.setRedirect(true);
         return pageRef;
     }    
-       
+    
     
     Private void SESView(List<BFM_SES__c> sesList ){
         
-         wrapper = new List<wrappercls>();
+        wrapper = new List<wrappercls>();
         for(BFM_SES__c ses:seslist ){
             wrappercls wr = new wrappercls(ses,lStatus,vStatus,PStatus,PayStatus);
             wr.ses=ses;
-        if(ses.CT_E__r.Link_Status__c=='Link Ok'){    
-            wr.linkStatus='OK';
-        } 
-        if(ses.CT_E__r.Link_Status__c=='Pending Link'){    
-            wr.linkStatus='NOTOK';
-        }      
-        if(ses.CT_E__r.CT_e_Duplicate_Record_Status__c=='Validation OK' && ses.CT_E__r.CT_e_Valid_CNPJ_Status__c=='Valid CNPJ'){
-        wr.validationStatus='OK';    
-        } 
-        if(ses.CT_E__r.CT_e_Duplicate_Record_Status__c=='Validation Error' && ses.CT_E__r.CT_e_Valid_CNPJ_Status__c=='Invalid CNPJ'){
-        wr.validationStatus='NOTOK';    
+            if(ses.CT_E__r.Link_Status__c=='Link Ok'){    
+                wr.linkStatus='OK';
+            } 
+            if(ses.CT_E__r.Link_Status__c=='Pending Link'){    
+                wr.linkStatus='NOTOK';
+            }      
+            if(ses.CT_E__r.IS_Duplicated__c /*&& ses.CT_E__r.Is_CNPJ_Valid__c */){
+                wr.validationStatus='OK';    
+            } 
+            if(ses.CT_E__r.IS_Duplicated__c /*&& !ses.CT_E__r.Is_CNPJ_Valid__c */){
+                wr.validationStatus='NOTOK';    
+            }
+            if(ses.CT_E__r.Cte_Status__c=='Invoice Posted' ){
+                wr.PaymentStatus='OK';    
+            }   
+            wrapper.add(wr);
         }
-        if(ses.CT_E__r.Cte_Status__c=='Invoice Posted' ){
-        wr.PaymentStatus='OK';    
-        }   
-        wrapper.add(wr);
-        }
-    
+        
     }
     public class wrappercls{
         public BFM_SES__c ses {get;set;}
@@ -162,37 +162,37 @@ public with sharing class BFM_SESSummaryScreen_CC {
         public String PODStatus {get; set;}
         public String PaymentStatus {get; set;}
         public wrappercls(BFM_SES__c ses,string linkStatus,string validationStatus,string PODStatus,string PaymentStatus){
-                this.linkStatus='NOTCHECKED';
-                this.validationStatus='NOTCHECKED';
-                this.PODStatus='NOTCHECKED';
-                this.PaymentStatus='NOTCHECKED';                
+            this.linkStatus='NOTCHECKED';
+            this.validationStatus='NOTCHECKED';
+            this.PODStatus='NOTCHECKED';
+            this.PaymentStatus='NOTCHECKED';                
         } 
     }
-  
+    
     // returns the first page of records
-     public void first() {
-         con.first();
-     }
-
-     // returns the last page of records
-     public void last() {
-         con.last();
-     }
-
-     // returns the previous page of records
-     public void previous() {
-         con.previous();
-     }
-
-     // returns the next page of records
-     public void next() {
-         con.next();
-     }
-
-     // returns the PageReference of the original page, if known, or the home page.
-     public void cancel() {
-         con.cancel();
-     }
+    public void first() {
+        con.first();
+    }
+    
+    // returns the last page of records
+    public void last() {
+        con.last();
+    }
+    
+    // returns the previous page of records
+    public void previous() {
+        con.previous();
+    }
+    
+    // returns the next page of records
+    public void next() {
+        con.next();
+    }
+    
+    // returns the PageReference of the original page, if known, or the home page.
+    public void cancel() {
+        con.cancel();
+    }
     public Boolean hasNext  
     {  
         get  

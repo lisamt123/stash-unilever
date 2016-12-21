@@ -8,26 +8,26 @@ public class BFM_RecordutilityController {
         for(Account ac : acclist){
             accCNPJ.add(ac.CNPJ__c);
         }
+        
         if(FileType == 'CC-e'){
             for(BFM_CC_e__c cce : CCeRecord){
                 if(OldKeyMap.containsKey(cce.CC_e_Key__c)){
-                    cce.CC_e_Duplicate_Record_Status__c = Label.BFM_Validation_Error; 
-                    cce.CC_e_Status__c =  Label.BFM_Validation_Error;             
+                    cce.CC_e_Status__c =  Label.BFM_Validation_Error;      
+                    cce.Is_Duplicated__c = true;
                 }else{
-                    cce.CC_e_Duplicate_Record_Status__c = Label.BFM_Validation_OK;
                     cce.CC_e_Status__c =  Label.BFM_Validation_OK;  
+                    cce.Is_Duplicated__c = false;
                 } 
                 
-                if(cce.CC_e_Duplicate_Record_Status__c!='Validation Error'){
+                if(!cce.Is_Duplicated__c){
                     if((cce.CNPJ_Issuer__c!=null && accCNPJ.contains(cce.CNPJ_Issuer__c)) && (cce.CNPJ_Service_Taker__c!=null && accCNPJ.contains(cce.CNPJ_Service_Taker__c)) ){
-                        cce.CC_e_Valid_CNPJ_Status__c = Label.BFM_Valid_CNPJ;
-                        cce.CC_e_Status__c =  Label.BFM_Valid_CNPJ;  
-                    } else{
-                        cce.CC_e_Valid_CNPJ_Status__c = 'Invalid CNPJ';
+                        cce.CC_e_Status__c =  Label.BFM_Valid_CNPJ; 
+                        cce.Is_CNPJ_Invalid__c = false;
+                    } else {
                         cce.CC_e_Status__c =  'Invalid CNPJ';  
+                        cce.Is_CNPJ_Invalid__c = true;
                     }
                 }
-                system.debug('sssssssssssssssssssss'+cce.CC_e_Status__c);
             }
             BFM_Link_CCECTE.linkCCECTE(CCeRecord);
         }
@@ -35,30 +35,32 @@ public class BFM_RecordutilityController {
     
     
     public void cteCheck(Map<string,id> OldKeyMap,Map<string,id> NewRecordMap, string FileType , List<BFM_CT_e__c> CTeRecord ,set<string> CNPJId){
-        List<BFM_Error_Log__c> errlist= New List<BFM_Error_Log__c>();
-        set<string> accCNPJ = new set<string>();
-        List<BFM_CT_e__c> CT_eUpdateRecordList=New List<BFM_CT_e__c>();
+        List<BFM_Error_Log__c> errlist = new List<BFM_Error_Log__c>();
+        Set<string> accCNPJ = new Set<string>();
+        List<BFM_CT_e__c> CT_eUpdateRecordList = new List<BFM_CT_e__c>();
         List<Account> acclist=[Select id,CNPJ__c from Account where CNPJ__c IN:CNPJId];
+        
         for(Account ac : acclist){
             accCNPJ.add(ac.CNPJ__c);
         }
+        
         if(FileType == 'CT-e'){
             for(BFM_CT_e__c cte : CTeRecord){
-                if(OldKeyMap.containsKey(cte.CT_e_Key__c)){
-                    cte.CT_e_Duplicate_Record_Status__c = Label.BFM_Validation_Error; 
-                    cte.Cte_Status__c = Label.BFM_Validation_Error;             
-                }else{
-                    cte.CT_e_Duplicate_Record_Status__c = Label.BFM_Validation_OK;
-                    cte.Cte_Status__c = Label.BFM_Validation_OK;   
+                if(OldKeyMap.containsKey(cte.CT_e_Key__c)) {
+                    cte.Cte_Status__c = Label.BFM_Validation_Error; 
+                    cte.Is_Duplicated__c = true;
+                } else {
+                    cte.Cte_Status__c = Label.BFM_Validation_OK;  
+                    cte.is_Duplicated__c = false;
                 } 
                 
-                if(cte.CT_e_Duplicate_Record_Status__c!='Validation Error'){
+                if(!cte.is_Duplicated__c) {
                     if((cte.CNPJ_Issuer__c!=null && accCNPJ.contains(cte.CNPJ_Issuer__c)) || (cte.CNPJ_Service_Taker__c!=null && accCNPJ.contains(cte.CNPJ_Service_Taker__c)) ){
-                        cte.CT_e_Valid_CNPJ_Status__c = Label.BFM_Valid_CNPJ;
                         cte.Cte_Status__c = Label.BFM_Valid_CNPJ;   
-                    } else{
-                        cte.CT_e_Valid_CNPJ_Status__c = 'Invalid CNPJ';
-                        cte.Cte_Status__c = 'Invalid CNPJ';   
+                        cte.Is_CNPJ_Invalid__c = false;
+                    } else {
+                        cte.Cte_Status__c = 'Invalid CNPJ';  
+                        cte.Is_CNPJ_Invalid__c = true;
                     }
                 }
             }
@@ -80,20 +82,22 @@ public class BFM_RecordutilityController {
             if(mapacc.containskey(mdfe.Taker_CNPJ__c) && mapacc.get(mdfe.Taker_CNPJ__c)!=null){
                 //      mdfe.Unilever_Account__c = mapacc.get(mdfe.Taker_CNPJ__c).id;
             }
+            	
             if(OldKeyMap.containsKey(mdfe.MDFE_Access_Key__c)){
-                mdfe.MDF_e_Duplicate_Record_Status__c= Label.BFM_Validation_Error; 
-                mdfe.MDF_e_Status__c = Label.BFM_Validation_Error;             
+                mdfe.MDF_e_Status__c = Label.BFM_Validation_Error;     
+                mdfe.Is_Duplicated__c = true;
             } else{
-                mdfe.MDF_e_Duplicate_Record_Status__c= Label.BFM_Validation_Ok;
                 mdfe.MDF_e_Status__c = Label.BFM_Validation_Ok;
+                mdfe.Is_Duplicated__c = false;
             }
-            if(mdfe.MDF_e_Duplicate_Record_Status__c!=Label.BFM_Validation_Error){
+            
+            if(!mdfe.Is_Duplicated__c){
                 if((mdfe.Issuer_CNPJ__c!=null && accCNPJ.contains(mdfe.Issuer_CNPJ__c)) || (mdfe.Taker_CNPJ__c!=null && accCNPJ.contains(mdfe.Taker_CNPJ__c)) ){
-                    mdfe.MDF_e_Valid_CNPJ_Status__c= 'Valid CNPJ';
                     mdfe.MDF_e_Status__c = 'Valid CNPJ';
+                    mdfe.Is_CNPJ_Invalid__c = false;
                 } else{
-                    mdfe.MDF_e_Valid_CNPJ_Status__c= 'Invalid CNPJ';
                     mdfe.MDF_e_Status__c = 'Invalid CNPJ';
+                    mdfe.Is_CNPJ_Invalid__c = true;
                 }
             }
         }
@@ -111,37 +115,32 @@ public class BFM_RecordutilityController {
             if(mapacc.containskey(nfs.Vendor_s_CNPJ_or_CPF__c)){
                 nfs.Carrier__c = mapacc.get(nfs.Vendor_s_CNPJ_or_CPF__c).id;
             }
+            
             if(mapacc.containskey(nfs.Service_Taker_CNPJ__c)){
                 nfs.Service_Taker__c= mapacc.get(nfs.Service_Taker_CNPJ__c).id;
             }
-            if(nfs.NFS_Number__c!=null && nfs.NFS_Series__c!=null && nfs.Vendor_s_CNPJ_or_CPF__c!=null && nfs.NFS_Emission_Date_Time__c!=null){
-                nfs.NFS_Mandatory_Field_Status__c = Label.BFM_Validation_Ok;
-                nfs.NFS_Status__c = Label.BFM_Validation_Ok;
-            }
-            else{
-                nfs.NFS_Mandatory_Field_Status__c = Label.BFM_Validation_Error;
-                nfs.NFS_Status__c = Label.BFM_Validation_Error;
-            }
+            
             if(nfs.NFS_Mandatory_Field_Status__c != Label.BFM_Validation_Error){
                 if(OldKeyMap.containsKey(nfs.NFS_Number__c+nfs.NFS_Series__c+nfs.Vendor_s_CNPJ_or_CPF__c+nfs.NFS_Emission_Date_Time__c.year())){
-                    nfs.NFS_Duplicate_Check_Status__c= Label.BFM_Validation_Error;   
-                    nfs.NFS_Status__c = Label.BFM_Validation_Error;            
+                    nfs.NFS_Status__c = Label.BFM_Validation_Error; 
+                    nfs.Is_Duplicated__c = true;
                 } else{
-                    nfs.NFS_Duplicate_Check_Status__c= Label.BFM_Validation_Ok;
                     nfs.NFS_Status__c = Label.BFM_Validation_Ok;
+                    nfs.Is_Duplicated__c = false;
                 }
             }
-            if(nfs.NFS_Duplicate_Check_Status__c!=null && nfs.NFS_Duplicate_Check_Status__c!=Label.BFM_Validation_Error){
+            
+            if(!nfs.Is_Duplicated__c){
                 if((nfs.Vendor_s_CNPJ_or_CPF__c!=null && accCNPJ.contains(nfs.Vendor_s_CNPJ_or_CPF__c)) && (nfs.Service_Taker_CNPJ__c!=null && accCNPJ.contains(nfs.Service_Taker_CNPJ__c)) ){
-                    nfs.NFS_CNPJ_Check_Status__c= 'Valid CNPJ';
                     nfs.NFS_Status__c = 'Valid CNPJ';
+                    nfs.Is_CNPJ_Invalid__c = false;
                     if(nfs.NFS_Link_Check_Status__c == null){
                         nfs.NFS_Link_Check_Status__c = 'Pending Link';
                         nfs.NFS_Status__c = 'Pending Link';
                     }
                 } else{
-                    nfs.NFS_CNPJ_Check_Status__c= 'Invalid CNPJ';
                     nfs.NFS_Status__c = 'Invalid CNPJ';
+                    nfs.Is_CNPJ_Invalid__c = true;
                 }
             }
         }
@@ -167,25 +166,24 @@ public class BFM_RecordutilityController {
                 dn.Company_Code__c = mapAccount.get(dn.Service_Taker_CNPJ__c).Company_Code__c;                            
             }
             if(OldKeyMap.containsKey(dn.DN_Number__c)){
-                dn.DN_duplicate_check_status__c= Label.BFM_Validation_Error;
-                dn.Debit_Note_Status__c = Label.BFM_Validation_Error;               
-            } else{
-                dn.DN_duplicate_check_status__c= Label.BFM_Validation_Ok;
+                dn.Debit_Note_Status__c = Label.BFM_Validation_Error;    
+                dn.Is_Duplicated__c = true;
+            } else {
                 dn.Debit_Note_Status__c = Label.BFM_Validation_Ok;
+                dn.Is_Duplicated__c = false;
             }
-            if(dn.DN_duplicate_check_status__c!=Label.BFM_Validation_Error){
+            if(!dn.Is_Duplicated__c){
                 if((dn.Vendor_s_CNPJ_or_CPF__c!=null && accCNPJ.contains(dn.Vendor_s_CNPJ_or_CPF__c)) && (dn.Service_Taker_CNPJ__c!=null && accCNPJ.contains(dn.Service_Taker_CNPJ__c)) ){
-                    dn.DN_cnpj_check_status__c = 'Valid CNPJ';
                     dn.Debit_Note_Status__c = 'Valid CNPJ';
+                    dn.Is_CNPJ_Invalid__c = false;
                 } else{
-                    dn.DN_cnpj_check_status__c = 'Invalid CNPJ';
                     dn.Debit_Note_Status__c = 'Invalid CNPJ';
+                    dn.Is_CNPJ_Invalid__c = true;                    
                 }
             }
         }
         
     }
-    
     
     //POD
     public void podCheck(Map<string,id> OldKeyMap,Map<string,BFM_NF_e__c> nferecordmap, string FileType , List<BFM_POD__c> podRecord ,set<string> CNPJId){
@@ -196,7 +194,6 @@ public class BFM_RecordutilityController {
         system.debug('FileType:'+FileType);
         system.debug('podRecord:'+podRecord);
         system.debug('CNPJId:'+CNPJId);
-        
         
         List<Account> acclist=[Select id,CNPJ__c,Vendor__c,Company_Code__c from Account where CNPJ__c IN:CNPJId];
         for(Account ac : acclist){
@@ -211,32 +208,34 @@ public class BFM_RecordutilityController {
             if(pod.NF_e__c==null && nferecordmap.containskey(pod.NF_e_Access_Key__c)){
                 pod.NF_e__c = nferecordmap.get(pod.NF_e_Access_Key__c).id;
             }  
+            
             if(OldKeyMap.containsKey(pod.NF_e_Access_Key__c ) && !nferecordmap.containskey(pod.NF_e_Access_Key__c)){
-                pod.POD_Duplicate_Check_Status__c= Label.BFM_Validation_Error;
+                pod.Is_Duplicated__c = true;
                 //pod.POD_Status__c= Label.BFM_Validation_Error;               
             } else{
-                pod.POD_Duplicate_Check_Status__c= Label.BFM_Validation_Ok;
+                pod.Is_Duplicated__c = false;
                 //pod.POD_Status__c= Label.BFM_Validation_Ok;
             }
-            system.debug('pod.POD_Duplicate_Check_Status__c:'+pod.POD_Duplicate_Check_Status__c+'~~~~~pod.POD_Status__c:'+pod.POD_Status__c);
-            if(pod.POD_Duplicate_Check_Status__c==Label.BFM_Validation_Ok && pod.POD_Duplicate_Check_Status__c!=null){
+
+            if(!pod.Is_Duplicated__c){
                 //system.debug(nferecordmap.get(pod.NF_e_Access_Key__c).CNPJ_destination__c);
                 //if((nferecordmap.get(pod.NF_e_Access_Key__c).CNPJ_destination__c!=null && accCNPJ.contains(nferecordmap.get(pod.NF_e_Access_Key__c).CNPJ_destination__c))){
                 if(nferecordmap.get(pod.NF_e_Access_Key__c)!=null){
                     if(nferecordmap.get(pod.NF_e_Access_Key__c).CNPJ_destination__c!=null){
-                        pod.POD_CNPJ_Check_Status__c = 'Valid CNPJ';
                         //pod.POD_Status__c = 'Valid CNPJ';
+                        pod.Is_CNPJ_Invalid__c = false;
                     } else{
-                        pod.POD_CNPJ_Check_Status__c= 'Invalid CNPJ';
                         //pod.POD_Status__c = 'Invalid CNPJ';
+                        pod.Is_CNPJ_Invalid__c = true;
                     }
                 }
             }
-            system.debug('cnpjcheck'+pod.POD_CNPJ_Check_Status__c);
-            if(pod.POD_CNPJ_Check_Status__c=='Valid CNPJ' && pod.POD_CNPJ_Check_Status__c!=null){           
+            
+            if(!pod.Is_CNPJ_Invalid__c){           
                 if(pod.Upload_date__c!=null && pod.Upload_date__c.date()==Date.valueOf(nferecordmap.get(pod.NF_e_Access_Key__c).NF_e_creation_date__c)){                   
                     pod.POD_Date__c= pod.Upload_date__c.date();
                 } 
+                
                 if(pod.POD_Date__c>=Date.valueOf(nferecordmap.get(pod.NF_e_Access_Key__c).NF_e_creation_date__c)){
                     pod.POD_Date_Check_Status__c = 'Date Ok';
                     //pod.POD_Status__c = 'Date Ok';                   
@@ -261,7 +260,6 @@ public class BFM_RecordutilityController {
             }
             
             // }
-        }
-        
-    }
+        }       
+    } 
 }

@@ -3,22 +3,32 @@
 //
 
 public class BFM_QueryPaymentsRequest {
-
-	public class QueryPayments {
-		public List<String> accessKeys;
-	}
-
-	public QueryPayments QueryPayments;
-
-	
-	public static BFM_QueryPaymentsRequest parse(String json) {
-		return (BFM_QueryPaymentsRequest) System.JSON.deserialize(json, BFM_QueryPaymentsRequest.class);
-	}
+  public class objectData{
+    public String accessKey;
+    public string salesFOrceObject;
+      }
     
-    public static BFM_QueryPaymentsRequest getInstance(List<String> miroAccessKeys){
+    public class QueryPayment {
+    public List<objectData> objectData;
+  }
+     public static BFM_QueryPaymentsRequest getInstance(List<String> miroAccessKeys){
         BFM_QueryPaymentsRequest returnRequest = new BFM_QueryPaymentsRequest();
-        returnRequest.QueryPayments = new BFM_QueryPaymentsRequest.QueryPayments();
-        returnRequest.QueryPayments.accessKeys = miroAccessKeys;
+		returnRequest.QueryPayment = new BFM_QueryPaymentsRequest.QueryPayment();
+		returnRequest.QueryPayment.objectData=new List<objectData>();
+         for(integer i=0;i<miroAccessKeys.size();i++){
+             objectData a= new objectData();
+            a.accessKey = miroAccessKeys[i];
+            //a.accessKey='35160901234567891234550029876543211234562236';
+            a.salesFOrceObject='SF00014'; 
+            returnRequest.QueryPayment.objectData.add(a);
+         }
         return returnRequest;
     }
+
+  public QueryPayment QueryPayment;
+  
+  public static BFM_QueryPaymentsRequest parse(String json) {
+    return (BFM_QueryPaymentsRequest) System.JSON.deserialize(json, BFM_QueryPaymentsRequest.class);
+  }
+ 
 }

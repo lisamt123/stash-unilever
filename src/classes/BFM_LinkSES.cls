@@ -9,8 +9,9 @@ public with sharing class BFM_LinkSES {
         set<Id> recId=New set<Id>();
 
         Id taxCteId ;
-        BFM_CheckRecursive.firstRun = true; // TODO : Before checking if BFM_CheckRecursive is true, is setting it to true  - does it make sense ?
-        
+        //BFM_CheckRecursive.firstRun = true; // TODO : Before checking if BFM_CheckRecursive is true, is setting it to true  - does it make sense ?
+        system.debug('CTeRecord:'+CTeRecord);
+        system.debug('BFM_CheckRecursive:'+BFM_CheckRecursive.firstRun);
         If(BFM_CheckRecursive.firstRun){
             BFM_CheckRecursive.firstRun=false;
             for(BFM_CT_e__c cte: CTeRecord){
@@ -39,8 +40,9 @@ public with sharing class BFM_LinkSES {
                 system.debug('$$$$$$'+cte.id);
                 system.debug('$$$$$$'+setcodevalnf.contains(cte.id)); 
                 // if(cte.CT_e_Valid_CNPJ_Status__c=='valid CNPJ' && cte.CT_e_Duplicate_Record_Status__c=='Validation OK'){
-                if(mapCTeNfe.size()!=0 && mapCTeNfe.size()==TotNfeSESCount && setcodevalnf.contains(cte.id)){
-                    system.debug('entered');
+                //if(mapCTeNfe.size()!=0 && mapCTeNfe.size()==TotNfeSESCount && setcodevalnf.contains(cte.id)){
+                if(mapCTeNfe.size()!=0 && setcodevalnf.contains(cte.id)){
+                    system.debug('inside cte entered');
                     cte.Link_Status__c='Link OK';
                     cte.Cte_Status__c='Link OK';
                     listCTeLinkUpdate.add(cte);
@@ -56,23 +58,31 @@ public with sharing class BFM_LinkSES {
                     cte.Cte_Status__c='Pending Link';
                     listCTeLinkUpdate.add(cte);
                 }
-                system.debug('listCTeLinkUpdate'+listCTeLinkUpdate.size());
-                //if(listCTeLinkUpdate != null){                        
-                update listCTeLinkUpdate;
-                system.debug('listCTeLinkUpdate---->'+listCTeLinkUpdate);
-                //}
+                system.debug('listCTeLinkUpdate'+listCTeLinkUpdate);
+                if(listCTeLinkUpdate != null){                        
+                    If(BFM_CheckRecursive.firstRun){
+                		update listCTeLinkUpdate;
+                		system.debug('listCTeLinkUpdate---->'+listCTeLinkUpdate);
+                    }
+                }
                 
             }
             List<BFM_SES__c> sesTaxCode = [SELECT Id, Name, CT_E__c, Tax_Code__c FROM BFM_SES__c where CT_E__c=:recId]; 
-            system.debug('sesTaxCode:'+sesTaxCode);
-            if(sesTaxCode[0].Tax_Code__c!=null)
+            BFM_CT_e__c cteTax = new BFM_CT_e__c();
+            for(BFM_SES__c bfmses:sesTaxCode)
             {
-                BFM_CT_e__c cteTax = new BFM_CT_e__c();
-                cteTax.id = taxCteId;
-                cteTax.Tax_Code_id__c = sesTaxCode[0].Tax_Code__c;
-                update cteTax;
+                if(bfmses.Tax_Code__c!=null)
+                {
+                    cteTax.id = taxCteId;
+                    cteTax.Tax_Code_id__c = bfmses.Tax_Code__c;                    
+                }
             }
-            
+            if(cteTax!=null){
+                If(BFM_CheckRecursive.firstRun){
+                update cteTax;
+                }
+            }
+			            
         }
     }
     

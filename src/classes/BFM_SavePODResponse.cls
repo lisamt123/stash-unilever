@@ -4,15 +4,15 @@
 
 public class BFM_SavePODResponse {
 
-  public class SavePODResponse {
-    public String errorCode;
-    public String errorMessage;
-  }
+	public class SavePODResponse {
+		public String errorCode;
+		public String errorMessage;
+	}
 
-  public SavePODResponse savePODResponse;
+	public SavePODResponse savePODResponse;
 
-  
-  public static BFM_SavePODResponse parse(String json) {
-    return (BFM_SavePODResponse) System.JSON.deserialize(json, BFM_SavePODResponse.class);
-  }
+	
+	public static BFM_SavePODResponse parse(String json) {
+		return (BFM_SavePODResponse) System.JSON.deserialize(json, BFM_SavePODResponse.class);
+	}
 }

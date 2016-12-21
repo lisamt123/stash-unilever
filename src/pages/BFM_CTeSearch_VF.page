@@ -37,10 +37,10 @@
         <apex:column value="{!ct.CNPJ_issuer__c}"/>  
         <apex:column value="{!ct.CNPJ_Service_Taker__c}"/>
         <apex:column headerValue="Duplicate Record Status">
-            <apex:image id="img" value="{!If(ct.CT_e_Duplicate_Record_Status__c == "Validation Ok", $Resource.BFM_Green,If(ct.CT_e_Duplicate_Record_Status__c == " ",$Resource.BFM_White, $Resource.BFM_Red))}"/>
+            <apex:image id="img" value="{!If(!ct.Is_Duplicated__c , $Resource.BFM_Green, $Resource.BFM_Red)}"/>
         </apex:column>
         <apex:column headerValue="CNPJ Status">
-            <apex:image id="img1" value="{!If(ct.CT_e_Valid_CNPJ_Status__c == "Valid CNPJ", $Resource.BFM_Green,If(ct.CT_e_Valid_CNPJ_Status__c == " ",$Resource.BFM_White, $Resource.BFM_Red))}"/>
+            <apex:image id="img1" value="{!If(!ct.Is_CNPJ_Invalid__c, $Resource.BFM_Green, $Resource.BFM_Red)}"/>
         </apex:column>
         <apex:column headerValue="Link Status">
             <apex:image id="img2" value="{!If(ct.Link_Status__c == "Link Ok", $Resource.BFM_Green,If(ct.Link_Status__c == " ",$Resource.BFM_White, $Resource.BFM_Red))}"/>

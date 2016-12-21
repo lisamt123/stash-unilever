@@ -66,17 +66,15 @@ Public Class BFM_TotalValueValidation{
                                     Approval.ProcessResult result = Approval.process(req);
                                     System.debug('Submitted for approval successfully: '+result.isSuccess());
                                 }
-                            }
-                            else{
-                                cte.Tax_Status__c='Tax value Error';
+                            } else{
+                                cte.Tax_Status__c='Tax Value Error';
                                 listCTeTaxUpdate.add(cte);
                                 BFM_Error_Log__c newError = new BFM_Error_Log__c();          
                                 newError.Reason__c = 'Tax value is not matching';
                                 newError.BFM_CT_e__c = cte.id;
                                 insert newError;
                             }
-                        }
-                        else{
+                        } else{
                             cte.Tax_Status__c='Absolute Consideration value Error';
                             listCTeTaxUpdate.add(cte);
                             BFM_Error_Log__c newError = new BFM_Error_Log__c();          
@@ -84,8 +82,7 @@ Public Class BFM_TotalValueValidation{
                             newError.BFM_CT_e__c = cte.id;
                             insert newError;
                         }
-                    }
-                    else{
+                    } else{
                         cte.Tax_Status__c='Tolerance Margin Error';
                         listCTeTaxUpdate.add(cte);
                         //Initiate approval process 

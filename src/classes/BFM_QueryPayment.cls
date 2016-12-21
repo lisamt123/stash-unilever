@@ -83,7 +83,7 @@ global class BFM_QueryPayment {
             if(paymentResponse.cancellationPostingDate != null || paymentResponse.cancellationPostingDate !=Date.valueof('0000-00-00'))
             header.Cancellation_Posting_Date__c = string.valueof(paymentResponse.cancellationPostingDate);
             } catch(Exception ex){
-            System.debug('Exception: ' +ex.getMessage());  
+            System.debug('Exception: ' +ex.getMessage());	
             }*/
             header.Annulment_NF_e_reference__c = paymentResponse.accessKeyAnnulationInvoice;
             header.NF_Writer_Document_Number__c = paymentResponse.nfWriterDocument;
@@ -93,7 +93,7 @@ global class BFM_QueryPayment {
             header.Posting_Date_in_the_Document__c = paymentResponse.postingDate;
             header.Net_Due_Date__c = Date.valueOf(paymentResponse.netDueDate);
             header.payment_method__c = paymentResponse.paymentMethod;
-            system.debug('12121' +paymentResponse.cancellationFlag);
+            System.debug('header BFM Query Payment' + paymentResponse.cancellationFlag);
             header.Cancellation_Flag__c = paymentResponse.cancellationFlag;
             header.Annulment_Flag__c = paymentResponse.annulmentFlag;
             header.Payment_amount__c = paymentResponse.paymentAmount;
@@ -105,15 +105,10 @@ global class BFM_QueryPayment {
                 miroItem.MIRO_Header__r = new BFM_MIRO_Header__c(Access_Key__c = paymentResponse.accessKey);
                 miroItem.Access_Key__c = paymentResponse.accessKey + ''+ item.documentNumber;
                 miroItem.Payment_document_Amount__c = item.amount;
-                miroItem.Reference_number__c = item.referenceNumber;
+                //miroItem.Reference_number__c = item.referenceNumber;
                 miroItem.Document_issue_date__c = !String.isEmpty(item.date_z) ? null : Date.valueOf(item.date_z);
                 miroItem.Document_Number__c = item.documentNumber;
                 miroItems.add(miroItem);
-                // date
-                // referenceNumber
-                // 
-                
-                
             }
             headers.add(header);
             //public String logMessage {get;set;} 

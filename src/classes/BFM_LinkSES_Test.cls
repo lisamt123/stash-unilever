@@ -16,7 +16,6 @@ public class BFM_LinkSES_Test{
         carrier.RecordTypeid='0128A0000008b6qQAA' ;*/
         carrier.name = 'aswin';
         insert carrier;
-        system.assertEquals('aswin',carrier.name);
         
         BFM_Shipment__c ship = new BFM_Shipment__c();
         ship.Carrier_Account__c=carrier.id;
@@ -57,8 +56,8 @@ public class BFM_LinkSES_Test{
         
         cte1.Link_Status__c='Link Ok';
         cte1.Cte_Status__c='Link OK';
-        cte1.CT_e_Valid_CNPJ_Status__c='valid CNPJ';
-        cte1.CT_e_Duplicate_Record_Status__c='Validation OK';
+        //cte1.Is_CNPJ_Valid__c = true;
+        cte1.Is_Duplicated__c = true;
         
         
         BFM_CT_e__c cte3 = new BFM_CT_e__c();

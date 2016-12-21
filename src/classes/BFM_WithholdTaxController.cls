@@ -1,6 +1,6 @@
 public class BFM_WithholdTaxController {
-
-    private BFM_CT_e__c cte{get;set;}
+    
+    public BFM_CT_e__c cte{get;set;}
     private Map<String, BFM_Invoice_Withhold_Tax__c> taxesAlreadyWithheld;
     public List<BFM_Withhold_tax__c> withholdTaxList{get;set;}
     public string cteId {get;set;}
@@ -12,25 +12,38 @@ public class BFM_WithholdTaxController {
     public double taxBaseSum {get;set;} 
     public double taxRateSum {get;set;}
     public String taxCode {get;set;}
+    public String baseAmount {get;set;}
+    public Boolean wthApply {get;set;}
+    
+    public BFM_WithholdTaxcontroller() {
+    }
     
     public BFM_WithholdTaxcontroller(ApexPages.StandardController stdCtr){
         cteId = ApexPages.CurrentPage().getparameters().get('id');
         system.debug('cteid---->'+cteId);
-        cte = [SELECT Carrier_Account__c, Carrier_Account__r.Company_Code__c, id, Tax_Code_id__c, Tax_Code_Description__c, Receivable_Amount__c FROM BFM_CT_e__c where ID =: cteId];
-        withholdTaxList = [SELECT Id, Withholding_Tax_Type__c, Withholding_Tax_Code__c, Withholding_Tax_Flag__c, Withholding_Tax_Text__c
-                           FROM BFM_Withhold_tax__c 
-                           WHERE Carrier_Account__c =: cte.Carrier_Account__c
-                           AND Company_Code__c =: cte.Carrier_Account__r.Company_Code__c];
+        cte = [SELECT Carrier_Account__c, Carrier_Account__r.Company_Code__c, id, Tax_Code_id__c, Tax_Code_Description__c, Receivable_Amount__c, Service_Rendering_Value__c
+               FROM BFM_CT_e__c 
+               WHERE ID =: cteId];
         
-        System.debug('withholdTaxList ' + withholdTaxList);
-        
-        SESlist = [SELECT id, CT_E__c, Tax_Code__c from BFM_SES__c where CT_E__c =: cteId];
+        SESlist = [SELECT id, CT_E__c, Tax_Code__c, Unilever_company_code__c from BFM_SES__c where CT_E__c =: cteId];
         
         Set<String> SESIds = new Set<String>();
+        Set<String> companyCodeIdFromSES = new Set<String>();
         for(BFM_SES__c ses : SESlist) {
             taxCode = ses.Tax_Code__c;
             SESIds.add(ses.id);
+            companyCodeIdFromSES.add(ses.Unilever_company_code__c);
         }
+        
+        withholdTaxList = [SELECT Id, Withholding_Tax_Type__c, Withholding_Tax_Code__c, Withholding_Tax_Flag__c, Withholding_Tax_Text__c
+                           FROM BFM_Withhold_tax__c 
+                           WHERE Carrier_Account__c =: cte.Carrier_Account__c
+                           AND Company_Code__c =: companyCodeIdFromSES
+                           AND Withholding_Tax_Flag__c = true];
+        
+        baseAmount = String.valueOf(cte.Service_Rendering_Value__c);
+        
+        System.debug('withholdTaxList ' + withholdTaxList);        
         
         ivalist = [SELECT Other_Base__c, Excluded_Base__c, Tax_Amount__c, Tax_Base__c, Tax_Rate__c, SES__c, Name FROM BFM_IVA__c WHERE SES__c =: SESIds]; 
         
@@ -48,12 +61,7 @@ public class BFM_WithholdTaxController {
         }
     }
     
-    public PageReference saveWithholdTaxes() {
-        // TODO : ADD VALIDATION TAX RULES - WAITING FOR PAULO
-        if(cte.Tax_Code_Id__c != null) {
-            executeQueryTax(cte.id); // Query Tax 
-        }
-        
+    public PageReference saveWithholdTaxes() {        
         Database.upsertResult results = Database.upsert (cte);
         if(!results.isSuccess()){
             ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, Label.BFM_Operation_Failed));
@@ -61,9 +69,17 @@ public class BFM_WithholdTaxController {
                 ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, error.getMessage()));
             }
         } else{
-            ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.CONFIRM, Label.BFM_Operation_Successful));
+            ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.CONFIRM, 'CTE atualizado com sucesso'));  // TODO : ADD CUSTOM LABEL
         }
         
+        if(SESlist.size() > 0){ /* There must be a SES to calculate the Tax */
+            System.debug('saveWithholdTaxes Tax_Code_Id__c : ' + cte.Tax_Code_Id__c);
+            if(cte.Tax_Code_Id__c != null) {
+                executeQueryTax(cte.id); // Query Tax 
+            }
+        } else {
+            ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, 'É necessário um SES associado ao documento, para cálculo da Taxa.'));  // TODO : ADD CUSTOM LABEL
+        }
         
         return null;
     }      
@@ -72,59 +88,6 @@ public class BFM_WithholdTaxController {
         BFM_Querytax.queryTaxFuture(cteId);
     }    
     
-    /*public PageReference saveWithholdTaxes(){
-        Set<String> withheldableTaxes = getWithheldableTaxes();
-        if(withheldableTaxes.isEmpty()){
-            String errorMessage = String.format(Label.BFM_No_withhold_tax, new List<String>{cte.Carrier_Account__r.Vendor__c,cte.Unilever_Account__r.Company_Code__c });
-            System.debug(errorMessage);
-            ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, errorMessage));
-        } else{
-            List<BFM_Invoice_Withhold_Tax__c> withholdTaxes = new List<BFM_Invoice_Withhold_Tax__c>();
-            for(BFM_Invoice_Withhold_Tax__c line: withholdTaxList){
-                if(line.apply__c){
-                    if(!withheldableTaxes.contains(line.tax_type1__c+line.tax_Code1__c)){
-                        System.debug('Invalid withhold tax ' + line.tax_type1__c + ' '+ line.tax_Code1__c);
-                        ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, String.format(Label.BFM_Invalid_Withhold_Tax,
-                                                                                                           new List<string>{line.tax_type1__c, line.tax_Code1__c})));
-                    } else{
-                        withholdTaxes.add(line);
-                    }
-                } else{
-                    withholdTaxes.add(line);
-                }
-                
-            }
-            Database.upsertResult[] results = Database.upsert (withholdTaxes);
-            for(Database.upsertResult sr : results){
-                if(!sr.isSuccess()){
-                    ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, Label.BFM_Operation_Failed));
-                    for(Database.Error error: sr.getErrors()){
-                      ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, error.getMessage()));
-                    }
-                } else{
-                    ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.CONFIRM, Label.BFM_Operation_Successful));
-                }
-                    
-            }
-            
-        }
-        return null;
-    }
-    
-    private Set<String> getWithheldableTaxes(){
-        List<BFM_Withhold_Tax__c> withheldableTaxes = [SELECT Id, Withholding_Tax_Type__c, Withholding_Tax_Code__c, Withholding_Tax_Flag__c 
-                                                       FROm BFM_Withhold_tax__c 
-                                                           WHERE Company_code__c =: cte.Unilever_Account__r.company_Code__c
-                                                       AND Carrier_Account__c =: cte.Carrier_Account__c];
-        Set<String> validTaxCodes = new Set<String>();
-        for(BFM_Withhold_Tax__c wth: withheldableTaxes){
-            String key = wth.Withholding_Tax_Type__c + wth.Withholding_Tax_Code__c;
-            if(!String.isEmpty(key)){
-              validTaxCodes.add(wth.Withholding_Tax_Type__c + wth.Withholding_Tax_Code__c);
-            }
-        }
-        return validTaxCodes;
-    } */
     
     public PageReference reset() {
         PageReference newpage = new PageReference(System.currentPageReference().getURL());

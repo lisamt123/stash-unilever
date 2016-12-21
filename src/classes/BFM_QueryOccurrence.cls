@@ -1,5 +1,5 @@
 global class BFM_QueryOccurrence {
-
+    
     private List<String> occurrenceNumbers;
     private static final String QUERY_TYPE_CTE_ISSUING = 'ALL';
     private List<BFM_Occurrence__c> upsertOccurrences;
@@ -8,7 +8,7 @@ global class BFM_QueryOccurrence {
     Public  List<BFM_NF_e__c> upsertNFEs= New List<BFM_NF_e__c>();
     private List<BFM_Occurrence_SES__c> upsertSESs;
     private Map<String, String> stagesToShipments;
-     private Map<String, String> sesToSOccs;
+    private Map<String, String> sesToSOccs;
     private List<String> errors;
     private boolean isSuccess;
     private String errorMessage;
@@ -36,9 +36,9 @@ global class BFM_QueryOccurrence {
     }
     webservice static string callQueryOccurrenceButton(Id occurrenceId){
         BFM_Occurrence__c occ = [SELECT Occurrence_Number__c FROM BFM_Occurrence__c WHERE id=: occurrenceId LIMIT 1];
-        system.debug('%%%%%'+occ);
+        system.debug('BFM_QueryOccurrence callQueryOccurrenceButton occ : '+occ);
         BFM_QueryOccurrence queryOcc = new BFM_QueryOccurrence(new Set<String> {occ.occurrence_Number__c});
-        system.debug('%%%%%'+queryOcc);
+        system.debug('BFM_QueryOccurrence callQueryOccurrenceButton occ ' + queryOcc);
         String returnMessage = Label.BFM_Occurrence_OK;
         
         try{
@@ -82,14 +82,14 @@ global class BFM_QueryOccurrence {
     }
     
     private List<BFM_Occurrence__c> parseResponse(String JSONbody){
-    System.debug(JSONbody);
+        System.debug(JSONbody);
         //List<BFM_NF_e__c> upsertNFEs = new List<BFM_Nf_e__c>();
         Integer countOccurrence = 0;
         jsonBody = jsonBody.removeStart('"');
         jsonBody = jsonBody.removeEnd('"');
         
         BFM_QueryOccurrencesResponse response = BFM_QueryOccurrencesResponse.parse(jsonBody);       
-        system.debug('@@@@'+response.QueryOccurrenceResponse.occurrences);
+        system.debug('BFM_Occurrence__c parseResponse ' + response.QueryOccurrenceResponse.occurrences);
         for(BFM_QueryOccurrencesResponse.Occurrences currentOcc: response.QueryOccurrenceResponse.occurrences){
             BFM_Occurrence__c newOcc = processOccurrenceFields(currentOcc);            
             upsertOccurrences.add(newOcc);
@@ -101,16 +101,16 @@ global class BFM_QueryOccurrence {
                 upsertSESs.add(newSes);
                 sesToSOccs.put(newSes.ses_number__c, newOcc.Occurrence_Number__c);
                 system.debug('sesToSOccs--->'+sesToSOccs);
-                  if(currentSes.nfe!=null)
-                  {
-        for(BFM_QueryOccurrencesResponse.nfe currentNfe:currentSes.nfe){
-                  
-        BFM_NF_e__c newNfes1=processNFeFields(currentNfe,currentSes.sesNumber);
-        //newSes.SES_Number__c=newNfe1.SES_Number__c;
-        upsertNFEs.add(newNfes1);
-        }
-                  }
-           }
+                if(currentSes.nfe!=null)
+                {
+                    for(BFM_QueryOccurrencesResponse.nfe currentNfe:currentSes.nfe){
+                        
+                        BFM_NF_e__c newNfes1=processNFeFields(currentNfe,currentSes.sesNumber);
+                        //newSes.SES_Number__c=newNfe1.SES_Number__c;
+                        upsertNFEs.add(newNfes1);
+                    }
+                }
+            }
             system.debug('upsertNFEs------>'+upsertNFEs);
         }
         callUpserts();
@@ -139,42 +139,42 @@ global class BFM_QueryOccurrence {
         }
     }
     
-        
+    
     private void callUpserts(){
-    
-    /*
-    if(upsertShipments!=null) {
-            Database.upsertResult[] resultsShipment = database.upsert(upsertShipments,Schema.getGlobalDescribe().get('BFM_Shipment__c')
-                                                                      .getDescribe()
-                                                                      .fields
-                                                                      .getMap()
-                                                                      .get('Shipment_Number__c'), false);
-    for (Database.upsertResult sr : resultsShipment ){
-                if (sr.isSuccess()){
-                    System.debug('----resultsShipment---'+sr);
-                    System.debug('resultsShipment ' + sr.getId());
-                }
-                else {
-                    for(Database.Error err : sr.getErrors()) {
-                        string Msg= ' The following error has occurred.'+err.getStatusCode() +': ' + err.getMessage()+' fields that affected this error: '+ err.getFields();
-                        System.debug('Msg--->'+Msg);                           
-                        
-                    }
-                }
-            }                                
-            processShipmentUpserts(resultsShipment);
+        
+        /*
+        if(upsertShipments!=null) {
+        Database.upsertResult[] resultsShipment = database.upsert(upsertShipments,Schema.getGlobalDescribe().get('BFM_Shipment__c')
+        .getDescribe()
+        .fields
+        .getMap()
+        .get('Shipment_Number__c'), false);
+        for (Database.upsertResult sr : resultsShipment ){
+        if (sr.isSuccess()){
+        System.debug('----resultsShipment---'+sr);
+        System.debug('resultsShipment ' + sr.getId());
+        }
+        else {
+        for(Database.Error err : sr.getErrors()) {
+        string Msg= ' The following error has occurred.'+err.getStatusCode() +': ' + err.getMessage()+' fields that affected this error: '+ err.getFields();
+        System.debug('Msg--->'+Msg);                           
+        
+        }
+        }
+        }															  
+        processShipmentUpserts(resultsShipment);
         }*/
-    
+        
         if(upsertOccurrences!=null) {
             
-       
+            
             Database.upsertResult[] resultsOccurnce = database.upsert(upsertOccurrences,Schema.getGlobalDescribe().get('BFM_Occurrence__c')
                                                                       .getDescribe()
                                                                       .fields
                                                                       .getMap()
                                                                       .get('Occurrence_Number__c'), false);
-                                    
-      for (Database.upsertResult sr : resultsOccurnce ){
+            
+            for (Database.upsertResult sr : resultsOccurnce ){
                 if (sr.isSuccess()){
                     System.debug('----resultsOccurnce---'+sr);
                     System.debug('resultsOccurnce ' + sr.getId());
@@ -186,13 +186,13 @@ global class BFM_QueryOccurrence {
                         
                     }
                 }
-            }                              
+            }														  
             processOccurUpserts(resultsOccurnce);
             
         }
         
-    
-    if(upsertSESs!=null){
+        
+        if(upsertSESs!=null){
             system.debug('upsertSESs--->'+upsertSESs);
             Database.upsertResult[] resultsSES = database.upsert(upsertSESs, Schema.getGlobalDescribe().get('BFM_Occurrence_SES__c')
                                                                  .getDescribe()
@@ -214,39 +214,39 @@ global class BFM_QueryOccurrence {
                 }
             } 
             
-          if(upsertNFEs!=null){
-              system.debug('upsertNFEs---->'+upsertNFEs);
-            Database.upsertResult[] resultsnfe = database.upsert(upsertNFEs, Schema.getGlobalDescribe().get('BFM_NF_e__c')
-                                                                 .getDescribe()
-                                                                 .fields
-                                                                 .getMap()
-                                                                 .get('NF_e_access_key__c'), false);
-            for (Database.upsertResult sr : resultsnfe ){
-                if (sr.isSuccess()){
-                    System.debug('----resultsnfe---'+sr);
-                    System.debug('resultsnfe ' + sr.getId());
-                }
-                else {
-                    for(Database.Error err : sr.getErrors()) {
-                        string Msg= ' The following error has occurred.'+err.getStatusCode() +': ' + err.getMessage()+' fields that affected this error: '+ err.getFields();
-                        System.debug('nfeMsg--->'+Msg);                           
-                        
+            if(upsertNFEs!=null){
+                system.debug('upsertNFEs---->'+upsertNFEs);
+                Database.upsertResult[] resultsnfe = database.upsert(upsertNFEs, Schema.getGlobalDescribe().get('BFM_NF_e__c')
+                                                                     .getDescribe()
+                                                                     .fields
+                                                                     .getMap()
+                                                                     .get('NF_e_access_key__c'), false);
+                for (Database.upsertResult sr : resultsnfe ){
+                    if (sr.isSuccess()){
+                        System.debug('----resultsnfe---'+sr);
+                        System.debug('resultsnfe ' + sr.getId());
                     }
-                }
-            }            
-        }
+                    else {
+                        for(Database.Error err : sr.getErrors()) {
+                            string Msg= ' The following error has occurred.'+err.getStatusCode() +': ' + err.getMessage()+' fields that affected this error: '+ err.getFields();
+                            System.debug('nfeMsg--->'+Msg);                           
+                            
+                        }
+                    }
+                }            
+            }
         }
         
-    
-    
-    
-    
-    
+        
+        
+        
+        
+        
         if(!generatedErrors.isEmpty()){
             database.insert(generatedErrors, false);
         }
     }
-   
+    
     private void treatValueException(Exception ex){
         
     }
@@ -272,25 +272,25 @@ global class BFM_QueryOccurrence {
         this.generatedErrors.add(newError);
     }
     
-      
+    
     private BFM_Occurrence__c processOccurrenceFields(BFM_QueryOccurrencesResponse.Occurrences currentOcc){
         BFM_Occurrence__c newOcc = new BFM_Occurrence__c();
         newOcc.Status__c = currentOcc.status;
         newOcc.Occurrence_Number__c = currentOcc.occurrenceNumber;
         newOcc.Status_Description__c = currentOcc.statusDescription;
-    if(currentOcc.shipmentDocumentNumber!=null || currentOcc.shipmentDocumentNumber!=''){
-        newOcc.Shipment__r = new BFM_Shipment__c(Shipment_Number__c = currentOcc.shipmentDocumentNumber);
-        newOcc.Shipment_Document_Number__c = currentOcc.shipmentDocumentNumber;
-    }
-    try{
-      if(currentOcc.rangeExtentOccurrenceFrom != null && currentOcc.rangeExtentOccurrenceFrom !='0000-00-00')
-        newOcc.Range_of_Extent_of_Occurrence_From__c = Date.valueof(currentOcc.rangeExtentOccurrenceFrom);
+        if(currentOcc.shipmentDocumentNumber!=null || currentOcc.shipmentDocumentNumber!=''){
+            newOcc.Shipment__r = new BFM_Shipment__c(Shipment_Number__c = currentOcc.shipmentDocumentNumber);
+            newOcc.Shipment_Document_Number__c = currentOcc.shipmentDocumentNumber;
+        }
+        try{
+            if(currentOcc.rangeExtentOccurrenceFrom != null && currentOcc.rangeExtentOccurrenceFrom !='0000-00-00')
+                newOcc.Range_of_Extent_of_Occurrence_From__c = Date.valueof(currentOcc.rangeExtentOccurrenceFrom);
         } catch(Exception ex){
             treatValueException(ex);
         }
-    try{
-      if(currentOcc.rangeExtentOccurrenceTo != null && currentOcc.rangeExtentOccurrenceTo !='0000-00-00')
-        newOcc.Range_of_Extent_of_Occurrence_To__c = Date.valueof(currentOcc.rangeExtentOccurrenceTo);
+        try{
+            if(currentOcc.rangeExtentOccurrenceTo != null && currentOcc.rangeExtentOccurrenceTo !='0000-00-00')
+                newOcc.Range_of_Extent_of_Occurrence_To__c = Date.valueof(currentOcc.rangeExtentOccurrenceTo);
         } catch(Exception ex){
             treatValueException(ex);
         }
@@ -317,47 +317,47 @@ global class BFM_QueryOccurrence {
         newOcc.Shipping_Process_Description__c = currentOcc.shippingProcessDescription;
         
         try{
-      if(currentOcc.approvalDate1!=null && currentOcc.approvalDate1!='0000-00-00')
-        newOcc.Approval_Date_1__c = Date.valueof(currentOcc.approvalDate1);
+            if(currentOcc.approvalDate1!=null && currentOcc.approvalDate1!='0000-00-00')
+                newOcc.Approval_Date_1__c = Date.valueof(currentOcc.approvalDate1);
         } catch(Exception ex){
             treatValueException(ex);
         }
-    
-     try{
-      if(currentOcc.approvalDate2!=null && currentOcc.approvalDate2!='0000-00-00')
-        newOcc.Approval_Date_2__c = Date.valueof(currentOcc.approvalDate2);
+        
+        try{
+            if(currentOcc.approvalDate2!=null && currentOcc.approvalDate2!='0000-00-00')
+                newOcc.Approval_Date_2__c = Date.valueof(currentOcc.approvalDate2);
         } catch(Exception ex){
             treatValueException(ex);
         }
-    
-    try{
-      if(currentOcc.approvalDate3!=null && currentOcc.approvalDate3!='0000-00-00')
-        newOcc.Approval_Date_3__c = Date.valueof(currentOcc.approvalDate3);
+        
+        try{
+            if(currentOcc.approvalDate3!=null && currentOcc.approvalDate3!='0000-00-00')
+                newOcc.Approval_Date_3__c = Date.valueof(currentOcc.approvalDate3);
         } catch(Exception ex){
             treatValueException(ex);
         }
-    
-    try{
-      if(currentOcc.approvalDate4!=null && currentOcc.approvalDate4!='0000-00-00')
-        newOcc.Approval_Date_4__c = Date.valueof(currentOcc.approvalDate4);
+        
+        try{
+            if(currentOcc.approvalDate4!=null && currentOcc.approvalDate4!='0000-00-00')
+                newOcc.Approval_Date_4__c = Date.valueof(currentOcc.approvalDate4);
         } catch(Exception ex){
             treatValueException(ex);
         }
-    
-    try{
-      if(currentOcc.approvalDate5!=null && currentOcc.approvalDate5!='0000-00-00')
-        newOcc.Approval_Date_5__c = Date.valueof(currentOcc.approvalDate5);
+        
+        try{
+            if(currentOcc.approvalDate5!=null && currentOcc.approvalDate5!='0000-00-00')
+                newOcc.Approval_Date_5__c = Date.valueof(currentOcc.approvalDate5);
         } catch(Exception ex){
             treatValueException(ex);
         }
-    
-    try{
-      if(currentOcc.approvalDate6!=null && currentOcc.approvalDate6!='0000-00-00')
-      newOcc.Approval_Date_6__c = Date.valueof(currentOcc.approvalDate6);
+        
+        try{
+            if(currentOcc.approvalDate6!=null && currentOcc.approvalDate6!='0000-00-00')
+                newOcc.Approval_Date_6__c = Date.valueof(currentOcc.approvalDate6);
         } catch(Exception ex){
             treatValueException(ex);
         }
-
+        
         newOcc.Fiscal_Documents__c = currentOcc.fiscalDocuments;
         return newOcc;
     }
@@ -373,8 +373,8 @@ global class BFM_QueryOccurrence {
         //newSes.Modification_Date__c = !String.isEmpty(currentSes.modificationDate) ? Date.valueOf(currentSes.modificationDate) : null;
         try{
             if(currentSes.modificationDate !=null)
-            newSes.Modification_Date__c = Date.valueOf(currentSes.modificationDate);
-            } catch(System.TypeException ex){
+                newSes.Modification_Date__c = Date.valueOf(currentSes.modificationDate);
+        } catch(System.TypeException ex){
             treatValueException(ex);
         }
         try{
@@ -419,7 +419,7 @@ global class BFM_QueryOccurrence {
         BFM_NF_e__c newNfe = new BFM_NF_e__c(NF_e_access_key__c = currentNfe.nfeAccessKey);
         //newNfe.Delivery__r = new BFM_Delivery__c(Delivery_Number__c = currentNfe.deliveryNumber);  
         newNfe.Gross_weight__c = convertNumber(currentNfe.grossWeight);
-    
+        
         newNfe.NF_e_Total_Value__c = convertNumber(currentNfe.nfeTotalValue);
         newNfe.NF_e_number__c = currentNfe.nfeNumber;
         newNfe.NF_e_serie__c = currentNfe.nfeSerie;
@@ -429,8 +429,8 @@ global class BFM_QueryOccurrence {
         newNfe.Stage_registration_destination__c = currentNfe.stageRegistrationDestination;
         newNfe.Name_destination__c = currentNfe.nameDestination;
         newNfe.Phone_destination__c = currentNfe.phoneDestination;
-    newNfe.Occurrence_SES__r=new BFM_Occurrence_SES__c(SES_Number__c = sesnumber);
-    //newNfe.SES__r=new BFM_SES__c(SES_Number__c = sesnumber);
+        newNfe.Occurrence_SES__r=new BFM_Occurrence_SES__c(SES_Number__c = sesnumber);
+        //newNfe.SES__r=new BFM_SES__c(SES_Number__c = sesnumber);
         newNfe.SUFRAMA_registration__c = currentNfe.inscricaoSuframa;
         newNfe.Address_destination__c = currentNfe.addressDestination;
         newNfe.Number_destination__c = currentNfe.numberDestination;
@@ -442,7 +442,7 @@ global class BFM_QueryOccurrence {
         newNfe.State_destination__c = currentNfe.stateDestination;
         newNfe.Country_code_destination__c = currentNfe.countryCodeDestination;
         newNfe.Country_name_destination__c = currentNfe.countryNameDestination;
-//      public String nfeCreationDate;
+        //      public String nfeCreationDate;
         newNfe.Incoterms__c = currentNfe.incoterms;
         newNfe.Nf_e_total_quantity__c = convertNumber(currentNfe.nfeTotalQuantity);
         newNfe.NF_e_item_specie__c = currentNfe.nfeItemSpecie;

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>creator</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Request_For_Cancellation__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>BFM_Debit_Note_Cancellation_Users</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <label>BFM Debit Note Cancellation Approval step</label>
+        <name>BFM_Debit_Note_Cancellation_Approval_step</name>
+    </approvalStep>
+    <emailTemplate>BFM_Email_Templates/BFM_NFS_Cancellation_Email</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>UPPER(  Debit_Note_Status__c  ) !=&apos;INVOICE POSTED&apos; &amp;&amp;  Request_For_Cancellation__c  = TRUE</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>BFM_Debit_Note_Status_Cancelled</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>BFM Debit Note Cancellation Request</label>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

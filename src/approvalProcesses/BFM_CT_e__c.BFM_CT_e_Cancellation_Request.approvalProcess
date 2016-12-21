@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>CC_e_Status__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>BFM_CT_e_Cancellation_Request_Approvers</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <label>CT-e Cancellation Request Approve</label>
+        <name>CT_e_Cancellation_Request_Approve</name>
+    </approvalStep>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>UPPER( Cte_Status__c ) = &apos;Invoice Posted&apos; &amp;&amp;  CT_e_Request_for_Cancel__c = True</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>BFM_NF55_Created</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>CT_e_Status_Cancelled</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>BFM_CT-e Cancellation Request</label>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

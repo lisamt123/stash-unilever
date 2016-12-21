@@ -131,8 +131,8 @@
                             </div>
                             <div class="col-sm-6 form-group">
                                 <!--<label class="control-label" for="signupEmailagain">
-{!$ObjectType.BFM_UserCreationRequest__c.fields.CommunityNickname__c.Label}
-</label>-->
+                                {!$ObjectType.BFM_UserCreationRequest__c.fields.CommunityNickname__c.Label}
+                                </label>-->
                                 <label class="control-label" for="signupEmailagain">
                                     {!$Label.BFM_Name}
                                 </label>

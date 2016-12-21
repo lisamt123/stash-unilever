@@ -16,13 +16,11 @@ public class BFM_Sefazvalidation_CC{
             if(response.getStatusCode() == 200 || response.getStatusCode() == 201){
                 // isSuccess = true;
                 mdf.MDF_e_Sefaz_Status__c = 'Sefaz Status Requested';
-                mdf.MDF_e_Status__c = 'Sefaz Status Requested';
                 listupdatemdfe.add(mdf);
                 
-            } else{
+            } else {
                 //isSuccess = false;
                 mdf.MDF_e_Sefaz_Status__c = 'Sefaz Request Invalid';
-                mdf.MDF_e_Status__c = 'Sefaz Request Invalid';
                 String errorMessage = String.format(Label.BFM_Integration_Failure, new List<String>{String.valueOf(response.getStatusCode()),  
                     response.getStatus(),
                     response.getBody()});
@@ -55,13 +53,11 @@ public class BFM_Sefazvalidation_CC{
             if(response.getStatusCode() == 200 || response.getStatusCode() == 201){
                 // isSuccess = true;
                 cce.CC_e_Sefaz_Check_Status__c = 'Sefaz Status Requested';
-                cce.CC_e_Status__c = 'Sefaz Status Requested';              
                 listupdatecce.add(cce);
                 
             } else{
                 //isSuccess = false;
                 cce.CC_e_Sefaz_Check_Status__c = 'Sefaz Request Invalid';
-                cce.CC_e_Status__c = 'Sefaz Request Invalid';
                 String errorMessage = String.format(Label.BFM_Integration_Failure, new List<String>{String.valueOf(response.getStatusCode()),  
                     response.getStatus(),
                     response.getBody()});
@@ -98,13 +94,11 @@ public class BFM_Sefazvalidation_CC{
             if(response.getStatusCode() == 200 || response.getStatusCode() == 201){
                 // isSuccess = true;
                 cte.CT_e_Sefaz_Check_Status__c= 'Sefaz Status Requested';
-                cte.Cte_Status__c = 'Sefaz Status Requested';
                 listupdatecte.add(cte);
                 
             } else{
                 //isSuccess = false;
                 cte.CT_e_Sefaz_Check_Status__c = 'Sefaz Request Invalid';
-                cte.Cte_Status__c = 'Sefaz Request Invalid';
                 String errorMessage = String.format(Label.BFM_Integration_Failure, new List<String>{String.valueOf(response.getStatusCode()),  
                     response.getStatus(),
                     response.getBody()});

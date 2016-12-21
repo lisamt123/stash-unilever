@@ -178,4 +178,4 @@ public class BFM_QueryPaymentsResponse {
     public static BFM_QueryPaymentsResponse parse(String json) {
         return new BFM_QueryPaymentsResponse(System.JSON.createParser(json));
     }
- }
+}

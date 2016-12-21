@@ -32,8 +32,8 @@ public with sharing class BFM_CTeSearch_CC {
         if(cteList != null && !cteList.isEmpty()){
             cteList.clear();
         }
-        String strQuery ='SELECT id, name, CNPJ_issuer__c,Cte_Status__c, CT_e_Duplicate_Record_Status__c,Link_Status__c,CT_e_Sefaz_Check_Status__c,CT_e_Valid_CNPJ_Status__c,CNPJ_Service_Taker__c, CT_e_key__c, CT_e_Number__c, Unilever_company_code__c,'+
-                'Cte_Emission_date_time__c, CreatedDate from BFM_CT_e__c';
+        String strQuery ='SELECT id, name, CNPJ_issuer__c,Cte_Status__c, Is_Duplicated__c, Link_Status__c,CT_e_Sefaz_Check_Status__c,Is_CNPJ_Invalid__c,CNPJ_Service_Taker__c, CT_e_key__c, CT_e_Number__c, Unilever_company_code__c,'+
+            'Cte_Emission_date_time__c, CreatedDate from BFM_CT_e__c';
         
         if(cte.Name !=null && cte.Name !=''){
             List<String> iterateItems = cte.Name.split(',') ;
@@ -74,7 +74,7 @@ public with sharing class BFM_CTeSearch_CC {
             }
             conditions.add('Unilever_company_code__c in' + unileverCompanyCode);            
         }
-
+        
         if(cte.CT_e_key__c !=null && cte.CT_e_key__c !=''){
             List<String> iterateItems = cte.CT_e_key__c.split(',') ;
             List<String> cteKey = new List<String>();

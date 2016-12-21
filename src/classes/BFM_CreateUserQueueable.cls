@@ -49,7 +49,7 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
             catch(DMLException e){
                 errorMessage = e.getDmlMessage(0);
                 if(usr.contactId != null){
-                    Contact contactToDelete = new Contact(Id = usr.ContactId);
+	                Contact contactToDelete = new Contact(Id = usr.ContactId);
                     delete contactToDelete;
                 }
                 System.debug('eeee'+errorMessage);

@@ -20,7 +20,7 @@ public without sharing class BFM_Link_MDFCTe_onsave{
         }
         system.debug(mapCTkey.keyset());
         if(!mapCTkey.isEmpty()){
-            listCTe = [select Id,CT_e_key__c,MDF_e__c from BFM_CT_e__c where CT_e_key__c in : mapCTkey.keyset() and CT_e_Duplicate_Record_Status__c=:Label.BFM_Validation_OK and CT_e_Valid_CNPJ_Status__c = 'Valid CNPJ'];
+            listCTe = [select Id,CT_e_key__c,MDF_e__c from BFM_CT_e__c where CT_e_key__c in : mapCTkey.keyset() and Is_Duplicated__c = false AND Is_CNPJ_Invalid__c = false ];
         }
         for(BFM_CT_e__c  cte: listCTe){
             if(cte.MDF_e__c==null){
@@ -69,7 +69,7 @@ public without sharing class BFM_Link_MDFCTe_onsave{
                 listmdfupdate.add(mdf);
             }
         }
-         if(!listmdfupdate.isEmpty()){
+         if(listmdfupdate!=null && listmdfupdate.size()>0){
           //  update listmdfupdate;
         }
         

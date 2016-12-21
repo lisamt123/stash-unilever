@@ -15,7 +15,7 @@
                     <apex:inputFile value="{!gnreAtt.body}" filename="{!gnreAtt.name}" size="{!gnreAtt.bodylength}" contentType="{!gnreAtt.contenttype}" />  
                 </apex:pageBlockSectionItem>
 
-            </apex:pageBlockSection>    
+            </apex:pageBlockSection>	
         </apex:pageBlock>
     </apex:form>
 </apex:page>

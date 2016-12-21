@@ -23,7 +23,7 @@ public list <NFSwrapper> nfs_list {get; set;}
                 List<BFM_SES__c> listShipses = new List<BFM_SES__c>();
                 if( mapShipses.get(stg.Shipment__c)!=null){
                 listShipses.addAll(mapShipses.get(stg.Shipment__c));
-                system.debug('llllllllllllllll'+listShipses);  
+                system.debug('llllllllllllllll'+listShipses);	
                 }
                 if(!stg.BFM_SESs__r.isEmpty()){
                     listShipses.addAll(stg.BFM_SESs__r);

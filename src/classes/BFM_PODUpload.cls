@@ -1,5 +1,5 @@
 public class BFM_PODUpload {
-  
+	
     private Id podFileId;
     private List<String> errors;
     @testVisible private boolean isSuccess;
@@ -13,7 +13,7 @@ public class BFM_PODUpload {
      * */
     public BFM_PODUpload(String cnpj,BFM_File__c podFile, blob podFileBody){
         this.cnpj = cnpj;
-      this.podFile = podFile;
+    	this.podFile = podFile;
         this.errors = new List<String>();
         this.isSuccess = false;
         this.podFileBody = podFileBody;
@@ -27,7 +27,7 @@ public class BFM_PODUpload {
     public boolean uploadPOD(){
         
         try{
-          
+        	
             HttpResponse response = BFM_GeneralServiceCalls.podUpload(cnpj,podFile.File_Name__c, System.now(), 
                                                                 podFile.Content_Type__c, podFile.size__c, podFileBody);
             if(response.getStatusCode() == 200 || response.getStatusCode() == 201){
@@ -36,8 +36,8 @@ public class BFM_PODUpload {
             } else{
                 isSuccess = false;
                 String errorMessage = String.format(Label.BFM_Integration_Failure, new List<String>{String.valueOf(response.getStatusCode()),  
-                                                response.getStatus(),
-                                                response.getBody()});
+                    														response.getStatus(),
+                    														response.getBody()});
                 errors.add(errorMessage);
             }
             
@@ -62,4 +62,4 @@ public class BFM_PODUpload {
     public boolean isSuccess(){
         return this.isSuccess;
     }
- }
+}

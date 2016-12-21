@@ -5,7 +5,7 @@ global class BFM_batch_linkMDFCTe implements Database.Batchable<sObject>
         String query = 'SELECT Id,Name,CT_e_Access_Key__c,MDF_e_Status__c ,MDFE_Access_Key__c,(select id from CT_es__r) FROM BFM_MDF_e__c where MDF_e_Status__c =\'Pending Link\' ';
         return Database.getQueryLocator(query);
     }
-
+    
     global void execute(Database.BatchableContext BC, List<BFM_MDF_e__c> scope)
     {    
         set<string> setctekey = new set<string>();
@@ -24,11 +24,10 @@ global class BFM_batch_linkMDFCTe implements Database.Batchable<sObject>
                 for(string mc: MdfCte){
                     mapCTkey.put(mc,mdf);
                 }
-                system.debug('sssssssss'+mapCTkey);  
             }   
         }   
         if(!mapCTkey.isEmpty()){
-            listCTe = [select Id,CT_e_key__c,MDF_e__c from BFM_CT_e__c where CT_e_key__c in : mapCTkey.keyset() and CT_e_Duplicate_Record_Status__c=:Label.BFM_Validation_OK and CT_e_Valid_CNPJ_Status__c = 'Valid CNPJ' ];
+            listCTe = [select Id,CT_e_key__c,MDF_e__c from BFM_CT_e__c where CT_e_key__c in : mapCTkey.keyset() and Is_Duplicated__c = false  and Is_CNPJ_Invalid__c = false];
         }
         for(BFM_CT_e__c  cte: listCTe){
             if(cte.MDF_e__c == null){
@@ -66,7 +65,7 @@ global class BFM_batch_linkMDFCTe implements Database.Batchable<sObject>
             else{
                 updatedcte = map2cte.get(mdf.id).size();
             }
-            system.debug('mmmmmm'+mapncte.get(mdf.id)+'gggg'+map1cte.get(mdf.id)+'pppp'+map2cte.get(mdf.id));
+            
             if(mdf.CT_e_Access_Key__c!=null && mapncte.get(mdf.id)>0 && mapncte.get(mdf.id)== map1cte.get(mdf.id)+updatedcte){
                 mdf.MDF_e_Status__c ='Link Ok'; 
                 listmdfupdate.add(mdf);   
@@ -75,11 +74,7 @@ global class BFM_batch_linkMDFCTe implements Database.Batchable<sObject>
         if(!listmdfupdate.isEmpty()){
             update listmdfupdate;
         }
-        
-                
-            
-        
-        
+ 
         
     }  
     global void finish(Database.BatchableContext BC)

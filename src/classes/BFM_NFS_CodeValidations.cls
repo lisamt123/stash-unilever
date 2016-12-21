@@ -1,13 +1,32 @@
 public class BFM_NFS_CodeValidations{
     public static void nfsCheck(List<BFM_NFS__c> nfsRecords,set<id> setcodevalnfs){
         List<BFM_NFS__c> nfsTRecords = new List<BFM_NFS__c>();
-        nfsTRecords = [select id, (select id,Unilever_company_code__c,Vendor_Code__c,Stage__r.Shipment__r.Carrier_Account__r.cnpj__c,Stage__r.Shipment__r.Unilever_Company__r.region__c,Occurrence__r.Approval_Date_1__c,Occurrence__r.Approval_Date_2__c,Occurrence__r.Approval_Date_3__c,Occurrence__r.Approval_Date_4__c,Occurrence__r.Approval_Date_5__c,Occurrence__r.Approval_Date_6__c from SESNFSs__r) from BFM_NFS__c where id in : nfsRecords];        
+        nfsTRecords = [select id,Shipment__c,Occurrence__c, (select id,Unilever_company_code__c,Vendor_Code__c,Stage__r.Shipment__r.Carrier_Account__r.cnpj__c,Stage__r.Shipment__r.Unilever_Company__r.region__c,Occurrence__r.Approval_Date_1__c,Occurrence__r.Approval_Date_2__c,Occurrence__r.Approval_Date_3__c,Occurrence__r.Approval_Date_4__c,Occurrence__r.Approval_Date_5__c,Occurrence__r.Approval_Date_6__c from SESNFSs__r) from BFM_NFS__c where id in : nfsRecords];        
+        system.debug('--->'+nfsTRecords);
         map<id,List<BFM_SES__c>> mapnfsSes = new map<id,List<BFM_SES__c>>();
+        List<id> shipsid = new List<id>();
+        List<id> occrid = new List<id>();
+        List<BFM_SES__c> seslist = new List<BFM_SES__c>();
         for(BFM_NFS__c nfs: nfsTRecords){
             mapnfsSes.put(nfs.id,nfs.SESNFSs__r);
+            if(nfs.Shipment__c!=null){
+            	shipsid.add(nfs.Shipment__c);
+            }
+            if(nfs.Occurrence__c!=null){
+            	occrid.add(nfs.Occurrence__c);
+            }
             system.debug('nnnnnnnnnnnnnnnnnnmmmmmmmmmmmm'+nfs.SESNFSs__r);
         }
-         
+        system.debug('sid--->'+shipsid);
+        system.debug('ocid--->'+occrid);
+        
+        if(shipsid!=null){
+           seslist=[SELECT Id, Name, Shipment__c FROM BFM_SES__c where Shipment__c=:shipsid];
+           List<BFM_NFS__c> nfslist = new List<BFM_NFS__c>();
+           for(BFM_NFS__c nfss: nfsTRecords){
+            	//nfss.id =    
+           }
+        }
         for(BFM_NFS__c nfs: nfsRecords){
             if(nfs.NFS_Link_Check_Status__c == 'Link Ok' && !setcodevalnfs.contains(nfs.id)){
                 integer codecount=0,vendorcount=0,datecount=0;

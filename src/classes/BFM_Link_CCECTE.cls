@@ -32,7 +32,8 @@ public class BFM_Link_CCECTE{
         }
         //  listQcce = [select id,Related_CT_e_NF_e_DF_Key__c,Reference_Object_Type__c  from BFM_CC_e__c where id in: setCCeids];
         for(BFM_CC_e__c cce: listcce){
-            if(cce.CC_e_Valid_CNPJ_Status__c == 'Valid CNPJ'){
+            
+            if(!cce.Is_CNPJ_invalid__c){
                 if(cce.Reference_Object_Type__c == 'CTE' && mapcte.containsKey(cce.Related_CT_e_NF_e_DF_Key__c) && mapcte.get(cce.Related_CT_e_NF_e_DF_Key__c)!=null){
                     cce.CTe__c = mapcte.get(cce.Related_CT_e_NF_e_DF_Key__c);
                     cce.CC_e_Link_Check_Status__c = 'Link Ok';
@@ -50,9 +51,11 @@ public class BFM_Link_CCECTE{
             }
             
         }
+        /*
         if(!listupdatecce.isEmpty()){
             //upsert listupdatecce;
         }
+		*/
     }
     
     

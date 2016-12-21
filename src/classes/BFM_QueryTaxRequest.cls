@@ -4,32 +4,32 @@
 
 public class BFM_QueryTaxRequest {
 
-  public class Item {
-    public string issueDate;
-    public String totalValue;
-    public string baseValue;
-    public String netValue;
-    public string icmsValue;
-    public String cteAccessKey;
-    public String nfsNumber;
-    public String debitNoteNumber;
-    public String itemType;
-  }
+	public class Item {
+		public string issueDate;
+		public String totalValue;
+		public string baseValue;
+		public String netValue;
+		public string icmsValue;
+		public String cteAccessKey;
+		public String nfsNumber;
+		public String debitNoteNumber;
+		public String itemType;
+	}
 
-  public QueryTaxCalculation QueryTaxCalculation;
+	public QueryTaxCalculation QueryTaxCalculation;
 
-  public class QueryTaxCalculation {
-    public List<String> sesId;
-    public String vendorId;
-    public String companyCode;
-    public String taxCode;
-    public String nfCategory;
-    public String taxJusrisdiction;
-    public Item item;
-  }
+	public class QueryTaxCalculation {
+		public List<String> sesId;
+		public String vendorId;
+		public String companyCode;
+		public String taxCode;
+		public String nfCategory;
+		public String taxJusrisdiction;
+		public Item item;
+	}
 
-  
-  public static BFM_QueryTaxRequest parse(String json) {
-    return (BFM_QueryTaxRequest) System.JSON.deserialize(json, BFM_QueryTaxRequest.class);
-  }
+	
+	public static BFM_QueryTaxRequest parse(String json) {
+		return (BFM_QueryTaxRequest) System.JSON.deserialize(json, BFM_QueryTaxRequest.class);
+	}
 }

@@ -25,9 +25,10 @@ public with sharing class BFM_NFSHandler implements ITrigger{
             }
         }
         
-        BFM_ValidationController.nfsDuplicateRecordCheck(Trigger.New,setlinknfs,trigger.isInsert);  
+        BFM_ValidationController.nfsDuplicateRecordCheck(Trigger.New,setlinknfs,trigger.isInsert);         
         
-        if(trigger.isupdate){  
+        if(trigger.isupdate){
+            
             BFM_NFS_CodeValidations.nfsCheck(Trigger.New,setcodevalnfs);  
         }
     }

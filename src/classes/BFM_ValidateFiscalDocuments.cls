@@ -10,6 +10,8 @@ public with sharing class BFM_ValidateFiscalDocuments {
     public boolean isSuccess(){
         return this.isSuccess == null? false: this.isSuccess;
     }
+    
+    // TODO : CHECK BUSINESS RULE REGARDING CHECK THE FISCAL DOCUMENT - DOES IT SHOULD BE SENDING ONLY THE CTE KEY?
     public boolean callValidateFiscalDocuments(){
         List<String> accessKeys = new List<String>();
         isSuccess = true;

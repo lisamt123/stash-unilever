@@ -1,4 +1,4 @@
-<apex:page StandardController="BFM_Debit_Note__c" extensions="BFM_WithholdTaxDebitNote">
+<apex:page StandardController="BFM_Debit_Note__c" extensions="BFM_WithholdTaxDebitNoteController">
     <!--<apex:outputField label="NFS tax code" value="{0}"/>-->
     <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"/>
     <style>
@@ -70,10 +70,10 @@
             </apex:outputPanel>
             
             <apex:pageBlockSection columns="2" title="Informações da Nota de Débito" >
-                <apex:outputText value="{!BFM_Debit_Note__c.DN_total_value__c}" />
+                <apex:outputText value="{!dn.DN_total_value__c}" />
                 <apex:outputText value="{!taxCode}" label="Código do Imposto do SESs"/>  
-                <apex:inputField value="{!BFM_Debit_Note__c.Tax_Code_Id__c}" label="Código do Imposto" />
-                <apex:inputField value="{!BFM_Debit_Note__c.Tax_Code_Description__c}" required="true"/> 
+                <apex:inputField value="{!dn.Tax_Code_Id__c}" label="Código do Imposto" />
+                <apex:inputField value="{!dn.Tax_Code_Description__c}" required="true"/> 
             </apex:pageBlockSection>            
             
         </apex:pageBlock>

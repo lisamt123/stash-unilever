@@ -69,10 +69,10 @@
             </apex:outputPanel>
             
             <apex:pageBlockSection columns="2" title="Informações da NFS" >
-                <apex:outputText value="{!BFM_NFS__c.Base_Value__c}" />
+                <apex:outputText value="{!nfs.Base_Value__c}" />
                 <apex:outputText value="{!taxCode}" label="Código do Imposto do SESs"/>  
-                <apex:inputField value="{!BFM_NFS__c.Tax_Code_Id__c}" label="Código do Imposto" /> 
-                <apex:inputField value="{!BFM_NFS__c.Tax_Code_Description__c}" required="true"/>                 
+                <apex:inputField value="{!nfs.Tax_Code_Id__c}" label="Código do Imposto" /> 
+                <apex:inputField value="{!nfs.Tax_Code_Description__c}" required="true"/>                 
             </apex:pageBlockSection>            
             
         </apex:pageBlock>

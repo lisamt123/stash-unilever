@@ -122,7 +122,7 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
                 
                 System.debug(Label.BFM_Error_Creating_Access_Request + ' ' + e.getMessage() +' ' +e.getStackTraceString());
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                  Label.BFM_Error_Creating_Access_Request + ' ' + e.getMessage() +' ' +e.getStackTraceString() +e.getTypeName()));
+                                                           Label.BFM_Error_Creating_Access_Request + ' ' + e.getMessage() +' ' +e.getStackTraceString() +e.getTypeName()));
             }
         }
         

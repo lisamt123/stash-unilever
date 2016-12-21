@@ -19,7 +19,6 @@ public class BFM_InvoiceProcessing {
             HttpResponse response = BFM_GeneralServiceCalls.performInvoiceProcessing(requestObj);
             if(response.getStatusCode() == 200 || response.getStatusCode() == 201 ){
                 isSuccess = true;
-                
             } else{
                 isSuccess = false;
                 BFM_Error_Log__c errorLog = new BFM_Error_Log__C();
@@ -43,42 +42,41 @@ public class BFM_InvoiceProcessing {
     public static BFM_InvoiceProcessingRequest generateJSONInvoiceProcessingRequest(Id miroId,string objectType){
         
         BFM_MIRO_Header__c miroHeader = [SELECT Access_Key__c, /*Annulment_Flag__c,*/ Annulment_Reason__c,
-                                             Baseline_Date_for_Due_Date_Calculation__c, /*Cancellation_Flag__c,*/
-                                             Check_Digit_in_Access_Key__c,COFINS_Law__c, Company_Code__c, Complement_SES_Flag__c,
-                                             Header_Text__c, ICMS_Law__c, In_State_Out_State__c, Invoice_Number__c,
-                                             IPI_Law__c, PIS_Law__c,Posting_Date_in_the_Document__c,Value_Net__c,Total_Amount__c,
-                                             Protocol_Number__c,NF_e_Random_Number__c, Reference_Document_Category__c,
-                                             Header_Text_Summary__c,Free_Freight_Flag__c,Invoice_Date__c,
-                                            NF_e_Issuing_Type__c,NF_Type__c,Transaction__c,Withholding_tax_type__c,Withholding_Tax_Code__c,
-                                         W_tax_base_amount_in_LC__c,W_tax_Apply_Flag__c,
-                                            (SELECT Id, Entry_Sheet_Number__c,Net_Value_of_Entry_Sheet__c,
-                                             Tax_on_Sales_Purchases_Code__c
-                                                FROM BFM_Miro_Items__r),
+                                         Baseline_Date_for_Due_Date_Calculation__c, /*Cancellation_Flag__c,*/
+                                         Check_Digit_in_Access_Key__c,COFINS_Law__c, Company_Code__c, Complement_SES_Flag__c,
+                                         Header_Text__c, ICMS_Law__c, In_State_Out_State__c, Invoice_Number__c,
+                                         IPI_Law__c, PIS_Law__c,Posting_Date_in_the_Document__c, /*Net_Value__c,*/Total_Amount__c,
+                                         Protocol_Number__c, Cte_Random_number__c, Reference_Document_Category__c,
+                                         Header_Text_Summary__c,Free_Freight_Flag__c,Invoice_Date__c,
+                                         NF_e_Issuing_Type__c,NF_Type__c,Transaction__c,
+                                         (SELECT Id, Entry_Sheet_Number__c, SES_Net_Value__c,
+                                          Tax_on_Sales_Purchases_Code__c
+                                          FROM BFM_Miro_Items__r),
                                          (SELECT Id, Apply__c, Tax_Type__c, Tax_Code__c, Base_Amount__c FROM MIRO_Withhold_Taxes__r)
                                          
-                                        FROM BFM_MIRO_Header__c 
-                                        WHERE Id =: miroId];
+                                         FROM BFM_MIRO_Header__c 
+                                         WHERE Id =: miroId];
         Set<Id> miroItemIds = new Set<Id>();
         for(BFM_Miro_Item__c miroItem: miroHeader.BFM_Miro_Items__r){
             miroItemIds.add(miroItem.Id);
         }
         Map<Id, List<BFM_Miro_Item_Tax__c>> taxItemsByMiroItem = new Map<Id, List<BFM_Miro_Item_Tax__c>>();
         for(BFM_Miro_Item_Tax__c tax: [SELECT Id, CFOP_Entry__c,
-                                        Fiscal_Right_ICMS__c,
-                                        Fiscal_Right_IPI__c,
-                                        Tax_type__c,
-                                        Tax_Rate__c,
-                                        Other_Base__c,
-                                        Excluded_Base__c,
-                                        Original_Tax_Base_Amount__c,
+                                       Fiscal_Right_ICMS__c,
+                                       Fiscal_Right_IPI__c,
+                                       Tax_type__c,
+                                       Tax_Rate__c,
+                                       Other_Base__c,
+                                       Excluded_Base__c,
+                                       Original_Tax_Base_Amount__c,
                                        MIRO_Item__c,
                                        Tax_amount__c
                                        FROM BFM_Miro_Item_Tax__c WHERE MIRO_Item__c IN: miroItemIds]){
-            if(!taxItemsByMiroItem.containsKey(tax.MIRO_Item__c)){
-                taxItemsByMiroItem.put(tax.MIRO_Item__c, new List<BFM_Miro_Item_Tax__c>());
-            }
-            taxItemsByMiroItem.get(tax.MIRO_Item__c).add(tax);
-        }
+                                           if(!taxItemsByMiroItem.containsKey(tax.MIRO_Item__c)){
+                                               taxItemsByMiroItem.put(tax.MIRO_Item__c, new List<BFM_Miro_Item_Tax__c>());
+                                           }
+                                           taxItemsByMiroItem.get(tax.MIRO_Item__c).add(tax);
+                                       }
         
         BFM_InvoiceProcessingRequest envelope = new BFM_InvoiceProcessingRequest();
         
@@ -98,9 +96,7 @@ public class BFM_InvoiceProcessing {
         envelope.RequestInvoiceProcessing.icmsLaw = miroHeader.ICMS_Law__c;
         envelope.RequestInvoiceProcessing.inOutState = miroHeader.In_State_Out_State__c;
         envelope.RequestInvoiceProcessing.invoiceDate = miroHeader.Invoice_Date__c;
-        if(miroHeader.Invoice_Number__c != null){
-            envelope.RequestInvoiceProcessing.invoiceNumber = miroHeader.Invoice_Number__c;
-        }
+        envelope.RequestInvoiceProcessing.invoiceNumber = miroHeader.reference_number__c;
         envelope.RequestInvoiceProcessing.ipiLaw = miroHeader.IPI_Law__c;
         envelope.RequestInvoiceProcessing.nfeIssType = miroHeader.NF_e_Issuing_Type__c;
         envelope.RequestInvoiceProcessing.nfType = miroHeader.NF_Type__c;
@@ -108,11 +104,11 @@ public class BFM_InvoiceProcessing {
         envelope.RequestInvoiceProcessing.pisLaw = miroHeader.PIS_Law__c;
         envelope.RequestInvoiceProcessing.postingDate = String.valueOf(miroHeader.Posting_Date_in_the_Document__c);
         envelope.RequestInvoiceProcessing.protocolNumber = miroHeader.Protocol_Number__c;
-        envelope.RequestInvoiceProcessing.randomNumber = miroHeader.NF_e_Random_Number__c;
+        envelope.RequestInvoiceProcessing.randomNumber = miroHeader.Cte_Random_number__c;
         envelope.RequestInvoiceProcessing.referenceDocumentCategory = miroHeader.Reference_Document_Category__c;
         envelope.RequestInvoiceProcessing.transactionCode = miroHeader.Transaction__c;
         envelope.RequestInvoiceProcessing.totalAmount = miroHeader.Total_Amount__c;
-        envelope.RequestInvoiceProcessing.valueNet = String.valueOf(miroHeader.Value_Net__c);
+        //envelope.RequestInvoiceProcessing.valueNet = String.valueOf(miroHeader.Net_Value__c);
         if(!miroHeader.MIRO_Withhold_Taxes__r.isEmpty()){
             envelope.RequestInvoiceProcessing.withholdItems = new List<BFM_InvoiceProcessingRequest.WithholdItems>();
             for(BFM_MIRO_Withhold_Tax__c tax: miroHeader.MIRO_Withhold_Taxes__r ){
@@ -128,9 +124,9 @@ public class BFM_InvoiceProcessing {
         if(!miroHeader.BFM_Miro_Items__r.isEmpty()){
             envelope.RequestInvoiceProcessing.items = new List<BFM_InvoiceProcessingRequest.Items>();
             for(BFM_Miro_Item__c miroItem : miroHeader.BFM_Miro_Items__r){
-                BFM_InvoiceProcessingRequest.Items requestItem = new BFM_InvoiceProcessingRequest.Items();
+                BFM_InvoiceProcessingRequest.Items requestItem = new BFM_InvoiceProcessingRequest.Items();	
                 requestItem.sesNumber = miroItem.Entry_Sheet_Number__c;
-                requestItem.sesNetValue = String.valueof(miroItem.Net_Value_of_Entry_Sheet__c);
+                requestItem.sesNetValue = String.valueof(miroItem.SES_Net_Value__c);
                 requestItem.taxCode = miroItem.Tax_on_Sales_Purchases_Code__c;
                 envelope.RequestInvoiceProcessing.items.add(requestItem);
                 if(taxItemsByMiroItem.containsKey(miroItem.Id)){

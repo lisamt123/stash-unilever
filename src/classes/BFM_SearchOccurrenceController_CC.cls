@@ -7,7 +7,7 @@ public with sharing class BFM_SearchOccurrenceController_CC{
     public String occurNumber{get;set;}
     public String vendorName{get;set;}
     public Date occurStart{get;set;}
-    public Date occurTo{get;set;}   
+    public Date occurTo{get;set;}	
     public Boolean secondBlock{get;set;} 
     public string recordscount{get;set;}
     public List<SelectOption> recordsize{get;set;}
@@ -45,9 +45,9 @@ public with sharing class BFM_SearchOccurrenceController_CC{
 
     public void searchoccurs(){
         OccurrencesList = new List<String>();
-    if(OccList != null && !OccList.isEmpty()){
-        OccList = null;
-        }
+   	if(OccList != null && !OccList.isEmpty()){
+  		OccList = null;
+		}
         conditions.clear();
         system.debug('value is'+occurNumber+'dd'+occurStart);
         
@@ -80,11 +80,11 @@ public with sharing class BFM_SearchOccurrenceController_CC{
         
         
         if (conditions.size() > 0) {
-        OccurenceString += '  WHERE ' + conditions[0];
-        for (Integer i = 1; i < conditions.size(); i++)
+   		OccurenceString += '  WHERE ' + conditions[0];
+   		for (Integer i = 1; i < conditions.size(); i++)
             OccurenceString += '  AND ' + conditions[i];
         }
-        OccurenceString += ' ORDER BY CreatedDate';
+  		OccurenceString += ' ORDER BY CreatedDate';
         try{
             system.debug('occ string is '+OccurenceString);
        // OccList = Database.Query(OccurenceString);
@@ -93,7 +93,7 @@ public with sharing class BFM_SearchOccurrenceController_CC{
         }catch(QueryException ex){
             String errorMessage = ex.getMessage() + ' ' + ex.getStackTraceString()+' /n \n'+OccurenceString;
             ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, errorMessage));
-            } 
+        	} 
         
         con.setPageSize(10);
         }

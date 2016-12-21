@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>BFM_CT_e_Cancellation_Request_Approvers</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <label>CT-e Annullment Request Approve</label>
+        <name>CT_e_Annullment_Request_Approve</name>
+    </approvalStep>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>BFM_CT_e__c.Cte_Status__c</field>
+            <operation>equals</operation>
+            <value>Compatible</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>BFM_CT_e__c.CT_e_Type__c</field>
+            <operation>equals</operation>
+            <value>Substitute</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>BFM_Create_NF55_Record</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>BFM_CT_e_Status_Annuled</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>BFM_CT-e Annullment Process</label>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

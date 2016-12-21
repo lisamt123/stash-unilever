@@ -25,7 +25,7 @@
                 <apex:commandButton value="{!$Label.BFM_Reset}" action="{!reset}"/>
             </apex:pageBlockButtons>
             
-            <apex:dataTable cellpadding="4px" border="1px" value="{!withholdTaxList}" var="currLine" rendered="{!IF(AND(NOT(ISBLANK(withholdTaxList)),withholdTaxList.size>0),true,false)}">
+            <apex:dataTable cellpadding="4px" border="1px" columnsWidth="1px,1px,1px,1px" value="{!withholdTaxList}" var="currLine" rendered="{!IF(AND(NOT(ISBLANK(withholdTaxList)),withholdTaxList.size>0),true,false)}">
                 <apex:column headerValue="Tipo Retenção"> 
                     <apex:inputField value="{!currLine.Withholding_Tax_Type__c}" />
                 </apex:column>
@@ -34,10 +34,13 @@
                 </apex:column>
                 <apex:column headerValue="Desc.Retenção" > 
                     <apex:inputField value="{!currLine.Withholding_Tax_Text__c}" /> 
-                </apex:column>                       
-                <apex:column headerValue="Ind.Sujeito" > 
-                    <apex:inputCheckbox value="{!currLine.Withholding_Tax_Flag__c}"/>
-                </apex:column>
+                </apex:column>      
+                <apex:column headerValue="Valor Base Calc" > 
+                    <apex:inputText value="{!baseAmount}" /> 
+                </apex:column>  
+                <apex:column headerValue="Aplica ?" > 
+                    <apex:inputCheckbox value="{!wthApply}" /> 
+                </apex:column>                  
             </apex:dataTable>
             
             <apex:outputPanel layout="block" styleClass="custom1">
@@ -69,11 +72,11 @@
             </apex:outputPanel>
             
             <apex:pageBlockSection columns="2" title="Informações da CTE" >
-                <apex:outputText value="{!BFM_CT_e__c.Receivable_Amount__c}" />
+                <apex:outputText value="{!cte.Receivable_Amount__c}" />
                 <apex:outputText value="{!taxCode}" label="Código do Imposto do SESs"/>  
-                <apex:inputField value="{!BFM_CT_e__c.Tax_Code_id__c}" label="Código do Imposto" />
-                <apex:inputField value="{!BFM_CT_e__c.Tax_Code_Description__c}" required="true"/> 
-            </apex:pageBlockSection>                
+                <apex:inputField value="{!cte.Tax_Code_id__c}" label="Código do Imposto" />
+                <apex:inputField value="{!cte.Tax_Code_Description__c}" required="true"/> 
+            </apex:pageBlockSection>            	
             
         </apex:pageBlock>
     </apex:form>

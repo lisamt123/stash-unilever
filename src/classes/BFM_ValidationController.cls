@@ -32,18 +32,20 @@ public class BFM_ValidationController {
         List<BFM_CT_e__c> CTeRecordQ=New List<BFM_CT_e__c>();
         Map<string,id> OldKeyMap=New Map<string,id>();
         Map<string,id> NewRecordMap=New Map<string,id>(); 
-        set<string> CNPJId = new set<string>();   
-        set<string> setcteoriginal = new set<string>();
-        for (BFM_CT_e__c rec:CTeRecord){
-            NewRecordMap.put(rec.Ct_e_Key__c,rec.id);  
+        Set<string> CNPJId = new Set<string>();   
+        Set<string> setcteoriginal = new Set<string>();
+        
+        for (BFM_CT_e__c rec : CTeRecord){
+            NewRecordMap.put(rec.Ct_e_Key__c, rec.id);  
+            
             if(rec.CNPJ_Issuer__c!=null){
                 CNPJId.add(rec.CNPJ_Issuer__c);
             }
             if(rec.CNPJ_Service_Taker__c!=null){
                 CNPJId.add(rec.CNPJ_Service_Taker__c);
             }
-            if(rec.Cte_original_Access_Key__c!=null){
-                setcteoriginal.add(rec.Cte_original_Access_Key__c);
+            if(rec.CT_e_key__c!=null){
+                setcteoriginal.add(rec.CT_e_key__c);
             }
         }
         List<BFM_CT_e__c> cteOriginal = new List<BFM_CT_e__c>();
@@ -52,21 +54,21 @@ public class BFM_ValidationController {
             cteOriginal = [select id,CT_e_key__c from BFM_CT_e__c where CT_e_key__c in: setcteoriginal and CT_e_Type__c='Normal'];
         }
         for(BFM_CT_e__c rec:CTeRecord){
-            if(rec.Cte_original_Access_Key__c!=null && mapcteoriginal.containsKey(rec.Cte_original_Access_Key__c)){
-                rec.CT_e__c = mapcteoriginal.get(rec.Cte_original_Access_Key__c).id;
+            if(rec.CT_e_key__c!=null && mapcteoriginal.containsKey(rec.CT_e_key__c)){
+                rec.CT_e__c = mapcteoriginal.get(rec.CT_e_key__c).id;
             }
         }
         for(BFM_CT_e__c ct: cteOriginal ){
             mapcteoriginal.put(ct.CT_e_key__c, ct);
         }
-        CTeRecordQ = [Select id,CT_e_Key__c,Cte_Status__c,CT_e_Duplicate_Record_Status__c from BFM_CT_e__c 
-                      where CT_e_Key__c IN:NewRecordMap.keySet() and CT_e_Duplicate_Record_Status__c=:Label.BFM_Validation_Ok and ID NOT IN:Trigger.New];
+        CTeRecordQ = [Select id,CT_e_Key__c,Cte_Status__c, Is_Duplicated__c  from BFM_CT_e__c 
+                      where CT_e_Key__c IN:NewRecordMap.keySet() and Is_Duplicated__c = false and ID NOT IN:Trigger.New];
         for(BFM_CT_e__c cte:CTeRecordQ){
             OldKeyMap.put(cte.CT_e_Key__c,cte.id);    
         }
         if(NewRecordMap!=null){
-            BFM_RecordutilityController utility=new BFM_RecordutilityController();
-            utility.cteCheck(OldKeyMap,NewRecordMap,'CT-e',CTeRecord,CNPJId);
+            BFM_RecordutilityController utility = new BFM_RecordutilityController();
+            utility.cteCheck(OldKeyMap, NewRecordMap,'CT-e', CTeRecord, CNPJId);
         }
     }
     
@@ -85,10 +87,9 @@ public class BFM_ValidationController {
             if(rec.Taker_CNPJ__c!=null){
                 CNPJId.add(rec.Taker_CNPJ__c);
             }
-            
         }
         mdfeRecordQ = [Select id,MDFE_Access_Key__c,MDF_e_Status__c from BFM_MDF_e__c where MDFE_Access_Key__c IN:NewRecordMap.keySet() and
-                       MDF_e_Duplicate_Record_Status__c=:Label.BFM_Validation_Ok and ID NOT IN:Trigger.New];
+                       Is_Duplicated__c = false and ID NOT IN:Trigger.New];
         for(BFM_MDF_e__c mdfe: mdfeRecordQ){
             OldKeyMap.put(mdfe.MDFE_Access_Key__c,mdfe.id);    
         }
@@ -108,10 +109,6 @@ public class BFM_ValidationController {
             if(isInsert==true || !setlinknfs.contains(rec.id)){
                 if(rec.NFS_Emission_Date_Time__c!=null && rec.NFS_Series__c!=null && rec.NFS_Number__c!=null && rec.Vendor_s_CNPJ_or_CPF__c!=null ){
                     NewRecordMap.put(rec.NFS_Number__c+rec.NFS_Series__c+rec.Vendor_s_CNPJ_or_CPF__c+rec.NFS_Emission_Date_Time__c.year(),rec.id);  
-                }
-                else{
-                    //rec.NFS_Mandatory_Field_Status__c = Label.BFM_Validation_Error;
-                    //rec.NFS_Status__c = Label.BFM_Validation_Error;
                 }
                 if(rec.Vendor_s_CNPJ_or_CPF__c!=null){
                     CNPJId.add(rec.Vendor_s_CNPJ_or_CPF__c);
@@ -139,7 +136,7 @@ public class BFM_ValidationController {
         for (BFM_Debit_Note__c rec: dnRecord){
             if(isinsert == true || !setdebitnote.contains(rec.id)){
                 if(rec.DN_Number__c!=null){
-                    NewRecordMap.put(rec.DN_Number__c,rec.id);  
+                    NewRecordMap.put(rec.DN_Number__c+rec.Vendor_s_CNPJ_or_CPF__c,rec.id);  
                 }
                 if(rec.Vendor_s_CNPJ_or_CPF__c!=null){
                     CNPJId.add(rec.Vendor_s_CNPJ_or_CPF__c);
@@ -149,7 +146,7 @@ public class BFM_ValidationController {
                 }
             }
         }
-        dnRecordQ = [Select id,DN_Number__c from BFM_Debit_Note__c where DN_Number__c IN:NewRecordMap.keySet() and Id not in: dnRecord];
+        dnRecordQ = [Select id, DN_Number__c from BFM_Debit_Note__c where DN_Number__c IN:NewRecordMap.keySet() and Id not in: dnRecord];
         for(BFM_Debit_Note__c dn: dnRecordQ){
             OldKeyMap.put(dn.DN_Number__c,dn.id);    
         }
@@ -185,8 +182,7 @@ public class BFM_ValidationController {
             setnfekey.add(rec.NF_e_Access_Key__c);  
             }
             */
-            /*
-            nfeAccessKey = rec.NF_e__c;
+            /*nfeAccessKey = rec.NF_e__c;
             if(nfeAccessKey!='')
             {
                 getNfeAccesskey = [select NF_e_Access_Key__c from BFM_NF_e__c where id=:nfeAccessKey];
@@ -208,7 +204,7 @@ public class BFM_ValidationController {
         }
         system.debug('setnfekey:'+setnfekey);
         system.debug('podstatus:'+podstatus);
-        podRecordQ = [Select id,POD_Number__c,NF_e_Access_Key__c from BFM_POD__c where NF_e_Access_Key__c IN: setnfekey and Id not in: podRecord and POD_Duplicate_Check_Status__c=:Label.BFM_Validation_Ok];
+        podRecordQ = [Select id,POD_Number__c,NF_e_Access_Key__c from BFM_POD__c where NF_e_Access_Key__c IN: setnfekey and Id not in: podRecord and Is_Duplicated__c = false];
         nfeRecordQ = [select id,CNPJ_destination__c,Taker_CNPJ__c,NF_e_creation_date__c,NF_e_access_key__c,SES__c from BFM_NF_e__c where NF_e_access_key__c in:setnfekey];
         //nfeRecordQ = [select id,CNPJ_Destination_Account__r.CNPJ__c,Taker_Name__r.CNPJ__c,CNPJ_destination__c,NF_e_creation_date__c,NF_e_access_key__c,SES__c from BFM_NF_e__c where NF_e_access_key__c in:setnfekey];
         system.debug('nfeRecordQ:'+nfeRecordQ);
@@ -237,7 +233,6 @@ public class BFM_ValidationController {
         }  
         }
         */
-        //if(podstatus == 'In Progress'){ 
         if(podstatus != ''){ 
             BFM_RecordutilityController utility=new BFM_RecordutilityController();
             utility.podCheck(OldKeyMap,nfeKeyMap,'NFE',podRecord,CNPJId);

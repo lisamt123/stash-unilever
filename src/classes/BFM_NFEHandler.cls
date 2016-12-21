@@ -31,7 +31,7 @@ public with sharing class BFM_NFEHandler implements ITrigger
         for(BFM_Delivery__c parentRecord : parentRecords.values()){
             grandParentIds.add(parentRecord.Stage__c);            
         }
-    system.debug('parentRecords-->'+parentRecords);        
+		system.debug('parentRecords-->'+parentRecords);        
         system.debug('grandParentIds-->'+grandParentIds);
         Map<Id,BFM_Stage__c> grandParentRecords = new Map<Id,BFM_Stage__c>([Select id,Total_Gross_Weight__c from BFM_Stage__c where id in : grandParentIds]);
         List<BFM_NF_e__c> nfesList = [select id,Gross_weight__c,Delivery__c from BFM_NF_e__c where Delivery__c IN: parentRecords.values()];
@@ -54,7 +54,7 @@ public with sharing class BFM_NFEHandler implements ITrigger
         {
             system.debug('bfmnfe:'+bfmnfe);
             if(bfmnfe.SES__c==null)
-            {
+       	 	{
                 for(BFM_SES__c bfmses:seslist )    
                 {
                     system.debug('bfmses:'+bfmses);
@@ -66,7 +66,7 @@ public with sharing class BFM_NFEHandler implements ITrigger
         }
         system.debug('nfeList1:'+nfeList1);
        if(nfeList1.SES__c!=null){
-          update nfeList1;
+        	update nfeList1;
         }
     }
         

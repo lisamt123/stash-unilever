@@ -27,6 +27,7 @@ public class BFM_QueryTax {
         if(invoiceId.getSobjectType() == BFM_CT_e__c.sObjectType){
             
             queryTaxRequest = generateQueryTaxRequestCTE();
+            System.debug('queryTaxRequest : ' + queryTaxRequest);
             if(queryTaxRequest == null){
                 String errorMessage = 'Query Tax Request wasn\'t generated successfully';
                 raiseError(errorMessage, errorMessage, invoiceId.getSobjectType());
@@ -80,7 +81,7 @@ public class BFM_QueryTax {
             ses.ICMS_Law__c = sesResponse.icmsLaw;
             ses.IPI_law__c = sesResponse.ipiLaw;
             ses.COFINS_law__c = sesResponse.cofinsLaw;
-            ses.PIS_law__c = sesResponse.pisLaw;
+            //ses.PIS_law__c = sesResponse.pisLaw;
             sesList.add(ses);
             for(BFM_QueryTaxResponse.IvaList ivaResponse: sesResponse.ivaList){
                 BFM_IVA__c iva = new BFM_IVA__c();
@@ -105,12 +106,12 @@ public class BFM_QueryTax {
     
     public BFM_QueryTaxRequest generateQueryTaxRequestCTE(){
         BFM_QueryTaxRequest request;
-        BFM_CT_e__c theCte = [SELECT Id, Tax_Code__r.Name,
+        BFM_CT_e__c theCte = [SELECT Id, Tax_Code__r.Name, Service_Rendering_Value__c,
                               Cte_Emission_date_time__c,Receivable_Amount__c, Tax_Code_id__c,
                               ICMS_Base_Value__c,ICMS_Value__c,CT_e_key__c, Net_Value__c,
-                              (SELECT SES_Number__c, Vendor_Code__c,
+                              (SELECT SES_Number__c, Vendor_Code__c, COFINS_Aliquot__c, PIS_Aliquot__c,
                                Stage__r.Shipment__r.Carrier_Account__r.Vendor__c,
-                               Stage__r.Shipment__r.Carrier_Account__r.Tax_Jurisdiction__c,     
+                               Stage__r.Shipment__r.Carrier_Account__r.Tax_Jurisdiction__c ,    
                                Stage__r.Shipment__r.Company_Code__c
                                FROM SESs__r)
                               FROM BFM_CT_e__c
@@ -162,14 +163,22 @@ public class BFM_QueryTax {
             }
             
             if(theCte.Receivable_Amount__c != null){
-                request.queryTaxCalculation.item.totalValue = String.valueOf(theCte.Receivable_Amount__c);     
+                request.queryTaxCalculation.item.totalValue = String.valueOf(theCte.Service_Rendering_Value__c);     
             } else{
                 String errorMessage = 'CTe didn\'t have total value ("receivable amount" field)';
                 raiseError(errorMessage, errorMessage, theCte.getSobjectType());
                 
             }
             request.queryTaxCalculation.item.baseValue = String.valueof(theCTe.ICMS_Base_Value__c);
-            request.queryTaxCalculation.item.netValue = String.valueOf(theCte.Net_Value__c);
+            //request.queryTaxCalculation.item.netValue = String.valueOf(theCte.Net_Value__c);
+            System.debug('theCte.Receivable_Amount__c' + theCte.Receivable_Amount__c);
+            Double cofinsValue = (theCte.Service_Rendering_Value__c * (theSes.COFINS_Aliquot__c / 100)).setScale(2);
+            System.debug('cofinsValue' + cofinsValue);
+            Double pisValue = (theCte.Service_Rendering_Value__c * (theSes.PIS_Aliquot__c / 100)).setScale(2);
+            System.debug('pisValue' + pisValue);
+            Double netValue = theCte.Service_Rendering_Value__c - (theCte.ICMS_Value__c + cofinsValue + pisValue);
+            System.debug('netValue' + netValue);
+            request.queryTaxCalculation.item.netValue = String.valueOf(netValue);
             request.queryTaxCalculation.item.icmsValue = String.valueOf(theCTe.ICMS_Value__c);
             request.queryTaxCalculation.item.cteAccessKey = String.valueOf(theCTE.CT_e_key__c);
             request.queryTaxCalculation.item.itemType = TYPE_CTE;

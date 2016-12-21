@@ -49,18 +49,18 @@ public without sharing class BFM_SendEmailToCarrierApprover {
     
     public Contact getEmailContact(){
         Contact contactEmail;
-        string masterCNPJ=desiredCarriers[0].cnpj__c;
+        String masterCNPJ=desiredCarriers[0].cnpj__c;
         String cnpjPrefix = masterCNPJ.substring(0,8) + '%';
-        system.debug('cnpjPrefix:'+cnpjPrefix);
-        for(Account acc : [SELECT Id, 
-                                (SELECT email 
-                                 FROM Contacts WHERE title = 'SF_APPROVAL' AND email != null) 
-                                  FROM Account
-                                   WHERE cnpj__c =:masterCNPJ Limit 1]){
-                if(!acc.Contacts.isEmpty()){
-                    contactEmail = acc.Contacts;    
-                }
-            }                           
+        System.debug('cnpjPrefix: ' + cnpjPrefix);
+        for(Account acc : [SELECT Id, (SELECT email  FROM Contacts WHERE title = 'SF_APPROVAL' AND email != null LIMIT 1) 
+                           FROM Account
+                           WHERE cnpj__c =:masterCNPJ Limit 1]){
+                               
+                               if(!acc.Contacts.isEmpty()){
+                                   contactEmail = acc.Contacts;    
+                               }
+                           }   
+        
         if(contactEmail == null){
             errors = Label.BFM_Self_Service_No_Carrier_Email;           
         }
@@ -79,7 +79,7 @@ public without sharing class BFM_SendEmailToCarrierApprover {
         Set<Id> idsUsersGovernanceGroup = GetUserIdsFromGroup(groupId);
         List<User> usersGovernanceGroup = [SELECT Id FROM User WHERE Id IN: idsUsersGovernanceGroup ORDER BY username];
         AggregateResult res = [select count(id) from BFM_UserCreationRequest__c];
-    Integer count = integer.valueof(res.get('expr0'));
+		Integer count = integer.valueof(res.get('expr0'));
         Integer turn = Math.mod(count, usersGovernanceGroup.size());
         t.OwnerId = usersGovernanceGroup[turn].Id;
         
@@ -99,22 +99,19 @@ public without sharing class BFM_SendEmailToCarrierApprover {
         String groupType = Schema.SObjectType.Group.getKeyPrefix();
         
         // Loop through all group members in a group
-        for (GroupMember m : [Select Id, UserOrGroupId From GroupMember Where GroupId = :groupId])
-        {
+        for (GroupMember m : [Select Id, UserOrGroupId From GroupMember Where GroupId = :groupId]) {
             // If the user or group id is a user
-            if (((String)m.UserOrGroupId).startsWith(userType))
-            {
+            if (((String)m.UserOrGroupId).startsWith(userType)) {
                 result.add(m.UserOrGroupId);
             }
             // If the user or group id is a group
             // Note: there may be a problem with governor limits if this is called too many times
-            else if (((String)m.UserOrGroupId).startsWith(groupType))
-            {
+            else if (((String)m.UserOrGroupId).startsWith(groupType)) {
                 // Call this function again but pass in the group found within this group
                 result.addAll(GetUSerIdsFromGroup(m.UserOrGroupId));
             }
         }
         
         return result;  
-  }
+	}
 }

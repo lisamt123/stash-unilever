@@ -160,38 +160,38 @@
             }
         }
     }
-    $('.btn').click(function(){
-        var str='';
+    
+    $('.btn').click(function() {
+        var str = '';
         $("input[type=checkbox]:checked").each(function() {
-            if($(this).val()!='0' && $(this).val()!=null)
-            {
-                str+=$(this).val()+',';
+            if ($(this).val() != '0' && $(this).val() != null) {
+                str += $(this).val() + ',';
             }
         });
-        str=str.slice(0,-1);
+        str = str.slice(0, -1);
         //alert('str'+str);
         Visualforce.remoting.Manager.invokeAction(
-            '{!$RemoteAction.BFM_SearchShipmentCTeController_CC.updateShipments}', 
-            str, 
-            function(result, event){
-                //alert('result'+result);
-            }, 
-            {escape: true}
+            '{!$RemoteAction.BFM_SearchShipmentCTeController_CC.updateShipments}',
+            str,
+            function(result, event) {
+                //alert('result '+result);
+            }, {
+                escape: true
+            }
         );
-    }); 
+    });
     
-    
-    $('.btnRep').click(function(){
-        var str='';
+    $('.btnRep').click(function() {
+        var str = '';
         $("input[type=checkbox]:checked").each(function() {
-            if($(this).val()!='0' && $(this).val()!=null) {
-                str+=$(this).val().substring(0, 15)+',';
+            if ($(this).val() != '0' && $(this).val() != null) {
+                str += $(this).val().substring(0, 15) + ',';
             }
         });
-        str=str.slice(0,-1);
+        str = str.slice(0, -1);
         //alert(str);
-        window.open("/{!cteIssuingReport.Id}?pv0="+str,"_blank");
-    });     
+        window.open("/{!cteIssuingReport.Id}?pv0=" + str, "_blank");
+    }); 
     
     
     </script>

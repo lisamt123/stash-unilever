@@ -25,7 +25,7 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
     public List<SelectOption> statusOptions {get;set;}
     public List<SelectOption> recordsize{get;set;}
     public BFM_Shipment__c invoiceStatement {get;set;}
-        
+    
     public Report cteIssuingReport{get;set;}
     public BFM_SearchShipmentCTeController_CC(ApexPages.StandardSetController controller) {
         //this.BFM_Shipment__c = (BFM_Shipment__c)controller.getRecord();
@@ -63,8 +63,8 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
         shipmentNumberList =  new List<String>();
         String ShipmentString = 'SELECT id,name,Shipment_Number__c,Shipment_Status__c,Last_Shipment_Update__c,Shipment_Type__c,Shipment_Start__c,Display__c, Carrier_Account__c, Origin_plant_code__c ' +
             ' FROM BFM_Shipment__c ';
-
-       // String searchClauses = 'WHERE Shipment_Start__c  != NULL AND'; /* Only show shipments where Shipment_Start__c  = NULL */
+        
+        // String searchClauses = 'WHERE Shipment_Start__c  != NULL AND'; /* Only show shipments where Shipment_Start__c  = NULL */
         String searchClauses = 'WHERE '; 
         System.debug('plantCode ' + plantCode);
         if(plantCode != null&&plantCode!='') {
@@ -113,13 +113,13 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
             //searchClauses += ' Carrier_Account__r.CNPJ__c Like ' + val3 + ' AND ';
             for(string str:vendorAccountCNPJ.split(',')){
                 string vendorCodeSplit = '\''+String.escapeSingleQuotes(str.trim())+'\'' ;
-            vendorAccountCNPJList.add(vendorCodeSplit);
-                }
+                vendorAccountCNPJList.add(vendorCodeSplit);
+            }
             searchClauses += ' Carrier_Account__r.CNPJ__c IN ' + vendorAccountCNPJList + ' AND ';
         }
-           
+        
         System.debug('searchClauses ' + searchClauses);
-
+        
         searchClauses = searchClauses.trim().removeEndIgnoreCase('AND');
         if(searchClauses == 'WHERE'){
             searchClauses = '';
@@ -140,7 +140,7 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
             ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, errorMessage));
             System.debug(errorMessage);
         }
- 
+        
         setPaginationSettings();
     }
     
@@ -163,30 +163,30 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
             con.setPageSize(10);
         }
     }
-   
+    
     
     public PageReference updateship(){
-       /* BFM_QueryFreights.callQueryFreightsButton(shipId);*/
+        /* BFM_QueryFreights.callQueryFreightsButton(shipId);*/
         Set<Id> ssIds = new Set<Id>();
         for(Id ac:selectedShipList) {
             ssIds.add(ac);
         }
         Id batchJobId = Database.executeBatch(new BFM_BulkShipmentQuery(ssIds), 200);
-
+        
         System.debug('shipmentParamValue--->'+ssIds);
         /*if(!String.isBlank(shipId))
         {
-            shipments = [SELECT Shipment_Number__c,LastModifiedDate,Last_Shipment_Update__c FROM BFM_Shipment__c WHERE Id= :shipId LIMIT 1];
-            BFM_Shipment__c ship = new BFM_Shipment__c();
-            ship.Id = shipId;
-            ship.Last_Shipment_Update__c = shipments.LastModifiedDate;       
-            update ship;
-            system.debug('shipments:--->'+ship);
+        shipments = [SELECT Shipment_Number__c,LastModifiedDate,Last_Shipment_Update__c FROM BFM_Shipment__c WHERE Id= :shipId LIMIT 1];
+        BFM_Shipment__c ship = new BFM_Shipment__c();
+        ship.Id = shipId;
+        ship.Last_Shipment_Update__c = shipments.LastModifiedDate;       
+        update ship;
+        system.debug('shipments:--->'+ship);
         }*/
         PageReference pageRef = new PageReference('/apex/BFM_SearchShipmentCTe_VF');
         pageRef.setRedirect(true);
         return pageRef;
-   
+        
     }
     
     public PageReference redirectFileUpload(){
@@ -281,45 +281,45 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
     
     public Map<String, List<BFM_CT_e__c>> ctesByShipment{
         get{
-                ctesByShipment = new Map<String, List<BFM_CT_e__c>>();
-                List<BFM_SES__c> theSESs = [SELECT CT_e__c, Stage__r.Shipment__c FROM BFM_SES__c WHERE Stage__r.Shipment__c IN: shipList];
-                Set<Id> idsCtes = new Set<Id>();
-                for(BFM_SES__c ses : theSESs){
-                    idsCtes.add(ses.CT_e__c);
+            ctesByShipment = new Map<String, List<BFM_CT_e__c>>();
+            List<BFM_SES__c> theSESs = [SELECT CT_e__c, Stage__r.Shipment__c FROM BFM_SES__c WHERE Stage__r.Shipment__c IN: shipList];
+            Set<Id> idsCtes = new Set<Id>();
+            for(BFM_SES__c ses : theSESs){
+                idsCtes.add(ses.CT_e__c);
+            }
+            Map<Id, BFM_CT_e__c> ctes = new Map<Id, BFM_CT_e__c>([SELECT Id, Name FROM BFM_CT_e__c WHERE Id IN: idsCtes]);
+            Map<String, List<BFM_CT_e__c>> returnMap = new Map<String, List<BFM_CT_e__c>>();
+            for(BFM_SES__c ses : theSESs){
+                if(!ctesByShipment.containsKey(ses.stage__r.shipment__c)){
+                    ctesByShipment.put(ses.stage__r.shipment__c, new List<BFM_CT_e__c>());
                 }
-                Map<Id, BFM_CT_e__c> ctes = new Map<Id, BFM_CT_e__c>([SELECT Id, Name FROM BFM_CT_e__c WHERE Id IN: idsCtes]);
-                Map<String, List<BFM_CT_e__c>> returnMap = new Map<String, List<BFM_CT_e__c>>();
-                for(BFM_SES__c ses : theSESs){
-                    if(!ctesByShipment.containsKey(ses.stage__r.shipment__c)){
-                        ctesByShipment.put(ses.stage__r.shipment__c, new List<BFM_CT_e__c>());
-                    }
-                    BFM_CT_e__c relatedCTe = ctes.get(ses.CT_e__c);
-                    ctesByShipment.get(ses.stage__r.shipment__c).add(relatedCTe);
+                BFM_CT_e__c relatedCTe = ctes.get(ses.CT_e__c);
+                ctesByShipment.get(ses.stage__r.shipment__c).add(relatedCTe);
+            }
+            for(BFM_Shipment__c shipment: this.shipList ){
+                System.debug('shipment Id on shiplist' + shipment.Id);
+                if(!ctesByShipment.containsKey(shipment.Id)){
+                    ctesByShipment.put(shipment.Id,new List<BFM_CT_e__c>());
                 }
-                for(BFM_Shipment__c shipment: this.shipList ){
-                    System.debug('shipment Id on shiplist' + shipment.Id);
-                    if(!ctesByShipment.containsKey(shipment.Id)){
-                        ctesByShipment.put(shipment.Id,new List<BFM_CT_e__c>());
-                    }
-                }
+            }
             return ctesByShipment;        
-             
+            
         }set;
     }
     
-   public PageReference getSelected(){
+    public PageReference getSelected(){
         selectedShipList.clear();
         for(accountwrapper accwrapper : shipWrapperList)
-        if(accwrapper.selected)
-        selectedShipList.add(accwrapper.accId);
+            if(accwrapper.selected)
+            selectedShipList.add(accwrapper.accId);
         return null;
     }
-
+    
     public List<Id> GetSelectedShipments(){
         if(selectedShipList.size()>0) return selectedShipList;
         else return null;
     }    
-
+    
     public class accountwrapper{
         public Id accId{get; set;}
         public Boolean selected {get; set;}
@@ -334,17 +334,16 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
         Set<Id> ssIds = new Set<Id>();
         List<String> lstUrls=new List<String>();
         lstUrls.addAll(ShipIds.split(','));
-        //system.debug('lstUrls'+lstUrls);
-        for(String str:lstUrls)
-        {
-            //system.debug('str'+str);
+        
+        System.debug('updateShipments lstUrls : '+lstUrls);
+        for(String str:lstUrls) {
+            System.debug('updateShipments str : '+str);
             ssIds.add(Id.valueOf(str));   
         }
         system.debug('ssIds'+ssIds);
         Id batchJobId = Database.executeBatch(new BFM_BulkShipmentQuery(ssIds), 200);
         
-        //system.debug('shipmentParamValue--->'+ssIds);
         return lstUrls; 
     }
-
+    
 }

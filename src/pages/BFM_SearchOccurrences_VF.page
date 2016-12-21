@@ -29,9 +29,9 @@
             <apex:pageBlockSection columns="2" id="ocrno">
                 <!--<apex:inputText value="{!searchOccurrence.Occurrence_Number__c}"/>-->
                 <apex:inputtext value="{!occurNumber}" id="shpn" label="{!$ObjectType.BFM_Occurrence__c.fields.Occurrence_Number__c.label}" />
-                 <apex:inputText value="{!vendorName}" label="{!$Label.BFM_Vendor_Name}" id="shpvan" required="false" />
+				 <apex:inputText value="{!vendorName}" label="{!$Label.BFM_Vendor_Name}" id="shpvan" required="false" />
                 <apex:input type="date" value="{!occurStart}" id="shpd" label="{!$ObjectType.BFM_Occurrence__c.fields.Range_of_Extent_of_Occurrence_From__c.label}"/>
-                <apex:input type="date" value="{!occurTo}" id="shpd1" label="{!$ObjectType.BFM_Occurrence__c.fields.Range_of_Extent_of_Occurrence_To__c.label}"/>
+				<apex:input type="date" value="{!occurTo}" id="shpd1" label="{!$ObjectType.BFM_Occurrence__c.fields.Range_of_Extent_of_Occurrence_To__c.label}"/>
             </apex:pageBlockSection>
             <div align="center">
                 <apex:commandButton value="Procurar ocorrência" action="{!searchoccurs}" status="status" reRender="occurnce"/>&nbsp; <!-- todo : Add custom label -->

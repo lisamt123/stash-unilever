@@ -21,7 +21,7 @@ public with sharing class BFM_MDFeHandler implements ITrigger {
            
             if(!listmdfe.isEmpty()){
                 BFM_Link_MDFCTe_onsave.linkmdfcte(listmdfe);
-            }
+            }	
         } 
     }
     
@@ -29,7 +29,7 @@ public with sharing class BFM_MDFeHandler implements ITrigger {
          if(trigger.isInsert){
              set<id> setmdfeids = new set<id>();
              for(BFM_MDF_e__c mdfe: (List<BFM_MDF_e__c> )trigger.new){             
-                 if(mdfe.MDF_e_Valid_CNPJ_Status__c=='Valid CNPJ' && mdfe.MDF_e_Sefaz_Status__c == null){
+                 if(!mdfe.Is_CNPJ_Invalid__c && mdfe.MDF_e_Sefaz_Status__c == null){
                     setmdfeids.add(mdfe.id);
                 }
              }

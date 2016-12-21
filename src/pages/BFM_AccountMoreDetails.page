@@ -1,0 +1,18 @@
+<apex:page standardController="Account" extensions="BFM_AccountMoreDetailsController">
+    <apex:pageMessages />
+    <apex:form >
+        <apex:pageBlock rendered="{!hasInformation}">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="{!$Label.BFM_Cancel}" action="{!cancel}"/> 
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection title="Informações adicionais da conta" collapsible="false" >
+                <apex:outputText value="{!firstName}" label="Primeiro nome : "/>
+                <apex:outputText value="{!lastName}" label="Sobrenome : "/>
+                <apex:outputText value="{!email}" label="Email : "/>
+                <apex:outputText value="{!cpf}" label="CPF : "/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>	
+    </apex:form>
+    <apex:detail />
+</apex:page>

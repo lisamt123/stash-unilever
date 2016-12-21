@@ -34,6 +34,7 @@ global class BFM_QueryFreights {
     private List<BFM_Error_Log__c> generatedErrors;
     
     public BFM_QueryFreights(Set<String> shipmentNumbers){
+        System.debug('BFM_QueryFreights shipmentNumbers : ' + shipmentNumbers);
         this.shipmentNumbers = shipmentNumbers;
         shipments = new List<BFM_Shipment__c>();
         stages = new List<BFM_Stage__c>();
@@ -44,8 +45,7 @@ global class BFM_QueryFreights {
         deliveriesToShipments = new Map<String, String>();
         nfes = new List<BFM_NF_e__c>();
         nfesToShipments = new Map<String, String>();
-        generatedErrors = new List<BFM_Error_Log__c>();
-        
+        generatedErrors = new List<BFM_Error_Log__c>();        
         isSuccess = false;
     }
     
@@ -56,8 +56,9 @@ global class BFM_QueryFreights {
     public String getErrorMessage(){
         return this.errorMessage;
     }
+    
     webservice static string callQueryFreightsButton(Id shipmentId){
-        //shipid = shipmentId;
+        System.debug('BFM_QueryFreights shipmentId : ' + shipmentId);
         
         BFM_Shipment__c shipment = [SELECT Shipment_Number__c FROM BFM_Shipment__c WHERE Id= :shipmentId LIMIT 1]; 
         BFM_QueryFreights queryFreights = new BFM_QueryFreights(new Set<String>{shipment.Shipment_Number__c});
@@ -75,7 +76,7 @@ global class BFM_QueryFreights {
     }
     
     
-    public  List<BFM_Shipment__c> callQueryFreightsCTeIssuing(){
+    public List<BFM_Shipment__c> callQueryFreightsCTeIssuing(){
         
         HttpResponse response = BFM_GeneralServiceCalls.requestQueryFreights(shipmentNumbers, QUERY_TYPE_CTE_ISSUING);
         

@@ -4,21 +4,21 @@
 
 public class BFM_ValidateFiscalDocumentsResponse {
 
-  public ValidateFiscalDocumentResponse validateFiscalDocumentResponse;
+	public ValidateFiscalDocumentResponse validateFiscalDocumentResponse;
 
-  public class Cte {
-    public String accessKey;
-    public String validationStatusCode;
-    public String validationMessage;
+	public class Cte {
+		public String accessKey;
+		public String validationStatusCode;
+		public String validationMessage;
         public string itemErrorMessage;
-  }
+	}
 
-  public class ValidateFiscalDocumentResponse {
-    public List<Cte> cte;
-  }
+	public class ValidateFiscalDocumentResponse {
+		public List<Cte> cte;
+	}
 
-  
-  public static BFM_ValidateFiscalDocumentsResponse parse(String json) {
-    return (BFM_ValidateFiscalDocumentsResponse) System.JSON.deserialize(json, BFM_ValidateFiscalDocumentsResponse.class);
-  }
+	
+	public static BFM_ValidateFiscalDocumentsResponse parse(String json) {
+		return (BFM_ValidateFiscalDocumentsResponse) System.JSON.deserialize(json, BFM_ValidateFiscalDocumentsResponse.class);
+	}
 }

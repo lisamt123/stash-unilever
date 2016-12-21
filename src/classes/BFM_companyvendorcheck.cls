@@ -38,35 +38,35 @@ public class BFM_companyvendorcheck {
                     
                     if(compcode>0){
                         cte.Company_Code_Status__c = 'Company Code Ok';
-                        cte.Cte_Status__c = 'Company Code Ok'; 
+                        //cte.Cte_Status__c = 'Company Code Ok'; 
                     } else{
                         cte.Company_Code_Status__c = 'Wrong Company Code';
-                        cte.Cte_Status__c = 'Wrong Company Code'; 
+                        //cte.Cte_Status__c = 'Wrong Company Code'; 
                     }
                     //if(cte.Company_Code_Status__c == 'Company Code Ok'){
                     if(vendorcode>0){
                         cte.Vendor_Code_Status__c = 'Vendor Ok';
-                        cte.Cte_Status__c = 'Vendor Ok'; 
+                        //cte.Cte_Status__c = 'Vendor Ok'; 
                     } else{
                         cte.Vendor_Code_Status__c = 'Wrong Vendor';
-                        cte.Cte_Status__c = 'Wrong Vendor'; 
+                        //cte.Cte_Status__c = 'Wrong Vendor'; 
                     }
                     //}
                     //if(cte.Vendor_Code_Status__c == 'Vendor Ok'){
                     if(datecount>0){
                         cte.Date_check_status__c = 'Date Not Ok';
-                        cte.Cte_Status__c = 'Date Not Ok'; 
+                        //cte.Cte_Status__c = 'Date Not Ok'; 
                     } else{
                         cte.Date_check_status__c = 'Date Ok';
-                        cte.Cte_Status__c = 'Date Ok'; 
+                        //cte.Cte_Status__c = 'Date Ok'; 
                     }
                     // }
                     if(compatible>0){
                         cte.CT_e_Compatible__c = 'Compatible';
-                        cte.Cte_Status__c = 'Compatible'; 
+                        //cte.Cte_Status__c = 'Compatible'; 
                     } else{
                         cte.CT_e_Compatible__c = 'Not Compatible'; 
-                        cte.Cte_Status__c = 'Not Compatible';    
+                        //cte.Cte_Status__c = 'Not Compatible';    
                     }              
                 }
             }
