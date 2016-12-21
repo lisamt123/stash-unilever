@@ -244,22 +244,10 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 showAllignAllMCOChoice= projectType.Allign_All_MCO_Choice__c;
                 
                 //check for isRolloutEditable
-                if(!isEditMode && isEditable)
-                {
-                    isRolloutEditable = true;     
-                }
-                else
-                {
-                    isRolloutEditable = false; 
-                }
-                if(isPLAllocated && isEditMode)
-                {
-                    doShowPLName = true;     
-                }
-                if(isFLAllocated && isEditMode)
-                {
-                    doShowFLName = true;   
-                }
+                // call to check rollout editable or not
+                isRolloutEditable(isEditMode,isEditable);
+                // set PLName and FLName
+                doShowPLandFLName(isPLAllocated,isFLAllocated,isEditMode);
                 getAllbrands();
             }
         } 
@@ -270,6 +258,41 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         }          
     }           
     
+    /******************************************************************************************************
+    * @description Method to check the whether rollout is editable or not
+    *  @param    editMode, editable
+    *  @return   NONE
+    */           
+    
+    
+    private void isRolloutEditable(Boolean editMode,Boolean editable){
+	   //check for isRolloutEditable
+        if(!editMode && editable)
+        {
+            isRolloutEditable = true;     
+        }
+        else
+        {
+            isRolloutEditable = false; 
+        }
+    	
+    }
+    
+     /******************************************************************************************************
+    * @description Method to check the whether rollout is editable or not
+    *  @param    Boolean isPLAllocated, Boolean isFLAllocated,Boolean isEditMode
+    *  @return   NONE
+    */ 
+    private void doShowPLandFLName(Boolean isPLAllocated,Boolean isFLAllocated,Boolean isEditMode){
+		if(isPLAllocated && isEditMode)
+	            {
+	                doShowPLName = true;     
+	            }
+	    if(isFLAllocated && isEditMode)
+	            {
+	                doShowFLName = true;   
+	            }
+    }
     /*******************************************************************************************************
     * @description  Method to get the list of users to be used when assigning Project Leaders and 
     *               Finance Members
@@ -569,7 +592,17 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         Map<Id,List<IPM_Country__c>> localRolloutToCountryMap = getLocalRolloutToCountryMapping(localRolloutIdSet);
         
         // Prepare Mapping Between Regional Project and Local Projects, based on Whether local projects have an associated Country.
+        //Call the function to map the regional and local project
+        mapRegionalAndLocalProject(associatedProjectMap,localRolloutToCountryMap);
 
+    }
+         /*******************************************************************************************************
+    * @description  This method map the regional and local project
+    * @param        associatedProjectMap, localRolloutToCountryMap
+    * @return       NONE
+    */
+	 private void mapRegionalAndLocalProject(Map<Id,IPM_Project__c> associatedProjectMap,Map<Id,List<IPM_Country__c>> localRolloutToCountryMap)
+	 {
         // If it is a Regional Project, Get the List of Local Rollouts from the relationship
         if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c) && !associatedProjectMap.isEmpty())
         {
@@ -727,14 +760,9 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             }
         }
         // CR0355 - populate 'nonKeyMcoTLDMisalignedMap' with default values to avoid element not found exception
-         for (IPM_Project_Rollout__c localRollout : lstcompleteRollout.values())
-         {
-            if( nonKeyMcoTLDMisalignedMap.isEmpty() || !nonKeyMcoTLDMisalignedMap.keySet().contains(localRollout.Regional_Rollout_External_Id__c) )
-            {
-                nonKeyMcoTLDMisalignedMap.put(localRollout.Regional_Rollout_External_Id__c,false);
-            }
-         }
-            
+        // Call the function to populatenoneKeyMCO misalignment
+        populatenonKeyMcoTLDMisalignedMap(lstcompleteRollout);
+        
         Map<Id,List<IPM_Country__c>> localRolloutToCountryMap = getLocalRolloutToCountryMapping(localRolloutIdSet);
                   
         if(!projectRolloutMap.isEmpty())
@@ -770,6 +798,18 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             }   
         }
     }
+     /*
+     * Method to populate nonKeyMCOTLDMisAlignment
+     */
+      private void populatenonKeyMcoTLDMisalignedMap(Map<Id,IPM_Project_Rollout__c> lstcompleteRollout){
+   	         for (IPM_Project_Rollout__c misAlignedlocalRollout : lstcompleteRollout.values())
+		     {
+		        if( nonKeyMcoTLDMisalignedMap.isEmpty() || !nonKeyMcoTLDMisalignedMap.keySet().contains(misAlignedlocalRollout.Regional_Rollout_External_Id__c) )
+		        {
+		            nonKeyMcoTLDMisalignedMap.put(misAlignedlocalRollout.Regional_Rollout_External_Id__c,false);
+		        }
+  			 }
+       } 
     
     /*******************************************************************************************************
 * @description  Method to redirect the user to appropriate add rollout page
@@ -902,9 +942,29 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                                     
                     updaterolloutsMap.put(rolloutId,rollout); 
                 }
-            }     
-            List<IPM_Project__c> updateLocalProjTLDList = new List<IPM_Project__c>{};
-            for(IPM_Project__c localRolloutProj :lstcompleteProjects.values()){
+            }  
+            saveRolloutHelper(updaterolloutsMap);	
+			processValidationError(validationError);   
+        }
+        catch (Exception ex)
+        {
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,SAVE_ROLLOUT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            isError = TRUE;
+            errorMessage = Label.IPM_PLEASE_CONTACT_ADMINISTRATOR;
+        }
+        
+    }
+	/*******************************************************************************************************
+    * @description  Helper Method for SaveRollout method, perform functionality to save rollout
+    * @param        updaterolloutsMap
+    * @return       None
+    */
+	private void saveRolloutHelper(Map<Id,IPM_Project_Rollout__c> updaterolloutsMap)
+	{
+	   
+			List<IPM_Project__c> updateLocalProjTLDList = new List<IPM_Project__c>{};
+            for(IPM_Project__c localRolloutProj :lstcompleteProjects.values())
+              {
                 Date oldTLD = localProjIdTLDMap.get(localRolloutProj.Id);
                 if(oldTLD != localRolloutProj.Rollout_Plan_Target_Launch_Date__c){
                    updateLocalProjTLDList.add(localRolloutProj);
@@ -913,7 +973,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             if((updaterolloutsMap != NULL && !updaterolloutsMap.isEmpty()) || (updateLocalProjTLDList != NULL && !updateLocalProjTLDList.isEmpty()))
             {
-                if(updaterolloutsMap != NULL && !updaterolloutsMap.isEmpty()){
+                if(updaterolloutsMap != NULL && !updaterolloutsMap.isEmpty())
+                {
                     Date dateToCompare = getLeastProjectMilestonesDate();
                     for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
                     {
@@ -937,33 +998,9 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     // CR0355 implementation starts
                     validateNonKeyMcoTLDMisalignment(updaterolloutsMap);
                     // CR0355 implementation ends
-                    
-                    for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
-                    {
-                        if(String.isBlank(String.valueOf(rollout.Target_Launch_Date__c)) ||rollout.Target_Launch_Date__c <= System.today())
-                        {
-                            validationError = Label.IPM_Target_Launch_Date_Error;
-                            break;
-                        }    
-                       
-                    }
-                }
-                if(updateLocalProjTLDList != NULL && !updateLocalProjTLDList.isEmpty()){
-                    Date dateToCompare = getLeastProjectMilestonesDate();
-                    for(IPM_Project__c localProject : updateLocalProjTLDList)
-                    {
-                        if(String.isBlank(String.valueOf(localProject.Rollout_Plan_Target_Launch_Date__c)) || localProject.Rollout_Plan_Target_Launch_Date__c <= System.today())
-                        {
-                            validationError = Label.IPM_Target_Launch_Date_Error;
-                            break;
-                        } 
-                        if(localProject.Rollout_Plan_Target_Launch_Date__c < dateToCompare)
-                        {
-                            validationError = Label.TLD_After_Charter_Contract_and_Market_Ready_Milestone_Dates;
-                            break;
-                        }   
-                    }               
-                }              
+                   }
+                 // call the function to set the validation error maessage for localprojecttldlist
+                 setValidationMessageforLocalProjectTLDList(updateLocalProjTLDList);
                 if(String.isBlank(validationError))
                 {                         
                     if(!updaterolloutsMap.isEmpty())
@@ -977,7 +1014,33 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     }
                 }
             }
-            
+	}
+    
+    private void setValidationMessageforLocalProjectTLDList(List<IPM_Project__c> updateLocalProjTLDList){
+                	if(updateLocalProjTLDList != NULL && !updateLocalProjTLDList.isEmpty())
+                	{
+	                    Date dateToCompare = getLeastProjectMilestonesDate();
+	                    for(IPM_Project__c localProject : updateLocalProjTLDList)
+	                    {
+	                        if(String.isBlank(String.valueOf(localProject.Rollout_Plan_Target_Launch_Date__c)) || localProject.Rollout_Plan_Target_Launch_Date__c <= System.today())
+	                        {
+	                            validationError = Label.IPM_Target_Launch_Date_Error;
+	                            break;
+	                        } 
+	                        if(localProject.Rollout_Plan_Target_Launch_Date__c < dateToCompare)
+	                        {
+	                            validationError = Label.TLD_After_Charter_Contract_and_Market_Ready_Milestone_Dates;
+	                            break;
+	                        }   
+	                    }               
+                } 
+    }
+    /*******************************************************************************************************
+    * @description  Method to process the validation error and show the appropriate message
+    * @param        validation error
+    * @return       None
+    */      
+    Private void processValidationError(String validationError){
             if(String.isBlank(validationError)) 
             { 
                 saveLocalRolloutBrand();   
@@ -997,16 +1060,9 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 isEditMode=false;
                 PageReference rolloutPlans = refreshPage();
                 saveRolloutUrlStr = baseUrl + rolloutPlans.getUrl();
-            }     
-        }
-        catch (Exception ex)
-        {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,SAVE_ROLLOUT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-            isError = TRUE;
-            errorMessage = Label.IPM_PLEASE_CONTACT_ADMINISTRATOR;
-        }
-        
+            } 
     }
+    
     private boolean checkToLogicToCreateProject(IPM_Project_Type__c projectType,IPM_Project_Rollout__c rolloutTemp)
     {
         Boolean filterPassed = true;
@@ -1071,6 +1127,16 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     	}
                     }       
                 }
+            }
+            
+            for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
+            {
+                if(String.isBlank(String.valueOf(rollout.Target_Launch_Date__c)) ||rollout.Target_Launch_Date__c <= System.today())
+                {
+                    validationError = Label.IPM_Target_Launch_Date_Error;
+                    break;
+                }    
+               
             }
 
     }
