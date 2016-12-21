@@ -171,6 +171,27 @@
     </fields>
     <label>Alert Tracker</label>
     <listViews>
+        <fullName>ANZ_Alert_Tracker</fullName>
+        <columns>Alert_Rule_Id__c</columns>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>L5_Reason_Code__c</columns>
+        <columns>Product_No_Size__c</columns>
+        <columns>DayCode__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Current_Threshold__c</columns>
+        <columns>Alert_Threshold__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>ANZ Alert Tracker</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_Manager_SEAA</role>
+            <role>CEC_User_ANZ</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
         <columns>Alert_Rule_Id__c</columns>

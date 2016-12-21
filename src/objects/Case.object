@@ -4913,7 +4913,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,In Progress,Review Needed,On Hold,Reopened</value>
+            <value>,New,In Progress,Reopened,Awaiting Information from Consumer</value>
         </filters>
         <filters>
             <field>CORE.USERS.FIRST_NAME</field>
