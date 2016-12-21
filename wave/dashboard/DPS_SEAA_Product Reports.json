@@ -3469,7 +3469,7 @@
                         "label": "SUMMARY_OUTLET_VIEW",
                         "name": "SUMMARY_OUTLET_VIEW",
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzxSAC"
-                    },
+                    }
                 ],
                 "isFacet": true,
                 "isGlobal": false,
