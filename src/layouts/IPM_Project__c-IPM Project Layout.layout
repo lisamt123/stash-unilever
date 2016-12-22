@@ -445,6 +445,10 @@
                 <behavior>Edit</behavior>
                 <field>BET_Archive_Status__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>BETCurrentStatus__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -502,11 +506,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_IsSaved__c</field>
+                <field>MisAligned_Confirmed_By_Finance_Leader__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>MisAligned_Confirmed_By_Finance_Leader__c</field>
+                <field>IPM_IsSaved__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

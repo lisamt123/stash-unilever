@@ -13376,12 +13376,12 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <label><!-- SSI Status --></label>
         <name>VPM_SSIStatus__c</name>
         <picklistValues>
-            <masterLabel>&quot;X_Flag set. Event has occurred.&quot;</masterLabel>
-            <translation><!-- &quot;X_Flag set. Event has occurred.&quot; --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>0_9</masterLabel>
             <translation><!-- 0_9 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X_Flag set. Event has occurred.</masterLabel>
+            <translation><!-- X_Flag set. Event has occurred. --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>_Flag is Not Set</masterLabel>
