@@ -12,7 +12,7 @@
         
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if(state == "SUCCESS") {
+            if(state === "SUCCESS") {
                 var opp = response.getReturnValue();
                 this.retrieveWrapperProducts(component, opp);
             }
@@ -26,24 +26,24 @@
     retrieveWrapperProducts : function(component, opp) {
         console.log("Initiating retrieveWrapperProducts");
         
-        if(opp.StageName == $A.get("$Label.c.TEL_OppStagePendingCall") || 
-           opp.StageName == $A.get("$Label.c.TEL_OppStageScheduled")) 
+        if(opp.StageName === $A.get("$Label.c.TEL_OppStagePendingCall") || 
+           opp.StageName === $A.get("$Label.c.TEL_OppStageScheduled")) 
         {
             var action = component.get("c.getFullProductsList");
             action.setCallback(this, function(response) {
                 var state = response.getState();
-                if(state == "SUCCESS") {
+                if(state === "SUCCESS") {
                     var fullProdList = response.getReturnValue();
                     this.retrieveOpenProductOrder(component, opp, fullProdList);
                 }
             });
             $A.enqueueAction(action);
-        } else if(opp.StageName == $A.get("$Label.c.TEL_OppStageReleased") || 
-                  opp.StageName == $A.get("$Label.c.TEL_OppStageTransmitted") ||
-                  opp.StageName == $A.get("$Label.c.TEL_OppStageCanceled")) 
+        } else if(opp.StageName === $A.get("$Label.c.TEL_OppStageReleased") || 
+                  opp.StageName === $A.get("$Label.c.TEL_OppStageTransmitted") ||
+                  opp.StageName === $A.get("$Label.c.TEL_OppStageCanceled")) 
         {
             this.retrieveClosedProductOrder(component, opp);
-        } else if(opp.StageName == $A.get("$Label.c.TEL_OppStageClosedLost")) {
+        } else if(opp.StageName === $A.get("$Label.c.TEL_OppStageClosedLost")) {
             this.retrieveLostProductOrder(component);
         }
         
@@ -62,7 +62,7 @@
         
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if(state == "SUCCESS") {
+            if(state === "SUCCESS") {
                 var productsList = response.getReturnValue();
                 
                 for(var prod = 0; prod < productsList.length; prod++) {
@@ -97,7 +97,7 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             var productsList = response.getReturnValue();
-            if(state == "SUCCESS" && productsList.length > 0) { 
+            if(state === "SUCCESS" && productsList.length > 0) { 
                 component.set("v.wrapperProductsList", productsList);
                 component.set("v.renderOpenOrderView", false);
                 component.set("v.renderClosedOrderView", true);
@@ -116,7 +116,7 @@
         
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if(state == "SUCCESS") {
+            if(state === "SUCCESS") {
                 var productsList = response.getReturnValue();
                 component.set("v.wrapperProductsList", productsList);
                 component.set("v.renderOpenOrderView", false);
@@ -142,11 +142,11 @@
         
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if(state == "SUCCESS") {
+            if(state === "SUCCESS") {
                 var wrapperProductsList = response.getReturnValue();
                 
                 for(var counter = 0; counter < wrapperProductsList.length; counter++) {
-                    if(wrapperProductsList[counter].opportunityId == null || wrapperProductsList[counter].opportunityId === "") {
+                    if(wrapperProductsList[counter].opportunityId === null || wrapperProductsList[counter].opportunityId ==== "") {
                         wrapperProductsList[counter].opportunityId = component.get("v.recordId");
                     }
                 }
@@ -177,7 +177,7 @@
         
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if(state == "SUCCESS") {
+            if(state === "SUCCESS") {
                 component.set("v.renderSummaryTable", false);
                 component.set("v.renderOrderTable", true);
                 component.set("v.disableSendOrderButton", true);
@@ -194,7 +194,7 @@
         console.log("Initiating selectAllProducts");
         
         var productsList = component.get("v.wrapperProductsList");
-        if(component.find("selectAll").get("v.value") == true) {
+        if(component.find("selectAll").get("v.value") === true) {
             for(var counter = 0; counter < productsList.length; counter++) {
                 productsList[counter].isSelected = true;
             }
@@ -217,7 +217,7 @@
         
         var duplicate = false;
         for(var counter = 0; counter < openProductsList.length; counter++) {
-            if(product.productId == openProductsList[counter].productId) {
+            if(product.productId === openProductsList[counter].productId) {
                 duplicate = true;
             }
         }

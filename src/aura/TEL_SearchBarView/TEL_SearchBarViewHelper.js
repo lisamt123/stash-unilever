@@ -8,7 +8,7 @@
         
         for(var counter = 0; counter < fullProdList.length; counter++) {
             var prodName = "" + fullProdList[counter].name;
-            if(prodName.toLowerCase().indexOf(searchKey.toLowerCase()) != -1) {
+            if(prodName.toLowerCase().indexOf(searchKey.toLowerCase()) !== -1) {
                 searchedProdList.push(fullProdList[counter]);
             }
         }

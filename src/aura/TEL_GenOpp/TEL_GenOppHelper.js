@@ -2,7 +2,7 @@
     // Retrieve search param used to query the account result. 
     getSearchParam : function(component, event, helper){
         console.log("Entering <getSearchParam>");
-    	this.retrieveOTMParam(component);
+        this.retrieveOTMParam(component);
         this.retrieveSegmentParam(component);
         this.retrieveSubSegmentParam(component);
         console.log("Exit <getSearchParam>");
@@ -14,8 +14,8 @@
         var action 		= component.get("c.searchOTM");
         component.set("v.spinnerEnable", true);
         action.setCallback(this, function(response){
-           	var state 	= response.getState();
-        	if(state == "SUCCESS"){
+            var state 	= response.getState();
+            if(state === "SUCCESS"){
                 component.set("v.lstOTM", response.getReturnValue());
                 component.set("v.spinnerEnable", false);
             }
@@ -29,8 +29,8 @@
         console.log("Entering <retrieveSegmentParam>");
         var action 		= component.get("c.searchSegment");
         action.setCallback(this, function(response){
-           	var state 	= response.getState();
-        	if(state == "SUCCESS"){
+            var state 	= response.getState();
+            if(state === "SUCCESS"){
                 component.set("v.lstSegment", response.getReturnValue());
             }
         });
@@ -43,8 +43,8 @@
         console.log("Entering <retrieveSubSegmentParam>");
         var action 		= component.get("c.searchSubSegment");
         action.setCallback(this, function(response){
-           	var state 	= response.getState();
-        	if(state == "SUCCESS"){
+            var state 	= response.getState();
+            if(state === "SUCCESS"){
                 component.set("v.lstSubSegment", response.getReturnValue());
             }
         });
@@ -53,11 +53,11 @@
     },
     
     // Retrieve the account to generate the opportunities based on search param. 
-	getAccounts : function(component,event) {
-		console.log("Entering <getAccounts>"); 
+    getAccounts : function(component,event) {
+        console.log("Entering <getAccounts>"); 
         var typeSelected = component.find("oppGenType").get("v.value");
         
-        if(typeSelected == 'None'){
+        if(typeSelected === 'None'){
             var toastEvent 	= $A.get("e.force:showToast");
             toastEvent.setParams({
                 "title"		: "Alert!",
@@ -79,7 +79,7 @@
             }      
         }  
         console.log("Exit <getAccounts>");
-	},
+    },
     
     // Enable account result. 
     enableAccountResult : function(component,event){
@@ -103,16 +103,16 @@
         console.log("Exit <subSegment>"+subSegment);
         
         action.setParams({ "type" 	 	: selected,
-                           "segment" 	: segment,
-                           "subSegment"	: subSegment});
-
+                          "segment" 	: segment,
+                          "subSegment"	: subSegment});
+        
         action.setCallback(this, function(response){
-        	var state = response.getState();
-            if(state == "SUCCESS"){
-            	component.set("v.lstAccounts", response.getReturnValue());
+            var state = response.getState();
+            if(state === "SUCCESS"){
+                component.set("v.lstAccounts", response.getReturnValue());
                 component.set("v.spinnerEnable", false);
             }
-      	});
+        });
         $A.enqueueAction(action);
         console.log("Exit <retrieveAccountSearch>");
     },
@@ -120,20 +120,20 @@
     // Retrieve the frequency param to be used on opportunity creation. 
     retrieveFrequencyParam : function(component,event){
         console.log("Entering <retrieveFrequencyParam>");
-    	var action = component.get("c.frequencyOppGeneration");
+        var action = component.get("c.frequencyOppGeneration");
         action.setCallback(this, function(response){
-        	var state = response.getState();
-            if(state == "SUCCESS"){
-            	component.set("v.lstFrequency", response.getReturnValue());
+            var state = response.getState();
+            if(state === "SUCCESS"){
+                component.set("v.lstFrequency", response.getReturnValue());
             }
-      	});
+        });
         $A.enqueueAction(action); 
         console.log("Exit <retrieveFrequencyParam>");
     },
     
     // Enable the toast alert if no record is returned by search account.
     enableToastAlert : function(component,event, stateParam){
-    	console.log("Entering <enableToastAlert>");
+        console.log("Entering <enableToastAlert>");
         var toastEvent 	= $A.get("e.force:showToast");
         var typeMsg		= "other";
         var titleMsg	= "none";
@@ -142,33 +142,33 @@
         
         console.log("Valor do state: "+state);
         
-        if(state == "SEARCH"){
+        if(state === "SEARCH"){
             console.log("Entrou no if "+state);
             alertMsg 	= "No record was found.";
-        	typeMsg 	= "info";
+            typeMsg 	= "info";
             titleMsg	= "Alert!";
         }
         else{
             console.log("Entrou no else"+state);
             alertMsg 	= "The records has been updated successfully.";
-        	typeMsg 	= "success";
+            typeMsg 	= "success";
             titleMsg	= "Success!";
         }
         
         toastEvent.setParams({
-        	"title"		: titleMsg,
+            "title"		: titleMsg,
             "message"	: alertMsg,
             "duration"	: 2000,
             "type"		: typeMsg
         });
-
-		toastEvent.fire();
+        
+        toastEvent.fire();
         $A.get('e.force:refreshView').fire();
         console.log("Exit <enableToastAlert>");
     },
     
     createOpp : function(component, event, helper) {
-		console.log("Entering <createOpp>");
+        console.log("Entering <createOpp>");
         var lstAccounts 	= component.get("v.lstAccounts");
         var oppGenType	 	= component.find("oppGenType").get("v.value");
         var mondayWeek		= component.get("v.mondayWeek");
@@ -182,11 +182,11 @@
         component.set('v.spinnerEnable',true);
         
         if(!$A.util.isEmpty(lstAccounts) && !$A.util.isUndefined(lstAccounts)){
-			var action 		= component.get("c.createOpp");
+            var action 		= component.get("c.createOpp");
             var accounts	= JSON.stringify(lstAccounts);
-               
+            
             action.setParams({
-            	accSelected : accounts, 
+                accSelected : accounts, 
                 monday		: mondayWeek,
                 tuesday		: tuesdayWeek, 
                 wednesday	: wednesdayWeek, 
@@ -195,18 +195,18 @@
                 frequency	: frequency,
                 oppGenType 	: oppGenType
             });
-                
+            
             action.setCallback(this, function(response){
                 var state 	= response.getState();
-                if(state == "SUCCESS"){
+                if(state === "SUCCESS"){
                     component.set('v.showAlert', false);	
                     component.set('v.spinnerEnable',false);
                     $A.get('e.force:refreshView').fire();
                 }
-       		});
+            });
         }
         $A.enqueueAction(action);
-		this.enableToastAlert(component, 'OPPORTUNITY');
+        this.enableToastAlert(component, 'OPPORTUNITY');
         console.log("Exit <createOpp>");
     },
     
@@ -219,8 +219,8 @@
         var thursday 	= component.get("v.thursdayWeek");
         var friday 		= component.get("v.fridayWeek");
         component.set('v.spinnerEnable',true);
-        if(check == "monday"){
-            if(monday == "monday"){
+        if(check === "monday"){
+            if(monday === "monday"){
                 component.set("v.mondayWeek", "none");
                 component.set('v.spinnerEnable',false);
             }else{
@@ -228,8 +228,8 @@
                 component.set('v.spinnerEnable',false);
             };
         };
-        if(check == "tuesday"){
-            if(tuesday == "tuesday"){
+        if(check === "tuesday"){
+            if(tuesday === "tuesday"){
                 component.set("v.tuesdayWeek", "none");
                 component.set('v.spinnerEnable',false);
             }else{
@@ -237,24 +237,24 @@
                 component.set('v.spinnerEnable',false);
             };            
         };
-        if(check == "wednesday"){
-            if(wednesday == "wednesday"){
+        if(check === "wednesday"){
+            if(wednesday === "wednesday"){
                 component.set("v.wednesdayWeek", "none");
             }else{
                 component.set("v.wednesdayWeek", check);
                 component.set('v.spinnerEnable',false);
             };            
         };
-        if(check == "thursday"){
-            if(thursday == "thursday"){
+        if(check === "thursday"){
+            if(thursday === "thursday"){
                 component.set("v.thursdayWeek", "none");
             }else{
                 component.set("v.thursdayWeek", check);
                 component.set('v.spinnerEnable',false);
             };            
         };
-        if(check == "friday"){
-            if(friday == "friday"){
+        if(check === "friday"){
+            if(friday === "friday"){
                 component.set("v.fridayWeek", "none");
                 component.set('v.spinnerEnable',false);
             }else{
@@ -275,9 +275,9 @@
         console.log("Initiating selectAllAccounts");
         var selected 	= component.find("selectAll").get("v.value");
         var lstAccounts = component.get("v.lstAccounts");
-        if(selected == true) {
+        if(selected === true) {
             for(var counter = 0; counter < lstAccounts.length; counter++) {
-                if(lstAccounts[counter].isSelected == false) {
+                if(lstAccounts[counter].isSelected === false) {
                     lstAccounts[counter].isSelected = true;
                     component.set('v.selectedAll', true);
                 }
