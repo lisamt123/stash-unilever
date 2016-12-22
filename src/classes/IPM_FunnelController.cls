@@ -2,14 +2,23 @@
     @Author: Cognizant Technology
     @Date: Sep 2015
 */
-public with sharing class IPM_FunnelController 
+public with sharing class IPM_FunnelController  
 {
     public static IPM_Project__c ipmProject {
         get {
-            return IPM_Utils.getProjectFullInfo(ApexPages.currentPage().getParameters().get('Id'));
+            If(ipmProjectclone!=null) {
+                return ipmProjectclone;
+            }
+            else {
+                ipmProjectclone = [SELECT id, IPM_Project_Name__c, IPM_Phase__c, IPM_Bosscard_Status__c, IPM_SourceProjectType__c, IPM_Project_Type__c, IPM_CompanyCardText__c
+                                    FROM IPM_Project__c
+                                    WHERE id=:ApexPages.currentPage().getParameters().get('Id') limit 1];
+                return ipmProjectclone;
+            }
         }
-		set;
+        set;
     }
+    public static IPM_Project__c ipmProjectclone;
     public Integer currentProjectPhaseSeq{get; set;}
     
     // Array of Phases for that particular project. 

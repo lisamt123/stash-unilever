@@ -9,7 +9,7 @@
 <apex:component controller="IPM_FinGateController"  allowDML="true" >
 
     <apex:attribute name="projId" type="ID" assignTo="{!projectId}" required="true" description="Getting Project Id"/>
-
+    <apex:outputPanel style="display:none;">{!InvokeMethodsForComponent}</apex:outputPanel>
     <!-- -------------------------------------------------------------------------------------------------------------- -->
     <!-- CONSOLIDATED FINANCIAL BUSINESS CASE                                                                           -->
     <!-- -------------------------------------------------------------------------------------------------------------- -->
@@ -83,7 +83,7 @@
             <tr>
                 <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
                 <td class="fintleblubg">
-                	<!-- Condition for checking consolidated financial or not -->
+                    <!-- Condition for checking consolidated financial or not -->
                     <apex:outputText rendered="{!NOT(isConsolidated)}">
                         <!-- Global Values -->
                         <!-- Condition for checking field suffix is global or not -->

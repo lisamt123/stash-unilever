@@ -8,15 +8,50 @@ public with sharing class IPM_EcoDesignSection {
     * @description:checking whether current logged in user has permission to insert or update eco design 
     *               records
     */
-    public boolean isEditable{get;set;}
+    public boolean isEditable{
+        get {
+            if(isEditable == null) {
+                if(Apexpages.currentpage().getparameters().get('Ecoedit') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEditable; }
+        }
+        set;
+    }// boolean to check if editable
     /*******************************************************************************************************
     * @description:hold current project id from url parameter
     */
-    public String projId{get;set;}
+    public String projId{// to get-set the project document section id from the component attribute.
+        get{
+            if(projId == null && Apexpages.currentpage().getparameters().get('id') != null) {
+                return  Apexpages.currentpage().getparameters().get('id');
+            }
+            else { return projId; }
+        }
+        set;
+    }
     /*******************************************************************************************************
     * @description:hold section id to insert or update or display eco design record
     */
-    public Id ProdocSecId{get;set;}
+    public Id ProdocSecId{// to get-set the project document section id from the component attribute.
+        get{
+            if(ProdocSecId == null && Apexpages.currentpage().getparameters().get('getSectionId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('getSectionId')) ;
+            }
+            else { return ProdocSecId; }
+        }
+        set;
+    }
+    public boolean displayOnlyTables{
+        get {
+            if(displayOnlyTables == null) {
+                if(Apexpages.currentpage().getparameters().get('displayOnlyTables') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return displayOnlyTables; }
+        }
+        set;
+    }// boolean to check if editable
     public List<IPM_Country__c> countriesList {get; set;} //Contains All Header Countries
     public final IPM_Project__c project;
     public List<CountryAssessmentWrap> countryAssessmentWrapListEICountries {get;set;}
@@ -39,6 +74,7 @@ public with sharing class IPM_EcoDesignSection {
     public String projPhaseForCurrentDoc = '';
     public map<string, boolean>  mapCatMetric {get; set;}
     public map<string, boolean>  mapWaterScarce {get; set;}
+    
     /*******************************************************************************************************
     * @description:initialise variables and get eco design data based on project document section id
     * @param:
@@ -46,7 +82,6 @@ public with sharing class IPM_EcoDesignSection {
     * @return:null
     */ 
     public IPM_EcoDesignSection() {
-        projId=Apexpages.currentpage().getparameters().get('Id');
         ProjDocumentSecId=Apexpages.currentpage().getparameters().get('projDocSecId');
         projDocName = Apexpages.currentpage().getparameters().get('printDoc');
         if(projDocName == null && ProjDocumentSecId != null){

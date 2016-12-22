@@ -1,4 +1,3 @@
-
 /*************************************************************************************************
 *@Author:Cognizant
 *@Created Date:15/03/2016
@@ -8,8 +7,38 @@
 **************************************************************************************************/
 
 public with sharing class IPM_PerformanceBreakdownController {
+
+    public boolean isEditable{
+        get {
+            if(isEditable == null) {
+                if(Apexpages.currentpage().getparameters().get('isEditable') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEditable; }
+        }
+        set;
+    }// boolean to check if editable
+    public boolean isAppendix{
+        get {
+            if(isAppendix == null) {
+                if(Apexpages.currentpage().getparameters().get('isAppendix') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isAppendix; }
+        }
+        set;
+    }// boolean to check if editable  
+    public Id projectId { // to get-set the project id from the component attribute.
+        get{
+            if(projectId == null && Apexpages.currentpage().getparameters().get('projId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('projId')) ;
+            }
+            else { return projectId; }
+        }
+        set;
+    } 
+    
     public IPM_MarketPerformance__c marketperformance{get;set;}//get info of market performance record
-    public String projectId {get;set;}//hold project id from page url
     public IPM_Project__c project;//hold project info
     public List<IPM_MarketPerformanceBreakdown__c> marketPerformanceBreakdownList{get;set;}//hold list of market performance breakdown records
     public String marketPerString;//hold market performance id
@@ -37,6 +66,7 @@ public with sharing class IPM_PerformanceBreakdownController {
     public decimal averageRetailPrice{get;set;}//store Average Retail Price
     public decimal mediaSpend {get;set;}//store Media Spend 
     public decimal totalMediaSpend {get;set;}//store total Media Spend 
+    
     /**************************************************************************************
     *@Description :Constructor to read the information from the page paramaters , 
     *get project details based on page url parameter.

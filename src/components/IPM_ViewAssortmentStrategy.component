@@ -3,11 +3,12 @@
 *@Description:This component is used for Assortment strategy for the local MDG
 *@Author: Cognizant
 *@Created Date: 24/02/2015 
-*@Copyright Â© 2015  Unilever  
+*@Copyright © 2015  Unilever  
 *******************************************************************************
 -->
 <apex:component controller="IPM_AssortmentStrategy" allowDML="true">
 <apex:attribute name="ProSecID" assignTo="{!ProdocSecId}" type="string"  description="Get section id"/>
+<apex:outputPanel style="display:none;">{!InvokeMethodsForComponent}</apex:outputPanel>
  <div class="row mainCmiTable">
     <div class="table-responsive gateCMITable"> 
     <div class="col-sm-12 noPadleft">

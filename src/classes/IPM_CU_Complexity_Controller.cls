@@ -14,31 +14,134 @@ public with sharing class IPM_CU_Complexity_Controller {
     
     //Initializing Variables
     public Integer contentCount;
-    public String typeOfGate{get; set;}//used in corresponding component
-    public String phase{get; set;}//used in corresponding component
-    public Boolean isEditable{get;set;}//used in corresponding component
     public Decimal incDecBy{get;set;}//for storing increased by or decreased by value
     public String projectEffect{get;set;}//for storing project effect value
     public String isIncDecBy{get;set;}//for setting parameter
     public Id projectId{get; set;} //Contains Project Id
-    public String projSpan{get; set;}//used in corresponding component
-    public String projModel{get; set;}//used in corresponding component
     public Boolean isBD{get;set;}//for checking whether BD user are there or not
-    public Id projectSecId{
-        get {
-            return projectSecId; // to get the project document section ID from the component used from Gate document page
-        }
-        set {
-            projectSecId= value;// setting the value of project document section
-            getCuCount();
-        }
-    }
     public String cuCount{get;set;}//For saving CuCount
     public Id projDocSecConId{get;set;}//For getting section content id
     public IPM_Project_Document_Section_Content__c projDocSecCon{get;set;}//For getting Content record 
     public string increaseInComBy{get;set;}
-    public string decreaseInComBy{get;set;}    
+    public string decreaseInComBy{get;set;}
+    
+    //Variables created when converting component to page. Separate variables are used for component and controller after assignment.
+    public Boolean isEdit{
+        get {
+            if(isEdit == null) {
+                if(Apexpages.currentpage().getparameters().get('isEdit') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEdit; }
+        }
+        set;
+    }// boolean to check if editable
+    public String gateType{
+        get{
+            if(gateType == null && Apexpages.currentpage().getparameters().get('gateType') != null) {
+                return  Apexpages.currentpage().getparameters().get('gateType');
+            }
+            else { return gateType; }
+        }
+        set;
+    }
+    public String proSpan{
+        get{
+            if(proSpan == null && Apexpages.currentpage().getparameters().get('proSpan') != null) {
+                return  Apexpages.currentpage().getparameters().get('proSpan');
+            }
+            else { return proSpan; }
+        }
+        set;
+    }
+    public String proModel{
+        get{
+            if(proModel == null && Apexpages.currentpage().getparameters().get('proModel') != null) {
+                return  Apexpages.currentpage().getparameters().get('proModel');
+            }
+            else { return proModel; }
+        }
+        set;
+    }
+    //Getting values from Url
+    public String typeOfGate{
+        get{
+            if(typeOfGate == null && Apexpages.currentpage().getparameters().get('gateType') != null) {
+                return  Apexpages.currentpage().getparameters().get('gateType');
+            }
+            else { return typeOfGate; }
+        }
+        set;
+    }
+    public String phase{
+        get{
+            if(phase == null && Apexpages.currentpage().getparameters().get('phaseName') != null) {
+                return  Apexpages.currentpage().getparameters().get('phaseName');
+            }
+            else { return phase; }
+        }
+        set;
+    }
+    public Boolean isEditable{
+        get {
+            if(isEditable == null) {
+                if(Apexpages.currentpage().getparameters().get('isEdit') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEditable; }
+        }
+        set;
+    }// boolean to check if editable
+    public String projSpan{
+        get{
+            if(projSpan == null && Apexpages.currentpage().getparameters().get('proSpan') != null) {
+                return  Apexpages.currentpage().getparameters().get('proSpan');
+            }
+            else { return projSpan; }
+        }
+        set;
+    }
+    public String projModel{
+        get{
+            if(projModel == null && Apexpages.currentpage().getparameters().get('proModel') != null) {
+                return  Apexpages.currentpage().getparameters().get('proModel');
+            }
+            else { return projModel; }
+        }
+        set;
+    }
+    public Id projectSecId{
+        get{
+            if(projectSecId == null && Apexpages.currentpage().getparameters().get('getSectionId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('getSectionId')) ;
+            }
+            else { return projectSecId; }
+        }
+        set;
+    }     
         
+    /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForIPM_CU_ComplexityComponent() {
+        getCuCount();
+        return 'Required methods are invoked for component';
+    }
+    
+     /************************************************************************************************************************
+    * @Description: CONSTRUCTOR
+    */
+    public IPM_CU_Complexity_Controller() {
+		if(test.isRunningTest()){
+			getInvokeMethodsForIPM_CU_ComplexityComponent();
+		}
+		else{
+			if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_CU_ComplexityPage.getURL())) {
+				getInvokeMethodsForIPM_CU_ComplexityComponent();
+			}
+		}
+    }   
+    
     /******************************************************************
     @Description :To Create CuCount value  
     @return: Void

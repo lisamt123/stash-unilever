@@ -5,15 +5,18 @@
 *               in the gate document
 */
 public with sharing class IPM_FinGateController {
- 
+    
     public IPM_Project__c project {get; set;} //The project record for which the financial business cases are being viewed
-    public Id projectId; //Project Id of te current project
-    public ID getprojectId(){ return projectId; }
-    public void setprojectId (ID p){
-        projectId= p;
-        showFinancials();
+    public Id projectId{ // to get-set the project id from the component attribute.
+        get{
+            if(projectId == null && Apexpages.currentpage().getparameters().get('projId') != null) {
+                return Id.valueOf(Apexpages.currentpage().getparameters().get('projId')) ;
+            }
+            else { return projectId; }
+        }
+        set;
     }
-
+    
     public Integer sustainabilityPeriod {get; set;} //Sustainability Period relevant for this set of business cases. 
     public Integer colSpan {get; set;} //Derived from Sustainability Perido. Used to define the number of columns visible on the Financial Table
     public Integer colSpanCalendar {get; set;} //Derived from number of financial years for Calendar Financial Table
@@ -22,12 +25,12 @@ public with sharing class IPM_FinGateController {
     public string printDoc {get; set;} //Current Document being viewed
     public boolean renderGate{get;set;}
     public static IPM_Financial__c currentFinancial {get; set;} //Used to store the financial business case (IPM_Financial & associated IPM_Financial_Year__c records)
-        
+    
     public transient IPM_FinancialWrapper financialsInnovation {get; set;} //Wrapper to store the financial values for the Innovation Years for the currentFinancial
     public transient IPM_FinancialWrapper financialsCalendar {get; set;} //Wrapper to store the financial values for the Calendar Years for the currentFinancial
     
     public transient List<String> lstClusterNames {get; set;} //List of Cluster Names for which the project is being rolled out to
-
+    
     public transient ipmFinancialSummaryWrapper gTOWrapper {get; set;} //gTO Financial Summay Wrapper
     public transient ipmFinancialSummaryWrapper GMWrapper {get; set;} //GM Financial Summay Wrapper
     public transient ipmFinancialSummaryWrapper PBOWrapper {get; set;} //PBO Financial Summay Wrapper
@@ -35,10 +38,33 @@ public with sharing class IPM_FinGateController {
     public transient ipmFinancialSummaryWrapper PBObpsWrapper {get; set;} //PBO bps Financial Summay Wrapper
     public transient ipmFinancialSummaryWrapper iTOWrapper {get; set;} //iTO Financial Summay Wrapper
     public transient ipmFinancialSummaryWrapper iAPWrapper {get; set;} //iAP Financial Summay Wrapper
-	public String ExternalId{get;set;}//to construct the financial external id // NO SONAR. variable used in Dyanamic SOQL
+    public String ExternalId{get;set;}//to construct the financial external id // NO SONAR. variable used in Dyanamic SOQL
     public String volumeUnit {get; set;} //Volume Unit
     public String fieldSuffix {get; set;} //Used to dynamically change the field suffix based on the current view. (Accepted values are - Global,Regional.Local,Charter,Contract,MR,MD)
     public Static List<IPM_Financial__c> lstConsolidatedFinancial = new List<IPM_Financial__c>();
+    
+     /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForComponent() {
+        showFinancials();
+        return 'Required methods are invoked for component';
+    }
+    
+    /************************************************************************************************************************
+    * @Description: CONSTRUCTOR
+    */
+    public IPM_FinGateController() {
+		if(test.isRunningTest()){
+			getInvokeMethodsForComponent();
+		}
+		else{
+			 if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_FinInitialEstOfOppCharterPage.getURL())
+				 || ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_FinGatePage.getURL())) {
+				getInvokeMethodsForComponent();
+			}
+		}
+    }
     
     /*******************************************************************************************************
     * @description  Constructor

@@ -1,6 +1,6 @@
 <apex:component controller="IPM_FinGateController"  allowDML="true" >
     <apex:attribute name="projId" type="ID" assignTo="{!projectId}" required="true" description="Getting Project Id"/>
-
+    <apex:outputPanel style="display:none;">{!InvokeMethodsForComponent}</apex:outputPanel>
 <!------------------------------------------------------------------------------------------------------------------>
     <!-- FINANCIAL INITIAL ESTIMATE OF OPPORTUNITY                                                                    -->
     <!------------------------------------------------------------------------------------------------------------------>

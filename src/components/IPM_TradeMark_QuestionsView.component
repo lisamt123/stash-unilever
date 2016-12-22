@@ -9,7 +9,7 @@
 <apex:component controller="IPM_GatekeeperChecklist" allowDML="false">
   <apex:attribute name="TradeMarkEdit" description="This is used for security" type="Boolean" assignTo="{!isEditable}"/>
   <apex:attribute name="gateDocType" description="This is to provide the type of gate" type="String" assignTo="{!gateTypeTradeMark}"/>
-
+  <apex:outputPanel style="display:none;">{!InvokeMethodsForIPM_TradeMark_QuestionsViewComponent}</apex:outputPanel>
   
          
           <apex:outputPanel id="ren1" styleClass="gkTable">

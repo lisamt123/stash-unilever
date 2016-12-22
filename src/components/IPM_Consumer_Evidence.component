@@ -3,7 +3,7 @@
 *@Description: This component is used for Consumer Evidence Concept
 *@Author: Cognizant
 *@Created Date: 23/06/2015 
-*@Copyright Â© 2015  Unilever  
+*@Copyright © 2015  Unilever  
 *********************************************************************
 -->
 <apex:component controller="IPM_Consumer_Evidence_Controller" allowDML="true" >
@@ -12,6 +12,7 @@
     <apex:attribute name="getSecid" description="Pass the project document section id" type="Id" required="true" assignTo="{!projDocSecId}" />
     <apex:attribute name="getProjectId" description="Pass the project Id" type="Id" required="true" assignTo="{!projectId}"/>
     <apex:attribute name="Editable" description="Used for security purpose" type="Boolean" required="true" assignTo="{!isEditable}"/>
+    <apex:outputPanel style="display:none;">{!InvokeMethodsForComponent}</apex:outputPanel>
     <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay"/>
     <div class="ceContainer">
         <div class="row noMargin"> 

@@ -7,20 +7,48 @@
    @Reference: IPM_OTIFSectionStatus,IPM_OTIFStatusTable,IPM_OTIFStatusTableVIew component
 */
 public with sharing class IPM_OTIFStatusController{
-    public Id projDocSecId{get;set;}   
+    
     public Id secConId{get; set;} //Contains Project Document Section Content Id
     public string status{get; set;} //Contains OTIF Question Status  
     public IPM_Project_Document_Section_Content__c secCon{get; set;} //Contains Project Document Section Content(OTIF Section) Record for Updation 
-    public boolean Iseditable{get;set;} //To enable Read or Editable
+    
     public ID projectId{get;set;} //Contains Project Id 
     public IPM_Project_Document_Section__c projDocSec{get;set;} //Contains Project Document Section Record
-    public String otifType{get; set;} //Indicates OTIF Table or Section
     public Map<Id,IPM_Project_Document_Section_Content__c> readOnlyOTIFContentMap{get;set;}
     //For exception handling
     private static final string UPDATE_OTIF_STATUS_STR='updateOTIFStatus';
     private static final string SHOW_SECTION_CONTENT_STR='showSectionContent';
     private static final String PROJ_DOC_SEC_ID='projDocSecId';
     private static final string IPM_OTIFSTATUSCONTROLLER_STR=IPM_OTIFStatusController.class.getName();
+    
+    public String otifType{
+        get{
+            if(otifType == null && Apexpages.currentpage().getparameters().get('otfType') != null) {
+                return  Apexpages.currentpage().getparameters().get('otfType');
+            }
+            else { return otifType; }
+        }
+        set;
+    }
+    public Id projDocSecId{
+        get{
+            if(projDocSecId == null && Apexpages.currentpage().getparameters().get('getSectionId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('getSectionId')) ;
+            }
+            else { return projDocSecId; }
+        }
+        set;
+    }
+    public boolean Iseditable{
+        get {
+            if(isEditable == null) {
+                if(Apexpages.currentpage().getparameters().get('IsEdtable') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEditable; }
+        }
+        set;
+    }//To enable Read or Editable
     
     /************************************************************************************************************************
     *  Description For Displaying OTIF Questions and Status

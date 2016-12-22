@@ -6,6 +6,7 @@
     <apex:attribute name="isEdit" description="Editable" type="Boolean" assignTo="{!isEditable}"/>
     <apex:attribute name="proSpan" description="projectSpan" type="String" assignTo="{!projSpan}"/>
     <apex:attribute name="proModel" description="projectModel" type="String" assignTo="{!projModel}"/>
+    <apex:outputPanel style="display:none;">{!InvokeMethodsForIPM_CU_ComplexityComponent}</apex:outputPanel>
     <apex:outputPanel layout="block" styleClass="panel altBGcolor pull-left">
         <!-- Checking condition for editable -->
         <br/>

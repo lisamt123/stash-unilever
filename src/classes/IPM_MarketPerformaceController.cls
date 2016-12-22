@@ -3,14 +3,31 @@
 @Name: IPM_MarketPerformaceController
 @Created Date: 2016/02/16
 @Description: 1) Used for the Getting 6.5 records associated with local rollouts of regional project in context. 
-					   2) Validates data entered into 6.5 records and then saves to database.
+                       2) Validates data entered into 6.5 records and then saves to database.
 @Version: 1.0
 @Reference: IPM_MarketPerformance component in Project Document Section Editor Page
 */
 public with sharing class IPM_MarketPerformaceController {
 
-    public ID regionalProjectId{get;set;}
-    public Boolean isEditableMarketPerfomance{get; set;}
+    public ID regionalProjectId{ // to get-set the project id from the component attribute.
+        get{
+            if(regionalProjectId == null && Apexpages.currentpage().getparameters().get('projId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('projId')) ;
+            }
+            else { return regionalProjectId; }
+        }
+        set;
+    } 
+    public Boolean isEditableMarketPerfomance{
+        get {
+            if(isEditableMarketPerfomance == null) {
+                if(Apexpages.currentpage().getparameters().get('isEditable') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEditableMarketPerfomance; }
+        }
+        set;
+    }// boolean to check if editable
     public List<IPM_MarketPerformance__c> lstMarketPerformaceData{get;set;}
     public Map<String, String> mapPerformanceIdFieldWithErrorStyleClass{get;set;}
     
@@ -45,23 +62,23 @@ public with sharing class IPM_MarketPerformaceController {
         
         /*REQ02519 : Logic to check below validations on fields:-
         Innovation Volume Share (%) -  Can NOT be greater than 100% 
-		Penetration (cum) (%) -  Can NOT be greater than 100% 
-		Repeat Rate (cum) (%) - Can NOT be greater than 100% 
-		Weighted Distribution (%) - Can NOT be greater than 100% */
+    Penetration (cum) (%) -  Can NOT be greater than 100% 
+    Repeat Rate (cum) (%) - Can NOT be greater than 100% 
+    Weighted Distribution (%) - Can NOT be greater than 100% */
 
         if(!lstMarketPerformaceData.isEmpty())
         {
             for(IPM_MarketPerformance__c marketPerformance : lstMarketPerformaceData)
             {
-            		for(Schema.FieldSetMember fieldSetMember : SObjectType.IPM_MarketPerformance__c.FieldSets.Performance_Fields_To_Validate.getFields())
-            		{
-                    	if((Double)marketPerformance.get(fieldSetMember.getFieldPath()) > 100 )
-                    	{
-                        	mapPerformanceIdFieldWithErrorStyleClass.put(marketPerformance.Id + fieldSetMember.getFieldPath() , STYLECLASS_NAME_CONSTANT);
-                        	if(!sErrorMessage.contains(fieldSetMember.getLabel()))
-                        	sErrorMessage += fieldSetMember.getLabel() + IPM_ConstantUtils.IPM_SPACE + Label.IPM_6_5_Performance_Table_Fields_Can_not_be_greater_than_100;
-                    	}
-            		}   
+                for(Schema.FieldSetMember fieldSetMember : SObjectType.IPM_MarketPerformance__c.FieldSets.Performance_Fields_To_Validate.getFields())
+                {
+                      if((Double)marketPerformance.get(fieldSetMember.getFieldPath()) > 100 )
+                      {
+                          mapPerformanceIdFieldWithErrorStyleClass.put(marketPerformance.Id + fieldSetMember.getFieldPath() , STYLECLASS_NAME_CONSTANT);
+                          if(!sErrorMessage.contains(fieldSetMember.getLabel()))
+                          sErrorMessage += fieldSetMember.getLabel() + IPM_ConstantUtils.IPM_SPACE + Label.IPM_6_5_Performance_Table_Fields_Can_not_be_greater_than_100;
+                      }
+                }   
             }
             
             if(String.IsBlank(sErrorMessage))
