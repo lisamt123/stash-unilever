@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Call a component to make the association between campaign and related accounts.</description>
+    <height>550</height>
+    <label>Associate Accounts</label>
+    <lightningComponent>TEL_Associate_Account</lightningComponent>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>LightningComponent</type>
+    <width>-100</width>
+</QuickAction>
