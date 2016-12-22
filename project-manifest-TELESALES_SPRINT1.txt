@@ -25,6 +25,8 @@ src/classes/TEL_TelesalesBO.cls
 src/classes/TEL_TelesalesBO.cls-meta.xml
 src/classes/TEL_TelesalesWrapper.cls
 src/classes/TEL_TelesalesWrapper.cls-meta.xml
+src/classes/Product2DAO.cls
+src/classes/Product2DAO.cls-meta.xml
 src/aura
 src/aura/svg/svg.cmp
 src/aura/svg/svg.cmp-meta.xml
@@ -74,6 +76,7 @@ src/approvalProcesses/Case.TEL_Telesales_Sample_Request.approvalProcess
 src/groups
 src/groups/TEL_Telesales.group
 src/email
+src/email/Telesales_Email_Templates
 src/email/Telesales_Email_Templates/Telesales_Approved_Request.email
 src/email/Telesales_Email_Templates/Telesales_Approved_Request.email-meta.xml
 src/email/Telesales_Email_Templates/Telesales_Rejected_Request.email
@@ -88,17 +91,17 @@ src/flows
 src/flows/TEL_Submit_Sample_Request_Caswe_for_Approval-1.flow
 src/triggers
 src/triggers/CaseTrigger.trigger
+src/triggers/CaseTrigger.trigger-meta.xml
 src/staticresources
 src/staticresources/TEL_TelesalesCSS.resource
 src/staticresources/TEL_TelesalesCSS.resource-meta.xml
 src/objects
+src/objects/Account.object
 src/objects/Campaign.object
 src/objects/Case.object
 src/objects/Contact.object
 src/objects/Opportunity.object
 src/objects/OpportunityLineItem.object
-src/objects/Pricebook2.object
-src/objects/PricebookEntry.object
 src/objects/Product2.object
 src/objects/TEL_Campaign_Accounts__c.object
 src/objects/TEL_Campaign_Products__c.object
@@ -110,9 +113,6 @@ src/objects/TEL_Sub_Segment__c.object
 src/objects/TEL_Telesales__c.object
 src/permissionsets
 src/permissionsets/TEL_Telesales_Agent.permissionset
-src/quickActions
-src/quickActions/Campaign.TEL_Associate_Account_Button.quickAction
-src/quickActions/Campaign.TEL_Associate_Products.quickAction
 src/flexipages
 src/flexipages/GenOpp.flexipage
 src/flexipages/TEL_Call_List.flexipage
@@ -120,3 +120,8 @@ src/flexipages/TEL_Telesales_Account.flexipage
 src/flexipages/Telesales_Case.flexipage
 src/labels
 src/labels/TELESALES.labels
+src/queues
+src/queues/CEC_North_America_Creative_Solutions.queue
+src/queues/CEC_North_America_Helpdesk_Queue.queue
+src/queues/CEC_North_America_Supervisor_Queue.queue
+src/queues/TEL_Telesales_UK.queue

@@ -14,8 +14,8 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>veber.bravo@accenture.com</name>
-                <type>user</type>
+                <name>TEL_Telesales_UK</name>
+                <type>queue</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>

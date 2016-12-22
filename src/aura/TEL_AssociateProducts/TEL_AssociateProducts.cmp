@@ -38,7 +38,7 @@
             <div class="slds-card__header slds-grid">
                 <header class="slds-media slds-media--center slds-has-flexi-truncate">
                     <div class="slds-media__figure">
-                        <c:TEL_SvgIcon svgPath="/resource/TEL_TelesalesCSS/assets/icons/standard-sprite/svg/symbols.svg#product" category="standard" class="slds-icon slds-icon--medium" size="medium" name="product"/>
+                        <c:svgIcon svgPath="/resource/TEL_TelesalesCSS/assets/icons/standard-sprite/svg/symbols.svg#product" category="standard" class="slds-icon slds-icon--medium" size="medium" name="product"/>
                     </div>
                     <div class="slds-media__body slds-truncate">
                         <h2>

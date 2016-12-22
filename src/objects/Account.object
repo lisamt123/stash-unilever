@@ -1988,6 +1988,67 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
+	<fields>
+        <fullName>Contact_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Telesales - Shows Customer contact name.</description>
+        <externalId>false</externalId>
+        <label>Contact Name</label>
+        <referenceTo>Contact</referenceTo>
+		<relationshipLabel>Accounts (Contact Name)</relationshipLabel>
+        <relationshipName>Telesales_Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+	<fields>
+        <fullName>TEL_OTM__c</fullName>
+        <description>Telesales fields to store OTM Classification</description>
+        <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
+        <label>OTM</label>
+        <picklist>
+            <picklistValues>
+                <fullName>A</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A++</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>F</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>N</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Not Assigned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>false</restrictedPicklist>
+            <sorted>true</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
     <fields>
         <fullName>FS_RTM__c</fullName>
         <description>Route to Market | Only Russia | Populated via Softserve</description>
