@@ -4,11 +4,10 @@
         
         var searchKey = event.getParam("searchKey");
         var fullProdList = component.get("v.fullWrapperProductsList");
-        var searchedProdList = new Array();
+        var searchedProdList = component.get("v.searchedProductsList");
         
         for(var counter = 0; counter < fullProdList.length; counter++) {
             var prodName = "" + fullProdList[counter].name;
-            //if(prodName.includes(searchKey)) {
             if(prodName.toLowerCase().indexOf(searchKey.toLowerCase()) != -1) {
                 searchedProdList.push(fullProdList[counter]);
             }
