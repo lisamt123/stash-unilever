@@ -118,3 +118,5 @@ src/flexipages/GenOpp.flexipage
 src/flexipages/TEL_Call_List.flexipage
 src/flexipages/TEL_Telesales_Account.flexipage
 src/flexipages/Telesales_Case.flexipage
+src/labels
+src/labels/TELESALES.labels
