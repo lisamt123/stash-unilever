@@ -1,0 +1,48 @@
+<!--  
+*********************************************************************************************
+*@Description:This page is used to display R&D questions and responses in Gate Document Page
+*@Author: Cognizant
+*@Created Date: 15/04/2015 
+*@Copyright © 2015  Unilever  
+*********************************************************************************************
+-->
+<apex:page controller="IPM_GatekeeperChecklist" sidebar="false" showHeader="false">
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>  
+    <apex:composition template="IPM_TemplateForPlainStyling">  
+        <apex:define name="body">
+            <apex:form > 
+                <apex:outputPanel id="ren" styleClass="gkTable">
+                    <table class="ipmTable table table-bordered otifTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <div>
+                                        {!$Label.IPM_R_D_QUESTIONS}
+                                    </div>
+                                </th>
+                                <th>
+                                    <div>
+                                        {!$Label.IPM_ANSWERS}
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead> 
+                        <tbody>
+                            <apex:repeat value="{!quesList}" var="rnd"> 
+                                <tr>   
+                                    <td>
+                                        <apex:outputText value="{!rnd.IPM_Question__c}"/>
+                                    </td>
+                                    <td>  
+                                        <apex:outputText rendered="{!!isEditable}"><div class="gkcStatus {!IF(rnd.IPM_GK_Answers__c==$Label.IPM_NO_APPLICABLE,$Label.IPM_NO_APPLICABLE,rnd.IPM_GK_Answers__c)}">{!IF(rnd.IPM_GK_Answers__c==$Label.IPM_NO_APPLICABLE,$Label.IPM_NO_APPLICABLE,rnd.IPM_GK_Answers__c)}</div></apex:outputText>
+                                    </td>
+                                </tr>                                
+                            </apex:repeat>
+                        </tbody>
+                    </table>   
+                </apex:outputPanel>
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/iframeResizer.contentWindow.min.js')}" type="text/javascript"></script>
+</apex:page>

@@ -10425,5 +10425,19 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>IPM_Fin_CopyPaste_Error_Message</shortDescription>
         <value>There was some problem saving the business case. Please try saving the business case again</value>
     </labels>
+	<labels>
+		<fullName>IPM_MKTG_DEV</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM_MKTG_DEV</shortDescription>
+		<value>MKTG DEV</value>
+	</labels>
+	<labels>
+		<fullName>IPM_MKTG_LOCAL</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>MKTG LOCAL</shortDescription>
+		<value>MKTG LOCAL</value>
+	</labels>
 
 	
