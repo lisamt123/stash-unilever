@@ -189,7 +189,7 @@
                             <span class="slds-truncate" title="Account Name">{!$Label.c.TEL_Account_Name}</span>
                         </th>
                         <th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Opportunity Name">
-                            <span class="slds-truncate" title="Account Type">{!$Label.c.TEL_Type}</span>
+                            <span class="slds-truncate" title="Account Type">{!$Label.c.TEL_OTM}</span>
                         </th>
                         <th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Opportunity Name">
                             <span class="slds-truncate" title="Account Type">{!$Label.c.TEL_Segment}</span>

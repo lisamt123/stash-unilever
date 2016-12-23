@@ -70,7 +70,8 @@
         else{
             this.retrieveAccountSearch(component,event);
             var accounts = component.get("v.lstAccounts");
-            if($A.util.isEmpty(accounts) && !$A.util.isUndefined(accounts) || typeSelected != 'None'){
+            console.log("Valor da lista de contas retornadas: "+accounts);
+            if((!$A.util.isEmpty(accounts) && !$A.util.isUndefined(accounts)) || typeSelected !== 'None'){
                 this.retrieveFrequencyParam(component,event);	
                 this.enableAccountResult(component,event);
             }
@@ -240,6 +241,7 @@
         if(check === "wednesday"){
             if(wednesday === "wednesday"){
                 component.set("v.wednesdayWeek", "none");
+                component.set('v.spinnerEnable',false);
             }else{
                 component.set("v.wednesdayWeek", check);
                 component.set('v.spinnerEnable',false);
@@ -248,6 +250,7 @@
         if(check === "thursday"){
             if(thursday === "thursday"){
                 component.set("v.thursdayWeek", "none");
+                component.set('v.spinnerEnable',false);
             }else{
                 component.set("v.thursdayWeek", check);
                 component.set('v.spinnerEnable',false);
@@ -262,11 +265,6 @@
                 component.set('v.spinnerEnable',false);
             };            
         };
-        var monday 		= component.get("v.mondayWeek");
-        var tuesday 	= component.get("v.tuesdayWeek");
-        var wednesday 	= component.get("v.wednesdayWeek");
-        var thursday 	= component.get("v.thursdayWeek");
-        var friday 		= component.get("v.fridayWeek");
         console.log("Exit <onCheck>");
     },
     
