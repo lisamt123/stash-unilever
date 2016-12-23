@@ -126,7 +126,8 @@ function gateexpcollapse(){
         jq(".ipmAccordian").find(".ipmAcrdnExpand").not(':empty').slideDown("fast");
         jq(".ipmAccordian").find(".aHead .expico").removeClass("fa-plus");
         jq(".ipmAccordian").find(".aHead .expico").addClass("fa-minus");
-        loadAllIframesIfVisible();
+        loadAllIframesIfVisiblefirst();
+        loadAllIframesIfVisiblesecond();
     });
     
 /* Below script collapses all the tabs in accordion when clicked on the Collapse all button and replaces '-' with '+' sign */
@@ -420,11 +421,11 @@ function dirApp() {
         jq("html, body").scrollTop(jq("." + appDir).offset().top);
         if(appDir === "Customers_Channels")
         {
-            getCustomers_ChannelsAppendix();
+            getCustomersChannelsAppendix();
         }
         else if(appDir === "Mix_Qualification_Plan_and_Action_Standards")
         {
-            getMix_Qualification_Plan_and_Action_StandardsAppendix();
+            getMixQualificationPlanandActionStandardsAppendix();
         }
         else if(appDir === "Milestones")
         {
@@ -432,15 +433,15 @@ function dirApp() {
         }
         else if(appDir === "Initial_Estimate_of_Opportunity")
         {
-            getInitial_Estimate_of_OpportunityAppendix();
+            getInitialEstimateofOpportunityAppendix();
         }
         else if(appDir === "Consumer_Evidence_Concept")
         {
-            getConsumer_Evidence_ConceptAppendix();
+            getConsumerEvidenceConceptAppendix();
         }
         else if(appDir === "Environmental_Impact")
         {
-            getEnvironmental_ImpactAppendix();
+            getEnvironmentalImpactAppendix();
         }
         else if(appDir === "Risk")
         {
@@ -448,11 +449,11 @@ function dirApp() {
         }
         else if(appDir === "Rollout_Plans")
         {
-            getRollout_PlansAppendix();
+            getRolloutPlansAppendix();
         }
         else if(appDir === "Country_Feedback_Requirements")
         {
-             getCountry_Feedback_RequirementsAppendix();
+             getCountryFeedbackRequirementsAppendix();
         }
         else if(appDir === "Assumptions")
         {
@@ -460,15 +461,15 @@ function dirApp() {
         }
         else if(appDir === "BD/BB_Alignment")
         {
-              getBDBB_AlignmentAppendix();
+              getBDBBAlignmentAppendix();
         }
         else if(appDir === "Assortment_Strategy")
         {
-              getAssortment_StrategyAppendix();
+              getAssortmentStrategyAppendix();
         }
         else if(appDir === "Monitoring_Performance_in_Market")
         {
-              getMonitoring_Performance_in_MarketAppendix();
+              getMonitoringPerformanceinMarketAppendix();
         }else if(appDir === "Technical")
         {
              getTechnicalAppendix();
@@ -632,59 +633,62 @@ var getMonitoring_Performance_in_MarketAppendixVar = "true";
 var getTechnicalAppendixVar = "true";
 
 // iframes should be loaded only when its own expico is visible, or else height will not be dynamic, thereby getting large empty space in iframe when expanded
-function loadAllIframesIfVisible() {
-    if(jq(".iframeCustomers_ChannelsAppendixexpico").is(":visible")){getCustomers_ChannelsAppendix();}
+function loadAllIframesIfVisiblefirst() {
+    if(jq(".iframeCustomers_ChannelsAppendixexpico").is(":visible")){getCustomersChannelsAppendix();}
     if(jq(".iframeTrademarksSecondLevelSectionexpico").is(":visible")){getTrademarksSecondLevelSection();}
-    if(jq(".iframeCU_And_ComplexitySecondLevelSectionexpico").is(":visible")){getCU_And_ComplexitySecondLevelSection();}
-    if(jq(".iframeBusiness_Case_Action_StandardsMainSectionexpico").is(":visible")){getBusiness_Case_Action_StandardsMainSection();}
-    if(jq(".iframeInitial_Estimate_of_OpportunityMainSectionexpico").is(":visible")){getInitial_Estimate_of_OpportunityMainSection();}
-    if(jq(".iframeGate_Keeper_ChecklistMainSectionexpico").is(":visible")){getGate_Keeper_ChecklistMainSection();}
-    if(jq(".iframeOTIF_StatusMainSectionexpico").is(":visible")){getOTIF_StatusMainSection();}
-    if(jq(".iframeRD_Initial_Outline_Product_PackMainSectionexpico").is(":visible")){getRD_Initial_Outline_Product_PackMainSection();}
-    if(jq(".iframeSupply_Chain_FeasibilityMainSectionexpico").is(":visible")){getSupply_Chain_FeasibilityMainSection();}
-    if(jq(".iframeRD_FeasibilityMainSectionexpico").is(":visible")){getRD_FeasibilityMainSection();}
-    if(jq(".iframeRD_Technical_ReadinessMainSectionexpico").is(":visible")){getRD_Technical_ReadinessMainSection();}
-    if(jq(".iframeSupply_Chain_Technical_ReadinessMainSectionexpico").is(":visible")){getSupply_Chain_Technical_ReadinessMainSection();}
-    if(jq(".iframeInitial_Estimate_of_OpportunityAppendixexpico").is(":visible")){getInitial_Estimate_of_OpportunityAppendix();}
-    if(jq(".iframeConsumer_Evidence_ConceptAppendixexpico").is(":visible")){getConsumer_Evidence_ConceptAppendix();}
-    if(jq(".iframeEnvironmental_ImpactAppendixexpico").is(":visible")){getEnvironmental_ImpactAppendix();}
+    if(jq(".iframeCU_And_ComplexitySecondLevelSectionexpico").is(":visible")){getCUAndComplexitySecondLevelSection();}
+    if(jq(".iframeBusiness_Case_Action_StandardsMainSectionexpico").is(":visible")){getBusinessCaseActionStandardsMainSection();}
+    if(jq(".iframeInitial_Estimate_of_OpportunityMainSectionexpico").is(":visible")){getInitialEstimateofOpportunityMainSection();}
+    if(jq(".iframeGate_Keeper_ChecklistMainSectionexpico").is(":visible")){getGateKeeperChecklistMainSection();}
+    if(jq(".iframeOTIF_StatusMainSectionexpico").is(":visible")){getOTIFStatusMainSection();}
+    if(jq(".iframeRD_Initial_Outline_Product_PackMainSectionexpico").is(":visible")){getRDInitialOutlineProductPackMainSection();}
+    if(jq(".iframeSupply_Chain_FeasibilityMainSectionexpico").is(":visible")){getSupplyChainFeasibilityMainSection();}
+    if(jq(".iframeRD_FeasibilityMainSectionexpico").is(":visible")){getRDFeasibilityMainSection();}
+    if(jq(".iframeRD_Technical_ReadinessMainSectionexpico").is(":visible")){getRDTechnicalReadinessMainSection();}
+}
+
+function loadAllIframesIfVisiblesecond(){
+	if(jq(".iframeSupply_Chain_Technical_ReadinessMainSectionexpico").is(":visible")){getSupplyChainTechnicalReadinessMainSection();}
+    if(jq(".iframeInitial_Estimate_of_OpportunityAppendixexpico").is(":visible")){getInitialEstimateofOpportunityAppendix();}
+    if(jq(".iframeConsumer_Evidence_ConceptAppendixexpico").is(":visible")){getConsumerEvidenceConceptAppendix();}
+    if(jq(".iframeEnvironmental_ImpactAppendixexpico").is(":visible")){getEnvironmentalImpactAppendix();}
     if(jq(".iframeMilestonesAppendixexpico").is(":visible")){getMilestonesAppendix();}
     if(jq(".iframeRiskAppendixexpico").is(":visible")){getRiskAppendix();}
-    if(jq(".iframeRollout_PlansAppendixexpico").is(":visible")){getRollout_PlansAppendix();}
-    if(jq(".iframeCountry_Feedback_RequirementsAppendixexpico").is(":visible")){getCountry_Feedback_RequirementsAppendix();}
-    if(jq(".iframeMix_Qualification_Plan_and_Action_StandardsAppendixexpico").is(":visible")){getMix_Qualification_Plan_and_Action_StandardsAppendix();}
+    if(jq(".iframeRollout_PlansAppendixexpico").is(":visible")){getRolloutPlansAppendix();}
+    if(jq(".iframeCountry_Feedback_RequirementsAppendixexpico").is(":visible")){getCountryFeedbackRequirementsAppendix();}
+    if(jq(".iframeMix_Qualification_Plan_and_Action_StandardsAppendixexpico").is(":visible")){getMixQualificationPlanandActionStandardsAppendix();}
     if(jq(".iframeAssumptionsAppendixexpico").is(":visible")){getAssumptionsAppendix();}
-    if(jq(".iframeBDBB_AlignmentAppendixexpico").is(":visible")){getBDBB_AlignmentAppendix();}
-    if(jq(".iframeAssortment_StrategyAppendixexpico").is(":visible")){getAssortment_StrategyAppendix();}
-    if(jq(".iframeMonitoring_Performance_in_MarketAppendixexpico").is(":visible")){getMonitoring_Performance_in_MarketAppendix();}
+    if(jq(".iframeBDBB_AlignmentAppendixexpico").is(":visible")){getBDBBAlignmentAppendix();}
+    if(jq(".iframeAssortment_StrategyAppendixexpico").is(":visible")){getAssortmentStrategyAppendix();}
+    if(jq(".iframeMonitoring_Performance_in_MarketAppendixexpico").is(":visible")){getMonitoringPerformanceinMarketAppendix();}
     if(jq(".iframeTechnicalAppendixexpico").is(":visible")){getTechnicalAppendix();}
 }
 
 function loadAllIframes() {
-    getCustomers_ChannelsAppendix();
+    getCustomersChannelsAppendix();
     getTrademarksSecondLevelSection();
-    getCU_And_ComplexitySecondLevelSection();
-    getBusiness_Case_Action_StandardsMainSection();
-    getInitial_Estimate_of_OpportunityMainSection();
-    getGate_Keeper_ChecklistMainSection();
-    getOTIF_StatusMainSection();
-    getRD_Initial_Outline_Product_PackMainSection();
-    getSupply_Chain_FeasibilityMainSection();
-    getRD_FeasibilityMainSection();
-    getRD_Technical_ReadinessMainSection();
-    getSupply_Chain_Technical_ReadinessMainSection();
-    getInitial_Estimate_of_OpportunityAppendix();
-    getConsumer_Evidence_ConceptAppendix();
-    getEnvironmental_ImpactAppendix();
+    getCUAndComplexitySecondLevelSection();
+    getBusinessCaseActionStandardsMainSection();
+    getInitialEstimateofOpportunityMainSection();
+    getGateKeeperChecklistMainSection();
+    getOTIFStatusMainSection();
+    getRDInitialOutlineProductPackMainSection();
+    getSupplyChainFeasibilityMainSection();
+    getRDFeasibilityMainSection();
+    getRDTechnicalReadinessMainSection();
+    getSupplyChainTechnicalReadinessMainSection();
+    getInitialEstimateofOpportunityAppendix();
+    getConsumerEvidenceConceptAppendix();
+    getEnvironmentalImpactAppendix();
     getMilestonesAppendix();
     getRiskAppendix();
-    getRollout_PlansAppendix();
-    getCountry_Feedback_RequirementsAppendix();
-    getMix_Qualification_Plan_and_Action_StandardsAppendix();
+    getRolloutPlansAppendix();
+    getCountryFeedbackRequirementsAppendix();
+    getMixQualificationPlanandActionStandardsAppendix();
     getAssumptionsAppendix();
-    getBDBB_AlignmentAppendix();
-    getAssortment_StrategyAppendix();
-    getMonitoring_Performance_in_MarketAppendix();
+    getBDBBAlignmentAppendix();
+    getAssortmentStrategyAppendix();
+    getMonitoringPerformanceinMarketAppendix();
     getTechnicalAppendix();
 }
 
@@ -697,7 +701,7 @@ function getTrademarksSecondLevelSection() {
     }
 }
 
-function getCU_And_ComplexitySecondLevelSection() {
+function getCUAndComplexitySecondLevelSection() {
     var iframe = jq("#iframeCU_And_ComplexitySecondLevelSection");
     var url = jq('#idCU_And_ComplexitySecondLevelSection').attr('value');                             
     var iframe2 = jq("#iframeCU_And_ComplexityConsolidatedSecondLevelSection");
@@ -709,7 +713,7 @@ function getCU_And_ComplexitySecondLevelSection() {
     }
 }
 
-function getBusiness_Case_Action_StandardsMainSection() {
+function getBusinessCaseActionStandardsMainSection() {
     var iframe = jq("#iframeBusiness_Case_Action_StandardsMainSection");
     var url = jq('#idBusiness_Case_Action_StandardsMainSection').attr('value');                       
     var iframe2 = jq("#iframeBusiness_Case_Action_StandardsSecondMainSection");
@@ -724,7 +728,7 @@ function getBusiness_Case_Action_StandardsMainSection() {
     }
 }
 
-function getInitial_Estimate_of_OpportunityMainSection() {
+function getInitialEstimateofOpportunityMainSection() {
     var iframe = jq("#iframeInitial_Estimate_of_OpportunityMainSection");
     var url = jq('#idInitial_Estimate_of_OpportunityMainSection').attr('value'); 
     if(getInitial_Estimate_of_OpportunityMainSectionVar == "true") {
@@ -733,7 +737,7 @@ function getInitial_Estimate_of_OpportunityMainSection() {
     }
 }
 
-function getGate_Keeper_ChecklistMainSection() {
+function getGateKeeperChecklistMainSection() {
     var iframe = jq("#iframeGate_Keeper_ChecklistMainSection");
     var url = jq('#idGate_Keeper_ChecklistMainSection').attr('value');     
     if(getGate_Keeper_ChecklistMainSectionVar == "true") {
@@ -742,7 +746,7 @@ function getGate_Keeper_ChecklistMainSection() {
     }
 }
 
-function getOTIF_StatusMainSection() {
+function getOTIFStatusMainSection() {
     var iframe = jq("#iframeOTIF_StatusMainSection");
     var url = jq('#idOTIF_StatusMainSection').attr('value');      
     if(getOTIF_StatusMainSectionVar == "true") {
@@ -751,7 +755,7 @@ function getOTIF_StatusMainSection() {
     }
 }
 
-function getRD_Initial_Outline_Product_PackMainSection() {
+function getRDInitialOutlineProductPackMainSection() {
     var iframe = jq("#iframeRD_Initial_Outline_Product_PackMainSection");
     var url = jq('#idRD_Initial_Outline_Product_PackMainSection').attr('value');
     if(getRD_Initial_Outline_Product_PackMainSectionVar == "true") {
@@ -760,7 +764,7 @@ function getRD_Initial_Outline_Product_PackMainSection() {
     }
 }
 
-function getSupply_Chain_FeasibilityMainSection() {
+function getSupplyChainFeasibilityMainSection() {
     var iframe = jq("#iframeSupply_Chain_FeasibilityMainSection");
     var url = jq('#idSupply_Chain_FeasibilityMainSection').attr('value');  
     if(getSupply_Chain_FeasibilityMainSectionVar == "true") {
@@ -769,7 +773,7 @@ function getSupply_Chain_FeasibilityMainSection() {
     }
 }
 
-function getRD_FeasibilityMainSection() {
+function getRDFeasibilityMainSection() {
     var iframe = jq("#iframeRD_FeasibilityMainSection");
     var url = jq('#idRD_FeasibilityMainSection').attr('value');     
     if(getRD_FeasibilityMainSectionVar == "true") {
@@ -778,7 +782,7 @@ function getRD_FeasibilityMainSection() {
     }
 }
 
-function getRD_Technical_ReadinessMainSection() {
+function getRDTechnicalReadinessMainSection() {
     var iframe = jq("#iframeRD_Technical_ReadinessMainSection");
     var url = jq('#idRD_Technical_ReadinessMainSection').attr('value');   
     if(getRD_Technical_ReadinessMainSectionVar == "true") {
@@ -787,7 +791,7 @@ function getRD_Technical_ReadinessMainSection() {
     }
 }
 
-function getSupply_Chain_Technical_ReadinessMainSection() {
+function getSupplyChainTechnicalReadinessMainSection() {
     var iframe = jq("#iframeSupply_Chain_Technical_ReadinessMainSection");
     var url = jq('#idSupply_Chain_Technical_ReadinessMainSection').attr('value');
     if(getSupply_Chain_Technical_ReadinessMainSectionVar == "true") {
@@ -796,7 +800,7 @@ function getSupply_Chain_Technical_ReadinessMainSection() {
     }
 }
 
-function getInitial_Estimate_of_OpportunityAppendix() {
+function getInitialEstimateofOpportunityAppendix() {
     var iframe = jq("#iframeInitial_Estimate_of_OpportunityAppendix");
     var url = jq('#idInitial_Estimate_of_OpportunityAppendix').attr('value');   
     if(getInitial_Estimate_of_OpportunityAppendixVar == "true") {
@@ -805,7 +809,7 @@ function getInitial_Estimate_of_OpportunityAppendix() {
     }
 }
 
-function getConsumer_Evidence_ConceptAppendix() {
+function getConsumerEvidenceConceptAppendix() {
     var iframe = jq("#iframeConsumer_Evidence_ConceptAppendix");
     var url = jq('#idConsumer_Evidence_ConceptAppendix').attr('value');     
     if(getConsumer_Evidence_ConceptAppendixVar == "true") {
@@ -814,7 +818,7 @@ function getConsumer_Evidence_ConceptAppendix() {
     }
 }
 
-function getEnvironmental_ImpactAppendix() {
+function getEnvironmentalImpactAppendix() {
     var iframe = jq("#iframeEnvironmental_ImpactAppendix");
     var url = jq('#idEnvironmental_ImpactAppendix').attr('value');
     if(getEnvironmental_ImpactAppendixVar == "true") {
@@ -841,7 +845,7 @@ function getRiskAppendix() {
     }
 }
 
-function getRollout_PlansAppendix() {
+function getRolloutPlansAppendix() {
     var iframe = jq("#iframeRollout_PlansAppendix");
     var url = jq('#idRollout_PlansAppendix').attr('value');    
     if(getRollout_PlansAppendixVar == "true") {
@@ -850,7 +854,7 @@ function getRollout_PlansAppendix() {
     }
 }
 
-function getCountry_Feedback_RequirementsAppendix() {
+function getCountryFeedbackRequirementsAppendix() {
     var iframe = jq("#iframeCountry_Feedback_RequirementsAppendix");
     var url = jq('#idCountry_Feedback_RequirementsAppendix').attr('value');    
     if(getCountry_Feedback_RequirementsAppendixVar == "true") {
@@ -859,7 +863,7 @@ function getCountry_Feedback_RequirementsAppendix() {
     }
 }
 
-function getMix_Qualification_Plan_and_Action_StandardsAppendix() {
+function getMixQualificationPlanandActionStandardsAppendix() {
     var iframe = jq("#iframeMix_Qualification_Plan_and_Action_StandardsAppendix");
     var url = jq('#idMix_Qualification_Plan_and_Action_StandardsAppendix').attr('value');   
     if(getMix_Qualification_Plan_and_Action_StandardsAppendixVar == "true") {
@@ -877,7 +881,7 @@ function getAssumptionsAppendix() {
     }
 }
 
-function getBDBB_AlignmentAppendix() {
+function getBDBBAlignmentAppendix() {
     var iframe = jq("#iframeBDBB_AlignmentAppendix");
     var url = jq('#idBDBB_AlignmentAppendix').attr('value');       
     if(getBDBB_AlignmentAppendixVar == "true") {
@@ -886,7 +890,7 @@ function getBDBB_AlignmentAppendix() {
     }             
 }
 
-function getAssortment_StrategyAppendix() {
+function getAssortmentStrategyAppendix() {
     var iframe = jq("#iframeAssortment_StrategyAppendix");
     var url = jq('#idAssortment_StrategyAppendix').attr('value');     
     if(getAssortment_StrategyAppendixVar == "true") {
@@ -895,7 +899,7 @@ function getAssortment_StrategyAppendix() {
     }
 }
 
-function getMonitoring_Performance_in_MarketAppendix() {
+function getMonitoringPerformanceinMarketAppendix() {
     var iframe = jq("#iframeMonitoring_Performance_in_MarketAppendix");
     var url = jq('#idMonitoring_Performance_in_MarketAppendix').attr('value');
     var iframe2 = jq("#iframeMonitoring_Performance_in_MarketLocalAppendix");
@@ -916,7 +920,7 @@ function getTechnicalAppendix() {
     }
 }
 
-function getCustomers_ChannelsAppendix() {
+function getCustomersChannelsAppendix() {
     var iframe = jq("#iframeCustomers_ChannelsAppendix");
     var url = jq('#idCustomers_ChannelsAppendix').attr('value');
     if(getCustomers_ChannelsAppendixVar == "true") {
@@ -941,9 +945,9 @@ function getAttachments(secId,secType) {
     sectionType = secType;
     sforce.connection.query(
         "SELECT Id,Name FROM Attachment WHERE ParentId = '" + secId + "'",
-        {onSuccess: getSAttachments, onFailure: SFailed});
+        {onSuccess: getSAttachments, onFailure: sfailed});
 }                
-function SFailed(error) {alert(IPMApp.ContactAdmin);}                
+function sfailed(error) {alert(IPMApp.ContactAdmin);}                
 function getSAttachments(queryResult) {
     if(queryResult.size>0){
         var output = "";                                                    
