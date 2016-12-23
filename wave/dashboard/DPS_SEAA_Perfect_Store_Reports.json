@@ -431,7 +431,7 @@
                             },
                             {
                                 "colspan": 2,
-                                "column": 4,
+                                "column": 6,
                                 "name": "icon_enrolledStores",
                                 "row": 1,
                                 "rowspan": 2,
@@ -860,7 +860,7 @@
                             },
                             {
                                 "colspan": 2,
-                                "column": 4,
+                                "column": 6,
                                 "name": "container_enrolledStores",
                                 "row": 1,
                                 "rowspan": 4,
@@ -902,7 +902,7 @@
                             },
                             {
                                 "colspan": 2,
-                                "column": 6,
+                                "column": 4,
                                 "name": "number_auditedStores",
                                 "row": 3,
                                 "rowspan": 2,
@@ -967,7 +967,7 @@
                             },
                             {
                                 "colspan": 2,
-                                "column": 6,
+                                "column": 4,
                                 "name": "container_auditedStores",
                                 "row": 1,
                                 "rowspan": 4,
@@ -1190,7 +1190,7 @@
                             },
                             {
                                 "colspan": 2,
-                                "column": 6,
+                                "column": 4,
                                 "name": "icon_auditedStores",
                                 "row": 1,
                                 "rowspan": 2,
@@ -1332,7 +1332,7 @@
                             },
                             {
                                 "colspan": 2,
-                                "column": 4,
+                                "column": 6,
                                 "name": "number_1",
                                 "row": 3,
                                 "rowspan": 2,
