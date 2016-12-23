@@ -146,7 +146,7 @@
                 var wrapperProductsList = response.getReturnValue();
                 
                 for(var counter = 0; counter < wrapperProductsList.length; counter++) {
-                    if(wrapperProductsList[counter].opportunityId === null || wrapperProductsList[counter].opportunityId ==== "") {
+                    if(wrapperProductsList[counter].opportunityId === null || wrapperProductsList[counter].opportunityId === "") {
                         wrapperProductsList[counter].opportunityId = component.get("v.recordId");
                     }
                 }

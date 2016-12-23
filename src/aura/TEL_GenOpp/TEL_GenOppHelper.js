@@ -56,7 +56,7 @@
     getAccounts : function(component,event) {
         console.log("Entering <getAccounts>"); 
         var typeSelected = component.find("oppGenType").get("v.value");
-        
+        console.log("Valor do typeSelected: "+typeSelected);
         if(typeSelected === 'None'){
             var toastEvent 	= $A.get("e.force:showToast");
             toastEvent.setParams({
@@ -70,7 +70,7 @@
         else{
             this.retrieveAccountSearch(component,event);
             var accounts = component.get("v.lstAccounts");
-            if($A.util.isEmpty(accounts) && !$A.util.isUndefined(accounts)){
+            if($A.util.isEmpty(accounts) && !$A.util.isUndefined(accounts) || typeSelected != 'None'){
                 this.retrieveFrequencyParam(component,event);	
                 this.enableAccountResult(component,event);
             }

@@ -11,16 +11,16 @@ History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
  1.0    Ronaldo Garcia  09/12/2016  Class creation  
 ***********************************************************************/
-public with sharing class Product2DAO {
+public with sharing class TEL_Product2DAO {
 	
     // Instance Class
-    private static final Product2DAO instance = new Product2DAO();
+    private static final TEL_Product2DAO instance = new TEL_Product2DAO();
         
     // Construtor 
-    public Product2DAO() {}
+    public TEL_Product2DAO() {}
     
     // Get Instance method to return a static final instance of this object. 
-    public static Product2DAO getInstance()
+    public static TEL_Product2DAO getInstance()
     {
     	return instance;
 	}

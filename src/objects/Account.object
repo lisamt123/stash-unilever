@@ -122,6 +122,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Currency</type>
     </fields>
+	<fields>
+        <fullName>TEL_Avg_Price_per_Meal__c</fullName>
+        <description>Telesales - Avgerage Price per Meal</description>
+        <externalId>false</externalId>
+        <label>Avg. Price per Meal</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
     <fields>
         <fullName>AccountNumber</fullName>
         <trackFeedHistory>false</trackFeedHistory>
@@ -175,6 +187,44 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+	<fields>
+        <fullName>Status__c</fullName>
+		<description>Purpose : Status
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
+        <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marked For Deletion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Target</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Temporary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Account Type Unknown</fullName>
+                <default>false</default>
+            </picklistValues>
+             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -424,6 +474,16 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>TEL_Chef_Rewards__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Telesales - indicates if the customer participate in the Chef Rewards program</description>
+        <externalId>false</externalId>
+        <label>Chef Rewards</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>Awards__c</fullName>
         <externalId>false</externalId>
@@ -440,6 +500,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <externalId>false</externalId>
         <label>Bazaarvoice Username</label>
         <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>TEL_Day_Week_Open__c</fullName>
+        <description>Telesales - VERIFY</description>
+        <externalId>false</externalId>
+        <label>Day/Week Open</label>
+        <length>10</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -469,6 +541,16 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <description>CEC Marketing Opt In</description>
         <externalId>false</externalId>
         <label>Marketing Opt In</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+	<fields>
+        <fullName>TEL_Email_OK_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Telesales - Indicates if the customer authorizes emails to be delivered</description>
+        <externalId>false</externalId>
+        <label>Email OK Flag</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
@@ -1488,6 +1570,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <inlineHelpText>Количество чеков в день</inlineHelpText>
         <label>Amount Of Visitors</label>
         <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+	<fullName>TEL_Number_of_meal_served_per_day__c</fullName>
+        <description>Telesales - Number of meal served per day</description>
+        <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
+        <label>Number of meal served per day</label>
+        <precision>4</precision>
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2905,6 +3000,16 @@ At least 3 out of 4 = 5</inlineHelpText>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>TEL_CS_Opt_Out__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Telesales - CS Opt Out option</description>
+        <externalId>false</externalId>
+        <label>CS Opt Out</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>FS_hierarchyLevel__c</fullName>
         <description>Purpose: Used for the MDM request</description>
@@ -3432,6 +3537,20 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Accounts (Master)</relationshipLabel>
         <relationshipName>Accounts3</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+	<fields>
+        <fullName>TEL_Price_Book__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Telesales - Used to store the price book reference for the customer.</description>
+        <externalId>false</externalId>
+        <label>Price Book</label>
+        <referenceTo>Pricebook2</referenceTo>
+        <relationshipLabel></relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -6013,6 +6132,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <externalId>false</externalId>
         <label>Year Established</label>
         <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Sales_Cycle__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Cycle</label>
+        <precision>3</precision>
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>

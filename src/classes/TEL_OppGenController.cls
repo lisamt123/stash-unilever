@@ -25,7 +25,7 @@ public with sharing class TEL_OppGenController {
     static{
     	CONST_OPP_RECORD_TYPE 		= ICB_RecordTypeMemory.getRecType(Label.TEL_Opportunity, Label.TEL_Telesales_Record_Type);
         CONST_ACC_CMPG_RECORD_TYPE 	= ICB_RecordTypeMemory.getRecType('TEL_Campaign_Accounts__c', 'TEL_Campaign_Account');
-        CONST_PRICE_RECORD_TYPE		= [Select Name From Pricebook2 Where Name =: 'TEL_Telesales'].Id;
+        CONST_PRICE_RECORD_TYPE		= [Select Name From Pricebook2 Where Name =: 'Telesales UK'].Id;
     }
     
     // Retrieve segment to be used as a search param account. 
@@ -73,14 +73,12 @@ public with sharing class TEL_OppGenController {
     @AuraEnabled
     public static List<String> searchOTM(){
         System.debug('Entering <searchOTM>');
-        List<String> options = new List<String>();
-        Schema.DescribeFieldResult fieldResult = Account.TEL_OTM__c.getDescribe();
-        List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
-        for (Schema.PicklistEntry f: ple) {
-            options.add(f.getLabel());
-        }
+        Map<String, TEL_OTM__c>	mapOTM 	= TEL_OTM__c.getAll();
+        List<String>			lstOTM 	= new List<String>();
+        lstOTM.addAll(mapOTM.keySet());
+        lstOTM.sort();
         System.debug('Exit <searchOTM>');
-        return options;
+        return lstOTM;
     }
     
     // Retrieve the param to set the frequency of generation opportunity. 

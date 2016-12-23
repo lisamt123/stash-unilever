@@ -9,7 +9,7 @@ History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
  1.0    Ronaldo Garcia  05/12/2016  Trigger creation  
 ***********************************************************************/
-trigger CaseTrigger on Case (after update) {
+trigger TEL_CaseTrigger on Case (after update) {
 
     // Check if is after 
     If(trigger.isAfter){        

@@ -15,7 +15,7 @@ public class TEL_AssociateProductsController {
         System.debug('Valor do campaignId: '+campaignId);
         
         List<TEL_TelesalesWrapper.DisplayProducts> 	lstProducts 			= new List<TEL_TelesalesWrapper.DisplayProducts>(); // Wrapper list to return the search result. 
-        List<Product2> 							lstProductsRetrieved 	= Product2DAO.getInstance().getActiveProductsByFamily(family, true); // Store the retrieved products wich will be used to link to campaign. 
+        List<Product2> 								lstProductsRetrieved 	= TEL_Product2DAO.getInstance().getActiveProductsByFamily(family, true); // Store the retrieved products wich will be used to link to campaign. 
         List<TEL_Campaign_Products__c> 				lstProductRelated		= TEL_CampaignProductDAO.getInstance().getCampaignProduct(campaignId); // Store the campaign product related to the campaign ID. 
         
         System.debug('Valor da lista lstProductsRetrieved: '+lstProductsRetrieved);

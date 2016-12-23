@@ -33,11 +33,11 @@
     </entryCriteria>
     <finalApprovalActions>
         <action>
-            <name>Sample_Request_approved_customer_alert</name>
+            <name>TEL_Sample_Request_approved_customer_alert</name>
             <type>Alert</type>
         </action>
         <action>
-            <name>Sample_Request_approved_Fullfillment_House_alert</name>
+            <name>TEL_Sample_Request_approved_Fullfillment_House_alert</name>
             <type>Alert</type>
         </action>
         <action>
@@ -48,7 +48,7 @@
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
-            <name>Sample_Request_Rejected_customer_alert</name>
+            <name>TEL_Sample_Request_Rejected_customer_alert</name>
             <type>Alert</type>
         </action>
         <action>
