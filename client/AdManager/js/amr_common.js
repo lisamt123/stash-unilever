@@ -2,6 +2,10 @@ $j = jQuery.noConflict();
 
 function setFocusOnLoad() {}
 
+function closemultiloading() {
+	$j('.multiloading').hide();
+}
+
 function addHeaderTitle() {
     $j('.tabsection th').each(function() {
         var title = $j(this).find('div').html();

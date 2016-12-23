@@ -364,3 +364,9 @@ body {
 ::-ms-clear {
     display: none;
 }
+.loading-category-image21 {
+	display: none;
+	width: 30px;
+	border: none;
+	margin-bottom: 5px;
+}

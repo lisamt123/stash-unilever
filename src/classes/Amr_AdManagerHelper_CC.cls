@@ -20,7 +20,7 @@ public with sharing Class Amr_AdManagerHelper_CC{
     public String gbvmEmail = NULL;
     public double amountEntered{get;set;}
     public String ToUserEmailId{get;set;}
-    public Double thresholdValue  {get;set;}
+    public Double thresholdValue  {get;set;}    
     Amr_AdManagerController_CC admanagerObj;
     public Amr_AdManagerHelper_CC(){
         admanagerObj = new Amr_AdManagerController_CC(); 
@@ -468,15 +468,28 @@ Purpose:  This method is used to insert/update multiply/Non Specific brands
 Parameters: String multiCategory value, String multiBrandPositioning value, String multiBrand value from CAP Admin space
 Returns: It’s return Pagereference
 ********************************************************************/ 
-public PageReference createMultiBrandPositions(String multiCategory, String multiBrandPositioning, Set<String> multiBrand){
+public PageReference createMultiBrandPositions(String multiCategory, String multiBrandPositioning, String multiBrand1,String multiBrand2,String multiBrand3,String multiBrand4,String multiBrand5 ){
     
-    Id multicatId = '';
-    Id multibrandPositioningId = '';
+    Id multicatId = NULL;
+    Id multibrandPositioningId = NULL;
+    PageReference pageRef = Page.Amr_CAPAdmin;
+    pageRef.setRedirect(false);
+    
+    if( multiCategory == NULL || multiBrandPositioning == NULL){
+     return pageRef;
+    }
+
+    if( multiBrand1 == NULL && multiBrand2 == NULL && multiBrand3 == NULL && multiBrand4 == NULL && multiBrand5 == NULL){
+    return pageRef;
+    }
+
+    Set<String> multiBrand =  new Set<String>{multiBrand1,multiBrand2,multiBrand3,multiBrand4,multiBrand5};
 try{
 
     //Multi Category
-    Amr_Multi_Category__c categoryId = [select id from Amr_Multi_Category__c  where name =:multiCategory and status__c = 'Active' ORDER BY Name limit 1];
-    if(categoryId == NULL){
+
+    List<Amr_Multi_Category__c> categoryId = [select id from Amr_Multi_Category__c  where name =:multiCategory ORDER BY Name limit 1];
+    if(categoryId.size() == 0){
     Amr_Multi_Category__c mCategory = new Amr_Multi_Category__c();
     mCategory.Name = multiCategory;
     mCategory.Status__c = 'Active';
@@ -484,13 +497,13 @@ try{
     multicatId = mCategory.Id;
     }
     else{
-    multicatId = categoryId.Id;
+    multicatId = categoryId[0].Id;
     }
 
     //Multi BrandPositioning
-    Amr_Multi_Brand_Positioning__c mbrandPositioningId = [select id from Amr_Multi_Brand_Positioning__c  where name =:multiBrandPositioning and status__c = 'Active' ORDER BY Name limit 1];
-
-    if(mbrandPositioningId == NULL){
+    List<Amr_Multi_Brand_Positioning__c> mbrandPositioningId = [select id from Amr_Multi_Brand_Positioning__c  where name =:multiBrandPositioning ORDER BY Name limit 1];
+    
+    if(mbrandPositioningId.size() == 0){
     Amr_Multi_Brand_Positioning__c mBrandPositioning = new Amr_Multi_Brand_Positioning__c();
     mBrandPositioning.Name = multiBrandPositioning;
     mBrandPositioning.Status__c = 'Active';
@@ -498,16 +511,18 @@ try{
     multibrandPositioningId = mBrandPositioning.Id;
     }
     else{
-    multibrandPositioningId = mbrandPositioningId.Id;
-    }    
-
-    for(String mB :multiBrand){
-    createMultiBrandPos(multicatId, multibrandPositioningId, mB);
+    multibrandPositioningId = mbrandPositioningId[0].Id;
     }
 
-    PageReference pageRef = Page.Amr_CAPAdmin;
-    pageRef.setRedirect(false);
-    return pageRef;
+    for(String mB :multiBrand){
+        if(mB.length() > 0 ){
+        createMultiBrandPos(multicatId, multibrandPositioningId, mB);
+        }
+    }    
+    pageRef = Page.Amr_CAPAdmin;
+    pageRef.setRedirect(true);
+    //return pageRef;
+    return null;
                     
 }catch(exception ex){
     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -522,11 +537,11 @@ Parameters: String multiCategory value, String multiBrandPositioning value, Stri
 Returns: It’s return Pagereference
 ********************************************************************/ 
 public void createMultiBrandPos(Id multicatId, Id multiBrandPositioningId, String multiBrand){
-    Id multibrandId = '';
+    Id multibrandId = NULL;
     //Multi Brand
-    Amr_Multi_Brand__c mBrandId = [select id from Amr_Multi_Brand__c  where name =:multiBrand and status__c = 'Active' ORDER BY Name limit 1];
+    List<Amr_Multi_Brand__c> mBrandId = [select id from Amr_Multi_Brand__c  where name =:multiBrand ORDER BY Name limit 1];
 
-    if(mBrandId == NULL){
+    if(mBrandId.size() == 0){
     Amr_Multi_Brand__c mBrand = new Amr_Multi_Brand__c();
     mBrand.Name = multiBrand;
     mBrand.Status__c = 'Active';
@@ -534,13 +549,13 @@ public void createMultiBrandPos(Id multicatId, Id multiBrandPositioningId, Strin
     multibrandId = mBrand.Id;
     }
     else{
-    multibrandId = mBrandId.Id;
+    multibrandId = mBrandId[0].Id;
     }
 
     //Multi BrandPositions
-    Amr_Multi_Brand_Positions__c multiBrandPositionsId = [select id, Multi_Category__c, Multi_Brand_Positioning__c, Multi_Brand__c from Amr_Multi_Brand_Positions__c  where Multi_Category__c =:multicatId and Multi_Brand_Positioning__c =:multiBrandPositioningId and Multi_Brand__c =:multibrandId and status__c = 'Active' ORDER BY Name limit 1];
+    List<Amr_Multi_Brand_Positions__c> multiBrandPositionsId = [select id, Multi_Category__c, Multi_Brand_Positioning__c, Multi_Brand__c from Amr_Multi_Brand_Positions__c  where Multi_Category__c =:multicatId and Multi_Brand_Positioning__c =:multiBrandPositioningId and Multi_Brand__c =:multibrandId ORDER BY Name limit 1];
 
-    if(multiBrandPositionsId == NULL){
+    if(multiBrandPositionsId.size() == 0){
     Amr_Multi_Brand_Positions__c mBrandPositions = new Amr_Multi_Brand_Positions__c();
     mBrandPositions.Multi_Category__c = multicatId;
     mBrandPositions.Multi_Brand_Positioning__c = multibrandPositioningId;
@@ -548,12 +563,7 @@ public void createMultiBrandPos(Id multicatId, Id multiBrandPositioningId, Strin
     mBrandPositions.Status__c = 'Active';
     insert mBrandPositions;
     }
-    else{
-    multiBrandPositionsId.Multi_Category__c = multicatId;
-    multiBrandPositionsId.Multi_Brand_Positioning__c = multibrandPositioningId;
-    multiBrandPositionsId.Multi_Brand__c = multibrandId;
-    update multiBrandPositionsId;
-    }
+ 
 }
     
 

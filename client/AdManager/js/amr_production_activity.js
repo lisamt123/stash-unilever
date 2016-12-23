@@ -73,7 +73,24 @@ function disableDependent() {
 }
 
 $j(document).ready(function() {
-
+	$j('.single_multiply_show_hide select').attr('disabled','disabled');              	
+           	         	
+	if($j('.single_or_multiply input[type="radio"]:checked').val() == 'Multiply' ) {           
+		$j('.multiply_of_single_multiply select').removeAttr('disabled');           		
+		$j('.single_of_single_multiply select').closest('.loadErrorParent').find('.loadError').remove();           		
+		$j('.single_of_single_multiply select').closest('.loadErrorParent').attr('class','form-field-parent');           		
+	} else {           
+		$j('.single_of_single_multiply select').removeAttr('disabled');
+		$j('.single_or_multiply input[type="radio"][value="single"]').prop( "checked", true );           		
+		$j('.multiply_of_single_multiply select').closest('.loadErrorParent').find('.loadError').remove();           		
+		$j('.multiply_of_single_multiply select').closest('.loadErrorParent').attr('class','form-field-parent');           		
+	}
+								
+	$j('.single_or_multiply input[type="radio"]').change(function(){            
+		$j('.single_multiply_show_hide select').attr('disabled','disabled');            		            	
+		$j('.'+$j(this).val().toLowerCase()+'_of_single_multiply select').removeAttr('disabled');
+	});
+	
     var masterselection = true;
     $j('.master').click(function() {
         if (this.checked) {

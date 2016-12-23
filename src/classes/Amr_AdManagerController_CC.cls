@@ -77,6 +77,15 @@ public with sharing class Amr_AdManagerController_CC{
     public boolean displayRap{get;set;}
     public boolean boolIsProductionActivityError{get;set;}
     public String CheckWithCMI{get;set;}
+    public String CAPCategory{get;set;}
+    public String CAPBrandPosition{get;set;}
+    public String CAPCategory2{get;set;}
+    public String CAPBrandPosition2{get;set;}
+    public String CAPBrand1{get;set;}
+    public String CAPBrand2{get;set;}
+    public String CAPBrand3{get;set;}
+    public String CAPBrand4{get;set;}
+    public String CAPBrand5{get;set;}
 
     public Amr_AdManagerController_CC(){
         try{
@@ -110,7 +119,13 @@ public with sharing class Amr_AdManagerController_CC{
             listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
             
             listOfMultiBrandPosition = new List<SelectOption>();
-            listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));            
+            listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE)); 
+            
+            listOfMultiCategory = new List<SelectOption>();
+            listOfMultiCategory.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));           
+            
+            listOfMultiBrand = new List<SelectOption>();
+            listOfMultiBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));                          
         
         }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -119,7 +134,27 @@ public with sharing class Amr_AdManagerController_CC{
     }
 
     public void updateSetting(){
-        update r;       
+        Amr_AdManagerHelper_CC admanagerHelper = new Amr_AdManagerHelper_CC();
+        update r; 
+        if(CAPCategory=='') {
+            CAPCategory = multicategoryName;
+        }
+        if(CAPBrandPosition=='') {
+            CAPBrandPosition = multiBrandPosName;
+        }        
+        admanagerHelper.createMultiBrandPositions(CAPCategory, CAPBrandPosition, CAPBrand1, CAPBrand2, CAPBrand3, CAPBrand4, CAPBrand5);
+        capsuccessmessage = true;    
+
+        listOfMultiBrandPosition = new List<SelectOption>();
+        listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));   
+        multibrandPosName =Amr_ConstantForAdManager.NONE;
+        multibrandNameFromPage =Amr_ConstantForAdManager.NONE;  
+        CAPBrand1 ='';
+        CAPBrand2 ='';
+        CAPBrand3 ='';
+        CAPBrand4 ='';
+        CAPBrand5 ='';              
+        
     }
 
 
@@ -322,6 +357,7 @@ public with sharing class Amr_AdManagerController_CC{
     public boolean RequireTalentFlag{get;set;}
     public boolean StageProductionActivity{get;set;}
     public boolean successmessage{get;set;}
+    public boolean capsuccessmessage{get;set;}    
     
     /*******************************************************************    
    Purpose:  This method is used to validate job Values                                            

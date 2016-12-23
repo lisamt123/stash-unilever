@@ -142,6 +142,31 @@ function catProjectADM(stringArray,strArr,projFormPage,catName) {
 	}	
 }
 
+function multiCatProjectADM(strMultiArr, multicatName) {
+	var newOp;
+	for (var j = 0; j < strMultiArr.length; j++) {
+		if (multicatName == strMultiArr[j] && multicatName !== null) {
+			newOp = $j('<option value="' + strMultiArr[j] + '">' + strMultiArr[j] + '</option>');
+			$j('#MultiCategoryList').append(newOp);
+		}
+	}
+	var none = $j('<option value="none">--None--</option>');
+	$j('#MultiCategoryList').append(none);
+
+	for (var j = 0; j < strMultiArr.length; j++) {
+		if (multicatName == strMultiArr[j]) {
+			j = j + 1;
+		}
+		newOp = $j('<option value="' + strMultiArr[j] + '">' + strMultiArr[j] + '</option>');
+		$j('#MultiCategoryList').append(newOp);
+	}
+}
+
+function transferMultiCategoryValue(categoryValue) {
+	sendmultiCategory(categoryValue);
+	$j('.multiloading').show();
+}
+
 function loadErrorParentCall() {
     /*Load Error code*/ 
 
@@ -249,5 +274,5 @@ $j(document).ready(function() {
 		$j('html,body').animate({scrollTop: $j(".loadErrorParent").offset().top},'slow');
 	} else if($j(".errorM3").length){
 		$j('html,body').animate({scrollTop: $j(".errorM3").offset().top},'slow');
-	}	
+	}
 });

@@ -7224,7 +7224,7 @@
     <label>Amr Job Details</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>NAME</columns>
+        <columns>AdManagerText__c</columns>
         <columns>Project_Description__c</columns>
         <columns>Single_or_multiply_project__c</columns>
         <columns>Multi_Category__c</columns>
@@ -7233,7 +7233,10 @@
         <columns>ProductCategory__c</columns>
         <columns>Brand_Position__c</columns>
         <columns>Brand_Final__c</columns>
-        <columns>Date_Logged__c</columns>
+        <columns>Job_Status__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Project_Leader_Cluster__c</columns>
+        <columns>Project_Leader_Country__c</columns>
         <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>

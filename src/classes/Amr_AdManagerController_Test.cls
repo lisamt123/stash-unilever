@@ -3,7 +3,6 @@ public class Amr_AdManagerController_Test {
     
     static testMethod void adManagerMethod(){
         
-        
         //List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
         User u = new User(Alias = 'stan321', Email='standuser321@testorg.com', 
@@ -11,7 +10,8 @@ public class Amr_AdManagerController_Test {
                           LocaleSidKey='en_US', ProfileId = p.Id, 
                           TimeZoneSidKey='America/Los_Angeles', UserName='stanuser@org.com');
         insert u;
-        Amr_AdManagerController_CC  test1 = new Amr_AdManagerController_CC ();
+
+       Amr_AdManagerController_CC  test1 = new Amr_AdManagerController_CC ();
         //Amr_AdManagerHelper_CC test2 = new Amr_AdManagerHelper_CC(test1 );
         Amr_Job_Details__c  abc = new Amr_Job_Details__c (); 
         Amr_AdManagerHelper_CC test = new Amr_AdManagerHelper_CC ();
@@ -115,6 +115,7 @@ public class Amr_AdManagerController_Test {
         
         Amr_Job_Details__c jobDet = [select Project_Description__c from Amr_Job_Details__c where id = :jobDetail.Id];
         system.assertEquals(jobDet.Project_Description__c, Amr_ConstantForAdManager.EXECUTION);
+
     }
     
     static testMethod void methodToSubmitForm(){
