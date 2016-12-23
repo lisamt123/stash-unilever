@@ -19,11 +19,6 @@
         <sharedToType>User</sharedToType>
     </shares>
     <shares>
-        <accessLevel>EditAllContents</accessLevel>
-        <sharedTo>khalid.mohammad@mindtree.com</sharedTo>
-        <sharedToType>User</sharedToType>
-    </shares>
-    <shares>
         <accessLevel>Manage</accessLevel>
         <sharedTo>nikhil.rao2@unilever.com</sharedTo>
         <sharedToType>User</sharedToType>
