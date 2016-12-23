@@ -2455,6 +2455,15 @@
                         [
                             "X4P_5P_6P",
                             "{{ column(X4P_5P_6P_1.selection, [\"X4P_5P_6P\"]).asObject()}}"
+                        ],
+                        [
+                            "PS_Compliance",
+                            [
+                                [
+                                    1
+                                ]
+                            ],
+                            ">="
                         ]
                     ]
                 },
@@ -4163,7 +4172,7 @@
                     "numberSize": 32,
                     "step": "all_1",
                     "textAlignment": "center",
-                    "title": "Enrollment",
+                    "title": "Count of Perfect Stores",
                     "titleColor": "#FFFFFF",
                     "titleSize": 14
                 },
