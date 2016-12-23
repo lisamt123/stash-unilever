@@ -6,123 +6,33 @@
     <description>This report type used to create report with all users using Agent app</description>
     <join>
         <outerJoin>false</outerJoin>
-        <relationship>aa_Agent_App_User_Preference__c$LastModifiedById</relationship>
+        <relationship>aa_Agent_App_User_Preference__c$OwnerId</relationship>
     </join>
     <label>Agent App User Details</label>
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>AboutMe</field>
+            <field>Id</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Accepted_Terms_of_Use__c</field>
+            <field>Username</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account</field>
+            <field>FirstName</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IsActive</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Address</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>ReceivesAdminInfoEmails</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>AF_UserTypeText__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>AF_Agency_Fees_User_Type__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>AF_Agency_Name__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Alias</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>ForecastEnabled</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>AF_Brand__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Brand_Name__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Brand_Positioning__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>AF_Categories__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>AF_Category__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Category__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CEC_User_Reference__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>MobilePhone</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>ChatterAdoptionStage</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>ChatterAdoptionStageModifiedDate</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>DigestFrequency</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>City</field>
+            <field>LastName</field>
             <table>User</table>
         </columns>
         <columns>
@@ -132,27 +42,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Contact</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Country</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CreatedBy</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CreatedDate</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>DefaultGroupNotificationFrequency</field>
+            <field>Division</field>
             <table>User</table>
         </columns>
         <columns>
@@ -162,22 +52,57 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Division</field>
+            <field>Title</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Edit_Article_Template_Front_End__c</field>
+            <field>Address</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Street</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>City</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>State</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PostalCode</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Country</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Latitude</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Longitude</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>GeocodeAccuracy</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Email</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>EmailEncodingKey</field>
             <table>User</table>
         </columns>
         <columns>
@@ -197,27 +122,22 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>EmployeeNumber</field>
+            <field>StayInTouchSubject</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>EndDay</field>
+            <field>StayInTouchSignature</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Expertise__c</field>
+            <field>StayInTouchNote</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Extension</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>agf__External_ID__c</field>
+            <field>Phone</field>
             <table>User</table>
         </columns>
         <columns>
@@ -227,27 +147,42 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>FirstName</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>true</checkedByDefault>
-            <field>Name</field>
+            <field>MobilePhone</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Function__c</field>
+            <field>Alias</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>GeocodeAccuracy</field>
+            <field>CommunityNickname</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>agf__GUS_User_Type__c</field>
+            <field>IsActive</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsSystemControlled</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TimeZoneSidKey</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UserRole</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LocaleSidKey</field>
             <table>User</table>
         </columns>
         <columns>
@@ -257,12 +192,197 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>ReceivesAdminInfoEmails</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EmailEncodingKey</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Profile</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UserType</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>UserSubtype</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IsSystemControlled</field>
+            <field>StartDay</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EndDay</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LanguageLocaleKey</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EmployeeNumber</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Manager</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastLoginDate</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastPasswordChangeDate</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedBy</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedDate</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedBy</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>SuAccessExpirationDate</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>SuOrgAdminExpirationDate</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>OfflineTrialExpirationDate</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>WirelessTrialExpirationDate</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>OfflinePdaTrialExpirationDate</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ForecastEnabled</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Contact</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Extension</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>FederationIdentifier</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AboutMe</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>DigestFrequency</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>DefaultGroupNotificationFrequency</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ChatterAdoptionStage</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ChatterAdoptionStageModifiedDate</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Pass031212__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Function__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MCO__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Market_Cluster__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Person_Type__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Sub_Function__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Accepted_Terms_of_Use__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Sustainability_Expert__c</field>
             <table>User</table>
         </columns>
         <columns>
@@ -277,132 +397,17 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>LanguageLocaleKey</field>
+            <field>User_License__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Language__c</field>
+            <field>Edit_Article_Template_Front_End__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Language_Skills_List__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastLoginDate</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastModifiedBy</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastModifiedDate</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastName</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastPasswordChangeDate</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Latitude</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Letter_Quality_Check_Percentage__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LocaleSidKey</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Longitude</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Manager</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Market__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Market_Cluster__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Max_Refund_Amount__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>MCO__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CommunityNickname</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>OfflineTrialExpirationDate</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Pass031212__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Person_Type__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Phone</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Product_Category__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Product_Category_Skills_List__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Product_Category_Skills_List2__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Profile</field>
+            <field>Expertise__c</field>
             <table>User</table>
         </columns>
         <columns>
@@ -412,142 +417,72 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Refund_Authorization_Limit__c</field>
+            <field>AF_Agency_Fees_User_Type__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Role__c</field>
+            <field>AF_Agency_Name__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>UserRole</field>
+            <field>AF_Brand__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>OfflinePdaTrialExpirationDate</field>
+            <field>AF_Categories__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>FederationIdentifier</field>
+            <field>AF_Category__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>agf__Show_All_Work_Comments__c</field>
+            <field>AF_UserTypeText__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>StartDay</field>
+            <field>Language_Skills_List__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>State</field>
+            <field>Language__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>StayInTouchNote</field>
+            <field>Market__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>StayInTouchSignature</field>
+            <field>Product_Category_Skills_List__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>StayInTouchSubject</field>
+            <field>Product_Category__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Street</field>
+            <field>Product_Category_Skills_List2__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>SuAccessExpirationDate</field>
+            <field>agf__External_ID__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Sub_Category__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Sub_Function__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>agf__Summary__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SuOrgAdminExpirationDate</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Sustainability_Expert__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>agf__Team_Member_Allocation__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TimeZoneSidKey</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Title</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Id</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>User_License__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Username</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserType</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>User_Unique__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>agf__Wall_Preference__c</field>
-            <table>User</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>WirelessTrialExpirationDate</field>
+            <field>agf__GUS_User_Type__c</field>
             <table>User</table>
         </columns>
         <columns>
@@ -557,12 +492,77 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>agf__Show_All_Work_Comments__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>agf__Summary__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>agf__Team_Member_Allocation__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>agf__Wall_Preference__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>agf__Work_User_Interface__c</field>
             <table>User</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>PostalCode</field>
+            <field>CEC_User_Reference__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>User_Unique__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Brand_Name__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Brand_Positioning__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Category__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Role__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Sub_Category__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Max_Refund_Amount__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Refund_Authorization_Limit__c</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Letter_Quality_Check_Percentage__c</field>
             <table>User</table>
         </columns>
         <masterLabel>Users</masterLabel>
@@ -570,198 +570,103 @@
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.IsActive</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.Alias</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.City</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.Country</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.Department</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.Division</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.FirstName</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.Name</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.Function__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.Market__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.Market_Cluster__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.Id</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.Username</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Is_Accepted_Terms_Condition__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastModifiedDate</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Id</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Topic__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Category__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Competitor_Brand__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Country__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.User_License__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CurrencyIsoCode</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.IPM_Role__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastModifiedBy</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Owner</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>CreatedDate</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Name</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>CreatedBy</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Competitor_Name__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Cluster__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Auto_Follow__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>User_Last_Login__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>ReportingOn__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>T_C_AcceptedDate__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <field>LastModifiedDate</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Agent_App_Unilever_Brand__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Retailer__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <field>Category__c</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Cluster__c</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Competitor_Brand__c</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Competitor_Name__c</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Country__c</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Is_Accepted_Terms_Condition__c</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>RecordTypeId__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>UserId__c.Phone</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <field>ReportingOn__c</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Retailer__c</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>T_C_AcceptedDate__c</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Topic__c</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UserId__c</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>User_Last_Login__c</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <masterLabel>Agent App User Preferences (Last Modified By)</masterLabel>
     </sections>

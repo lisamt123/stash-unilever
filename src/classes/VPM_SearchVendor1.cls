@@ -1474,8 +1474,9 @@ public with sharing class VPM_SearchVendor1{
             if(mdmVendorType.equals(System.label.VPM_PIVendorCreationPreRequisites) || piVendorCreation) {
                 vendorQuery1.VPM_IsMDMPISaved__c = true; 
             }            
-            
             VPM_CheckRecursive.run = true;
+            update vendorQuery1; 
+            
             system.debug('@@ options  --------'+ opt  );
             if(opt.size() > 0){
                 if(opt.size()<2) {
@@ -1490,11 +1491,12 @@ public with sharing class VPM_SearchVendor1{
             }  
             vendorDetails.RecordTypeId = VPM_RecordTypeHelper.getRecordTypeNameById(requestType);
             vendorDetails.VPM_PaymentTerms__c = vendorQuery1.VPM_PaymentTerms__c;
-            system.debug('@@mdmVendorType' + mdmVendorType);            
-            update vendorDetails; 
+            system.debug('@@mdmVendorType' + mdmVendorType); 
             VPM_CheckRecursive.run = true;            
+            update vendorDetails; 
+            //VPM_CheckRecursive.run = true;            
             //vendorReq.save();   
-            update vendorQuery1; 
+            
             paymentMethodWebserviceValues = vendorQuery1.VPM_PaymentMethodWeb__c;  
             system.debug('### VPM_SearchVendor1.checkFlag '+VPM_SearchVendor1.CheckFlag  ); 
         }
@@ -2055,6 +2057,7 @@ public with sharing class VPM_SearchVendor1{
         if(vendorRequestList <> null && vendorRequestList.size() > 0 ) {
                 vendorCashmgmntgroup = vendorRequestList[0].VPM_CashManagementGroup__c;                        
                 vendorDetails.VPM_ReconciliationAccount__c = vendorRequestList[0].VPM_ReconciliationAccount__c;
+                system.debug('vendorDetails.VPM_ReconciliationAccount__c' + vendorDetails.VPM_ReconciliationAccount__c);
                 vendorQuery1.VPM_SortKey__c = vendorRequestList[0].VPM_SortKey__c;
                 if(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_U2K2)) {
                     vendorDetails.VPM_ToleranceGroup__c = vendorRequestList[0].VPM_ToleranceGroup__c;
