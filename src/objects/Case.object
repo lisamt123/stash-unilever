@@ -2209,6 +2209,14 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>White Mail</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Web Shop</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Agent</fullName>
+                <default>false</default>
+            </picklistValues>			
             <sorted>true</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>

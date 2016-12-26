@@ -122,6 +122,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Currency</type>
     </fields>
+	
 	<fields>
         <fullName>TEL_Avg_Price_per_Meal__c</fullName>
         <description>Telesales - Avgerage Price per Meal</description>
@@ -187,44 +188,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-	<fields>
-        <fullName>Status__c</fullName>
-		<description>Purpose : Status
-Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
-        <externalId>false</externalId>
-        <inlineHelpText></inlineHelpText>
-        <label>Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Active</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Marked For Deletion</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>New</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Target</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Temporary</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Account Type Unknown</fullName>
-                <default>false</default>
-            </picklistValues>
-             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -392,6 +355,33 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>MultiselectPicklist</type>
         <visibleLines>8</visibleLines>
+    </fields>
+    <fields>
+        <fullName>TEL_Account_Contract_Strategy__c</fullName>
+        <description>Telesales - Account Contract strategy for transfer order accounts</description>
+        <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
+        <label>Account Contract Strategy</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Renew every Quarter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Renew every Semester</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Renew every Year</fullName>
+                <default>false</default>
+            </picklistValues>			
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+		<restrictedPicklist>true</restrictedPicklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Agree_to_Audits__c</fullName>
@@ -1577,8 +1567,8 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <fields>
-	<fullName>TEL_Number_of_meal_served_per_day__c</fullName>
+	<fields>
+		<fullName>TEL_Number_of_meal_served_per_day__c</fullName>
         <description>Telesales - Number of meal served per day</description>
         <externalId>false</externalId>
         <inlineHelpText></inlineHelpText>
