@@ -314,7 +314,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Food %26 beverage manager</fullName>
+                <fullName>Food &amp; beverage manager</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -699,7 +699,7 @@ ISO Country Dependency Medium Name</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>College %26 University</fullName>
+                <fullName>College &amp; University</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -743,7 +743,7 @@ ISO Country Dependency Medium Name</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Cash %26 Carry</fullName>
+                <fullName>Cash &amp; Carry</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -10957,7 +10957,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <picklistValues>
             <picklist>Product_Skill__c</picklist>
             <values>
-                <fullName>Coffee %26 Snacks</fullName>
+                <fullName>Coffee &amp; Snacks</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10965,7 +10965,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>Deodorants %26 Fragrances</fullName>
+                <fullName>Deodorants &amp; Fragrances</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11053,7 +11053,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>Tea and Soy %26 Fruit Beverages</fullName>
+                <fullName>Tea and Soy &amp; Fruit Beverages</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11437,15 +11437,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>Pending Consumer Feedback(Attemp1)</fullName>
+                <fullName>Pending Consumer Feedback(Attempt1)</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Pending Consumer Feedback(Attemp2)</fullName>
+                <fullName>Pending Consumer Feedback(Attempt2)</fullName>
                 <default>false</default>
             </values>	
             <values>
-                <fullName>Pending Consumer Feedback(Attemp3)</fullName>
+                <fullName>Pending Consumer Feedback(Attempt3)</fullName>
                 <default>false</default>
             </values>				
         </picklistValues>
@@ -11460,7 +11460,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>Food %26 beverage manager</fullName>
+                <fullName>Food &amp; beverage manager</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11703,7 +11703,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
 		<picklistValues>
             <picklist>Product_Skill__c</picklist>
             <values>
-                <fullName>Coffee %26 Snacks</fullName>
+                <fullName>Coffee &amp; Snacks</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11711,7 +11711,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>Deodorants %26 Fragrances</fullName>
+                <fullName>Deodorants &amp; Fragrances</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11799,7 +11799,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>Tea and Soy %26 Fruit Beverages</fullName>
+                <fullName>Tea and Soy &amp; Fruit Beverages</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11819,7 +11819,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>R %26 B Foods</fullName>
+                <fullName>R &amp; B Foods</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11884,7 +11884,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>College %26 University</fullName>
+                <fullName>College &amp; University</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11920,7 +11920,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cash %26 Carry</fullName>
+                <fullName>Cash &amp; Carry</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12558,7 +12558,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <picklistValues>
             <picklist>Product_Skill__c</picklist>
             <values>
-                <fullName>Coffee %26 Snacks</fullName>
+                <fullName>Coffee &amp; Snacks</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12566,7 +12566,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>Deodorants %26 Fragrances</fullName>
+                <fullName>Deodorants &amp; Fragrances</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12654,7 +12654,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>Tea and Soy %26 Fruit Beverages</fullName>
+                <fullName>Tea and Soy &amp; Fruit Beverages</fullName>
                 <default>false</default>
             </values>
             <values>
