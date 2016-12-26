@@ -260,11 +260,6 @@
         <relatedList>RelatedOpportunityList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>TEL_Product__c</fields>
-        <fields>TEL_Last_Purchase__c</fields>
-    </relatedLists>
-    <relatedLists>
         <excludeButtons>NewCase</excludeButtons>
         <fields>CASES.CASE_NUMBER</fields>
         <fields>NAME</fields>
