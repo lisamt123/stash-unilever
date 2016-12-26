@@ -307,6 +307,11 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
+        <editable>false</editable>
+        <field>Case.CPG_Code_Reporting__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
         <editable>true</editable>
         <field>Case.CEC_Product_Hierarchy__c</field>
         <readable>true</readable>
