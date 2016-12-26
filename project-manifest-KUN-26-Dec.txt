@@ -1,0 +1,6 @@
+src/objects/KUN_Activities__c.object
+src/objects/KUN_Profile__c.object
+src/classes/Kun_HomeView_CC.cls
+src/classes/Kun_Community_Test.cls
+src/pages/Kun_HomeView.page
+src/pages/KUN_Profile_View.page
