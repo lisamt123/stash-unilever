@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -367,6 +371,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Is_Salesforce1_User__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Salesforce1 User</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>KUN_Role_Type_Searchable_Field__c</fullName>
         <description>KUN Role Type Searchable Field</description>
         <externalId>false</externalId>
@@ -395,6 +407,27 @@
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Landscape__c</fullName>
+        <description>Based on Landscape value KUN user will see different data</description>
+        <externalId>false</externalId>
+        <label>Landscape</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>true</sorted>
+        </picklist>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -440,11 +473,53 @@
         <externalId>false</externalId>
         <inlineHelpText>Multi Country Organization (MCO)</inlineHelpText>
         <label>MCO</label>
-        <length>100</length>
-        <required>false</required>
+        <picklist>
+            <picklistValues>
+                <fullName>ANZ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>China</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dubai</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>India</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vietnam</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>true</sorted>
+        </picklist>
+        <required>true</required>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Organization_Role__c</fullName>
@@ -615,7 +690,6 @@
         <columns>Cluster__c</columns>
         <columns>E2E_Process__c</columns>
         <columns>Local_Process_Area__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -633,7 +707,6 @@
         <columns>Cluster__c</columns>
         <columns>E2E_Process__c</columns>
         <columns>Local_Process_Area__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -651,7 +724,6 @@
         <columns>Cluster__c</columns>
         <columns>E2E_Process__c</columns>
         <columns>Local_Process_Area__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -671,7 +743,6 @@
         <columns>KUN_Role_Type__c</columns>
         <columns>Local_Process_Area__c</columns>
         <columns>Employee_Type__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -707,7 +778,6 @@
         <columns>KUN_Role_Type__c</columns>
         <columns>Local_Process_Area__c</columns>
         <columns>Employee_Type__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -727,7 +797,6 @@
         <columns>Employee_Type__c</columns>
         <columns>KUN_Role_Type__c</columns>
         <columns>Local_Process_Area__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -745,7 +814,6 @@
         <columns>Cluster__c</columns>
         <columns>E2E_Process__c</columns>
         <columns>Local_Process_Area__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -763,7 +831,6 @@
         <columns>Cluster__c</columns>
         <columns>E2E_Process__c</columns>
         <columns>Local_Process_Area__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <columns>Phone_Number__c</columns>
         <columns>Line_Manager__c</columns>
@@ -786,7 +853,6 @@
         <columns>KUN_Role_Type__c</columns>
         <columns>Local_Process_Area__c</columns>
         <columns>Employee_Type__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -804,7 +870,6 @@
         <columns>Cluster__c</columns>
         <columns>E2E_Process__c</columns>
         <columns>Local_Process_Area__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -822,7 +887,6 @@
         <columns>Cluster__c</columns>
         <columns>E2E_Process__c</columns>
         <columns>Local_Process_Area__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -842,7 +906,6 @@
         <columns>KUN_Role_Type__c</columns>
         <columns>Local_Process_Area__c</columns>
         <columns>Employee_Type__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -862,7 +925,6 @@
         <columns>KUN_Role_Type__c</columns>
         <columns>Local_Process_Area__c</columns>
         <columns>Employee_Type__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -882,7 +944,6 @@
         <columns>KUN_Role_Type__c</columns>
         <columns>Local_Process_Area__c</columns>
         <columns>Employee_Type__c</columns>
-        <columns>MCO__c</columns>
         <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>

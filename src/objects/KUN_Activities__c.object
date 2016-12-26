@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -110,6 +114,26 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Landscape__c</fullName>
+        <externalId>false</externalId>
+        <label>Landscape</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>true</sorted>
+        </picklist>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Process_Area__c</fullName>
@@ -376,6 +400,7 @@
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
         <columns>Cluster__c</columns>
+        <columns>Profile_Id__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
@@ -439,6 +464,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
                 <fullName>Make</fullName>
@@ -474,6 +510,17 @@
             </values>
             <values>
                 <fullName>South Asia</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -518,6 +565,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
                 <fullName>Make</fullName>
@@ -554,6 +612,17 @@
             </values>
             <values>
                 <fullName>South Asia</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -614,6 +683,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
                 <fullName>Make</fullName>
@@ -650,6 +730,17 @@
             </values>
             <values>
                 <fullName>South Asia</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -710,6 +801,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
                 <fullName>Make</fullName>
@@ -746,6 +848,17 @@
             </values>
             <values>
                 <fullName>South Asia</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -806,6 +919,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
                 <fullName>Make</fullName>
@@ -846,6 +970,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
                 <fullName>Make</fullName>
@@ -882,6 +1017,17 @@
             </values>
             <values>
                 <fullName>South Asia</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -942,6 +1088,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
                 <fullName>Make</fullName>
@@ -977,6 +1134,17 @@
             </values>
             <values>
                 <fullName>South Asia</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1017,6 +1185,17 @@
             </values>
             <values>
                 <fullName>South Asia</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1077,6 +1256,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Landscape__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
                 <fullName>Deliver</fullName>
@@ -1125,4 +1315,24 @@
         <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
+    <webLinks>
+        <fullName>New_Trg_Document</fullName>
+        <availability>online</availability>
+        <description>Create new training document</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>New Trg Document</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/a0W/e?/RecordType={!$Label.KUN_TDRT_LVID_LBL}</url>
+    </webLinks>
 </CustomObject>
