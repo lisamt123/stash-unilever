@@ -1,4 +1,4 @@
-<apex:page controller="Kun_HomeView_CC" standardStylesheets="false" sidebar="false" docType="html"  language="en" title="KUN Community" id="Home">
+<apex:page controller="Kun_HomeView_CC" standardStylesheets="false" sidebar="false" docType="html"  language="en" title="KUN Community" id="Home" action="{!checkUserLoginHistory}">
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,10 +15,11 @@
               ga('set', 'dimension1', userId); 
               ga('set', 'dimension2', userCountry);
               ga('set', 'dimension3', userName );
-              ga('set', 'dimension4', homePage );
+              ga('set', 'dimension4', 'homePage' );
               ga('send', 'pageview');
     
       </script>
+    
       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
       <!-- Bootstrap -->
       <apex:stylesheet value="{!URLFOR($Resource.KUN, '/KUN/css/bootstrap.min.css')}"/>
@@ -401,7 +402,36 @@
                var str = $.datepicker.formatDate('mm/dd/yy', d);
                eventDates[ new Date( str )] = new Date( str );
             }              
-         </script>
-       </apex:form>
+        </script>
+    	<div id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title"> Do you know that you can access the KUN app from your mobile</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--<p>KUN Application support mobile devices also.</p>-->
+        
+                    </div>
+                </div>
+            </div>
+      </div>
+    <script type="text/javascript">
+    /*var isShow = localStorage.getItem('isShow');
+         if(isShow==null){
+         	localStorage.setItem('isShow',1);
+                $(document).ready(function(){              
+                   $("#myModal").modal('show');
+                });  
+         }*/
+    	
+    	var isSF1User = "{!flagIsSF1User}";
+    	if(isSF1User == "true"){
+            //$("#myModal").modal('show');
+            alert("Do you know that you can access the KUN app from your mobile");
+        }
+    </script>
+   </apex:form>
 
 </apex:page>
