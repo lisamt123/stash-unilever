@@ -263,7 +263,6 @@
         <fields>NAME</fields>
         <fields>TEL_Product__c</fields>
         <fields>TEL_Last_Purchase__c</fields>
-        <relatedList>TEL_Customer_Products__c.TEL_Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>NewCase</excludeButtons>

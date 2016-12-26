@@ -3443,129 +3443,6 @@ Enter competitor pricing if available</inlineHelpText>
         <description>Record type to support the Telesales solution</description>
         <label>Telesales</label>
         <picklistValues>
-            <picklist>FSNA_Margin_Market_Code__c</picklist>
-            <values>
-                <fullName>Z7 HOT TEA US</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_DistributorTMI__c</picklist>
-            <values>
-                <fullName>CA Direct</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CA GFS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CA Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CA Sysco</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Colabor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PFG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Reinhart</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>US Direct %2F CED</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>US Foods</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>US GFS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>US OTher</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>US Only %28Food Buy%2C Aramark%2C Sodexho%2C Compass%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>US Sysco</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_ExistingBusinessType__c</picklist>
-            <values>
-                <fullName>Grab</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Grib</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Grow</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_casesPiece__c</picklist>
-            <values>
-                <fullName>cases</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>piece</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_internalOrder__c</picklist>
-            <values>
-                <fullName>40002843 TPRs of Chains team_RUS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>40002981 TPRs of Moscow_Rus</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>40002982 TPRs of St Peterburg_Rus</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>40002983 TPRs of Slabco team_RUS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>40002984 TPRs of Metro team_RUS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>40002985 TPRs of Regions_Rus</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>40002986 TPRs for write-off_RUS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Test1</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>ForecastCategoryName</picklist>
             <values>
                 <fullName>Best Case</fullName>
@@ -3588,14 +3465,7 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>ICB_Sales_Locale_List__c</picklist>
-            <values>
-                <fullName>Empty</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
+         <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
                 <fullName>Advertisement</fullName>
