@@ -778,6 +778,11 @@
             <field>User_Last_Login__c</field>
             <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Owner</field>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
+        </columns>
         <masterLabel>Agent App User Preferences (Owner)</masterLabel>
     </sections>
 </ReportType>
