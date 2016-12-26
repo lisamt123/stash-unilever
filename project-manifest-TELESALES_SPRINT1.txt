@@ -123,9 +123,6 @@ src/flexipages/Telesales_Case.flexipage
 src/labels
 src/labels/TELESALES.labels
 src/queues
-src/queues/CEC_North_America_Creative_Solutions.queue
-src/queues/CEC_North_America_Helpdesk_Queue.queue
-src/queues/CEC_North_America_Supervisor_Queue.queue
 src/queues/TEL_Telesales_UK.queue
 src/workflows
 src/workflows/Case.workflow

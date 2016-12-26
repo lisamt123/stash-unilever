@@ -2815,6 +2815,11 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <default>false</default>
                 <cssExposed>false</cssExposed>
             </picklistValues>
+			<picklistValues>
+                <fullName>Sample Request</fullName>
+                <default>false</default>
+                <cssExposed>false</cssExposed>
+            </picklistValues>			
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>true</trackFeedHistory>
