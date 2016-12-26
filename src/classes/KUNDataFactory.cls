@@ -34,7 +34,7 @@ public class KUNDataFactory {
           Insert u1  ;
           // Creating the User's KUN Profile
           KUN_Profile__c moProfile1 = new KUN_Profile__c( Name ='Testing -1',Unilever_Profile__c = u1.Id,Capability__c=mstrCapability  , 
-          Cluster__c = mstrContCapacity  ,E2E_Process__c='Make-to-Deliver (M2D)' ,Employee_Type__c='Unilever');      
+          Cluster__c = mstrContCapacity  ,E2E_Process__c='Make-to-Deliver (M2D)' ,Employee_Type__c='Unilever',MCO__c='India',Landscape__c='U2K2');      
           Insert moProfile1 ;      
           
           moProfile1.KUN_Role_Type__c ='Full Time';
@@ -55,7 +55,7 @@ public class KUNDataFactory {
       
       Insert u2 ;
     
-      KUN_Profile__c moProfile2 = new KUN_Profile__c( Name ='Testing-2',Unilever_Profile__c = u2.Id,Capability__c = mstrCapability  , Cluster__c =  mstrContCapacity  ,E2E_Process__c='Make-to-Deliver (M2D)' ,Employee_Type__c='Unilever');
+      KUN_Profile__c moProfile2 = new KUN_Profile__c( Name ='Testing-2',Unilever_Profile__c = u2.Id,Capability__c = mstrCapability  , Cluster__c =  mstrContCapacity  ,E2E_Process__c='Make-to-Deliver (M2D)' ,Employee_Type__c='Unilever',MCO__c='India',Landscape__c='U2K2');
       
       Insert moProfile2 ;
       moProfile2 .KUN_Role_Type__c ='Full Time';
@@ -77,7 +77,7 @@ public class KUNDataFactory {
 
       Insert u3 ;
     
-      KUN_Profile__c moProfile3 = new KUN_Profile__c( Name ='Testing-3',Unilever_Profile__c = u3.Id,Capability__c=mstrCapability  , Cluster__c = mstrContCapacity  ,E2E_Process__c='Make-to-Deliver (M2D)' ,Employee_Type__c='Unilever');
+      KUN_Profile__c moProfile3 = new KUN_Profile__c( Name ='Testing-3',Unilever_Profile__c = u3.Id,Capability__c=mstrCapability  , Cluster__c = mstrContCapacity  ,E2E_Process__c='Make-to-Deliver (M2D)' ,Employee_Type__c='Unilever',MCO__c='India',Landscape__c='U2K2');
       
       Insert moProfile3 ;
       moProfile3 .KUN_Role_Type__c ='Full Time';
@@ -107,6 +107,7 @@ public class KUNDataFactory {
             moActivity.URL__c                  =  'http://google.com';              
             moActivity.Active__c               =  true ;
             moActivity.RecordTypeId            =  rt.Id;
+            moActivity.Landscape__c            =  'U2K2';
             molstEvents.add( moActivity);
           }
         Insert molstEvents ;
@@ -143,6 +144,7 @@ public class KUNDataFactory {
             moActivity.URL__c                  =  'http://google.com' ;
             moActivity.Active__c               =  true ;
             moActivity.RecordTypeId            =  rt.Id;
+            moActivity.Landscape__c            =  'U2K2';
             molstActivities.add( moActivity);
         }   
        Insert molstActivities ;     
@@ -162,6 +164,7 @@ public class KUNDataFactory {
             moActivity.Short_Description__c    =  'Document Description';
             moActivity.Active__c               =  true ;
             moActivity.RecordTypeId            =  rt.Id;
+            moActivity.Landscape__c            =  'U2K2';
             molstActivities.add( moActivity);
         }        
         Insert molstActivities ;
@@ -180,15 +183,15 @@ public class KUNDataFactory {
         
         moActivity =  new KUN_Activities__c( Name = 'Make- Plant Maintenance and Engineering-North Asia' ,
                                                               Cluster__c=  mstrContCapacity , Expert_Group__c ='standarduser1@kunorg.com;standarduser3@kunorg.com;standarduser2@kunorg.com',      
-                                                              Process_Area__c=ProcessArea,Sub_Process_Area__c ='Plant Maintenance and Engineering', Active__c = true , RecordTypeId  =  rt.Id);
+                                                              Process_Area__c=ProcessArea,Sub_Process_Area__c ='Plant Maintenance and Engineering', Active__c = true , RecordTypeId  =  rt.Id, Landscape__c =  'U2K2');
         molstActivities.add( moActivity);
         moActivity =  new KUN_Activities__c( Name = 'Make- Quality Management-North Asia' ,
                                                               Cluster__c=  mstrContCapacity , Expert_Group__c ='standarduser1@kunorg.com;standarduser3@kunorg.com;standarduser2@kunorg.com',      
-                                                              Process_Area__c=ProcessArea,Sub_Process_Area__c ='Quality Management', Active__c = true , RecordTypeId   =  rt.Id);
+                                                              Process_Area__c=ProcessArea,Sub_Process_Area__c ='Quality Management', Active__c = true , RecordTypeId   =  rt.Id, Landscape__c =  'U2K2');
         molstActivities.add( moActivity);
         moActivity =  new KUN_Activities__c( Name = 'Make- Manufacturing-North Asia' ,
                                                               Cluster__c=  mstrContCapacity , Expert_Group__c ='standarduser1@kunorg.com;standarduser3@kunorg.com;standarduser2@kunorg.com',      
-                                                              Process_Area__c = ProcessArea,Sub_Process_Area__c ='Manufacturing', Active__c = true ,RecordTypeId    =  rt.Id);
+                                                              Process_Area__c = ProcessArea,Sub_Process_Area__c ='Manufacturing', Active__c = true ,RecordTypeId    =  rt.Id,Landscape__c =  'U2K2');
         molstActivities.add( moActivity);
 
         INSERT molstActivities;
