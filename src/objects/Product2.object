@@ -11849,39 +11849,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>ProductType__c</picklist>
             <values>
-                <fullName>Commodity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Equipment</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Error - Unknown Type</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mexican Concept</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POS</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Restricted</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SVP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Soupbar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unknown</fullName>
                 <default>false</default>
             </values>
             <values>

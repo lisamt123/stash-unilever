@@ -122,7 +122,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Currency</type>
     </fields>
-	
 	<fields>
         <fullName>TEL_Avg_Price_per_Meal__c</fullName>
         <description>Telesales - Avgerage Price per Meal</description>
@@ -378,6 +377,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
+		<restrictedPicklist>true</restrictedPicklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -1146,6 +1146,20 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+	<fields>
+        <fullName>TEL_Wholesaler__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Telesales - Wholesaler that will fulfill the order.</description>
+        <externalId>false</externalId>
+        <label>Wholesaler</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Wholesaler)</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>

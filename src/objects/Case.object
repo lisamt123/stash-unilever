@@ -11437,15 +11437,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>Pending Consumer Feedback(Attemp1)</fullName>
+                <fullName>Pending Consumer Feedback(Attempt1)</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Pending Consumer Feedback(Attemp2)</fullName>
+                <fullName>Pending Consumer Feedback(Attempt2)</fullName>
                 <default>false</default>
             </values>	
             <values>
-                <fullName>Pending Consumer Feedback(Attemp3)</fullName>
+                <fullName>Pending Consumer Feedback(Attempt3)</fullName>
                 <default>false</default>
             </values>				
         </picklistValues>
