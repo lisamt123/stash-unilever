@@ -112,6 +112,23 @@
             <default>false</default>
         </values>
     </businessProcesses>
+	<businessProcesses>
+        <fullName>TEL_Telesales_Support</fullName>
+        <description>Telesales - Support Process for the Telesales Solution</description>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
     <externalSharingModel>Private</externalSharingModel>
@@ -3081,6 +3098,16 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <default>false</default>
                 <closed>false</closed>
             </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <closed>true</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <closed>true</closed>
+            </picklistValues>			
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>

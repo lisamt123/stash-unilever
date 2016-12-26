@@ -411,7 +411,6 @@
         <recordType>Contact.Standard_Contact</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Opportunity.TEL_Telesales</recordType>
         <visible>true</visible>
