@@ -384,7 +384,7 @@ public with sharing class IPM_MilestoneHelper
             incomingProjectIds = incomingProjectMap.keySet();
             masterProjectDetailMap.putAll(incomingProjectMap); 
             masterProjectDetailMap.putAll(IPM_Utils.populateParentProjectDetails(incomingProjectIds));
-            masterProjectDetailMap.putAll(IPM_Utils.populateChildProjectDetails(incomingProjectIds));
+            masterProjectDetailMap.putAll(IPM_Utils.populateChildProjectDetails(incomingProjectIds,false));
         
             projectToParentMapping = IPM_Utils.prepareProjectToParentMapping(incomingProjectMap,masterProjectDetailMap);
             projectToGrandParentMapping = IPM_Utils.prepareProjectToGrandParentMapping(projectToParentMapping,masterProjectDetailMap);

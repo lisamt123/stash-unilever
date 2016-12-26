@@ -1344,12 +1344,17 @@ public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){
     * @description: Recursive invocation to provide the List of Children against specific project
     * @param1 incomingProjectIds : List of Project Ids.
     */ 
-    public static Map<Id,IPM_Project__c> populateChildProjectDetails(Set<Id> incomingProjectIds)
+    public static Map<Id,IPM_Project__c> populateChildProjectDetails(Set<Id> incomingProjectIds, Boolean includeArchievedPrjcts)
     {
         Set<Id> projectIds = new Set<Id>();
 
         String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery(IPM_Project,false,null,true);
         String ProjectDetailWhereClause = 'IPM_Parent_Project__c in :incomingProjectIds';
+        
+        if(!includeArchievedPrjcts)
+        {
+            ProjectDetailWhereClause = ProjectDetailWhereClause + ' and Is_Archieved__c = false ';
+        }
         
         ProjectDetailSelectQuery = ProjectDetailSelectQuery  + ' WHERE ' + ProjectDetailWhereClause + LIMIT_STRING ;
         
@@ -1362,7 +1367,7 @@ public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){
         
         if(!projectIds.isEmpty())
         {
-            projectDetailedMap.putAll(populateChildProjectDetails(projectIds));
+            projectDetailedMap.putAll(populateChildProjectDetails(projectIds,includeArchievedPrjcts));
         }
         return projectDetailedMap;
     }
