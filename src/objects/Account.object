@@ -5724,6 +5724,31 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>TEL_Sales_Orders__c</fullName>
+        <description>Indicates how much the customer expend making order at the last year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
+        <label>Sales Orders</label>
+        <summarizedField>Opportunity.Amount</summarizedField>
+        <summaryForeignKey>Opportunity.AccountId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+	<fields>
+        <fullName>TEL_Product_Usage__c</fullName>
+        <description>Indicate how many products the customer buy from of portfolio.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate how many products the customer buy from of portfolio.</inlineHelpText>
+        <label>Product Usage</label>
+        <summaryForeignKey>TEL_Customer_Products__c.TEL_Account__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>	
+    <fields>
         <fullName>Type</fullName>
         <picklist>
             <picklistValues>
@@ -5838,6 +5863,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <externalId>false</externalId>
         <label>Branch</label>
         <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	 <fields>
+        <fullName>TEL_SAP_Order_Number__c</fullName>
+        <description>Branch of Unilever that sells to distributor (primary account only)</description>
+        <externalId>false</externalId>
+        <label>SAP Order Number</label>
+        <length>30</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -6088,6 +6125,27 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>TEL_Sub_Status__c</fullName>
+        <description>Telesales - VERIFY</description>
+        <externalId>false</externalId>
+        <label>Sub Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Pending Payment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Return Customer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>	
+    <fields>
         <fullName>Unilever_Opt_In__c</fullName>
         <description>CEC - Opt-In requirements for the consumer</description>
         <externalId>false</externalId>
@@ -6137,6 +6195,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>TEL_Week_Year_Open__c</fullName>
+        <externalId>false</externalId>
+		<description>Telesales - VERIFY</description>
+        <label>Week/Year Open</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>	
     <fields>
         <fullName>Website</fullName>
         <trackFeedHistory>false</trackFeedHistory>
