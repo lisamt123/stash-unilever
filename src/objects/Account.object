@@ -377,7 +377,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
-		<restrictedPicklist>true</restrictedPicklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
