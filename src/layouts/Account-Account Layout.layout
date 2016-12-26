@@ -85,10 +85,6 @@
                 <field>TEL_Sales_Orders__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>TEL_Product_Usage__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>TEL_OTM__c</field>
             </layoutItems>
@@ -224,7 +220,6 @@
         <fields>Type</fields>
         <fields>Phone</fields>
         <fields>BillingAddress</fields>
-        <fields>TEL_Product_Usage__c</fields>
         <fields>TEL_Sales_Cycle__c</fields>
         <fields>TEL_Sales_Orders__c</fields>
         <fields>ParentId</fields>

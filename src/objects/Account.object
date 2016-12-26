@@ -5736,18 +5736,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
-	<fields>
-        <fullName>TEL_Product_Usage__c</fullName>
-        <description>Indicate how many products the customer buy from of portfolio.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Indicate how many products the customer buy from of portfolio.</inlineHelpText>
-        <label>Product Usage</label>
-        <summaryForeignKey>TEL_Customer_Products__c.TEL_Account__c</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>	
     <fields>
         <fullName>Type</fullName>
         <picklist>
