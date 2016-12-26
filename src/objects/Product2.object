@@ -10130,13 +10130,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>UID_Weight_Unit__c</picklist>
-            <values>
-                <fullName>G</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>TEL_Telesales</fullName>
