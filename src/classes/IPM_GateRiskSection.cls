@@ -92,15 +92,10 @@ public with sharing class IPM_GateRiskSection{
     * @Description: CONSTRUCTOR
     */
     public IPM_GateRiskSection() {
-		if(test.isRunningTest()){
-			getInvokeMethodsForComponent();
-		}
-		else{
-			if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_Risk_QuestionnaireViewPage.getURL())) {
-				getInvokeMethodsForComponent();
-			}
-		}
-	}   
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
+    }   
     
     /***************************************************************************************************************************************
     *  @description Functions to display the RMP questions. 

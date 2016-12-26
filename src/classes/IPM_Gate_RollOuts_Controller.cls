@@ -51,13 +51,8 @@ public with sharing class IPM_Gate_RollOuts_Controller
         IPM_IECompatible.ieFix();//For IE Compatibility
         showEntity = IPM_ConstantUtils.BLANK;
         
-		if(test.isRunningTest()) {
+        if(test.isRunningTest()) {
             getInvokeMethodsForComponent();
-        }
-        else {
-            if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_Gate_RollOutsPage.getURL())) {
-                getInvokeMethodsForComponent();
-            }
         }
         
     }

@@ -85,14 +85,9 @@ public with sharing class IPM_GlobalFinancialActionStandards {
     * @Description: CONSTRUCTOR
     */
     public IPM_GlobalFinancialActionStandards() {
-		if(test.isRunningTest()){
-			getInvokeMethodsForComponent();
-		}
-		else{
-			if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_GlobalFinancialActionStandardsPage.getURL())) {
-				getInvokeMethodsForComponent();
-			}
-		}
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
     }   
 
     

@@ -176,23 +176,6 @@ public with sharing class IPM_GatekeeperChecklist{
             getInvokeMethodsForIPM_SC_Feasibility_QuestionsViewComponent();
             getInvokeMethodsForIPM_RND_Feasibility_QuestionsViewComponent();
         }
-        else {
-            if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_TradeMark_QuestionsViewPage.getURL())) {
-                getInvokeMethodsForIPM_TradeMark_QuestionsViewComponent();
-            }
-            else if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_GateKeeperListViewPage.getURL())) {
-                getInvokeMethodsForIPM_GateKeeperListViewComponent();
-            }
-            else if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_RND_QuestionsViewPage.getURL())) {
-                getInvokeMethodsForIPM_RND_QuestionsViewComponent();
-            }
-            else if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_SC_Feasibility_QuestionsViewPage.getURL())) {
-                getInvokeMethodsForIPM_SC_Feasibility_QuestionsViewComponent();
-            }
-            else if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_RND_Feasibility_QuestionsViewPage.getURL())) {
-                getInvokeMethodsForIPM_RND_Feasibility_QuestionsViewComponent();
-            }
-        } 
     }
     
     /************************************************************************************************************************

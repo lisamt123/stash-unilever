@@ -6,43 +6,16 @@
 *@Copyright © 2015  Unilever  
 *********************************************************************************************
 -->
-<apex:page controller="IPM_GatekeeperChecklist" sidebar="false" showHeader="false">
+<apex:page sidebar="false" showHeader="false">
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>  
     <apex:composition template="IPM_TemplateForPlainStyling">  
         <apex:define name="body">
             <apex:form > 
-                <apex:outputPanel id="ren" styleClass="gkTable">
-                    <table class="ipmTable table table-bordered otifTable">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <div>
-                                        {!$Label.IPM_R_D_FEASIBILITY_QUESTIONS}
-                                    </div>
-                                </th>
-                                <th>
-                                    <div>
-                                        {!$Label.IPM_ANSWERS}
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead> 
-                        <tbody>
-                            <apex:repeat value="{!quesList}" var="que"> 
-                                <tr>   
-                                    <td>
-                                        <apex:outputText value="{!que.IPM_Question__c}"/>
-                                    </td>
-                                    <td>  
-                                        <!-- Rendered condition is used for displaying the below output text -->
-                                        <apex:outputText rendered="{!!isEditable}"><div class="gkcStatus {!IF(que.IPM_GK_Answers__c==$Label.IPM_NO_APPLICABLE,$Label.IPM_NO_APPLICABLE,que.IPM_GK_Answers__c)}">{!IF(que.IPM_GK_Answers__c==$Label.IPM_NO_APPLICABLE,$Label.IPM_NO_APPLICABLE,que.IPM_GK_Answers__c)}</div></apex:outputText>
-                                    </td>
-                                </tr>                                
-                            </apex:repeat>
-                        </tbody>
-                    </table>                       
-                </apex:outputPanel>
+                <c:IPM_RND_Feasibility_QuestionsView RNDEdit="{!$CurrentPage.parameters.RNDEdit}"
+                gateDocType="{!$CurrentPage.parameters.gateDocType}">
+                </c:IPM_RND_Feasibility_QuestionsView>
             </apex:form>
         </apex:define>
     </apex:composition>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/iframeResizer.contentWindow.min.js')}" type="text/javascript"></script>
 </apex:page>

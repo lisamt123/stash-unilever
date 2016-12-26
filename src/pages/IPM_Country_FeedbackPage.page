@@ -6,44 +6,12 @@
 *@Copyright © 2015  Unilever  
 *************************************************************************
 -->
-<apex:page controller="IPM_BBCountryList" sidebar="false" showHeader="false" >
+<apex:page sidebar="false" showHeader="false" >
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/> 
     <apex:composition template="IPM_TemplateForPlainStyling">  
         <apex:define name="body">
             <apex:form >
-                <apex:outputPanel rendered="{!NOT(bIsGKM3)}">
-                    <apex:repeat value="{!financeList}" var="finFeed" rendered="{!NOT(bIsGKM3)}">
-                        <div class="feedbackContainer">
-                            <div class="countryProName">
-                                <apex:outputlabel value="{!$Label.IPM_LOCAL_PROJECT}"/>
-                                {!finFeed.Local_Project__r.name}
-                            </div>
-                            <div class="bbComments">
-                                <apex:outputlabel value="{!$Label.IPM_BB_COMMENTS}"/>
-                                <apex:outputfield value=" {!finFeed.IPM_Country_Feedback__c}" />
-                            </div>  
-                        </div>      
-                    </apex:repeat>
-                </apex:outputPanel>
-                <apex:outputPanel rendered="{!bIsGKM3}">
-                    <apex:repeat value="{!mapFinance}" var="MarketCluster">
-                        <div class="feedbkbluebox">
-                            {!MarketCluster}
-                        </div>
-                        <apex:repeat value="{!mapFinance[MarketCluster]}" var="finFeed">
-                            <div class="feedbackContainer">
-                                <div class="countryProName">
-                                    <apex:outputlabel value="{!$Label.IPM_LOCAL_PROJECT}"/>
-                                    {!finFeed.Local_Project__r.name}
-                                </div>
-                                <div class="bbComments">
-                                    <apex:outputlabel value="{!$Label.IPM_BB_COMMENTS}"/>
-                                    <apex:outputfield value=" {!finFeed.IPM_Country_Feedback__c}" />
-                                </div>  
-                            </div>      
-                        </apex:repeat>
-                    </apex:repeat>
-                </apex:outputPanel>
+                <c:IPM_Country_Feedback ></c:IPM_Country_Feedback>
             </apex:form>
         </apex:define>
     </apex:composition>

@@ -67,14 +67,9 @@ public with sharing class IPM_Assumptions_Controller {
     * @Description: CONSTRUCTOR
     */
     public IPM_Assumptions_Controller() {
-		if(test.isRunningTest()){
-			getInvokeMethodsForComponent();
-		}
-		else{
-			if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_AssumptionsPage.getURL())) {
-				getInvokeMethodsForComponent();
-			}
-		}
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
     }    
     
     /************************************************************************************************************************

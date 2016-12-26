@@ -6,41 +6,14 @@
 *@Copyright Â© 2015  Unilever  
 *************************************************************************
 -->
-<apex:page Controller="IPM_MarketPerformaceController" sidebar="false" showHeader="false" >
+<apex:page sidebar="false" showHeader="false" >
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>  
     <apex:composition template="IPM_TemplateForPlainStyling">  
         <apex:define name="body">
             <apex:form >
-                <apex:outputPanel id="messagePanel">
-                    <apex:pageMessages escape="false" rendered="{!loadMessagePanel}"/>
-                </apex:outputPanel>
-                
-                <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay"/>
-                
-                <apex:outputPanel id="monitoringPerformaceTable">
-                    <!-- Main 6.5 Table -->
-                    <div >
-                        <apex:pageBlock id="pageBlockId">
-                            <apex:pageBlockTable id="pageBlockTable" value="{!lstMarketPerformaceData}" var="singleRecord"  width="100%" styleClass="monitor ipmTable">
-                                <apex:repeat value="{!$ObjectType.IPM_MarketPerformance__c.FieldSets.UML_KeyMetrics}" var="field">
-                                    <apex:column headerValue="{!field.Label}" width="500px;">
-                                        <apex:variable value="{!singleRecord.Id}{!field}" var="mapKey"/>
-                                        <apex:inputfield value="{!singleRecord[field]}"  rendered="{!isEditableMarketPerfomance}" styleClass="{!mapPerformanceIdFieldWithErrorStyleClass[mapKey]}" html-onpaste="return paste(event,this);" onkeypress="return isNumber(event,this);"></apex:inputfield>
-                                        <apex:outputfield value="{!singleRecord[field]}"  rendered="{!!isEditableMarketPerfomance}"></apex:outputfield>
-                                    </apex:column>
-                                </apex:repeat>
-                            </apex:pageBlockTable>
-                        </apex:pageBlock>
-                    </div>
-                    
-                    <!-- Save button code -->
-                    <apex:outputPanel styleClass="noPadright marginFloatedBlock ipmButtonSet pull-right" rendered="{!isEditableMarketPerfomance}">
-                        <span class="ipmButton buttonMarginRight" onclick="gotoPageNew()">{!$Label.IPM_CANCEL}</span>
-                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" reRender="messagePanel, monitoringPerformaceTable" status="Loading"/>
-                    </apex:outputPanel>
-                    
-                </apex:outputPanel>  <!-- monitoringPerformaceTable outputPanel ends here -->
-                
+                <c:IPM_MarketPerformance projId="{!$CurrentPage.parameters.projId}"
+                isEditable="{!$CurrentPage.parameters.isEditable}">
+                </c:IPM_MarketPerformance>
             </apex:form>
         </apex:define>
     </apex:composition>

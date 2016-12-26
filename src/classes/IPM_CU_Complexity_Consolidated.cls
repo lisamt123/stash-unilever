@@ -46,14 +46,9 @@ public with sharing class IPM_CU_Complexity_Consolidated {
     * @Description: CONSTRUCTOR
     */
     public IPM_CU_Complexity_Consolidated() {
-		if(test.isRunningTest()){
-			getInvokeMethodsForComponent();
-		}
-		else{
-			if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_CU_Complexity_ConsolidatedPage.getURL())) {
-				getInvokeMethodsForComponent();
-			}
-		}
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
     }   
     
     public void getSectionContent(){

@@ -132,14 +132,9 @@ public with sharing class IPM_CU_Complexity_Controller {
     * @Description: CONSTRUCTOR
     */
     public IPM_CU_Complexity_Controller() {
-		if(test.isRunningTest()){
-			getInvokeMethodsForIPM_CU_ComplexityComponent();
-		}
-		else{
-			if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_CU_ComplexityPage.getURL())) {
-				getInvokeMethodsForIPM_CU_ComplexityComponent();
-			}
-		}
+        if(test.isRunningTest()){
+            getInvokeMethodsForIPM_CU_ComplexityComponent();
+        }
     }   
     
     /******************************************************************

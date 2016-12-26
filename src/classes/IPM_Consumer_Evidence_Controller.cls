@@ -72,14 +72,9 @@ public with sharing class IPM_Consumer_Evidence_Controller{
     * @Description: CONSTRUCTOR
     */
     public IPM_Consumer_Evidence_Controller() {
-		if(test.isRunningTest()){
-			getInvokeMethodsForComponent();
-		}
-		else{
-			if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_Consumer_EvidencePage.getURL())) {
-				getInvokeMethodsForComponent();
-			}
-		}
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
     }   
     
     

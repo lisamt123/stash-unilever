@@ -73,14 +73,9 @@ public with sharing class IPM_BCC_Consolidate_Controller
     * @Description: CONSTRUCTOR
     */
     public IPM_BCC_Consolidate_Controller() {
-		if(test.isRunningTest()){
-			getInvokeMethodsForComponent();
-		}
-		else{
-			if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_BCC_ConsolidatePage.getURL())) {
-				getInvokeMethodsForComponent();
-			}
-		}
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
     }   
     
     /*********************************************************************

@@ -75,14 +75,9 @@ public with sharing class IPM_AssortmentStrategy {
         selecteAssort=IPM_ConstantUtils.BLANK;
         isTarget=false;
         getCChannelsNames();
-		if(test.isRunningTest()){
-			getInvokeMethodsForComponent();
-		}
-		else{
-			if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_ViewAssortmentStrategyPage.getURL())) {
-				getInvokeMethodsForComponent();
-			}
-		}
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
     }
 
     /************************************************************************************************************************

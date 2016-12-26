@@ -57,14 +57,9 @@ public with sharing class IPM_Gate_Milestones {
     * @Description: CONSTRUCTOR
     */
     PUBLIC IPM_Gate_Milestones() {
-		if(test.isRunningTest()){
-			getInvokeMethodsForComponent();
-		}
-		else{
-			if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_MilestoneList_PDFPage.getURL())) {
-				getInvokeMethodsForComponent();
-			}
-		}
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
     }
     /************************************************************************************************************************
     *  Description Getting list of milestones to display in gate docuemnt and pdf

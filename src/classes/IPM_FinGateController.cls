@@ -55,15 +55,9 @@ public with sharing class IPM_FinGateController {
     * @Description: CONSTRUCTOR
     */
     public IPM_FinGateController() {
-		if(test.isRunningTest()){
-			getInvokeMethodsForComponent();
-		}
-		else{
-			 if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_FinInitialEstOfOppCharterPage.getURL())
-				 || ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_FinGatePage.getURL())) {
-				getInvokeMethodsForComponent();
-			}
-		}
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
     }
     
     /*******************************************************************************************************

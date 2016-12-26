@@ -62,14 +62,9 @@ public with sharing Class IPM_CMIGateSectionController{
     * @Description: CONSTRUCTOR
     */
     public IPM_CMIGateSectionController() {
-		if(test.isRunningTest()){
-			getInvokeMethodsForComponent();
-		}
-		else{
-			if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_CMIGateSectionPage.getURL())) {
-				getInvokeMethodsForComponent();
-			}
-		}
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
     }   
     
     /**********************************************************************************************************************************

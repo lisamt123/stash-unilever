@@ -95,15 +95,11 @@ public with sharing class IPM_CustomerChannelController {
             Names.add(f.getValue());
         }    
         
-		if(test.isRunningTest()){
-			getInvokeMethodsForComponent();
-		}
-		else{
-			if(ApexPages.currentPage().getURL().containsIgnoreCase(Page.IPM_Customer_ChannelsPage.getURL())) {
-				getInvokeMethodsForComponent();
-			}
-		}
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
     }   
+    
     
     /************************************************************************************************************************
     *  Description To retrieve customer channel contents
