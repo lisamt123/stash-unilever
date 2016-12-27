@@ -13,7 +13,7 @@ public class TEL_CaseTrigger_Test {
 
     @testSetup
     public static void createData() {
-        Case caseObj 			= new Case(Product__c = 'Test', Status = Label.TEL_Sample_Request_Status);
+        Case caseObj 			= new Case(TEL_Product__c = 'Test', Status = Label.TEL_Sample_Request_Status);
         caseObj.RecordTypeId 	= [SELECT Id FROM RecordType WHERE DeveloperName = 'TEL_Sample_Requests' LIMIT 1].Id;
         System.Database.insert(caseObj);
         
@@ -31,11 +31,11 @@ public class TEL_CaseTrigger_Test {
     static testMethod void createSampleRequest(){
         
         // Retrieve the Case and Sample Opportunity created. 
-        Case 		c 	= [Select Product__c 	From Case 			Where Product__c =: 'Test'];
+        Case 		c 	= [Select TEL_Product__c 	From Case 			Where TEL_Product__c =: 'Test'];
         Opportunity o 	= [Select TEL_Case__c 	From Opportunity 	Where TEL_Case__c =: c.Id];  
         
         // Validate if the case and opportunity was created correctly. 
-		System.assertEquals('Test', c.Product__c); 
+		System.assertEquals('Test', c.TEL_Product__c); 
         System.assertEquals(o.TEL_Case__c, c.Id);
     }   
 }
