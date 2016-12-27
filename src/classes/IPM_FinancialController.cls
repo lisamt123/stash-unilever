@@ -1975,8 +1975,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
               getValidationSettingSet();
               
-              fetchCurrentFinancial();
-              
               softValidate(currentFinancial);
               
 	      //the invalid flags are set from the IPM_FinancialYearHelper
@@ -2503,7 +2501,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             } 
             else{
                  
-                  System.debug('==>In else refresh from local');
                  if(IPMFinancial.Copy_Local_to_Global__c)
 	            {
 	               
@@ -3069,7 +3066,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     **************************************************************************************************************/
     private void checkOperationPrjMisAlignment(){  
          IPM_Project_Type__c projectType = IPM_Utils.retrieveProjectType(project);
-        System.debug('showMisalignedConfirmbtn3050::'+ projectType.IPM_Financial_Confirm_button__c);
         if(projectType.IPM_Financial_Confirm_button__c)
         {
     
