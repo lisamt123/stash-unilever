@@ -20420,6 +20420,24 @@ Case(Global_Project_Phase__c,
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000H7SK_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TRILOGYAP SEA</label>
+        <queue>IPM_a7I0L000000H7SK</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H7SP_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H7SP</label>
+        <queue>IPM_a7I0L000000H7SP</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Project_Rollout</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
