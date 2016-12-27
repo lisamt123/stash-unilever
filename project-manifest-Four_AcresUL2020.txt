@@ -1,0 +1,7 @@
+src
+src/objects/FAU_Participant__c.object
+src/objects/FAU_Program__c.object
+src/objects/FAU_Email__c.object
+src/objects/FAU_PII__c.object
+src/objects/FAU_PII_Table__c.object
+src/objects/FAU_Sponsor__c.object
