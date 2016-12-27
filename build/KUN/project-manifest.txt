@@ -3,8 +3,13 @@ src/objects/KUN_Activities__c.object
 src/objects/KUN_Profile__c.object
 src/classes
 src/classes/Kun_HomeView_CC.cls
+src/classes/Kun_HomeView_CC.cls-meta.xml
 src/classes/KUNDataFactory.cls
+src/classes/KUNDataFactory.cls-meta.xml
 src/classes/Kun_Community_Test.cls
+src/classes/Kun_Community_Test.cls-meta.xml
 src/pages
 src/pages/Kun_HomeView.page
+src/pages/Kun_HomeView.page-meta.xml
 src/pages/KUN_Profile_View.page
+src/pages/KUN_Profile_View.page-meta.xml
