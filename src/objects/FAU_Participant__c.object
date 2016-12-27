@@ -1563,14 +1563,7 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
         <errorMessage>Participants can only be added to Active Programs.
 Change the program status to &apos;Active&apos; to continue.</errorMessage>
     </validationRules>
-    <validationRules>
-        <fullName>FAU_Participants_added_Active_Programsv1</fullName>
-        <active>false</active>
-        <errorConditionFormula>IF( RecordType.DeveloperName = &quot;Program participant&quot;,  IF(TEXT(FAU_Program_Wave__r.FAU_Status__c) &lt;&gt; &apos;Active&apos; &amp;&amp; ISNEW(), TRUE, FALSE) , 
- IF(RecordType.DeveloperName = &quot;Class Participant&quot;,  IF( TEXT(00N2C000000fpdi.00N2C000000fkDu.00NE0000005T1cT) &lt;&gt; &apos;Active&apos;&amp;&amp; ISNEW(), TRUE, FALSE) , FALSE) )</errorConditionFormula>
-        <errorDisplayField>FAU_Approver_of_Nomination__c</errorDisplayField>
-        <errorMessage>Participants can only be added to Active Programs</errorMessage>
-    </validationRules>
+    
     <validationRules>
         <fullName>UL2020_PII_should_belong_to_same_progra</fullName>
         <active>true</active>
