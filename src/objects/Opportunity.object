@@ -1212,6 +1212,28 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>FS_TotalQuantityCases__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Quantity(Cases)</label>
+        <summarizedField>OpportunityLineItem.FS_QuantityCases__c</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_TotalQuantityPieces__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Quantity(Pieces)</label>
+        <summarizedField>OpportunityLineItem.FS_QuantityPieces__c</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>FS_TotalRate__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Total rebate discount offered to operator.</inlineHelpText>
@@ -4737,7 +4759,7 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <active>true</active>
         <description>An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level.</description>
         <errorConditionFormula>(AND( DealApproved__c= true,OR(ISPICKVAL( StageName, &quot;01 - Prospecting&quot;), ISPICKVAL( StageName, &quot;02 - Qualification&quot;),ISPICKVAL( StageName, &quot;03 - Proposal&quot;))))</errorConditionFormula>
-        <errorMessage>An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level.</errorMessage>
+        <errorMessage>An opportunity that has already been approved cannot be changed.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_Notchange_at_Stage5</fullName>

@@ -10790,11 +10790,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>IOSHKAR-OLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>IRKUTSK</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>IVANOVO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IZHEVSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10806,11 +10814,23 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>KAZAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>KEMEROVO</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>KHABAROVSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KIROV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KOMSOMOLSK-NA-AMURE</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10842,6 +10862,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>MAGNITOGORSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MAKHACHKALA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MINSK</fullName>
                 <default>false</default>
             </values>
@@ -10854,7 +10882,43 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>NABEREZHNIYE CHELNY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NALCHIK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAZRAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NIZHNEVARTOVSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NIZHNIY NOVGOROD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NIZHNIY TAGIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NORILSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>NOVGOROD VELIKIY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NOVOKUZNETSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NOVOROSSIYSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10870,6 +10934,22 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>ORENBURG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ORSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PENZA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PERM</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>PETROPAVLOVSK-KAMCHATSKY</fullName>
                 <default>false</default>
             </values>
@@ -10879,6 +10959,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>PSKOV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PYATIGORSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10894,6 +10978,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>SAMARA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SARANSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SARATOV</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>SEVASTOPOL</fullName>
                 <default>false</default>
             </values>
@@ -10906,11 +11002,31 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>SOCHI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>STAVROPOL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>STERLITAMAK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SURGUT</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>SYKTYVKAR</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>TAMBOV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOLLIATTI</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10930,7 +11046,23 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>UFA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>ULAN-UDE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ULYANOVSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Undef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VLADIKAVKAZ</fullName>
                 <default>false</default>
             </values>
             <values>
