@@ -70,8 +70,11 @@
         else{
             this.retrieveAccountSearch(component,event);
             var accounts = component.get("v.lstAccounts");
-            console.log("Valor da lista de contas retornadas: "+accounts);
+            console.log("Valor da lista de contas retornadas: "+accounts.length);
+            console.log("Valor da lista de contas $A.util.isUndefined(accounts): "+$A.util.isUndefined(accounts));
+            console.log("Valor da lista de contas $A.util.isEmpty(accounts): "+$A.util.isEmpty(accounts));
             if((!$A.util.isEmpty(accounts) && !$A.util.isUndefined(accounts)) || typeSelected !== 'None'){
+                console.log("Entrou no if");
                 this.retrieveFrequencyParam(component,event);	
                 this.enableAccountResult(component,event);
             }

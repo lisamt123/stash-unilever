@@ -64,8 +64,8 @@
                     <div class="slds-form-element__control">
                     	<ui:inputSelect aura:id="oppGenType" multiple="false" required="true">
                         	<ui:inputSelectOption text="None" label="-- None --" value="true"/>
-                            <ui:inputSelectOption text="Sales Call" label="Sales Call" value="false"/>
-                            <ui:inputSelectOption text="Enrichment" label="Enrichment" value="false"/>
+                            <ui:inputSelectOption text="{!$Label.c.TEL_Sales_Call_Type}" label="{!$Label.c.TEL_Sales_Call_Type}" value="false"/>
+                            <ui:inputSelectOption text="{!$Label.c.TEL_Enrichment_Type}" label="{!$Label.c.TEL_Enrichment_Type}" value="false"/>
                     	</ui:inputSelect>
                     </div>
                	</div>

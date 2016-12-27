@@ -1,5 +1,5 @@
 global class TEL_SalesCallCreationScheduler implements Schedulable {
     global void execute(SchedulableContext ctx) {
-        TEL_OpportunitySalesCallCreation oppSalesCall = new TEL_OpportunitySalesCallCreation();
+        TEL_OpportunitySalesCallCreation.getInstance().createOpportunities();
     }
 }

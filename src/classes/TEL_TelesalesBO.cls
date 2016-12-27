@@ -9,7 +9,6 @@ History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
  1.0    Ronaldo Garcia  05/12/2016  Class creation  
 ***********************************************************************/
-
 public with sharing class  TEL_TelesalesBO {
     
     // Instance Class
@@ -44,8 +43,9 @@ public with sharing class  TEL_TelesalesBO {
             for(Case c : approvedCase){
                 if(c.status == Label.TEL_Sample_Request_Status){
                     Opportunity opp 		= new Opportunity();
-                    opp.Name				= opportunityName;
+                    opp.Name				= Label.TEL_Opportunity_Name;
                     opp.TEL_Case__c			= c.Id;
+                    opp.Type				= Label.TEL_Sample_Request;
                     opp.RecordTypeId		= opportunityRecordType;
                     opp.CloseDate			= System.today().addDays(additionalDays);
                     opp.StageName 			= Label.TEL_Opportunity_Status;

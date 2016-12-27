@@ -22,7 +22,7 @@ public class TEL_AssociateProductsController {
         System.debug('Valor da lista lstProductRelated: '+lstProductRelated);
         
         // Store the campaign products already linked to the campaign.  
-        map<String, String> 					mapCampaignProducts 	= retrieveProductMap(lstProductRelated);
+        map<String, String> 						mapCampaignProducts 	= retrieveProductMap(lstProductRelated);
         
         System.debug('Valor da lista mapCampaignProducts: '+mapCampaignProducts);
         

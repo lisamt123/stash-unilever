@@ -16,6 +16,7 @@ public with sharing class TEL_OppGenController {
     private static Id 		CONST_OPP_RECORD_TYPE; 		// Store the opportunity Telesales recordtype id.
     private static Id 		CONST_ACC_CMPG_RECORD_TYPE; // Store the account campaign recordtype id.
     private static Id 		CONST_PRICE_RECORD_TYPE; 	// Store the price book entry recordtype id for telesales price. 
+    private static Id 		CONST_STD_ACC_RECORD_TYPE;		// Store the standard account record type. 
     private static Integer 	nextSchedule 	= 0; 		// Store the number of days used to shedule the next opp. 
     private static Integer 	scheduledDay 	= 0; 		// Store the number of weekday scheduled.
     private static Integer 	weeklyDay 		= 0; 		// Store the number of weekday.
@@ -25,42 +26,38 @@ public with sharing class TEL_OppGenController {
     static{
     	CONST_OPP_RECORD_TYPE 		= ICB_RecordTypeMemory.getRecType(Label.TEL_Opportunity, Label.TEL_Telesales_Record_Type);
         CONST_ACC_CMPG_RECORD_TYPE 	= ICB_RecordTypeMemory.getRecType('TEL_Campaign_Accounts__c', 'TEL_Campaign_Account');
-        CONST_PRICE_RECORD_TYPE		= [Select Name From Pricebook2 Where Name =: 'Telesales UK'].Id;
+        CONST_STD_ACC_RECORD_TYPE	= ICB_RecordTypeMemory.getRecType(Label.TEL_Account, Label.TEL_Account_Record_Type);
+        CONST_PRICE_RECORD_TYPE		= [Select Name From Pricebook2 Where Name =: Label.TEL_Telesales_UK_Price_Book].Id;
     }
     
     // Retrieve segment to be used as a search param account. 
     @AuraEnabled
     public static List<String> searchSubSegment(){
         System.debug('Entering <searchSubSegment>');
-        List<String> options = new List<String>();
-        Schema.DescribeFieldResult fieldResult = Account.SubSegment__c.getDescribe();
-        List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
-        for (Schema.PicklistEntry f: ple) {
-            options.add(f.getLabel());
-        }
+        Map<String, TEL_Sub_Segment__c> 	mapSubSegment	= TEL_Sub_Segment__c.getAll();
+        List<String> 						lstSubSegment	= new List<String>();
+        lstSubSegment.addAll(mapSubSegment.keySet());
+        lstSubSegment.sort();
         System.debug('Exit <searchSubSegment>');
-        return options;
+        return lstSubSegment;
     }
     
     // Retrieve segment to be used as a search param account. 
     @AuraEnabled
     public static List<String> searchSegment(){
         System.debug('Entering <searchSegment>');
-        List<String> options = new List<String>();
-        Schema.DescribeFieldResult fieldResult = Account.Segment__c.getDescribe();
-        List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
-        for (Schema.PicklistEntry f: ple) {
-            options.add(f.getLabel());
-        }
+        Map<String, TEL_Segment__c> 	mapSegment	= TEL_Segment__c.getAll();
+        List<String> 					lstSegment	= new List<String>();
+        lstSegment.addAll(mapSegment.keySet());
+        lstSegment.sort();
         System.debug('Exit <searchSegment>');
-        return options;
+        return lstSegment;
     }    
     
     // Retrieve the search param to product family field. 
     @AuraEnabled
     public static List<String> returnFamily(){
         System.debug('Entering <returnFamily>');
-        
         Map<String, TEL_Product_Family__c> 	mapProductCode		= TEL_Product_Family__c.getAll();
         List<String> 						lstProductFamily 	= new List<String>();
         lstProductFamily.addAll(mapProductCode.keySet());
@@ -101,42 +98,44 @@ public with sharing class TEL_OppGenController {
         System.debug('Valor antes de entrar no if type: '+type);
         System.debug('Valor antes de entrar no if segment: '+segment);
         System.debug('Valor antes de entrar no if subSegment: '+subSegment);
+        System.debug('Valor do record type account standard: '+CONST_STD_ACC_RECORD_TYPE);
         
         List<TEL_TelesalesWrapper.DisplayAccounts> lstAccounts = new List<TEL_TelesalesWrapper.DisplayAccounts>();
         
-        String accQuery = 'Select Name, Type, Segment__c, SubSegment__c From Account';
+        String accQuery = 'Select Name, TEL_OTM__c, Segment__c, SubSegment__c From Account';
         
         if(type != 'None' && segment == 'None' && subSegment == 'None'){
             System.debug('Valor 01');
-        	accQuery += ' Where Type = \''+type+'\'';
+        	accQuery += ' Where TEL_OTM__c = \''+type+'\' '+'And RecordTypeId = \''+CONST_STD_ACC_RECORD_TYPE+'\'';
         }
         if(type == 'None' && segment != 'None' && subSegment == 'None'){
             System.debug('Valor 02');
-        	accQuery += ' Where Segment__c = \''+segment+'\'';
+        	accQuery += ' Where Segment__c = \''+segment+'\' '+'And RecordTypeId = \''+CONST_STD_ACC_RECORD_TYPE+'\'';
         }
         if(type == 'None' && segment == 'None' && subSegment != 'None'){
             System.debug('Valor 03');
-        	accQuery += ' Where SubSegment__c = \''+subSegment+'\'';
+        	accQuery += ' Where SubSegment__c = \''+subSegment+'\' '+'And RecordTypeId = \''+CONST_STD_ACC_RECORD_TYPE+'\'';
         }
         if(type != 'None' && segment != 'None' && subSegment == 'None'){
             System.debug('Valor 04');
-        	accQuery += ' Where Type = \''+type+'\' '+'And Segment__c = \''+segment+'\'';
+        	accQuery += ' Where TEL_OTM__c = \''+type+'\' '+'And Segment__c = \''+segment+'\' '+'And RecordTypeId = \''+CONST_STD_ACC_RECORD_TYPE+'\'';
         }
         if(type != 'None' && segment != 'None' && subSegment != 'None'){
             System.debug('Valor 05');
-        	accQuery += ' Where Type = \''+type+'\' '+'And Segment__c = \''+segment+'\' '+'And SubSegment__c = \''+subSegment+'\'';
+        	accQuery += ' Where TEL_OTM__c = \''+type+'\' '+'And Segment__c = \''+segment+'\' '+'And SubSegment__c = \''+subSegment+'\' '+'And RecordTypeId = \''+CONST_STD_ACC_RECORD_TYPE+'\'';
         }
         if(type == 'None' && segment != 'None' && subSegment != 'None'){
             System.debug('Valor 06');
-        	accQuery += ' Where Segment__c = \''+segment+'\' '+'And SubSegment__c = \''+subSegment+'\'';
+        	accQuery += ' Where Segment__c = \''+segment+'\' '+'And SubSegment__c = \''+subSegment+'\' '+'And RecordTypeId = \''+CONST_STD_ACC_RECORD_TYPE+'\'';
         }
         if(type != 'None' && segment == 'None' && subSegment != 'None'){
             System.debug('Valor 07');
-        	accQuery += ' Where Type = \''+type+'\' '+'And SubSegment__c = \''+subSegment+'\'';
+        	accQuery += ' Where TEL_OTM__c = \''+type+'\' '+'And SubSegment__c = \''+subSegment+'\' '+'And RecordTypeId = \''+CONST_STD_ACC_RECORD_TYPE+'\'';
         }
         
 		System.debug('Valor da query string: '+accQuery);
         List<Account> lstAccRetrieved = Database.query(accQuery); 
+        lstAccRetrieved.sort();
         
         List<Id> accRetrieved = new List<Id>();
         
@@ -164,7 +163,7 @@ public with sharing class TEL_OppGenController {
                 TEL_TelesalesWrapper.DisplayAccounts accDisplayed = new TEL_TelesalesWrapper.DisplayAccounts();
                 accDisplayed.accountId 			= acc.Id;
                 accDisplayed.accountName		= acc.Name;
-                accDisplayed.accType			= acc.Type;
+                accDisplayed.accType			= acc.TEL_OTM__c;
                 accDisplayed.accSegment			= acc.Segment__c;
                 accDisplayed.accSubSegment		= acc.SubSegment__c;
                 for(TEL_TelesalesWrapper.DisplayAccounts ca : lstRelatedAccCampaign){
@@ -245,8 +244,8 @@ public with sharing class TEL_OppGenController {
         // Verify if there are account selected. 
         if(!string.isBlank(accSelected)){
 
-            List<TEL_TelesalesWrapper.DisplayAccounts> lstAccounts = (List<TEL_TelesalesWrapper.DisplayAccounts>)System.JSON.deserialize(accSelected, List<TEL_TelesalesWrapper.DisplayAccounts>.class);
-            List<TEL_Campaign_Accounts__c> 		   lstAccCgn   = new List<TEL_Campaign_Accounts__c>();
+            List<TEL_TelesalesWrapper.DisplayAccounts> lstAccounts 	= (List<TEL_TelesalesWrapper.DisplayAccounts>)System.JSON.deserialize(accSelected, List<TEL_TelesalesWrapper.DisplayAccounts>.class);
+            List<TEL_Campaign_Accounts__c> 		   lstAccCgn   		= new List<TEL_Campaign_Accounts__c>();
             
             //Create an opportunity for each account selected. 
             for(TEL_TelesalesWrapper.DisplayAccounts acc : lstAccounts){
@@ -284,23 +283,21 @@ public with sharing class TEL_OppGenController {
                     opp.AccountId 		= acc.accountId;
                     opp.RecordTypeId	= CONST_OPP_RECORD_TYPE;
                     opp.Pricebook2Id	= CONST_PRICE_RECORD_TYPE;
+                    opp.Name 			= Label.TEL_Opportunity_Name;
                     if(campaignId != null){
                         System.debug('valor qdo entra no if campaignId');
                         opp.campaignId	= campaignId;
                     }
                     if(oppGenType == Label.TEL_Enrichment_Type){
                         System.debug('valor qdo entra no if campaignId 02');
-                        opp.Name 		= Label.TEL_Enrichment_Type;
                         opp.Type 		= Label.TEL_Enrichment_Type;
                     }
                     if(oppGenType == Label.TEL_Sales_Call_Type){
                         System.debug('valor qdo entra no if campaignId 03');
-                        opp.Name 		= Label.TEL_Sales_Call_Type;
                         opp.Type 		= Label.TEL_Sales_Call_Type;
                     }
                     if(oppGenType == Label.TEL_Sales_Drive_Type){
                         System.debug('valor qdo entra no if campaignId 04');
-                        opp.Name 		= Label.TEL_Sales_Drive_Type;
                         opp.Type 		= Label.TEL_Sales_Drive_Type;
                     }
                     opp.CloseDate 		= System.today().addDays(nextSchedule);
