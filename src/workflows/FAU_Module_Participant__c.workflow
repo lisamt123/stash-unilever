@@ -11,6 +11,17 @@
         <senderType>CurrentUser</senderType>
         <template>FAU_Program_Protected/FAU_Request_Travel_Details</template>
     </alerts>
+    <alerts>
+        <fullName>UL2020_Travel_Details</fullName>
+        <description>UL2020 Travel Details</description>
+        <protected>false</protected>
+        <recipients>
+            <field>FAU_Participant_s_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Travel_Details</template>
+    </alerts>
     <fieldUpdates>
         <fullName>FAU_Fill_ModPartPA_Email</fullName>
         <field>FAU_Participant_PA_s_Email__c</field>
@@ -83,6 +94,39 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UL2020_Request_Travel_Details_1</fullName>
+        <description>UL2020 Request Travel Details</description>
+        <field>FAU_Last_Email_Sent__c</field>
+        <formula>&quot;UL2020 Request Travel Details 1&quot;</formula>
+        <name>UL2020 Request Travel Details 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <targetObject>FAU_Participant__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UL2020_Request_Travel_Details_2</fullName>
+        <description>UL2020 Request Travel Details 2</description>
+        <field>FAU_Last_Email_Sent__c</field>
+        <formula>&quot;UL2020 Request Travel Details&quot;</formula>
+        <name>UL2020 Request Travel Details 2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <targetObject>FAU_Participant__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UL2020_Request_Travel_Details_3</fullName>
+        <description>UL2020 Request Travel Details 2</description>
+        <field>FAU_Last_Email_Sent__c</field>
+        <formula>&quot;UL2020 Request Travel Details 3&quot;</formula>
+        <name>UL2020 Request Travel Details 3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <targetObject>FAU_Participant__c</targetObject>
     </fieldUpdates>
     <rules>
         <fullName>FAU Fill Module Part Emails</fullName>
@@ -159,6 +203,11 @@
             <operation>equals</operation>
             <value>True</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>UL2020 Participant</value>
+        </criteriaItems>
         <description>EMAIL: Send Reminders to fill Module Travel and Accommodation Details</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
@@ -219,6 +268,11 @@
             <operation>equals</operation>
             <value>False</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>UL2020 Participant</value>
+        </criteriaItems>
         <description>EMAIL: Send Reminders to fill Module Travel and Accommodation Details</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
@@ -258,6 +312,136 @@
             </actions>
             <offsetFromField>FAU_Module_Participant__c.FAU_Workflow_Start_Date__c</offsetFromField>
             <timeLength>-63</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>FAU UL2020 PA Request Travel Details</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>FAU_Module_Participant__c.FAU_Module_Complete_Flag__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Module_Participant__c.FAU_Participant_s_Invite_Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Is_deferred_To_PA__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>UL2020 Participant</value>
+        </criteriaItems>
+        <description>EMAIL: Send Reminders to fill Module Travel and Accommodation Details</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UL2020_Travel_Details</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>UL2020_Request_Travel_Details_1</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>FAU_Module_Participant__c.FAU_Module_Start_Date__c</offsetFromField>
+            <timeLength>-63</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UL2020_Travel_Details</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>UL2020_Request_Travel_Details_3</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>FAU_Module_Participant__c.FAU_Module_Start_Date__c</offsetFromField>
+            <timeLength>-14</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UL2020_Travel_Details</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>UL2020_Request_Travel_Details_2</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>FAU_Module_Participant__c.FAU_Module_Start_Date__c</offsetFromField>
+            <timeLength>-35</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>FAU UL2020 Request Travel Details</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>FAU_Module_Participant__c.FAU_Module_Complete_Flag__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Module_Participant__c.FAU_Participant_s_Invite_Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Is_deferred_To_PA__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>UL2020 Participant</value>
+        </criteriaItems>
+        <description>EMAIL: Send Reminders to fill Module Travel and Accommodation Details</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UL2020_Travel_Details</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>UL2020_Request_Travel_Details_1</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>FAU_Module_Participant__c.FAU_Module_Start_Date__c</offsetFromField>
+            <timeLength>-63</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UL2020_Travel_Details</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>UL2020_Request_Travel_Details_3</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>FAU_Module_Participant__c.FAU_Module_Start_Date__c</offsetFromField>
+            <timeLength>-14</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UL2020_Travel_Details</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>UL2020_Request_Travel_Details_2</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>FAU_Module_Participant__c.FAU_Module_Start_Date__c</offsetFromField>
+            <timeLength>-35</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
     </rules>
