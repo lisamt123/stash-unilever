@@ -284,38 +284,17 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
         
                         }
                         UpdateFinancialYear(mapfields, selectedMCO, pspan, projectType);
-                        if(pspan == IPM_ConstantUtils.SpanGlobal || projectType == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                           finUpdate.NPV_Global__c = SetFieldValues(NPV);
-                           finUpdate.IRR_Global__c = SetFieldValues(IRR);
-                           finUpdate.Payback_Global__c = SetFieldValues(payback);
-                           finUpdate.CAPEX_Global__c = SetFieldValues(capex);
-                           finUpdate.BIC_Global__c = SetFieldValues(BIC);
-                           finUpdate.Volume_Unit_Global__c = volumeUnit;
-                           finUpdate.Last_Saved_by_Global__c = UserInfo.getUserId();
-                           finUpdate.Last_Saved_Global__c = System.now(); 
-                           finUpdate.Status_Global__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
-                        }else if(pspan == IPM_ConstantUtils.Regional && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
-                           finUpdate.NPV_Regional__c = SetFieldValues(NPV);
-                           finUpdate.IRR_Regional__c = SetFieldValues(IRR);
-                           finUpdate.Payback_Regional__c = SetFieldValues(payback);
-                           finUpdate.CAPEX_Regional__c = SetFieldValues(capex);
-                           finUpdate.BIC_Regional__c = SetFieldValues(BIC);
-                           finUpdate.Volume_Unit_Regional__c = volumeUnit;
-                           finUpdate.Last_Saved_by_Regional__c = UserInfo.getUserId();
-                           finUpdate.Last_Saved_Regional__c = System.now();
-                           finUpdate.Status_Regional__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
-                        }else if(pspan == IPM_ConstantUtils.Local && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
-                            finUpdate.NPV_Local__c = SetFieldValues(NPV);
-                            finUpdate.IRR_Local__c = SetFieldValues(IRR);
-                            finUpdate.Payback_Local__c = SetFieldValues(payback);
-                            finUpdate.CAPEX_Local__c = SetFieldValues(capex);
-                            finUpdate.BIC_Local__c = SetFieldValues(BIC);
-                            finUpdate.Volume_Unit_Local__c = volumeUnit;
-                            finUpdate.Last_Saved_by_Local__c = UserInfo.getUserId();
-                            finUpdate.Last_Saved_Local__c = System.now();
-                            finUpdate.Status_Local__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
-                        }
-                        finUpdate.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;                                              
+
+                        finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_NPV+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, SetFieldValues(NPV));
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_IRR+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, SetFieldValues(IRR));
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_PAYBACK+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, SetFieldValues(payback));
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_CAPEX+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, SetFieldValues(capex));
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_BIC+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, SetFieldValues(BIC));
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, volumeUnit);
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_LAST_SAVED_BY+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, UserInfo.getUserId());
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_LAST_SAVED+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, System.now()); 
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_STATUS+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,IPM_ConstantUtils.STATUS_IN_PROGRESS);
+                        finUpdate.put('Status__c', IPM_ConstantUtils.STATUS_IN_PROGRESS);
                         update finUpdate;
                         return null;
                 }
@@ -417,28 +396,14 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
 	                profitBeforeOverheads = setRowValuestoField(field);                       
 	        }   
 	    }
-    	if(pspan == IPM_ConstantUtils.SpanGlobal || projectType == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-            fy.Value_Market_Share_Global__c = setFieldValues(valueMarketShare);
-            fy.Turnover_Global__c = setFieldValues(turnover);
-            fy.Gross_Profit_Global__c = setFieldValues(grossProfit );
-            fy.Advertising_Promotions_Global__c = setFieldValues(advertisingPromotions);
-            fy.Profit_Before_Overheads_Global__c = setFieldValues(profitBeforeOverheads);
-            fyearTmp = assignVolumevaluesGlobal(mapfields,fy,vol);
-        }else if(pspan == IPM_ConstantUtils.Regional && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){ 
-            fy.Value_Market_Share_Regional__c = setFieldValues(valueMarketShare);
-            fy.Turnover_Regional__c = setFieldValues(turnover);
-            fy.Gross_Profit_Regional__c = setFieldValues(grossProfit );
-            fy.Advertising_Promotions_Regional__c = setFieldValues(advertisingPromotions);
-            fy.Profit_Before_Overheads_Regional__c = setFieldValues(profitBeforeOverheads);
-            fyearTmp = assignVolumevaluesRegional(mapfields,fy,vol);
-        }else if(pspan == IPM_ConstantUtils.Local && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
-            fy.Value_Market_Share_Local__c = setFieldValues(valueMarketShare);
-            fy.Turnover_Local__c = setFieldValues(turnover);
-            fy.Gross_Profit_Local__c = setFieldValues(grossProfit );
-            fy.Advertising_Promotions_Local__c = setFieldValues(advertisingPromotions);
-            fy.Profit_Before_Overheads_Local__c = setFieldValues(profitBeforeOverheads);
-            fyearTmp = assignVolumevaluesLocal(mapfields,fy,vol);
-        }
+    
+        fy.put(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(valueMarketShare));
+	fy.put(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(turnover));
+	fy.put(IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(grossProfit ));
+	fy.put(IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(advertisingPromotions));
+	fy.put(IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(profitBeforeOverheads));
+	fyearTmp = assignVolumevaluesGlobal(mapfields,fy,vol);
+        
     	return fyearTmp;
     }
     
