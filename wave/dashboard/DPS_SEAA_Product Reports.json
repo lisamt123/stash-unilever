@@ -3643,7 +3643,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -4564,7 +4564,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -4582,7 +4582,8 @@
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                }
+                },
+                "selectMode": "single"
             },
             "Date_of_audit_Month_3": {
                 "datasets": [
@@ -4593,7 +4594,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -4623,7 +4624,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -4641,7 +4642,8 @@
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                }
+                },
+                "selectMode": "single"
             },
             "Channel_28": {
                 "datasets": [
@@ -6839,7 +6841,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -6869,7 +6871,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -6887,7 +6889,8 @@
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                }
+                },
+                "selectMode": "single"
             },
             "Date_of_audit_Year_3": {
                 "datasets": [
@@ -6898,7 +6901,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -6928,7 +6931,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -6946,7 +6949,8 @@
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                }
+                },
+                "selectMode": "single"
             },
             "Country_2": {
                 "datasets": [

@@ -4235,7 +4235,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -4253,7 +4253,8 @@
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                }
+                },
+                "selectMode": "single"
             },
             "Product_category_SKU_1": {
                 "datasets": [
@@ -5096,7 +5097,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -5810,7 +5811,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -5828,7 +5829,8 @@
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                }
+                },
+                "selectMode": "single"
             },
             "all_60": {
                 "datasets": [
@@ -5903,7 +5905,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [

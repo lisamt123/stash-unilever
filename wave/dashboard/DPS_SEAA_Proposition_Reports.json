@@ -2790,7 +2790,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzsSAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -4152,7 +4152,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzsSAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -4244,7 +4244,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzsSAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -5601,7 +5601,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzsSAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
