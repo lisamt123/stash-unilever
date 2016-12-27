@@ -15,3 +15,4 @@ src/roles/Office_Distributors_Executive_SLABCO.role
 src/roles/Cash_Carry_Business_Development_Manager.role
 src/permissionsets/FS_Admin.permissionset
 src/permissionsets/FS_RussiaSalesRep.permissionset
+src/flows/FS_Account_Currency-3.flow
