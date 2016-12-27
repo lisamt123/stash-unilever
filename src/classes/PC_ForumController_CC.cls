@@ -16,7 +16,10 @@ public with sharing class PC_ForumController_CC
     public PC_ForumController_CC(){
         
         PC_Group__c PBS=getPBSForumGroupId();
-        collaGroupId(PBS.Id);
+        if(PBS!=null){
+            collaGroupId(PBS.Id);
+        }
+        
     
     }
     
@@ -226,20 +229,21 @@ public with sharing class PC_ForumController_CC
     private void collaGroupId(String grpId){
         // query for PC_Group
         List<PC_Group__c> pcList = [SELECT Chatter_Group_ID__c,Data_Categories__c FROM PC_Group__c WHERE Id = :grpId AND Published__c = true Limit 1 ];
-
-        if(pcList!= null && pcList.get(0).Chatter_Group_ID__c != null) {
-            List<CollaborationGroup> groupList = [
-                SELECT
-                    AnnouncementId, CanHaveGuests, CollaborationType, CreatedById, CreatedDate, Description, FullPhotoUrl, GroupEmail, HasPrivateFieldsAccess, Id, InformationBody, InformationTitle, IsArchived, IsAutoArchiveDisabled, LastModifiedById, LastModifiedDate, MemberCount, Name, NetworkId, OwnerId, SmallPhotoUrl
-                FROM
-                    CollaborationGroup
-                WHERE
-                    id = :pcList.get(0).Chatter_Group_ID__c
-                LIMIT 1
-            ];
-
-            if (!groupList.isEmpty()) {
-                groupId= groupList.get(0).Id;
+        if(pcList!= null){
+            if(pcList.get(0).Chatter_Group_ID__c != null) {
+                List<CollaborationGroup> groupList = [
+                    SELECT
+                        AnnouncementId, CanHaveGuests, CollaborationType, CreatedById, CreatedDate, Description, FullPhotoUrl, GroupEmail, HasPrivateFieldsAccess, Id, InformationBody, InformationTitle, IsArchived, IsAutoArchiveDisabled, LastModifiedById, LastModifiedDate, MemberCount, Name, NetworkId, OwnerId, SmallPhotoUrl
+                    FROM
+                        CollaborationGroup
+                    WHERE
+                        id = :pcList.get(0).Chatter_Group_ID__c
+                    LIMIT 1
+                ];
+    
+                if (!groupList.isEmpty()) {
+                    groupId= groupList.get(0).Id;
+                }
             }
         }
     
