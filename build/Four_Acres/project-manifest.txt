@@ -1,4 +1,14 @@
 src
-src/classes
-src/classes/FAU_EmailSender.cls
-src/classes/FAU_EmailSender.cls-meta.xml
+src/objects/FAU_Participant__c.object
+src/objects/FAU_Program__c.object
+src/objects/FAU_Email__c.object
+src/objects/FAU_PII__c.object
+src/objects/FAU_PII_Table__c.object
+src/objects/FAU_Sponsor__c.object
+src/layouts/FAU_Email__c-Email Layout.layout
+src/layouts/FAU_Participant__c-FAU Class  Participant Layout.layout
+src/layouts/FAU_PII__c-PII Layout.layout
+src/layouts/FAU_PII_Table__c-PII Layout.layout
+src/layouts/FAU_Program__c-FAU UL2020.layout
+src/layouts/FAU_Sponsor__c-Sponsor Layout.layout
+src/tabs/FAU_PII_Table__c.tab
