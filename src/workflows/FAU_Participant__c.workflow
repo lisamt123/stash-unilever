@@ -88,6 +88,51 @@
         <senderType>CurrentUser</senderType>
         <template>FAU_Program_Protected/FAU_PA_Introduction</template>
     </alerts>
+    <alerts>
+        <fullName>UL2020_Biography_Details_Request</fullName>
+        <description>UL2020 Biography Details Request</description>
+        <protected>false</protected>
+        <recipients>
+            <field>FAU_Personal_Assistant__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>FAU_User__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>UL2020_Dynamic_Template/UL2020_Fill_Biography_Invitation</template>
+    </alerts>
+    <alerts>
+        <fullName>UL2020_Program_Invitation</fullName>
+        <description>UL2020 Program Invitation</description>
+        <protected>false</protected>
+        <recipients>
+            <field>FAU_Personal_Assistant__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>FAU_User__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>UL2020_Dynamic_Template/UL2020_Registration_Invitation</template>
+    </alerts>
+    <alerts>
+        <fullName>UL2020_Program_Invitation_to_PA</fullName>
+        <description>UL2020 Program Invitation to PA</description>
+        <protected>false</protected>
+        <recipients>
+            <field>FAU_Personal_Assistant__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>FAU_User__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>UL2020_Dynamic_Template/UL2020_Registration_Invitation</template>
+    </alerts>
     <fieldUpdates>
         <fullName>FAU_Program_Invitation</fullName>
         <description>FAU Program Invitation</description>
@@ -247,12 +292,60 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Program_Invitation_to_PA</fullName>
+        <field>FAU_Last_Email_Sent__c</field>
+        <formula>&quot;FAU Program Invitation to PA&quot;</formula>
+        <name>Program Invitation to PA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UL2020_Program_Invitation</fullName>
+        <description>UL2020 Program Invitation</description>
+        <field>FAU_Last_Email_Sent__c</field>
+        <formula>&quot;UL2020 Program Invitation&quot;</formula>
+        <name>UL2020 Program Invitation</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UL2020_Update_Email_Bio_Due_Date</fullName>
+        <description>UL2020 Update Email Bio Due Date</description>
+        <field>FAU_Last_Email_Sent__c</field>
+        <formula>&quot;UL2020 Biography Details Request - Due Date&quot;</formula>
+        <name>UL2020 Update Email Bio Due Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UL2020_Update_Email_Bio_Request_2</fullName>
+        <description>UL2020 Update Email Bio Request 2</description>
+        <field>FAU_Last_Email_Sent__c</field>
+        <formula>&quot;UL2020 Biography Details Request - Reminder 2&quot;</formula>
+        <name>UL2020 Update Email Bio Request 2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_BIo_to_not_Complete</fullName>
         <field>FAU_Bio_Completeness_Flag__c</field>
         <literalValue>0</literalValue>
         <name>FAU Update BIo to not Complete</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Email_Bio_Request_1</fullName>
+        <field>FAU_Last_Email_Sent__c</field>
+        <formula>&quot;FAU Biography Details Request - Reminder 1&quot;</formula>
+        <name>Update Email Bio Request 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <rules>
@@ -304,6 +397,11 @@
             <field>FAU_Participant__c.FAU_Invite_State__c</field>
             <operation>equals</operation>
             <value>Accepted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>UL2020 Participant</value>
         </criteriaItems>
         <description>EMAIL: Send Emails to have the Participant Fill the Biography</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -359,6 +457,11 @@
             <operation>equals</operation>
             <value>True</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>UL2020 Participant</value>
+        </criteriaItems>
         <description>EMAIL: Send Introduction to participant PA</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -373,7 +476,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <criteriaItems>
             <field>FAU_Participant__c.FAU_Invite_State__c</field>
             <operation>equals</operation>
@@ -383,6 +486,11 @@
             <field>FAU_Participant__c.FAU_Is_deferred_To_PA__c</field>
             <operation>equals</operation>
             <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>UL2020 Participant</value>
         </criteriaItems>
         <description>EMAIL: Send invitation to participant</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -398,6 +506,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
+        <booleanFilter>(1 AND 2 AND 3)</booleanFilter>
         <criteriaItems>
             <field>FAU_Participant__c.FAU_Invite_State__c</field>
             <operation>equals</operation>
@@ -407,6 +516,11 @@
             <field>FAU_Participant__c.FAU_Is_deferred_To_PA__c</field>
             <operation>equals</operation>
             <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>UL2020 Participant</value>
         </criteriaItems>
         <description>EMAIL: Send invitation to participant PA</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -428,6 +542,11 @@
             <field>FAU_Participant__c.FAU_Is_deferred_To_PA__c</field>
             <operation>equals</operation>
             <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>UL2020 Participant</value>
         </criteriaItems>
         <description>EMAIL: Send intial program invitation to participant&apos;s PA</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -475,6 +594,11 @@
             <field>FAU_Participant__c.FAU_Is_deferred_To_PA__c</field>
             <operation>equals</operation>
             <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>UL2020 Participant</value>
         </criteriaItems>
         <description>EMAIL: Send Initial Program invitation to participant</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -547,6 +671,120 @@
         <active>true</active>
         <description>FIELD UPDATE FAU Create Unique ID - This is used to make sure a participant is only added once.</description>
         <formula>True</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>UL2020 Send Biography Fill EM</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>UL2020 Participant</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Bio_Completeness_Flag__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Invite_State__c</field>
+            <operation>equals</operation>
+            <value>Accepted</value>
+        </criteriaItems>
+        <description>EMAIL: Send Emails to have the Participant Fill the Biography</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UL2020_Biography_Details_Request</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>UL2020_Update_Email_Bio_Due_Date</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>FAU_Participant__c.FAU_Biography_Deadline__c</offsetFromField>
+            <timeLength>-1</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UL2020_Biography_Details_Request</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>UL2020_Update_Email_Bio_Request_2</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>FAU_Participant__c.FAU_Biography_Deadline__c</offsetFromField>
+            <timeLength>-21</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UL2020_Biography_Details_Request</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Update_Email_Bio_Request_1</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>FAU_Participant__c.FAU_Biography_Deadline__c</offsetFromField>
+            <timeLength>-28</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>UL2020 Send Invite</fullName>
+        <actions>
+            <name>UL2020_Program_Invitation</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>UL2020_Program_Invitation</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>UL2020 Participant</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Invite_State__c</field>
+            <operation>equals</operation>
+            <value>Invited</value>
+        </criteriaItems>
+        <description>EMAIL: Send invitation to participant</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>UL2020 Send Invite to PA</fullName>
+        <actions>
+            <name>UL2020_Program_Invitation_to_PA</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Program_Invitation_to_PA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>UL2020 Participant</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Invite_State__c</field>
+            <operation>equals</operation>
+            <value>Invited</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Is_deferred_To_PA__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>EMAIL: Send invitation to participant PA</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <tasks>
