@@ -36,8 +36,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public String currentFinancialId {get; set;} //Stores the id of the current financial being viewed. Changes dynamically and used with re-render
     private String previousFinancialId {get; set;} //Store the previously viwed financial Id. Used to maintain stae when switching tabs
     public String currentTab {get; set;} //Used to manage the current selected tab on the UI
-    public static IPM_Financial__c currentFinancial {get; set;} //Used to store the financial business case (IPM_Financial & associated IPM_Financial_Year__c records)
-    public IPM_Financial__c IPMFinancial {get; set;}
+    public transient IPM_Financial__c currentFinancial {get; set;} //Used to store the financial business case (IPM_Financial & associated IPM_Financial_Year__c records)
+    public IPM_Financial__c IPMFinancial {get; set;} //Used to store the financial business case (IPM_Financial & associated IPM_Financial_Year__c records)
     private transient List<IPM_Financial_Year__c> lstUpdateFinancials;
     
 
@@ -2556,7 +2556,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     */
     public void refreshFromRegional() 
     {
-        fetchCurrentFinancial();
+
         
         try
         {
@@ -2610,7 +2610,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     */
     public void refreshFromGlobal() 
     {
-        fetchCurrentFinancial();
+
         
         try
         {
@@ -3744,6 +3744,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     update toUpdateFinancialsMap.Values();
                 }
                 
+                if(finCounter <= BATCH_SIZE ){
+	    		initializeFinancials();
+			}
                 
         	}
         }
@@ -4182,38 +4185,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     		setConsolidatedFinancialValidationCells(processFinancialIds);
     	}
     	
-    	if(finCounter == unprocessedFinIds.size()){
-    		initializeFinancials();
-    	}
+    	
     	
     }
     
-    //Method to fecth the details of the current financial
-    public void fetchCurrentFinancial(){
-    
-    	fieldSuffix = getFieldSuffix();
-        
-        String queryString = 'SELECT ';
-    	
-    	
-    	//IPM Financial
-        For (String field : Schema.SObjectType.IPM_Financial__c.fields.getMap().KeySet()) {
-            queryString+= field + ', ';
-        }
-        //IPM Financial Year
-        queryString+= 'Last_Saved_By_Global__r.Name,Last_Saved_By_Regional__r.Name,Last_Saved_By_Local__r.Name, Parent_Project__r.IPM_Project_Type__c, Regional_Project__r.IPM_Project_Type__c,Local_Project__r.IPM_Project_Type__c,Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c,Local_Project__r.IPM_Project_Rollout__r.KeyMCO__c ';
-
-        queryString+= 'FROM IPM_Financial__c WHERE Id =: currentFinancialId '; //Added For Update to obtain exclusive access to the record
-        
-        
-        List<IPM_Financial__c> LstCurrentFinancial = new List<IPM_Financial__c>();
-        LstCurrentFinancial = Database.query(queryString);
-        
-        
-                 
-        if(!LstCurrentFinancial.isEmpty()){
-            currentFinancial = LstCurrentFinancial[0];
-         }
-    
-    }    
+     
 }
