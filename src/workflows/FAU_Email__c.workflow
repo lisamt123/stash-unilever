@@ -19,7 +19,7 @@
         <protected>false</protected>
     </fieldUpdates>
     <rules>
-        <fullName>UL2020_Send Email</fullName>
+        <fullName>FAU UL2020_Send Email</fullName>
         <active>true</active>
         <description>EMAIL: Send E-mail to participant</description>
         <formula>FAU_Email_Start_Date__c  =  TODAY()</formula>

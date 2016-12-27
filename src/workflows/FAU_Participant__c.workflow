@@ -101,7 +101,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>UL2020_Dynamic_Template/UL2020_Fill_Biography_Invitation</template>
+        <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation</template>
     </alerts>
     <alerts>
         <fullName>UL2020_Program_Invitation</fullName>
@@ -116,7 +116,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>UL2020_Dynamic_Template/UL2020_Registration_Invitation</template>
+        <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation</template>
     </alerts>
     <alerts>
         <fullName>UL2020_Program_Invitation_to_PA</fullName>
@@ -131,7 +131,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>UL2020_Dynamic_Template/UL2020_Registration_Invitation</template>
+        <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation</template>
     </alerts>
     <fieldUpdates>
         <fullName>FAU_Program_Invitation</fullName>
@@ -630,51 +630,7 @@
         </workflowTimeTriggers>
     </rules>
     <rules>
-        <fullName>FAU Update BIo to Complete</fullName>
-        <actions>
-            <name>FAU_Update_BIo_to_Complete</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <description>FIELD UPDATES: This updates the Bio Completeness Flag to True</description>
-        <formula>IF((FAU_Biography__c &lt;&gt; NULL)&amp;&amp;  (FAU_Unilever_Career__c &lt;&gt; NULL)&amp;&amp;  (FAU_Prior_Career__c &lt;&gt; NULL) &amp;&amp;  (FAU_Education__c &lt;&gt; NULL) &amp;&amp;  (FAU_Personal__c &lt;&gt; NULL)  ,True, False)</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>FAU Update BIo to Complete to False</fullName>
-        <actions>
-            <name>Update_BIo_to_not_Complete</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <description>FIELD UPDATES: This updates the Bio Completeness Flag to False</description>
-        <formula>IF((FAU_Biography__c = NULL)|| (FAU_Unilever_Career__c = NULL)||  (FAU_Prior_Career__c = NULL) || (FAU_Education__c = NULL) || (FAU_Personal__c = NULL)  ,True, False)</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>FAU Update External ID</fullName>
-        <actions>
-            <name>FAU_Update_External_ID</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <description>FIELD UPDATE: Update the External ID</description>
-        <formula>true</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>FAU_Create Unique ID</fullName>
-        <actions>
-            <name>FAU_Update_Unique_ID</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <description>FIELD UPDATE FAU Create Unique ID - This is used to make sure a participant is only added once.</description>
-        <formula>True</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>UL2020 Send Biography Fill EM</fullName>
+        <fullName>FAU UL2020 Send Biography Fill EM</fullName>
         <active>true</active>
         <criteriaItems>
             <field>FAU_Participant__c.RecordTypeId</field>
@@ -734,7 +690,7 @@
         </workflowTimeTriggers>
     </rules>
     <rules>
-        <fullName>UL2020 Send Invite</fullName>
+        <fullName>FAU UL2020 Send Invite</fullName>
         <actions>
             <name>UL2020_Program_Invitation</name>
             <type>Alert</type>
@@ -759,7 +715,7 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>UL2020 Send Invite to PA</fullName>
+        <fullName>FAU UL2020 Send Invite to PA</fullName>
         <actions>
             <name>UL2020_Program_Invitation_to_PA</name>
             <type>Alert</type>
@@ -785,6 +741,50 @@
             <value>True</value>
         </criteriaItems>
         <description>EMAIL: Send invitation to participant PA</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>FAU Update BIo to Complete</fullName>
+        <actions>
+            <name>FAU_Update_BIo_to_Complete</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>FIELD UPDATES: This updates the Bio Completeness Flag to True</description>
+        <formula>IF((FAU_Biography__c &lt;&gt; NULL)&amp;&amp;  (FAU_Unilever_Career__c &lt;&gt; NULL)&amp;&amp;  (FAU_Prior_Career__c &lt;&gt; NULL) &amp;&amp;  (FAU_Education__c &lt;&gt; NULL) &amp;&amp;  (FAU_Personal__c &lt;&gt; NULL)  ,True, False)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>FAU Update BIo to Complete to False</fullName>
+        <actions>
+            <name>Update_BIo_to_not_Complete</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>FIELD UPDATES: This updates the Bio Completeness Flag to False</description>
+        <formula>IF((FAU_Biography__c = NULL)|| (FAU_Unilever_Career__c = NULL)||  (FAU_Prior_Career__c = NULL) || (FAU_Education__c = NULL) || (FAU_Personal__c = NULL)  ,True, False)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>FAU Update External ID</fullName>
+        <actions>
+            <name>FAU_Update_External_ID</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>FIELD UPDATE: Update the External ID</description>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>FAU_Create Unique ID</fullName>
+        <actions>
+            <name>FAU_Update_Unique_ID</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>FIELD UPDATE FAU Create Unique ID - This is used to make sure a participant is only added once.</description>
+        <formula>True</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <tasks>

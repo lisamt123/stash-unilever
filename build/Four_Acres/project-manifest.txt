@@ -12,13 +12,30 @@ src/layouts/FAU_PII_Table__c-PII Layout.layout
 src/layouts/FAU_Program__c-FAU UL2020.layout
 src/layouts/FAU_Sponsor__c-Sponsor Layout.layout
 src/tabs/FAU_PII_Table__c.tab
-src/documents/UL2020_Logo
-src/documents/UL2020_Logo/Four_Acres.png
-src/documents/UL2020_Logo/Four_Acres.png-meta.xml
-src/documents/UL2020_Logo/UL2020_Logo.png
-src/documents/UL2020_Logo/UL2020_Logo.png-meta.xml
+src/documents/FAU_Documents/Four_Acres.png
+src/documents/FAU_Documents/Four_Acres.png-meta.xml
+src/documents/FAU_Documentso/UL2020_Logo.png
+src/documents/FAU_Documentso/UL2020_Logo.png-meta.xml
 src/workflows/FAU_Email__c.workflow
 src/workflows/FAU_Milestone_Participant__c.workflow
 src/workflows/FAU_Participant__c.workflow
 src/workflows/FAU_Module_Participant__c.workflow
 src/labels/FAU.labels
+src/email/FAU_UL2020_Dynamic_Template-meta.xml
+src/email/FAU_UL2020_Static_Templates-meta.xml
+src/email/FAU_UL2020_Static_Templates
+src/email/FAU_UL2020_Static_Templates/Final_Pre_Programme_Note_Readings_3_custom.email
+src/email/FAU_UL2020_Static_Templates/Final_Pre_Programme_Note_Readings_3_custom.email-meta.xml
+src/email/FAU_UL2020_Static_Templates/Final_Pre_Programme_Note_Readings_custom.email
+src/email/FAU_UL2020_Static_Templates/Final_Pre_Programme_Note_Readings_custom.email-meta.xml
+src/email/FAU_UL2020_Static_Templates/Your_Purpose_to_Impact_Projects_PIIs_custom.email
+src/email/FAU_UL2020_Static_Templates/Your_Purpose_to_Impact_Projects_PIIs_custom.email-meta.xml
+src/email/FAU_UL2020_Dynamic_Template
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation.email
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation.email-meta.xml
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder.email
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder.email-meta.xml
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation.email
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation.email-meta.xml
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Travel_Details.email
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Travel_Details.email-meta.xml

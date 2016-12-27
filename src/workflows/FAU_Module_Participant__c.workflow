@@ -20,7 +20,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>UL2020_Dynamic_Template/UL2020_Travel_Details</template>
+        <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Travel_Details</template>
     </alerts>
     <fieldUpdates>
         <fullName>FAU_Fill_ModPartPA_Email</fullName>
@@ -316,7 +316,7 @@
         </workflowTimeTriggers>
     </rules>
     <rules>
-        <fullName>UL2020 PA Request Travel Details</fullName>
+        <fullName>FAU UL2020 PA Request Travel Details</fullName>
         <active>true</active>
         <criteriaItems>
             <field>FAU_Module_Participant__c.FAU_Module_Complete_Flag__c</field>
@@ -381,7 +381,7 @@
         </workflowTimeTriggers>
     </rules>
     <rules>
-        <fullName>UL2020 Request Travel Details</fullName>
+        <fullName>FAU UL2020 Request Travel Details</fullName>
         <active>true</active>
         <criteriaItems>
             <field>FAU_Module_Participant__c.FAU_Module_Complete_Flag__c</field>

@@ -42,7 +42,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>UL2020_Dynamic_Template/UL2020_Milestone_Reminder</template>
+        <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder</template>
     </alerts>
     <alerts>
         <fullName>UL2020_Send_2nd_Reminder_Email</fullName>
@@ -53,7 +53,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>UL2020_Dynamic_Template/UL2020_Milestone_Reminder</template>
+        <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder</template>
     </alerts>
     <alerts>
         <fullName>UL2020_Send_Due_Date_Reminder_Email</fullName>
@@ -64,7 +64,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>UL2020_Dynamic_Template/UL2020_Milestone_Reminder</template>
+        <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder</template>
     </alerts>
     <fieldUpdates>
         <fullName>FAU_Send_1st_Reminder_Email</fullName>
@@ -257,21 +257,7 @@
         </workflowTimeTriggers>
     </rules>
     <rules>
-        <fullName>FAU_Update_Milestone_Participant_Email</fullName>
-        <actions>
-            <name>FAU_Update_Milestone_Participant_Email</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>FAU_Participant__c.FAU_Email_Address__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <description>FIELD UPDATES: Update Milestone Participant Email.</description>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>UL2020 Milestone 1st Reminder</fullName>
+        <fullName>FAU UL2020 Milestone 1st Reminder</fullName>
         <active>true</active>
         <criteriaItems>
             <field>FAU_Milestone_Participant__c.FAU_1st_Reminder__c</field>
@@ -309,7 +295,7 @@
         </workflowTimeTriggers>
     </rules>
     <rules>
-        <fullName>UL2020 Milestone 2nd Reminder</fullName>
+        <fullName>FAU UL2020 Milestone 2nd Reminder</fullName>
         <active>true</active>
         <criteriaItems>
             <field>FAU_Milestone_Participant__c.FAU_Workflow_2nd_Reminder__c</field>
@@ -347,7 +333,7 @@
         </workflowTimeTriggers>
     </rules>
     <rules>
-        <fullName>UL2020 Milestone Due Date Reminder</fullName>
+        <fullName>FAU UL2020 Milestone Due Date Reminder</fullName>
         <active>true</active>
         <criteriaItems>
             <field>FAU_Milestone_Participant__c.FAU_Due_Date__c</field>
@@ -383,5 +369,19 @@
             <timeLength>0</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>FAU_Update_Milestone_Participant_Email</fullName>
+        <actions>
+            <name>FAU_Update_Milestone_Participant_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Email_Address__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>FIELD UPDATES: Update Milestone Participant Email.</description>
+        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>
