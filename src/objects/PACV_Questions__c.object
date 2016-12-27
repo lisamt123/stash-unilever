@@ -57,6 +57,29 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>Delegated_To_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Delegated To Email</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Delegated_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Delegated To</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>PACV_Questions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>PACV_Answering_Method__c</fullName>
         <description>Radio Button Objective Answering</description>
         <externalId>false</externalId>
@@ -169,6 +192,16 @@
         <type>Percent</type>
     </fields>
     <label>PACV Questions</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>PACV_Question__c</columns>
+        <columns>PACV_Answering_Method__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <displayFormat>Q-{00000}</displayFormat>
         <label>Question Id</label>
@@ -187,6 +220,48 @@
         <lookupDialogsAdditionalFields>LAST_UPDATE</lookupDialogsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>PACV_IsAnsweringMethodEmpty</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISPICKVAL(PACV_Answering_Method__c, &apos;None&apos;)</errorConditionFormula>
+        <errorDisplayField>PACV_Answering_Method__c</errorDisplayField>
+        <errorMessage>Please select the answering method</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PACV_IsAnswersEmpty</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISBLANK(PACV_Answers__c)</errorConditionFormula>
+        <errorDisplayField>PACV_Answers__c</errorDisplayField>
+        <errorMessage>Please enter the answers with comma separated .</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PACV_IsHelpTextEmpty</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISBLANK(PACV_Help_Text__c)</errorConditionFormula>
+        <errorDisplayField>PACV_Help_Text__c</errorDisplayField>
+        <errorMessage>Please enter the help text</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PACV_IsQuestionEmpty</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISBLANK(PACV_Question__c)</errorConditionFormula>
+        <errorDisplayField>PACV_Question__c</errorDisplayField>
+        <errorMessage>Please enter the question</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PACV_IsScoresEmpty</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISBLANK(PACV_Scores__c)</errorConditionFormula>
+        <errorDisplayField>PACV_Scores__c</errorDisplayField>
+        <errorMessage>Please enter the scores with comma separated</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PACV_IsWeightageEmpty</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISBLANK(PACV_Weightage__c)</errorConditionFormula>
+        <errorDisplayField>PACV_Weightage__c</errorDisplayField>
+        <errorMessage>Please enter the weightage percentage</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>Activate_Question</fullName>
         <availability>online</availability>

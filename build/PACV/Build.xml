@@ -67,6 +67,8 @@
       <runTest>UserTrigger_Test</runTest>
 	  <runTest>PACV_Questions_AnswerCreation_Test</runTest>
 	 <runTest>PACV_Questionnaire_StatusUpdate_Test</runTest>
+	 <runTest>PACV_RiskAssessmentListView_Test</runTest>
+	 <runTest>PACV_SolutionTabTest</runTest>
     </sf:deploy>
   </target>  
 

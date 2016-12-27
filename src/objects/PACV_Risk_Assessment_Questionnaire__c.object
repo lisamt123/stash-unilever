@@ -116,10 +116,6 @@
                 <fullName>Not Published</fullName>
                 <default>true</default>
             </values>
-            <values>
-                <fullName>Published</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -129,10 +125,6 @@
         <label>Published</label>
         <picklistValues>
             <picklist>PACV_Status__c</picklist>
-            <values>
-                <fullName>Not Published</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>Published</fullName>
                 <default>true</default>
@@ -144,14 +136,10 @@
         <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
         <customTabListAdditionalFields>LAST_UPDATE</customTabListAdditionalFields>
         <customTabListAdditionalFields>PACV_Description__c</customTabListAdditionalFields>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <lookupDialogsAdditionalFields>PACV_Description__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>PACV_Status__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>CREATED_DATE</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>LAST_UPDATE</lookupDialogsAdditionalFields>
-        <searchResultsAdditionalFields>PACV_Status__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>PACV_Description__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Read</sharingModel>
     <webLinks>

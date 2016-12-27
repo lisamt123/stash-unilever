@@ -49,6 +49,7 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
@@ -118,6 +119,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>PACV_RIskAssesmentUserLookup__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>PACV_Risk_Assessments</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>PACV_Risk_Assessment_Link__c</fullName>
@@ -207,6 +220,17 @@
         <type>Picklist</type>
     </fields>
     <label>PACV Risk Assessment</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>PACV_Status__c</columns>
+        <columns>PACV_Risk_Assessment_Link__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <displayFormat>RA-{00000}</displayFormat>
         <label>Risk Assessment Id</label>
@@ -226,4 +250,53 @@
         <lookupDialogsAdditionalFields>LAST_UPDATE</lookupDialogsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>PACV_RA_Project_End_Date</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISBLANK( PACV_Project_End_Date__c )</errorConditionFormula>
+        <errorDisplayField>PACV_Project_End_Date__c</errorDisplayField>
+        <errorMessage>Please enter the project end date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PACV_RA_Project_Name</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISBLANK( PACV_Project_Name__c )</errorConditionFormula>
+        <errorDisplayField>PACV_Project_Name__c</errorDisplayField>
+        <errorMessage>Please enter the project name</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PACV_RA_Project_Start_Date</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISBLANK( PACV_Project_Start_Date__c )</errorConditionFormula>
+        <errorDisplayField>PACV_Project_Start_Date__c</errorDisplayField>
+        <errorMessage>Please enter the project start date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PACV_RA_Risk_Score_Percent</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISNULL( PACV_Risk_Score_X__c )</errorConditionFormula>
+        <errorDisplayField>PACV_Risk_Score_X__c</errorDisplayField>
+        <errorMessage>Please enter the risk score percentage</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PACV_RA_Risk_Status</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISPICKVAL( PACV_Risk_Status__c , &quot;&quot;)</errorConditionFormula>
+        <errorDisplayField>PACV_Risk_Status__c</errorDisplayField>
+        <errorMessage>Please enter the risk status</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PACV_Risk_Assessment_Link</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISBLANK( PACV_Risk_Assessment_Link__c )</errorConditionFormula>
+        <errorDisplayField>PACV_Risk_Assessment_Link__c</errorDisplayField>
+        <errorMessage>Please enter the risk assessment link</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PACV_Status</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISPICKVAL( PACV_Status__c , &quot;&quot;)</errorConditionFormula>
+        <errorDisplayField>PACV_Status__c</errorDisplayField>
+        <errorMessage>Please enter the status</errorMessage>
+    </validationRules>
 </CustomObject>

@@ -1,0 +1,298 @@
+<apex:page standardController="PACV_Solutions__c" extensions="PACV_SolutionsTab_CC" docType="html-5.0" sidebar="false" showHeader="false">
+
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1 " charset="utf-8" />      
+
+<apex:stylesheet value="{!URLFOR($Resource.PACVStaticResource, '/PACVStaticResource/css/PACV_Tabs.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.PACVStaticResource, '/PACVStaticResource/css/Slide11.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.PACVStaticResource, '/PACVStaticResource/css/jquery-ui.css')}"/>
+<apex:includeScript value="{!URLFOR($Resource.PACVStaticResource, '/PACVStaticResource/jsfile/jquery-1.12.4.js')}"/> 
+<apex:includeScript value="{!URLFOR($Resource.PACVStaticResource, '/PACVStaticResource/jsfile/jquery-ui.js')}"/> 
+<apex:stylesheet value="{!URLFOR($Resource.PACVStaticResource, '/PACVStaticResource/css/themes_smoothness_jquery-ui.css')}"/>
+<apex:includeScript value="{!URLFOR($Resource.PACVStaticResource, '/PACVStaticResource/jsfile/jquery.min.js')}"/> 
+<apex:includeScript value="{!URLFOR($Resource.PACVStaticResource, '/PACVStaticResource/jsfile/jquery-ui.min.js')}"/>
+<style type="text/css">
+    
+    .individualPalette .apexDefaultPageBlock.secondaryPalette.bPageBlock .pbBody .customPopup .Selection_CTA{
+    min-width: 100px;margin: 0 10px 20px 0;float:left;}
+
+    
+    .customPopup {
+    background-color: white;
+    border-style: solid;
+    border-width: 2px;
+    left: 30%;
+    padding: 10px;
+    position: absolute;
+    z-index: 2000;
+    /* These are the 3 css properties you will need to tweak so the pop 
+    up displays in the center of the screen. First set the width. Then set 
+    margin-left to negative half of what the width is. You can also add 
+    the height property for a fixed size pop up.*/
+    width: 400px;
+    top:50%;
+     padding:0;
+    border:1px solid #d4d4d4
+    }
+    
+    .disabledTextBox {
+    background-color: white;
+    border: 1px solid;
+    color: black;
+    cursor: default;
+    width: 90px;
+    display: table;
+    padding: 2px 1px;
+    text-align:right;
+    }   
+    
+    .Submituser {
+    float: left;
+    width: 100%;
+    }
+    
+    .ButtonStyling{
+    color:black !important;
+    background:#8eb4e3  !important;
+    border: 1px solid #8eb4e3  !important;
+    font-size: 15px  !important;
+    padding: 8px 50px 8px 50px  !important;
+    margin-top: 20px  !important;
+    }
+    
+       .displayNone { 
+        display:none; 
+        }
+        .displayBlock {
+        display:block;
+        }
+        .ui-autocomplete-loading { 
+        background: white url(/img/loading32.gif) right center no-repeat;
+        background-size:15px 15px; 
+        font-style: UnileverDINOffcPro;
+        }
+        .placeHolder {
+        font-style: UnileverDINOffcPro;
+        
+        }  
+        .ui-widget.ui-widget-content.ui-autocomplete {
+        top: 320px;
+        position: absolute;
+        z-index: 9999;
+}
+    .customPopup table tr {
+    background-color: #fff;
+    border: none;
+}
+    
+    .customPopup input.placeHolder, .customPopup input.placeHolder:focus, 
+    input[type="text" i] {
+    width: 235px;
+    margin: 5px 0 10px 0;
+    border: 1px solid #ccc;
+    height: 20px;
+    padding: 0 4px;
+    font: normal 12px/20px UnileverDINOffcPro;
+    border-radius: 3px;
+}
+    .customPopup label.popupfontstyling {
+    display: inline;
+    font: bold 14px/16px UnileverDINOffcPro;
+    opacity: 0.7;
+    padding: 3px 0;
+    clear: both;
+    float: left;
+    color: #666;
+}
+.customPopup .closeButton[value="Delegating"]{     
+     float: left;
+    margin: 0;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 4px 7px;
+    background: #e9e9e9;
+    text-align: left;
+    border-bottom: 1px solid #d4d4d4;
+    border-left:none;
+    border-right:none;
+    border-top: none;
+    border-radius: 0;
+    font: bold 12px/18px UnileverDINOffcPro;
+    background-image: url(../image/user.png);}
+   .secondaryPalette.bPageBlock .pbBody .customPopup .Selection_CTA[value="Close"]{margin:0 0 0 15px}
+</style>
+
+</head>
+
+<body>
+ <div id="tab-solution">
+    <h3>List of Counterfeit Solutions</h3>
+   
+<apex:form id="pg1">
+<apex:pageBlock >
+<apex:commandButton styleClass="Selection_CTA" value="Grant Access to User" action="{!showPopup}" rerender="popup" status="status"/>
+ <apex:outputPanel id="popup"> 
+    
+<apex:outputPanel id="popInnerOutputPnl" styleClass="customPopup" layout="block" rendered="{!displayPopUp}">
+<apex:commandButton value="X" title="Close the popup" action="{!closePopup}" styleClass="closeButton" rerender="popup"></apex:commandButton>                     
+
+<apex:outputPanel style="Outputpanel">
+
+   <script type="text/javascript">
+        var PLACEHOLDER = 'User Name'; 
+        var userObjects;
+        var queryTerm;
+        
+        $('[id$=userTextBoxId]').autocomplete
+        ({
+        
+            minLength: 2,
+            source: function(request, response) 
+            {
+                queryTerm = request.term;
+                PACV_SolutionsTab_CC.searchuser(request.term, function(result, event)
+            {
+            if(event.type == 'exception')
+            {
+                alert(event.message);
+            } 
+            else{            
+                userObjects = result;
+                response(userObjects);
+            }
+            });
+            },
+            focus: function( event, ui ) 
+            {
+                $('[id$=userTextBoxId]').val( ui.item.Name );            
+                return false;
+            },
+            select: function( event, ui ) 
+            {
+               
+                $('[id$=userTextBoxId]').val( ui.item.Name );
+                $('[id$=searchuserId]').val( ui.item.Id ); 
+                 $('[id$=searchuserId1]').val( ui.item.Id );
+                return false;
+            },
+        })
+        
+        .data( "ui-autocomplete" )._renderItem = function( ul, item ) 
+        {        
+            var entry = "<a>" + item.Name;    
+            
+            entry = entry + "</a>";
+            entry = entry.replace(queryTerm, "<b>" + queryTerm + "</b>");
+            return $( "<li style='color:red'></li>" )
+            .data( "item.autocomplete", item )
+            .append( entry )
+            .appendTo( ul );
+        };
+        
+        // Add or remove placeholder values
+        $('[id$=userTextBoxId]').val(PLACEHOLDER);
+        $('[id$=userTextBoxId]').on("focus",  function(event)
+        {        
+            $tgt = $(event.target);
+            if($tgt.val() === PLACEHOLDER )
+            {
+                $tgt.val('');
+                $tgt.removeClass('placeHolder');
+            }
+        });
+        
+        $('[id$=userTextBoxId]').on( "blur",  function(event)
+        {        
+            $tgt = $(event.target);
+            if($tgt.val() === '' )
+            {
+                $tgt.val(PLACEHOLDER);
+                $tgt.addClass('placeHolder');
+            }
+        });
+     function displaymessage()
+    {
+    alert("PM User Permission set has been assigned to selected user");
+    }
+    function testGetPrimaryTabIds() {
+        sforce.console.getPrimaryTabIds(showTabId);
+        
+        }
+    //declare callback method to receive response from Salesforce console
+    var showTabId = function showTabId(result) {
+           alert('Primary Tab IDs: ' + result.ids);
+        };
+   <script>
+    function showAlert(t) {
+      if(t) {
+        alert('Correct');
+      } else {
+        alert('No value entered !');
+      } 
+    }
+  </script>
+    
+<table width="100%" align="Center">
+<apex:pageMessages ></apex:pageMessages>    
+                                         
+    <tr>
+    <td align="center"><apex:outputLabel value="Internal User" styleClass="popupfontstyling"></apex:outputLabel></td>  
+    <td>
+    <apex:inputText id="userTextBoxId" value="{!searchTerm}" styleClass="placeHolder"/>
+    <apex:inputHidden id="searchuserId" value="{!selecteduser}"   />                                                 
+    </td>                          
+    </tr>  
+        <tr>
+        <td></td>
+        <td><apex:commandButton styleClass="Selection_CTA" value="Submit" action="{!savepermissionset}" rerender="popup"  ></apex:commandButton> 
+            <apex:commandButton styleClass="Selection_CTA" value="Close" action="{!closePopup}" rerender="popup"></apex:commandButton>
+             
+        </td>
+        </tr> 
+    </table>
+</apex:outputPanel>
+</apex:outputPanel>
+</apex:outputPanel>
+</apex:pageBlock>
+</apex:form>
+   
+    <table class=" Table_View Solution_Table">
+        <thead>
+            <th>AntiCounterFeit <br/>Solution Library</th>
+        <th>Action</th>
+        <th>Status</th>
+        <th>Supplier Name</th>
+        <th>Solution Type</th>
+            <th>Solution in <br/>Use</th>
+            <th>Solution <br/>Category</th>
+            <th>Price per <br/>unit in $</th>
+            <th>Material <br/>Type</th>
+        <th>Owner</th>
+        </thead>
+        <tbody>
+        <apex:repeat value="{!Records}" var="Record"> 
+        <tr>
+          <td><a><input type="checkbox" />{!Record.Name}</a></td>
+          <td><button type="button" class="Selection_CTA Btn_Assesment"><a href="#">Assessment</a></button></td>
+                     
+           <td><a>{!Record.PACV_Solution_Status__c}</a></td>
+           <td><a>{!Record.PACV_Supplier_Name__c}</a></td>
+           <td><a>{!Record.PACV_Solution_Type__c} </a></td>  
+           <td><a>{!Record.PACV_Solution_in_Use__c}</a></td>
+           <td><a>{!Record.PACV_Solution_Category__c}</a></td>
+           <td><a>{!Record.PACV_Price_Per_Unit__c}</a></td>
+           <td><a>{!Record.PACV_Material_Type__c}</a></td>
+           <td><a>{!Record.Owner.Name}</a></td>
+      
+           </tr>  
+        </apex:repeat>
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>
+
+</apex:page>

@@ -195,6 +195,18 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>PACV_SolutionLookupUser__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>PACV_Solutions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>PACV_Solution_Category__c</fullName>
         <externalId>false</externalId>
         <label>Solution Category</label>
@@ -332,30 +344,13 @@
         <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>Archived_Solutions</fullName>
-        <columns>NAME</columns>
-        <columns>PACV_Material_Type__c</columns>
-        <columns>PACV_Price_Per_Unit__c</columns>
-        <columns>PACV_Solution_Category__c</columns>
-        <columns>PACV_Solution_in_Use__c</columns>
-        <columns>PACV_Solution_Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>PACV_Solution_Status__c</field>
-            <operation>equals</operation>
-            <value>Archived</value>
-        </filters>
-        <label>Archived Solutions</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
         <fullName>Category</fullName>
         <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <columns>PACV_Solution_Category__c</columns>
         <columns>NAME</columns>
         <columns>PACV_Benefits__c</columns>
         <columns>PACV_Material_Type__c</columns>
         <columns>PACV_Price_Per_Unit__c</columns>
-        <columns>PACV_Solution_Category__c</columns>
         <columns>PACV_Solution_in_Use__c</columns>
         <columns>PACV_Solution_Status__c</columns>
         <columns>PACV_Solution_Type__c</columns>
@@ -461,6 +456,20 @@
         <lookupDialogsAdditionalFields>PACV_Contact_Phone__c</lookupDialogsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>PACV_ContactPhoneIsEmpty</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT(REGEX( PACV_Contact_Phone__c, &quot;(\\d){10}&quot;))</errorConditionFormula>
+        <errorDisplayField>PACV_Contact_Phone__c</errorDisplayField>
+        <errorMessage>Contact Phone number should not be blank or It should  contain 10 digit number.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PACV_SupplierPhoneIsEmpty</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT(REGEX( PACV_Supplier_Phone__c , &quot;(\\d){10}&quot;))</errorConditionFormula>
+        <errorDisplayField>PACV_Supplier_Phone__c</errorDisplayField>
+        <errorMessage>Supplier Phone number should not be blank or It should  contain 10 digit number.</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>Generate_PDF</fullName>
         <availability>online</availability>

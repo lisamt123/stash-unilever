@@ -93,6 +93,17 @@
         <unique>false</unique>
     </fields>
     <label>PACV Answers</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>PACV_Question__c</columns>
+        <columns>PACV_Score_Value__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <label>Answer</label>
         <trackHistory>false</trackHistory>
@@ -106,4 +117,11 @@
         <customTabListAdditionalFields>LAST_UPDATE</customTabListAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>PACV_IsScoreValueEmpty</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISBLANK(PACV_Score_Value__c)</errorConditionFormula>
+        <errorDisplayField>PACV_Score_Value__c</errorDisplayField>
+        <errorMessage>Please enter the score value. There should be a score value corresponding to every answer.</errorMessage>
+    </validationRules>
 </CustomObject>

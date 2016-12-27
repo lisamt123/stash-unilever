@@ -103,6 +103,19 @@
         <unique>false</unique>
     </fields>
     <label>PACV Responses</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>PACV_Risk_Assessment__c</columns>
+        <columns>PACV_Question__c</columns>
+        <columns>PACV_Answer__c</columns>
+        <columns>PACV_Score_Value__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <displayFormat>R-{00000}</displayFormat>
         <label>Response Id</label>
@@ -119,4 +132,11 @@
         <customTabListAdditionalFields>LAST_UPDATE</customTabListAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>PACV_IsScoreValueEmpty</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISBLANK(PACV_Score_Value__c)</errorConditionFormula>
+        <errorDisplayField>PACV_Score_Value__c</errorDisplayField>
+        <errorMessage>Please enter the score value</errorMessage>
+    </validationRules>
 </CustomObject>

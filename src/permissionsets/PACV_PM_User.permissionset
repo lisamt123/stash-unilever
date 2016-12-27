@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <applicationVisibilities>
+        <application>SAFE</application>
+        <visible>false</visible>
+    </applicationVisibilities>
     <classAccesses>
-        <apexClass>PACV_Questionnaire_StatusUpdate_Test</apexClass>
+        <apexClass>PACV_RiskAssessmentListView_CC</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PACV_RiskAssessmentListView_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PACV_Questions_AnswerCreation_Test</apexClass>
+        <apexClass>PACV_SolutionTabTest</apexClass>
         <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PACV_SolutionsTab_CC</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <fieldPermissions>
         <editable>false</editable>
@@ -21,6 +33,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>PACV_Case_Study__c.PACV_Solutions__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Questions__c.Delegated_To_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Questions__c.Delegated_To__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -69,19 +91,24 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PACV_Risk_Assessment__c.IPM_Project__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>PACV_Risk_Assessment__c.PACV_Project_Name1__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>PACV_Risk_Assessment__c.PACV_Project_Start_Date1__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Risk_Assessment__c.PACV_RIskAssesmentUserLookup__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -89,17 +116,17 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PACV_Risk_Assessment__c.PACV_Risk_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PACV_Risk_Assessment__c.PACV_Solution_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PACV_Risk_Assessment__c.PACV_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -152,6 +179,11 @@
         <editable>true</editable>
         <field>PACV_Solutions__c.PACV_Price_Per_Unit__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PACV_Solutions__c.PACV_SolutionLookupUser__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -224,7 +256,7 @@
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>PACV_Solutions__c</object>
@@ -233,6 +265,22 @@
     <pageAccesses>
         <apexPage>PACVSolutionPDF</apexPage>
         <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PACV_Overview</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PACV_OverviewTab</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PACV_QuestionaireTab</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PACV_SolutionTab</apexPage>
+        <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
         <recordType>PACV_Risk_Assessment_Questionnaire__c.Not_Published</recordType>
@@ -269,6 +317,10 @@
     <tabSettings>
         <tab>PACV_Solutions__c</tab>
         <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>SAFE</tab>
+        <visibility>None</visibility>
     </tabSettings>
     <userLicense>Salesforce Platform</userLicense>
 </PermissionSet>
