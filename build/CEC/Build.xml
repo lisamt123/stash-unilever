@@ -54,6 +54,7 @@
             <runTest>CEC_AnonymiseConsumerBatchScheduler_Test</runTest>
 			<runTest>CEC_IRIProductLocatorControllerTest</runTest>
 			<runTest>CEC_IRIProductLocator_CalloutMock</runTest>
+			<runTest>CEC_RetrievalRequestTriggerHelperTest</runTest>
         </sf:deploy>
     </target>
 </project>

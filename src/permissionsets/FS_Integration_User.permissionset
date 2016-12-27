@@ -4575,9 +4575,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.FS_INN__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -4640,9 +4640,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.FS_RTM__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -5138,18 +5138,7 @@
         <field>Account_Relationship__c.FS_UniqueAccountID__c</field>
         <readable>true</readable>
     </fieldPermissions>         
-    
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.External_ID__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
 
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Agency_Fee_Field_History__c.Amended_By__c</field>
@@ -45316,7 +45305,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Account.FS_OperatorRussia</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Account.Operators</recordType>

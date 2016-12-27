@@ -117,7 +117,7 @@
                                             </div>
                                             <apex:outputPanel layout="block" id="Container5" rendered="{!!OR(ISBLANK(project.Id),project.IPM_IsSaved__c,NOT(isEditable))}" >
                                                 <apex:outputPanel styleClass="oprtnTopAlertContainer" layout="block" >
-                                                    <apex:outputLabel styleClass="oprtnTopAlertLabel" value="{!$Label.IPM_ProjectTypeAndCompany_ReadOnly}"  />
+                                                    <apex:outputText styleClass="oprtnTopAlertLabel" value="{!$Label.IPM_ProjectTypeAndCompany_ReadOnly}" escape="false"/>
                                                 </apex:outputPanel>
                                             </apex:outputPanel>
                                             <apex:outputPanel id="formMessage" styleClass="proSuccessMsg" layout="block" >
@@ -237,7 +237,7 @@
                                                                         </label>
                                                                         <apex:outputPanel layout="block" id="CompanyMsg">
                                                                         <!-- To display below outputText when company card is empty while saving project   -->
-                                                                            <apex:outputText value="{!$Label.IPM_Company_Card_Mandatory}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Company_Card__c'))}" styleClass="brandErrMsg"/>
+                                                                            <apex:outputText value="{!$Label.IPM_Company_Card_Mandatory}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Company_Card__c'))}" styleClass="brandErrMsg" escape="false"/>
                                                                         </apex:outputPanel>
                                                                     </apex:outputPanel>      
                                                                 </div>

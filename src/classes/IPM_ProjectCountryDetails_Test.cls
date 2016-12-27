@@ -52,7 +52,8 @@ private class IPM_ProjectCountryDetails_Test {
              insert projectList;
          } 
          
-         List<IPM_Project__c> insertedProjList = [Select id from IPM_Project__c Where IPM_GateKeeping_Model__c =:IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH AND IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL AND IPM_Project_Type__c =:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL Limit 100]; 
+         List<IPM_Project__c> insertedProjList = [Select id from IPM_Project__c Where IPM_GateKeeping_Model__c like: IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH AND IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL AND IPM_Project_Type__c =:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL Limit 100]; 
+        
          system.assertEquals(insertedProjList.size(),8,'Projects are not created');
 
          IPM_USLP_Country__c uslpCountry = new IPM_USLP_Country__c(Name=COUNTRY_FRANCE,USLPCountryISCode__c='FR');

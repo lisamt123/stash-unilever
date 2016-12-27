@@ -530,6 +530,11 @@
             <field>IPM_Project_Phantom_Non_Key__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_External_ID__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
         <masterLabel>IPM Analytics OTIFs</masterLabel>
     </sections>
 </ReportType>

@@ -1016,6 +1016,30 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>SF_Primary_Key__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>SF Primary Key</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>SF_key__c</fullName>
+        <externalId>false</externalId>
+        <formula>PO__c  &amp; PO_Line_Item_Number__c &amp; PO_Schedule_Line_Item_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SF key</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>SKU_Description__c</fullName>
         <externalId>false</externalId>
         <label>SKU Description</label>

@@ -325,11 +325,7 @@ public class IPM_FinancialControllerGKM3_Test {
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
              //Load Tab Rollup
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
-             Map<Id,IPM_Financial__c> financialDetailMap = new Map<Id,IPM_Financial__c>([select id,Global_External_Id__c, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
-             Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='GKM3TestComments1_LA_CONSOLIDATED']);
-             Map<String,IPM_Financial__c> upsertConsolidatedFinancial = new Map<String,IPM_Financial__c>();
-             Map<Id,IPM_Financial__c> oldFinancialMap = new Map<Id,IPM_Financial__c>();
-             IPM_FinancialHelper.initializeConsolidation(financialDetailMap.values(),oldFinancialMap,financialDetailMap,upsertConsolidatedFinancial,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE);
+             
              system.assertEquals(true, ipmFinCon.isConsolidatedOrNonkey, eitherConsolidatedNonKeyMsg);
              system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , TLDNullMsg);
              system.assertEquals(false,ipmFinCon.showNext , showNextMsg);
@@ -567,6 +563,11 @@ public class IPM_FinancialControllerGKM3_Test {
                  ipmFinCon.getRenderMapGlobal();
                  
                  System.assertEquals(ipmFinCon.getRenderMapGlobal(),true,'Map not Rendered on global');
+                 
+                 List<IPM_Financial_Year__c> listFinYr = [select id from IPM_Financial_Year__c where Financial_External_Id__c =: globFin.Financial_External_Id__c ];
+                 delete listFinYr; 
+                 
+                 delete globFin; 
               
               Test.stopTest();
                 

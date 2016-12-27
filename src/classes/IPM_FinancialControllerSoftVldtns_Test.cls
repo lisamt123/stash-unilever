@@ -138,10 +138,10 @@ private class IPM_FinancialControllerSoftVldtns_Test
   
   public static testmethod void testBelowThresholdSoftValidation(){
       
-      User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1000];
+      User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1];
       
-      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id,recordTypeid,isActive__c,Target_Launch_Date__c,Financial_external_Id__c,Global_External_Id__c,Regional_External_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c,Red_Validation_Cells_Regional__c,Yellow_Validation_Cells_Regional__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Local__c,Red_Validation_Cells_Global__c,Yellow_Validation_Cells_Global__c from IPM_Financial__c limit 10]);
-      List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id,isActive__c,recordTypeid,Target_Launch_Date__c, Yellow_Validation_Cells_Global__c,Red_Validation_Cells_Regional__c,Yellow_Validation_Cells_Regional__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Local__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 10]);
+      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id,recordTypeid,isActive__c,Target_Launch_Date__c,Financial_external_Id__c,Global_External_Id__c,Regional_External_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c,Red_Validation_Cells_Regional__c,Yellow_Validation_Cells_Regional__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Local__c,Red_Validation_Cells_Global__c,Yellow_Validation_Cells_Global__c from IPM_Financial__c where Financial_external_Id__c like '%CONSOLIDATED'limit 10]);
+     // List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id,isActive__c,recordTypeid,Target_Launch_Date__c, Yellow_Validation_Cells_Global__c,Red_Validation_Cells_Regional__c,Yellow_Validation_Cells_Regional__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Local__c,Yellow_Validation_Cells__c,Global_External_Id__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 10]);
       List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where name NOT IN ('IPM_MasterProject')];
      
       lstProjects[0].IPM_SourceProjectType__c = ORIGINAL;
@@ -163,17 +163,17 @@ private class IPM_FinancialControllerSoftVldtns_Test
           IPM_FinancialController finController =  new IPM_FinancialController();
           finController.currentFinancialId = lstFin[0].Id;
           finController.currentFinancial = lstFin[0];
-          finController.setConsolidatedFinancialValidationCells();
+          // Add Parameter  into this method as per recent changes inside main class
+          finController.fetchUnprocessedFins(); 
           finController.getFinExtIdsForCurrentTab();
-          finController.getExistingNonCurrentFinancialValues(consolidatedFinLst[0],'Red');
-          finController.getExistingNonCurrentFinancialValues(consolidatedFinLst[0],'Yellow');
+          finController.getExistingNonCurrentFinancialValues(lstFin[0],'Red');
+          finController.getExistingNonCurrentFinancialValues(lstFin[0],'Yellow');
           
           finController.validateFinancialSummaryTable(lstFin[0]);
           finController.getCurrentFinancialType(lstFin[0]);
           finController.getConsolidatedValidationCells(lstFin[0]);
           finController.saveFinancials();
           
-        
           Test.stopTest();
           System.assert(finController.currentFinancialType == IPM_ConstantUtils.CONSOLIDATED,'Non Consolidated project evaluated');
       }
@@ -183,16 +183,14 @@ private class IPM_FinancialControllerSoftVldtns_Test
   
   public static testmethod void testAboveThresholdSoftValidation(){
       
-      User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1000];
+      User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1]; 
       
       List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Yellow_Validation_Cells_Global__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
       List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name NOT IN ('IPM_MasterProject')];
       
       PageReference pageRef = Page.IPM_Financial;
       Test.setCurrentPage(pageRef);
-
-      
-      
+            
       lstProjects[1].IPM_SourceProjectType__c = ORIGINAL;
       lstProjects[1].IPM_ProjectGKM__c = GKM1;
       lstProjects[1].IPM_Project_Y3iTO__c  = 3000.00;
@@ -201,45 +199,53 @@ private class IPM_FinancialControllerSoftVldtns_Test
       Test.startTest();
       
       System.runAs(globalProjectLeader){
+       
         ApexPages.currentPage().getParameters().put(PRO_ID, lstProjects[1].Id);
       
         IPM_FinancialController finController2 =  new IPM_FinancialController();
         finController2.currentFinancialId = lstFin[1].Id;
         finController2.currentFinancial = lstFin[1];
-          
-        finController2.setConsolidatedFinancialValidationCells();
+
           
         System.assertEquals(finController2.isNonkey,false,'Nonkey');
         System.assertEquals(finController2.isConsolidatedOrNonkey,true,'isconNonkey');
         System.assert(finController2.tldAcceptFromValue!=null,'tldaccept');
         System.assert(finController2.targetLaunchDateToDisplay!=null,'targetLaunchDateToDisplay');
+        
         Test.stopTest();
       }
 
   }
   
+  
   public static testmethod void test_CAPEX_IRR_NPV_PAYBACK(){
       
-      User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1000];
+      User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1];
       
-      Id defaultFinlRecordType = Schema.SObjectType.IPM_Financial__c.RecordTypeInfosByName.get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).RecordTypeId;
-      
-      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Local_Project__c,Gate_Keeping_Model__c, Yellow_Validation_Cells_Global__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c WHERE recordTypeId = :defaultFinlRecordType  limit 1000]);
+      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Local_Project__c,Gate_Keeping_Model__c, Yellow_Validation_Cells_Global__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
       List<IPM_Project__c> lstProjects = [Select id, name, IPMProject_Span__c, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name NOT IN ('IPM_MasterProject')];
       
+      IPM_Financial__c currentFinancial = null; 
       
+      for(IPM_Financial__c fin: lstFin){
+            if(!fin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
+                currentFinancial = fin;
+                break;
+            }
+      }        
+    
       String queryString='Select ';
       For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
           if (!field.equalsignoreCase(PRO_ID) ){
               queryString+= field + ', ';
           }
       }
-      queryString += ' id From IPM_Financial_year__c  WHERE IPM_Financial__c =\'' + lstFin[0].Id + '\'';
+      queryString += ' id From IPM_Financial_year__c  WHERE IPM_Financial__c =\'' + currentFinancial.Id + '\'';
+      
       List<IPM_Financial_year__c> FinYears = Database.query(queryString);
       PageReference pageRef = Page.IPM_Financial;
-      Test.setCurrentPage(pageRef);
-
       
+      Test.setCurrentPage(pageRef);
       
       lstProjects[1].IPM_SourceProjectType__c = ORIGINAL;
       lstProjects[1].IPM_ProjectGKM__c = GKM1;
@@ -250,13 +256,8 @@ private class IPM_FinancialControllerSoftVldtns_Test
       
       System.runAs(globalProjectLeader){
         ApexPages.currentPage().getParameters().put(PRO_ID, lstProjects[1].Id);
-        IPM_Financial__c currentFinancial = null;        
-        for(IPM_Financial__c fin: lstFin){
-            if(!fin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
-                currentFinancial = fin;
-                break;
-            }
-        }
+        
+       
         IPM_FinancialController finController2 =  new IPM_FinancialController();
         finController2.currentFinancialId = currentFinancial.Id;
         finController2.currentFinancial = currentFinancial;
@@ -265,7 +266,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
 		finController2.getLocalCurrencyViewButtonVisibility();
 		 
         List<IPM_FinancialValueWrapper> lstIncrementalPLProfit = new List<IPM_FinancialValueWrapper>();
-        IPM_FinancialValueWrapper valueWrapper = new IPM_FinancialValueWrapper(FinYears[0], lstProjects[0], FIELDSUFFIX, IPM_ConstantUtils.FIELD_LITERAL_VOLUME, 0, lstFin[0],IPM_ConstantUtils.TAB_MYVIEW_NAME);
+        IPM_FinancialValueWrapper valueWrapper = new IPM_FinancialValueWrapper(FinYears[0], lstProjects[1], FIELDSUFFIX, IPM_ConstantUtils.FIELD_LITERAL_VOLUME, 0, currentFinancial,IPM_ConstantUtils.TAB_MYVIEW_NAME);
         lstIncrementalPLProfit.add(valueWrapper);
         boolean flag = finController2.validateGrossProfit(lstIncrementalPLProfit);
         system.assertEquals(flag, true, 'Gross profit validation failed');
@@ -306,17 +307,25 @@ private class IPM_FinancialControllerSoftVldtns_Test
       
       List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id,recordTypeid,isActive__c,Target_Launch_Date__c,Financial_external_Id__c,Global_External_Id__c,Regional_External_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c,Red_Validation_Cells_Regional__c,Yellow_Validation_Cells_Regional__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Local__c,Red_Validation_Cells_Global__c,Yellow_Validation_Cells_Global__c from IPM_Financial__c limit 10]);
       List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where name NOT IN ('IPM_MasterProject')];
-     
+      
+      IPM_Financial__c currentFinancial = null; 
+      
+      for(IPM_Financial__c fin: lstFin){
+            if(!fin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
+                currentFinancial = fin;
+                break;
+            }
+      }
       lstProjects[0].IPM_SourceProjectType__c = ORIGINAL;
       lstProjects[0].IPM_ProjectGKM__c = GKM1;
       Update lstProjects[0];
       
-      lstFin[0].Parent_Project__c = lstProjects[0].id;
-      lstFin[0].Copy_Regional_to_Local__c = true;
-      lstFin[0].Copy_Global_to_Local__c = true;
-      lstFin[0].Copy_Local_to_Global__c = true;
-      lstFin[0].Regional_Project__c = null;
-      Update lstFin[0];
+      currentFinancial.Parent_Project__c = lstProjects[0].id;
+      currentFinancial.Copy_Regional_to_Local__c = true;
+      currentFinancial.Copy_Global_to_Local__c = true;
+      currentFinancial.Copy_Local_to_Global__c = true;
+      currentFinancial.Regional_Project__c = null;
+      Update currentFinancial;
 	  
       System.runAs(globalProjectLeader){
           PageReference pageRef = Page.IPM_Financial;
@@ -328,15 +337,17 @@ private class IPM_FinancialControllerSoftVldtns_Test
           Test.startTest();
           	
 			IPM_FinancialController finController =  new IPM_FinancialController();
-	        
+	        finController.currentFinancialId = currentFinancial.Id;
+            finController.currentFinancial = currentFinancial;
+            
 	        finController.refreshFromLocal();
-			System.assertEquals(lstFin[0].Copy_Local_to_Global__c , true);
+			System.assertEquals(currentFinancial.Copy_Local_to_Global__c , true);
 	             
 	        finController.refreshFromRegional();
-	        System.assertEquals(lstFin[0].Copy_Regional_to_Local__c , true); 
+	        System.assertEquals(currentFinancial.Copy_Regional_to_Local__c , true); 
 	          
 	        finController.refreshFromGlobal();
-	        System.assertEquals(lstFin[0].Copy_Global_to_Local__c , true);
+	        System.assertEquals(currentFinancial.Copy_Global_to_Local__c , true);
           	
           Test.stopTest();
       }

@@ -5120,15 +5120,10 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account_Relationship__c.External_ID__c</field>
+        <field>Account_Relationship__c.FS_UniqueAccountID__c</field>
         <readable>false</readable>
     </fieldPermissions>
 
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Agency_Fee_Field_History__c.Amended_By__c</field>
@@ -32065,9 +32060,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Opportunity.FSNA_Margin_Market_Code__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32162,7 +32157,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.FS_MSCS__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
