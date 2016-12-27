@@ -12,12 +12,12 @@ src/layouts/FAU_PII_Table__c-PII Layout.layout
 src/layouts/FAU_Program__c-FAU UL2020.layout
 src/layouts/FAU_Sponsor__c-Sponsor Layout.layout
 src/tabs/FAU_PII_Table__c.tab
-src/documents/UL2020_Logo
-src/documents/UL2020_Logo-meta.xml
-src/documents/UL2020_Logo/Four_Acres.png
-src/documents/UL2020_Logo/Four_Acres.png-meta.xml
-src/documents/UL2020_Logo/UL2020_Logo.png
-src/documents/UL2020_Logo/UL2020_Logo.png-meta.xml
+src/documents/FAU_Documents
+src/documents/FAU_Documents-meta.xml
+src/documents/FAU_Documents/Four_Acres.png
+src/documents/FAU_Documents/Four_Acres.png-meta.xml
+src/documents/FAU_Documents/UL2020_Logo.png
+src/documents/FAU_Documents/UL2020_Logo.png-meta.xml
 src/workflows/FAU_Email__c.workflow
 src/workflows/FAU_Milestone_Participant__c.workflow
 src/workflows/FAU_Participant__c.workflow
