@@ -65,6 +65,12 @@
         <description>Standard price book.</description>
         <label>Price Book</label>
     </recordTypes>
+    <recordTypes>
+        <fullName>TEL_Telesales</fullName>
+        <active>true</active>
+        <description>For telesales project products.</description>
+        <label>Telesales</label>
+    </recordTypes>	
     <searchLayouts>
         <customTabListAdditionalFields>PRICEBOOK2.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>PRICEBOOK2.DESCRIPTION</customTabListAdditionalFields>
