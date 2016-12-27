@@ -229,16 +229,6 @@
         </layoutColumns>
         <style>CustomLinks</style>
     </layoutSections>	
-    <layoutSections>
-        <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
-        <editHeading>false</editHeading>
-        <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
-        <style>CustomLinks</style>
-    </layoutSections>
     <miniLayout>
         <fields>Name</fields>
         <fields>SAP_ID__c</fields>
