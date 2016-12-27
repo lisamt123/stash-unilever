@@ -2557,17 +2557,17 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         try
         {
-            if(currentFinancial.Copy_Regional_to_Local__c)
+            if(IPMFinancial.Copy_Regional_to_Local__c)
             {
-                currentFinancial.Copy_Regional_to_Local__c = false;
+                IPMFinancial.Copy_Regional_to_Local__c = false;
                 
                 IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
-                update currentFinancial;
+                update IPMFinancial;
                 IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
             }
             
-            currentFinancial.Copy_Regional_to_Local__c = true;
-            update currentFinancial;
+            IPMFinancial.Copy_Regional_to_Local__c = true;
+            update IPMFinancial;
             getFinancials();
             
 
@@ -2611,17 +2611,17 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         try
         {
-            if(currentFinancial.Copy_Global_to_Local__c)
+            if(IPMFinancial.Copy_Global_to_Local__c)
             {
-                currentFinancial.Copy_Global_to_Local__c = false;
+                IPMFinancial.Copy_Global_to_Local__c = false;
                 
                 IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
-                update currentFinancial;
+                update IPMFinancial;
                 IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;  
             }
             
-            currentFinancial.Copy_Global_to_Local__c = true;
-            update currentFinancial;
+            IPMFinancial.Copy_Global_to_Local__c = true;
+            update IPMFinancial;
             getFinancials();
             
             redValidationCellsString = IPM_ConstantUtils.BLANK;
