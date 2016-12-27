@@ -8,3 +8,4 @@ src/workflows/FAU_Email__c.workflow
 src/workflows/FAU_Milestone_Participant__c.workflow
 src/workflows/FAU_Participant__c.workflow
 src/workflows/FAU_Module_Participant__c.workflow
+src/labels/FAU.labels
