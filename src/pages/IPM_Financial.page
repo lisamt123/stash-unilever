@@ -533,7 +533,7 @@
     
                                                         <!-- Rollup Summary Tab -->
                                                         <div role="tabpanel" class="tab-pane {!IF(currentTab == 'rollup', 'active', '')}" id="rollup">
-                                                        <apex:outputPanel rendered="{!currentTab == 'topdown'}" >
+                                                        
 	                                                            <apex:outputPanel id="rollup" rendered="{!AND(currentTab== 'rollup',currentFinancial.Local_Project__c == NULL,!isConsolidatedOrNonkey)}" >
 		                                                            <div class="finAlertBox">
 		                                                                <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
@@ -573,7 +573,7 @@
 	                                                                isEditMode="{!isEditModeBottomUp}"
 	                                                                exRate="{!exRate}"
 	                                                            />
-	                                                      	</apex:outputPanel>      
+	                                                      	    
                                                        	</div>                            
                                                     </div>
                                                 </apex:outputPanel>
