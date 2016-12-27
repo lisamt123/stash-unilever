@@ -115,7 +115,7 @@ public with sharing class IPM_GateDocumentController {
     public boolean reactivateProjectFlag{get; set;} // Boolean to display the 'Reactivate Project'
     public boolean showBBCtable{get; set;} // flag to check the BBC table is applicble     
     public boolean isRedStylingApplicable{get;set;} 
-    public transient boolean isPDLDocument{get;set;}
+    public boolean isPDLDocument{get;set;}
     public List<IPM_Project_Claim__c> projectClaimList{get; set;}
     public Attachment savedAttachmentDoc{get;set;} // show PDL attachment
     public String attachmentName{get;set;}
@@ -206,8 +206,11 @@ public with sharing class IPM_GateDocumentController {
     public void getPdlDocumentStatus() {
         if(isPDLApproved!=null && isPDLApproved)
         { 
-            savedAttachmentDoc = [Select id,body from Attachment WHERE ParentId =:projectDoc.Id]; 
-            attachmentName = IPM_ConstantUtils.ATTACHMENT_FILE_NAME+project.IPM_Project_Name__c+'_'+PrintDoc+IPM_ConstantUtils.ATTACHMENT_FILE_TYPE;
+            List<Attachment> savedAttachmentDocList = [Select id,body from Attachment WHERE ParentId =:projectDoc.Id];
+            if(!savedAttachmentDocList.isEmpty()){
+                savedAttachmentDoc = savedAttachmentDocList[0];
+                attachmentName = IPM_ConstantUtils.ATTACHMENT_FILE_NAME+project.IPM_Project_Name__c+'_'+PrintDoc+IPM_ConstantUtils.ATTACHMENT_FILE_TYPE;
+            }
         }
         if(ApexPages.currentPage().getParameters().get('setStatus') != null)
         {
@@ -240,7 +243,7 @@ public with sharing class IPM_GateDocumentController {
                  IPM_EligibleForReactivation__c,IPM_Threshold_Status__c,IPM_CancelStoppingProjectTill__c,IPM_SourceProjectType__c,IPM_Stopped_Date_Time__c,IPM_PrepareForArchival__c,
                  Is_Archieved__c ,IPM_Parent_Project__r.IPM_Project_Type__c,IPM_Actual_Launch_Date__c,IPM_CompanyCardText__c,IPM_Current_Document_Status__c ,IPM_Document_Update_Date__c ,IPM_Document_Update_Comments__c,
                  IPM_Project_Job_Status__c, IPM_FilledIn_Percentage__c, IPM_Cluster__r.name, IPM_Project_Leader__r.Name, IPM_Strategic_Intent__c, IPM_Project_Gatekeeper__r.Name,
-                 IPM_ProjectSubType__c, IPM_Complexity__c, IPM_Target_Launch_Dates__c,IPM_Fast_Track_Project__c   
+                 IPM_ProjectSubType__c, IPM_Complexity__c, IPM_Target_Launch_Dates__c,IPM_Fast_Track_Project__c, IPM_LocalProject_Brand__c    
                  FROM IPM_Project__C
                  WHERE id=:projectid  limit 1];
         appendixBool = false;
