@@ -124,10 +124,10 @@ public with sharing class IPM_GatekeeperChecklist{
     //Contains Gate Document Type to Retrieve R&D Feasibility Questionnaires
     public string gateTypeRNDFeas{
         get{
-            if(gateTypeSCFeas == null && Apexpages.currentpage().getparameters().get('gateDocType') != null) {
+            if(gateTypeRNDFeas == null && Apexpages.currentpage().getparameters().get('gateDocType') != null) {
                 return  Apexpages.currentpage().getparameters().get('gateDocType');
             }
-            else { return gateTypeSCFeas; }
+            else { return gateTypeRNDFeas; }
         }
         set;
     }
