@@ -2,7 +2,7 @@
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
     <available>true</available>
     <encodingKey>ISO-8859-1</encodingKey>
-    <name>PACV Risk Assessment Status</name>
+    <name>PACV_Risk Assessment Status</name>
     <style>none</style>
     <subject>Solution is not tagged</subject>
     <type>text</type>

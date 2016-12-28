@@ -4,7 +4,7 @@
     <description>send an email alert to the project manager user as soon as Risk assessment record is created, for him to start the risk assessment process</description>
     <encodingKey>ISO-8859-1</encodingKey>
     <letterhead>Unilever_IPM</letterhead>
-    <name>PACV Risk Assessment Template</name>
+    <name>PACV_Risk Assessment Template</name>
     <style>freeForm</style>
     <subject>Risk Assessment record has created.</subject>
     <textOnly>Dear Sir/Madam,

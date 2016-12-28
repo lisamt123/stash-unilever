@@ -2,7 +2,7 @@
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
     <available>false</available>
     <encodingKey>ISO-8859-1</encodingKey>
-    <name>PACVRiskAssesmentRemainder</name>
+    <name>PACV_RiskAssesmentRemainder</name>
     <style>none</style>
     <subject>Remainder for taking Risk Assesment Test</subject>
     <type>text</type>

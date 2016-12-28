@@ -43,8 +43,7 @@
     padding: 8px 50px 8px 50px  !important;
     margin-top: 20px  !important;
     }
-    
-    .displayNone { 
+   .displayNone { 
      display:none; 
      }
     .displayBlock {
@@ -116,76 +115,16 @@
     <apex:outputPanel style="Outputpanel">
 
     <script type="text/javascript">
-        var PLACEHOLDER = 'User Name'; 
-        var userObjects;
-        var queryTerm;
-        
-        $('[id$=userTextBoxId]').autocomplete
-        ({
-        
-            minLength: 2,
-            source: function(request, response) 
-            {
-                queryTerm = request.term;
-                PACV_RiskAssessmentListView_CC.searchuser(request.term, function(result, event)
-            {
-            if(event.type == 'exception')
-            {
-                alert(event.message);
-            } 
-            else{            
-                userObjects = result;
-                response(userObjects);
-            }
-            });
-            },
-            focus: function( event, ui ) 
-            {
-                $('[id$=userTextBoxId]').val( ui.item.Name );            
-                return false;
-            },
-            select: function( event, ui ) 
-            {
-               
-                $('[id$=userTextBoxId]').val( ui.item.Name );
-                $('[id$=searchuserId]').val( ui.item.Id );        
-                return false;
-            },
-        })
-        
-        .data( "ui-autocomplete" )._renderItem = function( ul, item ) 
-        {        
-            var entry = "<a>" + item.Name;    
-            
-            entry = entry + "</a>";
-            entry = entry.replace(queryTerm, "<b>" + queryTerm + "</b>");
-            return $( "<li></li>" )
-            .data( "item.autocomplete", item )
-            .append( entry )
-            .appendTo( ul );
-        };
-        
+        var PLACEHOLDER = 'User Name'; var userObjects;var queryTerm;$('[id$=userTextBoxId]').autocomplete
+        ({ minLength: 2,source: function(request, response){queryTerm = request.term;PACV_RiskAssessmentListView_CC.searchuser(request.term, function(result, event)
+            {if(event.type == 'exception'){alert(event.message);} else{   userObjects = result; response(userObjects);}});},
+            focus: function( event, ui ){ $('[id$=userTextBoxId]').val( ui.item.Name ); return false;},select: function( event, ui ) {$('[id$=userTextBoxId]').val( ui.item.Name );$('[id$=searchuserId]').val( ui.item.Id );return false;
+            },})
+       .data( "ui-autocomplete" )._renderItem = function( ul, item ) { var entry = "<a>" + item.Name; entry = entry + "</a>";entry = entry.replace(queryTerm, "<b>" + queryTerm + "</b>");return $( "<li></li>" )
+            .data( "item.autocomplete", item ).append( entry ).appendTo( ul );};
         // Add or remove placeholder values
-        $('[id$=userTextBoxId]').val(PLACEHOLDER);
-        $('[id$=userTextBoxId]').on("focus",  function(event)
-        {        
-            $tgt = $(event.target);
-            if($tgt.val() === PLACEHOLDER )
-            {
-                $tgt.val('');
-                $tgt.removeClass('placeHolder');
-            }
-        });
-        
-        $('[id$=userTextBoxId]').on( "blur",  function(event)
-        {        
-            $tgt = $(event.target);
-            if($tgt.val() === '' )
-            {
-                $tgt.val(PLACEHOLDER);
-                $tgt.addClass('placeHolder');
-            }
-        });
+        $('[id$=userTextBoxId]').val(PLACEHOLDER);$('[id$=userTextBoxId]').on("focus",  function(event){ $tgt = $(event.target);if($tgt.val() === PLACEHOLDER ){$tgt.val('');$tgt.removeClass('placeHolder');}});
+        $('[id$=userTextBoxId]').on( "blur",  function(event){$tgt = $(event.target);if($tgt.val() === '' ){$tgt.val(PLACEHOLDER);$tgt.addClass('placeHolder');}});
     </script>
 
 
@@ -314,55 +253,24 @@
           #accordion-quest .ui-accordion-content .content table td>input+label {float: left;padding:3px 0;}
           </style>
           <script>
-         $( function() {
-                var answered=0;
-                  var icons = {
-               header: "iconOpen",
-               activeHeader: "iconClosed"
-             };
-           
-             /*Qusetionairre Tab Styles...*/
-            $("#tab-2").find(".accordion").accordion({
-            collapsible:true,active:false,icons:icons
-            });
+         $( function() {var answered=0;var icons = {header: "iconOpen",activeHeader: "iconClosed"};
+           /*Qusetionairre Tab Styles...*/
+            $("#tab-2").find(".accordion").accordion({collapsible:true,active:false,icons:icons});
              $('#accordion-quest .ui-accordion-content').find('.Btn_Confirm').attr('disabled',true);
              $('input[value="Submit"]').attr('disabled',true);
-            $(".Btn_Confirm").on("click",function(){
-              $('.ui-state-active').find('.done').addClass('Ans');
-              $('.ui-accordion-header-active').css({'color':'#555'}).addClass('answered');
-              $('.ui-accordion-content-active').find('.Btn_Delegate').attr('disabled',true).css("cursor", "default");
-             $('.ui-accordion-content-active').find("input:not(:checked)").attr('disabled',true);
-            });
-             $(".Btn_Delegate").click(function(){
-                  
-                 /*$('.ui-state-active').find('.done').addClass('User_Del');
-                 $('.ui-accordion-content-active').find('.Btn_Confirm').attr('disabled',true).css("cursor", "default");*/              
-             });
+            $(".Btn_Confirm").on("click",function(){$('.ui-state-active').find('.done').addClass('Ans');$('.ui-accordion-header-active').css({'color':'#555'}).addClass('answered');
+              $('.ui-accordion-content-active').find('.Btn_Delegate').attr('disabled',true).css("cursor", "default");$('.ui-accordion-content-active').find("input:not(:checked)").attr('disabled',true);
+            });$(".Btn_Delegate").click(function(){});
               $('#accordion-quest .ui-accordion-content:last-child .Selection_CTA').on('click',function(){                       
-                     if($('#accordion-quest h3.ui-accordion-header').length==$('#accordion-quest .ui-accordion-header .Ans').length)
-                     {$('input[value="Submit"]').removeAttr('disabled');}
-                     else{$('input[value="Submit"]').attr('disabled',true);}
-              });
+                if($('#accordion-quest h3.ui-accordion-header').length==$('#accordion-quest .ui-accordion-header .Ans').length)
+               {$('input[value="Submit"]').removeAttr('disabled');}else{$('input[value="Submit"]').attr('disabled',true);}});
               $('#accordion-quest .ui-accordion-content .content table td>input').on('change',function(){ 
-                  $('#accordion-quest .ui-accordion-content-active').find('.Btn_Confirm').removeAttr('disabled');
-              });
-              $("#Acc_Expand").click(function(){
-              $(".ui-accordion-header-icon").addClass('iconClosed').removeClass('iconOpen');
-              $(".ui-accordion-content").show();
-            });
-            
-                $("#Acc_Collapse").click(function(){
-                  $(".ui-accordion-header-icon").addClass('iconOpen').removeClass('iconClosed');
-                  $(".ui-accordion-content").hide();
-            });
-                });
+              $('#accordion-quest .ui-accordion-content-active').find('.Btn_Confirm').removeAttr('disabled');});
+              $("#Acc_Expand").click(function(){$(".ui-accordion-header-icon").addClass('iconClosed').removeClass('iconOpen');$(".ui-accordion-content").show();});
+            $("#Acc_Collapse").click(function(){$(".ui-accordion-header-icon").addClass('iconOpen').removeClass('iconClosed');$(".ui-accordion-content").hide();});});
          </script>
-
-
-        <apex:form id="pg2">
-        
-  
-
+ <apex:form id="pg2">
+      
        <div id="tab-2"   style="display:{!IF(showStatus, "none","block")};">
                <div class="Acc_ActionItems align-right" style="margin:10px 0 0 0">
                   <a id="Acc_Expand">Expand All</a>
