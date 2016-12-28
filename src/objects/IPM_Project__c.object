@@ -23526,6 +23526,33 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000H7SU_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_BEST SAND EU_EU</label>
+        <queue>IPM_a7I0L000000H7SU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H7SZ_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H7SZ</label>
+        <queue>IPM_a7I0L000000H7SZ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H7Se_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H7Se</label>
+        <queue>IPM_a7I0L000000H7Se</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Project</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
