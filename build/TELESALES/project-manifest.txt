@@ -27,6 +27,16 @@ src/classes/TEL_TelesalesWrapper.cls
 src/classes/TEL_TelesalesWrapper.cls-meta.xml
 src/classes/TEL_Product2DAO.cls
 src/classes/TEL_Product2DAO.cls-meta.xml
+src/classes/TEL_AssociateProductsController_Test.cls
+src/classes/TEL_AssociateProductsController_Test.cls-meta.xml
+src/classes/TEL_CaseTrigger_Test.cls
+src/classes/TEL_CaseTrigger_Test.cls-meta.xml
+src/classes/TEL_OppGenController_Test.cls
+src/classes/TEL_OppGenController_Test.cls-meta.xml
+src/classes/TEL_OpportunitySalesCallCreation_Test.cls
+src/classes/TEL_OpportunitySalesCallCreation_Test.cls-meta.xml
+src/classes/TEL_ProductInfo_CC_Test.cls
+src/classes/TEL_ProductInfo_CC_Test.cls-meta.xml
 src/aura
 src/aura/svg/svg.cmp
 src/aura/svg/svg.cmp-meta.xml
@@ -123,9 +133,6 @@ src/flexipages/Telesales_Case.flexipage
 src/labels
 src/labels/TELESALES.labels
 src/queues
-src/queues/CEC_North_America_Creative_Solutions.queue
-src/queues/CEC_North_America_Helpdesk_Queue.queue
-src/queues/CEC_North_America_Supervisor_Queue.queue
 src/queues/TEL_Telesales_UK.queue
 src/workflows
 src/workflows/Case.workflow
