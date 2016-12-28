@@ -8,7 +8,11 @@
         <sharedTo>foodsolutions.integration.user@unilever.com</sharedTo>
         <sharedToType>User</sharedToType>
     </shares>
-
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>s.garrido.matos@accenture.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
     <shares>
         <accessLevel>View</accessLevel>
         <sharedTo>FS_DailySales_Sales_Manager_Group</sharedTo>
