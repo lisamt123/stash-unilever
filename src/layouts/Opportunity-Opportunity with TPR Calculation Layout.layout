@@ -249,6 +249,7 @@
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
+        <actionListContext>Record</actionListContext>
         <platformActionListItems>
             <actionName>NewNote</actionName>
             <actionType>QuickAction</actionType>
