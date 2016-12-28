@@ -69,8 +69,10 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     public void bulkAfter()
     {
         Map<String,IPM_Financial_Year__c> upsertFinancialYearMap = new Map<String,IPM_Financial_Year__c>();
-        List<IPM_Financial__c> misalignedFinancials = new List<IPM_Financial__c>();
         
+        List<IPM_Financial__c> misalignedFinancials = new List<IPM_Financial__c>();
+        //IDs of projects associated with misalligned financials, this would be used to send chatter notifications on the event of misallignment.
+        Set<ID> misAlignedFinPrjIds = new Set<ID>();
         if(Trigger.isInsert || Trigger.isUpdate)
         {  
             List<IPM_Financial__c> newFinancialList = (List<IPM_Financial__c>) Trigger.new;
@@ -84,7 +86,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 IPM_FinancialHelper.insertFinancialYears(newFinancialList,upsertFinancialYearMap);    
                 
                 finIdsforProjY3iToSync.addAll(Trigger.newMap.keySet());    
-                misAlignedFinancials.addAll(IPM_FinancialHelper.updateManualMisalignment(newFinancialList));  
+
+                IPM_FinancialHelper.updateManualMisalignment(newFinancialList,misAlignedFinPrjIds,misAlignedFinancials);
                 if(!upsertFinancialYearMap.isEmpty())
                 {
                     upsert upsertFinancialYearMap.values() External_ID__c;
@@ -109,7 +112,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                         eligibleForMisalignment.add(financial);
                     }
                 }
-                misAlignedFinancials.addAll(IPM_FinancialHelper.updateManualMisalignment(eligibleForMisalignment));
+                IPM_FinancialHelper.updateManualMisalignment(eligibleForMisalignment,misAlignedFinPrjIds,misAlignedFinancials);
                 //Insert new Financial Years to Consolidated Financials.
                 if(!upsertFinancialYearMap.isEmpty())
                 {
@@ -142,6 +145,10 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             {
                 IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
                 update misAlignedFinancials;
+                if(!misAlignedFinPrjIds.isEmpty())
+            	{
+            		IPM_ChatterFeedHelper.postChatterIfLocalRegionalMisaligned(misAlignedFinPrjIds); 
+                } 
                 IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
             }
             

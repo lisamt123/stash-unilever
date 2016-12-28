@@ -523,7 +523,7 @@ table.ipmTable.table.table-bordered.ecoDesignCountry tbody td div.inputField.cel
 section.ipmPlainContainer {
     padding-right: 0%;
 }
-.ceContainer .ipmAcrdnExpand.AO {
+.ceContainer .ipmAcrdnExpand {
     display: block;
     padding: 10px 20px 0 45px;
 }
@@ -557,3 +557,13 @@ span.closegate.collapseAll {
  .headerLeft.customwidth{width:auto;}
  .headerRight.customwidth{width:auto;}
  .addMngbtn{padding-left:15px;padding-right:15px;}
+ 
+  .noPadleft.noPadright.evidenceType {
+    margin-left: 10px;
+}
+div.delTitlecon {
+    padding-left: 0px;
+}
+.ipmAcrdnExpand div:first-child .consumerImgContainer {
+    border-top: none;
+}

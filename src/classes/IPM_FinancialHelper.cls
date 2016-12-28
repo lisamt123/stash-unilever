@@ -1066,7 +1066,7 @@ public with sharing class IPM_FinancialHelper
             } 
     }
     
-    public static List<IPM_Financial__c> updateManualMisalignment(List<IPM_Financial__c> newFinancials)
+    public static void  updateManualMisalignment(List<IPM_Financial__c> newFinancials,Set<Id> parentPrjctIds,List<IPM_Financial__c> misAlignedFinancials)
     {
         List<IPM_Financial__c> listFinancial = new List<IPM_Financial__c>();
         if(!newFinancials.isEmpty()){
@@ -1075,7 +1075,6 @@ public with sharing class IPM_FinancialHelper
         	listFinancial = Database.Query(finQuery);	
         }
         
-        List<IPM_Financial__c> updatedFinancials = new List<IPM_Financial__c>(); 
         
         for(IPM_Financial__c financial : listFinancial){
             Decimal TotalDiffrence = financial.Volume_Unit_Difference__c + financial.NPV_Difference__c + financial.IRR_Difference__c + financial.Payback_Difference__c + financial.CAPEX_Difference__c + financial.BIC_Difference__c + financial.Total_FY_Difference__c;
@@ -1085,10 +1084,11 @@ public with sharing class IPM_FinancialHelper
                 financial.MisalignmentManual__c = tempMisalignment;
                 financial.MisalignmentDateTime__c = System.now();
                 financial.Misaligned_Date__c = System.today();
-                updatedFinancials.add(financial);
+                misAlignedFinancials.add(financial);
+                parentPrjctIds.addAll(new Set<Id> {financial.Local_Project__c,financial.Regional_Project__c});
             }
         }
-        return updatedFinancials;
+        parentPrjctIds.remove(null);  
     }
     
     //Helper method for deleteFinancialyears() method 

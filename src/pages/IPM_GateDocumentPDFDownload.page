@@ -531,11 +531,11 @@
             /* Performance Breakdown Styles */      
             .performanceContainer1{background-color:#dceefa;float: left;}       
             .performanceHead{float: left;font-weight: bold;width:44px;padding:5px;font-size:10px;}      
-            .performanceContainer2,.performanceContainer3{width: 760px;}        
+            .performanceContainer1,.performanceContainer2,.performanceContainer3{width: 760px;}        
             .performanceContainer2{background: #f8f8f8;float:left;clear:both;}      
             .performanceContainer3{clear:both;display:table;table-layout:fixed;}        
             .breakdown_Container{margin-bottom: 10px;}      
-            .performanceSecHead{float:left;width:43px;padding: 5px;font-size:10px;}     
+            .performanceSecHead{float:left;width:44px;padding: 5px;font-size:10px;}     
             .performanceCell{float:left;width:44px;padding: 5px;font-size:10px;border-bottom:1pt #7fa29e solid;min-height:15px;}        
             .emptyCell{min-height:14px;}        
             .misaligned{border:2px solid red;min-height:51px;}      
@@ -678,7 +678,9 @@
             .rightHeadWidthResp {width: 34%;float: left;position: relative;}
             .custSrcWidth{width:8%;}
             .table>thead>tr>th>div.capcon {width: auto;margin: 0 auto;margin-top:-2px;background-color: #ececec;color: #555;padding: 2px 4px;vertical-align: middle;height: auto;border: 1px solid #ddd;}
-        </style>
+	    .greenBox{background: #A3C24B;color: #fff;padding: 5px;font-size: 11px;margin: 0;display:block;}
+            .redBox{background: red;padding: 5px;margin: 3px 0px;color: #fff;display:block;}
+		</style>
     </head>
     
     <apex:include pageName="IPM_GateDocumentPDF"/>

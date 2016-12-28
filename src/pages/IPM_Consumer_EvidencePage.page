@@ -21,6 +21,11 @@
         </apex:define>
     </apex:composition>
      <script src="{!URLFOR($Resource.IPM_Resource, 'js/iframeResizer.contentWindow.min.js')}" type="text/javascript"></script>
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Consumer_Evidence.js')}" type="text/javascript">
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Consumer_Evidence.js')}" type="text/javascript"></script>
+	<script>
+    /* this script will conflict if used in external js hence used in the page */
+    jq(document).ready(function() {
+        jq(".consumerContainer .ipmAcrdnExpand").show();
+    });
     </script>
 </apex:page>
