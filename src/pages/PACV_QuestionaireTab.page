@@ -197,7 +197,7 @@
               </apex:outputLink>
               </td>
            <!--td><button class="Primary_CTA"><a href="#">Project Assessment</a></button></td-->
-           <td>{!Record.Name}</td>
+           <td>{!Record.PACV_Status__c}</td>
            <td>
            <apex:outputText value="{0, date, d MMM ','  yyyy}">
            <apex:param value="{!Record.PACV_Project_Start_Date__c}"/> 
