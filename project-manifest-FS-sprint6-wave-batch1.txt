@@ -1,5 +1,4 @@
 src
-src/permissionsets/FS_Wave_Analytics.permissionset
-src/wave/Daily_Sales_Stage.wapp
-src/wave/FS_Daily_Sales_Leaderships.wapp
+src/wave/FS_Daily_Sales_Stage.wapp
+src/wave/FS_Daily_Sales_NA_Leaderships.wapp
 src/wave/FS_Daily_Sales_NA_Sales_Rep.wapp
