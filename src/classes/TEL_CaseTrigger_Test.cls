@@ -10,15 +10,19 @@ VERSION AUTHOR 				DATE 		DETAIL Description
 ***********************************************************************/
 @isTest
 public class TEL_CaseTrigger_Test {
-
-    @testSetup
-    public static void createData() {
+    
+    static testMethod void createData() {     
+        TEL_Telesales__c cs = new TEL_Telesales__c();
+        cs.Name = 'Additional_Days';
+        cs.Value__c = '5';
+        insert cs;
+        
         Case caseObj 			= new Case(TEL_Product__c = 'Test', Status = Label.TEL_Sample_Request_Status);
         caseObj.RecordTypeId 	= [SELECT Id FROM RecordType WHERE DeveloperName = 'TEL_Sample_Requests' LIMIT 1].Id;
         System.Database.insert(caseObj);
         
         Opportunity oppObj 		= new Opportunity();
-		oppObj.Name				= Label.TEL_Opportunity_Name;
+        oppObj.Name				= Label.TEL_Opportunity_Name;
         oppObj.TEL_Case__c		= caseObj.Id;
         oppObj.Type				= Label.TEL_Sample_Request;
         oppObj.RecordTypeId		= [SELECT Id FROM RecordType WHERE DeveloperName = 'TEL_Telesales' LIMIT 1].Id;
@@ -27,7 +31,7 @@ public class TEL_CaseTrigger_Test {
         System.Database.insert(oppObj);        
     }
     
-    
+/*    
     static testMethod void createSampleRequest(){
         
         // Retrieve the Case and Sample Opportunity created. 
@@ -38,4 +42,5 @@ public class TEL_CaseTrigger_Test {
 		System.assertEquals('Test', c.TEL_Product__c); 
         System.assertEquals(o.TEL_Case__c, c.Id);
     }   
+*/
 }

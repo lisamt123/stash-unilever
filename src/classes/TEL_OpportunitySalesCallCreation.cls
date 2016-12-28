@@ -12,11 +12,11 @@ VERSION AUTHOR 				DATE 		DETAIL Description
 public with sharing class TEL_OpportunitySalesCallCreation {
     
     // Variables 
-    @testVisible private static String  oppRecordType; 	// Store the telesales team opportunity record type. 
-    @testVisible private static String 	oppName;		// Set the opportunity name.
-    @testVisible private static String 	oppStageName;	// Set the opportunity stageName.
-    private static List<Opportunity> 	lstOpportunity; // List of opportunity to be created.
-    private static List<Account>        lstAccount;     // List of Accounts from the same country
+    @testVisible private static String oppRecordType; 	// Store the telesales team opportunity record type. 
+    @testVisible private static String oppName;		// Set the opportunity name.
+    @testVisible private static String oppStageName;	// Set the opportunity stageName.
+    @testVisible private static List<Opportunity> lstOpportunity; // List of opportunity to be created.
+    @testVisible private static List<Account> lstAccount;     // List of Accounts from the same country
     
     // Instance Class
     private static final TEL_OpportunitySalesCallCreation instance = new TEL_OpportunitySalesCallCreation();
