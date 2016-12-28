@@ -105,10 +105,8 @@ public with sharing class IPM_SourcePlanController {
         sourceUnitsList = new list<IPM_SourcingUnit__c>();
         sourceUnitsList =[SELECT Source_Unit_Name__c FROM IPM_SourcingUnit__c WHERE Source_Unit_Name__c Like: '%'+searchUnit_STR +'%' AND Status__c = true order by Source_Unit_Name__c ASC LIMIT 1000];
         bIsPDLApproved=false;
-        if(docType!='PDF'){
-        	getPDLApprovedStatus();
-        	isCentralTeam=IPM_SourcePlanController_Helper.isCentralTeamMember(); 
-        }
+    	getPDLApprovedStatus();
+    	isCentralTeam=IPM_SourcePlanController_Helper.isCentralTeamMember(); 
     }
     public pageReference updateSourcinngUnit()
     {
