@@ -5,7 +5,11 @@
     <shares>
         <accessLevel>Manage</accessLevel>
         <sharedTo>pamela.carbonara@accenture.com</sharedTo>
-		<sharedTo>foodsolutions.integration.user@unilever.com</sharedTo>
+		<sharedToType>User</sharedToType>
+    </shares>
+	 <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>foodsolutions.integration.user@unilever.com</sharedTo>
         <sharedToType>User</sharedToType>
     </shares>
 </WaveApplication>
