@@ -1,0 +1,7 @@
+<aura:component >
+    <aura:attribute name="lostOrderProduct" type="TEL_TelesalesWrapper.ProductInfo" />    
+    
+    <div>     
+        <p>{!v.lostOrderProduct.lostOrderMessage}</p>
+    </div>
+</aura:component>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>38.0</apiVersion>
+    <description>Lightning Design System sprited icons: 
+
+Sprited non-inline SVGs are not supported in Lightning yet
+Accessibility compatibility
+Fill coloring can be styled with CSS</description>
+</AuraDefinitionBundle>

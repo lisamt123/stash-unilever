@@ -6,7 +6,7 @@
     <description>This report type used to create report with all users using Agent app</description>
     <join>
         <outerJoin>false</outerJoin>
-        <relationship>aa_Agent_App_User_Preference__c$LastModifiedById</relationship>
+        <relationship>aa_Agent_App_User_Preference__c$OwnerId</relationship>
     </join>
     <label>Agent App User Details</label>
     <sections>
@@ -571,102 +571,102 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Id</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Owner</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>true</checkedByDefault>
             <field>Name</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>CreatedDate</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>CreatedBy</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>LastModifiedDate</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Agent_App_Unilever_Brand__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Category__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Cluster__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Competitor_Brand__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Competitor_Name__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Country__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Is_Accepted_Terms_Condition__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>RecordTypeId__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>ReportingOn__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Retailer__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>T_C_AcceptedDate__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Topic__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>UserId__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>User_Last_Login__c</field>
-            <table>User.aa_Agent_App_User_Preference__c$LastModifiedById</table>
+            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>
         <masterLabel>Agent App User Preferences (Last Modified By)</masterLabel>
     </sections>
