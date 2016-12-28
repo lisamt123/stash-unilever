@@ -1,0 +1,33 @@
+<aura:component >
+    
+    <ltng:require styles="{!$Resource.TEL_TelesalesCSS +'/assets/styles/salesforce-lightning-design-system.css'}"/>
+    
+    <aura:attribute name="fullWrapperProductsList" type="TEL_TelesalesWrapper.ProductInfo[]" />
+    <aura:attribute name="searchedProductsList" type="TEL_TelesalesWrapper.ProductInfo[]" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:TEL_SearchKeyChange" action="{!c.searchKeyChange1}"/>
+    <aura:registerEvent name="addProduct" type="c:TEL_AddProduct" />
+    
+    <div class="slds-lookup__menu" id="global-search-list-01">
+        <div class="slds-lookup__item--label slds-text-body--small">Products</div>
+        
+        <aura:iteration items="{!v.searchedProductsList}" var="product" indexVar="index">
+            <ul class="slds-lookup__list" role="listbox">
+                <li role="presentation">
+                    <span class="slds-lookup__item-action slds-media slds-media--center" id="option-01" role="option">
+                        <div class="icon-size">
+                            <c:svgIcon svgPath="/resource/TEL_TelesalesCSS/assets/icons/standard-sprite/svg/symbols.svg#product" 
+                                       category="standard" class="slds-icon slds-icon-standard-product slds-icon--small slds-media__figure"
+                                       size="small" name="product"/>
+                        </div>
+                        <div class="slds-media__body" data-record="{!index}" onclick="{!c.addProduct}">
+                            <div class="slds-lookup__result-text">{!product.name}</div>
+                            
+                        </div>
+                    </span>
+                </li>
+            </ul>
+        </aura:iteration>
+    </div>
+</aura:component>
