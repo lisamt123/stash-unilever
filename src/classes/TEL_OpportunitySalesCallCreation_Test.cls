@@ -8,6 +8,7 @@ public class TEL_OpportunitySalesCallCreation_Test {
         accObj.Sales_ORG__c = 'ULUK';
         System.Database.insert(accObj);
         
+        TEL_OpportunitySalesCallCreation.lstAccount = [SELECT Id FROM Account LIMIT 1];
         TEL_OpportunitySalesCallCreation.oppName = 'Telesales - Sales Call Quarter';
         TEL_OpportunitySalesCallCreation.oppRecordType = [SELECT Id FROM RecordType WHERE SobjectType = 'Opportunity' AND DeveloperName = 'TEL_Telesales' LIMIT 1].Id;
         TEL_OpportunitySalesCallCreation.oppStageName = 'Pending Call';
