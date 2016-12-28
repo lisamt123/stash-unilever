@@ -1,0 +1,263 @@
+<apex:page controller="FAU_CustomLookupSelectionController" title="Search" showHeader="false" sideBar="false" tabStyle="FAU_Participant__c" id="pg">
+    <script type="text/javascript">
+    window.onload = new function () {
+        // bring popup window to front
+        window.focus();
+        var ele = document.getElementById('{!$Component.form.block.section.query}');
+        if (ele) {
+            ele.focus();
+        }
+    }
+    
+    function getCookie(c_name)
+    {
+        var c_value = document.cookie;
+        var c_start = c_value.indexOf(" " + c_name + "=");
+        if (c_start == -1)
+        {
+            c_start = c_value.indexOf(c_name + "=");
+        }
+        if (c_start == -1)
+        {
+            c_value = null;
+        }
+        else
+        {
+            c_start = c_value.indexOf("=", c_start) + 1;
+            var c_end = c_value.indexOf(";", c_start);
+            if (c_end == -1)
+            {
+                c_end = c_value.length;
+            }
+            c_value = unescape(c_value.substring(c_start,c_end));
+        }
+        return c_value;
+    }
+    
+    /* 
+         var myids = new Array();
+         var mynames = new Array();
+         var ids;  
+         var names;
+         
+         var strId = '{!$CurrentPage.parameters.namefield}';
+         
+         function selectthis(th,id,name)
+        {
+          var ele = document.getElementsByTagName('input');
+          
+         
+          
+          if(strId.indexOf('targetcontactTo') != -1){
+          
+              for(var i =0;i<ele.length;i++){
+                
+                  if(ele[i].type == 'checkbox' && ele[i].id != th.id){
+                     ele[i].checked = false;
+                  }
+              }
+              myids = new Array();
+              mynames = new Array();
+          }
+          
+          var selectedCount = 0;  
+          var ArrayIndex = myids.indexOf(id) 
+          if(ArrayIndex==-1)
+          {
+            myids[myids.length]  = id ;
+            mynames[mynames.length]  =name;
+            ids =myids.join();
+            names=mynames.join();
+            }
+       
+        
+        }
+        */
+    var myids = new Array();
+    var mynames = new Array();
+    var ids;  
+    var names;
+    
+    function selectthis(th,id,name)
+    {
+        var selectedCount = 0;  
+        var ArrayIndex = myids.indexOf(id) 
+        if(ArrayIndex==-1)
+        {
+            myids[myids.length]  = id ;
+            mynames[mynames.length]  =name;
+            ids =myids.join();
+            names=mynames.join();
+        }
+        
+        
+    }
+    function fillIn() {
+        //alert('fill ');
+        var winMain = window.opener;
+        //alert('fill winMain '+winMain);
+        if (null == winMain) {
+            winMain = window.parent.opener;
+        }
+        var ele = winMain.document.getElementById('{!$CurrentPage.parameters.namefield}');
+        //alert('fill ele '+ele); 
+        // alert('Names - ' + names);
+        var oldvalues=getCookie('OldCCValue');
+        // alert('>>>>>>>>>>>>'+oldvalues);
+        if(names.lengh != 0) {
+            if(oldvalues!= null){
+                ele.value = names+','+oldvalues;
+                //alert('>>>>>>inside 0>>>>>>'+oldvalues);
+            } else {
+                //alert('>>>>>>>>>>>>'+oldvalues);
+                ele.value = names; 
+            }
+            ele = winMain.document.getElementById('{!$CurrentPage.parameters.idfield}');
+            ele.value = ids;
+            CloseWindow(ids);
+        } else {
+            alert('Nothing is selected');
+        }
+    }
+    
+    
+    /*
+        function fillIn() {
+            //alert('fill ');
+            var winMain = window.opener;
+            //alert('fill winMain '+winMain);
+            if (null == winMain) {
+                winMain = window.parent.opener;
+            }
+            var ele = winMain.document.getElementById('{!$CurrentPage.parameters.namefield}');
+            //alert('fill ele '+ele); 
+           // alert('Names - ' + names);
+          
+           // alert('>>>>>>>>>>>>'+oldvalues);
+            if(names.length != 0) {
+                                   
+                    var oldval= ele.value;
+                                    
+                    if(!oldval || oldval.length == 0)
+                      {
+                            ele.value = names;
+                          
+                      }
+                    else{
+                           if(strId.indexOf('targetcontactTo') != -1){
+                               ele.value = names;
+                           }
+                           else{ 
+                                ele.value = ele.value+','+names; 
+                           }   
+                     }
+               
+                ele = winMain.document.getElementById('{!$CurrentPage.parameters.idfield}');
+                ele.value = ids;
+                CloseWindow(ids);
+            } else {
+                alert('Nothing is selected');
+            }
+        }
+        */
+    function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+    }
+    
+    function CloseWindow(ids) {
+        // alert ('Cloase wndow');
+        var winMain = window.opener;
+        if (null == winMain) {
+            winMain = window.parent.opener;
+        } else {
+            winMain = window.parent.opener;
+        }
+        //alert('fill  winMain'+winMain);   
+        winMain.closeLookupPopup();
+    }
+    var inputText1;
+    
+    function eleInFocus(ele) {
+        inputText1 = ele;
+    }
+    
+    function noEnter(ev) {
+        if (window.event && window.event.keyCode == 13 || ev.which == 13) {
+            
+            doSearchAF();
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    function bringFocus() {
+        inputText1.focus();
+    }
+    function Sub()
+    {
+        document.getElementById('{!$Component.pg.frm.pb.btnGo}').click();
+        return false;
+    }
+    </script>
+    
+    <apex:form id="frm">
+        
+        
+        <!-- SEARCH TAB -->
+        <apex:pageBlock id="pb" title="Participants">
+            <apex:actionRegion >
+                <apex:outputPanel id="top" layout="block" style="margin:5px;padding:10px;padding-top:2px;">
+                    <div >
+                        <!-- <apex:outputLabel value="Search" style="font-weight:Bold;padding-right:10px;" for="txtSearch" />
+<apex:inputText id="txtSearch" value="{!searchString}" onKeyPress="javascript:if (event.keyCode == 13) return Sub();"/>
+<span style="padding-left:5px"><apex:commandButton id="btnGo" value="Search" action="{!Search}" status="SearchStatus" rerender="searchResults"></apex:commandButton></span>
+--> <input type="button" class="btn" value="Submit" onclick="fillIn()" id="btnSubmit" />
+                    </div> 
+                    <div style="margin-left:100px;margin-top:10px;">
+                        <apex:actionStatus id="SearchStatus" >
+                            <apex:facet name="start" >
+                                <apex:image url="/s.gif"  /> 
+                            </apex:facet> 
+                        </apex:actionStatus>
+                    </div>
+                </apex:outputPanel>
+                
+                <apex:outputPanel id="pnlSearchResults" style="margin:10px;height:350px;overflow-Y:auto;" layout="block">
+                    <apex:pageBlock id="searchResults">
+                        <apex:pageBlockTable rendered="{!IF(ObjectName=='Contact',true,false)}" value="{!results}" var="a" id="tblResults">
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:outputPanel >Select</apex:outputPanel>
+                                </apex:facet>
+                                <apex:inputCheckbox id="ids" onclick="selectthis(this,'{!a.id}','{!a.PA_Email_and_PA_Email__c}');" />
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:outputPanel >Name</apex:outputPanel>
+                                </apex:facet>
+                                <apex:outputLabel >{!a.FAU_User__r.Name}</apex:outputLabel>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:outputPanel >Email</apex:outputPanel>
+                                </apex:facet>
+                                <apex:outputLabel >{!a.FAU_Email_Address__c}</apex:outputLabel>
+                            </apex:column>
+                            
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:outputPanel >Status</apex:outputPanel>
+                                </apex:facet>
+                                <apex:outputLabel >{!a.FAU_Invite_State__c }</apex:outputLabel>
+                            </apex:column>
+                            
+                        </apex:pageBlockTable>
+                    </apex:pageBlock>
+                </apex:outputPanel>
+                
+            </apex:actionRegion>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

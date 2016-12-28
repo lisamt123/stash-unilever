@@ -16,6 +16,9 @@ public with sharing class FAU_Module_Part_ControllerExt {
     boolean isLocal = false;
     public Boolean isNotCampus {get;set;}
     public Boolean hotelAlreadySetUpInModule {get;set;}
+    public Boolean isUL2020 {get;set;}
+    public FAU_Module_Participant__c participantmodule { get; set; }
+    public FAU_Participant__c participant { get; set; }
     
     // - - - private attributes - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private ApexPages.StandardController standardController;
@@ -54,6 +57,9 @@ public with sharing class FAU_Module_Part_ControllerExt {
             }
        }
        if(!Test.isRunningTest()) isNotCampus = ((FAU_Module_Participant__c)this.standardController.getRecord()).recordType.DeveloperName != 'FAU_Campus';
+       this.participantmodule = (FAU_Module_Participant__c)standardController.getRecord();
+       this.participant = participantForParticipantmodule(this.participantmodule); 
+       isUL2020 = FAU_Utilities.isRectypeUL2020(this.participant);                     
             
     } 
 
@@ -115,6 +121,9 @@ public with sharing class FAU_Module_Part_ControllerExt {
             List<ApexPages.Message> messages = validateCompletion(recordToSave);
             if(messages.isEmpty()){
                 update recordToSave;
+                FAU_Participant__c recParticipant = [SELECT FAU_UL2020_Travel_details__c from FAU_Participant__c where id IN (SELECT FAU_Participant__c FROM FAU_Module_Participant__c WHERE Id = :recordToSave.Id)];
+                recParticipant.FAU_UL2020_Travel_details__c = true;
+                update recParticipant; 
             } else {
                 for(ApexPages.Message message : messages){
                     ApexPages.addMessage(message);
