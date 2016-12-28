@@ -47,6 +47,15 @@ public with sharing class IPM_FinancialYearHelper
     
         if (newFinancialYearList != null && !newFinancialYearList.isEmpty()) {
             for (IPM_Financial_Year__c newfinancialYear: newFinancialYearList) {
+                
+                // Bypass GKM5, 6, and 7 project from consolidation, as they don't have consolidated business case. 
+                if(newfinancialYear.Gate_Keeping_Model__c.equalsIgnorecase(IPM_ConstantUtils.GKM_5) || 
+                newfinancialYear.Gate_Keeping_Model__c.equalsIgnorecase(IPM_ConstantUtils.GKM_6) ||
+                newfinancialYear.Gate_Keeping_Model__c.equalsIgnorecase(IPM_ConstantUtils.GKM_7)){
+                	continue;
+                }
+                
+                
                 IPM_Financial_Year__c oldFinancialYear = null;
                 if (oldFinancialYearMap != null && oldFinancialYearMap.containsKey(newfinancialYear.Id)) {
                     oldFinancialYear = oldFinancialYearMap.get(newfinancialYear.Id);

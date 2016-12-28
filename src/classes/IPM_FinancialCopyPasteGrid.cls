@@ -280,7 +280,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
 				payback = (col == IPM_ConstantUtils.col_five && row == IPM_ConstantUtils.rowValue21) ? value :payback;
 				capex = (col == IPM_ConstantUtils.col_eight && row == IPM_ConstantUtils.rowValue19) ? value :capex;
 				BIC = (col == IPM_ConstantUtils.col_eight && row == IPM_ConstantUtils.rowValue20) ? value :BIC;
-				volumeUnit = (col == IPM_ConstantUtils.col_one && row == IPM_ConstantUtils.row_seven) ? value.replace('\'',IPM_ConstantUtils.EMPTY_STRING_INITIAL).trim() :NPV;
+                volumeUnit = (col == IPM_ConstantUtils.col_one && row == IPM_ConstantUtils.row_seven) ? value.replace('\'',IPM_ConstantUtils.EMPTY_STRING_INITIAL).trim() :volumeUnit;
         
                         }
                         UpdateFinancialYear(mapfields, selectedMCO, pspan, projectType);
