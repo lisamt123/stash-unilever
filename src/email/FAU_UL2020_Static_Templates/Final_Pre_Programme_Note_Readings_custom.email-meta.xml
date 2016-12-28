@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Final Pre-Programme Note &amp; Readings</name>
+    <style>none</style>
+    <subject>Final Pre-Programme Note &amp; Readings</subject>
+    <textOnly>Dear UL2020 Participants,
+
+Here are some final notes to prepare for next week’s programme.
+
+1. Your Purpose to Impact Initiative (PII) groups below (and also attached). We have done our best to accommodate your preferences, however, some PII’s were oversubscribed so we appreciate your understanding if you are placed in a different group.
+
+(insert photo of PII’s for the Class)
+
+2. Read your relevant PII brief and pre-reading documents on this link.
+
+3. If you have not yet done so, please answer these 2 short questionnaires, before the programme starts on Monday:
+
+- On Wellbeing and Resilience
+
+- On Empowerment
+
+4. You will receive your 360-degree assessment report during the programme. There will be coaches available, if you wish to have 1:1 coaching on this. You may sign up for the coaching sessions upon arrival on Monday.
+
+Also attached here is the programme agenda. (Lunch is served at 12:00 at L3 Sunsilk Open Space, and we will start at 13:00 at L2 Surf and Flora rooms). For questions, please contact Betty Lau or Loes Schrijvers.
+
+We really look forward to embarking on this exciting, ambitious programme with all of you.
+
+Thank you!
+
+Tim Munden
+Chief Learning Officer</textOnly>
+    <type>custom</type>
+</EmailTemplate>
