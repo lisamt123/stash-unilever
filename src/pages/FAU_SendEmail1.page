@@ -222,44 +222,34 @@ title="Lookup (New Window)"/> -->
             </apex:outputPanel>
         </apex:outputPanel> 
        
-        <script>
-        
+        <script>        
         var newWin=null;
-        var lookUpNamex=null;
-        
-        //Pop up closure function
+        var lookUpNamex=null;        
         function closeLookupPopup()
-        {
-            
+        {            
             if (null!=newWin)
             {
                 newWin.close();
             }
         }
-        
         //Lookup for Selecting Contacts(To,BCC,CC,AdditionTo fields)
         function openLookupPopup3(name, id,Email,objtype,objname)
         {       var pid = "{!$CurrentPage.parameters.id}";
          var url="/apex/FAU_CustomLookupSelectionPage?namefield=" + name + "&idfield=" +id + "&ObjType="+objtype+"&ObjectName="+objname+"&id="+pid;  
          newWin=window.open(url, 'Popup','height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
          if (window.focus) 
-         {
-             newWin.focus();
+         { 
+         newWin.focus();
          }
          return false;
         }
-        //Function for rendering Emailbody   
         function ReloadCKEditor() {
             for(name in CKEDITOR.instances)
-            {
-                
+            { 
                 delete CKEDITOR.instances[name];
             }
-            
-            var editor = CKEDITOR.replace('{!$Component.mailPage:form1:theBlock:emailSec:emailbdy:EmailBody}');
-            
-        }  
-        
-        </script>  
+         var editor = CKEDITOR.replace('{!$Component.mailPage:form1:theBlock:emailSec:emailbdy:EmailBody}');
+      }  
+      </script>  
     </apex:form>
 </apex:page>

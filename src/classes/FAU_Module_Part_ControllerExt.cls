@@ -22,6 +22,7 @@ public with sharing class FAU_Module_Part_ControllerExt {
     
     // - - - private attributes - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private ApexPages.StandardController standardController;
+    private static String ERROR_PARTICIPANT_NOT_FOUND = 'Participant could not be found for  module Participant';
     private static PageReference STAY_ON_SAME_PAGE = null;  
     private static String LANDING_PAGE = '/apex/FAU_LandingPage?Id=';
     private static List<String> FIELDS = new List<String> { 'FAU_Participant__c','recordType.DeveloperName','FAU_Module__r.FAU_Hotel_Name__c'};
@@ -40,7 +41,7 @@ public with sharing class FAU_Module_Part_ControllerExt {
         addFieldsTo(standardController);
 
         this.standardController = standardController;
-           If ((((FAU_Module_Participant__c)this.standardController.getRecord()).FAU_Is_Local__c)){
+            If ((((FAU_Module_Participant__c)this.standardController.getRecord()).FAU_Is_Local__c) == true){
                 isLocal = false;
             }else{
                 isLocal = true;
@@ -60,9 +61,26 @@ public with sharing class FAU_Module_Part_ControllerExt {
        this.participantmodule = (FAU_Module_Participant__c)standardController.getRecord();
        this.participant = participantForParticipantmodule(this.participantmodule); 
        isUL2020 = FAU_Utilities.isRectypeUL2020(this.participant);                     
-            
     } 
 
+    /*******************************************************************
+       Purpose:     Return the Participant record for a participant module                                   
+    ********************************************************************/
+    public FAU_Participant__c participantForParticipantmodule(FAU_Module_Participant__c participantmodule)
+    {
+        System.debug('Entering FAU_Module_Part_ControllerExt.programForParticipant : ' + participantmodule);
+
+        List<FAU_Participant__c> participant = [SELECT Id, recordtype.name, FAU_Program_Wave__c FROM FAU_Participant__c WHERE Id = :participantmodule.FAU_Participant__c LIMIT 1];
+        if(participant.size() != 1)
+        {
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, ERROR_PARTICIPANT_NOT_FOUND));
+            return null;
+        }
+
+        System.debug('Exiting FAU_Module_Part_ControllerExt.programForParticipant programs[0]: ' + participant[0]);
+
+        return participant[0];
+    }
     /*******************************************************************
        Purpose:     Saves to the database                                                 
     ********************************************************************/
@@ -82,7 +100,7 @@ public with sharing class FAU_Module_Part_ControllerExt {
        Purpose:     Sets the isLocal Variable                                               
     ********************************************************************/
     public PageReference updateisLocal() {
-            if ((((FAU_Module_Participant__c)this.standardController.getRecord()).FAU_Is_Local__c)){
+            if ((((FAU_Module_Participant__c)this.standardController.getRecord()).FAU_Is_Local__c) == true){
                 isLocal = false;
             }else{
                 isLocal = true;
@@ -142,7 +160,6 @@ public with sharing class FAU_Module_Part_ControllerExt {
         pageRef.getParameters().put('Id', [SELECT Id, FAU_Participant__c FROM FAU_Module_Participant__c WHERE Id = :recordToSave.Id LIMIT 1].FAU_Participant__c);
 
         pageRef.setRedirect(true);
-
 
         System.debug('Exiting FAU_Module_Part_ControllerExt.save');
         
