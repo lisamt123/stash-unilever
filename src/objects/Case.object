@@ -5405,6 +5405,43 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Japan8</fullName>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>PARENT.CASE_NUMBER</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
+        <columns>CEC_Reason_Code__c</columns>
+        <columns>OWNER_NAME</columns>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>contains</operation>
+            <value>2016,2017</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>contains</operation>
+            <value>回答なし,回答先なし</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>contains</operation>
+            <value>調査中</value>
+        </filters>
+        <label>CEC Japan - 調査中＆回答なし（チェック用）</label>
+        <language>ja</language>
+        <sharedTo>
+            <role>CEC_Manager_Japan</role>
+            <role>CEC_User_Japan</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Japan_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <filters>
