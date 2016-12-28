@@ -1188,7 +1188,7 @@ public without sharing class IPM_Utils {
 public static void updateProjectY3ITOValue(List<Id> projListForY3ITOUpdate) { 
     
      Map<Id,Decimal> projIdiTOMap =  IPM_Utils.createProjectSpecificITOValueMap(projListForY3ITOUpdate);
-     
+     Set<Id> clusterIDsforY3iToUpdate = new Set<Id>();
      List<IPM_Project__c> y3iTOUpdateProjList = new List<IPM_Project__c>();
      
      if(projIdiTOMap!=null && !projIdiTOMap.isEmpty()){
@@ -1202,13 +1202,23 @@ public static void updateProjectY3ITOValue(List<Id> projListForY3ITOUpdate) {
         }
         
         if(y3iTOUpdateProjList!=Null && !y3iTOUpdateProjList.isEmpty()){
-        
-            update y3iTOUpdateProjList;
-        
+        	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+            	update y3iTOUpdateProjList;
+            	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         }
         
         updateProjectBIValue(projListForY3ITOUpdate);
-     
+        
+     	for(IPM_Project__c proj : [Select id,IPM_Cluster__c From IPM_Project__c where id IN: projListForY3ITOUpdate]){
+     		if(proj.IPM_Cluster__c!=Null)
+            	{
+                	clusterIDsforY3iToUpdate.add(proj.IPM_Cluster__c);
+            	}
+     	}
+     	if(!clusterIDsforY3iToUpdate.isEmpty())
+        {
+     		IPM_Utils.updateclusterSumY3iTOValue(clusterIDsforY3iToUpdate);
+        }
      }
 
 } 

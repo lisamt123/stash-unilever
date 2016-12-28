@@ -1229,7 +1229,6 @@ public with sharing class IPM_RolloutTriggerHandler
 					break;
 				}
 			}
-			
 			if(!isActiveFound)
 			{
 				regRollout.isActive__c=false;

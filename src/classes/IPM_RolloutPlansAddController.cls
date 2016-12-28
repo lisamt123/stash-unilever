@@ -1,4 +1,3 @@
-
 /**
 @Author Cognizant 
 @Name IPM_RolloutPlansAddController
@@ -700,8 +699,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     
                 }
             }
-            
-            
             lstCountryWrappers = sortWrappersByName(lstCountryWrappers);
             if(selectedMCO!=null)
             {

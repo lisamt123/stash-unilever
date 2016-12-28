@@ -1,4 +1,3 @@
-
 /**********************************************************************************************************************
 * @author       Cognizant 
 * @date         27/04/2015
@@ -154,7 +153,7 @@ public with sharing class IPM_FinancialYearHelper
                                          IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c=:IPM_ConstantUtils.PHASE_IDEAS];  
             }
             
-            projDocSecConList = updateProjDocSecConList(projDocSecConList, newFinYearList);
+            projDocSecConList = new List<IPM_Project_Document_Section_Content__c>(updateProjDocSecConList(projDocSecConList, newFinYearList));
             if(projDocSecConList!=null && !projDocSecConList.isEmpty())
             {
                 update projDocSecConList;
@@ -172,8 +171,8 @@ public with sharing class IPM_FinancialYearHelper
     * @return                       List of IPM_Project_Document_Section_Content__c 
     
     ***********************************************************************************************************************************/
-    public static List < IPM_Project_Document_Section_Content__c > updateProjDocSecConList(List < IPM_Project_Document_Section_Content__c > projDocSecConList, List < IPM_Financial_Year__c > newFinYearList){  
-        List < IPM_Project_Document_Section_Content__c > tmpProjDocSecConList = New List < IPM_Project_Document_Section_Content__c >();
+    public static Set < IPM_Project_Document_Section_Content__c > updateProjDocSecConList(List < IPM_Project_Document_Section_Content__c > projDocSecConList, List < IPM_Financial_Year__c > newFinYearList){  
+        Set < IPM_Project_Document_Section_Content__c > tmpProjDocSecConList = New Set < IPM_Project_Document_Section_Content__c >();
         for (IPM_Financial_Year__c finYear: newFinYearList) {
             for (IPM_Project_Document_Section_Content__c secContent: projDocSecConList) {
                 if (secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c == finYear.Global_Project_Id__c) {

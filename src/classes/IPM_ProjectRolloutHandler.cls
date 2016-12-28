@@ -162,7 +162,6 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                 phaseChangeProjects.add(newRollout.IPM_Project__c);
                 phaseChangeRolloutSet.add(newRollout.Id);
             }
-            
             if(LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.Regional_Project__c !=null)
             {   
                 phaseChangeProjects.add(newRollout.Regional_Project__c);
