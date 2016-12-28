@@ -109,16 +109,18 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         belowThresholdError=false;
         stopDisclaimer=Label.IPM_StopDisclaimer2;
         projectId=ApexPages.currentPage().getParameters().get('Id');
-        String checkPDL = ApexPages.currentPage().getParameters().get('isPDL');
+     
+        Boolean checkPDL = ApexPages.currentPage().getParameters().get('printDoc').EqualsIgnoreCase(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT);
+     
         isPDL=false;
         if(projectId!=null)
         { 
             associatedProjectType = IPM_Utils.retrieveProjectType(project);
             if(associatedProjectType!=null){
                 String currentGate = associatedProjectType.IPM_Gate_Document__c;
-                if(IPM_ConstantUtils.IPM_true.EqualsIgnoreCase(checkPDL)){
-                	currentGate = IPM_ConstantUtils.PRODUCT_DESIGN_LOCK ;
-                	isPDL=true;
+                if(checkPDL){                                                        //IPM_ConstantUtils.IPM_True.EqualsIgnoreCase(checkPDL)
+                    currentGate = IPM_ConstantUtils.PRODUCT_DESIGN_LOCK ;
+                    isPDL=true;
                 }
                 getStopDisclaimer(currentGate);
                 
