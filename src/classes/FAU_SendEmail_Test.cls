@@ -3,7 +3,7 @@
  * Description: Test class for SendEmail_Custom & CustomLookupSelectionController  
  * Author: Accenture Offshore Team
  * *************************************************************************/
-@isTest(SeeAllData = true)
+@isTest
 public class FAU_SendEmail_Test{
 
 PRIVATE STATIC FINAL string email1='s.a.chodisetti@accenture.com';
