@@ -166,12 +166,8 @@
     //declare callback method to receive response from Salesforce console
     var showTabId = function showTabId(result) {alert('Primary Tab IDs: ' + result.ids);};
     </script>
-    <script type="text/javascript">
-		function displaymessage(){alert("Access has been granted to the user");}
-		</script>
-    
-<table width="100%" align="Center">
-<apex:pageMessages ></apex:pageMessages>    
+    <table width="100%" align="Center">
+    <apex:pageMessages ></apex:pageMessages>    
                                          
     <tr>
     <td align="center"><apex:outputLabel value="Internal User" styleClass="popupfontstyling"></apex:outputLabel></td>  
@@ -182,7 +178,10 @@
     </tr>  
         <tr>
         <td></td>
-        <td><apex:commandButton styleClass="Selection_CTA" value="Submit" action="{!savepermissionset}" rerender="popup"  ></apex:commandButton> 
+        <td><apex:commandButton styleClass="Selection_CTA" value="Submit" action="{!savepermissionset}" rerender="popup"  onclick="displaymessage()"></apex:commandButton> 
+         <script type="text/javascript">
+        function displaymessage(){alert("Access has been granted to the user");}
+        </script>
             <apex:commandButton styleClass="Selection_CTA" value="Close" action="{!closePopup}" rerender="popup"></apex:commandButton>
              
         </td>
