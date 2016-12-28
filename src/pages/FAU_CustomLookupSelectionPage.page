@@ -57,10 +57,10 @@
       if(names.lengh != 0) {
             if(oldvalues!= null){
                 ele.value = names+','+oldvalues;
-      	} else {
-        	 ele.value = names; 
+        } else {
+             ele.value = names; 
             }
-            ele = winMain.document.getElementById('{!$CurrentPage.parameters.idfield}');
+            ele = winMain.document.getElementById('{!JSENCODE($CurrentPage.parameters.idfield)}');
             ele.value = ids;
             CloseWindow(ids);
         } else {
