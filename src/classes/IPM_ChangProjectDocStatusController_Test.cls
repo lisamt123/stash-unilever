@@ -42,6 +42,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
     private static string PROJECT_STATUS_STR='Eligible For Processing';
     private static string PROJECT_CATEGORY_STR='Household Care';
     private static string ERRORONPAGE_STR='display error message on page';
+    private static string PrintDoc = 'Contract';
     /*************************************************************************************************************************
     * @description Test Data
     */
@@ -231,8 +232,9 @@ private class  IPM_ChangProjectDocStatusController_Test {
         insert localFin;
         list<IPM_Financial__c>lstLocalFin=[SELECT Local_Project__c FROM IPM_Financial__c WHERE ID=:localFin.ID LIMIT 1];
           System.assertEquals(lstLocalFin[0].Local_Project__c,childProjs.id,'Financial local project is'+lstLocalFin[0].Local_Project__c);
-            pRef = Page.IPM_ProjectDocumentSectionEditor;
+            pRef = Page.IPM_ChangeCurrenDocumentStatus;
             pRef.getParameters().put('id', projectListObj[0].Id);
+            pRef.getParameters().put('printDoc',PrintDoc );
             Test.setCurrentPage(pRef);
             chngPro=new IPM_ChangProjectDocumentStatusController();
             
