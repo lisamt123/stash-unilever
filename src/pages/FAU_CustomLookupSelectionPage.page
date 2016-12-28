@@ -52,7 +52,7 @@
          if (null == winMain) {
             winMain = window.parent.opener;
         }
-        var ele = winMain.document.getElementById('{!$CurrentPage.parameters.namefield}');
+        var ele = winMain.document.getElementById('{!JSENCODE($CurrentPage.parameters.namefield)}');
         var oldvalues=getCookie('OldCCValue');
       if(names.lengh != 0) {
             if(oldvalues!= null){

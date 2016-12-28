@@ -79,14 +79,14 @@
             <!------------------------------- From Address section ------------------------------------------------->
             
             <div class="pbSubheader brandTertiaryBgr first tertiaryPalette" id="head_1_ep">
-                <font color="Black" size="2"><span class="pbSubExtra"><span class="requiredLegend brandTertiaryFgr">
+                <span class="pbSubExtra"><span class="requiredLegend brandTertiaryFgr">
                     <span class="requiredExampleOuter"><span class="requiredExample "></span>
                     </span>
                     <span class="requiredMark">*</span>
                     <span class="requiredText pbSubExtra"> = Required Information</span>
                     </span>
                     </span>
-                    <h3>Edit Email<span  class="titleSeparatingColon">:</span></h3></font>
+                    <h3>Edit Email<span  class="titleSeparatingColon">:</span></h3>
             </div>
             <apex:pageblocksection columns="1" >
                 <apex:pageBlockSectionItem >
@@ -234,8 +234,8 @@ title="Lookup (New Window)"/> -->
         }
         //Lookup for Selecting Contacts(To,BCC,CC,AdditionTo fields)
         function openLookupPopup3(name, id,Email,objtype,objname)
-        {       var pid = "{!$CurrentPage.parameters.id}";
-         var url="/apex/FAU_CustomLookupSelectionPage?namefield=" + name + "&idfield=" +id + "&ObjType="+objtype+"&ObjectName="+objname+"&id="+pid;  
+        {      
+         var url="/apex/FAU_CustomLookupSelectionPage?namefield=" + name + "&idfield=" +id + "&ObjType="+objtype+"&ObjectName="+objname+"&id="+"{!JSENCODE($CurrentPage.parameters.id)}";  
          newWin=window.open(url, 'Popup','height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
          if (window.focus) 
          { 
