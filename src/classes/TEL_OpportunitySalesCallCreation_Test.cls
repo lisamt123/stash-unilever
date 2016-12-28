@@ -4,7 +4,7 @@ public class TEL_OpportunitySalesCallCreation_Test {
     static testMethod void oppSalesCallCreation() {
         Account accObj = new Account();
         accObj.Name = 'Acc 1';
-        accObj.RecordTypeId = [SELECT Id FROM RecordType WHERE DeveloperName = 'TEL_Telesales_Account' LIMIT 1].Id;
+        //accObj.RecordTypeId = [SELECT Id FROM RecordType WHERE DeveloperName = 'TEL_Telesales_Account' LIMIT 1].Id;
         accObj.Sales_ORG__c = 'ULUK';
         System.Database.insert(accObj);
         
