@@ -23,4 +23,14 @@ trigger FAU_ParticipantTrigger on FAU_Participant__c (
 
 	TriggerFactory.createHandler(FAU_Participant__c.sObjectType);
 
+if((Trigger.isinsert || Trigger.isUpdate) && Trigger.isafter )
+{
+FAU_GroupCreationPIIClass.insertMemberToGroupParticipant(trigger.new);
+}
+
+if(Trigger.isdelete  && Trigger.isafter)
+{
+FAU_GroupCreationPIIClass.ParticipantDeletionFromChatter(trigger.old);
+}
+
 }
