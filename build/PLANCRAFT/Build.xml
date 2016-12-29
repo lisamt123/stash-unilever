@@ -135,6 +135,7 @@
 	  <runTest>PBS_TaskViewerController_Test</runTest>  
 	  <runTest>PBS_TrainingTrackDetailCtrl_Test</runTest>
 	  <runTest>PBS_TrainingTracksController_Test</runTest>
+	  <runTest>PC_ForumController_Test</runTest>
     </sf:deploy>
   </target>  
 
