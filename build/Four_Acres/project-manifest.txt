@@ -75,6 +75,8 @@ src/classes/FAU_SendEmail_Test.cls
 src/classes/FAU_SendEmail_Test.cls-meta.xml
 src/classes/FAU_Utilities.cls
 src/classes/FAU_Utilities.cls-meta.xml
+src/classes/FAU_ProgramHandler.cls
+src/classes/FAU_ProgramHandler.cls-meta.xml
 src/pages/FAU_CustomLookupSelectionPage.page
 src/pages/FAU_CustomLookupSelectionPage.page-meta.xml
 src/pages/FAU_LandingPage.page

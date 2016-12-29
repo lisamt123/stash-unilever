@@ -51,6 +51,7 @@ public with sharing class FAU_ProgramHandler
     // Constructor
     public FAU_ProgramHandler()
     {
+    	System.debug('--Need to look--');
     }
 
     /**
@@ -61,6 +62,7 @@ public with sharing class FAU_ProgramHandler
      */
     public void bulkBefore()
     {   
+    	System.debug('--Need to look--');
         /*System.debug('Entering FAU_ProgramHandler.bulkBefore'); 
         if(triggerShouldExecute){
             if(Trigger.isUpdate) {
@@ -114,6 +116,7 @@ public with sharing class FAU_ProgramHandler
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
+    	System.debug('--Need to look--');
         /*System.debug('Entering FAU_ProgramHandler.beforeUpdate'); 
         FAU_Program__c oProgramInsert = null;
         if (so.get('FAU_Make_Template__c') == true){
@@ -142,21 +145,25 @@ public with sharing class FAU_ProgramHandler
 //Implementin Itrigger So need to override below methods.   
     public void beforeDelete(SObject so)
     {   
+    	System.debug('--Need to look--');
     }
     
     public void afterInsert(SObject so) 
     {
         if(triggerShouldExecute){
+        	System.debug('--Need to look--');
             //1.2 lModules.addAll(FAU_ProgramClsSC.addProgramModule((FAU_Program__c)so)); 
         }
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
+    	System.debug('--Need to look--');
     }
     
     public void afterDelete(SObject so)
     {
+    	System.debug('--Need to look--');
     }
     
     /**
