@@ -936,7 +936,9 @@ public with sharing class IPM_RolloutTriggerHandler
         
         if(!updateCountryMap.isEmpty())
         {                
+            IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true;
             update updateCountryMap.values();
+            IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = false;
         }
         
         if(!deleteCountryMap.isEmpty())
