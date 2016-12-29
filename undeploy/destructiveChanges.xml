@@ -2,34 +2,15 @@
 <Package xmlns="http://soapsforcecom/2006/04/metadata">
 
 <types>
-	<members>Brand_USLP_Progress__c</members>
 	
-	<members>CMS_Article_Link__c</members>
+	<members>CMS_Article__c</members>
 	
-	<members>CMS_ContentToCarousel__c</members>
-	<members>CMS_Page_Article__c</members>
-	<members>Carousel__c</members>
-	<members>Chatter_History__c</members>
+	<members>CMS_Content__c</members>
 	
-	<members>Event_Member__c</members>
-	<members>My_Library__c</members>
-	<members>isll_Event_Visit__c</members>
-     <members>ISLL_Custom_Settings__c</members>
-	<members>isllBrainResultsSettings__c</members>
+	<members>Event__c</members>
+	
 	
 	<name>CustomObject</name>
 </types>
-<types>
-        <members>isllBrainResultsSettings__c-en_US</members>
-		<members>isll_Event_Visit__c-en_US</members>
-		<members>ISLL_Custom_Settings__c-en_US</members>
-        <name>CustomObjectTranslation</name>
-    </types>
-	<types>
- <members>isll_Event_Visit__c-Event Unique Visit Layout</members>
-        <name>Layout</name>
-    </types>
-
 <version>37.0</version>
-
 </Package>
