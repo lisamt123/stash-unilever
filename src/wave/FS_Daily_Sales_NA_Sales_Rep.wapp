@@ -8,5 +8,19 @@
         <sharedTo>foodsolutions.integration.user@unilever.com</sharedTo>
         <sharedToType>User</sharedToType>
     </shares>
-
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>pamela.carbonara@accenture.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>twoebkenberg@salesforce.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>FS_DailySales_Sales_Rep_Group</sharedTo>
+        <sharedToType>Group</sharedToType>
+    </shares>
 </WaveApplication>

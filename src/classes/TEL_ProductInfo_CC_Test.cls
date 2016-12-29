@@ -5,7 +5,7 @@ public class TEL_ProductInfo_CC_Test {
     public static void createData() {
         Account accObj = new Account();
         accObj.Name = 'Acc 1';
-        accObj.RecordTypeId = [SELECT Id FROM RecordType WHERE DeveloperName = 'TEL_Telesales_Account' LIMIT 1].Id;
+        //accObj.RecordTypeId = [SELECT Id FROM RecordType WHERE DeveloperName = 'TEL_Telesales_Account' LIMIT 1].Id;
         System.Database.insert(accObj);
         
         Campaign campObj = new Campaign();
