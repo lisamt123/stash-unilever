@@ -4,11 +4,11 @@
  *@Created Date: 28/05/2015 
 *********************************************************************************/
 jq(document).ready(function() {
-    if(IPMApp.IsPdldoc === 'true') {
+    /*if(IPMApp.IsPdldoc === 'true') {
         getMainDataFunc();
         getAppendixDataFunc();
     }  
-    getUserTypeFunc();
+    getUserTypeFunc();*/
 /* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */
     jq(".contenWrapper .ipmAcrdnExpand").hide();
     if (window.location.href.indexOf("IPM_GateDocument") > -1) {
@@ -17,6 +17,8 @@ jq(document).ready(function() {
     jq(".contenWrapper").find(".ipmAcrdnExpand").find(".aHead:last").css("border", "none");
     jq(".contenWrapper .ipmAcrdnExpand:first").not(':empty').show();
     jq(".pdlCollapse .ipmAcrdnExpand:first").hide();
+    jq(".consumerContainer .ipmAcrdnExpand").show();
+    jq(".ecoDesignTable .ipmAcrdnExpand").show();
     gateAccrdn();
     gateexpcollapse();
 /* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */
@@ -128,6 +130,7 @@ function gateexpcollapse(){
         jq(".ipmAccordian").find(".aHead .expico").addClass("fa-minus");
         loadAllIframesIfVisiblefirst();
         loadAllIframesIfVisiblesecond();
+        getAllAttachments();
     });
     
 /* Below script collapses all the tabs in accordion when clicked on the Collapse all button and replaces '-' with '+' sign */
@@ -419,6 +422,8 @@ function dirApp() {
         jq(".ipmAccordian.appendix").find(">.ipmAcrdnExpand").slideDown("fast").find("." + appDir).slideDown("fast");
         jq("." + appDir).closest(".ipmAcrdnExpand").prev(".aHead").find(".expico").removeClass("fa-plus").addClass("fa-minus");
         jq("html, body").scrollTop(jq("." + appDir).offset().top);
+        jq(".consumerContainer .ipmAcrdnExpand").show();
+        jq(".ecoDesignTable .ipmAcrdnExpand").show();
         if(appDir === "Customers_Channels")
         {
             getCustomersChannelsAppendix();
@@ -475,8 +480,6 @@ function dirApp() {
              getTechnicalAppendix();
         }
     });
-    
-    
 }
 jq(window).load(function(){
 
@@ -648,7 +651,7 @@ function loadAllIframesIfVisiblefirst() {
 }
 
 function loadAllIframesIfVisiblesecond(){
-	if(jq(".iframeSupply_Chain_Technical_ReadinessMainSectionexpico").is(":visible")){getSupplyChainTechnicalReadinessMainSection();}
+    if(jq(".iframeSupply_Chain_Technical_ReadinessMainSectionexpico").is(":visible")){getSupplyChainTechnicalReadinessMainSection();}
     if(jq(".iframeInitial_Estimate_of_OpportunityAppendixexpico").is(":visible")){getInitialEstimateofOpportunityAppendix();}
     if(jq(".iframeConsumer_Evidence_ConceptAppendixexpico").is(":visible")){getConsumerEvidenceConceptAppendix();}
     if(jq(".iframeEnvironmental_ImpactAppendixexpico").is(":visible")){getEnvironmentalImpactAppendix();}
@@ -937,14 +940,11 @@ function loadIframe(iframe,url) {
     iframe.attr("scrolling", "no");
     iframe.iFrameResize( [{autoResize: true, sizeWidth: true, checkOrigin: false}] );
 }  
-
 var sectionId;
-var sectionType;
-function getAttachments(secId,secType) {
+function getAttachments(secId) {
     sectionId = secId;
-    sectionType = secType;
     sforce.connection.query(
-        "SELECT Id,Name FROM Attachment WHERE ParentId = '" + secId + "'",
+        "SELECT Id,ParentId,Name FROM Attachment WHERE ParentId = '" + secId + "'",
         {onSuccess: getSAttachments, onFailure: sfailed});
 }                
 function sfailed(error) {alert(IPMApp.ContactAdmin);}                
@@ -957,11 +957,37 @@ function getSAttachments(queryResult) {
             output += "<a href=\"/servlet/servlet.FileDownload?file="+attach.Id+"\" target=\"_blank\">"+attach.Name+"</a>, ";
         }
         output = output.slice(0,-2);
-        if(sectionType == "Sub Header"){
-            jq("#subHeaderAttachments"+sectionId).html("<span class=\"appBlock fileName\">See attachments: "+output+"</span>");
+        jq("#attachments"+sectionId).html("<span class=\"appBlock fileName\">See attachments: "+output+"</span>");
+    }
+}
+
+function getAllAttachments() {
+    sforce.connection.query(
+        "SELECT Id,ParentId,Name FROM Attachment WHERE ParentId in (SELECT ID FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c=\'"+IPMApp.projectdocid+"\') ORDER BY ParentId",
+        {onSuccess: getAllSAttachments, onFailure: allSfailed});
+}                
+function allSfailed(error) {alert(IPMApp.ContactAdmin);}                
+function getAllSAttachments(queryResult) {
+    if(queryResult.size>0){                        
+        var parentIdArray = [];
+        var records = queryResult.getArray('records');
+        for (var i = 0; i < records.length; i++) {
+            var attach = records[i];
+            if(parentIdArray.indexOf(attach.ParentId) === -1) {
+                parentIdArray.push(attach.ParentId);
+            }
         }
-        else if(sectionType == "Topic"){
-            jq("#topicAttachments"+sectionId).html("<span class=\"appBlock fileName\">See attachments: "+output+"</span>");
+        for (var p = 0; p < parentIdArray.length; p++) {
+            var output = "";
+            var pId = parentIdArray[p];
+            for (var i = 0; i < records.length; i++) {
+                var attach = records[i];
+                if(pId === attach.ParentId) {
+                    output += "<a href=\"/servlet/servlet.FileDownload?file="+attach.Id+"\" target=\"_blank\">"+attach.Name+"</a>, ";
+                }
+            }
+            output = output.slice(0,-2);
+            jq("#attachments"+pId).html("<span class=\"appBlock fileName\">See attachments: "+output+"</span>");
         }
     }
 }

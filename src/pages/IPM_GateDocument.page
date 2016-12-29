@@ -13,6 +13,9 @@
             <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Source_Plan_Editor.css')}"/>       
             <apex:form >
                 <apex:pageMessages />
+                <apex:outputPanel id="pageMessagesMainDataPanel"> <apex:pageMessages /> </apex:outputPanel>
+                <apex:outputPanel id="pageMessagesAppendixPanel"> <apex:pageMessages /> </apex:outputPanel>
+                <apex:outputPanel id="pageMessagesUserTypePanel"> <apex:pageMessages /> </apex:outputPanel>
                 <div class="gradientbg">  
                     <c:IPM_ProjectDetails project="{!project}" activeItem="gateDocument" />  
                 </div>
@@ -458,7 +461,7 @@
                                     </div>      
                                     
                                     <!---- Gate Document Main Body----->
-                                    <apex:actionFunction name="getMainDataFunc" action="{!getMainData}" reRender="MainTable" status="customStatus" oncomplete="expandCloseShow();resetPanel();resetPanelSub();dirApp();" rendered="{!!isPDLDocument}"/>
+                                    <apex:actionFunction name="getMainDataFunc" action="{!getMainData}" reRender="MainTable,pageMessagesMainDataPanel" status="customStatus" oncomplete="expandCloseShow();resetPanel();resetPanelSub();dirApp();getMainDataCounts();" rendered="{!!isPDLDocument}"/>
                                     <apex:outputPanel layout="block" styleClass="row fulldatapanel" rendered="{!!isPDLDocument}">
                                         <apex:actionStatus startText="" id="customStatus" startStyleClass="cust-overlay"/>
                                         <div class="contenWrapper clearfix proLoader">
@@ -512,7 +515,7 @@
                                                                                     <span class="{!SUBSTITUTE(SUBSTITUTE(sub.IPM_Section_Status__c,' ',''),'-','')}statusclass"  >
                                                                                         <span class="{!if((sub.IPM_Section__r.IPM_Section_Type__c='Sub Header'),'',sub.IPM_Negotiable__c)}negotiableclass"  >
                                                                                             <span class="expico fa fa-minus {!if(OR(sub.IPM_Section_Status__c=='Filled-in',sub.IPM_Section__r.IPM_Section_Type__c=='Sub Header'),'green','grey')} {!if((sub.IPM_Section__r.IPM_Section_Type__c='Sub Header'),'topicclass','headerinsideexpico')} {!'iframe'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'MainSectionexpico'}" id="{!sub.IPM_Section__c}" 
-                                                                                                  onclick="getAttachments('{!sub.Id}','Sub Header');{!if(OR(sub.IPM_Master_Section_External_Id__c=='Business_Case_Action_Standards',sub.IPM_Master_Section_External_Id__c=='Initial_Estimate_of_Opportunity',sub.IPM_Master_Section_External_Id__c=='Gate_Keeper_Checklist',sub.IPM_Master_Section_External_Id__c=='OTIF_Status',sub.IPM_Master_Section_External_Id__c=='R&D_Initial_Outline_Product_Pack',sub.IPM_Master_Section_External_Id__c=='Supply_Chain_Feasibility',sub.IPM_Master_Section_External_Id__c=='R&D_Feasibility',sub.IPM_Master_Section_External_Id__c=='R&D_Technical_Readiness',sub.IPM_Master_Section_External_Id__c=='Supply_Chain_Technical_Readiness'),'get'+SUBSTITUTE(SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&',''),'_','')+'MainSection();','')}this.onclick=null;" > </span>
+                                                                                                  onclick="getAttachments('{!sub.Id}');{!if(OR(sub.IPM_Master_Section_External_Id__c=='Business_Case_Action_Standards',sub.IPM_Master_Section_External_Id__c=='Initial_Estimate_of_Opportunity',sub.IPM_Master_Section_External_Id__c=='Gate_Keeper_Checklist',sub.IPM_Master_Section_External_Id__c=='OTIF_Status',sub.IPM_Master_Section_External_Id__c=='R&D_Initial_Outline_Product_Pack',sub.IPM_Master_Section_External_Id__c=='Supply_Chain_Feasibility',sub.IPM_Master_Section_External_Id__c=='R&D_Feasibility',sub.IPM_Master_Section_External_Id__c=='R&D_Technical_Readiness',sub.IPM_Master_Section_External_Id__c=='Supply_Chain_Technical_Readiness'),'get'+SUBSTITUTE(SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&',''),'_','')+'MainSection();','')}this.onclick=null;" > </span>
                                                                                             <apex:outputPanel rendered="{!IF(sub.IPM_Section__r.IPM_Section_Type__c!='Sub Header',True,False)}">
                                                                                                 <apex:outputPanel rendered="{!IF(sub.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!='Appendix',True,False)}" >
                                                                                                     <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub.Id}">{!sub.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} [{!sub.IPM_FunctionalRole__c}]</a>  <span class="{!sub.IPM_Section_Status__c}"> {!sub.IPM_Section_Status__c}</span> 
@@ -553,7 +556,7 @@
                                                                                                     <span class="{!SUBSTITUTE(SUBSTITUTE(sub1.IPM_Section_Status__c,' ',''),'-','')}statusclass"  >
                                                                                                         <span class="{!if((sub1.IPM_Section__r.IPM_Section_Type__c='Sub Header'),'',sub1.IPM_Negotiable__c)}negotiableclass"  >
                                                                                                             <span class="expico fa fa-minus {!if(OR(sub1.IPM_Section_Status__c=='Filled-in',sub1.IPM_Section__r.IPM_Section_Type__c=='Sub Header'),'green','grey')} topicheaderclass topicclass {!'iframe'+SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&','')+'SecondLevelSectionexpico'}" id="{!sub1.IPM_Section__c}" 
-                                                                                                                  onclick="getAttachments('{!sub1.Id}','Topic');{!if(OR(sub1.IPM_Master_Section_External_Id__c=='Trademarks',sub1.IPM_Master_Section_External_Id__c=='CU_And_Complexity'),'get'+SUBSTITUTE(SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&',''),'_','')+'SecondLevelSection();','')}this.onclick=null;"></span>                                      
+                                                                                                                  onclick="getAttachments('{!sub1.Id}');{!if(OR(sub1.IPM_Master_Section_External_Id__c=='Trademarks',sub1.IPM_Master_Section_External_Id__c=='CU_And_Complexity'),'get'+SUBSTITUTE(SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&',''),'_','')+'SecondLevelSection();','')}this.onclick=null;"></span>                                      
                                                                                                             <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub1.Id}"> {!sub1.IPM_Section_Sequence__c}  {!sub1.IPM_Section__r.IPM_Section_Name__c} [{!sub1.IPM_FunctionalRole__c}] </a> <span class="{!sub1.IPM_Section_Status__c}"> {!sub1.IPM_Section_Status__c}</span>                                   
                                                                                                             
                                                                                                             <apex:outputPanel styleClass="SecButtonSet pull-right">                                 
@@ -601,7 +604,7 @@
                                                                                                                     <apex:outputPanel rendered="{!sub1.IPM_Has_Appendix__c}">{!$Label.IPM_GD_APPENDIX_MSG}<span data-dir="{!sub1.IPM_Master_Section_External_Id__c}" class="appText">{!sub1.IPM_Section__r.IPM_Section_Name__c}</span></apex:outputPanel>
                                                                                                                 </apex:outputPanel>
                                                                                                             </apex:outputPanel>
-                                                                                                            <span id="topicAttachments{!sub1.Id}" ></span>
+                                                                                                            <span id="attachments{!sub1.Id}" ></span>
                                                                                                             <!---Attachment For Sections Ends Here--->
                                                                                                             
                                                                                                             <apex:outputPanel layout="block" styleClass="lastUpdate">
@@ -663,7 +666,7 @@
                                                                                                 <apex:outputPanel layout="block" styleClass="appBlock" rendered="{!sub.IPM_Has_Appendix__c}"> 
                                                                                                     <apex:outputPanel rendered="{!sub.IPM_Has_Appendix__c}">{!$Label.IPM_GD_APPENDIX_MSG}<span data-dir="{!sub.IPM_Master_Section_External_Id__c}" class="appText">{!sub.IPM_Section__r.IPM_Section_Name__c}</span></apex:outputPanel>
                                                                                                 </apex:outputPanel>
-                                                                                                <span id="subHeaderAttachments{!sub.Id}" ></span>
+                                                                                                <span id="attachments{!sub.Id}" ></span>
                                                                                                 
                                                                                                 <apex:outputPanel layout="block" styleClass="lastUpdate">
                                                                                                     <apex:outputText value="Last Update: {!sub.IPM_GateHistory__c} on " rendered="{!IF(sub.IPM_GateHistory__c!=NULL,True,False)}" ></apex:outputText>        
@@ -684,7 +687,7 @@
                                             </div>
                                             
                                             <!-- Appendix New Logic here -->  
-                                            <apex:actionFunction name="getAppendixDataFunc" action="{!getAppendixData}" reRender="AppTable" status="customStatus" oncomplete="resetPanel();resetPanelSub();dirApp();" rendered="{!!isPDLDocument}"/>
+                                            <apex:actionFunction name="getAppendixDataFunc" action="{!getAppendixData}" reRender="AppTable,pageMessagesAppendixPanel" status="customStatus" oncomplete="resetPanel();resetPanelSub();dirApp();" rendered="{!!isPDLDocument}"/>
                                             <div class="col-sm-12 appendixvisibleclass">                                           
                                                 <apex:outputPanel styleClass="ipmAccordian appendix" id="AppTable">
                                                     <!--For Header-->                              
@@ -899,10 +902,10 @@
                     </div>
                     <apex:outputPanel id="filterBlock">
                         <script>
-                        var IPMApp = {ContactAdmin:'{!$Label.IPM_PLEASE_CONTACT_ADMINISTRATOR}', IsPdldoc:'{!!isPDLDocument}', NonNegotiableCount:'{!NonNegotiableCount}', OptionalCount:'{!OptionalCount}', NotstartedCount:'{!NotstartedCount}', FilledinCount:'{!FilledinCount}', MKTGDEVCount:'{!MKTGDEVCount}', CMICount:'{!CMICount}', CDCount:'{!CDCount}', RnDCount:'{!RnDCount}', SCCount:'{!SCCount}', FinanceCount:'{!FinanceCount}', MKTGLOCALCount:'{!MKTGLOCALCount}', proDoc:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}', approved:'{!$Label.IPM_GD_APPROVED}', proposed:'{!$Label.IPM_GD_PROPOSED}', GateDocPageRef:'{!$Page.IPM_GateDocument}', printDoc:'{!projectDoc.IPM_GateDocuments__c}', OverviewPageRef: '{!$Page.IPM_ProjectOverview}'};  
+                        var IPMApp = {ContactAdmin:'{!$Label.IPM_PLEASE_CONTACT_ADMINISTRATOR}', IsPdldoc:'{!isPDLDocument}', NonNegotiableCount:'{!NonNegotiableCount}', OptionalCount:'{!OptionalCount}', NotstartedCount:'{!NotstartedCount}', FilledinCount:'{!FilledinCount}', MKTGDEVCount:'{!MKTGDEVCount}', CMICount:'{!CMICount}', CDCount:'{!CDCount}', RnDCount:'{!RnDCount}', SCCount:'{!SCCount}', FinanceCount:'{!FinanceCount}', MKTGLOCALCount:'{!MKTGLOCALCount}', proDoc:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}', approved:'{!$Label.IPM_GD_APPROVED}', proposed:'{!$Label.IPM_GD_PROPOSED}', GateDocPageRef:'{!$Page.IPM_GateDocument}', printDoc:'{!projectDoc.IPM_GateDocuments__c}', OverviewPageRef: '{!$Page.IPM_ProjectOverview}'};  
                         </script>
                     </apex:outputPanel>
-                    <apex:actionFunction name="getUserTypeFunc" action="{!getIpmuserType}" reRender="addManagePanel,changeStatusPanel" />
+                    <apex:actionFunction name="getUserTypeFunc" action="{!getIpmuserType}" reRender="addManagePanel,changeStatusPanel,pageMessagesUserTypePanel" />
                 </div>
                 <script src="{!URLFOR($Resource.IPM_Resource, 'js/iframeResizer.min.js')}" type="text/javascript"></script>
                 <apex:includeScript value="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" loadOnReady="true"/>

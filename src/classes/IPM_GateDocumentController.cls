@@ -194,6 +194,7 @@ public with sharing class IPM_GateDocumentController {
         }
         getOtifSecId();
         initializePageReferences();  
+        
     }
     
     public void getMainData() {
@@ -217,6 +218,7 @@ public with sharing class IPM_GateDocumentController {
             projDocSecId = sectionListForprojDocSecId.isEmpty() ? '' : sectionListForprojDocSecId[0].Id;
         }
     }
+    
     public void getPdlDocumentStatus() {
         if(isPDLApproved!=null && isPDLApproved)
         { 
@@ -569,13 +571,24 @@ public with sharing class IPM_GateDocumentController {
                     projSectionMap.put(pds, new Map<IPM_Project_Document_Section__c,List<IPM_Project_Document_Section__c>>());
                 }
                 Else if(pds.IPM_Section__r.IPM_Section_Label_Type__c == IPM_ConstantUtils.SECTION_TYPE_SUBHEADER) {
-                    IPM_Project_Document_Section__c tpds = projSectionMapHelper.get(pds.IPM_Section__r.IPM_Parent_Section__c);
-                    projSectionMap.get(tpds).put(pds, new List<IPM_Project_Document_Section__c>());
+                    if(projSectionMapHelper.get(pds.IPM_Section__r.IPM_Parent_Section__c) != Null) {
+                        IPM_Project_Document_Section__c tpds = projSectionMapHelper.get(pds.IPM_Section__r.IPM_Parent_Section__c);
+                        projSectionMap.get(tpds).put(pds, new List<IPM_Project_Document_Section__c>());
+                    }
+                    else {
+                        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+                    }
                 }
-                Else if(pds.IPM_Section__r.IPM_Section_Label_Type__c == IPM_ConstantUtils.SECTION_TYPE_TOPIC && printDoc != IPM_ConstantUtils.PRODUCT_DESIGN_LOCK) {
-                    IPM_Project_Document_Section__c tpds = projSectionMapHelper.get(pds.IPM_Section__r.IPM_Parent_Section__c);
-                    IPM_Project_Document_Section__c ttpds = projSectionMapHelper.get(tpds.IPM_Section__r.IPM_Parent_Section__c);
-                    projSectionMap.get(ttpds).get(tpds).add(pds);                
+                Else if(pds.IPM_Section__r.IPM_Section_Label_Type__c == IPM_ConstantUtils.SECTION_TYPE_TOPIC && printDoc != IPM_ConstantUtils.PRODUCT_DESIGN_LOCK){
+                    if(projSectionMapHelper.get(pds.IPM_Section__r.IPM_Parent_Section__c) != Null 
+                       && projSectionMapHelper.get((projSectionMapHelper.get(pds.IPM_Section__r.IPM_Parent_Section__c)).IPM_Section__r.IPM_Parent_Section__c) != Null) {
+                        IPM_Project_Document_Section__c tpds = projSectionMapHelper.get(pds.IPM_Section__r.IPM_Parent_Section__c);
+                        IPM_Project_Document_Section__c ttpds = projSectionMapHelper.get(tpds.IPM_Section__r.IPM_Parent_Section__c);
+                        projSectionMap.get(ttpds).get(tpds).add(pds);
+                    }
+                    else {
+                        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+                    }
                 }
             }                      
         }
@@ -594,19 +607,20 @@ public with sharing class IPM_GateDocumentController {
     public PageReference exportToPdf(String isWithAppendixStr)
     { 
         try
-        {
+        {   
             PageReference gateDocPDFURL = null;
             gateDocPDFURL = Page.IPM_GateDocumentPDFDownload;
             gateDocPDFURL.setRedirect(true);
                        
             gateDocPDFURL.getParameters().put(IPM_ConstantUtils.ID_PARAMETER, ProjectId);
-        gateDocPDFURL.getParameters().put('projDocSecId', projDocSecId);
+            gateDocPDFURL.getParameters().put('projDocSecId', projDocSecId);
             gateDocPDFURL.getParameters().put(IPM_ConstantUtils.PROJECTNAME_PARAMETER, project.IPM_Project_Name__c);
             gateDocPDFURL.getParameters().put(IPM_ConstantUtils.PRINTDOC_PARAMETER, PrintDoc);
             gateDocPDFURL.getParameters().put(DOCUMENT_TYPE, PDF);
             gateDocPDFURL.getParameters().put(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER,String.valueOf(isWithAppendixStr)); 
             return gateDocPDFURL; 
         }
+        
         catch(Exception ex) 
         {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
@@ -1017,5 +1031,6 @@ public with sharing class IPM_GateDocumentController {
                         
         }
        return null;
-    }        
+    }    
+    
 }
