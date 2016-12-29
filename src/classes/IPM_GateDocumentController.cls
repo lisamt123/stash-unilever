@@ -192,6 +192,7 @@ public with sharing class IPM_GateDocumentController {
             getAppendixData();
             getIpmuserType();
         }
+        getOtifSecId();
         initializePageReferences();  
     }
     
@@ -205,6 +206,17 @@ public with sharing class IPM_GateDocumentController {
         getAppendixCheck();
     }
     
+    public void getOtifSecId(){
+        if(!isPDLDocument && (String.isBlank(projDocSecId)))
+        {
+            List<IPM_Project_Document_Section__c> sectionListForprojDocSecId= [
+                SELECT Id,IPM_Master_Section_External_Id__c
+                FROM IPM_Project_Document_Section__c 
+                WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Default_Section__c=true 
+                AND IPM_Master_Section_External_Id__c =: OTIF_Status LIMIT 1 ];
+            projDocSecId = sectionListForprojDocSecId.isEmpty() ? '' : sectionListForprojDocSecId[0].Id;
+        }
+    }
     public void getPdlDocumentStatus() {
         if(isPDLApproved!=null && isPDLApproved)
         { 
@@ -583,15 +595,6 @@ public with sharing class IPM_GateDocumentController {
     { 
         try
         {
-            if(!isPDLDocument && (String.isBlank(projDocSecId)))
-            {
-                List<IPM_Project_Document_Section__c> sectionListForprojDocSecId= [
-                    SELECT Id,IPM_Master_Section_External_Id__c
-                    FROM IPM_Project_Document_Section__c 
-                    WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Default_Section__c=true 
-                    AND IPM_Master_Section_External_Id__c =: OTIF_Status LIMIT 1 ];
-                projDocSecId = sectionListForprojDocSecId[0].Id;
-            }
             PageReference gateDocPDFURL = null;
             gateDocPDFURL = Page.IPM_GateDocumentPDFDownload;
             gateDocPDFURL.setRedirect(true);

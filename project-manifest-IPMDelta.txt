@@ -2,10 +2,4 @@ src
 src/classes
 src/classes/IPM_GateDocumentController.cls
 src/classes/IPM_GateDocumentController.cls-meta.xml
-src/pages
-src/pages/IPM_ChangeCurrenDocumentStatus.page
-src/pages/IPM_ChangeCurrenDocumentStatus.page-meta.xml
-src/pages/IPM_Download_Source_Plan.page
-src/pages/IPM_Download_Source_Plan.page-meta.xml
-src/pages/IPM_Product_and_Sourcing_Plan.page
-src/pages/IPM_Product_and_Sourcing_Plan.page-meta.xml
+
