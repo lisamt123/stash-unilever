@@ -65,11 +65,77 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-	  <runTest>PBS_MyProfileController_test</runTest>
 	  <runTest>PBS_AccessController_Test</runTest>
+	  <runTest>PBS_AchievementAssignmentsWorkCom_Test</runTest>
+	  <runTest>PBS_AchievementData_Test</runTest>
+	  <runTest>PBS_AchievementWorkComExt_Test</runTest>
+	  <runTest>PBS_AchievementsUserSearchCtrl_Test</runTest>
+	  <runTest>PBS_Character_Test</runTest>
+	  <runTest>PBS_CourseStatusInDtlReport_Test</runTest>
+	  <runTest>PBS_Encoder_Test</runTest>
+	  <runTest>PBS_LMSCommunitiesService_Test</runTest>
+	  <runTest>PBS_LMSConstants_Test</runTest>
+	  <runTest>PBS_LMSHeaderController_Test</runTest>
+      <runTest>PBS_LMSInit_Test</runTest>
+      <runTest>PBS_LMSPlugins_Test</runTest>
+      <runTest>PBS_LMSSettings_Test</runTest>
+      <runTest>PBS_LMSStartController_Test</runTest>
+      <runTest>PBS_LMSTemplateController_Test</runTest>
+	  <runTest>PBS_LMS_API_Test</runTest>
+	  <runTest>PBS_LearningData_Test</runTest>
+	  <runTest>PBS_LearningDeleteSharedAsgmtsExt_Test</runTest>
+	  <runTest>PBS_Learning_Test</runTest>
+	  <runTest>PBS_LibraryController_Test</runTest>
+	  <runTest>PBS_MyProfileController_Test</runTest>
+	  <runTest>PBS_MyTraining_Test</runTest>
+	  <runTest>PBS_Params_Test</runTest>
+	  <runTest>PBS_ProfileService_Test</runTest>
+	  <runTest>PBS_QuestionNewController_Test</runTest>
+	  <runTest>PBS_QuizResultsController_Test</runTest>
 	  <runTest>PBS_QuizViewer_Test</runTest>
+	  <runTest>PBS_ReportGenerator_Test</runTest>
+	  <runTest>PBS_ResourceViewerController_Test</runTest>
+	  <runTest>PBS_StringUtils_Test</runTest>
+	  <runTest>PBS_StringValidationRule_Test</runTest>
+	  <runTest>PBS_SubFolderCtrl_Test</runTest>
+	  <runTest>PBS_TPlanAchievementMnagmntExt_Test</runTest>
+	  <runTest>PBS_TPlanAsgmtExtensionBatch_Test</runTest>
+	  <runTest>PBS_TPlanAsgmtExtensionExisting_Test</runTest>
+	  <runTest>PBS_TPlanAsgnmtExtensionNew_Test</runTest>
+	  <runTest>PBS_TPlanImportAssignmentsExt_Test</runTest>
+	  <runTest>PBS_TPlanSectionAsgmtsDelExtension_Test</runTest>
+	  <runTest>PBS_TPlanSectionItemAsgmtsDelExt_Test</runTest>
+	  <runTest>PBS_TestAchievementData_Test</runTest>
+	  <runTest>PBS_TestHelper</runTest>
+	  <runTest>PBS_TestLearningData_Test</runTest>
+	  <runTest>PBS_TestTrainingPlanData_Test</runTest>
+	  <runTest>PBS_TestUtilClass</runTest>
+	  <runTest>PBS_TrainingCatalogController_Test</runTest>
+	  <runTest>PBS_TrainingCatalogHomeCtrl_Test</runTest>
+	  <runTest>PBS_TrainingPlanData_Test</runTest>
+	  <runTest>PBS_TrainingPlanDetail_Test</runTest>
+	  <runTest>PBS_TrainingPlanExportController_Test</runTest>
+      <runTest>PBS_TrainingPlanFeedback_Test</runTest>
+	  <runTest>PBS_TrainingPlanPreviewCtrl_Test</runTest>
+	  <runTest>PBS_TrainingPlansSearchCtrl_Test</runTest>
+	  <runTest>PBS_TrainingPlans_Test</runTest>
+	  <runTest>PBS_TrainingTrackData_Test</runTest>
+	  <runTest>PBS_TrainingTrackExportController_Test</runTest>
+	  <runTest>PBS_TrainingTrackTrigger_Test</runTest>
+	  <runTest>PBS_TrainingTracks_Test</runTest>
+      <runTest>PBS_TriggerException_Test</runTest>
+	  <runTest>PBS_UtilClass_Test</runTest>
+      <runTest>PBS_ValidatorHelperTest</runTest>
+	  <runTest>PBS_Validator_Test</runTest>
+	  <runTest>PBS_Validator_Test_bkp</runTest>
+	  <runTest>PBS_WikiController_Test</runTest>
+	  <runTest>PBS_WikiFeedBackController_Test</runTest>
+	  <runTest>PBS_WikiFeedbackViewController_Test</runTest>
+	  <runTest>PBS_LearningAssignmentApproveExt_Test</runTest>	
+	  <runTest>PBS_TaskViewerController_Test</runTest>  
 	  <runTest>PBS_TrainingTrackDetailCtrl_Test</runTest>
-	  <runTest>PBS_TrainingTracksController_Test</runTest> 
+	  <runTest>PBS_TrainingTracksController_Test</runTest>
+	  <runTest>PC_ForumController_Test</runTest>
     </sf:deploy>
   </target>  
 

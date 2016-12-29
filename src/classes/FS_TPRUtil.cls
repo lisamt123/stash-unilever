@@ -2,7 +2,8 @@
 Purpose: Utility Class used to calculate TPR.
 History :
 VERSION AUTHOR         DATE         DETAIL Description
-1.0     Accenture    12/Jul/2016     Draft                     
+1.0     Accenture    12/Jul/2016     Draft       
+2.0		Accentrue	 18/Nov/2016	 FS-1427 (CR-41)
 ***********************************************************************/
 
 /** Utility Class for TPR:
@@ -13,6 +14,29 @@ VERSION AUTHOR         DATE         DETAIL Description
 */
 public with sharing class FS_TPRUtil {
 
+    /** Method to Calculate the List Price if whether it's for Case or Piece:
+    *  @name calculateListPriceCasePiece
+    *  @param OpportunityLineItem oppProd, Map<Id, Opportunity> opportunityMap, Map<Id, PricebookEntry> priceBookEntryMap, Map<Id, Product2> product2Map
+    *  @return Double listPrice
+    *  @throws N/A
+    */
+    public static Double calculateListPriceCasePiece(OpportunityLineItem oppProd, Map<Id, Opportunity> opportunityMap, Map<Id, PricebookEntry> priceBookEntryMap, Map<Id, Product2> product2Map) {
+        
+        Double listPrice = 0;
+            
+        //this is a custom settings
+        FS_casePiece__c cp = FS_casePiece__c.getOrgDefaults();
+        
+        if(opportunityMap.get(oppProd.OpportunityId).FS_casesPiece__c == cp.FS_Case__c) {            
+            listPrice = priceBookEntryMap.get(oppProd.PricebookEntryId).UnitPrice;
+        } else {            
+            listPrice =  priceBookEntryMap.get(oppProd.PricebookEntryId).UnitPrice / product2Map.get(oppProd.Product2Id).FS_ZSU__c;
+        }   
+        
+        return listPrice;
+    }
+    
+    
     /** Method to Calculate Additional Discount Value:
     *  @name calculateAdditionalDiscount
     *  @param OpportunityLineItem oppProd, Map<Id, Opportunity> opportunityMap

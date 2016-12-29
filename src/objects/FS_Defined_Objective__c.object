@@ -60,11 +60,33 @@
     <fields>
         <fullName>BSP__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>a particular strategy or thrust that positions UFS as a &quot;Best Solution Provider&quot;</inlineHelpText>
         <label>BSP</label>
         <picklist>
             <picklistValues>
-                <fullName>Joint Business Plans</fullName>
-                <default>true</default>
+                <fullName>BSP 1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BSP 2</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BSP 3</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BSP 4</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BSP 5</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
             </picklistValues>
             <picklistValues>
                 <fullName>Establish Web Shops</fullName>
@@ -75,8 +97,16 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Execute Cat Man Initiatives</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Front of House Promo</fullName>
                 <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Joint Business Plans</fullName>
+                <default>true</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Launch New Lipton FBIT Flavors</fullName>
@@ -91,7 +121,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Execute Cat Man Initiatives</fullName>
+                <fullName>Sugar &amp; Tea Bundles</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -99,31 +129,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Sugar &amp; Tea Bundles</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BSP 1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BSP 2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BSP 3</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BSP 4</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BSP 5</fullName>
+                <fullName>Trade Event</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
         </picklist>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -144,6 +154,7 @@
         <fullName>FS_Account_Plan__c</fullName>
         <description>M/D to Account Plan</description>
         <externalId>false</externalId>
+        <inlineHelpText>expressed UFS business intentions with an account for a given year</inlineHelpText>
         <label>Account Plan</label>
         <referenceTo>FS_Account_Plan__c</referenceTo>
         <relationshipLabel>Defined Objectives</relationshipLabel>
@@ -219,6 +230,18 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>FS_IncrementalCases__c</fullName>
+        <externalId>false</externalId>
+        <label>Incremental Cases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_NSV__c</fullName>
         <externalId>false</externalId>
         <label>NSV</label>
@@ -244,6 +267,7 @@
     <fields>
         <fullName>FS_Objective_Description__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>expressed focus in a given quarter on a particular BSP</inlineHelpText>
         <label>Objective Description</label>
         <length>255</length>
         <required>false</required>
@@ -365,6 +389,14 @@
         <label>Status</label>
         <picklist>
             <picklistValues>
+                <fullName>Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Completed</fullName>
                 <default>false</default>
             </picklistValues>
@@ -373,18 +405,13 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Planning</fullName>
+                <fullName>Active</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Approval Requested</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Active</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -1383,7 +1410,7 @@
     <fields>
         <fullName>FS_Volume__c</fullName>
         <externalId>false</externalId>
-        <label>Volume</label>
+        <label>Incremental NSV</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -1689,6 +1716,10 @@ ISPICKVAL(FS_Status__c, &apos;Completed&apos;) ,ISPICKVAL(FS_Status__c, &apos;Ap
                 <fullName>Top Dish Activations</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Trade Event</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>FS_Objective_Type__c</picklist>
@@ -1723,19 +1754,11 @@ ISPICKVAL(FS_Status__c, &apos;Completed&apos;) ,ISPICKVAL(FS_Status__c, &apos;Ap
         <picklistValues>
             <picklist>FS_Status__c</picklist>
             <values>
-                <fullName>Active</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Approval Requested</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2083,6 +2106,10 @@ ISPICKVAL(FS_Status__c, &apos;Completed&apos;) ,ISPICKVAL(FS_Status__c, &apos;Ap
                 <fullName>Top Dish Activations</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Trade Event</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>FS_Objective_Type__c</picklist>
@@ -2117,19 +2144,11 @@ ISPICKVAL(FS_Status__c, &apos;Completed&apos;) ,ISPICKVAL(FS_Status__c, &apos;Ap
         <picklistValues>
             <picklist>FS_Status__c</picklist>
             <values>
-                <fullName>Active</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Approval Requested</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2465,7 +2484,7 @@ ISBLANK(FS_Other_Reason__c)
     </validationRules>
     <validationRules>
         <fullName>Objective_Completion_Based_on_Approval</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>It is used to restrict user to make objective as complete only once it is approved</description>
         <errorConditionFormula>And(ISCHANGED(FS_Status__c), Not(isPickVal(PRIORVALUE(FS_Status__c),&apos;Approved&apos;))
 ,isPickVal(FS_Status__c,&apos;Completed&apos;))</errorConditionFormula>

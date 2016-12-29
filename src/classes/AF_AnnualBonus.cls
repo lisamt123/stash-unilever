@@ -1366,8 +1366,15 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
              Integer value =   CountryBusinessmeasureBonusablefee.get(str);
              if(value > CountryAgencyTotalMap.get(str)){
                  Integer diff = value - CountryAgencyTotalMap.get(str);
-                if(tempcount == 0){ excep = 'exceeded by ' + string.valueof(diff);}
-                else { excep = ', exceeded by ' + string.valueof(diff);}
+                if(tempcount == 0){ excep = 'Target exceeded by ' + string.valueof(diff);}
+                else { excep = ', Target exceeded by ' + string.valueof(diff);}
+                 bonusablefeesexecption.put(str,excep);
+            
+             }
+             if(value < CountryAgencyTotalMap.get(str)){
+                 Integer diff =CountryAgencyTotalMap.get(str)-value;
+                if(tempcount == 0){ excep = 'Target missing by ' + string.valueof(diff);}
+                else { excep = ', Target missing by ' + string.valueof(diff);}
                  bonusablefeesexecption.put(str,excep);
             
              }
@@ -1389,7 +1396,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
             w_bonus.bonusResObj.Af_status__c=AF_Constants.STATUS_DRAFT;
             w_bonus.bonusResObj.AF_Qual_Per__c=w_bonus.bonusResObj.AF_Qual_Per__c;
             w_bonus.bonusResObj.AF_Qual_Bonus_Value__c=w_bonus.bonusResObj.AF_Qual_Bonus_Value__c;
-            w_bonus.bonusResObj.AF_Qual_Bonus_Value__c=w_bonus.bonusResObj.AF_Qual_Bonus_Value__c;
+            //w_bonus.bonusResObj.AF_Qual_Bonus_Value__c=w_bonus.bonusResObj.AF_Qual_Bonus_Value__c;
             if(w_bonus.bonusMeasureMatrix == 'Qualitative Measure' && w_bonus.bonusResObj.AF_Qual_Per__c!=Null && w_bonus.bonusResObj.AF_Qual_Per__c!=0.00)
             {
                 w_bonus.bonusResObj.AF_Total_Bonus__c=w_bonus.bonusResObj.AF_Qual_Per__c;
@@ -1415,7 +1422,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
             String validationErrorMsg = Label.AF_Quant_Fields;
             apexpages.addmessage(new apexpages.message(apexpages.severity.Error,validationErrorMsg));
         }else if(bonusablefeesexecption.size()>0){
-             string validateerror = 'Bonusable fees';
+             string validateerror = 'Manual adjustment to Bonusable fees must reconcile back to Base Fee Matrix.';
              for(string str: bonusablefeesexecption.keyset()){
                  validateerror = validateerror + bonusablefeesexecption.get(str) + ' for country ' + str;
              }
@@ -1532,7 +1539,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
     public void ConfirmBonus() {
    
         Calculate_Bonus();
-        Calculate_Qual();
+        //Calculate_Qual();
         Boolean bException=false;
         list<AF_Sub_Result__c> bonus_latestlist=new list<AF_Sub_Result__c>();
         for(wrapbonus w_bonus:QuartelyBonus){
@@ -1541,9 +1548,13 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
             w_bonus.bonusResObj.AF_Total_bonus_fees__c=w_bonus.totalbonusfee;
             w_bonus.bonusResObj.Af_status__c=AF_Constants.STATUS_SUBMITTED;
             w_bonus.bonusResObj.AF_Locked__c=true;
-            w_bonus.bonusResObj.AF_Qual_Per__c=w_bonus.QualPercent;
-            w_bonus.bonusResObj.AF_Qual_Bonus_Value__c=w_bonus.QualValue;
-            
+            //w_bonus.bonusResObj.AF_Qual_Per__c=w_bonus.QualPercent;
+            //w_bonus.bonusResObj.AF_Qual_Bonus_Value__c=w_bonus.QualValue;
+            if(w_bonus.bonusMeasureMatrix == 'Qualitative Measure' && w_bonus.bonusResObj.AF_Qual_Per__c!=Null && w_bonus.bonusResObj.AF_Qual_Per__c!=0.00)
+            {
+                w_bonus.bonusResObj.AF_Total_Bonus__c=w_bonus.bonusResObj.AF_Qual_Per__c;
+                w_bonus.bonusResObj.AF_Total_Bonus_Value__c = w_bonus.bonusResObj.AF_Qual_Bonus_Value__c;
+            }
             //if(w_bonus.bonusResObj.AF_Qual__c==null || w_bonus.bonusResObj.AF_Quant__c==null){
             if(w_bonus.bonusResObj.AF_Quant__c==null && w_bonus.bonusResObj.AF_Qual__c==null){
                 bException=true;

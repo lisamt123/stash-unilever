@@ -339,7 +339,7 @@ private class IPM_OTIF_Report_Batch_Test {
                regionalProjects.addAll(globalToRegionalMap.get(gbProjectId)); 
             }
             
-            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c, IPMProject_Span__c, (Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(Select ID, Charter_Approved__c, Contract_Approved__c,MR_Approved__c,MD_Approved__c From IPM_Financials_Regional__r) from IPM_Project__c where ID in :regionalProjects];  
+            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c, IPMProject_Span__c, (Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(Select ID, Charter_Approved__c, Contract_Approved__c,MR_Approved__c,MD_Approved__c,IPM_Financial_Postfix__c From IPM_Financials_Regional__r) from IPM_Project__c where ID in :regionalProjects];  
                 
             for(IPM_Project__c regionalProject : DBRegionalProjects) 
             {
@@ -358,17 +358,18 @@ private class IPM_OTIF_Report_Batch_Test {
             
             
               list<IPM_Financial__c> updateFinancialList=new list<IPM_Financial__c>();
-	            for(IPM_Financial__c fin:finObjList)
-	            {
-	                fin.Charter_Approved__c=true;
-	                fin.Contract_Approved__c=true;
-	                fin.MR_Approved__c=true;
-	                fin.MD_Approved__c=true;
-	            	
-	            	updateFinancialList.add(fin);
-	            }
-	            
-	            update updateFinancialList;
+                for(IPM_Financial__c fin:finObjList)
+                {
+                     if(fin.IPM_Financial_Postfix__c != null){
+                        fin.Charter_Approved__c=true;
+                        fin.Contract_Approved__c=true;
+                        fin.MR_Approved__c=true;
+                        fin.MD_Approved__c=true;
+                        updateFinancialList.add(fin);
+                    }
+                }
+                
+                update updateFinancialList;
         }
         
         /******************************** Regional Project Leader View for Regional Projects  ****************************************/

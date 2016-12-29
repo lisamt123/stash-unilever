@@ -683,6 +683,11 @@
         <field>VPM_PurchasingRequests__c.VPM_Approver9__c</field>
         <readable>false</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_CreatorIsCurrentUser__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_ArabiaOldNumber__c</field>
@@ -981,11 +986,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ConfirmationControl__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ContactPersonSurname__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1889,11 +1889,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PartnerFunction__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_PartnerName__c</field>
         <readable>true</readable>
@@ -2062,11 +2057,6 @@
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_PurchasingOrg__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PurchasingOrganisation__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2337,6 +2327,16 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_SAPInsertUpdateStatusMessage__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyCountry__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -2984,6 +2984,10 @@
     </objectPermissions>
     <pageAccesses>
         <apexPage>VPM_AdvancedForm_V1</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>VPM_AttachFiles</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>

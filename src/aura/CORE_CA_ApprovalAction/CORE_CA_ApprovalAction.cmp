@@ -1,6 +1,7 @@
 <aura:component controller="Core_CA_ApprovalsController" implements="force:appHostable">
     <!--<ltng:require styles="/resource/Lightning_designing_style/css/salesforce-lightning-design-system.min.css,/resource/Feedback/styles/style.css,/resource/CORE_CA_ApprovalsLightning,/resource/Lightning_designing_style" afterScriptsLoaded="{!c.doInit}"/> -->
     <aura:attribute name="success_toast" type="boolean" default="false"></aura:attribute>
+    <aura:attribute name="faliure_toast" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="comment_mand" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="isVisible" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="Appname" type="string"></aura:attribute>
@@ -97,7 +98,7 @@
                         </label>
                     </div>
                 </aura:if>  
-                <aura:if isTrue="{!((v.ApprovalDetail.RequestType =='Clarity' &amp;&amp; (v.actionTaken == 'Rework' ||v.actionTaken == 'Reject' ||v.actionTaken == 'Approve')) || v.ApprovalDetail.RequestType =='Expense')}">
+                <aura:if isTrue="{!((v.ApprovalDetail.RequestType =='Clarity' &amp;&amp; (v.actionTaken == 'Rework' ||v.actionTaken == 'Reject' ||v.actionTaken == 'Approve')) || v.ApprovalDetail.RequestType =='Expense' || v.ApprovalDetail.RequestType =='CLM')}">
                 	<span class="slds-text-body--regular">{!$Label.c.CORE_LBL_APPREJ_LEGAL_DISCLAIMER}</span> 
                 </aura:if>
                 <aura:if isTrue="{!(v.ApprovalDetail.RequestType =='Invoice' &amp;&amp; v.actionTaken == 'RTAP')}">
@@ -116,16 +117,16 @@
                          </span>
                      </button>
                      
-                     <button style="float:right;" class="slds-button slds-button--brand slds-button--neutral" aria-live="assertive" onclick="{!c.onSubmit}">
+                     <span style="float:right;">
                          <span class="slds-text-not-selected">
-                             {!$Label.c.CORE_FB_Submit}
+                          <ui:button label="{!$Label.c.CORE_FB_Submit}" disabled="false" press="{!c.onSubmit}" class="slds-button--brand"/>
                              <!--<aura:if isTrue="{!v.actionTaken == 'Approve'}">{!$Label.c.CORE_LBL_APPREJ_APPR_BTN}</aura:if>
                              <aura:if isTrue="{!v.actionTaken == 'Reject'}">{!$Label.c.CORE_LBL_APPREJ_REJC_BTN}</aura:if>
                              <aura:if isTrue="{!v.actionTaken == 'Rework'}">{!$Label.c.CORE_LBL_REWORK}</aura:if>
                              <aura:if isTrue="{!v.actionTaken == 'RTAP'}">{!$Label.c.CORE_LBL_RETURN_TO_AP_CAPS}</aura:if>
                              <aura:if isTrue="{!v.actionTaken == 'QWV'}">{!$Label.c.CORE_LBL_QUERY_WITH_VENDOR}</aura:if>-->
                          </span>
-                     </button>
+                     </span>
                 </div>                
         </aura:if>
     </div>  
@@ -141,6 +142,23 @@
                          	<aura:if isTrue="{!v.actionTaken == 'Rework'}"> You have sent this back for rework </aura:if>
                          	<aura:if isTrue="{!v.actionTaken == 'RTAP'}"> You have returned this to AP </aura:if>
                          	<aura:if isTrue="{!v.actionTaken == 'QWV'}"> Invoice is put on hold to clarify with vendor.</aura:if>  
+                            <a href=""><img style="float:right;width:8%;" src="/resource/Lightning_designing_style/assets/icons/utility/close.svg" onclick="{!c.goToHomePage}">
+                                </img></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop--open"></div>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.faliure_toast}">
+        <div >
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
+                <div class="slds-modal__container slds-modal--prompt">
+                    <div class="slds-box slds-theme--success success-box">
+                        <p style="text-align:left;width:100%;">
+                             This Contract is already approved/rejected.
+                         	 
                             <a href=""><img style="float:right;width:8%;" src="/resource/Lightning_designing_style/assets/icons/utility/close.svg" onclick="{!c.goToHomePage}">
                                 </img></a>
                         </p>

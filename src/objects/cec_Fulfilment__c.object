@@ -529,6 +529,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Korea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Latvia</fullName>
                 <default>false</default>
             </picklistValues>
@@ -630,6 +634,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Switzerland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Taiwan</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1546,7 +1554,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+     <fields>
         <fullName>Type__c</fullName>
         <externalId>false</externalId>
         <label>Type</label>
@@ -1587,6 +1595,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Ireland</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Japan</controllingFieldValues>
+                <controllingFieldValues>Korea</controllingFieldValues>
                 <controllingFieldValues>Latvia</controllingFieldValues>
                 <controllingFieldValues>Lithuania</controllingFieldValues>
                 <controllingFieldValues>Luxembourg</controllingFieldValues>
@@ -1613,6 +1622,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sweden</controllingFieldValues>
                 <controllingFieldValues>Switzerland</controllingFieldValues>
+                <controllingFieldValues>Taiwan</controllingFieldValues>
                 <controllingFieldValues>Thailand</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <controllingFieldValues>United States</controllingFieldValues>

@@ -268,6 +268,11 @@
     </fieldPermissions>
 	<fieldPermissions>
         <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.Business_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
         <field>CEC_Case_Market_Mapping__c.Account_Owner_Active_Flag__c</field>
         <readable>true</readable>
     </fieldPermissions>

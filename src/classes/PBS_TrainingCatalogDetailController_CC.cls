@@ -47,7 +47,7 @@ public with sharing class PBS_TrainingCatalogDetailController_CC extends PBS_LMS
     private void init(){
         trainingPlans = new List<PBS_Training_Plan__c>();
 
-        //Fetch categoryId and other parameteres from url
+        
         categoryId = Apexpages.currentPage().getParameters().get('id');
         geography = Apexpages.currentPage().getParameters().get('geo');
         course = Apexpages.currentPage().getParameters().get('course');

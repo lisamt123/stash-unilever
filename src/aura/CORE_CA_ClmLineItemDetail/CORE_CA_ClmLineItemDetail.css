@@ -1,0 +1,62 @@
+.THIS.main-container{
+    padding-bottom: 70px;
+}
+.THIS .backIconStyle{
+    width: 30px;
+    margin: 10px;
+    cursor: pointer;
+    float:left;
+}
+.THIS .header-number{
+    margin: 10px 0;
+    background: #4f6a92;
+    width: 55px;
+    float: right;
+    padding: 3px 15px;
+    border-radius: 20px;
+    margin-right: 13px;
+    color: white;
+    text-align: center;
+}
+.THIS .header-card{
+    font-weight: bold;
+    float: left;
+    margin-top: 13px;
+    margin-left: 13px;
+    font-size: 16px;
+}
+.THIS hr{
+    border-top: 1px solid #aba9a9;
+    margin: 0.5rem;
+}
+.THIS .sections{
+    background: white;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.THIS .col-one{
+    float:left;
+    width:50%;
+}
+.THIS .clearcls{
+    clear:both;
+    margin: 15px 0;
+}
+.THIS .num{
+    width: 100%;
+    text-align: right;
+    font-size: 10px;
+    color: #4f6a92;
+}
+.THIS .title, .THIS .detail_ques{
+    color:grey; 
+    line-height: 1rem;
+}
+.THIS .text1{
+    margin-bottom:20px;
+}
+.THIS .show-more{
+    width: 95%;
+    margin: 10px;
+}

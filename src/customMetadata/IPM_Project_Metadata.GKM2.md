@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <label>GKM2</label>
-     
     <values>
         <field>BET__c</field>
         <value xsi:type="xsd:boolean">true</value>
@@ -52,15 +51,15 @@
     </values>
     <values>
         <field>IPM_GMKQuestionAns__c</field>
-        <value xsi:type="xsd:string">RCLT</value>
+        <value xsi:type="xsd:string">CCVP</value>
     </values>
     <values>
         <field>IPM_GMKQuestionDefaultAns__c</field>
-        <value xsi:type="xsd:string">GCLT &amp; RCLT</value>
+        <value xsi:type="xsd:string">GCLT Leader &amp; CCVP</value>
     </values>
     <values>
         <field>IPM_GMKQuestionHelpText__c</field>
-        <value xsi:type="xsd:string">GCLT &amp; RCLT=IPM_GCLT_AND_RCLT_ALL_APPROVAL,RCLT=IPM_GCLT_AND_RCLT_APPROVAL</value>
+        <value xsi:type="xsd:string">GCLT Leader &amp; CCVP=IPM_GCLT_AND_RCLT_ALL_APPROVAL,CCVP=IPM_GCLT_AND_RCLT_APPROVAL</value>
     </values>
     <values>
         <field>IPM_GMKQuestionLabel__c</field>

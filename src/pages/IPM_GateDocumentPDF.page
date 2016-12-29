@@ -1001,6 +1001,7 @@
                     <c:IPM_PerformanceBreakdown isAppendix="true" isEditable="false" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational')}"></c:IPM_PerformanceBreakdown>
                     <c:IPM_GlobalClaimPDL projId="{!projectId}" isAppendix="true" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Final_Global_Claims'}"></c:IPM_GlobalClaimPDL>
                     <c:IPM_SourcePlanInPDF projId="{!projectId}" rendered="{!AND(projectDoc.IPM_GateDocuments__c=='Product Design Lock')}"></c:IPM_SourcePlanInPDF> 
+		      <c:IPM_Local_Sourcing_Table rendered="{!project.IPMProject_Span__c=='Local' && project.IPM_ProjectGKM__c=='GKM3' && apxSec.IPM_Master_Section_External_Id__c=='Technical'}" projId="{!projectId}"></c:IPM_Local_Sourcing_Table>
                 </apex:repeat> 
                 
             </div>

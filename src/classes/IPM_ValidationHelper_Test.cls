@@ -394,6 +394,7 @@ private class IPM_ValidationHelper_Test {
             rolloutProject[0].IPM_Target_Launch_Dates__c = targetLaunchDate;
             rolloutProject[0].IPM_Project_Name__c=TESTPROJECT001_REG;
             rolloutProject[0].Name=TESTPROJECT001_REG;
+            rolloutProject[0].IPM_ProjectGKM__c = 'GKM3';
             rolloutProject[0].IPM_Parent_Project__c=projectList[0].ID;
             rolloutProject[0].IPM_ProjectJobType__c=PROJECT_CREATION;
             rolloutProject[0].IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
@@ -456,6 +457,7 @@ private class IPM_ValidationHelper_Test {
             localProject.IPM_Target_Launch_Dates__c = targetLaunchDate;
             localProject.IPM_Project_Name__c=TESTPROJECT001_REG_LOC1;
             localProject.IPM_Parent_Project__c=rolloutProject[0].ID;
+            localProject.IPM_ProjectGKM__c = 'GKM3';
             localProject.IPM_Project_Rollout__c = localNonkeyProjectRollout1.id;
             localProject.IPM_ProjectJobType__c=PROJECT_CREATION;
             localProject.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;

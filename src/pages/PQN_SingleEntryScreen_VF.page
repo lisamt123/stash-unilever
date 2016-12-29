@@ -1,5 +1,6 @@
-<apex:page standardController="PQN_Pallet_Quality_Non_Conformance__c" extensions="PQN_singleEntryScreen" showHeader="false">
+<apex:page standardController="PQN_Pallet_Quality_Non_Conformance__c" extensions="PQN_singleEntryScreen"  showHeader="false">
 <head>
+
     <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/js/jquery-1.11.1.min.js')}"></script>
     
     <script>
@@ -8,10 +9,14 @@
             appendSearch();
         });
         function appendSearch(){
-            $("input.SKU_Name").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="openProducts();"><i class="fa fa-search"></i></button>');
+            $("input.SKU_Name").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="getProduct();"><i class="fa fa-external-link"></i></button>');
             $("input.Supplier_Name").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="openSuppliers();"><i class="fa fa-search"></i></button>');
             $("input.Loss_Code").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="openLossCode();"><i class="fa fa-search"></i></button>');
 
+        }
+        function getProduct(){
+            validate($("input.SKU_Name").val(),$("input.Supplier_Name").val(),$("input.Loss_Code").val());
+            
         }
     </script>
    <script>
@@ -25,7 +30,7 @@
         }            
         return false;
     }
-    function openProducts(){
+    /*function openProducts(){
         var url="/apex/PQN_Supplier_Popup?Product_Name=" + $("input.Product_Name").attr("id") + "&Product_No=" + $("input.SKU_Name").attr("id") + "&Product_Group=" + $("input.Product_Group").attr("id") + "&Product_Category=" + $("input.Product_Category").attr("id") + "&search_Name=" + $("input.SKU_Name").val() + "&object_Name=Products";
         newWin=window.open(url, 'Popup','height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
         if (window.focus) 
@@ -33,7 +38,7 @@
             newWin.focus();
         }            
         return false;
-    }          
+    }*/        
     function closeSupplierPopup(){
        if (null!=newWin)
        {
@@ -80,27 +85,33 @@
 <div id="page-wrapper">
     <div class="container-fluid">
     <apex:form id="frm">
-            <!--<apex:actionFunction name="Validate" action="{!validate}" reRender="frm" immediate="{!immediate}" oncomplete="appendSearch()">
+            <apex:actionFunction name="validate" action="{!validate}" reRender="frm" immediate="{!immediate}" oncomplete="appendSearch()">
                 <apex:param name="skuName" value=""/>
-            </apex:actionFunction>-->
+                <apex:param name="suppName" value=""/>
+                <apex:param name="losName" value=""/>
+            </apex:actionFunction>
             
 <!--        <apex:sectionHeader title="Pallet Quality Non Conformance" />  -->
 <!--        <apex:pageMessages ></apex:pageMessages> -->
         <apex:pageBlock title="Pallet Quality Non Conformance Edit" mode="edit" id="PBId1">
         <apex:pageblockbuttons >
             <apex:commandButton value="Save" action="{!savePQN}"/>
+            <apex:actionRegion >
+                <apex:commandButton value="Validate" action="{!validate}" onclick="getProduct();" reRender="populateId,renderErrorMsg"/>
+            </apex:actionRegion>
+            
             <!--<input type="button" value="Validate" onclick="doValidate();" class="btn"/>-->
             <!--<button type="button" onclick="doValidate();" class="btn">Validate</button>
             <apex:commandButton value="Cancel" action="{!cancelPQN}" immediate="true"/>-->   
         </apex:pageblockbuttons>
         <apex:pageMessages id="renderErrorMsg"/>
         <apex:pageBlockSection title="Reporting Distribution Centre" columns="2" collapsible="false" >
-            <apex:inputField value="{!pqn.Reporting_DC__c}"/>
-            <apex:inputField value="{!pqn.Region__c}"/>
-            <apex:inputField value="{!pqn.DC_Country__c}"/>
-            <apex:inputField value="{!pqn.MCO__c}"/>
-            <apex:inputField value="{!pqn.Cluster__c}"/>
-            <apex:inputField value="{!pqn.Sub_Cluster__c}"/>
+            <apex:inputField value="{!pqn.Reporting_DC__c}" required="true"/>
+            <apex:inputField value="{!pqn.Region__c}" required="true"/>
+            <apex:inputField value="{!pqn.DC_Country__c}" required="true"/>
+            <apex:inputField value="{!pqn.Cluster__c}" required="true"/>
+            <apex:inputField value="{!pqn.Sub_Cluster__c}" required="true"/>                        
+            <apex:inputField value="{!pqn.MCO__c}" required="true"/>
             <apex:inputField value="{!pqn.Delivery_Note_Number__c}"/>
             <!--<apex:inputField value="{!pqn.Description__c}"/>-->       
                         
@@ -108,10 +119,7 @@
         <apex:pageBlockSection title="Pallet Quality Non Compliance Details" columns="2" collapsible="false" id="PBSId1">
         
             <apex:inputField value="{!pqn.SKU__c}" required="true" id="SKU_NameId" styleClass="SKU_Name" />
-            <!--<apex:actionRegion>
-                
-                <apex:commandButton value="Validate" action="{!validate}" reRender="populateId,renderErrorMsg"/>
-            </apex:actionRegion>-->
+            
             <!--<apex:outputField value="{!pqn.Product_Name__c}"/>            
             <apex:outputField value="{!pqn.Product_Group__c}"/>            
             <apex:outputField value="{!pqn.Product_Category__c}"/>-->
@@ -142,5 +150,5 @@
 </div>
 <!-- /#page-wrapper -->
 </div>
-</body>
+</body> 
 </apex:page>

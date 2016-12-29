@@ -1,2247 +1,2291 @@
-<labels>
-	<fullName>Account_Group</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_AccountGroup</shortDescription>
-	<value>Account Group</value>
-</labels>
-<labels>
-	<fullName>VPMOrderCurrencyPageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPMOrderCurrencyPageMessage</shortDescription>
-	<value>Order Currency: Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_AccountGroup</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_AccountGroup</shortDescription>
-	<value>Account Group</value>
-</labels>
-<labels>
-	<fullName>VPM_AccountStatement</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Validation message in case if user enters Account Statement as blank</shortDescription>
-	<value>Account Statement: Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_Profile</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Profile</shortDescription>
-	<value>System Administrator</value>
-</labels>
-<labels>
-	<fullName>VPM_Add_Additional_Information</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Add Additional Information</shortDescription>
-	<value>Add Additional Information</value>
-</labels>
-<labels>
-	<fullName>VPM_AddedCommodityApprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg Added as commodity approver</shortDescription>
-	<value>Added as commodity approver</value>
-</labels>
-<labels>
-	<fullName>VPM_AddressLine1ReqHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_AddressLine1ReqHelpText</shortDescription>
-	<value>Provide the first line of the street address</value>
-</labels>
-<labels>
-	<fullName>VPM_AlreadyCommodityapprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg  Already added as Commodity approver</shortDescription>
-	<value>Already added as Commodity approver for</value>
-</labels>
-<labels>
-	<fullName>VPM_AlreadySendApprovalMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Record Already Send for Approval Message</shortDescription>
-	<value>The request is already send for Approval , you can&apos;t make changes before it Approved/Reworked ...</value>
-</labels>
-<labels>
-	<fullName>VPM_Alternative_payee_in_document</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Alternative payee in document</shortDescription>
-	<value>Indicator: Alternative Payee in Document Allowed?</value>
-</labels>
-<labels>
-	<fullName>VPM_AnnualestimatedReqHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_AnnualestimatedReqHelpText</shortDescription>
-	<value>Provide the estimated annual spend</value>
-</labels>
-<labels>
-	<fullName>VPM_ApprovReject</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_ApprovReject</shortDescription>
-	<value>Please Approve / Reject the Request before completing the Advanced Form.</value>
-</labels>
-<labels>
-	<fullName>VPM_ApproverNotSelected</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM -Error Msg when no Approver is selected</shortDescription>
-	<value>Please select the approvers to be replaced</value>
-</labels>
-<labels>
-	<fullName>VPM_ApproverNotSelectedAssignOption</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg when Approver is Not selected</shortDescription>
-	<value>Please select the approver</value>
-</labels>
-<labels>
-	<fullName>VPM_ApproverRemoveSuccess</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg when Approver Removed Success</shortDescription>
-	<value>Approver successfully removed</value>
-</labels>
-<labels>
-	<fullName>VPM_ApproverReplaceSuccess</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg when Approver Replace Success</shortDescription>
-	<value>Approver successfully replaced</value>
-</labels>
-<labels>
-	<fullName>VPM_ApproverTemporarySuccess</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg when Approvers  Temporary Replace  Success</shortDescription>
-	<value>Selected Commodity Approvers has been Temporary replaced successfully</value>
-</labels>
-<labels>
-	<fullName>VPM_Approver_1</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Approver_1</shortDescription>
-	<value>Approver 1</value>
-</labels>
-<labels>
-	<fullName>VPM_Approver_10</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Approver_10</shortDescription>
-	<value>Approver 10</value>
-</labels>
-<labels>
-	<fullName>VPM_Approver_2</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Approver_2</shortDescription>
-	<value>Approver 2</value>
-</labels>
-<labels>
-	<fullName>VPM_Approver_3</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Approver_3</shortDescription>
-	<value>Approver 3</value>
-</labels>
-<labels>
-	<fullName>VPM_Approver_4</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Approver_4</shortDescription>
-	<value>Approver 4</value>
-</labels>
-<labels>
-	<fullName>VPM_Approver_5</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Approver_5</shortDescription>
-	<value>Approver 5</value>
-</labels>
-<labels>
-	<fullName>VPM_Approver_6</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Approver_6</shortDescription>
-	<value>Approver 6</value>
-</labels>
-<labels>
-	<fullName>VPM_Approver_7</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Approver_7</shortDescription>
-	<value>Approver 7</value>
-</labels>
-<labels>
-	<fullName>VPM_Approver_8</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Approver_8</shortDescription>
-	<value>Approver 8</value>
-</labels>
-<labels>
-	<fullName>VPM_Approver_9</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Approver_9</shortDescription>
-	<value>Approver 9</value>
-</labels>
-<labels>
-	<fullName>VPM_Assign</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used as function Name for Assign in Procurement Central Admin</shortDescription>
-	<value>Assign</value>
-</labels>
-<labels>
-	<fullName>VPM_AssignProcurement</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used for help text Assign Procurement Permission to</shortDescription>
-	<value>Assign Procurement Permission to</value>
-</labels>
-<labels>
-	<fullName>VPM_AssignProcurementPermission</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Assign Procurement Permission</shortDescription>
-	<value>Assign Procurement Permission to :</value>
-</labels>
-<labels>
-	<fullName>VPM_Assign_Procurement_Permission</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Assign Procurement Permission</shortDescription>
-	<value>Assign Procurement Permission (Add permanent new approval roles)</value>
-</labels>
-<labels>
-	<fullName>VPM_AutoGenerationofPurchaseOrderallowed</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_AutoGeneration of Purchase Order allowed</shortDescription>
-	<value>Auto Generation of Purchase Order allowed</value>
-</labels>
-<labels>
-	<fullName>VPM_Back</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Back</shortDescription>
-	<value>Back</value>
-</labels>
-<labels>
-	<fullName>VPM_BankAccountNoReqHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_BankAccountNoReqHelpText</shortDescription>
-	<value>the Vendor Bank Account Number</value>
-</labels>
-<labels>
-	<fullName>VPM_BankAccountNumber</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_BankAccountNumber</shortDescription>
-	<value>Bank Account Number</value>
-</labels>
-<labels>
-	<fullName>VPM_BankCountryKeyPageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_BankCountryKeyPageMessage</shortDescription>
-	<value>Bank Country Key: Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_BankCountryKeyReqHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_BankCountryKeyReqHelpText</shortDescription>
-	<value>Provide the Bank Country Key</value>
-</labels>
-<labels>
-	<fullName>VPM_BankDetailsHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_BankDetailsHelpText</shortDescription>
-	<value>Includes Vendor Banking details</value>
-</labels>
-<labels>
-	<fullName>VPM_BankDetailsTitle</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Bank Details Title</shortDescription>
-	<value>Bank Details</value>
-</labels>
-<labels>
-	<fullName>VPM_BankKeyReqHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_BankKeyReqHelpText</shortDescription>
-	<value>Provide the Bank Key (Sort Code/ Routing Number / ABA Number)</value>
-</labels>
-<labels>
-	<fullName>VPM_BlockDeleteFlag</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>BlockDeleteFlag</shortDescription>
-	<value>Maintain</value>
-</labels>
-<labels>
-	<fullName>VPM_BlockDeleteHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_BlockDeleteHelpText</shortDescription>
-	<value>Indicate if you want to Block/Delete Vendor?</value>
-</labels>
-<labels>
-	<fullName>VPM_BlockDeleteTitle</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>BlockDeleteTitle</shortDescription>
-	<value>Block and Delete Page</value>
-</labels>
-<labels>
-	<fullName>VPM_BlockDeleteUnblockUnDleteInfo</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>BlockDeleteUnblockUnDlete Info</shortDescription>
-	<value>By selecting this option any other information completed on this Advanced form will be disregarded.</value>
-</labels>
-<labels>
-	<fullName>VPM_BlockDeleteVendorErrorMeesage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>BlockDeleteVendorErrorMeesage</shortDescription>
-	<value>Since the Vendor is Blocked/Deleted, You need to first Unblock/Undelete the vendor before submitting the record for approval.</value>
-</labels>
-<labels>
-	<fullName>VPM_Block_Delete_message</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Block/Delete message</shortDescription>
-	<value>You are seeing a limited number of menu options because this vendor is blocked or marked for deletion. Please request to unblock/undelete before raising a separate request to complete further actions.</value>
-</labels>
-<labels>
-	<fullName>VPM_BusinessRequestorAtAGlance</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Business Requestor At A Glance</shortDescription>
-	<value>Business Requestor at a Glance</value>
-</labels>
-<labels>
-	<fullName>VPM_BypassFrontlineTeam</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_BypassFrontlineTeam</shortDescription>
-	<value>Please note if you complete and submit the Advanced Form, you will bypass your Front Line Services team and the request will route straight to approver/s.</value>
-</labels>
-<labels>
-	<fullName>VPM_CashManagementGroup</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_CashManagementGroup</shortDescription>
-	<value>Cash Management Group</value>
-</labels>
-<labels>
-	<fullName>VPM_CashManagementGroupPageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_CashManagementGroupPageMessage</shortDescription>
-	<value>Cash Management Group : Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_CertificateName</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Certificate Name</shortDescription>
-	<value>VendorBPM_Client_Test</value>
-</labels>
-<labels>
-	<fullName>VPM_Certificate_Number_Tax_Exemption</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Certificate Number Tax Exemption</shortDescription>
-	<value>Certificate Number of the Withholding Tax Exemption</value>
-</labels>
-<labels>
-	<fullName>VPM_ChangeBankDetails</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Msg When Approval process is trigger due to Bank Details</shortDescription>
-	<value>Vendor Request (Maintain) - Change of Bank Details</value>
-</labels>
-<labels>
-	<fullName>VPM_ChangeBlockDelete</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Msg When Approval process is trigger due to Block Delete</shortDescription>
-	<value>Vendor Request (Maintain) - Change of Block Delete</value>
-</labels>
-<labels>
-	<fullName>VPM_ChangeFinancialSensitive</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Make aware whether the Approval process is  trigger due to changes in Fina</shortDescription>
-	<value>Vendor Request (Maintain) - Change of Financial Details</value>
-</labels>
-<labels>
-	<fullName>VPM_ChangeGeneralVendorDetails</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Msg When Approval process is trigger due to General Vendor Details</shortDescription>
-	<value>Vendor Request (Maintain) - Change of General Vendor Details</value>
-</labels>
-<labels>
-	<fullName>VPM_ChangePaymentTermsDetails</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Msg When Approval process is trigger due to Payment Terms Details</shortDescription>
-	<value>Vendor Request (Maintain) - Change of Payment Terms Details</value>
-</labels>
-<labels>
-	<fullName>VPM_ChangeUnBlockUnDelete</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Msg When Approval process is trigger due to UnBlock/UnDelete</shortDescription>
-	<value>Vendor Request (Maintain) - Change of Unblock /Undelete</value>
-</labels>
-<labels>
-	<fullName>VPM_CheckDoubleInvoicesPageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_CheckDoubleInvoicesPageMessage</shortDescription>
-	<value>Check Double Invoices : Please tick the checkbox</value>
-</labels>
-<labels>
-	<fullName>VPM_CityReqHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_CityReqHelpText</shortDescription>
-	<value>Provide the city in which the Vendor is located</value>
-</labels>
-<labels>
-	<fullName>VPM_Click_Here</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Click_Here</shortDescription>
-	<value>Click Here</value>
-</labels>
-<labels>
-	<fullName>VPM_ClientId</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Client Id</shortDescription>
-	<value>3485ee8279af458abc58065291e188d4</value>
-</labels>
-<labels>
-	<fullName>VPM_ClientSecret</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Client Secret</shortDescription>
-	<value>ca16126215ea409498F4296ADB25EAB5</value>
-</labels>
-<labels>
-	<fullName>VPM_Collection_Authorization</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Collection Authorization</shortDescription>
-	<value>Indicator Is there Collection Authorization</value>
-</labels>
-<labels>
-	<fullName>VPM_CommodityApprovReportLink</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_CommodityApprovReportLink</shortDescription>
-	<value>/00O19000000GqR7</value>
-</labels>
-<labels>
-	<fullName>VPM_CommodityApprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Commodity Approver Record</shortDescription>
-	<value>Commodity Approver Record</value>
-</labels>
-<labels>
-	<fullName>VPM_CommodityApproverNotDefinePageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Commodity Approver Not Define for select country &amp; Commodity Class</shortDescription>
-	<value>There are no Commodity Approvers defined for this Commodity Class. Please contact the Procurement team</value>
-</labels>
-<labels>
-	<fullName>VPM_CommodityApproverRecord</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Commodity Approver Record</shortDescription>
-	<value>Commodity Approver Record</value>
-</labels>
-<labels>
-	<fullName>VPM_CommodityApproverRecords</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used as Header Commodity  Approver Records Details</shortDescription>
-	<value>Commodity  Approver Records Details</value>
-</labels>
-<labels>
-	<fullName>VPM_CommodityApproverUnsuccessfullMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Custom message when the commodity approver is not replaced for commodity</shortDescription>
-	<value>Approver cannot be replaced for commodity:</value>
-</labels>
-<labels>
-	<fullName>VPM_CommodityErrorMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Custom error message for commodity not replaced</shortDescription>
-	<value>since the selected approver is already present for these commodities.</value>
-</labels>
-<labels>
-	<fullName>VPM_CommodityRecordsDetails</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Commodity Records Details</shortDescription>
-	<value>Commodity Records Details</value>
-</labels>
-<labels>
-	<fullName>VPM_CommoditySuccessFullReplaceMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Custom message when the commodity approver is successful replaced</shortDescription>
-	<value>Approver successfully replaced for commodity:</value>
-</labels>
-<labels>
-	<fullName>VPM_Commodity_Code_help_text</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Commodity Code help text</shortDescription>
-	<value>To change the Commodity Code, please exit this form and edit the Rapid form.</value>
-</labels>
-<labels>
-	<fullName>VPM_Company_Code_Details</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Company Code Details</shortDescription>
-	<value>Company Code Details</value>
-</labels>
-<labels>
-	<fullName>VPM_Company_Code_help_text</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Company Code help text</shortDescription>
-	<value>To change the Company Code, please exit this form and edit the Rapid form.</value>
-</labels>
-<labels>
-	<fullName>VPM_ConnectionError</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_ConnectionError</shortDescription>
-	<value>Connection to SAP has timed out. Please try again.</value>
-</labels>
-<labels>
-	<fullName>VPM_ContactPerson</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Contact Person message</shortDescription>
-	<value>By entering Contact Person details you will be adding a new Contact Person in SAP. Please use the Chatter feed to log an exception if you have a particular request about an existing Contact Person.</value>
-</labels>
-<labels>
-	<fullName>VPM_Contact_Person</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Contact Person</shortDescription>
-	<value>Contact Person</value>
-</labels>
-<labels>
-	<fullName>VPM_Contact_Vendor</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Contact Vendor</shortDescription>
-	<value>Contact Vendor</value>
-</labels>
-<labels>
-	<fullName>VPM_CordilleraGoldenDataScreen</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_CordilleraGoldenDataScreen</shortDescription>
-	<value>Cordillera Golden Data Screen</value>
-</labels>
-<labels>
-	<fullName>VPM_Cordillera_Region_Specific</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Cordillera Region Specific</shortDescription>
-	<value>Cordillera Region Specific Page</value>
-</labels>
-<labels>
-	<fullName>VPM_CountryLabelProcAdmin</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Country Label Proc Admin</shortDescription>
-	<value>Country :</value>
-</labels>
-<labels>
-	<fullName>VPM_CountryNotSelected</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg when Country is not selected</shortDescription>
-	<value>Please select the country</value>
-</labels>
-<labels>
-	<fullName>VPM_CountryPagemessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_CountryPagemessage</shortDescription>
-	<value>Country: Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_Creation_Details</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Creation Details</shortDescription>
-	<value>Creation/Maintenance Details</value>
-</labels>
-<labels>
-	<fullName>VPM_DetailsOfPlannedActivitiesError</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM DetailsOfPlannedActivitiesError</shortDescription>
-	<value>Please enter Details of Planned Activities</value>
-</labels>
-<labels>
-	<fullName>VPM_EditBankDetails</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Edit Bank Details</shortDescription>
-	<value>Edit Bank Details</value>
-</labels>
-<labels>
-	<fullName>VPM_EditFinanciallySensitiveFields</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_EditFinanciallySensitiveFields</shortDescription>
-	<value>Edit Financial Details</value>
-</labels>
-<labels>
-	<fullName>VPM_EditPaymentTerms</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_EditPaymentTerms</shortDescription>
-	<value>Edit Payment Terms and Purchasing Details</value>
-</labels>
-<labels>
-	<fullName>VPM_EditRegionalSpecificFields</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_EditRegionalSpecificFields</shortDescription>
-	<value>Edit Regional Specific Fields</value>
-</labels>
-<labels>
-	<fullName>VPM_EnterBankDetails</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_EnterBankDetails</shortDescription>
-	<value>Enter Bank Details</value>
-</labels>
-<labels>
-	<fullName>VPM_EnterFinanciallySensitiveFields</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_EnterFinanciallySensitiveFields</shortDescription>
-	<value>Enter Financial Details</value>
-</labels>
-<labels>
-	<fullName>VPM_EnterGeneralVendorDetails</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_EnterGeneralVendorDetails</shortDescription>
-	<value>Enter General Vendor Details</value>
-</labels>
-<labels>
-	<fullName>VPM_EnterPaymentTerms</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_EnterPaymentTerms</shortDescription>
-	<value>Enter Payment Terms and Purchasing Details</value>
-</labels>
-<labels>
-	<fullName>VPM_EnterRegionalSpecificFields</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_EnterRegionalSpecificFields</shortDescription>
-	<value>Enter Regional Specific Fields</value>
-</labels>
-<labels>
-	<fullName>VPM_ErrorMessageGlobalAuthGroupSelection</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM  Error Message Global Auth Group Selection</shortDescription>
-	<value>The Global Authorisation  group selected is not compatible with your region. Please select a different Global Authorisation Group.</value>
-</labels>
-<labels>
-	<fullName>VPM_ErrorMessageScreen</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>ErrorMessageScreen</shortDescription>
-	<value>Error Message</value>
-</labels>
-<labels>
-	<fullName>VPM_ExceptionDetailsError</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM ExceptionDetailsError</shortDescription>
-	<value>Please enter Exception Details</value>
-</labels>
-<labels>
-	<fullName>VPM_Exit</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Exit</shortDescription>
-	<value>Exit</value>
-</labels>
-<labels>
-	<fullName>VPM_Exit_Form</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Exit Form</shortDescription>
-	<value>Exit Form</value>
-</labels>
-<labels>
-	<fullName>VPM_Exitthisform</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Exitthisform</shortDescription>
-	<value>Exit this form</value>
-</labels>
-<labels>
-	<fullName>VPM_FinanceAtAGlance</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Finance at a Glance</shortDescription>
-	<value>Finance at a Glance</value>
-</labels>
-<labels>
-	<fullName>VPM_FinancialCheckError</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM FinancialCheckError</shortDescription>
-	<value>Please enter Reason for No Financial Check</value>
-</labels>
-<labels>
-	<fullName>VPM_FinancialDetailsHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_FinancialDetailsHelpText</shortDescription>
-	<value>Financial Details help text</value>
-</labels>
-<labels>
-	<fullName>VPM_FinancialHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_FinancialHelpText</shortDescription>
-	<value>Includes key Financial information related to the request</value>
-</labels>
-<labels>
-	<fullName>VPM_FinanciallySensitiveTitle</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Financially Sensitive Title</shortDescription>
-	<value>Finance Details</value>
-</labels>
-<labels>
-	<fullName>VPM_FreightAtAGlance</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Freight At a Glance</shortDescription>
-	<value>Freight at a Glance</value>
-</labels>
-<labels>
-	<fullName>VPM_FusionGolde_DataScreen</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_FusionGolde DataScreen</shortDescription>
-	<value>Fusion Golden Data Screen</value>
-</labels>
-<labels>
-	<fullName>VPM_Fusion_Region_Specific</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Fusion Region Specific</shortDescription>
-	<value>Fusion Region Specific Page</value>
-</labels>
-<labels>
-	<fullName>VPM_GeneralDetailsHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_GeneralDetailsHelpText</shortDescription>
-	<value>Includes Vendor Name/ Address/ Tax details</value>
-</labels>
-<labels>
-	<fullName>VPM_General_Vendor_Details</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_General Vendor Details</shortDescription>
-	<value>General Vendor Details</value>
-</labels>
-<labels>
-	<fullName>VPM_GlobalAuthorisationGrpPageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_GlobalAuthorisationGrpPageMessage</shortDescription>
-	<value>Global Authorisation Group: Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_GlobalGoldenDataHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_GlobalGoldenDataHelpText</shortDescription>
-	<value>Minimum global mandatory details required to create / maintain a Vendor</value>
-</labels>
-<labels>
-	<fullName>VPM_Go</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used a Button Value for &quot;Go&quot;  in procurement Admin</shortDescription>
-	<value>Go</value>
-</labels>
-<labels>
-	<fullName>VPM_GoldenDataBackButton</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Golden Data Back Button</shortDescription>
-	<value>Back</value>
-</labels>
-<labels>
-	<fullName>VPM_GoldenDataDisplayText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Golden Data Display Text</shortDescription>
-	<value>Please select the Country first, changing the Country will erase out any data you entered.</value>
-</labels>
-<labels>
-	<fullName>VPM_GoldenDataNextButton</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Golden Data Next Button</shortDescription>
-	<value>Next</value>
-</labels>
-<labels>
-	<fullName>VPM_GoldenDataRegionalHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_GoldenDataRegionalHelpText</shortDescription>
-	<value>Minimum regional specific mandatory details required to create / maintain a Vendor</value>
-</labels>
-<labels>
-	<fullName>VPM_GoldenDataScreen2</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Golden Data Screen 2</shortDescription>
-	<value>Golden Data Screen 2</value>
-</labels>
-<labels>
-	<fullName>VPM_GoldenDataScreenTitle</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM GoldenDataScreenTitle</shortDescription>
-	<value>Golden Data Screen</value>
-</labels>
-<labels>
-	<fullName>VPM_Golden_Data_Screen_1</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Golden Data Screen 1</shortDescription>
-	<value>Global Golden Data Screen</value>
-</labels>
-<labels>
-	<fullName>VPM_Heap_Error</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Heap Error</shortDescription>
-	<value>Please modify the search criteria Too many Vendors retrieved.</value>
-</labels>
-<labels>
-	<fullName>VPM_HomePageIntroTextHeader</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Home Page Intro Text Header</shortDescription>
-	<value>Vendor BPM Useful Links</value>
-</labels>
-<labels>
-	<fullName>VPM_HomePageLink1</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Home Page Link 1</shortDescription>
-	<value>Thanks for visiting Vendor BPM</value>
-</labels>
-<labels>
-	<fullName>VPM_HomePageLink2</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Home Page Link 2</shortDescription>
-	<value>You should click here for help &gt;</value>
-</labels>
-<labels>
-	<fullName>VPM_HomePageLink3</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Home Page Link 3</shortDescription>
-	<value>Or go here if you&apos;re really stuck &gt;</value>
-</labels>
-<labels>
-	<fullName>VPM_HomePageLink4</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Home Page Link 4</shortDescription>
-	<value>Then the last thing you should try &gt;</value>
-</labels>
-<labels>
-	<fullName>VPM_HouseNumberLeftBlankVenCouBrazil</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg When House  Number  is left blank for Vendor Country &apos;Brazil&apos;</shortDescription>
-	<value>House Number cannot be left blank for Vendor Country &quot;Brazil&quot;</value>
-</labels>
-<labels>
-	<fullName>VPM_IAmWorkingOnIt</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM IAmWorkingOnIt</shortDescription>
-	<value>I am working on it</value>
-</labels>
-<labels>
-	<fullName>VPM_Incoterms2</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Incoterms2</shortDescription>
-	<value>Incoterms 2</value>
-</labels>
-<labels>
-	<fullName>VPM_Incoterms2PageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Incoterms2PageMessage</shortDescription>
-	<value>Incoterms 2 Cannot be left blank</value>
-</labels>
-<labels>
-	<fullName>VPM_Indicator_Alternative_payee_using_account_number</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Indicator Alternative payee using account number</shortDescription>
-	<value>Indicator Alternative Payee using Account Number</value>
-</labels>
-<labels>
-	<fullName>VPM_Indicator_Clearing_between_customer_and_vendor</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Indicator Clearing between customer and vendor</shortDescription>
-	<value>Indicator Clearing between Customer and Vendor</value>
-</labels>
-<labels>
-	<fullName>VPM_Industry</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>custom validation error message for Industry field</shortDescription>
-	<value>Industry: Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_IndustryLengthError</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_IndustryLengthError</shortDescription>
-	<value>Industry : Length cannot be more than 4.</value>
-</labels>
-<labels>
-	<fullName>VPM_International1</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM International1</shortDescription>
-	<value>Please select International Version.</value>
-</labels>
-<labels>
-	<fullName>VPM_InternationalFusion</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM International Fusion</shortDescription>
-	<value>No fields exist in this section for the region.</value>
-</labels>
-<labels>
-	<fullName>VPM_InternationalMsg</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM International Msg</shortDescription>
-	<value>You must enter a value.</value>
-</labels>
-<labels>
-	<fullName>VPM_International_Version</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_International Version</shortDescription>
-	<value>International Version</value>
-</labels>
-<labels>
-	<fullName>VPM_IsThereInvoiceAlreadyReceivedLabel</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Has the product or service already been provided?</shortDescription>
-	<value>Is work already started?</value>
-</labels>
-<labels>
-	<fullName>VPM_Language</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Language</shortDescription>
-	<value>Language</value>
-</labels>
-<labels>
-	<fullName>VPM_LaunchScreenHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_LaunchScreenHelpText</shortDescription>
-	<value>Search for your Vendor from the global database</value>
-</labels>
-<labels>
-	<fullName>VPM_LinkToReports</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_LinkToReports</shortDescription>
-	<value>Link To Reports</value>
-</labels>
-<labels>
-	<fullName>VPM_MDMBPMErrorMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_MDMBPMErrorMessage</shortDescription>
-	<value>You have not completed MDM BPM Data. Kindly complete it.</value>
-</labels>
-<labels>
-	<fullName>VPM_MDMBPMVendorPreTitle</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_MDMBPMVendorPreTitle</shortDescription>
-	<value>MDM BPM - Vendor Creation Pre-Requisites</value>
-</labels>
-<labels>
-	<fullName>VPM_MDMCountry</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM MDM Country</shortDescription>
-	<value>Vendor Country</value>
-</labels>
-<labels>
-	<fullName>VPM_MDMOpsAtAGlance</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM MDM Ops at a Glance</shortDescription>
-	<value>MDM Ops At a Glance</value>
-</labels>
-<labels>
-	<fullName>VPM_Manually_Mark_as_complete</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Manually Mark as complete</shortDescription>
-	<value>Manually Mark as complete</value>
-</labels>
-<labels>
-	<fullName>VPM_MultipleRecordFound</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg when Multiple record fund</shortDescription>
-	<value>Multiple items found. Select from drop-down or click icon to refine search.</value>
-</labels>
-<labels>
-	<fullName>VPM_MyVendorisnotlisted</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_MyVendorisnotlisted</shortDescription>
-	<value>My Vendor isn&apos;t listed, I want to create a new Vendor</value>
-</labels>
-<labels>
-	<fullName>VPM_NewPartner</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_NewPartner</shortDescription>
-	<value>For a New Partner - Link to existing Trade Vendor</value>
-</labels>
-<labels>
-	<fullName>VPM_New_Approver</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>New Approver</shortDescription>
-	<value>New Approver</value>
-</labels>
-<labels>
-	<fullName>VPM_Next</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Next</shortDescription>
-	<value>Next</value>
-</labels>
-<labels>
-	<fullName>VPM_NoCommodityfound</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg When No Commodities  Not found for Country</shortDescription>
-	<value>No Commodities found for the selected country</value>
-</labels>
-<labels>
-	<fullName>VPM_NoCommodityfoundApprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg When No Commodities  Not found for Approver</shortDescription>
-	<value>No Commodities found for the selected approver</value>
-</labels>
-<labels>
-	<fullName>VPM_NoLongerWorkingOnIt</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM NoLongerWorkingOnIt</shortDescription>
-	<value>No Longer Working on the Record</value>
-</labels>
-<labels>
-	<fullName>VPM_NoRecordSelectApprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg No Record Selected  try again by selecting the approver</shortDescription>
-	<value>No records selected.Please try again by selecting the approver</value>
-</labels>
-<labels>
-	<fullName>VPM_NoRecordSelectApproverCountry</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg No Record Selected</shortDescription>
-	<value>No records selected.Please try again by selecting the approver and country</value>
-</labels>
-<labels>
-	<fullName>VPM_Old_Approver</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Old Approver</shortDescription>
-	<value>Old Approver</value>
-</labels>
-<labels>
-	<fullName>VPM_OlderApprovalNoLongerExist</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg when Older Approval no Longer Exist</shortDescription>
-	<value>The Old Approver selected is no longer an approver. Please select another approver</value>
-</labels>
-<labels>
-	<fullName>VPM_Other</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Other</shortDescription>
-	<value>Other</value>
-</labels>
-<labels>
-	<fullName>VPM_PIVendorCreationPreRequisites</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_PIVendorCreationPreRequisites</shortDescription>
-	<value>MDM BPM - Vendor Creation Pre-Requisites</value>
-</labels>
-<labels>
-	<fullName>VPM_PartnerFunction</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Partner Function</shortDescription>
-	<value>Vendor/Partner Creation</value>
-</labels>
-<labels>
-	<fullName>VPM_PaymentBlock</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>PaymentBlock</shortDescription>
-	<value>Payment Block</value>
-</labels>
-<labels>
-	<fullName>VPM_PaymentMethodChanged</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_PaymentMethodChanged</shortDescription>
-	<value>Changes to Payment Methods</value>
-</labels>
-<labels>
-	<fullName>VPM_PaymentMethodPageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_PaymentMethodPageMessage</shortDescription>
-	<value>Payment Method: Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_PaymentMethodReqHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_PaymentMethodReqHelpText</shortDescription>
-	<value>Payment Methods to be used in relation to the Vendor</value>
-</labels>
-<labels>
-	<fullName>VPM_PaymentTermsHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_PaymentTermsHelpText</shortDescription>
-	<value>Includes Payments Terms and key Purchasing Org details</value>
-</labels>
-<labels>
-	<fullName>VPM_PaymentTermsIfNoneSelected</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM PaymentTermsIfNoneSelected</shortDescription>
-	<value>Please select value in Payment terms OR enter value in Payment Terms if None Selected</value>
-</labels>
-<labels>
-	<fullName>VPM_PaymentTermsPageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_PaymentTermsPageMessage</shortDescription>
-	<value>Payment Terms: Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_PaymentTermsReqHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_PaymentTermsReqHelpText</shortDescription>
-	<value>Payment Terms to be used in relation to the Vendor</value>
-</labels>
-<labels>
-	<fullName>VPM_Payment_Terms</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Payment Terms</shortDescription>
-	<value>Payment Terms</value>
-</labels>
-<labels>
-	<fullName>VPM_PaymentmethodErrorMesg</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_PaymentmethodErrorMesg</shortDescription>
-	<value>Not more than 5 selections can be made on payment Method.</value>
-</labels>
-<labels>
-	<fullName>VPM_PaymetTermsTitle</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Payment Terms Title</shortDescription>
-	<value>Payment Terms and Purchasing Details</value>
-</labels>
-<labels>
-	<fullName>VPM_PostalCode</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Postal Code</shortDescription>
-	<value>Postal Code</value>
-</labels>
-<labels>
-	<fullName>VPM_PostalCodeLeftBlankVenCouBrazil</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg When Postal Code is left blank for Vendor Country  &quot;Brazil&quot;</shortDescription>
-	<value>Postal Code cannot be left blank for Vendor Country &quot;Brazil&quot;</value>
-</labels>
-<labels>
-	<fullName>VPM_PreSelectedPaymentMethod</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_PreSelectedPaymentMethod</shortDescription>
-	<value>Your Selected Payment Methods</value>
-</labels>
-<labels>
-	<fullName>VPM_ProcurementAtAGlance</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Procurement at Glance</shortDescription>
-	<value>Procurement at Glance</value>
-</labels>
-<labels>
-	<fullName>VPM_ProcurementLink</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_ProcurementLink</shortDescription>
-	<value>Procurement Links</value>
-</labels>
-<labels>
-	<fullName>VPM_ProcurementPermissionName</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used to hold the Procuremnt Permission set Name</shortDescription>
-	<value>VPM_Procurement</value>
-</labels>
-<labels>
-	<fullName>VPM_Procurement_Central_Admin</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used for Procurement Admin Title</shortDescription>
-	<value>Procurement Central Admin - Approver Role Changes</value>
-</labels>
-<labels>
-	<fullName>VPM_PurchasingOrganisation</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_PurchasingOrganisation</shortDescription>
-	<value>Purchasing Organisation</value>
-</labels>
-<labels>
-	<fullName>VPM_PurchasingOrganization</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Purchasing Organization Validation</shortDescription>
-	<value>Purchasing Organisation : You must enter a value</value>
-</labels>
-<labels>
-	<fullName>VPM_Quick_Submit</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Quick Submit</shortDescription>
-	<value>Quick Submit</value>
-</labels>
-<labels>
-	<fullName>VPM_ReconciliationAccReqHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_ReconciliationAccReqHelpText</shortDescription>
-	<value>Reconciliation Account to be used in relation to the Vendor</value>
-</labels>
-<labels>
-	<fullName>VPM_RecordID</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Record ID</shortDescription>
-	<value>Update Commodity Class</value>
-</labels>
-<labels>
-	<fullName>VPM_RecordIsInApproval</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Record is in Approval</shortDescription>
-	<value>Please make your approval decision before completing the Advanced Form</value>
-</labels>
-<labels>
-	<fullName>VPM_RecordSentToSAPAlert</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_RecordSentToSAPAlert</shortDescription>
-	<value>The advance form cannot be filled as the record has been sent to SAP</value>
-</labels>
-<labels>
-	<fullName>VPM_Record_Submit_Warning</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Record Submit Warning</shortDescription>
-	<value>The Vendor has been sent a request to complete their details via a Webform and they have not yet responded. If you proceed to the approval stage, any submission the Vendor makes in the future will not be appended to this request. The person who sent the Vendor the request will be notified if a submission happens.</value>
-</labels>
-<labels>
-	<fullName>VPM_RegionLeftBlankVenCouBrazil</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg When Region is left blank for Vendor Country &quot;Brazil&quot;</shortDescription>
-	<value>Region cannot be left blank for Vendor Country &quot;Brazil&quot;</value>
-</labels>
-<labels>
-	<fullName>VPM_RegionalSpecificHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_RegionalSpecificHelpText</shortDescription>
-	<value>Includes Regional specific data fields</value>
-</labels>
-<labels>
-	<fullName>VPM_RelevantBlocksDeletesLabel</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_RelevantBlocksDeletesLabel</shortDescription>
-	<value>Only relevant for Manual Blocks/Unblocks/Deletes/Undeletes</value>
-</labels>
-<labels>
-	<fullName>VPM_Remove</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used as function Name for Remove in Procurement Central Admin</shortDescription>
-	<value>Remove</value>
-</labels>
-<labels>
-	<fullName>VPM_RemoveApprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used for help Text \Remove Procurement Approver from Selected User</shortDescription>
-	<value>Remove Procurement Approver from Selected User</value>
-</labels>
-<labels>
-	<fullName>VPM_RemoveCommodityApprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - error Msg Removed as commodity approver</shortDescription>
-	<value>Removed as commodity approver</value>
-</labels>
-<labels>
-	<fullName>VPM_RemoveProcurementPermission</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Remove Procurement Permission</shortDescription>
-	<value>Remove Procurement Permission</value>
-</labels>
-<labels>
-	<fullName>VPM_RemoveProcurementPermissionFrom</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Remove Procurement Permission from</shortDescription>
-	<value>Remove Procurement Permission from :</value>
-</labels>
-<labels>
-	<fullName>VPM_Remove_Procurement_Permission</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Remove Procurement Permission</shortDescription>
-	<value>Remove Procurement Permission (remove permanent existing approval roles)</value>
-</labels>
-<labels>
-	<fullName>VPM_Replace</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used for Replace function Name in Procurement Admin</shortDescription>
-	<value>Replace</value>
-</labels>
-<labels>
-	<fullName>VPM_ReplaceNewApprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used for help Text Replace with a new New Approver</shortDescription>
-	<value>Replace with a new New Approver</value>
-</labels>
-<labels>
-	<fullName>VPM_ReplaceUntill</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used for Temporary Replace  till Date</shortDescription>
-	<value>Temporary Replace  till Date</value>
-</labels>
-<labels>
-	<fullName>VPM_Replace_Approver</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Replace_Approver</shortDescription>
-	<value>Replace Approver (Replace existing approval roles)</value>
-</labels>
-<labels>
-	<fullName>VPM_RequestAbortedAlert</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_RequestAbortedAlert</shortDescription>
-	<value>You cannot see/edit the Advanced form because this request has been Aborted.</value>
-</labels>
-<labels>
-	<fullName>VPM_RequestRejectedAlert</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_RequestRejectedAlert</shortDescription>
-	<value>You cannot see the Advanced form because this request has been rejected</value>
-</labels>
-<labels>
-	<fullName>VPM_RequestVendortoBlock_Delete</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_RequestVendortoBlock/Delete</shortDescription>
-	<value>Request Vendor to Block/Delete</value>
-</labels>
-<labels>
-	<fullName>VPM_RequestVendortoUnblock_Undelete</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_RequestVendortoUnblock/Undelete</shortDescription>
-	<value>Request Vendor to Unblock/Undelete</value>
-</labels>
-<labels>
-	<fullName>VPM_Request_Brief_Desc1</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Request_Brief_Desc1</shortDescription>
-	<value>This information is stored at the Salesforce user profile level.</value>
-</labels>
-<labels>
-	<fullName>VPM_Request_Brief_Desc2</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Request_Brief_Desc2</shortDescription>
-	<value>to access your user profile. Note: these details are from the business requestor who created the request, and so must be changed by the business requestor.</value>
-</labels>
-<labels>
-	<fullName>VPM_Request_Brief_Heading</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Review Requestor Brief</shortDescription>
-	<value>Review Requestor Brief</value>
-</labels>
-<labels>
-	<fullName>VPM_RequestorEmail</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Requestor Email</shortDescription>
-	<value>Requestor Email</value>
-</labels>
-<labels>
-	<fullName>VPM_RequestorName</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Requestor Name</shortDescription>
-	<value>Requestor Name</value>
-</labels>
-<labels>
-	<fullName>VPM_RequestorRole</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Requestor Role</shortDescription>
-	<value>Requestor Role</value>
-</labels>
-<labels>
-	<fullName>VPM_RequestorTelephone</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Requestor Telephone</shortDescription>
-	<value>Requestor Telephone</value>
-</labels>
-<labels>
-	<fullName>VPM_Rework</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Rework</shortDescription>
-	<value>Rework</value>
-</labels>
-<labels>
-	<fullName>VPM_ReworkAlert</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Rework alert</shortDescription>
-	<value>This request is in a re-work process. If this was re-worked to you, please click the &apos;Recall&apos; button on the approval related list before continuing</value>
-</labels>
-<labels>
-	<fullName>VPM_Rounding_Profile_Group</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Rounding Profile Group</shortDescription>
-	<value>Rounding Profile Group</value>
-</labels>
-<labels>
-	<fullName>VPM_SAPError</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SAPError</shortDescription>
-	<value>SAP API not implemented.</value>
-</labels>
-<labels>
-	<fullName>VPM_SAPPaymentMethod</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SAPPaymentMethod</shortDescription>
-	<value>Existing SAP Payment Methods</value>
-</labels>
-<labels>
-	<fullName>VPM_SAPRequstError</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SAPRequstError</shortDescription>
-	<value>Some error occurred while submitting request to SAP. Please try after some time.</value>
-</labels>
-<labels>
-	<fullName>VPM_SRVBasedVendorID</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SRVBasedVendorID</shortDescription>
-	<value>SRV Based Vendor ID :You must Enter a value</value>
-</labels>
-<labels>
-	<fullName>VPM_SRVBasedVendorPageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SRVBasedVendorPageMessage</shortDescription>
-	<value>SRV Based VendorID : Please tick the checkbox</value>
-</labels>
-<labels>
-	<fullName>VPM_Save</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Save</shortDescription>
-	<value>Save</value>
-</labels>
-<labels>
-	<fullName>VPM_SaveButton</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Save Button</shortDescription>
-	<value>Save and Return to Menu</value>
-</labels>
-<labels>
-	<fullName>VPM_SaveExitButton</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Save &amp; Exit Button</shortDescription>
-	<value>Save &amp; Exit</value>
-</labels>
-<labels>
-	<fullName>VPM_SaveSubmitLabel</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Save &amp; Submit</shortDescription>
-	<value>Save &amp; Submit</value>
-</labels>
-<labels>
-	<fullName>VPM_SchemaGroupVendor</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SchemaGroupVendor</shortDescription>
-	<value>Schema Group Vendor</value>
-</labels>
-<labels>
-	<fullName>VPM_SelectAction</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Select Action</shortDescription>
-	<value>Select Action</value>
-</labels>
-<labels>
-	<fullName>VPM_SelectCommodity</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SelectCommodity</shortDescription>
-	<value>2) Select Commodity Classes to Update</value>
-</labels>
-<labels>
-	<fullName>VPM_SelectCountry</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used as Label for country in Procurement Central Admin Page</shortDescription>
-	<value>Country</value>
-</labels>
-<labels>
-	<fullName>VPM_SelectNewApprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used as Help Text to Select New Approver</shortDescription>
-	<value>Enter New Approver Name</value>
-</labels>
-<labels>
-	<fullName>VPM_SelectOldApprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used as Help Text to Select Old Approver</shortDescription>
-	<value>Enter Old Approver Name</value>
-</labels>
-<labels>
-	<fullName>VPM_SelectUser</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SelectUser</shortDescription>
-	<value>1) Select User to Update</value>
-</labels>
-<labels>
-	<fullName>VPM_SelectUserAssign</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used as Help Page Select user for Assign Procurement</shortDescription>
-	<value>Select User to Assign Procurement Permission</value>
-</labels>
-<labels>
-	<fullName>VPM_SelectUserRemove</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Help Text Select user to Remove Procurement Permission from</shortDescription>
-	<value>Select user to Remove Procurement Permission from</value>
-</labels>
-<labels>
-	<fullName>VPM_Select_Option</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Select Option</shortDescription>
-	<value>Please select at least one option.</value>
-</labels>
-<labels>
-	<fullName>VPM_SeletCommodity</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SeletCommodity</shortDescription>
-	<value>Please select commodity</value>
-</labels>
-<labels>
-	<fullName>VPM_SendWebFormRequest</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Send Web Form Request</shortDescription>
-	<value>Send Web Form Request</value>
-</labels>
-<labels>
-	<fullName>VPM_SendWebformRequestInfo</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>SendWebformRequestInfo</shortDescription>
-	<value>By selecting Yes you will be sending the vendor a web form for them to complete their general vendor details, bank details, and provide supporting documentation. This will be sent to the email address in the field below. Select No to avoid sending the web form request</value>
-</labels>
-<labels>
-	<fullName>VPM_SendWebformRequestToVendor</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Send Webform Request to Vendor</shortDescription>
-	<value>Send Web Form Request to Vendor?</value>
-</labels>
-<labels>
-	<fullName>VPM_Send_Button</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Send Button</shortDescription>
-	<value>Send</value>
-</labels>
-<labels>
-	<fullName>VPM_Send_ResendWebformRequest</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Send/ResendWebformRequest</shortDescription>
-	<value>Send / Resend Web Form Request</value>
-</labels>
-<labels>
-	<fullName>VPM_Send_to_SAP</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Send to SAP</shortDescription>
-	<value>Send to SAP</value>
-</labels>
-<labels>
-	<fullName>VPM_ServerError</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_ServerError</shortDescription>
-	<value>Server Error. Please try after some time.</value>
-</labels>
-<labels>
-	<fullName>VPM_ShippingConditionMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_ShippingConditionMessage</shortDescription>
-	<value>Shipping Condition cannot be left blank.</value>
-</labels>
-<labels>
-	<fullName>VPM_SiriusGoldenDataHelptext2</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>change company code</shortDescription>
-	<value>To change the Company Code, please exit this form and edit the Rapid form.</value>
-</labels>
-<labels>
-	<fullName>VPM_SiriusGoldenDataScreen</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SiriusGoldenDataScreen</shortDescription>
-	<value>Sirius Golden Data Screen</value>
-</labels>
-<labels>
-	<fullName>VPM_Sirius_Regional_Specific</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Sirius Regional Specific</shortDescription>
-	<value>Sirius Regional Specific Page</value>
-</labels>
-<labels>
-	<fullName>VPM_SortKeyPageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SortKeyPageMessage</shortDescription>
-	<value>Sort Key: Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_Status</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Status</shortDescription>
-	<value>Status</value>
-</labels>
-<labels>
-	<fullName>VPM_Street1PageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Street1PageMessage</shortDescription>
-	<value>Address Line 1: You must Enter a value</value>
-</labels>
-<labels>
-	<fullName>VPM_SubmitVendorRequestforApproval</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SubmitVendorRequestforApproval</shortDescription>
-	<value>Submit Vendor Request for Approval</value>
-</labels>
-<labels>
-	<fullName>VPM_Submit_Request</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Submit Request</shortDescription>
-	<value>Submit Request</value>
-</labels>
-<labels>
-	<fullName>VPM_SupPosAssExcepDetailsQual</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SupPosAssExcepDetailsQual</shortDescription>
-	<value>b. Supplier Assessment Questionnaire Results of Risk Asessment</value>
-</labels>
-<labels>
-	<fullName>VPM_SupPosAssExcepDetailsQualLabel</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SupPosAssExcepDetailsQualLabel</shortDescription>
-	<value>Supplier Assessment Questionnaire Results of Risk Asessment</value>
-</labels>
-<labels>
-	<fullName>VPM_SuppPosiAssQualityTitle</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SuppPosiAssQualityTitle</shortDescription>
-	<value>a. Supplier Positive Assurance</value>
-</labels>
-<labels>
-	<fullName>VPM_SupplerAuditTitle</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SupplerAuditTitle</shortDescription>
-	<value>c. Supplier Audit</value>
-</labels>
-<labels>
-	<fullName>VPM_SupplierAchillesRegistration</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SupplierAchillesRegistration</shortDescription>
-	<value>2. Supplier Achilles Registration</value>
-</labels>
-<labels>
-	<fullName>VPM_SupplierFinancialStabilityCheck</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SupplierFinancialStabilityCheck</shortDescription>
-	<value>1. Supplier Financial Stability Check</value>
-</labels>
-<labels>
-	<fullName>VPM_SupplierQualityStatus</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_SupplierQualityStatus</shortDescription>
-	<value>3. Supplier Quality Status</value>
-</labels>
-<labels>
-	<fullName>VPM_SwitzerlandFLSEnabled</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Display Pop Msg Switzerland has FLS enabled on submit button Click</shortDescription>
-	<value>You can only submit at this stage for PI and 3rd party manufacturing (3PM) vendors. If you are not, please click on Advanced Form and complete that before submitting.</value>
-</labels>
-<labels>
-	<fullName>VPM_TaxCode</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Tax Code</shortDescription>
-	<value>Tax Code</value>
-</labels>
-<labels>
-	<fullName>VPM_TaxJuriCodeErrorMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_TaxJuriCodeErrorMessage</shortDescription>
-	<value>Tax Jurisdiction Code Cannot be left blank</value>
-</labels>
-<labels>
-	<fullName>VPM_TaxJuriLengthMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_TaxJuriLengthMessage</shortDescription>
-	<value>Tax Jurisdiction Code cannot be more then 15 characters.</value>
-</labels>
-<labels>
-	<fullName>VPM_TaxJurisdictionCodePageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_TaxJurisdictionCodePageMessage</shortDescription>
-	<value>Tax Jurisdiction Code: Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_TaxNumber1ErrorMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_TaxNumber1ErrorMessage</shortDescription>
-	<value>Tax Number 1 Cannot be left blank</value>
-</labels>
-<labels>
-	<fullName>VPM_TaxNumber1PageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_TaxNumber1PageMessage</shortDescription>
-	<value>Tax Number 1: You must select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_TaxNumber3LeftBlankVenCouBrazil</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg When Tax Number 3 is left blank for Vendor Country Brazil</shortDescription>
-	<value>Tax Number 3 cannot be left blank for Vendor Country &quot;Brazil&quot;</value>
-</labels>
-<labels>
-	<fullName>VPM_Tax_Information</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Tax Information</shortDescription>
-	<value>Tax Information</value>
-</labels>
-<labels>
-	<fullName>VPM_TempDateIsPassDate</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg when Temp Date is Pass Date</shortDescription>
-	<value>Cannot select the pass date..Please select the valid date</value>
-</labels>
-<labels>
-	<fullName>VPM_TempDateNotSelected</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg when Temp. Date Not Selected</shortDescription>
-	<value>Please select the Temporary Replace Date</value>
-</labels>
-<labels>
-	<fullName>VPM_Temporary</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used as function Name for Temporary Replace in Procurement Central Admin</shortDescription>
-	<value>Temporary</value>
-</labels>
-<labels>
-	<fullName>VPM_TemporaryReplaceNewApprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Used for help Text Temporary Replace with a new New Approver Menu</shortDescription>
-	<value>Temporary Replace with a new New Approver</value>
-</labels>
-<labels>
-	<fullName>VPM_Temporary_Replace_Approver</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Temporary Replace Approver</shortDescription>
-	<value>Temporary Replace Approver (Delegate profile to)</value>
-</labels>
-<labels>
-	<fullName>VPM_TermsOfPayment</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM- custom valiation error message in case terms of payment is not selected</shortDescription>
-	<value>Terms Of Payment: Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_TermsOfPaymentReqHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_TermsOfPaymentReqHelpText</shortDescription>
-	<value>Terms of Payment to be used in relation to the Vendor</value>
-</labels>
-<labels>
-	<fullName>VPM_TersmOfPaymentErrorMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_TersmOfPaymentErrorMessage</shortDescription>
-	<value>Terms of Paymet : Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_TooManyVendorsRetrieved</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM TooManyVendorsRetrieved</shortDescription>
-	<value>&apos;Please filter the search criteria, too many Vendors retrieved</value>
-</labels>
-<labels>
-	<fullName>VPM_TotalNosCommodityApprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_TotalNosCommodityApprover</shortDescription>
-	<value>10</value>
-</labels>
-<labels>
-	<fullName>VPM_TotalNumberApprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Header Text Total Number of Approver</shortDescription>
-	<value>Total Number of Approver</value>
-</labels>
-<labels>
-	<fullName>VPM_TotalNumberOfApprovers</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Total number of approvers</shortDescription>
-	<value>Total number of approvers</value>
-</labels>
-<labels>
-	<fullName>VPM_TradePartnerType</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_TradePartnerType</shortDescription>
-	<value>Trade Partner Type - Works with Account Group to Define ECC Account Group</value>
-</labels>
-<labels>
-	<fullName>VPM_TradePartnerTypeHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Trade Partner Type Help Text</shortDescription>
-	<value>Always VN for Sirius. For Cordillera Freight Vendors select VN for Carriers or GS for Goods Suppliers. For Cordillera PI Vendors only change from VN if vendor is a Goods Supplier, an Invoice Party only or an Ordering address. This will ensure the vendor is set up correctly in SAP.</value>
-</labels>
-<labels>
-	<fullName>VPM_TradePartnerTypepageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_TradePartnerTypepageMessage</shortDescription>
-	<value>Trade Partner Type: Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_Type</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Type</shortDescription>
-	<value>Type</value>
-</labels>
-<labels>
-	<fullName>VPM_U2K2GoldenDataScreen</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_U2K2GoldenDataScreen</shortDescription>
-	<value>U2K2 Golden Data Screen</value>
-</labels>
-<labels>
-	<fullName>VPM_U2K2_Region_Specific</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM U2K2 Region Specific</shortDescription>
-	<value>U2K2 Region Specific Page</value>
-</labels>
-<labels>
-	<fullName>VPM_UKFLSEnabled</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Display Pop Msg UK has FLS enabled on submit button Click</shortDescription>
-	<value>You can only submit at this stage if you are part of UK Corporate Centre. If you are not, please click on Advanced Form and complete that before submitting</value>
-</labels>
-<labels>
-	<fullName>VPM_UnBlockUnDeleteTitle</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>UnBlockUnDeleteTitle</shortDescription>
-	<value>UnBlock and UnDelete Page</value>
-</labels>
-<labels>
-	<fullName>VPM_UnblockDeleteHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_UnblockDeleteHelpText</shortDescription>
-	<value>Indicate if you want to Unblock/Undelete Vendor?</value>
-</labels>
-<labels>
-	<fullName>VPM_UnquotedError</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_UnquotedError</shortDescription>
-	<value>Please remove special character like double quotes for field values &amp; try again.</value>
-</labels>
-<labels>
-	<fullName>VPM_VATCountryPageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_VATCountryPageMessage</shortDescription>
-	<value>VAT Country: Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_VATRegistartion2PageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_VATRegistartion2PageMessage</shortDescription>
-	<value>VAT Registration Number 2 : You must Enter a value</value>
-</labels>
-<labels>
-	<fullName>VPM_VPM_RemoveCommodityApprover</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM - Error Msg Removed as commodity approver</shortDescription>
-	<value>Removed as commodity approver</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorCode</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_VendorCode</shortDescription>
-	<value>Vendor Code</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorCountryReqHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_VendorCountryReqHelpText</shortDescription>
-	<value>Provide the country in which the Vendor is located</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorMatch</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_VendorMatch</shortDescription>
-	<value>Vendor Match</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorName</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_VendorName</shortDescription>
-	<value>Vendor Name</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorNameLengthPageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_VendorNameLengthPageMessage</shortDescription>
-	<value>Vendor Name : Please enter alteast 3 characters</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorNamePageMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_VendorNamePageMessage</shortDescription>
-	<value>Vendor Name: You must Enter a value</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorNameReqHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_VendorNameReqHelpText</shortDescription>
-	<value>Provide legal name of Vendor</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorName_Address</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Vendor Name and Address</shortDescription>
-	<value>Vendor Name and Address</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorRequestsHome</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Vendor Requests Home</shortDescription>
-	<value>Home</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorRequestsHomePage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Vendor Requests Home Page</shortDescription>
-	<value>Vendor Requests</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorResposnibleSourcing</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_VendorResposnibleSourcing</shortDescription>
-	<value>4. Vendor Resposnible Sourcing</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorSelectionHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_VendorSelectionHelpText</shortDescription>
-	<value>Select Vendor from list below, or create from new</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorTypeMessage</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_VendorTypeMessage</shortDescription>
-	<value>Vendor Type : Please select the value</value>
-</labels>
-<labels>
-	<fullName>VPM_VendorTypeTPTHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_VendorTypeTPTHelpText</shortDescription>
-	<value>Select Vendor Type, Global Authorisation Group and Trade Partner</value>
-</labels>
-<labels>
-	<fullName>VPM_Vendor_Contact_Details</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Vendor Contact Details</shortDescription>
-	<value>Vendor Contact Details</value>
-</labels>
-<labels>
-	<fullName>VPM_Vendor_Details</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Vendor Details</shortDescription>
-	<value>Vendor Details</value>
-</labels>
-<labels>
-	<fullName>VPM_Vendor_Match</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Vendor Match</shortDescription>
-	<value>Vendor Match</value>
-</labels>
-<labels>
-	<fullName>VPM_Vendor_Match_Desc</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Vendor_Match_Desc</shortDescription>
-	<value>Search for your Vendor using Name and Country to search the global database for an existing Vendor. Optionally add Street Address, Post Code or Tax Code to narrow down search results. Note that tax Code searches all tax fields for the data.</value>
-</labels>
-<labels>
-	<fullName>VPM_Vendor_Not_Found</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Vendor Not Found</shortDescription>
-	<value>Could not connect to the ECC to get Vendor Information. Please contact your IT Helpdesk.</value>
-</labels>
-<labels>
-	<fullName>VPM_Vendor_Search_message</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_Vendor_Search_message</shortDescription>
-	<value>Search for your Vendor using Name and Country to search the global database for an existing Vendor. Optionally add address, post code or tax code to narrow down search results. Tax Code searches all tax fields for the data.</value>
-</labels>
-<labels>
-	<fullName>VPM_ViewAllFields</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM View All Fields</shortDescription>
-	<value>View All Fields</value>
-</labels>
-<labels>
-	<fullName>VPM_WebformHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_WebformHelpText</shortDescription>
-	<value>Send request for Vendor provision of information and supporting documents</value>
-</labels>
-<labels>
-	<fullName>VPM_WhyExistingSupplierReqHelpText</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_WhyExistingSupplierReqHelpText</shortDescription>
-	<value>Indicate why an existing Vendor cannot be used</value>
-</labels>
-<labels>
-	<fullName>VPM_Withholding_Tax</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Withholding Tax</shortDescription>
-	<value>Withholding Tax</value>
-</labels>
-<labels>
-	<fullName>VPM_selection_error</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>selection error</shortDescription>
-	<value>Please select one of the options.</value>
-</labels>
-<labels>
-	<fullName>Vendor_SME_Status</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Vendor SME Status</shortDescription>
-	<value>Vendor SME Status</value>
-</labels>
+   <labels>
+        <fullName>Account_Group</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_AccountGroup</shortDescription>
+        <value>Account Group</value>
+    </labels>
+	<labels>
+        <fullName>VPM_OkForRework</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Are you sure you want to rework the request?</shortDescription>
+        <value>Are you sure you want to rework the request? Please provide guidance via the Chatter feed</value>
+    </labels>
+    <labels>
+        <fullName>VPMOrderCurrencyPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPMOrderCurrencyPageMessage</shortDescription>
+        <value>Order Currency: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_AccountGroup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_AccountGroup</shortDescription>
+        <value>Account Group</value>
+    </labels>
+    <labels>
+        <fullName>VPM_AccountStatement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Validation message in case if user enters Account Statement as blank</shortDescription>
+        <value>Account Statement: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Add_Additional_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Additional Information</shortDescription>
+        <value>Add Additional Information</value>
+    </labels>
+    <labels>
+        <fullName>VPM_AddedCommodityApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg Added as commodity approver</shortDescription>
+        <value>Added as commodity approver</value>
+    </labels>
+    <labels>
+        <fullName>VPM_AddressLine1ReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_AddressLine1ReqHelpText</shortDescription>
+        <value>Provide the first line of the street address</value>
+    </labels>
+	<labels>
+        <fullName>VPM_AlreadyRework</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Already in Rework display message</shortDescription>
+        <value>Already send for rework</value>
+    </labels>
+	<labels>
+        <fullName>VPM_CannotSendRework</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Business Requestor &amp; MDM Ops (Except Fusion Region) can&apos;t send Rework</shortDescription>
+        <value>Business Requestor &amp; MDM Ops (Except Fusion Region) cannot send for rework.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_AlreadyCommodityapprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg  Already added as Commodity approver</shortDescription>
+        <value>Already added as Commodity approver for</value>
+    </labels>
+	<labels>
+        <fullName>VPM_AlreadySendApprovalMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Record Already Send for Approval Message</shortDescription>
+        <value>This request has already been sent for approval, so changes cannot be made. Once an approval decision is given, it may be possible to make changes.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Alternative_payee_in_document</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Alternative payee in document</shortDescription>
+        <value>Indicator: Alternative Payee in Document Allowed?</value>
+    </labels>
+    <labels>
+        <fullName>VPM_AnnualestimatedReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_AnnualestimatedReqHelpText</shortDescription>
+        <value>Provide the estimated annual spend</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ApprovReject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_ApprovReject</shortDescription>
+        <value>Please Approve / Reject the Request before completing the Advanced Form.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ApproverNotSelected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM -Error Msg when no Approver is selected</shortDescription>
+        <value>Please select the approvers to be replaced</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ApproverNotSelectedAssignOption</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg when Approver is Not selected</shortDescription>
+        <value>Please select the approver</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ApproverRemoveSuccess</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg when Approver Removed Success</shortDescription>
+        <value>Approver successfully removed</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ApproverReplaceSuccess</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg when Approver Replace Success</shortDescription>
+        <value>Approver successfully replaced</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ApproverTemporarySuccess</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg when Approvers  Temporary Replace  Success</shortDescription>
+        <value>Selected Commodity Approvers has been Temporary replaced successfully</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_1</shortDescription>
+        <value>Approver 1</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_10</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_10</shortDescription>
+        <value>Approver 10</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_2</shortDescription>
+        <value>Approver 2</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_3</shortDescription>
+        <value>Approver 3</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_4</shortDescription>
+        <value>Approver 4</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_5</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_5</shortDescription>
+        <value>Approver 5</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_6</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_6</shortDescription>
+        <value>Approver 6</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_7</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_7</shortDescription>
+        <value>Approver 7</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_8</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_8</shortDescription>
+        <value>Approver 8</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_9</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_9</shortDescription>
+        <value>Approver 9</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Assign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used as function Name for Assign in Procurement Central Admin</shortDescription>
+        <value>Assign</value>
+    </labels>
+    <labels>
+        <fullName>VPM_AssignProcurement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used for help text Assign Procurement Permission to</shortDescription>
+        <value>Assign Procurement Permission to</value>
+    </labels>
+    <labels>
+        <fullName>VPM_AssignProcurementPermission</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Assign Procurement Permission</shortDescription>
+        <value>Assign Procurement Permission to :</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Assign_Procurement_Permission</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Assign Procurement Permission</shortDescription>
+        <value>Assign Procurement Permission (Add permanent new approval roles)</value>
+    </labels>
+    <labels>
+        <fullName>VPM_AutoGenerationofPurchaseOrderallowed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_AutoGeneration of Purchase Order allowed</shortDescription>
+        <value>Auto Generation of Purchase Order allowed</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Back</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Back</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BankAccountNoReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BankAccountNoReqHelpText</shortDescription>
+        <value>the Vendor Bank Account Number</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BankAccountNumber</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BankAccountNumber</shortDescription>
+        <value>Bank Account Number</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BankCountryKeyPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BankCountryKeyPageMessage</shortDescription>
+        <value>Bank Country Key: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BankCountryKeyReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BankCountryKeyReqHelpText</shortDescription>
+        <value>Provide the Bank Country Key</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BankDetailsHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BankDetailsHelpText</shortDescription>
+        <value>Includes Vendor Banking details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BankDetailsTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Bank Details Title</shortDescription>
+        <value>Bank Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BankKeyReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BankKeyReqHelpText</shortDescription>
+        <value>Provide the Bank Key (Sort Code/ Routing Number / ABA Number)</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BlockDeleteFlag</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BlockDeleteFlag</shortDescription>
+        <value>Maintain</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BlockDeleteHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BlockDeleteHelpText</shortDescription>
+        <value>Indicate if you want to Block/Delete Vendor?</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BlockDeleteTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BlockDeleteTitle</shortDescription>
+        <value>Block and Delete Page</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BlockDeleteUnblockUnDleteInfo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BlockDeleteUnblockUnDlete Info</shortDescription>
+        <value>By selecting this option any other information completed on this Advanced form will be disregarded.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BlockDeleteVendorErrorMeesage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BlockDeleteVendorErrorMeesage</shortDescription>
+        <value>Since the Vendor is Blocked/Deleted, You need to first Unblock/Undelete the vendor before submitting the record for approval.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Block_Delete_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Block/Delete message</shortDescription>
+        <value>You are seeing a limited number of menu options because this vendor is blocked or marked for deletion. Please request to unblock/undelete before raising a separate request to complete further actions.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BusinessRequestorAtAGlance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Business Requestor At A Glance</shortDescription>
+        <value>Business Requestor at a Glance</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BypassFrontlineTeam</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BypassFrontlineTeam</shortDescription>
+        <value>Please note if you complete and submit the Advanced Form, you will bypass your Front Line Services team and the request will route straight to approver/s.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CashManagementGroup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CashManagementGroup</shortDescription>
+        <value>Cash Management Group</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CashManagementGroupPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CashManagementGroupPageMessage</shortDescription>
+        <value>Cash Management Group : Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CertificateName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Certificate Name</shortDescription>
+        <value>VPM_Mulesoft_Callouts</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Certificate_Number_Tax_Exemption</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Certificate Number Tax Exemption</shortDescription>
+        <value>Certificate Number of the Withholding Tax Exemption</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ChangeBankDetails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Msg When Approval process is trigger due to Bank Details</shortDescription>
+        <value>Vendor Request (Maintain) - Change of Bank Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ChangeBlockDelete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Msg When Approval process is trigger due to Block Delete</shortDescription>
+        <value>Vendor Request (Maintain) - Change of Block Delete</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ChangeFinancialSensitive</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Make aware whether the Approval process is  trigger due to changes in Fina</shortDescription>
+        <value>Vendor Request (Maintain) - Change of Financial Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ChangeGeneralVendorDetails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Msg When Approval process is trigger due to General Vendor Details</shortDescription>
+        <value>Vendor Request (Maintain) - Change of General Vendor Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ChangePaymentTermsDetails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Msg When Approval process is trigger due to Payment Terms Details</shortDescription>
+        <value>Vendor Request (Maintain) - Change of Payment Terms Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ChangeUnBlockUnDelete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Msg When Approval process is trigger due to UnBlock/UnDelete</shortDescription>
+        <value>Vendor Request (Maintain) - Change of Unblock /Undelete</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CheckDoubleInvoicesPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CheckDoubleInvoicesPageMessage</shortDescription>
+        <value>Check Double Invoices : Please tick the checkbox</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CityReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CityReqHelpText</shortDescription>
+        <value>Provide the city in which the Vendor is located</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Click_Here</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Click_Here</shortDescription>
+        <value>Click Here</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ClientId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Client Id</shortDescription>
+        <value>3485ee8279af458abc58065291e188d4</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ClientSecret</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Client Secret</shortDescription>
+        <value>ca16126215ea409498F4296ADB25EAB5</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - stores the VPM_code label for the Procurement central admin page</shortDescription>
+        <value>Code</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Collection_Authorization</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Collection Authorization</shortDescription>
+        <value>Indicator Is there Collection Authorization</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CommodityApprovReportLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CommodityApprovReportLink</shortDescription>
+        <value>/00O19000000GqR7</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CommodityApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Commodity Approver Record</shortDescription>
+        <value>Commodity Approver Record</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CommodityApproverNotDefinePageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Commodity Approver Not Define for select country &amp; Commodity Class</shortDescription>
+        <value>There are no Commodity Approvers defined for this Commodity Class. Please contact the Procurement team</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CommodityApproverRecord</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Commodity Approver Record</shortDescription>
+        <value>Commodity Approver Record</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CommodityApproverRecords</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used as Header Commodity  Approver Records Details</shortDescription>
+        <value>Commodity  Approver Records Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CommodityApproverUnsuccessfullMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Custom message when the commodity approver is not replaced for commodity</shortDescription>
+        <value>Approver cannot be replaced for commodity:</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CommodityErrorMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Custom error message for commodity not replaced</shortDescription>
+        <value>since the selected approver is already present for these commodities.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CommodityRecordsDetails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Commodity Records Details</shortDescription>
+        <value>Commodity Records Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CommoditySuccessFullReplaceMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Custom message when the commodity approver is successful replaced</shortDescription>
+        <value>Approver successfully replaced for commodity:</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Commodity_Code_help_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Commodity Code help text</shortDescription>
+        <value>To change the Commodity Code, please exit this form and edit the Rapid form.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Company_Code_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Company Code Details</shortDescription>
+        <value>Company Code Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Company_Code_help_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Company Code help text</shortDescription>
+        <value>To change the Company Code, please exit this form and edit the Rapid form.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ConnectionError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_ConnectionError</shortDescription>
+        <value>Connection to SAP has timed out. Please try again.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ContactPerson</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Contact Person message</shortDescription>
+        <value>By entering Contact Person details you will be adding a new Contact Person in SAP. Please use the Chatter feed to log an exception if you have a particular request about an existing Contact Person.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Contact_Person</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Contact Person</shortDescription>
+        <value>Contact Person</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Contact_Vendor</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact Vendor</shortDescription>
+        <value>Contact Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CordilleraGoldenDataScreen</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CordilleraGoldenDataScreen</shortDescription>
+        <value>Cordillera Golden Data Screen</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Cordillera_Region_Specific</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Cordillera Region Specific</shortDescription>
+        <value>Cordillera Region Specific Page</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - label for country field on commodity approver object</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CountryLabelProcAdmin</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Country Label Proc Admin</shortDescription>
+        <value>Responsible Country</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CountryNotSelected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg when Country is not selected</shortDescription>
+        <value>Please select the country</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CountryPagemessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CountryPagemessage</shortDescription>
+        <value>Country: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Creation_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Creation Details</shortDescription>
+        <value>Creation/Maintenance Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_DetailsOfPlannedActivitiesError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM DetailsOfPlannedActivitiesError</shortDescription>
+        <value>Please enter Details of Planned Activities</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EditBankDetails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Edit Bank Details</shortDescription>
+        <value>Edit Bank Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EditFinanciallySensitiveFields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EditFinanciallySensitiveFields</shortDescription>
+        <value>Edit Financial Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EditPaymentTerms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EditPaymentTerms</shortDescription>
+        <value>Edit Payment Terms and Purchasing Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EditRegionalSpecificFields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EditRegionalSpecificFields</shortDescription>
+        <value>Edit Regional Specific Fields</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EnterBankDetails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EnterBankDetails</shortDescription>
+        <value>Enter Bank Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EnterFinanciallySensitiveFields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EnterFinanciallySensitiveFields</shortDescription>
+        <value>Enter Financial Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EnterGeneralVendorDetails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EnterGeneralVendorDetails</shortDescription>
+        <value>Enter General Vendor Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EnterPaymentTerms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EnterPaymentTerms</shortDescription>
+        <value>Enter Payment Terms and Purchasing Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EnterRegionalSpecificFields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EnterRegionalSpecificFields</shortDescription>
+        <value>Enter Regional Specific Fields</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ErrorMessageGlobalAuthGroupSelection</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM  Error Message Global Auth Group Selection</shortDescription>
+        <value>The Global Authorisation  group selected is not compatible with your region. Please select a different Global Authorisation Group.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ErrorMessageScreen</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMessageScreen</shortDescription>
+        <value>Error Message</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ExceptionDetailsError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM ExceptionDetailsError</shortDescription>
+        <value>Please enter Exception Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Exit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Exit</shortDescription>
+        <value>Exit</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Exit_Form</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Exit Form</shortDescription>
+        <value>Exit Form</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Exitthisform</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Exitthisform</shortDescription>
+        <value>Exit this form</value>
+    </labels>
+    <labels>
+        <fullName>VPM_FinanceAtAGlance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Finance at a Glance</shortDescription>
+        <value>Finance at a Glance</value>
+    </labels>
+    <labels>
+        <fullName>VPM_FinancialCheckError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM FinancialCheckError</shortDescription>
+        <value>Please enter Reason for No Financial Check</value>
+    </labels>
+    <labels>
+        <fullName>VPM_FinancialDetailsHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_FinancialDetailsHelpText</shortDescription>
+        <value>Financial Details help text</value>
+    </labels>
+    <labels>
+        <fullName>VPM_FinancialHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_FinancialHelpText</shortDescription>
+        <value>Includes key Financial information related to the request</value>
+    </labels>
+    <labels>
+        <fullName>VPM_FinanciallySensitiveTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Financially Sensitive Title</shortDescription>
+        <value>Finance Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_FreightAtAGlance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Freight At a Glance</shortDescription>
+        <value>Freight at a Glance</value>
+    </labels>
+    <labels>
+        <fullName>VPM_FusionGolde_DataScreen</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_FusionGolde DataScreen</shortDescription>
+        <value>Fusion Golden Data Screen</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Fusion_Region_Specific</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Fusion Region Specific</shortDescription>
+        <value>Fusion Region Specific Page</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GeneralDetailsHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_GeneralDetailsHelpText</shortDescription>
+        <value>Includes Vendor Name/ Address/ Tax details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_General_Vendor_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_General Vendor Details</shortDescription>
+        <value>General Vendor Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GlobalAuthorisationGrpPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_GlobalAuthorisationGrpPageMessage</shortDescription>
+        <value>Global Authorisation Group: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GlobalGoldenDataHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_GlobalGoldenDataHelpText</shortDescription>
+        <value>Minimum global mandatory details required to create / maintain a Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Go</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used a Button Value for &quot;Go&quot;  in procurement Admin</shortDescription>
+        <value>Go</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GoldenDataBackButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Golden Data Back Button</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GoldenDataDisplayText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Golden Data Display Text</shortDescription>
+        <value>Please select the Country first, changing the Country will erase out any data you entered.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GoldenDataNextButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Golden Data Next Button</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GoldenDataRegionalHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_GoldenDataRegionalHelpText</shortDescription>
+        <value>Minimum regional specific mandatory details required to create / maintain a Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GoldenDataScreen2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Golden Data Screen 2</shortDescription>
+        <value>Golden Data Screen 2</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GoldenDataScreenTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM GoldenDataScreenTitle</shortDescription>
+        <value>Golden Data Screen</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Golden_Data_Screen_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Golden Data Screen 1</shortDescription>
+        <value>Global Golden Data Screen</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Heap_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Heap Error</shortDescription>
+        <value>Please modify the search criteria Too many Vendors retrieved.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_HomePageIntroTextHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Home Page Intro Text Header</shortDescription>
+        <value>Vendor BPM Useful Links</value>
+    </labels>
+    <labels>
+        <fullName>VPM_HomePageLink1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Home Page Link 1</shortDescription>
+        <value>Thanks for visiting Vendor BPM</value>
+    </labels>
+    <labels>
+        <fullName>VPM_HomePageLink2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Home Page Link 2</shortDescription>
+        <value>Click here for</value>
+    </labels>
+    <labels>
+        <fullName>VPM_HomePageLink3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Home Page Link 3</shortDescription>
+        <value>Or go here if you&apos;re really stuck &gt;</value>
+    </labels>
+    <labels>
+        <fullName>VPM_HomePageLink4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Home Page Link 4</shortDescription>
+        <value>Then the last thing you should try &gt;</value>
+    </labels>
+    <labels>
+        <fullName>VPM_HouseNumberLeftBlankVenCouBrazil</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg When House  Number  is left blank for Vendor Country &apos;Brazil&apos;</shortDescription>
+        <value>House Number cannot be left blank for Vendor Country &quot;Brazil&quot;</value>
+    </labels>
+    <labels>
+        <fullName>VPM_IAmWorkingOnIt</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM IAmWorkingOnIt</shortDescription>
+        <value>I am working on it</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Incoterms2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Incoterms2</shortDescription>
+        <value>Incoterms 2</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Incoterms2PageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Incoterms2PageMessage</shortDescription>
+        <value>Incoterms 2 Cannot be left blank</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Indicator_Alternative_payee_using_account_number</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Indicator Alternative payee using account number</shortDescription>
+        <value>Indicator Alternative Payee using Account Number</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Indicator_Clearing_between_customer_and_vendor</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Indicator Clearing between customer and vendor</shortDescription>
+        <value>Indicator Clearing between Customer and Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Industry</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>custom validation error message for Industry field</shortDescription>
+        <value>Industry: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_IndustryLengthError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_IndustryLengthError</shortDescription>
+        <value>Industry : Length cannot be more than 4.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_International1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM International1</shortDescription>
+        <value>Please select International Version.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_InternationalFusion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM International Fusion</shortDescription>
+        <value>No fields exist in this section for the region.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_InternationalMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM International Msg</shortDescription>
+        <value>You must enter a value.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_International_Version</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_International Version</shortDescription>
+        <value>International Version</value>
+    </labels>
+    <labels>
+        <fullName>VPM_IsThereInvoiceAlreadyReceivedLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Has the product or service already been provided?</shortDescription>
+        <value>Is work already started?</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Language</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Language</shortDescription>
+        <value>Language</value>
+    </labels>
+    <labels>
+        <fullName>VPM_LaunchScreenHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_LaunchScreenHelpText</shortDescription>
+        <value>Search for your Vendor from the global database</value>
+    </labels>
+    <labels>
+        <fullName>VPM_LinkToReports</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_LinkToReports</shortDescription>
+        <value>Link To Reports</value>
+    </labels>
+    <labels>
+        <fullName>VPM_MDMBPMErrorMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_MDMBPMErrorMessage</shortDescription>
+        <value>You have not completed MDM BPM Data. Kindly complete it.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_MDMBPMVendorPreTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_MDMBPMVendorPreTitle</shortDescription>
+        <value>MDM BPM - Vendor Creation Pre-Requisites</value>
+    </labels>
+    <labels>
+        <fullName>VPM_MDMCountry</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM MDM Country</shortDescription>
+        <value>Vendor Country</value>
+    </labels>
+    <labels>
+        <fullName>VPM_MDMOpsAtAGlance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM MDM Ops at a Glance</shortDescription>
+        <value>MDM Ops At a Glance</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Manually_Mark_as_complete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manually Mark as complete</shortDescription>
+        <value>Manually Mark as complete</value>
+    </labels>
+    <labels>
+        <fullName>VPM_MultipleRecordFound</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg when Multiple record fund</shortDescription>
+        <value>Multiple items found. Select from drop-down or click icon to refine search.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_MyVendorisnotlisted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_MyVendorisnotlisted</shortDescription>
+        <value>My Vendor isn&apos;t listed, I want to create a new Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_NewPartner</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_NewPartner</shortDescription>
+        <value>For a New Partner - Link to existing Trade Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_New_Approver</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New Approver</shortDescription>
+        <value>New Approver</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Next</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>VPM_NoCommodityfound</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg When No Commodities  Not found for Country</shortDescription>
+        <value>No Commodities found for the selected country</value>
+    </labels>
+    <labels>
+        <fullName>VPM_NoCommodityfoundApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg When No Commodities  Not found for Approver</shortDescription>
+        <value>No Commodities found for the selected approver</value>
+    </labels>
+    <labels>
+        <fullName>VPM_NoLongerWorkingOnIt</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM NoLongerWorkingOnIt</shortDescription>
+        <value>No Longer Working on the Record</value>
+    </labels>
+    <labels>
+        <fullName>VPM_NoRecordSelectApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg No Record Selected  try again by selecting the approver</shortDescription>
+        <value>No records selected.Please try again by selecting the approver</value>
+    </labels>
+    <labels>
+        <fullName>VPM_NoRecordSelectApproverCountry</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg No Record Selected</shortDescription>
+        <value>No records selected.Please try again by selecting the approver and country</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Old_Approver</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Old Approver</shortDescription>
+        <value>Old Approver</value>
+    </labels>
+    <labels>
+        <fullName>VPM_OlderApprovalNoLongerExist</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg when Older Approval no Longer Exist</shortDescription>
+        <value>The Old Approver selected is no longer an approver. Please select another approver</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Other</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Other</shortDescription>
+        <value>Other</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PIVendorCreationPreRequisites</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PIVendorCreationPreRequisites</shortDescription>
+        <value>MDM BPM - Vendor Creation Pre-Requisites</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PartnerFunction</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Partner Function</shortDescription>
+        <value>Vendor/Partner Creation</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentBlock</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PaymentBlock</shortDescription>
+        <value>Payment Block</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentMethodChanged</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PaymentMethodChanged</shortDescription>
+        <value>Changes to Payment Methods</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentMethodPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PaymentMethodPageMessage</shortDescription>
+        <value>Payment Method: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentMethodReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PaymentMethodReqHelpText</shortDescription>
+        <value>Payment Methods to be used in relation to the Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentTermsHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PaymentTermsHelpText</shortDescription>
+        <value>Includes Payments Terms and key Purchasing Org details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentTermsIfNoneSelected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM PaymentTermsIfNoneSelected</shortDescription>
+        <value>Please select value in Payment terms OR enter value in Payment Terms if None Selected</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentTermsPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PaymentTermsPageMessage</shortDescription>
+        <value>Payment Terms: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentTermsReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PaymentTermsReqHelpText</shortDescription>
+        <value>Payment Terms to be used in relation to the Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Payment_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Terms</shortDescription>
+        <value>Payment Terms</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentmethodErrorMesg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PaymentmethodErrorMesg</shortDescription>
+        <value>Not more than 5 selections can be made on payment Method.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymetTermsTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Terms Title</shortDescription>
+        <value>Payment Terms and Purchasing Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PostalCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Postal Code</shortDescription>
+        <value>Postal Code</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PostalCodeLeftBlankVenCouBrazil</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg When Postal Code is left blank for Vendor Country  &quot;Brazil&quot;</shortDescription>
+        <value>Postal Code cannot be left blank for Vendor Country &quot;Brazil&quot;</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PreSelectedPaymentMethod</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PreSelectedPaymentMethod</shortDescription>
+        <value>Your Selected Payment Methods</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ProcurementAtAGlance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Procurement at Glance</shortDescription>
+        <value>Procurement at Glance</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ProcurementLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_ProcurementLink</shortDescription>
+        <value>Procurement Links</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ProcurementPermissionName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used to hold the Procuremnt Permission set Name</shortDescription>
+        <value>VPM_Procurement</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Procurement_Central_Admin</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used for Procurement Admin Title</shortDescription>
+        <value>Procurement Central Admin - Approver Role Changes</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Profile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Profile</shortDescription>
+        <value>System Administrator</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PurchasingOrganisation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PurchasingOrganisation</shortDescription>
+        <value>Purchasing Organisation</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PurchasingOrganization</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Purchasing Organization Validation</shortDescription>
+        <value>Purchasing Organisation : You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Quick_Submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quick Submit</shortDescription>
+        <value>Quick Submit</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ReconciliationAccReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_ReconciliationAccReqHelpText</shortDescription>
+        <value>Reconciliation Account to be used in relation to the Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RecordID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Record ID</shortDescription>
+        <value>Update Commodity Class</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RecordIsInApproval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Record is in Approval</shortDescription>
+        <value>Please make your approval decision before completing the Advanced Form</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RecordSentToSAPAlert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_RecordSentToSAPAlert</shortDescription>
+        <value>The advance form cannot be filled as the record has been sent to SAP</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Record_Submit_Warning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Record Submit Warning</shortDescription>
+        <value>The Vendor has been sent a request to complete their details via a Webform and they have not yet responded. If you proceed to the approval stage, any submission the Vendor makes in the future will not be appended to this request. The person who sent the Vendor the request will be notified if a submission happens.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RegionLeftBlankVenCouBrazil</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg When Region is left blank for Vendor Country &quot;Brazil&quot;</shortDescription>
+        <value>Region cannot be left blank for Vendor Country &quot;Brazil&quot;</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RegionalSpecificHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_RegionalSpecificHelpText</shortDescription>
+        <value>Includes Regional specific data fields</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RelevantBlocksDeletesLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_RelevantBlocksDeletesLabel</shortDescription>
+        <value>Only relevant for Manual Blocks/Unblocks/Deletes/Undeletes</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Remove</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used as function Name for Remove in Procurement Central Admin</shortDescription>
+        <value>Remove</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RemoveApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used for help Text \Remove Procurement Approver from Selected User</shortDescription>
+        <value>Remove Procurement Approver from Selected User</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RemoveCommodityApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - error Msg Removed as commodity approver</shortDescription>
+        <value>Removed as commodity approver</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RemoveProcurementPermission</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Remove Procurement Permission</shortDescription>
+        <value>Remove Procurement Permission</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RemoveProcurementPermissionFrom</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Remove Procurement Permission from</shortDescription>
+        <value>Remove Procurement Permission from :</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Remove_Procurement_Permission</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Procurement Permission</shortDescription>
+        <value>Remove Procurement Permission (remove permanent existing approval roles)</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Replace</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used for Replace function Name in Procurement Admin</shortDescription>
+        <value>Replace</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ReplaceNewApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used for help Text Replace with a new New Approver</shortDescription>
+        <value>Replace with a new New Approver</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ReplaceUntill</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used for Temporary Replace  till Date</shortDescription>
+        <value>Temporary Replace  till Date</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Replace_Approver</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Replace_Approver</shortDescription>
+        <value>Replace Approver (Replace existing approval roles)</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestAbortedAlert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_RequestAbortedAlert</shortDescription>
+        <value>You cannot see/edit the Advanced form because this request has been Aborted.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestRejectedAlert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_RequestRejectedAlert</shortDescription>
+        <value>You cannot see the Advanced form because this request has been rejected</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestVendortoBlock_Delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_RequestVendortoBlock/Delete</shortDescription>
+        <value>Request Vendor to Block/Delete</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestVendortoUnblock_Undelete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_RequestVendortoUnblock/Undelete</shortDescription>
+        <value>Request Vendor to Unblock/Undelete</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Request_Brief_Desc1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Request_Brief_Desc1</shortDescription>
+        <value>This information is stored at the Salesforce user profile level.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Request_Brief_Desc2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Request_Brief_Desc2</shortDescription>
+        <value>to access your user profile. Note: these details are from the business requestor who created the request, and so must be changed by the business requestor.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Request_Brief_Heading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Review Requestor Brief</shortDescription>
+        <value>Review Requestor Brief</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestorEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Requestor Email</shortDescription>
+        <value>Requestor Email</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestorName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Requestor Name</shortDescription>
+        <value>Requestor Name</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestorRole</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Requestor Role</shortDescription>
+        <value>Requestor Role</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestorTelephone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Requestor Telephone</shortDescription>
+        <value>Requestor Telephone</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Rework</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rework</shortDescription>
+        <value>Rework</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ReworkAlert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rework alert</shortDescription>
+        <value>This request is in a re-work process. If this was re-worked to you, please click the &apos;Recall&apos; button on the approval related list before continuing</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Rounding_Profile_Group</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Rounding Profile Group</shortDescription>
+        <value>Rounding Profile Group</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SAPError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SAPError</shortDescription>
+        <value>SAP API not implemented.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SAPPaymentMethod</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SAPPaymentMethod</shortDescription>
+        <value>Existing SAP Payment Methods</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SAPRequstError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SAPRequstError</shortDescription>
+        <value>Some error occurred while submitting request to SAP. Please try after some time.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SRVBasedVendorID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SRVBasedVendorID</shortDescription>
+        <value>SRV Based Vendor ID :You must Enter a value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SRVBasedVendorPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SRVBasedVendorPageMessage</shortDescription>
+        <value>SRV Based VendorID : Please tick the checkbox</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SaveButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save Button</shortDescription>
+        <value>Save and Return to Menu</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SaveExitButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save &amp; Exit Button</shortDescription>
+        <value>Save &amp; Exit</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SaveSubmitLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save &amp; Submit</shortDescription>
+        <value>Save &amp; Submit</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SchemaGroupVendor</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SchemaGroupVendor</shortDescription>
+        <value>Schema Group Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SelectAction</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Action</shortDescription>
+        <value>Select Action</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SelectCommodity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SelectCommodity</shortDescription>
+        <value>2) Select Commodity Classes to Update</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SelectCountry</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used as Label for country in Procurement Central Admin Page</shortDescription>
+        <value>Responsible Country</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SelectNewApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used as Help Text to Select New Approver</shortDescription>
+        <value>Enter New Approver Name</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SelectOldApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used as Help Text to Select Old Approver</shortDescription>
+        <value>Enter Old Approver Name</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SelectUser</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SelectUser</shortDescription>
+        <value>1) Select User to Update</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SelectUserAssign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used as Help Page Select user for Assign Procurement</shortDescription>
+        <value>Select User to Assign Procurement Permission</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SelectUserRemove</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Help Text Select user to Remove Procurement Permission from</shortDescription>
+        <value>Select user to Remove Procurement Permission from</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Select_Option</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Select Option</shortDescription>
+        <value>Please select at least one option.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SeletCommodity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SeletCommodity</shortDescription>
+        <value>Please select commodity</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SendWebFormRequest</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Send Web Form Request</shortDescription>
+        <value>Send Web Form Request</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SendWebformRequestInfo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SendWebformRequestInfo</shortDescription>
+        <value>By selecting Yes you will be sending the vendor a web form for them to complete their general vendor details, bank details, and provide supporting documentation. This will be sent to the email address in the field below. Select No to avoid sending the web form request</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SendWebformRequestToVendor</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Send Webform Request to Vendor</shortDescription>
+        <value>Send Web Form Request to Vendor?</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Send_Button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Send Button</shortDescription>
+        <value>Send</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Send_ResendWebformRequest</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Send/ResendWebformRequest</shortDescription>
+        <value>Send / Resend Web Form Request</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Send_to_SAP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Send to SAP</shortDescription>
+        <value>Send to SAP</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ServerError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_ServerError</shortDescription>
+        <value>Server Error. Please try after some time.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ShippingConditionMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_ShippingConditionMessage</shortDescription>
+        <value>Shipping Condition cannot be left blank.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SiriusGoldenDataHelptext2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>change company code</shortDescription>
+        <value>To change the Company Code, please exit this form and edit the Rapid form.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SiriusGoldenDataScreen</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SiriusGoldenDataScreen</shortDescription>
+        <value>Sirius Golden Data Screen</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Sirius_Regional_Specific</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Sirius Regional Specific</shortDescription>
+        <value>Sirius Regional Specific Page</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SortKeyPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SortKeyPageMessage</shortDescription>
+        <value>Sort Key: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Street1PageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Street1PageMessage</shortDescription>
+        <value>Address Line 1: You must Enter a value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SubmitVendorRequestforApproval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SubmitVendorRequestforApproval</shortDescription>
+        <value>Submit Vendor Request for Approval</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Submit_Request</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit Request</shortDescription>
+        <value>Submit Request</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SupPosAssExcepDetailsQual</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SupPosAssExcepDetailsQual</shortDescription>
+        <value>b. Supplier Assessment Questionnaire Results of Risk Asessment</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SupPosAssExcepDetailsQualLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SupPosAssExcepDetailsQualLabel</shortDescription>
+        <value>Supplier Assessment Questionnaire Results of Risk Asessment</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SuppPosiAssQualityTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SuppPosiAssQualityTitle</shortDescription>
+        <value>a. Supplier Positive Assurance</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SupplerAuditTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SupplerAuditTitle</shortDescription>
+        <value>c. Supplier Audit</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SupplierAchillesRegistration</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SupplierAchillesRegistration</shortDescription>
+        <value>2. Supplier Achilles Registration</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SupplierFinancialStabilityCheck</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SupplierFinancialStabilityCheck</shortDescription>
+        <value>1. Supplier Financial Stability Check</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SupplierQualityStatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SupplierQualityStatus</shortDescription>
+        <value>3. Supplier Quality Status</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SwitzerlandFLSEnabled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Display Pop Msg Switzerland has FLS enabled on submit button Click</shortDescription>
+        <value>You can only submit at this stage for PI and 3rd party manufacturing (3PM) vendors. If you are not, please click on Advanced Form and complete that before submitting.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TaxCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Tax Code</shortDescription>
+        <value>Tax Code</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TaxJuriCodeErrorMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TaxJuriCodeErrorMessage</shortDescription>
+        <value>Tax Jurisdiction Code Cannot be left blank</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TaxJuriLengthMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TaxJuriLengthMessage</shortDescription>
+        <value>Tax Jurisdiction Code cannot be more then 15 characters.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TaxJurisdictionCodePageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TaxJurisdictionCodePageMessage</shortDescription>
+        <value>Tax Jurisdiction Code: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TaxNumber1ErrorMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TaxNumber1ErrorMessage</shortDescription>
+        <value>Tax Number 1 Cannot be left blank</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TaxNumber1PageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TaxNumber1PageMessage</shortDescription>
+        <value>Tax Number 1: You must select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TaxNumber3LeftBlankVenCouBrazil</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg When Tax Number 3 is left blank for Vendor Country Brazil</shortDescription>
+        <value>Tax Number 3 cannot be left blank for Vendor Country &quot;Brazil&quot;</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Tax_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Tax Information</shortDescription>
+        <value>Tax Information</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TempDateIsPassDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg when Temp Date is Pass Date</shortDescription>
+        <value>Cannot select the pass date..Please select the valid date</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TempDateNotSelected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg when Temp. Date Not Selected</shortDescription>
+        <value>Please select the Temporary Replace Date</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Temporary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used as function Name for Temporary Replace in Procurement Central Admin</shortDescription>
+        <value>Temporary</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TemporaryReplaceNewApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Used for help Text Temporary Replace with a new New Approver Menu</shortDescription>
+        <value>Temporary Replace with a new New Approver</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Temporary_Replace_Approver</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Temporary Replace Approver</shortDescription>
+        <value>Temporary Replace Approver (Delegate profile to)</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TermsOfPayment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM- custom valiation error message in case terms of payment is not selected</shortDescription>
+        <value>Terms Of Payment: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TermsOfPaymentReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TermsOfPaymentReqHelpText</shortDescription>
+        <value>Terms of Payment to be used in relation to the Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TersmOfPaymentErrorMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TersmOfPaymentErrorMessage</shortDescription>
+        <value>Terms of Paymet : Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TooManyVendorsRetrieved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM TooManyVendorsRetrieved</shortDescription>
+        <value>&apos;Please filter the search criteria, too many Vendors retrieved</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TotalNosCommodityApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TotalNosCommodityApprover</shortDescription>
+        <value>10</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TotalNumberApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Header Text Total Number of Approver</shortDescription>
+        <value>Total Number of Approver</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TotalNumberOfApprovers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Total number of approvers</shortDescription>
+        <value>Total number of approvers</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TradePartnerType</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TradePartnerType</shortDescription>
+        <value>Trade Partner Type - Works with Account Group to Define ECC Account Group</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TradePartnerTypeHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Trade Partner Type Help Text</shortDescription>
+        <value>Always VN for Sirius. For Cordillera Freight Vendors select VN for Carriers or GS for Goods Suppliers. For Cordillera PI Vendors only change from VN if vendor is a Goods Supplier, an Invoice Party only or an Ordering address. This will ensure the vendor is set up correctly in SAP.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TradePartnerTypepageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TradePartnerTypepageMessage</shortDescription>
+        <value>Trade Partner Type: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>VPM_U2K2GoldenDataScreen</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_U2K2GoldenDataScreen</shortDescription>
+        <value>U2K2 Golden Data Screen</value>
+    </labels>
+    <labels>
+        <fullName>VPM_U2K2_Region_Specific</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM U2K2 Region Specific</shortDescription>
+        <value>U2K2 Region Specific Page</value>
+    </labels>
+    <labels>
+        <fullName>VPM_UKFLSEnabled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Display Pop Msg UK has FLS enabled on submit button Click</shortDescription>
+        <value>You can only submit at this stage if you are part of UK Corporate Centre. If you are not, please click on Advanced Form and complete that before submitting</value>
+    </labels>
+    <labels>
+        <fullName>VPM_UnBlockUnDeleteTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UnBlockUnDeleteTitle</shortDescription>
+        <value>UnBlock and UnDelete Page</value>
+    </labels>
+    <labels>
+        <fullName>VPM_UnblockDeleteHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_UnblockDeleteHelpText</shortDescription>
+        <value>Indicate if you want to Unblock/Undelete Vendor?</value>
+    </labels>
+    <labels>
+        <fullName>VPM_UnquotedError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_UnquotedError</shortDescription>
+        <value>Please remove special character like double quotes for field values &amp; try again.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VATCountryPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VATCountryPageMessage</shortDescription>
+        <value>VAT Country: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VATRegistartion2PageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VATRegistartion2PageMessage</shortDescription>
+        <value>VAT Registration Number 2 : You must Enter a value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VPM_RemoveCommodityApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg Removed as commodity approver</shortDescription>
+        <value>Removed as commodity approver</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorCode</shortDescription>
+        <value>Vendor Code</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorCountryReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorCountryReqHelpText</shortDescription>
+        <value>Provide the country in which the Vendor is located</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorMatch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorMatch</shortDescription>
+        <value>Vendor Match</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorName</shortDescription>
+        <value>Vendor Name</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorNameLengthPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorNameLengthPageMessage</shortDescription>
+        <value>Vendor Name : Please enter alteast 3 characters</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorNamePageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorNamePageMessage</shortDescription>
+        <value>Vendor Name: You must Enter a value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorNameReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorNameReqHelpText</shortDescription>
+        <value>Provide legal name of Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorName_Address</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Vendor Name and Address</shortDescription>
+        <value>Vendor Name and Address</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorRequestsHome</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Vendor Requests Home</shortDescription>
+        <value>Home</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorRequestsHomePage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Vendor Requests Home Page</shortDescription>
+        <value>Vendor Requests</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorResposnibleSourcing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorResposnibleSourcing</shortDescription>
+        <value>4. Vendor Resposnible Sourcing</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorSelectionHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorSelectionHelpText</shortDescription>
+        <value>Select Vendor from list below, or create from new</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorTypeMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorTypeMessage</shortDescription>
+        <value>Vendor Type : Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorTypeTPTHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorTypeTPTHelpText</shortDescription>
+        <value>Click next to confirm the default values. 
+
+It is recommended that the default values are left as they are, unless you need to make an update</value>
+    </labels>
+	<labels>
+        <fullName>VPM_ReworkCancelled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Rework Cancelled Display Message</shortDescription>
+        <value>Rework Cancelled</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Vendor_Contact_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Vendor Contact Details</shortDescription>
+        <value>Vendor Contact Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Vendor_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Vendor Details</shortDescription>
+        <value>Vendor Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Vendor_Match</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Vendor Match</shortDescription>
+        <value>Vendor Match</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Vendor_Match_Desc</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Vendor_Match_Desc</shortDescription>
+        <value>Search for your Vendor using Name and Country to search the global database for an existing Vendor. Optionally add Street Address, Post Code or Tax Code to narrow down search results. Note that tax Code searches all tax fields for the data.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Vendor_Not_Found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Vendor Not Found</shortDescription>
+        <value>Could not connect to the ECC to get Vendor Information. Please contact your IT Helpdesk.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Vendor_Search_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Vendor_Search_message</shortDescription>
+        <value>Search for your Vendor using Name and Country to search the global database for an existing Vendor. Optionally add address, post code or tax code to narrow down search results. Tax Code searches all tax fields for the data.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ViewAllFields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM View All Fields</shortDescription>
+        <value>View All Fields</value>
+    </labels>
+    <labels>
+        <fullName>VPM_WebformHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_WebformHelpText</shortDescription>
+        <value>Send request for Vendor provision of information and supporting documents</value>
+    </labels>
+    <labels>
+        <fullName>VPM_WhyExistingSupplierReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_WhyExistingSupplierReqHelpText</shortDescription>
+        <value>Indicate why an existing Vendor cannot be used</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Withholding_Tax</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Withholding Tax</shortDescription>
+        <value>Withholding Tax</value>
+    </labels>
+    <labels>
+        <fullName>VPM_selection_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>selection error</shortDescription>
+        <value>Please select one of the options.</value>
+    </labels>
+    <labels>
+        <fullName>Vendor_SME_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Vendor SME Status</shortDescription>
+        <value>Vendor SME Status</value>
+    </labels>
