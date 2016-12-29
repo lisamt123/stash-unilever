@@ -740,6 +740,22 @@
         <shortDescription>No matching consumers</shortDescription>
         <value>No Matching Consumers.</value>
     </labels>
+	<labels>
+        <fullName>CEC_No_Product_Details</fullName>
+        <categories>CEC_IRIProductLocatorController</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC No Product Details</shortDescription>
+        <value>Unable to fetch product details due to technical issue. Please contact sys admin</value>
+    </labels>
+    <labels>
+        <fullName>CEC_No_Store_Information</fullName>
+        <categories>CEC_IRIProductLocatorController</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC No Store Information</shortDescription>
+        <value>No store information is available for this product</value>
+    </labels>
     <labels>
         <fullName>CEC_Origin</fullName>
         <categories>VF page :CEC_NewAccountCase</categories>
