@@ -1,0 +1,86 @@
+<apex:page controller="FAU_CustomLookupSelectionController" title="Search" showHeader="false" sideBar="false" tabStyle="FAU_Participant__c" id="pg">
+    <script type="text/javascript" src="{!URLFOR($Resource.FAU_customlookup,'customlookup.js')}"></script>
+    <script type="text/javascript">
+    function fillIn() { 
+        
+         var winMain = window.opener;
+         if (null == winMain) {
+            winMain = window.parent.opener;
+        }
+        var ele = winMain.document.getElementById('{!JSENCODE($CurrentPage.parameters.namefield)}');
+        var oldvalues=getCookie('OldCCValue');
+      if(names.lengh != 0) {
+            if(oldvalues!= null){
+                ele.value = names+','+oldvalues;
+        } else {
+             ele.value = names; 
+            }
+            ele = winMain.document.getElementById('{!JSENCODE($CurrentPage.parameters.idfield)}');
+            ele.value = ids;
+            CloseWindow(ids);
+        } else {
+            alert('Nothing is selected');
+        }
+    } 
+    </script>
+    
+    <apex:form id="frm">
+        
+        
+        <!-- SEARCH TAB -->
+        <apex:pageBlock id="pb" title="Participants">
+            <apex:actionRegion >
+                <apex:outputPanel id="top" layout="block" style="margin:5px;padding:10px;padding-top:2px;">
+                    <div >
+                        <!-- <apex:outputLabel value="Search" style="font-weight:Bold;padding-right:10px;" for="txtSearch" />
+<apex:inputText id="txtSearch" value="{!searchString}" onKeyPress="javascript:if (event.keyCode == 13) return Sub();"/>
+<span style="padding-left:5px"><apex:commandButton id="btnGo" value="Search" action="{!Search}" status="SearchStatus" rerender="searchResults"></apex:commandButton></span>
+--> <input type="button" class="btn" value="Submit" onclick="fillIn()" id="btnSubmit" />
+                    </div> 
+                    <div style="margin-left:100px;margin-top:10px;">
+                        <apex:actionStatus id="SearchStatus" >
+                            <apex:facet name="start" >
+                                <apex:image url="/s.gif"  /> 
+                            </apex:facet> 
+                        </apex:actionStatus>
+                    </div>
+                </apex:outputPanel>
+                
+                <apex:outputPanel id="pnlSearchResults" style="margin:10px;height:350px;overflow-Y:auto;" layout="block">
+                    <apex:pageBlock id="searchResults">
+                        <apex:pageBlockTable rendered="{!IF(ObjectName=='Contact',true,false)}" value="{!results}" var="a" id="tblResults">
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:outputPanel >Select</apex:outputPanel>
+                                </apex:facet>
+                                <apex:inputCheckbox id="ids" onclick="selectthis(this,'{!a.id}','{!a.PA_Email_and_PA_Email__c}');" />
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:outputPanel >Name</apex:outputPanel>
+                                </apex:facet>
+                                <apex:outputLabel >{!a.FAU_User__r.Name}</apex:outputLabel>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:outputPanel >Email</apex:outputPanel>
+                                </apex:facet>
+                                <apex:outputLabel >{!a.FAU_Email_Address__c}</apex:outputLabel>
+                            </apex:column>
+                            
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:outputPanel >Status</apex:outputPanel>
+                                </apex:facet>
+                                <apex:outputLabel >{!a.FAU_Invite_State__c }</apex:outputLabel>
+                            </apex:column>
+                            
+                        </apex:pageBlockTable>
+                    </apex:pageBlock>
+                </apex:outputPanel>
+                
+            </apex:actionRegion>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -16,6 +16,9 @@ private class FAU_LandingPage_ControllerTest {
         
         FAU_LandingPage_Controller controller = new FAU_LandingPage_Controller(new ApexPages.StandardController(participantRecord));
         
+        FAU_LandingPage_Controller defaultController = new FAU_LandingPage_Controller();
+        defaultController.chatterGroupId=false;
+            defaultController.tablechatterGroupId=false;
         Test.stopTest();
         //system.assert('singapore', participantRecord.locationFixture );
         try{
