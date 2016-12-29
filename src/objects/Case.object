@@ -4866,9 +4866,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>In Progress</value>
+            <value>In Progress,Reopened</value>
         </filters>
-        <label>CEC France - In Progress</label>
+        <label>CEC France - In Progress &amp; Reopened</label>
         <language>fr</language>
         <sharedTo>
             <role>CEC_Global_Head</role>
@@ -5894,22 +5894,22 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>notContain</operation>
-            <value>Privacy,Bertolli,Bazaar,IVR,Sunlight,Sun,Ragu,Facebook,Ben,WalMart</value>
+            <value>Privacy,Bazaar,IVR,Sunlight,Ragu,Facebook,Ben,WalMart</value>
         </filters>
         <filters>
             <field>OWNER_NAME</field>
             <operation>notEqual</operation>
-            <value>CEC North America Canada DIN Queue,CEC North America Mexico</value>
+            <value>CEC North America Canada DIN Queue,CEC North America Frequent Caller Queue</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>notEqual</operation>
-            <value>U-FS-PL,JJoan,CEC North America Frequent Caller Queue</value>
+            <value>U-FS-PL,JJoan,MB-LM-DV,MB-LM-LM,U-JS-TR</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>notEqual</operation>
-            <value>C-LD-EgA,C-LD-TR,C-AA-ATH,U-NK-GFP</value>
+            <value>C-LD-EgA,C-LD-TR,C-AA-ATH,U-NK-GFP,MB-LM-MC</value>
         </filters>
         <filters>
             <field>OWNER_NAME</field>
@@ -6508,55 +6508,24 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_R_B_Foods</fullName>
-        <booleanFilter>(1 or 2 or 5 or 6 or 7 or 8) AND 3 AND 4</booleanFilter>
+        <booleanFilter>1 AND 2</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Brand__c</field>
-            <operation>contains</operation>
-            <value>Bertolli</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Ragu,All Laundry,Gorton&apos;s,Snuggle,Sun,Sunlight,Wisk</value>
+            <value>Ragu,Sunlight</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>CASES.SUBJECT</field>
-            <operation>equals</operation>
-            <value>Ragu Email</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>contains</operation>
-            <value>carapelli</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>contains</operation>
-            <value>carbon</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>contains</operation>
-            <value>gorton</value>
         </filters>
         <label>CEC North America 3rd Party</label>
         <language>en_US</language>
@@ -6734,20 +6703,30 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Tier_3_Queue_Case</fullName>
+        <columns>Language__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>Country__c</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>Action_Taken__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <columns>Language__c</columns>
-        <filterScope>Queue</filterScope>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER_NAME</field>
+            <operation>equals</operation>
+            <value>CEC North America Claims Queue,CEC North America Tier 3 Queue</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
         <label>CEC North America Tier 3 Queue</label>
         <language>en_US</language>
-        <queue>CEC_North_America_Tier_3_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
