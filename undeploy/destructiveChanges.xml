@@ -161,10 +161,7 @@
         <members>isll</members>
         <name>CustomLabels</name>
     </types>
-<types>
- <members>isll_Event_Visit__c-Event Unique Visit Layout</members>
-        <name>Layout</name>
-    </types>
+
 
 <version>37.0</version>
 
