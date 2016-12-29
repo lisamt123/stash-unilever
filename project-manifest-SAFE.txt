@@ -31,6 +31,8 @@ src/pages/SAFE_QuestionaireTab.page
 src/pages/SAFE_QuestionaireTab.page-meta.xml
 src/pages/SAFE_SolutionTab.page
 src/pages/SAFE_SolutionTab.page-meta.xml
+src/pages/SAFESolutionPDF.page
+src/pages/SAFESolutionPDF.page-meta.xml
 src/triggers
 src/triggers/SAFE_Questionnaire_StatusUpdate.trigger
 src/triggers/SAFE_Questionnaire_StatusUpdate.trigger-meta.xml
