@@ -57,9 +57,66 @@ public with sharing class  TEL_TelesalesBO {
             // Insert the opportunity related to a sample request approved. 
             database.insert(lstOpp); 
 		    system.debug('Exit <createOpp>'); 
-            
+              
         }catch(Exception e){
             system.debug('Fail <createOpp> '+e.getMessage());
-        }       
-    } 
+        }
+    }
+/*    
+    // Create a log history event related to opportunity when a call is rescheduled or closed. 
+    public void createOppLog(List<Opportunity> paramNewOpp, List<Opportunity> paramOldOpp){
+        try{
+            system.debug('Entering <createOppLog>');
+            
+            // Store the new and old stage phase. 
+            String 	newStage;
+            String 	oldStage; 
+            id 		oppId;
+            Date 	newCloseDate; 
+            Date 	oldCloseDate;
+            
+            // Pass through new and old opp to set the new stage name. 
+            for(Opportunity o : paramNewOpp){
+                newStage 		= o.StageName;
+                oppId 	 		= o.Id;
+                oldCloseDate	= o.CloseDate;
+            }
+			for(Opportunity o : paramOldOpp){
+            	oldStage 		= o.StageName;       
+                newCloseDate	= o.CloseDate;
+            }
+            
+            // Create the new event log.
+            Task  task			= new Task();
+            task.Status			= 'Completed';
+            task.RecordTypeId	= [SELECT Id FROM RecordType WHERE DeveloperName = 'TEL_Task_Telesales' LIMIT 1].Id;
+            task.ActivityDate	= System.today();
+            task.WhatId			= oppId;
+            task.Type 			= 'Call';
+            
+            System.debug('Valor do newStage: '+newStage);
+            System.debug('Valor do oldStage: '+oldStage);
+            System.debug('Valor do oldCloseDate: '+oldCloseDate);
+            System.debug('Valor do newCloseDate: '+newCloseDate);
+            // Check if the stage changes. 
+            if(newStage != oldStage || oldCloseDate != newCloseDate){
+                if(newStage == Label.TEL_Stage_Recheduled){
+                    task.Subject = Label.TEL_Subject_Rescheduled_Call + ' - '+datetime.now();
+                } 
+                if(newStage == 'Closed Lost'){
+                    task.Subject = Label.TEL_Subject_Close_Lost + ' - '+datetime.now();
+                } 
+                if(newStage == 'Transmitted'){
+                    task.Subject = Label.TEL_Subject_Close_Won + ' - '+datetime.now();
+                } 
+                
+                // Insert the event log.
+            	database.upsert(task);
+            }
+        }
+        catch(Exception e){
+            system.debug('Fail <createOppLog> '+e.getMessage());
+        }
+    }
+*/
 }
