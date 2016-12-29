@@ -41,6 +41,8 @@ public with sharing class FAU_EmailHandler_Test
         //  email2.FAU_Additional_To__c='testemail2@unilever.com';
         
         insert email2;
+        email2.FAU_Send_Email__c = TRUE;
+        update email2;
         emailList.add(email2);
         
         
