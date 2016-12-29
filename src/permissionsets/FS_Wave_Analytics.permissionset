@@ -185,3 +185,8 @@
 
     <userLicense>Analytics Cloud Integration User</userLicense>
 </PermissionSet>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Product2.FS_TOP_10_SKU__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
