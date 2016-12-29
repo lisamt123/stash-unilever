@@ -105,6 +105,7 @@ public with sharing class IPM_GateDocumentController {
     public Boolean showSummaryAttach{ get{showAllCurrentDocSummaryAttch(); return showSummaryAttach; } set;}  
         
     public Static final String ENVIRONMENTAL_IMPACT = 'Environmental_Impact';
+    public Static final String OTIF_Status ='OTIF_Status';
     public Boolean bDocStatusNotStartedOrApproved{get;set;}//Flag to check if document is in Not Started or Approved Status
     public string regionalCPP {get;set;}
     public string localCPP {get;set;}
@@ -180,7 +181,7 @@ public with sharing class IPM_GateDocumentController {
         reactivateProjectCheck();        
         isRedStylingApplicable=((IPM_ConstantUtils.STATUS_APPROVED.equals(projectDoc.IPM_Document_Status__c) ? projectDoc.IPM_Category_Status_while_Approved__c:project.IPM_Threshold_Status__c)== Label.IPM_BelowThreshold) && (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL) ;
         chkClaims();        
-        initializePageReferences();
+       
         if(ApexPages.currentPage().getUrl().containsIgnoreCase(Page.IPM_GateDocumentPDF.getUrl())) {
             gateDocumentData(project.Id);
             getAppendixCheck();
@@ -191,6 +192,7 @@ public with sharing class IPM_GateDocumentController {
             getAppendixData();
             getIpmuserType();
         }
+        initializePageReferences();  
     }
     
     public void getMainData() {
@@ -581,6 +583,15 @@ public with sharing class IPM_GateDocumentController {
     { 
         try
         {
+            if(!isPDLDocument && (String.isBlank(projDocSecId)))
+            {
+                List<IPM_Project_Document_Section__c> sectionListForprojDocSecId= [
+                    SELECT Id,IPM_Master_Section_External_Id__c
+                    FROM IPM_Project_Document_Section__c 
+                    WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Default_Section__c=true 
+                    AND IPM_Master_Section_External_Id__c =: OTIF_Status LIMIT 1 ];
+                projDocSecId = sectionListForprojDocSecId[0].Id;
+            }
             PageReference gateDocPDFURL = null;
             gateDocPDFURL = Page.IPM_GateDocumentPDFDownload;
             gateDocPDFURL.setRedirect(true);
@@ -593,7 +604,8 @@ public with sharing class IPM_GateDocumentController {
             gateDocPDFURL.getParameters().put(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER,String.valueOf(isWithAppendixStr)); 
             return gateDocPDFURL; 
         }
-        catch(Exception ex){
+        catch(Exception ex) 
+        {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
                 'exportToPdf',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
 
@@ -723,7 +735,7 @@ public with sharing class IPM_GateDocumentController {
                                     WHERE IPM_Project_Document__c=:projectDoc.Id and IPM_Default_Section__c=true 
                                     order by IPM_Section__r.IPM_Section_Sequence__c asc];
         for(IPM_Project_Document_Section__c pd : projDocSectionList){
-                        if (pd.IPM_Master_Section_External_Id__c=='OTIF_Status')
+                        if (pd.IPM_Master_Section_External_Id__c==OTIF_Status) 
                 projDocSecId = pd.Id;
         }
            
