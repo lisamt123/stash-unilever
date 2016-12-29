@@ -100,3 +100,5 @@ src/triggers/FAU_PIITrigger.trigger-meta.xml
 src/letterhead/FAU_Letterhead.letter
 src/staticresources/FAU_CkEditor_Full.resource
 src/staticresources/FAU_CkEditor_Full.resource-meta.xml
+src/staticresources/FAU_customlookup.resource
+src/staticresources/FAU_customlookup.resource-meta.xml
