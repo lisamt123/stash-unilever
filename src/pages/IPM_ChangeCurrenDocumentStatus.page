@@ -334,7 +334,7 @@
                                                     <apex:selectOptions value="{!ContractApprovers}"></apex:selectOptions>
                                                 </apex:selectRadio>
                                             </div>
-                                            <div class="radioTooltip2 toolTipMsg approveToolTip" id="RCLT">
+                                            <div class="radioTooltip2 toolTipMsg approveToolTip" id="CCVP">
                                                 <span>{!$Label.IPM_GCLT_AND_RCLT_APPROVAL} </span>
                                             </div>
                                             <div class="radioTooltip3 toolTipMsg approveToolTip" id="GCLT">
@@ -406,7 +406,7 @@
                                                 <apex:selectOptions value="{!ContractApprovers}"></apex:selectOptions>
                                             </apex:selectRadio>
                                         </div>
-                                        <div class="radioTooltip2 toolTipMsg approveToolTip" id="RCLT">
+                                        <div class="radioTooltip2 toolTipMsg approveToolTip" id="CCVP">
                                             <span>{!$Label.IPM_GCLT_AND_RCLT_APPROVAL} </span>
                                         </div>
                                         <div class="radioTooltip3 toolTipMsg approveToolTip" id="GCLT">
