@@ -369,7 +369,6 @@ public with sharing Class Amr_AdManagerHelper_CC{
 
     public void adManagerNumberCreation(Amr_Job_Details__c jobDetailsObj){
         try{
-            Amr_Job_Details__c[] jobDetailList=[select Id,AdManagerText__c from Amr_Job_Details__c order by CreatedDate desc limit 1];
             String brandStr = '';
             if(jobDetailsObj.Single_or_multiply_project__c == 'single'){
                 Id id = jobDetailsObj.Brand_Final__c ;
@@ -383,26 +382,22 @@ public with sharing Class Amr_AdManagerHelper_CC{
             }
 
             String brandName = brandStr.Left(3);
-            
-            if(jobDetailList.size()>0){
-                String adNumber = '0';
-                String textStr = jobDetailList[0].AdManagerText__c;
-                if(textStr != NULL){
-                 adNumber = textStr.Right(5);
+            AmrAdManagerNumber__c AdMgNumber = AmrAdManagerNumber__c.getInstance('AdManagerNumber');
+            String adNumber = AdMgNumber.AdManagerNumber__c;
+            if(adNumber != Amr_ConstantForAdManager.NINTY_SERIES ){
+                Integer num = integer.valueOf(adNumber)+1;
+                String numStr =string.valueof(num);
+                for(;numStr.length()<5;){
+                    numstr=Amr_ConstantForAdManager.ZERO+numStr;
                 }
-                if(adNumber == Amr_ConstantForAdManager.NINTY_SERIES){
-                    jobDetailsObj.AdManagerText__c = brandName+Amr_ConstantForAdManager.BACK_SLASH+Amr_ConstantForAdManager.ZERO_SERIES;
-                }else{
-                    Integer num = integer.valueOf(adNumber)+1;
-                    String numStr =string.valueof(num);
-                    for(;numStr.length()<5;){
-                        numstr=Amr_ConstantForAdManager.ZERO+numStr;
-                        
-                    }
-                    jobDetailsObj.AdManagerText__c =brandName+Amr_ConstantForAdManager.BACK_SLASH+numstr;}
+                jobDetailsObj.AdManagerText__c =brandName+Amr_ConstantForAdManager.BACK_SLASH+numstr;
+                AdMgNumber.AdManagerNumber__c = numstr;
             }else{
                 jobDetailsObj.AdManagerText__c =brandName+Amr_ConstantForAdManager.BACK_SLASH+Amr_ConstantForAdManager.ZERO_SERIES;
+                AdMgNumber.AdManagerNumber__c = Amr_ConstantForAdManager.ZERO_SERIES;
             }
+             
+             update AdMgNumber;
            
         }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));

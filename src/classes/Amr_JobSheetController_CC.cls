@@ -1061,14 +1061,16 @@ Returns: List of select options
          
     }   
     
-    public PageReference  brandPositionListData(){    
+    public PageReference   brandPositionListData(){    
        
         selectedBrandPosName = null;
         brandNameFromPage = null;
-        Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-        Set<MDO_BrandPosition__c> brandPositionlst = utiltyObj.brandPostitionValues(selectedCategory);
         listOfBrandPosition = new List<SelectOption>();
         listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+                
+        Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+        Set<MDO_BrandPosition__c> brandPositionlst = utiltyObj.brandPostitionValues(selectedCategory);
+
         Set<String> brnadPosNameSet = new Set<String>();
         for(MDO_BrandPosition__c bps : brandPositionlst){
 
@@ -1080,7 +1082,7 @@ Returns: List of select options
          //listOfBrand = new List<SelectOption>();
          //listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
     
-         return null;
+         return NULL;
     }
    
  
@@ -1145,10 +1147,13 @@ Returns: List of select options
        
         selectedMultiBrandPosName= null;
         multibrandNameFromPage = null;
+        
+        listOfMultiBrandPosition = new List<SelectOption>();
+        listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE)); 
+               
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
         Set<Amr_Multi_Brand_Positioning__c> brandPositionlst = utiltyObj.multiBrandPostitionValues(selectedMultiCategory);
-        listOfMultiBrandPosition = new List<SelectOption>();
-        listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+
         Set<String> brnadPosNameSet = new Set<String>();
         for(Amr_Multi_Brand_Positioning__c bps : brandPositionlst){
 
