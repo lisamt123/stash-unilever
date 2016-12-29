@@ -1,0 +1,572 @@
+@font-face {
+    font-family:UnileverDINOffcPro;
+    src: url(../Fonts/UnileverDINOffcPro.ttf);
+}
+@font-face {
+    font-family:UnileverDINOffcPro;
+    src: url(../Fonts/UnileverDINOffcPro.woff);
+}
+html,body{height:100%}
+/*-----Common Styles---------*/
+.Main_Content{width:960px;margin:0 auto;}
+h1{font:bold 14px/16px UnileverDINOffcPro;}
+h3{font:normal 16px/16px UnileverDINOffcPro;}
+a{cursor:pointer}
+.align-left{float:left;}
+.align-right{float:right;}
+body a:hover{color:inherit;text-decoration:none;}
+.CTA_Link{color:#00a9e0;}
+.Nav_Link{text-decoration: underline;}
+label{display:block;}
+.hide{visibility:hidden;}
+.show{display:inline;}
+input[type="radio"] {
+    width: 16px;
+    -webkit-appearance: none;
+    line-height: 16px;
+    height: 16px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #00a9e0;
+    -webkit-border-radius: 8px;
+    position: relative;
+    top: 3px;
+    margin: 0 10px 0 0;
+}
+input[type="radio"]:before {
+    content: '';
+    display: block;
+    width: 55%;
+    height: 55%;
+    margin: 20% auto;
+    border-radius: 50%;
+}
+input[type="radio"]:checked:before {
+    background: #00a9e0;
+}
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    border: 1px solid #00a9e0;
+    width: 17px;
+    height: 17px;
+    margin: 0 15px 0 0;
+}
+input[type="checkbox"]:checked:before {
+    content: '\2713';
+    color: #00a9e0;
+	padding: 0px 0 0px 3px
+
+}
+table.Table_View,.Table_View th,.Table_View td{border-collapse:collapse;}
+.Table_View th{padding:10px;font:bold 12px/16px UnileverDINOffcPro;background-color:#f2f8fc;color:#3b516d;text-align:left;width:15%;}
+.Table_View td{padding:10px;font:normal 12px/16px UnileverDINOffcPro;color:#555555;}
+.Table_View tr{height:45px;border-bottom:1px solid #dddddd}
+.Table_View tr:nth-child(even){background-color:#fff;}
+.ui-widget, .ui-widget-header, .ui-widget-content {
+    border: none!important;
+}
+	  .Title_Card{
+	  font:normal 14px/20px UnileverDINOffcPro;
+	  position:absolute;
+	  left:10%;
+	  }
+	  .Content_Header{border-bottom:2px solid #d4d4d4;min-height:30px}
+
+	  .Action_Text {
+		position: absolute;
+		right: 20%;
+		font: normal 14px/20px Arial;
+		color: #007dbb;
+	}
+	.Action_Text>a {
+		text-decoration: none;
+	}
+	
+	.Tabs_Menu{margin:0 20%;}
+ul.nav_tabs {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:#fff;
+	font-family:UnileverDINOffcPro;
+	background: url(../image/gradient.png);
+	
+}
+ul.nav_tabs li:nth-child(1)>a.ui-tabs-anchor{padding:10px 48px 7px 48px}
+ul.nav_tabs li:nth-child(2)>a.ui-tabs-anchor{padding:12px 42px 7px 42px}
+ul.nav_tabs li:nth-child(3)>a.ui-tabs-anchor{padding:10px 62px 7px 62px}
+ul.nav_tabs li:nth-child(4)>a.ui-tabs-anchor{padding:12px 52px 7px 52px;}
+
+ul.nav_tabs li:nth-child(even)>a:hover, ul.nav_tabs li.ui-tabs-active:nth-child(even)>a.ui-tabs-anchor {
+    background-image: url(../image/tab-white-right.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+	color:#000;
+}
+ul.nav_tabs li:nth-child(odd)>a:hover, ul.nav_tabs li.ui-tabs-active:nth-child(odd)>a.ui-tabs-anchor {
+    background-image: url(../image/tab-white-left.png);
+    background-repeat: no-repeat;
+    color: #000;
+	background-size:cover;
+}
+ul.nav_tabs li.ui-state-default a {
+    display: block;
+    color: #ddd;
+    text-align: center;
+    padding: 7px 50px;
+    text-decoration: none;
+}
+ul.nav_tabs li a:hover {
+    background-color: #fff;
+    color: #111;
+}
+.ui-tabs .ui-tabs-panel{padding:0;}
+/*-----Common Styles---------*/	
+
+/*----Slide5 Styles-----*/	
+	  .Circular{border-radius:50%;}	   
+	  .Dashboard tr td .Selection_CTA{width:100%}
+	  .Notes_Section{color: #00a9e0;font:normal 14px/16px Arial;float:left;margin:15px 0;}
+	  .Status{color: #000;font:normal 14px/16px Arial;display:inline;}
+	  .Done{background-color: #00a9e0;}
+	  sup{color:#f00;}
+	  .Badge {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    border-radius: 3px;
+    padding: 2px 6px;
+	margin:0 5px
+          }
+.Open{background-color:#FF8C00;}
+#accordion-overview .ui-accordion-header {color: #555}
+/*----Slide5 Styles-----*/	
+
+/*----Slide6 Styles-----*/	
+    .Ans {
+    width: 15px;
+    height: 15px;
+	content:url(../image/Tick-icon.png);
+    float: right;
+    position: relative;
+    right: 3%;
+   }
+label.options{margin:3px 0;}
+.Btn_Confirm{margin:0 10px;}
+.Help_Container {width: 85%;float:left;}
+.helptext{color:#555;opacity:0.7;}
+.User_Del{background-image:url(../image/user.png);
+    float: right;
+    position: relative;
+    right: 3%;display:inline-block;
+    width: 21px;
+    height:21px;}
+
+.ui-widget-content div.Acc_ActionItems>a:hover, .ui-widget-content div.Acc_ActionItems>a {
+    color: #00a9e0;
+    font: normal 14px/16px UnileverDINOffcPro;text-decoration:none;padding: 0 10px;
+}
+#Questionairre_Container #accordion-quest{width:100%;clear:both;}
+#accordion-overview{width:80%;margin: 20px auto;display: table;clear:both;}
+#Questionairre_Container{float: left;width: 75%;}
+#accordion-quest .ui-accordion-header,#accordion-overview .ui-accordion-header {
+	  background-color: #fff;
+	  color: #d4d4d4;
+	  font:bold 14px/16px UnileverDINOffcPro;
+	  padding:5px 0 7px 10px;
+	  font-weight:500;
+	  margin:0;
+	  border-top:1px solid #d4d4d4!important;
+	  clear:both;
+	  border:none;
+	  border-top-right-radius: 0;
+      border-top-left-radius: 0;
+	  border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+	}
+#accordion-overview .ui-accordion-header{border-right: 1px solid #d4d4d4!important;border-left: 1px solid #d4d4d4!important;}
+#accordion-quest .ui-accordion-header:last-of-type,
+#accordion-overview .ui-accordion-header:last-of-type{
+		border-bottom:1px solid #d4d4d4!important;
+	}
+#accordion-quest .ui-accordion-content,#accordion-overview .ui-accordion-content {
+	  background-color: #fff;
+	  color: #555;
+	  font:bold 14px/16px UnileverDINOffcPro;
+	  padding:10px 0;
+	  font-weight:500;	  
+	  border:none;
+	}
+#accordion-overview .ui-accordion-content{border-right: 1px solid rgb(212, 212, 212) !important;border-left: 1px solid rgb(212, 212, 212) !important;padding:0 10%;}
+#accordion-quest .ui-accordion-content .Help_Icon {
+    content: url(../image/help-icon.png);
+    display: inline-block;
+    float: left;
+    margin: 0 4% 0 1%;
+    width: 32px;
+    height: 32px;
+}
+.Btn_Container .Selection_CTA[disabled="disabled"] {
+    background: #d4d4d4;
+    color: #555;
+}
+#accordion-quest .ui-accordion-header .ui-accordion-header-icon.ui-icon.iconOpen{background:url(../image/Grey1.png);background-size:15px;width:15px;
+  height:15px;background-repeat:no-repeat;margin:0 4% 0 0;display:inline-block;position:relative;}
+#accordion-quest .ui-accordion-header .ui-accordion-header-icon.ui-icon.iconClosed{background:url(../image/closeGrey.png);background-size:15px;width:15px;height:15px;
+background-repeat:no-repeat;
+	margin:0 4% 0 0;
+	display:inline-block;position:relative;}
+.ui-accordion .ui-accordion-header .ui-accordion-header-icon.ui-icon.iconOpen,
+#accordion-quest .ui-accordion-header.answered .ui-accordion-header-icon.ui-icon.iconOpen {
+    background:url(../image/Expand.png);
+    background-size:15px;
+    width:15px;
+    height:15px;
+	background-repeat:no-repeat;
+	margin:0 4% 0 0;
+	display:inline-block;position:relative;
+}
+.ui-accordion .ui-accordion-header .ui-accordion-header-icon.ui-icon.iconClosed,
+#accordion-quest .ui-accordion-header.answered .ui-accordion-header-icon.ui-icon.iconClosed{
+    background:url(../image/close.png);
+    background-size:15px;
+    width:15px;
+    height:15px;
+	background-repeat:no-repeat;
+	margin: 0 4% 0 0;
+	display:inline-block;
+}
+.ui-widget button.Selection_CTA a {color: #fff;}
+#accordion-quest .ui-accordion-header-active.ui-accordion-header,#accordion-overview .ui-accordion-header-active {
+    color: #555;border-top-right-radius: 0;border-top-left-radius: 0;
+}
+#accordion-quest .ui-accordion-content .content table tr {border-bottom: none;}
+#accordion-quest .ui-accordion-content .content table tr:nth-child(even){background:none;}
+#accordion-quest .ui-accordion-content .content label {display: initial;} 
+#accordion-quest .ui-accordion-content .content{margin:0 10%;float:left;width:80%}	
+#accordion-quest .ui-accordion-content .Help_Icon {
+    content: url(../image/help-icon.png);
+    display: inline-block;
+    float: left;
+    margin: 0 4% 0 1%;
+    width: 40px;
+    height: 40px;
+}
+.ui-icon.iconOpen {
+    background:url(../image/Expand.png);
+    background-size:15px;
+    width:15px;
+    height:15px;
+	background-repeat:no-repeat;
+	margin:0 4% 0 0;
+	display:inline-block;
+}
+.ui-icon.iconClosed {
+    background:url(../image/close.png);
+    background-size:15px;
+    width:15px;
+    height:15px;
+	background-repeat:no-repeat;
+	margin: 0 4% 0 0;
+	display:inline-block;
+}
+.accordion .ui-accordion-header-active.ui-accordion-header {
+    color: #555;
+}
+#delegate {
+    padding: 0.5em 1em 0 0.5em;display:none;
+}
+.ui-dialog.ui-widget{width:400px!important;top:110px;left:575px}
+.ui-dialog.ui-widget .ui-dialog-titlebar.ui-corner-all {
+    padding: 0.2em 0.4em;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.ui-dialog .ui-dialog-title {
+    height: 18px;
+    font: bold 12px/18px UnileverDINOffcPro;
+}
+.ui-dialog.ui-widget.ui-corner-all{    border-bottom-right-radius: 0px;}
+.ui-dialog .ui-dialog-content label{display:inline;font:bold 14px/16px UnileverDINOffcPro;color#555;opacity:0.7;margin:0 22px;padding:3px 0;clear:both;float:left;color:#666;}
+.ui-dialog.ui-widget .ui-dialog-content input{width:235px;margin:0 0 10px 0;border: 1px solid #ccc;height: 20px;}
+.ui-dialog .ui-dialog-content label:nth-child(2) {margin: 0 24px;}
+.ui-dialog .ui-dialog-content label:nth-child(1)+input[type="textbox"] {
+    background-image: url(../image/search.png);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.ui-dialog .ui-dialog-content .Dialog_Content{float:left;margin:30px 0 0 0;}
+.ui-dialog .ui-dialog-content .Dialog_Content label:first-child {
+    margin: 0 24px;
+}
+.ui-dialog .ui-dialog-content .Help_Text{position:absolute;right:25%;color: #00a9e0;font-family:UnileverDINOffcPro;}
+	.ui-dialog .ui-dialog-buttonpane .Dialog_Save {
+    position: relative;
+    right: 50%;
+}
+.ui-dialog.ui-widget .ui-dialog-buttonpane {
+    margin: 0;
+    padding: .3em 2em 2em .4em;
+}
+/*----Slide6 Styles-----*/	
+
+
+.ui-state-active,.ui-widget-header .ui-state-active,.ui-widget-content .ui-state-active,
+.ui-state-default,.ui-state-default,.ui-widget-header .ui-state-default,.ui-widget-content .ui-state-default{border:none!important;}
+.ui-tabs li:nth-child(odd)>a.ui-tabs-anchor {
+    float: left;
+    padding: .5em 1em;
+    text-decoration: none;
+    background-image: url(../image/forest.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: rotate(360deg);
+}
+.nav_tabs li:nth-child(odd),.nav_tabs li:nth-child(even) {
+    float: left;
+    margin: 0 7px 0 0!important; 
+    background: none;
+}
+ul.nav_tabs li:nth-child(even)>a.ui-tabs-anchor {
+    background-image: url(../image/lgreen.png);
+    background-repeat: no-repeat;color:#fff;background-size:cover;
+}
+
+
+.Solution_Table th{padding:10px;font:bold 12px/16px UnileverDINOffcPro;background-color:#f2f8fc;color:#555;text-align:left;width:4%;}
+.Solution_Table .solution_CategoryFilter>.filter-options{
+	display:none;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);color:#666;text-align:left;
+  }
+.Solution_Table .solution_CategoryFilter:hover>.filter-options{display:block;position:absolute;padding:5px 0 3px 0;}
+.Solution_Table .solution_CategoryFilter:hover>.filter-options>ul{background:none;margin:10px 0 0 0;padding:0;}
+.Solution_Table .solution_CategoryFilter:hover>.filter-options>ul li, 
+.Solution_Table .solution_CategoryFilter:hover>.filter-options>ul li:hover {
+    background: none;
+    list-style-type: none;
+    font: 12px/18px UnileverDINOffcPro;
+    padding: 4px 16px;
+    width: 80%;
+    margin: 0;
+	display:block;float:left;clear:both;
+	border-top:0.5px solid #d4d4d4;}
+	
+	.Btn_Container{float: right;margin: 20px 0;}
+	.Btn_Container .Selection_CTA,.ui-dialog.ui-widget .ui-dialog-buttonpane .ui-dialog-buttonset .Selection_CTA,
+	body .individualPalette .secondaryPalette.bPageBlock .pbBody .Selection_CTA,.Dashboard tr td .Selection_CTA,.Selection_CTA{
+    padding: 5px 10px;
+    border: 1px solid #d4d4d4;
+    font: bold 12px/16px UnileverDINOffcPro;
+    letter-spacing: 1px;
+    font-weight: 500;height: 25px;color:#fff;
+    min-width: 150px;background:#81bf42;margin:0 0 0 10px;text-decoration:none;border-radius:3px;
+	}
+	.ui-dialog.ui-widget .ui-dialog-buttonpane .ui-dialog-buttonset .Selection_CTA{min-width:80px;margin:0;}
+
+.Solution_Table td {vertical-align:middle}
+.Tabs_Menu #tab-2 #Questionairre_Container #Btn_Submit+p {
+    font: bold 20px/24px UnileverDINOffcPro;
+    text-align: center;
+    color: #555;
+    opacity: 0.65;
+	border-bottom: 1px solid #d4d4d4;
+    padding: 0 0 7% 0
+}
+
+/*Generate report Div styling...*/
+.Tabs_Menu #tab-2 #Gen_Report {
+    float: left;
+    width: 20%;
+    margin: 3% 0 0 1%;
+	background-color:#e6f7ff;
+	padding:0 15px
+}
+.Tabs_Menu #tab-2 #Gen_Report>p {
+    text-align:left;
+    font:normal 14px/18px UnileverDINOffcPro;
+	margin: 10px 0px;
+	color:#555
+}
+.Tabs_Menu #tab-2 #Gen_Report .Generate_CTA,
+.Tabs_Menu #tab-2 #Gen_Report .SelectSoln_CTA {
+    font: normal 14px/18px UnileverDINOffcPro;
+    height: 33px;
+    font-weight: 500;
+    border-radius: 3px;
+    min-width: 160px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #d4d4d4;
+    padding: 5px 10px;
+	margin: 0 0 0 10px;
+	box-shadow: 0 0 3px #00ff00
+}
+.Tabs_Menu #tab-2 #Gen_Report .SelectSoln_CTA{
+    color: #fff;
+    background: #56843b;
+    display: table;
+    padding: 5px 15px;
+    margin: 10px 10px;
+	box-shadow:none
+}
+.Tabs_Menu #tab-2 #Gen_Report .recommend_Text{ font:normal 12px/16px UnileverDINOffcPro}
+.Tabs_Menu #tab-2 #Gen_Report #CaseStudy_Upload {color: #00a9e0}
+.Tabs_Menu #tab-4 h3,.Tabs_Menu #tab-3 h3{color:#193366;margin:20px 0;display:inline-block;font:normal 20px/24px UnileverDINOffcPro;float:left}
+.Solution_Table .solution_CategoryFilter:hover>.filter-options>ul li label:last-child {border-right: none}
+.Solution_Table .solution_CategoryFilter:hover>.filter-options>ul li{border-bottom:none}
+.Solution_Table .solution_CategoryFilter:hover>.filter-options>ul li label {
+    display: inline-block;
+    float: left;
+    color: #00a9e0;
+    font: normal 14px/16px UnileverDINOffcPro;
+    border-right: 1px solid #d4d4d4;
+    padding: 0 14px;
+	cursor:pointer
+}
+.Tabs_Menu #tab-2 #Gen_Report #CaseStudy_Upload p:nth-child(even) {
+    color: #555;
+    background-image: url(../image/UPLOAD-INACTIVE.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    opacity: 0.7
+}
+.Questionairre_Dashboard th {
+    padding: 0 0 0 10px;
+    font: bold 12px/16px UnileverDINOffcPro;
+    color: #555;
+    width: inherit;
+}
+/*Overriding internal stylesheet styles*/
+body .individualPalette,body .individualPalette .secondaryPalette.bPageBlock .pbBody {float: right;}
+body .bPageBlock, body .individualPalette .secondaryPalette.bPageBlock {
+    border: none;
+    background-color: #fff;
+    border-radius: 0px
+}
+
+
+/*Form Generic Styles....*/
+#Form_BtnSet{float:right}
+.Main_Container form{
+	float: left;
+    border-bottom: 1px solid #d4d4d4;
+    border-top: 1px solid #d4d4d4;
+    padding:50px 20px 25px 50px;width:initial;
+	font: bold 14px/20px UnileverDINOffcPro;
+	color: #555;
+	opacity: 0.7
+	}
+.Main_Container form .Form_Sections{float:left;width:47%;margin:0 10px;display:table}
+.Main_Container form .Form_Sections .Form_Fields{display:table-row}
+.Main_Container form .Form_Sections .Form_Fields>label {display:table-cell;min-width: 160px;float: left}
+	
+.Main_Container form .Form_Sections .Form_Fields>select, 
+.Main_Container form .Form_Sections .Form_Fields>textarea,
+.Main_Container form .Form_Sections .Form_Fields>input{
+    display: table-cell;
+    width:55%;
+    float: left;
+    margin:0 10px 20px 10px;
+    border: 1.5px solid #d4d4d4;
+	padding: 2px;
+    color: #555
+}
+.Main_Container form[name="Create_Questionairre"] .Form_Fields>input, 
+.Main_Container form[name="Create_Questionairre"] .Form_Fields>textarea, 
+.Main_Container form[name="Create_Questionairre"] .Form_Fields>select{margin:0 10px 30px 10px}
+
+.Main_Container form[name="Create_Questionairre"] .Selection_CTA,
+.Main_Container form[name="Create_Question"] .Selection_CTA{
+	padding: 5px 10px;
+    border: 1px solid #d4d4d4;
+    font: bold 12px/16px UnileverDINOffcPro;
+    letter-spacing: 1px;
+    font-weight: 500;height: 25px;color:#fff;
+    min-width: 150px;
+	background:#81bf42;
+	margin:0 0 0 10px;
+	text-decoration:none;
+	border-radius:3px
+	}
+.Main_Container .Selection_CTA[value="Cancel"]{background: #fff;color: #ccc}
+.Main_Container .Selection_CTA[value="Cancel"]:hover{color:#00a9e0}
+
+/*Form Styles for Wireframe -2*/
+
+.Main_Container{width:960px;margin:0 auto;min-height:100%;background:#efefef;padding:20px}
+.Main_Container form[name="Create_Questionairre"]{border-bottom:none;margin:0}
+.Main_Container form[name="Create_Questionairre"] .Status_Info>select {min-width: 250px;margin:0 30px}
+.Main_Container .Details_Container p.Status_Info span{text-decoration:underline}
+.Details_Container label {
+    font: bold 14px/20px UnileverDINOffcPro;
+    color: #555;
+    opacity: 0.75;
+    display: table-cell;
+    min-width: 150px;
+    float: left
+}
+.Main_Container form[name="Create_Questionairre"]+div#Form_BtnSet {float: left;margin: 0 0 0 17.5%}
+.Details_Container span {
+    font: normal 14px/20px UnileverDINOffcPro;
+    display: table-cell;
+    word-wrap: break-word;
+	max-width: 250px;
+	opacity: 0.6
+}
+.Main_Container .Details_Container {
+    width: 75%;
+    margin: 0 auto;
+	display:flex
+}
+.Main_Container .Details_Container .Panel{float:left;margin: 0 10px 0 0;width:49.5%}
+
+.Main_Container #Questions_List h3,.Main_Container h3 {
+    display: inline-block;
+    font: normal 21px/16px UnileverDINOffcPro;
+    color:#005eb8;
+    opacity: 0.8;
+	margin: 12px 0
+}
+.Main_Container #Questions_List .Solution_Table{border-top: 1px solid #d4d4d4;
+    padding: 20px 0 0 0;
+    display: block
+	}
+.Main_Container span>a.Nav_Link{font: normal 18px/16px UnileverDINOffcPro;padding:10px 0;display: block}
+.Main_Container span>a.Nav_Link:hover, .Main_Container span>a.Nav_Link:visited, .Main_Container span>a.Nav_Link:focus {color: #005eb8;text-decoration: underline}
+#accordion-quest .ui-accordion-content .content table td>input[disabled="disabled"]{background:transparent;border:1px solid #555}
+
+/*BP security Team Module Styling....*/
+.Main_Container form[name="Create_Solution"] h2,.Main_Container .Solution_Details h2 {
+    background: #fff;
+    color: #000;
+    opacity: 0.75;
+    font: normal 21px/16px UnileverDINOffcPro;
+    border-radius: 5px;
+    line-height: 40px;
+    height: 40px;
+    padding: 0 0 0 20px;
+    width: 100%;
+    float: left;
+	margin:10px 0 25px 0
+}
+.Solution_Details>h3 {
+    display: block;
+    margin: 0;
+    border-top: 1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4;
+    padding: 12px 0 12px 10px
+}
+.Solution_Details .Solution_Table {
+    margin: 0 auto;
+    width: 90%;
+    border-top: 1px solid #d4d4d4
+}
+.Edit{background-image:url(../image/edit.png);}
+.Del{background-image:url(../image/delete.png);}
+.Clone{background:url(../image/clone.png);}
+.CTA_Icons{background-size: 20px;width:20px;height:20px;display:inline-block;margin:0 10px 0 0;}

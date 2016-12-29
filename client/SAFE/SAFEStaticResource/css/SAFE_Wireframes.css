@@ -1,0 +1,44 @@
+/**/
+@font-face {
+    font-family:UnileverDINOffcPro;
+    src: url(../Fonts/UnileverDINOffcPro.ttf);
+}
+form[name="Create_Questionairre"]{margin:0 auto;width:750px;}
+form[name="Create_Questionairre"] .Form_Sections{float:left;width:47%;margin:0 10px;}
+form[name="Create_Questionairre"] .Form_Fields{
+margin: 20px 10px;
+    font: bold 14px/20px UnileverDINOffcPro;
+    color: #555;
+    opacity: 0.7;
+}
+form[name="Create_Questionairre"] .Form_Fields>label {
+    display: inline;
+    min-width: 160px;
+    float: left;
+}
+form[name="Create_Questionairre"] .Form_Fields>input, 
+form[name="Create_Questionairre"] .Form_Fields>textarea {
+    width: 60%;
+    min-height: 20px;
+    border-radius: 3px;
+    border: 1.5px solid #d4d4d4;
+}
+form[name="Create_Questionairre"] .Selection_CTA{
+	padding: 5px 10px;
+    border: 1px solid #d4d4d4;
+    font: bold 12px/16px UnileverDINOffcPro;
+    letter-spacing: 1px;
+    font-weight: 500;height: 25px;color:#fff;
+    min-width: 150px;background:#81bf42;margin:0 0 0 10px;text-decoration:none;border-radius:3px;
+}
+form[name="Create_Questionairre"] .Selection_CTA[value="Cancel"]{background: #fff;color: #ccc;}
+
+.Details_Container>label {
+    font: bold 14px/20px UnileverDINOffcPro;
+    color: #555;
+    opacity: 0.6;
+    float: left;
+    display: block;
+    clear: both;
+}
+.Solution_Table .Update_Link{color:#007dbb;text-decoration:underline;}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>SAFE_Not_Published_RecTypeId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAFE Not Published RecTypeId</shortDescription>
+        <value>0123C0000008V8q</value>
+    </labels>
+    <labels>
+        <fullName>SAFE_Published_RecTypeId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAFE Published RecTypeId</shortDescription>
+        <value>0123C0000008V90</value>
+    </labels>
+    <labels>
+        <fullName>SAFE_Questionnaire_ObjId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAFE Questionnaire ObjId</shortDescription>
+        <value>01I3C0000004McY</value>
+    </labels>
+    <labels>
+        <fullName>SAFE_Trigger_Switch</fullName>
+        <categories>This switch is to turn On/Off the trigger. Change the value to False to inactivate the trigger and True to activate the trigger.</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAFE_Trigger_Switch</shortDescription>
+        <value>True</value>
+    </labels>
+</CustomLabels>
