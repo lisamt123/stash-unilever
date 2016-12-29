@@ -4866,9 +4866,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>In Progress</value>
+            <value>In Progress,Reopened</value>
         </filters>
-        <label>CEC France - In Progress</label>
+        <label>CEC France - In Progress &amp; Reopened</label>
         <language>fr</language>
         <sharedTo>
             <role>CEC_Global_Head</role>
