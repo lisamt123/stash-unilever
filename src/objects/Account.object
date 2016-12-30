@@ -1290,7 +1290,8 @@
             </values>
         </picklistValues>
     </recordTypes>
-<customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
+<searchLayouts>
+	<customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.ADDRESS1_CITY</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.PHONE1</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
