@@ -1625,10 +1625,6 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
-        <tab>FAU_Email__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>FAU_Milestone__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
