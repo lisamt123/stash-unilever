@@ -35,6 +35,7 @@ src/objects/UL_SmartUIEditability__c.object
 src/objects/UL_UserCustomerProduct__c.object
 src/objects/UL_Workflow_Threshold__c.object
 src/objects/UL_Workflow_Threshold_Template__c.object
+src/objects/Promotion_Acc_Rel__c
 src/objectTranslations
 src/objectTranslations/ACCL__Account_Bill_To__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Account_Call_Setting__c-en_US.objectTranslation
@@ -154,7 +155,6 @@ src/layouts/UL_Approval_Threshold__c-UL_Approval_Threshold_Layout.layout
 src/layouts/UL_Cannibalisation_Rate__c-Cannibalisation Rate Layout.layout
 src/layouts/UL_Comparator__c-Comparator Layout.layout
 src/layouts/UL_Delivery_Profile__c-Delivery Profile Layout.layout
-src/layouts/UL_IIBB_Tax__c-UL IIBB Tax Layout.layout
 src/layouts/UL_Planning_Level__c-Planning Level Layout.layout
 src/layouts/UL_PromotionCategory__c-PromotionCategory Layout.layout
 src/layouts/UL_UserCustomerProduct__c-User Customer Product Category Layout.layout
