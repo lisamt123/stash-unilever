@@ -2,4 +2,13 @@ src
 src/classes
 src/classes/IPM_GateDocumentController.cls
 src/classes/IPM_GateDocumentController.cls-meta.xml
+src/classes/IPM_ProjectCountryDetails.cls
+src/classes/IPM_ProjectCountryDetails.cls-meta.xml
+src/classes/IPM_Resource_Allocation.cls
+src/classes/IPM_Resource_Allocation.cls-meta.xml
+src/classes/IPM_RolloutTriggerHandler.cls
+src/classes/IPM_RolloutTriggerHandler.cls-meta.xml
+src/pages
+src/pages/IPM_GateDocument.page
+src/pages/IPM_GateDocument.page-meta.xml
 
