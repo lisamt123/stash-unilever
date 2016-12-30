@@ -24,9 +24,6 @@ src/aura/TEL_AssignOpportunityOwner/TEL_AssignOpportunityOwnerController.js
 src/aura/TEL_AssignOpportunityOwner/TEL_AssignOpportunityOwnerHelper.js
 src/layouts
 src/layouts/Case-TEL_Sample_Requests.layout
-src/quickActions
-src/quickActions/Campaign.TEL_Associate_Account_Button.quickAction
-src/quickActions/Campaign.TEL_Associate_Products.quickAction
 src/triggers
 src/triggers/TEL_OpportunityTrigger.trigger
 src/triggers/TEL_OpportunityTrigger.trigger-meta.xml
