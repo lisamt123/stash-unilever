@@ -4254,7 +4254,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
-    <listViews>
+  <!--  <listViews>
         <fullName>AllAccounts</fullName>
         <columns>ACCOUNT.NAME</columns>
         <columns>Demandware_ID__c</columns>
@@ -4262,7 +4262,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <filterScope>Everything</filterScope>
         <label>Tous les comptes</label>
         <language>fr</language>
-    </listViews>
+    </listViews>-->
     <listViews>
         <fullName>All_Distributor_Accounts</fullName>
         <columns>ACCOUNT.NAME</columns>
