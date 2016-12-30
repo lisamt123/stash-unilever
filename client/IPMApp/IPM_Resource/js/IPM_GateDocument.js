@@ -597,9 +597,8 @@ function getCommentsCount(parentID) {
     idForCommentsCount = parentID;
     sforce.connection.query(
         "SELECT Id FROM FeedItem WHERE ParentId = '" + parentID + "' and type = 'TextPost'",
-        {onSuccess: getCount, onFailure: countQueryFailed});
-}                
-function countQueryFailed(error) {alert("{!$Label.IPM_PLEASE_CONTACT_ADMINISTRATOR}");}                
+        {onSuccess: getCount, onFailure: sfailed});
+}                               
 function getCount(queryResult) {
     if(queryResult.size>0){jq("#count"+idForCommentsCount).attr("style", "display:inline");}
     else{jq("#count"+idForCommentsCount).attr("style", "display:none");}
@@ -964,9 +963,8 @@ function getSAttachments(queryResult) {
 function getAllAttachments() {
     sforce.connection.query(
         "SELECT Id,ParentId,Name FROM Attachment WHERE ParentId in (SELECT ID FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c=\'"+IPMApp.projectdocid+"\') ORDER BY ParentId",
-        {onSuccess: getAllSAttachments, onFailure: allSfailed});
-}                
-function allSfailed(error) {alert(IPMApp.ContactAdmin);}                
+        {onSuccess: getAllSAttachments, onFailure: sfailed});
+}              
 function getAllSAttachments(queryResult) {
     if(queryResult.size>0){                        
         var parentIdArray = [];

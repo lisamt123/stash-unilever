@@ -669,17 +669,41 @@
             .goldenCheckcontainer label.goldbox {width: 80%;background: #FBBE2E;color: #000;border: 1px solid #E28A3C;padding: 5px;font-size: 8px !important;}
             .goldenCheckcontainer label {width:100%;background: #999;padding:4px 18px;height: 29px;}  
             .alignCenter{text-align:center;}
-            .srcbrkWord{word-wrap:break-word;word-break: break-word;background:#000;}
+            .srcbrkWord{word-wrap:break-word;word-break: break-word;}
             /* Local Source Plan Styles */
+            .lclPronamehead{width:10%;}
+            .lclProformathead{width:10%;}
+            .lclProformulationhead{width:14%;}
+            .lclPropackagehead{width:12%;}
+            .lclProsizehead{width:10%;}
+            .lclProgoldenhead{width:10%;}
+            .lclPromappinghead{width:20%;}
+            .lclProunitshead{width:40%;}
+            .lclProcapabilityhead{width:20%;}
+            .lclProsrcedintohead{width:40%;}
+            .lclPronameval{width:10%;}
+            .lclProformatval{width:10%;}
+            .lclProformulationval{width:14%;}
+            .lclPropackingval{width:12%;}
+            .lclProsizeval{width:10%;}
+            .lclProgoldenval{width:10%;}
+            .lclProcountryval{width:20%;}
+            .lclProsrcingval{width:36%;}
+            .lclProcapabilityval{width:27%;}
+            .lclProsrccountriesval{width:40%;}
+            
             .srcPlanTitle{margin-bottom: 5px;color: #253b78;width: 100%;font-size: 14px;font-weight: bold;}
             .greytxt{margin-bottom:10px;display:block;}
             .srcingHeaderContainer{display:table;width:100%;}
-            .leftHeadWidthResp {width: 66%;float: left;position: relative;}
-            .rightHeadWidthResp {width: 34%;float: left;position: relative;}
-            .custSrcWidth{width:8%;}
+            .leftHeadWidthResp {width: 490px;float: left;position: relative;}
+            .rightHeadWidthResp {width: 270px;float: left;position: relative;}
+            .custLeftTdwidth{width: 490px;}
+            .custRightTdwidth{width: 270px;}
+            .table>tbody>tr>td.noPadd {padding: 0;}
             .table>thead>tr>th>div.capcon {width: auto;margin: 0 auto;margin-top:-2px;background-color: #ececec;color: #555;padding: 2px 4px;vertical-align: middle;height: auto;border: 1px solid #ddd;}
-	    .greenBox{background: #A3C24B;color: #fff;padding: 5px;font-size: 11px;margin: 0;display:block;}
+            .greenBox{background: #A3C24B;color: #fff;padding: 5px;font-size: 11px;margin: 0;display:block;}
             .redBox{background: red;padding: 5px;margin: 3px 0px;color: #fff;display:block;}
+            .table div.approvalTip{padding-left:7px;}
 		</style>
     </head>
     
