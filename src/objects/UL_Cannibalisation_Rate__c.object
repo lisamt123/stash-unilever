@@ -152,7 +152,7 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-   <!-- <fields>
+    <fields>
         <fullName>UL_Sales_Organization__c</fullName>
         <externalId>false</externalId>
         <globalPicklist>ACCL__Sales_Org</globalPicklist>
@@ -160,7 +160,7 @@
         <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-    </fields>-->
+    </fields>
     <fields>
         <fullName>UL_Valid_From__c</fullName>
         <defaultValue>TODAY()</defaultValue>
