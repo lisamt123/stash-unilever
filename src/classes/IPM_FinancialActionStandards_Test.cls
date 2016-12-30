@@ -105,11 +105,12 @@ private class  IPM_FinancialActionStandards_Test {
             PageReference pageRef = Page.IPM_Financial;
             Test.setCurrentPageReference(pageRef);  
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, projectList[0].Id);
-            
+            ApexPages.CurrentPage().getparameters().put('projId', projectList[0].Id);
             
             IPM_FinancialActionStandards ipmFinController = new IPM_FinancialActionStandards();
             ipmFinController.projDocSecId = ipmProjDocSectionList[0].Id;
             ipmFinController.setprojectId (projectList[0].Id);
+            ipmFinController.projectId =projectList[0].Id;
             ipmFinController.editTable = true;
             
             // Set the project document section content id
