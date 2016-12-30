@@ -4,7 +4,6 @@
     <description>App for the Telesales solution</description>
     <label>Telesales</label>
     <tab>standard-home</tab>
-    <tab>standard-Feed</tab>
     <tab>TEL_GenOpp</tab>
     <tab>standard-Campaign</tab>
     <tab>standard-Account</tab>

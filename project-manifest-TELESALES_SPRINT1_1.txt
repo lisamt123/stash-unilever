@@ -27,7 +27,6 @@ src/layouts/Campaign-Telesales Campaign Layout.layout
 src/layouts/Case-TEL_Sample_Requests.layout
 src/layouts/Opportunity-TEL_Telesales.layout
 src/quickActions
-src/quickActions/Opportunity.TEL_Take_Ownership.quickAction
 src/quickActions/Campaign.TEL_Associate_Account_Button.quickAction
 src/quickActions/Campaign.TEL_Associate_Products.quickAction
 src/triggers
