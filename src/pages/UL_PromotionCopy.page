@@ -1,0 +1,64 @@
+<apex:page standardController="ACCL__Promotion__c" extensions="UL_PromotionCopyExtension" standardStylesheets="true" action="{!updateAccountsAccountSets}">
+   
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.ACCL__Promotion__c.label} {!$Label.ACCL__EDIT}" subtitle="{!$Label.ACCL__EDIT} {!$ObjectType.ACCL__Promotion__c.label}"/>
+        
+        <apex:outputPanel id="pageMessages">
+            <apex:pageMessages />
+        </apex:outputPanel>
+        
+        <apex:pageBlock id="theBlock" mode="edit">
+            <apex:pageBlockButtons id="theButtons" location="both">
+                <apex:commandButton id="btnSave" value="{!$Label.ACCL__SAVE}" action="{!save}"/>
+                <apex:commandButton id="btnCancel" value="{!$Label.ACCL__CANCEL}" action="{!cancel1}" immediate="true"/>
+            </apex:pageBlockButtons>
+             <apex:pageBlockSection id="theSection" showHeader="false" collapsible="false" columns="1">
+             <apex:outputField value="{!ACCL__Promotion__c.ACCL__Promotion_Template__c}"/>     
+                 <apex:pageBlockSectionItem > 
+                    <apex:outputLabel value="{!$ObjectType.ACCL__Promotion__c.Fields.ACCL__Date_From__c.Label}" for="Date_From"/>
+                    <apex:actionRegion > 
+                        <apex:inputField showDatePicker="true" value="{!ACCL__Promotion__c.ACCL__Date_From__c}" required="true" id="Date_From">
+                            <apex:actionSupport event="onchange" rerender="AnchorLabelBlock, AnchorListBlock, pageMessages" action="{!updateAccountsAccountSets}"/>  
+                        </apex:inputField>
+                    </apex:actionRegion>                 
+                </apex:pageBlockSectionItem>
+            <apex:inputField value="{!ACCL__Promotion__c.ACCL__Date_Thru__c}" showDatePicker="true" required="true"/> 
+                 
+               <apex:pageBlockSectionItem >
+                    <apex:outputPanel id="AnchorLabelBlock">
+                        <apex:outputLabel value="{!$ObjectType.ACCL__Promotion__c.Fields.ACCL__Anchor_Account__c.Label}" for="Account"  rendered="{!AnchorTypeCustomer}" />
+                        <apex:outputLabel value="{!$ObjectType.ACCL__Promotion__c.Fields.ACCL__Anchor_Account_Set__c.Label}" for="AccountSet" rendered="{!NOT(AnchorTypeCustomer)}" />
+                    </apex:outputPanel>
+                   <apex:actionRegion > 
+                        <apex:outputPanel id="AnchorListBlock" styleClass="requiredInput" layout="block">
+                            <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                            
+                            <apex:selectList id="Account" value="{!PromDetails.ACCL__Anchor_Account__c}" multiselect="false" size="1" required="{!AnchorTypeCustomer}" rendered="{!AnchorTypeCustomer}">
+                              <apex:actionSupport event="onchange" rerender="pageMessages" action="{!updateAnchorcustomer}"/> 
+                               <apex:selectOptions value="{!Accounts}" /> 
+                            </apex:selectList>
+                            
+                            <apex:selectList id="AccountSet" value="{!PromDetails.ACCL__Anchor_Account_Set__c}" multiselect="false" size="1" required="{!NOT(AnchorTypeCustomer)}" rendered="{!NOT(AnchorTypeCustomer)}">
+                                <apex:actionSupport event="onchange" rerender="pageMessages" action="{!updateSelectedAccountAccountSet}"/>
+                                <apex:selectOptions value="{!AccountSets}" />
+                            </apex:selectList>
+                            
+                        </apex:outputPanel>
+                       
+                    </apex:actionRegion> 
+                   
+                </apex:pageBlockSectionItem>
+               <apex:inputHidden value="{!ACCL__Promotion__c.ACCL__Anchor_Account__c}" id="theHiddenInput"/>
+                 <apex:inputHidden value="{!ACCL__Promotion__c.ACCL__Anchor_Account_Set__c}" id="theHiddenInput1"/>
+             <apex:repeat value="{!$ObjectType.ACCL__Promotion__c.FieldSets.ACCL__New_Promotion_Fields}" var="f">
+                    <apex:inputField value="{!ACCL__Promotion__c[f]}" required="{!f.Required}" />
+                </apex:repeat> 
+                 
+             <!--  <a>Selected Promotion--"{!PromDetails.ACCL__Anchor_Account__c}"</a>   -->
+            </apex:pageBlockSection>
+            
+            
+        </apex:pageBlock>
+    
+        </apex:form>
+</apex:page>

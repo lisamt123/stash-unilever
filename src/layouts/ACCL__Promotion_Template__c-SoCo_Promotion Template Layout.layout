@@ -44,10 +44,10 @@
                 <behavior>Edit</behavior>
                 <field>UL_Calculate_for_Max_Min_Dates__c</field>
             </layoutItems>
-            <layoutItems>
+           <!-- <layoutItems>
                 <behavior>Edit</behavior>
                 <field>test_picklist__c</field>
-            </layoutItems>
+            </layoutItems>-->
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

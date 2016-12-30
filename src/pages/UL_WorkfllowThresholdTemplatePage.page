@@ -1,0 +1,44 @@
+<apex:page standardController="UL_Workflow_Threshold_Template__c" extensions="UL_ThresholdTemplateExtensions" tabStyle="UL_Workflow_Threshold_Template__c">
+    <apex:form >
+    <apex:pageBlock rendered="{!viewMode}">
+        <apex:pageBlockButtons >
+            <apex:commandButton action="{!editClick}" value="Edit">
+           
+            </apex:commandButton>
+          <apex:commandButton action="{!delete}" value="delete"/> 
+        <!-- <button type="button" onclick="location.reload()">Delete</button> -->
+           
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection >
+            
+            <apex:outputField value="{!UL_Workflow_Threshold_Template__c.UL_Active__c}"/>
+        <!--    <apex:outputField value="{!UL_Workflow_Threshold_Template__c.UL_Compare_Value__c}"/> -->
+            <apex:outputField value="{!UL_Workflow_Threshold_Template__c.UL_Evaluate_Thresholds__c}"/>
+            <apex:outputField value="{!UL_Workflow_Threshold_Template__c.UL_Workflow__c}"/>
+            <apex:outputField value="{!UL_Workflow_Threshold_Template__c.UL_Next_Status__c}"/>
+            <apex:outputField value="{!UL_Workflow_Threshold_Template__c.UL_TemplateDescription__c}"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+        <apex:pageBlock rendered="{!editMode}">
+            <apex:pageBlockButtons >
+        <apex:commandButton action="{!Save}" value="Save"/>
+                <apex:commandButton action="{!cancel1}" value="cancel"/>
+            </apex:pageBlockButtons>
+        <apex:pageBlockSection >
+           <apex:inputField value="{!UL_Workflow_Threshold_Template__c.UL_Active__c}"/>
+          <!--<apex:inputField value="{!UL_Workflow_Threshold_Template__c.UL_Compare_Value__c}"/> -->
+            <apex:inputField value="{!UL_Workflow_Threshold_Template__c.UL_Evaluate_Thresholds__c}"/>
+            <apex:selectList value="{!UL_Workflow_Threshold_Template__c.UL_Workflow__c}" size="1">
+             <apex:actionSupport event="onchange" action="{!getApprovalProcessSteps}"/> 
+                <apex:selectOptions value="{!approvalProcessList}"/>
+            </apex:selectList>
+          <!--<apex:inputField value="{!UL_Workflow_Threshold_Template__c.UL_Next_Status__c}"/> -->
+           <apex:selectList value="{!UL_Workflow_Threshold_Template__c.UL_Next_Status__c}" size="1" id="nextstatus">
+            <apex:selectOptions value="{!approvalProcessSteps}"/>
+           </apex:selectlist>
+          <!-- <apex:inputField value="{!UL_Workflow_Threshold_Template__c.UL_Next_Status__c}" id="nextstatus"/> -->
+            <apex:inputField value="{!UL_Workflow_Threshold_Template__c.UL_TemplateDescription__c}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        </apex:form>
+</apex:page>

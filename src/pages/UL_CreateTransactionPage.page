@@ -1,0 +1,80 @@
+<apex:page id="thePage" standardController="ACCL__Fund_Transaction__c" extensions="UL_CreateTransactionController" title="{!$ObjectType.ACCL__Fund_Transaction__c.label} {!$Label.ACCL__EDIT}: {!$Label.ACCL__NEW} {!$ObjectType.ACCL__Fund_Transaction__c.label}">
+  <apex:form id="theForm">
+    <apex:pageMessages rendered="{!msgFlag}" id="thePageMessage"/>
+    <apex:actionStatus id="status">
+      <apex:facet name="start">
+        <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;"/>
+        <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%">
+          <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+            <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+            <span style="display: inline-block; padding: 10px 0px;">{!$label.ACCL__Loading_Message}</span>
+          </div>
+        </div>
+      </apex:facet>
+    </apex:actionStatus>
+
+    <apex:sectionHeader id="theHeader" title="{!$ObjectType.ACCL__Fund_Transaction__c.label} {!$Label.ACCL__CREATE}" subtitle="{!$Label.ACCL__NEW} {!$ObjectType.ACCL__Fund_Transaction__c.label}"  rendered="{!hasViewRights}"/>
+    <apex:pageBlock id="theBlock" mode="edit" rendered="{!hasViewRights}">
+
+      <apex:pageBlockButtons id="theButtons" location="both">
+        <apex:commandButton id="btnContinue" value="{!$Label.ACCL__SAVE}" action="{!saveRecord}"/>
+        <apex:commandButton id="btnCancel" value="{!$Label.ACCL__CANCEL}" action="{!cancel}" immediate="true"/>
+      </apex:pageBlockButtons>
+
+      <apex:pageBlockSection id="theSection" showHeader="false" collapsible="false" columns="2">
+        <apex:pageBlockSectionItem id="thePageBlockSectionItem1" >
+          <apex:outputLabel id="theTransactionTemplate" value="{!$ObjectType.ACCL__Fund_Transaction__c.Fields.ACCL__Fund_Transaction_Template__c.Label}" for="TransactionTemplate" rendered="{!displayTransactionTemplateSecurityFlag}"/>
+          <apex:actionRegion id="theActionRegion1" >
+            <apex:outputPanel id="theOutputPanel1" styleClass="requiredInput" layout="block">
+              <apex:outputPanel id="theOutputPanel2" styleClass="requiredBlock" layout="block"/>
+              <apex:selectList id="TransactionTemplate" value="{!relatedRecord.ACCL__Fund_Transaction_Template__c}" multiselect="false" size="1" required="true" rendered="{!displayTransactionTemplateSecurityFlag}">
+                <apex:actionSupport id="theActionSupport" event="onchange" rerender="Transaction_Type,Sales_Org,theSectionFund,thePageMessage" action="{!reloadTransaction}" status="status"/>
+                <apex:selectOptions id="theSelectOption" value="{!lstTransactionTemplates}" />
+              </apex:selectList>
+            </apex:outputPanel>
+          </apex:actionRegion>
+        </apex:pageBlockSectionItem>
+
+        <apex:pageBlockSectionItem id="thePageBlockSectionItem2">
+          <apex:outputLabel id="theTransactionType" value="{!$ObjectType.ACCL__Fund_Transaction__c.Fields.ACCL__Transaction_Type__c.Label}" for="Transaction_Type" rendered="{!displayTransactionTemplateSecurityFlag}"/>
+          <apex:actionRegion id="theActionRegion2">
+            <apex:outputtext value="{!transactionType}" id="Transaction_Type" rendered="{!displayTransactionTemplateSecurityFlag}">
+            </apex:outputtext>
+          </apex:actionRegion>
+        </apex:pageBlockSectionItem>
+
+        <apex:repeat id="theRepeat1" value="{!$ObjectType.ACCL__Fund_Transaction__c.FieldSets.ACCL__TransactionFields1}" var="f">
+          <apex:inputField id="transactionField1" value="{!ACCL__Fund_Transaction__c[f]}" required="{!OR(f.required, f.dbrequired)}"/>
+        </apex:repeat>
+
+        <apex:pageBlockSectionItem id="thePageBlockSectionItem3" >
+          <apex:outputLabel id="theTransactionDate" value="{!$ObjectType.ACCL__Fund_Transaction__c.Fields.ACCL__Date__c.Label}" for="Transaction_Date"/>
+          <apex:actionRegion id="theActionRegion3" >
+            <apex:outputtext value="{!transactionDate}" id="Transaction_Date">
+            </apex:outputtext>
+          </apex:actionRegion>
+        </apex:pageBlockSectionItem>
+
+      </apex:pageBlockSection>
+
+      <apex:pageBlockSection id="theSectionFund" showHeader="false" collapsible="false" columns="2">
+        <apex:repeat id="theRepeat2" value="{!$ObjectType.ACCL__Fund_Transaction__c.FieldSets.ACCL__TransactionFields2}" var="f" >
+          <apex:outputField id="transactionField2" value="{!ACCL__Fund_Transaction__c[f]}" rendered="{!sourceFundButtonFlag}" />
+        </apex:repeat>
+
+        <apex:repeat id="theRepeat3" value="{!$ObjectType.ACCL__Fund_Transaction__c.FieldSets.ACCL__TransactionFields2}" var="f"  >
+          <apex:inputField id="transactionField3" value="{!ACCL__Fund_Transaction__c[f]}" rendered="{!If(AND(sourceFundFlag== true,sourceFundButtonFlag== false),true,false)}"/>
+        </apex:repeat>
+
+        <apex:repeat id="theRepeat4" value="{!$ObjectType.ACCL__Fund_Transaction__c.FieldSets.ACCL__TransactionFields3}" var="f">
+          <apex:inputField id="transactionField4" value="{!ACCL__Fund_Transaction__c[f]}" required="true"/>
+        </apex:repeat>
+        
+        <apex:repeat id="theRepeat5" value="{!$ObjectType.ACCL__Fund_Transaction__c.FieldSets.UL_TransactionFields4}" var="f">
+          <apex:inputField id="transactionField5" value="{!ACCL__Fund_Transaction__c[f]}" required="true" style="width:300px !important;" />
+        </apex:repeat>
+      </apex:pageBlockSection>
+
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

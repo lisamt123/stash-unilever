@@ -3,11 +3,11 @@
     <apiVersion>38.0</apiVersion>
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <label>MyPromotionPlanning</label>
+    <label>UL_AddCustomer</label>
     <packageVersions>
         <majorNumber>1</majorNumber>
-        <minorNumber>0</minorNumber>
-        <namespace>ACCL</namespace>
+        <minorNumber>3</minorNumber>
+        <namespace>ACSFUL001</namespace>
     </packageVersions>
     <packageVersions>
         <majorNumber>1</majorNumber>

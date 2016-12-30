@@ -3,11 +3,12 @@
     <apiVersion>38.0</apiVersion>
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <label>MyPromotionPlanning</label>
+    <description>Modified VF page for transaction creation</description>
+    <label>CreateTransactionPage</label>
     <packageVersions>
         <majorNumber>1</majorNumber>
-        <minorNumber>0</minorNumber>
-        <namespace>ACCL</namespace>
+        <minorNumber>5</minorNumber>
+        <namespace>ACSFUL001</namespace>
     </packageVersions>
     <packageVersions>
         <majorNumber>1</majorNumber>

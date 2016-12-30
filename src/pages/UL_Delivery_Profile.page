@@ -1,0 +1,282 @@
+<apex:page standardController="UL_Delivery_Profile__c"  
+extensions="UL_DeliveryProfileController" 
+    title="{!$ObjectType.UL_Delivery_Profile__c.label} {!$Label.UL_EDIT}: {!$Label.UL_NEW}  {!$ObjectType.UL_Delivery_Profile__c.label}" action="{!editDeliveryProfile}" id="d_prof_page">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <apex:sectionHeader title="{!$ObjectType.UL_Delivery_Profile__c.label} {!$Label.UL_EDIT}" subtitle="{!$Label.UL_NEW} {!$ObjectType.UL_Delivery_Profile__c.label}"/>
+    <apex:form id="theForm">
+       
+        <apex:outputPanel id="pageMessages">
+            <apex:pageMessages id="errorMsg"/>
+        </apex:outputPanel>
+         
+        <apex:pageBlock id="theBlock" mode="edit">       
+            <apex:pageBlockButtons id="theButtons" location="both">
+                <apex:commandButton id="btnSave" value="{!$Label.UL_SAVE}"
+                    action="{!save}"  onclick="addDefaultValues();" />
+                    <apex:commandButton action="{!Save}" value="{!$Label.UL_SaveAndNew}" id="saveAndNew">
+                    <apex:param name="newAndSave" value="newAndSave" id="parm"/>
+                    </apex:commandButton>
+                <apex:commandButton id="btnCancel"
+                    value="{!$Label.UL_CANCEL}" action="{!cancel}"
+                    immediate="true" />
+                    
+            </apex:pageBlockButtons>
+             <apex:pageBlockSection id="theSection" title="{!$Label.UL_Delivery_Profile_section}"    showHeader="true" collapsible="false" columns="1">
+                 <apex:pageBlockSectionItem id="d_prof" > 
+                    <apex:outputLabel value="{!$ObjectType.UL_Delivery_Profile__c.Fields.UL_Delivery_Profile_Name__c.Label}" for="deliverprofilename" id="del_pro_label"/>
+                    <apex:inputField id="deliverprofilename" value="{!releatedRecord.UL_Delivery_Profile_Name__c}" />
+                </apex:pageBlockSectionItem>
+                
+                 <apex:pageBlockSectionItem id="sg"> 
+                    <apex:outputLabel value="{!$ObjectType.UL_Delivery_Profile__c.Fields.UL_Sales_Organisation__c.Label}" for="salesOrg" id="sg_label"/>
+                    <apex:inputField id="salesOrg" value="{!releatedRecord.UL_Sales_Organisation__c}" />
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem id="pli"> 
+                     <apex:outputLabel value="{!$ObjectType.UL_Delivery_Profile__c.Fields.UL_Account__c.Label}" for="pl" id="pl_label"/>
+                    <apex:inputField id="pl" value="{!releatedRecord.UL_Planning_Level__c}" />
+                                     
+                    
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem id="pri"> 
+                     <apex:outputLabel value="{!$ObjectType.UL_Delivery_Profile__c.Fields.UL_Product__c.Label}" for="pr" id="pr_label"/>
+                    <apex:inputField id="pr" value="{!releatedRecord.UL_Product__c}" />
+              
+                   
+                </apex:pageBlockSectionItem>
+                
+                
+                
+                
+                <apex:pageBlockSectionItem > 
+                    <apex:outputLabel value="{!$ObjectType.UL_Delivery_Profile__c.Fields.UL_Instore_End_days__c.Label}" for="store_end_date"/>
+                    <apex:actionRegion >
+                        <apex:inputField id="store_end_date" value="{!releatedRecord.UL_Instore_End_days__c}">
+                             <apex:actionSupport event="onchange" rerender="endDate,week_phase" action="{!ShipmentEndDaysSet}" id="instore_duration"/>
+                        </apex:inputField>
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem > 
+                    <apex:outputLabel value="{!$ObjectType.UL_Delivery_Profile__c.Fields.UL_Shipment_Start_days__c.Label}" for="ship_start_date"/>
+                     <apex:actionRegion >
+                        <apex:inputField id="ship_start_date" value="{!releatedRecord.UL_Shipment_Start_days__c}">
+                             <apex:actionSupport event="onchange" rerender="ship_start_date,pageMessages,week_phase" action="{!ShipmentStartDaysSet}" id="instore_duration"/>
+                        </apex:inputField>
+                     </apex:actionRegion>
+
+                </apex:pageBlockSectionItem>
+                
+                 <apex:pageBlockSectionItem > 
+                    <apex:outputLabel value="{!$ObjectType.UL_Delivery_Profile__c.Fields.UL_Shipment_End_days__c.Label}" for="ship_end_date"/>
+                    <apex:outputPanel id="endDate" styleClass="requiredInput" layout="block">
+                        <apex:actionRegion >
+                        <apex:inputField id="ship_end_date" value="{!releatedRecord.UL_Shipment_End_days__c}" >                            
+                          <apex:actionSupport event="onchange" rerender="week_phase" action="{!displayWeeks}" id="sEnd_duration"/>
+                        </apex:inputField>
+                         </apex:actionRegion>
+                     </apex:outputPanel>
+                </apex:pageBlockSectionItem>    
+                
+                 <apex:pageBlockSectionItem > 
+                    <apex:outputLabel value="{!$ObjectType.UL_Delivery_Profile__c.Fields.UL_Valid_From__c.Label}" for="valid_from"/>
+                    <apex:actionRegion >
+                        <apex:inputField id="valid_from" value="{!releatedRecord.UL_Valid_From__c}">
+                            <apex:actionSupport event="onchange" rerender="validThru" action="{!validThruDateSet}" id="valid_start"/>
+                        </apex:inputField>
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+                
+                 <apex:pageBlockSectionItem > 
+                    <apex:outputLabel value="{!$ObjectType.UL_Delivery_Profile__c.Fields.UL_Valid_Thru__c.Label}" for="valid_thru"/>
+                    <apex:outputPanel id="validThru">
+                        <apex:inputField id="valid_thru" value="{!releatedRecord.UL_Valid_Thru__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+           
+                
+             </apex:pageBlockSection>
+           
+             <apex:outputPanel id="week_phase">
+                 <apex:outputPanel rendered="{!disWeeks}">
+                 <div class="phase_title"><h3>Weekly Shipment Phasing(%)</h3></div>
+               <table class="tab_cls" id='tblWeek'>
+    <tr>   
+        <td class="first_td"><div class="requiredInput">
+                      <div class="requiredBlock"></div>Week #</div></td>    
+            <apex:variable var="count" value="{!1}"   />                  
+            <apex:repeat value="{!filedLevels}" var="r">
+        <td class="second_td">
+            <apex:outputLabel value="WK{!count}"></apex:outputLabel>
+            <apex:variable value="{!count+1}" var="count"/> 
+        </td>
+            </apex:repeat>
+        <td class="total_td">
+            <apex:outputLabel value="Total(%)"></apex:outputLabel>
+        </td>
+    </tr>                    
+    <tr>
+        <td class="first_td"><div class="requiredInput">
+                      <div class="requiredBlock"></div>Shipment Phasing (%)</div></td>             
+             <apex:variable var="filed" value="{!1}"/>          
+        <td id="1">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_1_Phasing__c}" id="week1" rendered="{!weekLimit>=1}" style="width: 90%;border-color: white;"/>
+        </td>               
+        <td id="2">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_2_Phasing__c}" id="week2" rendered="{!weekLimit>=2}" style="width: 90%;border-color: white;"/>
+        </td>                                  
+        <td id="3">                         
+        <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_3_Phasing__c}" id="week3" rendered="{!weekLimit>=3}" style="width: 90%;border-color: white;"/>
+        </td>
+        <td id="4">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_4_Phasing__c}" id="week4" rendered="{!weekLimit>=4}" style="width: 90%;border-color: white;"/>
+        </td>
+        <td id="5">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_5_Phasing__c}" id="week5" rendered="{!weekLimit>=5}" style="width: 90%;border-color: white;"/>
+        </td>
+        <td id="6">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_6_Phasing__c}" id="week6" rendered="{!weekLimit>=6}" style="width: 90%;border-color: white;"/>
+        </td>
+        <td id="7">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_7_Phasing__c}" id="week7" rendered="{!weekLimit>=7}" style="width: 90%;border-color: white;"/>
+        </td>
+        <td id="8">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_8_Phasing__c}" id="week8" rendered="{!weekLimit>=8}" style="width: 90%;border-color: white;"/>
+        </td>
+        <td id="9">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_9_Phasing__c}" id="week9" rendered="{!weekLimit>=9}" style="width: 90%;border-color: white;"/>
+        </td>
+        <td id="10">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_10_Phasing__c}" id="week10" rendered="{!weekLimit>=10}" style="width: 90%;border-color: white;"/>
+        </td>
+        <td id="11">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_11_Phasing__c}" id="week11" rendered="{!weekLimit>=11}" style="width: 90%;border-color: white;"/>
+        </td>
+        <td id="12">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_12_Phasing__c}" id="week12" rendered="{!weekLimit>=12}" style="width: 90%;border-color: white;"/>
+        </td>
+        <td id="13">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_13_Phasing__c}" id="week13" rendered="{!weekLimit>=13}" style="width: 90%;border-color: white;"/>
+        </td>
+        <td id="14">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_14_Phasing__c}" id="week14" rendered="{!weekLimit>=14}" style="width: 90%;border-color: white;"/>
+        </td>
+        <td id="15">                         
+            <apex:inputField onkeyup="calculatePhasing()" value="{!releatedRecord.UL_Week_15_Phasing__c}" id="week15" rendered="{!weekLimit>=15}" style="width: 90%;border-color: white;"/>
+        </td>
+        <td class="total_td"> <apex:outputPanel id="totalPanel">
+                <apex:outputField value="{!releatedRecord.UL_Total_of_Phasing__c}" id="out_total"   />
+                <script>
+    //alert('{!weekLimit}');
+    var idLimit = '{!weekLimit}';
+    var tid; 
+    $('#tblWeek td').each(function(){
+       tid = parseInt($(this).prop('id'));
+       if(tid > idLimit){
+          $(this).hide();
+       }
+       
+    }); 
+    
+    function calculatePhasing(){
+    var countPhase = 0;
+    var objInput; 
+          $('#tblWeek td').each(function(){
+               tid = parseInt($(this).prop('id'));
+               objInput = $(this).find('input');
+               if(tid > 0 && $.isNumeric(objInput.val())){
+                 countPhase += parseInt(objInput.val());
+               }
+       
+    }); 
+      $("[id$='out_total']").text(countPhase);
+   
+    }
+    
+        
+    </script>
+            </apex:outputPanel>                        
+        </td>                          
+    </tr>
+</table>            
+                        
+                        
+                        
+                         
+                                
+                       
+                 </apex:outputPanel>
+                 
+             </apex:outputPanel>
+             
+              
+       </apex:pageBlock>
+       <script>function addDefaultValues(){
+       
+        var objInput; 
+        var tid; 
+         $('#tblWeek td').each(function(){
+               tid = parseInt($(this).prop('id'));
+               objInput = $(this).find('input');
+               if(tid > 0 && !$.isNumeric(objInput.val())){
+                 objInput.val('0');
+               }
+       
+    }); 
+    
+    }
+</script>
+    </apex:form>
+    <style>
+    .bPageBlock .requiredInput .requiredBlock {
+    background-color: #c00;
+    position: absolute;
+    left: -4px;
+    width: 3px;
+    top: 1px;
+    bottom: 1px;
+    height: 18px;
+}
+    .dateFormat {
+        padding: 0 2px;
+        display: none;
+    }
+    .phase_title{  
+        font-weight: bold;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 1.2em;
+        padding: 15px 15px 0px 15px;
+    }
+   /* table{
+        position: relative;
+        left: 39px;
+    }*/
+   .first_td {
+    width: 20%;
+    background-color: #F1EAC2;
+    font-size: 90%;
+    font-weight: bold;
+}
+.second_td{
+background-color: #F1EAC2;
+    font-size: 90%;
+    font-weight: bold;
+}
+.tab_cls {
+    position: relative;
+    left: 3%;
+    width: 90%;
+    padding: 10px 0px 5px 7px;
+}
+.total_td{
+font-weight: bold;
+background-color: #D0CECE;
+}
+    </style>
+<script>
+    $(document).ready(function(){});
+</script>    
+    
+</apex:page>

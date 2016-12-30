@@ -1,0 +1,188 @@
+<apex:page standardController="UL_Delivery_Profile__c"  
+extensions="UL_DeliveryProfileController" 
+    title="{!$ObjectType.UL_Delivery_Profile__c.label}: {!UL_Delivery_Profile__c.name}" action="{!editDeliveryProfile}" id="d_prof_page">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <apex:sectionHeader title="{!$ObjectType.UL_Delivery_Profile__c.label}" subtitle="{!UL_Delivery_Profile__c.Name}" id="sect_hed"/>
+    <apex:form id="theForm">
+       
+        <apex:outputPanel id="pageMessages">
+            <apex:pageMessages id="errorMsg"/>
+        </apex:outputPanel>
+         
+        <apex:pageBlock id="theBlock" mode="edit">       
+            <apex:pageBlockButtons id="theButtons" location="both">
+                <apex:commandButton id="btnSave" value="{!$Label.UL_EDIT}"
+                    action="{!edit}"/>
+                   
+                <apex:commandButton id="btnCancel"
+                    value="{!$Label.UL_DELETE}" action="{!delete}"
+                      onclick="return confirmDelete();"/>
+                    
+            </apex:pageBlockButtons>
+             <apex:pageBlockSection id="theSection" title="{!$Label.UL_Delivery_Profile_section}"   showHeader="true" collapsible="false" columns="1">
+                    <apex:outputField id="deliverprofilename" value="{!releatedRecord.UL_Delivery_Profile_Name__c}" />
+                    <apex:outputField id="salesOrg" value="{!releatedRecord.UL_Sales_Organisation__c}" />
+                    <apex:outputField id="pl" value="{!releatedRecord.UL_Planning_Level__c}" />
+                    <apex:outputField id="prod" value="{!releatedRecord.UL_Product__c}" />                    
+                    <apex:outputField id="store_end_date" value="{!releatedRecord.UL_Instore_End_days__c}"/>
+                    <apex:outputField id="ship_start_date" value="{!releatedRecord.UL_Shipment_Start_days__c}"/>                     
+                    <apex:outputField id="ship_end_date" value="{!releatedRecord.UL_Shipment_End_days__c}" />  
+                    <apex:outputField id="valid_from" value="{!releatedRecord.UL_Valid_From__c}"/>
+                    <apex:outputField id="valid_thru" value="{!releatedRecord.UL_Valid_Thru__c}" />           
+             </apex:pageBlockSection>
+           
+             <apex:outputPanel id="week_phase">
+                 <apex:outputPanel rendered="{!disWeeks}" id="week_ph">
+                 <div class="phase_title"><h3>Weekly Shipment Phasing(%)</h3></div>
+               <table class="tab_cls" id='tblWeek'>
+                            <tr>   
+                                <td class="first_td">Week #</td>    
+                                    <apex:variable var="count" value="{!1}"  id="count" />                  
+                                    <apex:repeat value="{!filedLevels}" var="r" id="rep">
+                                <td class="second_td">
+                                    <apex:outputLabel value="WK{!count}"></apex:outputLabel>
+                                    <apex:variable value="{!count+1}" var="count"/> 
+                                </td>
+                                    </apex:repeat>
+                                <td class="total_td">
+                                    <apex:outputLabel value="Total(%)"></apex:outputLabel>
+                                </td>
+                            </tr>                    
+                            <tr>
+                                <td class="first_td">Shipment Phasing (%)</td>             
+                                     <apex:variable var="filed" value="{!1}" id="count_one"/>          
+                                <td id="1" class="grid_view">                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_1_Phasing__c}" id="week1" rendered="{!weekLimit>=1}" />
+                                </td>               
+                                <td id="2" class="grid_view" >                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_2_Phasing__c}" id="week2" rendered="{!weekLimit>=2}" />
+                                </td>                                  
+                                <td id="3" class="grid_view" >                         
+                                <apex:outputField value="{!releatedRecord.UL_Week_3_Phasing__c}" id="week3" rendered="{!weekLimit>=3}" />
+                                </td>
+                                <td id="4" class="grid_view" >                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_4_Phasing__c}" id="week4" rendered="{!weekLimit>=4}" />
+                                </td>
+                                <td id="5" class="grid_view">                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_5_Phasing__c}" id="week5" rendered="{!weekLimit>=5}" />
+                                </td>
+                                <td id="6" class="grid_view" >                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_6_Phasing__c}" id="week6" rendered="{!weekLimit>=6}" />
+                                </td>
+                                <td id="7" class="grid_view" >                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_7_Phasing__c}" id="week7" rendered="{!weekLimit>=7}" />
+                                </td>
+                                <td id="8" class="grid_view">                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_8_Phasing__c}" id="week8" rendered="{!weekLimit>=8}" />
+                                </td>
+                                <td id="9" class="grid_view" >                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_9_Phasing__c}" id="week9" rendered="{!weekLimit>=9}" />
+                                </td>
+                                <td id="10" class="grid_view" >                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_10_Phasing__c}" id="week10" rendered="{!weekLimit>=10}" />
+                                </td>
+                                <td id="11" class="grid_view">                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_11_Phasing__c}" id="week11" rendered="{!weekLimit>=11}" />
+                                </td>
+                                <td id="12" class="grid_view">                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_12_Phasing__c}" id="week12" rendered="{!weekLimit>=12}" />
+                                </td>
+                                <td id="13" class="grid_view" >                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_13_Phasing__c}" id="week13" rendered="{!weekLimit>=13}" />
+                                </td>
+                                <td id="14" class="grid_view">                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_14_Phasing__c}" id="week14" rendered="{!weekLimit>=14}" />
+                                </td>
+                                <td id="15" class="grid_view" >                         
+                                    <apex:outputField value="{!releatedRecord.UL_Week_15_Phasing__c}" id="week15" rendered="{!weekLimit>=15}" />
+                                </td>
+                                <td class="total_td"> <apex:outputPanel id="totalPanel">
+                                        <apex:outputField value="{!releatedRecord.UL_Total_of_Phasing__c}" id="out_total"   />
+                                        <script>
+                            //alert('{!weekLimit}');
+                            var idLimit = '{!weekLimit}';
+                            var tid; 
+                            $('#tblWeek td').each(function(){
+                               tid = parseInt($(this).prop('id'));
+                               if(tid > idLimit){
+                                  $(this).hide();
+                               }
+                               
+                            }); 
+                            
+                            function calculatePhasing(){
+                            var countPhase = 0;
+                            var objInput; 
+                                  $('#tblWeek td').each(function(){
+                                       tid = parseInt($(this).prop('id'));
+                                       objInput = $(this).find('input');
+                                       if(tid > 0 && $.isNumeric(objInput.val())){
+                                         countPhase += parseInt(objInput.val());
+                                       }
+                               
+                            }); 
+                              $("[id$='out_total']").text(countPhase);
+                           
+                            }
+                            
+                                
+                            </script>
+                                    </apex:outputPanel>                        
+                                </td>                          
+                            </tr>
+                        </table>            
+                  </apex:outputPanel>
+                 
+             </apex:outputPanel>
+             
+              
+       </apex:pageBlock>
+        
+    </apex:form>
+    <style>
+     
+    .dateFormat {
+        padding: 0 2px;
+        display: none;
+    }
+    .phase_title{  
+        font-weight: bold;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 1.2em;
+        padding: 15px 15px 0px 15px;
+    }
+   /* table{
+        position: relative;
+        left: 39px;
+    }*/
+   .first_td {
+    width: 20%;
+    background-color: #F1EAC2;
+    font-size: 90%;
+    font-weight: bold;
+}
+.second_td{
+background-color: #F1EAC2;
+    font-size: 90%;
+    font-weight: bold;
+}
+.tab_cls {
+    position: relative;
+    left: 3%;
+    width: 90%;
+    padding: 10px 0px 5px 7px;
+}
+.total_td {
+    font-weight: bold;
+    background-color: #D0CECE;
+    width: 5%;
+}
+.grid_view{
+    background-color:white;
+}
+    </style>
+<script>
+    $(document).ready(function(){});
+</script>    
+    
+</apex:page>

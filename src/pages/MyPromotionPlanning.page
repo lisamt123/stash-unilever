@@ -1,10 +1,10 @@
-<apex:page standardController="ACSFUL001__Promotion__c" extensions="ACSFUL001.PromotionPlanningController,MyContractRemoteActionExtension,MyPromotionRemoteActionExtension,ACSFUL001.AccountRemoteActionExtension,ACSFUL001.ContractRemoteActionExtension,ACSFUL001.LogRemoteActionExtension,ACSFUL001.MetaDataRemoteActionExtension,ACSFUL001.PromotionRemoteActionExtension,ACSFUL001.PromotionTemplateRemoteActionExtension,ACSFUL001.TacticTemplateRemoteActionExtension,UL_ThresholdEngine" showHeader="true" standardStylesheets="false" sidebar="true" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0">
+<apex:page standardController="ACCL__Promotion__c" extensions="ACCL.PromotionPlanningController,MyContractRemoteActionExtension,MyPromotionRemoteActionExtension,ACCL.AccountRemoteActionExtension,ACCL.ContractRemoteActionExtension,ACCL.LogRemoteActionExtension,ACCL.MetaDataRemoteActionExtension,ACCL.PromotionRemoteActionExtension,ACCL.PromotionTemplateRemoteActionExtension,ACCL.TacticTemplateRemoteActionExtension" showHeader="true" standardStylesheets="false" sidebar="true" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0">
   <apex:pageMessages />  
     <head>
         <meta charset="UTF-8"/>
-        <apex:stylesheet value="{!URLFOR($Resource.ACSFUL001__SLDS202, '/assets/styles/salesforce-lightning-design-system.css')}" />
-        <link rel="stylesheet" href="{!URLFOR($Resource.ACSFUL001__appDist, '/dist/vendor.css')}"/>
-        <link rel="stylesheet" href="{!URLFOR($Resource.ACSFUL001__appDist, '/dist/ui.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.ACCL__SLDS202, '/assets/styles/salesforce-lightning-design-system.css')}" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.ACCL__appDist, '/dist/vendor.css')}"/>
+        <link rel="stylesheet" href="{!URLFOR($Resource.ACCL__appDist, '/dist/ui.css')}"/>
  
           
             
@@ -14,9 +14,9 @@
             <div id="modal"></div>
            <div id="root" class="slds"></div>
            <script>
-            var i18nURL="{!URLFOR($Resource.ACSFUL001__appDist, '/dist/assets/i18n/')}";
+            var i18nURL="{!URLFOR($Resource.ACCL__appDist, '/dist/assets/i18n/')}";
             var sfldsURL="{!URLFOR($Resource.SLDS202, '/assets')}";
-            var customImageURL = "{!URLFOR($Resource.ACSFUL001__assets, '/assets/images/')}";
+            var customImageURL = "{!URLFOR($Resource.ACCL__assets, '/assets/images/')}";
           
             var promotionId= '{!Id}'  
             var boPromotion = '';
@@ -65,43 +65,5 @@
     </script>
                   
   </body>
-   <!-- Threshold Result dialog box -->
-    <apex:form >
-    <apex:outputPanel id="thePanel" rendered="{!enableThresholdPopup}">
-        <div class="slds">
-        <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
-  <div class="slds-modal__container">
-    <div class="slds-modal__header">
-    
-      <h2 id="header43" class="slds-text-heading--medium">Threshold Check Result</h2>
-    </div> 
-    <div class="slds-modal__content slds-p-around--medium">
-      <div>
-      <apex:pageblock >
-          <apex:pageblockTable value="{!thresholdcheck}" var="thresholdResult">
-          <apex:column value="{!thresholdResult.result}" headerValue="Result"/>
-          <apex:column value="{!thresholdResult.thresholdKPI}" headerValue="KPI"/>
-          <apex:column value="{!thresholdResult.promotionvalue}" headerValue="Promotion Value"/>
-          <apex:column value="{!thresholdResult.compareType}" headerValue="Type"/>
-          <apex:column value="{!thresholdResult.compareValue}" headerValue="Compare Value"/>
-          </apex:pageblockTable>
-          </apex:pageblock>
-          </div>
-    </div>
-    <div class="slds-modal__footer">
-      <button class="slds-button slds-button--brand"><apex:actionSupport action="{!okButton}" event="OnClick"/>OK</button>
-    </div> 
-  </div>
-</div>
-        </div>
-        <div class="slds">
-        <div class="slds-backdrop slds-backdrop--open">
-        </div>
-        </div>
-        </apex:outputPanel>
-        <apex:actionRegion >
-        <apex:actionsupport action="{!checkPopuptest}" rendered="{!enableThresholdPopup}" event="OnClick"/>
-        </apex:actionRegion>
-        <!-- end dialog box --> 
-        </apex:form> 
+   
 </apex:page>

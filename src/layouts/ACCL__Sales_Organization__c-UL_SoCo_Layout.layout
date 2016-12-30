@@ -37,7 +37,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ACCL__Default_PriceList_Type__c</field>
+                <field>ACCL__Default_Price_List_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
