@@ -153,7 +153,7 @@
                 <apex:pageMessages /> 
             <apex:form id="ModPartForm">
                     <br/><br/>
-                    
+                    <apex:outputPanel rendered="{!!isUL2020}">
                     <h2>
                      Module Name:&nbsp;
                      <apex:outputText value="{!FAU_Module_Participant__c.FAU_Module_Name__c}"/>
@@ -172,7 +172,7 @@
                      (End time – 5:30pm)
                     </h2>
                 <br/><br/><br/>
-                
+                </apex:outputPanel>
                 
                 <div style="width:700px; margin:0 auto;">   
                     

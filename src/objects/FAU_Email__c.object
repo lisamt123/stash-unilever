@@ -182,5 +182,16 @@
     <pluralLabel>Emails</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
-    
+    <webLinks>
+        <fullName>Send_Email</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Send Email</masterLabel>
+        <openType>noSidebar</openType>
+        <page>FAU_SendEmail1</page>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+    </webLinks>
 </CustomObject>

@@ -41,13 +41,13 @@ private class FAU_Module_Part_ControllerExtTest
 
         Test.startTest(); 
 
-        System.runAs(user)
-        {
+  //      System.runAs(user)
+  //      {
             controller = new FAU_Module_Part_ControllerExt(standardController);
             controller.getIsLocal();
             controller.updateIsLocal();
 
-        }
+   //     }
         Test.stopTest();
 
         System.assertEquals(controller.getIsLocal(), true);
@@ -82,13 +82,13 @@ private class FAU_Module_Part_ControllerExtTest
 
         Test.startTest(); 
 
-        System.runAs(user)
-        {
+   //     System.runAs(user)
+   //     {
             controller = new FAU_Module_Part_ControllerExt(standardController);
             controller.getIsLocal();
             controller.updateIsLocal();
 
-        }
+   //     }
         Test.stopTest();
 
         System.assertEquals(controller.getIsLocal(), true);

@@ -210,7 +210,14 @@
         <sortField>FAU_Start_Date__c</sortField>
         <sortOrder>Asc</sortOrder>
     </relatedLists>
-    
+    <relatedLists>
+        <customButtons>Send_Email</customButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>FAU_Subject__c</fields>
+        <fields>FAU_Email_Start_Date__c</fields>
+        <relatedList>FAU_Email__c.FAU_Program__c</relatedList>
+    </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>PII_Table__c</fields>

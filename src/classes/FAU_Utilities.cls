@@ -86,4 +86,23 @@ public without sharing class FAU_Utilities {
 
         System.debug('Exiting FAU_Utilities.deleteDatabase' );
     }
+    
+    /*******************************************************************
+       Purpose:     Return the check of recordtype UL2020                                     
+    ********************************************************************/
+    public static boolean isRectypeUL2020 (FAU_Participant__c participant)
+    {
+    List <FAU_Program__c> programs =  [SELECT recordtype.name FROM FAU_Program__c WHERE Id = :participant.FAU_Program_Wave__c LIMIT 1];
+    if(programs.size() > 0){
+    if(programs[0].recordtype.name == 'UL2020'){
+        return true;
+        }
+        else{
+        return false;
+        }       
+     }
+     else{
+        return false;
+        }
+   }
 }

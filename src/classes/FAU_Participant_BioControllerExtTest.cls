@@ -38,6 +38,7 @@ private class FAU_Participant_BioControllerExtTest
 
         PageReference pageReference = Page.FAU_Participant_Bio;
         Test.setCurrentPage(pageReference);
+        ApexPages.currentPage().getParameters().put('id',participantRecord.id);
 
         ApexPages.StandardController standardController
              = new ApexPages.StandardController(participantRecord);
@@ -46,11 +47,11 @@ private class FAU_Participant_BioControllerExtTest
 
         Test.startTest(); 
 
-        System.runAs(user)
-        {
+     //   System.runAs(user)
+     //   {
             controller = new FAU_PArticipant_BioControllerExtension(standardController);
             controller.submitBio();
-        }
+    //    }
         Test.stopTest();
          
         System.assertEquals(LANDING_PAGE + participantRecord.Id, controller.submitBio().getUrl());
@@ -80,11 +81,11 @@ private class FAU_Participant_BioControllerExtTest
 
         Test.startTest(); 
 
-        System.runAs(user)
-        {
+      //  System.runAs(user)
+      //  {
             controller = new FAU_PArticipant_BioControllerExtension(standardController);
             controller.cancelBio();
-        }
+      //  }
         Test.stopTest();
 
         System.assertEquals(null ,[Select Id, FAU_Biography__c FROM FAU_Participant__c Where Id =:participantRecord.Id LIMIT 1].FAU_Biography__c);
