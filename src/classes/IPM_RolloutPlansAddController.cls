@@ -1862,7 +1862,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     }
                 }
             }
-			processRegionalMCORolloutsHelper(newMCORollout,mcoExternalId,countryExternalId,geography,regionalRolloutName,KeyMCO);
+			processRegionalMCORolloutsHelper(newMCORollout,mcoExternalId,countryExternalId,geography,regionalRolloutName,newMCORollout.KeyMCO__c);
 
            }
     }
