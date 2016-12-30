@@ -69,6 +69,1308 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <externalSharingModel>Private</externalSharingModel>
+<!-- TPM Components Start        -->
+	<fieldSets>
+        <fullName>ACCL__AccountFieldSetProductAssortment</fullName>
+        <description>ProdAssortmentPage</description>
+        <displayedFields>
+            <field>ACCL__Account_Number__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__City__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Country__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__State__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Account_Template__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>AccountFieldSetProductAssortment</label>
+    </fieldSets>
+	
+		<fields>
+        <fullName>UL_Customer_Hierarchy_Level__c</fullName>
+        <description>This attribute will be used to identify the customer level</description>
+        <externalId>false</externalId>
+        <label>Customer Hierarchy Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Level 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 7</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 8</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 9</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+	 <fields>
+        <fullName>UL_Distribution_Channel_Code__c</fullName>
+        <description>This attribute will be used as information only.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This attribute will be used as information only.</inlineHelpText>
+        <label>Distribution Channel Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Distribution_Channel_Description__c</fullName>
+        <description>This attribute will be used to segment a promotion (via customer sets).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This attribute will be used to segment a promotion (via customer sets).</inlineHelpText>
+        <label>Distribution Channel Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	 <fields>
+        <fullName>UL_Territory_Description__c</fullName>
+        <description>This attribute will be used to segment a promotion (via customer sets).</description>
+        <externalId>false</externalId>
+        <label>Territory Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>UL_Activity_Sector_Division_Code__c</fullName>
+        <description>This attribute will be used as information only.  This attribute is linked to the product on the activity sector.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This attribute will be used as information only.  This attribute is linked to the product on the activity sector.</inlineHelpText>
+        <label>Activity Sector / Division Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>ACCL__Account_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Account_Number__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Customer Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Account_Template_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>ACCL__Account_Template__r.ACCL__Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Customer Template Description</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Account_Template__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Customer Template</label>
+        <lookupFilter>
+            <active>true</active>
+            
+            <filterItems>
+                <field>ACCL__Account_Template__c.ACCL__Active__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ACCL__Account_Template__c</referenceTo>
+        <relationshipLabel>Customers</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__City__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>City</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Country__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Country</label>
+        <picklist>
+            <picklistValues>
+                <fullName>en</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>de</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__ExternalId__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>ExternalId</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Geolocation__c</fullName>
+        <deprecated>false</deprecated>
+        <displayLocationInDecimal>true</displayLocationInDecimal>
+        <externalId>false</externalId>
+        <inlineHelpText>Latitude (-90; 90)
+      Longitude (-180; 180)</inlineHelpText>
+        <label>Geolocation</label>
+        <required>false</required>
+        <scale>15</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Location</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Name_2__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Name 2</label>
+        <length>60</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Number_Of_Extensions__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Number of extension records assigned to the account</description>
+        <externalId>false</externalId>
+        <label>Number Of Extensions</label>
+        <summaryForeignKey>ACCL__Account_Extension__c.ACCL__Account__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Postal_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Postal Code</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Sales_Org__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>Text(ACCL__Account_Template__r.ACCL__Sales_Org__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sales Org</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__State__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>State</label>
+        <picklist>
+            <picklistValues>
+                <fullName>GA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Street__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Street</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AccountNumber</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>AccountSource</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Phone Inquiry</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partner Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Purchased List</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Active__c</fullName>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+	<fields>
+        <fullName>Industry</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Apparel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chemicals</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Communications</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Electronics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Energy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food &amp; Beverage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hospitality</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Machinery</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not For Profit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Recreation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Retail</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+	   <fields>
+        <fullName>OwnerId</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Ownership</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Subsidiary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+ <fields>
+        <fullName>Rating</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Hot</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Warm</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+	<fields>
+        <fullName>UL_Activity_Sector_Division_Description__c</fullName>
+        <description>This attribute will be used to segment a promotion (via customer sets).  This attribute is linked to the product on the activity sector.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This attribute will be used to segment a promotion (via customer sets).  This attribute is linked to the product on the activity sector.</inlineHelpText>
+        <label>Activity Sector / Division Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Currency__c</fullName>
+        <description>Indicates whether the customer’s currency is British pounds (GBP) or Euros (EUR)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether the customer’s currency is British pounds (GBP) or Euros (EUR)</inlineHelpText>
+        <label>Currency</label>
+        <picklist>
+            <picklistValues>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EUR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Customer_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Customer_Group_Code__c</fullName>
+        <description>This attribute will be interfaced to the customer master data table, but will not be displayed on the account record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This attribute will be interfaced to the customer master data table, but will not be displayed on the account record.</inlineHelpText>
+        <label>Customer Group Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Customer_Group_Description__c</fullName>
+        <description>This attribute will be used to segment a promotion (via customer sets).  It is also possible to plan promotions at this level</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This attribute will be used to segment a promotion (via customer sets).  It is also possible to plan promotions at this level</inlineHelpText>
+        <label>Customer Group Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	
+	 <fields>
+        <fullName>UL_Customer_Role_Valid_From__c</fullName>
+        <description>Effective date in the system (eg, first date that the customer has been received from ECC).</description>
+        <externalId>false</externalId>
+        <label>Planning Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>UL_Customer_Role_Valid_Thru__c</fullName>
+        <description>End date for the customer in the system. This should ideally be an effectivity end date as customers should not be deleted entirely from ECC.</description>
+        <externalId>false</externalId>
+        <label>Planning End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>UL_Customer_Unique__c</fullName>
+        <description>This attribute will be used to concatenate four fields</description>
+        <externalId>false</externalId>
+        <formula>ACCL__Account_Number__c &amp; &quot;-&quot; &amp; UL_Sales_Organization__c + UL_Distribution_Channel_Code__c + UL_Activity_Sector_Division_Code__c</formula>
+        <label>Customer Unique</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_DefaultSoldTo__c</fullName>
+        <description>This attribute will be used as selecting the Sold To record for the levels where customer is</description>
+        <externalId>false</externalId>
+        <label>Selected Default SoldTo</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Direct_Indirect_Flag__c</fullName>
+        <description>Indicates whether the sold-to is a direct or an indirect customer.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether the sold-to is a direct or an indirect customer.</inlineHelpText>
+        <label>Direct/Indirect Flag</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indirect</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+	  <fields>
+        <fullName>UL_Planning_Level_Rollup__c</fullName>
+        <externalId>false</externalId>
+        <label>Planning Level Rollup</label>
+        <summaryForeignKey>UL_Planning_Level__c.UL_Customer__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <type>Summary</type>
+    </fields>
+	<fields>
+        <fullName>UpsellOpportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Upsell Opportunity</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Maybe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+	
+	 <listViews>
+        <fullName>AllAccounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCL__Sales_Org__c</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>UL_Customer_Hierarchy_Level__c</columns>
+        <columns>ACCOUNT.OWNERSHIP</columns>
+        <columns>UL_Planning_Level__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Accounts</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Banner_Level_Records_AR01</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>AR01</value>
+        </filters>
+        <filters>
+            <field>UL_Customer_Hierarchy_Level__c</field>
+            <operation>equals</operation>
+            <value>Level 7</value>
+        </filters>
+        <label>Banner Level Records AR01</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>Argentina_SO</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Holding_Level_Records_AR01</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>UL_Customer_Hierarchy_Level__c</field>
+            <operation>equals</operation>
+            <value>Level 6</value>
+        </filters>
+        <label>Holding Level Records</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MyAccounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCL__Sales_Org__c</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Accounts</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>NewLastWeek</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>LAST_WEEK</value>
+        </filters>
+        <label>New Last Week</label>
+    </listViews>
+    <listViews>
+        <fullName>NewThisWeek</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCL__Sales_Org__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <label>New This Week</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>PlatinumandGoldSLACustomers</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCL__Sales_Org__c</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>Platinum and Gold SLA Customers</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Sold_To</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCL__Sales_Org__c</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>UL_Customer_Hierarchy_Level__c</field>
+            <operation>equals</operation>
+            <value>Level 9</value>
+        </filters>
+        <label>Sold To</label>
+        <language>en_US</language>
+    </listViews>
+	<listViews>
+        <fullName>UK_Customers</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>UL_Customer_Hierarchy_Level__c</columns>
+        <columns>ACCL__Sales_Org__c</columns>
+        <columns>UL_Level_1__c</columns>
+        <columns>UL_Level_2__c</columns>
+        <columns>UL_Level_3__c</columns>
+        <columns>UL_Level_4__c</columns>
+        <columns>UL_Level_5__c</columns>
+        <columns>UL_Level_6__c</columns>
+        <columns>UL_Level_7__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>UK SO</value>
+        </filters>
+        <filters>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>Ireland SO</value>
+        </filters>
+        <label>UK Customers</label>
+        <language>en_US</language>
+        <sharedTo/>
+    </listViews>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypes>
+        <fullName>ACCL__Customer</fullName>
+        <active>true</active>
+        <label>Customer</label>
+        <picklistValues>
+            <picklist>ACCL__Country__c</picklist>
+            <values>
+                <fullName>de</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>en</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>CustomerPriority__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ACCL__State__c</picklist>
+            <values>
+                <fullName>GA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>AccountSource</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone Inquiry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Purchased List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Active__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Industry</picklist>
+            <values>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Apparel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemicals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food %26 Beverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospitality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Machinery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not For Profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Ownership</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subsidiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rating</picklist>
+            <values>
+                <fullName>Cold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warm</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>SLA__c</picklist>
+            <values>
+                <fullName>Bronze</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Platinum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Silver</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Channel Partner %2F Reseller</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - Channel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - Direct</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Installation Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology Partner</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Currency__c</picklist>
+            <values>
+                <fullName>EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Customer_Hierarchy_Level__c</picklist>
+            <values>
+                <fullName>Level 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Level 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Level 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Level 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Level 6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Level 7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Level 8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Level 9</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Direct_Indirect_Flag__c</picklist>
+            <values>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indirect</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UpsellOpportunity__c</picklist>
+            <values>
+                <fullName>Maybe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+<customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCOUNT.ADDRESS1_CITY</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCOUNT.PHONE1</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>UL_Market_Channel_Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCOUNT.TYPE</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CORE.USERS.ALIAS</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>UL_Customer_Group_Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>UL_Customer_Unique__c</lookupDialogsAdditionalFields>
+        <lookupFilterFields>ACCOUNT.NAME</lookupFilterFields>
+        <lookupFilterFields>ACCOUNT.TYPE</lookupFilterFields>
+        <lookupFilterFields>CORE.USERS.ALIAS</lookupFilterFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.SITE</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CORE.USERS.ALIAS</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.TYPE</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.PHONE1</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>ACCOUNT.RATING</searchFilterFields>
+        <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCL__Sales_Org__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCOUNT.ADDRESS1_ZIP</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>ACCL__ACSF_Prevent_Account_Template_Change</fullName>
+        <active>false</active>
+        <description>This validation rule will prevent User to change/ update Account Template selection on Account.</description>
+        <errorConditionFormula>ISCHANGED( ACCL__Account_Template__c )</errorConditionFormula>
+        <errorDisplayField>ACCL__Account_Template__c</errorDisplayField>
+        <errorMessage>You cannot change the Account Template once the Account is created.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Only_One_Extension</fullName>
+        <active>true</active>
+        <errorConditionFormula>ACCL__Number_Of_Extensions__c &gt; 1</errorConditionFormula>
+        <errorMessage>There must be no more than one extension record (Role) for an account.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL_AccNameCantEditExceptAdmin</fullName>
+        <active>true</active>
+        <description>This rule is to prevent the other user to not to change the Account name</description>
+        <errorConditionFormula>AND( 
+ISCHANGED( Name ), 
+NOT($Profile.Name = &quot;System Administrator&quot;))</errorConditionFormula>
+        <errorMessage>You can&apos;t edit/change Account name</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL_NCFFlagValidation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Text(UL_Customer_Hierarchy_Level__c )!= &apos;Level 8&apos; &amp;&amp;  UL_NCF_Flag__c = true</errorConditionFormula>
+        <errorDisplayField>UL_NCF_Flag__c</errorDisplayField>
+        <errorMessage>NCF Flag can only to be set for Sold To(Level 8) record</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL_PlanEndDateShouldGreaterthanStartDate</fullName>
+        <active>true</active>
+        <description>Planning end date should be greater than or equal to planning start date</description>
+        <errorConditionFormula>UL_Customer_Role_Valid_From__c &gt; UL_Customer_Role_Valid_Thru__c</errorConditionFormula>
+        <errorMessage>Planning end date should be greater than planning start date</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Billing</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>true</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>true</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Billing</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>true</showsLocation>
+        <showsStatus>true</showsStatus>
+        <url>http://www.genwatt.com/genwatt/billing.htm?actname={!Account.Name}</url>
+    </webLinks>
+
+<!-- TPM Components End          -->
     <fieldSets>
         <fullName>Edit_Agency</fullName>
         <description>Agency portal for users to edit their own details.</description>
@@ -1955,421 +3257,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
-	<!-- TPM fileds-->
-	<fields>
-        <fullName>UL_Activity_Sector_Division_Code__c</fullName>
-        <description>This attribute will be used as information only.  This attribute is linked to the product on the activity sector.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>This attribute will be used as information only.  This attribute is linked to the product on the activity sector.</inlineHelpText>
-        <label>Activity Sector / Division Code</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>UL_Customer_Role_Valid_From__c</fullName>
-        <description>Effective date in the system (eg, first date that the customer has been received from ECC).</description>
-        <externalId>false</externalId>
-        <label>Planning Start Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Date</type>
-    </fields>
 	
-    <fields>
-        <fullName>UL_Activity_Sector_Division_Description__c</fullName>
-        <description>This attribute will be used to segment a promotion (via customer sets).  This attribute is linked to the product on the activity sector.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>This attribute will be used to segment a promotion (via customer sets).  This attribute is linked to the product on the activity sector.</inlineHelpText>
-        <label>Activity Sector / Division Description</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>UL_Customer_Hierarchy_Level__c</fullName>
-        <description>This attribute will be used to identify the customer level</description>
-        <externalId>false</externalId>
-        <label>Customer Hierarchy Level</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Level 2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Level 3</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Level 4</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Level 5</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Level 6</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Level 7</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Level 8</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Level 9</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Level 1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
-    </fields>
-	    <fields>
-        <fullName>UL_Currency__c</fullName>
-        <description>Indicates whether the customer’s currency is British pounds (GBP) or Euros (EUR)</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Indicates whether the customer’s currency is British pounds (GBP) or Euros (EUR)</inlineHelpText>
-        <label>Currency</label>
-        <picklist>
-            <picklistValues>
-                <fullName>GBP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>EUR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
-    </fields>
-	
-    <fields>
-        <fullName>UL_Customer_Description__c</fullName>
-        <externalId>false</externalId>
-        <label>Customer Description</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>UL_Customer_Unique__c</fullName>
-        <description>This attribute will be used to concatenate four fields</description>
-        <externalId>false</externalId>
-        <formula>ACSFUL001__Account_Number__c &amp; &quot;-&quot; &amp; UL_Sales_Organization__c + UL_Distribution_Channel_Code__c + UL_Activity_Sector_Division_Code__c</formula>
-        <label>Customer Unique</label>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UL_DefaultSoldTo__c</fullName>
-        <description>This attribute will be used as selecting the Sold To record for the levels where customer is</description>
-        <externalId>false</externalId>
-        <label>Selected Default SoldTo</label>
-        <length>80</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UL_Direct_Indirect_Flag__c</fullName>
-        <description>Indicates whether the sold-to is a direct or an indirect customer.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Indicates whether the sold-to is a direct or an indirect customer.</inlineHelpText>
-        <label>Direct/Indirect Flag</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Direct</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Indirect</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>UL_Distribution_Channel_Code__c</fullName>
-        <description>This attribute will be used as information only.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>This attribute will be used as information only.</inlineHelpText>
-        <label>Distribution Channel Code</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UL_Distribution_Channel_Description__c</fullName>
-        <description>This attribute will be used to segment a promotion (via customer sets).</description>
-        <externalId>false</externalId>
-        <inlineHelpText>This attribute will be used to segment a promotion (via customer sets).</inlineHelpText>
-        <label>Distribution Channel Description</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UL_Level_1__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>This attribute will be used as Level 1 of customer hierarchy</description>
-        <externalId>false</externalId>
-        <label>Level 1</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Accounts</relationshipLabel>
-        <relationshipName>Accounts</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>UL_Level_2__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>This attribute will be used as Level 2 of customer hierarchy</description>
-        <externalId>false</externalId>
-        <label>Level 2</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Accounts (Level 2)</relationshipLabel>
-        <relationshipName>Accounts1L</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>UL_Level_3__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>This attribute will be used as Level 3 of customer hierarchy</description>
-        <externalId>false</externalId>
-        <label>Level 3</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Accounts (Level 3)</relationshipLabel>
-        <relationshipName>Accounts2L</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>UL_Level_4__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>This attribute will be used as Level 4 of customer hierarchy</description>
-        <externalId>false</externalId>
-        <label>Level 4</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Accounts (Level 4)</relationshipLabel>
-        <relationshipName>Accounts3L</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>UL_Level_5__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>This attribute will be used as Level 5 of customer hierarchy</description>
-        <externalId>false</externalId>
-        <label>Level 5</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Accounts (Level 5)</relationshipLabel>
-        <relationshipName>Accounts4</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>UL_Level_6__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>This attribute will be used as Level 6 of customer hierarchy</description>
-        <externalId>false</externalId>
-        <label>Level 6</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Default Sold To (Actual)</relationshipLabel>
-        <relationshipName>Accounts5</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>UL_Level_7__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>This attribute will be used as Level 7 of customer hierarchy</description>
-        <externalId>false</externalId>
-        <label>Level 7</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Accounts (Level 7)</relationshipLabel>
-        <relationshipName>Accounts6</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>UL_Level_8__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>This attribute will be used as Level 8 of customer hierarchy</description>
-        <externalId>false</externalId>
-        <label>Level 8</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Accounts (Level 8)</relationshipLabel>
-        <relationshipName>Accounts7</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>UL_Market_Channel_Code__c</fullName>
-        <description>This attribute will be interfaced to the customer master data table, but will not be displayed on the account record.</description>
-        <externalId>false</externalId>
-        <label>Market Channel Code</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-
-    <fields>
-        <fullName>UL_Market_Channel_Description__c</fullName>
-        <description>This attribute will be used to segment a promotion (via customer sets).  It is also possible to plan promotions at this level.</description>
-        <externalId>false</externalId>
-        <label>Market Channel Description</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UL_Market_Code__c</fullName>
-        <description>This attribute will be be interfaced to the customer master data table, but will not be displayed on the account record.</description>
-        <externalId>false</externalId>
-        <label>Market Code</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UL_Market_Description__c</fullName>
-        <description>This attribute will be used to segment a promotion (via customer sets).  It is also possible to plan promotions at this level.</description>
-        <externalId>false</externalId>
-        <label>Market Description</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UL_NCF_Flag__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Indicates whether a customer is a “No Customer Forecast” customer. This is used to enforce different restrictions in the planning process. Options are “Yes” and “No”</description>
-        <externalId>false</externalId>
-        <label>NCF Flag</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>UL_Planning_Level__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>This attribute is used as selecting the planning level for customer</description>
-        <externalId>false</externalId>
-        <label>Planning Level</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>UL_Sales_Organization_Description__c</fullName>
-        <description>This attribute will be used to segment a promotion (via customer sets).</description>
-        <externalId>false</externalId>
-        <label>Sales Organization Description</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>UL_Customer_Group_Description__c</fullName>
-        <description>This attribute will be used to segment a promotion (via customer sets).  It is also possible to plan promotions at this level</description>
-        <externalId>false</externalId>
-        <inlineHelpText>This attribute will be used to segment a promotion (via customer sets).  It is also possible to plan promotions at this level</inlineHelpText>
-        <label>Customer Group Description</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UL_Sales_Organization__c</fullName>
-        <description>This attribute will be used as information only.</description>
-        <externalId>false</externalId>
-        <label>Sales Organization</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UL_Territory_Code__c</fullName>
-        <description>This attribute will be used as information only.</description>
-        <externalId>false</externalId>
-        <label>Territory Code</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UL_Territory_Description__c</fullName>
-        <description>This attribute will be used to segment a promotion (via customer sets).</description>
-        <externalId>false</externalId>
-        <label>Territory Description</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>UL_Customer_Role_Valid_Thru__c</fullName>
-        <description>End date for the customer in the system. This should ideally be an effectivity end date as customers should not be deleted entirely from ECC.</description>
-        <externalId>false</externalId>
-        <label>Planning End Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Date</type>
-    </fields>
-	<!-- end-->
     <fields>
         <fullName>FS_RusianRegion__c</fullName>
         <description>To display the Russia related Regions</description>
