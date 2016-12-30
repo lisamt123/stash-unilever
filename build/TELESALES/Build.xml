@@ -57,6 +57,8 @@
 			<runTest>TEL_OppGenController_Test</runTest>
 			<runTest>TEL_OpportunitySalesCallCreation_Test</runTest>
 			<runTest>TEL_ProductInfo_CC_Test</runTest>
+			<runTest>TEL_AssignOpportunityOwner_Test</runTest>
+			<runTest>TEL_OpportunityTrigger_Test</runTest>
 		</sf:deploy>
 	</target>
 </project>

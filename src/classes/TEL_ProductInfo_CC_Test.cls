@@ -1,6 +1,6 @@
 @isTest
 public class TEL_ProductInfo_CC_Test {
-
+    
     @testSetup
     public static void createData() {
         Account accObj = new Account();
@@ -18,7 +18,7 @@ public class TEL_ProductInfo_CC_Test {
         campAccObj.TEL_Account__c = accObj.Id;
         campAccObj.TEL_Campaign__c = campObj.Id;
         System.Database.insert(campAccObj);
-            
+        
         Product2 prodObj = new Product2();
         prodObj.Name = 'Product 15';
         prodObj.IsActive = true;
@@ -33,6 +33,11 @@ public class TEL_ProductInfo_CC_Test {
         campProdObj.TEL_Campaign__c = campObj.Id;
         campProdObj.TEL_Product_Name__c = prodObj.Id;
         System.Database.insert(campProdObj);
+        
+        TEL_Campaign_Products__c campProdObj1 = new TEL_Campaign_Products__c();
+        campProdObj1.TEL_Campaign__c = campObj.Id;
+        campProdObj1.TEL_Product_Name__c = prodObj.Id;
+        System.Database.insert(campProdObj1);
         
         String priceBook2Id = Test.getStandardPricebookId();            
         
@@ -76,32 +81,42 @@ public class TEL_ProductInfo_CC_Test {
         oli1.TEL_Associated_Campaigns__c = 'Campanha Teste OLI 2';
         System.Database.insert(oli1);
     }
-
+    
     static testMethod void getOpp() {
+        System.Test.startTest();
         Opportunity opp = TEL_ProductInfo_CC.getOpportunity([SELECT Id FROM Opportunity LIMIT 1].Id);
         System.assert(opp != null);
+        System.Test.stopTest();
     }
     
     static testMethod void getOpenOrderProducts() {
+        System.Test.startTest();
         List<TEL_TelesalesWrapper.ProductInfo> wrapperList = TEL_ProductInfo_CC.getOpenOrderProducts([SELECT Id, AccountId, CloseDate FROM Opportunity LIMIT 1]);
         System.assert(!wrapperList.isEmpty());
+        System.Test.stopTest();
     }
     
     static testMethod void getFullProductList() {
+        System.Test.startTest();
         List<TEL_TelesalesWrapper.ProductInfo> wrapperList = TEL_ProductInfo_CC.getFullProductsList();
         System.assert(!wrapperList.isEmpty());
+        System.Test.stopTest();
     }
     
     static testMethod void getClosedOrderProducts() {
+        System.Test.startTest();
         List<TEL_TelesalesWrapper.ProductInfo> wrapperList = TEL_ProductInfo_CC.getClosedOrderProducts([SELECT Id FROM Opportunity LIMIT 1]);
         System.assert(!wrapperList.isEmpty());
+        System.Test.stopTest();
     }
     
     static testMethod void getLostOrderProducts() {
+        System.Test.startTest();
         List<TEL_TelesalesWrapper.ProductInfo> wrapperList = TEL_ProductInfo_CC.getLostOrderProducts();
         System.assert(!wrapperList.isEmpty());
+        System.Test.stopTest();
     }
-  
+    
     static testMethod void getSelectedItems() {
         List<TEL_TelesalesWrapper.ProductInfo> wrapperList = new List<TEL_TelesalesWrapper.ProductInfo>();
         TEL_TelesalesWrapper.ProductInfo wrapperProd = new TEL_TelesalesWrapper.ProductInfo();
@@ -109,12 +124,13 @@ public class TEL_ProductInfo_CC_Test {
         wrapperList.add(wrapperProd);
         String wrapperListJSON = JSON.serialize(wrapperList);
         
+        System.Test.startTest();
         List<TEL_TelesalesWrapper.ProductInfo> wrapperListReturned = TEL_ProductInfo_CC.getSelectedItems(wrapperListJSON);
-        
         System.assert(!wrapperListReturned.isEmpty());
+        System.Test.stopTest();
     }
     
-   	static testMethod void createOrder() {
+    static testMethod void createOrder() {
         String oppId = [SELECT Id FROM Opportunity LIMIT 1].Id;
         
         List<TEL_TelesalesWrapper.ProductInfo> wrapperList = new List<TEL_TelesalesWrapper.ProductInfo>();
@@ -127,28 +143,75 @@ public class TEL_ProductInfo_CC_Test {
         wrapperList.add(wrapperProd);
         String wrapperListJSON = JSON.serialize(wrapperList);
         
+        System.Test.startTest();
         TEL_ProductInfo_CC.createOrder(wrapperListJSON);
-        
-       System.assert(!wrapperList.isEmpty());
+        System.assert(!wrapperList.isEmpty());
+        System.Test.stopTest();
     }
-
-/*    
-    static testMethod void getProductsIds() {
-        List<TEL_TelesalesWrapper.ProductInfo> wrapperList = new List<TEL_TelesalesWrapper.ProductInfo>();
-        TEL_TelesalesWrapper.ProductInfo wrapperProd = new TEL_TelesalesWrapper.ProductInfo();
-        wrapperProd.productId = [SELECT Id FROM Product2 LIMIT 1].Id;
-        wrapperList.add(wrapperProd);
-        
-        List<String> ids = TEL_ProductInfo_CC.getProductsIds(wrapperList);
-        
-        System.assert(!ids.isEmpty());
-    }
-*/      
     
-/*    
-    static testMethod void getProductPricebookEntryMap() {
-        Map<String, String> pbeMap = TEL_ProductInfo_CC.getProductPricebookEntryMap([SELECT Id, Product2Id FROM PricebookEntry LIMIT 1]);
-        System.assert(!pbeMap.isEmpty());
+    static testMethod void getCampaignIdsElse() {
+        System.Test.startTest();
+        TEL_OpenProductOrder openProd = new TEL_OpenProductOrder([SELECT Id, AccountId, CloseDate FROM Opportunity LIMIT 1]);
+        System.assert(openProd.getCampaignIds(new List<TEL_Campaign_Accounts__c>()).isEmpty());
+        System.Test.stopTest();
     }
-*/
+ 
+    static testMethod void getOppLineItemsElse() {
+        System.Test.startTest();
+        TEL_OpenProductOrder openProd = new TEL_OpenProductOrder([SELECT Id, AccountId, CloseDate FROM Opportunity LIMIT 1]);
+        System.assert(openProd.getOppLineItems(new List<Opportunity>()).isEmpty());
+        System.Test.stopTest();
+    }
+    
+    static testMethod void checkLastOrderAmount() {
+        Product2 prodObj = new Product2();
+        prodObj.Name = 'Product 1515';
+        prodObj.IsActive = true;
+        System.Database.insert(prodObj);
+        
+        Campaign campObj = new Campaign();
+        campObj.Name = 'Campaign 15';
+        campObj.CurrencyIsoCode = 'EUR';
+        campObj.IsActive = true;
+        System.Database.insert(campObj);
+        
+        TEL_Campaign_Products__c campProdObj = new TEL_Campaign_Products__c();
+        campProdObj.TEL_Campaign__c = campObj.Id;
+        campProdObj.TEL_Product_Name__c = prodObj.Id;
+        System.Database.insert(campProdObj);
+        
+        System.Test.startTest();
+        TEL_OpenProductOrder openProd = new TEL_OpenProductOrder([SELECT Id, AccountId, CloseDate FROM Opportunity LIMIT 1]);
+        System.assert(String.isBlank(openProd.checkLastOrderAmount(campProdObj)));
+        System.Test.stopTest();
+    }
+    
+    static testMethod void checkCampaignDuplicity() {
+        Product2 prodObj = new Product2();
+        prodObj.Name = 'Product 151515';
+        prodObj.IsActive = true;
+        System.Database.insert(prodObj);
+        
+        Campaign campObj = new Campaign();
+        campObj.Name = 'Campaign 1515';
+        campObj.CurrencyIsoCode = 'EUR';
+        campObj.IsActive = true;
+        System.Database.insert(campObj);
+        
+        TEL_Campaign_Products__c campProdObj = new TEL_Campaign_Products__c();
+        campProdObj.TEL_Campaign__c = campObj.Id;
+        campProdObj.TEL_Product_Name__c = prodObj.Id;
+        System.Database.insert(campProdObj);
+        
+        List<TEL_TelesalesWrapper.ProductInfo> wrapperList = new List<TEL_TelesalesWrapper.ProductInfo>();
+        TEL_TelesalesWrapper.ProductInfo prodInfo = new TEL_TelesalesWrapper.ProductInfo();
+        prodInfo.productId = prodObj.Id;
+        wrapperList.add(prodInfo);
+        
+        System.Test.startTest();
+        TEL_OpenProductOrder openProd = new TEL_OpenProductOrder([SELECT Id, AccountId, CloseDate FROM Opportunity LIMIT 1]);
+        System.assert(!openProd.checkCampaignDuplicity(wrapperList, campProdObj));
+        System.Test.stopTest();
+    }
+    
 }
