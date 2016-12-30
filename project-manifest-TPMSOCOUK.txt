@@ -192,6 +192,11 @@ src/groups/Argentina_SO.group
 src/groups/Chile_HPF_SO.group
 src/groups/Chile_Ice_Cream_SO.group
 src/groups/Ireland_SO.group
+src/queues
+src/queues/Finance_Check_Dynamic_Queue.queue
+src/queues/Manager_Check_Dynamic_Queue.queue
+src/queues/UL_FinanceCheck_AR01.queue
+src/queues/UL_Managers_AR01.queue 
 src/workflows
 src/workflows/Account.workflow
 src/workflows/ACCL__Fund__c.workflow 
@@ -368,3 +373,5 @@ src/pages/Ul_ViewDeliveryProfile.page
 src/pages/Ul_ViewDeliveryProfile.page-meta.xml
 src/pages/UL_WorkfllowThresholdTemplatePage.page
 src/pages/UL_WorkfllowThresholdTemplatePage.page-meta.xml
+src/globalPicklists
+src/globalPicklists/UL_Feature.globalPicklist
