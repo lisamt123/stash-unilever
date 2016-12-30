@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Delivery Profile</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Delivery Profiles</value>
+    </caseValues>
+    <fields>
+        <label><!-- Customer --></label>
+        <name>UL_Account__c</name>
+        <relationshipLabel><!-- Delivery Profiles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Delivery Profile Name --></label>
+        <name>UL_Delivery_Profile_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- In-Store Duration (Days) --></label>
+        <name>UL_Instore_End_days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer --></label>
+        <name>UL_Planning_Level__c</name>
+        <relationshipLabel><!-- Delivery Profiles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>UL_Product__c</name>
+        <relationshipLabel><!-- Delivery Profiles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sales Organisation --></label>
+        <name>UL_Sales_Organisation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment End (Days) --></label>
+        <name>UL_Shipment_End_days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment Start (Days) --></label>
+        <name>UL_Shipment_Start_days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total(%) --></label>
+        <name>UL_Total_of_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Valid From --></label>
+        <name>UL_Valid_From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Valid Thru --></label>
+        <name>UL_Valid_Thru__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-10-Phasing --></label>
+        <name>UL_Week_10_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-11-Phasing --></label>
+        <name>UL_Week_11_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-12-Phasing --></label>
+        <name>UL_Week_12_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-13-Phasing --></label>
+        <name>UL_Week_13_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-14-Phasing --></label>
+        <name>UL_Week_14_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-15-Phasing --></label>
+        <name>UL_Week_15_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-16-Phasing --></label>
+        <name>UL_Week_16_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-17-Phasing --></label>
+        <name>UL_Week_17_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-18-Phasing --></label>
+        <name>UL_Week_18_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-19-Phasing --></label>
+        <name>UL_Week_19_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-1-Phasing --></label>
+        <name>UL_Week_1_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-20-Phasing --></label>
+        <name>UL_Week_20_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-2-Phasing --></label>
+        <name>UL_Week_2_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-3-Phasing --></label>
+        <name>UL_Week_3_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-4-Phasing --></label>
+        <name>UL_Week_4_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-5-Phasing --></label>
+        <name>UL_Week_5_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-6-Phasing --></label>
+        <name>UL_Week_6_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-7-Phasing --></label>
+        <name>UL_Week_7_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-8-Phasing --></label>
+        <name>UL_Week_8_Phasing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week-9-Phasing --></label>
+        <name>UL_Week_9_Phasing__c</name>
+    </fields>
+    <gender>Neuter</gender>
+    <layouts>
+        <layout>Delivery Profile Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- UK Delivery Profile --></label>
+        <name>UK_Delivery_Profile</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Shipment End should be less than or equal to In-Store Duration --></errorMessage>
+        <name>UL_Validation_for_date_duration</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Valid From Thru Date cannot be less than Valid From Date --></errorMessage>
+        <name>UL_Validation_for_date_ranges</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Shipment Phasing cannot be less than 100% --></errorMessage>
+        <name>Ul_Total_Shipment_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Customer --></label>
+        <name>ACCL__Account__c</name>
+        <relationshipLabel><!-- Customer Payers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Main --></label>
+        <name>ACCL__Main__c</name>
+    </fields>
+    <fields>
+        <label>Pagador</label>
+        <name>ACCL__Payer__c</name>
+        <relationshipLabel><!-- Customer Payers (Payer) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Record Link --></label>
+        <name>ACCL__Record_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Valid From --></label>
+        <name>ACCL__Valid_From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Valid Thru --></label>
+        <name>ACCL__Valid_Thru__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is formula field which displays Customer code value from Account --></help>
+        <label>Código de Cliente</label>
+        <name>UL_Customer_Code__c</name>
+    </fields>
+    <fields>
+        <label>Código de Canal de Distribución</label>
+        <name>UL_Distribution_Channel__c</name>
+    </fields>
+    <fields>
+        <label>Código del Sector de Actividad</label>
+        <name>UL_Division__c</name>
+    </fields>
+    <fields>
+        <label>Código de Organización de Ventas</label>
+        <name>UL_Sales_Organization__c</name>
+    </fields>
+    <validationRules>
+        <errorMessage><!-- Valid From cannot be later than Valid Thru. --></errorMessage>
+        <name>ACCL__Valid_From_Valid_Thru_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

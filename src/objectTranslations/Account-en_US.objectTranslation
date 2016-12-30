@@ -1,6 +1,437 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+	<fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Cliente</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Account Names</value>
+        </caseValues>
+        <name>account_name</name>
+        <startsWith>Vowel</startsWith>
+    </fields>
     <fields>
+        <label><!-- Email --></label>
+        <name>ACCL__Account_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Number --></label>
+        <name>ACCL__Account_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Template Description --></label>
+        <name>ACCL__Account_Template_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Template --></label>
+        <name>ACCL__Account_Template__c</name>
+        <relationshipLabel><!-- Customers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>ACCL__City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>ACCL__Country__c</name>
+        <picklistValues>
+            <masterLabel>de</masterLabel>
+            <translation>Germany</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>en</masterLabel>
+            <translation><!-- en --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Customer Priority --></label>
+        <name>CustomerPriority__c</name>
+        <picklistValues>
+            <masterLabel>High</masterLabel>
+            <translation><!-- High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low</masterLabel>
+            <translation><!-- Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium</masterLabel>
+            <translation><!-- Medium --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ExternalId --></label>
+        <name>ACCL__ExternalId__c</name>
+    </fields>
+    <fields>
+        <help><!-- Latitude (-90; 90)
+      Longitude (-180; 180) --></help>
+        <label><!-- Geolocation --></label>
+        <name>ACCL__Geolocation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name 2 --></label>
+        <name>ACCL__Name_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number Of Extensions --></label>
+        <name>ACCL__Number_Of_Extensions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code --></label>
+        <name>ACCL__Postal_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Org --></label>
+        <name>ACCL__Sales_Org__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>ACCL__State__c</name>
+        <picklistValues>
+            <masterLabel>GA</masterLabel>
+            <translation>Georgia</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Street --></label>
+        <name>ACCL__Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Number of Locations --></label>
+        <name>NumberofLocations__c</name>
+    </fields>
+    <fields>
+        <label><!-- SLA Expiration Date --></label>
+        <name>SLAExpirationDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- SLA Serial Number --></label>
+        <name>SLASerialNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- SLA --></label>
+        <name>SLA__c</name>
+        <picklistValues>
+            <masterLabel>Bronze</masterLabel>
+            <translation><!-- Bronze --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold</masterLabel>
+            <translation><!-- Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Platinum</masterLabel>
+            <translation><!-- Platinum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silver</masterLabel>
+            <translation><!-- Silver --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This attribute will be used as information only.  This attribute is linked to the product on the activity sector. --></help>
+        <label><!-- Activity Sector / Division Code --></label>
+        <name>UL_Activity_Sector_Division_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- This attribute will be used to segment a promotion (via customer sets).  This attribute is linked to the product on the activity sector. --></help>
+        <label>Sector de Actividad</label>
+        <name>UL_Activity_Sector_Division_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates whether the customer’s currency is British pounds (GBP) or Euros (EUR) --></help>
+        <label><!-- Currency --></label>
+        <name>UL_Currency__c</name>
+        <picklistValues>
+            <masterLabel>EUR</masterLabel>
+            <translation><!-- EUR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GBP</masterLabel>
+            <translation><!-- GBP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Cliente</label>
+        <name>UL_Customer_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- This attribute will be interfaced to the customer master data table, but will not be displayed on the account record. --></help>
+        <label><!-- Customer Group Code --></label>
+        <name>UL_Customer_Group_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- This attribute will be used to segment a promotion (via customer sets).  It is also possible to plan promotions at this level --></help>
+        <label>Grupo de Cliente (Cluster)</label>
+        <name>UL_Customer_Group_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Hierarchy Level --></label>
+        <name>UL_Customer_Hierarchy_Level__c</name>
+        <picklistValues>
+            <masterLabel>Level 1</masterLabel>
+            <translation>All Customers</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 2</masterLabel>
+            <translation>Region</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 3</masterLabel>
+            <translation>Sub-Region</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 4</masterLabel>
+            <translation>MCO Customer Name</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 5</masterLabel>
+            <translation>Country</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 6</masterLabel>
+            <translation>Holding</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 7</masterLabel>
+            <translation>Banner</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 8</masterLabel>
+            <translation>Sold To Group</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 9</masterLabel>
+            <translation>Sold To</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Planning Start Date --></label>
+        <name>UL_Customer_Role_Valid_From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planning End Date --></label>
+        <name>UL_Customer_Role_Valid_Thru__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Unique --></label>
+        <name>UL_Customer_Unique__c</name>
+    </fields>
+    <fields>
+        <label><!-- Selected Default SoldTo --></label>
+        <name>UL_DefaultSoldTo__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates whether the sold-to is a direct or an indirect customer. --></help>
+        <label><!-- Direct/Indirect Flag --></label>
+        <name>UL_Direct_Indirect_Flag__c</name>
+        <picklistValues>
+            <masterLabel>Direct</masterLabel>
+            <translation><!-- Direct --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indirect</masterLabel>
+            <translation><!-- Indirect --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This attribute will be used as information only. --></help>
+        <label><!-- Distribution Channel Code --></label>
+        <name>UL_Distribution_Channel_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- This attribute will be used to segment a promotion (via customer sets). --></help>
+        <label>Canal de Distribución</label>
+        <name>UL_Distribution_Channel_Description__c</name>
+    </fields>
+    <fields>
+        <label>All Customers</label>
+        <name>UL_Level_1__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Region</label>
+        <name>UL_Level_2__c</name>
+        <relationshipLabel><!-- Accounts (Level 2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Sub-Region</label>
+        <name>UL_Level_3__c</name>
+        <relationshipLabel><!-- Accounts (Level 3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>MCO Customer Name</label>
+        <name>UL_Level_4__c</name>
+        <relationshipLabel><!-- Accounts (Level 4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Country</label>
+        <name>UL_Level_5__c</name>
+        <relationshipLabel><!-- Accounts (Level 5) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Holding</label>
+        <name>UL_Level_6__c</name>
+        <relationshipLabel><!-- Default Sold To (Actual) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Banner</label>
+        <name>UL_Level_7__c</name>
+        <relationshipLabel><!-- Accounts (Level 7) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Sold To Group</label>
+        <name>UL_Level_8__c</name>
+        <relationshipLabel><!-- Accounts (Level 8) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Market Channel Code --></label>
+        <name>UL_Market_Channel_Code__c</name>
+    </fields>
+    <fields>
+        <label>Canal de Mercado</label>
+        <name>UL_Market_Channel_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Code --></label>
+        <name>UL_Market_Code__c</name>
+    </fields>
+    <fields>
+        <label>Mercado</label>
+        <name>UL_Market_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- NCF Flag --></label>
+        <name>UL_NCF_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planning Level Rollup --></label>
+        <name>UL_Planning_Level_Rollup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planning Level --></label>
+        <name>UL_Planning_Level__c</name>
+    </fields>
+    <fields>
+        <label>Organización de Ventas</label>
+        <name>UL_Sales_Organization_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>UL_Sales_Organization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Territory Code --></label>
+        <name>UL_Territory_Code__c</name>
+    </fields>
+    <fields>
+        <label>Territorio</label>
+        <name>UL_Territory_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Upsell Opportunity --></label>
+        <name>UpsellOpportunity__c</name>
+        <picklistValues>
+            <masterLabel>Maybe</masterLabel>
+            <translation><!-- Maybe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Account Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Unilever Specific Attributes --></label>
+            <section>Unilever Specific Attributes</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UL_Account Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Unilever Specific Attributes --></label>
+            <section>Unilever Specific Attributes</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UL_SoCo_Account Layout</layout>
+        <sections>
+            <label><!-- Atributos Especificos de Unilever --></label>
+            <section>Atributos Especificos de Unilever</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UL_UKI_Account Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Unilever Specific Attributes --></label>
+            <section>Unilever Specific Attributes</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Customer --></label>
+        <name>Customer</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- You cannot change the Account Template once the Account is created. --></errorMessage>
+        <name>ACCL__ACSF_Prevent_Account_Template_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- There must be no more than one extension record (Role) for an account. --></errorMessage>
+        <name>ACCL__Only_One_Extension</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can&apos;t edit/change Account name --></errorMessage>
+        <name>UL_AccNameCantEditExceptAdmin</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- NCF Flag can only to be set for Sold To(Level 8) record --></errorMessage>
+        <name>UL_NCFFlagValidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Planning end date should be greater than planning start date --></errorMessage>
+        <name>UL_PlanEndDateShouldGreaterthanStartDate</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Billing --></label>
+        <name>Billing</name>
+    </webLinks><fields>
         <caseValues>
             <plural>false</plural>
             <value>Phone 1</value>

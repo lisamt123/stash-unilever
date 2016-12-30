@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Approval Threshold</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Approval Thresholds</value>
+    </caseValues>
+    <fields>
+        <label><!-- Career Level --></label>
+        <name>UL_Career_Level__c</name>
+        <picklistValues>
+            <masterLabel>AD - WL3</masterLabel>
+            <translation><!-- AD - WL3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAM WL2-A</masterLabel>
+            <translation><!-- CAM WL2-A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAM WL2-B</masterLabel>
+            <translation><!-- CAM WL2-B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CBM - WL2-C</masterLabel>
+            <translation><!-- CBM - WL2-C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chairman WL5</masterLabel>
+            <translation><!-- Chairman WL5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DBA</masterLabel>
+            <translation><!-- DBA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trade Exec WL1</masterLabel>
+            <translation><!-- Trade Exec WL1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VP - WL4</masterLabel>
+            <translation><!-- VP - WL4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>UL_Sales_Organization__c</name>
+        <relationshipLabel><!-- Approval Thresholds --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Threshold Level --></label>
+        <name>UL_Threshold_Level__c</name>
+    </fields>
+    <gender>Neuter</gender>
+    <layouts>
+        <layout>Approval Threshold Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UL_Approval_Threshold_Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Sales Org Mapping</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Sales Org</value>
+    </caseValues>
+    <fields>
+        <label><!-- Sales Org --></label>
+        <name>UL_Sales_Org__c</name>
+    </fields>
+    <gender>Neuter</gender>
+</CustomObjectTranslation>

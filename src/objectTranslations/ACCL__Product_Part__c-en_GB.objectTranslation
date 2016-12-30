@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Product Part --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Product Part --></value>
+    </caseValues>
+    <fields>
+        <label><!-- Child Product --></label>
+        <name>ACCL__Child_Product__c</name>
+        <relationshipLabel><!-- Product Parts (Child Product) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent Product --></label>
+        <name>ACCL__Parent_Product__c</name>
+        <relationshipLabel><!-- Product Parts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>TU Quantity</label>
+        <name>ACCL__Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Link --></label>
+        <name>ACCL__Record_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Valid From --></label>
+        <name>ACCL__Valid_From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Valid Thru --></label>
+        <name>ACCL__Valid_Thru__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alternative Description --></label>
+        <name>UL_Alternative_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- CU Quantity --></label>
+        <name>UL_CU_Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- External_ID --></label>
+        <name>UL_External_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Product code of the child product record --></help>
+        <label><!-- Product Code --></label>
+        <name>UL_Product_Code__c</name>
+    </fields>
+    <nameFieldLabel><!-- Product Part Name --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+    <validationRules>
+        <errorMessage><!-- Parent and Child Product cannot be the same. --></errorMessage>
+        <name>ACCL__Same_Product_Added</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Valid From cannot be later than Valid Thru. --></errorMessage>
+        <name>ACCL__Valid_From_Valid_Thru_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

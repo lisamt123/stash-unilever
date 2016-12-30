@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Cannibalisation Rate</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Cannibalisation Rates</value>
+    </caseValues>
+    <fields>
+        <help><!-- Allows for entry of a cannibalisation rate. --></help>
+        <label><!-- Cannibalisation Rate (%) --></label>
+        <name>UL_Cannibalisation_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer ID --></label>
+        <name>UL_Customer_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Allows for entry of a customer for which to apply the rate. --></help>
+        <label><!-- Customer --></label>
+        <name>UL_Customer__c</name>
+        <relationshipLabel><!-- Cannibalisation Rates --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Feature --></label>
+        <name>UL_Feature__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planning Level --></label>
+        <name>UL_Planning_Level__c</name>
+        <relationshipLabel><!-- Cannibalisation Rates --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Allows for entry of a product for which to apply the rate. --></help>
+        <label><!-- Product --></label>
+        <name>UL_Product__c</name>
+        <relationshipLabel><!-- Cannibalisation Rates --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>UL_Sales_Organization__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the start date for the cannibalisation rate. --></help>
+        <label><!-- Valid From --></label>
+        <name>UL_Valid_From__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the end date for the cannibalisation rate. --></help>
+        <label><!-- Valid Thru --></label>
+        <name>UL_Valid_Thru__c</name>
+    </fields>
+    <gender>Neuter</gender>
+    <layouts>
+        <layout>Cannibalisation Rate Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- SoCo --></label>
+        <name>UL_SoCo</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UKI --></label>
+        <name>UL_UKI</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Valid Thru Date cannot be less than Valid From Date --></errorMessage>
+        <name>UL_Valid_From_Less_Than_Valid_Thru</name>
+    </validationRules>
+</CustomObjectTranslation>

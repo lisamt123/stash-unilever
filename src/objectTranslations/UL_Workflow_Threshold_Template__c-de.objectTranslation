@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Workflow Threshold Template</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Workflow Threshold Template</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>UL_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Evaluate Thresholds --></label>
+        <name>UL_Evaluate_Thresholds__c</name>
+    </fields>
+    <fields>
+        <label><!-- Next Status --></label>
+        <name>UL_Next_Status__c</name>
+        <picklistValues>
+            <masterLabel>Level1</masterLabel>
+            <translation><!-- Level1 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Template Description --></label>
+        <name>UL_TemplateDescription__c</name>
+    </fields>
+    <fields>
+        <label><!-- Workflow --></label>
+        <name>UL_Workflow__c</name>
+        <picklistValues>
+            <masterLabel>Soco Approval</masterLabel>
+            <translation><!-- Soco Approval --></translation>
+        </picklistValues>
+    </fields>
+    <gender>Neuter</gender>
+    <layouts>
+        <layout>Workflow Threshold Template Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Workflow Threshold Template --></label>
+            <section>Workflow Threshold Template</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

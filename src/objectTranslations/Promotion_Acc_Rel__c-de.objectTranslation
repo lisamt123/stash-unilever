@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Promotion_Acc_Rel</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Child Promotion Records</value>
+    </caseValues>
+    <fields>
+        <label><!-- Child Account --></label>
+        <name>Child_Account__c</name>
+        <relationshipLabel><!-- Child Promotion Records --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent_Account --></label>
+        <name>Parent_Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Promotion --></label>
+        <name>Parent_Promotion__c</name>
+        <relationshipLabel><!-- Child Promotion Records --></relationshipLabel>
+    </fields>
+    <gender>Neuter</gender>
+</CustomObjectTranslation>
