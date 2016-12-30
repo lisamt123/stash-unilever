@@ -104,3 +104,7 @@ src/staticresources/FAU_CkEditor_Full.resource
 src/staticresources/FAU_CkEditor_Full.resource-meta.xml
 src/staticresources/FAU_customlookup.resource
 src/staticresources/FAU_customlookup.resource-meta.xml
+src/permissionsets/FAU_Participant_Platform.permissionset
+src/permissionsets/FAU_Participant_Salesforce.permissionset
+src/permissionsets/FAU_Program_Administrator_Platform.permissionset
+src/permissionsets/FAU_Program_Administrator_Salesforce.permissionset
