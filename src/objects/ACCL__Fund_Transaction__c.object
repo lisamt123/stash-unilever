@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>UL_CreateTransactionPage</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fieldSets>
+        <fullName>ACCL__TransactionFields1</fullName>
+        <description>CreateTransaction page</description>
+        <displayedFields>
+            <field>ACCL__Amount__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <label>TransactionFields1</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>ACCL__TransactionFields2</fullName>
+        <description>CreateTransaction page</description>
+        <displayedFields>
+            <field>ACCL__Source_Fund__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>TransactionFields2</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>ACCL__TransactionFields3</fullName>
+        <description>CreateTransaction page</description>
+        <displayedFields>
+            <field>ACCL__Target_Fund__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>TransactionFields3</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>UL_TransactionFields4</fullName>
+        <description>Create transaction page</description>
+        <displayedFields>
+            <field>UL_Transaction_Description__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>TransactionFields4</label>
+    </fieldSets>
+    <fields>
+        <fullName>ACCL__Amount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Transaction Amount</description>
+        <externalId>false</externalId>
+        <label>Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Currency__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Currency</label>
+        <picklist>
+            <picklistValues>
+                <fullName>CAD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CHF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EUR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>JPY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NOK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RUB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ARS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CLP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Date__c</fullName>
+        <defaultValue>Today()</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Transaction Date</description>
+        <externalId>false</externalId>
+        <label>Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Record_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; &amp;Id, $Label.ACCL__RECORD_LINK, &quot;_top&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Record Link</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Source_Fund__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Source fund for the transaction</description>
+        <externalId>false</externalId>
+        <label>Source Fund</label>
+        <referenceTo>ACCL__Fund__c</referenceTo>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Target_Fund__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Target fund for the transaction</description>
+        <externalId>false</externalId>
+        <label>Target Fund</label>
+        <referenceTo>ACCL__Fund__c</referenceTo>
+        <relationshipName>Transactions1</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>ACCL__Fund_Transaction_Template_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>ACCL__Fund_Transaction_Template__r.ACCL__Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fund Transaction Template Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Fund_Transaction_Template__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Reference to transaction template</description>
+        <externalId>false</externalId>
+        <label>Fund Transaction Template</label>
+        <referenceTo>ACCL__Fund_Transaction_Template__c</referenceTo>
+        <relationshipLabel>Fund Transactions</relationshipLabel>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Transaction_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>Text(ACCL__Fund_Transaction_Template__r.ACCL__Transaction_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Transaction Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Approver__c</fullName>
+        <description>contains the first name of the approver</description>
+        <externalId>false</externalId>
+        <label>Approver</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Cross_Category_Transaction__c</fullName>
+        <description>Identifies of the Transaction is a Cross Category Transaction or not</description>
+        <externalId>false</externalId>
+        <formula>ACCL__Fund_Transaction_Template__r.UL_Cross_Category_Transfer_Allowed__c</formula>
+        <label>Cross Category Transaction</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UL_Status__c</fullName>
+        <description>Status Field for Cross Category Transaction</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Sent/Pending Approval</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>true</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Transaction_Description__c</fullName>
+        <description>Description field for the transaction performed</description>
+        <externalId>false</externalId>
+        <label>Transaction Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Fund Transaction</label>
+    <listViews>
+        <fullName>ACCL__All</fullName>
+        <columns>NAME</columns>
+        <columns>ACCL__Fund_Transaction_Template_Description__c</columns>
+        <columns>ACCL__Transaction_Type__c</columns>
+        <columns>ACCL__Date__c</columns>
+        <columns>ACCL__Source_Fund__c</columns>
+        <columns>ACCL__Target_Fund__c</columns>
+        <columns>ACCL__Amount__c</columns>
+        <columns>UL_Status__c</columns>
+        <columns>ACCL__Currency__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>T-{0000000}</displayFormat>
+        <label>Fund Transaction Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Fund Transactions</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>ACCL__Fund_Transaction_Template_Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCL__Transaction_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCL__Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCL__Source_Fund__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCL__Target_Fund__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCL__Amount__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCL__Currency__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Fund_Transaction_Template_Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Transaction_Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Date__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Source_Fund__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Target_Fund__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Amount__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Currency__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCL__Fund_Transaction_Template_Description__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCL__Transaction_Type__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCL__Date__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCL__Source_Fund__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCL__Target_Fund__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCL__Amount__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCL__Currency__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>ACCL__Fund_Transaction_Template_Description__c</searchFilterFields>
+        <searchFilterFields>ACCL__Transaction_Type__c</searchFilterFields>
+        <searchFilterFields>ACCL__Date__c</searchFilterFields>
+        <searchFilterFields>ACCL__Source_Fund__c</searchFilterFields>
+        <searchFilterFields>ACCL__Target_Fund__c</searchFilterFields>
+        <searchFilterFields>ACCL__Amount__c</searchFilterFields>
+        <searchFilterFields>ACCL__Currency__c</searchFilterFields>
+        <searchResultsAdditionalFields>ACCL__Fund_Transaction_Template_Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCL__Transaction_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCL__Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCL__Source_Fund__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCL__Target_Fund__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCL__Amount__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCL__Currency__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>ACCL__Amount_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>ACCL__Amount__c &lt;=0</errorConditionFormula>
+        <errorMessage>Transaction Amount should be greater than 0</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Sales_Org_Mismatch_Source_Target</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND
+          (
+             ACCL__Transaction_Type__c = &quot;Transfer&quot;,
+             ACCL__Source_Fund__r.ACCL__Sales_Org__c &lt;&gt; ACCL__Target_Fund__r.ACCL__Sales_Org__c
+          )</errorConditionFormula>
+        <errorMessage>Sales Org of Source Fund and Target Fund must be same</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Sales_Org_Mismatch_Template_Source</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND 
+          (
+            ACCL__Transaction_Type__c = &quot;Transfer&quot;,
+            ACCL__Source_Fund__r.ACCL__Sales_Org__c &lt;&gt; TEXT(ACCL__Fund_Transaction_Template__r.ACCL__Sales_Org__c ) 
+          )</errorConditionFormula>
+        <errorMessage>Sales Org of Transaction Template and Source Fund should be same</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Sales_Org_Mismatch_Template_Target</fullName>
+        <active>true</active>
+        <errorConditionFormula>ACCL__Target_Fund__r.ACCL__Sales_Org__c &lt;&gt; TEXT(ACCL__Fund_Transaction_Template__r.ACCL__Sales_Org__c )</errorConditionFormula>
+        <errorMessage>Sales Org of Transaction Template and Target Fund should be same</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Closed_Fund_Validation</fullName>
+        <active>true</active>
+        <description>validation  to restrict money transfer to and from closed fund</description>
+        <errorConditionFormula>(ISPICKVAL( ACCL__Target_Fund__r.ACCL__Status__c , &quot;Closed&quot;)) ||  ISPICKVAL( ACCL__Source_Fund__r.ACCL__Status__c , &quot;Closed&quot;)</errorConditionFormula>
+        <errorMessage>Cannot transfer money to or from closed fund</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL_Adjustment_transaction_validation</fullName>
+        <active>true</active>
+        <description>Validation to check if the transaction amount is more than the available amount in the target fund</description>
+        <errorConditionFormula>AND( ISPICKVAL( ACCL__Fund_Transaction_Template__r.ACCL__Transaction_Type__c , &quot;Adjustment&quot;) , ACCL__Amount__c &gt;  ACCL__Target_Fund__r.UL_Available_to_Spend__c )</errorConditionFormula>
+        <errorDisplayField>ACCL__Amount__c</errorDisplayField>
+        <errorMessage>Adjustment amount is more than the available to spend amount in the target fund</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL_Transfer_transaction_validation</fullName>
+        <active>true</active>
+        <description>Validation to check if the transaction amount is more than the available amount in the source fund</description>
+        <errorConditionFormula>AND( ISPICKVAL( ACCL__Fund_Transaction_Template__r.ACCL__Transaction_Type__c , &quot;Transfer&quot;)  ,  ACCL__Amount__c &gt;  ACCL__Source_Fund__r.UL_Available_to_Spend__c  )</errorConditionFormula>
+        <errorDisplayField>ACCL__Amount__c</errorDisplayField>
+        <errorMessage>Transfer amount is more than the available to spend amount in the source fund</errorMessage>
+    </validationRules>
+</CustomObject>

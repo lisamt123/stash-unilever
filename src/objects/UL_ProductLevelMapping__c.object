@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Mapping Heroku product levels to SFDC system levels</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>External_System_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>External System Value</label>
+        <length>20</length>
+        <required>true</required> 
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sales_Org__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Org</label>
+        <length>50</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TMP_System_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>TMP System Value</label>
+        <length>20</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>UL_ProductLevelMapping</label>
+    <visibility>Public</visibility>
+</CustomObject>

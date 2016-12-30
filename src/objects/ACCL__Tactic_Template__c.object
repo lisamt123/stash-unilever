@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Template which controls the behaviour of a tactic</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fieldSets>
+        <fullName>ACCL__MobilityRelevant</fullName>
+        <description>Field set used to restrict the amount of data on the mobility device.</description>
+        <displayedFields>
+            <field>ACCL__Active__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Tactic_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>MobilityRelevant</label>
+    </fieldSets>
+    <fields>
+        <fullName>ACCL__Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates wether a tactic template is active or not.</description>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Description_Language_1__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Holds the description of language 1.</description>
+        <externalId>false</externalId>
+        <label>Description Language 1</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Description_Language_2__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Holds the description of language 2.</description>
+        <externalId>false</externalId>
+        <label>Description Language 2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Description_Language_3__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Holds the description of language 3.</description>
+        <externalId>false</externalId>
+        <label>Description Language 3</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Description_Language_4__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Holds the description of language 4.</description>
+        <externalId>false</externalId>
+        <label>Description Language 4</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Sets the description depending on the current language.</description>
+        <externalId>false</externalId>
+        <formula>CASE 
+( 
+$User.ACCL__Language_Postfix__c, 
+&quot;Language1&quot;, ACCL__Description_Language_1__c, 
+&quot;Language2&quot;, ACCL__Description_Language_2__c, 
+&quot;Language3&quot;, ACCL__Description_Language_3__c,
+&quot;Language4&quot;, ACCL__Description_Language_4__c, 
+ACCL__Description_Language_1__c
+)</formula>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Order_Relevant__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Order Relevant</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Sales_Org__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <globalPicklist>ACCL__Sales_Org</globalPicklist>
+        <label>Sales Org</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Tactic_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specifies the type of a tactic</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specifies the type of a tactic</inlineHelpText>
+        <label>Tactic Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Display</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PriceReduction</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Product_Mandate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This is related to handle products mandatory at Tactic Template level</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is related to handle products mandatory at Tactic Template level</inlineHelpText>
+        <label>Product Mandate</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UL_TacticOverlap__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is to control overlap based on the Tactic Template</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is to control overlap based on the Tactic Template</inlineHelpText>
+        <label>Tactic Overlap</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Tactic Template</label>
+    <listViews>
+        <fullName>ACCL__All</fullName>
+        <columns>NAME</columns>
+        <columns>ACCL__Active__c</columns>
+        <columns>ACCL__Description__c</columns>
+        <columns>ACCL__Tactic_Type__c</columns>
+        <columns>ACCL__Sales_Org__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Tactic Template Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Tactic Templates</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>ACCL__Active__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCL__Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCL__Tactic_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCL__Sales_Org__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Active__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Tactic_Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Sales_Org__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>ACCL__Active__c</searchFilterFields>
+        <searchFilterFields>ACCL__Description__c</searchFilterFields>
+        <searchFilterFields>ACCL__Tactic_Type__c</searchFilterFields>
+        <searchFilterFields>ACCL__Sales_Org__c</searchFilterFields>
+        <searchResultsAdditionalFields>ACCL__Active__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCL__Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCL__Tactic_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCL__Sales_Org__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>ACCL__Prevent_Name_Duplication</fullName>
+        <active>true</active>
+        <description>Name must be unique for Tactic Templates</description>
+        <errorConditionFormula>and( 
+UPPER(Name) = UPPER(VLOOKUP 
+($ObjectType.ACCL__Tactic_Template__c.Fields.Name , $ObjectType.ACCL__Tactic_Template__c.Fields.Name, Name )), 
+
+not( 
+Id=VLOOKUP 
+($ObjectType.ACCL__Tactic_Template__c.Fields.Id , $ObjectType.ACCL__Tactic_Template__c.Fields.Name, Name )))</errorConditionFormula>
+        <errorMessage>Tactic Template Name already exists, please enter different Name.</errorMessage>
+    </validationRules>
+</CustomObject>

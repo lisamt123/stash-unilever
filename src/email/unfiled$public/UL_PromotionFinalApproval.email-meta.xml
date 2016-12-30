@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Promotion Final Approval</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Promotion Final Approval</name>
+    <style>none</style>
+    <subject>Promotion {!ACCL__Promotion__c.Name} is approved</subject>
+    <textOnly>Hi Team,
+Promotion {!ACCL__Promotion__c.Name} is approved.
+Please check the record in application by clicking on following link. Take appropriate action as necessary. {!ACCL__Promotion__c.Link}
+
+Thanks,
+{!Approval_Requesting_User.Name}</textOnly>
+    <type>custom</type>
+</EmailTemplate>

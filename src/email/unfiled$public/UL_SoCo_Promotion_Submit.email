@@ -1,0 +1,39 @@
+<messaging:emailTemplate subject="Promotion {!relatedTo.Name} - {!relatedTo.ACCL__Slogan__c} submitted for Approval" recipientType="User" relatedToType="ACCL__Promotion__c">
+<messaging:plainTextEmailBody >
+Hello {!recipient.name},
+
+The Promotion {!relatedTo.Id} - {!relatedTo.ACCL__Slogan__c}, is submitted for your approval.
+<a href='/{!relatedTo.Id}'>Click Here</a>
+Kindly take necessary action.
+
+Thanks,
+{!relatedTo.CreatedBY.Name}.
+
+</messaging:plainTextEmailBody>
+
+<messaging:htmlEmailBody >
+    <html>
+        <body>
+        <!--<p>Hello {!recipient.name}--</p>
+        <p>Here is a list of the cases we currently have for account {!relatedTo.name}:</p>
+        <apex:datatable cellpadding="5" var="cx" value="{!relatedTo.Cases}">
+            <apex:column value="{!cx.CaseNumber}" headerValue="Case Number"/>
+            <apex:column value="{!cx.Subject}" headerValue="Subject"/>
+            <apex:column value="{!cx.Contact.email}" headerValue="Creator's Email" />
+            <apex:column value="{!cx.Status}" headerValue="Status" />
+        </apex:datatable>-->
+        <p>Hello {!recipient.name},</p>
+
+<p>The Promotion {!relatedTo.Name} - {!relatedTo.ACCL__Slogan__c}, is submitted for your approval.
+<a href='/{!relatedTo.Id}'>Click Here</a>
+ <apex:outputLink value="/{!relatedTo.id}">{!relatedTo.name}</apex:outputLink>
+Kindly take necessary action. </p>
+
+Thanks, <br/>
+{!relatedTo.CreatedBY.Name}.
+
+        </body>
+    </html>
+    </messaging:htmlEmailBody>
+    
+</messaging:emailTemplate>

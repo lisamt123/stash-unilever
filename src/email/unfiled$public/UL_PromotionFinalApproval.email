@@ -1,0 +1,11 @@
+Hi Team,
+<br></br>
+Promotion {!ACCL__Promotion__c.Name} is approved.
+<br></br>
+Please check the record in application by clicking on following link. Take appropriate action as necessary.
+{!ACCL__Promotion__c.Link}
+<br></br>
+<br></br>
+Thanks,
+<br/>
+{!Approval_Requesting_User.Name}

@@ -1,0 +1,7 @@
+Hi {!User.FirstName},
+<br></br>
+{!ACCL__Promotion__c.CreatedBy} has requested for the approval for the promotion  {!ACCL__Promotion__c.Link}
+<br></br>
+Regards
+<br></br>
+{!Approval_Requesting_User.Name}

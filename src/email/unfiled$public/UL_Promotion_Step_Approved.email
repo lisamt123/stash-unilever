@@ -1,0 +1,6 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div><font face="arial">Hi Team,</font></div><div><font face="arial">&lt;br&gt;&lt;/br&gt;</font></div><div><font face="arial">Promotion {!ACCL__Promotion__c.Name} is approved.</font></div><div><font face="arial">&lt;br&gt;&lt;/br&gt;</font></div><div><font face="arial">Please check the record in application by clicking on following link. Take appropriate action as necessary.</font></div><div><font face="arial">{!ACCL__Promotion__c.Link}</font></div><div><font face="arial">&lt;br&gt;&lt;/br&gt;</font></div><div><font face="arial">&lt;br&gt;&lt;/br&gt;</font></div><div><font face="arial">Thanks.</font></div><div><font face="arial">&lt;br/&gt;</font></div><div><font face="arial">{!Approval_Requesting_User.Name}</font></div>]]></td>
+</tr>
+</table>

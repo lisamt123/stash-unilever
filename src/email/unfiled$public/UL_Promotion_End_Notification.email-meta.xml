@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification to user that promotion Ends today</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Promotion End Notification</name>
+    <style>none</style>
+    <subject>Workflow updated for Promotion {!ACCL__Promotion__c.Name}</subject>
+    <textOnly>Hi Team,
+This is to notify that the Promotion {!ACCL__Promotion__c.Name} is about to end today.
+Kindly take an action if required
+
+Thanks.
+{!Approval_Requesting_User.Name}</textOnly>
+    <type>custom</type>
+</EmailTemplate>

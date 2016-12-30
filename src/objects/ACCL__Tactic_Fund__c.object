@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Relation between Tactic and Fund</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>ACCL__Fund__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Fund</label>
+        <referenceTo>ACCL__Fund__c</referenceTo>
+        <relationshipLabel>Tactic Funds</relationshipLabel>
+        <relationshipName>Tactic_Funds</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>ACCL__Record_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; &amp;Id, $Label.ACCL__RECORD_LINK, &quot;_top&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Record Link</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Tactic__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Reference to the Tactic</description>
+        <externalId>false</externalId>
+        <label>Tactic</label>
+        <referenceTo>ACCL__Tactic__c</referenceTo>
+        <relationshipLabel>Tactic Funds</relationshipLabel>
+        <relationshipName>Tactic_Funds</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Tactic Fund</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>TF-{0000000}</displayFormat>
+        <label>Tactic Fund Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Tactic Funds</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>ACCL__Fund__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Tactic__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCL__Fund__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCL__Tactic__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>ACCL__Fund__c</searchFilterFields>
+        <searchFilterFields>ACCL__Tactic__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>ACCL__Sales_Org_Mismatch</fullName>
+        <active>true</active>
+        <errorConditionFormula>TEXT(ACCL__Tactic__r.ACCL__Tactic_Template__r.ACCL__Sales_Org__c) &lt;&gt; ACCL__Fund__r.ACCL__Sales_Org__c</errorConditionFormula>
+        <errorMessage>Sales Org of Tactic and Fund should be same.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL_Tactic_Amount_check</fullName>
+        <active>true</active>
+        <description>This validation check that the amount mentioned in the Tactic should not be more that the amount of the Fund</description>
+        <errorConditionFormula>ACCL__Tactic__r.ACCL__Amount__c  &gt;  ACCL__Fund__r.ACCL__Amount__c</errorConditionFormula>
+        <errorMessage>Tactic Amount is more that the Fund amount</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>test</fullName>
+        <active>false</active>
+        <errorConditionFormula>ACCL__Tactic__r.ACCL__Amount__c  &gt;  ACCL__Fund__r.ACCL__Amount__c</errorConditionFormula>
+        <errorMessage>tactic amount more</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>ACCL__New_Tactic_Fund</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>New Tactic Fund</masterLabel>
+        <openType>sidebar</openType>
+        <page>ACCL__TacticFundRedirect</page>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,10 @@
+Hi Team,
+<br></br>
+The budget for the Promotion {!ACCL__Promotion__c.Name}has been approved
+<br></br>
+Kindly review if needed.
+<br></br>
+<br></br>
+Thanks. 
+<br/>
+{!Approval_Requesting_User.Name}

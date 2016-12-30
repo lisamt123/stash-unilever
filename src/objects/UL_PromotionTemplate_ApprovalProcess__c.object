@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Stores mapping between Promotion Template and Approval Process. Used in Approval Service class.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>UL_Approval_Process__c</fullName>
+        <description>Approval Process</description>
+        <externalId>false</externalId>
+        <label>Approval Process</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Promotion Template - Approval Process</label>
+    <visibility>Public</visibility>
+</CustomObject>

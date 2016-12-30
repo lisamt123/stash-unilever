@@ -1,0 +1,1124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Attributes associated with an customer.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fieldSets>
+        <fullName>ACCL__MobilityRelevant</fullName>
+        <description>Field set used to restrict the amount of data on the mobility device.</description>
+        <displayedFields>
+            <field>ACCL__Account__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Customer_Role_Number__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Customer_Role_Price_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Customer_Role_Price_List_type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Customer_Role_Valid_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Customer_Role_Valid_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Match_Code__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Priority__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Class_Of_Trade__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Company_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Org_Level__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Phase__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Sales_Relevant__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__State__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Date_Closure__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Delivery_Role_Number_Of_Printouts__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Delivery_Role_Valid_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Delivery_Role_Valid_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Order_Role_Orderer_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Order_Role_Order_Template_Blocked__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Payer_Role_Overall_Credit_Limit__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Payer_Role_Credit_Block__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Payer_Role_Credit_Rating__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Payer_Role_Valid_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Payer_Role_Valid_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Store_Role_Valid_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Store_Role_Valid_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Order_Role_Valid_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Order_Role_Valid_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Broker_Role_Valid_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Broker_Role_Valid_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Bill_To_Role_Valid_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Bill_To_Role_Valid_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Promotion_Valid_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Promotion_Valid_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>MobilityRelevant</label>
+    </fieldSets>
+    <fields>
+        <fullName>ACCL__Account__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Reference to the customer</description>
+        <externalId>false</externalId>
+        <label>Customer</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Customer Extensions</relationshipLabel>
+        <relationshipName>Account_Extensions</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>ACCL__Bill_To_Role_Valid_From__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Bill To Role Valid From</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Bill_To_Role_Valid_Thru__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Bill To Role Valid Thru</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Broker_Role_Valid_From__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Broker Role Valid From</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Broker_Role_Valid_Thru__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Broker Role Valid Thru</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Class_Of_Trade__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Reference to the account the company segment belongs to.</description>
+        <externalId>false</externalId>
+        <label>Class Of Trade</label>
+        <picklist>
+            <picklistValues>
+                <fullName>SM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DrugStores</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DiscountStores</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Restaurants</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ConvenienceStores</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CategorySpecialist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hypermarket</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Department</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Grocery</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kiosk</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hotel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GasStation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Company_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Is used to segment accounts for promotions.</description>
+        <externalId>false</externalId>
+        <label>Company Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Retailer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Independent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OnTrade</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ThirdParty</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Customer_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Account Role Id for customer</description>
+        <externalId>false</externalId>
+        <label>Customer Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Customer_Role_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Customer Role Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Customer_Role_Price_List_type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Customer Role Price List type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Wholesaler</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Direct Customer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NotRelevant</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Customer_Role_Price_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Customer Role Price Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>factory</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NotRelevant</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Customer_Role_Valid_From__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Customer Role Valid From</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Customer_Role_Valid_Thru__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Customer Role Valid Thru</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Date_Closure__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date the company closed.</description>
+        <externalId>false</externalId>
+        <label>Date Closure</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Delivery_Role_Modify_Preset_Quantity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specifies in which way quantity modifications of preset quantities of delivery documents can be modified</description>
+        <externalId>false</externalId>
+        <label>Delivery Role Modify Preset Quantity</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Only Decrease</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Only Increase</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Delivery_Role_Number_Of_Printouts__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Delivery Role Number Of Printouts</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Delivery_Role_Valid_From__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Delivery Role Valid From</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Delivery_Role_Valid_Thru__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Delivery Role Valid Thru</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Fund_Role_Valid_From__c</fullName>
+        <deprecated>false</deprecated>
+        <description>From this date on the fund role is valid.</description>
+        <externalId>false</externalId>
+        <label>Fund Role Valid From</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Fund_Role_Valid_Thru__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Fund Role status valid thru date.</description>
+        <externalId>false</externalId>
+        <label>Fund Role Valid Thru</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Match_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Matchcode of the business partner. Usually a concatenation of several encoded account attributes, e.g. Name + State + City -&gt; KROGER.GA.ATL</description>
+        <externalId>false</externalId>
+        <label>Match Code</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Order_Role_Order_Template_Blocked__c</fullName>
+        <deprecated>false</deprecated>
+        <description>By this temporary order template blocking it is achieved, that this customer can not order them as long this flag is set.</description>
+        <externalId>false</externalId>
+        <label>Order Role Order Template Blocked</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Order_Role_Orderer_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Type of the ordering business partner: direct, indirect.</description>
+        <externalId>false</externalId>
+        <label>Order Role Orderer Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indirect</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Back-end replenishment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Order_Role_Valid_From__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Order Role Valid From</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Order_Role_Valid_Thru__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Order Role Valid Thru</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Org_Level__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Customer organization level classification.</description>
+        <externalId>false</externalId>
+        <label>Org Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>CustLevel01</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CustLevel02</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CustLevel03</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CustLevel04</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CustLevel05</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CustLevel06</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CustLevel07</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Payer_Role_Credit_Block__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Specifies if the customer is credit blocked or not.</description>
+        <externalId>false</externalId>
+        <label>Payer Role Credit Block</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Payer_Role_Credit_Rating__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specifies the credit rating.</description>
+        <externalId>false</externalId>
+        <label>Payer Role Credit Rating</label>
+        <picklist>
+            <picklistValues>
+                <fullName>A</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Payer_Role_Document_Transaction_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specifies how to handle a Orders (e.g. delivery order) regarding payments.</description>
+        <externalId>false</externalId>
+        <label>Document Transaction Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>CashInvoice</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CreditInvoice</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ValuatedDeliveryNote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NonValuatedDeliveryNote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Payer_Role_Overall_Credit_Limit__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specifies the overall credit limit for the customer.</description>
+        <externalId>false</externalId>
+        <label>Payer Role Overall Credit Limit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Payer_Role_Valid_From__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Payer Role Valid From</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Payer_Role_Valid_Thru__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Payer Role Valid Thru</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Phase__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Describes in which systems the record is stored and which system has the priority: 
+- only ERP (cannot occur) 
+- priority ERP, exists in CRM 
+- exist in ERP, priority CRM 
+- only CRM</description>
+        <externalId>false</externalId>
+        <label>Phase</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Priority__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Classification of a company.</description>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <picklist>
+            <picklistValues>
+                <fullName>A - Priority</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B - Priority</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C - Priority</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Promotion_Valid_From__c</fullName>
+        <deprecated>false</deprecated>
+        <description>begin of the validity period of the role &quot;promotion&quot;</description>
+        <externalId>false</externalId>
+        <label>Promotion Valid From</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Promotion_Valid_Thru__c</fullName>
+        <deprecated>false</deprecated>
+        <description>end of the validity period of the role &quot;promotion&quot;</description>
+        <externalId>false</externalId>
+        <label>Promotion Valid Thru</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Record_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; &amp;Id, $Label.ACCL__RECORD_LINK, &quot;_top&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Record Link</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Sales_Relevant__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Denotes, whether the account can be used for sales activities. This attribute controls nothing, just for information.</description>
+        <externalId>false</externalId>
+        <label>Sales Relevant</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__State__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Status of the account. Controls nothing, just information. Business partner roles are used for controlling instead.</description>
+        <externalId>false</externalId>
+        <label>State</label>
+        <picklist>
+            <picklistValues>
+                <fullName>010</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>090</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Store_Role_Valid_From__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Store Role Valid From</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Store_Role_Valid_Thru__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Store Role Valid Thru</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Tax_Jurisdiction_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Describes where the taxes have to be paid.</description>
+        <externalId>false</externalId>
+        <label>Tax Jurisdiction Code</label>
+        <length>15</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Currency__c</fullName>
+        <externalId>false</externalId>
+        <label>Currency</label>
+        <picklist>
+            <picklistValues>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EUR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Customet_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Customet Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indirect</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Direct_Indirect_Flag__c</fullName>
+        <externalId>false</externalId>
+        <label>Direct/Indirect Flag</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_NCF_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>NCF Flag</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Customer Extension</label>
+    <nameField>
+        <displayFormat>AEX-{00000000}</displayFormat>
+        <label>Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Customer Extensions</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>ACCL__Bill_To_Role_Timeframe</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT( 
+OR( 
+AND( 
+ISBLANK(ACCL__Bill_To_Role_Valid_From__c), 
+ISBLANK(ACCL__Bill_To_Role_Valid_Thru__c)), 
+AND( 
+NOT ISBLANK(ACCL__Bill_To_Role_Valid_From__c), 
+NOT ISBLANK(ACCL__Bill_To_Role_Valid_Thru__c), 
+ACCL__Bill_To_Role_Valid_From__c&lt;= ACCL__Bill_To_Role_Valid_Thru__c)))</errorConditionFormula>
+        <errorMessage>If the Role &quot;Bill To&quot; is assigned to the customer, then Valid From and Valid Thru must be specified and Valid Thru must be equal or later than Valid From.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Broker_Role_Timeframe</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT( 
+OR( 
+AND( 
+ISBLANK(ACCL__Broker_Role_Valid_From__c), 
+ISBLANK(ACCL__Broker_Role_Valid_Thru__c)), 
+AND( 
+NOT ISBLANK(ACCL__Broker_Role_Valid_From__c), 
+NOT ISBLANK(ACCL__Broker_Role_Valid_Thru__c), 
+ACCL__Broker_Role_Valid_From__c&lt;= ACCL__Broker_Role_Valid_Thru__c)))</errorConditionFormula>
+        <errorMessage>If the Role &quot;Broker&quot; is assigned to the customer, then Valid From and Valid Thru must be specified and Valid Thru must be equal or later than Valid From.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Customer_Role_Timeframe</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT( 
+OR( 
+AND( 
+ISBLANK(ACCL__Customer_Role_Valid_From__c), 
+ISBLANK(ACCL__Customer_Role_Valid_Thru__c)), 
+AND( 
+NOT ISBLANK(ACCL__Customer_Role_Valid_From__c), 
+NOT ISBLANK(ACCL__Customer_Role_Valid_Thru__c), 
+ACCL__Customer_Role_Valid_From__c&lt;= ACCL__Customer_Role_Valid_Thru__c)))</errorConditionFormula>
+        <errorMessage>If the Role &quot;Customer &quot; is assigned to the customer, then Valid From and Valid Thru must be specified and Valid Thru must be equal or later than Valid From.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Delivery_Role_Timeframe</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT( 
+OR( 
+AND( 
+ISBLANK(ACCL__Delivery_Role_Valid_From__c), 
+ISBLANK(ACCL__Delivery_Role_Valid_Thru__c)), 
+AND( 
+NOT ISBLANK(ACCL__Delivery_Role_Valid_From__c), 
+NOT ISBLANK(ACCL__Delivery_Role_Valid_Thru__c), 
+ACCL__Delivery_Role_Valid_From__c&lt;= ACCL__Delivery_Role_Valid_Thru__c)))</errorConditionFormula>
+        <errorMessage>If the Role &quot;Delivery &quot; is assigned to the customer, then Valid From and Valid Thru must be specified and Valid Thru must be equal or later than Valid From.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Fund_Role_Timeframe</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT(
+        OR(
+        AND(
+        ISBLANK(ACCL__Fund_Role_Valid_From__c),
+        ISBLANK(ACCL__Fund_Role_Valid_Thru__c)),
+        AND(
+        NOT ISBLANK(ACCL__Fund_Role_Valid_From__c),
+        NOT ISBLANK(ACCL__Fund_Role_Valid_Thru__c),
+        ACCL__Fund_Role_Valid_From__c&lt;= ACCL__Fund_Role_Valid_Thru__c)))</errorConditionFormula>
+        <errorMessage>If the Role &quot;Fund &quot; is assigned to the customer, then Valid From and Valid Thru must be specified and Valid Thru must be equal or later than Valid From.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Order_Role_Timeframe</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT( 
+OR( 
+AND( 
+ISBLANK(ACCL__Order_Role_Valid_From__c), 
+ISBLANK(ACCL__Order_Role_Valid_Thru__c)), 
+AND( 
+NOT ISBLANK(ACCL__Order_Role_Valid_From__c), 
+NOT ISBLANK(ACCL__Order_Role_Valid_Thru__c), 
+ACCL__Order_Role_Valid_From__c&lt;= ACCL__Order_Role_Valid_Thru__c)))</errorConditionFormula>
+        <errorMessage>If the Role &quot;Order &quot; is assigned to the customer, then Valid From and Valid Thru must be specified and Valid Thru must be equal or later than Valid From.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Payer_Role_Timeframe</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT( 
+OR( 
+AND( 
+ISBLANK(ACCL__Payer_Role_Valid_From__c), 
+ISBLANK(ACCL__Payer_Role_Valid_Thru__c)), 
+AND( 
+NOT ISBLANK(ACCL__Payer_Role_Valid_From__c), 
+NOT ISBLANK(ACCL__Payer_Role_Valid_Thru__c), 
+ACCL__Payer_Role_Valid_From__c&lt;= ACCL__Payer_Role_Valid_Thru__c)))</errorConditionFormula>
+        <errorMessage>If the Role &quot;Payer &quot; is assigned to the customer, then Valid From and Valid Thru must be specified and Valid Thru must be equal or later than Valid From.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Promotion_Timeframe</fullName>
+        <active>true</active>
+        <description>Validates that Promotion Valid From and Promotion Valid Thru both or none are filled.
+If both are filled, validates that Promotion Valid From &lt;= Promotion Valid Thru</description>
+        <errorConditionFormula>NOT(
+  OR(
+    AND(
+      ISBLANK(ACCL__Promotion_Valid_From__c),
+      ISBLANK(ACCL__Promotion_Valid_Thru__c)),
+    AND(
+      NOT ISBLANK(ACCL__Promotion_Valid_From__c),
+      NOT ISBLANK(ACCL__Promotion_Valid_Thru__c),
+      ACCL__Promotion_Valid_From__c &lt;= ACCL__Promotion_Valid_Thru__c)))</errorConditionFormula>
+        <errorMessage>If the Role &quot;Promotion&quot; is assigned to the customer, then Valid From and Valid Thru must be specified and Valid Thru must be equal or later than Valid From.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Store_Role_Timeframe</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT( 
+OR( 
+AND( 
+ISBLANK(ACCL__Store_Role_Valid_From__c), 
+ISBLANK(ACCL__Store_Role_Valid_Thru__c)), 
+AND( 
+NOT ISBLANK(ACCL__Store_Role_Valid_From__c), 
+NOT ISBLANK(ACCL__Store_Role_Valid_Thru__c), 
+ACCL__Store_Role_Valid_From__c&lt;= ACCL__Store_Role_Valid_Thru__c)))</errorConditionFormula>
+        <errorMessage>If the Role &quot;Store&quot; is assigned to the customer, then Valid From and Valid Thru must be specified and Valid Thru must be equal or later than Valid From.</errorMessage>
+    </validationRules>
+</CustomObject>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>SmartUI Edit ability based on controlling field</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>UL_Controlling_field__c</fullName>
+        <description>Controlling field</description>
+        <externalId>false</externalId>
+        <label>Controlling field</label>
+        <length>100</length>
+        <required>false</required> 
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Fieldset_Name__c</fullName>
+        <description>Fieldset Name</description>
+        <externalId>false</externalId>
+        <label>Fieldset Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Object_Name__c</fullName>
+        <description>Object Name</description>
+        <externalId>false</externalId>
+        <label>Object Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Sales_Org__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Org</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>SmartUI Editability</label>
+    <visibility>Public</visibility>
+</CustomObject>

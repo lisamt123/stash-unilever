@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification to user that promotion starts in 1 week</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Promotion Start Notification</name>
+    <style>none</style>
+    <subject>Workflow updated for Promotion {!ACCL__Promotion__c.Name}</subject>
+    <textOnly>Hi Team,
+
+The Promotion {!ACCL__Promotion__c.Name} is about to start in 1 week.
+Kindly take the appropriate action by checking the record in application by clicking on following link. Take appropriate action as necessary. {!ACCL__Promotion__c.Link}
+
+Thanks.
+{!Approval_Requesting_User.Name}</textOnly>
+    <type>custom</type>
+</EmailTemplate>

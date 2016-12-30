@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>BaselineVolume</fullName>
+        <categories>KPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Baseline</shortDescription>
+        <value>Baseline</value>
+    </labels>
+    <labels>
+        <fullName>CANCEL</fullName>
+        <categories>CreatePromotion_SOCO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CANCEL</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>CLEAR_FILTER</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Clear Filter label.</shortDescription>
+        <value>Clear Filter</value>
+    </labels>
+    <labels>
+        <fullName>CannotSelfApprove</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>use in Workflow Threshold Engine</shortDescription>
+        <value>Planner or Self can&apos;t be approve. Only assignee of this Promotion to advance it to next Workflow State</value>
+    </labels>
+    <labels>
+        <fullName>Duplicate_for_Delivery_profile</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>DUPLICATE FOR DELIVERY PROFILE</shortDescription>
+        <value>Dates are overlapping with existing records for same product/customer/Instore duration combination</value>
+    </labels>
+    <labels>
+        <fullName>EDIT</fullName>
+        <categories>CreatePromotion_SOCO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EDIT</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>GSV</fullName>
+        <categories>KPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GSV</shortDescription>
+        <value>GSV</value>
+    </labels>
+    <labels>
+        <fullName>INCLUSIVE</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Inclusive label</shortDescription>
+        <value>Inclusive</value>
+    </labels>
+    <labels>
+        <fullName>Manual</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Manual</shortDescription>
+        <value>Manual</value>
+    </labels>
+    <labels>
+        <fullName>NEW</fullName>
+        <categories>CreatePromotion_SOCO</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NEW</shortDescription>
+        <value>New</value>
+    </labels>
+    <labels>
+        <fullName>NO_SEARCH_CRITERIA</fullName>
+        <categories>UL_AddCustomer</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Provide Search Criteria</shortDescription>
+        <value>Please enter at least one search criteria</value>
+    </labels>
+    <labels>
+        <fullName>None</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>None</shortDescription>
+        <value>None</value>
+    </labels>
+    <labels>
+        <fullName>PP_LBL_STATUS</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PP_LBL_STATUS</shortDescription>
+        <value>test lable</value>
+    </labels>
+    <labels>
+        <fullName>Promotion_Access_Edit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Promotion Access Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>Promotion_Access_Read</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Promotion Access Read</shortDescription>
+        <value>Read</value>
+    </labels>
+    <labels>
+        <fullName>SAVE</fullName>
+        <categories>CreatePromotion_SOCO</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SAVE</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>Shipment_Instore_validation</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>Shipment_Instore_validation</shortDescription>
+        <value>Shipment Start Date should be on or before In-Store Start Date!</value>
+    </labels>
+    <labels>
+        <fullName>UL_ADD_CUSTOMER_TO</fullName>
+        <categories>Add Customer Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add customer page header</shortDescription>
+        <value>Add Customer(s) to</value>
+    </labels>
+    <labels>
+        <fullName>UL_Approval_Threshold_duplicate_error_message</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval Threshold duplicate error message</shortDescription>
+        <value>The Career Level for this Sales Org already Exists</value>
+    </labels>
+    <labels>
+        <fullName>UL_CANCEL</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_CANCEL</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>UL_CUCUQuantityError</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>ErrorMessage</shortDescription>
+        <value>An Error occurred while updating CUQuantity value</value>
+    </labels>
+    <labels>
+        <fullName>UL_CURRENCY_DISCREPANCY</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Customer default sold to</shortDescription>
+        <value>Error: A planning level cannot be created for a customer that has sold-to&apos;s with multiple currencies. Please choose a customer node with a single currency to create a planning level.</value>
+    </labels>
+    <labels>
+        <fullName>UL_CUSTOMER_GROUP</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Customer Group</shortDescription>
+        <value>Grupo de Cliente</value>
+    </labels>
+    <labels>
+        <fullName>UL_CUSTOMER_NAME</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Customer Name</shortDescription>
+        <value>Cliente</value>
+    </labels>
+    <labels>
+        <fullName>UL_Cannibalisation_Error</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Cannibalisation_Error</shortDescription>
+        <value>Dates are overlapping with existing records for same product/customer/feature combination</value>
+    </labels>
+    <labels>
+        <fullName>UL_Cannibalisation_Error_Msg</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Cannibalisation_Error_Msg</shortDescription>
+        <value>An Error occured on Cannibalisation Rate insert</value>
+    </labels>
+    <labels>
+        <fullName>UL_Cannibalisation_beforeInsert</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Cannibalisation_beforeInsert</shortDescription>
+        <value>beforeInsert</value>
+    </labels>
+    <labels>
+        <fullName>UL_Cross_Category_Error</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Cross Category Error</shortDescription>
+        <value>For Cross Category Transfer transaction the product category in funds cannot be same</value>
+    </labels>
+    <labels>
+        <fullName>UL_DELETE</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_DELETE</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>UL_Default_Sold_To</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>Default Sold To</shortDescription>
+        <value>Default Sold To</value>
+    </labels>
+    <labels>
+        <fullName>UL_Delivery_Profile_section</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>Delivery Profile section</shortDescription>
+        <value>Note: All days are defined in relation to In-Store Start Date</value>
+    </labels>
+    <labels>
+        <fullName>UL_EDIT</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_EDIT</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>UL_ERROR_MESSAGE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generic error message</shortDescription>
+        <value>An error occurred, please contact system administrator.</value>
+    </labels>
+    <labels>
+        <fullName>UL_Edit_Keyword</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Edit_Keyword</shortDescription>
+        <value>/e</value>
+    </labels>
+    <labels>
+        <fullName>UL_EligibleAnchor</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>refere in class-UL_PromotionCopyExtension</shortDescription>
+        <value>You are not manager for the selected Anchor Customer</value>
+    </labels>
+    <labels>
+        <fullName>UL_MARKET</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Market</shortDescription>
+        <value>Mercado</value>
+    </labels>
+    <labels>
+        <fullName>UL_MARKET_CHANNEL</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Market Channel</shortDescription>
+        <value>Canal de Mercado</value>
+    </labels>
+    <labels>
+        <fullName>UL_MaxStoreDate</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_MaxStoreDate</shortDescription>
+        <value>91</value>
+    </labels>
+    <labels>
+        <fullName>UL_Multiple_Markets</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Multiple_Markets</shortDescription>
+        <value>Multiple Markets</value>
+    </labels>
+    <labels>
+        <fullName>UL_NEW</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_NEW</shortDescription>
+        <value>New</value>
+    </labels>
+    <labels>
+        <fullName>UL_Name</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>UL_PROMOTION_DETAILS</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_PROMOTION_DETAILS</shortDescription>
+        <value>Promotion Details</value>
+    </labels>
+    <labels>
+        <fullName>UL_PROMOTION_LOCKEDOUT</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Promotion submit request</shortDescription>
+        <value>If you are trying to submit Promotion for Workflow Approval, please check that the Promotion is Active and is in Planning state</value>
+    </labels>
+    <labels>
+        <fullName>UL_PlanningLevelAndCurrency</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Planning Level And Currency</shortDescription>
+        <value>There is already a planning level defined within the same branch of the customer hierarchy for the dates selected. Please end-date that planning level before establishing a new level at this node.</value>
+    </labels>
+    <labels>
+        <fullName>UL_PlanningLevelBetween3To7</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Planning Level Between 3 To 7</shortDescription>
+        <value>Planning Level can only be set between levels 3 to 8</value>
+    </labels>
+    <labels>
+        <fullName>UL_PlanningStartEndDate</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Planning Start And End Date</shortDescription>
+        <value>Please enter Planning Start and End Dates, then set Planning Level</value>
+    </labels>
+    <labels>
+        <fullName>UL_Pomotion_URL</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Promotion URL after copy</shortDescription>
+        <value>/apex/MyPromotionPlanning?id=</value>
+    </labels>
+    <labels>
+        <fullName>UL_ProductsMandatory</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>refer in class-UL_TacticsValidate</shortDescription>
+        <value>Each investment must have at least one product</value>
+    </labels>
+    <labels>
+        <fullName>UL_PromTemplateActive</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>Promotion is not Active</shortDescription>
+        <value>Promotion template is not active please active it.</value>
+    </labels>
+    <labels>
+        <fullName>UL_PromotionDeleteError</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>Promotion Delete Error Message</shortDescription>
+        <value>User can not delete record in</value>
+    </labels>
+    <labels>
+        <fullName>UL_Promotion_Success</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Refer in VF page on promotion created</shortDescription>
+        <value>Promotion Created Successfully</value>
+    </labels>
+    <labels>
+        <fullName>UL_SALES_ORG_DUPLICATE_CAREER_LEVEL</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Duplicate career level in same sales org</shortDescription>
+        <value>The Career Level for this Sales Org already Exists.</value>
+    </labels>
+    <labels>
+        <fullName>UL_SAVE</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_SAVE</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>UL_SELECT_DEFAULT_SOLD</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_SELECT_DEFAULT_SOLD</shortDescription>
+        <value>Select Default SoldTo Here</value>
+    </labels>
+    <labels>
+        <fullName>UL_SOLD_TO</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_SOLD_TO</shortDescription>
+        <value>Sold To</value>
+    </labels>
+    <labels>
+        <fullName>UL_SaveAndNew</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>SaveAndNew</shortDescription>
+        <value>Save &amp; New</value>
+    </labels>
+    <labels>
+        <fullName>UL_Save_New</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Save&amp;New</shortDescription>
+        <value>Save &amp; New</value>
+    </labels>
+    <labels>
+        <fullName>UL_Slash_Char</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Slash_Char</shortDescription>
+        <value>/</value>
+    </labels>
+    <labels>
+        <fullName>UL_Tactic_Fund_Amount_Error</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Tactic Fund Amount Error</shortDescription>
+        <value>Tactic Amount is more than the available amount in the Fund</value>
+    </labels>
+    <labels>
+        <fullName>UL_TacticsOverlap</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Tactics Overlap in My Promtion Planning page</shortDescription>
+        <value>Dates range overlapped with existing Tactics</value>
+    </labels>
+    <labels>
+        <fullName>UL_Template_Error</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>Template Error</shortDescription>
+        <value>Please select Promotion Template!</value>
+    </labels>
+    <labels>
+        <fullName>UL_Transfer_Error</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Transfer Error</shortDescription>
+        <value>For Transfer transaction the product category in funds must be same</value>
+    </labels>
+    <labels>
+        <fullName>UL_UPDATE</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_UPDATE</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>Ul_EmptyAccounts</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>Ul_EmptyAccounts</shortDescription>
+        <value>you do not have valid planning period Accounts!</value>
+    </labels>
+    <labels>
+        <fullName>Write</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Write</shortDescription>
+        <value>Write</value>
+    </labels>
+    <labels>
+        <fullName>weekShare</fullName>
+        <categories>KPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Weekly Split</shortDescription>
+        <value>Weekly Split</value>
+    </labels>
+</CustomLabels>
