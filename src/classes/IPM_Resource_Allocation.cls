@@ -436,11 +436,11 @@ public with sharing class IPM_Resource_Allocation {
           }
           else if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY)
           {
-            partialFilterTeamMember1(uQuery);
+            uQuery = partialFilterTeamMember1(uQuery); 
           }
         else if(searchTeambyCat==IPM_ConstantUtils.TEAM_ALLCATEGORY )
         {
-            partialFilterTeamMember2(uQuery);
+            uQuery = partialFilterTeamMember2(uQuery);
         }
         try
         {
@@ -458,7 +458,7 @@ public with sharing class IPM_Resource_Allocation {
         @Description: This method is created to resolve nPath Complexity issue  
         @Return: Void
     *****************************************************************************/
-    private void partialFilterTeamMember1(string uQuery){
+    private String  partialFilterTeamMember1(string uQuery){
         
         if(ipmproject.IPM_ProjectGKM__c==GKM3 )
             {
@@ -493,6 +493,7 @@ public with sharing class IPM_Resource_Allocation {
               uQuery=uQuery+' AND (IPM_User__r.name LIKE :querySearchTeamMem  OR ';
               uQuery=uQuery+SRCH_FILTER;
               uQuery=uQuery+' AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
+             return uQuery;
     }
     
     
@@ -500,7 +501,7 @@ public with sharing class IPM_Resource_Allocation {
         @Description: This method is created to resolve nPath Complexity issue  
         @Return: Void
     *****************************************************************************/
-    private void partialFilterTeamMember2(string uQuery)
+    private String partialFilterTeamMember2(string uQuery)
     {
         if(roleType==IPM_ConstantUtils.TEAM_GUEST)
             {
@@ -515,6 +516,7 @@ public with sharing class IPM_Resource_Allocation {
                 uQuery=uQuery+SRCH_FILTER;
                 uQuery=uQuery+'AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT; 
             }
+            return uQuery;
     }
     
     
