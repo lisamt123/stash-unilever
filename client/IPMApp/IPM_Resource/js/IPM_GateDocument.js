@@ -4,11 +4,11 @@
  *@Created Date: 28/05/2015 
 *********************************************************************************/
 jq(document).ready(function() {
-    /*if(IPMApp.IsPdldoc === 'true') {
+    if(IPMApp.IsPdldoc === 'false') {
         getMainDataFunc();
         getAppendixDataFunc();
     }  
-    getUserTypeFunc();*/
+    getUserTypeFunc();
 /* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */
     jq(".contenWrapper .ipmAcrdnExpand").hide();
     if (window.location.href.indexOf("IPM_GateDocument") > -1) {
