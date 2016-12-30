@@ -6,5 +6,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>RFS Sales Development Manager Independent HoReCa</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>National_Development_Manager</parentRole>
+    <parentRole>National_Chains_Manager</parentRole>
 </Role>
