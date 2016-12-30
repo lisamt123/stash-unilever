@@ -36,7 +36,7 @@ src/objects/UL_UserCustomerProduct__c.object
 src/objects/UL_Workflow_Threshold__c.object
 src/objects/UL_Workflow_Threshold_Template__c.object
 src/objects/Account.object
-src/objects/Promotion_Acc_Rel__c
+src/objects/Promotion_Acc_Rel__c.object
 src/objectTranslations
 src/objectTranslations/ACCL__Account_Bill_To__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Account_Call_Setting__c-en_US.objectTranslation
@@ -350,7 +350,10 @@ src/classes/UL_UtilityController.cls-meta.xml
 src/classes/UL_fundAmountCalculation.cls-meta.xml
 src/classes/UL_fundAmountCalculation_Test.cls-meta.xml
 src/classes/UL_fundTransferTransactionHandler.cls-meta.xml
-src/Classes/Constants
+src/Classes/Constants.cls
+src/Classes/Constants.cls-meta.xml
+src/Classes/MyContractRemoteActionExtension.cls
+src/Classes/MyContractRemoteActionExtension.cls-meta.xml
 src/pages
 src/pages/MyPromotionPlanning.page
 src/pages/MyPromotionPlanning.page-meta.xml
@@ -372,5 +375,7 @@ src/pages/Ul_ViewDeliveryProfile.page
 src/pages/Ul_ViewDeliveryProfile.page-meta.xml
 src/pages/UL_WorkfllowThresholdTemplatePage.page
 src/pages/UL_WorkfllowThresholdTemplatePage.page-meta.xml
+src/pages/UL_Delivery_Profile.page
+src/pages/UL_Delivery_Profile.page-meta.xml
 src/globalPicklists
 src/globalPicklists/UL_Feature.globalPicklist

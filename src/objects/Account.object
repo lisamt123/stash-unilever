@@ -1342,7 +1342,7 @@ NOT($Profile.Name = &quot;System Administrator&quot;))</errorConditionFormula>
 
 <!-- TPM Components End          -->
     <fieldSets>
-        <fullName>Edit_Agency</fullName>
+       <!-- <fullName>Edit_Agency</fullName>
         <description>Agency portal for users to edit their own details.</description>
         <displayedFields>
             <field>Strategic_Capabilities__c</field>
@@ -1379,7 +1379,7 @@ NOT($Profile.Name = &quot;System Administrator&quot;))</errorConditionFormula>
             <isFieldManaged>true</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
-        <label>Edit Agency</label>
+        <label>Edit Agency</label> -->
     </fieldSets>
     <fields>
         <fullName>AccountCurrency__c</fullName>
