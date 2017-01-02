@@ -1994,7 +1994,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2007,7 +2006,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2021,7 +2019,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2035,7 +2032,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2075,7 +2071,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2088,7 +2083,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2101,7 +2095,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2116,7 +2109,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2129,7 +2121,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2158,7 +2149,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Not Pursued</controllingFieldValues>
             </picklistValues>

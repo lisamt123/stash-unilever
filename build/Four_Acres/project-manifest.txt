@@ -109,3 +109,5 @@ src/permissionsets/FAU_Participant_Salesforce.permissionset
 src/permissionsets/FAU_Program_Administrator_Platform.permissionset
 src/permissionsets/FAU_Program_Administrator_Salesforce.permissionset
 src/profiles/Unilever - Force MultiApp Standard.profile
+src/pages/FAU_Participant_Register.page
+src/pages/FAU_Participant_Register.page-meta.xml
