@@ -3691,5 +3691,23 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Date</type>
     </fields>
+	  <fields>
+        <fullName>UL_Finance_Manager__c</fullName>
+        <externalId>false</externalId>
+        <label>Finance_Manager</label>
+        <relationshipName>Finance_Manager</relationshipName>
+        <restrictedAdminField>false</restrictedAdminField>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Hierarchy</type>
+    </fields>
+	<fields>
+        <fullName>UL_Finance_Analyst__c</fullName>
+        <externalId>false</externalId>
+        <label>Finance_Analyst</label>
+        <relationshipName>Finance_Analyst</relationshipName>
+        <restrictedAdminField>false</restrictedAdminField>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Hierarchy</type>
+    </fields>
 	<!--   TPM Fields End -->
 </CustomObject>
