@@ -1,3 +1,4 @@
 src
-src/permissionsets/FAU_Participant_Platform.permissionset
-src/permissionsets/FAU_Program_Administrator_Platform.permissionset
+src/layouts/FAU_Participant__c-FAU Class  Participant Layout.layout
+src/classes/FAU_PArticipant_BioControllerExtension.cls
+src/classes/FAU_PArticipant_BioControllerExtension.cls-meta.xml
