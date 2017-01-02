@@ -7971,22 +7971,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     <recordTypes>
         <fullName>ACCL__Customer</fullName>
         <active>true</active>
-        <label>Customer</label>
-		 <picklistValues>
-            <picklist>UpsellOpportunity__c</picklist>
-            <values>
-                <fullName>Maybe</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
+        <label>Customer</label>		 
         <picklistValues>
             <picklist>ACCL__Country__c</picklist>
             <values>
@@ -24573,7 +24558,26 @@ Shipping Country</errorMessage>
         <showsStatus>true</showsStatus>
         <url>http://news.altavista.com/search?nc=0&amp;q={!Account_Name}</url>
     </webLinks>
-    <webLinks>
+     <webLinks>
+        <fullName>Billing</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>true</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>true</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Billing</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>true</showsLocation>
+        <showsStatus>true</showsStatus>
+        <url>http://www.genwatt.com/genwatt/billing.htm?actname={!Account.Name}</url>
+    </webLinks>
+	<webLinks>
         <fullName>CHD__Billing</fullName>
         <availability>online</availability>
         <displayType>link</displayType>
