@@ -993,6 +993,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Other</fullName>
                 <default>false</default>
             </picklistValues>
+			 <picklistValues>
+                <fullName>Phone Inquiry</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Partner Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+			 <picklistValues>
+                <fullName>Purchased List</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>

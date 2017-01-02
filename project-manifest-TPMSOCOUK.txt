@@ -407,3 +407,15 @@ src/pages/UL_Delivery_Profile.page
 src/pages/UL_Delivery_Profile.page-meta.xml
 src/globalPicklists
 src/globalPicklists/UL_Feature.globalPicklist
+src/staticresources
+src/staticresources/SLDS202.resource
+src/staticresources/SLDS202.resource-meta.xml
+src/staticresources/assets.resource
+src/staticresources/assets.resource-meta.xml
+src/staticresources/demoDist.resource
+src/staticresources/demoDist.resource-meta.xml
+src/staticresources/projectDist.resource
+src/staticresources/projectDist.resource-meta.xml
+
+
+
