@@ -36,6 +36,7 @@ src/objects/UL_UserCustomerProduct__c.object
 src/objects/UL_Workflow_Threshold__c.object
 src/objects/UL_Workflow_Threshold_Template__c.object
 src/objects/Account.object
+src/objects/User.object
 src/objects/Promotion_Acc_Rel__c.object
 src/objectTranslations
 src/objectTranslations/ACCL__Account_Bill_To__c-en_US.objectTranslation

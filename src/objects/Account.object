@@ -1256,7 +1256,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	  <listViews>
+	 <!-- <listViews>
         <fullName>Sold_To</fullName>
         <columns>ACCOUNT.NAME</columns>
         <columns>ACCOUNT.ADDRESS1_STATE</columns>
@@ -1270,7 +1270,7 @@
         </filters>
         <label>Sold To</label>
         <language>en_US</language>
-    </listViews>
+    </listViews>-->
 	 <validationRules>
         <fullName>UL_NCFFlagValidation</fullName>
         <active>true</active>
