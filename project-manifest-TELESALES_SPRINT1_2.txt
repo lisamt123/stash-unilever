@@ -1,5 +1,3 @@
-src/quickActions
-src/quickActions/Campaign.TEL_Associate_Account_Button.quickAction
-src/quickActions/Campaign.TEL_Associate_Products.quickAction
 src/layouts
 src/layouts/Campaign-Telesales Campaign Layout.layout
+src/layouts/Opportunity-TEL_Telesales.layout

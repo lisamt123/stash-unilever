@@ -110,6 +110,7 @@ src/layouts
 src/layouts/Account-Account Layout.layout
 src/layouts/Case-TEL_Sample_Requests.layout
 src/layouts/Campaign-Telesales Campaign Layout.layout
+src/layouts/Opportunity-TEL_Telesales.layout
 src/flows
 src/flows/TEL_Submit_Sample_Request_Caswe_for_Approval-1.flow
 src/triggers
@@ -155,6 +156,3 @@ src/tabs/TEL_Campaign_Accounts__c.tab
 src/tabs/TEL_GenOpp.tab
 src/applications
 src/applications/TEL_Telesales.app
-src/quickActions
-src/quickActions/Campaign.TEL_Associate_Account_Button.quickAction
-src/quickActions/Campaign.TEL_Associate_Products.quickAction
