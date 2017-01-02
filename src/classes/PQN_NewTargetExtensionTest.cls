@@ -11,7 +11,7 @@ Public Class PQN_NewTargetExtensionTest{
      
         target.Year__c = '2016';
         target.Target_Reduction__c  = 10;
-        target.Region_Geography__c = 'UK';
+        target.Region__c= 'UK';
         insert target;
         
         ApexPages.StandardController stdTarget = new ApexPages.StandardController(target);

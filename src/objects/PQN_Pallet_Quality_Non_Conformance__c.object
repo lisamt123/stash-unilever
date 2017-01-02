@@ -16,7 +16,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
-        <type>Default</type>
+        <content>PQN_DeleteOverride</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
@@ -63,7 +65,21 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Account__c</fullName>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Pallet Quality Non Conformance</relationshipLabel>
+        <relationshipName>Pallet_Quality_Non_Conformance</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
     <fields>
         <fullName>Cluster__c</fullName>
         <description>Cluster to be Auto-populated based upon DC master data</description>
@@ -132,6 +148,15 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Current_Month_Freeze_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Current Month Freeze Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>DC_Country__c</fullName>
@@ -519,12 +544,25 @@
                 <fullName>Zimbabwe</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>DC_Volumes__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>DC Volumes</label>
+        <referenceTo>PQN_DC_Volumes__c</referenceTo>
+        <relationshipLabel>Pallet Quality Non Conformance</relationshipLabel>
+        <relationshipName>Pallet_Quality_Non_Conformance</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Date_Pallet_Received__c</fullName>
@@ -581,6 +619,25 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Error_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Error Description</label>
+        <length>131070</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Is_Error__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Error</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Loss_Level_4__c</fullName>
@@ -844,6 +901,53 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>MonthN__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(MONTH( Date_Pallet_Received__c ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>MonthN</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Month__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(MONTH(Date_Pallet_Received__c),
+1,&quot;January&quot;,
+2,&quot;February&quot;,
+3,&quot;March&quot;,
+4,&quot;April&quot;,
+5,&quot;May&quot;,
+6,&quot;June&quot;,
+7,&quot;July&quot;,
+8,&quot;August&quot;,
+9,&quot;September&quot;,
+10,&quot;October&quot;,
+11,&quot;November&quot;,
+12,&quot;December&quot;,
+&quot;None&quot;)</formula>
+        <label>Month</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Multi_Timestamp__c</fullName>
+        <externalId>false</externalId>
+        <label>Multi Timestamp</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Non_compliance_reason_code__c</fullName>
@@ -1150,6 +1254,20 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Sup_type_num__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Supplier_type__c, &apos;SU&apos;, 1,&apos;DC&apos;,2,&apos;Im/Ex&apos;,3,4 )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sup_type_num</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Supplier_Number__c</fullName>
         <description>supplier number for a supplier</description>
         <externalId>false</externalId>
@@ -1185,6 +1303,80 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>Target_Reduction__c</fullName>
+        <externalId>false</externalId>
+        <label>Target Reduction</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Targets__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Targets</label>
+        <referenceTo>PQN_Targets__c</referenceTo>
+        <relationshipLabel>Pallet Quality Non Conformance</relationshipLabel>
+        <relationshipName>Pallet_Quality_Non_Conformance</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Total_DC_Vol_Year__c</fullName>
+        <externalId>false</externalId>
+        <label>Total DC Vol/Year</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_NC__c</fullName>
+        <externalId>false</externalId>
+        <formula>Number_of_Pallets_Per_SKU_Non_Compliant__c  /  Total_pallets_received_by_DC__c</formula>
+        <label>Total NC %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_pallets_received_by_DC__c</fullName>
+        <externalId>false</externalId>
+        <label>Total pallets received by DC</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Year__c</fullName>
+        <description>Store the year of data entry</description>
+        <externalId>false</externalId>
+        <formula>TEXT (YEAR( Date_Pallet_Received__c ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Year</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>Pallet Quality Non Conformance</label>
     <listViews>
         <fullName>All</fullName>
@@ -1196,6 +1388,9 @@
         <columns>Reporting_DC__c</columns>
         <columns>Supplier__c</columns>
         <columns>SKU__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Region__c</columns>
+        <columns>Product_Category__c</columns>
         <columns>Losses__c</columns>
         <columns>OWNER.FIRST_NAME</columns>
         <filterScope>Everything</filterScope>
@@ -1238,7 +1433,13 @@
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
     </searchLayouts>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>PQN_NonEditable_Record</fullName>
+        <active>false</active>
+        <errorConditionFormula>( TODAY()  - DATEVALUE(CreatedDate )) &gt; 10</errorConditionFormula>
+        <errorMessage>Records should not be edited after 3o days</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>PQN_Validate_supplier_Number</fullName>
         <active>false</active>
@@ -1248,7 +1449,7 @@
     </validationRules>
     <validationRules>
         <fullName>PQN_Validation_ON_Date_Pallet_Received</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This validation rule, will ensure that user will not enter a future date (Greater than today) for Date Pallet Received.</description>
         <errorConditionFormula>Date_Pallet_Received__c &gt;  TODAY()</errorConditionFormula>
         <errorDisplayField>Date_Pallet_Received__c</errorDisplayField>

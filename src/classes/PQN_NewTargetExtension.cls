@@ -9,7 +9,7 @@ public with sharing class PQN_NewTargetExtension{
         targets = new PQN_Targets__c();
         targetId = Apexpages.currentpage().getparameters().get('id');
         if(targetId!=null){
-           targets = [select id,Region_Geography__c,Target_Reduction__c,Notes__c, Year__c
+           targets = [select id,Region__c,Target_Reduction__c,Notes__c, Year__c
                     from PQN_Targets__c where id=: targetId];    
         }
         
@@ -44,6 +44,21 @@ public with sharing class PQN_NewTargetExtension{
         return null;
     }
     
+    public pagereference cancelTarget(){       
+          if(targets.id==null){
+            PageReference pqnhomePage = page.PQN_home;
+            pqnhomePage.setRedirect(true);        
+            return pqnhomePage;
+        } 
+        else{
+            PageReference recordPage = page.PQN_Target_Detail_VF;
+            recordPage.setRedirect(true);   
+            recordPage.getParameters().put('id',targets.id);     
+            return recordPage;
+        } 
+        
+        return null;
+      } 
   
 
 }
