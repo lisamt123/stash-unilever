@@ -153,7 +153,7 @@ public with sharing class IPM_CU_Complexity_Controller {
             contentCount=[SELECT Count() FROM IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__c=:projectSecId and IPM_Gate_Type__c=:typeOfGate];
             if(contentCount>0){
                 projDocSecCon=[select IPM_Gate_Type__c,IPM_Project_Effect__c,IPM_Content_Type__c,IPM_Total_Cu_Count_Impact__c,IPM_Decreased_By__c,IPM_Increased_By__c from  IPM_Project_Document_Section_Content__c
-                Where IPM_Project_Document_Section__c=:projectSecId and IPM_Gate_Type__c=:typeOfGate];
+                Where IPM_Project_Document_Section__c=:projectSecId and IPM_Gate_Type__c=:typeOfGate LIMIT 1];
             }
         }
         
