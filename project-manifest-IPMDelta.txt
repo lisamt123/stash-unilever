@@ -1,14 +1,4 @@
 src
 src/classes
-src/classes/IPM_FinancialYearHelper.cls
-src/classes/IPM_FinancialYearHelper.cls-meta.xml
-src/classes/IPM_GateDocumentController.cls
-src/classes/IPM_GateDocumentController.cls-meta.xml
-src/components
-src/components/IPM_AssortmentStrategy.component
-src/components/IPM_AssortmentStrategy.component-meta.xml
-src/components/IPM_CMIGateSectionPDF.component
-src/components/IPM_CMIGateSectionPDF.component-meta.xml
-src/pages
-src/pages/IPM_GateDocument.page
-src/pages/IPM_GateDocument.page-meta.xml
+src/classes/IPM_CU_Complexity_Controller.cls
+src/classes/IPM_CU_Complexity_Controller.cls-meta.xml
