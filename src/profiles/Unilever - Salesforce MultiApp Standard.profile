@@ -47930,6 +47930,9 @@
         <layout>FAQ_Enhanced__kav-FAQ Enhanced Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>FAU_Email__c-Email Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>FAU_Milestone_Participant__c-Milestone Participant Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -47950,7 +47953,21 @@
         <layout>FAU_Module__c-Module Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>FAU_PII_Table__c-PII Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FAU_PII__c-PII Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FAU_Participant__c-FAU Class  Participant Layout</layout>
+        <recordType>FAU_Participant__c.UL2020_Participant</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>FAU_Participant__c-FAU Participant Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FAU_Participant__c-FAU Participant Layout</layout>
+        <recordType>FAU_Participant__c.Program_participant</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>FAU_Program__c-FAU Core</layout>
@@ -47967,6 +47984,10 @@
     <layoutAssignments>
         <layout>FAU_Program__c-FAU Template %28Inactive%29</layout>
         <recordType>FAU_Program__c.Template_Inactive</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FAU_Program__c-FAU UL2020</layout>
+        <recordType>FAU_Program__c.UL2020</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>FAU_Program__c-Program Wave Layout</layout>
