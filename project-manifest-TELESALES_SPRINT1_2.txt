@@ -1,3 +1,8 @@
+src/aura
+src/aura/TEL_AssignOpportunityOwner/TEL_AssignOpportunityOwner.cmp
+src/aura/TEL_AssignOpportunityOwner/TEL_AssignOpportunityOwner.cmp-meta.xml
+src/aura/TEL_AssignOpportunityOwner/TEL_AssignOpportunityOwnerController.js
+src/aura/TEL_AssignOpportunityOwner/TEL_AssignOpportunityOwnerHelper.js
 src/quickActions
 src/quickActions/Campaign.TEL_Associate_Account_Button.quickAction
 src/quickActions/Campaign.TEL_Associate_Products.quickAction

@@ -9,7 +9,7 @@ History
 VERSION AUTHOR 				DATE 		DETAIL Description
 1.0 	Ronaldo Garcia  	27/12/2016  Class Creation
 *********************************************************************** --> 
-<aura:component controller="TEL_AssignOpportunityOwner" implements="force:hasRecordId,force:lightningQuickAction" access="global" >
+<aura:component controller="TEL_AssignOpportunityOwner" implements="force:hasRecordId,force:lightningQuickAction">
 	
     <!-- Lightning Style --> 
     <ltng:require styles="{!$Resource.TEL_TelesalesCSS +'/assets/styles/salesforce-lightning-design-system.css'}"/>
