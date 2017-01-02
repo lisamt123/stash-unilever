@@ -7,7 +7,7 @@ Handles Pending Call/Scheduled Opportunity products exhibition logic
 
 History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
- 1.0    Diego Maranhão  22/11/2016  Class creation  
+1.0    Diego Maranhão  22/11/2016  Class creation  
 ***********************************************************************/
 public with sharing class TEL_OpenProductOrder {
     
@@ -32,7 +32,7 @@ public with sharing class TEL_OpenProductOrder {
     
     //Checks which TEL_Campaign_Accounts__c from given List<TEL_Campaign_Accounts__c>
     //are active and returns a List<TEL_Campaign_Products__c> based on their ids
-    private List<TEL_Campaign_Products__c> getCampaignIds(List<TEL_Campaign_Accounts__c> accountCampaignsListParam) {
+    @TestVisible private List<TEL_Campaign_Products__c> getCampaignIds(List<TEL_Campaign_Accounts__c> accountCampaignsListParam) {
         if(!accountCampaignsListParam.isEmpty()) {
             List<String> activeCampaignsIds = new List<String>();
             for(TEL_Campaign_Accounts__c accCamp : accountCampaignsListParam) {
@@ -47,7 +47,7 @@ public with sharing class TEL_OpenProductOrder {
     }
     
     //Retrieves and returns a List<OpportunityLineItem> based on given List<Opportunity> parameter
-    private List<OpportunityLineItem> getOppLineItems(List<Opportunity> opportunityListParam) {
+    @TestVisible private List<OpportunityLineItem> getOppLineItems(List<Opportunity> opportunityListParam) {
         if(!opportunityListParam.isEmpty()) {
             return TEL_ProductInfo_CC_DAO.getOppLineitems(opportunityListParam.get(0).Id);
         } else {
@@ -58,7 +58,7 @@ public with sharing class TEL_OpenProductOrder {
     //Retrieves prices for both products with active campaigns List<TEL_Campaign_Products__c>
     //and opportunity line items List<OpportunityLineItem> and returns a Map<String, String>
     //with its key being the Product2 id and its value the product price
-    private Map<String, String> getPrices() {
+    @TestVisible private Map<String, String> getPrices() {
         List<String> productsIds = new List<String>();
         for(TEL_Campaign_Products__c campProd : activeCampaignsProductsList) {
             productsIds.add(campProd.TEL_Product_Name__c);
@@ -119,7 +119,7 @@ public with sharing class TEL_OpenProductOrder {
     
     //Checks if given TEL_Campaign_Products__c was on last order and if so
     //returns the amount ordered
-    private String checkLastOrderAmount(TEL_Campaign_Products__c campProdParam) {
+    @TestVisible private String checkLastOrderAmount(TEL_Campaign_Products__c campProdParam) {
         for(OpportunityLineItem oppLineItem : oppLineItemsList) {
             if(oppLineItem.Product2Id == campProdParam.TEL_Product_Name__c 
                && oppLineItem.Quantity > 0) 
@@ -133,7 +133,7 @@ public with sharing class TEL_OpenProductOrder {
     //Receives a List<TEL_TelesalesWrapper.ProductInfo> and a TEL_Campaign_Products__c and 
     //checks if the product was already created on given wrapper list so that no 
     //products with active campaigns gets duplicated
-    private Boolean checkCampaignDuplicity(List<TEL_TelesalesWrapper.ProductInfo> wrapperList, TEL_Campaign_Products__c campProd) {
+    @TestVisible private Boolean checkCampaignDuplicity(List<TEL_TelesalesWrapper.ProductInfo> wrapperList, TEL_Campaign_Products__c campProd) {
         for(TEL_TelesalesWrapper.ProductInfo wrapperProd : wrapperList) {
             if(campProd.TEL_Product_Name__c == wrapperProd.productId) 
             {
@@ -157,9 +157,9 @@ public with sharing class TEL_OpenProductOrder {
     }
     
     //Concats, if there's more than one, all the campaign names for each product
- 	//populating a Map<String String> productsCampaignsMap with its key being the
- 	//product id and its value the concatenation
-    private void getAllCampaigns() {
+    //populating a Map<String String> productsCampaignsMap with its key being the
+    //product id and its value the concatenation
+    @TestVisible private void getAllCampaigns() {
         String value;
         for(TEL_Campaign_Products__c campProd : activeCampaignsProductsList) {
             if(productsCampaignsMap.containsKey(campProd.TEL_Product_Name__c)) {
