@@ -578,6 +578,7 @@ src/roles/Sales_Development_Manager.role
 src/roles/Senior_Distributor_Account_Executive.role
 src/roles/Specnaz.role
 src/roles/UFS_Russia.role
+src/roles/UFS_Admin.role
 src/permissionsets/FS_Admin.permissionset
 src/permissionsets/FS_AFM.permissionset
 src/permissionsets/FS_Integration_User.permissionset
@@ -614,4 +615,6 @@ src/flows/FS_Account_Status_Change-11.flow
 src/flows/FS_Defined_Objective_Approval_Process-2.flow
 src/flows/FS_Distributor_type_Update_on_Child-4.flow
 src/flows/FS_Territory_Call_Apex-1.flow
-src/flows/FS_UpdateRegionandZonebasedoncityforRussia-3.flow
+src/flows/FS_Account_Currency-3.flow
+src/flows/FS_AccountOperatorSegmentRussia-2.flow
+src/flows/FS_UpdateRegionandZonebasedoncityforRussia-15.flow
