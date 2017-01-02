@@ -47,14 +47,10 @@ src/classes/TEL_AssociateProductsController_Test.cls
 src/classes/TEL_AssociateProductsController_Test.cls-meta.xml
 src/classes/TEL_CaseTrigger_Test.cls
 src/classes/TEL_CaseTrigger_Test.cls-meta.xml
-src/classes/TEL_OpenProductOrder.cls
-src/classes/TEL_OpenProductOrder.cls-meta.xml
 src/classes/TEL_OppGenController_Test.cls
 src/classes/TEL_OppGenController_Test.cls-meta.xml
 src/classes/TEL_ProductInfo_CC_Test.cls
 src/classes/TEL_ProductInfo_CC_Test.cls-meta.xml
-src/classes/TEL_TelesalesBO.cls
-src/classes/TEL_TelesalesBO.cls-meta.xml
 src/aura
 src/aura/svg/svg.cmp
 src/aura/svg/svg.cmp-meta.xml
@@ -120,9 +116,7 @@ src/letterhead
 src/letterhead/TEL_Telesales_Letterhead.letter
 src/layouts
 src/layouts/Account-Account Layout.layout
-src/layouts/Campaign-Telesales Campaign Layout.layout
 src/layouts/Case-TEL_Sample_Requests.layout
-src/layouts/Opportunity-TEL_Telesales.layout
 src/flows
 src/flows/TEL_Submit_Sample_Request_Caswe_for_Approval-1.flow
 src/triggers
