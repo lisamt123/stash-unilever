@@ -12,10 +12,10 @@
             <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>            
             <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Source_Plan_Editor.css')}"/>       
             <apex:form >
-                <apex:pageMessages />
-                <apex:outputPanel id="pageMessagesMainDataPanel"> <apex:pageMessages /> </apex:outputPanel>
-                <apex:outputPanel id="pageMessagesAppendixPanel"> <apex:pageMessages /> </apex:outputPanel>
-                <apex:outputPanel id="pageMessagesUserTypePanel"> <apex:pageMessages /> </apex:outputPanel>
+                <apex:pageMessages />        
+                <apex:outputPanel id="pageMessagesMainDataPanel"><apex:outputPanel rendered="{!mainDataBool}"> <apex:pageMessages /> </apex:outputPanel></apex:outputPanel>
+                <apex:outputPanel id="pageMessagesAppendixPanel"><apex:outputPanel rendered="{!appendixBool}"> <apex:pageMessages /> </apex:outputPanel></apex:outputPanel>
+                <apex:outputPanel id="pageMessagesUserTypePanel"><apex:outputPanel rendered="{!pageMessagesUserTypeBool}"> <apex:pageMessages /> </apex:outputPanel></apex:outputPanel>
                 <div class="gradientbg">  
                     <c:IPM_ProjectDetails project="{!project}" activeItem="gateDocument" />  
                 </div>
@@ -367,7 +367,7 @@
                                     
                                     <div class="row secDisMsg clearfix">
                                         <apex:outputPanel id="addManagePanel">
-                                            <apex:outputPanel layout="block" rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved',isReadable=false,isPDLDocument=false),true,false)}">
+                                            <apex:outputPanel layout="block" rendered="{!AND(projectDoc.IPM_Document_Status__c!='Approved',isReadable=false,isPDLDocument=false)}">
                                                 <div class="addMngbtn pull-left openModal" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddManageSections}?id={!project.Id}&DocType={!projectDoc.IPM_GateDocuments__c}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_Add_Manage_Sections}" modalTitle="{!$Label.IPM_Add_Manage_Sections}">
                                                     <input type="button" class="ipmButton" value="{!$Label.IPM_Add_Manage_Sections}" />
                                                 </div>                                            
@@ -587,7 +587,7 @@
                                                                                                                     <div id="{!'id'+SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&','')+'SecondLevelSection'}" value="{!IPM_TradeMark_QuestionsViewPage}?id={!projectId}&printDoc={!printDoc}&gateDocType={!projectDoc.IPM_GateDocuments__c}"></div>
                                                                                                                 </apex:outputPanel>
                                                                                                                 <apex:outputPanel rendered="{!AND(sub1.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas',project.IPM_Project_Type__c='Operational',project.IPM_ProjectGKM__c='GKM3'))}">
-                                                                                                                    <div id="{!'id'+SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&','')+'SecondLevelSection'}" value="{!IPM_CU_ComplexityPage}?id={!projectId}&printDoc={!printDoc}&gateType={!projectDoc.IPM_GateDocuments__c}&getSectionId={!sub1.Id}&proModel={project.IPM_GateKeeping_Model__c}&ProSpan={project.IPMProject_Span__c}&phaseName={!project.IPM_Phase__c}&isEdit=false"></div>
+                                                                                                                    <div id="{!'id'+SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&','')+'SecondLevelSection'}" value="{!IPM_CU_ComplexityPage}?id={!projectId}&printDoc={!printDoc}&gateType={!projectDoc.IPM_GateDocuments__c}&getSectionId={!sub1.Id}&proModel={!project.IPM_GateKeeping_Model__c}&ProSpan={!project.IPMProject_Span__c}&phaseName={!project.IPM_Phase__c}&isEdit=false"></div>
                                                                                                                 </apex:outputPanel>
                                                                                                                 <apex:outputPanel rendered="{!AND(project.IPMProject_Span__c='Global',sub1.IPM_Master_Section_External_Id__c='CU_And_Complexity')}">
                                                                                                                     <iframe id="{!'iframe'+SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&','')+'ConsolidatedSecondLevelSection'}" height="0" width="100%" marginheight="0" frameborder="0" marginwidth="0" allowtransparency="true" scrolling="no"/>
@@ -902,7 +902,7 @@
                     </div>
                     <apex:outputPanel id="filterBlock">
                         <script>
-                        var IPMApp = {ContactAdmin:'{!$Label.IPM_PLEASE_CONTACT_ADMINISTRATOR}', IsPdldoc:'{!isPDLDocument}', NonNegotiableCount:'{!NonNegotiableCount}', OptionalCount:'{!OptionalCount}', NotstartedCount:'{!NotstartedCount}', FilledinCount:'{!FilledinCount}', MKTGDEVCount:'{!MKTGDEVCount}', CMICount:'{!CMICount}', CDCount:'{!CDCount}', RnDCount:'{!RnDCount}', SCCount:'{!SCCount}', FinanceCount:'{!FinanceCount}', MKTGLOCALCount:'{!MKTGLOCALCount}', proDoc:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}', approved:'{!$Label.IPM_GD_APPROVED}', proposed:'{!$Label.IPM_GD_PROPOSED}', GateDocPageRef:'{!$Page.IPM_GateDocument}', printDoc:'{!projectDoc.IPM_GateDocuments__c}', OverviewPageRef: '{!$Page.IPM_ProjectOverview}'};  
+                        var IPMApp = {projectdocid:'{!ProjectDoc.Id}', ContactAdmin:'{!$Label.IPM_PLEASE_CONTACT_ADMINISTRATOR}', IsPdldoc:'{!isPDLDocument}', NonNegotiableCount:'{!NonNegotiableCount}', OptionalCount:'{!OptionalCount}', NotstartedCount:'{!NotstartedCount}', FilledinCount:'{!FilledinCount}', MKTGDEVCount:'{!MKTGDEVCount}', CMICount:'{!CMICount}', CDCount:'{!CDCount}', RnDCount:'{!RnDCount}', SCCount:'{!SCCount}', FinanceCount:'{!FinanceCount}', MKTGLOCALCount:'{!MKTGLOCALCount}', proDoc:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}', approved:'{!$Label.IPM_GD_APPROVED}', proposed:'{!$Label.IPM_GD_PROPOSED}', GateDocPageRef:'{!$Page.IPM_GateDocument}', printDoc:'{!projectDoc.IPM_GateDocuments__c}', OverviewPageRef: '{!$Page.IPM_ProjectOverview}'};  
                         </script>
                     </apex:outputPanel>
                     <apex:actionFunction name="getUserTypeFunc" action="{!getIpmuserType}" reRender="addManagePanel,changeStatusPanel,pageMessagesUserTypePanel" />

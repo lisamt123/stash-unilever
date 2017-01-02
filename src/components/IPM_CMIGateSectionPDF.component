@@ -10,6 +10,7 @@
 <apex:attribute name="secId" assignTo="{!projDocSecId}" type="Id" description="Contains CMI Section Id"/>
 <apex:attribute name="projId" assignTo="{!projectId}" type="Id" description="Contains Project Id"/>
 <apex:attribute name="gate" assignTo="{!gateType}" type="String" description="Contains Gate Type"/>
+<apex:outputPanel style="display:none;">{!InvokeMethodsForComponent}</apex:outputPanel>
 <div class="row mainCmiTable">
     <div class="table-responsive pull-left charterCmiTable cmiTabContainer"> 
         <apex:repeat value="{!gateTypes}" var="gate">                        

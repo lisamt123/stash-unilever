@@ -23,6 +23,9 @@ public with sharing class IPM_GateDocumentController {
         }
         set;
     }
+    public string gateDocument{
+        get{ return printDoc;}
+    } //Contains Gate Document Type
     public IPM_Project__c project{get;set;}
     public List<IPM_Milestone__c> lstMstn;
     //String to replace duplicate string literals
@@ -77,8 +80,7 @@ public with sharing class IPM_GateDocumentController {
     
     public boolean IsUpdateStatus{get;set;} //Used for Edit or Read Mode Based on User Permission
     public list<IPM_Project_Document_Section__c>lstCountryFeedback{get;set;} //Contains Local Projects Country Feedbacks
-    public string gateDocument{get;set;} //Contains Gate Document Type
-    
+        
     //get user types
     public Boolean isReadable{get;set;} //For Readable Mode    
     
@@ -123,12 +125,13 @@ public with sharing class IPM_GateDocumentController {
     public boolean isPDLApproved{get;set;}//check whether PDL document is approved or not
     public static final String DOCUMENT_TYPE ='DocumentType';
     public static final String PDF ='PDF';
-    public static String projDocSecId = ' ';
+    public static String projDocSecId = '';
     public String baseUrl = 'https://' + string.valueOf(ApexPages.currentPage().getHeaders().get('Host'));
     public string gateDocPDFWithAppendixURLStr{get;set;}
     public string gateDocPDFWithoutAppendixURLStr{get;set;}
     public boolean mainDataBool{get;set;}
-    public boolean appendixBool{get;set;}    
+    public boolean appendixBool{get;set;}
+    public boolean pageMessagesUserTypeBool{get;set;}
     
     //Variables for storing page URLs
     public string IPM_FinInitialEstOfOppCharterPage{get;set;}
@@ -193,8 +196,7 @@ public with sharing class IPM_GateDocumentController {
             getIpmuserType();
         }
         getOtifSecId();
-        initializePageReferences();  
-        
+        initializePageReferences();
     }
     
     public void getMainData() {
@@ -259,7 +261,7 @@ public with sharing class IPM_GateDocumentController {
                  IPM_EligibleForReactivation__c,IPM_Threshold_Status__c,IPM_CancelStoppingProjectTill__c,IPM_SourceProjectType__c,IPM_Stopped_Date_Time__c,IPM_PrepareForArchival__c,
                  Is_Archieved__c ,IPM_Parent_Project__r.IPM_Project_Type__c,IPM_Actual_Launch_Date__c,IPM_CompanyCardText__c,IPM_Current_Document_Status__c ,IPM_Document_Update_Date__c ,IPM_Document_Update_Comments__c,
                  IPM_Project_Job_Status__c, IPM_FilledIn_Percentage__c, IPM_Cluster__r.name, IPM_Project_Leader__r.Name, IPM_Strategic_Intent__c, IPM_Project_Gatekeeper__r.Name,
-                 IPM_ProjectSubType__c, IPM_Complexity__c, IPM_Target_Launch_Dates__c,IPM_Fast_Track_Project__c, IPM_LocalProject_Brand__c    
+                 IPM_ProjectSubType__c, IPM_Complexity__c, IPM_Target_Launch_Dates__c,IPM_Fast_Track_Project__c, IPM_LocalProject_Brand__c, IPM_Project_Logo_Id__c, Source_Rollout_External_Id__c
                  FROM IPM_Project__C
                  WHERE id=:projectid  limit 1];
         appendixBool = false;
@@ -290,6 +292,7 @@ public with sharing class IPM_GateDocumentController {
         SCCount=0;
         PLCount=0;
         FilledinPer=0;
+        pageMessagesUserTypeBool=false;
         
         IntroNegotiable=0;
         IntroOptional=0;
@@ -498,6 +501,7 @@ public with sharing class IPM_GateDocumentController {
     */ 
     public void getIpmuserType(){
         try{
+            pageMessagesUserTypeBool = true;
             Integer guestCount=0;
             guestCount=[SELECT COUNT() FROM IPM_Project_Resource__c 
                         WHERE IPM_Role_Type__c=:IPM_ConstantUtils.IPM_ROLE_GUEST AND IPM_Project__c=:projectId AND 
@@ -543,7 +547,7 @@ public with sharing class IPM_GateDocumentController {
         catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
                 'getIpmuserType',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-            
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }
     }   
     
@@ -727,8 +731,7 @@ public with sharing class IPM_GateDocumentController {
                 fin= [SELECT ipm_cpp_local__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c,
                              Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,
                              Year_3_iTO_MR__c,Year_3_iTO_MD__c 
-                      FROM IPM_Financial__c WHERE Financial_External_ID__c =: nam limit 1];
-
+                      FROM IPM_Financial__c WHERE Financial_External_ID__c =: nam limit 1];                
             }
             if(fin!=null)
             {
@@ -783,11 +786,11 @@ public with sharing class IPM_GateDocumentController {
             finValue=fin.Year_3_iTO_Global__c/1000;
             return finvalue;
         }
-        else if(IPM_ConstantUtils.CONTRACT_GATE==document && IPM_constantUtils.DOCUMENT_STATUS_APPROVED==projectDoc.IPM_Document_Status__c){
+        else if(IPM_ConstantUtils.MARKET_READY_GATE==document && IPM_constantUtils.DOCUMENT_STATUS_APPROVED==projectDoc.IPM_Document_Status__c){
             finValue=fin.Year_3_iTO_MR__c/1000;
             return finvalue;
         }
-        else if(IPM_ConstantUtils.CONTRACT_GATE==document && IPM_constantUtils.DOCUMENT_STATUS_APPROVED==projectDoc.IPM_Document_Status__c){
+        else if(IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE==document && IPM_constantUtils.DOCUMENT_STATUS_APPROVED==projectDoc.IPM_Document_Status__c){
             finValue=fin.Year_3_iTO_MD__c/1000;
             return finvalue;
         }     
@@ -969,8 +972,9 @@ public with sharing class IPM_GateDocumentController {
                                                          ORDER BY IPM_Section_Sequence_Number__c asc limit 50000];
         }
         catch(Exception ex){
-        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
                'getAppendixSections',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }               
     }
     
