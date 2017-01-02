@@ -180,8 +180,8 @@ public with sharing class IPM_FinancialYearHelper
     * @return                       List of IPM_Project_Document_Section_Content__c 
     
     ***********************************************************************************************************************************/
-    public static Set < IPM_Project_Document_Section_Content__c > updateProjDocSecConList(List < IPM_Project_Document_Section_Content__c > projDocSecConList, List < IPM_Financial_Year__c > newFinYearList){  
-        Set < IPM_Project_Document_Section_Content__c > tmpProjDocSecConList = New Set < IPM_Project_Document_Section_Content__c >();
+    public static List < IPM_Project_Document_Section_Content__c > updateProjDocSecConList(List < IPM_Project_Document_Section_Content__c > projDocSecConList, List < IPM_Financial_Year__c > newFinYearList){  
+        Map<Id,IPM_Project_Document_Section_Content__c> tmpProjDocSecConMap = New Map<Id,IPM_Project_Document_Section_Content__c>(); 
         for (IPM_Financial_Year__c finYear: newFinYearList) {
             for (IPM_Project_Document_Section_Content__c secContent: projDocSecConList) {
                 if (secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c == finYear.Global_Project_Id__c) {
@@ -216,10 +216,10 @@ public with sharing class IPM_FinancialYearHelper
                         secContent.IPM_GM_Action_Standards_Charter__c = finYear.GM_of_TO_Local__c;
                     }
                 }
-                tmpProjDocSecConList.add(secContent);
+                tmpProjDocSecConMap.put(secContent.Id,secContent);
             }
         }
-        return tmpProjDocSecConList;
+        return tmpProjDocSecConMap.values(); 
     }
     
     
