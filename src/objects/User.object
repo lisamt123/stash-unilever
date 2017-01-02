@@ -120,7 +120,7 @@
         <type>Picklist</type>
     </fields>
 	<fields>
-        <fullName>ACCL__Sales_Organization__c</fullName>
+        <fullName>ACCL__Sales_Org__c</fullName>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
         <globalPicklist>ACCL__Sales_Org</globalPicklist>
@@ -134,7 +134,7 @@
         <externalId>false</externalId>
         <label>Career Level</label>
         <picklist>
-            <controllingField>ACCL__Sales_Organization__c</controllingField>
+            <controllingField>ACCL__Sales_Org__c</controllingField>
             <picklistValues>
                 <fullName>Trade Exec WL1</fullName>
                 <default>false</default>

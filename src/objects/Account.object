@@ -146,6 +146,16 @@
         </displayedFields>
         <label>AccountFieldSetProductAssortment</label>
     </fieldSets>
+	  <fields>
+        <fullName>SLASerialNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>SLA Serial Number</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
 	<fields>
         <fullName>UL_Activity_Sector_Division_Code__c</fullName>
         <description>This attribute will be used as information only.  This attribute is linked to the product on the activity sector.</description>
@@ -358,7 +368,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+<!--<fields>
         <fullName>UL_Level_1__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>This attribute will be used as Level 1 of customer hierarchy</description>
@@ -461,7 +471,120 @@
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
+    </fields>-->
+	<fields>
+        <fullName>UL_Level_1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 1 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 1</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
     </fields>
+    <fields>
+        <fullName>UL_Level_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 2 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 2</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Level 2)</relationshipLabel>
+        <relationshipName>Accounts1L</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Level_3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 3 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 3</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Level 3)</relationshipLabel>
+        <relationshipName>Accounts2L</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Level_4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 4 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 4</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Level 4)</relationshipLabel>
+        <relationshipName>Accounts3L</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Level_5__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 5 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 5</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Level 5)</relationshipLabel>
+        <relationshipName>Accounts4</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Level_6__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 6 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 6</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Default Sold To (Actual)</relationshipLabel>
+        <relationshipName>Accounts5</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Level_7__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 7 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 7</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Level 7)</relationshipLabel>
+        <relationshipName>Accounts6</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Level_8__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 8 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 8</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Level 8)</relationshipLabel>
+        <relationshipName>Accounts7</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+
     <fields>
         <fullName>UL_Market_Channel_Code__c</fullName>
         <description>This attribute will be interfaced to the customer master data table, but will not be displayed on the account record.</description>
@@ -609,29 +732,19 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+  <fields>
         <fullName>ACCL__Account_Template__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Customer Template</label>
         <lookupFilter>
-            <active>true</active>
-            <filterItems>
-                <field>ACCL__Account_Template__c.RecordTypeId</field>
-                <operation>equals</operation>
-                <value>Customer</value>
-            </filterItems>
+            <active>true</active>            
             <filterItems>
                 <field>ACCL__Account_Template__c.ACCL__Active__c</field>
                 <operation>equals</operation>
                 <value>True</value>
-            </filterItems>
-            <filterItems>
-                <field>$Source.RecordTypeId</field>
-                <operation>equals</operation>
-                <value>Customer</value>
-            </filterItems>
+            </filterItems>            
             <isOptional>false</isOptional>
         </lookupFilter>
         <referenceTo>ACCL__Account_Template__c</referenceTo>
@@ -673,7 +786,7 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>ACCL__CustomerPriority__c</fullName>
+        <fullName>CustomerPriority__c</fullName>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Customer Priority</label>
