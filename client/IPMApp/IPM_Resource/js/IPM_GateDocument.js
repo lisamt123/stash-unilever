@@ -122,6 +122,8 @@ function gateAccrdn(){
     });
 }
 
+// Variable to get the attachments only the first time, there-by disabling it
+var getAllAttachmentsBool = "true";
 function gateexpcollapse(){
     /* Below script expands all the tabs in accordion when clicked on the Expand all button and replaces '+' with '-' sign */
     jq(".content.expandTool").on("click", ".expandAll", function() {
@@ -130,7 +132,10 @@ function gateexpcollapse(){
         jq(".ipmAccordian").find(".aHead .expico").addClass("fa-minus");
         loadAllIframesIfVisiblefirst();
         loadAllIframesIfVisiblesecond();
-        getAllAttachments();
+        if(getAllAttachmentsBool === "true"){
+			getAllAttachmentsBool = "false";
+			getAllAttachments();
+		}
     });
     
 /* Below script collapses all the tabs in accordion when clicked on the Collapse all button and replaces '-' with '+' sign */
@@ -412,9 +417,12 @@ function shiptrade() {
     parent.location.assign(IPMApp.OverviewPageRef + '?Id=' + IPMApp.projectId);
 }
 function dirApp() {
+    jq('.ipmAcrdnExpand').attr('class', function() {
+        return jq(this).attr('class').replace('/', '_');
+    });
 
 /* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
-    jq(".ipmAccordian.mainTable").on("click", ".appText", function() {
+	jq(".ipmAccordian.mainTable").on("click", ".appText", function() {
         var appDir = jq(this).attr("data-dir");
         appDir = appDir.replace('/','_');
         jq(".ipmAccordian.appendix").find(".aHead").next(".appendixExpnd").show();
@@ -464,7 +472,7 @@ function dirApp() {
         {
               getAssumptionsAppendix();
         }
-        else if(appDir === "BD/BB_Alignment")
+        else if(appDir === "BD_BB_Alignment")
         {
               getBDBBAlignmentAppendix();
         }
@@ -493,6 +501,9 @@ jq(window).load(function(){
         jq('#ipmModal .modal-dialog').height('90%');
         jq('#ipmModal .modal-body').addClass('status_body');
     });
+	
+	
+
 });
 
 jq(".clipinfo").tooltip({ position: { my: 'left bottom', at: 'center bottom+10' },placement: 'bottom'}); 
@@ -510,9 +521,6 @@ jq(document).on('click', '.dwnldClick', function(e) {
      window.open(list);
   });
  });
-jq('.ipmAcrdnExpand').attr('class', function() {
-    return jq(this).attr('class').replace('/', '_');
-});
 
 /* The below code is done part of the revamp of the Gate Document page to fix the View State Issue */
 
@@ -529,8 +537,8 @@ function applyFilterJs() {
     jq(".contenWrapper .ipmAcrdnExpand").find("span.ipmAcrdnExpand").find(".aHead").closest("span.ipmAcrdnExpand").prev('.aHead').find(".expico").removeClass("fa-plus");
     jq(".contenWrapper .ipmAcrdnExpand").find("span.ipmAcrdnExpand").find(".aHead").closest("span.ipmAcrdnExpand").prev('.aHead').find(".expico").addClass("fa-minus");
     
-    if(jq("#typeNonNegotiable").is(':checked')) {jq(".truenegotiableclass").attr("style", "display:block");} else { jq(".truenegotiableclass").attr("style", "display:none");}
-    if(jq("#typeOptional").is(':checked')) {jq(".falsenegotiableclass").attr("style", "display:block");} else {jq(".falsenegotiableclass").attr("style", "display:none");}
+   if(jq("#typeOptional").is(':checked')) {jq(".truenegotiableclass").attr("style", "display:block");} else { jq(".truenegotiableclass").attr("style", "display:none");}
+    if(jq("#typeNonNegotiable").is(':checked')) {jq(".falsenegotiableclass").attr("style", "display:block");} else {jq(".falsenegotiableclass").attr("style", "display:none");}
     if(jq("#statusNotStarted").is(':checked')) {jq(".NotStartedstatusclass").attr("style", "display:block");} else {jq(".NotStartedstatusclass").attr("style", "display:none");}
     if(jq("#statusFilledIn").is(':checked')) {jq(".Filledinstatusclass").attr("style", "display:block");} else {jq(".Filledinstatusclass").attr("style", "display:none"); }
     if(jq("#FRpl").is(':checked')) {jq(".PLfrclass").attr("style", "display:block");} else {jq(".PLfrclass").attr("style", "display:none");}
@@ -545,31 +553,31 @@ function applyFilterJs() {
     // hide appendix if no content in it
     jq(".appendixvisibleclass").attr("style", "display:block");
     jq(".appendixvisibleclass").filter(function(){
-        return jq(".expico:visible", this).length == 1;
+        return jq(".expico:visible", this).length === 1;
     }).css({'display': 'none'});
     
     // hide subheaders totally where there is no content
     jq(".msubHeaderClass").attr("style", "display:block");
     jq(".subheaderclass").attr("style", "display:block");
     jq(".subheaderclass").filter(function(){
-        return ((jq(".headerinsideexpico:visible", this).length == 0) && (jq(".topicclass:visible", this).length == 1));
+        return ((jq(".headerinsideexpico:visible", this).length === 0) && (jq(".topicclass:visible", this).length === 1));
     }).css({'display': 'none'});
     
     // hide headers completely where there is no data
     jq(".headerclass").attr("style", "display:block");
     jq(".headerclass").filter(function(){
-        return ((jq(".headerinsideexpico:visible", this).length == 1) && (jq(".topicheaderclass:visible", this).length == 0));
+        return ((jq(".headerinsideexpico:visible", this).length === 1) && (jq(".topicheaderclass:visible", this).length === 0));
     }).css({'display': 'none'});
 
     jq(".msubHeaderClass").attr("style", "display:block");
     jq(".msubHeaderClass").filter(function(){
-        return jq(".topicclass:visible", this).length == 0;
+        return jq(".topicclass:visible", this).length === 0;
     }).css({'display': 'none'});
 
      // some subheaders are displayed when headers property is changed in above step, so hide those displayed subheaders
     jq(".subheaderclass").attr("style", "display:block");
     jq(".subheaderclass").filter(function(){
-        return ((jq(".headerinsideexpico:visible", this).length == 0) && ((jq(".topicclass:visible", this).length == 1) || (jq(".topicclass:visible", this).length == 0)));
+        return ((jq(".headerinsideexpico:visible", this).length === 0) && ((jq(".topicclass:visible", this).length === 1) || (jq(".topicclass:visible", this).length === 0)));
     }).css({'display': 'none'});
         
     jq(".contenWrapper .ipmAcrdnExpand").find(".ipmAcrdnExpand").hide();
@@ -697,7 +705,7 @@ function loadAllIframes() {
 function getTrademarksSecondLevelSection() {
     var iframe = jq("#iframeTrademarksSecondLevelSection");
     var url = jq('#idTrademarksSecondLevelSection').attr('value');   
-    if(getTrademarksSecondLevelSectionVar == "true") {
+    if(getTrademarksSecondLevelSectionVar === "true") {
         getTrademarksSecondLevelSectionVar = "false";    
         loadIframe(iframe,url);                        
     }
@@ -708,7 +716,7 @@ function getCUAndComplexitySecondLevelSection() {
     var url = jq('#idCU_And_ComplexitySecondLevelSection').attr('value');                             
     var iframe2 = jq("#iframeCU_And_ComplexityConsolidatedSecondLevelSection");
     var url2 = jq('#idCU_And_ComplexityConsolidatedSecondLevelSection').attr('value');
-    if(getCU_And_ComplexitySecondLevelSectionVar == "true") {
+    if(getCU_And_ComplexitySecondLevelSectionVar === "true") {
         getCU_And_ComplexitySecondLevelSectionVar = "false";
         loadIframe(iframe,url);  
         loadIframe(iframe2,url2); 
@@ -722,7 +730,7 @@ function getBusinessCaseActionStandardsMainSection() {
     var url2 = jq('#idBusiness_Case_Action_StandardsSecondMainSection').attr('value');                      
     var iframe3 = jq("#iframeBusiness_Case_Action_StandardsThirdMainSection");
     var url3 = jq('#idBusiness_Case_Action_StandardsMainThirdSection').attr('value');
-    if(getBusiness_Case_Action_StandardsMainSectionVar == "true") {
+    if(getBusiness_Case_Action_StandardsMainSectionVar === "true") {
         getBusiness_Case_Action_StandardsMainSectionVar = "false";
         loadIframe(iframe,url);   
         loadIframe(iframe2,url2);
@@ -733,7 +741,7 @@ function getBusinessCaseActionStandardsMainSection() {
 function getInitialEstimateofOpportunityMainSection() {
     var iframe = jq("#iframeInitial_Estimate_of_OpportunityMainSection");
     var url = jq('#idInitial_Estimate_of_OpportunityMainSection').attr('value'); 
-    if(getInitial_Estimate_of_OpportunityMainSectionVar == "true") {
+    if(getInitial_Estimate_of_OpportunityMainSectionVar === "true") {
         getInitial_Estimate_of_OpportunityMainSectionVar = "false";
         loadIframe(iframe,url);                        
     }
@@ -742,7 +750,7 @@ function getInitialEstimateofOpportunityMainSection() {
 function getGateKeeperChecklistMainSection() {
     var iframe = jq("#iframeGate_Keeper_ChecklistMainSection");
     var url = jq('#idGate_Keeper_ChecklistMainSection').attr('value');     
-    if(getGate_Keeper_ChecklistMainSectionVar == "true") {
+    if(getGate_Keeper_ChecklistMainSectionVar === "true") {
         getGate_Keeper_ChecklistMainSectionVar = "false"; 
         loadIframe(iframe,url);                        
     }
@@ -751,7 +759,7 @@ function getGateKeeperChecklistMainSection() {
 function getOTIFStatusMainSection() {
     var iframe = jq("#iframeOTIF_StatusMainSection");
     var url = jq('#idOTIF_StatusMainSection').attr('value');      
-    if(getOTIF_StatusMainSectionVar == "true") {
+    if(getOTIF_StatusMainSectionVar === "true") {
         getOTIF_StatusMainSectionVar = "false";     
         loadIframe(iframe,url);                        
     }
@@ -760,7 +768,7 @@ function getOTIFStatusMainSection() {
 function getRDInitialOutlineProductPackMainSection() {
     var iframe = jq("#iframeRD_Initial_Outline_Product_PackMainSection");
     var url = jq('#idRD_Initial_Outline_Product_PackMainSection').attr('value');
-    if(getRD_Initial_Outline_Product_PackMainSectionVar == "true") {
+    if(getRD_Initial_Outline_Product_PackMainSectionVar === "true") {
         getRD_Initial_Outline_Product_PackMainSectionVar = "false";
         loadIframe(iframe,url);                        
     }
@@ -769,7 +777,7 @@ function getRDInitialOutlineProductPackMainSection() {
 function getSupplyChainFeasibilityMainSection() {
     var iframe = jq("#iframeSupply_Chain_FeasibilityMainSection");
     var url = jq('#idSupply_Chain_FeasibilityMainSection').attr('value');  
-    if(getSupply_Chain_FeasibilityMainSectionVar == "true") {
+    if(getSupply_Chain_FeasibilityMainSectionVar === "true") {
         getSupply_Chain_FeasibilityMainSectionVar = "false";
         loadIframe(iframe,url);                        
     }
@@ -778,7 +786,7 @@ function getSupplyChainFeasibilityMainSection() {
 function getRDFeasibilityMainSection() {
     var iframe = jq("#iframeRD_FeasibilityMainSection");
     var url = jq('#idRD_FeasibilityMainSection').attr('value');     
-    if(getRD_FeasibilityMainSectionVar == "true") {
+    if(getRD_FeasibilityMainSectionVar === "true") {
         getRD_FeasibilityMainSectionVar = "false";
         loadIframe(iframe,url);                        
     }
@@ -787,7 +795,7 @@ function getRDFeasibilityMainSection() {
 function getRDTechnicalReadinessMainSection() {
     var iframe = jq("#iframeRD_Technical_ReadinessMainSection");
     var url = jq('#idRD_Technical_ReadinessMainSection').attr('value');   
-    if(getRD_Technical_ReadinessMainSectionVar == "true") {
+    if(getRD_Technical_ReadinessMainSectionVar === "true") {
         getRD_Technical_ReadinessMainSectionVar = "false";
         loadIframe(iframe,url);                        
     }
@@ -796,7 +804,7 @@ function getRDTechnicalReadinessMainSection() {
 function getSupplyChainTechnicalReadinessMainSection() {
     var iframe = jq("#iframeSupply_Chain_Technical_ReadinessMainSection");
     var url = jq('#idSupply_Chain_Technical_ReadinessMainSection').attr('value');
-    if(getSupply_Chain_Technical_ReadinessMainSectionVar == "true") {
+    if(getSupply_Chain_Technical_ReadinessMainSectionVar === "true") {
         getSupply_Chain_Technical_ReadinessMainSectionVar = "false";
         loadIframe(iframe,url);                        
     }
@@ -805,7 +813,7 @@ function getSupplyChainTechnicalReadinessMainSection() {
 function getInitialEstimateofOpportunityAppendix() {
     var iframe = jq("#iframeInitial_Estimate_of_OpportunityAppendix");
     var url = jq('#idInitial_Estimate_of_OpportunityAppendix').attr('value');   
-    if(getInitial_Estimate_of_OpportunityAppendixVar == "true") {
+    if(getInitial_Estimate_of_OpportunityAppendixVar === "true") {
         getInitial_Estimate_of_OpportunityAppendixVar = "false";
         loadIframe(iframe,url);                        
     }
@@ -814,7 +822,7 @@ function getInitialEstimateofOpportunityAppendix() {
 function getConsumerEvidenceConceptAppendix() {
     var iframe = jq("#iframeConsumer_Evidence_ConceptAppendix");
     var url = jq('#idConsumer_Evidence_ConceptAppendix').attr('value');     
-    if(getConsumer_Evidence_ConceptAppendixVar == "true") {
+    if(getConsumer_Evidence_ConceptAppendixVar === "true") {
         getConsumer_Evidence_ConceptAppendixVar = "false"; 
         loadIframe(iframe,url);                        
     }
@@ -823,7 +831,7 @@ function getConsumerEvidenceConceptAppendix() {
 function getEnvironmentalImpactAppendix() {
     var iframe = jq("#iframeEnvironmental_ImpactAppendix");
     var url = jq('#idEnvironmental_ImpactAppendix').attr('value');
-    if(getEnvironmental_ImpactAppendixVar == "true") {
+    if(getEnvironmental_ImpactAppendixVar === "true") {
         getEnvironmental_ImpactAppendixVar = "false";
         loadIframe(iframe,url);                        
     }
@@ -832,7 +840,7 @@ function getEnvironmentalImpactAppendix() {
 function getMilestonesAppendix() {
     var iframe = jq("#iframeMilestonesAppendix");
     var url = jq('#idMilestonesAppendix').attr('value');      
-    if(getMilestonesAppendixVar == "true") {
+    if(getMilestonesAppendixVar === "true") {
         getMilestonesAppendixVar = "false";  
         loadIframe(iframe,url);                        
     }
@@ -841,7 +849,7 @@ function getMilestonesAppendix() {
 function getRiskAppendix() {
     var iframe = jq("#iframeRiskAppendix");
     var url = jq('#idRiskAppendix').attr('value');        
-    if(getRiskAppendixVar == "true") {
+    if(getRiskAppendixVar === "true") {
         getRiskAppendixVar = "false";         
         loadIframe(iframe,url);                        
     }
@@ -850,7 +858,7 @@ function getRiskAppendix() {
 function getRolloutPlansAppendix() {
     var iframe = jq("#iframeRollout_PlansAppendix");
     var url = jq('#idRollout_PlansAppendix').attr('value');    
-    if(getRollout_PlansAppendixVar == "true") {
+    if(getRollout_PlansAppendixVar === "true") {
         getRollout_PlansAppendixVar = "false";               
         loadIframe(iframe,url);                        
     }
@@ -859,7 +867,7 @@ function getRolloutPlansAppendix() {
 function getCountryFeedbackRequirementsAppendix() {
     var iframe = jq("#iframeCountry_Feedback_RequirementsAppendix");
     var url = jq('#idCountry_Feedback_RequirementsAppendix').attr('value');    
-    if(getCountry_Feedback_RequirementsAppendixVar == "true") {
+    if(getCountry_Feedback_RequirementsAppendixVar === "true") {
         getCountry_Feedback_RequirementsAppendixVar = "false";      
         loadIframe(iframe,url);                        
     }
@@ -868,7 +876,7 @@ function getCountryFeedbackRequirementsAppendix() {
 function getMixQualificationPlanandActionStandardsAppendix() {
     var iframe = jq("#iframeMix_Qualification_Plan_and_Action_StandardsAppendix");
     var url = jq('#idMix_Qualification_Plan_and_Action_StandardsAppendix').attr('value');   
-    if(getMix_Qualification_Plan_and_Action_StandardsAppendixVar == "true") {
+    if(getMix_Qualification_Plan_and_Action_StandardsAppendixVar === "true") {
         getMix_Qualification_Plan_and_Action_StandardsAppendixVar = "false";
         loadIframe(iframe,url);                        
     }
@@ -877,7 +885,7 @@ function getMixQualificationPlanandActionStandardsAppendix() {
 function getAssumptionsAppendix() {
     var iframe = jq("#iframeAssumptionsAppendix");
     var url = jq('#idAssumptionsAppendix').attr('value');           
-    if(getAssumptionsAppendixVar == "true") {
+    if(getAssumptionsAppendixVar === "true") {
         getAssumptionsAppendixVar = "false";       
         loadIframe(iframe,url);                        
     }
@@ -886,7 +894,7 @@ function getAssumptionsAppendix() {
 function getBDBBAlignmentAppendix() {
     var iframe = jq("#iframeBDBB_AlignmentAppendix");
     var url = jq('#idBDBB_AlignmentAppendix').attr('value');       
-    if(getBDBB_AlignmentAppendixVar == "true") {
+    if(getBDBB_AlignmentAppendixVar === "true") {
         getBDBB_AlignmentAppendixVar = "false";            
         loadIframe(iframe,url);                        
     }             
@@ -895,7 +903,7 @@ function getBDBBAlignmentAppendix() {
 function getAssortmentStrategyAppendix() {
     var iframe = jq("#iframeAssortment_StrategyAppendix");
     var url = jq('#idAssortment_StrategyAppendix').attr('value');     
-    if(getAssortment_StrategyAppendixVar == "true") {
+    if(getAssortment_StrategyAppendixVar === "true") {
         getAssortment_StrategyAppendixVar = "false";
         loadIframe(iframe,url);                        
     }
@@ -906,7 +914,7 @@ function getMonitoringPerformanceinMarketAppendix() {
     var url = jq('#idMonitoring_Performance_in_MarketAppendix').attr('value');
     var iframe2 = jq("#iframeMonitoring_Performance_in_MarketLocalAppendix");
     var url2 = jq('#idMonitoring_Performance_in_MarketLocalAppendix').attr('value');
-    if(getMonitoring_Performance_in_MarketAppendixVar == "true") {
+    if(getMonitoring_Performance_in_MarketAppendixVar === "true") {
         getMonitoring_Performance_in_MarketAppendixVar = "false";
         loadIframe(iframe,url);   
         loadIframe(iframe2,url2);
@@ -916,7 +924,7 @@ function getMonitoringPerformanceinMarketAppendix() {
 function getTechnicalAppendix() {
     var iframe = jq("#iframeTechnicalAppendix");
     var url = jq('#idTechnicalAppendix').attr('value'); 
-    if(getTechnicalAppendixVar == "true") {
+    if(getTechnicalAppendixVar === "true") {
         getTechnicalAppendixVar = "false";
         loadIframe(iframe,url);                        
     }
@@ -925,7 +933,7 @@ function getTechnicalAppendix() {
 function getCustomersChannelsAppendix() {
     var iframe = jq("#iframeCustomers_ChannelsAppendix");
     var url = jq('#idCustomers_ChannelsAppendix').attr('value');
-    if(getCustomers_ChannelsAppendixVar == "true") {
+    if(getCustomers_ChannelsAppendixVar === "true") {
         getCustomers_ChannelsAppendixVar = "false";
         loadIframe(iframe,url);                        
     }                    
@@ -989,3 +997,4 @@ function getAllSAttachments(queryResult) {
         }
     }
 }
+
