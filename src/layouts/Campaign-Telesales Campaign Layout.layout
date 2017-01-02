@@ -191,11 +191,6 @@
         <relatedList>TEL_Campaign_Products__c.TEL_Campaign__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>MEMBER_TYPE</fields>
-        <fields>TEL_Account_Campaign__c</fields>
-        <relatedList>RelatedCampaignMemberList</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>NAME</fields>
         <fields>Account.NAME</fields>
         <fields>Account.ACC_SALES</fields>

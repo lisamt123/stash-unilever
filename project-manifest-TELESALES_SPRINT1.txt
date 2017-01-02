@@ -158,4 +158,3 @@ src/applications/TEL_Telesales.app
 src/quickActions
 src/quickActions/Campaign.TEL_Associate_Account_Button.quickAction
 src/quickActions/Campaign.TEL_Associate_Products.quickAction
-src/quickActions/Opportunity.TEL_Take_Ownership.quickAction

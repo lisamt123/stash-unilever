@@ -159,7 +159,8 @@ src/queues/TEL_Telesales_UK.queue
 src/workflows
 src/workflows/Case.workflow
 src/quickActions
-src/quickActions/Opportunity.TEL_Take_Ownership.quickAction
+src/quickActions/Campaign.TEL_Associate_Account_Button.quickAction
+src/quickActions/Campaign.TEL_Associate_Products.quickAction
 src/tabs
 src/tabs/TEL_Campaign_Accounts__c.tab
 src/tabs/TEL_GenOpp.tab
