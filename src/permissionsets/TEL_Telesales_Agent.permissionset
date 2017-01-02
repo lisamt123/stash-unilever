@@ -256,16 +256,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Campaign.NumberOfOpportunities</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Campaign.NumberOfWonOpportunities</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Campaign.Parent</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -302,11 +292,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Campaign.HierarchyExpectedRevenue</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Campaign.NumberOfLeads</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
