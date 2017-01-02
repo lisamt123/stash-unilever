@@ -146,6 +146,29 @@
         </displayedFields>
         <label>AccountFieldSetProductAssortment</label>
     </fieldSets>
+	<fields>
+        <fullName>UpsellOpportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Upsell Opportunity</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Maybe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
 	  <fields>
         <fullName>SLASerialNumber__c</fullName>
         <externalId>false</externalId>
@@ -7949,6 +7972,21 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>ACCL__Customer</fullName>
         <active>true</active>
         <label>Customer</label>
+		 <picklistValues>
+            <picklist>UpsellOpportunity__c</picklist>
+            <values>
+                <fullName>Maybe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>ACCL__Country__c</picklist>
             <values>
@@ -7961,7 +7999,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>ACCL__CustomerPriority__c</picklist>
+            <picklist>CustomerPriority__c</picklist>
             <values>
                 <fullName>High</fullName>
                 <default>false</default>

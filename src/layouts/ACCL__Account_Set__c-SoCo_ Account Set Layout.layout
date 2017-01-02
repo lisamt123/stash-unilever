@@ -88,13 +88,13 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <relatedLists>
+   <!-- <relatedLists>
         <customButtons>Add_Customer</customButtons>
         <excludeButtons>New</excludeButtons>
         <fields>ACCL__Record_Link__c</fields>
         <fields>Account.NAME</fields>
         <relatedList>ACCL__Account_Set_Account__c.ACCL__Account_Set__c</relatedList>
-    </relatedLists>
+    </relatedLists>-->
     <relatedLists>
         <fields>ACCL__Record_Link__c</fields>
         <fields>ACCL__User__c</fields>
