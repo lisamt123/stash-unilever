@@ -214,8 +214,6 @@
         <field>Account.Year_Established__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	
-	
     <fieldPermissions>
         <editable>true</editable>
         <field>Campaign.IsActive</field>
@@ -331,11 +329,6 @@
         <field>Campaign.HierarchyNumberOfOpportunities</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Campaign.NumberOfResponses</field>
-        <readable>true</readable>
-    </fieldPermissions>	
     <fieldPermissions>
         <editable>false</editable>
         <field>Campaign.HierarchyNumberOfResponses</field>
