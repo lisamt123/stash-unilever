@@ -1,3 +1,5 @@
+src/letterhead
+src/letterhead/TEL_Telesales_Letterhead.letter
 src/permissionsets
 src/permissionsets/TEL_Telesales_Agent.permissionset
 src/layouts
