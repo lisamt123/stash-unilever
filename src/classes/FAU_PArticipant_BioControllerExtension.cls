@@ -18,6 +18,7 @@ public with sharing class FAU_PArticipant_BioControllerExtension
     // - - - private attributes - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private ApexPages.StandardController standardController;
     private static PageReference STAY_ON_SAME_PAGE = null;
+    Public Final Static String defalutValueForUL2020='UL2020';
     private static String LANDING_PAGE = '/apex/FAU_LandingPage?Id=';
     public Boolean isUL2020 {get;set;}
     //Constructors
@@ -56,12 +57,16 @@ public with sharing class FAU_PArticipant_BioControllerExtension
     { 
         FAU_Participant__c recordToSave = (FAU_Participant__c)this.standardController.getRecord();
         try{
-        	if(validate(recordToSave)){
-            	update recordToSave;
-        	} else {
-        		 ApexPages.addMessage(new ApexPages.Message(Apexpages.Severity.ERROR,'All fields are required'));
-        		 return null;
-        	}
+        if(isUL2020)
+        {
+        recordToSave.FAU_Biography__c=defalutValueForUL2020;
+        }
+            if(validate(recordToSave)){
+                update recordToSave;
+            } else {
+                 ApexPages.addMessage(new ApexPages.Message(Apexpages.Severity.ERROR,'All fields are required'));
+                 return null;
+            }
         }
         catch (System.DMLException e) {
             ApexPages.addMessages(e);
