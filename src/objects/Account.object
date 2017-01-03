@@ -211,7 +211,7 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
-	 <fields>
+	<!-- <fields>
         <fullName>UL_External_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>This attribute will be used to identify the SAP unique number</description>
@@ -222,7 +222,7 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
         <unique>true</unique>
-    </fields>
+    </fields>-->
 	<fields>
         <fullName>UL_Activity_Sector_Division_Code__c</fullName>
         <description>This attribute will be used as information only.  This attribute is linked to the product on the activity sector.</description>
