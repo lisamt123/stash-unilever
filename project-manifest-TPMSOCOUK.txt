@@ -93,7 +93,7 @@ src/objectTranslations/ACCL__Tactic__c-es.objectTranslation
 src/objectTranslations/ACCL__Transaction_Template__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Trigger_Setting__c-de.objectTranslation
 src/objectTranslations/ACCL__Trigger_Setting__c-en_US.objectTranslation
-src/objectTranslations/ACCL__Unit_of_Measure__c-en_US.objectTranslation 
+src/objectTranslations/ACCL__Unit_of_Measure__c-en_US.objectTranslation
 src/objectTranslations/Promotion_Acc_Rel__c-de.objectTranslation
 src/objectTranslations/UL_Approval_Threshold__c-de.objectTranslation
 src/objectTranslations/UL_Cannibalisation_Rate__c-de.objectTranslation
@@ -407,6 +407,15 @@ src/pages/UL_Delivery_Profile.page
 src/pages/UL_Delivery_Profile.page-meta.xml
 src/globalPicklists
 src/globalPicklists/UL_Feature.globalPicklist
+src/staticresources
+src/staticresources/SLDS202.resource
+src/staticresources/SLDS202.resource-meta.xml
+src/staticresources/assets.resource
+src/staticresources/assets.resource-meta.xml
+src/staticresources/demoDist.resource
+src/staticresources/demoDist.resource-meta.xml
+src/staticresources/projectDist.resource
+src/staticresources/projectDist.resource-meta.xml
 
 
 
