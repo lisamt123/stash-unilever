@@ -23670,6 +23670,24 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000H7rk_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H7rk</label>
+        <queue>IPM_a7I0L000000H7rk</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H7rp_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H7rp</label>
+        <queue>IPM_a7I0L000000H7rp</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Project</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
