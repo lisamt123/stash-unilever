@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>creator</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>ACCL__Amount__c</field>
+        <field>CreatedBy</field>
+        <field>ACCL__Currency__c</field>
+        <field>ACCL__Date__c</field>
+        <field>LastModifiedBy</field>
+        <field>ACCL__Record_Link__c</field>
+        <field>ACCL__Source_Fund__c</field>
+        <field>ACCL__Target_Fund__c</field>
+        <field>ACCL__Fund_Transaction_Template__c</field>
+        <field>ACCL__Fund_Transaction_Template_Description__c</field>
+        <field>ACCL__Transaction_Type__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>userHierarchyField</type>
+            </approver>
+        </assignedApprover>
+        <label>Cross Category Transfer approval step</label>
+        <name>Cross_Category_Transfer_approval_step</name>
+    </approvalStep>
+    <emailTemplate>unfiled$public/UL_Fund_Transaction_Approval_Email</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>AND( ISPICKVAL(ACCL__Fund_Transaction_Template__r.ACCL__Transaction_Type__c, &apos;Transfer&apos;) , 
+OR(
+ISPICKVAL(UL_Status__c, &apos;Sent/Pending Approval&apos;),
+ISPICKVAL(UL_Status__c, &apos;Not Approved&apos;)
+)
+)</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>UL_Email_Alert_for_Approval</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>UL_Status_equals_Approved</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>UL_Email_Alert_for_Rejection</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>UL_Status_equals_Not_Approved</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>UL_Status_equals_For_Approval</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Fund Transaction Approval</label>
+    <nextAutomatedApprover>
+        <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
+        <userHierarchyField>UL_Customer_Marketing_Director__c</userHierarchyField>
+    </nextAutomatedApprover>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>
