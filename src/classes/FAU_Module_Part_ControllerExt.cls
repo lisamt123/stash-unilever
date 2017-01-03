@@ -43,16 +43,17 @@ public with sharing class FAU_Module_Part_ControllerExt {
                 isLocal = true;
             }  
        
-       if(!Test.isRunningTest()) {
-       		FAU_Module_Participant__c record = (FAU_Module_Participant__c)this.standardController.getRecord();
-       		if(!String.isBlank(record.FAU_Module__r.FAU_Hotel_Name__c)){
-       			record.FAU_Hotel_Name__c = record.FAU_Module__r.FAU_Hotel_Name__c;
-       			hotelAlreadySetUpInModule = true;
-       			this.standardController = new ApexPages.StandardController(record);
-       		} else {
-       			hotelAlreadySetUpInModule = false;
-       		}
-       }
+         if(!Test.isRunningTest()){ 
+            FAU_Module_Participant__c record = (FAU_Module_Participant__c)this.standardController.getRecord();
+            if(!String.isBlank(record.FAU_Module__r.FAU_Hotel_Name__c)){
+                record.FAU_Hotel_Name__c = record.FAU_Module__r.FAU_Hotel_Name__c;
+                hotelAlreadySetUpInModule = true;
+                this.standardController = new ApexPages.StandardController(record);
+            } else {
+                hotelAlreadySetUpInModule = false;
+            }
+    }
+       
        if(!Test.isRunningTest()) isNotCampus = ((FAU_Module_Participant__c)this.standardController.getRecord()).recordType.DeveloperName != 'FAU_Campus';
             
     } 
@@ -112,15 +113,15 @@ public with sharing class FAU_Module_Part_ControllerExt {
         System.debug('Entering FAU_Module_Part_ControllerExt.save');
         FAU_Module_Participant__c recordToSave = (FAU_Module_Participant__c)this.standardController.getRecord();
         try{
-        	List<ApexPages.Message> messages = validateCompletion(recordToSave);
-			if(messages.isEmpty()){
-            	update recordToSave;
-        	} else {
-				for(ApexPages.Message message : messages){
-					ApexPages.addMessage(message);
-				}
-				return null;
-			}
+            List<ApexPages.Message> messages = validateCompletion(recordToSave);
+            if(messages.isEmpty()){
+                update recordToSave;
+            } else {
+                for(ApexPages.Message message : messages){
+                    ApexPages.addMessage(message);
+                }
+                return null;
+            }
         }catch (System.DMLException e) {
             ApexPages.addMessages(e);
             return null;
@@ -142,20 +143,20 @@ public with sharing class FAU_Module_Part_ControllerExt {
     }
     
     private List<ApexPages.Message> validateCompletion(FAU_Module_Participant__c recordToSave){
-    	List<ApexPages.Message> errorMessages = new List<ApexPages.Message>();
-    	if(isNotCampus!=null && isNotCampus){
-    		if(recordToSave.FAU_Accommodation_Type__c == null) errorMessages.add(new ApexPages.Message(Apexpages.Severity.ERROR,'Accommodation Type is mandatory'));
-    		if(String.isBlank(recordToSave.FAU_Hotel_Name__c) && recordToSave.FAU_Accommodation_Type__c != null && recordToSave.FAU_Accommodation_Type__c != 'Stay Home') errorMessages.add(new ApexPages.Message(Apexpages.Severity.ERROR,'Hotel Name is mandatory'));
-    	}
-    	if(recordToSave.FAU_Dietary_Restrictions__c != null){
-    		if(recordToSave.FAU_Dietary_Restrictions__c.contains('Other')){
-    			if(String.isBlank(recordToSave.FAU_Dietary_Restrictions_Describe_Other__c)){
-    				errorMessages.add(new ApexPages.Message(Apexpages.Severity.ERROR,'Dietary Restrictions (Describe if Other) is mandatory'));
-    			}
-    		}
-    	}
-    	return errorMessages;
-    	
+        List<ApexPages.Message> errorMessages = new List<ApexPages.Message>();
+        if(isNotCampus!=null && isNotCampus){
+            if(recordToSave.FAU_Accommodation_Type__c == null) errorMessages.add(new ApexPages.Message(Apexpages.Severity.ERROR,'Accommodation Type is mandatory'));
+            if(String.isBlank(recordToSave.FAU_Hotel_Name__c) && recordToSave.FAU_Accommodation_Type__c != null && recordToSave.FAU_Accommodation_Type__c != 'Stay Home') errorMessages.add(new ApexPages.Message(Apexpages.Severity.ERROR,'Hotel Name is mandatory'));
+        }
+        if(recordToSave.FAU_Dietary_Restrictions__c != null){
+            if(recordToSave.FAU_Dietary_Restrictions__c.contains('Other')){
+                if(String.isBlank(recordToSave.FAU_Dietary_Restrictions_Describe_Other__c)){
+                    errorMessages.add(new ApexPages.Message(Apexpages.Severity.ERROR,'Dietary Restrictions (Describe if Other) is mandatory'));
+                }
+            }
+        }
+        return errorMessages;
+        
     }
 
     /*******************************************************************

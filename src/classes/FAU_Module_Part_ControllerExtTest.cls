@@ -27,12 +27,16 @@ private class FAU_Module_Part_ControllerExtTest
 
         FAU_Participant__c participantRecord
              = FAU_TestUtil.createParticipantFixture(user, startDateFixture, locationFixture, inviteStateFixture);
+             
 
-        FAU_Module_Participant__c moduleParticipantRecord = [select ID, FAU_Participant__c, FAU_Is_Local__c,FAU_Dietary_Restrictions__c,FAU_Dietary_Restrictions_Describe_Other__c from FAU_Module_Participant__c
+        FAU_Module_Participant__c moduleParticipantRecord = [select ID, FAU_Participant__c, FAU_Module__r.FAU_Hotel_Name__c, FAU_Is_Local__c,FAU_Dietary_Restrictions__c,FAU_Dietary_Restrictions_Describe_Other__c from FAU_Module_Participant__c
                                                         WHERE FAU_Participant__c = :participantRecord.id LIMIT 1];
+                                                        
+                                                        system.debug(moduleParticipantRecord +'error message');
 
         PageReference pageReference = Page.FAU_ModuleParticipant;
         Test.setCurrentPage(pageReference);
+        System.debug(moduleParticipantRecord.FAU_Module__r.FAU_Hotel_Name__c+'error Message');
 
         ApexPages.StandardController standardController
              = new ApexPages.StandardController(moduleParticipantRecord);

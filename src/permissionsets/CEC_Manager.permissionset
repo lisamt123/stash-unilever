@@ -7137,6 +7137,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>hh</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>im_IssueCreationDialogueController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
