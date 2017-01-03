@@ -713,6 +713,17 @@
         <summaryOperation>count</summaryOperation>
         <type>Summary</type>
     </fields>
+	 <fields>
+        <fullName>UL_Customer_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Code</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>UL_Planning_Level__c</fullName>
         <defaultValue>false</defaultValue>
