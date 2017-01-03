@@ -8017,7 +8017,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
+       <!-- <picklistValues>
             <picklist>AccountSource</picklist>
             <values>
                 <fullName>Other</fullName>
@@ -8039,7 +8039,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Web</fullName>
                 <default>false</default>
             </values>
-        </picklistValues>
+        </picklistValues>-->
         <picklistValues>
             <picklist>Active__c</picklist>
             <values>
