@@ -42,7 +42,6 @@ src/objects/cec_Alert_Rule__c.object
 src/objects/CEC_Case_Market_Mapping__c.object
 src/objects/cec_Enclosure__c.object
 src/objects/cec_Fulfilment__c.object
-src/objects/sf4twitter__Twitter_Conversation__c.object
 src/objects/User.object
 src/pages/CEC_IRIProductLocator.page
 src/pages/CEC_IRIProductLocator.page-meta.xml
