@@ -10,6 +10,60 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>UL_CurrentStatus_Approved</fullName>
+        <field>UL_Current_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>CurrentStatus_Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+	<fieldUpdates>
+        <fullName>UL_CurrentStatus_DirectorCheck</fullName>
+        <field>UL_Current_Status__c</field>
+        <literalValue>Director Check</literalValue>
+        <name>CurrentStatus_DirectorCheck</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+	<fieldUpdates>
+        <fullName>UL_CurrentStatus_BandedPackApproved</fullName>
+        <field>UL_Current_Status__c</field>
+        <literalValue>Banded Pack Approved</literalValue>
+        <name>CurrentStatus_BandedPackApproved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UL_CurrentStatus_FinanceCheck</fullName>
+        <field>UL_Current_Status__c</field>
+        <literalValue>Finance Check</literalValue>
+        <name>CurrentStatus_FinanceCheck</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UL_CurrentStatus_ManagerCheck</fullName>
+        <field>UL_Current_Status__c</field>
+        <literalValue>Manager Check</literalValue>
+        <name>CurrentStatus_ManagerCheck</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UL_CurrentStatus_Planning</fullName>
+        <field>UL_Current_Status__c</field>
+        <literalValue>Planning</literalValue>
+        <name>CurrentStatus_Planning</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>UL_In_Store_End_Date_Update</fullName>
         <description>Updates the In-Store End Date</description>
         <field>ACCL__Placement_Date_Thru__c</field>
@@ -104,6 +158,7 @@ TEXT(DAY(ACCL__Placement_Date_Thru__c)) +&apos;/&apos;+ TEXT(MONTH(ACCL__Placeme
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+	
     <rules>
         <fullName>ACCL__Update Promotion Record Type</fullName>
         <active>false</active>
