@@ -997,4 +997,3 @@ function getAllSAttachments(queryResult) {
         }
     }
 }
-
