@@ -1026,6 +1026,247 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>India</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Korea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Latvia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lithuania</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Netherlands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Norway</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Peru</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Philippines</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>United Kingdom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>United States</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vietnam</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+        <fullName>Country_Name__c</fullName>
+        <description>CEC:To store case - case market mappping- country Name</description>
+        <externalId>false</externalId>
+        <label>Country Name</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Austria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bangladesh</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Belgium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Costa Rica</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Denmark</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>El Salvador</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Estonia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>France</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Germany</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Greece</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Honduras</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Hungary</fullName>
                 <default>false</default>
             </picklistValues>
@@ -2080,6 +2321,10 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>Email Greece</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Email Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Email Hungary</fullName>
                 <default>false</default>
@@ -2152,12 +2397,20 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>Email Sri Lanka</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Email Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Email Thailand</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Email TO France</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Email Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2258,6 +2511,244 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <type>Checkbox</type>
     </fields>
    <fields>
+        <fullName>Override_From_Address__c</fullName>
+        <description>CEC Override From Address is a dependant picklist of email addresses based on the country name picklist</description>
+        <externalId>false</externalId>
+        <label>Override From Address</label>
+        <picklist>
+            <controllingField>Country_Name__c</controllingField>
+            <picklistValues>
+                <fullName>bertolli@mizkan.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>bertollioliveoilusa@deoleo.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>callcenter.tr@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Turkey</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>carapelliusa@deoleo.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>carbonellusa@deoleo.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Careline.bd@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>cec.hk@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Hong Kong</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CEC.Korea@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Korea</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>cec.philippines@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Philippines</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>cec.taiwan@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Taiwan</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Comments.Canada@benjerry.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>comments@talentigelato.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumer.affairs-za@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Africa</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consumer-Hotline.Thailand@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Thailand</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumerproduct@mizkan.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumerrelations.uanz@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Australia</controllingFieldValues>
+                <controllingFieldValues>New Zealand</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.cl</fullName>
+                <default>false</default>
+                <controllingFieldValues>Chile</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Colombia</controllingFieldValues>
+                <controllingFieldValues>Costa Rica</controllingFieldValues>
+                <controllingFieldValues>Ecuador</controllingFieldValues>
+                <controllingFieldValues>El Salvador</controllingFieldValues>
+                <controllingFieldValues>Guatemala</controllingFieldValues>
+                <controllingFieldValues>Honduras</controllingFieldValues>
+                <controllingFieldValues>Nicaragua</controllingFieldValues>
+                <controllingFieldValues>Panama</controllingFieldValues>
+                <controllingFieldValues>Venezuela</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com.ar</fullName>
+                <default>false</default>
+                <controllingFieldValues>Argentina</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com.bo</fullName>
+                <default>false</default>
+                <controllingFieldValues>Bolivia</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com.pe</fullName>
+                <default>false</default>
+                <controllingFieldValues>Peru</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com.py</fullName>
+                <default>false</default>
+                <controllingFieldValues>Paraguay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>consumidor@sac-unilever.com.uy</fullName>
+                <default>false</default>
+                <controllingFieldValues>Uruguay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>info@bertolli.ca</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>info@bluewater.ca</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>info@carapelli.ca</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>info@gortons.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product.Contactus@benjerry.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Raabta.upl@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Pakistan</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ragu.ca@mizkan.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ragu.us@mizkan.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>reply.canada@sunproductscorp.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>reply.us@sunproductscorp.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>sac@atendimentounilever.com.br</fullName>
+                <default>false</default>
+                <controllingFieldValues>Brazil</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>suara.konsumen@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Indonesia</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>t2customercare@t2tea.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>tuvankhachhang@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Vietnam</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unilever.CEC@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Japan</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UnileverConsumercare.CA@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>unileverconsumercare.usa@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>unileverservices.auxconsommateurs@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canada</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UnileverServicioalConsumidor.MX@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Mexico</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>unileverservicioalconsumidor.usa@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>United States</controllingFieldValues>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
         <fullName>Override_From_Address__c</fullName>
         <description>CEC Override From Address is a dependant picklist of email addresses based on the country name picklist</description>
         <externalId>false</externalId>
@@ -5438,6 +5929,42 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_User_Greece</role>
         </sharedTo>
     </listViews>
+	 <listViews>
+        <fullName>CEC_Hong_Kong_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Hong Kong Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Hong_Kong_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Hong_Kong</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_User_Hong_Kong</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Hong_Kong_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Hong Kong Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Hong_Kong_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Hong_Kong</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_User_Hong_Kong</role>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>CEC_Hungary_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
@@ -5809,6 +6336,42 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <sharedTo>
             <role>CEC_Manager_Japan</role>
             <role>CEC_User_Japan</role>
+        </sharedTo>
+    </listViews>
+	 <listViews>
+        <fullName>CEC_Korea_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Korea Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Korea_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Korea</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_User_Korea</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Korea_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Korea Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Korea_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Korea</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_User_Korea</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -8585,6 +9148,42 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_User_Sri_Lanka</role>
         </sharedTo>
     </listViews>
+	<listViews>
+        <fullName>CEC_Taiwan_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Taiwan Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Taiwan_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_Manager_Taiwan</role>
+            <role>CEC_User_Taiwan</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Taiwan_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Taiwan Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Taiwan_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_Manager_Taiwan</role>
+            <role>CEC_User_Taiwan</role>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>CEC_Thailand_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
@@ -8658,6 +9257,42 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Thailand</role>
             <role>CEC_User_Thailand</role>
+        </sharedTo>
+    </listViews>
+	 <listViews>
+        <fullName>CEC_Turkey_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Turkey Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Turkey_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_NAMETRUB</role>
+            <role>CEC_Manager_Turkey</role>
+            <role>CEC_User_Turkey</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Turkey_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Turkey Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Turkey_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_NAMETRUB</role>
+            <role>CEC_Manager_Turkey</role>
+            <role>CEC_User_Turkey</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -10562,6 +11197,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hungary</fullName>
                 <default>false</default>
             </values>
@@ -10666,7 +11305,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10842,6 +11489,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>callcenter%2Etr%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>carapelliusa%40deoleo%2Ecom</fullName>
                 <default>false</default>
             </values>
@@ -10850,7 +11501,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>cec%2Ehk%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>cec%2Ephilippines%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>cec%2Etaiwan%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11392,7 +12051,229 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
         </picklistValues>
-         <picklistValues>
+        <picklistValues>
+            <picklist>Country_Name__c</picklist>
+            <values>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bangladesh</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Costa Rica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>El Salvador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honduras</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latvia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lithuania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Peru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Kingdom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United States</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vietnam</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
             <picklist>Country_Name__c</picklist>
             <values>
                 <fullName>Argentina</fullName>
@@ -11653,7 +12534,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
+         <picklistValues>
             <picklist>Origin</picklist>
             <values>
                 <fullName>Chat</fullName>
@@ -12013,17 +12894,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Suggestion</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Tag__c</picklist>
-            <values>
-                <fullName>CEC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>George</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
