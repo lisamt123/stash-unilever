@@ -103,15 +103,6 @@ src/approvalProcesses
 src/approvalProcesses/Case.TEL_Telesales_Sample_Request.approvalProcess
 src/groups
 src/groups/TEL_Telesales.group
-src/email
-src/email/Telesales_Email_Templates
-src/email/Telesales_Email_Templates-meta.xml
-src/email/Telesales_Email_Templates/Telesales_Approved_Request.email
-src/email/Telesales_Email_Templates/Telesales_Approved_Request.email-meta.xml
-src/email/Telesales_Email_Templates/Telesales_Rejected_Request.email
-src/email/Telesales_Email_Templates/Telesales_Rejected_Request.email-meta.xml
-src/email/Telesales_Email_Templates/Telesales_Request_Fulfillment_House.email
-src/email/Telesales_Email_Templates/Telesales_Request_Fulfillment_House.email-meta.xml
 src/letterhead
 src/letterhead/TEL_Telesales_Letterhead.letter
 src/layouts
