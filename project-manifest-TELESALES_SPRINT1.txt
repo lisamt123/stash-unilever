@@ -109,6 +109,8 @@ src/letterhead/TEL_Telesales_Letterhead.letter
 src/layouts
 src/layouts/Account-Account Layout.layout
 src/layouts/Case-TEL_Sample_Requests.layout
+src/layouts/Campaign-Telesales Campaign Layout.layout
+src/layouts/Opportunity-TEL_Telesales.layout
 src/flows
 src/flows/TEL_Submit_Sample_Request_Caswe_for_Approval-1.flow
 src/triggers
