@@ -1,0 +1,39 @@
+<aura:component > 
+ <div class="events-trainerParent">   
+    <div class="slds-page-header" role="banner">
+      <div class="slds-media slds-media--center">
+        <div class="slds-media__figure">
+          <img aria-hidden="true" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png"
+              onclick="{!c.gotoUpcomingDetail}" class="slds-icon slds-avatar--small">
+          </img>
+        </div>    
+      </div>
+        <br></br>
+       <div class="slds-media__body">
+            <p class="slds-page-header__title slds-truncate " title="Rohde Corp - 80,000 Widgets">Trainer</p>
+       </div>
+  </div>
+    <figure class="slds-image slds-image--card events-imagePadding">
+          <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--16-by-9">
+            <img src="/resource/Lightning_designing_style/assets/images/avatar1.jpg" alt="Description of the image" />
+          </a>
+           <figcaption class="slds-image__title slds-image__title--card events-captionPadding">
+            <span class="slds-image__text slds-truncate" title="Image Title">
+                <div  class="slds-text-heading--medium slds-text-align--left">Dr James Moth</div>
+                <div  class="slds-text-title slds-text-align--left">Data Scientist Kean University</div>
+               
+               </span>    
+          </figcaption>
+  </figure>
+      <div class="slds-page-header" role="banner">
+        <div class="slds-media__body">
+          <p class="slds-page-header__title slds-truncate" title="Rohde Corp - 80,000 Widgets">Attendees</p>
+        </div>
+     </div>
+     <article class="slds-post" data-aura-rendered-by="48:289;a"><header class="slds-post__header slds-media slds-media--center" data-aura-rendered-by="49:289;a"><div class="slds-media__figure" data-aura-rendered-by="50:289;a"><a class="slds-avatar slds-avatar--circle slds-avatar--large" href="javascript:void(0);" title="Jason Rodgers" data-aura-rendered-by="51:289;a"><img src="/resource/Lightning_designing_style/assets/images/avatar1.jpg" data-aura-rendered-by="52:289;a" /></a></div><div class="slds-media__body" data-aura-rendered-by="53:289;a"><div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate" data-aura-rendered-by="54:289;a"><p data-aura-rendered-by="55:289;a"><a href="javascript:void(0);" title="Jason Rodgers" data-aura-rendered-by="56:289;a">Samuel Bond</a></p></div><p class="slds-text-body--small" data-aura-rendered-by="58:289;a"><a class="slds-text-link--reset" href="javascript:void(0);" title="Click for single-item view of this post" data-aura-rendered-by="59:289;a">Business Anaiyst</a></p></div></header></article>
+     <!---tO bE DELETED-->
+     <article class="slds-post" data-aura-rendered-by="48:289;a"><header class="slds-post__header slds-media slds-media--center" data-aura-rendered-by="49:289;a"><div class="slds-media__figure" data-aura-rendered-by="50:289;a"><a class="slds-avatar slds-avatar--circle slds-avatar--large" href="javascript:void(0);" title="Jason Rodgers" data-aura-rendered-by="51:289;a"><img src="/resource/Lightning_designing_style/assets/images/avatar1.jpg" data-aura-rendered-by="52:289;a"/></a></div><div class="slds-media__body" data-aura-rendered-by="53:289;a"><div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate" data-aura-rendered-by="54:289;a"><p data-aura-rendered-by="55:289;a"><a href="javascript:void(0);" title="Jason Rodgers" data-aura-rendered-by="56:289;a">Peter Jackson</a></p></div><p class="slds-text-body--small" data-aura-rendered-by="58:289;a"><a class="slds-text-link--reset" href="javascript:void(0);" title="Click for single-item view of this post" data-aura-rendered-by="59:289;a">Data Anaiyst</a></p></div></header></article>
+     <article class="slds-post" data-aura-rendered-by="48:289;a"><header class="slds-post__header slds-media slds-media--center" data-aura-rendered-by="49:289;a"><div class="slds-media__figure" data-aura-rendered-by="50:289;a"><a class="slds-avatar slds-avatar--circle slds-avatar--large" href="javascript:void(0);" title="Jason Rodgers" data-aura-rendered-by="51:289;a"><img src="/resource/Lightning_designing_style/assets/images/avatar1.jpg" data-aura-rendered-by="52:289;a" /></a></div><div class="slds-media__body" data-aura-rendered-by="53:289;a"><div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate" data-aura-rendered-by="54:289;a"><p data-aura-rendered-by="55:289;a"><a href="javascript:void(0);" title="Jason Rodgers" data-aura-rendered-by="56:289;a">Anna Cooper</a></p></div><p class="slds-text-body--small" data-aura-rendered-by="58:289;a"><a class="slds-text-link--reset" href="javascript:void(0);" title="Click for single-item view of this post" data-aura-rendered-by="59:289;a">UX Consultant</a></p></div></header></article>
+ 
+</div>     
+</aura:component>

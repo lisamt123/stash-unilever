@@ -1,0 +1,130 @@
+<aura:component >
+    <aura:attribute name="selectedEventFilter" type="String"/>
+    <aura:attribute name="showFilter" type="boolean" default="false"/>
+    <aura:attribute name="showSort" type="boolean" default="false"/>
+	<div class="heading">All Events
+   <div>
+		<div class="slds-button-group filter-sort" role="group"> 
+				<button class="slds-button slds-button--icon-border" title="Filter List" onclick="{!c.showFilterMenu}" >
+                  
+					<img class="icons_group" src="/resource/Lightning_designing_style/assets/icons/utility/filterList_60.png"></img>
+				  
+                </button>
+               
+				<button class="slds-button slds-button--icon-more" aria-haspopup="true" title="More Actions" onclick="{!c.showSortMenu}">
+					<img class="icons_group" src="/resource/Lightning_designing_style/assets/icons/utility/sort_60.png"></img>
+				</button>
+			</div>
+            <aura:if isTrue="{!v.showFilter}">
+                        <div  aura:id="filterOptions" class="slds-hide slds-dropdown slds-dropdown--right events-filterdropdown">
+                            <ul class="slds-dropdown__list" role="menu" >
+                                 <li aura:id="filterDefault" class="slds-dropdown__item events-bold" role="presentation">
+                                    <a href="javascript:void(0);" role="menuitem" tabindex="0">
+                                       <span class="slds-truncate">Recurring</span>
+                                    </a>
+                                </li>
+                                <li class="slds-dropdown__item" role="presentation">
+                                    <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                        <span class="slds-truncate">Non-recurring</span>
+                                    </a>
+                                </li>
+                                <li class="slds-dropdown__item" role="presentation">
+                                    <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                        <span class="slds-truncate">Saved for future reference</span>
+                                    </a>
+                                </li>
+                                <li class="slds-dropdown__item" role="presentation">
+                                    <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                        <span class="slds-truncate">Time slot</span>
+                                    </a>
+                                </li>
+                                <li class="slds-dropdown__item" role="presentation">
+                                    <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                        <span class="slds-truncate">Facilities available</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+             </aura:if>
+            <aura:if isTrue="{!v.showSort}">
+                        <div  aura:id="sortOptions" class="slds-hide slds-dropdown slds-dropdown--right events-sortdropdown">
+                            <ul class="slds-dropdown__list" role="menu" >
+                                <li aura:id="sortDefault" class="slds-dropdown__item events-bold" role="presentation">
+                                    <a href="javascript:void(0);" role="menuitem" tabindex="0">
+                                       <span class="slds-truncate">Date (Chronological)</span>
+                                    </a>
+                                </li>
+                                <li class="slds-dropdown__item" role="presentation">
+                                    <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                        <span class="slds-truncate">Event name (A-Z)</span>
+                                    </a>
+                                </li>
+                                <li class="slds-dropdown__item" role="presentation">
+                                    <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                        <span class="slds-truncate">Number of attendees</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+             </aura:if>
+		</div>
+	</div>
+	<div onclick="{!c.gotoDetail}" class="cards">Data Visualization 
+		<span class="lang">(English)</span>
+		<br></br>
+		<span class="num-attendees">30 Attending</span>
+        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/fecilities-icon-for-details-page.png"></img>
+        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/Fecilities-icon-frame-for-event-card.png"></img>
+		<img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/Fecilities-icon-frame-for-event-card1.png"></img>		
+		<hr></hr>
+        <img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy.png"></img>
+		<br></br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        
+		<hr></hr>
+		<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
+		<span class="date-adress"> 24th December 2016 from 14:00 to 18:00</span>
+		<br></br>
+		<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
+		<span class="date-adress"> Senate House Malet Street, London</span>
+		<img class="icons_group1" src="/resource/CORE_LA_StaticResource/event_app/images/Not-saved.png"></img>
+	</div>
+	<div onclick="{!c.gotoDetail}" class="cards">Data Visualization 
+		<span class="lang">(English)</span>
+		<br></br>
+		<span class="num-attendees">30 Attending</span>
+        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/fecilities-icon-for-details-page.png"></img>
+        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/Fecilities-icon-frame-for-event-card.png"></img>
+		<img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/Fecilities-icon-frame-for-event-card1.png"></img>		
+		<hr></hr>
+		<img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy.png"></img>
+		<br></br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        
+		<hr></hr>
+		<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
+		<span class="date-adress"> 24th December 2016 from 14:00 to 18:00</span>
+		<br></br>
+		<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
+		<span class="date-adress"> Senate House Malet Street, London</span>
+		<img class="icons_group1" src="/resource/CORE_LA_StaticResource/event_app/images/Saved.png"></img>
+	</div>
+	<div  onclick="{!c.gotoDetail}" class="cards">Data Visualization 
+		<span class="lang">(English)</span>
+		<br></br>
+		<span class="num-attendees">30 Attending</span>
+        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/fecilities-icon-for-details-page.png"></img>
+        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/Fecilities-icon-frame-for-event-card.png"></img>
+		<img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/Fecilities-icon-frame-for-event-card1.png"></img>		
+		<hr></hr>
+		<img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy.png"></img>
+		<br></br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        
+		<hr></hr>
+		<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
+		<span class="date-adress"> 24th December 2016 from 14:00 to 18:00</span>
+		<br></br>
+		<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
+		<span class="date-adress"> Senate House Malet Street, London</span>
+		<img class="icons_group1" src="/resource/Lightning_designing_style/assets/icons/utility/check_60.png"></img>
+	</div>
+	
+</aura:component>

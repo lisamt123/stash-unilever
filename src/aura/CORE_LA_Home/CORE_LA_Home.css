@@ -1,0 +1,17 @@
+.THIS .tabUi{
+    background: white;
+}
+.THIS .tabUi li{
+    width: 46%;
+    margin: 0 auto;
+    text-align: center;
+}
+.THIS .body-content{
+    padding: 20px;
+    background: white;
+}
+
+.THIS .event-banner{
+    height:200px;
+    margin-bottom: 8px;
+}

@@ -1,0 +1,147 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable">
+	<ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" />
+	<aura:handler name="init" value="{!this}" action="{!c.defaultPanel}" />
+   <!-- <aura:handler event="c:LA_HandleEvent" action="{!c.navigateWithinComponent}" /> -->
+    <!-- <aura:attribute name="showspinner" type="boolean" default="true"/> -->
+ <div class="parent" aura:id="parentDiv">
+	<div class="slds-tabs--default">
+        <!--Primary Tabs-->
+			<ul class="slds-tabs--default__nav tabUi" role="tablist">
+				<li aura:id="tab-profile" class="slds-tabs--default__item slds-text-title--caps " title="Item One" role="presentation"  onclick="{!c.profileDisplay}">
+					<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">MY PROFILE</a>
+				</li>
+				<li aura:id="tab-default" class="slds-tabs--default__item slds-text-title--caps " title="Item Two" role="presentation"  onclick="{!c.upcomingDisplay}">
+					<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">UP-COMING</a>
+				</li>
+				<li aura:id="tab-past" class="slds-tabs--default__item slds-text-title--caps" title="Item Three" role="presentation" onclick="{!c.pastDisplay}">
+					<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">PAST</a>
+				</li>
+			</ul>
+        <!--Primary Tabs-->
+    <div id="tab-default-1" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-1__item" aura:id="profileContent">
+       <div class="body-content">
+           <c:CORE_LA_Profile />
+        </div>     	
+            <!--Sub Tab Section-->    
+        <div class="slds-tabs--default">
+            <ul class="slds-tabs--default__nav tabUi " role="tablist">
+                <li aura:id="tab-feed" class="slds-tabs--default__item slds-text-title--caps " title="Item One" role="presentation"  onclick="{!c.feedDisplay}">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">FEEDS</a>
+                </li>
+                <li aura:id="tab-upcoming" class="slds-tabs--default__item slds-text-title--caps  " title="Item Two" role="presentation"  onclick="{!c.upcomingEventDisplay}">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">UP-COMINGEVENT</a>
+                </li>                
+            </ul>            
+ <div aura:id="upcomingTabContent" id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item" >
+   My Upcoming Event
+  </div>
+         <div aura:id="feedContent" id="tab-default-3" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item" >
+ <article class="slds-card">
+    
+      <div class="slds-card__body">
+        <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+          <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-3 slds-hint-parent">
+            <div class="slds-media__figure">
+              
+            </div>
+            <div class="slds-media__body">
+              <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                <h3 class="slds-truncate" title="Related Record Title 1"><a href="javascript:void(0);">Related Record Title 1</a></h3>
+                <div class="slds-shrink-none">
+                 
+                </div>
+              </div>
+              <div class="slds-tile__detail slds-text-body--small">
+                <dl class="slds-dl--horizontal">
+                  <dt class="slds-dl--horizontal__label">
+                    <span class="slds-truncate" title="Type">Type:</span>
+                  </dt>
+                  <dd class="slds-dl--horizontal__detail slds-tile__meta">
+                    <span class="slds-truncate" title="Visit">Visit</span>
+                  </dd>
+                  <dt class="slds-dl--horizontal__label">
+                    <span class="slds-truncate" title="Date">Date:</span>
+                  </dt>
+                  <dd class="slds-dl--horizontal__detail slds-tile__meta">
+                    <span class="slds-truncate" title="1/31/15 3:45PM">1/31/15 3:45PM</span>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-3 slds-hint-parent">
+            <div class="slds-media__figure">
+             
+            </div>
+            <div class="slds-media__body">
+              <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                <h3 class="slds-truncate" title="Related Record Title 1"><a href="javascript:void(0);">Related Record Title 1</a></h3>
+                <div class="slds-shrink-none">
+                  
+                </div>
+              </div>
+              <div class="slds-tile__detail slds-text-body--small">
+                <dl class="slds-dl--horizontal">
+                  <dt class="slds-dl--horizontal__label">
+                    <span class="slds-truncate" title="Type">Type:</span>
+                  </dt>
+                  <dd class="slds-dl--horizontal__detail slds-tile__meta">
+                    <span class="slds-truncate" title="Visit">Visit</span>
+                  </dd>
+                  <dt class="slds-dl--horizontal__label">
+                    <span class="slds-truncate" title="Date">Date:</span>
+                  </dt>
+                  <dd class="slds-dl--horizontal__detail slds-tile__meta">
+                    <span class="slds-truncate" title="1/31/15 3:45PM">1/31/15 3:45PM</span>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-3 slds-hint-parent">
+            <div class="slds-media__figure">
+             
+            </div>
+            <div class="slds-media__body">
+              <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                <h3 class="slds-truncate" title="Related Record Title 1"><a href="javascript:void(0);">Related Record Title 1</a></h3>
+                <div class="slds-shrink-none">
+                 
+                </div>
+              </div>
+              <div class="slds-tile__detail slds-text-body--small">
+                <dl class="slds-dl--horizontal">
+                  <dt class="slds-dl--horizontal__label">
+                    <span class="slds-truncate" title="Type">Type:</span>
+                  </dt>
+                  <dd class="slds-dl--horizontal__detail slds-tile__meta">
+                    <span class="slds-truncate" title="Visit">Visit</span>
+                  </dd>
+                  <dt class="slds-dl--horizontal__label">
+                    <span class="slds-truncate" title="Date">Date:</span>
+                  </dt>
+                  <dd class="slds-dl--horizontal__detail slds-tile__meta">
+                    <span class="slds-truncate" title="1/31/15 3:45PM">1/31/15 3:45PM</span>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</article>
+         </div>
+        </div>
+         <!--Tab Section-->
+     </div>
+			<div id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item" aura:id="upcomingContent">
+             <c:CORE_LA_Upcoming />
+            </div>
+			<div id="tab-default-3" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item" aura:id="pastContent">
+                <c:CORE_LA_Past />
+            </div>
+   </div>     
+  </div>
+     
+</aura:component>

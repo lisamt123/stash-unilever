@@ -1,0 +1,67 @@
+<aura:component implements="force:appHostable">
+	<ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
+	<ltng:require styles="/resource/CORE_FB_Feedback_App/assets/styles/star-css.css" />
+	<ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
+	<ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
+	<style>
+        body{
+        font: 100%/1.5 "Salesforce Sans",Arial,sans-serif !important;
+        background: #c7c3c3;
+        height:700px;
+        }
+        ::-webkit-input-placeholder {
+        color: #A8B8D0;
+        font-size:12px;
+        }
+        
+        :-moz-placeholder { /* Firefox 18- */
+        color: #A8B8D0; 
+        font-size:12px;
+        }
+        
+        ::-moz-placeholder {  /* Firefox 19+ */
+        color: #A8B8D0;  
+        font-size:12px;
+        }
+        
+        :-ms-input-placeholder {  
+        color: #A8B8D0;  
+        font-size:12px;
+        }
+        .slds-modal__content{
+        text-align: left;
+        padding-left: 1rem;
+        }
+        .slds-modal__header {
+        border-radius: .25rem;
+        padding: 2rem 1rem !important;
+        }
+    </style>
+
+	<div class="register_container">
+		<div class="slds-text-body--regular feedback-text">
+            Hi Tom!
+			<br></br>
+            Thanks for your interest in the following event:
+            
+			<br></br>
+			<div class="event-banner">
+                Data Visualization (English)
+				<br></br>
+                24th December 2016 from 14:00 to 18:00    
+            
+			</div>
+			<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
+			<span class="date-adress"> Senate House Malet Street, London</span>
+		</div>
+		<hr></hr>
+		<div class="feedback-buttons"  >
+
+			<button class="slds-button slds-button--brand slds-button--neutral slds-not-selected" aria-live="assertive" onclick="{!c.done}">
+				<span class="slds-text-not-selected">
+                    Done 
+                </span>
+			</button>
+		</div>
+	</div>
+</aura:component>

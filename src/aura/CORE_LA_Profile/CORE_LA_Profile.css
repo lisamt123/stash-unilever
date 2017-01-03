@@ -1,0 +1,20 @@
+.THIS .profile_pic {
+    Width:100% ;
+    height: 200px ;
+    
+}
+.THIS .font{
+    font-size: 15px !important;
+    margin: 20px 10px 0;
+}
+.THIS .Designation{
+    font-size: 15px !important;    
+    margin: 0 10px 20px;
+}
+.THIS .Description{
+    margin: 0 10px 20px;
+    font-size: 10px;
+}
+.THIS .profile-div{
+    border: 1px solid #d2d2d2;
+}

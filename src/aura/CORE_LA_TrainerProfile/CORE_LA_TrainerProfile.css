@@ -1,0 +1,33 @@
+.THIS .events-imagePadding{
+    padding: 10px;
+    border: white;
+}
+
+.THIS .events-captionPadding{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background: white;
+    margin: 6px;
+}
+
+
+.THIS .events-attendeList{
+    background: white;
+}
+
+.THIS .events-font-color{
+    color: #0070d2;
+}
+
+.THIS .events-slds-color{
+    color: rgba(0, 0, 0, 0.4);
+}
+.THIS .slds-image__crop img {
+    max-width: 100% !important;
+}
+.THIS .slds-icon1 {
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: 2rem !important;
+    fill: #fff;
+}

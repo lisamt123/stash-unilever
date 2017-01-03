@@ -1,0 +1,108 @@
+<aura:component implements="force:appHostable">
+	<ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
+	<ltng:require styles="/resource/CORE_FB_Feedback_App/assets/styles/star-css.css" />
+	<ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
+	<ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
+	<style>
+        body{
+        font: 100%/1.5 "Salesforce Sans",Arial,sans-serif !important;
+        background: #c7c3c3;
+        height:700px;
+        }
+        ::-webkit-input-placeholder {
+        color: #A8B8D0;
+        font-size:12px;
+        }
+        
+        :-moz-placeholder { /* Firefox 18- */
+        color: #A8B8D0; 
+        font-size:12px;
+        }
+        
+        ::-moz-placeholder {  /* Firefox 19+ */
+        color: #A8B8D0;  
+        font-size:12px;
+        }
+        
+        :-ms-input-placeholder {  
+        color: #A8B8D0;  
+        font-size:12px;
+        }
+        .slds-modal__content{
+        text-align: left;
+        padding-left: 1rem;
+        }
+        .slds-modal__header {
+        border-radius: .25rem;
+        padding: 2rem 1rem !important;
+        }
+    </style>
+	<div class="close-button" onclick="{!c.rateLater}">
+		<img src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png"></img>
+	</div>
+	<div class="register_container">
+		<div class="slds-text-body--regular feedback-text">
+            Hi Tom!
+			<br></br>
+            Thanks for your interest in the following event:
+            
+			<br></br>
+			<div class="event-banner">
+                Data Visualization (English)
+				<br></br>
+                24th December 2016 from 14:00 to 18:00    
+            
+			</div>
+		</div>
+		<div class="register-text">
+			<div class="register-rate-star">
+				<form id="registerForm">
+					<div class="slds-form-element">
+						<label class="slds-form-element__label" for="select-01">
+                            Would you like to attend the after party ?</label>
+						<div class="slds-form-element__control">
+							<div class="slds-select_container">
+								<select id="select-01" class="slds-select">
+									<option>Yes</option>
+									<option>No</option>
+								</select>
+							</div>
+						</div>
+						<div class="slds-form-element__control">
+							<div class="slds-select_container">
+								<select id="select-01" class="slds-select">
+									<option>Select dietary option</option>
+									<option>Vegetraian</option>
+									<option>Non-Vegetraian</option>
+								</select>
+							</div>
+						</div>
+						<div class="feedback-comment">
+							<div class="feedback-comment-textarea">
+								<div class="slds-form-element">
+									<div class="slds-form-element__control">
+										<textarea id="textarea-input-02" class="slds-textarea" placeholder="Please tell us what are you looking forward to achive afer this workshop within 250 characters" maxlength="500" required="required"></textarea>
+										<span class="note">**This form is electronically signed when you click submit. By Submitting you are conforming that the information provided by you reflects your wishes and intent.</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<hr></hr>
+		<div class="feedback-buttons"  >
+			<button class="slds-button slds-button--neutral slds-not-selected" aria-live="assertive" onclick="{!c.cancel}" >
+				<span class="slds-text-not-selected">
+                    Cancel
+                </span>
+			</button>
+			<button class="slds-button slds-button--brand slds-button--neutral slds-not-selected" aria-live="assertive" onclick="{!c.registration}">
+				<span class="slds-text-not-selected">
+                        Register 
+                    </span>
+			</button>
+		</div>
+	</div>
+</aura:component>

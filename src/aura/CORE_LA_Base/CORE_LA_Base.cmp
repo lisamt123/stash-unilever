@@ -1,0 +1,17 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable">
+     <ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" />
+	<ltng:require scripts="{!$Resource.ga + '/js/jquery-3.0.0.min.js'}" />
+	<aura:handler name="init" value="{!this}" action="{!c.homePageLoad}" />
+	<aura:handler event="c:CORE_LA_HandleEvent" action="{!c.navigateWithinComponent}" />
+	<aura:attribute name="showspinner" type="Boolean"/>
+	<!-- <aura:attribute name="showspinner" type="boolean" default="true"/> -->
+	<div aura:id="content"/>
+	<aura:if isTrue="{!v.showspinner}">
+		<div class="slds-spinner_container">
+			<div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+				<div class="slds-spinner__dot-a"></div>
+				<div class="slds-spinner__dot-b"></div>
+			</div>
+		</div>
+	</aura:if>
+</aura:component>

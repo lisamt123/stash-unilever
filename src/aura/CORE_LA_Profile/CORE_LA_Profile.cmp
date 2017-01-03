@@ -1,0 +1,21 @@
+<aura:component >
+    <!-- <aura:handler name="init" value="{!this}" action="{!c.defaultContent}" />-->
+    <div class="slds-parent">           
+        <a href="javascript:void(0);" class="">            
+            <img src="/resource/Lightning_designing_style/assets/images/avatar1.jpg" class="profile_pic" alt="Description of the image" />            
+        </a>
+        <div class="profile-div">
+            <div class="slds-text-title font">
+                Profile Name
+            </div>
+            <div class="slds-text-title Designation">
+                Designation
+            </div>
+            <div class="slds-align--absolute-center Description">
+                Salesforce is the leader in cloud computing, offering applications for all aspects of your business, including CRM, sales, ERP, customer service, marketing automation, business analytics, mobile application building, and much more.
+                
+            </div>
+        </div>
+        
+    </div>        
+</aura:component>
