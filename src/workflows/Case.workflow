@@ -129,7 +129,8 @@
             <field>SuppliedEmail</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>marketing@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>Telesales_Email_Templates/Telesales_Rejected_Request</template>
     </alerts>
     <alerts>
@@ -140,7 +141,8 @@
             <field>SuppliedEmail</field>
             <type>email</type>
         </recipients>
-		<senderType>CurrentUser</senderType>
+        <senderAddress>marketing@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>Telesales_Email_Templates/Telesales_Request_Fulfillment_House</template>
     </alerts>
     <alerts>
@@ -151,7 +153,8 @@
             <field>SuppliedEmail</field>
             <type>email</type>
         </recipients>
-		<senderType>CurrentUser</senderType>
+        <senderAddress>marketing@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>Telesales_Email_Templates/Telesales_Approved_Request</template>
     </alerts>
     <fieldUpdates>
