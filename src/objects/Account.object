@@ -7095,6 +7095,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Partner</fullName>
                 <default>false</default>
             </picklistValues>
+                    <picklistValues>
+                <fullName>Installation Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Technology Partner</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Press</fullName>
                 <default>false</default>
@@ -7163,6 +7171,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Manufacturer</fullName>
                 <default>false</default>
             </picklistValues>
+                    <picklistValues>
+                <fullName>Customer - Direct</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer - Channel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Channel Partner / Reseller</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Buying Group</fullName>
                 <default>false</default>
@@ -7177,6 +7197,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
+
     <fields>
         <fullName>UID_Branch__c</fullName>
         <description>Branch of Unilever that sells to distributor (primary account only)</description>

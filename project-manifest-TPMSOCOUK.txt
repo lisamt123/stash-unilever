@@ -93,7 +93,6 @@ src/objectTranslations/ACCL__Tactic__c-es.objectTranslation
 src/objectTranslations/ACCL__Transaction_Template__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Trigger_Setting__c-de.objectTranslation
 src/objectTranslations/ACCL__Trigger_Setting__c-en_US.objectTranslation
-src/objectTranslations/ACCL__Unit_of_Measure__c-en_US.objectTranslation
 src/objectTranslations/Promotion_Acc_Rel__c-de.objectTranslation
 src/objectTranslations/UL_Approval_Threshold__c-de.objectTranslation
 src/objectTranslations/UL_Cannibalisation_Rate__c-de.objectTranslation
