@@ -1,4 +1,7 @@
 src
+src/letterhead
+src/letterhead/UL_Email_Letterhead.letter
+src/letterhead/UL_Unilever.letter
 src/email
 src/email/unfiled$public
 src/email/unfiled$public/UL_Budget_Approval.email
