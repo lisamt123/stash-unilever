@@ -14,7 +14,8 @@
       
         public static final String ESCAPE_QUOTE= '\'';
         public static final String SPACE= ' ';
-        public static final String HYPHEN= ' - ';   
+        public static final String HYPHEN= '-'; 
+        public static final String UNDERSCORE= '_';  
         public static final String APPLICATION_NAME = 'TPM';
         public static final String NEWLINE_CHAR= '\n';
         public static final String RECORD_OPEN_PARAM= '/o';
@@ -72,7 +73,7 @@
         
         //Promotion Copy and Delete
         Public static final set<string> PROMOTIONSTATUS = new set<string>{'Planning'};
-        Public static final string STATUS = ' status';
+        Public static final string STATUS = 'status';
         Public static final string CUSTOMER = 'Customer';
         Public static final string PROMOTION_STATUS= 'Planning';
         
@@ -113,16 +114,27 @@
         
         //Status
         public static final String STATUS_APPROVE = 'Approve';
+        public static final String STATUS_REJECT = 'Reject';
         public static final String STATUS_ACTIVE = 'Active';
-        public static final String STATUS_APPROVED = 'approved';
+        public static final String STATUS_APPROVED = 'Approved';
         public static final String STATUS_SUBMIT = 'Submit';
         public static final String STATUS_SUBMITED = 'Submitted';
-        
+        public static final String STATUS_PENDING = 'Pending';
+        public static final String STATUS_PLANNING = 'Planning';
+        public static final String STATUS_FINANCE_CHECK = 'Finance Check';
+        public static final String STATUS_MANAGER_CHECK = 'Manager Check'; 
+               
         //User Org Role
         public static final String ROLE_CATEGORY_MANAGER = 'category manager';
         public static final String ROLE_FINANCE_MANAGER = 'finance manager';
         public static final String ROLE_ACCOUNT_MANAGER = 'account manager';
         
+        //Sales Org
+        public enum SalesOrg{
+            AR01,
+            CL01,
+            CL03
+        }
         
     /** ------------------------------------------------------------------ Public methods Section  ------------------------------------------------------------------/** 
     

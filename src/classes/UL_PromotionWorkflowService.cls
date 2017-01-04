@@ -48,7 +48,7 @@
                 }
                 
                 if(promotionLst.size() > 0 && String.isNotBlank(promotionLst[0].ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c)){
-                    custSetDataSetName = promotionLst[0].ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c + UL_Utility.HYPHEN + promotionLst[0].ACCL__Sales_Org__c ;
+                    custSetDataSetName = promotionLst[0].ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c + '-' + promotionLst[0].ACCL__Sales_Org__c ;
                 }
             
                 if(String.isNotBlank(custSetDataSetName)){      

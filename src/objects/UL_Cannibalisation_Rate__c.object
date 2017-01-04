@@ -139,13 +139,13 @@
         <lookupFilter>
             <active>true</active>
             <filterItems>
-                <field>ACSFUL001__Product__c.ACSFUL001__Product_Level__c</field>
+                <field>ACCL__Product__c.ACCL__Product_Level__c</field>
                 <operation>equals</operation>
                 <value>Commodity</value>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>
-        <referenceTo>ACSFUL001__Product__c</referenceTo>
+        <referenceTo>ACCL__Product__c</referenceTo>
         <relationshipLabel>Cannibalisation Rates</relationshipLabel>
         <relationshipName>Cannibalisation_Rates</relationshipName>
         <required>false</required>
@@ -155,7 +155,7 @@
     <fields>
         <fullName>UL_Sales_Organization__c</fullName>
         <externalId>false</externalId>
-        <globalPicklist>ACSFUL001__Sales_Org</globalPicklist>
+        <globalPicklist>ACCL__Sales_Org</globalPicklist>
         <label>Sales Organization</label>
         <required>true</required>
         <trackTrending>false</trackTrending>
@@ -207,7 +207,7 @@
         <active>true</active>
         <label>UKI</label>
         <picklistValues>
-            <picklist>ACSFUL001__Sales_Org</picklist>
+            <picklist>ACCL__Sales_Org</picklist>
             <values>
                 <fullName>Ireland SO</fullName>
                 <default>false</default>
