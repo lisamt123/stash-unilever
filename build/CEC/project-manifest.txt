@@ -28,6 +28,8 @@ src/classes/CEC_RetrievalRequestTriggerHelper.cls
 src/classes/CEC_RetrievalRequestTriggerHelper.cls-meta.xml
 src/classes/CEC_AlertActionHelperTest.cls
 src/classes/CEC_AlertActionHelperTest.cls-meta.xml
+src/classes/CEC_CaseActionControllerTest.cls
+src/classes/CEC_CaseActionControllerTest.cls-meta.xml
 src/email/CEC_Emails_Hong_Kong-meta.xml
 src/email/CEC_Emails_Korea-meta.xml
 src/email/CEC_Emails_Taiwan-meta.xml
