@@ -6435,7 +6435,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Ragu,Sunlight</value>
+            <value>Ragu</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -7171,13 +7171,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Philippines_Queue_SMS1</fullName>
+        <fullName>CEC_Philippines_Queue_SMS</fullName>
         <columns>CASES.ORIGIN</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Consumer_Email__c</columns>
         <columns>Search_Phone__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
@@ -7190,6 +7189,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Philippines_Queue</queue>
         <sharedTo>
+            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Philippines</role>
             <role>CEC_User_Philippines</role>
@@ -7645,38 +7645,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Thailand_Legacy_Data</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>ACCOUNT.NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>OWNER_NAME</columns>
-        <columns>CASES.LAST_UPDATE</columns>
-        <columns>CASES.CLOSED_DATE</columns>
-        <columns>HistoricCreatedDate__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Legacy_Reference__c</field>
-            <operation>contains</operation>
-            <value>TH1</value>
-        </filters>
-        <filters>
-            <field>Country__c</field>
-            <operation>equals</operation>
-            <value>Thailand</value>
-        </filters>
-        <label>CEC Thailand Legacy Data</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Thailand</role>
-            <role>CEC_User_Thailand</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_Thailand_Queue_Case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -7904,7 +7872,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Social,Phone</value>
         </filters>
-        <label>Casos BackOffice 0800 Brazil</label>
+        <label>CEC Brazil BackOffice 0800</label>
         <language>pt_BR</language>
         <queue>CEC_Brazil_Queue</queue>
         <sharedTo>
@@ -7934,7 +7902,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Email,Email Brazil,Web</value>
         </filters>
-        <label>Casos BackOffice EMAIL Brazil</label>
+        <label>CEC Brazil BackOffice EMAIL</label>
         <language>pt_BR</language>
         <queue>CEC_Brazil_Queue</queue>
         <sharedTo>
@@ -8778,8 +8746,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.STATUS</columns>
         <columns>NAME</columns>
         <columns>CASES.CREATED_DATE</columns>
-        <columns>Action_Taken__c</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
+        <columns>Action_Taken__c</columns>
         <filterScope>Mine</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
