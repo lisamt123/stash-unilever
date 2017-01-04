@@ -50,7 +50,7 @@ public with sharing class CEC_AlertActionHelperTest {
             List<cec_Alert_Rule__c> noDayCodeAlertRuleList = 
                                                 CEC_TestDataFactory.createAlertRule(1,'Safety','0','5',CEC_Constants.UK,
                                                                     reasonCodeList.get(0).Id,prodCategoryList.get(0).Id,
-                                                                    null,false,false,false,1);
+                                                                    null,false,false,false,2);
             insert noDayCodeAlertRuleList;
             
             List<cec_Alert_Action__c> noDayCodeAlertActionList = 
@@ -61,7 +61,7 @@ public with sharing class CEC_AlertActionHelperTest {
             List<cec_Alert_Rule__c> dayCodeAlertRuleList = 
                                                 CEC_TestDataFactory.createAlertRule(1,'Safety','0','5',CEC_Constants.UK,
                                                                     reasonCodeList.get(0).Id,prodCategoryList.get(0).Id,
-                                                                    null,false,true,false,1);
+                                                                    null,false,true,false,2);
             insert dayCodeAlertRuleList;
             
             List<cec_Alert_Action__c> dayCodeEmailAlertActionList = 
@@ -224,7 +224,7 @@ public with sharing class CEC_AlertActionHelperTest {
             List<cec_Alert_Rule__c> noDayCodeAlertRuleList = 
                                                 CEC_TestDataFactory.createAlertRule(1,'Safety','0','5',CEC_Constants.UK,
                                                                     reasonObj.Id,null, productObj.Id,
-                                                                    false,false,false,1);
+                                                                    false,false,false,2);
             insert noDayCodeAlertRuleList;
             
             List<cec_Alert_Action__c> noDayCodeAlertActionList = 
