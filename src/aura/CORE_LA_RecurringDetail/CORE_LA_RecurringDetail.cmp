@@ -14,15 +14,18 @@
             </div>
         </div>
     </div>
-    <div   class="cards">Data Visualization 
+    <div   class="cards">Interactive Design 
         <span class="lang">(English)</span>
         <br></br>
         <span class="date-adress"> 24th December 2016 </span>
+        <div class="recurring">Recurring</div>
+		<img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy2.png"></img>
         <hr></hr>
-        <img src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy1.png"></img>
-        <br></br>You will learn how to design technologies that bring people joy, rather than frustration. You'll learn how to generate design ideas, techniques for quickly prototyping them, and how to use prototypes to get feedback from other stakeholders like your teammates, clients, and users. You'll also learn principles of visual design, perception, and cognition that inform effective interaction design.
         
+        <br></br>This event covers the concepts and tools you'll need throughout the entire data science pipeline, from asking the right kinds of questions to making inferences and publishing results. In the final Capstone Project, you’ll apply the skills learned by building a data product using real-world data. At completion, students will have a portfolio demonstrating their mastery of the material.
         
+        <button class="slds-button slds-button--neutral past-button" onclick="{!c.gotoRecurringPost}">Past Events</button>
+
         <hr></hr>
         <img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
         <span class="date-adress"> 24th December 2016 from 14:00 to 18:00</span>

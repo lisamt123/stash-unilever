@@ -1,0 +1,62 @@
+<aura:component >
+    <div class="slds-page-header" role="banner" data-aura-rendered-by="4:299;a">
+        <div class="slds-media slds-media--center" data-aura-rendered-by="5:299;a">
+            <img aria-hidden="true" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png"
+              onclick="{!c.gotoHomePage}" class="slds-icon slds-avatar--small">
+          </img>
+            <div class="slds-media__body" data-aura-rendered-by="8:299;a">
+            </div>
+        </div>
+    </div>
+	<div   class="cards">Interactive Design 
+      	<span class="lang"></span>
+	
+        <span class="recurring">Recurring</span>
+		<!-- <span class="date-adress"> 24th December 2016 </span> -->
+		<hr></hr>
+		<img src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy2.png"></img>
+		<br></br>This event covers the concepts and tools you'll need throughout the entire data science pipeline, from asking the right kinds of questions to making inferences and publishing results. In the final Capstone Project, you’ll apply the skills learned by building a data product using real-world data. At completion, students will have a portfolio demonstrating their mastery of the material.
+    
+	</div>
+	<div class="postEvent">
+		<div class="slds-page-header  slds-page-header1" role="banner">
+			<div class="slds-media">
+				<div class="slds-media__figure"></div>
+				<div class="slds-media__body" >
+					<p class="slds-page-header__title slds-truncate" title="Rohde Corp - 80,000 Widgets">
+                    Event Timeline</p>
+				</div>
+			</div>
+		</div>
+		<table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table--col-bordered">
+			<ul>
+				<p>
+					<span class="date"> 24th December 2016 from 14:00 to 18:00</span>
+				</p>
+				
+				<p>
+					<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
+					<span class="date-adress"> Senate House Malet Street, London</span>
+				</p>
+				<p>
+					<br></br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+				</p>
+			</ul>
+        </table><br/>
+        <table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table--col-bordered">
+			<ul>
+				<p>
+					<span class="date"> 24th December 2016 from 14:00 to 18:00</span>
+				</p>
+				
+				<p>
+					<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
+					<span class="date-adress"> Senate House Malet Street, London</span>
+				</p>
+				<p>
+					<br></br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+				</p>
+			</ul>
+		</table>
+	</div>
+</aura:component>

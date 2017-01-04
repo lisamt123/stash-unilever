@@ -2,23 +2,22 @@
     <aura:attribute name="selectedEventFilter" type="String"/>
     <aura:attribute name="showFilter" type="boolean" default="false"/>
     <aura:attribute name="showSort" type="boolean" default="false"/>
+    
+    
 	<div class="heading">All Events
-   <div>
-		<div class="slds-button-group filter-sort" role="group"> 
-				<button class="slds-button slds-button--icon-border" title="Filter List" onclick="{!c.showFilterMenu}" >
-                  
+		<div>
+			<div class="slds-button-group filter-sort" role="group">
+				<button class="slds-button slds-button--icon-border" title="Filter List" onclick="{!c.showFilterMenu}">
 					<img class="icons_group" src="/resource/Lightning_designing_style/assets/icons/utility/filterList_60.png"></img>
-				  
-                </button>
-               
+				</button>
 				<button class="slds-button slds-button--icon-more" aria-haspopup="true" title="More Actions" onclick="{!c.showSortMenu}">
 					<img class="icons_group" src="/resource/Lightning_designing_style/assets/icons/utility/sort_60.png"></img>
 				</button>
 			</div>
             <aura:if isTrue="{!v.showFilter}">
-                        <div  aura:id="filterOptions" class="slds-hide slds-dropdown slds-dropdown--right events-filterdropdown">
+                        <div  id="filterOptions" class="slds-dropdown slds-dropdown--right events-filterdropdown">
                             <ul class="slds-dropdown__list" role="menu" >
-                                 <li aura:id="filterDefault" class="slds-dropdown__item events-bold" role="presentation">
+                                <li class="slds-dropdown__item events-bold" role="presentation">
                                     <a href="javascript:void(0);" role="menuitem" tabindex="0">
                                        <span class="slds-truncate">Recurring</span>
                                     </a>
@@ -28,16 +27,7 @@
                                         <span class="slds-truncate">Non-recurring</span>
                                     </a>
                                 </li>
-                                <li class="slds-dropdown__item" role="presentation">
-                                    <a href="javascript:void(0);" role="menuitem" tabindex="-1">
-                                        <span class="slds-truncate">Saved for future reference</span>
-                                    </a>
-                                </li>
-                                <li class="slds-dropdown__item" role="presentation">
-                                    <a href="javascript:void(0);" role="menuitem" tabindex="-1">
-                                        <span class="slds-truncate">Time slot</span>
-                                    </a>
-                                </li>
+                              
                                 <li class="slds-dropdown__item" role="presentation">
                                     <a href="javascript:void(0);" role="menuitem" tabindex="-1">
                                         <span class="slds-truncate">Facilities available</span>
@@ -47,9 +37,9 @@
                         </div>
              </aura:if>
             <aura:if isTrue="{!v.showSort}">
-                        <div  aura:id="sortOptions" class="slds-hide slds-dropdown slds-dropdown--right events-sortdropdown">
+                        <div  id="sortOptions" class="slds-dropdown slds-dropdown--right events-sortdropdown">
                             <ul class="slds-dropdown__list" role="menu" >
-                                <li aura:id="sortDefault" class="slds-dropdown__item events-bold" role="presentation">
+                                <li class="slds-dropdown__item events-bold" role="presentation">
                                     <a href="javascript:void(0);" role="menuitem" tabindex="0">
                                        <span class="slds-truncate">Date (Chronological)</span>
                                     </a>
@@ -66,19 +56,17 @@
                                 </li>
                             </ul>
                         </div>
-             </aura:if>
+             </aura:if>   
 		</div>
 	</div>
-	<div onclick="{!c.gotoDetail}" class="cards">Data Visualization 
+	<div onclick="{!c.gotoDetail}" class="events-cards">Data Visualization 
 		<span class="lang">(English)</span>
 		<br></br>
 		<span class="num-attendees">30 Attending</span>
-        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/fecilities-icon-for-details-page.png"></img>
-        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/Fecilities-icon-frame-for-event-card.png"></img>
-		<img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/Fecilities-icon-frame-for-event-card1.png"></img>		
-		<hr></hr>
-        <img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy.png"></img>
-		<br></br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/facility.png"></img>
+        <hr></hr>
+        <img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy1.png"></img>
+		<br></br>You will learn how to design technologies that bring people joy, rather than frustration. You'll learn how to generate design ideas, techniques for quickly prototyping them, and how to use prototypes to get feedback from other stakeholders like your teammates, clients, and users. You'll also learn principles of visual design, perception, and cognition that inform effective interaction design.
         
 		<hr></hr>
 		<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
@@ -88,16 +76,15 @@
 		<span class="date-adress"> Senate House Malet Street, London</span>
 		<img class="icons_group1" src="/resource/CORE_LA_StaticResource/event_app/images/Not-saved.png"></img>
 	</div>
-	<div onclick="{!c.gotoDetail}" class="cards">Data Visualization 
+	<div onclick="{!c.gotoRecurring}" class="events-cards">Interactive Design 
 		<span class="lang">(English)</span>
 		<br></br>
 		<span class="num-attendees">30 Attending</span>
-        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/fecilities-icon-for-details-page.png"></img>
-        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/Fecilities-icon-frame-for-event-card.png"></img>
-		<img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/Fecilities-icon-frame-for-event-card1.png"></img>		
-		<hr></hr>
-		<img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy.png"></img>
-		<br></br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/facility.png"></img>
+        <hr></hr>
+        <div class="recurring">Recurring</div>
+		<img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy2.png"></img>
+		<br></br>This event covers the concepts and tools you'll need throughout the entire data science pipeline, from asking the right kinds of questions to making inferences and publishing results. In the final Capstone Project, you’ll apply the skills learned by building a data product using real-world data. At completion, students will have a portfolio demonstrating their mastery of the material.
         
 		<hr></hr>
 		<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
@@ -107,16 +94,14 @@
 		<span class="date-adress"> Senate House Malet Street, London</span>
 		<img class="icons_group1" src="/resource/CORE_LA_StaticResource/event_app/images/Saved.png"></img>
 	</div>
-	<div  onclick="{!c.gotoDetail}" class="cards">Data Visualization 
+	<div  onclick="{!c.gotoDetail}" class="events-cards">Creative Writing
 		<span class="lang">(English)</span>
 		<br></br>
 		<span class="num-attendees">30 Attending</span>
-        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/fecilities-icon-for-details-page.png"></img>
-        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/Fecilities-icon-frame-for-event-card.png"></img>
-		<img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/Fecilities-icon-frame-for-event-card1.png"></img>		
-		<hr></hr>
-		<img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy.png"></img>
-		<br></br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/facility.png"></img>
+        <hr></hr>
+		<img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy3.png"></img>
+		<br></br>This event covers elements of three major creative writing genres: short story, narrative essay, and memoir. You will master the techniques that good writers use to compose a bracing story, populated with memorable characters in an interesting setting, written in a fresh descriptive style. You will analyze and constructively evaluate peer writing. In the Capstone, you will draft, rewrite, and complete a substantial original story in the genre of your choosing.
         
 		<hr></hr>
 		<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
@@ -126,5 +111,5 @@
 		<span class="date-adress"> Senate House Malet Street, London</span>
 		<img class="icons_group1" src="/resource/Lightning_designing_style/assets/icons/utility/check_60.png"></img>
 	</div>
-	
+	<button class="slds-button slds-button--neutral show-more"> Show more</button>
 </aura:component>

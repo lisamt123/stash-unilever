@@ -90,5 +90,8 @@
         var img2=component.find("myimg10");
         $A.util.toggleClass(img2, "slds-show");
     },
-    
+    gotoRecurringPost : function(component,event,helper){
+        var selectEvent= $A.get("e.c:CORE_LA_HandleEvent");
+        selectEvent.setParams({"componentName":"c:CORE_LA_RecurringPast"}).fire();
+    },
 })

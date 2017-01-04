@@ -1,6 +1,8 @@
 <aura:component implements="flexipage:availableForAllPageTypes,force:appHostable">
-     <ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" />
-	<ltng:require scripts="{!$Resource.ga + '/js/jquery-3.0.0.min.js'}" />
+   
+    <ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" /> 
+     <ltng:require scripts="{!$Resource.AA_Agent_LightningAppStatic + '/libs/jquery-3.0.0.min.js'}" /> 
+   
 	<aura:handler name="init" value="{!this}" action="{!c.homePageLoad}" />
 	<aura:handler event="c:CORE_LA_HandleEvent" action="{!c.navigateWithinComponent}" />
 	<aura:attribute name="showspinner" type="Boolean"/>

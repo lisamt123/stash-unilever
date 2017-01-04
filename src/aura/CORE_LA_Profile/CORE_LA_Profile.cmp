@@ -1,21 +1,32 @@
 <aura:component >
     <!-- <aura:handler name="init" value="{!this}" action="{!c.defaultContent}" />-->
-    <div class="slds-parent">           
-        <a href="javascript:void(0);" class="">            
-            <img src="/resource/Lightning_designing_style/assets/images/avatar1.jpg" class="profile_pic" alt="Description of the image" />            
-        </a>
-        <div class="profile-div">
-            <div class="slds-text-title font">
-                Profile Name
-            </div>
-            <div class="slds-text-title Designation">
-                Designation
-            </div>
-            <div class="slds-align--absolute-center Description">
-                Salesforce is the leader in cloud computing, offering applications for all aspects of your business, including CRM, sales, ERP, customer service, marketing automation, business analytics, mobile application building, and much more.
-                
-            </div>
-        </div>
+            
         
-    </div>        
+ <div class="profile-div">
+       <div class="trainer">
+            <div class="trainer-photo">
+                <img src="/resource/Lightning_designing_style/assets/images/avatar1.jpg"></img>
+           </div>
+            <div class="trainer-detail">
+                <p>
+                <span style="font-size:17px;font-weight: bold;">Dr James Moth</span><br></br>
+                <span style="font-size:15px;">Data Scientist Kean University</span><br />
+                <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/email_60.png">
+                </img>james.moth@univeler.com<br />
+                    <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/call_60.png">
+                </img>+44 77127593998<br />
+                <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png">
+                </img>London, United Kingdom</p>
+           </div>
+        </div>
+         <div class="slds-tile slds-media">
+          <div class="slds-media__figure">
+              <img src="/resource/CORE_LA_StaticResource/event_app/images/badges-2-.png" aria-hidden="true" class="slds-icon"/>
+              <img src="/resource/CORE_LA_StaticResource/event_app/images/badges-1-.png" aria-hidden="true" class="slds-icon"/>
+              <img src="/resource/CORE_LA_StaticResource/event_app/images/badges-3.png" aria-hidden="true" class="slds-icon"/>
+          </div>
+        </div>
+     
+     </div>
+         
 </aura:component>

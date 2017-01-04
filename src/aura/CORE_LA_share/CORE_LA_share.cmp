@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable">
+     <ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" />
+	<div class="parent_div"><div><button class="slds-button slds-button--brand">Share by Email</button></div>
+    <div><button class="slds-button slds-button--brand">Share by Chatter</button></div>
+	<div><button class="slds-button slds-button--neutral" onclick="{!c.gotoBack}">Cancel</button></div></div>
+</aura:component>

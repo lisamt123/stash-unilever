@@ -1,0 +1,10 @@
+.THIS.parent_div{
+    text-align:center;
+    margin-top:25%;
+}
+.THIS.parent_div div{
+    margin-bottom:10px;
+}
+.THIS .slds-button{
+    width: 200px;
+}

@@ -123,3 +123,18 @@
 .THIS .slds-page-header1 {
     margin: -10px;
 }
+.THIS .recurring{
+        width: 80px;
+    background: rgb(240,178,33);
+    border-radius: 10px;
+    padding: 0 13px 2px;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 12px;
+}
+.THIS .past-button{
+    width: 100%;
+    margin: 0;
+    color: grey;
+    margin:10px 0;
+}

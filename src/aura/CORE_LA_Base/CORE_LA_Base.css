@@ -1,17 +1,3 @@
-.THIS.heading{
-        padding: 8px 11px;   
-}
-.THIS .events-filterdropdown{
-        right: 44px;
-        width: 160px;
-}
-.THIS .events-bold{
-        font-weight:bold ;
-}
-.THIS .events-sortdropdown{
-        right: 10px;
-        width: 160px;
-}
 .THIS .events-cards{
     padding: 8px;
     background: white;
@@ -52,24 +38,37 @@
     font-size:11px;
     color: #afafaf;
 }
-.THIS .event-banner{
+.THIS .events-bannerUpcoming{
     height:200px;
 }
-.THIS .facility {
-    width: 66px;
+.THIS .events-facility{
+   width: 66px;
     height: 27px;
     margin-right: 4px;
 }
-.THIS .recurring{
-        width: 80px;
-    background: rgb(240,178,33);
-    border-radius: 10px;
-    padding: 0 13px 2px;
-    margin-bottom: 10px;
-    color: white;
-    font-size: 12px;
+
+.THIS .trainer-detail{
+    padding: 19px;
 }
-.THIS .show-more{
-    width: 95%;
-    margin: 0 10px;
+
+.THIS .trainer-detail p{
+    font-size:10px;
+}
+
+.THIS .trainer{
+    height: 144px;
+        background: white;
+}
+.THIS .trainer-photo{
+        float: left;
+    width: 37%;
+    margin: 12px;
+}
+
+.THIS .icon-d{
+	width: 15px;
+    margin: 4px 5px 0 0;
+}
+.THIS .slds-button {
+    font-size: 3.3vmin !important;
 }

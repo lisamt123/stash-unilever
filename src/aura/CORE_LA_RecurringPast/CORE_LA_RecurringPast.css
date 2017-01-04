@@ -1,0 +1,60 @@
+.THIS.cards{
+    padding: 15px;
+    background: white;
+    min-height: 360px;
+    margin-bottom: -33px;
+}
+.THIS .icons_group{
+    width:17px;
+    height:17px;
+}
+.THIS .icons_group2{
+    width:11px;
+    height:11px;
+}
+.THIS hr{
+    margin: 0.5rem -9px !important; 
+}
+.THIS .icons_group1{
+    float: right;
+    margin-top: -14px;
+    width: 25px;
+    height: 25px;
+}
+.THIS .date-adress{
+    font-size:11px;
+    color: #afafaf;
+}
+.THIS .event-banner{
+    height:200px;
+}
+
+
+.THIS.detail{
+    background: white;
+    padding-left: 21px;
+    padding-right: 21px;
+}
+
+
+.THIS .events-color{
+    color: #0070d2;
+}
+.THIS .recurring{
+        width: 80px;
+    background: rgb(240,178,33);
+    border-radius: 10px;
+    padding: 0 13px 2px;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 12px;
+}
+.THIS.postEvent{
+    margin: 33px 17px;
+}
+.THIS.postEvent ul{
+    padding: 5px 10px;
+}
+.THIS .slds-table--bordered {
+    border-top: 0px solid #d8dde6 !important;
+}
