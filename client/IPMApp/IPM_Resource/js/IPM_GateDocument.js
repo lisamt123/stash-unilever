@@ -4,7 +4,7 @@
  *@Created Date: 28/05/2015 
 *********************************************************************************/
 jq(document).ready(function() {
-    if(IPMApp.IsPdldoc === 'false') {
+   if(IPMApp.IsPdldoc === 'false') {
         getMainDataFunc();
         getAppendixDataFunc();
     }  
@@ -729,7 +729,7 @@ function getBusinessCaseActionStandardsMainSection() {
     var iframe2 = jq("#iframeBusiness_Case_Action_StandardsSecondMainSection");
     var url2 = jq('#idBusiness_Case_Action_StandardsSecondMainSection').attr('value');                      
     var iframe3 = jq("#iframeBusiness_Case_Action_StandardsThirdMainSection");
-    var url3 = jq('#idBusiness_Case_Action_StandardsMainThirdSection').attr('value');
+    var url3 = jq('#idBusiness_Case_Action_StandardsThirdMainSection').attr('value');
     if(getBusiness_Case_Action_StandardsMainSectionVar === "true") {
         getBusiness_Case_Action_StandardsMainSectionVar = "false";
         loadIframe(iframe,url);   
