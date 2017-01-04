@@ -182,7 +182,8 @@ public with sharing class IPM_FinGateController {
         //IPM Financial Year
         queryString+= '(SELECT ';
         For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
-            if (field != 'Id') {
+             if (!(field.equalsignoreCase('Id'))){
+            	
                 queryString+= field + ', ';
             }
         }
