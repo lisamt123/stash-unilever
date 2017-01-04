@@ -56,34 +56,6 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Comparison_Type__c</fullName>
-        <externalId>false</externalId>
-        <label>Comparison Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>&lt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&gt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>=</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&lt;&gt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>UL_Compare_Value__c</fullName>
         <externalId>false</externalId>
         <label>Compare Value</label>

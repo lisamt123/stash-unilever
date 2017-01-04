@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -57,7 +53,6 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fieldSets>
         <fullName>ACCL__MobilityRelevant</fullName>
         <description>Field set used to restrict the amount of data on the mobility device.</description>
@@ -128,4 +123,16 @@
         <errorConditionFormula>TEXT(ACCL__Account__r.ACCL__Account_Template__r.ACCL__Sales_Org__c) &lt;&gt; TEXT(ACCL__Account_Set__r.ACCL__Sales_Org__c)</errorConditionFormula>
         <errorMessage>Sales Org of Customer and Customer Set should be same</errorMessage>
     </validationRules>
+    <webLinks>
+        <fullName>Add_Customer</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Add Customer</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/UL_AddCustomer?setId={!ACCL__Account_Set__c.Id}&amp;orgId={!ACCL__Account_Set__c.ACCL__Sales_Org__c}&amp;referer=/{!ACCL__Account_Set__c.Id}&amp;setName={!ACCL__Account_Set__c.Name}</url>
+    </webLinks>
 </CustomObject>

@@ -4,12 +4,10 @@ global class ChildAccounts {
    global String Name;
    global String CustomerID;
    global String PushedPromoID;
-
-      /* public String PromotionID;
-        public Boolean Included;
-        public String ChildAccountID;
-        public string ChildAccountName;
-        public String PushedPromoID;*/
-
+   public String CustomerUnique;
+   public String PromotionSlogan;
+   public String PromotionID;
+   public String ChildAccountID;
+   public string ChildAccountName;
 
 }

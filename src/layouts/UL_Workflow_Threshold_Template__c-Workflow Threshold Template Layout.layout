@@ -11,7 +11,7 @@
         <customLabel>true</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
-        <label>Workflow Threshold Template</label>
+        <label>Workflow Threshold Template Details</label>
         <layoutColumns>
             <layoutItems>
                 <height>200</height>
@@ -66,18 +66,20 @@
         <fields>UL_Customer__c</fields>
         <fields>UL_Date_From__c</fields>
         <fields>UL_Date_Thru__c</fields>
-        <fields>UL_Language__c</fields>
+        <fields>UL_Product__c</fields>
+        <fields>UL_Promotion_Template__c</fields>
         <fields>UL_ThresholdDescription__c</fields>
         <relatedList>UL_Workflow_Threshold__c.UL_Workflow_Threshold_Template__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>UL_Compare_Value__c</fields>
-        <fields>UL_User_Role__c</fields>
         <fields>UL_Comparison_Type__c</fields>
-        <fields>UL_Threshold_Description__c</fields>
-        <fields>UL_Threshold_KPI__c</fields>
         <fields>UL_Workflow_Threshold__c</fields>
+        <fields>UL_User_Role__c</fields>
+        <fields>UL_Threshold_Parameter__c</fields>
+        <fields>UL_Threshold_KPI__c</fields>
+        <fields>UL_Threshold_Description__c</fields>
         <relatedList>UL_Comparator__c.UL_Workflow_Threshold_Template__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -86,7 +88,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h58000001pcyc</masterLabel>
+        <masterLabel>00h580000029kSa</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

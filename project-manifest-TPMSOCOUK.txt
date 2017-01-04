@@ -72,6 +72,10 @@ src/objects/UL_Workflow_Threshold_Template__c.object
 src/objects/Account.object
 src/objects/User.object
 src/objects/Promotion_Acc_Rel__c.object
+src/objects/Promotion_Attachment__c.object
+src/objects/Promotion_Attachment_Link__c.object
+src/objects/UL_Comparator__c.object
+src/objects/ACCL__Product_Hierarchy__c
 src/objectTranslations
 src/objectTranslations/ACCL__Account_Bill_To__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Account_Call_Setting__c-en_US.objectTranslation
@@ -191,6 +195,11 @@ src/layouts/UL_PromotionCategory__c-PromotionCategory Layout.layout
 src/layouts/UL_UserCustomerProduct__c-User Customer Product Category Layout.layout
 src/layouts/UL_Workflow_Threshold__c-Workflow Threshold Layout.layout
 src/layouts/UL_Workflow_Threshold_Template__c-Workflow Threshold Template Layout.layout
+src/layouts/User-SoCo-User layout.layout
+src/layouts/User-UKI-User layout.layout
+src/layouts/UL_Comparator__c-Comparator Layout.layout
+src/layouts/UL_Workflow_Threshold__c-Workflow Threshold Layout.layout
+src/layouts/UL_Workflow_Threshold_Template__c-Workflow Threshold Template Layout.layout
 src/groups
 src/groups/UL_Account_Manager_AR01.group
 src/groups/UL_AccountManager_AR01.group
@@ -237,13 +246,16 @@ src/workflows/ACCL__Tactic__c.workflow
 src/workflows/ACCL__Fund_Transaction__c.workflow
 src/tabs
 src/tabs/UL_Approval_Threshold__c.tab
+src/tabs/UL_Workflow_Threshold_Template__c.tab
+src/tabs/UL_Delivery_Profile__c.tab
+src/tabs/UL_Cannibalisation_Rate__c.tab
 src/flows
 src/flows/UL_Tactic_update_from_Promotion-3.flow
-src/flows/updatePromotiontype-3.flow
+src/flows/UL_Tactic_End_Date_Update_from_Promotion-1.flow
+src/flows/UL_UpdatePromotiontype-3.flow
 src/labels
 src/labels/TPMSOCOUK.labels
 src/classes
-src/classes/ChildAccounts.cls
 src/classes/ExceptionLoggingHelper.cls
 src/classes/UL_AccountExtensionTestFactory.cls
 src/classes/UL_AccountTestFactory.cls
@@ -312,7 +324,6 @@ src/classes/UL_UtilityController.cls
 src/classes/UL_fundAmountCalculation.cls
 src/classes/UL_fundAmountCalculation_Test.cls
 src/classes/UL_fundTransferTransactionHandler.cls
-src/classes/ChildAccounts.cls-meta.xml
 src/classes/ExceptionLoggingHelper.cls-meta.xml
 src/classes/UL_AccountExtensionTestFactory.cls-meta.xml
 src/classes/UL_AccountTestFactory.cls-meta.xml
@@ -387,10 +398,6 @@ src/classes/MyContractRemoteActionExtension.cls
 src/classes/MyContractRemoteActionExtension.cls-meta.xml
 src/classes/MyPromotionRemoteActionExtension.cls
 src/classes/MyPromotionRemoteActionExtension.cls-meta.xml
-src/classes/ChildAccounts.cls-meta.xml
-src/classes/ChildAccounts.cls
-src/classes/ExceptionLoggingHelper.cls
-src/classes/ExceptionLoggingHelper.cls-meta.xml
 src/classes/JWT.cls
 src/classes/JWT.cls-meta.xml
 src/classes/KpiValueDescriptor.cls
@@ -416,6 +423,12 @@ src/classes/UL_ThresholdEngine.cls
 src/classes/UL_ThresholdEngine.cls-meta.xml
 src/classes/UL_PromotionWorkflowService.cls
 src/classes/UL_PromotionWorkflowService.cls-meta.xml
+src/classes/UL_fundTransferTransactionHandler_Test.cls
+src/classes/UL_fundTransferTransactionHandler_Test.cls-meta.xml
+src/classes/MyMetaDataRemoteActionExtension.cls
+src/classes/MyMetaDataRemoteActionExtension.cls-meta.xml
+src/classes/MyPromotionRemoteActionExtension2.cls
+src/classes/MyPromotionRemoteActionExtension2.cls-meta.xml
 src/pages
 src/pages/MyPromotionPlanning.page
 src/pages/MyPromotionPlanning.page-meta.xml

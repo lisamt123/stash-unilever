@@ -47,31 +47,18 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Contains the hierarchy records for which the promotion will be pushed</description>
     <enableActivities>false</enableActivities>
-    <enableBulkApi>false</enableBulkApi>
+    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
-    <enableSearch>true</enableSearch>
-    <enableSharing>false</enableSharing>
-    <enableStreamingApi>false</enableStreamingApi>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Child_Account__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
+        <fullName>Description_Language_1__c</fullName>
         <externalId>false</externalId>
-        <label>Child Account</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Child Promotion Records</relationshipLabel>
-        <relationshipName>Child_Promotion_Records</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Child_Promotion__c</fullName>
-        <externalId>false</externalId>
-        <label>Child Promotion</label>
+        <label>Description Language 1</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -79,9 +66,9 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Parent_Account__c</fullName>
+        <fullName>Description_Language_2__c</fullName>
         <externalId>false</externalId>
-        <label>Parent_Account</label>
+        <label>Description Language 2</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -89,53 +76,67 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Parent_Promotion__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
+        <fullName>Description_Language_3__c</fullName>
         <externalId>false</externalId>
-        <label>Parent Promotion</label>
-        <referenceTo>ACCL__Promotion__c</referenceTo>
-        <relationshipLabel>Child Promotion Records</relationshipLabel>
-        <relationshipName>Child_Promotion_Records</relationshipName>
+        <label>Description Language 3</label>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
-        <fullName>TxStatus__c</fullName>
+        <fullName>Description_Language_4__c</fullName>
         <externalId>false</externalId>
-        <label>TxStatus</label>
-        <picklist>
-            <picklistValues>
-                <fullName>TxInit</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TxInProgress</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TxCompleted</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
+        <label>Description Language 4</label>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
-    <label>Promotion_Acc_Rel</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE($User.ACCL__Language_Postfix__c, 
+&quot;Language1&quot;, Description_Language_1__c, 
+&quot;Language2&quot;, Description_Language_2__c, 
+&quot;Language3&quot;, Description_Language_3__c, 
+&quot;Language4&quot;, Description_Language_4__c, 
+Description_Language_1__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Size__c</fullName>
+        <externalId>false</externalId>
+        <label>Size</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Promotion Attachment</label>
     <nameField>
-        <displayFormat>ChildPromo-{0000}</displayFormat>
-        <label>Promotion_Acc_Rel Name</label>
-        <type>AutoNumber</type>
+        <label>Promotion Attachment Name</label>
+        <type>Text</type>
     </nameField>
-    <pluralLabel>Child Promotion Records</pluralLabel>
+    <pluralLabel>Promotion Attachments</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

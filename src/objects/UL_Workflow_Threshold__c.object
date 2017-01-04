@@ -56,18 +56,6 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Compare_Value__c</fullName>
-        <externalId>false</externalId>
-        <label>Compare Value</label>
-        <precision>18</precision>
-        <required>true</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>UL_ApprovalProcess__c</fullName>
         <description>Approval process name from master object-Workflow Threshold Template</description>
         <externalId>false</externalId>
@@ -79,34 +67,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UL_Comparator__c</fullName>
-        <externalId>false</externalId>
-        <label>Comparator</label>
-        <picklist>
-            <picklistValues>
-                <fullName>&lt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&gt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>=</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&lt;&gt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>true</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>UL_Customer__c</fullName>
@@ -191,35 +151,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UL_Threshold_KPI__c</fullName>
-        <externalId>false</externalId>
-        <label>Threshold KPI</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Gross Margin</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>On/Off Invoice</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Promotional Cost</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ROI</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>true</sorted>
-        </picklist>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>UL_Workflow_Threshold_Template__c</fullName>

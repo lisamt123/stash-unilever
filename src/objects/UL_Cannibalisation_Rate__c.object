@@ -139,13 +139,13 @@
         <lookupFilter>
             <active>true</active>
             <filterItems>
-                <field>ACCL__Product__c.ACCL__Product_Level__c</field>
+                <field>ACSFUL001__Product__c.ACSFUL001__Product_Level__c</field>
                 <operation>equals</operation>
                 <value>Commodity</value>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>
-        <referenceTo>ACCL__Product__c</referenceTo>
+        <referenceTo>ACSFUL001__Product__c</referenceTo>
         <relationshipLabel>Cannibalisation Rates</relationshipLabel>
         <relationshipName>Cannibalisation_Rates</relationshipName>
         <required>false</required>
@@ -155,7 +155,7 @@
     <fields>
         <fullName>UL_Sales_Organization__c</fullName>
         <externalId>false</externalId>
-        <globalPicklist>ACCL__Sales_Org</globalPicklist>
+        <globalPicklist>ACSFUL001__Sales_Org</globalPicklist>
         <label>Sales Organization</label>
         <required>true</required>
         <trackTrending>false</trackTrending>
@@ -203,90 +203,11 @@
     </nameField>
     <pluralLabel>Cannibalisation Rates</pluralLabel>
     <recordTypes>
-        <fullName>UL_SoCo</fullName>
-        <active>false</active>
-        <label>SoCo</label>
-        <picklistValues>
-            <picklist>ACCL__Sales_Org</picklist>
-            <values>
-                <fullName>AR01</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CL01</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CL03</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Feature</picklist>
-            <values>
-                <fullName>Dump Bins</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Free Standing Unit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gondola End</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hot Spot</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ladder Rack</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mid Gondola</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>None Specified</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pallet Drop</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sampling %28E-Tail%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shelf</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shipper%2FOFD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Side Stack</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Store Entrance</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
         <fullName>UL_UKI</fullName>
         <active>true</active>
         <label>UKI</label>
         <picklistValues>
-            <picklist>ACCL__Sales_Org</picklist>
+            <picklist>ACSFUL001__Sales_Org</picklist>
             <values>
                 <fullName>Ireland SO</fullName>
                 <default>false</default>

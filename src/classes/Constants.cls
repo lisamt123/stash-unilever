@@ -263,13 +263,13 @@ public with sharing class Constants {
     // Variable for Comma
     public final static String STRING_COMMA = ',';
 
-    // Parent Account Sync Batch error file columes
+    // Parent Account Sync Batch error src/email/unfiled$public/ columes
     public final static String BATCH_ERROR_FILE_COLUMNS = 'ID,ParentID,Error';    
 
-    // Account Manager & Team Batch error file columes
+    // Account Manager & Team Batch error src/email/unfiled$public/ columes
     public final static String BATCH_ERROR_FILE_COLUMNS_MANAGER = 'AccountID,UserId,AccountAccessLevel,TeamMemberRole,Error'; 
 
-    // Batch error file name
+    // Batch error src/email/unfiled$public/ name
     public final static String BATCH_ERROR_FILE_NAME = 'Failed_AccountProcessing.csv';  
 
     // Variable for new Line

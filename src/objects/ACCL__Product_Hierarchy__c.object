@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Relation from a product (Child_Product) to its parent. This relation is time framed.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fieldSets>
+        <fullName>ACCL__MobilityRelevant</fullName>
+        <description>Field set used to restrict the amount of data on the mobility device.</description>
+        <displayedFields>
+            <field>ACCL__Child_Product__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Parent_Product__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Valid_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Valid_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>MobilityRelevant</label>
+    </fieldSets>
+    <fields>
+        <fullName>ACCL__Child_Product__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Reference to the child product.</description>
+        <externalId>false</externalId>
+        <label>Child Product</label>
+        <referenceTo>ACCL__Product__c</referenceTo>
+        <relationshipLabel>Parent Products</relationshipLabel>
+        <relationshipName>Product_Child</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>ACCL__Parent_Product_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>ACCL__Parent_Product__r.ACCL__Product_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Parent Product Code</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Parent_Product_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>ACCL__Parent_Product__r.ACCL__Short_Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Parent Product Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Parent_Product__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Reference to the parent product</description>
+        <externalId>false</externalId>
+        <label>Parent Product</label>
+        <referenceTo>ACCL__Product__c</referenceTo>
+        <relationshipLabel>Child Products</relationshipLabel>
+        <relationshipName>Product_Parent</relationshipName>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Record_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; &amp;Id, $Label.ACCL__RECORD_LINK, &quot;_top&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Record Link</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Structure_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specifies the structure type of the hierarchy.</description>
+        <externalId>false</externalId>
+        <label>Structure Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Sales</fullName>
+                <default>true</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Valid_From__c</fullName>
+        <defaultValue>Today()</defaultValue>
+        <deprecated>false</deprecated>
+        <description>From this date on the entry is valid.</description>
+        <externalId>false</externalId>
+        <label>Valid From</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Valid_Thru__c</fullName>
+        <defaultValue>DATE(2099,12,31)</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Until this date the entry is valid.</description>
+        <externalId>false</externalId>
+        <label>Valid Thru</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>UL_External_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <label>Product Hierarchy</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>PHR-{00000000}</displayFormat>
+        <label>Product Hierarchy Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Product Hierarchies</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>ACCL__Child_unequal_parent</fullName>
+        <active>true</active>
+        <description>Child product has to be different than the parent product</description>
+        <errorConditionFormula>ACCL__Child_Product__c == ACCL__Parent_Product__c</errorConditionFormula>
+        <errorMessage>Child and Parent Products cannot be the same.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Mandatory_StructureType_is_set</fullName>
+        <active>true</active>
+        <description>Enforces that the Hierarchy-StrucutureType is set in all cases</description>
+        <errorConditionFormula>ISPICKVAL( ACCL__Structure_Type__c , &quot;&quot;)</errorConditionFormula>
+        <errorDisplayField>ACCL__Structure_Type__c</errorDisplayField>
+        <errorMessage>Please select a Structure Type.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Valid_From_and_Valid_Thru</fullName>
+        <active>true</active>
+        <description>Valid Thru must be greater or equal than valid from.</description>
+        <errorConditionFormula>ACCL__Valid_From__c  &gt; ACCL__Valid_Thru__c</errorConditionFormula>
+        <errorDisplayField>ACCL__Valid_Thru__c</errorDisplayField>
+        <errorMessage>Valid From cannot be later than Valid Thru.</errorMessage>
+    </validationRules>
+</CustomObject>

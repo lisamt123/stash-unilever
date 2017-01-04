@@ -122,6 +122,41 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+	   <fieldUpdates>
+        <fullName>Customer_Description</fullName>
+        <field>UL_Customer_Description__c</field>
+        <formula>Name</formula>
+        <name>Customer Description</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Sales_org_update</fullName>
+        <field>UL_Sales_Organization__c</field>
+        <formula>ACCL__Sales_Org__c</formula>
+        <name>Sales org update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UL_UpdatePlanningEndDate</fullName>
+        <field>UL_Customer_Role_Valid_Thru__c</field>
+        <formula>UL_Customer_Role_Valid_From__c</formula>
+        <name>UL_UpdatePlanningEndDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>test_field_update</fullName>
+        <field>Description</field>
+        <name>test field update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>CEC_Capitalise_the_consumers_Last_name</fullName>
         <description>CEC - Make the LastName&apos;s letter uppoer case for the first letter of the word and the letter which follows space or hyphen</description>
@@ -572,6 +607,33 @@
         <active>true</active>
         <description>Created to update the distributor type,on invoice,off invoice values from parent account.</description>
         <formula>AND(Owner.Profile.Name  = &apos;Unilever Food Solution - Russia&apos;, RecordType.Name = &apos;Operator&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+	
+    <rules>
+        <fullName>Sales org update on Account</fullName>
+        <actions>
+            <name>Sales_org_update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.CreatedDate</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>UL_Updating Plan end date</fullName>
+        <actions>
+            <name>UL_UpdatePlanningEndDate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.UL_Customer_Role_Valid_From__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>
 </Workflow>
