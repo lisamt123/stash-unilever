@@ -1,0 +1,22 @@
+<apex:page controller="PQN_Country_Report" showHeader="false" readOnly="true">
+<body>
+    <div id="wrapper">
+        <c:PQN_Navigation navigationName="Reports" subNavName="countryreport"/>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+ <apex:form >
+   <apex:pageBlock >
+     <apex:pageBlockTable value="{!mapofcountry}" var="cntry">
+     <apex:column headerValue="DC Country" value="{!cntry}"/>
+     <apex:column headerValue="Number Of Pallets" value="{!mapofcountry[cntry]}"/>
+     
+    </apex:pageBlockTable>
+   </apex:pageBlock>
+ </apex:form>
+ </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+</body>  
+</apex:page>

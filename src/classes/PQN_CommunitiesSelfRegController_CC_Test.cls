@@ -16,7 +16,7 @@ private class PQN_CommunitiesSelfRegController_CC_Test {
          acc2.billingcountry = 'India';
          listacc.add(acc2);
          insert listacc;
-         
+         system.assertEquals(listacc.size(),3);
         Id sysProfileId = [SELECt Id FROM Profile WHERE name = 'System Administrator' LIMIT 1].Id; 
         
         User u = new User();

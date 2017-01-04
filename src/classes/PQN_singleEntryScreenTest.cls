@@ -6,7 +6,10 @@ private class PQN_singleEntryScreenTest{
         PQN_Supplier__c s=PQN_TestLibraryUtil.createSupplier();
         insert s;
         
-        PQN_Pallet_Quality_Non_Conformance__c pqn=PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(s.id);
+         account acc=PQN_TestLibraryUtil.createpqnAccount('DC1','India');
+         insert acc;
+     
+        PQN_Pallet_Quality_Non_Conformance__c pqn=PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(s.id,acc.id,null);
         insert pqn;
          
         PageReference pageRef = Page.PQN_SingleEntryScreen_VF;

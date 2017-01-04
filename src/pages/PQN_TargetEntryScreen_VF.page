@@ -28,6 +28,7 @@
                <apex:form id="frm">
 <!--                    <apex:sectionHeader title="Targets" subtitle="New Targets"/>
                     <apex:pageMessages ></apex:pageMessages> -->
+                    <apex:pageMessages ></apex:pageMessages>
                     <apex:pageBlock title="Target Edit" mode="edit">
                     <apex:pageblockbuttons >
                         <apex:commandButton value="Save" action="{!saveTarget}"/>

@@ -13,21 +13,26 @@ public class PQN_TestLibraryUtil {
     
     public static PQN_Pallet_Quality_Non_Conformance__c createPQN_Pallet_Quality_Non_Conformance(id sid,id accid,id dcvid){
         PQN_Pallet_Quality_Non_Conformance__c PQN = new PQN_Pallet_Quality_Non_Conformance__c( 
-        Region__c='Europe',
+        Region__c='Americas',
     Reporting_DC__c='DC1',
     //Month__c='January',
     //Year__c='2016',
     MCO__c='HUAD',
     DC_Country__c='India',
-    Cluster__c='Europe',
+    Cluster__c='Latin America',
+    Sub_Cluster__c='brazil',
     Delivery_Note_Number__c='20',
     SKU__c='153489',
     Product_Name__c='sdfsd',
-    Date_Pallet_Received__c=date.newInstance(2016,1,15),
+    Date_Pallet_Received__c=date.newInstance(2017,1,15),
     //Date_Pallet_Received__c=date.today(),
     Supplier_Number__c ='1234',
-    Supplier_type__c='DC',
+    Supplier_type__c='SU',
+    Number_of_Pallets_Per_SKU_Non_Compliant__c=20,
     Non_compliance_reason_code__c=12,Account__c=accid,DC_Volumes__c=dcvid);
+    //Product_Group__c='Personal Care',
+    //Product_Category__c='Hair Care';
+    
         return  PQN;
     }
     
@@ -87,6 +92,15 @@ public class PQN_TestLibraryUtil {
        createtar.Target_Reduction__c=25;
        return createtar;
        }
+      public static PQN_Sourcing_Unit__c createSourcingUnit(){
+      PQN_Sourcing_Unit__c source=new PQN_Sourcing_Unit__c();
+      source.Month__c='1';
+      source.Soucing_Unit_Number__c='10';
+      source.Sourcing_Unit_Name__c='Europe';
+      source.Total_Volume_Of_pallets_Shipped__c=1000;
+      source.Year__c='2017';
+      return source;
+      }
        
        
         

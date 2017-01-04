@@ -32,13 +32,22 @@ public with sharing class PQN_NewTargetExtension{
         try{
             if(targets!=null){
             upsert targets;
-//            PageReference targetDetailPage = new PageReference('/'+targets.id);
+            if(targetId==null)
+            {
+            List<PQN_Targets__c> listtar=new List<PQN_Targets__c>();
+            listtar.add(targets);
+            PQN_updateTAR.update_TAR(listtar);
+            }
+ 
             PageReference targetDetailPage = page.PQN_Target_Detail_VF;
             targetDetailPage.setRedirect(true);
             targetDetailPage.getParameters().put('id',targets.id);
             return targetDetailPage;
+            
             }
         }catch (Exception e){
+             ApexPages.Message Msg = new ApexPages.Message(ApexPages.Severity.INFO,e.getmessage());
+            ApexPages.addMessage(Msg);
             system.debug('an exception has been thrown');
         }
         return null;

@@ -1,0 +1,5 @@
+<apex:page standardcontroller="PQN_Pallet_Quality_Non_Conformance__c" extensions="PQN_CheckDelete" action="{!checkDelete}">
+  
+  <b>Insufficient Previliges. You do not have the permission to Delete</b><br/>
+    Click <apex:outputLink value="{!$Page.PQN_List_View}">here</apex:outputLink> to return to previous page
+</apex:page>

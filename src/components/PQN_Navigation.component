@@ -98,6 +98,14 @@
             background-color: #004976!important;
         }
         
+        #demo1 li, #demo1 li>a{
+            list-style: none;
+            color: #fff;
+        }
+        #demo1 .active {
+            background-color: #004976!important;
+        }
+        
         .navbar-inverse .navbar-toggle {
             border-color: #36a0fe;
         }
@@ -202,6 +210,38 @@
                             </li>
                         </ul>
                     </li>
+                    
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo1" class="" style="{!If(navigationName=='Reports' ,'color: #fff; background-color: #004976;','')}" aria-expanded="true"><i class="fa fa-fw fa-th-list"></i> Reports<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo1" class="collapse in" aria-expanded="true">
+                            <li class="{!If(subNavName=='countryreport' ,'active','')}">
+                                <a href="./PQN_Country_Report">Country</a>
+                            </li>
+                            <li class="{!If(subNavName=='dcreport' ,'active','')}">
+                                <a href="./PQN_Global_DCReport">Global DC</a>
+                            </li>
+                            <li class="{!If(subNavName=='globalsu' ,'active','')}">
+                                <a href="./PQN_GlobalSUReport">Global SU</a>
+                            </li>
+                            <li class="{!If(subNavName=='geography' ,'active','')}">
+                                <a href="./PQN_Global_Geography_Report">Global Geography</a>
+                            </li>
+                            <li class="{!If(subNavName=='gcategory' ,'active','')}">
+                                <a href="./PQN_Global_Category_Report">Global Category</a>
+                            </li>
+                            <li class="{!If(subNavName=='govgeography' ,'active','')}">
+                                <a href="./PQN_Global_Overview_Geography">Global Overview Geography</a>
+                            </li>
+                            <li class="{!If(subNavName=='govcategory' ,'active','')}">
+                                <a href="./PQN_Global_Overview_Category_Report">Global Overview Category</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    
                 
                     <!--<li class="{!If(navigationName=='dc_values' ,'active','')}">
                         <a href=""><i class="fa fa-fw fa-dashboard"></i> DC Values</a>

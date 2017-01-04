@@ -1,18 +1,16 @@
 Public with sharing class PQNUpdateFreezePeriodCtrl{
 
     public List<PQNFreezeDate__c> result {get;set;}
-   // Public Date currentDate = date.Today();
+    // Public Date currentDate = date.Today();
     //Integer monthValue = currentDate.month();
     public list<PQNFreezeDate__c> currentMonthFreezePeriod {get;set;}
      
 
     
-    public List<PQNFreezeDate__c> getResult(){    
+    public List<PQNFreezeDate__c> getResult(){  
         return result;
-        
     }
-
-
+    
     
     Public Date January {get;set;}
     Public Date February {get;set;}
@@ -29,15 +27,22 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
     Public Boolean flag {get;set;}
     
     
+    // "PQNUpdateFreezePeriodCtrl" constructor
     Public PQNUpdateFreezePeriodCtrl (){
+    
+        //Fetch the current month value of the custom setting record and display the value
         currentMonthFreezePeriod = [select Id, Name, Numeric_Value__c, Freeze_Date__c from PQNFreezeDate__c where Numeric_Value__c =: Date.Today().Month() LIMIT 1];
-        system.debug('The date is' + currentMonthFreezePeriod);
-        system.debug('Inside the ext controller');
+        
+        //Get the Profile ID of the Logged in User to check wheather logged in User is internal user or not
         Id pId = userinfo.getProfileId();
         List<Profile> pList = [select Id, Name from Profile where Id=: pId LIMIT 1];
         String pName = pList[0].Name;
-        if(pName == 'system Administrator')
+        
+        //If profile id "Admin" display the button for the user
+        if(pName == 'system Administrator' || pName == 'Unilever - Salesforce MultiApp Standard')
         flag = true;
+        
+        //Fetch all the custom setting records
         result = [select Id, Name, Numeric_Value__c, Freeze_Date__c from PQNFreezeDate__c ORDER BY Numeric_Value__c];
         January = result[0].Freeze_Date__c ;
         February = result[1].Freeze_Date__c ;
@@ -51,12 +56,33 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
         October = result[9].Freeze_Date__c ;
         November = result[10].Freeze_Date__c ;
         December = result[11].Freeze_Date__c ; 
+        system.debug('method about to call');
     }
     
     Public pageReference updateFreezePeriod(){
     try{
-            //get the List of PQNFreezeDate__c and store in the list            
+        
+        
+        //Validation : Check wheather the Freeze Date entedred by the user is not less than Today's date
             
+        if( January < Date.Today() || February < Date.Today() || March < Date.Today() || April < Date.Today() || May < Date.Today() || June < Date.Today() || July < Date.Today() || August < Date.Today() || September < Date.Today() || October < Date.Today() || November < Date.Today() || December < Date.Today()){
+            // display an error message to the user
+        
+            ApexPages.Message myFreezeMessage = new ApexPages.Message(ApexPages.Severity.INFO,'Freeze Date should be greater than today');
+            ApexPages.addMessage(myFreezeMessage);
+            system.debug('Not valid date');
+            system.debug('Jan' + January);
+            return null;
+                
+        }
+        //Validation Ends Here
+        
+        else{
+        
+        
+        
+        //set the List of PQNFreezeDate__c and store in the list
+        
         result[0].Freeze_Date__c = January;
         result[1].Freeze_Date__c = February;
         result[2].Freeze_Date__c = March;
@@ -69,95 +95,19 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
         result[9].Freeze_Date__c = October;
         result[10].Freeze_Date__c = November;
         result[11].Freeze_Date__c = December;
-            
-            update result;
-            system.debug('The list is' + result);
-
-            
-            //Compare the 'Name' of the custom setting record and update the date value
-            /*
-            
-            Integer i = 0;
-            While ( i < result.size()){
-                if(result[i].Name == 'January'){
-                    result[i].Freeze_Date__c  = January;
-                    system.debug('The value is' + result[i].Freeze_Date__c);
-                }
-                else if(result[i].Name == 'February'){
-                    result[i].Freeze_Date__c = February;
-                    system.debug('The value is' + result[i].Freeze_Date__c);
-                }
-                else if(result[i].Name == 'March'){
-                    result[i].Freeze_Date__c = March;
-                    system.debug('The value is' + result[i].Freeze_Date__c);
-                }
-                else if(result[i].Name == 'April'){
-                    result[i].Freeze_Date__c = April;
-                    system.debug('The value is' + result[i].Freeze_Date__c);
-                }
-                else if(result[i].Name == 'May'){
-                    result[i].Freeze_Date__c = May;
-                    system.debug('The value is' + result[i].Freeze_Date__c);
-                }
-                else if(result[i].Name == 'June'){
-                    result[i].Freeze_Date__c = June;
-                    system.debug('The value is' + result[i].Freeze_Date__c);
-                }
-                else if(result[i].Name == 'July'){
-                    result[i].Freeze_Date__c = July;
-                    system.debug('The value is' + result[i].Freeze_Date__c);
-                }
-                else if(result[i].Name == 'August'){
-                    result[i].Freeze_Date__c = August;
-                    system.debug('The value is' + result[i].Freeze_Date__c);
-                }
-                else if(result[i].Name == 'September'){
-                    result[i].Freeze_Date__c = September;
-                    system.debug('The value is' + result[i].Freeze_Date__c);
-                }
-                else if(result[i].Name == 'October'){
-                    result[i].Freeze_Date__c = October;
-                    system.debug('The value is' + result[i].Freeze_Date__c);
-                }
-                else if(result[i].Name == 'November'){
-                    result[i].Freeze_Date__c = November;
-                    system.debug('The value is' + result[i].Freeze_Date__c);
-                }
-                else if(result[i].Name == 'December'){
-                    result[i].Freeze_Date__c = December;
-                    system.debug('The value is' + result[i].Freeze_Date__c);
-                }
-                else{
-                    system.debug('Some error');
-                    system.debug('The value is' + result[i].Freeze_Date__c);
-                }
-                
-                i++;
-
-        }
-        update result;
         
-        */
+        
+        // Update the Custom Setting
+        update result;
+        system.debug('The list is' + result);
+        
+        }
+        
+        
+
         }catch(Exception e){
             system.debug('An exception occured' + e.getMessage());
          }
         return null;
-    }
-    
-    Public void cancel(){
-    system.debug('cancel');
-    }
-
-/*
-     Public PQNUpdateFreezePeriodCtrl(){
-         PQNFreezeDate__c freezeDate = [select Id, Name, Freeze_Date__c 
-                                    from PQNFreezeDate__c where Name='December'];
-          fDate = Date.newInstance(freezeDate.Freeze_Date__c.year(), 
-                                   freezeDate.Freeze_Date__c.month(), 
-                                   freezeDate.Freeze_Date__c.day());
-          system.debug('the date is' + fDate);
-     }  
-     */  
-     
-      
+    } 
 }
