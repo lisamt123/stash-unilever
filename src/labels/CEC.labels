@@ -676,7 +676,7 @@
         <shortDescription>CEC_Multilanguage_Birth</shortDescription>
         <value>Birth-Nascimento-Nacimiento-Geburt-La naissance-Nascita-誕生-Födelse-출생-分娩-Geboorte-Fødsel-syntymä-рождение</value>
     </labels>
-	 <labels>
+	<labels>
         <fullName>CEC_No_Product_Details</fullName>
         <categories>CEC_IRIProductLocatorController</categories>
         <language>en_US</language>
