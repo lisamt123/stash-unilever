@@ -901,4 +901,39 @@
         <shortDescription>PP_TIT_UPLOAD_ERROR</shortDescription>
         <value>Error Uploading</value>
     </labels>
+	   <labels>
+        <fullName>UL_PROMOTION_SUBMIT_VALIDATION</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval workflow Service</shortDescription>
+        <value>You can submit workflow for approval, only if you are creator and promotion is in Planning state and is Active.</value>
+    </labels>
+    <labels>
+        <fullName>UL_PROMOTION_APPROVAL_VALIDATION</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval Workflow Service</shortDescription>
+        <value>You can approve a Promotion if it is not in Planning and not in Approved state</value>
+    </labels>
+    <labels>
+        <fullName>UL_PROMOTION_ASSIGNE_VALIDATION</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval Workflow Service</shortDescription>
+        <value>You are not assigne for Approver</value>
+    </labels>
+    <labels>
+        <fullName>UL_PROMOTION_REJECT_VALIDATION</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval Workflow Service</shortDescription>
+        <value>You can not reject Promotion which is in Planning state</value>
+    </labels>
+    <labels>
+        <fullName>UL_PROMOTION_PLANNING_VALIDATION</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval Workflow Service</shortDescription>
+        <value>You can put Promotion back in Planning only if it is future dated</value>
+    </labels>
 
