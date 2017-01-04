@@ -63,6 +63,7 @@ public without sharing class BFM_SendEmailToCarrierApprover {
                                }
                            }
         
+        System.debug('contactEmail ' + contactEmail);
         if(contactEmail == null){
             errors = Label.BFM_Self_Service_No_Carrier_Email;           
         }
