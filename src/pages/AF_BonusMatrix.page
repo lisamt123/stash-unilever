@@ -2,7 +2,7 @@
    *************************************************************************
    *@Description:This page is used to display the Matrix page for Bonus 
    *@Author: Cognizant
-   *@Created Date: 27/07/2014 
+   *@Created Date: 27/07/2014   
    *************************************************************************
    -->
 <apex:page standardController="AF_Bonus_Summary__c" extensions="AF_BonusFeeStdCtrlExt,AF_BonusSummaryRemote,AF_BrandEstimateRemote,AF_BonusMatrixSummary" showHeader="false" sidebar="false">
@@ -96,13 +96,16 @@
           }
         } 
         
-        // Redirect on rejection
+        
+        
+        </script>
+		<script>
+		// Redirect on rejection
         function redirect()
         {
             location.reload();   
         }
-        
-        </script>
+		</script>
         <apex:outputpanel id="panel1">
             <script>
                function redirectSubmit()
