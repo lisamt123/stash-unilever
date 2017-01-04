@@ -1,0 +1,5 @@
+src/permissionsets
+src/permissionsets/TEL_Telesales_Agent.permissionset
+src/layouts
+src/layouts/Campaign-Telesales Campaign Layout.layout
+src/layouts/Opportunity-TEL_Telesales.layout
