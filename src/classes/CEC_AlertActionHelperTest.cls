@@ -39,7 +39,7 @@ public with sharing class CEC_AlertActionHelperTest {
             insert reasonCodeList;
 
             List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createMasterCaseMarketMapping();
-            CEC_Case_Market_Mapping__c cmmUK = new CEC_Case_Market_Mapping__c();
+            CEC_Case_Market_Mapping__c cmmUK;
             for(CEC_Case_Market_Mapping__c cmm : cmmList) {
                 if (cmm.Market__c == CEC_Constants.UK) {
                     cmmUK = cmm;
@@ -175,7 +175,7 @@ public with sharing class CEC_AlertActionHelperTest {
             
             Integer alertTrackerCount = [SELECT Count() FROM cec_Alert_Tracker__c WHERE Alert_Rule_Id__c = :alertRule.Id];
             System.assertEquals(1, alertTrackerCount);
-            
+      
             // Check the Case Action result 1
             cec_Case_Action__c caseActionResult1 = [SELECT Q12__c, Q2__c, Q3__c, Q4__c, Q5__c,Q6__c,
                                                     Q7__c, Q8__c, Q9__c, Q10__c, Q11__c, Survey_Id__c
@@ -202,7 +202,7 @@ public with sharing class CEC_AlertActionHelperTest {
         }
         
     }
-    
+  
     // Test Method for Safety Alert to set Case Product instead of Product Category.
     static testMethod void createAlertsForCaseProduct(){
         User u = CEC_TestDataFactory.getStandardCECTestUser();
