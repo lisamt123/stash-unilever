@@ -5,7 +5,6 @@ src/classes
 src/email
 src/labels
 src/objects
-src/package.xml
 src/pages
 src/permissionsets
 src/queues
@@ -27,13 +26,9 @@ src/classes/CEC_IRIProductLocatorController.cls
 src/classes/CEC_IRIProductLocatorController.cls-meta.xml
 src/classes/CEC_RetrievalRequestTriggerHelper.cls
 src/classes/CEC_RetrievalRequestTriggerHelper.cls-meta.xml
-src/email/CEC_Emails_Hong_Kong
 src/email/CEC_Emails_Hong_Kong-meta.xml
-src/email/CEC_Emails_Korea
 src/email/CEC_Emails_Korea-meta.xml
-src/email/CEC_Emails_Taiwan
 src/email/CEC_Emails_Taiwan-meta.xml
-src/email/CEC_Emails_Turkey
 src/email/CEC_Emails_Turkey-meta.xml
 src/labels/CEC.labels
 src/objects/Case.object
