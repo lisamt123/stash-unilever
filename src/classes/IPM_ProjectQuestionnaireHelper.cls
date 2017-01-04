@@ -215,6 +215,14 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
     
     private static void checkAlreadyExistsQuestions(Id associatedProjectID,string projectCurrentGate)
     {
+        rndQuestionAlreadyExists = false;
+        posQuestionAlreadyExists = false;
+        rqsQuestionAlreadyExists = false;
+        rndFeasibilityQuestionAlreadyExists = false;
+        scFeasibilityQuestionAlreadyExists = false;
+        tradeMarkQuestionAlreadyExists = false;
+        corporateRiskQuestionAlreadyExists = false;
+        gkCheckListAlreadyExists = false;
     	if(IPM_ProjectHelper.projectMasterMap.containsKey(associatedProjectID) && IPM_ProjectHelper.projectMasterMap.get(associatedProjectID) !=null)
         {
             
