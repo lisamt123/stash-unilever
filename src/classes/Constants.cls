@@ -4,7 +4,7 @@
  * @version  2015-10-19  g.prajapat@accenture.com  creation 
  */
 public with sharing class Constants {
-
+    public final static String ATTACHMENT_THUMBNAIL_KEY = '#Preview#';
     public static final String NAMESPACEPREFIX = '';
 
     public static final String STATUS = 'Active';
@@ -263,13 +263,13 @@ public with sharing class Constants {
     // Variable for Comma
     public final static String STRING_COMMA = ',';
 
-    // Parent Account Sync Batch error src/email/unfiled$public/ columes
+    // Parent Account Sync Batch error file columes
     public final static String BATCH_ERROR_FILE_COLUMNS = 'ID,ParentID,Error';    
 
-    // Account Manager & Team Batch error src/email/unfiled$public/ columes
+    // Account Manager & Team Batch error file columes
     public final static String BATCH_ERROR_FILE_COLUMNS_MANAGER = 'AccountID,UserId,AccountAccessLevel,TeamMemberRole,Error'; 
 
-    // Batch error src/email/unfiled$public/ name
+    // Batch error file name
     public final static String BATCH_ERROR_FILE_NAME = 'Failed_AccountProcessing.csv';  
 
     // Variable for new Line
