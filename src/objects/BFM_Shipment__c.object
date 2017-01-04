@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>BFM_Shipmentedit_VF</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>A Shipment represents one delivery transaction a Carrier company performs for an Unilever Company.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>ANTT__c</fullName>
+        <externalId>false</externalId>
+        <label>ANTT</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Carrier_Account_Vendor_Code__c</fullName>
+        <description>Vendor Code information regarding Carrier Account</description>
+        <externalId>false</externalId>
+        <formula>Carrier_Account__r.Vendor__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Carrier Account	Vendor Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Carrier_Account__c</fullName>
+        <description>The Carrier delivering this Shipment.</description>
+        <externalId>false</externalId>
+        <label>Carrier Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Shipments (Carrier Account)</relationshipLabel>
+        <relationshipName>Shipments</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Company_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Company Code</label>
+        <length>4</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Created_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Created Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Display__c</fullName>
+        <externalId>false</externalId>
+        <label>Display</label>
+        <picklist>
+            <picklistValues>
+                <fullName>10</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>25</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>50</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>100</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>200</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Is_Deleted_in_SAP__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox field indicating if the record must be deleted in SFDC.</description>
+        <externalId>false</externalId>
+        <label>Is Deleted in SAP</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Last_Shipment_Update__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Shipment Update</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Plant_Code__c</fullName>
+        <description>Plant Code from Stage</description>
+        <externalId>false</externalId>
+        <label>Plant Code</label>
+        <length>4</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Pricing_Calculation_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Pricing Calculation Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Shipment_Number__c</fullName>
+        <externalId>true</externalId>
+        <label>Shipment Number</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Shipment_Start__c</fullName>
+        <externalId>false</externalId>
+        <label>Shipment Start</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Shipment_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Shipment Status</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Shipment_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Shipment Type</label>
+        <length>4</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unilever_Company__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Unilever Company</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>DTs (Unilever Company)</relationshipLabel>
+        <relationshipName>Shipments1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Plate__c</fullName>
+        <externalId>false</externalId>
+        <label>Vehicle Plate</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X6th_flag_Updated_Date__c</fullName>
+        <description>This field indicates the date/time when the field 6th flag has been updated.</description>
+        <externalId>false</externalId>
+        <label>6th flag Updated Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>X6th_flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>6th flag</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Shipment</label>
+    <listViews>
+        <fullName>Shipment_View</fullName>
+        <columns>NAME</columns>
+        <columns>Shipment_Number__c</columns>
+        <columns>Company_Code__c</columns>
+        <columns>Carrier_Account__c</columns>
+        <columns>Created_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Shipment View</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>DT-{000000}</displayFormat>
+        <label>Shipment SF Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Shipments</pluralLabel>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <listViewButtons>Search_BFM_Shipments</listViewButtons>
+        <lookupDialogsAdditionalFields>Company_Code__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Company_Code__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Shipment_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Carrier_Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OBJECT_ID</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Pricing_Calculation_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Shipment_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Shipment_Start__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>X6th_flag__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>Document_Generation</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Document Generation</masterLabel>
+        <openType>sidebar</openType>
+        <page>BFM_ShipmentDocumentGeneration</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Search_BFM_Shipments</fullName>
+        <availability>online</availability>
+        <description>Button will redirect to VF page to enter the shipment number and Shipment date to search the shipments.</description>
+        <displayType>massActionButton</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Search BFM Shipments</masterLabel>
+        <openType>replace</openType>
+        <page>BFM_SearchShipmentCTe_VF</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>Update_Shipment</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Update Shipment</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)}
+var result = sforce.apex.execute(&quot;BFM_QueryFreights&quot;,&quot;callQueryFreightsButton&quot;,{shipmentId:&quot;{!BFM_Shipment__c.Id}&quot;});
+alert(result);
+window.location.reload();</url>
+    </webLinks>
+</CustomObject>

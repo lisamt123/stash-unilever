@@ -44,6 +44,7 @@ public class BFM_QueryOccurrencesResponse {
 
 	public class QueryOccurrenceResponse {
 		public List<Occurrences> occurrences;
+        public String message;
 	}
 
 	public QueryOccurrenceResponse QueryOccurrenceResponse;
