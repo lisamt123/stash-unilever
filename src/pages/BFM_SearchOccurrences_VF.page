@@ -1,0 +1,156 @@
+<apex:page standardController="BFM_Occurrence__c" doctype="html-5.0" recordSetVar="BFM_Occurrence" extensions="BFM_SearchOccurrenceController_CC"  sidebar="false" id="pge" >  
+      <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" />
+    <apex:form id="frm">        
+        <style>
+            th, td { white-space: nowrap; }
+            div.dataTables_wrapper {
+            width: 1250px;
+            margin: 0 auto;
+            }   
+        </style>
+        
+        <script>
+        $ = jQuery.noConflict();
+        </script>
+        
+        <apex:actionstatus id="status">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                                                                     height: 100%;opacity:0.65;width:100%;"> 
+                    <div class="waitingHolder" style="top: 74.2px; width: 91px;">
+                        <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                        <span class="waitingDescription">Loading...</span>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+        
+        <apex:pageBlock id="pb1">
+            <apex:pageBlockSection columns="2" id="ocrno">
+                <!--<apex:inputText value="{!searchOccurrence.Occurrence_Number__c}"/>-->
+                <apex:inputtext value="{!occurNumber}" id="shpn" label="{!$ObjectType.BFM_Occurrence__c.fields.Occurrence_Number__c.label}" />
+				 <apex:inputText value="{!vendorName}" label="{!$Label.BFM_Vendor_Name}" id="shpvan" required="false" />
+                <apex:input type="date" value="{!occurStart}" id="shpd" label="{!$ObjectType.BFM_Occurrence__c.fields.Range_of_Extent_of_Occurrence_From__c.label}"/>
+				<apex:input type="date" value="{!occurTo}" id="shpd1" label="{!$ObjectType.BFM_Occurrence__c.fields.Range_of_Extent_of_Occurrence_To__c.label}"/>
+            </apex:pageBlockSection>
+            <div align="center">
+                <apex:commandButton value="Procurar ocorrência" action="{!searchoccurs}" status="status" reRender="occurnce"/>&nbsp; <!-- todo : Add custom label -->
+                <apex:commandButton action="{!redirectPage}" value="{!$Label.BFM_Clear}"/>
+                <button class="btn" style="padding:4px;">{!$Label.BFM_Occurrence}</button>
+                 <button class="btnRep" style="padding:4px;">Gerar Prévia de Custo</button>
+            </div>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="Resultado da busca" id="noRec" rendered="{! IF(OccList!= null && OccList.size ==0,true,false)}" > <!-- TODO : add custom label -->
+            <apex:outputPanel >
+                <h1>Nenhum registro encontrado</h1> <!-- Todo : add custom label -->
+            </apex:outputPanel>
+        </apex:pageBlock>
+        
+        <apex:pageblock title="Resultado da busca" rendered="{!IF(AND(NOT(ISBLANK(OccList)),OccList.size>0),true,false)}">
+            <apex:outputPanel id="occur">
+                <apex:pageBlockTable value="{!OccList}" var="Occ" id="occurnce">
+                      <apex:column >
+                        <apex:facet name="header">
+                            <input type="checkbox" value="0" onclick="selectAllCheckboxes(this,'inputId')"/>
+                        </apex:facet>
+                        <input type="checkbox" id="inputId" value="{!Occ.id}"/>
+                    </apex:column>
+                    <apex:column headerValue="Name">  
+                        <apex:outputlink target="_blank" value="/{!Occ.id}">{!Occ.Name}</apex:outputlink>  
+                    </apex:column> 
+                    <apex:column value="{!Occ.Occurrence_Number__c}"/>
+                    <apex:column value="{!Occ.Status__c}"/>
+                    <apex:column value="{!Occ.Range_of_Extent_of_Occurrence_From__c}"/>
+                    <apex:column value="{!Occ.Range_of_Extent_of_Occurrence_To__c}"/>
+                </apex:pageBlockTable>
+            </apex:outputPanel>
+            <apex:pageBlockButtons location="top">
+                <div style="text-align:right"> 
+                    Total de Registros: {!Con.resultSize} <!-- Todo : add custom label -->
+                    <apex:selectList value="{!recordscount}" multiselect="false" size="1">                
+                        <apex:selectOptions value="{!recordsize}"/>
+                        <apex:actionSupport event="onchange" action="{!getoccurences}" reRender="occur,occurnce"/>
+                    </apex:selectList>
+                    <!-- Todo : add custom label -->
+                    <apex:commandLink action="{!First}" title="First" value="First" rendered="{!Con.HasPrevious}"/>&nbsp;    
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">Primeira</apex:outputPanel>&nbsp;
+                    <!-- Todo : add custom label -->
+                    <apex:image url="/img/search_prevarrow_disabled.gif" styleClass="prevArrow" rendered="{!NOT(Con.HasPrevious)}"/> 
+                    <apex:image url="/img/search_prevarrow.gif" title="Previous Page" styleClass="prevArrow" rendered="{!Con.HasPrevious}"/>&nbsp;  
+                    <apex:commandLink action="{!Previous}" title="Previous Page" value="Previous Page" rendered="{!Con.HasPrevious}"/>&nbsp;    
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">Página anterior</apex:outputPanel>&nbsp;
+                    <!-- Todo : add custom label -->
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">Próxima página</apex:outputPanel>          
+                    <apex:commandLink title="Next Page" value="Next Page" rendered="{!Con.HasNext}" action="{!Next}"/>&nbsp;  
+                    <apex:image url="/img/search_nextarrow.gif" title="Next Page" styleClass="nextArrow" rendered="{!Con.HasNext}"/>&nbsp; 
+                    <apex:image url="/img/search_nextarrow_disabled.gif" rendered="{!NOT(Con.HasNext)}"/> 
+                    <!-- Todo : add custom label -->
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">Última</apex:outputPanel> 
+                    <apex:commandLink title="Last"  value="Last" rendered="{!Con.HasNext}" action="{!last}"/> 
+                    
+                </div>
+            </apex:pageBlockButtons>                      
+        </apex:pageblock>
+    </apex:form>
+    <script language="JavaScript" type="text/javascript">
+    function CloseWindow(){  
+        var occnum=document.getElementById("pge:frm:j_id2:ocrno:occnum").value;
+        if(occnum==''){
+            alert('Please enter occurence no');
+        }else{
+            if(window.parent){
+                window.parent.opener.location.href = window.parent.opener.location.href;
+                window.parent.close();
+                window.parent.reload();
+            }   
+            else{
+                window.opener.location.href = "{!JSENCODE($CurrentPage.parameters.occrid)}"
+                window.close();   
+            }   
+        }
+        }
+</script>
+    <script type="text/javascript">
+    function selectAllCheckboxes(obj,receivedInputID){
+        var inputCheckBox = document.getElementsByTagName("input");                  
+        for(var i=0; i<inputCheckBox.length; i++){          
+            if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                     
+                inputCheckBox[i].checked = obj.checked;
+            }
+        }
+    }
+    $('.btn').click(function(){
+        var str='';
+        $("input[type=checkbox]:checked").each(function() {
+            if($(this).val()!='0' && $(this).val()!=null)
+            {
+                str+=$(this).val()+',';
+            }
+        });
+        str=str.slice(0,-1);
+        //alert('str'+str);
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.BFM_SearchOccurrenceController_CC.updateOccurences}', 
+            str, 
+            function(result, event){
+                //alert('result'+result);
+            }, 
+            {escape: true}
+        );
+    }); 
+    
+     $('.btnRep').click(function(){
+        var str='';
+        $("input[type=checkbox]:checked").each(function() {
+            if($(this).val()!='0' && $(this).val()!=null)
+            {
+                str+=$(this).val().substring(0, 15)+',';
+            }
+        });
+        str=str.slice(0,-1);
+     //alert(str);
+     window.open("/{!cteIssuingReport.Id}?pv0="+str,"_blank");
+    }); 
+    </script>
+</apex:page>

@@ -1,0 +1,15 @@
+<apex:page standardController="BFM_Shipment__c" extensions="BFM_ShipmentDocumentGeneration_CC">
+    <apex:pageBlock title="{!$Label.BFM_NF_e_Information}">
+        <apex:pageBlockTable value="{!NFes}" var="nfe">
+            <apex:column headerValue="{!$Label.BFM_NF_e}">
+                <apex:outputLink target="_blank" value="/{!nfe.Id}">
+                            <apex:outputText value="{!nfe.Name}"/>
+                </apex:outputLink>
+            </apex:column>
+        </apex:pageBlockTable>
+      
+    </apex:pageBlock>    
+    <apex:relatedList list="Stages__r" />
+    
+    <apex:detail relatedList="false"></apex:detail>
+</apex:page>

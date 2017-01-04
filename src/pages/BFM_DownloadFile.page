@@ -1,0 +1,2 @@
+<apex:page StandardController="BFM_Debit_Note__c" extensions="BFM_WithholdTaxDebitNoteController">
+</apex:page>

@@ -1,0 +1,228 @@
+<apex:page id="communitiesSelfRegPage" showHeader="true" language="PT-BR" controller="BFM_CommunitiesSelfRegController_CC" title="{!$Label.site.user_registration}" doctype="HTML-5.0"  cache="false">
+    <apex:define name="body">  
+        
+        <style>
+            form { margin: 0px 10px; }
+            
+            h2 {
+            margin-top: 2px;
+            margin-bottom: 2px;
+            }
+            
+            .container { max-width: 360px; }
+            
+            .divider {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            }
+            
+            .divider hr {
+            margin: 7px 0px;
+            width: 35%;
+            }
+            .left { float: left; }
+            
+            .right { float: right; }
+            
+            .control-label{
+            font-size: 12px;
+            color: #54698d;
+            margin: 0 0 8px 0;
+            line-height: inherit;
+            font-family: SFS, Arial, sans-serif;
+            }
+            .form-group {
+            margin-bottom: 15px;
+            }
+            .panel {
+            margin-bottom: 20px;
+            background-color: #fff;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+            box-shadow: 0 1px 1px rgba(0,0,0,.05);
+            }
+            .panel-primary {
+            border-color: #337ab7;
+            }
+            .panel-body {
+            padding: 15px;
+            }
+            .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 25px
+            }
+            .container {
+            max-width: 760px;
+            }
+            .row {
+            margin-right: -15px;
+            margin-left: -15px;
+            }
+            
+            .myClass{
+            color:white !important;
+            background:#1798c1 !important;
+            height:25px;
+            width:200px;
+            }
+            
+            
+        </style>
+        
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        
+        <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        
+        <!-- Added by Abhinav -->
+        <apex:actionstatus id="status">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                                                                     height: 100%;opacity:0.65;width:100%;"> 
+                    <div class="waitingHolder" style="centre: 74.2px; width: 91px;">
+                        <img class="waitingImage" src="http://upload.wikimedia.org/wikipedia/commons/e/ed/Cursor_Windows_Vista.gif" title="{!$Label.BFM_Wait}" />
+                        <span class="waitingDescription">{!$Label.BFM_Wait}</span>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+        
+        
+        <script>
+        $("#communitiesSelfRegPage:theForm:cpf").on("keypress keyup blur",function (event) {    
+            $(this).val($(this).val().replace(/[^\d].+/, ""));
+            alert("something");
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+        </script>
+        
+        <apex:form id="theForm" forceSSL="true" >
+            <apex:pageMessages id="error" escape="false"/>
+            <div align='center'>
+                <apex:image id="logo" value="{!$Resource.Unilever2}"/>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <div class="col-sm-6 form-group">
+                                <label class="control-label" for="signupName">
+                                    {!$ObjectType.BFM_UserCreationRequest__c.fields.FirstName__c.Label}
+                                </label>
+                                <apex:inputText required="true" maxlength="80" disabled="{!readOnlyform}" id="firstName" value="{!firstName}" label="{!$ObjectType.BFM_UserCreationRequest__c.fields.FirstName__c.Label}" styleclass="form-control"/>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label class="control-label" for="signupEmail">
+                                    {!$ObjectType.BFM_UserCreationRequest__c.fields.LastName__c.Label}
+                                </label>
+                                <apex:inputText required="true" maxlength="80" disabled="{!readOnlyform}" id="lastName" value="{!lastName}" label="Last Name" styleclass="form-control"/>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <!--<label class="control-label" for="signupEmailagain">
+                                {!$ObjectType.BFM_UserCreationRequest__c.fields.CommunityNickname__c.Label}
+                                </label>-->
+                                <label class="control-label" for="signupEmailagain">
+                                    {!$Label.BFM_Name}
+                                </label>
+                                <apex:inputText required="true" disabled="{!readOnlyform}" id="communityNickname" value="{!communityNickname}" label="{!$Label.site.community_nickname}" styleclass="form-control"/>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label class="control-label" for="signupEmailagain">
+                                    {!$ObjectType.BFM_UserCreationRequest__c.fields.Email__c.Label}
+                                </label>
+                                <apex:inputText required="true" maxlength="80" disabled="{!readOnlyform}" id="email" value="{!email}" label="{!$Label.site.email}" styleclass="form-control"/>
+                                
+                            </div>
+                            
+                            
+                            <div class="col-sm-6 form-group">
+                                <label class="control-label" for="cpf">
+                                    {!$ObjectType.BFM_UserCreationRequest__c.fields.CPF__c.Label}
+                                </label>
+                                <apex:inputText disabled="{!readOnlyform}" maxlength="11" required="true" id="cpf" value="{!cpf}" label="CPF" styleclass="form-control"/>
+                                <br/>
+                            </div>
+                            
+                            <div class="col-sm-3 form-group">
+                                <label class="control-label" for="cpf">
+                                    {!$ObjectType.BFM_UserCreationRequest__c.fields.Operational_User__c.Label}
+                                </label>
+                                <apex:inputCheckbox id="permSet1" disabled="{!readOnlyform}" value="{!operationalUser}" styleclass="form-control"/>
+                            </div>
+                            <div class="col-sm-3 form-group">
+                                <label class="control-label" for="cpf">
+                                    {!$ObjectType.BFM_UserCreationRequest__c.fields.Tax_User__c.Label}
+                                </label>
+                                <apex:inputCheckbox id="permSet2" disabled="{!readOnlyform}"  value="{!taxUser}" styleclass="form-control"/>
+                            </div>
+                            
+                            
+                            <div class="col-sm-6 form-group">
+                                Problemas? Contacte-nos em
+                                <apex:outputLink value="{!sendEmail}">
+                                    {!$Label.BFM_Support_Email}
+                                </apex:outputLink>
+                                <br/>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label class="control-label" for="signupEmailagain">{!$Label.BFM_Self_Service_Search_CNPJ}</label>
+                                <apex:inputText maxlength="8" required="true" id="cnpj" value="{!cnpj}" label="Cnpj" styleclass="form-control"/>
+                                <br/>
+                            </div>
+                            <div class="col-sm-12 form-group">
+                                <apex:commandButton action="{!fetchBranches}" value="{!$Label.BFM_Self_Service_Search_Carrier_Branches}" id="branch" status="status" rerender="theForm" styleClass="myClass" />
+                                <br/>
+                            </div>
+                            <div class="{!IF(NOT(ISNULL(requestLines)), 'col-sm-12 form-group', 'hidden')}"  >
+                                <table class="table">
+                                    <tr>
+                                        <th/>
+                                        <th>
+                                            {!$ObjectType.Account.fields.Name.Label}
+                                        </th>
+                                        <th>
+                                            {!$ObjectType.Account.fields.CNPJ__c.Label}
+                                        </th>
+                                    </tr>
+                                    <apex:repeat value="{!requestLines}"  var="requestLineId" id="branchTable">
+                                        <tr>
+                                            <td>
+                                                <apex:inputCheckbox value="{!requestLines[requestLineId].isSelected}" />
+                                            </td>
+                                            <td>
+                                                <apex:outputText value="{!requestLines[requestLineId].branch.Name}"/>
+                                            </td>
+                                            <td>
+                                                <apex:outputText value="{!requestLines[requestLineId].branch.CNPJ__c}"/>
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>                                      
+                                </table>
+                            </div>
+                            <div class="col-sm-12 form-group">
+                                <apex:commandButton action="{!submitNewUserRequest}" value="{!$Label.site.submit}" id="submit" styleClass="myClass" rendered="{!submitEnabled}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <br/>
+        </apex:form>
+        
+        <br/>
+    </apex:define>
+    
+</apex:page>

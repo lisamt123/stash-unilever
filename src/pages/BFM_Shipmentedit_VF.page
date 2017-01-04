@@ -1,0 +1,31 @@
+<apex:page standardController="BFM_Shipment__c" extensions="BFM_Shipmentedit_CC" sidebar="true">
+    <apex:form >
+        <apex:sectionHeader title="Shipment Edit" subtitle="{!ship.Name}"/>
+    	<apex:pageBlock mode="edit">            
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!updateship}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+        	<apex:pageBlockSection title="Shipment Edit">
+            	<apex:outputField value="{!ship.Name}"/>
+                <apex:inputHidden value="{!ship.name}"/>
+                <apex:inputField value="{!ship.Created_Date__c}"/>
+                <apex:inputField value="{!ship.Company_Code__c}"/>
+                <apex:inputField value="{!ship.Shipment_Number__c}"/>
+                <apex:inputField value="{!ship.Unilever_Company__c}"/>
+                <apex:inputField value="{!ship.Shipment_Type__c}"/>
+                <apex:inputField value="{!ship.Carrier_Account__c}"/>
+                <apex:inputField value="{!ship.Shipment_Start__c}"/>
+                <apex:inputField value="{!ship.Vehicle_Plate__c}"/>
+                <apex:inputField value="{!ship.ANTT__c}"/>
+                <apex:inputField value="{!ship.Pricing_Calculation_Date__c}"/>                
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="6th Flag">
+            	<apex:inputField value="{!ship.X6th_flag__c}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="System Information">
+            	<apex:inputField value="{!ship.Last_Shipment_Update__c}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
