@@ -704,6 +704,7 @@
             .greenBox{background: #A3C24B;color: #fff;padding: 5px;font-size: 11px;margin: 0;display:block;}
             .redBox{background: red;padding: 5px;margin: 3px 0px;color: #fff;display:block;}
             .table div.approvalTip{padding-left:7px;}
+			.sfdc_richtext table{width:760px !important;}
 		</style>
     </head>
     
