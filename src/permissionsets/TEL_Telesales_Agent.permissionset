@@ -44,6 +44,58 @@
         <apexClass>TEL_TelesalesBO</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>TEL_AssignOpportunityOwner</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TEL_AssignOpportunityOwner_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TEL_AssociateProductsController_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TEL_CaseTrigger_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TEL_OppGenController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>TEL_OppGenController_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TEL_OpportunitySalesCallCreation_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TEL_OpportunityTrigger_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TEL_ProductInfo_CC_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>TEL_Product2DAO</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TEL_TelesalesWrapper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TEL_CallButtonController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TEL_CallButtonController_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
 	<fieldPermissions>
         <editable>true</editable>
         <field>Account.TEL_Account_Contract_Strategy__c</field>
@@ -354,6 +406,26 @@
         <field>Case.Country__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.TEL_City__c</field>
+        <readable>true</readable>
+    </fieldPermissions>	
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Contact</field>
+        <readable>true</readable>
+    </fieldPermissions>	
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Priority</field>
+        <readable>true</readable>
+    </fieldPermissions>	
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.TEL_Product__c</field>
+        <readable>true</readable>
+    </fieldPermissions>		
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.Description</field>
@@ -784,6 +856,10 @@
     <tabSettings>
         <tab>standard-Product2</tab>
         <visibility>None</visibility>
+    </tabSettings>	
+    <tabSettings>
+        <tab>custom-Tel_GenOpp</tab>
+        <visibility>Visible</visibility>
     </tabSettings>	
     <userLicense>Salesforce</userLicense>
     <userPermissions>

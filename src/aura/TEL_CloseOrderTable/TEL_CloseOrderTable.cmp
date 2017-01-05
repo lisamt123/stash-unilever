@@ -21,9 +21,8 @@
             </thead>
             <tbody>
                 <aura:iteration var="product" items="{!v.wrapperProductsList}" indexVar="index">
-                    
                     <tr>
-                        <td data-label="productName">
+                        <td data-label="productName" title="{!product.name}">
                             <div class="slds-truncate"><ui:outputText value="{!product.name}"/></div>
                         </td>
                         <td data-label="quantity">
@@ -33,11 +32,13 @@
                             <center><div class="slds-truncate"><ui:outputText value="{!product.price}"/></div></center>
                         </td>
                         <td data-label="campaign">
-                            <center>
-                                <div class="slds-truncate" title="{!product.campaignName}">
-                                    <img alt="{!product.campaignName}" src="{!$Resource.TEL_TelesalesCSS + '/assets/icons/utility/bookmark_60.png'}" width="30" height="30" />
-                                </div>
-                            </center>
+                            <aura:renderIf isTrue="{!product.activeCampaign}">
+                                <center>
+                                    <div class="slds-truncate" title="{!product.campaignName}">
+                                        <img alt="{!product.campaignName}" src="{!$Resource.TEL_TelesalesCSS + '/assets/icons/utility/bookmark_60.png'}" width="30" height="30" />
+                                    </div>
+                                </center>
+                            </aura:renderIf>
                         </td>
                     </tr>
                 </aura:iteration>
