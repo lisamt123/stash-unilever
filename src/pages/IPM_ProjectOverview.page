@@ -178,7 +178,7 @@
 									<div class="col-sm-5">{!project.IPM_Cluster__r.Name}</div>
 								</div>
 							</apex:outputpanel>
-							<p class="keycontent"> |
+							<p class="keycontent">
 								{!project.IPM_Category_Text__c}</p>
 							<div class="greyborder"></div>
 							<!-- Display below outputPanel when project is fast track and project type is not operational-->
