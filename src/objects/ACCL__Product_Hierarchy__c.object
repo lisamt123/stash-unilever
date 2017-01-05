@@ -188,7 +188,7 @@
     </fields>
     <fields>
         <fullName>UL_External_Id__c</fullName>
-        <caseSensitive>true</caseSensitive>
+        <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>255</length>

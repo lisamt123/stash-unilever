@@ -3169,14 +3169,14 @@
         <errorDisplayField>ACCL__Criterion_1_Product__c</errorDisplayField>
         <errorMessage>Only product with &apos;Category&apos; product level can be selected.</errorMessage>
     </validationRules>
-    <!--<validationRules>
+  <validationRules>
         <fullName>ACCL__Criterion_2_Product</fullName>
         <active>false</active>
         <description>Only product with &apos;Sub Category&apos; product level can be selected</description>
-        <errorConditionFormula>NOT(ISBLANK(ACCL__Criterion_2_Product__c)) &amp;&amp; NOT(ISPICKVAL(ACCL__Criterion_2_Product__r.ACCL__Product_Level__c, &apos;SubCategory&apos; ))</errorConditionFormula>
+        <errorConditionFormula>NOT(ISBLANK(ACCL__Criterion_2_Product__c)) &amp;&amp; NOT(ISPICKVAL(ACCL__Criterion_2_Product__r.ACCL__Product_Level__c, &apos;SubCategory&apos;))</errorConditionFormula>
         <errorDisplayField>ACCL__Criterion_2_Product__c</errorDisplayField>
         <errorMessage>Only product with &apos;Sub Category&apos; product level can be selected.</errorMessage>
-    </validationRules>-->
+    </validationRules>
     <validationRules>
         <fullName>ACCL__Criterion_3_Product</fullName>
         <active>false</active>
