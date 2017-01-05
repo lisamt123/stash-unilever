@@ -193,10 +193,12 @@
 </apex:outputPanel>
 </apex:pageBlock>
 </apex:form>
+<apex:form id="pg2" >
     <table class=" Table_View Solution_Table">
         <thead>
+                    <th></th>
+
             <th>AntiCounterFeit <br/>Solution Library</th>
-        <th>Action</th>
         <th>Status</th>
         <th>Supplier Name</th>
         <th>Solution Type</th>
@@ -207,10 +209,12 @@
         <th>Owner</th>
         </thead>
         <tbody>
-        <apex:repeat value="{!Records}" var="Record"> 
+        <apex:repeat value="{!solutionList}" var="Record"> 
         <tr>
-          <td><a><input type="checkbox" />{!Record.Name}</a></td>
-          <td><button type="button" class="Selection_CTA Btn_Assesment"><a href="#">Assessment</a></button></td>
+                      <td><a><input type="checkbox" /></a></td>
+
+                     <td><a>{!Record.Name}</a></td>
+
                      
            <td><a>{!Record.SAFE_Solution_Status__c}</a></td>
            <td><a>{!Record.SAFE_Supplier_Name__c}</a></td>
@@ -223,8 +227,19 @@
       
            </tr>  
         </apex:repeat>
+         <tr> <td> <!--pagination code-->
+                 
+                       
+                             <apex:commandButton value="First Page" action="{!Firstbtn}" disabled="{!prv}" reRender="pg2"/></td>
+                            <td> <apex:commandButton value="PreviousPage" action="{!prvbtn}" disabled="{!prv}" reRender="pg2"/></td>
+                            <td> <apex:commandButton value="NextPage" action="{!Nxtbtn}" disabled="{!nxt}"  reRender="pg2"/></td>
+                             <td> <apex:commandButton value="LastPage" action="{!lstbtn}" disabled="{!nxt}" reRender="pg2"/></td>
+                            <td></td>
+            
+             </tr>
         </tbody>
     </table>
+    </apex:form>
     </div>
 </body>
 </html>

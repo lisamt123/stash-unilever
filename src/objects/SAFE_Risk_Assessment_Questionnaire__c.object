@@ -104,33 +104,6 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>SAFE Questionnaire</pluralLabel>
-    <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <recordTypes>
-        <fullName>Not_Published</fullName>
-        <active>true</active>
-        <description>This record type is used to have the right page layout for a Not Published questionnaire</description>
-        <label>Not Published</label>
-        <picklistValues>
-            <picklist>SAFE_Status__c</picklist>
-            <values>
-                <fullName>Not Published</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Published</fullName>
-        <active>true</active>
-        <description>This record type is used to have the right page layout for a Published questionnaire</description>
-        <label>Published</label>
-        <picklistValues>
-            <picklist>SAFE_Status__c</picklist>
-            <values>
-                <fullName>Published</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>SAFE_Status__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
@@ -161,7 +134,7 @@ if(p.SAFE_Status__c != &quot;Published&quot;) {
 if(confirm(&apos;Are you sure you want to publish the Questionnaire? Once published, you will not be able to edit the Questionnaire&apos;)) 
 {
 	p.SAFE_Status__c= &quot;Published&quot;;
-	p.RecordTypeId = &quot;{!$Label.SAFE_Published_RecTypeId}&quot;;
+	//p.RecordTypeId = &quot;{!$Label.SAFE_Published_RecTypeId}&quot;;
 	result = sforce.connection.update([p]);
 	location.reload(true);
 
@@ -176,7 +149,7 @@ location.reload(true);
 
 }
 else if(p.SAFE_Status__c == &quot;Not Published&quot;){
-p.RecordTypeId = &quot;{!$Label.SAFE_Not_Published_RecTypeId}&quot;;
+//p.RecordTypeId = &quot;{!$Label.SAFE_Not_Published_RecTypeId}&quot;;
 
 result = sforce.connection.update([p]);
 location.reload(true);

@@ -5,6 +5,7 @@
  */
 public with sharing class SAFE_RiskAssessmentListView_CC{ 
 
+    //public boolean displayPopup1 {get; set;}     
     public Id riskAssesmentId{get;set;}
     public string selectedTab{get;set;}
     public Set<Id> questionIdSet {get;set;}
@@ -60,8 +61,8 @@ public with sharing class SAFE_RiskAssessmentListView_CC{
     
     public Pagereference redirectPopup()
     {        
-        //System.debug('Check this selected: ' +selecteduser);
-       // System.debug('Check this exntuser: ' +ExtUserEmail);
+        System.debug('Check this selected: ' +selecteduser);
+        System.debug('Check this exntuser: ' +ExtUserEmail);
         if(selecteduser == '' && ExtUserEmail == '')
         {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Enter Alteast Internal/External User'));
@@ -72,28 +73,43 @@ public with sharing class SAFE_RiskAssessmentListView_CC{
             Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
             if(selecteduser == '')
             {
-                message.toAddresses = new String[] { ExtUserEmail , ExtUserEmail };                              
+                message.toAddresses = new String[] { ExtUserEmail , ExtUserEmail }; 
+                message.optOutPolicy = 'FILTER';
+                message.subject = 'SAFE Email test';
+                message.plainTextBody = 'Hello ' + searchTerm  + '<br> You have been delegated a question by <PM>. Kindly visit the following link to answer the question: <Link to the SAFE question>.';
+                Messaging.SingleEmailMessage[] messages =   new List<Messaging.SingleEmailMessage> {message};
+                Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);   
+                if (results[0].success) 
+                {
+                    System.debug('The email was sent successfully.');
+                } 
+                else 
+                {
+                    System.debug('The email failed to send: ' + results[0].errors[0].message);
+                }                            
             }
             else
             {           
                 User UserEmail = [SELECT Email FROM User where ID =: selecteduser LIMIT 1];
                 string InternalUserEmail = UserEmail.Email;
-                message.toAddresses = new String[] { InternalUserEmail , InternalUserEmail };
+                message.toAddresses = new String[] { InternalUserEmail , InternalUserEmail };                
+                message.optOutPolicy = 'FILTER';
+                message.subject = 'SAFE Email test';
+                message.plainTextBody = 'Hello ' + searchTerm  + '<br> You have been delegated a question by <PM>. Kindly visit the following link to answer the question: <Link to the SAFE question>.';
+                Messaging.SingleEmailMessage[] messages =   new List<Messaging.SingleEmailMessage> {message};
+                Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
+                if (results[0].success) 
+                {
+                    System.debug('The email was sent successfully.');
+                } 
+                else 
+                {
+                    System.debug('The email failed to send: ' + results[0].errors[0].message);
+                }  
             }
-            message.optOutPolicy = 'FILTER';
-            message.subject = 'SAFE Email test';
-            message.plainTextBody = 'SAFE Delegate Email Testing Mail.';
-            Messaging.SingleEmailMessage[] messages =   new List<Messaging.SingleEmailMessage> {message};
-            Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
+           
             
-            if (results[0].success) 
-            {
-                System.debug('The email was sent successfully.');
-            } 
-            else 
-            {
-                System.debug('The email failed to send: ' + results[0].errors[0].message);
-            }   
+             
             SaveDelegateData();
             selecteduser = '';
             ExtUserEmail = '';
@@ -112,8 +128,9 @@ public with sharing class SAFE_RiskAssessmentListView_CC{
         SAFE_Questions__c SAFEQuestionToUpdate;
         try 
             {   
-            SAFEQuestionToUpdate = [SELECT SAFE_Delegated_To_Email__c FROM SAFE_Questions__c WHERE ID=: QuestionID LIMIT 1];
+            SAFEQuestionToUpdate = [SELECT SAFE_Delegated_To_Email__c, SAFE_Delegated_To__c FROM SAFE_Questions__c WHERE ID=: QuestionID LIMIT 1];
             SAFEQuestionToUpdate.SAFE_Delegated_To_Email__c = ExtUserEmail;
+            SAFEQuestionToUpdate.SAFE_Delegated_To__c = selecteduser;
             update SAFEQuestionToUpdate;
             } 
             catch(DmlException e) 
@@ -194,7 +211,7 @@ public with sharing class SAFE_RiskAssessmentListView_CC{
         }
         // Map<Id, List<String>> selectedAnswerMap = new Map<Id, List<String>>();
        selectedAnswerMap = new Map<Id, List<String>>();
-        questionList = [Select id,Name,SAFE_Answering_Method__c,SAFE_Question__c,SAFE_Question_Status__c,SAFE_Weightage__c, (Select id,Name, SAFE_Score_Value__c,SAFE_Question__c,SAFE_Comments__c from Answers__r) from SAFE_Questions__c where Id IN :questionIdSet and  SAFE_Question_Status__c=:'Activated' ];
+        questionList = [Select id,Name,SAFE_Answering_Method__c,SAFE_Question__c,SAFE_Question_Status__c,SAFE_Help_Text__c,SAFE_Weightage__c, (Select id,Name, SAFE_Score_Value__c,SAFE_Question__c,SAFE_Comments__c from Answers__r) from SAFE_Questions__c where Id IN :questionIdSet and  SAFE_Question_Status__c=:'Activated' ];
         Integer counter =0;
         List<SAFE_Responses__c> responseDetail=[select Id,Name,SAFE_Question__c,SAFE_Answer__c from SAFE_Responses__c where SAFE_Risk_Assessment__r.Id =: riskAssesmentId ] ; 
       
@@ -206,7 +223,7 @@ public with sharing class SAFE_RiskAssessmentListView_CC{
             counter ++;
             q.qNo = counter;
             q.AnsweringMethod = question.SAFE_Answering_Method__c;
-           
+           q.helpText=question.SAFE_Help_Text__c;
             if(q.AnsweringMethod != null && q.AnsweringMethod != '')
             {
                 if(q.AnsweringMethod.equalsIgnoreCase('Radio Button Objective Answering')){
@@ -262,7 +279,7 @@ public with sharing class SAFE_RiskAssessmentListView_CC{
             questionWrapperList.add(q);
             questionWrapperListtemp.add(q);
         }
-       showStatus = false;
+       showStatus = false;system.debug('%%%%%'+showStatus);
         return null;
     
        }
@@ -280,6 +297,7 @@ public with sharing class SAFE_RiskAssessmentListView_CC{
         public  List<SelectOption> answerOptions{get;set;}
         public  List<String> selectedAnswersList{get;set;}
         public List<SAFE_Responses__c> responseList{get;set;}
+        public String helpText{get;set;}
         public Question()
         {
             answerSelected = '';
@@ -347,10 +365,11 @@ public with sharing class SAFE_RiskAssessmentListView_CC{
         return -1;
     }
   /*On click of Save button ,All the Questions and its answers will be saved in SAFE_Response Object.If it is saved ,it can be updated next time */
-   public void saveQuestionAnswerResponseObj()
-   {
+   public PageReference  saveQuestionAnswerResponseObj()
+   {pagereference p = apexpages.Currentpage();
         integer resIndex;
         showStatus=true;
+    apexpages.Message msg;
        
         List<SAFE_Responses__c> responseDetail=[select Id,Name,SAFE_Question__c,SAFE_Answer__c from SAFE_Responses__c where SAFE_Risk_Assessment__r.Id =: riskAssesmentId ] ; 
         List<SAFE_Responses__c> ResListInsert= new List<SAFE_Responses__c>();
@@ -420,22 +439,41 @@ public with sharing class SAFE_RiskAssessmentListView_CC{
        
        if(ResListInsert.size()>0)
        {
-           insert ResListInsert;
+           insert ResListInsert;msg = new Apexpages.Message(ApexPages.Severity.Info,'Total Number of reloads: ');
        }
        if(ResListUpdate.size()>0)
        {
-           update ResListUpdate;
+           update ResListUpdate; msg = new Apexpages.Message(ApexPages.Severity.Info,'Total Number of reloads: ');
        }
+         
+        apexpages.addmessage(msg);
+        return p; 
     }
+    
+            
+  public boolean displayPopup1 {get; set;}     
+
+    public void closePopup1() 
+    {        
+        displayPopup1 = false;    
+    }     
+    public void showPopup1() 
+    {        
+        displayPopup1 = true;    
+    }
+    
   /*On click of Submit button ,All the Questions and its answers will be saved in SAFE_Response Object.Once it is saved ,it can not be updated next time */   
     public void submitQuestionAnswerResponseObj()
     {
        saveQuestionAnswerResponseObj(); 
+        
+            displayPopup1 = false; 
+
         //Code to  Update the status of Risk Assessment
          SAFE_Risk_Assessment__c riskAssessmentToUpdate;
              riskAssessmentToUpdate = [SELECT SAFE_Status__c  FROM SAFE_Risk_Assessment__c WHERE id =: riskAssesmentId]; 
             riskAssessmentToUpdate.SAFE_Status__c = 'Completed';
             // Make the update call.
              update riskAssessmentToUpdate;
-    } 
+    }
 }

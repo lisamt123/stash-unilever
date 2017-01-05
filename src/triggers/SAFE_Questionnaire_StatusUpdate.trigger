@@ -11,7 +11,7 @@ trigger SAFE_Questionnaire_StatusUpdate on SAFE_Risk_Assessment_Questionnaire__c
              List<SAFE_Risk_Assessment_Questionnaire__c> statusList = [SELECT id, SAFE_Status__c FROM SAFE_Risk_Assessment_Questionnaire__c WHERE id NOT IN :Trigger.new];
        for(integer i = 0 ; i < statusList.size(); i++){
         statusList[i].SAFE_Status__c = 'Not Published'; 
-        statusList[i].RecordTypeId = Label.SAFE_Not_Published_RecTypeId;
+       // statusList[i].RecordTypeId = Label.SAFE_Not_Published_RecTypeId;
          
   }
         update statusList;

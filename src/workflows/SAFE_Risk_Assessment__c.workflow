@@ -8,7 +8,7 @@
             <type>owner</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/SAFE_Risk_Assessment_Status</template>
+        <template>SAFE_Emails/SAFE_Risk_Assessment_Status</template>
     </alerts>
     <alerts>
         <fullName>Send_an_alert_if_the_status_is_completed_but_no_solution_is_tagged</fullName>
@@ -18,7 +18,7 @@
             <type>owner</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/SAFE_Risk_Assessment_Status</template>
+        <template>SAFE_Emails/SAFE_Risk_Assessment_Status</template>
     </alerts>
     <alerts>
         <fullName>This_work_flow_will_send_and_email_alert_message_to_the_PM_user_when_the_Risk_As</fullName>
@@ -33,7 +33,7 @@
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/SAFE_Risk_Assessment_Template</template>
+        <template>SAFE_Emails/SAFE_Risk_Assessment_Template</template>
     </alerts>
     <rules>
         <fullName>SAFE Risk Assessment</fullName>

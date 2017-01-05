@@ -14,12 +14,16 @@
             /*Overview Tab*/
             $("#tab-1").find(".accordion").accordion({collapsible:true,active:false,icons:icons});
             /*Questionairre Tab Styles...*/
-              $("#tab-2").find(".accordion").accordion({collapsible:true,active:false,icons:icons});$('#donebtn').click(function () {$(".Tabs_Menu").tabs({active:1});});
-              $(".Tabs_Menu").tabs();$(".Btn_Confirm").on("click",function(){ $('.ui-state-active').find('.done').addClass('Ans');//new code added 
-              $('.ui-accordion-header-active').css({'color':'#555'}); $('.ui-accordion-content-active').find('.Btn_Delegate').attr('disabled',true).css("cursor", "default");});             
+              $("#tab-2").find(".accordion").accordion({collapsible:true,active:false,icons:icons});
+              $('#donebtn').click(function () {$(".Tabs_Menu").tabs({active:1});});
+              $(".Tabs_Menu").tabs();$(".Btn_Confirm").on("click",function(){ 
+                  $('.ui-state-active').find('.done').addClass('Ans');//new code added 
+                  $('.ui-accordion-header-active').css({'color':'#555'}); 
+                  $('.ui-accordion-content-active').find('.Btn_Delegate').attr('disabled',true).css("cursor", "default");});             
               $("#Acc_Expand").click(function(){$(".ui-accordion-header-icon").addClass('iconClosed').removeClass('iconOpen');$(".ui-accordion-content").show();});
               $("#Acc_Collapse").click(function(){$(".ui-accordion-header-icon").addClass('iconOpen').removeClass('iconClosed');$(".ui-accordion-content").hide();});
-              $("#tab-3 .Selection_CTA").click(function(){ $("#tab-3").hide(); $("#tab-2").show();}); $("#sol").click(function(){ $("#tab-solution").show();}); });
+              $("#tab-3 .Selection_CTA").click(function(){ $("#tab-3").hide(); $("#tab-2").show();}); 
+                           $("#sol").click(function(){ $("#tab-solution").show();}); });
          </script>
        
       </head>

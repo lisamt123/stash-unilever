@@ -458,14 +458,14 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>SAFE_ContactPhoneIsEmpty</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>NOT(REGEX( SAFE_Contact_Phone__c, &quot;(\\d){10}&quot;))</errorConditionFormula>
         <errorDisplayField>SAFE_Contact_Phone__c</errorDisplayField>
         <errorMessage>Contact Phone number should not be blank or It should  contain 10 digit number.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAFE_SupplierPhoneIsEmpty</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>NOT(REGEX( SAFE_Supplier_Phone__c , &quot;(\\d){10}&quot;))</errorConditionFormula>
         <errorDisplayField>SAFE_Supplier_Phone__c</errorDisplayField>
         <errorMessage>Supplier Phone number should not be blank or It should  contain 10 digit number.</errorMessage>

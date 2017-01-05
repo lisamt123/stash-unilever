@@ -8,23 +8,67 @@ public with sharing class SAFE_SolutionsTab_CC{
 
     public Boolean displayPopup {get;set;}
     public List<SAFE_Solutions__c> Records {get; set;} 
-  //  public User username {get; set;} 
+    //  public User username {get; set;} 
     public string userid {get; set;}
     public String searchTerm {get; set;}
     public String selecteduser {get; set;}
-  //  public String uId {get; set;}
+    integer totalRecs = 0;//By sibatri
+    integer count= 0;//By sibatri
+    integer limitSize= 2;//By sibatri
+    //  public String uId {get; set;}
     public List<User> UserTemp = new List<User>();
+    public Boolean showSolutionsList{get;set;}
     
     // To load data into the table
     public SAFE_SolutionsTab_CC(ApexPages.StandardController controller) 
     {
+        totalRecs = [select count() from SAFE_Solutions__c ];
         userid = Userinfo.getUserId();       
-        Records =   [SELECT Name,SAFE_Solution_Status__c,SAFE_Supplier_Name__c,SAFE_Solution_Type__c,
-                     SAFE_Solution_in_Use__c,SAFE_Solution_Category__c,SAFE_Price_Per_Unit__c,SAFE_Material_Type__c,
-                     Owner.name FROM SAFE_Solutions__c WHERE CreatedById = :userid]; 
-    system.debug(Records);
+        showSolutionsList = true;
     } 
-         
+    
+     public List<SAFE_Solutions__c> getsolutionList() {
+          List<SAFE_Solutions__c> solutionList =   [SELECT Name,SAFE_Solution_Status__c,SAFE_Supplier_Name__c,SAFE_Solution_Type__c,
+                     SAFE_Solution_in_Use__c,SAFE_Solution_Category__c,SAFE_Price_Per_Unit__c,SAFE_Material_Type__c,
+                     Owner.name FROM SAFE_Solutions__c LIMIT:limitsize OFFSET:count]; 
+         return solutionList;
+     }
+    
+   /* Risk Assessments List as pagination implementation*/
+     public PageReference Firstbtn() {
+     count=0;
+        return null;
+    }
+     /* Risk Assessments List as pagination implementation*/
+      public PageReference prvbtn() {
+      count=count-limitsize;
+        return null;
+    }
+    /* Risk Assessments List as pagination implementation*/
+     public PageReference Nxtbtn() {system.debug(count);
+     count=count+limitsize;system.debug('limitsize'+limitsize);
+            return null;
+        }
+     /* Risk Assessments List as pagination implementation*/
+     public PageReference lstbtn() {
+     count= totalrecs - math.mod(totalRecs,LimitSize);
+            return null;
+        }
+
+     /* Risk Assessments List as pagination implementation*/
+    public Boolean getNxt() {
+        if((count+ LimitSize) > totalRecs)
+           return true;
+         else
+           return false;
+    }
+    /* Risk Assessments List as pagination implementation*/
+     public Boolean getPrv() {
+      if(count== 0)
+          return true;
+        else
+          return false;
+             }      
     // User Auto Complete related code
     public String getSearchTerm() 
     {
