@@ -51,8 +51,6 @@ src/groups/SAFE_BPSecurityGroup.group
 src/groups/SAFE_PMGroup.group
 src/groups/SAFE_R_DGroup.group
 src/groups/SAFE_ReportManagementGroup.group
-src/labels
-src/labels/SAFE.labels
 src/staticresources
 src/staticresources/SAFEStaticResource.resource
 src/staticresources/SAFEStaticResource.resource-meta.xml
@@ -62,9 +60,10 @@ src/layouts/SAFE_Case_Study__c-Case Study Layout.layout
 src/layouts/SAFE_Questions__c-SAFE Question Layout.layout
 src/layouts/SAFE_Responses__c-SAFE Response Layout.layout
 src/layouts/SAFE_Risk_Assessment__c-SAFE Risk Assessment Layout.layout
-src/layouts/SAFE_Risk_Assessment_Questionnaire__c-SAFE Risk Assessment Not Published Questionnaire Layout.layout
-src/layouts/SAFE_Risk_Assessment_Questionnaire__c-SAFE Risk Assessment Published Questionnaire Layout.layout
+src/layouts/SAFE_Risk_Assessment_Questionnaire__c-SAFE Risk Assessment Questionnaire Layout.layout
 src/layouts/SAFE_Solutions__c-SAFE Solution Layout.layout
+src/labels
+src/labels/SAFE.labels
 src/tabs
 src/tabs/SAFE.tab
 src/tabs/SAFE_Answers__c.tab
@@ -84,5 +83,3 @@ src/email/SAFE_Emails/SAFE_Risk_Assessment_Template.email
 src/email/SAFE_Emails/SAFE_Risk_Assessment_Template.email-meta.xml
 src/email/SAFE_Emails/SAFE_RiskAssesmentRemainder.email
 src/email/SAFE_Emails/SAFE_RiskAssesmentRemainder.email-meta.xml
-src/sharingRules
-src/sharingRules/SAFE_Risk_Assessment_Questionnaire__c.sharingRules
