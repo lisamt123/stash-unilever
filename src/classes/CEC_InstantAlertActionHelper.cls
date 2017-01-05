@@ -380,7 +380,7 @@ public with sharing class CEC_InstantAlertActionHelper {
                         uniqueId = null;
                         
                         // Create Unique Id based on the daycode check on the alert rule.
-                        if(!alertRule.Group_By_Day_Code__c && caseObj.DayCode__c == null){
+                        if(!alertRule.Group_By_Day_Code__c ){//&& caseObj.DayCode__c == null){
                             uniqueId = alertRule.Id + caseObj.Consumer_Product_Descriptor_no_size__c;
                         }else if(alertRule.Group_By_Day_Code__c && caseObj.DayCode__c != null){
                             uniqueId = alertRule.Id + caseObj.DayCode__c + caseObj.Consumer_Product_Descriptor_no_size__c;

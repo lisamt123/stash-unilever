@@ -22,6 +22,15 @@ public class TEL_AssociateProductsController_Test {
         );
         System.Database.insert(prdObj);
         
+        Product2 prdObj1 		= new Product2(
+            Name 				= 'Test 1', 
+            Family				= 'Test',
+            ProductCode			= '001',
+            Description  		= 'Test Desc 1',
+            isActive 			= true
+        );
+        System.Database.insert(prdObj1);
+        
         Account accObj 			= new Account();
         accObj.Name				= 'Test Class';
         accObj.TEL_OTM__c		= 'A';
@@ -45,6 +54,8 @@ public class TEL_AssociateProductsController_Test {
     static testMethod void testRetrieveProducts(){
         Id campaignId = [Select Id From Campaign Where Name =: 'Test'].Id;
         List<TEL_TelesalesWrapper.DisplayProducts> 	lstProducts = TEL_AssociateProductsController.retrieveProducts('Test', campaignId);
+        
+        System.assert(!lstProducts.isEmpty());
     }
     
     static testMethod void testCreatePrdCampaign(){
@@ -59,6 +70,9 @@ public class TEL_AssociateProductsController_Test {
         product.productCode		= prd.ProductCode;
         lstSelectedProduct.add(product);
         String productJSON 		= JSON.serialize(lstSelectedProduct);
-     	TEL_AssociateProductsController.createPrdCampaign(productJSON, campaignId);  
+     	TEL_AssociateProductsController.createPrdCampaign(productJSON, campaignId);
+        
+        List<TEL_Campaign_Products__c> assertList = [SELECT Id FROM TEL_Campaign_Products__c LIMIT 10];
+        System.assert(!assertList.isEmpty());
     }
 }

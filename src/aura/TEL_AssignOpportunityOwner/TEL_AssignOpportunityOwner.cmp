@@ -1,0 +1,27 @@
+<!-- **********************************************************************
+Name: TEL_AssignOpportunityOwner
+Copyright © 2016 Unilever
+======================================================
+Purpose: Assign the opportunity owner to the currenty user from the
+telesales team.
+
+History 
+VERSION AUTHOR 				DATE 		DETAIL Description
+1.0 	Ronaldo Garcia  	27/12/2016  Class Creation
+*********************************************************************** --> 
+<aura:component controller="TEL_AssignOpportunityOwner" implements="force:hasRecordId,force:lightningQuickAction" access="global" >
+	
+    <!-- Lightning Style --> 
+    <ltng:require styles="{!$Resource.TEL_TelesalesCSS +'/assets/styles/salesforce-lightning-design-system.css'}"/>
+    
+    <!-- Handlers --> 
+    <aura:handler name="init" 			value="{!this}" action="{!c.doInit}"/>
+    
+    <!-- Loading Message --> 
+    <div class="slds">
+    	<h3 class="slds-section-title--divider">
+        	<div class="slds-text-align--center">Loading...</div>
+        </h3>
+    </div>
+    
+</aura:component>
