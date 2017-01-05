@@ -857,10 +857,6 @@
         <tab>standard-Product2</tab>
         <visibility>None</visibility>
     </tabSettings>	
-    <tabSettings>
-        <tab>Tel_GenOpp</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>	
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
