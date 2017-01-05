@@ -10,6 +10,19 @@
     margin: 0 10px 20px;
     font-size: 10px;
 }
-.THIS .profile-div{
-    border: 1px solid #d2d2d2;
+.THIS.profile-div{
+   border: 1px solid #d2d2d2;
+    margin: 10px;
+    background: white;
+}
+.THIS .line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+    overflow:hidden;
+    padding: 0px 13px;
+    clear:both;
+}
+.THIS .badge{
+    padding: 5px 13px;
 }

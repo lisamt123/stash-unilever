@@ -1,32 +1,36 @@
 <aura:component >
     <!-- <aura:handler name="init" value="{!this}" action="{!c.defaultContent}" />-->
-            
-        
- <div class="profile-div">
-       <div class="trainer">
+    
+    
+    <div class="profile-div">
+        <div class="trainer">
             <div class="trainer-photo">
                 <img src="/resource/Lightning_designing_style/assets/images/avatar1.jpg"></img>
-           </div>
+            </div>
             <div class="trainer-detail">
                 <p>
-                <span style="font-size:17px;font-weight: bold;">Dr James Moth</span><br></br>
-                <span style="font-size:15px;">Data Scientist Kean University</span><br />
+                    <span style="font-size: 15px;">Dr James Moth</span><br></br>
+                    <div style="font-size:12px;padding-bottom: 4px;">Data Scientist Kean University</div>
+                    <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png">
+                    </img>London, United Kingdom</p>
                 <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/email_60.png">
-                </img>james.moth@univeler.com<br />
-                    <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/call_60.png">
-                </img>+44 77127593998<br />
-                <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png">
-                </img>London, United Kingdom</p>
-           </div>
+                </img><a class="icon-font" href="mailto:james.moth@univeler.com">james.moth@unilever.com</a><br />
+                <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/call_60.png">
+                </img><a class="icon-font" href="tel:+44 77127593998">+44 77127593998</a><br />
+                
+            </div>
         </div>
-         <div class="slds-tile slds-media">
-          <div class="slds-media__figure">
-              <img src="/resource/CORE_LA_StaticResource/event_app/images/badges-2-.png" aria-hidden="true" class="slds-icon"/>
-              <img src="/resource/CORE_LA_StaticResource/event_app/images/badges-1-.png" aria-hidden="true" class="slds-icon"/>
-              <img src="/resource/CORE_LA_StaticResource/event_app/images/badges-3.png" aria-hidden="true" class="slds-icon"/>
-          </div>
+        <div class="about-me line-clamp">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        
+		</div>
+        <div class="slds-tile slds-media badge">
+            <div class="slds-media__figure">
+                <img src="/resource/CORE_LA_StaticResource/event_app/images/badges-2-.png" aria-hidden="true" class="slds-icon"/>
+                <img src="/resource/CORE_LA_StaticResource/event_app/images/badges-1-.png" aria-hidden="true" class="slds-icon"/>
+                <img src="/resource/CORE_LA_StaticResource/event_app/images/badges-3.png" aria-hidden="true" class="slds-icon"/>
+            </div>
         </div>
-     
-     </div>
-         
+        
+    </div>
+    
 </aura:component>

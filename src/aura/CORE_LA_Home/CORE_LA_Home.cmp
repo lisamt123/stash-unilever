@@ -19,7 +19,7 @@
 			</ul>
         <!--Primary Tabs-->
     <div id="tab-default-1" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-1__item" aura:id="profileContent">
-       <div class="body-content">
+       <div class="profile-parent">
            <c:CORE_LA_Profile />
         </div>     	
             <!--Sub Tab Section-->    

@@ -42,7 +42,7 @@
     height:200px;
 }
 .THIS .events-facility{
-   width: 66px;
+    width: 66px;
     height: 27px;
     margin-right: 4px;
 }
@@ -53,21 +53,25 @@
 
 .THIS .trainer-detail p{
     font-size:10px;
+    margin-top: -10px;
 }
 
 .THIS .trainer{
-    height: 144px;
-        background: white;
+    height: 134px;
+    background: white;
 }
 .THIS .trainer-photo{
-        float: left;
+    float: left;
     width: 37%;
     margin: 12px;
 }
 
 .THIS .icon-d{
-	width: 15px;
-    margin: 4px 5px 0 0;
+    width: 13px;
+    margin: 0px 5px 0 0;
+}
+.THIS .icon-font{
+    font-size:10px;
 }
 .THIS .slds-button {
     font-size: 3.3vmin !important;
