@@ -342,7 +342,7 @@ public class IPM_FinancialCopyPasteGrid_Test {
     *************************************************************************/
     
      static testMethod void testEditFinancialsLocal(){
-        projectList = [select ID,name from IPM_Project__c where name like :PROJ_NAME_LIKE];
+        projectList = [select ID,name,IPM_Project_Type__c from IPM_Project__c where name like :PROJ_NAME_LIKE];
         Set<String> projNames = new Set<String>();
         for(IPM_Project__c proj:  projectList) {
             projNames.add(proj.name);
@@ -389,24 +389,9 @@ public class IPM_FinancialCopyPasteGrid_Test {
             IPM_FinancialCopyPasteGrid.getFinancialyear(rowcol,ipmFinConLoc2.ListCountries,Local_STR,projectList[2].IPM_Project_Type__c);
             system.assertNotEquals(IPM_ConstantUtils.STATUS_IN_PROGRESS, lstFinancial[2].status__c , getFinancial_MSG );
              // this is to cover the Volume unit Total total and with complete all the values on the copy and paste page
+            PageReference ROE = ipmFinConLoc2.ResetOnError();
             
-            PageReference pRef4 = Page.IPM_FinancialCopyPasteGrid;
-            pRef4.getParameters().put('id', projectList[2].Id);
-            Test.setCurrentPage(pRef4);
-            IPM_FinancialCopyPasteGrid ipmFinConLoc3 = new IPM_FinancialCopyPasteGrid();
-            ipmFinConLoc3.Sustainability='5';
-            ipmFinConLoc3.Span= Local_STR;
-            system.assertEquals(ipmFinConLoc3.Span, Local_STR,PROJ_SPAN_LOCAL_MSG);
-            selOpts.add(new SelectOption(lstFinancial[2].Id,lstFinancial[2].Id));        
-            system.assertEquals(selOpts.isEmpty() , false, EMPTY_LIST);
-            ipmFinConLoc3.ListCountries = lstFinancial[2].Id;
-            MCOList = ipmFinConLoc3.getCountryValue();
-            system.assertEquals(MCOList.size(), 0, MCO_LST_MSG);
-            ipmFinConLoc3.submit();
-            system.assertEquals(1, ipmFinConLoc2.options.size() , submit_MSG);
-            rowcol = input4;
-            IPM_FinancialCopyPasteGrid.getFinancialyear(rowcol,ipmFinConLoc3.ListCountries,Local_STR,projectList[2].IPM_Project_Type__c);
-            system.assertNotEquals(IPM_ConstantUtils.STATUS_IN_PROGRESS, lstFinancial[2].status__c , getFinancial_MSG );
+            
         }
         Test.stopTest();
         
