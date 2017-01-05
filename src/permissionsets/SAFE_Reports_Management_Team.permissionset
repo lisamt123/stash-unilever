@@ -235,6 +235,10 @@
     </fieldPermissions>
     <label>SAFE Reports Management Team</label>
     <pageAccesses>
+        <apexPage>SAFESolutionPDF</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>SAFE_Overview</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -250,14 +254,6 @@
         <apexPage>SAFE_SolutionTab</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <recordTypeVisibilities>
-        <recordType>SAFE_Risk_Assessment_Questionnaire__c.Not_Published</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>SAFE_Risk_Assessment_Questionnaire__c.Published</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
     <tabSettings>
         <tab>SAFE</tab>
         <visibility>None</visibility>
