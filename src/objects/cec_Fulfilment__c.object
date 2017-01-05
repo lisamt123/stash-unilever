@@ -395,7 +395,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+   <fields>
         <fullName>Country__c</fullName>
         <externalId>false</externalId>
         <label>Country</label>
@@ -498,6 +498,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Honduras</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hong Kong</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -642,6 +646,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1554,7 +1562,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <type>Text</type>
         <unique>false</unique>
     </fields>
-     <fields>
+      <fields>
         <fullName>Type__c</fullName>
         <externalId>false</externalId>
         <label>Type</label>
@@ -1588,6 +1596,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Greece</controllingFieldValues>
                 <controllingFieldValues>Guatemala</controllingFieldValues>
                 <controllingFieldValues>Honduras</controllingFieldValues>
+                <controllingFieldValues>Hong Kong</controllingFieldValues>
                 <controllingFieldValues>Hungary</controllingFieldValues>
                 <controllingFieldValues>Iceland</controllingFieldValues>
                 <controllingFieldValues>India</controllingFieldValues>
@@ -1624,6 +1633,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Switzerland</controllingFieldValues>
                 <controllingFieldValues>Taiwan</controllingFieldValues>
                 <controllingFieldValues>Thailand</controllingFieldValues>
+                <controllingFieldValues>Turkey</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <controllingFieldValues>United States</controllingFieldValues>
                 <controllingFieldValues>Uruguay</controllingFieldValues>

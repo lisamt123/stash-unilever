@@ -1026,6 +1026,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Hungary</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1135,6 +1139,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
             </picklistValues>
             <picklistValues>
                 <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2080,6 +2088,10 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>Email Greece</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Email Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Email Hungary</fullName>
                 <default>false</default>
@@ -2152,12 +2164,20 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>Email Sri Lanka</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Email Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Email Thailand</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Email TO France</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Email Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2275,6 +2295,11 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>callcenter.tr@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Turkey</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>carapelliusa@deoleo.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>United States</controllingFieldValues>
@@ -2290,6 +2315,11 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>cec.hk@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Hong Kong</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>CEC.Korea@unilever.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>Korea</controllingFieldValues>
@@ -2298,6 +2328,11 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>cec.philippines@unilever.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>Philippines</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>cec.taiwan@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Taiwan</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Comments.Canada@benjerry.com</fullName>
@@ -5438,6 +5473,42 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_User_Greece</role>
         </sharedTo>
     </listViews>
+	 <listViews>
+        <fullName>CEC_Hong_Kong_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Hong Kong Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Hong_Kong_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Hong_Kong</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_User_Hong_Kong</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Hong_Kong_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Hong Kong Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Hong_Kong_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Hong_Kong</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_User_Hong_Kong</role>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>CEC_Hungary_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
@@ -5809,6 +5880,42 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <sharedTo>
             <role>CEC_Manager_Japan</role>
             <role>CEC_User_Japan</role>
+        </sharedTo>
+    </listViews>
+	 <listViews>
+        <fullName>CEC_Korea_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Korea Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Korea_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Korea</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_User_Korea</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Korea_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Korea Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Korea_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Korea</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_User_Korea</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -8585,6 +8692,42 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_User_Sri_Lanka</role>
         </sharedTo>
     </listViews>
+	<listViews>
+        <fullName>CEC_Taiwan_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Taiwan Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Taiwan_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_Manager_Taiwan</role>
+            <role>CEC_User_Taiwan</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Taiwan_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Taiwan Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Taiwan_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_Manager_Taiwan</role>
+            <role>CEC_User_Taiwan</role>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>CEC_Thailand_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
@@ -8658,6 +8801,42 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Thailand</role>
             <role>CEC_User_Thailand</role>
+        </sharedTo>
+    </listViews>
+	 <listViews>
+        <fullName>CEC_Turkey_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Turkey Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Turkey_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_NAMETRUB</role>
+            <role>CEC_Manager_Turkey</role>
+            <role>CEC_User_Turkey</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Turkey_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Turkey Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Turkey_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_NAMETRUB</role>
+            <role>CEC_Manager_Turkey</role>
+            <role>CEC_User_Turkey</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -10562,6 +10741,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hungary</fullName>
                 <default>false</default>
             </values>
@@ -10666,7 +10849,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10842,6 +11033,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>callcenter%2Etr%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>carapelliusa%40deoleo%2Ecom</fullName>
                 <default>false</default>
             </values>
@@ -10850,7 +11045,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>cec%2Ehk%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>cec%2Ephilippines%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>cec%2Etaiwan%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11392,7 +11595,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
         </picklistValues>
-         <picklistValues>
+        <picklistValues>
             <picklist>Country_Name__c</picklist>
             <values>
                 <fullName>Argentina</fullName>
@@ -11653,7 +11856,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
+         <picklistValues>
             <picklist>Origin</picklist>
             <values>
                 <fullName>Chat</fullName>
@@ -12013,17 +12216,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Suggestion</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Tag__c</picklist>
-            <values>
-                <fullName>CEC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>George</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
