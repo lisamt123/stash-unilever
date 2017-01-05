@@ -45,6 +45,7 @@ src/objects/ACCL__Fund_Transaction__c.object
 src/objects/ACCL__Fund__c.object
 src/objects/ACCL__Product_Condition__c.object
 src/objects/ACCL__Product_Part__c.object
+src/objects/ACCL__Product_Hierarchy__c.object
 src/objects/ACCL__Product_Template__c.object
 src/objects/ACCL__Product__c.object
 src/objects/ACCL__Promotion_Template__c.object
