@@ -76,7 +76,6 @@ src/objects/Promotion_Acc_Rel__c.object
 src/objects/Promotion_Attachment__c.object
 src/objects/Promotion_Attachment_Link__c.object
 src/objects/UL_Comparator__c.object
-src/objects/ACCL__Product_Hierarchy__c
 src/objectTranslations
 src/objectTranslations/ACCL__Account_Bill_To__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Account_Call_Setting__c-en_US.objectTranslation
