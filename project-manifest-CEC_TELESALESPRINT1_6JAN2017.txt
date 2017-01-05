@@ -237,7 +237,7 @@ src/objects/TEL_Telesales__c.object
 src/permissionsets
 src/permissionsets/TEL_Telesales_Agent.permissionset
 src/flexipages
-src/flexipages/GenOpp.flexipage
+src/flexipages/TEL_GenOpp.flexipage
 src/flexipages/TEL_Call_List.flexipage
 src/flexipages/TEL_Telesales_Account.flexipage
 src/flexipages/Telesales_Case.flexipage
