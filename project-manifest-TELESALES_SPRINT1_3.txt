@@ -42,3 +42,5 @@ src/objects
 src/objects/Opportunity.object
 src/tabs
 src/tabs/TEL_GenOpp.tab
+src/approvalProcesses
+src/approvalProcesses/Case.TEL_Telesales_Sample_Request.approvalProcess

@@ -858,7 +858,7 @@
         <visibility>None</visibility>
     </tabSettings>	
     <tabSettings>
-        <tab>custom-Tel_GenOpp</tab>
+        <tab>Tel_GenOpp</tab>
         <visibility>Visible</visibility>
     </tabSettings>	
     <userLicense>Salesforce</userLicense>
