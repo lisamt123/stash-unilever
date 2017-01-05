@@ -339,77 +339,66 @@ public with sharing class IPM_FinancialHelper
     ***************************************************************************************************************************/
             
     
-    public static Map<String,IPM_Financial__c> initializeConsolidation(List<IPM_Financial__c> newFinancialList, Map<Id, IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap)
-    {
-        
+    public static Map<String,IPM_Financial__c> initializeConsolidation(List<IPM_Financial__c> newFinancialList, Map<Id, IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap){
+
     	List<IPM_Financial__c> consolidationChangedFinancialList = new List<IPM_Financial__c>(); 
         Map<String,IPM_Financial__c> consolidatedFinancialMap = new Map<String,IPM_Financial__c>();
         
       Set<String> regionalProjectNames = new Set<String>();
         Set<String> globalProjectNamesProject = new Set<String>();
         
-    	if(newFinancialList!=null && !newFinancialList.isEmpty())
-        {
-        	for(IPM_Financial__c newfinancial : newFinancialList) 
-            {
-	            IPM_Financial__c oldFinancial = null;
-	            if(oldFinancialMap !=null && oldFinancialMap.containsKey(newfinancial.Id))
-                
-                {
-	                oldFinancial = oldFinancialMap.get(newfinancial.Id);
-                }
-                    
-	            Set<String> changedFieldSet = IPM_FinancialUtils.isConsolidationChanged(newfinancial.recordTypeId,newfinancial,oldFinancial,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE,'Financial_External_ID__c'); 
-	            if(!changedFieldSet.isEmpty())
-                {
-	                consolidationChangedFinancialList.add(newfinancial);
-                }
-            }  
-        	if(!consolidationChangedFinancialList.isEmpty())
-	        {
-				String financialQuery = getFinancialQuery();
-	        	financialQuery = financialQuery + ' WHERE Id in :consolidationChangedFinancialList LIMIT 50000';
-				financialDetailMap = new Map<Id,IPM_Financial__c>((List<IPM_Financial__c>)database.query(financialQuery));
-			
+        if(newFinancialList!=null && !newFinancialList.isEmpty()){
+            financialDetailMap = getFinDetailMap(newFinancialList, oldFinancialMap);
         }
-    	}
-		
-                 
-		if(financialDetailMap!=null && !financialDetailMap.isEmpty())
-        {          
-        for(IPM_Financial__c financial : financialDetailMap.values())
-          { 
+    
+        if(financialDetailMap!=null && !financialDetailMap.isEmpty()){          
+            for(IPM_Financial__c financial : financialDetailMap.values()){ 
               // Check if Financials are associated with Regional Rollouts 
-              if(financial.IPM_Project_Rollout__c !=null) 
-              {
+                if(financial.IPM_Project_Rollout__c !=null){
                   regionalProjectNames.add(financial.IPM_Project_Rollout__r.IPM_Rollout_Project__c);
-            }
-              else if(financial.Regional_Project__c !=null)// Check if Financials are associated with Regional Projects.
-            {
+                }else if(financial.Regional_Project__c !=null){// Check if Financials are associated with Regional Projects.
                   regionalProjectNames.add(financial.Regional_Project__r.IPM_Project_Name__c);
               }
               
-              if(financial.IPM_Project_Rollout__r.IPM_Project__c !=null)
-              {
+                if(financial.IPM_Project_Rollout__r.IPM_Project__c !=null){
                 globalProjectNamesProject.add(financial.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c);
-              }
-              else if(financial.Regional_Project__r.IPM_Parent_Project__c !=null)
-              {
+                }else if(financial.Regional_Project__r.IPM_Parent_Project__c !=null){
                 globalProjectNamesProject.add(financial.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c);
               }
           }
             
-        if(!regionalProjectNames.isEmpty())
-            { 
+            if(!regionalProjectNames.isEmpty()){ 
               consolidatedFinancialMap.putAll(IPM_FinancialUtils.processRegionalConsolidationFinancial(regionalProjectNames)); 
             }
-            if(!globalProjectNamesProject.isEmpty())
-            {
+            if(!globalProjectNamesProject.isEmpty()){
               consolidatedFinancialMap.putAll(IPM_FinancialUtils.processGlobalConsolidationFinancial(globalProjectNamesProject));
             }
         }
         return consolidatedFinancialMap;
     }
+    
+    
+    public static Map<Id,IPM_Financial__c> getFinDetailMap(List<IPM_Financial__c> newFinancialList, Map<Id, IPM_Financial__c> oldFinancialMap){
+        List<IPM_Financial__c> consolidationChangedFinancialList = new List<IPM_Financial__c>(); 
+        Map<Id,IPM_Financial__c> financialDetailMap = new Map<Id,IPM_Financial__c>();
+        for(IPM_Financial__c newfinancial : newFinancialList){
+            IPM_Financial__c oldFinancial = null;
+            if(oldFinancialMap !=null && oldFinancialMap.containsKey(newfinancial.Id)){
+                oldFinancial = oldFinancialMap.get(newfinancial.Id);
+            }
+            Set<String> changedFieldSet = IPM_FinancialUtils.isConsolidationChanged(newfinancial.recordTypeId,newfinancial,oldFinancial,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE,'Financial_External_ID__c'); 
+            if(!changedFieldSet.isEmpty()){
+                consolidationChangedFinancialList.add(newfinancial);
+            }
+        }  
+        if(!consolidationChangedFinancialList.isEmpty()){
+            String financialQuery = getFinancialQuery();
+            financialQuery = financialQuery + ' WHERE Id in :consolidationChangedFinancialList LIMIT 50000';
+            financialDetailMap = new Map<Id,IPM_Financial__c>((List<IPM_Financial__c>)database.query(financialQuery));
+        }
+        return financialDetailMap;
+    }
+    
     
     /***********************************************************************************************************
     * @description                      		Method used to calculate financial based on the volume selection
@@ -584,24 +573,31 @@ public with sharing class IPM_FinancialHelper
                                WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c In:projectIds AND IPM_Content_Type__c=:IPM_ConstantUtils.FINANCIAL_ACTION_STANDARDS AND
                                      IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c=:IPM_ConstantUtils.PHASE_IDEAS];
         }     
-                     
-        for(IPM_Financial__c fin:newFinList)
-        {
-            for(IPM_Project_Document_Section_Content__c secContent:projDocSecConList)
-            {
-                if(fin.Parent_Project__c!=null && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Parent_Project__c && fin.Regional_Project__c==null)
-                {
+        
+        updateProjDocSecConList(newFinList, projDocSecConList);  
+        updateProjectBI(mapNewFinancials);   
+    }
+    
+     /*********************************************************************************************************************
+    * @description                      It will add new financial or update consolidate financials and BI on IPM Project from IPM Financial record
+    * @param mapNewFinancials           New Consolidated Financial record
+    * @return                           NONE
+    
+    **********************************************************************************************************************/
+    public static void updateProjDocSecConList( List<IPM_Financial__c> newFinList, List<IPM_Project_Document_Section_Content__c> projDocSecConList){
+        for(IPM_Financial__c fin:newFinList){
+            for(IPM_Project_Document_Section_Content__c secContent:projDocSecConList){
+                if(fin.Parent_Project__c!=null && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Parent_Project__c && fin.Regional_Project__c==null){
                     secContent.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Global__c;
                     secContent.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Global__c;
                     secContent.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Global__c;
-                }
-                else if(fin.Regional_Project__c!=null && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Regional_Project__c&& fin.Parent_Project__c ==null)
-                {
+                
+                }else if(fin.Regional_Project__c!=null && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Regional_Project__c&& fin.Parent_Project__c ==null){
                     secContent.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Regional__c;
                     secContent.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Regional__c;
                     secContent.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Regional__c;
-                }
-                else if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Project_Type__c== IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && fin.Local_Project__c!=null && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Local_Project__c){
+                
+                }else if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Project_Type__c== IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && fin.Local_Project__c!=null && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Local_Project__c){
                     secContent.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Local__c;
                     secContent.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Local__c;
                     secContent.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Local__c;
@@ -609,47 +605,42 @@ public with sharing class IPM_FinancialHelper
             }
         }
             
-        if(projDocSecConList!=null && !projDocSecConList.isEmpty())
-        {
+        if(projDocSecConList!=null && !projDocSecConList.isEmpty()){
             update projDocSecConList;
         }
+        
+    }
+    
+    public static void updateProjectBI(Map<Id, IPM_Financial__c> mapNewFinancials){
             
         /*Update BI on IPM Project from IPM Financial record*/
-        newFinList=new List<IPM_Financial__c>();
-        projectIds=new Set<Id>();
-        for(IPM_Financial__c newFin : mapNewFinancials.values())
-        {
-            if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE)
-            {
+        List<IPM_Financial__c> newFinList=new List<IPM_Financial__c>();
+        Set<Id> projectIds=new Set<Id>();
+        for(IPM_Financial__c newFin : mapNewFinancials.values()){
+            if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE){
                 newFinList.add(newFin);
                 projectIds.add(newFin.Parent_Project__c);
             }
-            if(newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE)
-            {
+            if(newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE){
                 newFinList.add(newFin);
                 projectIds.add(newFin.Parent_Project__c);
             }
         }
         
         List<IPM_Project__c> projList=new List<IPM_Project__c>();
-        if(projectIds!=null && !projectIds.isEmpty())
-        {
+        if(projectIds!=null && !projectIds.isEmpty()){
             projList = [select id,BI__c from IPM_Project__c where id in : projectIds];
         }
         
-        for(IPM_Financial__c fin:newFinList)
-        {
-            for(IPM_Project__c proj: projList)
-            {
-                if(proj.id==fin.Parent_Project__c)
-                {
+        for(IPM_Financial__c fin:newFinList){
+            for(IPM_Project__c proj: projList){
+                if(proj.id==fin.Parent_Project__c){
                     proj.BI__c = fin.Business_Impact_Global__c;
                 }
             }
         }
         
-        if(projList!=null && !projList.isEmpty())
-        {
+        if(projList!=null && !projList.isEmpty()){
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             update projList;
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
@@ -777,89 +768,78 @@ public with sharing class IPM_FinancialHelper
            @paramm4    upsertFinancialYearMap   :    Target Financial Year Map to be upserted.
            @paramm5    financialToChangedFeilds :    List of Financial Fields which changed.
     ***************************************************************************************************************/
-    public static void copyOverFinancialFields(Map<Id,IPM_Financial__c> changedFinancialMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap,Map<Id,Set<String>> financialToChangedFeilds)
-    {
+    public static void copyOverFinancialFields(Map<Id,IPM_Financial__c> changedFinancialMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap,Map<Id,Set<String>> financialToChangedFeilds){
         if(changedFinancialMap.isEmpty()){
             return;
         }
         
-        for(Id financialID : changedFinancialMap.KeySet()) 
-        {
+        for(Id financialID : changedFinancialMap.KeySet()) {
             IPM_Financial__c changedFinancialDetail = financialDetailMap.get(financialID);
             
-            if(financialToChangedFeilds.containsKey(financialID))
-            {
-                for(String fieldAPI : financialToChangedFeilds.get(financialID))
-                {
-                  String sourceSnapShot = changedFinancialDetail.IPM_Financial_Postfix__c;
-                  String sourceCopy,targetCopy = IPM_ConstantUtils.BLANK;
-              String targetSnapshot = IPM_ConstantUtils.BLANK;
-
-              if(fieldAPI == 'Copy_Global_to_Regional__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
-              {
-                sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
-                targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;  
-              }
-              else if(fieldAPI == 'Copy_Regional_to_Local__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
-              {
-                sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-                targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-              }
-              else if(fieldAPI == 'Copy_Global_to_Local__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
-              {
-                sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
-                targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-              }
-              else if(fieldAPI == 'Copy_Local_to_Regional__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
-              {
-                sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-                targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-              }
-              else if(fieldAPI == 'Copy_Local_to_Global__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
-              {
-                sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-                targetCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
-              }
-                if(fieldAPI == 'Charter_Approved__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
-              {
-                targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_CHARTER;
-              }
-              else if(fieldAPI == 'Contract_Approved__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
-              {
-                targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_CONTRACT;
-              }
-              else if(fieldAPI == 'MR_Approved__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
-              {
-                targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_READY;
-              }
-              else if(fieldAPI == 'MD_Approved__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
-              {
-                targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_DEPLOYMENT;
-              }
-                    for(IPM_Financial_Year__c financialYear : changedFinancialDetail.IPM_Financial_Years__r)
-                    {
-                        financialYear.put(fieldAPI,changedFinancialDetail.get(fieldAPI));
-                        if(!String.isBLank(sourceCopy))
-						{
-							for(String FieldPrefix : FY_COPYFIELDS)
-				    		{
-				    			financialYear.put(FieldPrefix+targetCopy+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,financialYear.get(FieldPrefix+sourceCopy+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX));
-				    		}
-						}
-						if(String.isNotBLank(targetSnapshot))
-						{
-				    		for(String FieldPrefix : FY_SNAPSHOTFIELDS)
-				    		{
-				    			financialYear.put(FieldPrefix+targetSnapshot+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,financialYear.get(FieldPrefix+sourceSnapShot+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX));
-				    		}
-				    		financialYear.put(targetSnapshot+'_Locked'+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,true);
-						}
-                        upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
+            if(financialToChangedFeilds.containsKey(financialID)){
+                for(String fieldAPI : financialToChangedFeilds.get(financialID)){
+                    String sourceSnapShot = changedFinancialDetail.IPM_Financial_Postfix__c;
+                    String sourceCopy,targetCopy = IPM_ConstantUtils.BLANK;
+                    String targetSnapshot = IPM_ConstantUtils.BLANK;
+                
+                    if(fieldAPI == 'Copy_Global_to_Regional__c' && (Boolean)changedFinancialDetail.get(fieldAPI)){
+                        sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+                        targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+                          
+                    }else if(fieldAPI == 'Copy_Regional_to_Local__c' && (Boolean)changedFinancialDetail.get(fieldAPI)){
+                        sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+                        targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+                        
+                    }else if(fieldAPI == 'Copy_Global_to_Local__c' && (Boolean)changedFinancialDetail.get(fieldAPI)){
+                        sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+                        targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+                        
+                    }else if(fieldAPI == 'Copy_Local_to_Regional__c' && (Boolean)changedFinancialDetail.get(fieldAPI)){
+                        sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+                        targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+                        
+                    }else if(fieldAPI == 'Copy_Local_to_Global__c' && (Boolean)changedFinancialDetail.get(fieldAPI)){
+                        sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+                        targetCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
                     }
+                    
+                    if(fieldAPI == 'Charter_Approved__c' && (Boolean)changedFinancialDetail.get(fieldAPI)){
+                        targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_CHARTER;
+                        
+                    }else if(fieldAPI == 'Contract_Approved__c' && (Boolean)changedFinancialDetail.get(fieldAPI)){
+                        targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_CONTRACT;
+                        
+                    }else if(fieldAPI == 'MR_Approved__c' && (Boolean)changedFinancialDetail.get(fieldAPI)){
+                        targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_READY;
+                        
+                    }else if(fieldAPI == 'MD_Approved__c' && (Boolean)changedFinancialDetail.get(fieldAPI)){
+                        targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_DEPLOYMENT;
+                    }
+                    getUpsertFinancialYearMap(upsertFinancialYearMap, changedFinancialDetail, sourceSnapShot, sourceCopy, targetCopy, targetSnapshot, fieldAPI);
                 }
             }
         } 
                    
+    }
+    
+    
+    public static void getUpsertFinancialYearMap(Map<String,IPM_Financial_Year__c> upsertFinancialYearMap, IPM_Financial__c changedFinancialDetail, String sourceSnapShot, String sourceCopy, String targetCopy, String targetSnapshot, String fieldAPI){
+        
+        for(IPM_Financial_Year__c financialYear : changedFinancialDetail.IPM_Financial_Years__r){
+            financialYear.put(fieldAPI,changedFinancialDetail.get(fieldAPI));
+            if(!String.isBLank(sourceCopy)){
+                for(String FieldPrefix : FY_COPYFIELDS){
+                    financialYear.put(FieldPrefix+targetCopy+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,financialYear.get(FieldPrefix+sourceCopy+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX));
+                }
+            }
+            if(String.isNotBLank(targetSnapshot)){
+                for(String FieldPrefix : FY_SNAPSHOTFIELDS){
+                    financialYear.put(FieldPrefix+targetSnapshot+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,financialYear.get(FieldPrefix+sourceSnapShot+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX));
+                }
+                financialYear.put(targetSnapshot+'_Locked'+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,true);
+            }
+            upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
+        }
     }
     
     /***********************************************************************************************************
@@ -1086,7 +1066,7 @@ public with sharing class IPM_FinancialHelper
             } 
     }
     
-    public static List<IPM_Financial__c> updateManualMisalignment(List<IPM_Financial__c> newFinancials)
+    public static void  updateManualMisalignment(List<IPM_Financial__c> newFinancials,Set<Id> parentPrjctIds,List<IPM_Financial__c> misAlignedFinancials)
     {
         List<IPM_Financial__c> listFinancial = new List<IPM_Financial__c>();
         if(!newFinancials.isEmpty()){
@@ -1095,7 +1075,6 @@ public with sharing class IPM_FinancialHelper
         	listFinancial = Database.Query(finQuery);	
         }
         
-        List<IPM_Financial__c> updatedFinancials = new List<IPM_Financial__c>(); 
         
         for(IPM_Financial__c financial : listFinancial){
             Decimal TotalDiffrence = financial.Volume_Unit_Difference__c + financial.NPV_Difference__c + financial.IRR_Difference__c + financial.Payback_Difference__c + financial.CAPEX_Difference__c + financial.BIC_Difference__c + financial.Total_FY_Difference__c;
@@ -1105,10 +1084,11 @@ public with sharing class IPM_FinancialHelper
                 financial.MisalignmentManual__c = tempMisalignment;
                 financial.MisalignmentDateTime__c = System.now();
                 financial.Misaligned_Date__c = System.today();
-                updatedFinancials.add(financial);
+                misAlignedFinancials.add(financial);
+                parentPrjctIds.addAll(new Set<Id> {financial.Local_Project__c,financial.Regional_Project__c});
             }
         }
-        return updatedFinancials;
+        parentPrjctIds.remove(null);  
     }
     
     //Helper method for deleteFinancialyears() method 

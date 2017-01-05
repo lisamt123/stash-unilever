@@ -623,7 +623,7 @@
                 .goldenCheckcontainer label.goldbox {width: 80%;background: #FBBE2E;color: #000;border: 1px solid #E28A3C;padding: 5px;font-size: 8px !important;}
                 .goldenCheckcontainer label {width:100%;background: #999;padding:4px 18px;height: 29px;}  
                 .alignCenter{text-align:center;}
-            .srcbrkWord{word-wrap:break-word;word-break: break-word;background:#000;}
+                .srcbrkWord{word-wrap:break-word;word-break: break-word;background:#000;}
             </style>
         </head>
     
@@ -752,22 +752,10 @@
                             <td class="label">
                                 {!$Label.IPM_BusinessImpact}{!$Label.IPM_COLON}
                             </td> 
-                            
-                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">     
-                                <td>
-                                    <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Product Design Lock' , projectDoc.IPM_Document_Status__c=='Approved'),globalbusinessImpactStr,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.IPM_Business_Impact_MD__c,globalbusinessImpactStr)))))}"/>
-                                </td>
-                            </apex:outputText>
-                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">     
-                                <td>
-                                    <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),finLocal.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),finLocal.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),finLocal.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),finLocal.IPM_Business_Impact_MD__c,globalbusinessImpactStr))))}"/> 
-                                </td>
-                            </apex:outputText>
-                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">     
-                                <td>
-                                    <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),finRegional.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),finRegional.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),finRegional.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),finRegional.IPM_Business_Impact_MD__c,globalbusinessImpactStr))))}"/>
-                                </td>
-                            </apex:outputText>
+                              
+                            <td>
+                                <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),financialForPdf.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),financialForPdf.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Product Design Lock' , projectDoc.IPM_Document_Status__c=='Approved'),globalbusinessImpactStr,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),financialForPdf.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),financialForPdf.IPM_Business_Impact_MD__c,globalbusinessImpactStr)))))}"/>
+                            </td>
                             
                         </tr>
                         

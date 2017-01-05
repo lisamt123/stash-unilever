@@ -10,7 +10,8 @@
 <apex:attribute name="gateedit" type="Boolean" AssignTo="{!isEditable}" description="This is used for security"/>
 <apex:attribute name="getDocType" description="Pass the document type parameter" type="String" required="true" assignTo="{!gateType}" />
 <apex:attribute name="setEdit" description="Pass the parameter to open table in edit mode" type="Boolean" required="true" assignTo="{!editTable}" />
- <apex:outputPanel id="ren">
+ <apex:outputPanel style="display:none;">{!InvokeMethodsForIPM_GateKeeperListViewComponent}</apex:outputPanel>
+    <apex:outputPanel id="ren">
     <div> 
     <table class="ipmTable table table-bordered gateKeeperlist" cellspacing="0"> 
  <thead class="">

@@ -1261,7 +1261,7 @@ If you make no selection now the Sustainability Period will default to 3 years o
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BB_BD_COPIED_TO_SEC</shortDescription>
-        <value>BD-BB Alignment input below will be automatically copied into the Brand development document section 6.3</value>
+        <value>Country/Category Alignment input below will be automatically copied into the Brand development document section 6.3</value>
     </labels>
     <labels>
         <fullName>IPM_BB_COMMENTS</fullName>
@@ -10424,6 +10424,28 @@ If you discover that stopping this project was a mistake you can undo this actio
         <protected>false</protected>
         <shortDescription>IPM_Fin_CopyPaste_Error_Message</shortDescription>
         <value>There was some problem saving the business case. Please try saving the business case again</value>
+    </labels>
+	<labels>
+		<fullName>IPM_MKTG_DEV</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM_MKTG_DEV</shortDescription>
+		<value>MKTG DEV</value>
+	</labels>
+	<labels>
+		<fullName>IPM_MKTG_LOCAL</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>MKTG LOCAL</shortDescription>
+		<value>MKTG LOCAL</value>
+	</labels>
+	<labels>
+        <fullName>IPM_Country_Category_Alignment</fullName>
+        <categories>Country/Category Alignment</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Country/Category Alignment</shortDescription>
+        <value>Country/Category Alignment</value>
     </labels>
 
 	

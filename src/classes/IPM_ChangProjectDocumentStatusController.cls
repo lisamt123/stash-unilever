@@ -31,6 +31,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public static final String LINEBREAK_STR = '</a><br/>';
     public static final String TARGET_STR = '" target="_top">';
     public static final String HREF_STR = '<a href="';
+    public static final String PRINTDOC_STR = 'printDoc'; 
     //For Showing Validation Error Messages
     public Boolean milestoneError{get; set;}
     public Boolean riskError{get; set;}
@@ -109,14 +110,15 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         belowThresholdError=false;
         stopDisclaimer=Label.IPM_StopDisclaimer2;
         projectId=ApexPages.currentPage().getParameters().get('Id');
-        String checkPDL = ApexPages.currentPage().getParameters().get('isPDL');
+        String printDocUrlParam = ApexPages.currentPage().getParameters().get(PRINTDOC_STR); 
+        Boolean checkPDL = printDocUrlParam!=null && printDocUrlParam.EqualsIgnoreCase(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT);
         isPDL=false;
         if(projectId!=null)
         { 
             associatedProjectType = IPM_Utils.retrieveProjectType(project);
             if(associatedProjectType!=null){
                 String currentGate = associatedProjectType.IPM_Gate_Document__c;
-                if(IPM_ConstantUtils.IPM_true.EqualsIgnoreCase(checkPDL)){
+                if(checkPDL){                                                        //IPM_ConstantUtils.IPM_True.EqualsIgnoreCase(checkPDL)
                 	currentGate = IPM_ConstantUtils.PRODUCT_DESIGN_LOCK ;
                 	isPDL=true;
                 }
@@ -951,7 +953,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 		    			pdfGateDocRef.getParameters().put('SetStatus',tempProjectDoc.IPM_Document_Status__c);
 		    			pdfGateDocRef.getParameters().put('StatusComments',tempProjectDoc.IPM_Approved_Comments__c);
 		    			pdfGateDocRef.getParameters().put('DocumentType','PDF');
-		    			pdfGateDocRef.getParameters().put('printDoc',IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT);
+		    			pdfGateDocRef.getParameters().put(PRINTDOC_STR,IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT);
 		    			pdfGateDocRef.getParameters().put('StatusDate',projectDoc.IPM_Approval_Date__c.format());
 		    			pdfGateDocRef.getParameters().put('OperatedBy',tempProjectDoc.IPM_Updated_User_By__r.Name);
 		    			pdfGateDocRef.getParameters().put(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER,'true'); 
