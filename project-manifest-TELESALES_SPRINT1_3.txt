@@ -40,3 +40,5 @@ src/permissionsets
 src/permissionsets/TEL_Telesales_Agent.permissionset
 src/objects
 src/objects/Opportunity.object
+src/tabs
+src/tabs/TEL_GenOpp.tab
