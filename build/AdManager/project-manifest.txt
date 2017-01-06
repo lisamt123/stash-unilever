@@ -60,3 +60,8 @@ src
 src/labels
 src/labels/CustomLabels.labels
 src/labels/Amr.labels
+src
+src/permissionsets
+src/permissionsets/AdManager.permissionset
+src/permissionsets/CAP.permissionset
+src/permissionsets/RAP.permissionset
