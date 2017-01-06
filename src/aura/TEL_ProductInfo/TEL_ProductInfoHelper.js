@@ -155,7 +155,7 @@
         
         var quantityValidation = false;
         for(var prod = 0; prod < productsList.length; prod++) {
-            if(productsList[prod].amount <= 0) {
+            if(productsList[prod].amount <= 0 && productsList[prod].isSelected) {
                 quantityValidation = true;
             }
         }
