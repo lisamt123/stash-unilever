@@ -1,3 +1,17 @@
+/**********************************************************************  
+Name:  Amr_UtilityClass_CC Copyright © 2015  Salesforce  
+====================================================== 
+====================================================== 
+Purpose:                                                           
+-------   This is a utility class for AdManager Controller to get 
+            MDO and Multi category/Brnad Poition/Brand data                                                       
+ ====================================================== 
+ ====================================================== 
+ History                                                             
+ -------                                                             
+ VERSION   AUTHOR                        DATE              DETAIL                    Description    
+ 1.0       Mindtree                  04/02/2016      INITIAL DEVELOPMENT            CSR: 
+ ***********************************************************************/
 public with sharing class Amr_UtilityClass {
     
 
@@ -16,6 +30,11 @@ public with sharing class Amr_UtilityClass {
         return brandPostitionSet;
     } */
 
+/*******************************************************************    
+Purpose:  This method is used to get all MDO Brand Position list                                        
+Parameters: brandPostitionValues(String)
+Returns: It returns MDO Brand Position set data
+********************************************************************/  
     public Set<MDO_BrandPosition__c> brandPostitionValues(String Category){
         
         Set<String> categoryAndSubs = subCategoriesForGivenCategory(category);
@@ -51,6 +70,11 @@ public with sharing class Amr_UtilityClass {
         return brandSet;
     } */
 
+/*******************************************************************    
+Purpose:  This method is used to get all MDO Brand list based on selected Category and Brnad Position                                       
+Parameters: brandValues(String, String)
+Returns: It returns MDO Brand set data
+********************************************************************/  
     public Set<MDO_Brand__C> brandValues(String Category,String brandPosition){
 
         List<String> brandposlist = new List<String>();
@@ -68,7 +92,12 @@ public with sharing class Amr_UtilityClass {
         brandSet.addAll(brandValues);
         return brandSet;
     }
-    
+
+/*******************************************************************    
+Purpose:  This method is used to get all MDO Category list                                        
+Parameters: categoryValues(void)
+Returns: It returns MDO Category set data
+********************************************************************/        
     public Set<MDO_Category__c> categoryValues(){
         List<MDO_Category__c>   categoryLst = [select name from MDO_Category__c  where category_type__c = 'Category' ORDER BY Name limit 50000];
         
@@ -77,7 +106,13 @@ public with sharing class Amr_UtilityClass {
         return categorySet;
     }
     
-    // Multi Category start
+    
+// Multi Category start
+/*******************************************************************    
+Purpose:  This method is used to get all Multi brand position list                                        
+Parameters: multiBrandPostitionValues(string)
+Returns: It returns multi category set data
+********************************************************************/     
     public Set<Amr_Multi_Brand_Positioning__c> multiBrandPostitionValues(String Category){
         
         Set<String> categoryAndSubs = multiSubCategoriesForGivenCategory(category);
@@ -89,23 +124,29 @@ public with sharing class Amr_UtilityClass {
         return brandPostitionSet;
     }
 
+/*******************************************************************    
+Purpose:  This method is used to get all Multi brand position list                                        
+Parameters: multiBrandPostitionValues(string)
+Returns: It returns multi category set data
+********************************************************************/     
     public static Set<String> multiSubCategoriesForGivenCategory(String subcategory){
         
         Set<String> subcategories = new Set<String>{};
         if(!String.isBlank(subcategory)) {
 
-            List<Amr_Multi_Category__c> categoryid = [select id from Amr_Multi_Category__c  where name =:subcategory ORDER BY Name limit 50000];
-            
-            List<Amr_Multi_Category__c> firsAndSecondSublevels = [select id from Amr_Multi_Category__c where Id =: categoryid and status__c = 'Active'];
-            subcategories.add(subcategory);
-            for(Amr_Multi_Category__c cat : firsAndSecondSublevels){
+            List<Amr_Multi_Category__c> categoryid = [select id from Amr_Multi_Category__c  where name =:subcategory and status__c = 'Active'];
+            for(Amr_Multi_Category__c cat : categoryid ){
                 subcategories.add(cat.id);
             }
         }
-        
         return subcategories;
     }
    
+/*******************************************************************    
+Purpose:  This method is used to get all Multi Brand list                                        
+Parameters: multiBrandValues(string, string)
+Returns: It returns multi brand set data
+********************************************************************/        
     public Set<Amr_Multi_Brand__c> multiBrandValues(String Category,String brandPosition){
         
         Set<String> subcategories = multiSubCategoriesForGivenCategory(Category);
@@ -122,17 +163,26 @@ public with sharing class Amr_UtilityClass {
         for(Amr_Multi_Brand_Positions__c bps : brandid){
             brandlist.add(bps.Multi_Brand__c);
         }
-        List<Amr_Multi_Brand__C> brandValues = [select id,name from Amr_Multi_Brand__c where id in :brandlist and status__c = 'Active' limit 50000];
+        List<Amr_Multi_Brand__C> brandValues = [select id,name from Amr_Multi_Brand__c where id in :brandlist and status__c = 'Active'];
         Set<Amr_Multi_Brand__C> brandSet = new Set<Amr_Multi_Brand__C>();
+        if(brandValues != NULL ){
         brandSet.addAll(brandValues);
+        }
         return brandSet;
     }
     
+/*******************************************************************    
+Purpose:  This method is used to get all Multi category list                                        
+Parameters: multiCategoryValues(void)
+Returns: It returns multi category set data
+********************************************************************/     
     public Set<Amr_Multi_Category__c> multiCategoryValues(){
-        List<Amr_Multi_Category__c>   categoryLst = [select name from Amr_Multi_Category__c where status__c = 'Active' ORDER BY Name limit 50000];
+        List<Amr_Multi_Category__c>   categoryLst = [select name from Amr_Multi_Category__c where status__c = 'Active' ORDER BY Name];
         
         Set<Amr_Multi_Category__c> categorySet = new Set<Amr_Multi_Category__c>();
-        categorySet.addAll(categoryLst);
+        if(categoryLst != NULL){
+            categorySet.addAll(categoryLst);
+         }
         return categorySet;
     }
     

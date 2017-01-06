@@ -2847,6 +2847,14 @@
         <shortDescription>Amr message</shortDescription>
         <value>message</value>
     </labels>
+	<labels>
+		<fullName>Amr_Success_CAPAdmin</fullName>
+		<categories>Amr_Success_CAPAdmin</categories>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>CAP admin saving success</shortDescription>
+		<value>Data has been saved successfully.</value>
+	</labels>
     <labels>
         <fullName>Amr_non_UniAdapt_Model</fullName>
         <language>en_US</language>
@@ -2875,11 +2883,4 @@
         <shortDescription>Amr tab</shortDescription>
         <value>tab</value>
     </labels>
-	<labels>
-        <fullName>Amr_Success_CAPAdmin</fullName>
-        <categories>Amr_Success_CAPAdmin</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CAP admin saving success</shortDescription>
-        <value>Data has been saved successfully.</value>
-    </labels>
+	

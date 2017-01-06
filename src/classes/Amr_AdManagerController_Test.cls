@@ -10,7 +10,7 @@ public class Amr_AdManagerController_Test {
                           LocaleSidKey='en_US', ProfileId = p.Id, 
                           TimeZoneSidKey='America/Los_Angeles', UserName='stanuser@org.com');
         insert u;
-
+		Amr_AdManagerHelper_CC admanagerHelper = new Amr_AdManagerHelper_CC();
        Amr_AdManagerController_CC  test1 = new Amr_AdManagerController_CC ();
         //Amr_AdManagerHelper_CC test2 = new Amr_AdManagerHelper_CC(test1 );
         Amr_Job_Details__c  abc = new Amr_Job_Details__c (); 

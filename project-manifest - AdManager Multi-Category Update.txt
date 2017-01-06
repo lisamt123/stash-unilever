@@ -65,9 +65,3 @@ src
 src/labels
 src/labels/CustomLabels.labels
 src/labels/Amr.labels
-
-
-
-
-
-

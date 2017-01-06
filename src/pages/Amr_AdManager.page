@@ -6,9 +6,9 @@
         <script type="text/javascript">
             $j = jQuery.noConflict();
         </script>
-        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_menu_shift.js')}" />
-        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_production_activity.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_menu_shift.js')}" />        
         <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_admanager_logging_form.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_production_activity.js')}" />
 
         <style type="text/css">
             label.logging-form-label div {
@@ -48,7 +48,7 @@
                 </div>
 
                 <section class="before-start padding-top15">
-                    <apex:outputText value="{!r.Introduction__c}" escape="false" />
+                    <apex:outputText value="{!adminHeaderFooter.Introduction__c}" escape="false" />
                 </section>
                 <section>
                     <h2>{!$Label.Amr_Before_you_start}</h2>
@@ -1267,7 +1267,7 @@
                     </apex:actionRegion>
                 </section>
                 <footer>
-                    <apex:outputText value="{!r.Footer__c}" escape="false" styleclass="footer-c" />
+                    <apex:outputText value="{!adminHeaderFooter.Footer__c}" escape="false" styleclass="footer-c" />
                 </footer>
             </div>
             <!--action function for project name-->

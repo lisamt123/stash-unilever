@@ -404,18 +404,19 @@ public with sharing Class Amr_AdManagerHelper_CC{
             system.debug(ex.getMessage());
         }
     }
-     /*******************************************************************    
-   Purpose:  This method is used to allocate job to RAP                                         
-   Parameters: Job Object(String)
-   Returns: It’s return Nothing
-   ********************************************************************/ 
+    
+/*******************************************************************    
+Purpose:  This method is used to allocate job to RAP                                         
+Parameters: Job Object(String)
+Returns: It’s return Nothing
+********************************************************************/ 
 
     @future
     @TestVisible static void automaticJobAllocation(String JobObject){
         try{
             InnerJobDetail jobDetailsNew = (InnerJobDetail)JSON.deserialize(JobObject, InnerJobDetail.class);
            
-            //Autometic assigment
+            //Automatic assigment
             
             if(jobDetailsNew.Cluster!=null && jobDetailsNew.Country!=null){
                 
@@ -458,6 +459,13 @@ public with sharing Class Amr_AdManagerHelper_CC{
             AdManagerText = AdManagertxt;
         }
     }
+    
+public boolean multiCategoryNameFlag = FALSE;
+public boolean multiBrandPosNameFlag = FALSE;
+public boolean multiBrandNameFlag = FALSE;
+public boolean validationFlag = TRUE;
+public boolean successMessage = TRUE;
+        
 /*******************************************************************    
 Purpose:  This method is used to insert/update multiply/Non Specific brands                                 
 Parameters: String multiCategory value, String multiBrandPositioning value, String multiBrand value from CAP Admin space
@@ -467,46 +475,72 @@ public PageReference createMultiBrandPositions(String multiCategory, String mult
     
     Id multicatId = NULL;
     Id multibrandPositioningId = NULL;
+    
     PageReference pageRef = Page.Amr_CAPAdmin;
     pageRef.setRedirect(false);
     
-    if( multiCategory == NULL || multiBrandPositioning == NULL){
-     return pageRef;
+    
+    if( multiCategory == NULL || multiBrandPositioning == NULL || multiCategory == '' || multiBrandPositioning == ''){
+     return null;
     }
 
     if( multiBrand1 == NULL && multiBrand2 == NULL && multiBrand3 == NULL && multiBrand4 == NULL && multiBrand5 == NULL){
-    return pageRef;
+    return null;
+    }  
+
+    //Validation
+    /*
+    if(multiCategory != Amr_ConstantForAdManager.NONE ){
+        multiCategoryNameFlag = TRUE;
+    }
+    if(multiBrandPositioning != Amr_ConstantForAdManager.NONE ){
+        multiBrandPosNameFlag = TRUE;
+    }
+    if( multiBrand1 != NULL || multiBrand2 != NULL || multiBrand3 != NULL || multiBrand4 != NULL || multiBrand5 != NULL){
+        multiBrandNameFlag = TRUE;
+    }
+      
+    if( !multiCategoryNameFlag && !multiBrandPosNameFlag && !multiBrandNameFlag  ){
+     return NULL;
     }
 
+   if( multiCategoryNameFlag &&  multiBrandPosNameFlag &&   multiBrandNameFlag ){
+    validationFlag = FALSE;
+    }
+    if (validationFlag ){
+        successMessage = false;
+        return null;    
+    }
+    */
     Set<String> multiBrand =  new Set<String>{multiBrand1,multiBrand2,multiBrand3,multiBrand4,multiBrand5};
 try{
 
     //Multi Category
 
     List<Amr_Multi_Category__c> categoryId = [select id from Amr_Multi_Category__c  where name =:multiCategory ORDER BY Name limit 1];
-    if(categoryId.size() == 0){
+    if(categoryId.size() > 0){
+    multicatId = categoryId[0].Id;
+    }
+    else{
     Amr_Multi_Category__c mCategory = new Amr_Multi_Category__c();
     mCategory.Name = multiCategory;
     mCategory.Status__c = 'Active';
     insert mCategory;
-    multicatId = mCategory.Id;
-    }
-    else{
-    multicatId = categoryId[0].Id;
+    multicatId = mCategory.Id;    
     }
 
     //Multi BrandPositioning
     List<Amr_Multi_Brand_Positioning__c> mbrandPositioningId = [select id from Amr_Multi_Brand_Positioning__c  where name =:multiBrandPositioning ORDER BY Name limit 1];
     
-    if(mbrandPositioningId.size() == 0){
+    if(mbrandPositioningId.size() > 0){
+    multibrandPositioningId = mbrandPositioningId[0].Id;
+    }
+    else{
     Amr_Multi_Brand_Positioning__c mBrandPositioning = new Amr_Multi_Brand_Positioning__c();
     mBrandPositioning.Name = multiBrandPositioning;
     mBrandPositioning.Status__c = 'Active';
     insert mBrandPositioning;
-    multibrandPositioningId = mBrandPositioning.Id;
-    }
-    else{
-    multibrandPositioningId = mbrandPositioningId[0].Id;
+    multibrandPositioningId = mBrandPositioning.Id;    
     }
 
     for(String mB :multiBrand){
@@ -536,15 +570,15 @@ public void createMultiBrandPos(Id multicatId, Id multiBrandPositioningId, Strin
     //Multi Brand
     List<Amr_Multi_Brand__c> mBrandId = [select id from Amr_Multi_Brand__c  where name =:multiBrand ORDER BY Name limit 1];
 
-    if(mBrandId.size() == 0){
+    if(mBrandId.size() > 0){
+    multibrandId = mBrandId[0].Id;
+    }
+    else{
     Amr_Multi_Brand__c mBrand = new Amr_Multi_Brand__c();
     mBrand.Name = multiBrand;
     mBrand.Status__c = 'Active';
     insert mBrand;
-    multibrandId = mBrand.Id;
-    }
-    else{
-    multibrandId = mBrandId[0].Id;
+    multibrandId = mBrand.Id;    
     }
 
     //Multi BrandPositions
