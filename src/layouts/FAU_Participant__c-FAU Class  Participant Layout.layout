@@ -198,10 +198,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FAU_Biography__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Current_Role_Responibilities__c</field>
             </layoutItems>
             <layoutItems>

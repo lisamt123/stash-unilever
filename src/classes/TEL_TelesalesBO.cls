@@ -7,7 +7,7 @@ Store the telesales business rules.
 
 History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
- 1.0    Ronaldo Garcia  05/12/2016  Class creation  
+1.0    Ronaldo Garcia  05/12/2016  Class creation  
 ***********************************************************************/
 public with sharing class  TEL_TelesalesBO {
     
@@ -29,8 +29,8 @@ public with sharing class  TEL_TelesalesBO {
             system.debug('Entering <createOpp>');
             
             // Retrieve the Telesales opportunity record type Id. 
-        	Id opportunityRecordType	=  ICB_RecordTypeMemory.getRecType(Label.TEL_Opportunity, Label.TEL_Telesales_Record_Type);
-        
+            Id opportunityRecordType	=  ICB_RecordTypeMemory.getRecType(Label.TEL_Opportunity, Label.TEL_Telesales_Record_Type);
+            
             // Store the number of days to add in close date field. 
             Integer additionalDays 		= integer.valueOf(TEL_Telesales__c.getValues('Additional_Days').Value__c);
             
@@ -39,7 +39,7 @@ public with sharing class  TEL_TelesalesBO {
             
             // List to create the opportunity. 
             List<Opportunity> 	lstOpp 	= new List<Opportunity>(); 
-        
+            
             for(Case c : approvedCase){
                 if(c.status == Label.TEL_Sample_Request_Status){
                     Opportunity opp 		= new Opportunity();
@@ -53,16 +53,16 @@ public with sharing class  TEL_TelesalesBO {
                     lstOpp.add(opp);
                 }
             }
-        
+            
             // Insert the opportunity related to a sample request approved. 
             database.insert(lstOpp); 
-		    system.debug('Exit <createOpp>'); 
-              
+            system.debug('Exit <createOpp>'); 
+            
         }catch(Exception e){
             system.debug('Fail <createOpp> '+e.getMessage());
         }
     }
-/*    
+    
     // Create a log history event related to opportunity when a call is rescheduled or closed. 
     public void createOppLog(List<Opportunity> paramNewOpp, List<Opportunity> paramOldOpp){
         try{
@@ -81,8 +81,8 @@ public with sharing class  TEL_TelesalesBO {
                 oppId 	 		= o.Id;
                 oldCloseDate	= o.CloseDate;
             }
-			for(Opportunity o : paramOldOpp){
-            	oldStage 		= o.StageName;       
+            for(Opportunity o : paramOldOpp){
+                oldStage 		= o.StageName;       
                 newCloseDate	= o.CloseDate;
             }
             
@@ -94,10 +94,6 @@ public with sharing class  TEL_TelesalesBO {
             task.WhatId			= oppId;
             task.Type 			= 'Call';
             
-            System.debug('Valor do newStage: '+newStage);
-            System.debug('Valor do oldStage: '+oldStage);
-            System.debug('Valor do oldCloseDate: '+oldCloseDate);
-            System.debug('Valor do newCloseDate: '+newCloseDate);
             // Check if the stage changes. 
             if(newStage != oldStage || oldCloseDate != newCloseDate){
                 if(newStage == Label.TEL_Stage_Recheduled){
@@ -111,12 +107,12 @@ public with sharing class  TEL_TelesalesBO {
                 } 
                 
                 // Insert the event log.
-            	database.upsert(task);
+                database.upsert(task);
             }
         }
         catch(Exception e){
             system.debug('Fail <createOppLog> '+e.getMessage());
         }
     }
-*/
+    
 }
