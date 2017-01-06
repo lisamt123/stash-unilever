@@ -467,7 +467,8 @@ public class IPM_ConstantUtils {
     
     
     public static final String IDEAS_SEQUENCE='1.1';
-     
+    public static final String TRADE_STORY_SEQUENCE='2.2.2';  
+       
     //Delimitor
     public static final String Delimiter=';';
      
