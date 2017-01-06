@@ -22333,6 +22333,78 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000H7v8_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H7v8</label>
+        <queue>IPM_a7I0L000000H7v8</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H7vD_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H7vD</label>
+        <queue>IPM_a7I0L000000H7vD</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H7vI_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEOS TEST JAN</label>
+        <queue>IPM_a7I0L000000H7vI</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H7vS_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H7vS</label>
+        <queue>IPM_a7I0L000000H7vS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H7vX_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H7vX</label>
+        <queue>IPM_a7I0L000000H7vX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H7vc_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H7vc</label>
+        <queue>IPM_a7I0L000000H7vc</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H7vh_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H7vh</label>
+        <queue>IPM_a7I0L000000H7vh</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H7vm_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H7vm</label>
+        <queue>IPM_a7I0L000000H7vm</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Project_Document_Section_Content</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
