@@ -205,7 +205,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
         IPM_FinancialController finController2 =  new IPM_FinancialController();
         finController2.currentFinancialId = lstFin[1].Id;
         finController2.currentFinancial = lstFin[1];
-
+        finController2.IPMFinancial= lstFin[1];
           
         System.assertEquals(finController2.isNonkey,false,'Nonkey');
         System.assertEquals(finController2.isConsolidatedOrNonkey,true,'isconNonkey');
@@ -261,7 +261,10 @@ private class IPM_FinancialControllerSoftVldtns_Test
         IPM_FinancialController finController2 =  new IPM_FinancialController();
         finController2.currentFinancialId = currentFinancial.Id;
         finController2.currentFinancial = currentFinancial;
+        finController2.IPMFinancial= lstFin[1];
         finController2.isFinacialConsolidated = false;
+        finController2.isEditMode = false;
+        finController2.isRolloutError= false;
           
 		finController2.getLocalCurrencyViewButtonVisibility();
 		 

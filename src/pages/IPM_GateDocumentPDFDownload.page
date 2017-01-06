@@ -530,15 +530,16 @@
             
             /* Performance Breakdown Styles */      
             .performanceContainer1{background-color:#dceefa;float: left;}       
-            .performanceHead{float: left;font-weight: bold;width:44px;padding:5px;font-size:10px;}      
+            .performanceHead{float: left;font-weight: bold;width:43.5px;padding:5px;font-size:10px;}      
             .performanceContainer1,.performanceContainer2,.performanceContainer3{width: 760px;}        
             .performanceContainer2{background: #f8f8f8;float:left;clear:both;}      
             .performanceContainer3{clear:both;display:table;table-layout:fixed;}        
             .breakdown_Container{margin-bottom: 10px;}      
-            .performanceSecHead{float:left;width:44px;padding: 5px;font-size:10px;}     
-            .performanceCell{float:left;width:44px;padding: 5px;font-size:10px;border-bottom:1pt #7fa29e solid;min-height:15px;}        
+            .performanceSecHead{float:left;width:43.5px;padding: 5px;font-size:10px;}
+            .performanceSecHead.misaligned{width:41.5px;}
+            .performanceCell{float:left;width:43.5px;padding: 5px;font-size:10px;border-bottom:1pt #7fa29e solid;min-height:15px;}        
             .emptyCell{min-height:14px;}        
-            .misaligned{border:2px solid red;min-height:51px;}      
+            .misaligned{border:1px solid red;min-height:51px;}      
             .performanceDrpdownContainer{margin-top:10px;}      
             .SecButtonSet a.icoButton.download{margin-top:10px;}        
             .panel .ipmButtonSet{margin-bottom:10px;}       
@@ -705,6 +706,7 @@
             .redBox{background: red;padding: 5px;margin: 3px 0px;color: #fff;display:block;}
             .table div.approvalTip{padding-left:7px;}
 			.sfdc_richtext table{width:760px !important;}
+			.algnCenter{text-align:center;}
 		</style>
     </head>
     
