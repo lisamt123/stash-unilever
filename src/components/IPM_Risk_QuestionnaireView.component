@@ -92,9 +92,9 @@
                             <td class="riskCustBackground"></td>
                         </tr>
                         <tr>
-                           <td><apex:outputtext >{!crq.IPM_Question__c}</apex:outputtext></td>
-                           <td><apex:outputtext >{!IF(projDocType='Charter',crq.IPM_Charter_Score__c,IF(projDocType='Contract',crq.IPM_Contract_Score__c,IF(projDocType='Market Ready',crq.IPM_Market_Ready_Score__c,crq.IPM_Market_Deployment_Score__c)))}</apex:outputtext></td>
-                           <td><apex:outputText styleClass="riskCommentBox" value="{!IF(projDocType='Charter',crq.IPM_Charter_Comments__c,IF(projDocType='Contract',crq.IPM_Contract_Comments__c,IF(projDocType='Market Ready',crq.IPM_Market_Ready_Comments__c,crq.IPM_Market_Deployment_Comments__c)))}" /></td>
+                           <td class="algnCenter"><apex:outputtext >{!crq.IPM_Question__c}</apex:outputtext></td>
+                           <td class="algnCenter"><apex:outputtext >{!IF(projDocType='Charter',crq.IPM_Charter_Score__c,IF(projDocType='Contract',crq.IPM_Contract_Score__c,IF(projDocType='Market Ready',crq.IPM_Market_Ready_Score__c,crq.IPM_Market_Deployment_Score__c)))}</apex:outputtext></td>
+                           <td class="algnCenter"><apex:outputText styleClass="riskCommentBox" value="{!IF(projDocType='Charter',crq.IPM_Charter_Comments__c,IF(projDocType='Contract',crq.IPM_Contract_Comments__c,IF(projDocType='Market Ready',crq.IPM_Market_Ready_Comments__c,crq.IPM_Market_Deployment_Comments__c)))}" /></td>
                        </tr>        
                    </apex:repeat>
                </tbody> 
