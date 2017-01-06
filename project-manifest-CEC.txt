@@ -85,4 +85,3 @@ src/sharingRules/LiveChatTranscript.sharingRules
 src/sharingRules/mdm_Case_Product__c.sharingRules
 src/sharingRules/mdm_Reason_Code__c.sharingRules
 src/sharingRules/Third_Party_Survey__c.sharingRules
-src/workflows/Case.workflow
