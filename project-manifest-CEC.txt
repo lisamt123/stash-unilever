@@ -83,5 +83,9 @@ src/sharingRules/cec_Store__c.sharingRules
 src/sharingRules/LiveChatTranscript.sharingRules
 src/sharingRules/mdm_Case_Product__c.sharingRules
 src/sharingRules/mdm_Reason_Code__c.sharingRules
+<<<<<<< HEAD
 src/sharingRules/Third_Party_Survey__c.sharingRules
 
+=======
+src/sharingRules/Third_Party_Survey__c.sharingRules
+>>>>>>> develop
