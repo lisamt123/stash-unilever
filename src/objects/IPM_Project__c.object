@@ -5328,7 +5328,7 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ben %26 Jerrys</fullName>
+                <fullName>Ben %26 Jerry's</fullName>
                 <default>false</default>
             </values>
             <values>
