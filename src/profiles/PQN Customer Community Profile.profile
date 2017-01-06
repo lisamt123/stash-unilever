@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+<Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>Pallet_Quality_Non_Conformance</application>
-        <visible>true</visible>
+        <default>false</default>
+        <visible>false</visible>
     </applicationVisibilities>
     <classAccesses>
         <apexClass>PQNBatchDeleteRecords</apexClass>
@@ -74,11 +75,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_DC_Voulmes</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_DC_VoulmesTest</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_Export_Excel</apexClass>
@@ -122,11 +123,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_NewTargetExtension</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_NewTargetExtensionTest</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_Supplier_Popup_Ctlr</apexClass>
@@ -138,7 +139,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_TestLibraryUtil</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_UpdateFreezeDateOnPQN</apexClass>
@@ -170,7 +171,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_singleEntryScreen</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_singleEntryScreenTest</apexClass>
@@ -184,25 +185,26 @@
         <apexClass>PQN_updateTAR_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+    <custom>true</custom>
     <fieldPermissions>
         <editable>false</editable>
         <field>PQN_DC_Volumes__c.Month__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_DC_Volumes__c.Reporting_DC__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_DC_Volumes__c.Total_Pallets_Checked_By_DC__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_DC_Volumes__c.Total_Pallets_received_by_DC__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -210,14 +212,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Cluster__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Comments__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -225,9 +227,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.DC_Country__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -235,29 +237,29 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Date_Pallet_Received__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Date_of_Data_Entry_Per_Pallet__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Days_Left_Before_Freeze__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Delivery_Note_Number__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Description__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -270,24 +272,24 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Loss_Level_4__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Loss_level_3__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Losses__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.MCO__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -305,49 +307,49 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Non_compliance_reason_code__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Number_of_Pallets_Per_SKU_Non_Compliant__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Product_Category__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Product_Group__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Product_Name__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Region__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Reporting_DC__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.SKU__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Sub_Cluster__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -355,19 +357,19 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Number__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_type__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -485,97 +487,87 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_User_Creation_Request__c.Approval_Status__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_User_Creation_Request__c.Cluster__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_User_Creation_Request__c.DC_Country__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_User_Creation_Request__c.Email__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_User_Creation_Request__c.First_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_User_Creation_Request__c.Last_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_User_Creation_Request__c.MCO__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_User_Creation_Request__c.Nick_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_User_Creation_Request__c.Region__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_User_Creation_Request__c.Sub_Cluster__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_User_Creation_Request__c.User_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_User_Creation_Request__c.User__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_User_Creation_Request__c.Username__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
-    <label>PQN Admin User</label>
+    <layoutAssignments>
+        <layout>PQN_DC_Volumes__c-PQN_DC_Volumes Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PQN_Pallet_Quality_Non_Conformance__c-PQN_Quality Conformance Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PQN_Targets__c-PQN_Targets Layout</layout>
+    </layoutAssignments>
     <objectPermissions>
         <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>PQN_DC_Volumes__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>PQN_Supplier__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>PQN_Targets__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>PQN_User_Creation_Request__c</object>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
         <apexPage>PQN_CommunitiesSelfReg_VF</apexPage>
@@ -587,7 +579,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Country_Report</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_DCVolumesListView_VF</apexPage>
@@ -603,7 +595,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_DeleteOverride</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Export_Excel</apexPage>
@@ -611,23 +603,23 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_GlobalSUReport</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Global_Category_Report</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Global_DCReport</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Global_Geography_Report</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Global_Overview</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Home</apexPage>
@@ -639,7 +631,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_MultiEditScreen_Clone</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_MultiTargets_VF</apexPage>
@@ -655,7 +647,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Supplier_Popup</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_TargetEntryScreen_VF</apexPage>
@@ -669,24 +661,37 @@
         <apexPage>PQN_Targets_List_View</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-    <tabSettings>
-        <tab>PQN_DC_Volumes__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
+    <tabVisibilities>
         <tab>PQN_Pallet_Quality_Non_Conformance__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>PQN_Supplier__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>PQN_Targets__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Pallet_Quality_Non_Conformance_VF</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-</PermissionSet>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <userLicense>Guest User License</userLicense>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>AllowUniversalSearch</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>EnableNotifications</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>PasswordNeverExpires</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>SelectFilesFromSalesforce</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ShowCompanyNameAsUserBadge</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewAllUsers</name>
+    </userPermissions>
+</Profile>

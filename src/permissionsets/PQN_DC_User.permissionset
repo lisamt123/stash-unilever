@@ -33,11 +33,11 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PQN_CannockJSON2Apex</apexClass>
-        <enabled>true</enabled>
+        <apexClass>PQN_CheckDelete</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PQN_CheckDelete</apexClass>
+        <apexClass>PQN_CheckDeleteTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -81,6 +81,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PQN_Export_Excel</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PQN_GlobalCategoryReport</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -107,10 +111,6 @@
     <classAccesses>
         <apexClass>PQN_Global_Overview_Geography</apexClass>
         <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>PQN_HelibronnJSON2Apex</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_MultiTargets</apexClass>
@@ -145,11 +145,15 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PQN_UploadNCData</apexClass>
-        <enabled>true</enabled>
+        <apexClass>PQN_UpdateFreezeDateOnPQNTest</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PQN_UploadNCDatatest</apexClass>
+        <apexClass>PQN_UploadNCData_Clone</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_UploadNCData_CloneTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -398,6 +402,36 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Sourcing_Unit__c.Month__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Sourcing_Unit__c.Soucing_Unit_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Sourcing_Unit__c.Sourcing_Unit_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Sourcing_Unit__c.Total_Volume_Of_pallets_Shipped__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Sourcing_Unit__c.Year__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Supplier__c.Supplier_Alias__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>PQN_Supplier__c.Supplier_Number__c</field>
         <readable>true</readable>
@@ -406,11 +440,6 @@
         <editable>true</editable>
         <field>PQN_Supplier__c.Supplier_Type__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>PQN_Targets__c.Geography__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -446,6 +475,81 @@
         <editable>true</editable>
         <field>PQN_Targets__c.Year__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Account_Request__c.Account__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Account_Request__c.PQN_User_Creation_Request__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Approval_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Cluster__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.DC_Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.First_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Last_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.MCO__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Nick_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Region__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Sub_Cluster__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.User_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.User__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Username__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <label>PQN DC User</label>
     <objectPermissions>
@@ -513,6 +617,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>PQN_Export_Excel</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>PQN_GlobalSUReport</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -529,11 +637,7 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>PQN_Global_Overview_Category_Report</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>PQN_Global_Overview_Geography</apexPage>
+        <apexPage>PQN_Global_Overview</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -545,8 +649,8 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>PQN_MultiEditScreen_VF</apexPage>
-        <enabled>true</enabled>
+        <apexPage>PQN_MultiEditScreen_Clone</apexPage>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_MultiTargets_VF</apexPage>

@@ -1,13 +1,72 @@
 @isTest
-private class PQNUpdateFreezePeriodCtrlTest {
-       public static testMethod void TestPQNUpdateFreezePeriodCtrl(){
+private class PQN_UpdateFreezeDateOnPQNTest{
+    private static testMethod void testPQN_UpdateFreezeDateOnPQN(){
+    Test.startTest();
+    System.runAs ( new User(Id = UserInfo.getUserId()) )
+   { 
+    EmailTemplate e = new EmailTemplate (developerName = 'PQN_Freeze_Date_Notification', FolderId = UserInfo.getUserId(), TemplateType= 'Text', Name = 'PQN_Freeze_Date_Notification'); // plus any other fields that you want to set
+    insert e;
+   
+       
     
-     Test.startTest();
      
-     list<PQNFreezeDate__c> pqn=new list<PQNFreezeDate__c>();
+     /*
+    
+    Account acc1=PQN_TestLibraryUtil.createpqnAccount('abc','srilanka');
+    insert acc1;
+    
+    */
+    
+    
+    Account acc = new Account();
+    acc.Name = 'TestAccount';
+    insert acc;
+    
+     list<id> ll = new list<id>();
+    //Contact cont=PQN_TestLibraryUtil.createContact(acc1.id);
+    // Create Contact
+    
+           Contact cont=new Contact();
+           cont.lastname='abc';
+           cont.accountid=acc.id;
+           insert cont;
+    
+    // ll.add(cont.id);
+     //insert ll;
+    
+     
+    Messaging.MassEmailMessage email  = new Messaging.MassEmailMessage();
+       email.setTargetObjectIds(ll);
+        email.setSenderDisplayName('System Admin');
+        email.setTemplateId(e.id);
+    
+    }
+     PQN_Supplier__c  supplier=PQN_TestLibraryUtil.createSupplier();
+    insert supplier;
+    
+    PQN_DC_Volumes__c dcvolume=PQN_TestLibraryUtil.createDCvolumes();
+    insert dcvolume;
+    
+    Account acc=PQN_TestLibraryUtil.createpqnAccount('abc','srilanka');
+    insert acc;
+    
+     list<Id> IDlst=new list<Id>();
+     
+     
+     list<PQN_Pallet_Quality_Non_Conformance__c > pqnList1 = new list<PQN_Pallet_Quality_Non_Conformance__c >();
+     PQN_Pallet_Quality_Non_Conformance__c PQN1 = PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(supplier.id,acc.id,dcvolume.id);
+     PQN1.Current_Month_Freeze_Date__c=date.newInstance(2017,1,14);
+     PQN1.Date_Pallet_Received__c=date.newInstance(2017,1,14);
+//     PQN1.Month__c = 'January';
+     PQN1.Account__c=acc.id;
+     pqnList1.add(PQN1);
+     insert pqnList1;
+     
+     
+      list<PQNFreezeDate__c> pqn=new list<PQNFreezeDate__c>();
      PQNFreezeDate__c date1=new PQNFreezeDate__c();
-     date1.name='january';
-     //date1.Freeze_Date__c=Date.newInstance(2017 , 01 ,01);
+     date1.name='January';
+     //date1.Freeze_Date__c=Date.newInstance(20,1,2016);
      date1.Freeze_Date__c=system.today();
      date1.Numeric_Value__c=1;
      
@@ -98,14 +157,11 @@ private class PQNUpdateFreezePeriodCtrlTest {
      
      insert pqn;
      
-    PQNUpdateFreezePeriodCtrl freez=new PQNUpdateFreezePeriodCtrl();
-    freez.getResult();
-    freez.updateFreezePeriod();
-    
-    
-   
-     Test.stopTest();
-     }
-          
-      
-}
+     IDlst.add(PQN1.id);
+     
+     
+     PQN_UpdateFreezeDateOnPQN.updatePQNRecords(IDlst);
+     
+    test.stoptest();
+    }
+    }

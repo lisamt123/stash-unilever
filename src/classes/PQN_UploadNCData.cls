@@ -211,17 +211,43 @@ public class PQN_UploadNCData {
     forinsertSuccess = new List<PQN_Pallet_Quality_Non_Conformance__c>();
     forinsertErrors= new List<PQN_Pallet_Quality_Non_Conformance__c>();
     List<PQN_tabledata> forinsertErrorsWrap = new List<PQN_tabledata>();
+    Map<string,id> mapoftarget = new  Map<string,id>();
+    Map<string,decimal> mapoftargetred = new  Map<string,decimal>();
+    
     //forinsertduplicate.addAll(forInsert);
     List<integer> setsucessindex = new List<integer>();
     List<integer> seterrorindex = new list<integer>();
        /* for(PQN_tabledata p: forinsertwrapper){
             forinsert.add(p.pqn);    
-        }*/
+        }*/ 
+        set<string>  setregion = new set<string>();
+        set<string>  setyear = new set<string>();
+         for(PQN_Pallet_Quality_Non_Conformance__c pqn: forInsert){
+             setregion.add(pqn.Region__c);  
+             setyear.add(string.valueOf(pqn.Date_Pallet_Received__c.year()));   
+               }
+              List<PQN_Targets__c> listtar=new List<PQN_Targets__c>();
+                    listtar=[select id,Target_Reduction__c,Target__c,Region__c,Year__c,Month__c from PQN_Targets__c where region__c in:setregion and Year__c in:setyear ];
+                    for(PQN_Targets__c lt:listtar){
+                         mapoftarget.put(lt.Year__c+lt.Region__c,lt.id);
+                         mapoftargetred.put(lt.Year__c+lt.Region__c,lt.Target_Reduction__c);
+                         }
+                    for(PQN_Pallet_Quality_Non_Conformance__c pqn: forInsert){
+                          if(mapoftarget.containskey(pqn.Date_Pallet_Received__c.year()+pqn.Region__c)){                          
+                            pqn.Targets__c = mapoftarget.get(pqn.Date_Pallet_Received__c.year()+pqn.Region__c);
+                            pqn.Target_Reduction__c=mapoftargetred.get(pqn.Date_Pallet_Received__c.year()+pqn.Region__c);
+                          }
+                    }
+        
         if(!forInsert.isEmpty()){
             try{               
                 size = forInsert.size();
                 //status = true;                
                 Database.SaveResult[] SR = Database.insert(forInsert, false);
+                
+    
+    
+                
                 for(Integer i=0;i<SR.size();i++){
                     
                     if (sr[i].isSuccess()) {

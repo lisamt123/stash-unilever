@@ -1,12 +1,12 @@
-public with sharing class PQN_Global_Overview_Category_Report{
+public without sharing class PQN_Global_Overview_Category_Report{
    
-    public List<PQN_Global_SUWrap> xSUWRAPLIST{get;set;}
+    public List<PQN_Global_SUWrap> xSUWRAPLISTGC{get;set;}
     public String empty{get;set;}
    
-    public PQN_Global_Overview_Category_Report(){
+    public PQN_Global_Overview_Category_Report(ApexPages.StandardController acon){
         
         empty = '';
-        xSUWRAPLIST = new List<PQN_Global_SUWrap>();
+        xSUWRAPLISTGC = new List<PQN_Global_SUWrap>();
         Map<String,Integer> mapOfProduct_Groupcuryr= new Map<String,Integer>();
         Map<String,Integer> mapOfProduct_GroupPreYear = new Map<String,Integer>();
         Map<String,Integer> mapOfProduct_Groupcrmnth = new Map<String,Integer>();
@@ -26,11 +26,11 @@ public with sharing class PQN_Global_Overview_Category_Report{
         for(AggregateResult ar:LAGG){
             
             if (string.valueOf(ar.get('Product_Group__c')) == prevProduct_Group){
-                 xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Product_Group__c')),string.valueOf(ar.get('Product_Category__c')),False));
+                 xSUWRAPLISTGC.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Product_Group__c')),string.valueOf(ar.get('Product_Category__c')),False));
             }
             else if (string.valueOf(ar.get('Product_Group__c'))!=prevProduct_Group ){
-                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Product_Group__c')),'',True));
-                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Product_Group__c')),string.valueOf(ar.get('Product_Category__c')),False));
+                xSUWRAPLISTGC.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Product_Group__c')),'',True));
+                xSUWRAPLISTGC.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Product_Group__c')),string.valueOf(ar.get('Product_Category__c')),False));
             } 
                 prevProduct_Group = string.valueOf(ar.get('Product_Group__c'));
             
@@ -59,7 +59,7 @@ public with sharing class PQN_Global_Overview_Category_Report{
             
         }
       
-        for(PQN_Global_SUWrap xA: xSUWRAPLIST){
+        for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
           
             if (xA.Product_Category != '') {
@@ -106,7 +106,7 @@ public with sharing class PQN_Global_Overview_Category_Report{
             
         }
         
-        for(PQN_Global_SUWrap xA: xSUWRAPLIST){
+        for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
            
              if (xA.Product_Category != '') {
@@ -154,7 +154,7 @@ public with sharing class PQN_Global_Overview_Category_Report{
             
         }
         
-        for(PQN_Global_SUWrap xA: xSUWRAPLIST){
+        for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
            
              if (xA.Product_Category != '') {
@@ -201,7 +201,7 @@ public with sharing class PQN_Global_Overview_Category_Report{
             
         }
         
-        for(PQN_Global_SUWrap xA: xSUWRAPLIST){
+        for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
        
             if (xA.Product_Category != '') {
@@ -242,7 +242,7 @@ public with sharing class PQN_Global_Overview_Category_Report{
             
         }
         
-        for(PQN_Global_SUWrap xA: xSUWRAPLIST){
+        for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
         
              if (xA.Product_Category != '') {
@@ -282,7 +282,7 @@ public with sharing class PQN_Global_Overview_Category_Report{
             
         }
         
-        for(PQN_Global_SUWrap xA: xSUWRAPLIST){
+        for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
           
             if (xA.Product_Category != '') {
@@ -321,7 +321,7 @@ public with sharing class PQN_Global_Overview_Category_Report{
             
         }
         
-        for(PQN_Global_SUWrap xA: xSUWRAPLIST){
+        for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
         
             if (xA.Product_Category != '') {
@@ -360,7 +360,7 @@ public with sharing class PQN_Global_Overview_Category_Report{
             
         }
         
-        for(PQN_Global_SUWrap xA: xSUWRAPLIST){
+        for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
          
             if (xA.Product_Category != '') {

@@ -1,26 +1,85 @@
-<apex:page controller="PQN_Global_DCReport" showHeader="false" readOnly="true">
+<apex:page controller="PQN_Global_DCReport" contentType="{!If($CurrentPage.parameters.export=='yes' ,'application/vnd.ms-excel#Global_DCReport.xls','')}" showHeader="false" readOnly="true">
+    <div style="padding-left:200px;">
+    <apex:chart height="400" width="1000" data="{!xChartdata}">
+        <apex:axis type="Numeric" position="left" fields="chartdata" title="Record Count"/>
+        <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Product Category"/>
+        <apex:barSeries orientation="vertical" axis="left" xField="chartXAxis" yField="chartdata"/>
+    </apex:chart>
+    </div>
+
+<style>
+        
+
+        table {
+            width: 100%!important;
+        }
+
+        thead, tbody, tr, td, th { display: block; }
+
+        tr:after {
+            content: ' ';
+            display: block!important;
+            visibility: hidden!important;
+            clear: both!important;
+        }
+
+        thead th {
+            height: 30px!important;
+
+            /*text-align: left;*/
+        }
+
+        tbody {
+            height: 500px!important;
+            overflow-y: auto!important;
+        }
+
+        thead {
+            /* fallback */
+        }
+
+
+        tbody td, thead th {
+            width: 16%!important;
+            float: left!important;
+        }
+</style>
+
 <body>
+    
     <div id="wrapper">
-        <c:PQN_Navigation navigationName="Reports" subNavName="dcreport"/>
+        <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+            <c:PQN_Navigation navigationName="Reports" subNavName="dcreport"/>
+        </apex:outputPanel>
+        
         <div id="page-wrapper">
             <div class="container-fluid">
+           
  <apex:form >
- 
+        <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+            <a class="btn" href="./PQN_Global_DCReport?export=yes" target="_blank" role="button">Export Report</a>
+        </apex:outputPanel>
+     
       <apex:pageBlock >
-          <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" columnsWidth="20%, 20%, 20%, 20%, 20%" >
+          <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" styleclass="tableclass"   >
               <apex:column headerValue="" >
                   <apex:outputText value="{!xD.Cluster}" style="font-weight:800" rendered="{!xD.child}" />
                   <apex:outputText value="{!empty}" rendered="{!xD.child}" />
-              
-                 &nbsp; &nbsp; &nbsp; &nbsp;<apex:outputText value="{!xD.ReportingDC }"  />
+                <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                </apex:outputPanel>
+               
+               <apex:outputText value="{!xD.ReportingDC }"  />
               </apex:column>              
-              <apex:column headerValue="PY DC" value="{!xD.preYeardata}" /> 
-              <apex:column headerValue="CM DC data" value="{!xD.cumnthdata }" />
-              <apex:column headerValue="CY DC" value="{!xD.cuYeardata}" />
+              <apex:column headerValue="# DC NC PY" value="{!xD.preYeardata}" /> 
+              <apex:column headerValue="CY Target # DC NC" value="{!empty}" />
+              <apex:column headerValue="# DC NC CM" value="{!xD.cumnthdata }" />
+              <apex:column headerValue="# DC NC CY" value="{!xD.cuYeardata}" />
+              <apex:column headerValue="Trend %" value="{!empty}"/>
                
           </apex:pageblockTable>
       </apex:pageBlock>
-      
+
 </apex:form>
 </div>
             <!-- /.container-fluid -->
@@ -28,4 +87,9 @@
         <!-- /#page-wrapper -->
     </div>
 </body>
+    <style>
+        [hidden],template {
+            display: block!important;
+        }
+    </style>
 </apex:page>

@@ -40,7 +40,7 @@
                         <apex:selectOptions value="{!yearOptions}"/>
                         </apex:selectList>
                         <apex:inputField value="{!targets.Region__c}" required="true"/>
-                        <apex:inputField value="{!targets.Geography__c  }" required="true"/>
+                       <!-- <apex:inputField value="{!targets.Geography__c  }" required="true"/>-->
                         <apex:inputField value="{!targets.Target_Reduction__c}" required="true" />
                         <apex:inputField value="{!targets.Notes__c}"/>
                     </apex:pageBlockSection>

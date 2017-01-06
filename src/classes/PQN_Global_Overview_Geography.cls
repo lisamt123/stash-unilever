@@ -1,10 +1,10 @@
-public with sharing class PQN_Global_Overview_Geography{
+public without sharing class PQN_Global_Overview_Geography{
     
     public List<PQN_Global_SUWrap> xSUWRAPLIST{get;set;}
     public String empty{get;set;}
+      
     
-    
-    public PQN_Global_Overview_Geography(){
+    public PQN_Global_Overview_Geography(ApexPages.StandardController acon){
     
         empty = '';
         xSUWRAPLIST = new List<PQN_Global_SUWrap>();
@@ -16,6 +16,7 @@ public with sharing class PQN_Global_Overview_Geography{
              Map<String,Integer> mapOfRegioncrmnthtot = new Map<String,Integer>();
              Map<String,Integer> mapOfRegionprevyrtot = new Map<String,Integer>();
              Map<String,Integer> mapOfRegioncryeartot = new Map<String,Integer>();
+             Map<String,Decimal> mapOftarget = new Map<String,Decimal>();
              
               String prevRegion = '';
               Integer regionSum;
@@ -41,6 +42,11 @@ public with sharing class PQN_Global_Overview_Geography{
         
         List<AggregateResult> ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Region__c,Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Region__c != '' AND Year__c=:string.valueof(system.Today().year()-1) AND Supplier_type__c='SU' group By Region__c,cluster__c]);
        
+        List<PQN_Targets__c> listtar=new List<PQN_Targets__c>([select id,Target_Reduction__c,Region__c from PQN_Targets__c where Region__c!='' AND Year__c=:string.valueof(system.Today().year())]);
+        
+         for(PQN_Targets__c lt: listtar){
+            mapOftarget.put(lt.Region__c,lt.Target_Reduction__c);
+           } 
      
         prevRegion = '';
         regionSum = 0;
@@ -63,8 +69,11 @@ public with sharing class PQN_Global_Overview_Geography{
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
     
-              if (xA.Cluster != '') {
+            if (xA.Cluster != '') {
                 xA.cuYeardata = mapOfRegion.get(xA.Cluster);
+                if(mapOftarget.get(xA.Region)!=null){
+                 xA.cuYeartarper = mapOftarget.get(xA.Region);
+                }else{xA.cuYeartarper =0;}
               if (mapOfRegion.get(xA.Cluster) != Null){
                 temp = Double.valueOf((mapOfRegion.get(xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                 xA.cuYearPercent= temp.setscale(2);
@@ -72,6 +81,9 @@ public with sharing class PQN_Global_Overview_Geography{
             }
             else if(xA.Region!= ''){
                 xA.cuYeardata = mapOfRegion.get(xA.Region);
+                if(mapOftarget.get(xA.Region)!=null){
+                 xA.cuYeartarper = mapOftarget.get(xA.Region);
+                }else{xA.cuYeartarper =0;}
                  if (mapOfRegion.get(xA.Region) != Null){
                 temp = Double.valueOf((mapOfRegion.get(xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                 xA.cuYearPercent= temp.setscale(2);
@@ -377,6 +389,23 @@ public with sharing class PQN_Global_Overview_Geography{
         }
         
         /************************* For Current Month DC Data ****************************/
+        /************************* For Trend Calculation ************************/
+         
+         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
+         
+            if(xA.cuYeartarper ==0){
+              if(xA.cuYearPercent!=0 && xA.preYearPercent !=0){
+                xA.Trendper=((xA.cuYearPercent-xA.preYearPercent)*100/xA.preYearPercent).setscale(2);
+                }
+                 else{xA.Trendper=0;}
+              }
+            else{
+              if(xA.cuYearPercent!=0 && xA.cuYeartarper !=0){
+                xA.Trendper=((xA.cuYearPercent-xA.cuYeartarper )*100/xA.cuYeartarper).setscale(2) ;}
+                 else{xA.Trendper=0;}
+              }
+        }
+        /**************** For Trend Calculation *****************/
         
         
     }
@@ -387,7 +416,8 @@ public with sharing class PQN_Global_Overview_Geography{
         public string Region{get;set;}
         public string Cluster{get;set;}
         public Integer preYeardata {get;set;}
-        public Double preYearPercent {get;set;}
+        public Decimal preYearPercent {get;set;}
+        public Decimal cuYeartarper {get;set;}
         public Integer cuYeardata {get;set;}
         public Double cuYearPercent {get;set;}
         public Integer cumnthdata {get;set;}
@@ -397,6 +427,7 @@ public with sharing class PQN_Global_Overview_Geography{
         public Integer cumnthtotdata {get;set;}
         public Integer preYeardatatot {get;set;}
         public Integer cuYeardatatot {get;set;}
+        public Double Trendper{get;set;}
         
         public PQN_Global_SUWrap(String Region, String Cluster, Boolean child){
             this.Region= Region;

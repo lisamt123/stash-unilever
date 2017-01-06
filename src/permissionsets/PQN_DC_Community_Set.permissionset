@@ -2,7 +2,7 @@
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>Pallet_Quality_Non_Conformance</application>
-        <visible>true</visible>
+        <visible>false</visible>
     </applicationVisibilities>
     <classAccesses>
         <apexClass>PQNBatchDeleteRecords</apexClass>
@@ -74,11 +74,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_DC_Voulmes</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_DC_VoulmesTest</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_Export_Excel</apexClass>
@@ -122,11 +122,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_NewTargetExtension</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_NewTargetExtensionTest</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_Supplier_Popup_Ctlr</apexClass>
@@ -138,7 +138,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_TestLibraryUtil</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_UpdateFreezeDateOnPQN</apexClass>
@@ -170,7 +170,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_singleEntryScreen</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_singleEntryScreenTest</apexClass>
@@ -260,14 +260,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Error_Description__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Is_Error__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -297,12 +297,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Month__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Multi_Timestamp__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -352,7 +352,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Sup_type_num__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -397,7 +397,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Year__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -549,37 +549,46 @@
         <field>PQN_User_Creation_Request__c.Username__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <label>PQN Admin User</label>
+    <label>PQN DC Community Set</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>PQN_DC_Volumes__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>PQN_Pallet_Quality_Non_Conformance__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>PQN_Supplier__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>PQN_Targets__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
         <apexPage>PQN_CommunitiesSelfReg_VF</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Conformance_Detail_VF</apexPage>
@@ -591,15 +600,15 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_DCVolumesListView_VF</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_DC_Volumes_Edit_VF</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_DC_Volumes_detail_VF</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_DeleteOverride</apexPage>
@@ -631,11 +640,11 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Home</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_List_View</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_MultiEditScreen_Clone</apexPage>
@@ -643,15 +652,15 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_MultiTargets_VF</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_PalletLossTreeData</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_SingleEntryScreen_VF</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Supplier_Popup</apexPage>
@@ -659,19 +668,19 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_TargetEntryScreen_VF</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Target_Detail_VF</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Targets_List_View</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <tabSettings>
         <tab>PQN_DC_Volumes__c</tab>
-        <visibility>Visible</visibility>
+        <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
         <tab>PQN_Pallet_Quality_Non_Conformance__c</tab>
@@ -679,14 +688,14 @@
     </tabSettings>
     <tabSettings>
         <tab>PQN_Supplier__c</tab>
-        <visibility>Visible</visibility>
+        <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
         <tab>PQN_Targets__c</tab>
-        <visibility>Visible</visibility>
+        <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Pallet_Quality_Non_Conformance_VF</tab>
-        <visibility>Visible</visibility>
+        <visibility>None</visibility>
     </tabSettings>
 </PermissionSet>

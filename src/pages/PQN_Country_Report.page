@@ -7,8 +7,8 @@
  <apex:form >
    <apex:pageBlock >
      <apex:pageBlockTable value="{!mapofcountry}" var="cntry">
-     <apex:column headerValue="DC Country" value="{!cntry}"/>
-     <apex:column headerValue="Number Of Pallets" value="{!mapofcountry[cntry]}"/>
+     <apex:column headerValue="Country" value="{!cntry}"/>
+     <apex:column headerValue="Sum of Number Pallets Affected" value="{!mapofcountry[cntry]}"/>
      
     </apex:pageBlockTable>
    </apex:pageBlock>

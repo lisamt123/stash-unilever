@@ -71,6 +71,12 @@
 
 <body id="page-top" class="index">
     <apex:form id="formId">
+    <script type="text/javascript">
+        function displayFreezePage(){
+            alert('Hi rajesh');
+            window.open("apex/PQN_Update_Freeze_Period", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=300,width=600,height=500");
+        }
+    </script>
     <apex:pageMessages ></apex:pageMessages>
 
                     <!-- Navigation -->
@@ -106,85 +112,15 @@
             </ul>
             
         </nav>
-        <!-- Bootstrap Modal for Freeze Period Starts Here-->
-        <div class="panel panel-default">          
         
-                    <apex:outputPanel id="optPanel" rendered="{!$Profile.Name == 'System Administrator'}">       
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" style="float: left;background-color:darkorange;" >
-                        <span class="glyphicon glyphicon-plus-sign" /> Set Freeze Period
+        <apex:outputPanel id="optPanel" rendered="{!($Profile.Name == 'System Administrator' || $Profile.Name == 'Unilever - Force MultiApp Marketing')}">       
+                    <button type="button" style="float: left;background-color:darkorange;" onClick="displayFreezePage();">
+                         Set Freeze Period
                     </button>
-                    </apex:outputPanel>
-                    <apex:outputLabel > <marquee >Freeze Period for Current Month : {!currentMonthFreezePeriod[0].Freeze_Date__c} </marquee> </apex:outputLabel>
-                </div>
-    
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel">Freeze Period For Each Month</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label>January</label><br />
-                                    <apex:input type="date" value="{!January}"  styleClass="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>February</label><br />
-                                    <apex:input type="date"  value="{!February}"  styleClass="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>March</label><br />
-                                    <apex:input type="date"  value="{!March}"  styleClass="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>April</label><br />
-                                    <apex:input type="date" value="{!April}"  styleClass="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>May</label><br />
-                                    <apex:input type="date"  value="{!May}"  styleClass="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>June</label><br />
-                                    <apex:input type="date"  value="{!June}"  styleClass="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>July</label><br />
-                                    <apex:input type="date"  value="{!July}"  styleClass="form-control"/>
-                                </div>                              
-                                <div class="form-group">
-                                    <label>August</label><br />
-                                    <apex:input type="date"  value="{!August}"  styleClass="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>September</label><br />
-                                    <apex:input type="date"  value="{!September}"  styleClass="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>October</label><br />
-                                    <apex:input type="date"  value="{!October}"  styleClass="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>November</label><br />
-                                    <apex:input type="date"  value="{!November}"  styleClass="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>December</label><br />
-                                    <apex:input type="date"  value="{!December}"  styleClass="form-control"/>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                                                
-                                <apex:commandButton styleclass="btn btn-primary" value="Save" action="{!updateFreezePeriod}" onComplete="$('#myModal').modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove();"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-    <!-- Bootstrap Modal for Freeze Period Ends Here-->
-    <!-- Portfolio Grid Section -->
+        </apex:outputPanel>
+        <apex:outputLabel > <marquee >Freeze Period for Current Month : {!currentMonthFreezePeriod[0].Freeze_Date__c} </marquee> </apex:outputLabel>
+        
+        <!-- Portfolio Grid Section -->
     <section id="portfolio">
         <div class="container">
             <div class="row">
@@ -206,7 +142,7 @@
                     </div>
                 </div>
                 <div class="col-sm-2 portfolio-item">
-                    <a href="./PQN_MultiEditScreen_VF">
+                    <a href="./PQN_MultiEditScreen_Clone">
                         <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/mform.png')}" class="img-responsive" alt="Multiple Entry"/>
                     </a>
                     <div class="text-center">

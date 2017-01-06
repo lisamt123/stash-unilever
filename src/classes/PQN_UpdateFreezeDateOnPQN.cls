@@ -29,15 +29,19 @@ global Class PQN_UpdateFreezeDateOnPQN{
                 if(FD.Freeze_Date__c < pqn.Date_Pallet_Received__c){
                     system.debug('the record has crossed the freeze period');
                     freezedPQN.add(pqn);
+                    system.debug('the freezed PQN size is' + freezedPQN.size());
                     accIds.add(pqn.Account__c);
+                    system.debug('the account size is' + accIds.size());                    
                     system.debug('The account ID is ' + pqn.Account__c);
+
                 }               
                 
             }            
             
             //Get all the contacts from the account and get the mail Id to send the email
             List<Contact> conList = new List<Contact>();
-            conList = [select Id, Name, Email from Contact where Account.Id IN: accIds];
+            conList = [select Id, Name from Contact where account.Id IN: accIds];
+
             
             List<Id> conId = new List<Id>();
             

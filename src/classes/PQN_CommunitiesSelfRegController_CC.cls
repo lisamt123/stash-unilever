@@ -10,6 +10,7 @@ public without sharing class PQN_CommunitiesSelfRegController_CC {
     public PQN_User_Creation_Request__c pqnusr {get; set;}
     public List<RequestLine> requestLines{get;set;}
     public boolean showdcs{get; set;}
+    public boolean submitenabled{get; set;}
     
     public PQN_CommunitiesSelfRegController_CC() {
         pqnusr = new PQN_User_Creation_Request__c();
@@ -22,13 +23,19 @@ public without sharing class PQN_CommunitiesSelfRegController_CC {
        if(listacc.isEmpty()){
            ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR,'Selected country doesn\'t have DC\'s associated to it. Please contact Administrator');
            ApexPages.addMessage(msg);
+           submitenabled = false;
        }
        else{
            showdcs = true;
            requestLines = new List<RequestLine>();
            for(Account a: listacc){
-               requestLines.add(new RequestLine(a));    
-           }    
+               requestLines.add(new RequestLine(a)); 
+                  
+           } 
+           if(!requestLines.isEmpty()){
+               submitenabled =true;
+           }
+             
        }
    }
    
@@ -58,6 +65,12 @@ public without sharing class PQN_CommunitiesSelfRegController_CC {
         List<Account> desiredDCs = new List<Account>();
         if(!requestLines.isEmpty()){
             desiredDCs = getDesiredDCs();
+            if(requestLines[0].branch.pqn_country__c!=pqnusr.dc_country__c){
+                ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR,'Selected Country and DC Countries does not match. Please click Fetch DCs');
+                ApexPages.addMessage(msg);
+                errcount++;
+                return null;
+            }
         }
         else{
             ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR,'Selected Country does not have any DCs');
@@ -65,6 +78,7 @@ public without sharing class PQN_CommunitiesSelfRegController_CC {
             errcount++;
             return null;
         }
+        
         
         if(desiredDCs.isEmpty()){
             ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR,'Please select atleast one DC');
@@ -104,6 +118,7 @@ public without sharing class PQN_CommunitiesSelfRegController_CC {
             
             pqnusr = new PQN_User_Creation_Request__c();
             requestLines.clear();
+            submitenabled = false;
             return null;
         }
         catch(Exception e){

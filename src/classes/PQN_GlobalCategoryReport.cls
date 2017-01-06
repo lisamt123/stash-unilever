@@ -1,4 +1,4 @@
-public with sharing class PQN_GlobalCategoryReport{
+public without sharing class PQN_GlobalCategoryReport{
     public List<PQN_Global_SUWrap> xSUWRAPLIST{get;set;}
     public String empty{get;set;}
     public List<PQN_Pallet_Quality_Non_Conformance__c> PQNList{get;set;}
@@ -15,6 +15,7 @@ public with sharing class PQN_GlobalCategoryReport{
         Map<String,Integer> mapOfRegioncrmnthtot = new Map<String,Integer>();
         Map<String,Integer> mapOfRegionprevyrtot = new Map<String,Integer>();
         Map<String,Integer> mapOfRegioncryeartot = new Map<String,Integer>();
+        Map<String,Decimal> mapOftarget = new Map<String,Decimal>();
         
         String prevCate = '';
         String prevRegion = '';
@@ -53,6 +54,12 @@ public with sharing class PQN_GlobalCategoryReport{
         
         List<AggregateResult> ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Product_Category__c,Region__c,Cluster__c,Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Product_Category__c !=''  AND Year__c=:string.valueof(system.Today().year()) AND Supplier_type__c='SU' group By Product_Category__c,Region__c,cluster__c,Sub_Cluster__c]);
     
+         List<PQN_Targets__c> listtar=new List<PQN_Targets__c>([select id,Target_Reduction__c,Region__c from PQN_Targets__c where Region__c!='' AND Year__c=:string.valueof(system.Today().year())]);
+        
+         for(PQN_Targets__c lt: listtar){
+            mapOftarget.put(lt.Region__c,lt.Target_Reduction__c);
+           } 
+           
         prevCate = '';
         prevRegion = '';
         prevCluster = '';
@@ -99,6 +106,9 @@ public with sharing class PQN_GlobalCategoryReport{
             
             if (xA.subCluster != '') {
                 xA.cuYeardata = mapOfRegion.get(xA.Category+'-'+xA.subCluster);
+                 if(mapOftarget.get(xA.Region)!=null){
+                   xA.cuYeartarper=mapOftarget.get(xA.Region);
+                 }else{xA.cuYeartarper =0;}
                 if(mapOfRegion.get(xA.Category+'-'+xA.subCluster)!=Null){
                  temp= Double.valueOf((mapOfRegion.get(xA.Category+'-'+xA.subCluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
@@ -106,6 +116,9 @@ public with sharing class PQN_GlobalCategoryReport{
             }
             else if (xA.Cluster != '') {
                 xA.cuYeardata = mapOfRegion.get(xA.Category+'-'+xA.Cluster);
+                if(mapOftarget.get(xA.Region)!=null){
+                 xA.cuYeartarper=mapOftarget.get(xA.Region);
+                }else{xA.cuYeartarper =0;}
                 if((mapOfRegion.get(xA.Category+'-'+xA.Cluster))!=Null){
                  temp= Double.valueOf((mapOfRegion.get(xA.Category+'-'+xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
@@ -113,14 +126,17 @@ public with sharing class PQN_GlobalCategoryReport{
             }
             else if(xA.Region != ''){
                xA.cuYeardata = mapOfRegion.get(xA.Category+'-'+xA.Region);
-                if((mapOfRegion.get(xA.Category+'-'+xA.Region))!=Null){
+               if(mapOftarget.get(xA.Region)!=null){
+                xA.cuYeartarper=mapOftarget.get(xA.Region);
+               }else{xA.cuYeartarper =0;}
+               if((mapOfRegion.get(xA.Category+'-'+xA.Region))!=Null){
                  temp= Double.valueOf((mapOfRegion.get(xA.Category+'-'+xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
                 }else{ xA.cuYearPercent=0;}
             }
            else if(xA.category!=''){
                 xA.cuYeardata = mapOfRegion.get(xA.Category);
-                if(mapOfRegion.get(xA.Category+'-'+xA.Region)!=Null){
+                if(mapOfRegion.get(xA.Category)!=Null){
                  temp = Double.valueOf((mapOfRegion.get(xA.Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
                 }else{ xA.cuYearPercent=0;}
@@ -267,21 +283,21 @@ public with sharing class PQN_GlobalCategoryReport{
                 if (mapOfRegioncrmnth .get(xA.Category+'-'+xA.subCluster) != Null){
                     temp = Double.valueOf((mapOfRegioncrmnth .get(xA.Category+'-'+xA.subCluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.cumnthPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.cumnthPercent = 0; }
             }
             else if (xA.Cluster != '') {
                 xA.cumnthdata = mapOfRegioncrmnth .get(xA.Category+'-'+xA.Cluster);
                 if (mapOfRegioncrmnth .get(xA.Category+'-'+xA.Cluster) != Null){
                     temp = Double.valueOf((mapOfRegioncrmnth .get(xA.Category+'-'+xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.cumnthPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.cumnthPercent = 0; }
             }
             else if(xA.Region!=''){
                 xA.cumnthdata = mapOfRegioncrmnth .get(xA.Category+'-'+xA.Region);
                 if (mapOfRegioncrmnth .get(xA.Category+'-'+xA.Region) != Null){
                     temp = Double.valueOf((mapOfRegioncrmnth.get(xA.Category+'-'+xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.cumnthPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.cumnthPercent = 0; }
             }
              else if(xA.category!=''){
                 xA.cumnthdata = mapOfRegioncrmnth .get(xA.Category);
@@ -624,7 +640,25 @@ public with sharing class PQN_GlobalCategoryReport{
        }
         
         /************************* For Current Month DC Data ****************************/
-        
+         /************************* For Trend Calculation ************************/
+         
+         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
+         
+            if(xA.cuYeartarper ==0){
+              if(xA.cuYearPercent!=0 && xA.preYearPercent !=0){
+                xA.Trendper=((xA.cuYearPercent-xA.preYearPercent)*100/xA.preYearPercent).setscale(2);
+                }
+                 else{xA.Trendper=0;}
+              }
+            else {
+              if(xA.cuYearPercent!=0 && xA.cuYeartarper !=0){
+               if(xA.cuYeartarper!=null)
+                xA.Trendper=((xA.cuYearPercent-xA.cuYeartarper )*100/xA.cuYeartarper).setscale(2) ;}
+                 else{xA.Trendper=0;}
+              }
+              
+        }
+        /**************** For Trend Calculation *****************/
         
     }
     
@@ -638,7 +672,8 @@ public with sharing class PQN_GlobalCategoryReport{
         public string Cluster{get;set;}
         public string subCluster{get;set;}
         public Integer preYeardata {get;set;}
-        public Double preYearPercent {get;set;}
+        public decimal preYearPercent {get;set;}
+        public decimal cuYeartarper {get;set;}
         public Integer cuYeardata {get;set;}
         public Double cuYearPercent {get;set;}
         public Integer cumnthdata {get;set;}
@@ -648,6 +683,7 @@ public with sharing class PQN_GlobalCategoryReport{
         public Integer cumnthtotdata {get;set;}
         public Integer preYeardatatot {get;set;}
         public Integer cuYeardatatot {get;set;}
+        public Double Trendper{get;set;}
         
         public PQN_Global_SUWrap(String category,String Region, String Cluster, String subCluster, Boolean child, Boolean child1,Boolean child2){
             this.category= category;

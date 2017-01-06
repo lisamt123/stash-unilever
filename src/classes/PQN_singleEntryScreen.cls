@@ -1,4 +1,4 @@
-public with sharing class PQN_singleEntryScreen{
+public without sharing class PQN_singleEntryScreen{
     public PQN_Pallet_Quality_Non_Conformance__c pqn{get; set;}
     public PQN_Supplier__c sup{get;set;}
     // public PQN_DC_Volumes__c dcv{get;set;}
@@ -62,7 +62,7 @@ public with sharing class PQN_singleEntryScreen{
                 user u = [select id,country from user where id=:userinfo.getuserid()];
                 List<Account> listac = new List<Account>();
                 if(u.country!=null){
-                    listac = [select id,name,billingcountry from Account where billingcountry=:u.country];
+                    listac = [select id,name,billingcountry,pqn_country__c from Account where pqn_country__c!=null];
                 }
                 if(!listac.isEmpty()){
                     for(Account a:listac){
@@ -203,10 +203,8 @@ public with sharing class PQN_singleEntryScreen{
     public void Target_update(){
     try{
     List<PQN_Targets__c> listtar=new List<PQN_Targets__c>();
-    listtar=[select id,Target_Reduction__c,Target__c,Geography__c,Year__c,Month__c from PQN_Targets__c where 
-               Year__c=:string.valueof(pqn.Date_Pallet_Received__c.year()) AND  Geography__c=:pqn.DC_Country__c limit 1];
-      system.debug('tar-year'+string.valueof(pqn.Date_Pallet_Received__c.year()));
-     // system.debug(listtar[0]);
+    listtar=[select id,Target_Reduction__c,Target__c,Region__c,Year__c,Month__c from PQN_Targets__c where 
+               Year__c=:string.valueof(pqn.Date_Pallet_Received__c.year()) AND  Region__c=:pqn.Region__c limit 1];
      
   
      if(listtar.size()>0){
@@ -270,9 +268,7 @@ public with sharing class PQN_singleEntryScreen{
                 }else{
                     upsert pqn;
                 }
-                
-                
-                
+              
                 //PageReference redirectPage = new PageReference('/'+pqn.id);
                 PageReference redirectPage = page.PQN_Conformance_Detail_VF;
                 redirectPage.setRedirect(true);

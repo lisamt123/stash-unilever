@@ -42,6 +42,16 @@ private class PQN_GlobalGeographyReportTest{
         PQN3.Product_Group__c='Personal Care';
         PQN3.Product_Category__c='Hair Care';
         insert PQN3 ;
+        System.assertEquals(PQN3.Product_Category__c, 'Hair Care');
+        
+        PQN_Pallet_Quality_Non_Conformance__c PQN4= PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(supplier.id,acc.id,dcvolume.id);
+        PQN3.Supplier_type__c='DC';
+        PQN4.Date_Pallet_Received__c=date.newInstance(2017,1,15);
+        PQN4.SKU__c='9026734';
+        //PQN4.Product_Group__c='Personal Care';
+        PQN4.Product_Category__c='Hair Care';
+        insert PQN4 ;
+        System.assertEquals(PQN4.Product_Category__c, 'Hair Care');
      
      
      
@@ -52,7 +62,7 @@ private class PQN_GlobalGeographyReportTest{
      PQN_Global_Overview_Category_Report overviewcateary=new PQN_Global_Overview_Category_Report();
      PQN_GlobalSUReport SU=new PQN_GlobalSUReport();
      PQN_Country_Report country=new PQN_Country_Report();
-     
+     PQN_GlobalCategoryReport category=new PQN_GlobalCategoryReport();
           
      test.stoptest();
      }

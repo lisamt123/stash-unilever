@@ -10,21 +10,15 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <content>PQN_SingleEntryScreen_VF</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
-        <content>PQN_DeleteOverride</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <content>PQN_SingleEntryScreen_VF</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -36,9 +30,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>PQN_SingleEntryScreen_VF</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -50,39 +42,45 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <content>PQN_Conformance_Detail_VF</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>true</allowInChatterGroups>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <enableActivities>true</enableActivities>
+    <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>true</enableHistory>
-    <enableReports>true</enableReports>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
-        <fullName>Account__c</fullName>
+        <fullName>Approval_Status__c</fullName>
         <externalId>false</externalId>
-        <label>Account</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Pallet Quality Non Conformance</relationshipLabel>
-        <relationshipName>Pallet_Quality_Non_Conformance</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
-        <trackHistory>false</trackHistory>
+        <label>Approval Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Pending for Approval</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Cluster__c</fullName>
-        <description>Cluster to be Auto-populated based upon DC master data</description>
         <externalId>false</externalId>
         <label>Cluster</label>
         <picklist>
@@ -96,11 +94,6 @@
                 <fullName>Europe</fullName>
                 <default>false</default>
                 <controllingFieldValues>Europe</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Global</fullName>
-                <default>false</default>
-                <controllingFieldValues>Global</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Latin America</fullName>
@@ -132,48 +125,32 @@
                 <default>false</default>
                 <controllingFieldValues>Asia/RAM</controllingFieldValues>
             </picklistValues>
-            <sorted>true</sorted>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+                <controllingFieldValues>Global</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
         </picklist>
         <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Comments__c</fullName>
-        <description>Offer of corrects based on standard English</description>
-        <externalId>false</externalId>
-        <label>Comments</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Current_Month_Freeze_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Current Month Freeze Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>DC_Country__c</fullName>
-        <description>Auto-populated based upon DC master data</description>
         <externalId>false</externalId>
         <label>DC Country</label>
         <picklist>
             <controllingField>MCO__c</controllingField>
             <picklistValues>
+                <fullName>Close</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Abu Dhabi</fullName>
                 <default>false</default>
                 <controllingFieldValues>NAME</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Albania</fullName>
-                <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Algeria</fullName>
@@ -194,11 +171,6 @@
                 <fullName>Australia</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Austria</fullName>
-                <default>false</default>
-                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Azerbaijan</fullName>
@@ -231,19 +203,9 @@
                 <controllingFieldValues>SoCo</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Bosnia</fullName>
-                <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Brazil</fullName>
                 <default>false</default>
                 <controllingFieldValues>Brazil</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bulgaria</fullName>
-                <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cambodia</fullName>
@@ -283,21 +245,7 @@
             <picklistValues>
                 <fullName>Cuba</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cyprus</fullName>
-                <default>false</default>
-                <controllingFieldValues>Greece</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Czech Republic</fullName>
-                <default>false</default>
-                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Denmark</fullName>
-                <default>false</default>
-                <controllingFieldValues>Nordics</controllingFieldValues>
+                <controllingFieldValues>Mexico &amp; Cuba</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dominican Republic</fullName>
@@ -315,11 +263,6 @@
                 <controllingFieldValues>NAME</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Eire</fullName>
-                <default>false</default>
-                <controllingFieldValues>UK/IE</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>El Salvador</fullName>
                 <default>false</default>
                 <controllingFieldValues>MAR</controllingFieldValues>
@@ -328,11 +271,6 @@
                 <fullName>Fiji</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Finland</fullName>
-                <default>false</default>
-                <controllingFieldValues>Nordics</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>France</fullName>
@@ -345,24 +283,9 @@
                 <controllingFieldValues>TUI&amp;I</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Germany</fullName>
-                <default>false</default>
-                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Ghana</fullName>
                 <default>false</default>
                 <controllingFieldValues>West Africa</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Global</fullName>
-                <default>false</default>
-                <controllingFieldValues>Global</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Greece</fullName>
-                <default>false</default>
-                <controllingFieldValues>Greece</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Guatemala</fullName>
@@ -380,14 +303,8 @@
                 <controllingFieldValues>Hong Kong,Korea &amp; Taiwan</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Hungary</fullName>
-                <default>false</default>
-                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>India</fullName>
                 <default>false</default>
-                <controllingFieldValues>India</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Indonesia</fullName>
@@ -408,11 +325,6 @@
                 <fullName>Israel</fullName>
                 <default>false</default>
                 <controllingFieldValues>TUI&amp;I</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Italy</fullName>
-                <default>false</default>
-                <controllingFieldValues>Italy</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Japan</fullName>
@@ -438,11 +350,6 @@
                 <fullName>Korea</fullName>
                 <default>false</default>
                 <controllingFieldValues>Hong Kong,Korea &amp; Taiwan</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Kosovo</fullName>
-                <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Kuwait</fullName>
@@ -475,11 +382,6 @@
                 <controllingFieldValues>Benelux</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Macedonia</fullName>
-                <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Malawi</fullName>
                 <default>false</default>
                 <controllingFieldValues>Southern Africa</controllingFieldValues>
@@ -497,16 +399,7 @@
             <picklistValues>
                 <fullName>Mexico</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Moldova</fullName>
-                <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Montenegro</fullName>
-                <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
+                <controllingFieldValues>Mexico &amp; Cuba</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Morocco</fullName>
@@ -554,11 +447,6 @@
                 <controllingFieldValues>TUI&amp;I</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Norway</fullName>
-                <default>false</default>
-                <controllingFieldValues>Nordics</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Oman</fullName>
                 <default>false</default>
                 <controllingFieldValues>NAME</controllingFieldValues>
@@ -594,11 +482,6 @@
                 <controllingFieldValues>Philippines</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Portugal</fullName>
-                <default>false</default>
-                <controllingFieldValues>North America</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Puerto Rico</fullName>
                 <default>false</default>
                 <controllingFieldValues>Greater Caribbean</controllingFieldValues>
@@ -607,11 +490,6 @@
                 <fullName>Qatar</fullName>
                 <default>false</default>
                 <controllingFieldValues>NAME</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Romania</fullName>
-                <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Russia</fullName>
@@ -624,34 +502,14 @@
                 <controllingFieldValues>NAME</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Serbia</fullName>
-                <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Singapore</fullName>
                 <default>false</default>
                 <controllingFieldValues>Malaysia &amp; Singapore</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Slovakia</fullName>
-                <default>false</default>
-                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Slovenia</fullName>
-                <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>South Africa</fullName>
                 <default>false</default>
                 <controllingFieldValues>South Africa</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Spain</fullName>
-                <default>false</default>
-                <controllingFieldValues>Spain</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sri Lanka</fullName>
@@ -662,16 +520,6 @@
                 <fullName>Sudan</fullName>
                 <default>false</default>
                 <controllingFieldValues>NAME</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sweden</fullName>
-                <default>false</default>
-                <controllingFieldValues>Nordics</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Switzerland</fullName>
-                <default>false</default>
-                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Syria</fullName>
@@ -734,11 +582,6 @@
                 <controllingFieldValues>NAME</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>United Kingdom</fullName>
-                <default>false</default>
-                <controllingFieldValues>UK/IE</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>United States</fullName>
                 <default>false</default>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -751,7 +594,6 @@
             <picklistValues>
                 <fullName>Uzbekistan</fullName>
                 <default>false</default>
-                <controllingFieldValues>TUI&amp;I</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Venezuela</fullName>
@@ -778,151 +620,206 @@
                 <default>false</default>
                 <controllingFieldValues>Southern Africa</controllingFieldValues>
             </picklistValues>
-            <sorted>true</sorted>
+            <picklistValues>
+                <fullName>Eire</fullName>
+                <default>false</default>
+                <controllingFieldValues>UK/IE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>United Kingdom</fullName>
+                <default>false</default>
+                <controllingFieldValues>UK/IE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Albania</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Central Europe</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bosnia</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Central Europe</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bulgaria</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Central Europe</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kosovo</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Central Europe</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Macedonia</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Central Europe</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Moldova</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Central Europe</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Montenegro</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Central Europe</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Romania</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Central Europe</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Serbia</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Central Europe</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Slovenia</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Central Europe</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Slovakia</fullName>
+                <default>false</default>
+                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Austria</fullName>
+                <default>false</default>
+                <controllingFieldValues>DACH</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Germany</fullName>
+                <default>false</default>
+                <controllingFieldValues>DACH</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+                <controllingFieldValues>DACH</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+                <controllingFieldValues>Global</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cyprus</fullName>
+                <default>false</default>
+                <controllingFieldValues>Greece</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Greece</fullName>
+                <default>false</default>
+                <controllingFieldValues>Greece</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Italy</fullName>
+                <default>false</default>
+                <controllingFieldValues>Italy</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Denmark</fullName>
+                <default>false</default>
+                <controllingFieldValues>Nordics</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finland</fullName>
+                <default>false</default>
+                <controllingFieldValues>Nordics</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Norway</fullName>
+                <default>false</default>
+                <controllingFieldValues>Nordics</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+                <controllingFieldValues>Nordics</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lithuania</fullName>
+                <default>false</default>
+                <controllingFieldValues>Poland &amp; Baltics</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Poland</fullName>
+                <default>false</default>
+                <controllingFieldValues>Poland &amp; Baltics</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+                <controllingFieldValues>Portugal</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spain</fullName>
+                <default>false</default>
+                <controllingFieldValues>Spain</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
         </picklist>
         <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>DC_Volumes__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
+        <fullName>Email__c</fullName>
         <externalId>false</externalId>
-        <label>DC Volumes</label>
-        <referenceTo>PQN_DC_Volumes__c</referenceTo>
-        <relationshipLabel>Pallet Quality Non Conformance</relationshipLabel>
-        <relationshipName>Pallet_Quality_Non_Conformance</relationshipName>
+        <label>Email</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Date_Pallet_Received__c</fullName>
-        <description>Date on which the pallet was recieved</description>
-        <externalId>false</externalId>
-        <label>Date Pallet Received</label>
-        <required>false</required>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Date_of_Data_Entry_Per_Pallet__c</fullName>
-        <externalId>false</externalId>
-        <formula>TODAY()</formula>
-        <label>Date of Data Entry Per Pallet</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Days_Left_Before_Freeze__c</fullName>
-        <description>no of days left before user can submit before ed of month</description>
-        <externalId>false</externalId>
-        <label>Days Left Before Freeze</label>
-        <precision>2</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Email</type>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Delivery_Note_Number__c</fullName>
-        <description>The delivery number of the pallet recieved</description>
+        <fullName>First_Name__c</fullName>
         <externalId>false</externalId>
-        <label>Delivery Note Number</label>
-        <length>20</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Description__c</fullName>
-        <externalId>false</externalId>
-        <label>Name</label>
-        <length>100</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Error_Description__c</fullName>
-        <externalId>false</externalId>
-        <label>Error Description</label>
-        <length>131070</length>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Is_Error__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Is Error</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Loss_Level_4__c</fullName>
-        <externalId>false</externalId>
-        <label>Loss Level 4</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Loss_level_3__c</fullName>
-        <externalId>false</externalId>
-        <label>Loss level 3</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Losses__c</fullName>
-        <description>Losses in the Pallet NC</description>
-        <externalId>false</externalId>
-        <label>Losses</label>
+        <label>First Name</label>
         <length>80</length>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Name</label>
+        <length>80</length>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>MCO__c</fullName>
-        <description>MCO to be Auto-populated based upon DC master data</description>
         <externalId>false</externalId>
         <label>MCO</label>
         <picklist>
             <controllingField>Sub_Cluster__c</controllingField>
             <picklistValues>
+                <fullName>Close</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>ANZ</fullName>
                 <default>false</default>
                 <controllingFieldValues>ANZ</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bangladesh</fullName>
-                <default>false</default>
-                <controllingFieldValues>Bangladesh</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Benelux</fullName>
@@ -960,11 +857,6 @@
                 <controllingFieldValues>BeNeFra</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Global</fullName>
-                <default>false</default>
-                <controllingFieldValues>Global</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Greater Caribbean</fullName>
                 <default>false</default>
                 <controllingFieldValues>Mexico &amp; Greater Caribbean</controllingFieldValues>
@@ -985,11 +877,6 @@
                 <controllingFieldValues>CEE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>India</fullName>
-                <default>false</default>
-                <controllingFieldValues>India</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Indonesia</fullName>
                 <default>false</default>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
@@ -1000,19 +887,9 @@
                 <controllingFieldValues>South Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Japan</fullName>
-                <default>false</default>
-                <controllingFieldValues>Japan</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Malaysia &amp; Singapore</fullName>
                 <default>false</default>
                 <controllingFieldValues>Malaysia &amp; Singapore</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Maldives</fullName>
-                <default>false</default>
-                <controllingFieldValues>Maldives</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>MAR</fullName>
@@ -1028,11 +905,6 @@
                 <fullName>NAME</fullName>
                 <default>false</default>
                 <controllingFieldValues>NAME</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Nepal</fullName>
-                <default>false</default>
-                <controllingFieldValues>Nepal</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Nigeria</fullName>
@@ -1090,11 +962,6 @@
                 <controllingFieldValues>CEE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Southern Africa</fullName>
-                <default>false</default>
-                <controllingFieldValues>Southern Africa</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Spain</fullName>
                 <default>false</default>
                 <controllingFieldValues>South Europe</controllingFieldValues>
@@ -1129,126 +996,60 @@
                 <default>false</default>
                 <controllingFieldValues>West Africa</controllingFieldValues>
             </picklistValues>
-            <sorted>true</sorted>
+            <picklistValues>
+                <fullName>Nepal</fullName>
+                <default>false</default>
+                <controllingFieldValues>Nepal</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>India</fullName>
+                <default>false</default>
+                <controllingFieldValues>India</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bangladesh</fullName>
+                <default>false</default>
+                <controllingFieldValues>Bangladesh</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Southern Africa</fullName>
+                <default>false</default>
+                <controllingFieldValues>Southern Africa</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Japan</fullName>
+                <default>false</default>
+                <controllingFieldValues>Japan</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Maldives</fullName>
+                <default>false</default>
+                <controllingFieldValues>Maldives</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+                <controllingFieldValues>Global</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
         </picklist>
         <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>MonthN__c</fullName>
+        <fullName>Nick_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>TEXT(MONTH( Date_Pallet_Received__c ))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>MonthN</label>
+        <label>Nick Name</label>
+        <length>80</length>
         <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Month__c</fullName>
-        <externalId>false</externalId>
-        <formula>CASE(MONTH(Date_Pallet_Received__c),
-1,&quot;January&quot;,
-2,&quot;February&quot;,
-3,&quot;March&quot;,
-4,&quot;April&quot;,
-5,&quot;May&quot;,
-6,&quot;June&quot;,
-7,&quot;July&quot;,
-8,&quot;August&quot;,
-9,&quot;September&quot;,
-10,&quot;October&quot;,
-11,&quot;November&quot;,
-12,&quot;December&quot;,
-&quot;None&quot;)</formula>
-        <label>Month</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Multi_Timestamp__c</fullName>
-        <externalId>false</externalId>
-        <label>Multi Timestamp</label>
-        <length>20</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Non_compliance_reason_code__c</fullName>
-        <description>Manually keyed/ Copied in/ drop-down box based upon Pallet or Customer Loss tree.Code within product and Customer loss tree L4. Errorred if outside of valid range</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Loss Level 4</inlineHelpText>
-        <label>Non-compliance reason code</label>
-        <precision>3</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Number_of_Pallets_Per_SKU_Non_Compliant__c</fullName>
-        <description>Number of pallets per SKU that are non-compliant.</description>
-        <externalId>false</externalId>
-        <label>Number of Pallets Per SKU Non-Compliant</label>
-        <precision>5</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Product_Category__c</fullName>
-        <description>Product Category is auto-populated based upon SKU master data</description>
-        <externalId>false</externalId>
-        <label>Product Category</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Product_Group__c</fullName>
-        <description>Product Group to be auto populated based upon SKU master data</description>
-        <externalId>false</externalId>
-        <label>Product Group</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Product_Name__c</fullName>
-        <description>Product Name is auto-populated Based upon SKU master data</description>
-        <externalId>false</externalId>
-        <label>Product Name</label>
-        <length>40</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Region__c</fullName>
-        <description>Auto-populated Based upon DC master data</description>
         <externalId>false</externalId>
         <label>Region</label>
         <picklist>
@@ -1268,49 +1069,23 @@
                 <fullName>Global</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>UK</fullName>
-                <default>false</default>
-            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Reporting_DC__c</fullName>
-        <description>Auto-populated based upon user if a single DC user, Copied in, drop-down box populated with DCs based upon user</description>
-        <externalId>false</externalId>
-        <label>Reporting DC</label>
-        <length>80</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>SKU__c</fullName>
-        <description>Manually keyed/ Copied in. Validated against SKU master data. Show error if not correctly entered.</description>
-        <externalId>false</externalId>
-        <label>SKU</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Sub_Cluster__c</fullName>
-        <description>Sub-cluster to be Auto-populated based upon DC master data</description>
         <externalId>false</externalId>
         <label>Sub-Cluster</label>
         <picklist>
             <controllingField>Cluster__c</controllingField>
+            <picklistValues>
+                <fullName>Close</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>ANZ</fullName>
                 <default>false</default>
@@ -1480,229 +1255,83 @@
                 <default>false</default>
                 <controllingFieldValues>Global</controllingFieldValues>
             </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Sup_type_num__c</fullName>
+        <fullName>User_Type__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( Supplier_type__c, &apos;SU&apos;, 1,&apos;DC&apos;,2,&apos;Im/Ex&apos;,3,4 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Sup_type_num</label>
-        <precision>18</precision>
+        <label>User Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>DC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cluster</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Supplier_Number__c</fullName>
-        <description>supplier number for a supplier</description>
-        <externalId>false</externalId>
-        <label>Supplier Number</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Supplier__c</fullName>
-        <description>Auto-populated based upon SKU if a single supplier per SKU, Copied in, drop-down box populated with suppliers based upon SKU</description>
-        <externalId>false</externalId>
-        <label>Supplier Name</label>
-        <length>80</length>
-        <required>false</required>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Supplier_type__c</fullName>
-        <description>Auto populated based upon supplier Master data</description>
-        <externalId>false</externalId>
-        <label>Supplier type</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Target_Reduction__c</fullName>
-        <externalId>false</externalId>
-        <label>Target Reduction</label>
-        <precision>3</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>Targets__c</fullName>
+        <fullName>User__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Targets</label>
-        <referenceTo>PQN_Targets__c</referenceTo>
-        <relationshipLabel>Pallet Quality Non Conformance</relationshipLabel>
-        <relationshipName>Pallet_Quality_Non_Conformance</relationshipName>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>PQN_User_Creation_Requests</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Total_DC_Vol_Year__c</fullName>
+        <fullName>Username__c</fullName>
+        <caseSensitive>false</caseSensitive>
         <externalId>false</externalId>
-        <label>Total DC Vol/Year</label>
-        <precision>18</precision>
+        <label>Username</label>
+        <length>255</length>
         <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Total_NC__c</fullName>
-        <externalId>false</externalId>
-        <formula>Number_of_Pallets_Per_SKU_Non_Compliant__c  /  Total_pallets_received_by_DC__c</formula>
-        <label>Total NC %</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Total_pallets_received_by_DC__c</fullName>
-        <externalId>false</externalId>
-        <label>Total pallets received by DC</label>
-        <precision>6</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Year__c</fullName>
-        <description>Store the year of data entry</description>
-        <externalId>false</externalId>
-        <formula>TEXT (YEAR( Date_Pallet_Received__c ))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Year</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
+        <unique>true</unique>
     </fields>
-    <label>Pallet Quality Non Conformance</label>
+    <label>PQN User Creation Request</label>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>Date_of_Data_Entry_Per_Pallet__c</columns>
-        <columns>Date_Pallet_Received__c</columns>
+        <columns>User__c</columns>
+        <columns>Username__c</columns>
+        <columns>User_Type__c</columns>
         <columns>DC_Country__c</columns>
-        <columns>Reporting_DC__c</columns>
-        <columns>Supplier__c</columns>
-        <columns>SKU__c</columns>
-        <columns>Cluster__c</columns>
         <columns>Region__c</columns>
-        <columns>Product_Category__c</columns>
-        <columns>Losses__c</columns>
-        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Sub_Cluster__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>PQN</fullName>
-        <columns>NAME</columns>
-        <columns>Date_Pallet_Received__c</columns>
-        <columns>Delivery_Note_Number__c</columns>
-        <columns>Non_compliance_reason_code__c</columns>
-        <columns>Number_of_Pallets_Per_SKU_Non_Compliant__c</columns>
-        <columns>Product_Category__c</columns>
-        <columns>Product_Group__c</columns>
-        <columns>Product_Name__c</columns>
-        <columns>Reporting_DC__c</columns>
-        <columns>SKU__c</columns>
-        <columns>Supplier__c</columns>
-        <columns>Supplier_type__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>PQN</label>
-        <language>en_US</language>
+        <fullName>PQN_User_Creation_Request_Approvers_PQN_User_Creation_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>PQN User Creation Request Approvers</label>
+        <queue>PQN_User_Creation_Request_Approvers</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <nameField>
-        <displayFormat>{0}</displayFormat>
-        <label>Sequence</label>
-        <trackHistory>false</trackHistory>
+        <displayFormat>UR_{00000000}</displayFormat>
+        <label>PQN User Creation Request Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Pallet Quality Non Conformance</pluralLabel>
-    <searchLayouts>
-        <customTabListAdditionalFields>Date_Pallet_Received__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Reporting_DC__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>DC_Country__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Region__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Cluster__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Sub_Cluster__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>MCO__c</customTabListAdditionalFields>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
-        <excludedStandardButtons>Accept</excludedStandardButtons>
-    </searchLayouts>
-    <sharingModel>ControlledByParent</sharingModel>
-    <validationRules>
-        <fullName>PQN_NonEditable_Record</fullName>
-        <active>false</active>
-        <errorConditionFormula>( TODAY()  - DATEVALUE(CreatedDate )) &gt; 10</errorConditionFormula>
-        <errorMessage>Records should not be edited after 3o days</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>PQN_Validate_supplier_Number</fullName>
-        <active>false</active>
-        <errorConditionFormula>!ISNUMBER(Supplier_Number__c)</errorConditionFormula>
-        <errorDisplayField>Supplier_Number__c</errorDisplayField>
-        <errorMessage>Enter Only Number</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>PQN_Validation_ON_Date_Pallet_Received</fullName>
-        <active>false</active>
-        <description>This validation rule, will ensure that user will not enter a future date (Greater than today) for Date Pallet Received.</description>
-        <errorConditionFormula>Date_Pallet_Received__c &gt;  TODAY()</errorConditionFormula>
-        <errorDisplayField>Date_Pallet_Received__c</errorDisplayField>
-        <errorMessage>Date Pallet Received should not be greater than today&apos;s date</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>PQN_Validation_ON_SKU</fullName>
-        <active>true</active>
-        <description>This validation rule, will ensure that Product Name, Product Group and Product Category are having the correct values.</description>
-        <errorConditionFormula>NOT (REGEX( SKU__c , &quot;[0-9]+&quot;))</errorConditionFormula>
-        <errorDisplayField>SKU__c</errorDisplayField>
-        <errorMessage>SKU entered should contain only numbers.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>PQN_Validation_ON_Supplier_Name</fullName>
-        <active>false</active>
-        <description>This validation rule, will ensure that Supplier Number and Supplier Type are having the correct values.</description>
-        <errorConditionFormula>AND( ISBLANK( Supplier_Number__c  ) , ISBLANK( Supplier_type__c  )  )</errorConditionFormula>
-        <errorDisplayField>Supplier__c</errorDisplayField>
-        <errorMessage>Supplier Name entered is not valid.</errorMessage>
-    </validationRules>
+    <pluralLabel>PQN User Creation Requests</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

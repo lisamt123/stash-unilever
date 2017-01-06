@@ -1,14 +1,23 @@
-public with sharing class PQN_Global_DCReport{
+public without sharing class PQN_Global_DCReport{
     
     public List<PQN_Global_SUWrap> xSUWRAPLIST{get;set;}
+    public List<PQN_chart> xChartdata{get;set;}
     public String empty{get;set;}
       
     public PQN_Global_DCReport(){
        
+        
         empty = '';
         xSUWRAPLIST = new List<PQN_Global_SUWrap>();
+        xChartdata = new List<PQN_chart>();
         String prevClus = '';
-        
+        for( AggregateResult xD: [select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Product_Category__c category from PQN_Pallet_Quality_Non_Conformance__c where Product_Category__c!='' group By Product_Category__c order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]){
+            
+            xChartdata.add(new PQN_chart(String.valueOf(xD.get('category')),integer.valueof(xD.get('expr0'))));
+            //
+
+        }
+        system.debug('--->>>>>'+xChartdata);
         List<AggregateResult> ListAGG1=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Cluster__c,Reporting_DC__c from PQN_Pallet_Quality_Non_Conformance__c Where Cluster__c != '' AND Supplier_type__c='DC' group By cluster__c,Reporting_DC__c]);
         Map<String,String> mapOfRegions = new Map<String,String>();
         for (AggregateResult ar : ListAGG1){
@@ -26,9 +35,20 @@ public with sharing class PQN_Global_DCReport{
              
         List<AggregateResult> ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Cluster__c,Reporting_DC__c from PQN_Pallet_Quality_Non_Conformance__c Where Cluster__c != '' AND Year__c=:string.valueof(system.Today().year()) AND Supplier_type__c='DC' group By cluster__c,Reporting_DC__c Order By cluster__c]);
       
+        List<PQN_Pallet_Quality_Non_Conformance__c > listtar=new List<PQN_Pallet_Quality_Non_Conformance__c >([select Target_Reduction__c,Cluster__c from PQN_Pallet_Quality_Non_Conformance__c where Cluster__c!='' AND Year__c=:string.valueof(system.Today().year())]);
+        
         Map<String,Integer> mapOfRegioncryear = new Map<String,Integer>();
         Map<String,Integer> mapOfRegionPreYear = new Map<String,Integer>();
         Map<String,Integer> mapOfRegioncrmnth = new Map<String,Integer>();
+     //   Map<String,Decimal> mapOftarget = new Map<String,Decimal>();
+        
+        system.debug('listtar-->>'+listtar);
+        
+    /*    for(PQN_Pallet_Quality_Non_Conformance__c lt: listtar){
+            mapOftarget.put(lt.Cluster__c,lt.Target_Reduction__c);
+          }
+          
+          system.debug('mapOftarget-->>'+mapOftarget);*/
          
         prevClus = '';
         Integer clusSum = 0;
@@ -50,13 +70,18 @@ public with sharing class PQN_Global_DCReport{
             decimal temp = 0;
           
             if (xA.ReportingDC != '') {
-                xA.cuYeardata = mapOfRegioncryear .get(xA.ReportingDC );
-               }
+             if( mapOfRegioncryear .get(xA.ReportingDC )!=null){
+                xA.cuYeardata = mapOfRegioncryear.get(xA.ReportingDC );
+               // xA.cuYeartargetper=mapOftarget.get(xA.Cluster);
+               }else{xA.cuYeardata = 0;}
+            }
             else {
-                xA.cuYeardata = mapOfRegioncryear .get(xA.Cluster );
-              
-               }
-        }    
+             if( mapOfRegioncryear .get(xA.Cluster )!=null){
+                xA.cuYeardata =  mapOfRegioncryear.get(xA.Cluster);
+               // xA.cuYeartargetper=mapOftarget.get(xA.Cluster);
+               }else{xA.cuYeardata = 0;}
+            } 
+         }   
         
         /***For previous year***/  
         ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Cluster__c,Reporting_DC__c from PQN_Pallet_Quality_Non_Conformance__c Where Cluster__c != '' AND Year__c=:string.valueof(system.Today().year()-1) AND Supplier_type__c='DC' group By cluster__c,Reporting_DC__c Order By cluster__c]);    
@@ -85,12 +110,16 @@ public with sharing class PQN_Global_DCReport{
             decimal temp = 0;
           
             if (xA.ReportingDC != '') {
-                xA.preYeardata = mapOfRegionPreYear .get(xA.ReportingDC );
-             }
+             if( mapOfRegionPreYear.get(xA.ReportingDC )!=null){
+                xA.preYeardata = mapOfRegionPreYear .get(xA.ReportingDC);
+             }else{xA.preYeardata=0;}
+           }
             else {
-                xA.preYeardata = mapOfRegionPreYear .get(xA.Cluster );
-             }
-        }    
+            if( mapOfRegionPreYear.get(xA.Cluster )!=null){
+                xA.preYeardata =mapOfRegionPreYear .get(xA.Cluster);
+             }else{xA.preYeardata=0;}
+           }
+       }    
         
         /***For Current month***/  
         
@@ -120,14 +149,16 @@ public with sharing class PQN_Global_DCReport{
             decimal temp = 0;
           
             if (xA.ReportingDC != '') {
+             if( mapOfRegioncrmnth .get(xA.ReportingDC )!=null){
                 xA.cumnthdata = mapOfRegioncrmnth .get(xA.ReportingDC );
-              }
-            else {
-                xA.cumnthdata = mapOfRegioncrmnth .get(xA.Cluster );
-               
+              }else{xA.cumnthdata =0;}
             }
-         
-        }    
+            else {
+             if( mapOfRegioncrmnth .get(xA.ReportingDC )!=null){
+                xA.cumnthdata = mapOfRegioncrmnth .get(xA.Cluster);
+              }else{xA.cumnthdata =0;}
+            }
+         }    
        
     }
     
@@ -136,14 +167,28 @@ public with sharing class PQN_Global_DCReport{
         public Boolean child{get;set;}
         public string ReportingDC {get;set;}
         public string Cluster{get;set;}
-        public Integer preYeardata {get;set;}
-        public Integer cuYeardata {get;set;}
-        public Integer cumnthdata {get;set;}
+        public integer preYeardata {get;set;}
+       // public Decimal cuYeartargetper{get;set;}
+        public integer cuYeardata {get;set;}
+        public integer cumnthdata {get;set;}
                 
         public PQN_Global_SUWrap(String Cluster, String ReportingDC , Boolean child){
             this.ReportingDC = ReportingDC ;
             this.Cluster= Cluster;
             this.child= child;
+                     
+        }
+        
+    }
+    
+    public class PQN_chart{
+        
+        public String chartXAxis{get;set;}
+        public Integer chartdata {get;set;}
+                
+        public PQN_chart( String chartXAxis,integer chartdata){
+            this.chartXAxis= chartXAxis;
+            this.chartdata= chartdata;
                      
         }
         

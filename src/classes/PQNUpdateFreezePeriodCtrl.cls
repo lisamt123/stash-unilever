@@ -62,13 +62,13 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
     Public pageReference updateFreezePeriod(){
     try{
         
-        
+        /*
         //Validation : Check wheather the Freeze Date entedred by the user is not less than Today's date
             
         if( January < Date.Today() || February < Date.Today() || March < Date.Today() || April < Date.Today() || May < Date.Today() || June < Date.Today() || July < Date.Today() || August < Date.Today() || September < Date.Today() || October < Date.Today() || November < Date.Today() || December < Date.Today()){
             // display an error message to the user
         
-            ApexPages.Message myFreezeMessage = new ApexPages.Message(ApexPages.Severity.INFO,'Freeze Date should be greater than today');
+            ApexPages.Message myFreezeMessage = new ApexPages.Message(ApexPages.Severity.FATAL,'Freeze Date should be greater than today');
             ApexPages.addMessage(myFreezeMessage);
             system.debug('Not valid date');
             system.debug('Jan' + January);
@@ -79,6 +79,7 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
         
         else{
         
+        */
         
         
         //set the List of PQNFreezeDate__c and store in the list
@@ -101,7 +102,7 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
         update result;
         system.debug('The list is' + result);
         
-        }
+        
         
         
 

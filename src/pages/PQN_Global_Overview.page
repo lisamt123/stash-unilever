@@ -1,0 +1,73 @@
+<apex:page standardController="PQN_Pallet_Quality_Non_Conformance__c" extensions="PQN_Global_Overview_Geography,PQN_Global_Overview_Category_Report" showHeader="false" readOnly="true">
+<body>
+    <div id="wrapper">
+        <c:PQN_Navigation navigationName="Reports" subNavName="govgeography"/>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+ <apex:form >
+ 
+      <apex:pageBlock >
+          <apex:pageBlockSection columns="1">
+              <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" columnsWidth="22%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6% 6%" >
+                  <apex:column headerValue="Geography(All categories)" style="font-weight:200" >
+                      <apex:outputText value="{!xD.Region}" style="font-weight:800" rendered="{!xD.child}" />
+                      <apex:outputText value="{!empty}" rendered="{!xD.child}" />
+                  
+                     &nbsp; &nbsp; &nbsp; &nbsp;<apex:outputText value="{!xD.Cluster}"  />
+                  </apex:column>              
+                  <apex:column headerValue="% SU NC PY " value="{!xD.preYearPercent}" />             
+              <apex:column headerValue="# SU NC PY" value="{!xD.preYeardata}" />
+             
+              <apex:column headerValue="# TOTAL NC PY" value="{!xD.preYeardatatot }" />
+              <apex:column headerValue="CY target SU % NC" value="{!xD.cuYeartarper}" />
+              <apex:column headerValue="CY Target #NC" value="{!xD.preYeardata}" />
+              <apex:column headerValue="CM CY # SU NC" value="{!xD.cumnthdata }" />
+              <apex:column headerValue="CM CY # DC to DC NC" value="{!xD.cumnthdcdata }" />
+              <apex:column headerValue="CM CY Imported NC" value="{!xD.cumnthIEdata }" />
+              <apex:column headerValue="CM CY #TOTAL NC" value="{!xD.cumnthtotdata }" />
+              <apex:column headerValue="CM CY %SU NC" value="{!xD.cumnthPercent }" />
+              <apex:column headerValue="# Total NC CY" value="{!xD.cuYeardatatot }" />
+              <apex:column headerValue="#SU NC CY" value="{!xD.cuYeardata}" />
+              <apex:column headerValue="% SU NC CY " value="{!xD.cuYearPercent}" />
+              <apex:column headerValue="Trend % " value="{!xD.Trendper}" />
+                      
+              </apex:pageblockTable>
+          </apex:pageBlockSection>
+          
+          <apex:pageBlockSection >
+              <apex:outputText value="{!empty}"/>
+          </apex:pageBlockSection>
+          
+          <apex:pageBlockSection columns="1">
+              <apex:pageblockTable value="{!xSUWRAPLISTGC}" var="xD" columnsWidth="22%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%,6%" >
+                  <apex:column headerValue="Categories" style="font-weight:200">
+                      <apex:outputText value="{!xD.Product_Group}" style="font-weight:800" rendered="{!xD.child}" />
+                      <apex:outputText value="{!empty}" rendered="{!xD.child}" />
+                  
+                     &nbsp; &nbsp; &nbsp; &nbsp;<apex:outputText value="{!xD.Product_Category }"  />
+                  </apex:column>  
+                  <apex:column headerValue="%SU NC PY" value="{!xD.preYearPercent}" />            
+                  <apex:column headerValue="#SU NC PY" value="{!xD.preYeardata}" />
+                  <apex:column headerValue="#TOTAL NC PY" value="{!xD.preYeardatatot }" />
+                  <apex:column headerValue="CM CY #SU NC" value="{!xD.cumnthdata }" />
+                  <apex:column headerValue="CM CY #DC to DC NC" value="{!xD.cumnthdcdata }" />
+                  <apex:column headerValue="CM CY #Imported NC" value="{!xD.cumnthIEdata }" />
+                   <apex:column headerValue="CM CY #TOTAL NC" value="{!xD.cumnthtotdata }" />
+                  <apex:column headerValue="CM CY %SU NC" value="{!xD.cumnthPercent }" />
+                  <apex:column headerValue="# Total NC CY" value="{!xD.cuYeardatatot }" />
+                  <apex:column headerValue="#SU NC CY" value="{!xD.cuYeardata}" />
+                  <apex:column headerValue="%SU NC CY" value="{!xD.cuYearPercent}" />
+                  
+                  
+               </apex:pageblockTable>   
+           </apex:pageBlockSection>
+      </apex:pageBlock>
+      
+</apex:form>
+</div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+   </div>
+</body>
+</apex:page>

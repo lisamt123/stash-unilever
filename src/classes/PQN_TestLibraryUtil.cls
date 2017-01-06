@@ -85,7 +85,7 @@ public class PQN_TestLibraryUtil {
       }  
    public static PQN_Targets__c createtargets(){
        PQN_Targets__c createtar=new PQN_Targets__c();
-       createtar.Geography__c='India';
+       //createtar.Geography__c='India';
        createtar.year__c='2016';
        createtar.Region__c='Europe';
        //createtar.Target__c='India';
@@ -101,6 +101,14 @@ public class PQN_TestLibraryUtil {
       source.Year__c='2017';
       return source;
       }
+      
+       public static Contact createContact(id accid)
+       {
+           Contact cont=new Contact();
+           cont.lastname='abc';
+           cont.accountid=accid;
+           return cont;
+       }
        
        
         

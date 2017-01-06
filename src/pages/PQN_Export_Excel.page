@@ -1,0 +1,41 @@
+<apex:page controller="PQN_Export_Excel" contentType="application/vnd.ms-excel#Exported.xls" cache="true" readOnly="true">
+    <apex:pageBlock >
+        <div id="dvData">
+            <table id="exportTable">
+                <thead>
+                <tr>
+                    <th>Error Msg</th>
+                    <th>Cluster__c</th>
+                    <th>Non_compliance_reason_code__c</th>
+                    <th>Description__c</th>
+                    <th>Delivery_Note_Number__c</th>
+                    <th>DC_Country__c</th>
+                    <th>Supplier_type__c</th>
+                    <th>SKU__c</th>
+                    <th>Reporting_DC__c</th>
+                    <th>Date_Pallet_Received__c</th>
+                    
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <apex:repeat value="{!xPQN}" var="nc">
+                    <tr>
+                        <td>{!nc.Error_Description__c}</td>
+                        <td>{!nc.Cluster__c}</td>
+                        <td>{!nc.Non_compliance_reason_code__c}</td>
+                        <td>{!nc.Description__c}</td>
+                        <td>{!nc.Delivery_Note_Number__c}</td>
+                        <td>{!nc.DC_Country__c}</td>
+                        <td>{!nc.Supplier_type__c}</td>
+                        <td>{!nc.SKU__c}</td>
+                        <td>{!nc.Reporting_DC__c}</td>
+                        <td>{!nc.Date_Pallet_Received__c}</td>
+                    </tr>
+                </apex:repeat>
+                </tbody>
+          </table>
+        </div>
+        
+    </apex:pageBlock>
+</apex:page>

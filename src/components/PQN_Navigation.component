@@ -179,7 +179,7 @@
                     </li>
                
                     <li class="{!If(navigationName=='multiple_entry' ,'active','')}">
-                        <a href="./PQN_MultiEditScreen_VF"><i class="fa fa-fw fa-copy"></i> Multiple Entry</a>
+                        <a href="./PQN_MultiEditScreen_Clone"><i class="fa fa-fw fa-copy"></i> Multiple Entry</a>
                     </li>
                 
                     <li class="{!If(navigationName=='target' ,'active','')}">
@@ -230,11 +230,9 @@
                                 <a href="./PQN_Global_Category_Report">Global Category</a>
                             </li>
                             <li class="{!If(subNavName=='govgeography' ,'active','')}">
-                                <a href="./PQN_Global_Overview_Geography">Global Overview Geography</a>
+                                <a href="./PQN_Global_Overview">Global Overview</a>
                             </li>
-                            <li class="{!If(subNavName=='govcategory' ,'active','')}">
-                                <a href="./PQN_Global_Overview_Category_Report">Global Overview Category</a>
-                            </li>
+                            
                             
                         </ul>
                     </li>

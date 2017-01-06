@@ -6,22 +6,24 @@
             <div class="container-fluid">
  <apex:form >
       <apex:pageBlock >
-          <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" columnsWidth="24%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%" >
+          <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" columnsWidth="30%, 5%, 5%, 5%, 5%, 5%, 5%, 5%, 5%, 5%, 5%, 5% ,5%,5%,5%" >
               <apex:column headerValue="" >
                   <apex:outputText value="{!xD.Category}" style="font-weight:800" rendered="{!xD.child}"/>
                   <apex:outputText value="{!empty}" rendered="{!xD.child}" />
                   
-                  &nbsp; &nbsp;<apex:outputText value="{!xD.Region}" rendered="{!xD.childCluster}"/>
-                  &nbsp; &nbsp;<apex:outputText value="{!empty}" rendered="{!xD.childCluster}" />
+                   &nbsp;<apex:outputText value="{!xD.Region}" rendered="{!xD.childCluster}"/>
+                   &nbsp;<apex:outputText value="{!empty}" rendered="{!xD.childCluster}" />
                   
-                  &nbsp; &nbsp; &nbsp; &nbsp;<apex:outputText value="{!xD.Cluster}" rendered="{!xD.childsubCluster}"/>
-                  &nbsp; &nbsp; &nbsp; &nbsp;<apex:outputText value="{!empty}" rendered="{!xD.childsubCluster}" />
+                   &nbsp; &nbsp;<apex:outputText value="{!xD.Cluster}" rendered="{!xD.childsubCluster}"/>
+                   &nbsp; &nbsp;<apex:outputText value="{!empty}" rendered="{!xD.childsubCluster}" />
                   
                   <apex:outputText value="{!xD.SubCluster}" />
               </apex:column>            
               <apex:column headerValue="PY SU" value="{!xD.preYeardata}" />
               <apex:column headerValue="PY SU%" value="{!xD.preYearPercent}" />
               <apex:column headerValue="PY total" value="{!xD.preYeardatatot }" />
+              <apex:column headerValue="CY Target % SU NC" value="{!xD.cuYeartarper}" />
+              <apex:column headerValue="CY Target #NC" value="{!xD.preYeardata}" />
               <apex:column headerValue="CM SU data" value="{!xD.cumnthdata }" />
               <apex:column headerValue="CM SU %" value="{!xD.cumnthPercent }" />
               <apex:column headerValue="CM DC" value="{!xD.cumnthdcdata }" />
@@ -30,6 +32,7 @@
               <apex:column headerValue="CY SU" value="{!xD.cuYeardata}" />
               <apex:column headerValue="CY SU %" value="{!xD.cuYearPercent}" />
               <apex:column headerValue="CY Total" value="{!xD.cuYeardatatot }" />
+              <apex:column headerValue="Trend %" value="{!xD.Trendper}" />
               
                             
           </apex:pageblockTable>
