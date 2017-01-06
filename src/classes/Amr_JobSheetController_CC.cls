@@ -192,6 +192,13 @@ public with sharing class Amr_JobSheetController_CC{
             jobsheetErrorCheck = true;
             ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, message)); 
         }
+        
+        listOfBrandPosition = new List<SelectOption>();
+        listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+        
+        listOfMultiBrandPosition = new List<SelectOption>();
+        listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+        
         helperMethod();
     } 
      
@@ -296,7 +303,7 @@ Returns:
                 selectedBrandPosName = jobList.Brand_Position__r.name;
                 
                 listOfBrandPosition = new List<SelectOption>();
-                //listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+                listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
                 listOfBrandPosition.add(new selectOption(jobList.Brand_Position__r.name,jobList.Brand_Position__r.name));
                 
                 listOfBrand= new List<SelectOption>();
@@ -308,7 +315,7 @@ Returns:
                 selectedMultiBrandPosName = jobList.Multi_Brand_Positioning__r.name;
                 
                 listOfMultiBrandPosition = new List<SelectOption>();
-                //listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+                listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
                 listOfMultiBrandPosition.add(new selectOption(jobList.Multi_Brand_Positioning__r.name,jobList.Multi_Brand_Positioning__r.name));
                 
                 listOfMultiBrand= new List<SelectOption>();
