@@ -778,6 +778,11 @@
         <columns>Total_Used_Quantity__c</columns>
         <columns>Active__c</columns>
         <filterScope>Queue</filterScope>
+        <filters>
+            <field>Brand__c</field>
+            <operation>notContain</operation>
+            <value>SUN,Bertolli,R&amp;B</value>
+        </filters>
         <label>CEC North America Queue</label>
         <language>en_US</language>
         <queue>CEC_North_America_Queue</queue>
