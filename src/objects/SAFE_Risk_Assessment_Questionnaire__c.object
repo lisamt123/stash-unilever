@@ -115,44 +115,4 @@
         <lookupDialogsAdditionalFields>LAST_UPDATE</lookupDialogsAdditionalFields>
     </searchLayouts>
     <sharingModel>Read</sharingModel>
-    <webLinks>
-        <fullName>SAFE_Publish</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <linkType>javascript</linkType>
-        <masterLabel>Publish</masterLabel>
-        <openType>onClickJavaScript</openType>
-        <protected>false</protected>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
-
-var p = new sforce.SObject(&apos;SAFE_Risk_Assessment_Questionnaire__c&apos;);
-p.id = &quot;{!SAFE_Risk_Assessment_Questionnaire__c.Id}&quot;;
-p.SAFE_Status__c=&quot;{!SAFE_Risk_Assessment_Questionnaire__c.SAFE_Status__c}&quot;;
-
-
-if(p.SAFE_Status__c != &quot;Published&quot;) {
-if(confirm(&apos;Are you sure you want to publish the Questionnaire? Once published, you will not be able to edit the Questionnaire&apos;)) 
-{
-	p.SAFE_Status__c= &quot;Published&quot;;
-	//p.RecordTypeId = &quot;{!$Label.SAFE_Published_RecTypeId}&quot;;
-	result = sforce.connection.update([p]);
-	location.reload(true);
-
-
-}
-}
-
-else if(p.SAFE_Status__c == &quot;Published&quot;){
-
-alert(&quot;The Questionnaire is already published&quot;);
-location.reload(true);
-
-}
-else if(p.SAFE_Status__c == &quot;Not Published&quot;){
-//p.RecordTypeId = &quot;{!$Label.SAFE_Not_Published_RecTypeId}&quot;;
-
-result = sforce.connection.update([p]);
-location.reload(true);
-}</url>
-    </webLinks>
 </CustomObject>

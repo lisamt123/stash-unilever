@@ -1,6 +1,0 @@
-<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
-<tr valign="top" height="400" >
-<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
-<![CDATA[Dear Sir/Madam,<div><br></div><div>Risk Assessment record has been created. Find the below details for the same.</div><div>Record Id :&nbsp;{!SAFE_Risk_Assessment__c.Id}</div><div><br></div><div>Please proceed to create the Risk assessment process.</div><div><br></div><div>Thanks,</div><div>Risk Assessment Team.</div><div><br></div><div><br><div><br></div><div><br></div></div>]]></td>
-</tr>
-</table>
