@@ -1,0 +1,15 @@
+src/layouts
+src/layouts/Task-TEL Telesales Task Page Layout.layout
+src/aura/TEL_ProductInfo/TEL_ProductInfo.cmp
+src/aura/TEL_ProductInfo/TEL_ProductInfo.cmp-meta.xml
+src/aura/TEL_ProductInfo/TEL_ProductInfo.css
+src/aura/TEL_ProductInfo/TEL_ProductInfoController.js
+src/aura/TEL_ProductInfo/TEL_ProductInfoHelper.js
+src/labels
+src/labels/TELESALES.labels
+src/workflows
+src/workflows/Campaign.workflow
+src/classes
+src/classes/TEL_TelesalesBO.cls
+src/objects
+src/objects/Opportunity.object

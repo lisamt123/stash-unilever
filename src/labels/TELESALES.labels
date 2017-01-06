@@ -434,3 +434,43 @@
 	<shortDescription>TEL Subject Rescheduled Call</shortDescription>
 	<value>Call Rescheduled on</value>
 </labels>
+    <labels>
+        <fullName>TEL_Task_Telesales</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Task Telesales</shortDescription>
+        <value>TEL_Task_Telesales</value>
+    </labels>
+        <labels>
+        <fullName>TEL_Biweekly</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Biweekly</shortDescription>
+        <value>Biweekly</value>
+    </labels>
+        <labels>
+        <fullName>TEL_Monthly</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Monthly</shortDescription>
+        <value>Monthly</value>
+    </labels>
+        <labels>
+        <fullName>TEL_Completed_Task</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Completed Task</shortDescription>
+        <value>Completed</value>
+    </labels>
+        <labels>
+        <fullName>TEL_Task_Type_Call</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Task Type Call</shortDescription>
+        <value>Call</value>
+    </labels>
