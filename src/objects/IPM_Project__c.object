@@ -1302,7 +1302,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
                 <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Ben &amp; Jerrys</fullName>
+                <fullName>Ben &amp; Jerry's</fullName>
                 <default>false</default>
                 <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
@@ -4516,7 +4516,7 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ben %26 Jerrys</fullName>
+                <fullName>Ben %26 Jerry's</fullName>
                 <default>false</default>
             </values>
             <values>
