@@ -11,5 +11,6 @@ src/workflows
 src/workflows/Campaign.workflow
 src/classes
 src/classes/TEL_TelesalesBO.cls
+src/classes/TEL_TelesalesBO.cls-meta.xml
 src/objects
 src/objects/Opportunity.object
