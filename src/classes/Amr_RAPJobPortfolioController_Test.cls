@@ -16,6 +16,12 @@ public class Amr_RAPJobPortfolioController_Test {
     insert projDetail;    
     MDO_Category__c category1 = new MDO_Category__c(Name='testCat');
     insert category1;
+    Amr_Multi_Category__c multiCategory= new Amr_Multi_Category__c(name='testMultiCategory',status__c = 'Active');
+    insert multiCategory;
+    Amr_Multi_Brand_Positioning__c multiBrandPositioning = new Amr_Multi_Brand_Positioning__c(name='testMultiBrandPositioning',status__c = 'Active');
+    insert multiBrandPositioning;
+    Amr_Multi_Brand__c multiBrand = new Amr_Multi_Brand__c(name='testMultiBrand',status__c = 'Active');
+    insert multiBrand; 
     MDO_BrandPositions__c brandPos = new MDO_BrandPositions__c(product_category_id__c =category1.id);
     insert brandpos;
    
@@ -91,6 +97,7 @@ public class Amr_RAPJobPortfolioController_Test {
     jobPortFolio.categoryName=category1.id;
     jobPortFolio.brandPos=brandPos.Id;
     jobPortFolio.brandName=brand.Id;
+    jobPortFolio.multiBrandName=multiBrand.Name;
    // jobPortFolio.hideAlert();
    // jobPortFolio.unHideAlertShow();
    // jobPortFolio.unHideAlertHide();
@@ -119,6 +126,9 @@ public class Amr_RAPJobPortfolioController_Test {
     jobPortFolio.listOfBrand =brandList;
     jobPortFolio.listOfSortOptions = sortList;
     //ApexPages.currentPage().getParameters().put('id',jobDetail.Id);
+   jobPortFolio.getMultiCategoryList();
+       jobPortFolio.multiBrandPositionListData();
+     jobPortFolio.getMultiBrandList();
     jobPortFolio.getJobDetailSearch();
     jobPortFolio.brandPositionListData();
     jobPortFolio.jobSheetPageTransfer();
@@ -143,12 +153,17 @@ public class Amr_RAPJobPortfolioController_Test {
     jobPortFolio.getDisableNextForLiveJobs();
     jobPortFolio.getDisablePreviousForLiveJobs();
     jobPortFolio.getMethodToPassProjectNames();
-    
+        jobPortFolio.clearJob();
     } 
    // jobPortFolio.getTotalJobs(); //commented by me
     jobPortFolio.getTypes();
+      // jobPortFolio.PieWedgeData pwd =  new jobPortFolio.PieWedgeData();
+       
+      //  jobPortFolio.name='test';
+       // jobPortFolio.data='1234';
+       // jobPortFolio.PieWedgeData('test','1234');
    // jobPortFolio.getPieData();
-  //  jobPortFolio.getPieDataSaving();
+  // jobPortFolio.getPieDataSaving();
    // jobPortFolio.getMethodToPassProjNames();
     jobPortFolio.getAlertRecords();
   //  }
@@ -178,6 +193,7 @@ public class Amr_RAPJobPortfolioController_Test {
    jobPortFolio.getDisablePreviousForDormantJobs();
    jobPortFolio.getDisableNextForLiveJobs();
    jobPortFolio.getDisablePreviousForLiveJobs();
+   jobPortFolio.getPieData();
     system.assert(jobPortFolio.limitSizeForPriorityJobs!= null);
    }
    
