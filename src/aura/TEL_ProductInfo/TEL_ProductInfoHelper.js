@@ -10,6 +10,8 @@
             "oppId" : oppId
         });
         
+        component.set("v.enableSpinner", true);
+        
         action.setCallback(this, function(response) {
             var state = response.getState();
             if(state === "SUCCESS") {
@@ -30,6 +32,11 @@
            opp.StageName === $A.get("$Label.c.TEL_OppStageScheduled")) 
         {
             var action = component.get("c.getFullProductsList");
+            
+            action.setParams({
+                "oppId" : opp.Id 
+            });
+            
             action.setCallback(this, function(response) {
                 var state = response.getState();
                 if(state === "SUCCESS") {
@@ -65,19 +72,26 @@
             if(state === "SUCCESS") {
                 var productsList = response.getReturnValue();
                 
-                for(var prod = 0; prod < productsList.length; prod++) {
-                    for(var fullProd = 0; fullProd < fullProdList.length; fullProd++) {
-                        if(productsList[prod].productId === fullProdList[fullProd].productId) {
-                            fullProdList.splice(fullProd, 1);
+                
+                    for(var prod = 0; prod < productsList.length; prod++) {
+                        for(var fullProd = 0; fullProd < fullProdList.length; fullProd++) {
+                            if(productsList[prod].productId === fullProdList[fullProd].productId) {
+                                fullProdList.splice(fullProd, 1);
+                            }
                         }
                     }
-                }
+                
                 
                 component.set("v.wrapperProductsList", productsList);
                 component.set("v.fullWrapperProductsList", fullProdList);
                 component.set("v.renderOpenOrderView", true);
                 component.set("v.renderClosedOrderView", false);
                 component.set("v.enableSearchBar", true);
+                component.set("v.enableSpinner", false);
+                
+                if(productsList.length === 0) {    
+                    component.set("v.showWarning", true);  
+                }
             }
         });
         $A.enqueueAction(action);
@@ -101,6 +115,7 @@
                 component.set("v.wrapperProductsList", productsList);
                 component.set("v.renderOpenOrderView", false);
                 component.set("v.renderClosedOrderView", true);
+                component.set("v.enableSpinner", false);
             }
         });
         $A.enqueueAction(action);
@@ -121,6 +136,7 @@
                 component.set("v.wrapperProductsList", productsList);
                 component.set("v.renderOpenOrderView", false);
                 component.set("v.renderClosedOrderView", false);
+                component.set("v.enableSpinner", false);
             }
         });
         $A.enqueueAction(action);
@@ -167,6 +183,8 @@
     saveOrder : function(component) {
         console.log("Initiating saveOrder");
         
+        component.set("v.enableSpinner", true);
+        
         var action = component.get("c.createOrder");
         var orderedProductsList = component.get("v.selectedProductsList");
         var orderedProductsJSON = JSON.stringify(orderedProductsList);
@@ -181,6 +199,7 @@
                 component.set("v.renderSummaryTable", false);
                 component.set("v.renderOrderTable", true);
                 component.set("v.disableSendOrderButton", true);
+                component.set("v.enableSpinner", false);
             }
         });
         $A.enqueueAction(action);        
@@ -228,6 +247,7 @@
             component.set("v.wrapperProductsList", openProductsList);
             component.find("searchBox").set("v.value", "");
             component.set("v.showProductsList", false);
+            component.set("v.showWarning", false);
         }
         
         console.log("Exiting addSelectedProduct");
