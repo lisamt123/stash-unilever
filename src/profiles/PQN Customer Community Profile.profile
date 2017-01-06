@@ -558,7 +558,19 @@
         <layout>PQN_Pallet_Quality_Non_Conformance__c-PQN_Quality Conformance Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>PQN_Sourcing_Unit__c-PQN_Supplier_Unit Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PQN_Supplier__c-Supplier Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>PQN_Targets__c-PQN_Targets Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PQN_User_Account_Request__c-PQN Account Access Object Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PQN_User_Creation_Request__c-PQN User Creation Request Layout</layout>
     </layoutAssignments>
     <objectPermissions>
         <allowCreate>true</allowCreate>

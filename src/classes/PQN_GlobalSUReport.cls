@@ -11,12 +11,13 @@ public without sharing class PQN_GlobalSUReport{
         xSUWRAPLIST = new List<PQN_Global_SUWrap>();
          xChartdata = new List<PQN_chart>();
          
-          for( AggregateResult xD: [select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Product_Category__c category from PQN_Pallet_Quality_Non_Conformance__c where Product_Category__c!='' group By Product_Category__c order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc])
+          //for( AggregateResult xD: [select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Product_Category__c category from PQN_Pallet_Quality_Non_Conformance__c where Product_Category__c!='' group By Product_Category__c order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc])
+          for(AggregateResult xD:[select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Cluster__c != '' group By Cluster__c  order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc ])
       
       
         {
             
-            xChartdata.add(new PQN_chart(String.valueOf(xD.get('category')),integer.valueof(xD.get('expr0'))));
+            xChartdata.add(new PQN_chart(String.valueOf(xD.get('Cluster__c')),integer.valueof(xD.get('expr0'))));
             //
 
         }
