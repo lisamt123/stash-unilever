@@ -76,6 +76,7 @@ src/tabs/SAFE_Case_Study__c.tab
 src/workflows
 src/workflows/SAFE_Risk_Assessment__c.workflow
 src/email
+src/email/SAFE_Emails-meta.xml
 src/email/SAFE_Emails
 src/email/SAFE_Emails/SAFE_Risk_Assessment_Status.email
 src/email/SAFE_Emails/SAFE_Risk_Assessment_Status.email-meta.xml
