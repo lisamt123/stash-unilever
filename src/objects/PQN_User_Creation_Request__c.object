@@ -1317,15 +1317,6 @@
         <label>All</label>
         <language>en_US</language>
     </listViews>
-    <listViews>
-        <fullName>PQN_User_Creation_Request_Approvers_PQN_User_Creation_Request</fullName>
-        <filterScope>Queue</filterScope>
-        <label>PQN User Creation Request Approvers</label>
-        <queue>PQN_User_Creation_Request_Approvers</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
     <nameField>
         <displayFormat>UR_{00000000}</displayFormat>
         <label>PQN User Creation Request Name</label>

@@ -5,15 +5,15 @@
                 <thead>
                 <tr>
                     <th>Error Msg</th>
-                    <th>Cluster__c</th>
-                    <th>Non_compliance_reason_code__c</th>
-                    <th>Description__c</th>
-                    <th>Delivery_Note_Number__c</th>
-                    <th>DC_Country__c</th>
-                    <th>Supplier_type__c</th>
-                    <th>SKU__c</th>
-                    <th>Reporting_DC__c</th>
-                    <th>Date_Pallet_Received__c</th>
+                    <th>Cluster</th>
+                    <th>Loss Code #</th>
+                    <th>Description</th>
+                    <th>Delivery Note Code</th>
+                    <th>Reported Rep DC Country</th>
+                    <th>Supplier Type</th>
+                    <th>Product Number (SKU)</th>
+                    <th>Reporting DC</th>
+                    <th>Date</th>
                     
                     
                 </tr>

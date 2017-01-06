@@ -1,10 +1,12 @@
 public without sharing class PQN_GlobalGeographyReport{
   
     public List<PQN_Global_SUWrap> xSUWRAPLIST{get;set;}
+    public List<PQN_chart> xChartdata{get;set;}
     public String empty{get;set;}
    
     public PQN_GlobalGeographyReport(){
          empty = '';
+           xChartdata = new List<PQN_chart>();
          xSUWRAPLIST = new List<PQN_Global_SUWrap>();
          Map<String,Integer> mapOfRegion = new Map<String,Integer>();
          Map<String,Integer> mapOfRegionPreYear = new Map<String,Integer>();
@@ -20,6 +22,14 @@ public without sharing class PQN_GlobalGeographyReport{
         String prevCluster='';
         Integer regionSum;
         Integer clusterSum;
+        
+          //for( AggregateResult xD: [select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Product_Category__c category from PQN_Pallet_Quality_Non_Conformance__c where Product_Category__c!='' group By Product_Category__c order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]){
+         for( AggregateResult xD: [select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Region__c from PQN_Pallet_Quality_Non_Conformance__c where Region__c!=''  group By Region__c order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]){ 
+            
+            xChartdata.add(new PQN_chart(String.valueOf(xD.get('Region__c')),integer.valueof(xD.get('expr0'))));
+            //
+
+        }
      
         List<AggregateResult> LAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Region__c,Cluster__c,Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c where Region__c!=''  group By Region__c,cluster__c,Sub_Cluster__c]);
         
@@ -552,6 +562,19 @@ public without sharing class PQN_GlobalGeographyReport{
             this.child= child;
             this.childCluster= child1;
             
+        }
+        
+    }
+    
+    public class PQN_chart{
+        
+        public String chartXAxis{get;set;}
+        public Integer chartdata {get;set;}
+                
+        public PQN_chart( String chartXAxis,integer chartdata){
+            this.chartXAxis= chartXAxis;
+            this.chartdata= chartdata;
+                     
         }
         
     }

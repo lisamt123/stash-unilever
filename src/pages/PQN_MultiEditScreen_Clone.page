@@ -157,7 +157,7 @@
                 if(roaHeader.length>0){
                             
                     if(selectedFile =="Unilever"){
-                       var UnileverHeader= ["Cluster__c", "Loss Code #", "Description", "Delivery Note Code", "Reported Rep DC Country", "Supplier Type", "Product Number (SKU)", "Reporting DC", "Date"];
+                       var UnileverHeader= ["Cluster", "Loss Code #", "Description", "Delivery Note Code", "Reported Rep DC Country", "Supplier Type", "Product Number (SKU)", "Reporting DC", "Date"];
                        checkValidFile(UnileverHeader, roaHeader,totalrecord);
                     }
                     if(selectedFile =="Cannock"){
