@@ -5,9 +5,13 @@ src/classes/IPM_FinancialControllerSoftVldtns_Test.cls-meta.xml
 src/components
 src/components/IPM_Risk_QuestionnaireView.component
 src/components/IPM_Risk_QuestionnaireView.component-meta.xml
+src/objects
+src/objects/IPM_Project__c.object
 src/pages
 src/pages/IPM_GateDocumentPDFDownload.page
 src/pages/IPM_GateDocumentPDFDownload.page-meta.xml
+src/reportTypes
+src/reportTypes/BB_BD_Report.reportType
 src/staticresources
 src/staticresources/IPM_Resource.resource
 src/staticresources/IPM_Resource.resource-meta.xml
