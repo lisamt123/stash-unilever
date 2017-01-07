@@ -102,6 +102,10 @@ public class Amr_JobSheetController_Test{
             List<selectOption> options = new List<selectOption>();
             options.add(new SelectOption(String.valueOf(currencyConversion.Currency_Unit_To_Euro__c),currencyConversion.Name+'-'+currencyConversion.Currency_Unit__c));
             
+            jobAllocation.currencyMap=NULL;
+            
+            List<selectOption> optionsTest = jobAllocation.currencyRecords;
+            
             Amr_JobSheetController_CC.rapAllocateCheck = false;
             jobAllocation.jobId=jobDetail.Id;
             jobAllocation.jobSharedList = jobSharedDetailList;
@@ -121,6 +125,7 @@ public class Amr_JobSheetController_Test{
             jobAllocation.brandPosName = Amr_ConstantForAdManager.TESTBRANDPOSITION;
             jobAllocation.brandNameFromPage = Amr_ConstantForAdManager.TESTBRANDNAME;
             jobAllocation.updateJob();
+            jobAllocation.validateSuccess=true;            
             jobAllocation.updateJobForNotes();
             jobAllocation.reallocateRAP(); 
             jobAllocation.recordShare();
@@ -166,6 +171,7 @@ public class Amr_JobSheetController_Test{
             
             //  jobAllocation.listOfSelectedUsername=userStr;
             jobAllocation.reAllocate();
+            jobAllocation.reAllocateSecRAP();
             jobAllocation.validateJobList();
             jobAllocation.makeAcceptanceEmailFalse();
             FeedItem FI = new FeedItem();

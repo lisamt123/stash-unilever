@@ -1059,14 +1059,16 @@ Purpose: Method to get all the brand positions on the basis of selected category
 Parameters: 
 Returns: List of select options
 
-************************************************************************************************************************************/   
+************************************************************************************************************************************/ 
+/*  
     public List<SelectOption> getBrandPositioningList(){    
                 
         listOfBrandPosition = new List<SelectOption>();
         listOfBrandPosition.add(new selectOption(jobList.Brand_Position__r.name,jobList.Brand_Position__r.name));
         return listOfBrandPosition;
          
-    }   
+    }
+*/	
     
     public PageReference   brandPositionListData(){    
        
@@ -1141,14 +1143,16 @@ Purpose: Method to get all the brand positions on the basis of selected category
 Parameters: 
 Returns: List of select options
 
-************************************************************************************************************************************/   
+************************************************************************************************************************************/  
+/* 
     public List<SelectOption> getMultiBrandPositioningList(){    
                 
         listOfMultiBrandPosition= new List<SelectOption>();
         listOfMultiBrandPosition.add(new selectOption(jobList.Multi_Brand_Positioning__r.name,jobList.Multi_Brand_Positioning__r.name));
         return listOfMultiBrandPosition;
          
-    }   
+    }  
+*/	
     
     public PageReference  multiBrandPositionListData(){    
        
