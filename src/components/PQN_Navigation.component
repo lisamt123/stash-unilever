@@ -213,7 +213,7 @@
                     
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo1" class="" style="{!If(navigationName=='Reports' ,'color: #fff; background-color: #004976;','')}" aria-expanded="true"><i class="fa fa-fw fa-th-list"></i> Reports<i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo1" class="collapse in" aria-expanded="true">
+                        <ul id="demo1" class="collapse in" aria-expanded="true" style="width: 150px;">
                             <li class="{!If(subNavName=='countryreport' ,'active','')}">
                                 <a href="./PQN_Country_Report">Country</a>
                             </li>
@@ -261,11 +261,11 @@
               $("#navbar_toggle").removeClass( "navbar-toggle false" ).addClass("navbar-toggle true");
               $("#navbar_toggle").css({"transform": "rotate(-90deg)","margin-left": "1px"});
               $("#wrapper").css({"padding-left": "40px"});
-              $(".side-nav").css({"left": "202px", "width": "58px"});
+              $(".side-nav").css({"left": "202px", "width": "73px"});
               
           }else{
               $("#navbar_toggle").removeClass( "navbar-toggle true" ).addClass("navbar-toggle false");
-              $("#navbar_toggle").css({"transform": "rotate(0deg)","margin-left": "50px"});
+              $("#navbar_toggle").css({"transform": "rotate(0deg)","margin-left": "65px"});
               $("#wrapper").css({"padding-left": "175px"});
               $(".side-nav").css({"left": "210px", "width": "175px"});
           }

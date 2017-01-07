@@ -94,10 +94,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PQN_GlobalGeographyReportTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PQN_GlobalSUReport</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -151,10 +147,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_UploadNCData_Clone</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>PQN_UploadNCData_CloneTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>

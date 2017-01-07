@@ -1,4 +1,59 @@
 <apex:page controller="PQN_Country_Report" showHeader="false" readOnly="true">
+<div style="padding-left:200px;">
+    <apex:chart height="400" width="1000" data="{!xChartdata}">
+       <apex:axis type="Numeric" position="left" fields="chartdata" title="Record Count"/>
+        <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Region"/>
+        <apex:barSeries orientation="vertical" axis="left" xField="chartXAxis" yField="chartdata"/>
+    </apex:chart>
+    </div>
+<style>
+        
+
+        table {
+            width: 100%!important;
+        }
+
+        thead, tbody, tr, td, th { display: block; }
+
+        tr:after {
+            content: ' ';
+            display: block!important;
+            visibility: hidden!important;
+            clear: both!important;
+        }
+
+        thead th {
+            height: 60px!important;
+        }
+        
+        tbody td {
+            height: 30px!important;
+            //text-align: center;
+            
+        }
+
+        tbody {
+            height: 500px!important;
+            overflow-y: auto!important;
+        }
+
+        thead {
+            /* fallback */
+        }
+        tbody td, thead th {
+            width: 6%!important;
+            float: left!important;
+            white-space: normal!important;
+            
+        }
+
+        tbody td:first-child, thead th:first-child {
+            width: 16%!important;
+            float: left!important;
+        }
+        
+        
+</style>
 
 
 <body>
@@ -21,5 +76,10 @@
         <!-- /#page-wrapper -->
     </div>
 </body>  
+<style>
+        [hidden],template {
+            display: block!important;
+        }
+    </style>
 
 </apex:page>
