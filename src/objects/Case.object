@@ -4673,33 +4673,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_France_Ang_lique</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.FIRST_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New,In Progress,Review Needed,On Hold,Reopened</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.FIRST_NAME</field>
-            <operation>equals</operation>
-            <value>Angélique</value>
-        </filters>
-        <label>CEC France : Angélique</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_France</role>
-            <role>CEC_User_France</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_France_Aur_lia</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -4722,7 +4695,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC France : Aurélia</label>
         <language>en_US</language>
         <sharedTo>
-            <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
     </listViews>
@@ -4824,7 +4796,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC France : Betty</label>
         <language>en_US</language>
         <sharedTo>
-            <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
     </listViews>
@@ -4899,7 +4870,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC France : Florent</label>
         <language>en_US</language>
         <sharedTo>
-            <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
     </listViews>
@@ -4916,7 +4886,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>,New,In Progress,Reopened,Awaiting Information from Consumer</value>
+            <value>,New,In Progress,Reopened</value>
         </filters>
         <filters>
             <field>CORE.USERS.FIRST_NAME</field>
@@ -4926,7 +4896,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC France : Méline</label>
         <language>en_US</language>
         <sharedTo>
-            <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
     </listViews>
@@ -4953,7 +4922,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC France : Nadège</label>
         <language>en_US</language>
         <sharedTo>
-            <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
     </listViews>
@@ -5006,7 +4974,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC France : Thibaut</label>
         <language>en_US</language>
         <sharedTo>
-            <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
     </listViews>
@@ -6571,9 +6538,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <booleanFilter>1 AND 2</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
-        <columns>Case_Brand__c</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
+        <columns>Case_Brand__c</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
@@ -8099,11 +8066,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Saskia</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
             <value>Rebe</value>
         </filters>
         <filters>
@@ -8114,7 +8076,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Anja</value>
+            <value>csaue</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Ute</value>
         </filters>
         <label>DACH Vacation Queue 3</label>
         <language>en_US</language>
