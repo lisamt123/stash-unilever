@@ -4,7 +4,7 @@
         
         var searchKey = event.getParam("searchKey");
         var fullProdList = component.get("v.fullWrapperProductsList");
-        var searchedProdList = component.get("v.searchedProductsList");
+        var searchedProdList = [];
         
         for(var counter = 0; counter < fullProdList.length; counter++) {
             var prodName = "" + fullProdList[counter].name;

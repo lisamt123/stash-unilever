@@ -454,7 +454,7 @@
         <fullName>Brand_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports for the Brands.</description>
         <externalId>false</externalId>
-        <formula>IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;Unilever Corporate&apos;, Case_Brand__c )</formula>
+        <formula>Case_Brand__c</formula>
         <label>Brand Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -546,7 +546,7 @@
         <fullName>CEC_Product_Reporting_Name__c</fullName>
         <description>CEC : This field is used to create Reports for the Products with size.</description>
         <externalId>false</externalId>
-        <formula>If(isPacksizeKnown__c == TRUE, CEC_Product__r.Consumer_Product_Descriptor_Local_Lang__c , IF(isPacksizeKnown__c ==FALSE &amp;&amp; isVariantKnown__c ==TRUE, Consumer_Product_Descriptor_no_size__c ,IF( isVariantKnown__c == FALSE &amp;&amp; isFormKnown__c == TRUE, CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;Unilever Corporate&apos; ,Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))))</formula>
+        <formula>If(isPacksizeKnown__c == TRUE, CEC_Product__r.Consumer_Product_Descriptor_Local_Lang__c , IF(isPacksizeKnown__c ==FALSE &amp;&amp; isVariantKnown__c ==TRUE, Consumer_Product_Descriptor_no_size__c ,IF( isVariantKnown__c == FALSE &amp;&amp; isFormKnown__c == TRUE, CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c,Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c)))</formula>
         <label>CEC Product Reporting Name</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -558,7 +558,7 @@
         <fullName>CEC_Product_Reporting_Name_no_size__c</fullName>
         <description>CEC : This field is used to create Reports with Products without size</description>
         <externalId>false</externalId>
-        <formula>If( isVariantKnown__c == TRUE, CEC_Product__r.Consumer_Product_Descriptor_no_size__c , If( isVariantKnown__c == FALSE &amp;&amp; isFormKnown__c == TRUE, CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;Unilever Corporate&apos; ,Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c)))</formula>
+        <formula>If( isVariantKnown__c == TRUE, CEC_Product__r.Consumer_Product_Descriptor_no_size__c , If( isVariantKnown__c == FALSE &amp;&amp; isFormKnown__c == TRUE, CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c,Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))</formula>
         <label>CEC Product Reporting Name (no size)</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1709,7 +1709,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L0_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L0 Products.</description>
         <externalId>false</externalId>
-        <formula>IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;, &apos;&apos;, L0_Product_Category__c)</formula>
+        <formula>L0_Product_Category__c</formula>
         <label>L0 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1734,7 +1734,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L1_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L1 Products.</description>
         <externalId>false</externalId>
-        <formula>IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;, &apos;&apos;, L1_Product_Category__c)</formula>
+        <formula>L1_Product_Category__c</formula>
         <label>L1 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1759,7 +1759,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L2_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L2 Products.</description>
         <externalId>false</externalId>
-        <formula>IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;, &apos;&apos;, L2_Product_Category__c)</formula>
+        <formula>L2_Product_Category__c</formula>
         <label>L2 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1784,7 +1784,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L3_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L3 Products.</description>
         <externalId>false</externalId>
-        <formula>IF(isFormKnown__c == TRUE, L3_Product_Category__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;&apos;, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))</formula>
+        <formula>IF(isFormKnown__c == TRUE, L3_Product_Category__c,Case_Brand__c + &apos; – &apos; + L2_Product_Category__c)</formula>
         <label>L3 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1809,7 +1809,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L4_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L4 Products</description>
         <externalId>false</externalId>
-        <formula>IF(isFormKnown__c == TRUE, L4_Product_Category__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;&apos;, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))</formula>
+        <formula>IF(isFormKnown__c == TRUE, L4_Product_Category__c, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c)</formula>
         <label>L4 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1846,7 +1846,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L5_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L5 Products.</description>
         <externalId>false</externalId>
-        <formula>IF(isFormKnown__c == TRUE, L5_Product_Category__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;&apos;, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))</formula>
+        <formula>IF(isFormKnown__c == TRUE, L5_Product_Category__c, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c)</formula>
         <label>L5 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1871,7 +1871,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L6_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L6 products</description>
         <externalId>false</externalId>
-        <formula>IF(isFormKnown__c == TRUE, L6_Product_Category__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;&apos;, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))</formula>
+        <formula>IF(isFormKnown__c == TRUE, L6_Product_Category__c, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c)</formula>
         <label>L6 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1896,7 +1896,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L7_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L7 products</description>
         <externalId>false</externalId>
-        <formula>IF(isFormKnown__c == TRUE, L7_Product_Category__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;&apos;, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))</formula>
+        <formula>IF(isFormKnown__c == TRUE, L7_Product_Category__c,Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c)</formula>
         <label>L7 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
