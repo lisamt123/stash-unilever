@@ -396,14 +396,18 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
 	                profitBeforeOverheads = setRowValuestoField(field);                       
 	        }   
 	    }
-    
-        fy.put(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(valueMarketShare));
-	fy.put(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(turnover));
-	fy.put(IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(grossProfit ));
-	fy.put(IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(advertisingPromotions));
-	fy.put(IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(profitBeforeOverheads));
-	fyearTmp = assignVolumevaluesGlobal(mapfields,fy,vol);
-        
+	    fy.put(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(valueMarketShare));
+	    fy.put(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(turnover));
+	    fy.put(IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(grossProfit ));
+	    fy.put(IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(advertisingPromotions));
+	    fy.put(IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(profitBeforeOverheads));
+	    if(pspan.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)){
+	    	fyearTmp = assignVolumevaluesGlobal(mapfields,fy,vol);
+	    }else if(pspan.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)){
+	    	fyearTmp = AssignVolumeValuesRegional(mapfields,fy,vol);
+	    }else if(pspan.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_SPAN_LOCAL)){
+	    	fyearTmp = AssignVolumeValuesLocal(mapfields,fy,vol);
+	    }
     	return fyearTmp;
     }
     

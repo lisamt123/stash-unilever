@@ -3138,7 +3138,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     
     public void populateVolumeType(IPM_FinancialWrapper finWrapper)
     {
-        String volumeUnit = (String) currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
+        String volumeUnit = (String) IPMFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
         if(volumeUnit!=null && volumeUnit.equalsIgnoreCase(IPM_ConstantUtils.TotalTons))    
         {
             finWrapper.y0VolumeTons = finWrapper.y0Volume;
