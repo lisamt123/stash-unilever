@@ -764,7 +764,7 @@
                                 {!$Label.IPM_Market_Place_Activity}{!$Label.IPM_COLON}
                             </td>      
                             <td>                   
-                                <apex:outputText value="{!project.IPM_ProjectSubType__c}"/>
+                                <apex:outputText value="{!project.IPM_Answer_of_Q1__c}"/>
                             </td>
                             
                             <td class="label">

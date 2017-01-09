@@ -254,7 +254,7 @@ public with sharing class IPM_GateDocumentController {
     }
     
     public void initializeVariables() { 
-        project=[SELECT id, IPM_ProjectGKM__c, IPM_Project_Name__C,IPM_Project_Type__c,IPM_Phase__C,IPM_Bosscard__c,IPMProject_Span__c,IPM_Bosscard_Status__c,IPM_GateKeeping_Model__c,
+        project=[SELECT id, IPM_ProjectGKM__c,IPM_Answer_of_Q1__c, IPM_Project_Name__C,IPM_Project_Type__c,IPM_Phase__C,IPM_Bosscard__c,IPMProject_Span__c,IPM_Bosscard_Status__c,IPM_GateKeeping_Model__c,
                  IPM_Parent_Project__c,IPM_Project_Logo__c,IPM_Brand_Positioning__c,IPM_Category_Icon__c,IPM_Category_Text__c,IPM_Parent_Project__r.IPM_Project_Name__c,Exempt_from_Threshold__c ,
                  IPM_EligibleForReactivation__c,IPM_Threshold_Status__c,IPM_CancelStoppingProjectTill__c,IPM_SourceProjectType__c,IPM_Stopped_Date_Time__c,IPM_PrepareForArchival__c,
                  Is_Archieved__c ,IPM_Parent_Project__r.IPM_Project_Type__c,IPM_Actual_Launch_Date__c,IPM_CompanyCardText__c,IPM_Current_Document_Status__c ,IPM_Document_Update_Date__c ,IPM_Document_Update_Comments__c,
