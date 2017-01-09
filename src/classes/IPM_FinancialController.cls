@@ -3660,10 +3660,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
             Map<String,String> finExtIdRedCellsMap= new Map<String,String>();
             Map<String,String> finExtIdYellowCellsMap= new Map<String,String>();
-        
-        
 
-            
             //if there are are more than one fiancials only then proceed
             //this is because if there is only fianncial , then it means that no rollouts have been created for the project.
             //so only the Global consolidated financial is existing for the project
@@ -3677,10 +3674,42 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 //used map to avoid the duplicate Id error (becuase of child financial years fetch) while the update operation 
                 Map<Id,IPM_Financial__c> toUpdateFinancialsMap = new Map<Id,IPM_Financial__c>();
                 
-                //Query to fecth all the Consolidated financials for the project
-                String consolidatedFinQuery = 'Select Id,Financial_External_ID__c,Red_Validation_Cells_Global__c,Red_Validation_Cells_Regional__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Global__c,Yellow_Validation_Cells_Regional__c,Yellow_Validation_Cells_Local__c from IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.Source_Rollout_External_Id__c+'\\_%CONSOLIDATED\' AND RecordType.name = \'Consolidated\' AND isActive__c = true Limit 1000';
                 
-                String existingRedCells = IPM_ConstantUtils.BLANK;
+                processConsolidatedFinVaildation(toUpdateFinancialsMap,finExtIdRedCellsMap,finExtIdYellowCellsMap);
+                
+                if(toUpdateFinancialsMap != null && !toUpdateFinancialsMap.isEmpty() ){
+                    update toUpdateFinancialsMap.Values();
+                }
+                
+                if(finCounter <= BATCH_SIZE ){
+                initializeFinancials();
+            }
+                
+            }
+        }
+        
+        
+        catch (Exception eX){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                    'Consolidated    Fianncials Soft Validations',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+            isError = true;
+            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            System.debug('==> '+ex);
+        }
+         
+    }
+    
+    /**********************************************************************************************************
+    * Code to set the erroneous cell names in the consolidated financials on creation/page load of financials
+    * Method fetches all the financials, generates corresponding financial year wrappers and then validations(Innovation and calendar and Summary table Validations) are run
+    * These validation give the list of Red and Yellow erroneous cells (comma seperated string)
+    ************************************************************************************************************************/
+    
+    private void processConsolidatedFinVaildation(Map<Id,IPM_Financial__c> toUpdateFinancialsMap,Map<String,String> finExtIdRedCellsMap, Map<String,String> finExtIdYellowCellsMap){
+    	 //Query to fecth all the Consolidated financials for the project
+    	 String consolidatedFinQuery = 'Select Id,Financial_External_ID__c,Red_Validation_Cells_Global__c,Red_Validation_Cells_Regional__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Global__c,Yellow_Validation_Cells_Regional__c,Yellow_Validation_Cells_Local__c from IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.Source_Rollout_External_Id__c+'\\_%CONSOLIDATED\' AND RecordType.name = \'Consolidated\' AND isActive__c = true Limit 1000';
+    	
+		 String existingRedCells = IPM_ConstantUtils.BLANK;
                 String existingYellowCells = IPM_ConstantUtils.BLANK;
                   
                 for(IPM_Financial__c currentFin: Database.query(consolidatedFinQuery)){
@@ -3710,24 +3739,32 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                             uniqueYellowCellsStr = uniqueYellowCellsStr + yellowStr + IPM_ConstantUtils.SEMICOLON;
                         }
 
-			existingRedCells = (String) currentFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
-			existingYellowCells = (String) currentFin.get(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
+                  existingRedCells = (String) currentFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
+                  existingYellowCells = (String) currentFin.get(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
+                  
+                  if(!String.isBlank(existingRedCells)){
+                    existingRedCells = existingRedCells.removeEnd(';')+IPM_ConstantUtils.BLANK;
+                  }
+                  
+                  if(!String.isBlank(existingYellowCells)){
+                    existingYellowCells = existingYellowCells.removeEnd(';')+IPM_ConstantUtils.BLANK;
+                  }
  
                         //During processing of the first batch, overwrite the existing values in the fields
                         if(finCounter == BATCH_SIZE || finCounter < BATCH_SIZE ){
-                        	
-                        	currentFin.put(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,uniqueRedCellsStr);
-	                        currentFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,uniqueYellowCellsStr);
-	                        currentFin.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,(((String)currentFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).length() > 1));
+                            
+                            currentFin.put(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,uniqueRedCellsStr);
+                            currentFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,uniqueYellowCellsStr);
+                            currentFin.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,(((String)currentFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).length() > 1));
                         
                         }
                         
                         ////During processing of the subsequent batches, append the new values to the  existing values in the fields
                         else{
-                        	currentFin.put(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingRedCells+uniqueRedCellsStr);
-	                        currentFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingYellowCells+uniqueYellowCellsStr);
-	                        currentFin.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,(((String)currentFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).length() > 1));
-	                        
+                            currentFin.put(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingRedCells+uniqueRedCellsStr);
+                            currentFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingYellowCells+uniqueYellowCellsStr);
+                            currentFin.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,(((String)currentFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).length() > 1));
+                            
                         }
                         
                         toUpdateFinancialsMap.put(currentFin.Id,currentFin);
@@ -3735,26 +3772,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     }
                     
                 }
-                
-                if(toUpdateFinancialsMap != null && !toUpdateFinancialsMap.isEmpty() ){
-                    update toUpdateFinancialsMap.Values();
-                }
-                
-                if(finCounter <= BATCH_SIZE ){
-	    		initializeFinancials();
-			}
-                
-        	}
-        }
-        
-        
-        catch (Exception eX){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-                    'Consolidated Fianncials Soft Validations',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
-            isError = true;
-            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-        }
-        
     }
     
     /**************************************************************************************************************
