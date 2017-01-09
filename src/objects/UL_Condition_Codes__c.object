@@ -30,9 +30,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>UL_WorkfllowThresholdTemplatePage</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -49,155 +47,133 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>This object is related too Workflow Threshold template</description>
-    <enableActivities>true</enableActivities>
+    <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>true</enableHistory>
-    <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
-        <fullName>UL_Active__c</fullName>
-        <defaultValue>false</defaultValue>
+        <fullName>UL_Compensation_Model__c</fullName>
         <externalId>false</externalId>
-        <label>Active</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>UL_Compare_Value_Data_Type__c</fullName>
-        <externalId>false</externalId>
-        <label>Compare Value Data Type</label>
+        <label>Compensation Model</label>
         <picklist>
             <picklistValues>
-                <fullName>Number</fullName>
+                <fullName>Per Case</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% per Case</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lump Sum</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>UL_Compare_Value__c</fullName>
+        <fullName>UL_Payment_Type__c</fullName>
         <externalId>false</externalId>
-        <label>Compare Value</label>
+        <label>Payment Type</label>
         <picklist>
             <picklistValues>
-                <fullName>&gt;</fullName>
+                <fullName>Off Invoice</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>&lt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&lt;=</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&gt;=</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&gt;&lt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>UL_Evaluate_Thresholds__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Evaluate Thresholds</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>UL_Next_Status__c</fullName>
-        <externalId>false</externalId>
-        <label>Next Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Level1</fullName>
+                <fullName>On Invoice</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>UL_TemplateDescription__c</fullName>
+        <fullName>UL_Price_Condition__c</fullName>
         <externalId>false</externalId>
-        <label>Template Description</label>
+        <label>Price Condition</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ZB44</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZAD5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZB10</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZB23</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZB42</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZB46</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZB26</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZJAZ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZDAV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Table_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Table ID</label>
         <length>255</length>
         <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>UL_WorkflowApproval__c</fullName>
+        <fullName>UL_Tactic_Template__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Related Workflow Approval</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Soco Approval</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <label>Tactic Template</label>
+        <referenceTo>ACCL__Tactic_Template__c</referenceTo>
+        <relationshipLabel>Condition Codes</relationshipLabel>
+        <relationshipName>Condition_Codes</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>Lookup</type>
     </fields>
-    <fields>
-        <fullName>UL_Workflow__c</fullName>
-        <externalId>false</externalId>
-        <label>Workflow</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Soco Approval</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>true</sorted>
-        </picklist>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <label>Workflow Threshold Template</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
+    <label>Condition Codes</label>
     <nameField>
-        <displayFormat>WT-{000000}</displayFormat>
-        <label>Template ID</label>
-        <trackHistory>false</trackHistory>
+        <displayFormat>C-{00000}</displayFormat>
+        <label>Condition Codes Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Workflow Threshold Template</pluralLabel>
+    <pluralLabel>Condition Codes</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

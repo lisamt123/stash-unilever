@@ -88,6 +88,9 @@ private static void CreateTestData(){
     testtransactionRow1.ACCL__Fund_Transaction__c = testTransaction1.id;
     insert testtransactionRow1;
     
+    testFund1.UL_Available_to_Spend__c = 1000;
+    update testTransaction1;
+    
   //creating Promotion template record
     ACCL__Promotion_Template__c testPromotionTemplate = new ACCL__Promotion_Template__c();
     testPromotionTemplate.Name= 'Promotion Template for Test';
@@ -146,79 +149,76 @@ private static void CreateTestData(){
 @isTest
 private static void FundAmountUpdateTest(){
 
-User sysuser = [SELECT id FROM User where UserName='adminuser@tpmorg.com'];
-ACCL__Promotion__c promotionRecord =[Select id, name, ACCL__Anchor_Account__c, ACCL__Phase__c from ACCL__Promotion__c where ACCL__Slogan_Language_1__c='Promotion Test'];
-ACCL__Tactic__c tacticRecord =[select id, name, ACCL__Amount__c, UL_Promotion_Phase__c, ACCL__Promotion__c from ACCL__Tactic__c where ACCL__Promotion__c=:promotionRecord.id];
-ACCL__Fund__c fundRecord =[Select Id, Name, ACCL__Sales_Org__c, ACCL__Amount__c, UL_Available_to_Spend__c, UL_Uncommitted__c, UL_Committed__c From ACCL__Fund__c Where ACCL__Description_Language_1__c = 'Fund Description1'];
-ACCL__Fund_Transaction_Template__c transactionTemplateRecord =[select id, name from ACCL__Fund_Transaction_Template__c where ACCL__Description_Language_1__c = 'Transaction Template Description 2'];
-ACCL__Tactic_Fund__c tacticFundRecord =[Select id, ACCL__Fund__c, ACCL__Tactic__c from ACCL__Tactic_Fund__c where ACCL__Tactic__c=:tacticRecord.id];
+    User sysuser = [SELECT id FROM User where UserName='adminuser@tpmorg.com'];
+    ACCL__Promotion__c promotionRecord =[Select id, name, ACCL__Anchor_Account__c, ACCL__Phase__c from ACCL__Promotion__c where ACCL__Slogan_Language_1__c='Promotion Test'];
+    ACCL__Tactic__c tacticRecord =[select id, name, ACCL__Amount__c, UL_Promotion_Phase__c, ACCL__Promotion__c from ACCL__Tactic__c where ACCL__Promotion__c=:promotionRecord.id];
+    ACCL__Fund__c fundRecord =[Select Id, Name, ACCL__Sales_Org__c, ACCL__Amount__c, UL_Available_to_Spend__c, UL_Uncommitted__c, UL_Committed__c From ACCL__Fund__c Where ACCL__Description_Language_1__c = 'Fund Description1'];
+    ACCL__Fund_Transaction_Template__c transactionTemplateRecord =[select id, name from ACCL__Fund_Transaction_Template__c where ACCL__Description_Language_1__c = 'Transaction Template Description 2'];
+    ACCL__Tactic_Fund__c tacticFundRecord =[Select id, ACCL__Fund__c, ACCL__Tactic__c from ACCL__Tactic_Fund__c where ACCL__Tactic__c=:tacticRecord.id];
 
-system.runAs(sysuser){
-   
-promotionRecord.ACCL__Phase__c = 'ForApproval';
-update promotionRecord;
+    system.runAs(sysuser){
+       
+    promotionRecord.ACCL__Phase__c = 'ForApproval';
+    update promotionRecord;
 
-system.debug('Promotion>>>'+promotionRecord.id);
-system.debug('Promotion>>>'+promotionRecord.ACCL__Phase__c);
-system.debug('Tactic>>>'+tacticRecord.ACCL__Promotion__c);
-system.debug('Tactic>>>'+tacticRecord.UL_Promotion_Phase__c);
-system.debug('Fund>>>'+fundRecord.UL_Uncommitted__c);
+    //tacticRecord.UL_Promotion_Phase__c = 'ForApproval';
+    //update tacticRecord;
 
-tacticRecord.UL_Promotion_Phase__c = 'ForApproval';
-update tacticRecord;
+    ACCL__Fund__c fundRecord2 =[Select Id, Name, ACCL__Sales_Org__c, ACCL__Amount__c, UL_Available_to_Spend__c, UL_Uncommitted__c, UL_Committed__c From ACCL__Fund__c Where ACCL__Description_Language_1__c = 'Fund Description1'];
 
-system.debug('Tactic>>>'+tacticRecord.UL_Promotion_Phase__c);
-system.debug('Fund>>>'+fundRecord.UL_Uncommitted__c);
+    System.AssertEquals(fundRecord2.UL_Uncommitted__c, tacticRecord.ACCL__Amount__c);
+    System.AssertEquals(fundRecord2.UL_Available_to_Spend__c, fundRecord.ACCL__Amount__c-tacticRecord.ACCL__Amount__c);
 
-System.AssertEquals(tacticRecord.ACCL__Amount__c, fundRecord.UL_Uncommitted__c);
-System.AssertEquals(fundRecord.UL_Available_to_Spend__c, fundRecord.ACCL__Amount__c-tacticRecord.ACCL__Amount__c);
+    promotionRecord.ACCL__Phase__c = 'Rejected';
+    update promotionRecord;
 
+    //tacticRecord.UL_Promotion_Phase__c = 'Rejected';
+    //update tacticRecord;
 
-promotionRecord.ACCL__Phase__c = 'Rejected';
-update promotionRecord;
+    ACCL__Fund__c fundRecord3 =[Select Id, Name, ACCL__Sales_Org__c, ACCL__Amount__c, UL_Available_to_Spend__c, UL_Uncommitted__c, UL_Committed__c From ACCL__Fund__c Where ACCL__Description_Language_1__c = 'Fund Description1'];
 
-tacticRecord.UL_Promotion_Phase__c = 'Rejected';
-update tacticRecord;
+    System.AssertEquals(fundRecord3.UL_Uncommitted__c, fundRecord2.UL_Uncommitted__c-tacticRecord.ACCL__Amount__c);
+    System.AssertEquals(fundRecord3.UL_Available_to_Spend__c, fundRecord2.UL_Available_to_Spend__c+tacticRecord.ACCL__Amount__c);
 
-System.AssertEquals(fundRecord.UL_Uncommitted__c, fundRecord.UL_Uncommitted__c-tacticRecord.ACCL__Amount__c);
-System.AssertEquals(fundRecord.UL_Available_to_Spend__c, fundRecord.UL_Available_to_Spend__c-tacticRecord.ACCL__Amount__c);
+    promotionRecord.ACCL__Phase__c = 'ForApproval';
+    update promotionRecord;
 
+    //tacticRecord.UL_Promotion_Phase__c = 'ForApproval';
+    //update tacticRecord;
 
-promotionRecord.ACCL__Phase__c = 'ForApproval';
-update promotionRecord;
+    ACCL__Fund__c fundRecord4 =[Select Id, Name, ACCL__Sales_Org__c, ACCL__Amount__c, UL_Available_to_Spend__c, UL_Uncommitted__c, UL_Committed__c From ACCL__Fund__c Where ACCL__Description_Language_1__c = 'Fund Description1'];
 
-tacticRecord.UL_Promotion_Phase__c = 'ForApproval';
-update tacticRecord;
-
-System.AssertEquals(tacticRecord.ACCL__Amount__c, fundRecord.UL_Uncommitted__c);
-System.AssertEquals(fundRecord.UL_Available_to_Spend__c, fundRecord.ACCL__Amount__c-tacticRecord.ACCL__Amount__c);
+    System.AssertEquals(fundRecord4.UL_Uncommitted__c, tacticRecord.ACCL__Amount__c);
+    System.AssertEquals(fundRecord4.UL_Available_to_Spend__c, fundRecord4.ACCL__Amount__c-tacticRecord.ACCL__Amount__c);
 
 
-promotionRecord.ACCL__Phase__c = 'Approved';
-update promotionRecord;
+    promotionRecord.ACCL__Phase__c = 'Approved';
+    update promotionRecord;
 
-tacticRecord.UL_Promotion_Phase__c = 'Approved';
-update tacticRecord;
+    //tacticRecord.UL_Promotion_Phase__c = 'Approved';
+    //update tacticRecord;
 
+    ACCL__Fund__c fundRecord5 =[Select Id, Name, ACCL__Sales_Org__c, ACCL__Amount__c, UL_Available_to_Spend__c, UL_Uncommitted__c, UL_Committed__c From ACCL__Fund__c Where ACCL__Description_Language_1__c = 'Fund Description1'];
 
-  //creating Fund transaction for the amount taken out of the fund
+/*  //creating Fund transaction for the amount taken out of the fund
     ACCL__Fund_Transaction__c testTransaction2 = new ACCL__Fund_Transaction__c();
     testTransaction2.ACCL__Fund_Transaction_Template__c = transactionTemplateRecord.id;
     testTransaction2.ACCL__Amount__c = tacticRecord.ACCL__Amount__c;
-    testTransaction2.ACCL__Target_Fund__c = fundRecord.id;
+    testTransaction2.ACCL__Target_Fund__c = fundRecord5.id;
     insert testTransaction2;
     
   //creating Fund transaction rows for the amount taken off from the fund done in the above step
-    ACCL__Fund_Transaction_Row__c testtransactionRow2 = new ACCL__Fund_Transaction_Row__c();
+    ACCL__Fund_Transaction_Row__c testTransactionRow2 = new ACCL__Fund_Transaction_Row__c();
     testtransactionRow2.ACCL__Amount__c = (-1)*tacticRecord.ACCL__Amount__c;
-    //transRow1.Source_Fund__c = sourceFund;
-    testtransactionRow2.ACCL__Target_Fund__c = fundRecord.id;
+    testtransactionRow2.ACCL__Target_Fund__c = fundRecord5.id;
     testtransactionRow2.ACCL__Fund_Transaction__c = testTransaction2.id;
     insert testtransactionRow2;
-
-System.AssertEquals(fundRecord.UL_Uncommitted__c, 0);
-System.AssertEquals(fundRecord.UL_Committed__c, tacticRecord.ACCL__Amount__c);
-System.AssertEquals(fundRecord.UL_Available_to_Spend__c, fundRecord.ACCL__Amount__c);
+    
+    ACCL__Fund__c fundRecord6 =[Select Id, Name, ACCL__Sales_Org__c, ACCL__Amount__c, UL_Available_to_Spend__c, UL_Uncommitted__c, UL_Committed__c From ACCL__Fund__c Where ACCL__Description_Language_1__c = 'Fund Description1'];
+*/
+    System.AssertEquals(fundRecord5.UL_Uncommitted__c, 0);
+    System.AssertEquals(fundRecord5.UL_Committed__c, tacticRecord.ACCL__Amount__c);
+    System.AssertEquals(fundRecord5.UL_Available_to_Spend__c, fundRecord5.ACCL__Amount__c);
 
 }
    

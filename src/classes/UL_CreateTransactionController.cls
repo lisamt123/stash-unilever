@@ -171,7 +171,7 @@ global with sharing class UL_CreateTransactionController {
                 }
                 if(!transferTransactionAccess || lstcurrentUserPerSet ==null)
                 {
-                  // throw new ACCL.CustomException(Label.TRANSFER_TRANSACTION_ACCESS);//Display error if User not having CABO FM permission set is tring to create a transfer transaction
+                  throw new UL_CustomException(Label.ACCL.TRANSFER_TRANSACTION_ACCESS);//Display error if User not having CABO FM permission set is tring to create a transfer transaction
                 }
                 else
                 {
@@ -230,10 +230,7 @@ global with sharing class UL_CreateTransactionController {
                     transactionType = TransactionTemplateMap.get(this.relatedRecord.ACCL__Fund_Transaction_Template__c  ).ACCL__Transaction_Type__c;//When Transaction Tempalate changes,change the transaction type associated with it on page.
                     salesOrg = TransactionTemplateMap.get(this.relatedRecord.ACCL__Fund_Transaction_Template__c ).ACCL__Sales_Org__c;
                     crossCategoryFlag = TransactionTemplateMap.get(this.relatedRecord.ACCL__Fund_Transaction_Template__c ).UL_Cross_Category_Transfer_Allowed__c;
-                    system.debug('$$11'+TransactionTemplateMap.get(this.relatedRecord.ACCL__Fund_Transaction_Template__c ).UL_Cross_Category_Transfer_Allowed__c);
-                    system.debug('$$22'+TransactionTemplateMap.get(this.relatedRecord.ACCL__Fund_Transaction_Template__c ).ACCL__Sales_Org__c);
-                    system.debug('$$33'+TransactionTemplateMap.get(this.relatedRecord.ACCL__Fund_Transaction_Template__c ).Name);
-                    system.debug('$$44'+TransactionTemplateMap.get(this.relatedRecord.ACCL__Fund_Transaction_Template__c ).id);
+                    
                     if(transactionType == UL_Utility.TRANSACTION_TYPE_TRANSFER){
                         sourceFundFlag= true;
                     }
@@ -422,7 +419,7 @@ global with sharing class UL_CreateTransactionController {
     {
         if(relatedRecord.ACCL__Amount__c <= 0)// Check if Amount is greater than 0,otherwise throw validation
         {
-          //  throw new CustomException(Label.TRANSACTION_AMOUNT_GREATER_THAN_ZERO);
+          throw new UL_CustomException(Label.ACCL.TRANSACTION_AMOUNT_GREATER_THAN_ZERO);
         }
         else if(transactionTemplateMap.get(
                     this.relatedRecord.ACCL__Fund_Transaction_Template__c).ACCL__Transaction_Type__c == UL_Utility.TRANSACTION_TYPE_ADJUSTMENT )
@@ -430,7 +427,7 @@ global with sharing class UL_CreateTransactionController {
             Double fundAmount= fundMap.get(this.relatedRecord.ACCL__Target_Fund__c).ACCL__Amount__c;
             if(fundAmount != null && fundAmount - relatedRecord.ACCL__Amount__c < 0)//If After transaction,Fund amount in target fund will be less than or equal to 0,Validation should be given.
             {
-               //  throw new CustomException(Label.REMANING_FUND_AMOUNT_GREATER_THAN_ZERO);
+              throw new UL_CustomException(Label.ACCL.REMANING_FUND_AMOUNT_GREATER_THAN_ZERO);
             }
         }
         else if(transactionTemplateMap.get(
@@ -438,18 +435,18 @@ global with sharing class UL_CreateTransactionController {
         {
             if(this.relatedRecord.ACCL__Source_Fund__c == null)// If source fund is null for transfer transaction,validation will be given
             {
-               //  throw new CustomException(Label.SOURCE_FUND_IS_NULL);
+              throw new UL_CustomException(Label.ACCL.SOURCE_FUND_IS_NULL);
             }
             if(this.relatedRecord.ACCL__Source_Fund__c != null && this.relatedRecord.ACCL__Target_Fund__c != null && 
                this.relatedRecord.ACCL__Source_Fund__c == this.relatedRecord.ACCL__Target_Fund__c)
             //Validation if source fund and target fund are same.
             {
-               //  throw new CustomException(Label.SOURCE_FUND_TARGET_FUND_SHOULD_NOT_BE_SAME);
+              throw new UL_CustomException(Label.ACCL.SOURCE_FUND_TARGET_FUND_SHOULD_NOT_BE_SAME);
             }
             Double fundAmount= fundMap.get(this.relatedRecord.ACCL__Source_Fund__c).ACCL__Amount__c;
             if(fundAmount != null && fundAmount - relatedRecord.ACCL__Amount__c < 0)//If After transaction,Fund amount in source fund will be less than or equal to 0,Validation should be given.
             {
-               //  throw new CustomException(Label.REMANING_FUND_AMOUNT_GREATER_THAN_ZERO);
+              throw new UL_CustomException(Label.ACCL.REMANING_FUND_AMOUNT_GREATER_THAN_ZERO);
             }
         }
         return true;

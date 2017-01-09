@@ -133,12 +133,6 @@ private static void CreateTestData(){
     ACCL__Fund_Transaction_Template__c testTransactionTemplate3= [Select Id,Name,ACCL__Sales_Org__c, RecordTypeId  From ACCL__Fund_Transaction_Template__c Where Name='TransactionTemplateForTest3'];
     system.runAs(sysuser){
     
-    if(Schema.sObjectType.ACCL__Fund_Transaction__c.isCreateable()){
-    
-    system.debug('@@create access');
-    system.debug('transaction template'+testTransactionTemplate1.id);
-    system.debug('fund'+testFund1.id);
-    }
     
     ACCL__Fund_Transaction__c testTransaction1 = new ACCL__Fund_Transaction__c();
     testTransaction1.ACCL__Fund_Transaction_Template__c = testTransactionTemplate1.id;
@@ -148,13 +142,11 @@ private static void CreateTestData(){
     
     ACCL__Fund_Transaction_Row__c transRow1 = new ACCL__Fund_Transaction_Row__c();
     transRow1.ACCL__Amount__c = testTransaction1.ACCL__Amount__c;
-    //transRow1.Source_Fund__c = sourceFund;
     transRow1.ACCL__Target_Fund__c = testTransaction1.ACCL__Target_Fund__c;
     transRow1.ACCL__Fund_Transaction__c = testTransaction1.id;
     insert transRow1;
     
     ACCL__Fund__c FundVariable1 =[select id, Name, ACCL__Amount__c, UL_Available_to_Spend__c from ACCL__Fund__c where ACCL__Description_Language_1__c = 'Fund Description1'];
-    system.debug('fund amount @@'+FundVariable1.ACCL__Amount__c);
     System.AssertEquals(FundVariable1.UL_Available_to_Spend__c, testTransaction1.ACCL__Amount__c);
     
     ACCL__Fund_Transaction__c testTransaction2 = new ACCL__Fund_Transaction__c();
@@ -171,10 +163,9 @@ private static void CreateTestData(){
     insert transRow2;
     
     ACCL__Fund__c FundVariable2 =[select id, Name, ACCL__Amount__c, UL_Available_to_Spend__c from ACCL__Fund__c where ACCL__Description_Language_1__c = 'Fund Description1'];
-    system.debug('fund amount @@'+FundVariable2.ACCL__Amount__c);
     System.AssertEquals(FundVariable2.UL_Available_to_Spend__c, FundVariable2.ACCL__Amount__c);
     
-    ACCL__Fund_Transaction__c testTransaction3 = new ACCL__Fund_Transaction__c();
+   /* ACCL__Fund_Transaction__c testTransaction3 = new ACCL__Fund_Transaction__c();
     testTransaction3.ACCL__Fund_Transaction_Template__c = testTransactionTemplate3.id;
     testTransaction3.ACCL__Amount__c = 30;
     testTransaction3.ACCL__Source_Fund__c = testFund1.id;
@@ -198,7 +189,7 @@ private static void CreateTestData(){
     ACCL__Fund__c FundVariable3 =[select id, Name, ACCL__Amount__c, UL_Available_to_Spend__c from ACCL__Fund__c where ACCL__Description_Language_1__c = 'Fund Description1'];
     ACCL__Fund__c FundVariable4 =[select id, Name, ACCL__Amount__c, UL_Available_to_Spend__c from ACCL__Fund__c where ACCL__Description_Language_1__c = 'Fund Description2'];
     System.AssertEquals(FundVariable3.UL_Available_to_Spend__c, FundVariable3.ACCL__Amount__c);
-    System.AssertEquals(FundVariable4.UL_Available_to_Spend__c, FundVariable4.ACCL__Amount__c);
+    System.AssertEquals(FundVariable4.UL_Available_to_Spend__c, FundVariable4.ACCL__Amount__c); */
     
     }
     }

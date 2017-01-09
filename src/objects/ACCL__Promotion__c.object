@@ -1107,6 +1107,16 @@
         <fullName>UL_SoCo_Manager_Check</fullName>
         <description>In promotion planning workflow when the promotion is in the Manager check status</description>
         <displayedFields>
+            <field>UL_Current_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Promotion_Template__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+	<displayedFields>
             <field>ACCL__Phase__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1257,6 +1267,11 @@
         <fullName>UL_SoCo_PendingApproved</fullName>
         <description>This field set is used for the fields which should not be edit when promotion is in approved/Finance Check/Manager check state</description>
         <displayedFields>
+            <field>ACCL__Promotion_Template__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+	<displayedFields>
             <field>ACCL__Phase__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1397,6 +1412,21 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <label>SoCo_PendingApproved</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>UL_SoCo_Planning</fullName>
+        <description>Field sets refer when Promotion is in Planning status</description>
+        <displayedFields>
+            <field>UL_Current_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Promotion_Template__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>SoCo Planning</label>
     </fieldSets>
     <fields>
         <fullName>ACCL__Active__c</fullName>

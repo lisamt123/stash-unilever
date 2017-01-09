@@ -39,55 +39,55 @@ ACCL__Fund_Transaction_Template__c transactionTemplateRecord = null;
 
 try{
 
-	for(ACCL__Fund_Transaction__c transactionLoop:fundTransactionList){
-	
-		transactionIdSet.add(transactionLoop.id);
-		targetFundIdSet.add(transactionLoop.ACCL__Target_Fund__c);
-		transactionIdFundIdMap.put(transactionLoop.id, transactionLoop.ACCL__Target_Fund__c);
-		transactionRecordMap.put(transactionLoop.id, transactionLoop);
-	
-		if (transactionLoop.ACCL__Source_Fund__c != null){
-			sourceFundIdSet.add(transactionLoop.ACCL__Source_Fund__c);
-		}
-	}
+    for(ACCL__Fund_Transaction__c transactionLoop:fundTransactionList){
+    
+        transactionIdSet.add(transactionLoop.id);
+        targetFundIdSet.add(transactionLoop.ACCL__Target_Fund__c);
+        transactionIdFundIdMap.put(transactionLoop.id, transactionLoop.ACCL__Target_Fund__c);
+        transactionRecordMap.put(transactionLoop.id, transactionLoop);
+    
+        if (transactionLoop.ACCL__Source_Fund__c != null){
+            sourceFundIdSet.add(transactionLoop.ACCL__Source_Fund__c);
+        }
+    }
 
-	map<id, ACCL__Fund__c> targetFundRecordMap=new map<id, ACCL__Fund__c>([select id, name, ACCL__Amount__c, UL_Committed__c, UL_Uncommitted__c, UL_Available_to_Spend__c From ACCL__Fund__c Where id IN:targetFundIdSet LIMIT:(Limits.getLimitQueryRows()-Limits.getQueryRows())]);
-	map<id, ACCL__Fund__c> sourceFundRecordMap=new map<id, ACCL__Fund__c>([select id, name, ACCL__Amount__c, UL_Committed__c, UL_Uncommitted__c, UL_Available_to_Spend__c From ACCL__Fund__c Where id IN:sourceFundIdSet LIMIT:(Limits.getLimitQueryRows()-Limits.getQueryRows())]);
+    map<id, ACCL__Fund__c> targetFundRecordMap=new map<id, ACCL__Fund__c>([select id, name, ACCL__Amount__c, UL_Committed__c, UL_Uncommitted__c, UL_Available_to_Spend__c From ACCL__Fund__c Where id IN:targetFundIdSet LIMIT:(Limits.getLimitQueryRows()-Limits.getQueryRows())]);
+    map<id, ACCL__Fund__c> sourceFundRecordMap=new map<id, ACCL__Fund__c>([select id, name, ACCL__Amount__c, UL_Committed__c, UL_Uncommitted__c, UL_Available_to_Spend__c From ACCL__Fund__c Where id IN:sourceFundIdSet LIMIT:(Limits.getLimitQueryRows()-Limits.getQueryRows())]);
 
-	Id fundTransactionTemplateId = Schema.SObjectType.ACCL__Fund_Transaction_Template__c.RecordTypeInfosByName.get(RECORDTYPE_FUND_TRANSACTION).RecordTypeId;
+    Id fundTransactionTemplateId = Schema.SObjectType.ACCL__Fund_Transaction_Template__c.RecordTypeInfosByName.get('Fund Transaction').RecordTypeId;
 
-	map<id, ACCL__Fund_Transaction_Template__c> transactionTemplateMap=new map<id, ACCL__Fund_Transaction_Template__c>([select id, name, ACCL__Active__c, ACCL__Sales_Org__c, ACCL__Transaction_Type__c, RecordTypeId from ACCL__Fund_Transaction_Template__c where RecordTypeId=:fundTransactionTemplateId LIMIT:(Limits.getLimitQueryRows()-Limits.getQueryRows())]);
+    map<id, ACCL__Fund_Transaction_Template__c> transactionTemplateMap=new map<id, ACCL__Fund_Transaction_Template__c>([select id, name, ACCL__Active__c, ACCL__Sales_Org__c, ACCL__Transaction_Type__c, RecordTypeId from ACCL__Fund_Transaction_Template__c where RecordTypeId=:fundTransactionTemplateId LIMIT:(Limits.getLimitQueryRows()-Limits.getQueryRows())]);
 
-	for(ACCL__Fund_Transaction__c transactionListLoop:fundTransactionList){
-	
-		
-		targetFundRecord=targetFundRecordMap.get(transactionListLoop.ACCL__Target_Fund__c);
-		transactionTemplateRecord=transactionTemplateMap.get(transactionListLoop.ACCL__Fund_Transaction_Template__c);
-		
-		if(transactionTemplateRecord == null){
-		    return;
-		}
-		
-		if(transactionTemplateRecord.RecordTypeId==fundTransactionTemplateId){
-			if(transactionListLoop.ACCL__Source_Fund__c == null){
-			
-				if(transactionListLoop.ACCL__Transaction_Type__c != UL_Utility.NULL_ID &&  transactionListLoop.ACCL__Transaction_Type__c.equalsIgnoreCase(TRANSACTION_TYPE_INITIAL)){
-					targetFundRecord.UL_Available_to_Spend__c=targetFundRecord.UL_Available_to_Spend__c+transactionListLoop.ACCL__Amount__c;
-				}
-				else {
-					if(transactionListLoop.ACCL__Transaction_Type__c != UL_Utility.NULL_ID && transactionListLoop.ACCL__Transaction_Type__c.equalsIgnoreCase(TRANSACTION_TYPE_ADJUSTMENT)){
-						targetFundRecord.UL_Available_to_Spend__c=targetFundRecord.UL_Available_to_Spend__c-transactionListLoop.ACCL__Amount__c;
-					}
-			    }			
-				
-				targetFundRecordMap.put(targetFundRecord.id, targetFundRecord);
-			}
-		}
-	}
+    for(ACCL__Fund_Transaction__c transactionListLoop:fundTransactionList){
+    
+        
+        targetFundRecord=targetFundRecordMap.get(transactionListLoop.ACCL__Target_Fund__c);
+        transactionTemplateRecord=transactionTemplateMap.get(transactionListLoop.ACCL__Fund_Transaction_Template__c);
+        
+        if(transactionTemplateRecord == null){
+            return;
+        }
+        
+        if(transactionTemplateRecord.RecordTypeId==fundTransactionTemplateId){
+            if(transactionListLoop.ACCL__Source_Fund__c == null){
+            
+                if(transactionListLoop.ACCL__Transaction_Type__c != UL_Utility.STRING_NULL &&  transactionListLoop.ACCL__Transaction_Type__c.equalsIgnoreCase(TRANSACTION_TYPE_INITIAL)){
+                    targetFundRecord.UL_Available_to_Spend__c=targetFundRecord.UL_Available_to_Spend__c+transactionListLoop.ACCL__Amount__c;
+                }
+                else {
+                    if(transactionListLoop.ACCL__Transaction_Type__c != UL_Utility.STRING_NULL && transactionListLoop.ACCL__Transaction_Type__c.equalsIgnoreCase(TRANSACTION_TYPE_ADJUSTMENT)){
+                        targetFundRecord.UL_Available_to_Spend__c=targetFundRecord.UL_Available_to_Spend__c-transactionListLoop.ACCL__Amount__c;
+                    }
+                }           
+                
+                targetFundRecordMap.put(targetFundRecord.id, targetFundRecord);
+            }
+        }
+    }
 
- 	database.update(targetFundRecordMap.values());
- 	}catch (Exception ex){
- 		UL_Utility.logError(ex, UserInfo.getUserId());
-	}
+    database.update(targetFundRecordMap.values());
+    }catch (Exception ex){
+        UL_Utility.logError(ex, UserInfo.getUserId());
+    }
   }
 }

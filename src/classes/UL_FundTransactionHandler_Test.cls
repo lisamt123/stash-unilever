@@ -56,6 +56,7 @@ private class UL_FundTransactionHandler_Test{
     testProduct1.ACCL__Product_Template__c = testProductTemplate.id;
     testProduct1.ACCL__Product_Code__c = 'Test1';
     testProduct1.ACCL__Product_Level__c = 'Category';
+    testProduct1.ACCL__Category__c = 'Beverages';
     testProduct1.ACCL__Description_1_Language_1__c = 'product Description 1';
     testProduct1.ACCL__Fund_Valid_From__c = Date.newInstance(2016, 1, 1);
     testProduct1.ACCL__Fund_Valid_Thru__c = Date.newInstance(2099,12,31);
@@ -66,6 +67,7 @@ private class UL_FundTransactionHandler_Test{
     testProduct2.ACCL__Product_Template__c = testProductTemplate.id;
     testProduct2.ACCL__Product_Code__c = 'Test2';
     testProduct2.ACCL__Product_Level__c = 'Category';
+    testProduct2.ACCL__Category__c = 'Beverages';
     testProduct2.ACCL__Description_1_Language_1__c = 'product Description 2';
     testProduct2.ACCL__Fund_Valid_From__c = Date.newInstance(2016, 1, 1);
     testProduct2.ACCL__Fund_Valid_Thru__c = Date.newInstance(2099,12,31);
@@ -76,6 +78,7 @@ private class UL_FundTransactionHandler_Test{
     testProduct3.ACCL__Product_Template__c = testProductTemplate.id;
     testProduct3.ACCL__Product_Code__c = 'Test3';
     testProduct3.ACCL__Product_Level__c = 'Variant';
+    testProduct3.ACCL__Category__c = 'Chips';
     testProduct3.ACCL__Description_1_Language_1__c = 'product Description 3';
     testProduct3.ACCL__Fund_Valid_From__c = Date.newInstance(2016, 1, 1);
     testProduct3.ACCL__Fund_Valid_Thru__c = Date.newInstance(2099,12,31);
@@ -187,7 +190,6 @@ private class UL_FundTransactionHandler_Test{
     ACCL__Fund_Transaction_Template__c testTransactionTemplate2= [Select Id,Name,ACCL__Sales_Org__c From ACCL__Fund_Transaction_Template__c Where Name='TransactionTemplateForTest2'] ;
                     system.runAs(sysuser){
                     ACCL__Fund_Transaction__c testTransaction1 = new ACCL__Fund_Transaction__c();
-                    system.debug('Fund_Transaction__c======>>>>>>>'  + testTransactionTemplate1.id);
                     testTransaction1.ACCL__Fund_Transaction_Template__c = testTransactionTemplate1.id;
                     testTransaction1.ACCL__Amount__c = 100;
                     testTransaction1.ACCL__Source_Fund__c = testFund1.id;

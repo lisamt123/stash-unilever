@@ -49,6 +49,7 @@
            if(promotionWrapperList != null && (!promotionWrapperList.isEmpty())){
                 
                for(UL_PromotionCloneWrapper promotionWrapper: promotionWrapperList){
+                    promotionWrapper.inlinePromotion.ACCL__Active__c=true;
                     insertPromotionList.add(promotionWrapper.inlinePromotion);
                 }
                    

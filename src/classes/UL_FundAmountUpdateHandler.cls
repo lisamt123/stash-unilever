@@ -69,7 +69,7 @@ Throws N/A
          tacticIdFundRecordMap.put(tcticFudLoop.ACCL__Tactic__c, mapFundRecord);   
         }
         
-        Id fundTransactionTemplateId = Schema.SObjectType.ACCL__Fund_Transaction_Template__c.RecordTypeInfosByName.get(RECORDTYPE_PROMOTION_TRANSACTION).RecordTypeId;
+        Id fundTransactionTemplateId = Schema.SObjectType.ACCL__Fund_Transaction_Template__c.RecordTypeInfosByName.get('Promotion Transaction').RecordTypeId;
         
         map<string, ACCL__Fund_Transaction_Template__c> transactionTemplateMap = new map<string, ACCL__Fund_Transaction_Template__c>();
         
