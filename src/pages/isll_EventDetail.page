@@ -4,8 +4,10 @@
         <apex:includeScript value="{!URLFOR($Resource.isll_JavaScript, 'JS/isll_EventsDetail_Java Script.js')}" />
         <apex:includeScript value="{!URLFOR($Resource.isll_JavaScript, 'JS/isll_EventsDetail1_Java Script.js')}" />
     
- 
- <style type="text/css">
+	
+	//Changes Made
+	
+	<style type="text/css">
     #firstColumn {
         margin-bottom: 20px;
         width: 45% !important;
