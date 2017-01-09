@@ -228,6 +228,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Hungary</fullName>
                 <default>false</default>
             </picklistValues>
@@ -369,6 +373,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

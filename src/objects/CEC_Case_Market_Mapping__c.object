@@ -287,6 +287,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Chinese</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Croatian</fullName>
                 <default>false</default>
             </picklistValues>
@@ -376,6 +380,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Swedish</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkish</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>true</sorted>

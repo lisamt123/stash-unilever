@@ -67,51 +67,7 @@
         <runTest>UserTrigger_Test</runTest>
 	<runTest>ExceptionLoggingHelper_Test</runTest>
 			<runTest>IPM_BD_BB_Report_Batch_Test</runTest>
-			<runTest>IPM_ChatterFeedHelper_Test</runTest>
-			<runTest>IPM_FinancialActionStandards_Test</runTest>
-			<runTest>IPM_FinancialController_Currency_Test</runTest>
-			<runTest>IPM_FinancialController_Test</runTest>
-			<runTest>IPM_FinancialCopyPasteGrid_Test</runTest>
-			<runTest>IPM_FinancialTriggerHandler_Test</runTest>
-			<runTest>IPM_FinancialValueWrapper_Test</runTest>
-			<runTest>IPM_FinancialWrapper_Test</runTest>
-			<runTest>IPM_FinancialYearTriggerHandler_Test</runTest>
-			<runTest>IPM_FinGateController_Test</runTest>
-			<runTest>IPM_FinancialUtils_Test</runTest>
-			<runTest>IPM_ProjectRolloutHandler_Test</runTest>
-			<runTest>IPM_RolloutPlansTableController_Test</runTest>
-			<runTest>IPM_RolloutTriggerHandler_Test</runTest>
-			<runTest>IPM_RolloutPlansAddController_Test</runTest>
-			<runTest>IPM_FunnelController_Test</runTest>
-			<runTest>IPM_GlobalClaimPDLController_Test</runTest>
-			<runTest>IPM_MilestoneHandler_Test</runTest>
-			<runTest>IPM_List_Milestones_Test</runTest>
-			<runTest>IPM_Milestone_Test</runTest>
-			<runTest>IPM_OTIF_Report_Batch_Test</runTest>
-			<runTest>IPM_ProjDocSectionController_Test</runTest>
-			<runTest>IPM_ProjectHandler_Test</runTest>
-			<runTest>IPM_ProjectHelper_Test</runTest>
-			<runTest>IPM_ProjectSetUpController_Test</runTest>
-			<runTest>IPM_SourcePlanController_Test</runTest>
-			<runTest>IPM_TaskHelper_Test</runTest>
-			<runTest>IPM_ProjectSectionContentHelper_Test</runTest>
-			<runTest>IPM_MilestoneHandler_Test</runTest>
-			<runTest>IPM_ProjectRolloutHandler_Test</runTest>
-			<runTest>IPM_FinancialControllerGKM3_Test</runTest>
-			<runTest>IPM_FinancialControllerRegional_Test</runTest>
-			<runTest>IPM_FinancialControllerSoftVldtns_Test</runTest>
-			<runTest>IPM_FinancialMisalignment_Test</runTest>
-			<runTest>IPM_FinancialUtils_Test</runTest>
-			<runTest>IPM_ProjectDocumentSectionHandler_Test</runTest>
-			<runTest>IPM_ChangProjectDocStatusCntrlGKM3_Test</runTest>
-			<runTest>IPM_RolloutPlansAddControllerGKM3_Test</runTest>
-			<runTest>IPM_ProjectOverviewCtrl_Test</runTest>
-			<runTest>IPM_ProjectOverviewCtrol_Test</runTest>
-			<runTest>IPM_ProjectDocumentSectionHandler_Test</runTest>
-			<runTest>IPM_EcoDesignSection_Test</runTest>
-			<runTest>IPM_ExportTeamMembersReportCntrl_Test</runTest>
-			<runTest>IPM_NewTask_Test</runTest>
-			<runTest>IPM_ValidationHelper_Test</runTest>
+			<runTest>IPM_BD_BB_Report_BatchSchedule_Test</runTest>
 	</sf:deploy>
   </target>  
 

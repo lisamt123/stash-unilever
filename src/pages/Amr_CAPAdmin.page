@@ -1,54 +1,278 @@
 <apex:page controller="Amr_AdManagerController_CC" title="Admin Setting" sidebar="false">
     <apex:include pageName="Amr_common" />
     <apex:include pageName="Amr_common_header" />
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/amr_capadmin.js')}" />
+    <script type="text/javascript">
+    	function closemultiloading() {
+			$j('.multiloading').hide();
+		}		
+    </script>
     <style type="text/css">
-        #cke_2_contents{
-                height:70px !important;
-            }
-       .cke_reset {
-           width:800px !important;
-       }
+        #cke_2_contents {
+            height: 70px !important;
+        }
+        
+        .cke_reset {
+            width: 800px !important;
+        }
+        
+        .multiloading {
+            display: none;
+        }
+        
+        .multiloading2 {
+            display: none;
+        }
+        
+        .cap-container input[type="text"] {
+            width: 180px;
+        }
+        
+        .bpnew2,
+        .catnew2 {
+            display: none;
+        }
+        
+        .success-message {
+            color: #53853D;
+            padding: 12px 20px;
+            width: 70%;
+            border: 1px solid #74C366;
+            margin-top: 20px;
+            background: #CCEBC9;
+        }
+        .error-message {
+            color: red;
+            padding: 12px 20px;            
+            border: 1px solid red;
+            margin-top: 20px;
+            background: #FFFFFF;            
+        }
+        .multiCategoryAdd {
+        	position:relative;
+        }
+        .multiCategoryAdd strong {
+            background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/star.png')}") no-repeat scroll center center rgba(0,0,0,0);
+        }
+        .multiCategoryAdd strong {
+		    display: block;
+		    height: 1px;
+		    overflow: hidden;
+		    padding-top: 18px;
+		    position: absolute;
+		    right: -10px;
+		    top: -8px;
+		    width: 15px;
+		}
     </style>
-    <apex:pagemessages id="msgs"></apex:pagemessages>  
-    <div class="container">
-        <div class="outer_section padding-top20">
-            <div class="main_inner_section margin-btwn-container bg-g1">
-                <h4 class="main_inner_sectionh4">
-                    Logging Page Maintenance                    
-                </h4>
-                <div class="submain_inner_section">
-                    <div class="inner_section">
-                        <div class="inner_sub_section" style="display: block;">
-                            <div class="inner_sub2_section">
-                                <apex:form >
+    <apex:pagemessages id="msgs"></apex:pagemessages>
+    <apex:form >
+        <div class="container cap-container">
+            <div style="padding:1px 0;">
+                <apex:outputpanel rendered="{!capSuccessMessage}">
+                    <div class="success-message">
+                        <apex:outputlabel value="{!$Label.Amr_Success_CAPAdmin}" />                                               
+                    </div>
+                </apex:outputpanel>
+            </div>
+            <div class="outer_section padding-top20">
+                <div class="main_inner_section margin-btwn-container bg-g1">
+                    <h4 class="main_inner_sectionh4">
+                        Logging Page Maintenance
+                    </h4>
+                    <div class="submain_inner_section">
+                        <div class="inner_section">
+                            <div class="inner_sub_section" style="display: block;">
+                                <div class="inner_sub2_section">
                                     <div>
                                         <div class="left margin-right20" style="width:200px;text-align:right;">
                                             <apex:outputLabel >What is a Job</apex:outputLabel>
                                         </div>
                                         <div class="left introduction-region">
-                                            <apex:inputField value="{!r.Introduction__c}"/>
+                                            <apex:inputField value="{!adminHeaderFooter.Introduction__c}" />
                                         </div>
                                         <div class="clear"></div>
-                                    </div>                                  
+                                    </div>
                                     <div class="margin-top20">
                                         <div class="left margin-right20" style="width:200px;text-align:right;">
                                             <apex:outputLabel >Contact Details</apex:outputLabel>
                                         </div>
                                         <div class="left footer-region">
-                                            <apex:inputField value="{!r.Footer__c}"/>
+                                            <apex:inputField value="{!adminHeaderFooter.Footer__c}" />
                                         </div>
                                         <div class="clear"></div>
-                                    </div>                                  
-                                    <div class="right">
-                                        <apex:commandButton value="Update" action="{!updateSetting}" styleClass="commonbtn-blue" />
                                     </div>
                                     <div class="clear"></div>
-                                </apex:form>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>                   
+                <div class="main_inner_section margin-btwn-container bg-g1">
+                    <h4 class="main_inner_sectionh4">
+                        Multi- Brand Checker – Please check before creating a new multi-brand
+                    </h4>
+                    <div class="submain_inner_section">
+                        <div class="inner_section">
+                            <div class="inner_sub_section" style="display: block;">
+                                <div class="inner_sub2_section">
+                                    <div class="margin-right20 left">
+                                        Category > Brand Positioning > Brand
+                                    </div>
+                                    <div class="margin-right20 left">
+                                        <div class="left">
+                                            <apex:actionRegion >
+                                                <select id="MultiCategoryList" size="1" onchange="transferMultiCategoryValue(this.value)" reRender="multibrandPosPick" class="categorySelected"></select>
+                                                <apex:actionSupport event="onchange" reRender="multibrandPosPick,multibrandPick" status="counterStatus21" />
+                                            </apex:actionRegion>
+                                            <apex:actionstatus id="counterStatus21">
+                                                <apex:facet name="start">
+                                                    <img src="/img/loading.gif" alt="loading" />
+                                                </apex:facet>
+                                            </apex:actionstatus>
+                                            <div class="multiloading loading-category-image21">
+                                                <img src="/img/loading.gif" alt="loading" />
+                                            </div>
+                                        </div>
+                                        <div class="left margin-left20">
+                                            <apex:actionRegion >
+                                                <apex:selectList id="multibrandPosPick" value="{!checkerMultibrandPosName}" size="1">
+                                                    <apex:selectOptions value="{!checkerListOfMultiBrandPosition}" />
+                                                    <apex:actionSupport event="onchange" reRender="multibrandPick" status="actStatusId21" />
+                                                </apex:selectList>
+                                            </apex:actionRegion>
+                                            <div class="w100ac">
+                                                <br/>
+                                                <apex:actionStatus id="actStatusId21">
+                                                    <apex:facet name="start">
+                                                        <img src="/img/loading.gif" alt="loading" />
+                                                    </apex:facet>
+                                                </apex:actionStatus>
+                                            </div>
+                                        </div>
+                                        <div class="left margin-left20">
+                                            <apex:actionRegion >
+                                                <apex:selectList id="multibrandPick" value="{!checkerMultibrandNameFromPage}" size="1">
+                                                    <apex:selectOptions value="{!CheckerMultiBrandList}" />
+                                                </apex:selectList>
+                                            </apex:actionRegion>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="clear">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+                <apex:actionRegion >
+                    <apex:actionFunction name="sendmultiCategory" action="{!checkerMultiBrandPositionListData}" reRender="multibrandPosPick,multibrandPick" oncomplete="closemultiloading()">
+                        <apex:param id="multicatname" assignTo="{!checkerMulticategoryName}" name="checkerMulticategoryName" value="{!checkerMulticategoryName}" />
+                    </apex:actionFunction>
+                    <apex:actionFunction name="sendmultiCategory2" action="{!multiBrandPositionListData}" reRender="multibrandPosPick2,multibrandPick2" oncomplete="closemultiloading2()">
+                        <apex:param id="multicatname2" assignTo="{!multicategoryName}" name="multicategoryName" value="{!multicategoryName}" />
+                    </apex:actionFunction>
+                </apex:actionRegion>
+                <div class="main_inner_section margin-btwn-container bg-g1">
+                    <h4 class="main_inner_sectionh4">
+                        Multi-Brand Creator
+                    </h4>
+                    <div class="submain_inner_section">
+                        <div class="inner_section">
+                        	<div style="padding:1px 0;">
+				                <apex:outputpanel rendered="{!capErrorMessage}"> 
+				                    <div class="error-message">
+				                        Error while saving. All fields are mandatory.				                        
+				                        <apex:actionSupport reRender="MultiCategoryList2,multibrandPosPick2,multibrandPick2" />
+				                    </div>
+				                </apex:outputpanel>
+				            </div>
+				            <apex:outputPanel id="categoryEntireSection">
+	                            <div class="inner_sub_section" style="display: block;">
+	                                <div class="inner_sub2_section">
+	                                    <div class="left margin-right20 margin-top10 multiCategoryAdd" style="width:200px;text-align:right;">
+	                                        Category
+	                                        <strong></strong>
+	                                    </div>
+	                                    <div class="left margin-right20 margin-top10" style="text-align:right;">
+	                                        <div class="catnew1">
+	                                            <apex:actionRegion >
+	                                                <select id="MultiCategoryList2" size="1" onchange="transferMultiCategoryValue2(this.value)" reRender="multibrandPosPick2" class="categorySelected" value="{!CAPCategory2}"></select>
+	                                                <apex:actionSupport event="onchange" reRender="multibrandPosPick2,multibrandPick2" status="counterStatus212" />
+	                                            </apex:actionRegion>
+	                                            <apex:actionstatus id="counterStatus212">
+	                                                <apex:facet name="start">
+	                                                    <img src="/img/loading.gif" alt="loading" />
+	                                                </apex:facet>
+	                                            </apex:actionstatus>
+	                                            <div class="multiloading2 loading-category-image212">
+	                                                <img src="/img/loading.gif" alt="loading" />
+	                                            </div>
+	                                        </div>
+	                                        <div class="catnew2">
+	                                            <apex:inputText value="{!CAPCategory}" />
+	                                        </div>
+	                                    </div>
+	                                    <div class="left margin-top20 catnew" style="cursor:pointer">
+	                                        Add new
+	                                    </div>
+	                                    <div class="clear"></div>
+	
+	                                    <div class="left margin-right20 margin-top10 multiCategoryAdd" style="width:200px;text-align:right;">
+	                                        Brand position
+	                                        <strong></strong>
+	                                    </div>
+	                                    <div class="left margin-right20 margin-top10" style="text-align:right;">
+	                                        <div class="bpnew1">
+	                                            <apex:actionRegion >
+	                                                <apex:selectList id="multibrandPosPick2" value="{!multibrandPosNameForCAP}" size="1">
+	                                                    <apex:selectOptions value="{!listOfMultiBrandPosition}" />
+	                                                </apex:selectList>
+	                                            </apex:actionRegion>
+	                                        </div>
+	                                        <div class="bpnew2">
+	                                            <apex:inputText value="{!CAPBrandPosition}" />
+	                                        </div>
+	                                    </div>
+	                                    <div class="left margin-top20 bpnew" style="cursor:pointer">
+	                                        Add new
+	                                    </div>
+	                                    <div class="clear"></div>
+	                                    <div class="margin-top10">
+	                                        <div class="left margin-right20 multiCategoryAdd" style="width:200px;text-align:right;">
+	                                            Brand
+	                                            <strong></strong>
+	                                        </div>
+	                                        <div class="left">
+	                                            <apex:inputText value="{!CAPBrand1}" styleClass="margin-right20" />
+	                                            <apex:inputText value="{!CAPBrand2}" styleClass="margin-right20" />
+	                                            <apex:inputText value="{!CAPBrand3}" styleClass="margin-right20" />
+	                                            <apex:inputText value="{!CAPBrand4}" styleClass="margin-right20" />
+	                                            <apex:inputText value="{!CAPBrand5}" styleClass="margin-right20" />
+	                                        </div>
+	                                        <div class="clear"></div>
+	                                    </div>
+	                                </div>
+	                            </div>
+                        	</apex:outputPanel>
+                        </div>
+                    </div>
                 </div>
+                <div class="right">
+                    <apex:commandButton value="Update" action="{!updateSetting}" styleClass="commonbtn-blue" />
+                </div>
+                <div class="clear"></div>
             </div>
         </div>
-    </div>
+    </apex:form>
+    <script type="text/javascript">
+        $j(function() {                                   
+            var strMultiArr = {!MultiCategoryList};
+        	var multiCatName = '{!checkerMulticategoryName}';
+        	multiCatProjectADM1(strMultiArr, multiCatName);
+        	var multiCatName2 = '{!multicategoryName}';            
+            multiCatProjectADM12(strMultiArr, multiCatName2);
+        });                      
+    </script>
 </apex:page>

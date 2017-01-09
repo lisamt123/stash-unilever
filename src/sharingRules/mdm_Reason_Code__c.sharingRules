@@ -136,6 +136,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Market_Equals_Hong_Kong_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Hong Kong - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Hong_Kong</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>HK</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Market_Equals_Hungary_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Hungary – Manager</label>
@@ -357,6 +370,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Market_Equals_Taiwan_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Taiwan - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Taiwan</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>TW</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Market_Equals_Thailand_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Thailand - Manager</label>
@@ -367,6 +393,19 @@
             <field>ISO_Country__c</field>
             <operation>equals</operation>
             <value>TH</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Market_Equals_Turkey_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Turkey - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Turkey</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>TR</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>

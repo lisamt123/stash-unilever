@@ -98,7 +98,7 @@ public class TEL_ProductInfo_CC_Test {
     
     static testMethod void getFullProductList() {
         System.Test.startTest();
-        List<TEL_TelesalesWrapper.ProductInfo> wrapperList = TEL_ProductInfo_CC.getFullProductsList();
+        List<TEL_TelesalesWrapper.ProductInfo> wrapperList = TEL_ProductInfo_CC.getFullProductsList([SELECT Id FROM Opportunity LIMIT 1].Id);
         System.assert(!wrapperList.isEmpty());
         System.Test.stopTest();
     }
