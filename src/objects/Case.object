@@ -9345,7 +9345,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Market__c</field>
             <operation>equals</operation>
-            <value>Slovakia</value>
+            <value>Czech republic</value>
         </filters>
         <label>czech open cases older</label>
         <language>cs</language>
