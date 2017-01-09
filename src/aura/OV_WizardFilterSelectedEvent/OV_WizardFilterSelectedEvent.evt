@@ -1,3 +1,0 @@
-<aura:event type="APPLICATION">
-	<aura:attribute name="reset" type="Boolean" default="false"/>
-</aura:event>

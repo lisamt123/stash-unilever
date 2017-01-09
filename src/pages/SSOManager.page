@@ -1,3 +1,0 @@
-<apex:page standardController="uw_SSO_Settings__c">
-    <apex:listViews type="uw_SSO_Settings__c"/>
-</apex:page>

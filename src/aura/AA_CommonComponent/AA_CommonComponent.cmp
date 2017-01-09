@@ -1,4 +1,0 @@
-<aura:component >
-    <!--ltng:require scripts="resource/LoadImage/"/-->
-    <!--ltng:require scripts="/resource/AA_forcetk/forcetk.js" /-->
-</aura:component>

@@ -1,3 +1,0 @@
-<aura:event type="COMPONENT" description="Clear the Lookup" >
-    <aura:attribute name="searchString" type="String" description="value of the search String"/>
-</aura:event>

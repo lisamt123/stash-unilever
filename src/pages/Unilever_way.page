@@ -1,6 +1,0 @@
-<apex:page >
-  <!-- Begin Default Content REMOVE THIS -->
-  <iframe id="wayhomeFrame" src="/apex/MarketingHomePage" frameborder="0" height="2000px" width="100%"></iframe> <script type="text/javascript"> if (!document.getElementsByClassName) { document.getElementsByClassName = function (cn) { var rx = new RegExp("(?:^|\\s)" + cn+ "(?:$|\\s)"); var allT = document.getElementsByTagName("*"), allCN = [],ac="", i = 0, a; while (a = allT[i=i+1]) { ac=a.className; if ( ac && ac.indexOf(cn) !==-1) { if(ac===cn){ allCN[allCN.length] = a; continue; } rx.test(ac) ? (allCN[allCN.length] = a) : 0; } } return allCN; } } function hidechatter() { try { var e = document.getElementById("showFeedLink"); var LoggedInUserID=document.getElementsByClassName("actorentitylink"); var usrId = LoggedInUserID[0].getAttribute("data-hovid"); if(e.style.display == "none") chatter.getFeed().toggle('{"subjectId":"'+usrId+'","feedType":"NEWS","writable":"ReadWrite","numFeedItems":5,"canSortFeed":true,"sortByComments":true,"showFeedTitle":false,"isDropDownFiltersVisible":false,"alwaysShowFullText":false,"isShowMoreOfThis":true,"feedfilter":"all","keyprefix":""}',true); } catch(error) { } } window.setTimeout("hidechatter()", 2000); </script> <style type="text/css"> h2 { display:none !important; } </style>
-  
-  <!-- End Default Content REMOVE THIS -->
-</apex:page>

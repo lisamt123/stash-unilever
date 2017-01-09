@@ -1,4 +1,0 @@
-<aura:event type="COMPONENT" description="Latitude and Longitude for geolocalization" >
-    <aura:attribute name="latitude"  type="String" />
-    <aura:attribute name="longitude"  type="String" />
-</aura:event>

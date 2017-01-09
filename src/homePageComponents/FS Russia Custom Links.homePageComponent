@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<HomePageComponent xmlns="http://soap.sforce.com/2006/04/metadata">
-    <links>Power_BI_Daily_Sales_Report</links>
-    <links>FS_Marketing_Materials</links>
-    <links>FS_Unilever_Food_Solutions_RU</links>
-    <pageComponentType>links</pageComponentType>
-</HomePageComponent>

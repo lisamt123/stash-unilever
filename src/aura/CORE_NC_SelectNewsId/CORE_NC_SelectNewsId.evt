@@ -1,4 +1,0 @@
-<aura:event type="APPLICATION">
-    <aura:attribute name="selectedNewsDetail" type="String"/>
-    <aura:attribute name="NewsType" type="String"/>
-</aura:event>

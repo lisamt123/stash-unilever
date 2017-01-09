@@ -1,4 +1,0 @@
-<aura:event type="APPLICATION">
-	<aura:attribute name="NewsDetail" type="Core_NC_NewsDetailWrapperClass"/>
-    <aura:attribute name="NewsType" type="String"/>
-</aura:event>

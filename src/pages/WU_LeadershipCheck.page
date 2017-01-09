@@ -1,4 +1,0 @@
-<apex:page standardController="WU_Master_Warehouse__c" extensions="WU_LeadershipPermission" action="{!redirectPage}">
-<apex:pagemessages ></apex:pagemessages>
-
-</apex:page>

@@ -1,7 +1,0 @@
-<apex:page standardController="IdeaTheme" recordSetvar="IdeaTheme">
-
- <apex:sectionHeader title="{!$ObjectType.IdeaTheme.LabelPlural}" subtitle="Home" />
-
-  <apex:listViews type="IdeaTheme"/>
-
-</apex:page>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<WaveDashboard xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <content xsi:nil="true"/>
-    <application>UL_Reports</application>
-    <description>Dashboard for Team Member Allocation - Version 3</description>
-    <masterLabel>IPM Report 13 - Team Member Allocation - Version 3</masterLabel>
-</WaveDashboard>

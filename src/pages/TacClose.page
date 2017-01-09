@@ -1,6 +1,0 @@
-<apex:page >
- <script language="javascript" type="text/javascript"> 
-     window.close();
-    alert("Close");
- </script>
-</apex:page>

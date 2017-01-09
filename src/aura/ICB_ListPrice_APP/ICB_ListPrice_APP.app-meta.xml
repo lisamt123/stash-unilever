@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>37.0</apiVersion>
-    <description>List price application responsable to manage the prices related with operator from Ice Cream busines unit.</description>
-</AuraDefinitionBundle>

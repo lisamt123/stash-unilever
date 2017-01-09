@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>This is used by CMCO Superuser for Custom Settings</description>
-    <label>Custom Settings</label>
-    <mobileReady>false</mobileReady>
-    <motif>Custom63: Chip</motif>
-    <page>AF_CustomSetting</page>
-</CustomTab>

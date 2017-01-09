@@ -1,1 +1,0 @@
-{"query":{"query":"{&quot;groups&quot;:[&quot;New_User__c.Name&quot;],&quot;measures&quot;:[[&quot;count&quot;,&quot;*&quot;]]}","version":-1.0}}

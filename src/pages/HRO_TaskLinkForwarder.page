@@ -1,9 +1,0 @@
-<apex:page standardController="HRO_Onboarding_Task__c" extensions="HRO_TaskLinkForwarder_CX" showHeader="true" sidebar="true" action="{!updateActionTaken}">
-    <script>
-        /*window.open ('http:////'+'{!redirectToPage}','_top',false)*/
-        
-    </script>
-    <apex:form >
-        <apex:pageMessages ></apex:pageMessages>
-    </apex:form>
-</apex:page>

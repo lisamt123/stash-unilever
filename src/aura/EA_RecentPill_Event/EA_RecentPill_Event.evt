@@ -1,4 +1,0 @@
-<aura:event type="APPLICATION" description="Recent Pill Item clicked">
-    <aura:attribute name="item" type="String"/>
-    <aura:attribute name="item_name" type="String"/>
-</aura:event>
