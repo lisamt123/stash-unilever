@@ -10,7 +10,7 @@ VERSION AUTHOR 				DATE 		DETAIL Description
 ***********************************************************************/
 @isTest
 public class TEL_OppGenController_Test {
-	
+    
     @testSetup
     public static void createData() {
         TEL_Segment__c  		segmentObj 		= new TEL_Segment__c (Name = 'Test', Value__c = 'Test');
@@ -46,14 +46,14 @@ public class TEL_OppGenController_Test {
         campAccObj.TEL_Account__c = accObj.Id;
         campAccObj.TEL_Campaign__c = camObj.Id;
         System.Database.insert(campAccObj);
-
+        
     }
     
     // Test the retrieved segment. 
     static testMethod void testSegment(){
         List<String> lstSegment = new List<String>();
         lstSegment = TEL_OppGenController.searchSegment();
-		system.assert(!lstSegment.isEmpty());
+        system.assert(!lstSegment.isEmpty());
     }
     
     // Test the retrieved subSegment. 
@@ -119,6 +119,23 @@ public class TEL_OppGenController_Test {
         
         String accountsJSON = JSON.serialize(accList);
         
-        TEL_OppGenController.createOpp(accountsJSON, 'Monday', 'none', 'none', 'Thursday', 'none', 'One Week', 'Standarad Sales', [SELECT Id FROM Campaign LIMIT 1].Id);
+        System.Test.startTest();
+        TEL_OppGenController.createOpp(accountsJSON, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'One Week', 'Standarad Sales', [SELECT Id FROM Campaign LIMIT 1].Id);
+        System.Test.stopTest();
     }
+    
+    static testMethod void createAccCampaign() {
+        List<TEL_TelesalesWrapper.DisplayAccounts> accList = new List<TEL_TelesalesWrapper.DisplayAccounts>();
+        TEL_TelesalesWrapper.DisplayAccounts acc = new TEL_TelesalesWrapper.DisplayAccounts();
+        acc.isSelected = true;
+        acc.accountId = [SELECT Id FROM Account LIMIT 1].Id;
+        accList.add(acc);
+        
+        String accountsJSON = JSON.serialize(accList);
+        
+        System.Test.startTest();
+        TEL_OppGenController.createAccCampaign(accountsJSON, [SELECT Id FROM Campaign LIMIT 1].Id);
+        System.Test.stopTest();
+    }
+    
 }

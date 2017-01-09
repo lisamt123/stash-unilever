@@ -1,4 +1,19 @@
 <apex:page docType="html-5.0"  showHeader="false"  standardStylesheets="false" controller="HRO_HeadStart_CX">
+
+<style>     
+.custom1 {      
+    background-color: white !important;     
+}       
+</style>        
+<apex:pageBlock >       
+    <apex:outputPanel layout="block" styleClass="custom1">      
+        <apex:pageBlockSection >        
+            <apex:outputText value="TLS 1.0 disablement on Salesforce:" style="color: red; font-weight: bold" /> <br />     
+            <apex:outputText value="From March 2017,  Salesforce will not support browsers using TLS 1.0 version. Due to this you will not able to access salesforce. Hence, request all users to reach out to respective local IT helpdesk for browser upgrade to TLS 1.2 or higher" style="color: red; font-weight: bold" /> <br />       
+        </apex:pageBlockSection>        
+    </apex:outputPanel>     
+</apex:pageBlock>
+
 <html>
     <head>
         <c:HRO_HeaderScripts />
