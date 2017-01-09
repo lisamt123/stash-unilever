@@ -14,7 +14,7 @@ VERSION  AUTHOR             DATE                DETAIL                          
    
 ***********************************************************************/
 
-@IsTest(SeeAllData=true) // ConnectApi methods are only supported with SeeAllData = true
+@IsTest // ConnectApi methods are only supported with SeeAllData = true
 public class isll_BrainResultsControllerTest
 {
 	// Initialise data for test methods
