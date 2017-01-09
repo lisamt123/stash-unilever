@@ -3432,7 +3432,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmypSAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -4450,7 +4450,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmypSAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -5441,7 +5441,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmypSAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -5471,7 +5471,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmypSAC"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -6963,7 +6963,7 @@
         "widgets": {
             "link_place": {
                 "parameters": {
-                    "destination": "0FK2C000000Kyx3WAC",
+                    "destination": "0FK2C000000GmnwWAC",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -7269,7 +7269,7 @@
             },
             "link_pack": {
                 "parameters": {
-                    "destination": "0FK2C000000Kyv7WAC",
+                    "destination": "0FK2C000000GmnrWAC",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
