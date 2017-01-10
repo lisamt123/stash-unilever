@@ -212,6 +212,16 @@ ACCL__Description_Language_1__c
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+    <fields>
+        <fullName>UL_Validate_Promotion_Dates__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>This field is to validate Tactic Dates with in Promotion Dates range.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is to validate Tactic Dates with in Promotion Dates range.</inlineHelpText>
+        <label>Validate Promotion Dates</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <label>Tactic Template</label>
     <listViews>
         <fullName>ACCL__All</fullName>

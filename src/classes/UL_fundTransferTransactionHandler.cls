@@ -78,7 +78,7 @@ if(FUND_APPROVED_STATUS.equalsIgnoreCase(transferTransactionLoop.UL_Status__c) &
     database.update(FundRecordMap.values());
     }
     catch(Exception ex){
-    	UL_Utility.logError(ex, UserInfo.getUserId());
+        UL_Utility.logError(ex, UserInfo.getUserId());
     }
 }
 

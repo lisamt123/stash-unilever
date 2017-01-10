@@ -37,12 +37,12 @@ public without sharing class UL_ThresholdTemplateExtensions {
       stepNames = new set<String>();
       approvalProcessSteps = new list<selectoption>();
       if(id==null){
-	      viewMode = false;
-	      editMode = true;    
+          viewMode = false;
+          editMode = true;    
       }
       else{
-	      viewMode = true;
-	      editMode = false;
+          viewMode = true;
+          editMode = false;
       }
       
       approvalProcessList = new list<selectoption>();
@@ -70,11 +70,11 @@ public without sharing class UL_ThresholdTemplateExtensions {
     ********************************************************************/
     public void editClick(){
         try{
-	        viewMode = false;
-	        editMode = true;
+            viewMode = false;
+            editMode = true;
         }
         catch(Exception ex){
-        	UL_Utility.logError(ex, UserInfo.getUserId());
+            UL_Utility.logError(ex, UserInfo.getUserId());
         }
     }
     /*******************************************************************
@@ -99,7 +99,7 @@ public without sharing class UL_ThresholdTemplateExtensions {
         }
         }
         catch(Exception ex){
-        	UL_Utility.logError(ex, UserInfo.getUserId());
+            UL_Utility.logError(ex, UserInfo.getUserId());
             return null;
         }
     }
@@ -112,21 +112,21 @@ public without sharing class UL_ThresholdTemplateExtensions {
     ********************************************************************/
     public pagereference save(){
         try{
-	        database.upsert(thrtemp);
-	        viewMode = true;
-	        editMode = false;
-	        pagereference pageref = new PageReference(UL_Utility.FORWARD_SLASH + thrtemp.id);
-	        pageref.setRedirect(true);
-	        if(id==UL_Utility.NULL_ID){
-	        	return pageref;
-	        }
-	        else
-	        {
-	            return null;
-	        }
+            database.upsert(thrtemp);
+            viewMode = true;
+            editMode = false;
+            pagereference pageref = new PageReference(UL_Utility.FORWARD_SLASH + thrtemp.id);
+            pageref.setRedirect(true);
+            if(id==UL_Utility.NULL_ID){
+                return pageref;
+            }
+            else
+            {
+                return null;
+            }
         }
         catch(Exception ex){
-        	UL_Utility.logError(ex, UserInfo.getUserId());
+            UL_Utility.logError(ex, UserInfo.getUserId());
             return null;
         }
     }
@@ -139,15 +139,17 @@ public without sharing class UL_ThresholdTemplateExtensions {
     ********************************************************************/
     public void getApprovalProcessSteps(){
         try{
-	        stepNames = new set<String>();
-	        approvalProcessSteps = new list<selectoption>();
-	        for(ProcessInstanceNode processsteps : [select processnodename from ProcessInstanceNode where ProcessInstanceId in (select id FROM ProcessInstance where processdefinitionid=:approvalids.get(thrtemp.UL_Workflow__c)) limit 5000]){
-	          stepNames.add(processsteps.processnodename);
-	        }
-	        for(String steps : stepNames){
-	          approvalProcessSteps.add(new selectoption(steps, steps));
-	        }
-	    }catch(Exception ex){
+            stepNames = new set<String>();
+            approvalProcessSteps = new list<selectoption>();
+           
+            for(processnode processsteps : [select description from processnode where processdefinitionid=:approvalids.get(thrtemp.UL_Workflow__c) limit 5000]){
+              stepNames.add(processsteps.description);
+            }
+            for(String steps : stepNames){
+              approvalProcessSteps.add(new selectoption(steps, steps));
+                
+            }
+        }catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
         }
     }

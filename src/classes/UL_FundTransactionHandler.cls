@@ -70,20 +70,20 @@
                      }
                  }
                  else {
-                	 if(tranTemplate.UL_Cross_Category_Transfer_Allowed__c==False && fundLevelMap.get(fundTran.ACCL__Source_Fund__c)!= Null && fundLevelMap.get(fundTran.ACCL__Target_Fund__c)!= Null){
-	                     source = fundLevelMap.get(fundTran.ACCL__Source_Fund__c);
-	                     target= fundLevelMap.get(fundTran.ACCL__Target_Fund__c);
-	                    
-	                     if(!target.equalsIgnoreCase(source)){
-	                         fundTran.adderror(System.Label.UL_Transfer_Error); 
-	                     }
-                	 }
+                     if(tranTemplate.UL_Cross_Category_Transfer_Allowed__c==False && fundLevelMap.get(fundTran.ACCL__Source_Fund__c)!= Null && fundLevelMap.get(fundTran.ACCL__Target_Fund__c)!= Null){
+                         source = fundLevelMap.get(fundTran.ACCL__Source_Fund__c);
+                         target= fundLevelMap.get(fundTran.ACCL__Target_Fund__c);
+                        
+                         if(!target.equalsIgnoreCase(source)){
+                             fundTran.adderror(System.Label.UL_Transfer_Error); 
+                         }
+                     }
                 } 
           }
      }
      }
      catch (Exception ex){
-           		UL_Utility.logError(ex, UserInfo.getUserId());
+                UL_Utility.logError(ex, UserInfo.getUserId());
             }  
     }
     }
