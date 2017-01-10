@@ -148,16 +148,6 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>UL_Update_Slogan</fullName>
-        <field>ACCL__Slogan_Language_1__c</field>
-        <formula>UL_Account__r.Name+&apos;-&apos;+  UL_Category__c +&apos;-&apos;+   UL_Brand__c +&apos;-&apos;+TEXT(UL_Mechanic__c) +&apos;-&apos;+  TEXT(UL_Sub_Mechanic__c) +&apos;-&apos;+  TEXT(UL_Feature__c) +&apos;-&apos;+ TEXT(DAY(ACCL__Placement_Date_From__c)) +&apos;/&apos;+ TEXT(MONTH(ACCL__Placement_Date_From__c))+&apos;/&apos;+ TEXT(YEAR(ACCL__Placement_Date_From__c))  +&apos;-&apos;+ 
-TEXT(DAY(ACCL__Placement_Date_Thru__c)) +&apos;/&apos;+ TEXT(MONTH(ACCL__Placement_Date_Thru__c))+&apos;/&apos;+ TEXT(YEAR(ACCL__Placement_Date_Thru__c))  +&apos;-&apos;+ UL_Free_Text__c</formula>
-        <name>UL_Update Slogan</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
 	<fieldUpdates>
         <fullName>UL_Update_Slogan</fullName>
         <field>ACCL__Slogan_Language_1__c</field>
