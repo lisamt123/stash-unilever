@@ -2,8 +2,7 @@
     <aura:attribute name="selectedEventFilter" type="String"/>
     <aura:attribute name="showFilter" type="boolean" default="false"/>
     <aura:attribute name="showSort" type="boolean" default="false"/>
-    
-    
+         
 	<div class="heading">All Events
 		<div>
 			<div class="slds-button-group filter-sort" role="group">
@@ -111,5 +110,7 @@
 		<span class="date-adress"> Senate House Malet Street, London</span>
 		<img class="icons_group1" src="/resource/Lightning_designing_style/assets/icons/utility/check_60.png"></img>
 	</div>
-	<button class="slds-button slds-button--neutral show-more"> Show more</button>
+	<button class="slds-button slds-button--neutral show-more"> View more</button>
+    
+
 </aura:component>

@@ -69,7 +69,7 @@
     color: white;
     font-size: 12px;
 }
-.THIS .show-more{
-    width: 95%;
-    margin: 0 10px;
+.THIS.show-more{
+        width: 94%;
+    margin: 3%;
 }

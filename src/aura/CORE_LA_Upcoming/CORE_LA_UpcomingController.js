@@ -1,5 +1,5 @@
 ({
-   
+    
     showFilterMenu : function(component, event, helper) {      
         component.set("v.showFilter",true); //
         component.set("v.showSort",false); 

@@ -11,7 +11,7 @@
 	<div   class="cards">Interactive Design 
       	<span class="lang"></span>
 	
-        <span class="recurring">Recurring</span>
+        <div class="recurring">Recurring</div>
 		<!-- <span class="date-adress"> 24th December 2016 </span> -->
 		<hr></hr>
 		<img src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy2.png"></img>
@@ -38,9 +38,7 @@
 					<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
 					<span class="date-adress"> Senate House Malet Street, London</span>
 				</p>
-				<p>
-					<br></br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-				</p>
+
 			</ul>
         </table><br/>
         <table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table--col-bordered">
@@ -53,10 +51,8 @@
 					<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
 					<span class="date-adress"> Senate House Malet Street, London</span>
 				</p>
-				<p>
-					<br></br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-				</p>
 			</ul>
 		</table>
+        <button class="slds-button slds-button--neutral show-more">View More</button>
 	</div>
 </aura:component>

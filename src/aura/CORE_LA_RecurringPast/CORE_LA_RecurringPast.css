@@ -58,3 +58,7 @@
 .THIS .slds-table--bordered {
     border-top: 0px solid #d8dde6 !important;
 }
+.THIS .show-more{
+    margin:3%;
+    width:94%;
+}

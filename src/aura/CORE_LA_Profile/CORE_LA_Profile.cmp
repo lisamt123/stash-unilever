@@ -4,7 +4,7 @@
     
     <div class="profile-div">
         <div class="trainer">
-            <div class="trainer-photo">
+            <div class="trainer-photo" >
                 <img src="/resource/Lightning_designing_style/assets/images/avatar1.jpg"></img>
             </div>
             <div class="trainer-detail">
@@ -23,12 +23,8 @@
         <div class="about-me line-clamp">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
         
 		</div>
-        <div class="slds-tile slds-media badge">
-            <div class="slds-media__figure">
-                <img src="/resource/CORE_LA_StaticResource/event_app/images/badges-2-.png" aria-hidden="true" class="slds-icon"/>
-                <img src="/resource/CORE_LA_StaticResource/event_app/images/badges-1-.png" aria-hidden="true" class="slds-icon"/>
-                <img src="/resource/CORE_LA_StaticResource/event_app/images/badges-3.png" aria-hidden="true" class="slds-icon"/>
-            </div>
+		<div>
+        <button class="slds-bitton slds-button--neutral button1" onclick="{!c.doInit}">Full Profile</button>
         </div>
         
     </div>

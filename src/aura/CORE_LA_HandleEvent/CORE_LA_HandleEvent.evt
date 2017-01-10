@@ -1,3 +1,4 @@
 <aura:event type="APPLICATION" description="Event template" >
 <aura:attribute name="componentName" type="String"/>
+<aura:attribute name="isFromFeedback" type="boolean"/>
 </aura:event>

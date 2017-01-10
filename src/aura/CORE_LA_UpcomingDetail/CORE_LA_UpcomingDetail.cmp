@@ -5,6 +5,8 @@
     <aura:attribute name="showDiv2" type="boolean" default="false"/>
     <aura:attribute name="showDiv3" type="boolean" default="false"/>
     <aura:attribute name="showDiv4" type="boolean" default="false"/>
+    <aura:attribute name="isRegistrationPopup" type="boolean"/> 
+    
     <div class="slds-page-header" role="banner" data-aura-rendered-by="4:299;a">
         <div class="slds-media slds-media--center" data-aura-rendered-by="5:299;a">
             <img aria-hidden="true" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png"
@@ -36,7 +38,7 @@
                     <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">ABOUT</a>
                 </li>
                 <li aura:id="tab-upcoming" class="slds-tabs--default__item slds-text-title--caps  " title="Item Two" role="presentation"  onclick="{!c.upcomingEventDisplay}">
-                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">FEED</a>
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">FEEDS</a>
                 </li>
             </ul>
             <div aura:id="upcomingTabContent" id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item" >
@@ -49,7 +51,7 @@
             <div aura:id="feedContent" id="tab-default-3" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item" >
                 <div class="slds-page-header list" role="banner">
                     <div class="slds-media">
-                        <div class="slds-text-align--left"> Speaker and Attendee</div>
+                        <div class="slds-text-align--left"> Speaker and Attendees</div>
                         <div class="slds-media__body slds-text-align--right">
                             <div  onclick="{!c.navigateTrainerDetails}">
                                 <p class=" events-color">
@@ -78,7 +80,7 @@
                             </p>
                         </div>
                     </header>
-                </article><hr></hr>
+                </article>
                 <article class="slds-post">
                     <header class="slds-post__header slds-media slds-media--center">
                         <div class="slds-media__figure">
@@ -122,7 +124,7 @@
             <div class="slds-media__figure"></div>
             <div class="slds-media__body" onclick="{!c.showDiv1}">
                 <p class="slds-page-header__title slds-truncate" title="Rohde Corp - 80,000 Widgets">
-                    Prerequisite and Documents</p>
+                    Prerequisite &amp; Documents</p>
                 <div id="clicker" class="slds-text-body--regular title" >
                     <img class="down-arrow" aura:id="myimg3" src="/resource/Lightning_designing_style/assets/icons/utility/chevrondown_60.png"></img>
                     <img class="up-arrow slds-hide" aura:id="myimg4" src="/resource/Lightning_designing_style/assets/icons/utility/chevronup_60.png"></img>
@@ -220,4 +222,11 @@
             </figure>
         </div>
     </div>
+    <!-- Registration Popup -->
+    <aura:if isTrue="{!v.isRegistrationPopup}">
+                <div class="slds-backdrop slds-backdrop--open">
+                    <c:CORE_LA_Registration ></c:CORE_LA_Registration>
+                </div>
+        </aura:if>
+    
 </aura:component>

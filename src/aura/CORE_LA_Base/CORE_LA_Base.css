@@ -62,7 +62,7 @@
 }
 .THIS .trainer-photo{
     float: left;
-    width: 37%;
+    width: 27%;
     margin: 12px;
 }
 
@@ -75,4 +75,7 @@
 }
 .THIS .slds-button {
     font-size: 3.3vmin !important;
+}
+.THIS .slds-tabs--default__item.slds-active .slds-tabs--default__link{
+font-size:10px !important;
 }

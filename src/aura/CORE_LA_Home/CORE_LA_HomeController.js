@@ -1,17 +1,17 @@
 ({
 
     defaultPanel: function(component, event, helper) {
-         var defaultPrimaryTab=component.find('tab-default');
-           $A.util.addClass(defaultPrimaryTab,'slds-active');
-        var defaultDivDisplay = component.find('upcomingContent');
-        $A.util.addClass(defaultDivDisplay, 'slds-show');
-        var cmpTarget = component.find('upcomingTabContent');
-        $A.util.addClass(cmpTarget,'slds-show');
-     
-      
-      
-
-    },
+       if(component.get("v.isFromFeedback") != true)
+       {
+      	 component.set("v.isFeedbackPopup",true);
+       } 
+       var defaultPrimaryTab=component.find('tab-default');
+       $A.util.addClass(defaultPrimaryTab,'slds-active');
+       var defaultDivDisplay = component.find('upcomingContent');
+       $A.util.addClass(defaultDivDisplay, 'slds-show');
+       var cmpTarget = component.find('upcomingTabContent');
+       $A.util.addClass(cmpTarget,'slds-show');
+     },
 
     profileDisplay: function(component, event, helper) {
          var defaultSubTab=component.find('tab-upcoming');

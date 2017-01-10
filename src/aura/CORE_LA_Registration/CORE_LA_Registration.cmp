@@ -3,6 +3,7 @@
 	<ltng:require styles="/resource/CORE_FB_Feedback_App/assets/styles/star-css.css" />
 	<ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
 	<ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
+    <aura:attribute name="isRegistrationConfirmationPopup" type="boolean"/> 
 	<style>
         body{
         font: 100%/1.5 "Salesforce Sans",Arial,sans-serif !important;
@@ -63,7 +64,8 @@
 						<div class="slds-form-element__control">
 							<div class="slds-select_container">
 								<select id="select-01" class="slds-select">
-									<option>Yes</option>
+									<option>Select Option</option>
+                                    <option>Yes</option>
 									<option>No</option>
 								</select>
 							</div>
@@ -105,4 +107,12 @@
 			</button>
 		</div>
 	</div>
+    
+    <!-- Registration Confirmation Popup -->
+    <aura:if isTrue="{!v.isRegistrationConfirmationPopup}">
+                <div class="slds-backdrop slds-backdrop--open">
+                    <c:CORE_LA_Confirm ></c:CORE_LA_Confirm>
+                </div>
+        </aura:if>
+
 </aura:component>
