@@ -22,6 +22,7 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 6.0 -    Samrin      4 Nov 2016      IAVWD-2289                Update any Existing 'FLS In Country' Components
 7.0 -    Samrin      28 Nov 2016     IAVMD-2722                MDM Rework Request for Fusion Region 
 8.0 -    Samrin      30 Nov 2016     IAVMD-2751                Warning message on submit in rapid form for Fusion
+9.0 -    Samrin      06 Jan 2017     IAVMD-2913                Rework fuctionality for MDM Ops (All Countries) 
 ****************************************************************************/
 
 global with sharing class  VPM_PurchaseRequestsControllerExtension {
@@ -85,7 +86,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
       public string exceptionType{get;set;} 
       public string internationalVersion{get;set;}
       public boolean isRequired{get;set;}
-      
+      public string userLanguage{get;set;}
       public boolean isApprover1{get;set;}
       public boolean isApprover2{get;set;}
       public boolean isApprover3{get;set;}
@@ -139,7 +140,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           recId = stdController.getRecord().Id; 
          
           //errorMsg=getError();
-          
+          userLanguage = UserInfo.getLanguage();
           this.pr= (VPM_PurchasingRequests__c)stdController.getRecord(); 
           //recId1 = stdController.getRecord().Id; 
           
@@ -155,7 +156,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           venReqStatus = fetchRecordStatus(recId);
           isRequired = false;
         
-          vendorDetailList =[select OwnerId, VPM_IsVendorSME__c,VPM_ECC__c, VPM_PaymentTerms__c,
+          vendorDetailList =[select OwnerId, VPM_IsVendorSME__c,VPM_ECC__c, VPM_PaymentTerms__c,VPM_VendorCode__c,
           VPM_PaymentTermsIfNoneSelected__c,VPM_Country__c,VPM_CompanyCode__r.VPM_CompanyCode__c, VPM_CompanyCode__r.ECC__c, 
           VPM_ApprovalWorker__c, VPM_ApprovalWorkerID__c, VPM_ExceptionType__c, VPM_InternationalVersion__c, 
           VPM_Status__c, VPM_CountryRequestingVendor__c,VPM_FLSInCountryReqVen__c,VPM_BankKey__c,VPM_BankAccountNumber__c from VPM_PurchasingRequests__c where id =: recId];
@@ -174,12 +175,17 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           vendorPaymentTerms = vendorDetailList[0].VPM_PaymentTerms__c;
           system.debug('@@ vendorPaymentTerms' + vendorPaymentTerms);   
                 
-                                                 
+          if(string.isBlank(vendorDetailList[0].VPM_VendorCode__c)){
+              vendorDetailList[0].VPM_VendorCode__c = 'Vendor Not Created';
+          }
           /* Logic to get Payment terms values from custom setting */
          
        System.debug('@@@@@@@@#######-'+ paymentTerms);                                         
        System.debug('@@@@@@@@#######vendorDetailList[0].VPM_PaymentTerms__c-'+ vendorDetailList[0].VPM_PaymentTerms__c);
        //System.debug('@@@@@@@@#######vendorDefaultPaymentTerm-'+vendorDefaultPaymentTerm);
+       
+            
+       
     /* Start Samrin Shaikh : Changes : 27 -Oct : IAVMD-2243 :  Warning Message on 'Submit' button */
        if(VendorDetailList[0].VPM_FLSInCountryReqVen__c && VendorDetailList[0].VPM_Status__c.contains(STR_CONST_DRAFT) )
        {
@@ -323,8 +329,9 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               }
           /* End  of Changes : 595 & 277 Disable the rework & Submit button */
             /* Changes By Samrin on 28 Nov 2016 - MDM Rework Request */ 
-               if(VendorDetailList[0].VPM_Status__c.containsIgnoreCase(VPM_RecordTypeHelper.MDM_REVIEW) &&  vendorDetailList[0].VPM_ECC__c == STR_CONST_FUSION){
-                  System.debug('Hello Inside Rework MDM');
+              // if(VendorDetailList[0].VPM_Status__c.containsIgnoreCase(VPM_RecordTypeHelper.MDM_REVIEW) &&  vendorDetailList[0].VPM_ECC__c == STR_CONST_FUSION){
+              /*Changes By Samrin on 6th Jan 2017 -  IAVMD-2913  Rework fuctionality for MDM Ops (All Countries) */   
+              if(VendorDetailList[0].VPM_Status__c.containsIgnoreCase(VPM_RecordTypeHelper.MDM_REVIEW)){
                    reworkBtn=true;    }
               
               /* End Changes By Samrin on 28 Nov 2016 - MDM Rework Request */   
@@ -378,9 +385,15 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
            pr.VPM_PaymentTerms__c = vendorPaymentTerms; 
            paymentTerms = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetailList[0].VPM_CompanyCode__r.ECC__c , PAYMENT_TERMS,vendorPaymentTerms);        
     }
-   
-  
-      
+   /******************************************************************** 
+    
+    Created By   : Ajay Rawat
+    Created Date : 30th September 2016
+    Last Modify  : 25th October 2016
+    Description  : VPM - This method is used by MDM for creating, maintaining , extending vendor request into SAP
+    Return Type  : void
+    ********************************************************************/ 
+
       public void callSendToSAPAPI() {
           System.debug('-----id of vendor request record is-----'+vendorReqId);
           String responseString='';
@@ -480,6 +493,16 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               }
       }
       
+  /******************************************************************** 
+    
+    Created By   : Epsita Maharana
+    Created Date : 30th September 2016
+    Last Modify  : 25th October 2016
+    Description  : VPM - Used to set user role based on the permission sets assigned. Business Requestor is the base Permission set assigned to all users. Any permissions above BR
+                   will be considered while setting the user role. i.e Permission set of highest order to be considered. 
+    Return Type  : void
+    ********************************************************************/      
+      
       @RemoteAction
       global static map<string,string> checkForBusinessReqUser() {
           
@@ -519,7 +542,15 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
               return returnResult;
       }
-        
+
+  /******************************************************************** 
+    
+    Created By   : Epsita Maharana
+    Created Date : 30th September 2016
+    Last Modify  : 25th October 2016
+    Description  : VPM - Used to identify type of logged in user 
+    Return Type  : void
+    ********************************************************************/           
     
        public void checkUser() {
           List<PermissionSetAssignment> lstcurrentUserPerSet = [SELECT Id, PermissionSet.Name,PermissionSet.Label, AssigneeId
@@ -586,7 +617,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           userRole = 'BUR';
           return userRole;
       }
-      
+       
       public String fetchRecordStatus(String recId) {
           String reqStatus='';
           List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c FROM VPM_PurchasingRequests__c WHERE
@@ -597,6 +628,16 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           return reqStatus;
       }
       
+
+  /******************************************************************** 
+    
+    Created By   : Ajay Rawat
+    Created Date : 30th September 2016
+    Last Modify  : 25th October 2016
+    Description  : VPM - Used to mark request complete for block/unblock/delete/undelete request
+    Return Type  : void
+    ********************************************************************/     
+    
       public void ManuallyMarkAsCompleteAction(){
           //PageReference congratsPage = null; 
           List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,OwnerId, CreatedById, VPM_DeletionBlockFlag__c FROM VPM_PurchasingRequests__c WHERE
@@ -619,7 +660,15 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               }
               
       } 
-      
+ 
+ /******************************************************************** 
+    
+    Created By   : Ajay Rawat
+    Created Date : 30th September 2016
+    Last Modify  : 25th October 2016
+    Description  : VPM - Used to enable disable button as per logged in user. Currently enabled for MDMOps User
+    Return Type  : void
+    ********************************************************************/         
       public void EnableManuallyMarkAsCompleteBtn(){
           try
           {
@@ -636,7 +685,14 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           catch(exception ex){system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());}
       }
 
+ /******************************************************************** 
     
+    Created By   : Ajay Rawat
+    Created Date : 30th September 2016
+    Last Modify  : 25th October 2016
+    Description  : VPM - Used to assign record back for rework based on last request with group. 
+    Return Type  : void
+    ********************************************************************/      
        public void ReworkAction()
        {
           try
@@ -927,7 +983,8 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                      VendorDetailList[0].VPM_RussianTaxApprovalRequired__c= false;
                      VendorDetailList[0].VPM_BankDataValidationRequired__c= false;
                      VendorDetailList[0].VPM_ApprovalWorkerID__c='';
-                     VendorDetailList[0].VPM_ApprovalWorker__c=''; 
+                     VendorDetailList[0].VPM_ApprovalWorker__c='';
+                     VendorDetailList[0].VPM_RequestLastWithGroup__c = 'MDM Ops'; 
                      update VendorDetailList;
                   }
               }
@@ -949,6 +1006,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                       VendorDetailList[0].VPM_BankDataValidationRequired__c= false;
                       VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                       VendorDetailList[0].VPM_ApprovalWorker__c=''; 
+                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'MDM Ops'; 
                      update VendorDetailList;
               }
               
@@ -959,7 +1017,14 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());
           }
       }
-      
+ /******************************************************************** 
+    
+    Created By   : Ajay Rawat
+    Created Date : 30th September 2016
+    Last Modify  : 25th October 2016
+    Description  : VPM - Used by BR to assign request to FLS
+    Return Type  : void
+    ********************************************************************/         
          public void SubmitRequestAction()
       {
      //callJavaScriptAlert='<script> redirectToListView(); </script>';
@@ -983,7 +1048,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                         VendorDetailList[0].VPM_BusinessRequestorSubmitted__c=STR_CONST_YES; 
                         VendorDetailList[0].VPM_Rework__c='No'; 
                         VendorDetailList[0].VPM_RequestLastWithGroup__c=STR_CONST_BUSREQ; 
-                      	VendorDetailList[0].VPM_RequestFromFLSOrBR__c=STR_CONST_BUSREQ;
+                        VendorDetailList[0].VPM_RequestFromFLSOrBR__c=STR_CONST_BUSREQ;
                         update VendorDetailList;
                         callJavaScriptAlert='<script> PageReload(); </script>';
                  }
