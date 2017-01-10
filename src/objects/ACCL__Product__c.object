@@ -1925,13 +1925,13 @@
                 <default>true</default>
             </values>
         </picklistValues>
-        <picklistValues>
+      <!--  <picklistValues>
             <picklist>ACCL__Sales_Org</picklist>
             <values>
                 <fullName>0001</fullName>
                 <default>false</default>
             </values>
-        </picklistValues>
+        </picklistValues>-->
         <picklistValues>
             <picklist>ACCL__State__c</picklist>
             <values>
@@ -2347,7 +2347,7 @@
                 <default>true</default>
             </values>
         </picklistValues>
-        <picklistValues>
+       <!-- <picklistValues>
             <picklist>ACCL__Sales_Org</picklist>
             <values>
                 <fullName>0001</fullName>
@@ -2361,7 +2361,7 @@
                 <fullName>UK SO</fullName>
                 <default>false</default>
             </values>
-        </picklistValues>
+        </picklistValues>-->
         <picklistValues>
             <picklist>ACCL__State__c</picklist>
             <values>
@@ -2589,7 +2589,7 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
+        <!--<picklistValues>
             <picklist>ACCL__Sales_Org</picklist>
             <values>
                 <fullName>0001</fullName>
@@ -2603,7 +2603,7 @@
                 <fullName>UK SO</fullName>
                 <default>false</default>
             </values>
-        </picklistValues>
+        </picklistValues>-->
         <picklistValues>
             <picklist>ACCL__State__c</picklist>
             <values>
@@ -3063,13 +3063,13 @@
                 <default>true</default>
             </values>
         </picklistValues>
-        <picklistValues>
+        <!--<picklistValues>
             <picklist>ACCL__Sales_Org</picklist>
             <values>
                 <fullName>0001</fullName>
                 <default>false</default>
             </values>
-        </picklistValues>
+        </picklistValues>-->
         <picklistValues>
             <picklist>ACCL__State__c</picklist>
             <values>
