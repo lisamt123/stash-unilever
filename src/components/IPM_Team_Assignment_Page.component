@@ -43,7 +43,7 @@
                                     <div class="memContainer">
                                         <apex:outputPanel rendered="{! if(plImage==null,'true','false')}">
 										<apex:outputPanel rendered="{!isShowEditmode}">
-										    <div class=" SecButtonSet proLeader teamMemberButton" value="{!$Page.IPM_Resource_Allocation_Landing}?id={!projectID}&Category={!IPM_proj.IPM_Category_Text__c}&ProjectLead={!IPM_proj.IPM_Project_Leader__c}&PLeader={!isPLeader}&DPLeader={!isDPLeader}&CoreMember=PL" data-target="#ipmAddMemberModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+										    <div class="proLeader teamMemberButton" value="{!$Page.IPM_Resource_Allocation_Landing}?id={!projectID}&Category={!IPM_proj.IPM_Category_Text__c}&ProjectLead={!IPM_proj.IPM_Project_Leader__c}&PLeader={!isPLeader}&DPLeader={!isDPLeader}&CoreMember=PL" data-target="#ipmAddMemberModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
 												<apex:image url="{!URLFOR($Resource.IPM_Resource, 'images/add_2.png')}" id="plImage1" styleClass="circular ipmImage custImagewidth1"  />
                                             </div>
 											<span class="txtAligncenter teamMembername">{!$Label.IPM_Add_Member}</span>
@@ -73,7 +73,7 @@
                                     <div class="memContainer">
                                        <apex:outputPanel rendered="{! if(DPLimg==null,'true','false')}">
 									   <apex:outputPanel rendered="{!isShowEditmode}">
-									        <div class="SecButtonSet depproLeader teamMemberButton" value="{!$Page.IPM_Resource_Allocation_Landing}?id={!projectID}&Category={!IPM_proj.IPM_Category_Text__c}&ProjectLead={!IPM_proj.IPM_Project_Leader__c}&PLeader={!isPLeader}&DPLeader={!isDPLeader}&CoreMember=DPL" data-target="#ipmAddMemberModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+									        <div class="depproLeader teamMemberButton" value="{!$Page.IPM_Resource_Allocation_Landing}?id={!projectID}&Category={!IPM_proj.IPM_Category_Text__c}&ProjectLead={!IPM_proj.IPM_Project_Leader__c}&PLeader={!isPLeader}&DPLeader={!isDPLeader}&CoreMember=DPL" data-target="#ipmAddMemberModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
 												<apex:image url="{!URLFOR($Resource.IPM_Resource, 'images/add_2.png')}" styleClass="circular ipmImage custImagewidth1" id="dplImage1"/>
                                            </div>
 										   <span class="txtAligncenter teamMembername">{!$Label.IPM_Add_Member}</span>
@@ -104,7 +104,7 @@
                                     <apex:outputPanel id="TPLUser">
                                      <apex:outputPanel rendered="{! if(TPLimg==null,'true','false')}">
 									  <apex:outputPanel rendered="{!isShowEditmode}">
-                                        <div class="SecButtonSet techLeader teamMemberButton" value="{!$Page.IPM_Resource_Allocation_Landing}?id={!projectID}&Category={!IPM_proj.IPM_Category_Text__c}&ProjectLead={!IPM_proj.IPM_Project_Leader__c}&PLeader={!isPLeader}&DPLeader={!isDPLeader}&CoreMember=TPL" data-target="#ipmAddMemberModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+                                        <div class="techLeader teamMemberButton" value="{!$Page.IPM_Resource_Allocation_Landing}?id={!projectID}&Category={!IPM_proj.IPM_Category_Text__c}&ProjectLead={!IPM_proj.IPM_Project_Leader__c}&PLeader={!isPLeader}&DPLeader={!isDPLeader}&CoreMember=TPL" data-target="#ipmAddMemberModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
 											<apex:image url="{!URLFOR($Resource.IPM_Resource, 'images/add_2.png')}" styleClass="custImagewidth1 circular ipmImage" id="tlImage1"/>
                                         </div>
 										<span class="txtAligncenter teamMembername">{!$Label.IPM_Add_Member}</span>
@@ -135,7 +135,7 @@
                                     <div class="memContainer">
                                     <apex:outputPanel rendered="{! if(GKImage==null,'true','false')}">
 									<apex:outputPanel rendered="{!isShowEditmode}">
-                                        <div class="SecButtonSet gatekeeper teamMemberButton" value="{!$Page.IPM_Resource_Allocation_Landing}?id={!projectID}&Category={!IPM_proj.IPM_Category_Text__c}&ProjectLead={!IPM_proj.IPM_Project_Leader__c}&PLeader={!isPLeader}&DPLeader={!isDPLeader}&CoreMember=GateK" data-target="#ipmAddMemberModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+                                        <div class="gatekeeper teamMemberButton" value="{!$Page.IPM_Resource_Allocation_Landing}?id={!projectID}&Category={!IPM_proj.IPM_Category_Text__c}&ProjectLead={!IPM_proj.IPM_Project_Leader__c}&PLeader={!isPLeader}&DPLeader={!isDPLeader}&CoreMember=GateK" data-target="#ipmAddMemberModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                            <apex:image url="{!URLFOR($Resource.IPM_Resource, 'images/add_2.png')}" styleClass="custImagewidth1 circular ipmImage" id="gkImage1"/>
                                         </div>
 										<span class="txtAligncenter teamMembername">{!$Label.IPM_Add_Member}</span>
