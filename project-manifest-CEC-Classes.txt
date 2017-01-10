@@ -1,4 +1,4 @@
 src
-src/permissionsets
-src/permissionsets/CEC_User.permissionset
+src/objects
+src/objects/Case.object
 

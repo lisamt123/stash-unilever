@@ -1,7 +1,20 @@
+.THIS .p {
+    font-family: Gill Sans, Verdana;
+    font-size: 11px;
+    line-height: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
 .THIS .left-div {
     position:absolute;
     bottom:0;
     left:0;
+}
+
+.THIS .search-bar {
+    position: relative;
 }
 
 .THIS .right-div {

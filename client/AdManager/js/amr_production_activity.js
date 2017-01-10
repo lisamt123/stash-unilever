@@ -72,8 +72,7 @@ function disableDependent() {
     $j('.dependentDigital input:checkbox').attr('disabled', 'disabled');
 }
 
-$j(document).ready(function() {
-
+$j(document).ready(function() {		
     var masterselection = true;
     $j('.master').click(function() {
         if (this.checked) {
@@ -87,17 +86,13 @@ $j(document).ready(function() {
                 $j('.other_master').prop('checked', false);
                 $j('.secondary-parent').each(function() {
                     if (!($j(this).hasClass('main-new-original-master'))) {
-                        $j(this).find('input:checkbox').prop('checked', false);
-                    }
-                });
+                        $j(this).find('input:checkbox').prop('checked', false);}});
             } else {
                 $j('.original_master').prop('checked', false);
                 $j('.secondary-parent').each(function() {
                     if ($j(this).hasClass('main-new-original-master')) {
-                        $j(this).find('input:checkbox').prop('checked', false);
-                    }
-                });
-            }
+                        $j(this).find('input:checkbox').prop('checked', false); }});
+					}
         } else {
             $j('.secondary-parent').hide();
             var selected_parent = $j(this).attr('data-id');
@@ -109,9 +104,7 @@ $j(document).ready(function() {
             $j('.master').each(function() {
                 if (this.checked) {
                     flip_to = $j(this).attr('data-id');
-                    flip_to_selection = true;
-                }
-            });
+                    flip_to_selection = true; }});
             if (flip_to_selection == true) {
                 $j('.' + flip_to).show();
                 $j('input[data-id=' + flip_to + ']').parent().addClass('dfn-selected');
@@ -119,10 +112,8 @@ $j(document).ready(function() {
             masterselection = false;
             $j('.master').each(function() {
                 if (this.checked) {
-                    masterselection = true;
-                }
+                    masterselection = true;}
             });
-
             if (masterselection == false) {
                 removeOnlyOneClass('dfn-selected');
                 $j('.summary').html('');
@@ -133,12 +124,9 @@ $j(document).ready(function() {
                 $j('.submediamasterdiv input:checkbox').each(function() {
                     $j(this).prop('checked', false);
                 });
-                disableDependent();
-            }
-        }
+                disableDependent();}}
         getSummary();
     });
-
     var selected_master = false;
     $j('.master').each(function() {
         if (this.checked) {
@@ -146,29 +134,22 @@ $j(document).ready(function() {
                 $j('.other_master').prop('checked', false);
                 $j('.secondary-parent').each(function() {
                     if (!($j(this).hasClass('main-new-original-master'))) {
-                        $j(this).find('input:checkbox').prop('checked', false);
-                    }
-                });
+                        $j(this).find('input:checkbox').prop('checked', false); } });
             } else {
                 $j('.original_master').prop('checked', false);
                 $j('.secondary-parent').each(function() {
                     if ($j(this).hasClass('main-new-original-master')) {
-                        $j(this).find('input:checkbox').prop('checked', false);
-                    }
-                });
+                        $j(this).find('input:checkbox').prop('checked', false);}});
             }
             var selected_parent = $j(this).attr('data-id');
             $j('.secondary-parent').hide();
             $j('.' + selected_parent).show();
             removeOnlyOneClass('dfn-selected');
             $j(this).parent().addClass('dfn-selected');
-            selected_master = true;
-        }
+            selected_master = true; }
     });
-
     if (selected_master == true) {
-        getSummary();
-    }    
+        getSummary();}    
     paOptionClick();    
 });
 
@@ -178,6 +159,7 @@ function paOptionClick() {
     loadDefaultAmr();        
     disableDependent();
 	enableAdditionalPAValues();
+	singleOrMultiple();
 	
     $j('.additional').click(function() {
         selectedDefault = $j(this).attr('data-id');
@@ -263,4 +245,27 @@ function loadDefaultAmr() {
 	if(finalValue) {
 		$j('.outputIdClass').val('\u20AC'+' '+finalValue);
 	}	
+}
+
+function singleOrMultiple() {
+	$j('.single_multiply_show_hide select').attr('disabled','disabled');
+	var single_or_multiply = $j('.single_or_multiply input[type="radio"]:checked').val();
+	if( single_or_multiply !== undefined && single_or_multiply.match(/multiply/i) ) {		
+		$j('.multiply_of_single_multiply select').removeAttr('disabled');           		
+		$j('.single_of_single_multiply select').closest('.loadErrorParent').find('.loadError').remove();           		
+		$j('.single_of_single_multiply select').closest('.loadErrorParent').attr('class','form-field-parent');           		
+	} else {		
+		$j('.single_of_single_multiply select').removeAttr('disabled');
+		$j('.single_or_multiply input[type="radio"][value="single"]').prop( "checked", true );           		
+		$j('.multiply_of_single_multiply select').closest('.loadErrorParent').find('.loadError').remove();           		
+		$j('.multiply_of_single_multiply select').closest('.loadErrorParent').attr('class','form-field-parent');           		
+	}						
+	$j('.single_or_multiply input[type="radio"]').change(function(){            
+		$j('.single_multiply_show_hide select').attr('disabled','disabled');            		            	
+		$j('.'+$j(this).val().toLowerCase()+'_of_single_multiply select').removeAttr('disabled');
+	});
+}
+
+function closemultiloading() {
+	$j('.multiloading').hide();
 }
