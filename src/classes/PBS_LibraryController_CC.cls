@@ -15,10 +15,18 @@
          * Holds user language
          */
         public String language {get; set;}
+        
+        /**
+         * Holds user language
+         */
+        public String groupNameSearch{get; set;}
+                
         /**
          * Map of knowledgeArtileId to stats
          */
         public Map<String, Decimal> ranking {get; set;}
+        
+        public Map<String, String> groupnameMap{get; set;}
         /**
          * Current article type filter value
          */
@@ -75,6 +83,7 @@
             sortDir   = 'ASC';
             language  = UserInfo.getLanguage();
             ranking   = new Map<String, Decimal>();
+            groupnameMap = new Map<String, String>();
             PbsArticleSearchList = new List<KnowledgeArticleVersion>();
             //getPbsArticleList();
             pbsKnowledgeArticleList();
@@ -95,10 +104,27 @@
                 query += ' ORDER BY ' + sortField + ' ' + sortDir + (sortField != 'Title' ? ', Title ASC' : '');
                 query += ' LIMIT ' + this.rowsPerPage;
                 query += ' OFFSET ' + ((this.currentPage - 1) * this.rowsPerPage);
-    
+                system.debug('Query ->>'+query);
                 PbsArticleSearchList = Database.query(query);
-    
-    
+                String idStrings = '(\'';
+                for(KnowledgeArticleVersion xKAV : PbsArticleSearchList){
+                    
+                    idStrings += xKAV.Id+ '\',\'';
+                }
+                idStrings = idStrings.substring(0,idStrings.length()-2); 
+                idStrings += ')';
+                
+                
+                String QueryPBS_WIKI = 'Select Id,Group_Name__c FROM PBS_Wiki__kav where PublishStatus=\'Online\'';
+                if(PbsArticleSearchList.size()>0){
+                       QueryPBS_WIKI += ' AND Id in' +idStrings;
+                       
+                   
+                    for(PBS_Wiki__kav xWIKI: Database.query(QueryPBS_WIKI)){
+                        xWIKI.Group_Name__c = xWIKI.Group_Name__c==null ? '':xWIKI.Group_Name__c;
+                        groupnameMap.put(xWIKI.Id,xWIKI.Group_Name__c);
+                    }
+                }
                 // load stats
                 getPbsArticleStats(PbsArticleSearchList);
                 return PbsArticleSearchList;
@@ -152,7 +178,11 @@
           
             //String searchQueryCount = 'FIND \'' + searchstring + '*\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId WHERE PublishStatus=\'Online\' AND Language=\'en_US\'';
             //searchQueryCount += ' ORDER BY ' + sortField + ' ' + sortDir + (sortField != STR_TITLE ? ', Title ASC' : '') + ')';
-            String searchQueryCount = 'FIND \'' + searchstring + '*\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId WHERE PublishStatus=\'Online\' AND Language=\'en_US\'';
+            String searchQueryCount = 'FIND \'' + searchstring + '*\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId,Group_Name__c WHERE PublishStatus=\'Online\'';
+            searchQueryCount += ' AND Language=\''+language+'\'';
+            if(groupNameSearch!='All'){
+                searchQueryCount += ' AND Group_Name__c=\''+groupNameSearch+'\' ';
+            }
             searchQueryCount += ' ORDER BY ' + sortField + ' ' + sortDir + (sortField != STR_TITLE ? ', Title ASC' : '') +')' ;
              system.debug('***searchQueryCount******'+searchQueryCount);
             List<List<sObject>> searchCountList = search.query(searchQueryCount);
@@ -163,7 +193,11 @@
             List<PBS_Wiki__kav> lstPbsWikiCount = searchCountList [0];      
             getSearchCount  =  lstPbsWikiCount.size();
                            system.debug('*******getSearchCount  '+getSearchCount  );                     
-            String searchQuery = 'FIND \'' + searchstring + '*\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId WHERE PublishStatus=\'Online\' AND Language=\'en_US\'';
+            String searchQuery = 'FIND \'' + searchstring + '*\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId,Group_Name__c WHERE PublishStatus=\'Online\'';
+            searchQuery+= ' AND Language=\''+language+'\'';
+            if(groupNameSearch!='All'){
+                searchQuery+= ' AND Group_Name__c=\''+groupNameSearch+'\' ';
+            }
             searchQuery += ' ORDER BY ' + sortField + ' ' + sortDir + (sortField != STR_TITLE ? ', Title ASC' : '')  ;
             searchQuery += ' LIMIT ' + this.rowsPerPage;
             searchQuery += ' OFFSET ' + ((this.currentPage - 1) * this.rowsPerPage)+')';
@@ -173,13 +207,14 @@
             List<List<sObject>> searchList = search.query(searchQuery);
             
             List<PBS_Wiki__kav> lstPbsWiki = searchList[0];    
-                                
            
            setKnowledgeId = new Set<ID>();
          
             for(PBS_Wiki__kav objPbsWiki : lstPbsWiki){
-                 system.debug('*******objPbsWiki '+objPbsWiki );
+                system.debug('*******objPbsWiki '+objPbsWiki );
                 setKnowledgeId.add(objPbsWiki.KnowledgeArticleId);
+                objPbsWiki.Group_Name__c = objPbsWiki.Group_Name__c==null ? '':objPbsWiki.Group_Name__c;
+                groupnameMap.put(objPbsWiki.Id,objPbsWiki.Group_Name__c);
             
             }
             String newQuery = getQuery();
@@ -229,7 +264,9 @@
              query += ' FROM ';
                 query += ' KnowledgeArticleVersion ';
             query += ' WHERE ';
-                query += ' language = \'' + language + '\'';
+            
+            query += ' language = \'' + language + '\'';
+
             query += STR_AND;
                 query += ' PublishStatus = \'Online\' ';
             query += STR_AND;
@@ -307,9 +344,9 @@
              query += ' FROM ';
                 query += ' KnowledgeArticleVersion ';
             query += ' WHERE ';
-                query += ' language = \'' + language + '\'';
+            query += ' language = \'' + language + '\'';                                
             query += ' AND ';
-                query += ' PublishStatus = \'Online\' ';
+            query += ' PublishStatus = \'Online\' ';
             query += ' AND ';
         
             if(pageUrl.toLowerCase().contains('planwiki')){
@@ -458,7 +495,11 @@
         
             String searchQuery = '';
             if(searchstring  != null && searchstring  != '')  {                            
-            searchQuery = 'FIND \'' + searchstring + '*\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId WHERE PublishStatus=\'Online\' AND Language=\'en_US\'';
+            searchQuery = 'FIND \'' + searchstring + '*\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId,Group_Name__c WHERE PublishStatus=\'Online\'';
+            searchQuery += ' AND Language=\''+language+'\'';
+            if(groupNameSearch!='All'){
+                searchQuery += ' AND Group_Name__c=\''+groupNameSearch+'\' ';
+            }
             searchQuery += ' ORDER BY ' + sortField + ' ' + sortDir + (sortField != STR_TITLE ? ', Title ASC' : '');
             searchQuery += ' LIMIT ' + this.rowsPerPage;
             searchQuery += ' OFFSET ' + ((this.currentPage - 1) * this.rowsPerPage) + ')';
@@ -473,6 +514,8 @@
             for(PBS_Wiki__kav objPbsWiki : lstPbsWiki){
                  system.debug('*******objPbsWiki '+objPbsWiki );
                 setKnowledgeId.add(objPbsWiki.KnowledgeArticleId);
+                objPbsWiki.Group_Name__c = objPbsWiki.Group_Name__c==null ? '':objPbsWiki.Group_Name__c;
+                groupnameMap.put(objPbsWiki.Id,objPbsWiki.Group_Name__c);
             
             }
             String newQuery = getQuery();
@@ -486,6 +529,7 @@
              system.debug('*******obj '+obj );
                 if(setKnowledgeId.contains(obj.KnowledgeArticleId)){
                     PbsArticleSearchList.add(obj);
+                    
                 }
             }
             getPbsArticleStats(PbsArticleSearchList);
@@ -496,6 +540,23 @@
             }
             
             return null;
+        }
+        
+        public List<SelectOption> getlanguages()
+        {
+        
+            
+           List<SelectOption> options = new List<SelectOption>();
+                
+           Schema.DescribeFieldResult fieldResult = KnowledgeArticleVersion.Language.getDescribe();
+           List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
+                
+           for( Schema.PicklistEntry f : ple)
+           {
+              options.add(new SelectOption(f.getValue() ,f.getLabel()));
+           }
+             
+           return options;
         }
         
 

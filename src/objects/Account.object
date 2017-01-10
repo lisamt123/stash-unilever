@@ -2052,6 +2052,20 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Contact_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Telesales - Shows Customer contact name.</description>
+        <externalId>false</externalId>
+        <label>Contact Name</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Accounts (Contact Name)</relationshipLabel>
+        <relationshipName>Telesales_Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>CurrencyIsoCode</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -6051,6 +6065,249 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>TEL_Account_Contract_Strategy__c</fullName>
+        <description>Telesales - Account Contract strategy for transfer order accounts</description>
+        <externalId>false</externalId>
+        <label>Account Contract Strategy</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Renew every Quarter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Renew every Semester</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Renew every Year</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Avg_Price_per_Meal__c</fullName>
+        <description>Telesales - Avgerage Price per Meal</description>
+        <externalId>false</externalId>
+        <label>Avg. Price per Meal</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>TEL_CS_Opt_Out__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Telesales - CS Opt Out option</description>
+        <externalId>false</externalId>
+        <label>CS Opt Out</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Chef_Rewards__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Telesales - indicates if the customer participate in the Chef Rewards program</description>
+        <externalId>false</externalId>
+        <label>Chef Rewards</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Day_Week_Open__c</fullName>
+        <description>Telesales - VERIFY</description>
+        <externalId>false</externalId>
+        <label>Day/Week Open</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Email_OK_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Telesales - Indicates if the customer authorizes emails to be delivered</description>
+        <externalId>false</externalId>
+        <label>Email OK Flag</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Number_of_meal_served_per_day__c</fullName>
+        <description>Telesales - Number of meal served per day</description>
+        <externalId>false</externalId>
+        <label>Number of meal served per day</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_OTM__c</fullName>
+        <description>Telesales fields to store OTM Classification</description>
+        <externalId>false</externalId>
+        <label>OTM</label>
+        <picklist>
+            <picklistValues>
+                <fullName>A</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A++</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>F</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>N</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Assigned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Price_Book__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Telesales - Used to store the price book reference for the customer.</description>
+        <externalId>false</externalId>
+        <label>Price Book</label>
+        <referenceTo>Pricebook2</referenceTo>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>TEL_SAP_Order_Number__c</fullName>
+        <description>Branch of Unilever that sells to distributor (primary account only)</description>
+        <externalId>false</externalId>
+        <label>SAP Order Number</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Sales_Cycle__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Cycle</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Sales_Orders__c</fullName>
+        <description>Indicates how much the customer expend making order at the last year.</description>
+        <externalId>false</externalId>
+        <label>Sales Orders</label>
+        <summarizedField>Opportunity.Amount</summarizedField>
+        <summaryForeignKey>Opportunity.AccountId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Sub_Status__c</fullName>
+        <description>Telesales - VERIFY</description>
+        <externalId>false</externalId>
+        <label>Sub Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Pending Payment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Return Customer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Week_Year_Open__c</fullName>
+        <description>Telesales - VERIFY</description>
+        <externalId>false</externalId>
+        <label>Week/Year Open</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Wholesaler_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEL_Wholesaler__r.SAP_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Wholesaler ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Wholesaler__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Telesales - Wholesaler that will fulfill the order.</description>
+        <externalId>false</externalId>
+        <label>Wholesaler</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Wholesaler)</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Tea_moment_of_the_day__c</fullName>
         <description>TO: Tea moment of the day</description>
         <externalId>false</externalId>
@@ -7961,9 +8218,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>Secondary Account View</label>
         <language>en_US</language>
-        <sharedTo>
-            <group>UID_Users</group>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Temporary_Accounts_Administrator</fullName>
@@ -12309,11 +12563,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>IOSHKAR-OLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>IRKUTSK</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>IVANOVO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IZHEVSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12325,11 +12587,23 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>KAZAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>KEMEROVO</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>KHABAROVSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KIROV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KOMSOMOLSK-NA-AMURE</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12361,6 +12635,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>MAGNITOGORSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MAKHACHKALA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MINSK</fullName>
                 <default>false</default>
             </values>
@@ -12373,7 +12655,43 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>NABEREZHNIYE CHELNY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NALCHIK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAZRAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NIZHNEVARTOVSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NIZHNIY NOVGOROD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NIZHNIY TAGIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NORILSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>NOVGOROD VELIKIY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NOVOKUZNETSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NOVOROSSIYSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12389,6 +12707,22 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>ORENBURG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ORSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PENZA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PERM</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>PETROPAVLOVSK-KAMCHATSKY</fullName>
                 <default>false</default>
             </values>
@@ -12398,6 +12732,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>PSKOV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PYATIGORSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12413,6 +12751,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>SAMARA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SARANSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SARATOV</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>SEVASTOPOL</fullName>
                 <default>false</default>
             </values>
@@ -12425,11 +12775,31 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>SOCHI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>STAVROPOL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>STERLITAMAK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SURGUT</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>SYKTYVKAR</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>TAMBOV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOLLIATTI</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12449,7 +12819,23 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>UFA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>ULAN-UDE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ULYANOVSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Undef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VLADIKAVKAZ</fullName>
                 <default>false</default>
             </values>
             <values>

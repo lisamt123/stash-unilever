@@ -3841,11 +3841,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>1</value>
         </filters>
         <filters>
-            <field>CASES.CLOSED_DATE</field>
-            <operation>equals</operation>
-            <value>LAST_N_DAYS:30</value>
-        </filters>
-        <filters>
             <field>Case_Market__c</field>
             <operation>equals</operation>
             <value>ANZ</value>
@@ -9216,38 +9211,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <sharedTo>
             <role>CEC_Manager_UK</role>
             <role>CEC_User_UK</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Within_SLA2</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>Brand__c</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.LAST_UPDATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>Case_Market__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>Email,Web,White Mail,Email UK</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <label>Transferred cases</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_UK</role>
         </sharedTo>
     </listViews>
     <listViews>

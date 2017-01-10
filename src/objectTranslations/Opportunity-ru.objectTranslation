@@ -398,6 +398,14 @@ Is покупатель растет?</help>
         <name>FS_TotalNumberOfCases__c</name>
     </fields>
     <fields>
+        <label>Общее количество (короба)</label>
+        <name>FS_TotalQuantityCases__c</name>
+    </fields>
+    <fields>
+        <label>Общее количество (штуки)</label>
+        <name>FS_TotalQuantityPieces__c</name>
+    </fields>
+    <fields>
         <help><!-- Total rebate discount offered to operator. --></help>
         <label><!-- Total Rate --></label>
         <name>FS_TotalRate__c</name>
@@ -884,6 +892,10 @@ Enter competitor pricing if available --></help>
             <translation><!-- Available --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Canceled</masterLabel>
+            <translation><!-- Canceled --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Closed</masterLabel>
             <translation><!-- Closed --></translation>
         </picklistValues>
@@ -924,6 +936,10 @@ Enter competitor pricing if available --></help>
             <translation><!-- Pending --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Pending Call</masterLabel>
+            <translation><!-- Pending Call --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Perception Analysis</masterLabel>
             <translation><!-- Perception Analysis --></translation>
         </picklistValues>
@@ -940,13 +956,59 @@ Enter competitor pricing if available --></help>
             <translation><!-- Qualification --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Released</masterLabel>
+            <translation><!-- Released --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Replace Existing Business</masterLabel>
             <translation><!-- Replace Existing Business --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scheduled</masterLabel>
+            <translation><!-- Scheduled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transmitted</masterLabel>
+            <translation><!-- Transmitted --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Value Proposition</masterLabel>
             <translation><!-- Value Proposition --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Account Phone --></label>
+        <name>TEL_Account_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Call Date --></label>
+        <name>TEL_Call_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case --></label>
+        <name>TEL_Case__c</name>
+        <relationshipLabel><!-- Opportunities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Lost Reason --></label>
+        <name>TEL_Lost_Reason__c</name>
+        <picklistValues>
+            <masterLabel>Delivery Date</masterLabel>
+            <translation><!-- Delivery Date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price</masterLabel>
+            <translation><!-- Price --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler --></label>
+        <name>TEL_Wholesaler__c</name>
+        <relationshipLabel><!-- Telesales Calls --></relationshipLabel>
     </fields>
     <fields>
         <help><!-- Total Cost of Product, production and supply chain related costs. --></help>
@@ -956,8 +1018,12 @@ Enter competitor pricing if available --></help>
     <fields>
         <name>Type</name>
         <picklistValues>
+            <masterLabel>Enrichment</masterLabel>
+            <translation><!-- Enrichment --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Existing Business</masterLabel>
-            <translation><!-- Existing Business --></translation>
+            <translation>Существующий бизнес</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Grow</masterLabel>
@@ -965,7 +1031,19 @@ Enter competitor pricing if available --></help>
         </picklistValues>
         <picklistValues>
             <masterLabel>New Business</masterLabel>
-            <translation><!-- New Business --></translation>
+            <translation>Новый бизнес</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Drive</masterLabel>
+            <translation><!-- Sales Drive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sample Request</masterLabel>
+            <translation><!-- Sample Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard Sales</masterLabel>
+            <translation><!-- Standard Sales --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Win</masterLabel>
@@ -1032,6 +1110,10 @@ Enter competitor pricing if available --></help>
         <label><!-- Mobile Channel --></label>
         <name>ICB_Mobile_Channel</name>
     </recordTypes>
+    <recordTypes>
+        <label><!-- Telesales --></label>
+        <name>TEL_Telesales</name>
+    </recordTypes>
     <validationRules>
         <errorMessage>Введите дату соглашения перед продвижением на стадию &quot;05а-Выигранная&quot;</errorMessage>
         <name>FS_AgreementdateIsRequired</name>
@@ -1053,7 +1135,7 @@ Enter competitor pricing if available --></help>
         <name>Opportunity_For_Reason_Description</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level. --></errorMessage>
+        <errorMessage><!-- An opportunity that has already been approved cannot be changed. --></errorMessage>
         <name>Opportunity_Notchange_at_Stage4</name>
     </validationRules>
     <validationRules>

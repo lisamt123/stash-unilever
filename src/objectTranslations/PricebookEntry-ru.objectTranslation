@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Bracket 1 --></label>
+        <name>FS_Bracket_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bracket 2 --></label>
+        <name>FS_Bracket_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bracket 3 --></label>
+        <name>FS_Bracket_3__c</name>
+    </fields>
+    <fields>
+        <label>Комментарий</label>
+        <name>FS_Comment__c</name>
+    </fields>
+    <fields>
+        <help><!-- Pricing End Date coming from SAP --></help>
+        <label><!-- End Date --></label>
+        <name>FS_End_Date__c</name>
+    </fields>
+    <fields>
+        <label>Цена за короб с НДС</label>
+        <name>FS_List_Price_including_VAT__c</name>
+    </fields>
+    <fields>
+        <label>Цена за штуку с НДС</label>
+        <name>FS_Price_per_piece_with_VAT__c</name>
+    </fields>
+    <fields>
+        <label>Цена за штуку без НДС</label>
+        <name>FS_Price_per_piece_without_VAT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profitability Target Canada --></label>
+        <name>FS_ProfitabilityTargetCanada__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profitability Target USA --></label>
+        <name>FS_ProfitabilityTargetUSA__c</name>
+    </fields>
+    <fields>
+        <help><!-- Price start date coming from SAP --></help>
+        <label><!-- Start Date --></label>
+        <name>FS_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit conversion factor --></label>
+        <name>FS_Unit_conversion_factor__c</name>
+    </fields>
+    <fields>
+        <label>НДС</label>
+        <name>FS_VAT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Org Code --></label>
+        <name>FS_salesOrgCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manufacture Price --></label>
+        <name>ICB_Manufacture_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purchase Price --></label>
+        <name>ICB_Purchase_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP ID --></label>
+        <name>SAP_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Weight Value --></label>
+        <name>Weight_Value__c</name>
+    </fields>
+    <layouts>
+        <layout>Price Book Entry Layout</layout>
+        <sections>
+            <label><!-- Bracket Prices --></label>
+            <section>Bracket Prices</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

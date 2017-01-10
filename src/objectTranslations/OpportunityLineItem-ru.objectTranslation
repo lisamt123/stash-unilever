@@ -197,6 +197,14 @@
         <name>FS_ProductMarket__c</name>
     </fields>
     <fields>
+        <label>Количество (короба)</label>
+        <name>FS_QuantityCases__c</name>
+    </fields>
+    <fields>
+        <label>Количество (штуки)</label>
+        <name>FS_QuantityPieces__c</name>
+    </fields>
+    <fields>
         <help><!-- Rebate Discount provided on individual product. --></help>
         <label><!-- Rate --></label>
         <name>FS_Rate__c</name>
@@ -250,12 +258,20 @@
         <name>FS_UniqueProduct__c</name>
     </fields>
     <fields>
+        <label>Кол-во в коробе</label>
+        <name>FS_UnitConversionFactor__c</name>
+    </fields>
+    <fields>
         <label><!-- Total TTS --></label>
         <name>FS_additionalDiscount__c</name>
     </fields>
     <fields>
         <label>Коробка/штука</label>
         <name>FS_casesPiece__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copy Of Case Piece --></label>
+        <name>FS_copyOfCasePiece__c</name>
     </fields>
     <fields>
         <label>GM когда TPR = 0%</label>
@@ -376,6 +392,10 @@
         <label><!-- Distributor --></label>
         <name>ProdDistributor__c</name>
         <relationshipLabel><!-- Opportunity Product --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Associated Campaigns --></label>
+        <name>TEL_Associated_Campaigns__c</name>
     </fields>
     <fields>
         <help><!-- Total Cost of Product, production and supply chain related costs. --></help>
