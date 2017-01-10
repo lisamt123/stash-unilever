@@ -936,4 +936,17 @@
         <shortDescription>Approval Workflow Service</shortDescription>
         <value>You can put Promotion back in Planning only if it is future dated</value>
     </labels>
-
+   <labels>
+        <fullName>UL_Multiple_Categories</fullName>
+        <language>en_US</language>
+        <protected>true</protected>  
+		<shortDescription>Multiple Categories</shortDescription>		
+        <value>Multiple Categories</value>
+    </labels>
+	<labels>
+        <fullName>ul_multiple_brands</fullName>
+        <language>en_US</language>
+        <protected>true</protected>  
+		<shortDescription>UL_Multiple_Brands</shortDescription>		
+        <value>Multiple Brands</value>
+    </labels>
