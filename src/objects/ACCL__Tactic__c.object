@@ -784,14 +784,14 @@
                 <fullName>A%26P</fullName>
                 <default>false</default>
             </values>
-            <values>
+           <!-- <values>
                 <fullName>OffInvoice</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>OnInvoice</fullName>
                 <default>false</default>
-            </values>
+            </values>-->
         </picklistValues>
         <picklistValues>
             <picklist>UL_Condition_Type__c</picklist>
@@ -910,14 +910,14 @@
                 <fullName>A%26P</fullName>
                 <default>false</default>
             </values>
-            <values>
+           <!-- <values>
                 <fullName>OffInvoice</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>OnInvoice</fullName>
                 <default>true</default>
-            </values>
+            </values>-->
         </picklistValues>
         <picklistValues>
             <picklist>UL_Condition_Type__c</picklist>

@@ -939,7 +939,8 @@
 	 <labels>
         <fullName>UL_Multiple_Categories</fullName>
         <language>en_US</language>
-        <protected>true</protected>        
+        <protected>true</protected>  
+		<shortDescription>Multiple Categories</shortDescription>		
         <value>Multiple Categories</value>
     </labels>
 	 
