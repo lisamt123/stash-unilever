@@ -7961,6 +7961,9 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>Secondary Account View</label>
         <language>en_US</language>
+        <sharedTo>
+            <group>UID_Users</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Temporary_Accounts_Administrator</fullName>
