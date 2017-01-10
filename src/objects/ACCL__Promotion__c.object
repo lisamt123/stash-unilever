@@ -4014,6 +4014,13 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <errorConditionFormula>ACCL__Commit_Date__c  &gt;  ACCL__Date_Thru__c</errorConditionFormula>
         <errorMessage>The Commit Date must be the same day or sooner than Date Thru.</errorMessage>
     </validationRules>
+	<validationRules>
+        <fullName>UL_LTA_Time_Period_of_Longer_Than_a_Year</fullName>
+        <active>true</active>
+        <description>(TPM 1759) - If a time period of longer than a year is defined within the date fields then a validation should be returned and the user is warned that a LTA cannot be created which is longer than one year.</description>
+        <errorConditionFormula>AND(ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), YEAR( ACCL__Date_Thru__c ) &lt;&gt; YEAR( ACCL__Date_From__c ), (ACCL__Date_Thru__c - ACCL__Date_From__c) + 1 &gt; 365)</errorConditionFormula>
+        <errorMessage>A LTA cannot be created which is longer than one year.</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>ACCL__Date_From_Date_Thru_Validation</fullName>
         <active>true</active>
