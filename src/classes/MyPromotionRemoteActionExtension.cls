@@ -778,10 +778,12 @@
                 }
             }
             if(!productIdList.isEmpty()){
-                Map<Id, ACCL__Product__c> productMap = new Map<Id, ACCL__Product__c>([SELECT Id, ACCL__Product_Level__c, ACCL__Criterion_2_Product__c, ACCL__Criterion_2_Product__r.Name FROM ACCL__Product__c WHERE Id IN:productIdList]);
+                Map<Id, ACCL__Product__c> productMap = new Map<Id, ACCL__Product__c>([SELECT Id, ACCL__Product_Level__c, ACCL__Criterion_2_Product__c, ACCL__Criterion_2_Product__r.Name, ACCL__Criterion_1_Product__r.Name, ACCL__Criterion_3_Product__r.Name FROM ACCL__Product__c WHERE Id IN:productIdList]);
                 
                 if(!productMap.isEmpty()){
                     Set<Id> marketLevelIds = new Set<Id>();
+                    Set<String> brandLevelSet = new Set<String>();
+                    Set<String> categorytLevelSet = new Set<String>();
                     String marketId;
                     String customerId = (String)boPromotion.get('UL_Account__c');
                     String feature = (String)boPromotion.get('UL_Feature__c');
@@ -795,6 +797,8 @@
                     for(ACCL__Product__c product : productMap.values()){
                         if(product.ACCL__Criterion_2_Product__c != null){
                             marketLevelIds.add(product.ACCL__Criterion_2_Product__c);
+                            brandLevelSet.add(product.ACCL__Criterion_3_Product__c);
+                            categorytLevelSet.add(product.ACCL__Criterion_1_Product__c);
                             marketId = String.valueOf(product.ACCL__Criterion_2_Product__c);
                             childProductId = product.Id;
                         }
@@ -810,6 +814,29 @@
                     else{
                         market = System.Label.None;
                     }
+
+                    //populating Category Field
+                    if(categorytLevelSet.size()==1){
+                        market = productMap.get(childProductId).ACCL__Criterion_1_Product__r.Name;
+                    }
+                    else if(marketLevelIds.size()>1){
+                        market = System.Label.UL_Multiple_Categories;
+                    }
+                    else{
+                        market = System.Label.None;
+                    }
+
+                    //populating Brand Field
+                    if(brandLevelSet.size()==1){
+                        market = productMap.get(childProductId).ACCL__Criterion_3_Product__r.Name;
+                    }
+                    else if(marketLevelIds.size()>1){
+                        market = System.Label.UL_Multiple_Brands;
+                    }
+                    else{
+                        market = System.Label.None;
+                    }
+
                     boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Market__c.getName(), market);
                     
                     String fromStringDate = (String)(UL_Utility.EMPTY_STRING+boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_From__c.getName()));
