@@ -82,6 +82,8 @@
         public static final String SPECIAL_HOLIDAY= 'SpecialHoliday';
         public static final String MARKETING_EVENT= 'MarketingEvent';
         public static final String Qulon= ':';
+        public static final String UK_SO = 'UK SO';
+        public static final String LTA = 'LTA';
         
         //Boolean flags for Bypassing Triggers
         public static boolean bypassAccountTrigger = false;
@@ -128,6 +130,9 @@
         public static final String ROLE_CATEGORY_MANAGER = 'category manager';
         public static final String ROLE_FINANCE_MANAGER = 'finance manager';
         public static final String ROLE_ACCOUNT_MANAGER = 'account manager';
+
+        //Exception Status Codes
+        public static final String FIELD_CUSTOM_VALIDATION_EXCEPTION = 'FIELD_CUSTOM_VALIDATION_EXCEPTION';
         
         //Sales Org
         public enum SalesOrg{
