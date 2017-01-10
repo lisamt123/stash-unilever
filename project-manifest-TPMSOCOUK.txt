@@ -76,6 +76,7 @@ src/objects/Promotion_Acc_Rel__c.object
 src/objects/Promotion_Attachment__c.object
 src/objects/Promotion_Attachment_Link__c.object
 src/objects/UL_Comparator__c.object
+src/objects/UL_Condition_Codes__c.object
 src/objectTranslations
 src/objectTranslations/ACCL__Account_Bill_To__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Account_Call_Setting__c-en_US.objectTranslation
@@ -172,34 +173,34 @@ src/triggers/UL_UpdateDatefileds.trigger-meta.xml
 src/triggers/UL_UserCustomerPromFundShareTrigger.trigger
 src/triggers/UL_UserCustomerPromFundShareTrigger.trigger-meta.xml
 src/layouts
-src/layouts/ACCL__Account_Set__c-SoCo_ Account Set Layout.layout
-src/layouts/ACCL__Account_Set__c-UKI_ Account Set Layout.layout
+src/layouts/ACCL__Account_Set__c-SoCo_AccountSetLayout.layout
+src/layouts/ACCL__Account_Set__c-UKI_AccountSetLayout.layout
 src/layouts/ACCL__Fund__c-UL_SoCo_Fund_Layout.layout
 src/layouts/ACCL__Product__c-SOCO_Product.layout
 src/layouts/ACCL__Product__c-UKI_Product.layout
-src/layouts/ACCL__Promotion_Template__c-SoCo_Promotion Template Layout.layout
+src/layouts/ACCL__Promotion_Template__c-SoCo_PromotionTemplateLayout.layout
 src/layouts/ACCL__Sales_Organization__c-UL_SoCo_Layout.layout
 src/layouts/ACCL__Sales_Organization__c-UL_UKI_Layout.layout
-src/layouts/ACCL__Unit_of_Measure__c-SoCo-Unit of Measure Layout.layout
-src/layouts/ACCL__Unit_of_Measure__c-UKI-Unit of Measure Layout.layout
-src/layouts/Account-UL_Account Layout.layout
-src/layouts/Account-UL_SoCo_Account Layout.layout
-src/layouts/Account-UL_UKI_Account Layout.layout
-src/layouts/UL_Approval_Threshold__c-Approval Threshold Layout.layout
+src/layouts/ACCL__Unit_of_Measure__c-SoCo-UnitofMeasureLayout.layout
+src/layouts/ACCL__Unit_of_Measure__c-UKI-UnitofMeasureLayout.layout
+src/layouts/Account-UL_AccountLayout.layout
+src/layouts/Account-UL_SoCo_AccountLayout.layout
+src/layouts/Account-UL_UKI_AccountLayout.layout
+src/layouts/UL_Approval_Threshold__c-ApprovalThresholdLayout.layout
 src/layouts/UL_Approval_Threshold__c-UL_Approval_Threshold_Layout.layout
-src/layouts/UL_Cannibalisation_Rate__c-Cannibalisation Rate Layout.layout
-src/layouts/UL_Comparator__c-Comparator Layout.layout
-src/layouts/UL_Delivery_Profile__c-Delivery Profile Layout.layout
-src/layouts/UL_Planning_Level__c-Planning Level Layout.layout
-src/layouts/UL_PromotionCategory__c-PromotionCategory Layout.layout
-src/layouts/UL_UserCustomerProduct__c-User Customer Product Category Layout.layout
-src/layouts/UL_Workflow_Threshold__c-Workflow Threshold Layout.layout
-src/layouts/UL_Workflow_Threshold_Template__c-Workflow Threshold Template Layout.layout
-src/layouts/User-SoCo-User layout.layout
-src/layouts/User-UKI-User layout.layout
-src/layouts/UL_Comparator__c-Comparator Layout.layout
-src/layouts/UL_Workflow_Threshold__c-Workflow Threshold Layout.layout
-src/layouts/UL_Workflow_Threshold_Template__c-Workflow Threshold Template Layout.layout
+src/layouts/UL_Cannibalisation_Rate__c-CannibalisationRateLayout.layout
+src/layouts/UL_Comparator__c-ComparatorLayout.layout
+src/layouts/UL_Delivery_Profile__c-DeliveryProfileLayout.layout
+src/layouts/UL_Planning_Level__c-PlanningLevelLayout.layout
+src/layouts/UL_PromotionCategory__c-PromotionCategoryLayout.layout
+src/layouts/UL_UserCustomerProduct__c-UserCustomerProductCategoryLayout.layout
+src/layouts/UL_Workflow_Threshold__c-WorkflowThresholdLayout.layout
+src/layouts/UL_Workflow_Threshold_Template__c-WorkflowThresholdTemplateLayout.layout
+src/layouts/User-SoCo-Userlayout.layout
+src/layouts/User-UKI-Userlayout.layout
+src/layouts/UL_Comparator__c-ComparatorLayout.layout
+src/layouts/UL_Workflow_Threshold__c-WorkflowThresholdLayout.layout
+src/layouts/UL_Workflow_Threshold_Template__c-WorkflowThresholdTemplateLayout.layout
 src/groups
 src/groups/UL_Account_Manager_AR01.group
 src/groups/UL_AccountManager_AR01.group
@@ -470,4 +471,23 @@ src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Child_Workflow.approvalProcess
 src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Parent_Banded_Pack_Workflow.approvalProcess
 src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Parent_PastDated_Urgent_Workflow.approvalProcess
 src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Parent_Workflow.approvalProcess
-src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Parent_Workflow.approvalProcess
+src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Parent_Workflow.approvalProces
+src/profiles
+src/profiles/UnileverACTPMSOCO.profile
+src/profiles/UnileverACTPMUKI.profile
+src/permissionsets
+src/permissionsets/SoCo_Account_Director.permissionset
+src/permissionsets/SoCo_Account_Manager.permissionset
+src/permissionsets/SoCo_Account_Planner.permissionset
+src/permissionsets/SoCo_Category_Manager.permissionset
+src/permissionsets/SoCo_Category_Planner.permissionset
+src/permissionsets/SoCo_CD_Finance_Analyst.permissionset
+src/permissionsets/SoCo_CD_Finance_Manager.permissionset
+src/permissionsets/SoCo_Customer_Marketing_Director.permissionset
+src/permissionsets/SoCo_Finance_Admin.permissionset
+src/permissionsets/SoCo_Finance_Director.permissionset
+src/permissionsets/SoCo_Process_Officer.permissionset
+src/permissionsets/SoCo_System_Admin.permissionset
+src/permissionsets/UK_Admin.permissionset
+src/permissionsets/UK_Authoriser.permissionset
+src/permissionsets/UK_Planner_CAM.permissionset
