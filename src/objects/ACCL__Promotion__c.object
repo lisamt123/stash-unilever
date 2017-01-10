@@ -46,9 +46,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <content>MyPromotionPlanning</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -63,6 +61,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
     <fieldSets>
         <fullName>ACCL__Calculation_Variables</fullName>
         <availableFields>
@@ -367,6 +366,16 @@
         <fullName>UL_SoCo_Approved</fullName>
         <description>In promotion planning workflow when the promotion is in the Approved status</description>
         <displayedFields>
+            <field>ACCL__Promotion_Template__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Current_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>ACCL__Phase__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -511,6 +520,16 @@
     <fieldSets>
         <fullName>UL_SoCo_Branded_Pack_Approved</fullName>
         <description>In promotion planning workflow when the promotion is in the Branded Pack Approved status</description>
+        <displayedFields>
+            <field>ACCL__Promotion_Template__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Current_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <displayedFields>
             <field>ACCL__Phase__c</field>
             <isFieldManaged>false</isFieldManaged>
@@ -662,6 +681,16 @@
         <fullName>UL_SoCo_Director_check</fullName>
         <description>In promotion planning workflow when the promotion is in the Director check status</description>
         <displayedFields>
+            <field>UL_Current_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Promotion_Template__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>ACCL__Slogan__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -812,7 +841,17 @@
         <fullName>UL_SoCo_End_Date</fullName>
         <description>In promotion planning workflow when the promotion is in the Enda Date status</description>
         <displayedFields>
+            <field>UL_Current_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Promotion_Template__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -957,12 +996,22 @@
         <fullName>UL_SoCo_Finance_Check</fullName>
         <description>In promotion planning workflow when the promotion is in the Finance check status</description>
         <displayedFields>
+            <field>ACCL__Promotion_Template__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>ACCL__Slogan__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
             <field>ACCL__Phase__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Current_Status__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -1116,7 +1165,7 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
-	<displayedFields>
+        <displayedFields>
             <field>ACCL__Phase__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1271,7 +1320,7 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
-	<displayedFields>
+        <displayedFields>
             <field>ACCL__Phase__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1942,7 +1991,7 @@
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -2114,14 +2163,6 @@
                 <fullName>Special Pack - Price Marked Pack</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>No</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -2278,14 +2319,6 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
             </picklistValues>
             <picklistValues>
                 <fullName>Volume and Value</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>No</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -2841,6 +2874,24 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <language>en_GB</language>
     </listViews>
     <listViews>
+        <fullName>UL_FinanceCheck_AR01_Promotion</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Finance Check AR01</label>
+        <queue>UL_FinanceCheck_AR01</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>UL_Managers_AR01_Promotion</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Managers - AR01</label>
+        <queue>UL_Managers_AR01</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>test_promotion</fullName>
         <columns>NAME</columns>
         <columns>ACCL__Anchor_Account__c</columns>
@@ -2872,280 +2923,6 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
     </nameField>
     <pluralLabel>Promotions</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <!--<recordTypes>
-        <fullName>ACCL__Locked</fullName>
-        <active>false</active>
-        <description>Record type for read only page layout.</description>
-        <label>Locked</label>
-        <picklistValues>
-            <picklist>ACCL__Phase__c</picklist>
-            <values>
-                <fullName>Cancelled</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Committed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ForApproval</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Planning</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Current_Status__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>End Date</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Finance Check</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manager Check</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Planning</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Delivery_Profile__c</picklist>
-            <values>
-                <fullName>Ireland Profile</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ireland with Customer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UK Profile</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UK with Customer</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Feature</picklist>
-            <values>
-                <fullName>Dump Bins</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Free Standing Unit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gondola End</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hot Spot</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ladder Rack</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mid Gondola</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>None Specified</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pallet Drop</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sampling %28E-Tail%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shelf</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shipper%2FOFD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Side Stack</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Store Entrance</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Mechanic__c</picklist>
-            <values>
-                <fullName>Loyalty Points</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Multi-Buy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other Mechanics</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pipefill%2FPlinth</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Price Reduction</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Special Pack - Extra Free</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Special Pack - Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Special Pack - Price Marked Pack</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Next_Status__c</picklist>
-            <values>
-                <fullName>NO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>YES</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Primary_Objective__c</picklist>
-            <values>
-                <fullName>AWOP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Clearance</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gap Fill</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NPD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Penetration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Reactive %2F Defensive</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Promotion_Type__c</picklist>
-            <values>
-                <fullName>Value Only</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Volume Only</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Volume and Value</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Secondary_Objective__c</picklist>
-            <values>
-                <fullName>Incremental Profit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Incremental TO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pipeline Filling</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Sub_Mechanic__c</picklist>
-            <values>
-                <fullName>Price Reduction-Price Reduction %28TPR %C2%A34%29</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Volume_Type__c</picklist>
-            <values>
-                <fullName>Consumption</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shipment</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_WorkflowState__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Finance Check</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manager Check</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Planning</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-    </recordTypes>-->
     <recordTypes>
         <fullName>ACCL__Promotion</fullName>
         <active>true</active>
@@ -4092,6 +3869,13 @@ Id=VLOOKUP
 ,true
 ,false )</errorConditionFormula>
         <errorMessage>You can set Workflow State from &apos;Approved&apos; to &apos;Planning&apos; only if the Promotion is not currently running</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL_LTA_Time_Period_of_Longer_Than_a_Year</fullName>
+        <active>true</active>
+        <description>(TPM 1759) - If a time period of longer than a year is defined within the date fields then a validation should be returned and the user is warned that a LTA cannot be created which is longer than one year.</description>
+        <errorConditionFormula>AND( ACCL__Promotion_Template__r.Name = &apos;Long Term Agreement UK&apos;,ACCL__Date_Thru__c -  ACCL__Date_From__c  &gt; 365)</errorConditionFormula>
+        <errorMessage>A LTA cannot be created which is longer than one year between Start and End Date.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>UL_LTA_Validation_Rule</fullName>
