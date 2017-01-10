@@ -329,6 +329,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>ACCL__Promotion__c.UL_Promotion_Template_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>ACCL__Promotion__c.UL_Promotion_Type__c</field>
         <readable>false</readable>
