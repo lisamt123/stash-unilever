@@ -309,6 +309,7 @@ src/classes/UL_SalesOrgTestFactory.cls
 src/classes/UL_SecurityUtil.cls
 src/classes/UL_TacticsValidate.cls
 src/classes/UL_ThresholdTemplateExtensions.cls
+src/classes/UL_ThresholdTemplateExtensionsTest.cls
 src/classes/UL_TransactionRowTestFactory.cls
 src/classes/UL_TransactionTemplateTestFactory.cls
 src/classes/UL_TransactionTestFactory.cls
