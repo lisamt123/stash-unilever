@@ -58,7 +58,6 @@ src/pages/Amr_RAPJobPortfolio.page
 src/pages/Amr_RAPJobPortfolio.page-meta.xml
 src
 src/labels
-src/labels/CustomLabels.labels
 src/labels/Amr.labels
 src
 src/permissionsets

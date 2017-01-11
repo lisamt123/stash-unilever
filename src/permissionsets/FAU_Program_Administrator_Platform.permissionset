@@ -1146,7 +1146,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAU_Participant__c.PA_Email_and_PA_Email__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
