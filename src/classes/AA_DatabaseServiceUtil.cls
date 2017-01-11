@@ -126,7 +126,7 @@ public with sharing class AA_DatabaseServiceUtil {
               
                 if(ids !=',')
                 {
-                    
+                    system.debug('Mention user to notify inside For,If===> '+Id.ValueOf(ids));
                     ConnectApi.MentionSegmentInput mentionSegment = new ConnectApi.MentionSegmentInput();
                     mentionSegment.id = Id.ValueOf(ids);
                     feedItemInput.body.messageSegments.add(mentionSegment);
@@ -155,22 +155,23 @@ public with sharing class AA_DatabaseServiceUtil {
           textSegment3.text = ' ' ;
           feedItemInput.body.messageSegments.add(textSegment3);     
         
-        
+		System.debug('outside user to mention>>>>>>>');        
         // add inline link
         ConnectApi.LinkSegmentInput report_link = new ConnectApi.LinkSegmentInput();
         String fullRecordURL = URL.getSalesforceBaseUrl().toExternalForm() + '/' + reportId;
         report_link.url = fullRecordURL;
         feedItemInput.body.messageSegments.add(report_link);
-        
+        System.debug('after inline >>>>>>>');
         //Adding Attachment            
         List<ContentDocumentLink> documentlist=[SELECT ContentDocument.id FROM ContentDocumentLink WHERE LinkedEntityId = :reportId LIMIT 1];
         if(!documentlist.IsEmpty()){
+            system.debug('Inside documentList>>>>>>');
              ConnectApi.ContentAttachmentInput attachmentInput = new ConnectApi.ContentAttachmentInput(); 
              attachmentInput.contentDocumentId=documentlist[0].ContentDocument.id;
              system.debug('attachmentInput.contentDocumentId===='+attachmentInput.contentDocumentId);  
              feedItemInput.attachment = attachmentInput;
         } 
-                    
+                    system.debug('Chatter Posting>>>>>');
         // post it!
         // ConnectApi.FeedItem new_chat = ConnectApi.ChatterFeeds.postFeedItem(null, ConnectApi.FeedType.Record, objectId, feedItemInput, null);
     	ConnectApi.ChatterFeeds.postFeedItem(null, ConnectApi.FeedType.Record, objectId, feedItemInput, null);

@@ -11,19 +11,31 @@ public class AA_AutoCompleteController {
         String sanitizedSObjectFieldName = String.escapeSingleQuotes(recordType);
         
         String searchQuery='';
+        String searchGroupQuery= 'Null';
         List<Result> results = new List<Result>();
  		
          // Build our SOSL query
         if(sanitizedSObjectFieldName == 'null' )
         {
             searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + sanitizedSObjectAPIName + '(id,name) Limit 10 '; 
+            searchGroupQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING CollaborationGroup(id,name) Limit 10 '; 
         }
         else {
              searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + sanitizedSObjectAPIName + '(id,name where RecordType.Name=\''+ sanitizedSObjectFieldName +'\') Limit 10'; 
         }
-       
+       system.debug('searchQuery>>>>>>>>>>> '+searchQuery);
+        system.debug('searchQueryGroup>>>>>>>>>>> '+searchGroupQuery);
         // Execute the Query
         List<List<SObject>> searchList = search.query(searchQuery);
+        system.debug('searchList>>>>>> '+searchList);
+        if(searchGroupQuery != 'Null' ){
+            system.debug('inside searchGroupQuery >>>>>>');
+            List<List<SObject>> searchListGroup = search.query(searchGroupQuery);
+            for (SObject soG : searchListGroup[0])
+            {
+                results.add(new Result((String)soG.get('Name'), soG.Id));
+            }
+        }
  
         // Create a list of matches to return
         for (SObject so : searchList[0])

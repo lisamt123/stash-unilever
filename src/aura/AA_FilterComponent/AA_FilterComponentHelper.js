@@ -1,6 +1,7 @@
 ({
 	scrollToLocation : function(component, location) {
-        var cssScrolltoTop = $(".scroller"); // css class to find scroll position
+       // document.body.scrollTop = document.documentElement.scrollTop = 0;
+       var cssScrolltoTop = $(".scroller"); // css class to find scroll position
         if (cssScrolltoTop) {
             var cssScrolltoTopTransform = cssScrolltoTop.css("transform");
             if (cssScrolltoTopTransform) {

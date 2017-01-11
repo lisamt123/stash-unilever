@@ -1,6 +1,9 @@
-({  
-   
+({
     doInit: function(component, event, helper) {
+        
+    //  var today = new Date();
+	//	component.set('v.today', today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate());
+    //    component.set('v.oldDate', (today.getFullYear()-1) + "-" + (today.getMonth() + 1) + "-" + 1);
         component.set("v.clusterId",null);
         component.set("v.countryId",null);
         var action = component.get("c.getAutoPopulatedValues_UnileverReport");
@@ -64,16 +67,16 @@
         {
             var action = component.get("c.getCompetitorCategory");
             action.setParams({ "competitorBrand" : brandId});
-            var newBrandNameList= [];
-            var newCategoryList= [];
+            var newBrandNameList= component.get("v.newBrandNameList");
+            var newCategoryList= component.get("v.newCategoryList");
             action.setCallback(this, function(a) {
                 var brandList = a.getReturnValue();
                 component.set("v.competitorNameList", brandList.Agent_Competitor_Id__c);
                 for(var brand in brandList){
                     if (brandList.hasOwnProperty(brand)) {
                         var ob = brandList[brand];
-                        var singleName = [];
-                        var singleCategory =[];
+                        var singleName = new Object();
+                        var singleCategory =new Object();
                         singleName.Id=ob.Agent_Competitor_Id__r.Id;
                         singleName.Name=ob.Agent_Competitor_Id__r.Name;
                         newBrandNameList.push(singleName);
@@ -136,6 +139,8 @@
     },
     //Apply Filter
     applyFilter : function(component, event, helper) {
+        var startDate = component.find("startdateField").get("v.value");
+        var endDate = component.find("enddateField").get("v.value");
         var reportType=component.find("reportType").get("v.value");
         var cluster=component.find("clusterId").get("v.value");
         var country=component.find("countryId").get("v.value");
@@ -153,6 +158,11 @@
         //var selectEvent = $A.get("e.c:AA_FilterEvent");
         // winter 17' critical update issue
         var selectEvent =  component.getEvent("FilterEventName");
+        
+        if(startDate!='' || endDate != '')
+            {
+                if(endDate >= startDate)
+                {
         if(reportType === 'All'){
             selectEvent.setParams({
                 "filterType":"FilteredReports",
@@ -161,7 +171,9 @@
                 "applyFilter":'true',
                 "sortType":component.get("v.sortType"),
                 "clusterId":cluster,
-                "countryId":country
+                "countryId":country,
+                "startDate":startDate,
+                "endDate":endDate
             }).fire();
         }
         else if(reportType==='Unilever Report')
@@ -180,7 +192,10 @@
                 "unileverBrandId":unileverBrand,
                 "retailerId":retailer,
                 "reportingOnId":reportingOn,
-                "recordType":'Unilever'
+                "recordType":'Unilever',
+                "startDate":startDate,
+                "endDate":endDate
+                
             }).fire();
         } else {
             competitorBrand=component.get("v.competitorBrandId");
@@ -203,7 +218,17 @@
                 "competitorId":competitorName,
                 "categoryId":category,
                 "topicId":topic,
+                "startDate":startDate,
+                "endDate":endDate
             }).fire();
+        }
+                }
+        else{
+            component.set("v.alertToastInvalidDate",true);
+        }
+            }
+        else{
+            component.set("v.alertToastInvalidDate",true);
         }
         if(navigator.userAgent.match(/Android/i)
            || navigator.userAgent.match(/webOS/i)

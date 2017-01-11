@@ -1,9 +1,13 @@
 <aura:component >
     <aura:attribute name="newsArticle" type="Core_NC_NewsWrapperClass"/>
     <aura:attribute name="newsType" type="String"/>
+    <!--Creating attributes for enhancement-->
+    <aura:attribute name="newsArticleTopics" type="String[]"/>
+    <aura:attribute name="selectedFilter" type="String"/>
+    <aura:attribute name="newSelectedFilter" type="String"/>
     <div class="itemPanel"> 
-        <table width="100%" value="{!v.newsArticle}" onclick="{!c.GetNewsDetails}">
-            <tr>
+        <table width="100%" value="{!v.newsArticle}" >
+            <tr onclick="{!c.GetNewsDetails}">
                 <td width="40%">
                     <img src="{!v.newsArticle.BannerURL}" class="bannerImage"></img>
                 </td>
@@ -28,14 +32,15 @@
                     <br/>              
                 </td>
             </tr>
-            <tr>
+            <tr><!--Change for Implementing CR Related to Topics-->
                 <td colspan="2">                    
-                    <aura:if isTrue="{!v.newsType == 'GlobalNews' ? true : false}">
-                        <div style="padding-top:5px"><span class="topicStyle">{!v.newsArticle.Topics}</span></div>
-                    </aura:if>
+                     <aura:if isTrue="{!v.newsType == 'GlobalNews' ? true : false}">
+                        <ui:button aura:id="topic" buttonTitle="Click to see what you put into the field" class="button_topic slds-button--brand" label="{!v.newsArticle.Topics}" press="{!c.sendSelectedTopic}"/>
+                    </aura:if> 
                 </td>
             </tr>
         </table>
+       
     </div>
 
         

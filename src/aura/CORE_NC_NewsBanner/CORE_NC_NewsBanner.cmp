@@ -27,7 +27,7 @@
                          <ui:outputText value="{!v.newsArticle.SubTitle}" class="SubText"/>
                      </div>
                      <aura:if isTrue="{!v.newsType == 'MyNews' ? false : true}">
-                         <span class="topicStyle">{!v.newsArticle.Topics}</span>
+                         <ui:button aura:id="topic" buttonTitle="Click to see what you put into the field" class="button slds-button--brand" label="{!v.newsArticle.Topics}" press="{!c.sendSelectedTopic}"/>
                      </aura:if>
                  </aura:if>
              </div>

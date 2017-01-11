@@ -1,8 +1,7 @@
 ({
     scrollToLocation : function(component, location) {
-        var cssScrolltoTop = $(".scroller"); // css class to find scroll position
-        // alert(component.find("scrollID").getElement().className);
-       // alert(component.find("scrollID").getElement().style);
+
+         var cssScrolltoTop = $(".scroller"); // css class to find scroll position
       //  var cssScrolltoTop =component.find("scrollID").getElement().className;
        // var cssScrolltoTop =document.getElementById('scrollID').getAttribute( "class");
         //cssScrolltoTop=cssScrolltoTop.get("v.class");
@@ -12,7 +11,7 @@
                 cssScrolltoTop.css("transform", "translate3d(0px, 0px, 0px)"); //set 'transform' since lighntning architecture uses css 'transfrom' property to scroll 
             }
         }
-      /*var scroller = this.getScroller(component),
+     /* var scroller = this.getScroller(component),
             payload = {
                 time: 300,
             };
@@ -76,6 +75,8 @@
             "competitorId":component.get("v.competitorId"),
             "categoryId":component.get("v.categoryId"),
             "topicId":component.get("v.topicId"),
+            "startDate":component.get("v.startDate"),
+            "endDate":component.get("v.endDate"),
             "inDesktop":isDektop,
         });
         actionResult.setCallback(this, function(a) {

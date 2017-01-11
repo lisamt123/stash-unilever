@@ -28,7 +28,7 @@
             destination = "markup://c:CORE_CA_InvoiceDetail";}
         if(sourceSystem == 'CLM'){
             destination = "markup://c:CORE_CA_CLMDetail";}
-        
+        /*
         $A.componentService.newComponentAsync(this, function(view) {
             var content = component.find("content");
             content.set("v.body", view);
@@ -46,6 +46,18 @@
                 }
             }
         }, component);
+        */
+        var content = component.find("content");
+        $A.createComponent(destination,
+                           {RequestId : RequestId,
+                            ApproverId : ApproverId,
+                            sourcePage : sourcePage,
+                            filterValue : filterValue,
+                            isFeedBack : isFeedBack,
+                            isNavigate : isNavigate},
+                           function(cmp) {
+                               content.set("v.body", [cmp]);
+                           });
     },
     /*
     feedBackMethod : function(component, event) {       

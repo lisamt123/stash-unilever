@@ -1,6 +1,9 @@
 <aura:component controller="AA_AgentAppService" >
     
     <aura:attribute name="objGetAgentDataResponse" type="AA_WrapperClass.AgentAppDataResponse" />
+    <aura:attribute name="newCountryList" type="Object[]"/> 
+    <aura:attribute name="newBrandNameList" type="Object[]"/>
+    <aura:attribute name="newCategoryList" type="Object[]"/>
     <aura:attribute name="objGetAgentDataResponseCompetitor" type="AA_WrapperClass.AgentAppDataResponse" description="values for all competitorReport"/>
     <aura:attribute name="clusterList" type="Object" description="List of Cluster values" />
     <aura:attribute name="allCountryList" type="Object" description="List of all Countries values which will be used while selection based on the cluster list"/>
@@ -37,6 +40,9 @@
     <aura:registerEvent name="FilterEventName" type="c:AA_FilterEvent"/>
     <aura:handler name="updateLookupIdEvent" event="c:AA_UpdateLookupId" action="{!c.handleIdUpdate}"/>
     <aura:handler name="change" value="{!v.competitorBrandId}" action="{!c.handleCompetitorBrandChange}"/>
+    <aura:attribute name="today" type="Date" default=""/>
+    <aura:attribute name="oldDate" type="Date" default=""/>
+    <aura:attribute name="alertToastInvalidDate" type="boolean" default="false"></aura:attribute>
     
     <div class="container">
         <div aura:id="scrollID" class="scroller">
@@ -154,6 +160,15 @@
                         </div>
                     </div>
                 </aura:if>
+                <div class="slds-form-element" >
+                    <span>
+                        <div>
+                            <ui:inputDate aura:id="startdateField" label="Start Date" labelClass="slds-form-element__label" value="" displayDatePicker="true"/>
+                            <ui:inputDate aura:id="enddateField" label="End Date" value="" displayDatePicker="true" />
+                            
+                        </div>
+                    </span>
+                </div>
             </div>
             
             <div class="filter-botton-container">
@@ -164,4 +179,20 @@
             </div>
         </div>  
     </div>
+    <aura:if isTrue="{!v.alertToastInvalidDate}">
+        <div class="slds-notify_container">
+            <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
+                <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close">
+                    <div aria-hidden="true" class="slds-button__icon">
+                        <a href=""><img style="float:right;width:8%;" src="/resource/Lightning_designing_style/assets/icons/utility/close.svg" onclick="{!c.goToHomePage}">
+                                </img></a>
+                    </div>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <span class="slds-assistive-text">Error</span>
+                <h2>
+                    Please enter a valid date.</h2>
+            </div>
+        </div>
+    </aura:if>
 </aura:component>

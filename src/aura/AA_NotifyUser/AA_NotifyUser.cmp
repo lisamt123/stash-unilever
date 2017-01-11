@@ -2,6 +2,7 @@
     <!-- Attributes -->
     <aura:attribute name="searchString" type="String" description="The search string to find." />
     <aura:attribute name="selectedUser" type="Object[]" description="Collection of selected Users"/>
+    <aura:attribute name="newUser" type="Object[]" />
     <aura:attribute name="showTag" type="Boolean" default="false"/>
     <aura:attribute name="matches" type="Object[]" />
     <aura:attribute name="listIconClass" type="String" />
@@ -23,9 +24,9 @@
             <!-- This is the lookup list markup. Initially it's hidden -->
             <div aura:id="lookuplist"  >
                 <ul aura:id="lookuplist-items" class="hide">
-                    <aura:iteration items="{!v.matches}" var="match">
+                    <aura:iteration items="{!v.matches}" var="match"  indexVar="ind">
                         <li >
-                            <a id="{!globalId + '_id_' + match.SObjectId}" onclick="{!c.select}">
+                            <a id="{!globalId + '_id_' + match.SObjectId}" data-index="{!ind}" data-name="{!match.Name}" onclick="{!c.select}">
                                 {!match.SObjectLabel}
                             </a>
                         </li>
@@ -39,7 +40,7 @@
                         <div class="slds-pill_container slds-m-right--x-small slds-m-bottom--x-small">
                             <div class="slds-pill">
                                 <span class="slds-pill__label">{!selectedUser.Name}</span> 
-                                <button class="slds-button slds-button--icon-bare slds-pill__remove" data-record="{!selectedUser.Id}"  label="{!selectedUser.Id}" onclick="{!c.remove}">
+                                <button class="slds-button slds-button--icon-bare slds-pill__remove"  data-record="{!selectedUser.Id}"  label="{!selectedUser.Id}" onclick="{!c.remove}">
                                     <c:svg class="slds-button__icon" 
                                            xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#close"  />
                                     <span class="slds-assistive-text"  >Remove</span>

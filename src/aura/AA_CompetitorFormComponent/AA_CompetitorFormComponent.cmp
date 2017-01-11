@@ -1,6 +1,9 @@
 <aura:component implements="force:appHostable" controller="AA_AgentAppService"> 
     <ltng:require scripts="/resource/AA_Agent_LightningAppStatic/libs/jquery-3.0.0.min.js" />
     <aura:attribute name="objGetAgentDataResponse" type="AA_WrapperClass.AgentAppDataResponse" />
+     <aura:attribute name="newCountryList" type="Object[]"/> 
+    <aura:attribute name="newBrandNameList" type="Object[]"/>
+    <aura:attribute name="newCategoryList" type="Object[]"/>
     <aura:attribute name="latitude" type="Decimal" />
     <aura:attribute name="longitude" type="Decimal" />
     <aura:attribute name="subTopicList" type="string[]" />

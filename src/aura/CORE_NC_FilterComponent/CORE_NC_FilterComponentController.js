@@ -31,8 +31,9 @@
         filterStyle = component.find("showSustainable");
         $A.util.addClass(filterStyle, "inactiveFilterOption");
                         
-        document.body.scrollTop = document.documentElement.scrollTop = 0;
-        setTimeout(window.scrollTo(0,0),100);
+     /*   document.body.scrollTop = document.documentElement.scrollTop = 0;
+        setTimeout(window.scrollTo(0,0),100);*/
+           helper.scrollToLocation(component);  
         
         var FilterType=component.get("v.selectedFilter");
         component.set("v.newSelectedFilter",FilterType);

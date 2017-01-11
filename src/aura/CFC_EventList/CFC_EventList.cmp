@@ -1,5 +1,6 @@
 <aura:component controller="CFC_EventsController" >
     <aura:handler name="init" value="{!this}" action="{!c.eventsListData}" />
+    <ltng:require scripts="{!$Resource.ga + '/js/analytics.js'}" />
     <aura:attribute name="eventList" type="CFC_EventsWrapper"/>
     <aura:attribute name="filterTopic" type="String"/>
     <aura:attribute name="sortTopic" type="String"/>

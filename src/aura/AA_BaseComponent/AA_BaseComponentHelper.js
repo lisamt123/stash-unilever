@@ -1,10 +1,10 @@
 ({
     getAllReportsData : function(component) {
         var actionResult = component.get("c.getRetriveAllAgentReports");
-        actionResult.setParams({"filterType":  component.get("v.filterType"),
-                                "sortType":  component.get("v.sortType"),
-                                "limitRecords":  component.get("v.limitRecords"),
-                                "offSet":  component.get("v.offSet"),
+        actionResult.setParams({"filterType": component.get("v.filterType"),
+                                "sortType": component.get("v.sortType"),
+                                "limitRecords": component.get("v.limitRecords"),
+                                "offSet": component.get("v.offSet"),
                                 "applyFilter": component.get("v.applyFilter"),
                                 "clusterId":component.get("v.clusterId"),                               
                                 "countryId":component.get("v.countryId"),

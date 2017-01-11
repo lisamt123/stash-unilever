@@ -1,7 +1,7 @@
 ({
-	scrollToLocation : function(component, location) {
+	scrollToLocation : function(component) {
         var cssScrolltoTop = $(".scroller");
-        //var cssScrolltoTop = component.find("scrollID").get("v.class");
+       // var cssScrolltoTop = component.find("scrollID").get("v.class");
         if (cssScrolltoTop) {
             var cssScrolltoTopTransform = cssScrolltoTop.css("transform");
             if (cssScrolltoTopTransform) {

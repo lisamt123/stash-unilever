@@ -1,6 +1,7 @@
 ({
     scrollToLocation : function(component, location) {
-        var cssScrolltoTop = $(".scroller"); // css class to find scroll position
+     //  document.body.scrollTop = document.documentElement.scrollTop = 0;
+		var cssScrolltoTop = $(".scroller"); // css class to find scroll position
         if (cssScrolltoTop) {
             var cssScrolltoTopTransform = cssScrolltoTop.css("transform");
             if (cssScrolltoTopTransform) {
@@ -34,23 +35,24 @@
         return scroller;*/
     },
     checkMobileBrowser : function(component){
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        if($A.get("$Browser.isAndroid") || $A.get("$Browser.isIPhone") || $A.get("$Browser.isIOS") || $A.get("$Browser.isWindowsPhone") || $A.get("$Browser.isTablet")){
+        //if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             return true;	
         }else{
             return false;
         }
     },
     getUsersString : function(component, event, helper){
-         var selectedUsers=component.get("v.selectedUsers");
-            var userIdString="";
+         var selectedUsers = component.get("v.selectedUsers");
+            var userIdString = "";
             for (var sel in selectedUsers) {
                 if (selectedUsers.hasOwnProperty(sel)) {
                     var ob = selectedUsers[sel];
                     if(userIdString.length === 0) {
-                        userIdString=ob.Id;
+                        userIdString = ob.Id;
                     }
                     else{
-                        userIdString=userIdString+","+ob.Id;
+                        userIdString = userIdString + "," + ob.Id;
                     }
                 }
             } 

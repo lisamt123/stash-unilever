@@ -26,3 +26,14 @@
     padding-bottom:5px;
     width: 100%;
 }
+.THIS .BigImage{
+    height:300px;
+    min-width:100%;
+    min-height:300px;
+}
+.THIS .button{
+    padding: 0.2rem 0.5rem !important;
+    font-size: 10px !important;
+        height: 20px;
+    line-height: 10px;
+}

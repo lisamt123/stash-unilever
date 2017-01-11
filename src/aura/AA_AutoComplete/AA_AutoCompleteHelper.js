@@ -175,7 +175,8 @@
         // Resolve the Object Id from the events Element Id (this will be the <a> tag)
         var objectId = this.resolveId(event.currentTarget.id);
         // The Object label is the 2nd child (index 1)
-        var objectLabel = event.currentTarget.children[1].innerText;
+        //console.log("handleSelection: "+event.currentTarget.children[1]);
+        var objectLabel =event.currentTarget.textContent;
         // Create the UpdateLookupId event
         var updateEvent = component.getEvent("updateLookupIdEvent");
         var searchInput=component.find("lookup");

@@ -1,8 +1,8 @@
 <aura:component implements="force:appHostable" controller="AA_AgentAppService">   
-    <ltng:require scripts="/resource/AA_Agent_LightningAppStatic/libs/jquery-3.0.0.min.js" />
+    <!--ltng:require scripts="/resource/AA_Agent_LightningAppStatic/libs/jquery-2.2.4.min.js" /-->
     <!--Attributes-->
-    
     <aura:attribute name="objGetAgentDataResponse" type="AA_WrapperClass.AgentAppDataResponse" />
+    <aura:attribute name="newCountryList" type="Object[]"/> 
     <aura:attribute name="clusterList" type="Object" description="List of Cluster values" />
     <aura:attribute name="allCountryList" type="Object" description="List of all Countries values which will be used while selection based on the cluster list"/>
     <aura:attribute name="countryList" type="Object" description="List of the countries values which we will display in the country drop down list "/>
@@ -40,10 +40,9 @@
     <aura:handler name="updateUserListEvent" event="c:AA_UpdateUserList" action="{!c.handleSelectedUsers}"/>
     <aura:handler name="uploadContentVersion" event="c:AA_ContentVersionEvent" action="{!c.handleContentVersionData}"/>
     <aura:handler name="getCountryCityLatLng" event="c:AA_GoogleMapEvent" action="{!c.getLocationDetails}"/>
-    <style></style>
     <aura:if isTrue="{!$Browser.isAndroid}">
         <style>
-            .container{
+               .container{
             height: 95% !important;     
             overflow-y : auto !important;
             }

@@ -1,4 +1,4 @@
-<aura:component controller="AA_AgentAppService">
+<aura:component controller="AA_AgentAppService">    
     <aura:attribute name="objAgentAppDataResponse" type="AA_WrapperClass.AgentAppDataResponse" description="Agent app report list get stored here" />
     <aura:attribute name="objPassAgentReportsToNG" type="AA_WrapperClass.agentReportDetail" />
     <aura:attribute name="pageRecordCount" type="Integer" default="12" />
@@ -21,6 +21,8 @@
     <aura:attribute name="competitorId" type="String"/>
     <aura:attribute name="categoryId" type="String"/>
     <aura:attribute name="topicId" type="String"/>
+    <aura:attribute name="startDate" type="String"/>
+    <aura:attribute name="endDate" type="String"/>
     <!-- Attributes & Handlers for filter and sort popup Start-->
     <aura:attribute name="filterPopUp" type="Boolean" default="false"/>
     <aura:attribute name="NoReports" type="Boolean" default="false"/>

@@ -17,7 +17,7 @@ public with sharing class AA_FileUploadUtility {
     } 
     @AuraEnabled
     public static Id saveTheChunk(String fileName, String base64Data, String contentType, String fileId) { 
-        system.debug('Inside saveTheChuck: AA_FileUploadUtility');
+        system.debug('Inside saveTheChuck: AA_FileUploadUtility: '+base64Data);
         String fileIdParam=fileId;
         if (fileIdParam == '') {
             fileIdParam = saveTheFile(fileName, base64Data, contentType);

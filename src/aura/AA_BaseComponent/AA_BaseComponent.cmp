@@ -2,7 +2,8 @@
     <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
     <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
     <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
-    <ltng:require scripts="/resource/AA_Agent_LightningAppStatic/libs/jquery-3.0.0.min.js"  afterScriptsLoaded="{!c.checkBusinessPrinciple}"/>
+    <ltng:require scripts="/resource/AA_Agent_LightningAppStatic/libs/jquery-2.2.4.min.js"  afterScriptsLoaded="{!c.checkBusinessPrinciple}"/>
+    <ltng:require scripts="{!$Resource.AA_Agent_LightningAppStatic + '/libs/load-image.all.min.js'}" />
     
     <c:AA_CommonComponent />
     <aura:attribute name="filterType" type="String" default="AllReports"/>
@@ -34,7 +35,7 @@
     <!--<aura:handler event="c:AA_FilterEvent" action="{!c.getDetail}" />-->
     <!--winter 17' critical update issue -->
     <aura:handler name="FilterEventName" event="c:AA_FilterEvent" action="{!c.getDetail}"/>
-    <aura:handler name="navigateToPageDetailEvent" event="c:AA_NavigateToPageDetail" action="{!c.getForm}"/>
+    <aura:handler name="navigateToPageDetailEvent" event="c:AA_NavigateToPageDetail" action="{!c.getUlForm}"/>
     <!-- <aura:handler event="c:AA_NavigateToPageDetail" action="{!c.getForm}" />-->
     <aura:handler event="c:AA_NavigateToLandingPageEvent" name="LandingPageEventFeedBack"  action="{!c.getshowPage}" />
     <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
@@ -86,6 +87,7 @@
     <div class="container">
         <div class="spinner-location"><ui:spinner aura:id="spinner" /></div>
         <div aura:id="baseComponentContainer">
+            {!v.body}
             <aura:if isTrue="{!v.businessPrincipleFlag == true}">
                 <aura:if isTrue="{!v.showLandingPageFlag == false}">
                     <c:AA_AgentBaseFeedBackComponent />

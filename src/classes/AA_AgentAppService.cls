@@ -153,7 +153,7 @@ public with sharing class AA_AgentAppService  {
         return soqlquery; 
     }
     @AuraEnabled
-    public static AA_ApplicationWrapperObjLtng getRetriveAllAgentReports(String filterType, String sortType, Integer limitRecords, Integer offSet, String applyFilter, String clusterId, String countryId,String unileverBrandId, String retailerId, String reportingOnId,String recordType,String competitorBrandId,String competitorId, String categoryId, String topicId, Boolean inDesktop){
+    public static AA_ApplicationWrapperObjLtng getRetriveAllAgentReports(String filterType, String sortType, Integer limitRecords, Integer offSet, String applyFilter, String clusterId, String countryId,String unileverBrandId, String retailerId, String reportingOnId,String recordType,String competitorBrandId,String competitorId, String categoryId, String topicId, String startDate, String endDate, Boolean inDesktop){
         AA_WrapperClass.AgentAppDataRequest objAgentAppDataRequest = new  AA_WrapperClass.AgentAppDataRequest();
         String countryQueryParam=' AND country__c=null)';
         objAgentAppDataRequest.FilterType = filterType;
@@ -186,7 +186,7 @@ public with sharing class AA_AgentAppService  {
             {   
                 aa_Agent_Report__c requestAgentDataObj = new aa_Agent_Report__c();                
                 if(objAgentApp.ApplyFilter=='false'){
-                    aa_Agent_App_User_Preference__c UserPref = [SELECT Id,UserId__c,Category__c,Country__c,Competitor_Brand__c,Competitor_Name__c,Retailer__c,Agent_App_Unilever_Brand__c,Cluster__c,RecordTypeId__c,ReportingOn__c,Topic__c FROM aa_Agent_App_User_Preference__c where UserId__c =: UserInfo.getUserId()];
+                    aa_Agent_App_User_Preference__c UserPref = [SELECT Id,UserId__c,Category__c,Country__c,Competitor_Brand__c,Competitor_Name__c,Retailer__c,Agent_App_Unilever_Brand__c,Cluster__c,RecordTypeId__c,ReportingOn__c,Topic__c,From_Date__c,To_Date__c FROM aa_Agent_App_User_Preference__c where UserId__c =: UserInfo.getUserId()];
                     soqlquery += AA_AgentAppServiceUtility.getPrepareSqlWithUserPref(UserPref);  
                 }else if(objAgentAppDataRequest.ApplyFilter=='true') { 
                     requestAgentDataObj= convertRequestAgentReport(objAgentApp);
@@ -223,6 +223,8 @@ public with sharing class AA_AgentAppService  {
                     }
                     userPref.RecordTypeId__c=recTypeId;
                     userPref.Topic__c=objAgentAppDataRequest.TopicId;
+                    userPref.From_Date__c=Date.valueOf(startDate);
+                    userPref.To_Date__c=Date.valueOf(endDate);
                     userPref.ReportingOn__c=objAgentAppDataRequest.ReportingOn;
                     update userPref;
                 }
@@ -529,6 +531,7 @@ public with sharing class AA_AgentAppService  {
                 userids=userids+str+',';
             }
             userids=userids.removeEnd(',');
+            System.debug('UserIDs in ConvertAgentApp>>>>'+userids);
             newObjToBeInserted.TF_Mention_User__c=userids;
         } 
         //Adding cluster
@@ -575,7 +578,7 @@ public with sharing class AA_AgentAppService  {
     @AuraEnabled
     public static AA_ApplicationWrapperObjLtng insertAgentApp(String clusterId,String countryId,String town, String reportName, String reportDescription,
                                                               List<String> userIds ,String unileverBrandId, String retailerId, String reportingOnId,String recordType, String status,String contentId){
-                                                                  system.debug('clusterId >>>>>>>>>>'+clusterId );
+                                                                  system.debug('userIds >>>>>>>>>>'+userIds );
                                                                   AA_ApplicationWrapperObjLtng appWrapperObj = new AA_ApplicationWrapperObjLtng();
                                                                   try{
                                                                       AA_WrapperClass.AgentAppDataRequest objAgentApp = new  AA_WrapperClass.AgentAppDataRequest();

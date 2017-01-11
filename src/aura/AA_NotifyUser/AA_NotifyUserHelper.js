@@ -12,7 +12,7 @@
         // Clear any errors and destroy the old lookup items container
         inputElement.set('v.errors', null);
         //lookupListItems.set("v.body","");
-         lookupListItems.set('v.body',[]);
+        lookupListItems.set('v.body',[]);
         // We need at least 2 characters for an effective search
         if ( searchString.charAt(0)!== "@" || typeof searchString === 'undefined' 
             || searchString.length < 4) {
@@ -22,12 +22,12 @@
                 searchInput.set("v.errors", [{message:"Please enter at least three characters to populate the dropdown list"}]);
             }else{
                 //lookupListItems.set("v.body", "");
-                 lookupListItems.set('v.body',[]);
+                lookupListItems.set('v.body',[]);
             }
             return;
         }
         //lookupListItems.set("v.body","");
-         lookupListItems.set('v.body',[]);
+        lookupListItems.set('v.body',[]);
         if(event.getParams().keyCode===13){
             console.log("Enter key is pressed!!!");
             searchInput.set("v.errors", [{message:"Please select a specific value from the dropdown list"}]);
@@ -53,14 +53,14 @@
                 if (matches.length == 0)
                 {
                     searchInput.set("v.errors", [{message:"You are trying to enter Names not in our list. Please try again with a different Name."}]);
-                     lookupListItems.set('v.body',[]);
+                    lookupListItems.set('v.body',[]);
                     return;
                 }
                 // Render the results
                 if ( searchString.charAt(0)!== "@" || typeof searchString === 'undefined' 
                     || searchString.length < 4) {
                     searchInput.set("v.errors", null);
-                     lookupListItems.set('v.body',[]);
+                    lookupListItems.set('v.body',[]);
                     return ;
                 }else{
                     searchInput.set("v.errors", null);
@@ -96,7 +96,7 @@
         var searchInputVal=searchInput.get("v.value");
         searchInput.set("v.errors",null);
         // list Icon SVG Path and Class
-         var searchString = component.get("v.searchString");
+        var searchString = component.get("v.searchString");
         var listIconSVGPath = component.get('v.listIconSVGPath');
         var listIconClass = component.get('v.listIconClass');        // Array of components to create
         var newComponents =[];
@@ -133,51 +133,51 @@
         // Create the components
         $A.createComponents(newComponents, function(components, status) {
             if(searchString.length >= 4){
-                 if (status === "SUCCESS")
-            {
-                var lookupList = component.find("lookuplist");
-                $A.util.removeClass(lookupList, 'slds-hide');
-                // Get the List Component Body
-                //lookupListItems.set("v.body","");
-                 lookupListItems.set('v.body',[]);
-                var lookupListItemsBody = lookupListItems.get('v.body');
-                // Iterate the created components in groups of 4, correctly parent them and add them to the list body
-                for (var i=0; i<components.length; i+=4)
+                if (status === "SUCCESS")
                 {
-                    // Identify the releated components
-                    var li = components[i];
-                    var a = components[i+1];
-                    var svg = components[i+2];
-                    var outputText = components[i+3];
-                    
-                    // Add the <a> to the <li>
-                    var liBody = li.get('v.body');
-                    liBody.push(a);
-                    li.set('v.body', liBody);
-                    
-                    // Add the <svg> and <outputText> to the <a>
-                    var aBody = a.get('v.body');
-                    aBody.push(svg);
-                    aBody.push(outputText);
-                    a.set('v.body', aBody);
-                    
-                    // Add the <li> to the container
-                    lookupListItemsBody.push(li);
+                    var lookupList = component.find("lookuplist");
+                    $A.util.removeClass(lookupList, 'slds-hide');
+                    // Get the List Component Body
+                    //lookupListItems.set("v.body","");
+                    lookupListItems.set('v.body',[]);
+                    var lookupListItemsBody = lookupListItems.get('v.body');
+                    // Iterate the created components in groups of 4, correctly parent them and add them to the list body
+                    for (var i=0; i<components.length; i+=4)
+                    {
+                        // Identify the releated components
+                        var li = components[i];
+                        var a = components[i+1];
+                        var svg = components[i+2];
+                        var outputText = components[i+3];
+                        
+                        // Add the <a> to the <li>
+                        var liBody = li.get('v.body');
+                        liBody.push(a);
+                        li.set('v.body', liBody);
+                        
+                        // Add the <svg> and <outputText> to the <a>
+                        var aBody = a.get('v.body');
+                        aBody.push(svg);
+                        aBody.push(outputText);
+                        a.set('v.body', aBody);
+                        
+                        // Add the <li> to the container
+                        lookupListItemsBody.push(li);
+                    }
+                    // Update the list body
+                    lookupListItems.set('v.body', lookupListItemsBody);
                 }
-                // Update the list body
-                lookupListItems.set('v.body', lookupListItemsBody);
-            }
-            else
-            {
-                //this.displayToast('Error', 'Failed to create list components.');]
-                console.log("Error: Failed to create list components.");
-            }
+                else
+                {
+                    //this.displayToast('Error', 'Failed to create list components.');]
+                    console.log("Error: Failed to create list components.");
+                }
             }
             else{
                 lookupListItems.set('v.body',[]);
             }
             // Creation succeeded
-           
+            
         });
     },
     /**
@@ -187,7 +187,8 @@
         // Resolve the Object Id from the events Element Id (this will be the <a> tag)
         var objectId = this.resolveId(event.currentTarget.id);   
         // The Object label is the 2nd child (index 1)
-        var objectLabel = event.currentTarget.children[1].innerText;
+        // var objectLabel = event.currentTarget.children[1].innerText;
+        var objectLabel = event.currentTarget.textContent;
         var selectedUser=component.get("v.selectedUser");
         var searchInput=component.find("lookup");
         var searchInputVal=searchInput.get("v.value");
@@ -195,7 +196,8 @@
         if($A.util.isEmpty(component.get("v.selectedUser")))
         {
             var newUser=[];
-            var singleUser=[];
+            //var singleUser=component.get("v.singleUser");
+            var singleUser=new Object();
             singleUser.Id=objectId;
             singleUser.Name=objectLabel;
             newUser.push(singleUser);
@@ -204,7 +206,7 @@
         else
         {	
             var userList=component.get("v.selectedUser");
-            var singleUser=[];
+            var singleUser=new Object();
             for (var selected in userList) {
                 if (userList.hasOwnProperty(selected)) {
                     var obj = userList[selected];
@@ -226,6 +228,7 @@
             component.set("v.selectedUser",userList);
         }
         // Update the Searchstring with the Label
+        console.log("selecteduser"+component.get("v.selectedUser"));
         component.set("v.searchString", "");
         component.set("v.selectedUserName",objectLabel);
         component.set("v.showTag","true");

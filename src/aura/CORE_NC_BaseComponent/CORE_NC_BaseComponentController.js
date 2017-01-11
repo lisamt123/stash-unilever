@@ -1,7 +1,7 @@
 ({
 
     gloablNewsActive: function(component, event, helper) {
-        //alert(1);     
+          
         var menuStyle;   
         if(component.get("v.paulsBlogPannel")==true){
             menuStyle = component.find("paulsBlog");

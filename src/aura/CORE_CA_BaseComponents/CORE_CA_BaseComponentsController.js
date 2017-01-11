@@ -1,15 +1,16 @@
 ({
     doInit:function(component, event, helper) {  
         /*  helper.feedBackMethod(component,event); */
-       var action=component.get("c.findFeedbacks");
-       var response; 
-       action.setParams({"appName": "Approval"}); 
-       action.setCallback(this, function(response) {  
-                response=response.getReturnValue();
-                var RequestId = component.get("v.RequestId");
-                var ApproverId = component.get("v.ApproverId");
-                if(RequestId == null && ApproverId== null){  
-                    var destination = "markup://c:CORE_CA_Pending";
+        var action=component.get("c.findFeedbacks");
+        var response; 
+        action.setParams({"appName": "Approval"}); 
+        action.setCallback(this, function(response) {  
+            response=response.getReturnValue();
+            var RequestId = component.get("v.RequestId");
+            var ApproverId = component.get("v.ApproverId");
+            if(RequestId == null && ApproverId== null){  
+                var destination = "markup://c:CORE_CA_Pending";
+                /*
                     $A.componentService.newComponentAsync(this, function(view) {
                         var content = component.find("content");
                         content.set("v.body", view);
@@ -24,12 +25,23 @@
                             }
                         }
                     }, component);
+                    */
+                    var content = component.find("content");
+                    $A.createComponent(destination,
+                                       {message: "{!v.message}",
+                                        RequestId: "{!v.RequestId}",
+                                        ApproverId: "{!v.ApproverId}",
+                                        isFeedBackPopup : response},
+                                       function(cmp) {
+                                           content.set("v.body", [cmp]);
+                                       });
+                    
                 } 
-                else{ 
-                    helper.navigateToDetailMethod(component,event,'onload',response);    
-                }
-        });
-       $A.enqueueAction(action);    
+           else{ 
+               helper.navigateToDetailMethod(component,event,'onload',response);    
+           }
+       });
+        $A.enqueueAction(action);    
         
         /*Sonar Explanation:
          "https://www.google-analytics.com/analytics.js" is used for Google Analytics functionlaity.
@@ -40,11 +52,11 @@
             var state = response.getState();
             if (state == "SUCCESS") {
                 if(response.getReturnValue()!=''){                                         
-                    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    /* (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                                             })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-                    
+                    */
                     ga('create', action, 'auto');
                     ga('send', 'pageview');
                 }
@@ -59,6 +71,7 @@
     getClosed:function(component, event, helper) {
         //  alert(event.getParam("filterValue"));
         var destination = "markup://c:" + event.getParam("closednavigation");
+        /*
         $A.componentService.newComponentAsync(this, function(view) {
             var content = component.find("content");
             content.set("v.body", view);
@@ -70,6 +83,13 @@
                 }
             }
         }, component);
+        */
+        var content = component.find("content");
+        $A.createComponent(destination,
+                           {filterValue : event.getParam("filterValue")},
+                           function(cmp) {
+                               content.set("v.body", [cmp]);
+                           });
     },
     
     getDetail:function(component, event, helper) {
@@ -77,6 +97,7 @@
     }, 
     getSubDetail :function(component, event, helper) {
         var destination = "markup://c:CORE_CA_" + event.getParam("compName") ;
+        /*
         $A.componentService.newComponentAsync(this, function(view) {
             var content = component.find("content");
             content.set("v.body", view);
@@ -92,6 +113,17 @@
                 }
             }
         }, component); 
+        */
+        var content = component.find("content");
+        $A.createComponent(destination,
+                           {subDivision : event.getParam("subDivision"),
+                            ApprovalDetail : event.getParam("ApprovalDetail"),
+                            lineItemId : event.getParam("lineItemId"),
+                            sourcePage : event.getParam("sourcePage"),
+                            filterValue : event.getParam("filterValue")},
+                           function(cmp) {
+                               content.set("v.body", [cmp]);
+                           });
     },
     
     /*

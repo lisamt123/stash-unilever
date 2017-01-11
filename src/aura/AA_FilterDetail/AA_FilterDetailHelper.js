@@ -37,7 +37,7 @@
             for (var ctry in allCountryList) {
                 if (allCountryList.hasOwnProperty(ctry)) {
                     var ob = allCountryList[ctry];
-                    var singleObj =[];
+                    var singleObj =new Object();
                     if(clusterId===ob.Cluster_Id__c)
                     {
                         singleObj.Id=ob.Id;
@@ -134,7 +134,8 @@
         }
     },
     scrollToLocation : function(component, location) {
-                var cssScrolltoTop = $(".scroller"); // css class to find scroll position
+        //document.body.scrollTop = document.documentElement.scrollTop = 0;
+        var cssScrolltoTop = $(".scroller"); // css class to find scroll position
         if (cssScrolltoTop) {
             var cssScrolltoTopTransform = cssScrolltoTop.css("transform");
             if (cssScrolltoTopTransform) {

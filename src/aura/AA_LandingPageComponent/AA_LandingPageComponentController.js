@@ -4,17 +4,17 @@
         var applyFilter = component.get("v.applyFilter");
         component.set("v.limitRecords",component.get("v.pageRecordCount"));
         helper.getAllData(component);
-        if(FilterType ==='AllReports')
+        if(FilterType === 'AllReports')
         {
             component.set('v.applyFilter','false');
             component.set("v.filterTypeLabel","All Reports");
         }
-        if(FilterType ==='FilteredReports')
+        if(FilterType === 'FilteredReports')
         {
             component.set('v.applyFilter','false');
             component.set("v.filterTypeLabel","Filtered Reports");
         }
-        if(FilterType ==='MyReports')
+        if(FilterType === 'MyReports')
         {
             component.set('v.applyFilter','false'); 
             component.set("v.filterTypeLabel","My Reports");
@@ -39,7 +39,9 @@
                             competitorBrandId:event.getParam("competitorBrandId"),
                             competitorId:event.getParam("competitorId"),
                             categoryId:event.getParam("categoryId"),
-                            topicId:event.getParam("topicId")    },
+                            topicId:event.getParam("topicId"),    
+                           	startDate:event.getParam("startDate"),
+                            endDate:event.getParam("endDate")    },
                            function(cmp) {
                                content.set("v.body", [cmp]);
                            }); 
@@ -57,13 +59,13 @@
            || navigator.userAgent.match(/webOS/i)
            || navigator.userAgent.match(/iPhone/i)
            || navigator.userAgent.match(/iPad/i)){
-            helper.scrollToLocation(component, "top");   
+            //helper.scrollToLocation(component, "top");   
             
         }
         if(navigator.userAgent.match(/iPod/i)
            || navigator.userAgent.match(/BlackBerry/i)
            || navigator.userAgent.match(/Windows Phone/i)){
-            helper.scrollToLocation(component, "top");
+            //helper.scrollToLocation(component, "top");
         }
         var FilterType = component.get("v.filterType");
         component.set("v.filterPopUp",true);
@@ -163,12 +165,12 @@
            || navigator.userAgent.match(/webOS/i)
            || navigator.userAgent.match(/iPhone/i)
            || navigator.userAgent.match(/iPad/i)){
-            helper.scrollToLocation(component, "top");            
+            //helper.scrollToLocation(component, "top");            
         }
         if(navigator.userAgent.match(/iPod/i)
            || navigator.userAgent.match(/BlackBerry/i)
            || navigator.userAgent.match(/Windows Phone/i)){
-            helper.scrollToLocation(component, "top");
+            //helper.scrollToLocation(component, "top");
         }
         component.set("v.filterPopUp",false);
         component.set("v.sortPopUp",true);

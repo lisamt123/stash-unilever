@@ -6,10 +6,10 @@
 -->
 <aura:component implements="force:appHostable" controller="Core_CA_ApprovalsController" access="global">
  
- <!--   <ltng:require styles="/resource/CORE_CA_ApprovalsLightning,/resource/CORE_CA_ApprovalsLightning/fonts" afterScriptsLoaded="{!c.doInit}"/> -->
+    <ltng:require styles="/resource/CORE_CA_ApprovalsLightning,/resource/CORE_CA_ApprovalsLightning/fonts" afterScriptsLoaded="{!c.doInit}"/>
+ 	<ltng:require scripts="{!$Resource.ga + '/js/jquery-3.0.0.min.js'}" /> 
+     <ltng:require scripts="{!$Resource.ga + '/js/analytics.js'}" />
     
-    <ltng:require styles="{!$Resource.CORE_CA_ApprovalsLightning}" afterScriptsLoaded="{!c.doInit}"/>
- 
     <aura:handler event="c:CORE_CA_HomeEvent" action="{!c.getClosed}" /> 
     <aura:handler event="c:CORE_CA_DetailsEvent" action="{!c.getDetail}" />
     <aura:handler event="c:CORE_CA_SubDetailEvent" action="{!c.getSubDetail}" />

@@ -1,7 +1,8 @@
 <aura:component implements="force:appHostable">
-    <aura:attribute name="filterType" type="String"/>
-    <!--<aura:attribute name="newsType" type="String"/>-->    
-    <aura:attribute name="NewsType" type="String" />
+   
+     <ltng:require scripts="{!$Resource.ga + '/js/jquery-3.0.0.min.js'}" />
+     <aura:attribute name="filterType" type="String"/>
+     <aura:attribute name="NewsType" type="String" />
      <aura:attribute name="gloablNewsPannel" type="Boolean" />  
       <aura:attribute name="paulsBlogPannel" type="Boolean" />  
       <aura:attribute name="myNewsPannel" type="Boolean" /> 

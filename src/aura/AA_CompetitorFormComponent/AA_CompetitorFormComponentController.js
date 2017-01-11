@@ -20,7 +20,7 @@
             component.set("v.allCategoryList", responseData.categoryList);
         });
         //$A.run(function() {
-            $A.enqueueAction(action); 
+        $A.enqueueAction(action); 
         //});
         var actionIds = component.get("c.getfiterDataIds");
         actionIds.setCallback(this, function(a) {
@@ -35,7 +35,7 @@
         var clusterId = component.find("clusterId").get("v.value");
         component.set("v.countryList",component.get("v.allCountryList"));
         var allCountryList =component.get("v.allCountryList");
-        var newCountryList= [];
+        var newCountryList=[] ;
         //to enable and disable country dropdown list when Global cluster has been selected.
         if(clusterId===component.get("v.globalClusterId")){
             component.set("v.check","true");
@@ -52,7 +52,7 @@
             for (var ctry in allCountryList) {
                 if (allCountryList.hasOwnProperty(ctry)) {
                     var ob = allCountryList[ctry];
-                    var singleObj = [];
+                    var singleObj = new Object();
                     if(clusterId===ob.Cluster_Id__c)
                     {
                         singleObj.Id=ob.Id;
@@ -122,62 +122,65 @@
     handleCompetitorBrandChange: function(component, event, helper) {
         //To display the other competetor name if Other brand selected
         var brandId=component.get("v.competitorBrandId");
-        console.log("brandId: "+brandId);
         if(brandId===component.get("v.otherCompetitorBrandId"))
         {
-         component.set("v.others",true);
-         component.set("v.Brand",false);
-         component.set("v.disableOnBrandChange", true);
+            component.set("v.others",true);
+            component.set("v.Brand",false);
+            component.set("v.disableOnBrandChange", true);
         }
         else if(brandId !=='null' && brandId !==component.get("v.otherCompetitorBrandId"))
         {
-         component.set("v.others",false);
-         component.set("v.Brand",true);
-         
-         var action = component.get("c.getCompetitorCategory");
-         action.setParams({ "competitorBrand" : brandId});
-         var newBrandNameList= [];
-         var newCategoryList= [];
-         action.setCallback(this, function(a) {
-             var brandList = a.getReturnValue();
-             component.set("v.competitorNameList", brandList.Agent_Competitor_Id__c);
-             for(var brand in brandList){
-                 if (brandList.hasOwnProperty(brand)) {
-                     var ob = brandList[brand];
-                     var singleName = [];
-                     var singleCategory =[];
-                     singleName.Id=ob.Agent_Competitor_Id__r.Id;
-                     singleName.Name=ob.Agent_Competitor_Id__r.Name;
-                     newBrandNameList.push(singleName);
-                     singleCategory.Id=ob.Category_Id__r.Id;
-                     singleCategory.Name=ob.Category_Id__r.Name;
-                     newCategoryList.push(singleCategory);
-                 }
-             }
-             component.set("v.competitorNameList", newBrandNameList);
-             component.set("v.categoryList", newCategoryList);
-             if(newBrandNameList.length > 0){
-             	component.find("competitorName").set("v.value",newBrandNameList[0].Id);
-             }
-             else if(newBrandNameList.length === 0) {
-                 component.set("v.disableOnBrandChange", true);
-             }
-             if(newCategoryList.length > 0){
-             	component.find("category").set("v.value",newCategoryList[0].Id);
-             }
-             else if(newCategoryList.length === 0) {
-                 component.set("v.disableOnBrandChange", true);
-             }
-             
-         });
-         $A.enqueueAction(action);
+            component.set("v.others",false);
+            component.set("v.Brand",true);
+            
+            var action = component.get("c.getCompetitorCategory");
+            action.setParams({ "competitorBrand" : brandId});
+            var newBrandNameList=[] ;
+            var newCategoryList=[];
+            action.setCallback(this, function(a) {
+                var brandList = a.getReturnValue();
+                //if(!$A.util.isEmpty(brandList.Agent_Competitor_Id__c) && brandList.length > 0 ){
+                if(brandList.Agent_Competitor_Id__c !== null && brandList.length > 0 ){
+                    component.set("v.competitorNameList", brandList.Agent_Competitor_Id__c);
+                    for(var brand in brandList){
+                        if (brandList.hasOwnProperty(brand)) {
+                            var ob = brandList[brand];
+                            var singleName = new Object();
+                            var singleCategory =new Object();
+                            if(!$A.util.isEmpty(ob.Agent_Competitor_Id__r)){
+                                singleName.Id=ob.Agent_Competitor_Id__r.Id;
+                                singleName.Name=ob.Agent_Competitor_Id__r.Name;
+                                newBrandNameList.push(singleName);
+                            }
+                            if(!$A.util.isEmpty(ob.Category_Id__r)){
+                                singleCategory.Id=ob.Category_Id__r.Id;
+                                singleCategory.Name=ob.Category_Id__r.Name;
+                                newCategoryList.push(singleCategory);
+                            }
+                        }
+                    }
+                }
+                component.set("v.competitorNameList", newBrandNameList);
+                component.set("v.categoryList", newCategoryList);
+                if(newBrandNameList.length > 0){
+                    component.find("competitorName").set("v.value",newBrandNameList[0].Id);
+                }
+                else if(newBrandNameList.length === 0) {
+                    component.set("v.disableOnBrandChange", true);
+                }
+                if(newCategoryList.length > 0){
+                    component.find("category").set("v.value",newCategoryList[0].Id);
+                }
+                else if(newCategoryList.length === 0) {
+                    component.set("v.disableOnBrandChange", true);
+                }
+            });
+            $A.enqueueAction(action);
         }        
             else
             {	
-                
                 component.set("v.others",false);
                 component.set("v.Brand",true);
-                console.log("inside else");
                 var competitorName=component.get("v.allCompetitorNameList");
                 var categoryList=component.get("v.allCategoryList");
                 component.set("v.competitorNameList", competitorName);
@@ -186,9 +189,9 @@
             }
     },
     cancel: function(component, event, helper) {
-       // var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
-       // winter 17' critical update issue
-       var selectEvent =  component.getEvent("navigateToPageDetailEvent");
+        // var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
+        // winter 17' critical update issue
+        var selectEvent =  component.getEvent("navigateToPageDetailEvent");
         selectEvent.setParams({"navigate":"AA_LandingPageComponent","filterType":component.get("v.filterType"),"applyFilter":component.get("v.applyFilter"),"sortType":component.get("v.sortType"),"limitRecords":component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"clusterId":component.get("v.clusterId"),"countryId":component.get("v.countryId")}).fire();
     },
     handleSelectedUsers : function(component, event, helper) {
@@ -197,11 +200,8 @@
         component.set("V.selectedUsers",selectedUser);    
     },
     goToConfirm: function(component, event, helper) { 
-        
         var lat=component.get("v.latitude");
         var lng=component.get("v.longitude");
-        
-         
         var title=component.find("reportTitles");
         var titleVal=title.get("v.value");
         var source=component.find("Source");
@@ -217,15 +217,15 @@
         country.set("v.errors", null);
         
         if(component.get("v.showMap") && (lat === null && lng === null  && (clusterVal==="Select Cluster" && countryVal === "Select Country"))){
-                noErrors=false;
-                var toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "Error!",
-                    "type":"error",
-                    "mode":"sticky",
-                    "message": 'Map view is not working properly. Either Turn off map view to enter manually or Try again.'
-                });
-                toastEvent.fire();
+            noErrors=false;
+            var toastEvent = $A.get("e.force:showToast");
+            toastEvent.setParams({
+                "title": "Error!",
+                "type":"error",
+                "mode":"sticky",
+                "message": 'Map view is not working properly. Either Turn off map view to enter manually or Try again.'
+            });
+            toastEvent.fire();
         }
         if((clusterVal==="Select Cluster" && countryVal === "Select Country"))
         {
@@ -254,7 +254,7 @@
             if(navigator.userAgent.match(/iPod/i)
                || navigator.userAgent.match(/BlackBerry/i)
                || navigator.userAgent.match(/Windows Phone/i)){
-               helper.scrollToLocation(component, "top");
+                helper.scrollToLocation(component, "top");
             }
             component.set("v.submitButtonError",false);
             title.set("v.errors", null);
@@ -279,7 +279,7 @@
            || navigator.userAgent.match(/webOS/i)
            || navigator.userAgent.match(/iPhone/i)
            || navigator.userAgent.match(/iPad/i)){
-          helper.scrollToLocation(component, "top");            
+            helper.scrollToLocation(component, "top");            
         }
         if(navigator.userAgent.match(/iPod/i)
            || navigator.userAgent.match(/BlackBerry/i)

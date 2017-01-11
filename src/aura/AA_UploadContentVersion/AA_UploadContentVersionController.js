@@ -1,66 +1,111 @@
 ({
     uploadImageMobile : function(component, event, helper) {
-        console.log("Inside the uploadImageTwo ");
-		var fileInput = component.find("file").getElement();
+       //var fileInput = component.find("file");
+		var fileInput = document.getElementById("file");
         var file = fileInput.files[0];
         var a = fileInput.files[0];
         var filename = a.name; 
         var extArray = ["exe", "svg","xml", "mp4","mp3","ini","dat","avi","gs","jar","bat"];
         
         var extension = filename.replace(/^.*\./, '');
-        console.log("Extension of the file==> "+extension);
         extension = extension.toLowerCase();
         var checkVal = extArray.indexOf(extension);
         if(checkVal != -1){
-            $("#previewFile").html("<p  style='color:red;'>Please select valid file to upload. Valid file format e.g. '.jpg','.png','.gif', '.bmp', '.doc', '.csv', '.xls', '.ppt', '.pdf' etc</p>");
+            $("#previewFile").html("<p style='color:red;'>Please select valid file to upload. Valid file format e.g. '.jpg','.png','.gif', '.bmp', '.doc', '.csv', '.xls', '.ppt', '.pdf' etc</p>");
             $("#previewFile").append('<i class="fa fa-times pull-right" onclick=\'closePrev("#previewFile")\'>');
             $("#previewFile").show();
             return false;
         }
-        function dataURItoBlob(a) {
-            for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++){ c.push(b.charCodeAt(d));}
-            return new Blob([new Uint8Array(c)], {
+        function dataURItoBlob(aa) {
+            for (var bb = atob(aa.split(",")[1]), cc = [], dd = 0; dd < bb.length; dd++){ cc.push(bb.charCodeAt(dd));}
+            return new Blob([new Uint8Array(cc)], {
                 type:'image/jpeg'
             })
         }
 		if(a.size>0) {
-            if(extension=='jpg' || extension=='jpeg' || extension=='png' || extension=='gif'){
+            if(extension === 'jpg' || extension === 'jpeg' || extension === 'png' || extension === 'gif'){
+                
                 return void loadImage.parseMetaData(a, function(b) {
                     //if (!b.imageHead) return void UploadOtherFile(a);
                     var c = 0;
-                    b.exif && (c = b.exif.get("Orientation")), console.log(c);
+                    b.exif && (c = b.exif.get("Orientation"));
                     var d = new FileReader;
+                    var tempH = 0;
+                    var tempW = 0;
+                    var b = document.createElement('img'); 
+                                
                     d.onloadend = function() {
-                        var b = new Image;
-                        b.src = d.result, b.onload = function() {
+                        b.src = d.result;
+                        b.onload = function() {
                             var d = "none";
-                            8 === c ? (tempW = b.height, tempH = b.width, d = "left") : 6 === c ? (tempW = b.height, tempH = b.width, d = "right") : 1 === c ? (tempW = b.width, tempH = b.height) : 3 === c ? (tempW = b.width, tempH = b.height, d = "flip") : (tempW = b.width, tempH = b.height);
-                            var e = 768,
-                                f = 768;
-                            tempW / e > tempH / f ? tempW > e && (tempH *= e / tempW, tempW = e) : tempH > f && (tempW *= f / tempH, tempH = f);
+                            if(8 === c){
+                                tempW = b.height;
+                                tempH = b.width;
+                                d = "left";
+                            }else if(6 === c){
+                                    tempW = b.height;
+                                    tempH = b.width;
+                                    d = "right";
+                            }else if(1 === c){
+                                tempW = b.width;
+                                tempH = b.height;
+                            }else if(3 === c){
+                                tempW = b.width;
+                                tempH = b.height;
+                                d = "flip";
+                            }else{
+                                tempW = b.width;
+                                tempH = b.height;
+                            }    
+                            var e = 500;
+                            var f = 500;
+                            
+                            if(tempW / e > tempH / f){
+                                if(tempW > e){
+                                    tempH *= e / tempW;
+                                    tempW = e;
+                                }
+                            }else{
+                                if(tempH > f){
+                                  tempW *= f / tempH;
+                                  tempH = f;  
+                                } 
+                            }
+                            
                             var g = document.createElement("canvas");
-                            g.width = tempW, g.height = tempH;
+                            g.width = tempH;
+                            g.height = tempH;
+                            
                             var h = g.getContext("2d");
-                            if (h.fillStyle = "white", h.fillRect(0, 0, g.width, g.height), "left" === d) {h.setTransform(0, -1, 1, 0, 0, tempH), h.drawImage(b, 0, 0, tempH, tempW);}
-                            else if ("right" === d) { h.setTransform(0, 1, -1, 0, tempW, 0), h.drawImage(b, 0, 0, tempH, tempW);}
-                                else if ("flip" === d) {
-                                    var i = Math.PI,
-                                        j = .5 * g.width,
-                                        k = .5 * g.height;
-                                    h.translate(j, k), h.rotate(i), h.translate(.5 * -tempW, .5 * -tempH), h.drawImage(b, 0, 0, tempW, tempH)
-                                } else { h.setTransform(1, 0, 0, 1, 0, 0), h.drawImage(b, 0, 0, tempW, tempH);}
-                            h.setTransform(1, 0, 0, 1, 0, 0);
-                            var l = g.toDataURL("image/jpeg"),
-                                m = dataURItoBlob(l);
-                            console.log(m);
-                            console.log("Type:"+ a.type);
+                            h.fillStyle = "white";
+                            h.fillRect(0, 0, g.width, g.height);
+                            
+                            if ("left" === d) { 
+                                h.setTransform(0, -1, 1, 0, 0, tempH);
+                           	} else if ("right" === d) { 
+                                h.setTransform(0, 1, -1, 0, tempW, 0);
+                            } else if ("flip" === d) {
+                                    var i = Math.PI;
+                                	var j = .5 * g.width;
+                                    var k = .5 * g.height;
+                                    h.translate(j, k);
+                                	h.rotate(i);
+                                	h.translate(.5 * -tempW, .5 * -tempH);
+                            } else {
+                               h.setTransform(0, 1, -1, 0, g.width, 0);
+                               h.drawImage(b, 0, 0, g.width, g.height);
+                            }
+                            h.drawImage(b, 0, 0, g.width, g.height);
+                          
+                            var l = g.toDataURL("image/jpeg");
+                            console.log('dataurl====>'+l);
+                           // var m = dataURItoBlob(l);
                             helper.uploadMobile(component, a, l);
                         }
-                    }, d.readAsDataURL(a)
-                })
-                
-            }
-            else {
+                    }
+                    d.readAsDataURL(a);
+                });
+            }else{
                  helper.uploadFile(component,event,'file');
             }
         }
@@ -88,8 +133,9 @@
         //$A.util.addClass(component.find("uploading").getElement(), "notUploading");
     },
     uploadImageDesktop: function(component, event, helper){
-        console.log("Inside the uploadImageTwo ");
-		var fileInput = component.find("fileImg").getElement();
+        console.log("uploadImageDesktop---- ");
+		//var fileInput = component.find("fileImg");
+		var fileInput = document.getElementById("fileImg");
         var file = fileInput.files[0];
         var a = fileInput.files[0];
         var filename = a.name; 
@@ -105,52 +151,99 @@
             $("#previewFile").show();
             return false;
         }
-        function dataURItoBlob(a) {
-            for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++) { c.push(b.charCodeAt(d)); }
-            return new Blob([new Uint8Array(c)], {
+        function dataURItoBlob(aa) {
+            var bb = atob(aa.split(",")[1]);
+             var cc = [];
+            for (var dd = 0; dd < bb.length; d++) { cc.push(bb.charCodeAt(dd)); }
+            return new Blob([new Uint8Array(cc)], {
                 type:'image/jpeg'
             })
         }
         if(a.size>0) {
-            if(extension=='jpg' || extension=='jpeg' || extension=='png' || extension=='gif'){
+            if(extension === 'jpg' || extension === 'jpeg' || extension === 'png' || extension === 'gif'){
                
                 return void loadImage.parseMetaData(a, function(b) {
                     //if (!b.imageHead) return void UploadOtherFile(a);
                     var c = 0;
-                    b.exif && (c = b.exif.get("Orientation")), console.log(c);
+                    b.exif && (c = b.exif.get("Orientation"));
                     var d = new FileReader;
+                    
                     d.onloadend = function() {
-                        var b = new Image;
-                        b.src = d.result, b.onload = function() {
+                        //var b = new Image();
+                        var b = document.createElement('img'); 
+                        b.src = d.result;
+                        b.onload = function() {
+                            var tempH;
+                            var tempW;
                             var d = "none";
-                            8 === c ? (tempW = b.height, tempH = b.width, d = "left") : 6 === c ? (tempW = b.height, tempH = b.width, d = "right") : 1 === c ? (tempW = b.width, tempH = b.height) : 3 === c ? (tempW = b.width, tempH = b.height, d = "flip") : (tempW = b.width, tempH = b.height);
-                            var e = 768,
-                                f = 768;
-                            tempW / e > tempH / f ? tempW > e && (tempH *= e / tempW, tempW = e) : tempH > f && (tempW *= f / tempH, tempH = f);
+                            if(8 === c){
+                                tempW = b.height;
+                                tempH = b.width;
+                                d = "left";
+                            }else if(6 === c){
+                                    tempW = b.height;
+                                    tempH = b.width;
+                                    d = "right";
+                            }else if(1 === c){
+                                tempW = b.width;
+                                tempH = b.height;
+                            }else if(3 === c){
+                                tempW = b.width;
+                                tempH = b.height;
+                                d = "flip";
+                            }else{
+                                tempW = b.width;
+                                tempH = b.height;
+                            }    
+                            //var e = 768;
+                            //var f = 768;
+                            var e = 500;
+                            var f = 500;
+                            
+                            if(tempW / e > tempH / f){
+                                if(tempW > e){
+                                 tempH *= e / tempW;
+                                 tempW = e;
+                                }
+                            }else{
+                                if(tempH > f){
+                                    tempW *= f / tempH;
+                                    tempH = f;
+                                }
+                            }
+                            
                             var g = document.createElement("canvas");
-                            g.width = tempW, g.height = tempH;
+                            g.width = tempW;
+                            g.height = tempH;
+                            
                             var h = g.getContext("2d");
-                            if (h.fillStyle = "white", h.fillRect(0, 0, g.width, g.height), "left" === d) { h.setTransform(0, -1, 1, 0, 0, tempH), h.drawImage(b, 0, 0, tempH, tempW);}
-                            else if ("right" === d) { h.setTransform(0, 1, -1, 0, tempW, 0), h.drawImage(b, 0, 0, tempH, tempW);}
-                                else if ("flip" === d) {
-                                    var i = Math.PI,
-                                        j = .5 * g.width,
-                                        k = .5 * g.height;
-                                    h.translate(j, k), h.rotate(i), h.translate(.5 * -tempW, .5 * -tempH), h.drawImage(b, 0, 0, tempW, tempH)
-                                } else { h.setTransform(1, 0, 0, 1, 0, 0), h.drawImage(b, 0, 0, tempW, tempH);}
-                            h.setTransform(1, 0, 0, 1, 0, 0);
-                            var l = g.toDataURL("image/jpeg"),
-                                m = dataURItoBlob(l);
-                            console.log(m);
-                            console.log("Type:"+ a.type);
+                            h.fillStyle = "white";
+                            h.fillRect(0, 0, g.width, g.height);
+                            
+                            if ("left" === d) { 
+                                h.setTransform(0, -1, 1, 0, 0, tempH);
+                           	} else if ("right" === d) { 
+                                h.setTransform(0, 1, -1, 0, tempW, 0);
+                            } else if ("flip" === d) {
+                                    var i = Math.PI;
+                                	var j = .5 * g.width;
+                                    var k = .5 * g.height;
+                                    h.translate(j, k);
+                                	h.rotate(i);
+                                	h.translate(.5 * -tempW, .5 * -tempH);
+                            } else { 
+                                 h.setTransform(1, 0, 0, 1, 0, 0);
+                            }
+                           
+                            h.drawImage(b, 0, 0, tempW, tempH);
+                            var l = g.toDataURL("image/jpeg");
+                           // var m = dataURItoBlob(l);
                             helper.uploadMobile(component, a, l);
                         }
-                    }, d.readAsDataURL(a)
-                })
-                
-            }
-            
-            else {	
+                    }
+                    d.readAsDataURL(a);
+                });
+           }else {	
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "Error!",

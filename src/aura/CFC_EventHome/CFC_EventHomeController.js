@@ -1,7 +1,7 @@
 ({
 	eventDemoPageLoad : function(component, event, helper) {
         var destination = "markup://c:CFC_EventList"; 
-        $A.componentService.newComponentAsync(this, function(view) {
+       /* $A.componentService.newComponentAsync(this, function(view) {
             var content = component.find("eventDisplayPannel");
             content.set("v.body", view);
         }, {
@@ -12,7 +12,15 @@
                     sortTopic: "ASC"
                 }
             }
-        }, component);
+        }, component); */
+        
+        var content = component.find("eventDisplayPannel");
+							$A.createComponent(destination,
+                               {filterTopic: "showAll",
+                                 sortTopic: "ASC"},
+                               function(cmp) {
+                                    content.set("v.body", [cmp]);
+                               }); 
 	},
     navigateWithinComponent: function(component, event, helper) {   
         if(event.getParam("componentName")=="Standard Page"){
@@ -29,7 +37,7 @@
         } else { 
             helper.scrollToLocation(component, "top");
             var destination = "markup://c:"+event.getParam("componentName"); 
-            $A.componentService.newComponentAsync(this, function(view) {
+           /* $A.componentService.newComponentAsync(this, function(view) {
                 var content = component.find("eventDisplayPannel");
                 content.set("v.body", view);
             }, {
@@ -40,7 +48,14 @@
                         sortTopic: event.getParam("sortType")
                     }
                 }
-            }, component);
+            }, component); */
+             var content = component.find("eventDisplayPannel");
+							$A.createComponent(destination,
+                               {filterTopic: event.getParam("filterType"),
+                        sortTopic: event.getParam("sortType")},
+                               function(cmp) {
+                                    content.set("v.body", [cmp]);
+                               }); 
         }
 	}
 })
