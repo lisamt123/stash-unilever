@@ -11466,7 +11466,7 @@
         <field>AF_Sub_Result__c.key__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
+  <!--  <fieldPermissions>
         <editable>false</editable>
         <field>Account_Relationship__c.External_ID__c</field>
         <readable>false</readable>
@@ -11480,7 +11480,7 @@
         <editable>false</editable>
         <field>Account_Relationship__c.Type__c</field>
         <readable>false</readable>
-    </fieldPermissions>
+    </fieldPermissions> -->
     <fieldPermissions>
         <editable>false</editable>
         <field>Agency_Fee_Field_History__c.Amended_By__c</field>
@@ -21656,7 +21656,7 @@
         <field>Core_Approver_Details__c.Visible_to_Supplier__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
+   <!-- <fieldPermissions>
         <editable>false</editable>
         <field>Course_Attachment__c.Attachment_type__c</field>
         <readable>false</readable>
@@ -21665,7 +21665,7 @@
         <editable>false</editable>
         <field>Course_Attachment__c.FA_Download_Available_From__c</field>
         <readable>false</readable>
-    </fieldPermissions>
+    </fieldPermissions> -->
     <fieldPermissions>
         <editable>false</editable>
         <field>Download_Statistics__c.Content_Document_Id__c</field>
