@@ -64,6 +64,9 @@
 		    top: -8px;
 		    width: 15px;
 		}
+		.cap-container select {
+			width:202px !important;
+		}
     </style>
     <apex:pagemessages id="msgs"></apex:pagemessages>
     <apex:form >
@@ -116,7 +119,7 @@
                         <div class="inner_section">
                             <div class="inner_sub_section" style="display: block;">
                                 <div class="inner_sub2_section">
-                                    <div class="margin-right20 left">
+                                    <div class="margin-right20 margin-top10 left">
                                         Category > Brand Positioning > Brand
                                     </div>
                                     <div class="margin-right20 left">
@@ -191,56 +194,59 @@
 				            <apex:outputPanel id="categoryEntireSection">
 	                            <div class="inner_sub_section" style="display: block;">
 	                                <div class="inner_sub2_section">
-	                                    <div class="left margin-right20 margin-top10 multiCategoryAdd" style="width:200px;text-align:right;">
-	                                        Category
-	                                        <strong></strong>
-	                                    </div>
-	                                    <div class="left margin-right20 margin-top10" style="text-align:right;">
-	                                        <div class="catnew1">
-	                                            <apex:actionRegion >
-	                                                <select id="MultiCategoryList2" size="1" onchange="transferMultiCategoryValue2(this.value)" reRender="multibrandPosPick2" class="categorySelected" value="{!CAPCategory2}"></select>
-	                                                <apex:actionSupport event="onchange" reRender="multibrandPosPick2,multibrandPick2" status="counterStatus212" />
-	                                            </apex:actionRegion>
-	                                            <apex:actionstatus id="counterStatus212">
-	                                                <apex:facet name="start">
-	                                                    <img src="/img/loading.gif" alt="loading" />
-	                                                </apex:facet>
-	                                            </apex:actionstatus>
-	                                            <div class="multiloading2 loading-category-image212">
-	                                                <img src="/img/loading.gif" alt="loading" />
-	                                            </div>
-	                                        </div>
-	                                        <div class="catnew2">
-	                                            <apex:inputText value="{!CAPCategory}" />
-	                                        </div>
-	                                    </div>
-	                                    <div class="left margin-top20 catnew" style="cursor:pointer">
-	                                        Add new
-	                                    </div>
-	                                    <div class="clear"></div>
-	
-	                                    <div class="left margin-right20 margin-top10 multiCategoryAdd" style="width:200px;text-align:right;">
-	                                        Brand position
-	                                        <strong></strong>
-	                                    </div>
-	                                    <div class="left margin-right20 margin-top10" style="text-align:right;">
-	                                        <div class="bpnew1">
-	                                            <apex:actionRegion >
-	                                                <apex:selectList id="multibrandPosPick2" value="{!multibrandPosNameForCAP}" size="1">
-	                                                    <apex:selectOptions value="{!listOfMultiBrandPosition}" />
-	                                                </apex:selectList>
-	                                            </apex:actionRegion>
-	                                        </div>
-	                                        <div class="bpnew2">
-	                                            <apex:inputText value="{!CAPBrandPosition}" />
-	                                        </div>
-	                                    </div>
-	                                    <div class="left margin-top20 bpnew" style="cursor:pointer">
-	                                        Add new
-	                                    </div>
-	                                    <div class="clear"></div>
+	                                	<div>
+		                                    <div class="left margin-right20 margin-top10 multiCategoryAdd" style="width:200px;text-align:right;">
+		                                        Category
+		                                        <strong></strong>
+		                                    </div>
+		                                    <div class="left margin-right20" style="text-align:right;">
+		                                        <div class="catnew1">
+		                                            <apex:actionRegion >
+		                                                <select id="MultiCategoryList2" size="1" onchange="transferMultiCategoryValue2(this.value)" reRender="multibrandPosPick2" class="categorySelected" value="{!CAPCategory2}"></select>
+		                                                <apex:actionSupport event="onchange" reRender="multibrandPosPick2,multibrandPick2" status="counterStatus212" />
+		                                            </apex:actionRegion>
+		                                            <apex:actionstatus id="counterStatus212">
+		                                                <apex:facet name="start">
+		                                                    <img src="/img/loading.gif" alt="loading" />
+		                                                </apex:facet>
+		                                            </apex:actionstatus>
+		                                            <div class="multiloading2 loading-category-image212">
+		                                                <img src="/img/loading.gif" alt="loading" />
+		                                            </div>
+		                                        </div>
+		                                        <div class="catnew2">
+		                                            <apex:inputText value="{!CAPCategory}" />
+		                                        </div>
+		                                    </div>
+		                                    <div class="left margin-top10 catnew" style="cursor:pointer">
+		                                        Add new
+		                                    </div>
+		                                    <div class="clear"></div>
+										</div>
+										<div class="margin-top10">
+		                                    <div class="left margin-right20 margin-top10 multiCategoryAdd" style="width:200px;text-align:right;">
+		                                        Brand position
+		                                        <strong></strong>
+		                                    </div>
+		                                    <div class="left margin-right20" style="text-align:right;">
+		                                        <div class="bpnew1">
+		                                            <apex:actionRegion >
+		                                                <apex:selectList id="multibrandPosPick2" value="{!multibrandPosNameForCAP}" size="1">
+		                                                    <apex:selectOptions value="{!listOfMultiBrandPosition}" />
+		                                                </apex:selectList>
+		                                            </apex:actionRegion>
+		                                        </div>
+		                                        <div class="bpnew2">
+		                                            <apex:inputText value="{!CAPBrandPosition}" />
+		                                        </div>
+		                                    </div>
+		                                    <div class="left margin-top10 bpnew" style="cursor:pointer">
+		                                        Add new
+		                                    </div>
+		                                    <div class="clear"></div>
+	                                    </div>	                                    
 	                                    <div class="margin-top10">
-	                                        <div class="left margin-right20 multiCategoryAdd" style="width:200px;text-align:right;">
+	                                        <div class="left margin-right20 margin-top10 multiCategoryAdd" style="width:200px;text-align:right;">
 	                                            Brand
 	                                            <strong></strong>
 	                                        </div>
