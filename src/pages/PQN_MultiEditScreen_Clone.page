@@ -328,8 +328,7 @@
             </script>
             <script>
                 function jsRemotingImport(xPQNList,timeStamp){
-                
-                    Visualforce.remoting.Manager.invokeAction(
+                  Visualforce.remoting.Manager.invokeAction(
                     '{!$RemoteAction.PQN_UploadNCData_Clone.getSheetData}',
                     xPQNList,
                     selectedFileType,
@@ -338,17 +337,12 @@
                             loopCount++;
                             callOutputResultcheck(timeStamp);
                             $.each( result, function( key, value ) {
-                              
                               if(!value.success){
                                   console.log(value.errors[0].message);
                               }
-                              
-                            });
-                            
-                            
-                            if (event.status) {
+                          });
+                          if (event.status) {
                                //console.log(event);
-                                
                             } else if (event.type === 'exception') {
                                 //document.getElementById("responseErrors").innerHTML = event.message + "<br/>\n<pre>" + event.where + "</pre>";
                             } else {
@@ -358,8 +352,7 @@
                         {escape: true, buffer: false,timeout: 120000}
                     
                     );
-               
-                }
+                 }
                 
             </script>
             <script>
@@ -370,75 +363,57 @@
                     '{!$RemoteAction.PQN_UploadNCData_Clone.getSheetStatus}',
                     timeStamp,
                     function(result, event){
-                                                    
-                            if(event.result.Success>0){
+                           if(event.result.Success>0){
                                 $("#exportSuccess").show();
                                 $("#exportSuccess").text("Export Success Records- "+event.result.Success);
                                  $("#loaderDiv").hide();
-                   
                             }
                             if(event.result.Error>0){
                                  $("#exportError").show();
                                  $("#exportError").text("Export Error Records-"+event.result.Error);
                                   $("#loaderDiv").hide();
                             }
-
-                        
-                        }, 
+                         }, 
                         {escape: true, buffer: false,timeout: 120000}
                     
                     );
-                    
-                    
+                   
                 }
-               
-            }
-            
-            </script>
+           }
+           </script>
             <script>
-                
-                function fileChange(){
-                
-                    $("#exportSuccess").hide();
+               function fileChange(){
+                  $("#exportSuccess").hide();
                     $("#exportError").hide();
-                
-                }
+              }
             
             </script>
             <script>
-            
             function initiateInsertion(){ passStringToUploadDataTosObject(document.getElementById('out').innerText); }
             function saveexceldata(){ saveexceldatainapex(); }
             var xlf = document.getElementById('xlf');
             function handleFile(e) {
-               
                 // selectedFileType is Global Variable
                 selectedFileType = document.getElementsByClassName('selectedFile')[0].value; 
-                    
                 var files = e.target.files;
                 var f = files[0];
                 var fileExt = f.name.split(/[\s.]+/);
                 if(fileExt[fileExt.length-1] == "xlsx" || fileExt[fileExt.length-1] == "xls"){
-                    
                     var reader = new FileReader();
                     var name = f.name;
                     fileName = name
                     $("#loaderDiv").show();
                     reader.onload = function(e) {
-                        
-                        var data = e.target.result;
+                            var data = e.target.result;
                             var arr = fixdata(data);
                             var wb =  X.read(btoa(arr), {type: 'base64'});
                             process_wb(wb);
-                    };
-                    reader.readAsArrayBuffer(f);
-                    
-                }else{
+                    };reader.readAsArrayBuffer(f);
+               }else{
                     $("#alert_dangerId").show();
                     $("#alert_dangerId").html('<strong>File format</strong> is not valid. Please upload xls or xlsx file.');
                 }
-                
-                return false;
+               return false;
             }            
             if(xlf.addEventListener) xlf.addEventListener('change', handleFile, false);    
             </script>
