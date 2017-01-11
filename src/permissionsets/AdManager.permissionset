@@ -181,21 +181,6 @@
         <field>Amr_JobBudgetThreshold__c.UserEmailId__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>Amr_JobBudgetThreshold__c.Multi_Category__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>Amr_JobBudgetThreshold__c.Multi_Brand__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>Amr_JobBudgetThreshold__c.Multi_Brand_Positioning__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Amr_Job_Allocation__c.AM_Job_Detail__c</field>
@@ -1681,6 +1666,21 @@
         <field>Amr_Job_Details__c.Your_Email_Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>Amr_Job_Details__c.Multi_Category__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>Amr_Job_Details__c.Multi_Brand__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>Amr_Job_Details__c.Multi_Brand_Positioning__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Amr_Logging_Form_Setting__c.Allocation__c</field>
