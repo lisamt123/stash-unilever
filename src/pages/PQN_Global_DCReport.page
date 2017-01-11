@@ -1,8 +1,8 @@
 <apex:page controller="PQN_Global_DCReport" contentType="{!If($CurrentPage.parameters.export=='yes' ,'application/vnd.ms-excel#Global_DCReport.xls','')}" showHeader="false" readOnly="true">
     <div style="padding-left:200px;">
     <apex:chart height="400" width="1000" data="{!xChartdata}">
-        <apex:axis type="Numeric" position="left" fields="chartdata" title="Record Count"/>
-        <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Product Category"/>
+        <apex:axis type="Numeric" position="left" fields="chartdata" title="PQN Record"/>
+        <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Reporting DC"/>
         <apex:barSeries orientation="vertical" axis="left" xField="chartXAxis" yField="chartdata"/>
     </apex:chart>
     </div>

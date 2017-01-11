@@ -27,6 +27,7 @@ private class PQN_GlobalGeographyReportTest{
      
         PQN_Pallet_Quality_Non_Conformance__c PQN1 = PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(supplier.id,acc.id,dcvolume.id);
         PQN1.Date_Pallet_Received__c=date.newInstance(2016,1,15);
+        PQN1.Supplier_Cluster__c='Europe';
         insert PQN1;
         
         PQN_Pallet_Quality_Non_Conformance__c PQN2 = PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(supplier.id,acc.id,dcvolume.id);
@@ -52,15 +53,24 @@ private class PQN_GlobalGeographyReportTest{
         PQN4.Product_Category__c='Hair Care';
         insert PQN4 ;
         System.assertEquals(PQN4.Product_Category__c, 'Hair Care');
+        
+         ApexPages.StandardController sc = new ApexPages.StandardController(PQN4);
+        PQN_Global_Overview_Category_Report overviewcateary=new PQN_Global_Overview_Category_Report(sc);
+        //testAccPlan = new newAccountPlan(sc);
+        
+       /* PageReference pageRef = Page.AccountPlan;
+        pageRef.getParameters().put('id', String.valueOf(testAccountPlanInsert.Id));
+        Test.setCurrentPage(pageRef);*/
+    
      
      
      
      PQN_GlobalGeographyReport report1=new PQN_GlobalGeographyReport();
     
-     PQN_Global_Overview_Geography overviewreport=new PQN_Global_Overview_Geography();
+     //PQN_Global_Overview_Geography overviewreport=new PQN_Global_Overview_Geography();
        PQN_Global_DCReport reportDC=new PQN_Global_DCReport();
-     PQN_Global_Overview_Category_Report overviewcateary=new PQN_Global_Overview_Category_Report();
-     PQN_GlobalSUReport SU=new PQN_GlobalSUReport();
+     //PQN_Global_Overview_Category_Report overviewcateary=new PQN_Global_Overview_Category_Report();
+     //PQN_GlobalSUReport SU=new PQN_GlobalSUReport();
      PQN_Country_Report country=new PQN_Country_Report();
      PQN_GlobalCategoryReport category=new PQN_GlobalCategoryReport();
           

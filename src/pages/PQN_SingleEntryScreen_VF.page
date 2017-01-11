@@ -1,4 +1,4 @@
-<apex:page standardController="PQN_Pallet_Quality_Non_Conformance__c" extensions="PQN_singleEntryScreen" showHeader="false" >
+<apex:page standardController="PQN_Pallet_Quality_Non_Conformance__c" extensions="PQN_singleEntryScreen" showHeader="false" action="{!checkFreezePeriod}">
 <head>
 
     <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/js/jquery-1.11.1.min.js')}"></script>
@@ -15,7 +15,7 @@
 
         }
         function getProduct(){
-            validate($("input.SKU_Name").val(),$("input.Supplier_Name").val(),$("input.Loss_Code").val());
+            validate($("input.SKU_Name").val(),$("input.Supplier_Name").val(),$("input.Supplier_No").val(),$("input.Loss_Code").val());
             
         }
     </script>
@@ -93,7 +93,9 @@
             <apex:actionFunction name="validate" action="{!validate}" reRender="frm" immediate="{!immediate}" oncomplete="appendSearch()">
                 <apex:param name="skuName" value=""/>
                 <apex:param name="suppName" value=""/>
+                <apex:param name="suppNum" value=""/>
                 <apex:param name="losName" value=""/>
+                
             </apex:actionFunction>
             
 <!--        <apex:sectionHeader title="Pallet Quality Non Conformance" />  -->
@@ -151,7 +153,7 @@
         </apex:pageBlockSection>
         <apex:pageBlockSection title="Comments" columns="2" collapsible="false">
             <apex:inputField value="{!pqn.Comments__c}"/>
-            <apex:outputField value="{!pqn.Days_Left_Before_Freeze__c}"/>
+            <apex:outputText value="{!dayLeft}"/>
         </apex:pageBlockSection>
         </apex:pageBlock>
     </apex:form>

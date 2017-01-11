@@ -4,7 +4,11 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
     // Public Date currentDate = date.Today();
     //Integer monthValue = currentDate.month();
     public list<PQNFreezeDate__c> currentMonthFreezePeriod {get;set;}
+    
      
+    public Boolean getFlag(){
+        return flag;
+    }
 
     
     public List<PQNFreezeDate__c> getResult(){  
@@ -29,6 +33,7 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
     
     // "PQNUpdateFreezePeriodCtrl" constructor
     Public PQNUpdateFreezePeriodCtrl (){
+        flag = true;
     
         //Fetch the current month value of the custom setting record and display the value
         currentMonthFreezePeriod = [select Id, Name, Numeric_Value__c, Freeze_Date__c from PQNFreezeDate__c where Numeric_Value__c =: Date.Today().Month() LIMIT 1];
@@ -62,16 +67,17 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
     Public pageReference updateFreezePeriod(){
     try{
         
-        /*
+        
         //Validation : Check wheather the Freeze Date entedred by the user is not less than Today's date
             
         if( January < Date.Today() || February < Date.Today() || March < Date.Today() || April < Date.Today() || May < Date.Today() || June < Date.Today() || July < Date.Today() || August < Date.Today() || September < Date.Today() || October < Date.Today() || November < Date.Today() || December < Date.Today()){
             // display an error message to the user
-        
+            system.debug('an error');
             ApexPages.Message myFreezeMessage = new ApexPages.Message(ApexPages.Severity.FATAL,'Freeze Date should be greater than today');
             ApexPages.addMessage(myFreezeMessage);
             system.debug('Not valid date');
             system.debug('Jan' + January);
+            flag = false;
             return null;
                 
         }
@@ -79,7 +85,7 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
         
         else{
         
-        */
+        
         
         
         //set the List of PQNFreezeDate__c and store in the list
@@ -103,7 +109,7 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
         system.debug('The list is' + result);
         
         
-        
+        }
         
 
         }catch(Exception e){

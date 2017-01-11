@@ -8,6 +8,7 @@ public without sharing class PQN_singleEntryScreen{
     public boolean immediatevalidate{get; set;}
     public List<selectoption> reportingdc{get;set;}
     public boolean showsingleedit{set; get;}
+    public Long dayLeft {get;set;}
     Id pqnId;
     integer err=0;
     public PQN_singleEntryScreen(ApexPages.StandardController controller){
@@ -17,6 +18,7 @@ public without sharing class PQN_singleEntryScreen{
         showsingleedit = true;
         
         pqn = new PQN_Pallet_Quality_Non_Conformance__c();
+
         reportingdc = new List<selectoption>();
         pqnId = Apexpages.currentpage().getparameters().get('id');
         if(pqnId!=null){
@@ -75,8 +77,6 @@ public without sharing class PQN_singleEntryScreen{
     }
     
 
-/*
-    
 //freeze period function starts here
     Public  pageReference checkFreezePeriod(){
         try{        
@@ -93,8 +93,9 @@ public without sharing class PQN_singleEntryScreen{
                     
                     //get the page Id and get the created month of the record
                     Id pageId = ApexPages.currentPage().getParameters().get('Id');
-                    List<PQN_Pallet_Quality_Non_Conformance__c> pqnListResult = [select Name , CreatedDate from PQN_Pallet_Quality_Non_Conformance__c where Id =: pageId LIMIT 1];
-                    List<PQNFreezeDate__c> freezePeriod = [select Id, Freeze_Date__c from PQNFreezeDate__c where Numeric_Value__c =: pqnListResult[0].CreatedDate.month()];
+                    List<PQN_Pallet_Quality_Non_Conformance__c> pqnListResult = [select Name , CreatedDate, Date_Pallet_Received__c from PQN_Pallet_Quality_Non_Conformance__c where Id =: pageId LIMIT 1];
+                    List<PQNFreezeDate__c> freezePeriod = [select Id, Freeze_Date__c from PQNFreezeDate__c where Numeric_Value__c =: pqnListResult[0].Date_Pallet_Received__c.month()];
+                    dayLeft  =  system.Today().daysBetween(freezePeriod[0].Freeze_Date__c);
                     if (freezePeriod[0].Freeze_Date__c < system.Today()){
                             system.debug('Freeze Date crossed pls check');
                             ApexPages.Message myFreezeMessage = new ApexPages.Message(ApexPages.Severity.INFO,'You have crossed the freeze period');
@@ -117,7 +118,7 @@ public without sharing class PQN_singleEntryScreen{
     
 //freeze period function ends here
 
-*/
+
     
     
     
@@ -266,6 +267,8 @@ public without sharing class PQN_singleEntryScreen{
                     pqn1.Id = null;
                     Insert pqn1;
                 }else{
+                // adding the value to Days Left : rajesh
+                    pqn.Days_Left_Before_Freeze__c = dayLeft;
                     upsert pqn;
                 }
               

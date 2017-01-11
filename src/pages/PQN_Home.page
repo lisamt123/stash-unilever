@@ -73,8 +73,7 @@
     <apex:form id="formId">
     <script type="text/javascript">
         function displayFreezePage(){
-            alert('Hi rajesh');
-            window.open("apex/PQN_Update_Freeze_Period", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=300,width=600,height=500");
+            window.open("apex/PQN_Update_Freeze_Period", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=300,width=600,height=400");
         }
     </script>
     <apex:pageMessages ></apex:pageMessages>

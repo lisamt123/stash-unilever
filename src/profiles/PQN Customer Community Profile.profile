@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-    <applicationVisibilities>
-        <application>Pallet_Quality_Non_Conformance</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
     <classAccesses>
         <apexClass>PQNBatchDeleteRecords</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PQNLossTreeData</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PQNScheduleDeteleOfRecords</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQNScheduleDeteleOfRecordsTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -94,6 +97,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PQN_GlobalGeographyReportTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PQN_GlobalSUReport</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -126,6 +133,18 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PQN_SendEmailtoDC_ClusterBatch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_SendEmailtoDC_ClusterScheduler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_SendEmailtoDC_ClusterSchedulerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PQN_Supplier_Popup_Ctlr</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -150,6 +169,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PQN_UploadNCData_CloneTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PQN_UserCreateAssignPermissions</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -170,6 +193,22 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PQN_updateDCV</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_updateDCV_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_updateSUP</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_updateSUP_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PQN_updateTAR</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -178,6 +217,16 @@
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.PQN_Cluster__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.PQN_Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>PQN_DC_Volumes__c.Month__c</field>
@@ -350,7 +399,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Cluster__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Region__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Sub_Cluster__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -420,13 +489,33 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>PQN_Supplier__c.Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>PQN_Supplier__c.Supplier_Alias__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Supplier__c.Supplier_Cluster__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>PQN_Supplier__c.Supplier_Number__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Supplier__c.Supplier_Region__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Supplier__c.Supplier_Sub_Cluster__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -550,6 +639,10 @@
         <layout>PQN_Pallet_Quality_Non_Conformance__c-PQN_Quality Conformance Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>PQN_Pallet_Quality_Non_Conformance__c-PQN_Quality Conformance Layout</layout>
+        <recordType>PQN_Pallet_Quality_Non_Conformance__c.PQN</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>PQN_Sourcing_Unit__c-PQN_Supplier_Unit Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -665,14 +758,15 @@
         <apexPage>PQN_Targets_List_View</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-    <tabVisibilities>
-        <tab>PQN_Pallet_Quality_Non_Conformance__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Pallet_Quality_Non_Conformance_VF</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
+    <pageAccesses>
+        <apexPage>PQN_Update_Freeze_Period</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>PQN_Pallet_Quality_Non_Conformance__c.PQN</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
     <userLicense>Guest User License</userLicense>
     <userPermissions>
         <enabled>true</enabled>

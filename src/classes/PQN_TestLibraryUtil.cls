@@ -6,7 +6,11 @@ public class PQN_TestLibraryUtil {
     {
         PQN_Supplier__c s = new PQN_Supplier__c(Name='Test Account Name',
         Supplier_Number__c='2312',
-        Supplier_Type__c='DC');
+        Supplier_Type__c='SU',
+        Supplier_Cluster__c='Europe',
+        Supplier_Region__c='Americas',
+        Supplier_Sub_Cluster__c='brazil',
+        Country__c='India');
         return s ;
     }
  
@@ -14,6 +18,7 @@ public class PQN_TestLibraryUtil {
     public static PQN_Pallet_Quality_Non_Conformance__c createPQN_Pallet_Quality_Non_Conformance(id sid,id accid,id dcvid){
         PQN_Pallet_Quality_Non_Conformance__c PQN = new PQN_Pallet_Quality_Non_Conformance__c( 
         Region__c='Americas',
+      Supplier__c=' Test Account Name', 
     Reporting_DC__c='DC1',
     //Month__c='January',
     //Year__c='2016',
@@ -24,6 +29,11 @@ public class PQN_TestLibraryUtil {
     Delivery_Note_Number__c='20',
     SKU__c='153489',
     Product_Name__c='sdfsd',
+    Supplier_Region__c='Americas',
+    Supplier_Cluster__c='Europe',
+    Supplier_Sub_Cluster__c='brazil',
+    Supplier_Country__c='India',
+    
     Date_Pallet_Received__c=date.newInstance(2017,1,15),
     //Date_Pallet_Received__c=date.today(),
     Supplier_Number__c ='1234',

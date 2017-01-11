@@ -1,9 +1,46 @@
 <apex:page standardController="PQN_Pallet_Quality_Non_Conformance__c" extensions="PQN_Global_Overview_Geography,PQN_Global_Overview_Category_Report" showHeader="false" readOnly="true">
+<div style="padding-left:200px;">
+    <!--<apex:chart height="400" width="1000" data="{!xChartdata}">
+       <apex:axis type="Numeric" position="left" fields="chartdata" title="PQN record"/>
+        <apex:axis type="Category" position="bottom" fields="chartXAxis" title="cluster"/>
+        <apex:barSeries orientation="vertical" axis="left" xField="chartXAxis" yField="chartdata"/>
+    </apex:chart>-->
+    <apex:chart height="400" width="1000" data="{!xChartdata}">
+          <apex:axis type="Numeric" position="left" fields="linedata,linedata" title="Trend %" grid="true"/>
+        <apex:axis type="Numeric" position="right" fields="chartdata" title="NC Current Year"/>
+          <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Region"/>
+          <apex:lineSeries axis="left" fill="true" xField="chartXAxis" yField="linedata" markerType="cross" markerSize="4" markerFill="#FF0000"/>
+          <!--<apex:lineSeries axis="left" xField="chartXAxis" yField="linedata" markerType="circle" markerSize="4" markerFill="#8E35EF"/>-->
+        <apex:barSeries orientation="vertical" axis="right" xField="chartXAxis" yField="chartdata"/>
+    </apex:chart>
+    </div>
+
+<style>
+
+      tbody td, thead th {
+           white-space: normal!important;
+            
+        }
+        
+        .RedBack{
+            background-color:#FF2B00!important;
+        }
+        .GreenBack{
+            background-color:#7CFC00!important;
+        }
+        
+        .Amber{
+            background-color:yellow!important;
+        }
+        
+        
+</style>
+
 <body>
     <div id="wrapper">
         <c:PQN_Navigation navigationName="Reports" subNavName="govgeography"/>
         <div id="page-wrapper">
-            <div class="container-fluid">
+        <div class="container-fluid">
  <apex:form >
  
       <apex:pageBlock >
@@ -29,12 +66,28 @@
               <apex:column headerValue="# Total NC CY" value="{!xD.cuYeardatatot }" />
               <apex:column headerValue="#SU NC CY" value="{!xD.cuYeardata}" />
               <apex:column headerValue="% SU NC CY " value="{!xD.cuYearPercent}" />
-              <apex:column headerValue="Trend % " value="{!xD.Trendper}" />
+              <apex:column headerValue="Trend % " value="{!xD.Trendper}" styleClass ="{!If(xD.cuYeartarper!=null,If(xD.cuYearPercent!=null,if(xD.cuYearPercent<=xD.cuYeartarper,'GreenBack',if(xD.cuYearPercent<=xD.preYearPercent,'Amber','RedBack')), 'RedBack'),If(xD.cuYearPercent!=null,if(xD.preYearPercent!=null,if(xD.cuYearPercent==xD.preYearPercent,'Amber',if(xD.cuYearPercent>xD.preYearPercent,'RedBack','GreenBack')),'empty'), 'empty'))}"/>
                       
               </apex:pageblockTable>
           </apex:pageBlockSection>
-          
+          <div >
+            <apex:chart height="400" width="1000" data="{!xChartdata1}">
+               <!--<apex:axis type="Numeric" position="left" fields="chartdata" title="PQN record"/>
+                <apex:axis type="Category" position="bottom" fields="chartXAxis" title="category"/>
+                <apex:barSeries orientation="vertical" axis="left" xField="chartXAxis" yField="chartdata"/>-->
+                
+               
+                <apex:axis type="Numeric" position="left" fields="linedata,linedata" title="Trend %" grid="true"/>
+                <apex:axis type="Numeric" position="right" fields="chartdata" title="NC Current Year"/>
+                <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Category"/>
+                <apex:lineSeries axis="left" fill="true" xField="chartXAxis" yField="linedata" markerType="cross" markerSize="4" markerFill="#FF0000"/>
+                <!--<apex:lineSeries axis="left" xField="chartXAxis" yField="linedata" markerType="circle" markerSize="4" markerFill="#8E35EF"/>-->
+                <apex:barSeries orientation="vertical" axis="right" xField="chartXAxis" yField="chartdata"/>
+
+            </apex:chart>
+         </div>
           <apex:pageBlockSection >
+          
               <apex:outputText value="{!empty}"/>
           </apex:pageBlockSection>
           
@@ -49,6 +102,7 @@
                   <apex:column headerValue="%SU NC PY" value="{!xD.preYearPercent}" />            
                   <apex:column headerValue="#SU NC PY" value="{!xD.preYeardata}" />
                   <apex:column headerValue="#TOTAL NC PY" value="{!xD.preYeardatatot }" />
+                  <apex:column headerValue="CY target SU % NC" value="{!empty }" />
                   <apex:column headerValue="CM CY #SU NC" value="{!xD.cumnthdata }" />
                   <apex:column headerValue="CM CY #DC to DC NC" value="{!xD.cumnthdcdata }" />
                   <apex:column headerValue="CM CY #Imported NC" value="{!xD.cumnthIEdata }" />
@@ -57,8 +111,7 @@
                   <apex:column headerValue="# Total NC CY" value="{!xD.cuYeardatatot }" />
                   <apex:column headerValue="#SU NC CY" value="{!xD.cuYeardata}" />
                   <apex:column headerValue="%SU NC CY" value="{!xD.cuYearPercent}" />
-                  
-                  
+                  <apex:column headerValue="Trend %" value="{!xD.Trendper}" styleClass="{!if(xD.Trendper!=null, if(xD.cuYearPercent>xD.preYearPercent,'RedBack','GreenBack'),'empty')}"/>
                </apex:pageblockTable>   
            </apex:pageBlockSection>
       </apex:pageBlock>
@@ -70,4 +123,10 @@
         <!-- /#page-wrapper -->
    </div>
 </body>
+
+<style>
+        [hidden],template {
+            display: block!important;
+        }
+    </style>
 </apex:page>

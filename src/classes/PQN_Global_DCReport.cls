@@ -11,31 +11,31 @@ public without sharing class PQN_Global_DCReport{
         xSUWRAPLIST = new List<PQN_Global_SUWrap>();
         xChartdata = new List<PQN_chart>();
         String prevClus = '';
-        for( AggregateResult xD: [select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Product_Category__c category from PQN_Pallet_Quality_Non_Conformance__c where Product_Category__c!='' group By Product_Category__c order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]){
+        for( AggregateResult xD: [select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Reporting_DC__c ReportingDC from PQN_Pallet_Quality_Non_Conformance__c where Reporting_DC__c!='' group By Reporting_DC__c order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]){
             
-            xChartdata.add(new PQN_chart(String.valueOf(xD.get('category')),integer.valueof(xD.get('expr0'))));
+            xChartdata.add(new PQN_chart(String.valueOf(xD.get('ReportingDC')),integer.valueof(xD.get('expr0'))));
             //
 
         }
         system.debug('--->>>>>'+xChartdata);
-        List<AggregateResult> ListAGG1=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Cluster__c,Reporting_DC__c from PQN_Pallet_Quality_Non_Conformance__c Where Cluster__c != '' AND Supplier_type__c='DC' group By cluster__c,Reporting_DC__c]);
+        List<AggregateResult> ListAGG1=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Cluster__c,Reporting_DC__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Cluster__c != '' AND Supplier_type__c='DC' group By Supplier_Cluster__c,Reporting_DC__c]);
         Map<String,String> mapOfRegions = new Map<String,String>();
         for (AggregateResult ar : ListAGG1){
-            if (string.valueOf(ar.get('Cluster__c')) == prevClus ){
-                 xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Cluster__c')),string.valueOf(ar.get('Reporting_DC__c')),False));
+            if (string.valueOf(ar.get('Supplier_Cluster__c')) == prevClus ){
+                 xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Supplier_Cluster__c')),string.valueOf(ar.get('Reporting_DC__c')),False));
             }
-            else if (string.valueOf(ar.get('Cluster__c'))!=prevClus ){
-                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Cluster__c')),'',True));
-                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Cluster__c')),string.valueOf(ar.get('Reporting_DC__c')),False));
+            else if (string.valueOf(ar.get('Supplier_Cluster__c'))!=prevClus ){
+                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Supplier_Cluster__c')),'',True));
+                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Supplier_Cluster__c')),string.valueOf(ar.get('Reporting_DC__c')),False));
             } 
                 
-            mapOfRegions.put(string.valueOf(ar.get('Cluster__c'))+string.valueOf(ar.get('Reporting_DC__c')),'1');
-            prevClus = string.valueOf(ar.get('Cluster__c'));
+            mapOfRegions.put(string.valueOf(ar.get('Supplier_Cluster__c'))+string.valueOf(ar.get('Reporting_DC__c')),'1');
+            prevClus = string.valueOf(ar.get('Supplier_Cluster__c'));
         }
              
-        List<AggregateResult> ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Cluster__c,Reporting_DC__c from PQN_Pallet_Quality_Non_Conformance__c Where Cluster__c != '' AND Year__c=:string.valueof(system.Today().year()) AND Supplier_type__c='DC' group By cluster__c,Reporting_DC__c Order By cluster__c]);
+        List<AggregateResult> ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Cluster__c,Reporting_DC__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Cluster__c != '' AND Year__c=:string.valueof(system.Today().year()) AND Supplier_type__c='DC' group By Supplier_Cluster__c,Reporting_DC__c Order By Supplier_Cluster__c]);
       
-        List<PQN_Pallet_Quality_Non_Conformance__c > listtar=new List<PQN_Pallet_Quality_Non_Conformance__c >([select Target_Reduction__c,Cluster__c from PQN_Pallet_Quality_Non_Conformance__c where Cluster__c!='' AND Year__c=:string.valueof(system.Today().year())]);
+        List<PQN_Pallet_Quality_Non_Conformance__c > listtar=new List<PQN_Pallet_Quality_Non_Conformance__c >([select Target_Reduction__c,Supplier_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c where Supplier_Cluster__c!='' AND Year__c=:string.valueof(system.Today().year())]);
         
         Map<String,Integer> mapOfRegioncryear = new Map<String,Integer>();
         Map<String,Integer> mapOfRegionPreYear = new Map<String,Integer>();
@@ -45,7 +45,7 @@ public without sharing class PQN_Global_DCReport{
         system.debug('listtar-->>'+listtar);
         
     /*    for(PQN_Pallet_Quality_Non_Conformance__c lt: listtar){
-            mapOftarget.put(lt.Cluster__c,lt.Target_Reduction__c);
+            mapOftarget.put(lt.Supplier_Cluster__c,lt.Target_Reduction__c);
           }
           
           system.debug('mapOftarget-->>'+mapOftarget);*/
@@ -55,14 +55,14 @@ public without sharing class PQN_Global_DCReport{
        
         for(AggregateResult ar:ListAGG){
             
-            if (string.valueOf(ar.get('Cluster__c'))!=prevClus ){
+            if (string.valueOf(ar.get('Supplier_Cluster__c'))!=prevClus ){
                 clusSum = 0;
             } 
                 
             clusSum = clusSum + integer.valueof(ar.get('expr0'));
-            mapOfRegioncryear .put(string.valueOf(ar.get('Cluster__c')), clusSum );
+            mapOfRegioncryear .put(string.valueOf(ar.get('Supplier_Cluster__c')), clusSum );
             mapOfRegioncryear .put(string.valueOf(ar.get('Reporting_DC__c')), integer.valueof(ar.get('expr0')));
-            prevClus = string.valueOf(ar.get('Cluster__c'));
+            prevClus = string.valueOf(ar.get('Supplier_Cluster__c'));
             
         }
        
@@ -84,7 +84,7 @@ public without sharing class PQN_Global_DCReport{
          }   
         
         /***For previous year***/  
-        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Cluster__c,Reporting_DC__c from PQN_Pallet_Quality_Non_Conformance__c Where Cluster__c != '' AND Year__c=:string.valueof(system.Today().year()-1) AND Supplier_type__c='DC' group By cluster__c,Reporting_DC__c Order By cluster__c]);    
+        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Cluster__c,Reporting_DC__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Cluster__c != '' AND Year__c=:string.valueof(system.Today().year()-1) AND Supplier_type__c='DC' group By Supplier_Cluster__c,Reporting_DC__c Order By Supplier_Cluster__c]);    
         prevClus = '';
         clusSum = 0;
        
@@ -92,16 +92,16 @@ public without sharing class PQN_Global_DCReport{
         
         for(AggregateResult ar:ListAGG){
             
-            if (string.valueOf(ar.get('Cluster__c'))!=prevClus ){
+            if (string.valueOf(ar.get('Supplier_Cluster__c'))!=prevClus ){
                 clusSum = 0;
             } 
            
             clusSum = clusSum + integer.valueof(ar.get('expr0'));
-            mapOfRegionPreYear.put(string.valueOf(ar.get('Cluster__c')), clusSum );
+            mapOfRegionPreYear.put(string.valueOf(ar.get('Supplier_Cluster__c')), clusSum );
            
             mapOfRegionPreYear .put(string.valueOf(ar.get('Reporting_DC__c')), integer.valueof(ar.get('expr0')));
             
-            prevClus = string.valueOf(ar.get('Cluster__c'));
+            prevClus = string.valueOf(ar.get('Supplier_Cluster__c'));
             
         }
         system.debug('mapOfRegion--->>'+mapOfRegioncryear );
@@ -123,7 +123,7 @@ public without sharing class PQN_Global_DCReport{
         
         /***For Current month***/  
         
-        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Cluster__c,Reporting_DC__c from PQN_Pallet_Quality_Non_Conformance__c Where Cluster__c != '' AND Year__c=:string.valueof(system.Today().year()) AND MonthN__c=:string.valueof(system.Today().month()) AND Supplier_type__c='DC' group By cluster__c,Reporting_DC__c Order By cluster__c]);    
+        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Cluster__c,Reporting_DC__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Cluster__c != '' AND Year__c=:string.valueof(system.Today().year()) AND MonthN__c=:string.valueof(system.Today().month()) AND Supplier_type__c='DC' group By Supplier_Cluster__c,Reporting_DC__c Order By Supplier_Cluster__c]);    
         prevClus = '';
         clusSum = 0;
        
@@ -131,16 +131,16 @@ public without sharing class PQN_Global_DCReport{
         
         for(AggregateResult ar:ListAGG){
             
-            if (string.valueOf(ar.get('Cluster__c'))!=prevClus ){
+            if (string.valueOf(ar.get('Supplier_Cluster__c'))!=prevClus ){
                 clusSum = 0;
             } 
             
             clusSum = clusSum + integer.valueof(ar.get('expr0'));
-            mapOfRegioncrmnth .put(string.valueOf(ar.get('Cluster__c')), clusSum );
+            mapOfRegioncrmnth .put(string.valueOf(ar.get('Supplier_Cluster__c')), clusSum );
             
             mapOfRegioncrmnth .put(string.valueOf(ar.get('Reporting_DC__c')), integer.valueof(ar.get('expr0')));
           
-            prevClus = string.valueOf(ar.get('Cluster__c'));
+            prevClus = string.valueOf(ar.get('Supplier_Cluster__c'));
             
         }
         system.debug('mapOfRegion--->>'+mapOfRegioncrmnth );

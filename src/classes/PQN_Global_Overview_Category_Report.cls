@@ -2,10 +2,12 @@ public without sharing class PQN_Global_Overview_Category_Report{
    
     public List<PQN_Global_SUWrap> xSUWRAPLISTGC{get;set;}
     public String empty{get;set;}
+      public List<PQN_chart> xChartdata1{get;set;}
    
     public PQN_Global_Overview_Category_Report(ApexPages.StandardController acon){
         
         empty = '';
+        xChartdata1 = new List<PQN_chart>();
         xSUWRAPLISTGC = new List<PQN_Global_SUWrap>();
         Map<String,Integer> mapOfProduct_Groupcuryr= new Map<String,Integer>();
         Map<String,Integer> mapOfProduct_GroupPreYear = new Map<String,Integer>();
@@ -19,6 +21,14 @@ public without sharing class PQN_Global_Overview_Category_Report{
         
          String prevProduct_Group = '';
          Integer Product_GroupSum;
+         
+        /*for(AggregateResult xD:[select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Product_Category__c from PQN_Pallet_Quality_Non_Conformance__c Where Product_Category__c!= '' group By Product_Category__c order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc ])
+        {
+            if(integer.valueof(xD.get('expr0'))!=null){
+                xChartdata1.add(new PQN_chart(String.valueOf(xD.get('Product_Category__c')),integer.valueof(xD.get('expr0'))));
+            }
+        
+        }*/
           
          List<AggregateResult> LAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Product_Group__c,Product_Category__c from PQN_Pallet_Quality_Non_Conformance__c Where Product_Group__c != '' group By Product_Group__c,Product_Category__c]);
       
@@ -36,9 +46,9 @@ public without sharing class PQN_Global_Overview_Category_Report{
             
          }
        
-        List<Aggregateresult> xPSU = new List<AggregateResult>([Select SUM(Total_Volume_Of_pallets_Shipped__c) totalshipped,Year__c from PQN_Sourcing_Unit__c where Year__c=:string.valueof(system.Today().year()-1) group by Year__c ]);
+        List<Aggregateresult> xPSU = new List<AggregateResult>([Select SUM(Total_Volume_Of_pallets_Shipped__c) totalshipped,Year__c from PQN_Sourcing_Unit__c where Year__c=:string.valueof(system.Today().year()) group by Year__c ]);
         
-        List<AggregateResult> ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Product_Group__c,Product_Category__c from PQN_Pallet_Quality_Non_Conformance__c Where Product_Group__c != '' AND Year__c=:string.valueof(system.Today().year()-1) AND Supplier_type__c='SU' group By Product_Group__c,Product_Category__c]);
+        List<AggregateResult> ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Product_Group__c,Product_Category__c from PQN_Pallet_Quality_Non_Conformance__c Where Product_Group__c != '' AND Year__c=:string.valueof(system.Today().year()) AND Supplier_type__c='SU' group By Product_Group__c,Product_Category__c]);
       
         
         prevProduct_Group = '';
@@ -53,7 +63,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
             Product_GroupSum = Product_GroupSum + integer.valueof(ar.get('expr0'));
             mapOfProduct_Groupcuryr.put(string.valueOf(ar.get('Product_Group__c')), Product_GroupSum);
             
-            mapOfProduct_Groupcuryr.put(string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
+            mapOfProduct_Groupcuryr.put(string.valueOf(ar.get('Product_Group__c'))+string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
            
             prevProduct_Group = string.valueOf(ar.get('Product_Group__c'));
             
@@ -62,10 +72,10 @@ public without sharing class PQN_Global_Overview_Category_Report{
         for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
           
-            if (xA.Product_Category != '') {
-                xA.cuYeardata = mapOfProduct_Groupcuryr.get(xA.Product_Category);
-                if (mapOfProduct_Groupcuryr.get(xA.Product_Category) != Null){
-                 temp = Double.valueOf((mapOfProduct_Groupcuryr.get(xA.Product_Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+            if (xA.Product_Group+xA.Product_Category != '') {
+                xA.cuYeardata = mapOfProduct_Groupcuryr.get(xA.Product_Group+xA.Product_Category);
+                if (mapOfProduct_Groupcuryr.get(xA.Product_Group+xA.Product_Category) != Null){
+                 temp = Double.valueOf((mapOfProduct_Groupcuryr.get(xA.Product_Group+xA.Product_Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
                }else{xA.cuYearPercent=0;}
             }
@@ -100,7 +110,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
             Product_GroupSum = Product_GroupSum + integer.valueof(ar.get('expr0'));
             mapOfProduct_GroupPreYear.put(string.valueOf(ar.get('Product_Group__c')), Product_GroupSum);
           
-            mapOfProduct_GroupPreYear.put(string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
+            mapOfProduct_GroupPreYear.put(string.valueOf(ar.get('Product_Group__c'))+string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
             
             prevProduct_Group = string.valueOf(ar.get('Product_Group__c'));
             
@@ -109,10 +119,10 @@ public without sharing class PQN_Global_Overview_Category_Report{
         for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
            
-             if (xA.Product_Category != '') {
-                xA.preYeardata = mapOfProduct_GroupPreYear.get(xA.Product_Category);
-                if (mapOfProduct_GroupPreYear.get(xA.Product_Category) != Null){
-                    temp = Double.valueOf((mapOfProduct_GroupPreYear.get(xA.Product_Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+             if (xA.Product_Group+xA.Product_Category != '') {
+                xA.preYeardata = mapOfProduct_GroupPreYear.get(xA.Product_Group+xA.Product_Category);
+                if (mapOfProduct_GroupPreYear.get(xA.Product_Group+xA.Product_Category) != Null){
+                    temp = Double.valueOf((mapOfProduct_GroupPreYear.get(xA.Product_Group+xA.Product_Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.preYearPercent = temp.setscale(2);
                 } else { xA.preYearPercent = 0; }
             }
@@ -148,7 +158,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
             Product_GroupSum = Product_GroupSum + integer.valueof(ar.get('expr0'));
             mapOfProduct_Groupcrmnth .put(string.valueOf(ar.get('Product_Group__c')), Product_GroupSum);
           
-            mapOfProduct_Groupcrmnth .put(string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
+            mapOfProduct_Groupcrmnth .put(string.valueOf(ar.get('Product_Group__c'))+string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
           
            prevProduct_Group = string.valueOf(ar.get('Product_Group__c'));
             
@@ -157,10 +167,10 @@ public without sharing class PQN_Global_Overview_Category_Report{
         for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
            
-             if (xA.Product_Category != '') {
-                xA.cumnthdata = mapOfProduct_Groupcrmnth .get(xA.Product_Category);
-                if (mapOfProduct_Groupcrmnth .get(xA.Product_Category) != Null){
-                    temp = Double.valueOf((mapOfProduct_Groupcrmnth .get(xA.Product_Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+             if (xA.Product_Group+xA.Product_Category != '') {
+                xA.cumnthdata = mapOfProduct_Groupcrmnth .get(xA.Product_Group+xA.Product_Category);
+                if (mapOfProduct_Groupcrmnth .get(xA.Product_Group+xA.Product_Category) != Null){
+                    temp = Double.valueOf((mapOfProduct_Groupcrmnth .get(xA.Product_Group+xA.Product_Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.cumnthPercent = temp.setscale(2);
                 } else { xA.preYearPercent = 0; }
             }
@@ -195,7 +205,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
             Product_GroupSum = Product_GroupSum + integer.valueof(ar.get('expr0'));
             mapOfProduct_Groupcrmnth .put(string.valueOf(ar.get('Product_Group__c')), Product_GroupSum);
        
-            mapOfProduct_Groupcrmnth .put(string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
+            mapOfProduct_Groupcrmnth .put(string.valueOf(ar.get('Product_Group__c'))+string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
           
             prevProduct_Group = string.valueOf(ar.get('Product_Group__c'));
             
@@ -204,8 +214,8 @@ public without sharing class PQN_Global_Overview_Category_Report{
         for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
        
-            if (xA.Product_Category != '') {
-                xA.cumnthdcdata = mapOfProduct_Groupcrmnthdc .get(xA.Product_Category);
+            if (xA.Product_Group+xA.Product_Category != '') {
+                xA.cumnthdcdata = mapOfProduct_Groupcrmnthdc .get(xA.Product_Group+xA.Product_Category);
                 }
             
             else {
@@ -236,7 +246,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
             Product_GroupSum = Product_GroupSum + integer.valueof(ar.get('expr0'));
             mapOfProduct_GroupcrmnthIE .put(string.valueOf(ar.get('Product_Group__c')), Product_GroupSum);
                   
-            mapOfProduct_GroupcrmnthIE .put(string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
+            mapOfProduct_GroupcrmnthIE .put(string.valueOf(ar.get('Product_Group__c'))+string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
             
             prevProduct_Group = string.valueOf(ar.get('Product_Group__c'));
             
@@ -245,8 +255,8 @@ public without sharing class PQN_Global_Overview_Category_Report{
         for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
         
-             if (xA.Product_Category != '') {
-                xA.cumnthIEdata = mapOfProduct_GroupcrmnthIE .get(xA.Product_Category);
+             if (xA.Product_Group+xA.Product_Category != '') {
+                xA.cumnthIEdata = mapOfProduct_GroupcrmnthIE .get(xA.Product_Group+xA.Product_Category);
                 }
             
             else {
@@ -276,7 +286,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
             Product_GroupSum = Product_GroupSum + integer.valueof(ar.get('expr0'));
             mapOfProduct_Groupcrmnthtot .put(string.valueOf(ar.get('Product_Group__c')), Product_GroupSum);
          
-            mapOfProduct_Groupcrmnthtot .put(string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
+            mapOfProduct_Groupcrmnthtot .put(string.valueOf(ar.get('Product_Group__c'))+string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
         
             prevProduct_Group = string.valueOf(ar.get('Product_Group__c'));
             
@@ -285,8 +295,8 @@ public without sharing class PQN_Global_Overview_Category_Report{
         for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
           
-            if (xA.Product_Category != '') {
-                xA.cumnthtotdata = mapOfProduct_Groupcrmnthtot .get(xA.Product_Category);
+            if (xA.Product_Group+xA.Product_Category != '') {
+                xA.cumnthtotdata = mapOfProduct_Groupcrmnthtot .get(xA.Product_Group+xA.Product_Category);
                 }
             
             else {
@@ -316,7 +326,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
             Product_GroupSum = Product_GroupSum + integer.valueof(ar.get('expr0'));
             mapOfProduct_Groupprevyrtot .put(string.valueOf(ar.get('Product_Group__c')), Product_GroupSum);
         
-            mapOfProduct_Groupprevyrtot .put(string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
+            mapOfProduct_Groupprevyrtot .put(string.valueOf(ar.get('Product_Group__c'))+string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
             prevProduct_Group = string.valueOf(ar.get('Product_Group__c'));
             
         }
@@ -324,8 +334,8 @@ public without sharing class PQN_Global_Overview_Category_Report{
         for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
         
-            if (xA.Product_Category != '') {
-                xA.preYeardatatot = mapOfProduct_Groupprevyrtot .get(xA.Product_Category);
+            if (xA.Product_Group+xA.Product_Category != '') {
+                xA.preYeardatatot = mapOfProduct_Groupprevyrtot .get(xA.Product_Group+xA.Product_Category);
                 }
             
             else {
@@ -354,7 +364,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
             Product_GroupSum = Product_GroupSum + integer.valueof(ar.get('expr0'));
             mapOfProduct_Groupcryeartot .put(string.valueOf(ar.get('Product_Group__c')), Product_GroupSum);
       
-            mapOfProduct_Groupcryeartot .put(string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
+            mapOfProduct_Groupcryeartot .put(string.valueOf(ar.get('Product_Group__c'))+string.valueOf(ar.get('Product_Category__c')), integer.valueof(ar.get('expr0')));
        
             prevProduct_Group = string.valueOf(ar.get('Product_Group__c'));
             
@@ -363,8 +373,8 @@ public without sharing class PQN_Global_Overview_Category_Report{
         for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
             decimal temp = 0;
          
-            if (xA.Product_Category != '') {
-                xA.cuYeardatatot = mapOfProduct_Groupcryeartot .get(xA.Product_Category);
+            if (xA.Product_Group+xA.Product_Category != '') {
+                xA.cuYeardatatot = mapOfProduct_Groupcryeartot .get(xA.Product_Group+xA.Product_Category);
                 }
             
             else {
@@ -374,7 +384,23 @@ public without sharing class PQN_Global_Overview_Category_Report{
         }
         
         /************************* For Current Month DC Data ****************************/
-        
+          /************************* For Trend Calculation ************************/
+         
+         for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
+         
+            
+              if(xA.cuYearPercent!=0 && xA.preYearPercent !=0){
+                xA.Trendper=((xA.cuYearPercent-xA.preYearPercent)*100/xA.preYearPercent).setscale(2);
+                }
+                 else{xA.Trendper=0;}
+             
+        }
+        /**************** For Trend Calculation *****************/
+         for(PQN_Global_SUWrap xA: xSUWRAPLISTGC){
+             if(xA.child)
+             xChartdata1.add(new PQN_chart(xA.Product_Group,xA.cuYeardata ,xA.Trendper));
+
+         }
         
     }
     
@@ -384,7 +410,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
         public string Product_Group{get;set;}
         public string Product_Category{get;set;}
         public Integer preYeardata {get;set;}
-        public Double preYearPercent {get;set;}
+        public decimal preYearPercent {get;set;}
         public Integer cuYeardata {get;set;}
         public Double cuYearPercent {get;set;}
         public Integer cumnthdata {get;set;}
@@ -394,12 +420,29 @@ public without sharing class PQN_Global_Overview_Category_Report{
         public Integer cumnthtotdata {get;set;}
         public Integer preYeardatatot {get;set;}
         public Integer cuYeardatatot {get;set;}
+         public Double Trendper{get;set;}
         
         public PQN_Global_SUWrap(String Product_Group, String Product_Category, Boolean child){
             this.Product_Group= Product_Group;
             this.Product_Category= Product_Category;
             this.child= child;
            
+        }
+        
+    }
+    
+     public class PQN_chart{
+        
+        public String chartXAxis{get;set;}
+        public Integer chartdata {get;set;}
+        public Double linedata {get;set;}
+                
+        public PQN_chart( String chartXAxis,integer chartdata, Double linedata){
+            this.chartXAxis= chartXAxis;
+            this.chartdata= chartdata;
+            this.linedata= linedata;
+            
+                     
         }
         
     }

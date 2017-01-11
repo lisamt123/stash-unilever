@@ -3,6 +3,9 @@ public without sharing class PQN_GlobalGeographyReport{
     public List<PQN_Global_SUWrap> xSUWRAPLIST{get;set;}
     public List<PQN_chart> xChartdata{get;set;}
     public String empty{get;set;}
+    public Integer cuYear{get;set;}
+    public Integer preYear{get;set;}
+    public String cuMonth{get;set;}
    
     public PQN_GlobalGeographyReport(){
          empty = '';
@@ -18,44 +21,46 @@ public without sharing class PQN_GlobalGeographyReport{
          Map<String,Integer> mapOfRegioncryeartot = new Map<String,Integer>();
          Map<String,Decimal> mapOftarget = new Map<String,Decimal>();
        
+        cuYear = integer.valueof(system.Today().year());
+        preYear = integer.valueof(system.Today().year()) - 1;
+        DateTime d = datetime.now();
+        cuMonth = d.format('MMMMM');
+        
         String prevRegion='';
         String prevCluster='';
         Integer regionSum;
         Integer clusterSum;
         
           //for( AggregateResult xD: [select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Product_Category__c category from PQN_Pallet_Quality_Non_Conformance__c where Product_Category__c!='' group By Product_Category__c order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]){
-         for( AggregateResult xD: [select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Region__c from PQN_Pallet_Quality_Non_Conformance__c where Region__c!=''  group By Region__c order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]){ 
-            
-            xChartdata.add(new PQN_chart(String.valueOf(xD.get('Region__c')),integer.valueof(xD.get('expr0'))));
-            //
-
-        }
+        /* for( AggregateResult xD: [select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Region__c from PQN_Pallet_Quality_Non_Conformance__c where Supplier_Region__c!=''  group By Supplier_Region__c order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]){ 
+                xChartdata.add(new PQN_chart(String.valueOf(xD.get('Supplier_Region__c')),integer.valueof(xD.get('expr0')),integer.valueof(xD.get('expr0'))));
+        }*/
      
-        List<AggregateResult> LAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Region__c,Cluster__c,Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c where Region__c!=''  group By Region__c,cluster__c,Sub_Cluster__c]);
+        List<AggregateResult> LAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c where Supplier_Region__c!=''  group By Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c]);
         
         for(AggregateResult ar:LAGG){
             
-            if (string.valueOf(ar.get('Region__c')) == prevRegion && string.valueOf(ar.get('Cluster__c')) == prevCluster){
-                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Region__c')),string.valueOf(ar.get('Cluster__c')),string.valueOf(ar.get('Sub_Cluster__c')),False,False));
+            if (string.valueOf(ar.get('Supplier_Region__c')) == prevRegion && string.valueOf(ar.get('Supplier_Cluster__c')) == prevCluster){
+                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Supplier_Region__c')),string.valueOf(ar.get('Supplier_Cluster__c')),string.valueOf(ar.get('Supplier_Sub_Cluster__c')),False,False));
             }
-            else if (string.valueOf(ar.get('Region__c')) == prevRegion && string.valueOf(ar.get('Cluster__c')) != prevCluster){
-                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Region__c')),string.valueOf(ar.get('Cluster__c')),'',False,True));
-                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Region__c')),string.valueOf(ar.get('Cluster__c')),string.valueOf(ar.get('Sub_Cluster__c')),False,False));
+            else if (string.valueOf(ar.get('Supplier_Region__c')) == prevRegion && string.valueOf(ar.get('Supplier_Cluster__c')) != prevCluster){
+                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Supplier_Region__c')),string.valueOf(ar.get('Supplier_Cluster__c')),'',False,True));
+                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Supplier_Region__c')),string.valueOf(ar.get('Supplier_Cluster__c')),string.valueOf(ar.get('Supplier_Sub_Cluster__c')),False,False));
             } 
-            else if (string.valueOf(ar.get('Region__c')) != prevRegion){
-                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Region__c')),'','',True,True));
-                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Region__c')),string.valueOf(ar.get('Cluster__c')),'',False,True));
-                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Region__c')),string.valueOf(ar.get('Cluster__c')),string.valueOf(ar.get('Sub_Cluster__c')),False,False));
+            else if (string.valueOf(ar.get('Supplier_Region__c')) != prevRegion){
+                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Supplier_Region__c')),'','',True,True));
+                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Supplier_Region__c')),string.valueOf(ar.get('Supplier_Cluster__c')),'',False,True));
+                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Supplier_Region__c')),string.valueOf(ar.get('Supplier_Cluster__c')),string.valueOf(ar.get('Supplier_Sub_Cluster__c')),False,False));
             }
-            prevCluster = string.valueOf(ar.get('Cluster__c')); 
-            prevRegion = string.valueOf(ar.get('Region__c'));
+            prevCluster = string.valueOf(ar.get('Supplier_Cluster__c')); 
+            prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
          
          }
          
          /***For Current Year SU***/
         List<Aggregateresult> xPSU = new List<AggregateResult>([Select SUM(Total_Volume_Of_pallets_Shipped__c) totalshipped,Year__c from PQN_Sourcing_Unit__c where Year__c=:string.valueof(system.Today().year()) group by Year__c ]);
         
-        List<AggregateResult> ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Region__c,Cluster__c,Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Region__c != '' AND Year__c=:string.valueof(system.Today().year()) AND Supplier_type__c='SU' group By Region__c,cluster__c,Sub_Cluster__c]);
+        List<AggregateResult> ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Region__c!= '' AND Year__c=:string.valueof(system.Today().year()) AND Supplier_type__c='SU' group By Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c]);
       
         List<PQN_Targets__c> listtar=new List<PQN_Targets__c>([select id,Target_Reduction__c,Region__c from PQN_Targets__c where Region__c!='' AND Year__c=:string.valueof(system.Today().year())]);
         
@@ -70,24 +75,24 @@ public without sharing class PQN_GlobalGeographyReport{
         
         for(AggregateResult ar:ListAGG){
             
-            if (string.valueOf(ar.get('Region__c')) == prevRegion && string.valueOf(ar.get('Cluster__c')) != prevCluster){
+            if (string.valueOf(ar.get('Supplier_Region__c')) == prevRegion && string.valueOf(ar.get('Supplier_Cluster__c')) != prevCluster){
                 clusterSum = 0;
             } 
-            else if (string.valueOf(ar.get('Region__c')) != prevRegion){
+            else if (string.valueOf(ar.get('Supplier_Region__c')) != prevRegion){
                 regionSum = 0;
                 clusterSum = 0;
             }
                         
             regionSum = regionSum + integer.valueof(ar.get('expr0'));
-            mapOfRegion.put(string.valueOf(ar.get('Region__c')), regionSum);
+            mapOfRegion.put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
             
             clusterSum = clusterSum + integer.valueof(ar.get('expr0'));
-            mapOfRegion.put(string.valueOf(ar.get('Cluster__c')), clusterSum);                
+            mapOfRegion.put(string.valueOf(ar.get('Supplier_Cluster__c')), clusterSum);                
             
-            mapOfRegion.put(string.valueOf(ar.get('Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
+            mapOfRegion.put(string.valueOf(ar.get('Supplier_Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
             
-            prevCluster = string.valueOf(ar.get('Cluster__c')); 
-            prevRegion = string.valueOf(ar.get('Region__c'));
+            prevCluster = string.valueOf(ar.get('Supplier_Cluster__c')); 
+            prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
         }
         
@@ -131,7 +136,7 @@ public without sharing class PQN_GlobalGeographyReport{
         
         xPSU = new List<AggregateResult>([Select SUM(Total_Volume_Of_pallets_Shipped__c) totalshipped,Year__c from PQN_Sourcing_Unit__c where Year__c=:string.valueof(system.Today().year() - 1) group by Year__c ]);
         
-        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Region__c,Cluster__c,Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Region__c != '' AND Year__c=: string.valueof(((system.Today().year())) - 1) AND Supplier_type__c='SU' group By Region__c,cluster__c,Sub_Cluster__c]);
+        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Region__c!= '' AND Year__c=: string.valueof(((system.Today().year())) - 1) AND Supplier_type__c='SU' group By Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c]);
         
         prevRegion = '';
         prevCluster = '';
@@ -142,24 +147,24 @@ public without sharing class PQN_GlobalGeographyReport{
         
         for(AggregateResult ar:ListAGG){
             
-            if (string.valueOf(ar.get('Region__c')) == prevRegion && string.valueOf(ar.get('Cluster__c')) != prevCluster){
+            if (string.valueOf(ar.get('Supplier_Region__c')) == prevRegion && string.valueOf(ar.get('Supplier_Cluster__c')) != prevCluster){
                 clusterSum = 0;
             } 
-            else if (string.valueOf(ar.get('Region__c')) != prevRegion){
+            else if (string.valueOf(ar.get('Supplier_Region__c')) != prevRegion){
                 regionSum = 0;
                 clusterSum = 0;
             }
                         
             regionSum = regionSum + integer.valueof(ar.get('expr0'));
-            mapOfRegionPreYear.put(string.valueOf(ar.get('Region__c')), regionSum);
+            mapOfRegionPreYear.put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
             
             clusterSum = clusterSum + integer.valueof(ar.get('expr0'));
-            mapOfRegionPreYear.put(string.valueOf(ar.get('Cluster__c')), clusterSum);                
+            mapOfRegionPreYear.put(string.valueOf(ar.get('Supplier_Cluster__c')), clusterSum);                
             
-            mapOfRegionPreYear.put(string.valueOf(ar.get('Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
+            mapOfRegionPreYear.put(string.valueOf(ar.get('Supplier_Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
             
-            prevCluster = string.valueOf(ar.get('Cluster__c')); 
-            prevRegion = string.valueOf(ar.get('Region__c'));
+            prevCluster = string.valueOf(ar.get('Supplier_Cluster__c')); 
+            prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
         }
         
@@ -195,7 +200,7 @@ public without sharing class PQN_GlobalGeographyReport{
           
         xPSU = new List<AggregateResult>([Select SUM(Total_Volume_Of_pallets_Shipped__c) totalshipped,Year__c from PQN_Sourcing_Unit__c where Year__c=:string.valueof(system.Today().year()) and Month__c=:string.valueof(system.Today().month()) group by Year__c ]);
         
-        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Region__c,Cluster__c,Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Region__c != '' AND Year__c=: string.valueof(((system.Today().year()))) AND Supplier_type__c='SU' and MonthN__c=:string.valueof(system.Today().month()) group By Region__c,cluster__c,Sub_Cluster__c]);
+        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Region__c!= '' AND Year__c=: string.valueof(((system.Today().year()))) AND Supplier_type__c='SU' and MonthN__c=:string.valueof(system.Today().month()) group By Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c]);
         
         prevRegion = '';
         prevCluster = '';
@@ -206,24 +211,24 @@ public without sharing class PQN_GlobalGeographyReport{
         
         for(AggregateResult ar:ListAGG){
             
-            if (string.valueOf(ar.get('Region__c')) == prevRegion && string.valueOf(ar.get('Cluster__c')) != prevCluster){
+            if (string.valueOf(ar.get('Supplier_Region__c')) == prevRegion && string.valueOf(ar.get('Supplier_Cluster__c')) != prevCluster){
                 clusterSum = 0;
             } 
-            else if (string.valueOf(ar.get('Region__c')) != prevRegion){
+            else if (string.valueOf(ar.get('Supplier_Region__c')) != prevRegion){
                 regionSum = 0;
                 clusterSum = 0;
             }
                         
             regionSum = regionSum + integer.valueof(ar.get('expr0'));
-            mapOfRegioncrmnth .put(string.valueOf(ar.get('Region__c')), regionSum);
+            mapOfRegioncrmnth .put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
             
             clusterSum = clusterSum + integer.valueof(ar.get('expr0'));
-            mapOfRegioncrmnth .put(string.valueOf(ar.get('Cluster__c')), clusterSum);                
+            mapOfRegioncrmnth .put(string.valueOf(ar.get('Supplier_Cluster__c')), clusterSum);                
             
-            mapOfRegioncrmnth .put(string.valueOf(ar.get('Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
+            mapOfRegioncrmnth .put(string.valueOf(ar.get('Supplier_Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
             
-            prevCluster = string.valueOf(ar.get('Cluster__c')); 
-            prevRegion = string.valueOf(ar.get('Region__c'));
+            prevCluster = string.valueOf(ar.get('Supplier_Cluster__c')); 
+            prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
         }
         
@@ -258,7 +263,7 @@ public without sharing class PQN_GlobalGeographyReport{
           
         xPSU = new List<AggregateResult>([Select SUM(Total_Volume_Of_pallets_Shipped__c) totalshipped,Year__c from PQN_Sourcing_Unit__c where Year__c=:string.valueof(system.Today().year()) and Month__c=:string.valueof(system.Today().month()) group by Year__c ]);
         
-        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Region__c,Cluster__c,Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Region__c != '' AND Year__c=: string.valueof(((system.Today().year()))) and MonthN__c=:string.valueof(system.Today().month()) AND Supplier_type__c='DC' group By Region__c,cluster__c,Sub_Cluster__c]);
+        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Region__c!= '' AND Year__c=: string.valueof(((system.Today().year()))) and MonthN__c=:string.valueof(system.Today().month()) AND Supplier_type__c='DC' group By Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c]);
         
         prevRegion = '';
         prevCluster = '';
@@ -269,24 +274,24 @@ public without sharing class PQN_GlobalGeographyReport{
         
         for(AggregateResult ar:ListAGG){
             
-            if (string.valueOf(ar.get('Region__c')) == prevRegion && string.valueOf(ar.get('Cluster__c')) != prevCluster){
+            if (string.valueOf(ar.get('Supplier_Region__c')) == prevRegion && string.valueOf(ar.get('Supplier_Cluster__c')) != prevCluster){
                 clusterSum = 0;
             } 
-            else if (string.valueOf(ar.get('Region__c')) != prevRegion){
+            else if (string.valueOf(ar.get('Supplier_Region__c')) != prevRegion){
                 regionSum = 0;
                 clusterSum = 0;
             }
                         
             regionSum = regionSum + integer.valueof(ar.get('expr0'));
-            mapOfRegioncrmnth .put(string.valueOf(ar.get('Region__c')), regionSum);
+            mapOfRegioncrmnthdc .put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
             
             clusterSum = clusterSum + integer.valueof(ar.get('expr0'));
-            mapOfRegioncrmnth .put(string.valueOf(ar.get('Cluster__c')), clusterSum);                
+            mapOfRegioncrmnthdc .put(string.valueOf(ar.get('Supplier_Cluster__c')), clusterSum);                
             
-            mapOfRegioncrmnth .put(string.valueOf(ar.get('Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
+            mapOfRegioncrmnthdc .put(string.valueOf(ar.get('Supplier_Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
             
-            prevCluster = string.valueOf(ar.get('Cluster__c')); 
-            prevRegion = string.valueOf(ar.get('Region__c'));
+            prevCluster = string.valueOf(ar.get('Supplier_Cluster__c')); 
+            prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
         }
         
@@ -310,7 +315,7 @@ public without sharing class PQN_GlobalGeographyReport{
           
         xPSU = new List<AggregateResult>([Select SUM(Total_Volume_Of_pallets_Shipped__c) totalshipped,Year__c from PQN_Sourcing_Unit__c where Year__c=:string.valueof(system.Today().year()) and Month__c=:string.valueof(system.Today().month()) group by Year__c ]);
         
-        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Region__c,Cluster__c,Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Region__c != '' AND Year__c=: string.valueof(((system.Today().year()))) and MonthN__c=:string.valueof(system.Today().month()) AND Supplier_type__c='Im/Ex' group By Region__c,cluster__c,Sub_Cluster__c]);
+        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Region__c!= '' AND Year__c=: string.valueof(((system.Today().year()))) and MonthN__c=:string.valueof(system.Today().month()) AND Supplier_type__c='Im/Ex' group By Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c]);
         
         prevRegion = '';
         prevCluster = '';
@@ -321,24 +326,24 @@ public without sharing class PQN_GlobalGeographyReport{
         
         for(AggregateResult ar:ListAGG){
             
-            if (string.valueOf(ar.get('Region__c')) == prevRegion && string.valueOf(ar.get('Cluster__c')) != prevCluster){
+            if (string.valueOf(ar.get('Supplier_Region__c')) == prevRegion && string.valueOf(ar.get('Supplier_Cluster__c')) != prevCluster){
                 clusterSum = 0;
             } 
-            else if (string.valueOf(ar.get('Region__c')) != prevRegion){
+            else if (string.valueOf(ar.get('Supplier_Region__c')) != prevRegion){
                 regionSum = 0;
                 clusterSum = 0;
             }
                         
             regionSum = regionSum + integer.valueof(ar.get('expr0'));
-            mapOfRegioncrmnthIE .put(string.valueOf(ar.get('Region__c')), regionSum);
+            mapOfRegioncrmnthIE .put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
             
             clusterSum = clusterSum + integer.valueof(ar.get('expr0'));
-            mapOfRegioncrmnthIE .put(string.valueOf(ar.get('Cluster__c')), clusterSum);                
+            mapOfRegioncrmnthIE .put(string.valueOf(ar.get('Supplier_Cluster__c')), clusterSum);                
             
-            mapOfRegioncrmnthIE .put(string.valueOf(ar.get('Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
+            mapOfRegioncrmnthIE .put(string.valueOf(ar.get('Supplier_Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
             
-            prevCluster = string.valueOf(ar.get('Cluster__c')); 
-            prevRegion = string.valueOf(ar.get('Region__c'));
+            prevCluster = string.valueOf(ar.get('Supplier_Cluster__c')); 
+            prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
         }
         
@@ -362,7 +367,7 @@ public without sharing class PQN_GlobalGeographyReport{
           
         xPSU = new List<AggregateResult>([Select SUM(Total_Volume_Of_pallets_Shipped__c) totalshipped,Year__c from PQN_Sourcing_Unit__c where Year__c=:string.valueof(system.Today().year()) and Month__c=:string.valueof(system.Today().month()) group by Year__c ]);
         
-        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Region__c,Cluster__c,Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Region__c != '' AND Year__c=: string.valueof(((system.Today().year()))) and MonthN__c=:string.valueof(system.Today().month())  group By Region__c,cluster__c,Sub_Cluster__c]);
+        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Region__c!= '' AND Year__c=: string.valueof(((system.Today().year()))) and MonthN__c=:string.valueof(system.Today().month())  group By Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c]);
         
         prevRegion = '';
         prevCluster = '';
@@ -373,24 +378,24 @@ public without sharing class PQN_GlobalGeographyReport{
         
         for(AggregateResult ar:ListAGG){
             
-            if (string.valueOf(ar.get('Region__c')) == prevRegion && string.valueOf(ar.get('Cluster__c')) != prevCluster){
+            if (string.valueOf(ar.get('Supplier_Region__c')) == prevRegion && string.valueOf(ar.get('Supplier_Cluster__c')) != prevCluster){
                 clusterSum = 0;
             } 
-            else if (string.valueOf(ar.get('Region__c')) != prevRegion){
+            else if (string.valueOf(ar.get('Supplier_Region__c')) != prevRegion){
                 regionSum = 0;
                 clusterSum = 0;
             }
                         
             regionSum = regionSum + integer.valueof(ar.get('expr0'));
-            mapOfRegioncrmnthtot .put(string.valueOf(ar.get('Region__c')), regionSum);
+            mapOfRegioncrmnthtot .put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
             
             clusterSum = clusterSum + integer.valueof(ar.get('expr0'));
-            mapOfRegioncrmnthtot .put(string.valueOf(ar.get('Cluster__c')), clusterSum);                
+            mapOfRegioncrmnthtot .put(string.valueOf(ar.get('Supplier_Cluster__c')), clusterSum);                
             
-            mapOfRegioncrmnthtot .put(string.valueOf(ar.get('Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
+            mapOfRegioncrmnthtot .put(string.valueOf(ar.get('Supplier_Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
             
-            prevCluster = string.valueOf(ar.get('Cluster__c')); 
-            prevRegion = string.valueOf(ar.get('Region__c'));
+            prevCluster = string.valueOf(ar.get('Supplier_Cluster__c')); 
+            prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
         }
         
@@ -414,7 +419,7 @@ public without sharing class PQN_GlobalGeographyReport{
           
         xPSU = new List<AggregateResult>([Select SUM(Total_Volume_Of_pallets_Shipped__c) totalshipped,Year__c from PQN_Sourcing_Unit__c where Year__c=:string.valueof(system.Today().year())  group by Year__c ]);
         
-        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Region__c,Cluster__c,Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Region__c != '' AND Year__c=: string.valueof(((system.Today().year())-1))  group By Region__c,cluster__c,Sub_Cluster__c]);
+        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Region__c!= '' AND Year__c=: string.valueof(((system.Today().year())-1))  group By Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c]);
         
         prevRegion = '';
         prevCluster = '';
@@ -425,24 +430,24 @@ public without sharing class PQN_GlobalGeographyReport{
         
         for(AggregateResult ar:ListAGG){
             
-            if (string.valueOf(ar.get('Region__c')) == prevRegion && string.valueOf(ar.get('Cluster__c')) != prevCluster){
+            if (string.valueOf(ar.get('Supplier_Region__c')) == prevRegion && string.valueOf(ar.get('Supplier_Cluster__c')) != prevCluster){
                 clusterSum = 0;
             } 
-            else if (string.valueOf(ar.get('Region__c')) != prevRegion){
+            else if (string.valueOf(ar.get('Supplier_Region__c')) != prevRegion){
                 regionSum = 0;
                 clusterSum = 0;
             }
                         
             regionSum = regionSum + integer.valueof(ar.get('expr0'));
-            mapOfRegionprevyrtot .put(string.valueOf(ar.get('Region__c')), regionSum);
+            mapOfRegionprevyrtot .put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
             
             clusterSum = clusterSum + integer.valueof(ar.get('expr0'));
-            mapOfRegionprevyrtot .put(string.valueOf(ar.get('Cluster__c')), clusterSum);                
+            mapOfRegionprevyrtot .put(string.valueOf(ar.get('Supplier_Cluster__c')), clusterSum);                
             
-            mapOfRegionprevyrtot .put(string.valueOf(ar.get('Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
+            mapOfRegionprevyrtot .put(string.valueOf(ar.get('Supplier_Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
             
-            prevCluster = string.valueOf(ar.get('Cluster__c')); 
-            prevRegion = string.valueOf(ar.get('Region__c'));
+            prevCluster = string.valueOf(ar.get('Supplier_Cluster__c')); 
+            prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
         }
         
@@ -466,7 +471,7 @@ public without sharing class PQN_GlobalGeographyReport{
           
         xPSU = new List<AggregateResult>([Select SUM(Total_Volume_Of_pallets_Shipped__c) totalshipped,Year__c from PQN_Sourcing_Unit__c where Year__c=:string.valueof(system.Today().year())  group by Year__c ]);
         
-        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Region__c,Cluster__c,Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Region__c != '' AND Year__c=: string.valueof(((system.Today().year())))  group By Region__c,cluster__c,Sub_Cluster__c]);
+        ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Region__c!= '' AND Year__c=: string.valueof(((system.Today().year())))  group By Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c]);
         
         prevRegion = '';
         prevCluster = '';
@@ -477,24 +482,24 @@ public without sharing class PQN_GlobalGeographyReport{
         
         for(AggregateResult ar:ListAGG){
             
-            if (string.valueOf(ar.get('Region__c')) == prevRegion && string.valueOf(ar.get('Cluster__c')) != prevCluster){
+            if (string.valueOf(ar.get('Supplier_Region__c')) == prevRegion && string.valueOf(ar.get('Supplier_Cluster__c')) != prevCluster){
                 clusterSum = 0;
             } 
-            else if (string.valueOf(ar.get('Region__c')) != prevRegion){
+            else if (string.valueOf(ar.get('Supplier_Region__c')) != prevRegion){
                 regionSum = 0;
                 clusterSum = 0;
             }
                         
             regionSum = regionSum + integer.valueof(ar.get('expr0'));
-            mapOfRegioncryeartot .put(string.valueOf(ar.get('Region__c')), regionSum);
+            mapOfRegioncryeartot .put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
             
             clusterSum = clusterSum + integer.valueof(ar.get('expr0'));
-            mapOfRegioncryeartot .put(string.valueOf(ar.get('Cluster__c')), clusterSum);                
+            mapOfRegioncryeartot .put(string.valueOf(ar.get('Supplier_Cluster__c')), clusterSum);                
             
-            mapOfRegioncryeartot .put(string.valueOf(ar.get('Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
+            mapOfRegioncryeartot .put(string.valueOf(ar.get('Supplier_Sub_Cluster__c')), integer.valueof(ar.get('expr0')));
             
-            prevCluster = string.valueOf(ar.get('Cluster__c')); 
-            prevRegion = string.valueOf(ar.get('Region__c'));
+            prevCluster = string.valueOf(ar.get('Supplier_Cluster__c')); 
+            prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
         }
         
@@ -531,6 +536,13 @@ public without sharing class PQN_GlobalGeographyReport{
               }
         }
         /**************** For Trend Calculation *****************/
+        
+         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
+             if(xA.child)
+             xChartdata.add(new PQN_chart(xA.Region,xA.cuYeardata ,xA.Trendper));
+
+         }
+        
         
     }
     
@@ -570,10 +582,13 @@ public without sharing class PQN_GlobalGeographyReport{
         
         public String chartXAxis{get;set;}
         public Integer chartdata {get;set;}
+        public Double linedata {get;set;}
                 
-        public PQN_chart( String chartXAxis,integer chartdata){
+        public PQN_chart( String chartXAxis,integer chartdata, Double linedata){
             this.chartXAxis= chartXAxis;
             this.chartdata= chartdata;
+            this.linedata= linedata;
+            
                      
         }
         

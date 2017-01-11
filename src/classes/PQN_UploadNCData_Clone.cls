@@ -16,11 +16,36 @@ global without sharing class PQN_UploadNCData_Clone{
         String errorDesc = '';
         List<Account> xAcc = new List<Account>();
         Map<String,Id> mapAcc = new Map<String,Id>();
+        
+        Map<String,PQN_Supplier__c> mapSupplier = new Map<String,PQN_Supplier__c>();
+        Map<String,PQN_Pallet_Loss_Tree__c> mapLossTree = new Map<String,PQN_Pallet_Loss_Tree__c>();
+        Map<String,PQN_Pallet_Quality_Non_Conformance__c> mapProducts = new Map<String,PQN_Pallet_Quality_Non_Conformance__c>();
         Set<String> accName = new Set<String>();
-        if(selectedFileType=='Unilever'){
-            for(PQN_Pallet_Quality_Non_Conformance__c xP : xPQNLIST){
+        
+        Set<String> productNos = new Set<String>();
+        Set<String> supplierALias = new Set<String>();
+        Set<String> lossCodes = new Set<String>();
+        
+        for(PQN_Pallet_Quality_Non_Conformance__c xP : xPQNLIST){
                 accName.add(xP.Reporting_DC__c);
-            }
+                productNos.add(xP.SKU__c);
+                supplierALias.add(xP.Supplier__c);
+                lossCodes.add(xP.Losses__c);
+         }
+         for(PQN_Pallet_Quality_Non_Conformance__c xP : [select id,Product_Category__c,Product_Name__c,Product_Group__c,SKU__c from PQN_Pallet_Quality_Non_Conformance__c where SKU__c =:productNos]){
+             mapProducts.put(xP.SKU__c,xP);
+         }
+         for(PQN_Supplier__c xSP: [Select Id,Name,Supplier_Alias__c,Supplier_Number__c,Supplier_Type__c from PQN_Supplier__c where Supplier_Alias__c =:supplierALias]){
+             mapSupplier.put(xSP.Supplier_Alias__c,xSP);
+         }
+         for(PQN_Pallet_Loss_Tree__c xLos: [SELECT Loss_Code__c,Loss_L1__c,Loss_L2__c,Loss_L3__c,Loss_L4__c,Name FROM PQN_Pallet_Loss_Tree__c where Name=:lossCodes order by Loss_Code__c]){
+             mapLossTree.put(xLos.Name ,xLos);
+         }
+         
+         // xSuppliers= [Select Id,Name,Supplier_Alias__c,Supplier_Number__c,Supplier_Type__c from PQN_Supplier__c where Supplier_Alias__c Like :tempInput ];
+         // select id,Product_Category__c,Product_Name__c,Product_Group__c,SKU__c from PQN_Pallet_Quality_Non_Conformance__c where SKU__c
+         // SELECT Loss_Code__c,Loss_L1__c,Loss_L2__c,Loss_L3__c,Loss_L4__c,Name FROM PQN_Pallet_Loss_Tree__c order by Loss_Code__c
+        if(selectedFileType=='Unilever'){
             for(Account xA : [Select Name, Id from Account where Name=:accName]){
                 mapAcc.put(xA.Name, xA.Id);
             }
@@ -68,11 +93,45 @@ global without sharing class PQN_UploadNCData_Clone{
             xP.SKU__c=(xP.SKU__c ==null || xP.SKU__c=='') ? '0' : xP.SKU__c;
             if(xP.Supplier__c.length()<1){
                 errorDesc +='Supplier__c can not be empty';
+            }else{
+                
+                if(mapSupplier.get(xP.Supplier__c)!=null){
+
+                }
+                else{
+                    errorDesc +='Supplier not found in system';
+                }
+            
             }
             
             if(xP.SKU__c.length()<1){
-                errorDesc +='SKU__c can not be empty';
+                errorDesc +='Product number(SKU) can not be empty';
+            }else{
+                
+                if(mapSupplier.get(xP.SKU__c)!=null){
+                
+                }
+                else{
+                    errorDesc +='Product number(SKU) not found in system';
+                }
+            
             }
+            
+            xP.Losses__c=(xP.Losses__c==null || xP.Losses__c=='') ? '0' : xP.Losses__c;
+            if(xP.Losses__c.length()<1){
+                errorDesc +='Loss Code can not be empty';
+            }else{
+                
+                if(mapSupplier.get(xP.Losses__c)!=null){
+
+                }
+                else{
+                    errorDesc +='Loss Code not found in system';
+                }
+            
+            }
+            
+            
             if(errorDesc.length()>0){
                 xP.Error_Description__c=errorDesc;
                 xP.Is_Error__c=true;

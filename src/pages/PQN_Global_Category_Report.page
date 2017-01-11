@@ -1,4 +1,78 @@
 <apex:page controller="PQN_GlobalCategoryReport" showHeader="false" readOnly="true">
+<div style="padding-left:200px;">
+    <apex:chart height="400" width="1000" data="{!xChartdata}">
+       <!--<apex:axis type="Numeric" position="left" fields="chartdata" title="Record Count"/>
+        <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Region"/>
+        <apex:barSeries orientation="vertical" axis="left" xField="chartXAxis" yField="chartdata"/>
+    </apex:chart>-->
+        <apex:axis type="Numeric" position="left" fields="linedata,linedata" title="Trend %" grid="true"/>
+        <apex:axis type="Numeric" position="right" fields="chartdata" title="NC Current Year"/>
+          <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Category"/>
+          <apex:lineSeries axis="left" fill="true" xField="chartXAxis" yField="linedata" markerType="cross" markerSize="4" markerFill="#FF0000"/>
+          <!--<apex:lineSeries axis="left" xField="chartXAxis" yField="linedata" markerType="circle" markerSize="4" markerFill="#8E35EF"/>-->
+        <apex:barSeries orientation="vertical" axis="right" xField="chartXAxis" yField="chartdata"/>
+    </apex:chart>
+    </div>
+<style>
+        
+
+        table {
+            width: 100%!important;
+        }
+
+        thead, tbody, tr, td, th { display: block; }
+
+        tr:after {
+            content: ' ';
+            display: block!important;
+            visibility: hidden!important;
+            clear: both!important;
+        }
+
+        thead th {
+            height: 60px!important;
+        }
+        
+        tbody td {
+            height: 30px!important;
+            //text-align: center;
+            
+        }
+
+        tbody {
+            height: 500px!important;
+            overflow-y: auto!important;
+        }
+
+        thead {
+            /* fallback */
+        }
+        tbody td, thead th {
+            width: 6%!important;
+            float: left!important;
+            white-space: normal!important;
+            
+        }
+
+        tbody td:first-child, thead th:first-child {
+            width: 15%!important;
+            float: left!important;
+        }
+        .RedBack{
+            background-color:#FF2B00!important;
+        }
+        .GreenBack{
+            background-color:#7CFC00!important;
+        }
+        
+        .Amber{
+            background-color:yellow!important;
+        }
+        tr.headerRow{
+            width:99%!important;
+        }
+        
+</style>
  <body>
     <div id="wrapper">
         <c:PQN_Navigation navigationName="Reports" subNavName="gcategory"/>
@@ -6,7 +80,7 @@
             <div class="container-fluid">
  <apex:form >
       <apex:pageBlock >
-          <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" columnsWidth="30%, 5%, 5%, 5%, 5%, 5%, 5%, 5%, 5%, 5%, 5%, 5% ,5%,5%,5%" >
+          <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" >
               <apex:column headerValue="" >
                   <apex:outputText value="{!xD.Category}" style="font-weight:800" rendered="{!xD.child}"/>
                   <apex:outputText value="{!empty}" rendered="{!xD.child}" />
@@ -32,7 +106,7 @@
               <apex:column headerValue="CY SU" value="{!xD.cuYeardata}" />
               <apex:column headerValue="CY SU %" value="{!xD.cuYearPercent}" />
               <apex:column headerValue="CY Total" value="{!xD.cuYeardatatot }" />
-              <apex:column headerValue="Trend %" value="{!xD.Trendper}" />
+              <apex:column headerValue="Trend %" value="{!xD.Trendper}" styleClass="{!if(xD.Trendper!=null, if(xD.cuYearPercent>xD.preYearPercent,'RedBack','GreenBack'),'empty')}" />
               
                             
           </apex:pageblockTable>
@@ -45,4 +119,9 @@
         <!-- /#page-wrapper -->
     </div>
 </body> 
+<style>
+        [hidden],template {
+            display: block!important;
+        }
+    </style>
 </apex:page>

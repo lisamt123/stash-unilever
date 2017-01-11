@@ -1,9 +1,17 @@
 <apex:page controller="PQN_GlobalSUReport" showHeader="false" readOnly="true">
 <div style="padding-left:200px;">
     <apex:chart height="400" width="1000" data="{!xChartdata}">
-       <apex:axis type="Numeric" position="left" fields="chartdata" title="Record Count"/>
+       <!--<apex:axis type="Numeric" position="left" fields="chartdata" title="Record Count"/>
         <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Cluster"/>
-        <apex:barSeries orientation="vertical" axis="left" xField="chartXAxis" yField="chartdata"/>
+        <apex:barSeries orientation="vertical" axis="left" xField="chartXAxis" yField="chartdata"/>-->
+        
+        <apex:axis type="Numeric" position="left" fields="linedata,linedata" title="Trend %" grid="true"/>
+        <apex:axis type="Numeric" position="right" fields="chartdata" title="NC Current Year"/>
+        <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Cluster"/>
+        <apex:lineSeries axis="left" fill="true" xField="chartXAxis" yField="linedata" markerType="cross" markerSize="4" markerFill="#FF0000"/>
+        <!--<apex:lineSeries axis="left" xField="chartXAxis" yField="linedata" markerType="circle" markerSize="4" markerFill="#8E35EF"/>-->
+        <apex:barSeries orientation="vertical" axis="right" xField="chartXAxis" yField="chartdata"/>
+
     </apex:chart>
     </div>
 

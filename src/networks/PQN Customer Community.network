@@ -3,7 +3,6 @@
     <allowMembersToFlag>false</allowMembersToFlag>
     <branding>
         <loginFooterText>salesforce.com</loginFooterText>
-        <loginLogo>Communities_Shared_Document_Folder/U_png1.png</loginLogo>
         <primaryColor>#1797C0</primaryColor>
         <primaryComplementColor>#FFFFFF</primaryComplementColor>
         <quaternaryColor>#B1BAC1</quaternaryColor>
