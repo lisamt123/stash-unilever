@@ -1,4 +1,3 @@
 src
 src/groups/FS_DailySales_Sales_Manager_RU.group
 src/wave/FS_Daily_Sales_RU_Leaderships.wapp
-src/permissionsets/FS_Wave_Analytics.permissionset
