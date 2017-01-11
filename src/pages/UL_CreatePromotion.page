@@ -1,165 +1,172 @@
 <apex:page standardController="ACCL__Promotion__c"
-    extensions="UL_CreatePromotionController"
-    title="{!$ObjectType.ACCL__Promotion__c.label} {!$Label.UL_EDIT}:   {!$ObjectType.ACCL__Promotion__c.label}" action="{!redirectPage}" id="promotionpage">
+           extensions="UL_CreatePromotionController"
+           title="{!$ObjectType.ACCL__Promotion__c.label} {!$Label.UL_EDIT}:   {!$ObjectType.ACCL__Promotion__c.label}" action="{!redirectPage}" id="promotionpage">
     <apex:form id="theForm">    
         <apex:outputPanel id="pageMessages">
             <apex:pageMessages id="errormesg"/>
         </apex:outputPanel>
-
+        
         <apex:pageBlock id="theBlock" mode="edit">       
             <apex:pageBlockButtons id="theButtons" location="both">
                 <apex:commandButton id="btnSave" value="{!$Label.UL_SAVE}"
-                    action="{!save}" />
+                                    action="{!save}" />
                 <apex:commandButton id="btnCancel"
-                    value="{!$Label.UL_CANCEL}" action="{!cancel}"
-                    immediate="true" />
+                                    value="{!$Label.UL_CANCEL}" action="{!cancel}"
+                                    immediate="true" />
             </apex:pageBlockButtons>
-
+            
             <apex:pageBlockSection id="theSection"  showHeader="false"
-                collapsible="false" columns="1">
+                                   collapsible="false" columns="1">
                 
-              
-               
+                
+                
                 <apex:pageBlockSectionItem id="promotionTemp">
                     <apex:outputLabel value="{!$ObjectType.ACCL__Promotion__c.Fields.ACCL__Promotion_Template__c.Label}"
-                        for="PromotionTemplate" id="tempname" />
+                                      for="PromotionTemplate" id="tempname" />
                     <apex:actionRegion id="tempReg">
                         <apex:outputPanel styleClass="requiredInput" layout="block" id="tempPanel">
                             <apex:outputPanel styleClass="requiredBlock" layout="block" id="tempPanel1"/>
                             <apex:selectList id="PromotionTemplate"
-                                value="{!relatedRecord.ACCL__Promotion_Template__c}"
-                                multiselect="false" size="1" required="true">                           
+                                             value="{!relatedRecord.ACCL__Promotion_Template__c}"
+                                             multiselect="false" size="1" required="true">                           
                                 <apex:selectOptions value="{!PromotionTemplates}" id="listTemps"/>
-                           <apex:actionSupport id="temp_supp" event="onchange" action="{!controllFieldsWithTemplates}" reRender="pDetails" status="actStatusId"/>    
+                                <apex:actionSupport id="temp_supp" event="onchange" action="{!controllFieldsWithTemplates}" reRender="pDetails" status="actStatusId"/>    
                             </apex:selectList>
                             <apex:actionStatus id="actStatusId" >
                                 <apex:facet name="start">
-                                  <img src="/img/loading.gif" />                    
+                                    <img src="/img/loading.gif" />                    
                                 </apex:facet>
                             </apex:actionStatus>
-                             
-                           
+                            
+                            
                         </apex:outputPanel>
                     </apex:actionRegion>
                 </apex:pageBlockSectionItem>
-
-
-              
-
+                
+                
+                
+                
             </apex:pageBlockSection>
             <apex:pageBlockSection title="{!$Label.UL_PROMOTION_DETAILS}" collapsible="false"
-                columns="1" id="pDetails">
+                                   columns="1" id="pDetails">
                 
                 <apex:pageBlockSectionItem id="name" rendered="{! If(isForMorket || isForNational ,true,false) }"> 
                     <apex:outputLabel id="nameLabel" value="{!$Label.UL_Name}" for="namefield"/>
-                        <apex:inputField value="{!relatedRecord.ACCL__Slogan_Language_1__c}" required="true" id="namefield">                            
-                        </apex:inputField>
-                                       
+                    <apex:inputField value="{!relatedRecord.ACCL__Slogan_Language_1__c}" required="true" id="namefield">                            
+                    </apex:inputField>
+                    
                 </apex:pageBlockSectionItem>
                 
                 <apex:pageBlockSectionItem id="category" rendered="{!isForMorket}"> 
                     <apex:outputLabel id="categoryLabel" value="{!$ObjectType.ACCL__Promotion__c.Fields.UL_Category__c.Label}" for="categoryField"/>
-                        <apex:inputField value="{!relatedRecord.UL_Category__c}" required="true" id="categoryField">                            
-                        </apex:inputField>
-                                       
+                    <apex:inputField value="{!relatedRecord.UL_Category__c}" required="true" id="categoryField">                            
+                    </apex:inputField>
+                    
                 </apex:pageBlockSectionItem>
                 
                 <apex:pageBlockSectionItem id="brand" rendered="{!isForMorket}"> 
                     <apex:outputLabel id="brandLabel" value="{!$ObjectType.ACCL__Promotion__c.Fields.UL_Brand__c.Label}" for="brandName"/>
-                        <apex:inputField value="{!relatedRecord.UL_Brand__c}"  id="brandName">                            
-                        </apex:inputField>
-                                       
+                    <apex:inputField value="{!relatedRecord.UL_Brand__c}"  id="brandName">                            
+                    </apex:inputField>
+                    
                 </apex:pageBlockSectionItem>
                 
-                <apex:pageBlockSectionItem id="customers" rendered="{! If(isForMorket || isForPromotion  ,true,false) }">
-                 <apex:outputPanel id="AnchorLabelBlock">
-                    <apex:outputLabel value="{!$ObjectType.ACCL__Promotion__c.Fields.UL_Account__c.Label}"
-                        for="Customer" id="customerslabel" />
-               </apex:outputPanel>
-                         <apex:actionRegion id="customersReg">
-                    <apex:outputPanel id="AnchorListBlock" styleClass="requiredInput" layout="block"  >
-                        <apex:outputPanel styleClass="requiredBlock" layout="block" id="customersPanel" rendered="{!!isForMorket}"/>
-                        <apex:selectList id="Customer"
-                            value="{!planingLevelCustomers}"
-                            multiselect="false" size="1" required="true">
-                            <apex:actionSupport event="onchange" rerender="DefaultListBlock,Del_profile" action="{!fetchingDefaultsoldto}" id="custSuport"/>
-                            <apex:selectOptions value="{!Customers}" id="custOpt"/>
-                        </apex:selectList>
+                <apex:pageBlockSectionItem id="customers" rendered="{! If(isForMorket || isForPromotion || isForLTA ,true,false) }">
+                    <apex:outputPanel id="AnchorLabelBlock">
+                        <apex:outputLabel value="{!$ObjectType.ACCL__Promotion__c.Fields.UL_Account__c.Label}"
+                                          for="Customer" id="customerslabel" />
                     </apex:outputPanel>
-                     </apex:actionRegion>
+                    <apex:actionRegion id="customersReg">
+                        <apex:outputPanel id="AnchorListBlock" styleClass="requiredInput" layout="block"  >
+                            <apex:outputPanel styleClass="requiredBlock" layout="block" id="customersPanel" rendered="{!!isForMorket}"/>
+                            <apex:selectList id="Customer"
+                                             value="{!planingLevelCustomers}"
+                                             multiselect="false" size="1" required="true">
+                                <apex:actionSupport event="onchange" rerender="DefaultListBlock,Del_profile" action="{!fetchingDefaultsoldto}" id="custSuport"/>
+                                <apex:selectOptions value="{!Customers}" id="custOpt"/>
+                            </apex:selectList>
+                        </apex:outputPanel>
+                    </apex:actionRegion>
                 </apex:pageBlockSectionItem>
                 
-                 <apex:pageBlockSectionItem id="soldCustItem" rendered="{!isForPromotion}">
+                <apex:pageBlockSectionItem id="soldCustItem" rendered="{! If(isForPromotion || isForLTA ,true,false) }">
                     <apex:outputLabel value="{!$Label.UL_SOLD_TO}"
-                        for="defaultsoldto" id="soldCustLabel"/>
-                     <apex:outputPanel id="DefaultListBlock" styleClass="requiredInput" layout="block">
+                                      for="defaultsoldto" id="soldCustLabel"/>
+                    <apex:outputPanel id="DefaultListBlock" styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" id="soldCustPanel"/>
                         <apex:actionRegion id="sold_reg" >
-                        <apex:selectList value="{!defaultsoldto}"
-                            multiselect="false" size="1" required="true" id="soldto_list">
-                            <apex:actionSupport event="onchange" rerender=""  action="{!DafaultSoldToSet}" status="defaultCustomer" id="soldto_supp"/>  
-                            <apex:selectOptions value="{!defultsoldtocustomers}" id="soldCust"/>
-                        </apex:selectList>
+                            <apex:selectList value="{!defaultsoldto}"
+                                             multiselect="false" size="1" required="true" id="soldto_list">
+                                <apex:actionSupport event="onchange" rerender=""  action="{!DafaultSoldToSet}" status="defaultCustomer" id="soldto_supp"/>  
+                                <apex:selectOptions value="{!defultsoldtocustomers}" id="soldCust"/>
+                            </apex:selectList>
                         </apex:actionRegion>
                     </apex:outputPanel>
                     
                 </apex:pageBlockSectionItem>
-               
+                
                 <apex:pageBlockSectionItem id="d_profileItem" rendered="{!isForPromotion}">
                     <apex:outputLabel value="{!$ObjectType.ACCL__Promotion__c.Fields.UL_Delivery_Profile__c.Label}"
-                        for="DeliverProfile" id="d_profile"/>
+                                      for="DeliverProfile" id="d_profile"/>
                     <apex:outputPanel id="Del_profile">
-                    <apex:actionRegion id="dp_rg">
-                        <apex:selectList id="DeliverProfile"
-                            value="{!relatedRecord.UL_Delivery_Profile__c}"
-                            multiselect="false" size="1">
-                            <apex:selectOption itemValue="None" itemLabel="None" id="defult_dp"></apex:selectOption>
-                            <apex:selectOptions value="{!deliveryProfiles}" id="Default"></apex:selectOptions>
-                            <apex:actionSupport event="onchange" rerender=""  action="{!DeliveryProfileSet}" status="defaultCustomer" id="dp_supp"/>  
-                        </apex:selectList>
+                        <apex:actionRegion id="dp_rg">
+                            <apex:selectList id="DeliverProfile"
+                                             value="{!relatedRecord.UL_Delivery_Profile__c}"
+                                             multiselect="false" size="1">
+                                <apex:selectOption itemValue="None" itemLabel="None" id="defult_dp"></apex:selectOption>
+                                <apex:selectOptions value="{!deliveryProfiles}" id="Default"></apex:selectOptions>
+                                <apex:actionSupport event="onchange" rerender=""  action="{!DeliveryProfileSet}" status="defaultCustomer" id="dp_supp"/>  
+                            </apex:selectList>
                         </apex:actionRegion>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-                 
-                  
-                 <apex:pageBlockSectionItem id="datefrom" rendered="{!isForPromotion}"> 
-                 
+                
+                
+                <apex:pageBlockSectionItem id="datefrom" rendered="{!isForPromotion}"> 
+                    
                     <apex:outputLabel id="datefromLabel" value="{!$ObjectType.ACCL__Promotion__c.Fields.ACCL__Placement_Date_From__c.Label}" for="Date_From"/>
                     <apex:actionRegion id="date_rg">
                         <apex:inputField showDatePicker="true" value="{!relatedRecord.ACCL__Placement_Date_From__c}" required="true" id="Date_From">
                             <apex:actionSupport id="df_supp" event="onchange" rerender="AnchorLabelBlock,AnchorListBlock,DefaultListBlock,Del_profile"  action="{!loadCustomers}"/>  
                         </apex:inputField>
                     </apex:actionRegion>    
-                             
+                    
                 </apex:pageBlockSectionItem>
-                  
-                <apex:pageBlockSectionItem id="startdate" rendered="{! If(isForMorket || isForNational ,true,false) }"> 
+                
+                <apex:pageBlockSectionItem id="startdate" rendered="{! If(isForMorket || isForNational || isForLTA ,true,false) }"> 
                     <apex:outputLabel id="startdateLabel" value="{!$ObjectType.ACCL__Promotion__c.Fields.ACCL__Date_From__c.Label}" for="startdateField"/>
-                       <apex:actionRegion id="startDateReg">
+                    <apex:actionRegion id="startDateReg">
                         <apex:inputField showDatePicker="true" value="{!relatedRecord.ACCL__Date_From__c}" required="true" id="startdateField">                            
-                        <apex:actionSupport id="sd_supp" event="onchange" rerender="endDate"  action="{!dateThruPopulate}" status="actStatusId"/>  
+                            <apex:actionSupport id="sd_supp" event="onchange" rerender="endDate"  action="{!dateThruPopulate}" status="actStatusId"/>  
                         </apex:inputField>
-                      </apex:actionRegion>                
+                    </apex:actionRegion>                
                 </apex:pageBlockSectionItem> 
-              
-                  <apex:pageBlockSectionItem id="datethru" rendered="{! If(isForMorket || isForNational ,true,false) }">                  
+                
+                <apex:pageBlockSectionItem id="datethru" rendered="{! If(isForMorket || isForNational || isForLTA,true,false) }">                  
                     <apex:outputLabel id="end_date" value="{!$ObjectType.ACCL__Promotion__c.Fields.ACCL__Date_Thru__c.Label}" for="Date_Thru"/>
-                       <apex:outputPanel id="endDate" styleClass="requiredInput" layout="block">
+                    <apex:outputPanel id="endDate" styleClass="requiredInput" layout="block">
                         <apex:inputField showDatePicker="true" value="{!relatedRecord.ACCL__Date_Thru__c}" required="true" id="Date_Thru">                            
-                       
+                            
                         </apex:inputField>
-                  </apex:outputPanel>                   
+                    </apex:outputPanel>                   
                 </apex:pageBlockSectionItem>      
-               
+                
                 
             </apex:pageBlockSection>
             
-           
+            
             
         </apex:pageBlock>
-         <script>
-                    function setFocus(){}
-                </script>
+        <script>
+        function setFocus(){}
+        </script>
+        <!-- TPM 1759 for hiding the hyper link -->
+        <style type="text/css">
+            .dateFormat{
+                visibility: hidden;
+            }
+        </style>
+
     </apex:form>
-   
+    
 </apex:page>
