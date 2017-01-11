@@ -160,6 +160,7 @@
               result = null;
            }
        }catch(Exception ex){
+	     throw ex;
           UL_Utility.logError(ex, UserInfo.getUserId());
        }
       
