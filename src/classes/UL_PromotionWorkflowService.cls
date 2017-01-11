@@ -13,6 +13,10 @@
     global without sharing class UL_PromotionWorkflowService{
         public static final String FINANCE_QUEUE = 'Finance Check Dynamic Queue';
         public static final String MANAGER_QUEUE = 'Manager Check Dynamic Queue';
+        public static final string Active = 'Active';
+        public static final string STATUS_APPROVE = 'Approve' ;
+        public static final string STATUS_REJECT = 'Reject' ;
+        public static  Id mainApproverId ;
         
         /*******************************************************************
          Purpose: Generic enum to provide values  
@@ -25,6 +29,8 @@
             manager,
             finance,
             SoCo_Promotion_Submit,
+            SoCo_Promotion_Approved,
+            SoCo_Promotion_Rejected,
             UL_Finance_Check,
             queue
         }
@@ -35,7 +41,7 @@
         Returns: N/A
         Throws : N/A 
         ********************************************************************/
-        public static void submitForApproval(Id promoId,List<ACCL__Promotion__c> promotionLst,id queueId){
+        public static void submitForApproval(Id promoId,List<ACCL__Promotion__c> promotionLst,Id queueId, Boolean emailResponse){
             String custSetDataSetName = UL_Utility.STRING_NULL;
             String state = promotionLst[0].UL_Current_Status__c ;
             try{
@@ -47,15 +53,14 @@
                     }
                 }
                 
-                if(promotionLst.size() > 0 && String.isNotBlank(promotionLst[0].ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c)){
-                    custSetDataSetName = promotionLst[0].ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c + '-' + promotionLst[0].ACCL__Sales_Org__c ;
-                }
+                /*if(promotionLst.size() > 0 && String.isNotBlank(promotionLst[0].ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c)){
+                    custSetDataSetName = promotionLst[0].ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c + UL_Utility.HYPHEN + promotionLst[0].ACCL__Sales_Org__c ;
+                }*/
             
-                if(String.isNotBlank(custSetDataSetName)){      
-                    UL_PromotionTemplate_ApprovalProcess__c apprProcCustSetRec = UL_PromotionTemplate_ApprovalProcess__c.getInstance(custSetDataSetName)  ;
+                //if(String.isNotBlank(custSetDataSetName)){      
+                    //UL_PromotionTemplate_ApprovalProcess__c apprProcCustSetRec = UL_PromotionTemplate_ApprovalProcess__c.getInstance(custSetDataSetName)  ;
                     
-                    if(apprProcCustSetRec  != null && String.isNotBlank(apprProcCustSetRec.UL_Approval_Process__c)){        
-                        
+                    //if(apprProcCustSetRec  != null && String.isNotBlank(apprProcCustSetRec.UL_Approval_Process__c)){                        
                         // Create an approval request for the account
                         Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
                         req1.setComments('Submitting request for approval.');
@@ -63,19 +68,23 @@
                         
                         // Submit on behalf of a specific submitter
                         req1.setSubmitterId(submitter.Id);              
-                        
+                        List<ProcessDefinition> apprProcLst = new List<ProcessDefinition>() ;
+                        apprProcLst = [SELECT Name,Id FROM ProcessDefinition WHERE State=:ACTIVE AND Name =: promotionLst[0].ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c] ;
+                        Id apprProcId = apprProcLst[0].Id ;
                         // Submit the record to specific process and skip the criteria evaluation
-                        req1.setProcessDefinitionNameOrId(apprProcCustSetRec.UL_Approval_Process__c);
+                        req1.setProcessDefinitionNameOrId(apprProcId);
                         req1.setNextApproverIds(new list<id> {queueid});                
                         
                         
                         // Submit the approval request for the account
                         Approval.ProcessResult result = Approval.process(req1);  
                         unlockPromotion( promoId) ;
-                        sendEmail(promoId, queueid, UL_Utility.STATUS_SUBMIT.toLowerCase()) ;
+                        if(promotionLst[0].UL_ThresholdViolated__c && !emailResponse){
+                            sendEmail(promoId, queueid, UL_Utility.STATUS_SUBMIT.toLowerCase()) ;
                         }
+                        //}
                                             
-                 }
+                 //}
             }catch(Exception ex){
                  UL_Utility.logError(ex, UserInfo.getUserId());
             } 
@@ -103,7 +112,7 @@
      Returns: Workflow Item Id
      Throws : N/A 
     ********************************************************************/
-    public static Id approveWorkflow(Id promoId, List<ACCL__Promotion__c> promotionLst,String currentStatus){
+    public static Id approveWorkflow(Id promoId, List<ACCL__Promotion__c> promotionLst,String currentStatus, Boolean emailResponse){
         List<ProcessInstancenode> processInstanceNodeLst = new List<ProcessInstancenode>() ;
         list<Id> nextApproverId = new list<id>() ;
         Id queueId = UL_Utility.NULL_ID;
@@ -126,17 +135,22 @@
                 req.setNextApproverIds(new Id[] {promotionLst[0].CreatedById});
             }
             
-            if(promotionLst[0].UL_ThresholdViolated__c){
-                processInstanceNodeLst = [SELECT ProcessNodeName, ProcessNodeid, ProcessInstanceId,NodeStatus FROM ProcessInstancenode WHERE Processinstance.targetobjectid =: promoId 
-                                    AND ProcessNode.DeveloperName =: UtilityEnum.UL_Finance_Check.Name() AND NodeStatus =: UL_Utility.STATUS_PENDING LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())] ;
-                
+            if(promotionLst[0].UL_ThresholdViolated__c && !emailResponse){
+                //processInstanceNodeLst = [SELECT ProcessNodeName, ProcessNodeid, ProcessInstanceId,NodeStatus FROM ProcessInstanceNode WHERE Processinstance.targetobjectid =: promoId 
+                  //                  AND ProcessNode.DeveloperName =: UtilityEnum.UL_Finance_Check.Name() AND NodeStatus =: UL_Utility.STATUS_PENDING LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())] ;
+                processInstanceNodeLst = [SELECT ProcessNodeName, ProcessNodeid, ProcessNode.DeveloperName,ProcessInstanceId,NodeStatus FROM ProcessInstanceNode WHERE Processinstance.targetobjectid =: promoId 
+                                    AND NodeStatus =: UL_Utility.STATUS_PENDING LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())] ;
+                                    
                 if(processInstanceNodeLst.size() > 0){  
-                if(currentStatus!=null && currentStatus.containsIgnoreCase(UL_Utility.STATUS_FINANCE_CHECK.toLowerCase())){        
-                   nextApproverId = getApproverIds(promoId, UL_Utility.ROLE_ACCOUNT_MANAGER);
-                   queueId = addApproverstoQueue(promoId,nextApproverId, UL_Utility.ROLE_ACCOUNT_MANAGER.capitalize());
-                   }           
-                             
-                    req.setNextApproverIds(new list<id>{queueId});
+                    for(ProcessInstanceNode procInstNode : processInstanceNodeLst) {
+                        if(procInstNode.ProcessNode.DeveloperName.equalsIgnoreCase(UtilityEnum.UL_Finance_Check.Name())){
+                            if(currentStatus!=null && currentStatus.containsIgnoreCase(UL_Utility.STATUS_FINANCE_CHECK.toLowerCase())){        
+                               nextApproverId = getApproverIds(promoId, UL_Utility.ROLE_ACCOUNT_MANAGER);
+                               queueId = addApproverstoQueue(promoId,nextApproverId, UL_Utility.ROLE_ACCOUNT_MANAGER.capitalize());                            
+                            }
+                            req.setNextApproverIds(new list<id>{queueId});
+                        }
+                    }
                 }            
             
                 List<ProcessInstanceWorkitem> processInstanceWorkItemLst = new List<ProcessInstanceWorkitem>() ;
@@ -164,6 +178,9 @@
                 // Submit the request for approval
                 Approval.ProcessResult result =  Approval.process(req);
                 workItemId = getWorkItemId(promoId);
+                if(workItemId != null && promotionLst[0].UL_ThresholdViolated__c && processInstanceNodeLst[0].ProcessNode.DeveloperName.equalsIgnoreCase(UtilityEnum.UL_Finance_Check.Name())){
+                    sendEmail(promoId, mainApproverId, UL_Utility.STATUS_APPROVE.toLowerCase()) ;
+                }
             }
         }catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
@@ -201,7 +218,7 @@
      Returns: N/A
      Throws : N/A 
     ********************************************************************/
-    public static void rejectWorkflow(Id promoId, List<ACCL__Promotion__c> promotionLst)
+    public static void rejectWorkflow(Id promoId, List<ACCL__Promotion__c> promotionLst, Boolean emailResponse)
     {
         Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
         req.setComments('Rejected request');
@@ -223,6 +240,7 @@
                 req.setWorkitemId(workItemId);
                 // Submit the request for approval
                 Approval.ProcessResult result =  Approval.process(req);
+                sendEmail(promoId, promotionLst[0].CreatedById, STATUS_REJECT) ;
             }
         }catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
@@ -243,17 +261,22 @@
             for(ACCL__Promotion__c promuser : [SELECT CreatedBy.UL_Finance_Analyst__c, CreatedBy.UL_Finance_Analyst__r.userrole.name,CreatedBy.UL_Finance_Manager__c,CreatedBy.UL_Finance_Manager__r.userrole.name,CreatedBy.managerid,CreatedBy.manager.userrole.name FROM ACCL__Promotion__c WHERE Id =: promotionId LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())]){
                 if(promuser.CreatedBy.UL_Finance_Analyst__r.userrole.name==userRole){
                     approverIds.add(promuser.CreatedBy.UL_Finance_Analyst__c);
-                    sendEmail(promotionId,promuser.CreatedBy.UL_Finance_Analyst__c, UL_Utility.STATUS_SUBMIT.toLowerCase()) ;
+                    //sendEmail(promotionId,promuser.CreatedBy.UL_Finance_Analyst__c, UL_Utility.STATUS_SUBMIT.toLowerCase()) ;
                 }
                 
                 if(promuser.CreatedBy.UL_Finance_manager__r.userrole.name==userRole){
                     approverIds.add(promuser.CreatedBy.UL_Finance_Manager__c);
-                    sendEmail(promotionId,promuser.CreatedBy.UL_Finance_Manager__c, UL_Utility.STATUS_SUBMIT.toLowerCase()) ;
+                    //sendEmail(promotionId,promuser.CreatedBy.UL_Finance_Manager__c, UL_Utility.STATUS_SUBMIT.toLowerCase()) ;
                 }
                 
                 if(promuser.CreatedBy.manager.userrole.name.containsIgnorecase(userRole)){
                     approverIds.add(promuser.CreatedBy.managerid);
+                    //sendEmail(promotionId,promuser.CreatedBy.manager, UL_Utility.STATUS_SUBMIT.toLowerCase()) ;
                 }
+            }
+            
+            for(Id apprId : approverIds){
+                mainApproverId = apprId ;
             }
             
             for(UL_UserCustomerProduct__c categoryUser : [SELECT User__c,User__r.userrole.name FROM UL_UserCustomerProduct__c WHERE Product__c IN (SELECT Product__c FROM UL_PromotionCategory__c WHERE Promotion__c =: promotionId) LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())]){
@@ -340,9 +363,17 @@
          Messaging.SingleEmailMessage mailMessage = new Messaging.SingleEmailMessage();
          try{
              List<EmailTemplate> emailTemplateList = new List<EmailTemplate>() ;
-             if(actionStr.equalsIgnoreCase( UL_Utility.STATUS_SUBMIT.toLowerCase())){
+             
+             if(actionStr.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.toLowerCase())){
                 emailTemplateList = [SELECT Id, Name FROM EmailTemplate WHERE Name =: UtilityEnum.SoCo_Promotion_Submit.Name() LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())] ;
              }
+             if(actionStr.equalsIgnoreCase(STATUS_APPROVE)){
+                emailTemplateList = [SELECT Id, Name FROM EmailTemplate WHERE Name =: UtilityEnum.SoCo_Promotion_Approved.Name() LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())] ;
+             }
+             if(actionStr.equalsIgnoreCase(STATUS_REJECT)){
+                emailTemplateList = [SELECT Id, Name FROM EmailTemplate WHERE Name =: UtilityEnum.SoCo_Promotion_Rejected.Name() LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())] ;
+             }
+             
              if(!emailTemplateList.isEmpty()){
                  mailMessage.setTemplateId(emailTemplateList[0].Id);
                  mailMessage.setWhatId(promotionId);

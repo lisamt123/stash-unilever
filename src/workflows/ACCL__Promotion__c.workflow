@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>UL_SoCo_Workflow_Approved</fullName>
+        <description>SoCo Workflow - Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/UL_SoCo_Promotion_Approved</template>
+    </alerts>
     <fieldUpdates>
         <fullName>Org_Update</fullName>
         <field>UL_Sales_Organization__c</field>
@@ -18,20 +28,20 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
-	<fieldUpdates>
-        <fullName>UL_CurrentStatus_DirectorCheck</fullName>
-        <field>UL_Current_Status__c</field>
-        <literalValue>Director Check</literalValue>
-        <name>CurrentStatus_DirectorCheck</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-	<fieldUpdates>
+    <fieldUpdates>
         <fullName>UL_CurrentStatus_BandedPackApproved</fullName>
         <field>UL_Current_Status__c</field>
         <literalValue>Banded Pack Approved</literalValue>
         <name>CurrentStatus_BandedPackApproved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UL_CurrentStatus_DirectorCheck</fullName>
+        <field>UL_Current_Status__c</field>
+        <literalValue>Director Check</literalValue>
+        <name>CurrentStatus_DirectorCheck</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -151,14 +161,15 @@
     <fieldUpdates>
         <fullName>UL_Update_Slogan</fullName>
         <field>ACCL__Slogan_Language_1__c</field>
-        <formula>UL_Account__r.Name+&apos;-&apos;+  UL_Category__c +&apos;-&apos;+   UL_Brand__c +&apos;-&apos;+TEXT(UL_Mechanic__c) +&apos;-&apos;+  TEXT(UL_Sub_Mechanic__c) +&apos;-&apos;+  TEXT(UL_Feature__c) +&apos;-&apos;+ TEXT(DAY(ACCL__Placement_Date_From__c)) +&apos;/&apos;+ TEXT(MONTH(ACCL__Placement_Date_From__c))+&apos;/&apos;+ TEXT(YEAR(ACCL__Placement_Date_From__c))  +&apos;-&apos;+ 
-TEXT(DAY(ACCL__Placement_Date_Thru__c)) +&apos;/&apos;+ TEXT(MONTH(ACCL__Placement_Date_Thru__c))+&apos;/&apos;+ TEXT(YEAR(ACCL__Placement_Date_Thru__c))  +&apos;-&apos;+ UL_Free_Text__c</formula>
+        <formula>IF(  ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c,&apos;LTA&apos; ) ,UL_Account__r.Name+&apos;-&apos;+  UL_Category__c +&apos;-&apos;+   UL_Brand__c +&apos;-&apos;+TEXT(UL_Feature__c) +&apos;-&apos;+ TEXT(DAY(ACCL__Placement_Date_From__c)) +&apos;/&apos;+ TEXT(MONTH(ACCL__Placement_Date_From__c))+&apos;/&apos;+ TEXT(YEAR(ACCL__Placement_Date_From__c))  +&apos;-&apos;+ 
+TEXT(DAY(ACCL__Placement_Date_Thru__c)) +&apos;/&apos;+ TEXT(MONTH(ACCL__Placement_Date_Thru__c))+&apos;/&apos;+ TEXT(YEAR(ACCL__Placement_Date_Thru__c))  +&apos;-&apos;+
+UL_Free_Text__c, UL_Account__r.Name+&apos;-&apos;+  UL_Category__c +&apos;-&apos;+   UL_Brand__c +&apos;-&apos;+TEXT(UL_Mechanic__c) +&apos;-&apos;+  TEXT(UL_Sub_Mechanic__c) +&apos;-&apos;+  TEXT(UL_Feature__c) +&apos;-&apos;+ TEXT(DAY(ACCL__Placement_Date_From__c)) +&apos;/&apos;+ TEXT(MONTH(ACCL__Placement_Date_From__c))+&apos;/&apos;+ TEXT(YEAR(ACCL__Placement_Date_From__c))  +&apos;-&apos;+ 
+TEXT(DAY(ACCL__Placement_Date_Thru__c)) +&apos;/&apos;+ TEXT(MONTH(ACCL__Placement_Date_Thru__c))+&apos;/&apos;+ TEXT(YEAR(ACCL__Placement_Date_Thru__c))  +&apos;-&apos;+ UL_Free_Text__c)</formula>
         <name>UL_Update Slogan</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-	
     <rules>
         <fullName>ACCL__Update Promotion Record Type</fullName>
         <active>false</active>
