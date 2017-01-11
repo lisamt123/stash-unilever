@@ -20,9 +20,8 @@ mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">We have noticed
 records that you have an outstanding task.</span></p>
 
 <p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
-mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">Could you please
-complete the {!FAU_Milestone_Participant__c.FAU_Milestone__c} as soon as
-possible on {!FAU_Milestone_Participant__c.FAU_Front_End_Link__c}</span></p>
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><span style="font-size:10.0pt; font-family:&quot;Arial&quot;,sans-serif; color:black">Please complete the</span> {!FAU_Milestone_Participant__c.FAU_Milestone__c} as soon as
+possible on {!FAU_Milestone_Participant__c.FAU_Front_End_Link__c} To mark the task as completed and turn off this task reminder, please check the corresponding box on the link.<br></span></p>
 
 <p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
 mso-fareast-font-family:&quot;Times New Roman&quot;;color:black;mso-bidi-font-weight:
