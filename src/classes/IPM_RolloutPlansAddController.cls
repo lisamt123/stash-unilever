@@ -1653,7 +1653,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 }
                 
             }
-            processGlobalMCORolloutsHelper(mcoExternalId,countryExternalId,mcoRolloutName,geography,regionalRolloutName,keyMCO);
+            processGlobalMCORolloutsHelper(mcoExternalId,countryCodeGlobal,countryExternalId,mcoRolloutName,geography,regionalRolloutName,keyMCO);
 
          }
     }
@@ -1666,10 +1666,12 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     *  @param mcoExternalId,mcoRolloutName,geography,regionalRolloutName
     *  @return NONE
     */
-	private void processGlobalMCORolloutsHelper(String mcoExternalId,String countryExternalId,String mcoRolloutName,MDO_Geography__c geography,String regionalRolloutName, Boolean keyMCO)
+  private void processGlobalMCORolloutsHelper(String mcoExternalId,String countryCodeGlobal,String countryExternalId,String mcoRolloutName,MDO_Geography__c geography,String regionalRolloutName, Boolean keyMCO)
     {
 	    IPM_Project_Rollout__c mcoRollout = null;
             // Check if there is an existing Local Rollout.
+      	if(!setCountryCodes.contains(countryCodeGlobal))
+      	{	
             if (mapExistingRollouts.containsKey(mcoExternalId) ) 
             {
                 mcoRollout = mapExistingRollouts.get(mcoExternalId);
@@ -1740,6 +1742,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 
             }
             associateCountryAndRolloutInGlobalMCORollouts(countryExternalId,mcoExternalId,geography);
+      		}
         }
     	 /**
     *  @Description Neccessary data and relationships between rollout,country and Projects are created here.
