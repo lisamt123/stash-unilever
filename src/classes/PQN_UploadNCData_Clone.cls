@@ -97,6 +97,7 @@ global without sharing class PQN_UploadNCData_Clone{
                 
                 if(mapSupplier.get(xP.Supplier__c)!=null){
                    //emptyif for checking
+                   system.debug('test');
                 }
                 else{
                     errorDesc +='Supplier not found in system';
@@ -110,6 +111,7 @@ global without sharing class PQN_UploadNCData_Clone{
                 
                 if(mapSupplier.get(xP.SKU__c)!=null){
                   //emptyif for checking
+                  system.debug('test');
                 }
                 else{
                     errorDesc +='Product number(SKU) not found in system';
@@ -124,6 +126,7 @@ global without sharing class PQN_UploadNCData_Clone{
                 
                 if(mapSupplier.get(xP.Losses__c)!=null){
                     //emptyif for checking
+                    system.debug('test');
                 }
                 else{
                     errorDesc +='Loss Code not found in system';
