@@ -20763,6 +20763,42 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000H8NB_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ATHENA 2 0</label>
+        <queue>IPM_a7I0L000000H8NB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H8NL_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H8NL</label>
+        <queue>IPM_a7I0L000000H8NL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H8NV_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ASOSCHINA_NAS</label>
+        <queue>IPM_a7I0L000000H8NV</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H8Na_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MASS ATTACK W2</label>
+        <queue>IPM_a7I0L000000H8Na</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
