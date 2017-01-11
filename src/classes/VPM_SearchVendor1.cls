@@ -1927,10 +1927,10 @@ public with sharing class VPM_SearchVendor1{
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_TaxNumber1ErrorMessage);
                 }
             }
-            //modified by vaishali Nagar for IAPR-605
-            if(countryName.contains(VPM_RecordTypeHelper.VENDOR_COUNTRY) && string.isBlank(taxJuriCodeDefValue)){
+            //commented as Per IAVMD-3045 on 01/11/2017
+            /*if(countryName.contains(VPM_RecordTypeHelper.VENDOR_COUNTRY) && string.isBlank(taxJuriCodeDefValue)){
                 myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_TaxJuriCodeErrorMessage);            
-            }
+            }*/
             if(countryName.contains(VPM_RecordTypeHelper.VENDOR_COUNTRY) && string.isBlank(vendorQuery1.VPM_TaxNumber3__c)){
                 myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_TaxNumber3LeftBlankVenCouBrazil);            
             }

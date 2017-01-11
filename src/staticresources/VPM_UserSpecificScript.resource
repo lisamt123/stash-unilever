@@ -37,7 +37,7 @@
     function reworkBtnClick(){
 		
 
-        if ((currentstatus.indexOf('Draft') >= 0 )||(rework=='Yes') || ((currentstatus.indexOf('MDM Ops') >= 0 ) && ECC !='Fusion' )){ 
+        if ((currentstatus.indexOf('Draft') >= 0 )||(rework=='Yes')){ 
 	
             if(rework=='Yes'){ 
                 alert(VPMAlreadyRework); 

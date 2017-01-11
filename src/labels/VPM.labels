@@ -15180,8 +15180,8 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
 	<fullName>VPM_CannotSendRework</fullName>
 	<language>en_US</language>
 	<protected>false</protected>
-	<shortDescription>VPM - Business Requestor &amp; MDM Ops (Except Fusion Region) can&apos;t send Rework</shortDescription>
-	<value>Business Requestor &amp; MDM Ops (Except Fusion Region) cannot send for rework.</value>
+	<shortDescription>VPM - Business Requestor  cannot send for rework</shortDescription>
+	<value>Business Requestor  cannot send for rework.</value>
 </labels>
 <labels>
 	<fullName>VPM_CashManagementGroup</fullName>

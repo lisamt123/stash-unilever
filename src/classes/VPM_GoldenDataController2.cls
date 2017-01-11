@@ -608,11 +608,12 @@ with Sharing public class VPM_GoldenDataController2 {
                 if(string.isBlank(vendorName)){                
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_VendorNamePageMessage);
                 }
-                /***********Added by Epsita -IAVMD-2320   **********/
+                
                 system.debug('@@purchReqVar.VPM_Country__c' + purchReqVar.VPM_Country__c);
-                if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA &&  purchReqVar.VPM_Country__c == VENDOR_COUNTRY && string.isBlank(taxJuriCodeDefValue)) {
+                //commented as Per IAVMD-3045 on 01/11/2017
+                /*if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA &&  purchReqVar.VPM_Country__c == VENDOR_COUNTRY && string.isBlank(taxJuriCodeDefValue)) {
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_TaxJuriCodeErrorMessage);               
-                }
+                }*/
                 if(string.isNotBlank(taxJuriCodeDefValue) && taxJuriCodeDefValue.length() > 15) {
                     myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, System.label.VPM_TaxJuriLengthMessage);  
                 }                

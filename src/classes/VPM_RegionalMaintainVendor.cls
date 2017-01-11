@@ -34,7 +34,8 @@ public without sharing class VPM_RegionalMaintainVendor {
     final static string STR_CONST_GeneralVendorDetails = 'General Vendor Details Section Changed';
     static boolean feedCreated = false;
     Static Map<string,string> FormatedFeed=  new Map<string,string>{STR_CONST_PurchasingOrg =>'',STR_CONST_FinancialDetails =>'',STR_CONST_RegionalSpec =>'',STR_CONST_BankDetails=>'', STR_CONST_GeneralVendorDetails => ''};
-   
+    static Set<Id> oldRegionSet = new Set<Id>();
+    //static Set<Id> newRegionSet = new Set<Id>();
 
 
 
@@ -51,6 +52,15 @@ public without sharing class VPM_RegionalMaintainVendor {
        //if(vendorRequest.RecordTypeId == devRecordTypeId)
        {
         vendorRequestCompanyCode.add(vendorRequest.VPM_CompanyCode__c);
+        if(vendorRequest.VPM_Regions__c != null)  {
+              
+            oldRegionSet .add(vendorRequest.VPM_Regions__c);
+        }
+        if(OldVendorRequestValueList.get(vendorRequest.Id).VPM_Regions__c != null)
+        {
+            oldRegionSet.add(OldVendorRequestValueList.get(vendorRequest.Id).VPM_Regions__c);
+        }
+        
        }
     }
     if(!vendorRequestCompanyCode.isEmpty())
@@ -338,7 +348,9 @@ public static void updateChatterFeed(List<VPM_PurchasingRequests__c> updatedVend
     boolean isChatterUpdateRequired = false;
     //Adding a Text post
     FeedItem post = new FeedItem();
-    
+    system.debug('@@@@ VendorReqWithRegion  '+oldRegionSet);
+                          
+    Map<id,VPM_Region__c> VendorReqWithRegion = new Map<id,VPM_Region__c >([SELECT ID, Name from VPM_Region__c where id in :oldRegionSet]);
     for (VPM_ListOfRegionalandGlobalField__c fieldApi : globalFields) 
     { 
     try 
@@ -354,22 +366,31 @@ public static void updateChatterFeed(List<VPM_PurchasingRequests__c> updatedVend
                
                            if(vendorReq.get(fieldApi.VPM_ApiName__c) != OldVendorRequestValue.get(fieldApi.VPM_ApiName__c))
                           {
+                          
                             String oldValue=String.ValueOf(OldVendorRequestValue.get(fieldApi.VPM_ApiName__c));
                             String newValue=String.ValueOf(vendorReq.get(fieldApi.VPM_ApiName__c));
+                             system.debug('@@@@ VendorReqWithRegion  '+VendorReqWithRegion);
+                          
+                             if(fieldApi.VPM_ApiName__c =='VPM_Regions__c' && !string.isBlank(newValue))
+                             {
+                             newValue = VendorReqWithRegion.get(newValue).Name;
+                             }
+                              if(fieldApi.VPM_ApiName__c =='VPM_Regions__c' && !string.isBlank(oldValue))
+                             {
+                             oldValue= VendorReqWithRegion.get(oldValue).Name;
+                             }
                                 
-                                if(vendorReq.get(fieldApi.VPM_ApiName__c) =='VPM_Regions__c'){
-                                    newValue = vendorReq.VPM_Regions__r.Name;
-                                }
                              if(string.isBlank(newValue))
                              {
                                 newValue='Blank Value';
                              }
+                            
                               if(string.isBlank(oldValue))
                              {
                                 oldValue='Blank Value';
                              }
                              
-                             chatterText= 'Changed '+fieldMap.get(fieldApi.VPM_ApiName__c).getDescribe().getLabel()+' from '+oldValue+' to '+newValue;
+                            chatterText= 'Changed '+fieldMap.get(fieldApi.VPM_ApiName__c).getDescribe().getLabel()+' from '+oldValue+' to '+newValue;
                              if(!string.isBlank(string.ValueOf(fieldApi.VPM_SectionName__c))){
                                  
                                  
