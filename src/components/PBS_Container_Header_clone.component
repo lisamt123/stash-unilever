@@ -5,40 +5,13 @@
   <!--javascript -->
   <!--<apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/jquery-1.12.0.min.js')}" />
     <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/pc_container_js.js')}" /> -->
-    
-    <style>
-    
-        .headerDiv {
-            background: transparent url("{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/Header.png')}") no-repeat top!important;
-            margin-bottom: 0px;
-            background-size: 105%!important;
-            text-align: center;
-           right:3px !important;
-            
-        }
-         .headerDiv img{
-         margin-top:40px;
-         }
-        
-        body.sfdcBody {
-            background: none repeat scroll 0 0 #2a94d6 !important;
-        }
-        
-        .menuTabs {
-            bottom: 110px;
-            right: 30%;
-        }
-        
-        .text-muted, .menuTabs li>a{
-            color: white;
-        }
-    </style>
+
     <div class="mainContainer group row"></div>
 
     <div class="row bodyRow group align-center">
     <div class="col-xs-12 headerDiv group">
          
-        <apex:image id="UnileverLogo" url="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/Unilever_Logo.png')}" width="81" height="85" />
+        <apex:image id="UnileverLogo" url="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/Unilever_Logo.png')}" />
             
             <!--<div class="leftheader">
                 <apex:image id="UnileverLogo" url="{!URLFOR($Resource.PCResources, 'img/UnileverLogo.jpg')}" width="81" height="85" />
@@ -52,11 +25,14 @@
             </div> -->
             <div class="menuTabs">
                 <ul>
-                    <li><a onclick="setActiveLink('home');" id="home" href="{!$Page.PC_ContainerPage_clone}" target="_self" class="active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                    <li><a onclick="setActiveLink('home');" id="home" href="{!$Page.PC_ContainerPage}" target="_self" class="active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
                     <li><a onclick="setActiveLink('pbs');" id="pbs" href="{!$Page.PBS_WelcomePage_clone}" target="_self" >PBS</a></li>
                     <li><a onclick="setActiveLink('forum');" id="forum" href="{!$Page.PC_Forum_clone}" target="_self">Collaborate!</a></li>
                     <li><a href="http://play.trivie.com/#/home/" target ="_new"><span class="text-muted">Games</span></a></li>
-                    <li><a onclick="setActiveLink('profile');" id="profile" href="{!$Page.PBS_MyProfile}" target="_self">My Profile</a></li>
+                <!--    <li><a onclick="setActiveLink('profile');" id="profile" href="{!$Page.PBS_MyProfile}" target="_self">My Profile</a></li> -->
+              <!-- Raju Edited -->    
+                    <li><a data-toggle="modal" data-target="#myModal" target="_self" alt="PBS My profile" title="PBS My profile" href="" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="20,244,134,209,184,359,112,383,113,404,100,392,89,408,69,396" shape="poly">My Profile</a></li>
+                   
                     <!--<apex:image value="{!loggedUsernameImageUrl}" styleClass="profilePic-header"/>-->
                 </ul>
             </div>
@@ -66,5 +42,118 @@
             initContainer('{!$Component.UnileverLogo}');
         });
     </script>  -->
+    
+    
+    
     </div> 
+ <!-- Start Raju Edited -->   
+    <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-5 col-md-4" id="hb-right">
+                    <div class="row">
+                        <ul class="nav nav-tabs">
+                          <li class="nav-item">
+                            <a class="nav-link active" href="#">Avatar</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">Profile</a>
+                          </li>
+                         </ul>
+                    </div>
+                    <div class="thumb achievements-avatar" style="background:url(https://unilever--SDFCPlanCr--c.cs28.content.force.com/profilephoto/005/F);background-size: cover;">
+                    <img src="https://unilever--SDFCPlanCr--c.cs28.content.force.com/profilephoto/005/F" />
+                    </div>
+                </div>
+
+               <div class="col-xs-12 col-sm-7 col-md-8 pcr-border-left">
+                <div class="profile-data">
+                    <div class="profile-header">
+                        <h2>Vadivel Tamilarasan</h2>
+                        <ul>
+                            <li class="profile-title"></li>
+                            <li class="profile-mail"><span class="glyphicon glyphicon-envelope"></span> vadivel.tamilarasan@capgemini.com</li>
+                        </ul>
+                        <div class="pcr-border-top"></div>
+                     </div>
+                    
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="geography">Geography</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="geography">
+                                        <option selected="selected" value="Guest">Guest</option>
+                                        <option value="Americas">Americas</option>
+                                        <option value="Asia / Africa / NAMET (U2K2)">Asia / Africa / NAMET (U2K2)</option>
+                                        <option value="Asia (Fusion)">Asia (Fusion)</option>
+                                        <option value="Europe">Europe</option>
+                                        <option value="Global">Global</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="workLevel">Work Level</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="workLevel" onchange="worklevelfun(this.value);" value="Guest">
+                                        <option selected="selected" value="Guest">Guest</option>
+                                        <option value="Level 1">Level 1</option>
+                                        <option value="Level 2">Level 2</option>
+                                        <option value="Level 3">Level 3</option>  
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <span id="j_id0:j_id15:JobProfileSelection">
+                        <label class="col-sm-4 control-label" for="jobProfile">Job Profile</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="jobProfile">
+                                        <option selected="selected" value="a8g230000008OPoAAM">Guest</option>
+                            </select>
+                        </div>
+                        <!--div class="col-sm-4" style="font-size: 11px; min-height: 35px; display: flex; justify-content: center; align-content: center; flex-direction: column;">
+                            <a href="http://apps.unilever.com/global/SCW/app/Pages/index.html">Unsure Who You Are?</a>
+                        </div-->
+                        
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="category">Category</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="category">
+                                        <option value="Personal Care">Personal Care</option>
+                                        <option value="Home Care">Home Care</option>
+                                        <option value="Foods">Foods</option>
+                                        <option value="Refreshments">Refreshments</option>
+                                        <option value="Cross Category">Cross Category</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="jobProfile">Training Mentor</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" data-toggle="tooltip" id="buddyName" name="buddyName" title="" type="text" value="" data-original-title="Please enter your buddy name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-8 col-sm-4">
+                            <button class="btn btn-warning" type="submit" data-dismiss="modal">Back</button>
+                            <button class="btn btn-success pull-right" type="submit">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+   </div>     
+        </div>
+        <button type="button" class="close pcr-close" data-dismiss="modal">&times;</button>
+        </div>
+      </div>
+    </div>
+           
+  <!-- End Raju Edited -->
 </apex:component>
