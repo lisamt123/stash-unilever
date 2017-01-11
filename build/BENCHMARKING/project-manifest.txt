@@ -73,9 +73,6 @@ src/groups/BEN_Skin_Cleansing_Cat_Approver_Editor.group
 src/groups/BEN_Skin_Cleansing_Category_Viewer.group
 src/groups/BEN_Spreads_Category_Approver_Editor.group
 src/groups/BEN_Spreads_Category_Viewer.group
-src/staticresources
-src/staticresources/PACVStaticResource.resource
-src/staticresources/PACVStaticResource.resource-meta.xml
 src/layouts
 src/layouts/BEN_Category_Details__c-BEN Category Details - Approved.layout
 src/layouts/BEN_Category_Details__c-BEN Category Details Layout.layout
