@@ -181,6 +181,21 @@
         <field>Amr_JobBudgetThreshold__c.UserEmailId__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>Amr_JobBudgetThreshold__c.Multi_Category__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>Amr_JobBudgetThreshold__c.Multi_Brand__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>Amr_JobBudgetThreshold__c.Multi_Brand_Positioning__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Amr_Job_Allocation__c.AM_Job_Detail__c</field>
