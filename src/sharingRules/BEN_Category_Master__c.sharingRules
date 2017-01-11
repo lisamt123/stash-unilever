@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>BEN_Beverages_Category_Approver_Editor_SRule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Benchmarking Category Beverages sharing &quot;Read Write&quot; rule to Public group &quot; BEN Beverages Category Approver Editor&quot;.</description>
+        <label>BEN Beverages Category Approver Editor SRule</label>
+        <sharedTo>
+            <group>BEN_Beverages_Category_Approver_Editor</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Beverages</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Beverages_Category_Viewer_SRule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Benchmarking Category Beverages sharing &quot;Read only&quot; rule to Public group &quot; BEN Beverages Category Viewer&quot;.</description>
+        <label>BEN Beverages Category Viewer SRule</label>
+        <sharedTo>
+            <group>BEN_Beverages_Category_Viewer</group>
+        </sharedTo>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Beverages</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Deodorants_Category_Approver_Editor_SRule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Benchmarking Category Deodorants sharing &quot;Read Write&quot; rule to Public group &quot;BEN Deodorants Category Approver Editor&quot;.</description>
+        <label>BEN Deodorants Category Approver Editor SRule</label>
+        <sharedTo>
+            <group>BEN_Deodorants_Category_Approver_Editor</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Deodorants</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Deodorants_Category_Viewer_SRule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Benchmarking Category Deodorants sharing &quot;Read only&quot; rule to Public group &quot;BEN Deodorants Category Viewer&quot;.</description>
+        <label>BEN Deodorants Category Viewer SRule</label>
+        <sharedTo>
+            <group>BEN_Deodorants_Category_Viewer</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Deodorants</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Dressings_Category_Approver_Editor_SRule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Benchmarking Category Dressings sharing &quot;Read Write&quot; rule to Public group &quot;BEN Dressings Category Approver Editor&quot;.</description>
+        <label>BEN Dressings Category Approver Editor SRule</label>
+        <sharedTo>
+            <group>BEN_Dressings_Category_Approver_Editor</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Dressings</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Dressings_Category_Viewer_SRule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Benchmarking Category Dressings sharing &quot;Read only&quot; rule to Public group &quot;BEN Dressings Category Viewer&quot;.</description>
+        <label>BEN Dressings Category Viewer SRule</label>
+        <sharedTo>
+            <group>BEN_Dressings_Category_Viewer</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Dressings</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_GPL_Users</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>To All the categories</description>
+        <label>BEN GPL Users</label>
+        <sharedTo>
+            <group>BEN_GPL_User</group>
+        </sharedTo>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>startsWith</operation>
+            <value>0</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_HHC_Category_Approver_Editor_SRule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Benchmarking Category HHC sharing &quot;Read Write&quot; rule to Public group &quot;BEN HHC Category Approver Editor&quot;.</description>
+        <label>BEN HHC Category Approver Editor SRule</label>
+        <sharedTo>
+            <group>BEN_HHC_Category_Approver_Editor</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>HHC</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_HHC_Category_Viewer_SRule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Benchmarking Category HHC sharing &quot;Read only&quot; rule to Public group &quot;BEN HHC Category Viewer&quot;.</description>
+        <label>BEN HHC Category Viewer SRule</label>
+        <sharedTo>
+            <group>BEN_HHC_Category_Viewer</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>HHC</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Hair_Category_Approver_Editor_SRule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Benchmarking Category Hair sharing &quot;Read Write&quot; rule to Public group &quot;BEN Hair Category Approver Editor&quot;.</description>
+        <label>BEN Hair Category Approver Editor SRule</label>
+        <sharedTo>
+            <group>BEN_Hair_Category_Approver_Editor</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Hair</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Hair_Category_Viewer_SRule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Benchmarking Category Hair sharing &quot;Read only&quot; rule to Public group &quot;BEN Hair Category Viewer&quot;.</description>
+        <label>BEN Hair Category Viewer SRule</label>
+        <sharedTo>
+            <group>BEN_Hair_Category_Viewer</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Hair</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Ice_Cream_Category_Approver_Editor_SRule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Benchmarking Category Ice Cream sharing &quot;Read Write&quot; rule to Public group &quot;BEN Ice Cream Category Approver Editor&quot;.</description>
+        <label>BEN Ice Cream Category Approver Editor SRule</label>
+        <sharedTo>
+            <group>BEN_Ice_Cream_Category_Approver_Editor</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Ice Cream</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Ice_Cream_Category_Viewer_SRule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Benchmarking Category Ice Cream sharing &quot;Read only&quot; rule to Public group &quot;BEN Ice Cream Category Viewer&quot;.</description>
+        <label>BEN Ice Cream Category Viewer SRule</label>
+        <sharedTo>
+            <group>BEN_Ice_Cream_Category_Viewer</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Ice Cream</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Laundry_Category_Approver_Editor_SRule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Benchmarking Category Laundry sharing &quot;Read Write&quot; rule to Public group &quot;BEN Laundry Category Approver Editor&quot;.</description>
+        <label>BEN Laundry Category Approver Editor SRule</label>
+        <sharedTo>
+            <group>BEN_Laundry_Category_Approver_Editor</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Laundry</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Laundry_Category_Viewer_SRule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Benchmarking Category Laundry sharing &quot;Read only&quot; rule to Public group &quot;BEN Laundry Category Viewer&quot;.</description>
+        <label>BEN Laundry Category Viewer SRule</label>
+        <sharedTo>
+            <group>BEN_Laundry_Category_Viewer</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Laundry</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Multi_Category_Viewer</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>BEN Multi Category Viewer</label>
+        <sharedTo>
+            <group>BEN_Multi_category_Viewer</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>startsWith</operation>
+            <value>0</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Oral_Care_Category_Approver_Editor_SRule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Benchmarking Category Oral Care sharing &quot;Read Write&quot; rule to Public group &quot;BEN Oral Care Category Approver Editor&quot;.</description>
+        <label>BEN Oral Care Category Approver Editor SRule</label>
+        <sharedTo>
+            <group>BEN_Oral_Care_Category_Approver_Editor</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Oral Care</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Oral_Care_Category_Viewer_SRule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Benchmarking Category Oral Care sharing &quot;Read only&quot; rule to Public group &quot;BEN Oral Care Category Viewer&quot;.</description>
+        <label>BEN Oral Care Category Viewer SRule</label>
+        <sharedTo>
+            <group>BEN_Oral_Care_Category_Viewer</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Oral Care</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Savoury_Category_Approver_Editor_SRule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Benchmarking Category Savoury sharing &quot;Read Write&quot; rule to Public group &quot;BEN Savoury Category Approver Editor&quot;.</description>
+        <label>BEN Savoury Category Approver Editor SRule</label>
+        <sharedTo>
+            <group>BEN_Savoury_Category_Approver_Editor</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Savoury</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Savoury_Category_Viewer_SRule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Benchmarking Category Savoury sharing &quot;Read only&quot; rule to Public group &quot;BEN Savoury Category Viewer&quot;.</description>
+        <label>BEN Savoury Category Viewer SRule</label>
+        <sharedTo>
+            <group>BEN_Savoury_Category_Viewer</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Savoury</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Skin_Care_Category_Approver_Editor_SRule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Benchmarking Category Skin Care sharing &quot;Read Write&quot; rule to Public group &quot;BEN Skin Care Category Approver Editor&quot;.</description>
+        <label>BEN Skin Care Category Approver Editor SRule</label>
+        <sharedTo>
+            <group>BEN_Skin_Care_Category_Approver_Editor</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Skin Care</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Skin_Care_Category_Viewer_SRule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Benchmarking Category Skin Care sharing &quot;Read only&quot; rule to Public group &quot;BEN Skin Care Category Viewer&quot;.</description>
+        <label>BEN Skin Care Category Viewer SRule</label>
+        <sharedTo>
+            <group>BEN_Skin_Care_Category_Viewer</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Skin Care</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Skin_Cleansing_Category_Approver_Editor_SRule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Benchmarking Category Skin Cleansing sharing &quot;Read/Write&quot; rule to Public group &quot;BEN Skin Cleansing Cat Approver Editor&quot;.</description>
+        <label>BEN Skin Cleansing Category Approver Editor SRule</label>
+        <sharedTo>
+            <group>BEN_Skin_Cleansing_Cat_Approver_Editor</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Skin Cleansing</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Skin_Cleansing_Category_Viewer_SRule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Benchmarking Category Skin Cleansing sharing &quot;Read only&quot; rule to Public group &quot;BEN Skin Cleansing Category Viewer&quot;.</description>
+        <label>BEN Skin Cleansing Category Viewer SRule</label>
+        <sharedTo>
+            <group>BEN_Skin_Cleansing_Category_Viewer</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Skin Cleansing</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Spreads_Category_Approver_Editor_SRule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Benchmarking Category Spreads sharing &quot;Read Write&quot; rule to Public group &quot;BEN Spreads Category Approver Editor&quot;.</description>
+        <label>BEN Spreads Category Approver Editor SRule</label>
+        <sharedTo>
+            <group>BEN_Spreads_Category_Approver_Editor</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Spreads</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BEN_Spreads_Category_Viewer_SRule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Benchmarking Category Spreads sharing &quot;Read only&quot; rule to Public group &quot;BEN Spreads Category Viewer&quot;.</description>
+        <label>BEN Spreads Category Viewer SRule</label>
+        <sharedTo>
+            <group>BEN_Spreads_Category_Viewer</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>equals</operation>
+            <value>Spreads</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

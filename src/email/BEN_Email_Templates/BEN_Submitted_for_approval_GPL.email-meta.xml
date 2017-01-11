@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Category detail Submitted for approval</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TO_Letter_Head</letterhead>
+    <name>BEN Submitted for approval GPL</name>
+    <style>freeForm</style>
+    <subject>{!BEN_Category_Details__c.Name} Test Result Submitted For Approval</subject>
+    <textOnly>Hi,
+
+Test result &apos;{!BEN_Category_Details__c.txt_Title__c}&apos; is submitted for your approval.
+
+You can access the result via the link below;
+https://unilever--benchmrkng.cs52.my.salesforce.com/{!BEN_Category_Details__c.Id}
+
+Category submitted for : {!BEN_Category_Details__c.Product_Category__c}
+Submitted by : {!BEN_Category_Details__c.CreatedBy}
+Approved by : {!BEN_Category_Details__c.LastModifiedBy}
+Date of Submission : {!BEN_Category_Details__c.dt_Date_of_Submission__c}
+Date of approval : {!BEN_Category_Details__c.LastModifiedDate}
+
+This is an automatically generated email, please do not reply
+
+Thanks,
+{!BEN_Category_Details__c.LastModifiedBy}
+approval status last modified : {!Core_Approver_Details__c.LastModifiedBy}
+approval step assign: {!ApprovalRequest.Process_Assignee}
+approval step approver : {!ApprovalRequest.Process_Approver}</textOnly>
+    <type>html</type>
+</EmailTemplate>
