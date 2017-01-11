@@ -733,7 +733,7 @@
                                                 <div class="form-field2 padding-qm">
                                                     <apex:outputlabel value="{!CheckWithCMI}" rendered="{!if(categoryNameFlag || brandPosNameFlag || brandNameFromPageFlag,true,false)}" styleclass="loadError" />
                                                     <apex:outputLabel styleclass="logging-form-label">
-                                                        {!$label.Amr_Category_Brand_Positioning_Brand}
+                                                        {!$label.Amr_Multi_Category_Brand_Positioning_Brand}
                                                         <strong></strong>
                                                         <div title="{!$ObjectType.Amr_Job_Details__c.fields.ProductCategory__c.inlineHelpText}"></div>
                                                     </apex:outputLabel>
