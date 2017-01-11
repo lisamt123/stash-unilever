@@ -415,9 +415,9 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   System.debug('-----response string from create vendor mule api----' + responseString);
                   //responseString= responseString.replace(';', '\n');
                   system.debug('@@@responseString '+responseString);
-                   //callJavaScriptAlert='<script>responseString = \''+responseString+'\'.replace(";", "/\n/\"); alert(\''+responseString+'\'); PageReload();</script>';
-                  // callJavaScriptAlert='<script>alert(\''+responseString+'\'); PageReload();</script>';
-                   callJavaScriptAlert='<script>var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); PageReload();</script>';
+                   //callJavaScriptAlert='<script>responseString = \''+responseString+'\'.replace(";", "/\n/\"); alert(\''+responseString+'\'); pageReload();</script>';
+                  // callJavaScriptAlert='<script>alert(\''+responseString+'\'); pageReload();</script>';
+                   callJavaScriptAlert='<script>var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); pageReload();</script>';
               } else if(RecordTypeList[0].Name.contains('(Extend)')) {
                   if(vendorList[0].VPM_VendorCodeLookup__r.mdm_ecc__c.containsIgnoreCase(vendorList[0].VPM_CompanyCode__r.ECC__c))
                    {
@@ -453,8 +453,8 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     system.debug(responseString);
                     responseString= string.isNotBlank(responseString) ? responseString.replace('\'','') : '';
                     system.debug(responseString);
-                   //callJavaScriptAlert='<script>alert(\''+responseString+'\'); PageReload();</script>';
-                    callJavaScriptAlert='<script>var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); PageReload();</script>';
+                   //callJavaScriptAlert='<script>alert(\''+responseString+'\'); pageReload();</script>';
+                    callJavaScriptAlert='<script>var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); pageReload();</script>';
               }else if(RecordTypeList[0].Name.contains('(Maintain)')) {
                   
                   System.debug('-----calling extend global vendor mule api----');
@@ -482,8 +482,8 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     
                     responseString= string.isNotBlank(responseString) ? responseString.replace('\'','') : '';
                     system.debug(responseString);
-                   //callJavaScriptAlert='<script>alert(\''+responseString+'\'); PageReload();</script>';
-                    callJavaScriptAlert='<script>debugger;var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); PageReload();</script>';
+                   //callJavaScriptAlert='<script>alert(\''+responseString+'\'); pageReload();</script>';
+                    callJavaScriptAlert='<script>debugger;var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); pageReload();</script>';
               }
               VPM_PurchasingRequests__c vendor = [SELECT id,VPM_MDMOpsFirstSubmittedToSAP__c,VPM_Status__c from VPM_PurchasingRequests__c where id=:vendorReqId limit 1];
                if(vendor.VPM_Status__c=='MDM Ops Review')
@@ -652,7 +652,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                  vendorList[0].VPM_DeletionBlockFlag__c=null;
                  update vendorList;
                  manuallyMarkAsCompleteFlag =false;
-                 callJavaScriptAlert='<script> PageReload(); </script>';
+                 callJavaScriptAlert='<script> pageReload(); </script>';
                  //congratsPage =  new PageReference('/' + recID);
              }
           else{
@@ -1050,7 +1050,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                         VendorDetailList[0].VPM_RequestLastWithGroup__c=STR_CONST_BUSREQ; 
                         VendorDetailList[0].VPM_RequestFromFLSOrBR__c=STR_CONST_BUSREQ;
                         update VendorDetailList;
-                        callJavaScriptAlert='<script> PageReload(); </script>';
+                        callJavaScriptAlert='<script> pageReload(); </script>';
                  }
 
                   // Ajay : BR reworked and  submitted to FLS
@@ -1068,7 +1068,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                    update VendorDetailList;
                       // Commented as per Bug : 277 Point 1 
                      //callJavaScriptAlert='<script> redirectToListView(); </script>';
-                     callJavaScriptAlert='<script> PageReload(); </script>';
+                     callJavaScriptAlert='<script> pageReload(); </script>';
                     
                   }
                    // Ajay : FLS reworked and  submitted to PRO
@@ -1193,7 +1193,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     update pr;
                     PageReference save = GstdController.save();
                     if(save != null){
-                        callJavaScriptAlert='<script> PageReload(); </script>';  
+                        callJavaScriptAlert='<script> pageReload(); </script>';  
                     }  
               }
            }

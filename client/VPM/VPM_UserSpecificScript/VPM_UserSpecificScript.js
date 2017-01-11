@@ -23,7 +23,7 @@
     function openAdvanceform(){
         window.top.location='https://'+localhost+'/apex/VPM_AdvancedForm_V1?id='+purId;
     }
-    function PageReload(){
+    function pageReload(){
       window.top.location='https://'+localhost+'/'+purId;
       return false;
     }
@@ -55,8 +55,9 @@
                     return false;
                }
             
-            else 
+            else {
                 alert(VPMReworkCancel);
+			}
         } 
     }
     function callSendToSAPAPI()

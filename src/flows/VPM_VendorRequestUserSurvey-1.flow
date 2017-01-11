@@ -184,13 +184,13 @@
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -202,13 +202,13 @@
                 <processMetadataValues>
                     <name>rightHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.VPM_WhatAreYouBuying__c</leftValueReference>
+                <leftValueReference>myVariable_current.VPM_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Trigger Survey Test</stringValue>
+                    <stringValue>Request Completed</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -264,13 +264,13 @@
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -282,13 +282,13 @@
                 <processMetadataValues>
                     <name>rightHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.VPM_WhatAreYouBuying__c</leftValueReference>
+                <leftValueReference>myVariable_current.VPM_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Trigger Survey Test</stringValue>
+                    <stringValue>Request Completed</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -359,13 +359,13 @@
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -377,13 +377,13 @@
                 <processMetadataValues>
                     <name>rightHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_old.VPM_WhatAreYouBuying__c</leftValueReference>
+                <leftValueReference>myVariable_old.VPM_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Trigger Survey Test</stringValue>
+                    <stringValue>Request Completed</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -421,7 +421,7 @@
         </rules>
     </decisions>
     <description>Sends Clicktools survey requests, and follow up reminders, for completed Vendor Requests</description>
-    <interviewLabel>VPM_VendorRequestUserSurvey-2_VPM_PurchasingRequests__c</interviewLabel>
+    <interviewLabel>VPM_VendorRequestUserSurvey-1_VPM_PurchasingRequests__c</interviewLabel>
     <label>Vendor Request User Survey</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -847,7 +847,7 @@
             <inputParameters>
                 <name>TimeOffset</name>
                 <value>
-                    <numberValue>1.0</numberValue>
+                    <numberValue>2.0</numberValue>
                 </value>
             </inputParameters>
             <label>myWaitEvent_myWait_myRule_1_event_0</label>
@@ -887,7 +887,7 @@
             <inputParameters>
                 <name>TimeOffset</name>
                 <value>
-                    <numberValue>2.0</numberValue>
+                    <numberValue>24.0</numberValue>
                 </value>
             </inputParameters>
             <label>myWaitEvent_myWait_myRule_1_event_1</label>
@@ -927,7 +927,7 @@
             <inputParameters>
                 <name>TimeOffset</name>
                 <value>
-                    <numberValue>3.0</numberValue>
+                    <numberValue>48.0</numberValue>
                 </value>
             </inputParameters>
             <label>myWaitEvent_myWait_myRule_1_event_2</label>
@@ -967,7 +967,7 @@
             <inputParameters>
                 <name>TimeOffset</name>
                 <value>
-                    <numberValue>4.0</numberValue>
+                    <numberValue>72.0</numberValue>
                 </value>
             </inputParameters>
             <label>myWaitEvent_myWait_myRule_1_event_3</label>
