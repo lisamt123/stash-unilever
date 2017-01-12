@@ -92,8 +92,6 @@ src/classes/PQNUpdateFreezePeriodCtrlTest.cls
 src/classes/PQNUpdateFreezePeriodCtrlTest.cls-meta.xml
 src/classes/PQN_UserCreateAssignPermissions.cls
 src/classes/PQN_UserCreateAssignPermissions.cls-meta.xml
-src/classes/PQN_UserCreateAssignPermissionsTest.cls
-src/classes/PQN_UserCreateAssignPermissionsTest.cls-meta.xml
 src/classes/PQN_UserCreationPostProcessing.cls
 src/classes/PQN_UserCreationPostProcessing.cls-meta.xml
 src/classes/PQN_UserCreationPostProcessing_Test.cls
