@@ -576,11 +576,11 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OfficeOfEntry__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OfficeOfEntry__c}" />
               <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}"/>
-                 <apex:outputPanel layout="block" styleClass="requiredInput">
+                 <!--apex:outputPanel layout="block" styleClass="requiredInput"-->
                  <apex:selectList value="{!modeOfTransport}"  multiselect="false" size="1">
                                <apex:selectOptions value="{!modeOfTransportOptions}"/>                            
                                </apex:selectList>
-                 </apex:outputPanel>
+                 <!--/apex:outputPanel-->
                  </apex:pageBlockSectionItem>
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ModeTransportForeignTrade__c}" /-->
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReturnsVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReturnsVendor__c}"/-->
@@ -838,11 +838,11 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OfficeOfEntry__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OfficeOfEntry__c}" />
               <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}"/>
-                 <apex:outputPanel layout="block" styleClass="requiredInput">
+                 <!--apex:outputPanel layout="block" styleClass="requiredInput"-->
                  <apex:selectList value="{!modeOfTransport}"  multiselect="false" size="1">
                                <apex:selectOptions value="{!modeOfTransportOptions}"/>                            
                                </apex:selectList>
-                 </apex:outputPanel>
+                 <!--/apex:outputPanel-->
                  </apex:pageBlockSectionItem>
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ModeTransportForeignTrade__c}" /-->
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReturnsVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReturnsVendor__c}"/-->
@@ -956,11 +956,11 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OfficeOfEntry__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OfficeOfEntry__c}" />
               <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}"/>
-                 <apex:outputPanel layout="block" styleClass="requiredInput">
+                 <!--apex:outputPanel layout="block" styleClass="requiredInput"-->
                  <apex:selectList value="{!modeOfTransport}"  multiselect="false" size="1">
                                <apex:selectOptions value="{!modeOfTransportOptions}"/>                            
                                </apex:selectList>
-                 </apex:outputPanel>
+                 <!--/apex:outputPanel-->
                  </apex:pageBlockSectionItem>
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ModeTransportForeignTrade__c}" /-->
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReturnsVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReturnsVendor__c}"/-->
@@ -1002,11 +1002,11 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DepartmentNumber__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_DepartmentNumber__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PartnerNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PartnerNumber__c}"/>
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ArabiaOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ArabiaOldNumber__c}"/-->
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IsraelOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IsraelOldNumber__c}"/>
+              <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IsraelOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IsraelOldNumber__c}"/-->
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TurkeyOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TurkeyOldNumber__c}"/-->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SMSIndicator__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SMSIndicator__c}"/>
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndonesiaOldVendorNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndonesiaOldVendorNumber__c}"/-->
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_NPIVendor__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_NPIVendor__c}"/>
+              <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_NPIVendor__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_NPIVendor__c}"/-->
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThaiOldVendorNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThaiOldVendorNumber__c}"/-->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountingNote__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountingNote__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TextToInput__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_TextToInput__c}"/>
