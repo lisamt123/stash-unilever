@@ -3682,9 +3682,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 }
                 
                 if(finCounter <= BATCH_SIZE ){
-                initializeFinancials();
-            }
-                
+	                initializeFinancials();
+	            }
+	            
+	            if(finCounter == unprocessedFinIds.size()){
+	            	setValidationErrorMessage(IPMFinancial,project);
+	            }
+	             
             }
         }
         
