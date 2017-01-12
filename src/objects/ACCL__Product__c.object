@@ -1685,6 +1685,14 @@
                 <fullName>TEST2</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Dummy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -1993,7 +2001,15 @@
         <picklistValues>
             <picklist>UL_Material_Type__c</picklist>
             <values>
+			<fullName>Dummy</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>FERT</fullName>
+				<default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
                 <default>false</default>
             </values>
             <values>

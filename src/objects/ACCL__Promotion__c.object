@@ -18,9 +18,8 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <content>MyPromotionPlanning</content>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Standard</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -46,7 +45,8 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Standard</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -2305,6 +2305,56 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>UL_Promotion_Template_Type__c</fullName>
+        <description>Promotion Template types while creating new Promotion</description>
+        <externalId>false</externalId>
+        <label>Promotion Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Account Specific Promotion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Parent Promotion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Account Plan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LTA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CustomerEvent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MarketingEvent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Past Dated/Urgent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SpecialHoliday</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>UL_Promotion_Type__c</fullName>
         <externalId>false</externalId>
         <label>Promotion Type</label>
@@ -3142,6 +3192,45 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>UL_Promotion_Template_Type__c</picklist>
+            <values>
+                <fullName>Account Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Specific Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CustomerEvent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MarketingEvent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parent Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Past Dated%2FUrgent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SpecialHoliday</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>UL_Promotion_Type__c</picklist>
             <values>
                 <fullName>Value Only</fullName>
@@ -3684,6 +3773,45 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>UL_Promotion_Template_Type__c</picklist>
+            <values>
+                <fullName>Account Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Specific Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CustomerEvent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MarketingEvent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parent Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Past Dated%2FUrgent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SpecialHoliday</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>UL_Promotion_Type__c</picklist>
             <values>
                 <fullName>Value Only</fullName>
@@ -3763,6 +3891,7 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <customTabListAdditionalFields>UL_Category__c</customTabListAdditionalFields>
         <listViewButtons>ACCL__Derive</listViewButtons>
         <listViewButtons>Copy</listViewButtons>
+        <listViewButtons>Close_Promotion</listViewButtons>
         <lookupDialogsAdditionalFields>ACCL__Slogan__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCL__Promotion_Template__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCL__Date_From__c</lookupDialogsAdditionalFields>
@@ -3874,8 +4003,8 @@ Id=VLOOKUP
         <fullName>UL_LTA_Time_Period_of_Longer_Than_a_Year</fullName>
         <active>true</active>
         <description>(TPM 1759) - If a time period of longer than a year is defined within the date fields then a validation should be returned and the user is warned that a LTA cannot be created which is longer than one year.</description>
-        <errorConditionFormula>AND( ACCL__Promotion_Template__r.Name = &apos;Long Term Agreement UK&apos;,ACCL__Date_Thru__c -  ACCL__Date_From__c  &gt; 365)</errorConditionFormula>
-        <errorMessage>A LTA cannot be created which is longer than one year between Start and End Date.</errorMessage>
+        <errorConditionFormula>AND(ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), YEAR( ACCL__Date_Thru__c ) &lt;&gt; YEAR( ACCL__Date_From__c ), (ACCL__Date_Thru__c - ACCL__Date_From__c) + 1 &gt; 365)</errorConditionFormula>
+        <errorMessage>A LTA cannot be created which is longer than one year.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>UL_LTA_Validation_Rule</fullName>
@@ -3946,6 +4075,31 @@ Id=VLOOKUP
         <requireRowSelection>true</requireRowSelection>
     </webLinks>
     <webLinks>
+        <fullName>Close_Promotion</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Close</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/21.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/apex.js&quot;)} 
+
+//Below ObjectType can be replaced by anyObject. I have used &quot;Test Name&quot;
+var records = {!GETRECORDIDS($ObjectType.ACCL__Promotion__c)};
+if (records[0] == null) { 
+   alert(&quot;{!$Label.Select_one_record}&quot;);
+} else { 
+   var opt = confirm(&quot;{!$Label.Close_Promotions_Confirmation}&quot;); 
+   if (opt == true) { 
+      var result = sforce.apex.execute(&quot;Promotions_SetClosed_Webservice&quot;,&quot;setPromotionsToClosed&quot;,{promotionIds:records}); 
+      alert(result); 
+      window.location.reload();
+   }
+}</url>
+    </webLinks>
+    <webLinks>
         <fullName>Copy</fullName>
         <availability>online</availability>
         <description>This is related to copy Promotions</description>
@@ -3969,7 +4123,7 @@ alert(&quot;Promotion is not selected, Kindly select promotion &quot;);
 }
 else {
 //alert(records[0]);
-window.open(&quot;/apex/UL_PromotionCopy?id=&quot;+records[0],&quot;_self&quot;);
+  window.open(&quot;/apex/UL_PromotionCopy?id=&quot;+records[0],&quot;_self&quot;);
 }
 }
 else{
