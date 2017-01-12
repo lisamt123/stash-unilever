@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>VPM - Used to store all fields bifurcated on basis of Regional/Global fields</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>VPM_ApiName__c</fullName>
+        <description>VPM - This field is used to save API name</description>
+        <externalId>false</externalId>
+        <label>ApiName</label>
+        <length>200</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ECCRegion__c</fullName>
+        <description>VPM - This field is used to save regions for all global/regional fields</description>
+        <externalId>false</externalId>
+        <label>ECCRegion</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_JSONFieldName__c</fullName>
+        <description>VPM - This field store field names of ll regional/global fields</description>
+        <externalId>false</externalId>
+        <label>JSONFieldName</label>
+        <length>200</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>VPM_SectionName__c</fullName>
         <description>VPM - stores the name of section to which the field belongs to.</description>
@@ -11,6 +47,39 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<label>VPM_ListOfRegionalandGlobalField</label>
+    <fields>
+        <fullName>VPM_fieldDatatype__c</fullName>
+        <description>VPM - This field is used to store data types for all Global/regional fields</description>
+        <externalId>false</externalId>
+        <label>fieldDatatype</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_fieldType__c</fullName>
+        <description>VPM - This field displays whether value selected is Global value or regional value</description>
+        <externalId>false</externalId>
+        <label>fieldType</label>
+        <length>200</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_parentElement__c</fullName>
+        <description>VPM - This field stores all Parent Object names for all global/regional fields</description>
+        <externalId>false</externalId>
+        <label>parentElement</label>
+        <length>200</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>VPM_ListOfRegionalandGlobalField</label>
     <visibility>Public</visibility>
 </CustomObject>
