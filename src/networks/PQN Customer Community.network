@@ -28,7 +28,6 @@
         <profile>admin</profile>
         <profile>partner community user</profile>
     </networkMemberGroups>
-    <picassoSite>PQN_Customer_Community_C</picassoSite>
     <selfRegistration>true</selfRegistration>
     <sendWelcomeEmail>true</sendWelcomeEmail>
     <site>PQN_Customer_Community2</site>
