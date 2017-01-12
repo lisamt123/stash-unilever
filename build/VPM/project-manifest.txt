@@ -67,7 +67,7 @@ src/email/VPM_ApprovalEmails/VPM_UserSurveyRequest.email-meta.xml
 src/flows
 src/flows/VPM_AssignFLSWithCountries-2.flow
 src/flows/VPM_AssignMDMOPsQueue-2.flow
-src/flows/VPM_VendorRequestStages-87.flow
+src/flows/VPM_VendorRequestStages-86.flow
 src/flows/VPM_VendorRequestUserSurvey-1.flow
 src/groups
 src/groups/VPM_MDMOpsAlgeria.group
@@ -183,6 +183,7 @@ src/pages/VPM_VendorRequestsHome.page
 src/pages/VPM_VendorRequestsHome.page-meta.xml
 src/permissionsets
 src/permissionsets/VPM_DataAdministrator.permissionset
+src/permissionsets/VPM_Business_Requestor.permissionset
 src/queues
 src/queues/MDMOpsTanzania.queue
 src/queues/MDMOpsTunisia.queue
