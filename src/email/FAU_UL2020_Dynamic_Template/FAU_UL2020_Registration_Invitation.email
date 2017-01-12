@@ -1,6 +1,6 @@
 <table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
 <tr valign="top" height="400" >
-<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="1" >
 <![CDATA[<!--[if gte mso 9]><xml>
  <o:OfficeDocumentSettings>
   <o:AllowPNG/>
@@ -10,7 +10,7 @@
 <p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
 mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-weight:bold">Dear&nbsp;{!FAU_Participant__c.FAU_First_Name__c},</span></p>
 
-<p class="MsoNormal" style="line-height: normal;"><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 10pt;">On behalf of Four Acres and your
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: normal;"><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 10pt;">On behalf of Four Acres and your
 Leadership Team, I am delighted to &nbsp;welcome you to this ambitious
 leadership program,&nbsp;</span><font face="Arial, sans-serif"><span style="font-size: 13.3333px;">{!FAU_Participant__c.FAU_Program_Type__c}</span></font><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 10pt;">.</span></p>
 
@@ -31,10 +31,9 @@ mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-weight:bold">I
 Action Required:</span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;
 mso-fareast-font-family:&quot;Times New Roman&quot;"></span></p>
 
-<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
-mso-fareast-font-family:&quot;Times New Roman&quot;">Please confirm participation on the
+<p class="MsoNormal" style="line-height: normal;"><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 10pt;">Please confirm participation on the
 programme by filling up <span style="mso-bidi-font-weight:bold">{!FAU_Participant__c.FAU_Invitation_Link__c}</span>&nbsp;on
-or before&nbsp;<span style="mso-bidi-font-weight:bold">{!FAU_Participant__c.FAU_Program_Start_Date__c}.</span></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+or before&nbsp;</span><font face="Arial, sans-serif"><span style="font-size: 13.3333px;">{!FAU_Participant__c.FAU_RSVP_Deadline__c}</span></font><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 10pt;">.</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
 &quot;Times New Roman&quot;">Congratulations again on your nomination and we look forward
 to hearing from you.</span></p>
 
