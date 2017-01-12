@@ -5848,7 +5848,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_Donations</fullName>
-        <booleanFilter>1 and 2 and 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -5858,15 +5857,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s Donations</value>
-        </filters>
-        <filters>
-            <field>CASES.SUBJECT</field>
-            <operation>contains</operation>
             <value>Ben &amp; Jerry&apos;s Donations</value>
         </filters>
         <filters>
@@ -5876,6 +5870,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC North America Ben &amp; Jerrys Donations</label>
         <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
@@ -5923,8 +5918,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Ben_Jerrys_USA</fullName>
         <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>Country__c</columns>
-        <columns>ACCOUNT.NAME</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
@@ -5932,16 +5925,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <columns>NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Brand__c</field>
-            <operation>contains</operation>
-            <value>Ben</value>
+            <operation>equals</operation>
+            <value>Ben &amp; Jerry&apos;s</value>
         </filters>
         <filters>
-            <field>Country__c</field>
-            <operation>contains</operation>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
             <value>United States</value>
         </filters>
         <filters>
@@ -6416,7 +6408,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.STATUS</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
@@ -6429,6 +6421,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC North America 3rd Party</label>
         <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
