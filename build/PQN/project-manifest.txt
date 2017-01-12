@@ -1,3 +1,7 @@
+src/classes/PQN_AccountSharer.cls
+src/classes/PQN_AccountSharer.cls-meta.xml
+src/classes/PQN_AccountSharer_Test.cls
+src/classes/PQN_AccountSharer_Test.cls-meta.xml
 src/classes/PQN_CannockJSON2Apex.cls
 src/classes/PQN_CannockJSON2Apex.cls-meta.xml
 src/classes/PQN_DC_Voulmes.cls
@@ -46,6 +50,10 @@ src/classes/PQNLossTreeData.cls
 src/classes/PQNLossTreeData.cls-meta.xml
 src/classes/PQNScheduleDeteleOfRecordsTest.cls
 src/classes/PQNScheduleDeteleOfRecordsTest.cls-meta.xml
+src/classes/PQNUpdateFreezePeriodCtrl.cls
+src/classes/PQNUpdateFreezePeriodCtrl.cls-meta.xml
+src/classes/PQNUpdateFreezePeriodCtrlTest.cls
+src/classes/PQNUpdateFreezePeriodCtrlTest.cls-meta.xml
 src/components/PQN_Navigation.component
 src/components/PQN_Navigation.component-meta.xml
 src/layouts/PQN_DC_Volumes__c-PQN_DC_Volumes Layout.layout
