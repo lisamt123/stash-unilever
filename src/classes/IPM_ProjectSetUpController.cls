@@ -114,6 +114,12 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         if(project!=null){
            initialise();
         }
+        
+        if(project.IPM_Bosscard__c!=null)
+        {
+        	populateProjectMetadataAttributes(projectMetadata); 
+        }
+        
     }
     /****************************************************************************
     @Description : To initialize all variables
