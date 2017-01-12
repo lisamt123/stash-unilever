@@ -18,7 +18,7 @@
     <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>PQN_CommunitiesSelfReg_VF</selfRegPage>
-    <siteAdmin>rajesh.a.p@capgemini.com</siteAdmin>
+    <siteAdmin>deploy.system@unilever.com</siteAdmin>
     <siteType>ChatterNetwork</siteType>
     <subdomain>unilever</subdomain>
     <urlPathPrefix>PQN</urlPathPrefix>

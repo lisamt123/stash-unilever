@@ -10,9 +10,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <content>PQN_SingleEntryScreen_VF</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
@@ -872,6 +870,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Loss_Level_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Loss Level 2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Loss_Level_4__c</fullName>

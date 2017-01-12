@@ -1,11 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>CallHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EmailHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnableCustomerPortalUser</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ListClean</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>RequestUpdate</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewCustomerPortalUser</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>WebsiteHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <externalSharingModel>Private</externalSharingModel>
+    <fieldSets>
+        <fullName>Edit_Agency</fullName>
+        <description>Agency portal for users to edit their own details.</description>
+        <displayedFields>
+            <field>Strategic_Capabilities__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Strategic_Capabilities_Video__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Phone</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Fax</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Website</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>General_Email__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Awards__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Edit Agency</label>
+    </fieldSets>
     <fields>
-        <fullName>PQN_Cluster__c</fullName>
+        <fullName>AccountCurrency__c</fullName>
+        <description>Purpose : Currency
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
-<<<<<<< HEAD
-        <label>PQN Cluster</label>
-=======
         <label>Currency</label>
         <precision>18</precision>
         <required>false</required>
@@ -3313,6 +3421,30 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>PQN_Cluster__c</fullName>
+        <description></description>
+        <externalId>false</externalId>
+        <label>PQN Cluster</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>PQN_Country__c</fullName>
+        <description></description>
+        <externalId>false</externalId>
+        <label>PQN Country</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>	
     <fields>
         <fullName>Latest_Case_Product_Code__c</fullName>
         <description>cec_Latest Primary Case&apos;s product code</description>
@@ -5742,7 +5874,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <description>Branch of Unilever that sells to distributor (primary account only)</description>
         <externalId>false</externalId>
         <label>Branch</label>
->>>>>>> develop
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -5763,9 +5894,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-        <fullName>PQN_Country__c</fullName>
-=======
         <fullName>UID_Geography__c</fullName>
         <description>Geography of where distributor or distributor&apos;s customer is located</description>
         <externalId>false</externalId>
@@ -6070,9 +6198,8 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     </fields>
     <fields>
         <fullName>Vimeo_Link__c</fullName>
->>>>>>> develop
         <externalId>false</externalId>
-        <label>PQN Country</label>
+        <label>Vimeo Link</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -6080,9 +6207,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Text</type>
         <unique>false</unique>
     </fields>
-<<<<<<< HEAD
-</CustomObject>
-=======
     <fields>
         <fullName>TEL_Week_Year_Open__c</fullName>
         <externalId>false</externalId>
@@ -25079,4 +25203,3 @@ Shipping Country</errorMessage>
         <url>http://maps.yahoo.com/py/maps.py?cn={!Account_BillingCountry}&amp;csz={!Account_BillingCity}+{!Account_BillingState}+{!Account_BillingPostalCode}+&amp;addr={!Account_BillingAddress}</url>
     </webLinks>
 </CustomObject>
->>>>>>> develop
