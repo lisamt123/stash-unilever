@@ -175,6 +175,7 @@ src/pages/PQN_Global_Geography_Report.page-meta.xml
 src/pages/PQN_Global_Overview.page
 src/pages/PQN_Global_Overview.page-meta.xml
 src/pages/PQN_Global_Overview.page-meta.xml
+src/pages/PQN_GlobalSUReport.page
 src/pages/PQN_GlobalSUReport.page-meta.xml
 src/pages/PQN_MultiEditScreen_Clone.page
 src/pages/PQN_MultiEditScreen_Clone.page-meta.xml
