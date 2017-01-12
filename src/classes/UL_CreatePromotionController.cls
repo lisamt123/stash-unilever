@@ -318,7 +318,7 @@ public with sharing class UL_CreatePromotionController{
             }
 
             if(isRedirect){
-                  ref = Page.ACCL__CreatePromotion;
+                  ref = Page.UL_CreatePromotionSoCo;
                   ref.setRedirect(true);
             }
             else{
