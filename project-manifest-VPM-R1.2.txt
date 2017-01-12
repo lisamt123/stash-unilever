@@ -60,8 +60,6 @@ src/dashboards/VPM_Dashboards-meta.xml
 src/dashboards/VPM_Dashboards/VPM_VendorRequestUserSurveys.dashboard
 src/email
 src/email/VPM_ApprovalEmails
-src/email/VPM_ApprovalEmails/VPM_SendWebformToVendorVFTemplate.email
-src/email/VPM_ApprovalEmails/VPM_SendWebformToVendorVFTemplate.email-meta.xml
 src/email/VPM_ApprovalEmails/VPM_UserSurveyRequest.email
 src/email/VPM_ApprovalEmails/VPM_UserSurveyRequest.email-meta.xml
 src/flows
@@ -297,5 +295,3 @@ src/staticresources/VPM_UserSpecificScript.resource-meta.xml
 src/triggers
 src/triggers/VPM_SetGlobalOrRegionalFieldUpdate.trigger
 src/triggers/VPM_SetGlobalOrRegionalFieldUpdate.trigger-meta.xml
-src/workflows
-src/workflows/VPM_PurchasingRequests__c.workflow
