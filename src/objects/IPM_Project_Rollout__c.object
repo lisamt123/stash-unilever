@@ -247,7 +247,7 @@
         <fullName>IPM_Project_GKM__c</fullName>
         <description>Gate keeping  model of the parent global project</description>
         <externalId>false</externalId>
-        <formula>text(IPM_Project__r.IPM_GateKeeping_Model__c)</formula>
+        <formula>IF(IPM_Project__c!=null,text(IPM_Project__r.IPM_GateKeeping_Model__c),TEXT(Regional_Project__r.IPM_GateKeeping_Model__c))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM Project GKM</label>
         <required>false</required>

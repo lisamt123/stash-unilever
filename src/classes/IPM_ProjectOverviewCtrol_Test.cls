@@ -169,7 +169,7 @@ private class IPM_ProjectOverviewCtrol_Test {
             }
             for(IPM_Project__c project : [Select Id, IPM_GateKeeping_Model__c from IPM_Project__c where Id IN : globalProjectIdList limit 100])
             {
-            	System.assertEquals(IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH , project.IPM_GateKeeping_Model__c, 'Gatekeeping model is not updated properly.');
+                System.assertEquals(IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH.length() , project.IPM_GateKeeping_Model__c.length(), 'Gatekeeping model is not updated properly.');
             }
             
             // Initiate Phase Change would result in Rollout Project Creation.

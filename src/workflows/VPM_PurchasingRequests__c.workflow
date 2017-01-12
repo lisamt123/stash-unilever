@@ -1247,14 +1247,9 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_Rework__c</field>
-            <operation>equals</operation>
-            <value>Yes</value>
-        </criteriaItems>
-        <criteriaItems>
             <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
             <operation>contains</operation>
-            <value>Bank Data Validation Requested Re-Work,Finance Requested Re-Work,FLS Requested Re-Work,Freight Requested Re-Work,MDM Ops Review Requested Re-Work,Procurement Requested Re-Work,Russian Custom Tax Requested Re-W</value>
+            <value>Bank Data Validation Requested Re-Work,Finance Requested Re-Work,FLS Requested Re-Work,Freight Requested Re-Work,MDM Ops Review Requested Re-Work,Procurement Requested Re-Work,Russian Custom Tax Requested Re-Work</value>
         </criteriaItems>
         <description>VPM - send email for rework to the record creator</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>

@@ -32,11 +32,13 @@ public with sharing class FS_OpportunityHelper {
             List<Opportunity> oppToUpdate = new List<Opportunity>();
             Map<Id,Decimal> mapOppIdGP= new Map<Id,Decimal>();
             Map<Id,Decimal> mapOppIdMT= new Map<Id,Decimal>();
+            Map<Id,Decimal> mapOppIdTurnover= new Map<Id,Decimal>();
             Decimal grossProfit = 0;
             Decimal marketTarget = 0;
             Integer recordCount = 0;
             Decimal averageGrossProfit =0;
             Decimal averageMarketTarget =0;
+            Decimal totalTurnoverNA = 0;
             
             for(Opportunity opp : listNewTrigger){
                 if(recordIdBasedonDeveloperName.get(FS_ExistingBusiness) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityMABE) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityTPR) == opp.RecordTypeID )
@@ -48,7 +50,7 @@ public with sharing class FS_OpportunityHelper {
             
             if(!listOppId.isEmpty() && isEnabled()){  
             
-            OppLineItem = [select Id, GPPercent__c, FS_MarketTarget__c, opportunityId from OpportunityLineItem where opportunityId in :listOppId];
+            OppLineItem = [select Id, GPPercent__c, FS_MarketTarget__c, opportunityId, Turnover__c from OpportunityLineItem where opportunityId in :listOppId];
               //Calculate average grossProfit and MarketTarget of all opp prod
             For(Opportunity opp : listNewTrigger){
                 For(OpportunityLineItem oli: OppLineItem ){
@@ -58,6 +60,9 @@ public with sharing class FS_OpportunityHelper {
                         } 
                         if(oli.FS_MarketTarget__c!= null){   
                             marketTarget = marketTarget + oli.FS_MarketTarget__c;
+                        }
+                        if(oli.Turnover__c!= null){   
+                            totalTurnoverNA = totalTurnoverNA + oli.Turnover__c;
                         }    
                         recordCount = recordCount + 1;
                     } 
@@ -67,16 +72,19 @@ public with sharing class FS_OpportunityHelper {
                     averageMarketTarget = marketTarget/recordCount;
                     mapOppIdGP.put(opp.Id,averageGrossProfit);
                     mapOppIdMT.put(opp.Id,averageMarketTarget);
+                    mapOppIdTurnover.put(opp.Id,totalTurnoverNA);
                     recordCount = 0;//resetting the variables
                     GrossProfit = 0;
                     MarketTarget= 0;
+                    totalTurnoverNA=0;
                 }         
             } 
-            List<Opportunity> oppList = [Select Id, FS_AverageGrossProfit__c, FS_MarketTarget__c from Opportunity where Id in :listOppId];
+            List<Opportunity> oppList = [Select Id, FS_AverageGrossProfit__c, FS_MarketTarget__c, FS_TotalTurnoverNA__c from Opportunity where Id in :listOppId];
             for(Opportunity opp : oppList){
                 if(mapOppIdGP.get(opp.Id)!=null){
                     opp.FS_AverageGrossProfit__c= mapOppIdGP.get(opp.Id);
                     opp.FS_MarketTarget__c= mapOppIdMT.get(opp.Id);
+                    opp.FS_TotalTurnoverNA__c = mapOppIdTurnover.get(opp.Id);
                     oppToUpdate.add(opp);
                 }    
             }

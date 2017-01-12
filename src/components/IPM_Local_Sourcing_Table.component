@@ -1,11 +1,10 @@
 <apex:component controller="IPM_SourcePlanController">
-<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Source_Plan_Editor.css')}"/>
 <apex:attribute name="projId" description="projectId" type="String" />
     <apex:outputPanel layout="block" styleClass="srcPlanTitle">
         {!$Label.IPM_Local_Sourcing_Plan_Table_Header}
     </apex:outputPanel>
     <apex:outputText value="{!$Label.IPM_LocalSourcingTable_Help_Text}" StyleClass="greytxt"></apex:outputText>
-    <br/><br/>
+    <div class="srcingHeaderContainer">
     <div class="leftHeadWidthResp padzero">
         <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsource ">
             <thead> 
@@ -26,11 +25,12 @@
             <thead> 
                 <tr>
                     <th scope="col"  width="40%"><span>{!$Label.IPM_Sourcing_Units}</span></th>
-                    <th scope="col" width="20%"><div class="capcon">{!$Label.IPM_Capability_Confirmed}</div></th>
+                        <th scope="col" width="20%"><div class="{!if(bIsPDLApproved,'approvalTip','capcon approvalTip')}">{!$Label.IPM_Capability_Confirmed}</div></th>
                     <th scope="col" width="40%"><span>{!$Label.IPM_Sourced_Into}</span></th>
                 </tr>
             </thead>               
         </table>
+        </div>
     </div>
     <apex:repeat value="{!wrapperKeys}" var="wrKey">
         <apex:repeat value="{!sourcePlanMap[wrKey]}" var="prodPlan">
@@ -65,7 +65,7 @@
                                             <apex:repeat value="{!sourceUnitMap[prodPlan.productProsition]}" var="sourcep">
                                                 <tr>
                                                     <td width="13%"><span> {!sourcep.sourcingPlan.IPM_SourcingUnit__c}</span></td>
-                                                    <td width="6%" class="custSrcWidth">
+                                                    <td width="7%" class="custSrcWidth">
                                                         <div class="approvalCheckcontainer noPointer">
                                                              <label class="{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'greenBox','')}">{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Yes','Not Yet')}</label>
                                                         </div>

@@ -913,7 +913,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM Home Page Link 2</shortDescription>
-        <value>Related Documentation</value>
+        <value>Click here for</value>
     </labels>
     <labels>
         <fullName>VPM_HomePageLink3</fullName>

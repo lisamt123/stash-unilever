@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>RESPONSE REQUIRED: Registration UL2020</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FAU_Letterhead</letterhead>
+    <name>FAU UL2020 Registration Invitation</name>
+    <style>freeForm</style>
+    <subject>RESPONSE REQUIRED:  Registration {!FAU_Participant__c.FAU_Program_Type__c}</subject>
+    <textOnly>Dear {!FAU_Participant__c.FAU_First_Name__c},
+
+On behalf of Four Acres and your Leadership Team, I am delighted to  welcome you to this ambitious leadership program, {!FAU_Participant__c.FAU_Program_Type__c}.
+
+About the {!FAU_Participant__c.FAU_Program_Name__c}: Chief among what makes Unilever unique versus other companies, is our commitment to goals beyond ourselves and beyond the business. Thus, we have UL2020. Building on the ULDP foundation, UL2020 seeks to re-energize, inspire, and guide participants to connect their individual purposes to our shared purpose – the Unilever Sustainable Plan 2020. Participants here will design compelling initiatives that advance the USLP and, at the same time, provide individuals with the opportunity to absorb and practice the Leadership 2020 themes.
+
+The residential module will be held from {!FAU_Participant__c.FAU_Module_1_Start_Date__c} to {!FAU_Participant__c.FAU_Module_1_End_Date__c}.
+
+Program fee: {!FAU_Participant__c.FAU_Program_Fee__c}
+
+Immediate Action Required:
+
+Please confirm participation on the programme by filling up {!FAU_Participant__c.FAU_Invitation_Link__c} on or before {!FAU_Participant__c.FAU_Program_Start_Date__c}.
+
+Congratulations again on your nomination and we look forward to hearing from you.
+
+Here’s a short video introduction to the program: &quot;UL2020 Video&quot;
+
+Kind regards,
+
+
+{!FAU_Participant__c.OwnerFullName}
+
+{!FAU_Participant__c.OwnerTitle}
+
+Ph: {!FAU_Participant__c.OwnerPhone}
+
+Email: {!FAU_Participant__c.OwnerEmail}</textOnly>
+    <type>html</type>
+</EmailTemplate>

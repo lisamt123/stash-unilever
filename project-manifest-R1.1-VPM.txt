@@ -6,7 +6,6 @@ src/objects
 src/package.xml
 src/pages
 src/permissionsets
-src/projectmanifest.txt
 src/staticresources
 src/workflows
 src/classes/VPM_CreateVendorServiceHelper.cls
@@ -27,12 +26,13 @@ src/classes/VPM_RegionalMaintainVendor.cls
 src/classes/VPM_RegionalMaintainVendor.cls-meta.xml
 src/classes/VPM_SearchVendor1.cls
 src/classes/VPM_SearchVendor1.cls-meta.xml
-src/flows/VPM_VendorRequestStages-84.flow
 src/labels/VPM.labels
 src/objects/VPM_CommodityApprover__c.object
 src/objects/VPM_PurchasingRequests__c.object
 src/pages/VPM_AdvancedForm_V1.page
 src/pages/VPM_AdvancedForm_V1.page-meta.xml
+src/pages/VPM_AttachFiles.page
+src/pages/VPM_AttachFiles.page-meta.xml
 src/pages/VPM_GoldenData1.page
 src/pages/VPM_GoldenData1.page-meta.xml
 src/pages/VPM_ProcurementAtAGlance.page
@@ -41,6 +41,8 @@ src/pages/VPM_ProcurementCentralAdmin.page
 src/pages/VPM_ProcurementCentralAdmin.page-meta.xml
 src/pages/VPM_UserSpecificFields.page
 src/pages/VPM_UserSpecificFields.page-meta.xml
+src/pages/VPM_VendorRequestsHome.page
+src/pages/VPM_VendorRequestsHome.page-meta.xml
 src/permissionsets/VPM_API.permissionset
 src/permissionsets/VPM_BankDatavalidation.permissionset
 src/permissionsets/VPM_Business_Requestor.permissionset
@@ -57,3 +59,4 @@ src/staticresources/VPM_UserSpecificScript.resource-meta.xml
 src/workflows/VPM_CommodityApprover__c.workflow
 src/workflows/VPM_CommodityCode__c.workflow
 src/workflows/VPM_PurchasingRequests__c.workflow
+src/flows/VPM_VendorRequestStages-84.flow

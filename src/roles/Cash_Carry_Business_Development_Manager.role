@@ -4,7 +4,7 @@
     <contactAccessLevel>Edit</contactAccessLevel>
     <description>RFS C&amp;C M</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>RFS Cash &amp; Carry &amp; Business Development Manager</name>
+    <name>RFS Business Development Manager</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
     <parentRole>UFS_Admin</parentRole>
 </Role>

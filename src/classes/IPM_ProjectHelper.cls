@@ -1004,7 +1004,7 @@ public with sharing class IPM_ProjectHelper
         {   
             // Get financial information based on Provided values.  
             String financialQuery = IPM_Utils.prepareSOQLQuery('IPM_Financial__c',false,null,true);
-            String financialWhereClause = ' WHERE Financial_External_ID__c in :completeFinancialUniqueKeySet '+LIMIT_CLAUSE_STR;
+            String financialWhereClause = ' WHERE Financial_External_ID__c in :completeFinancialUniqueKeySet  AND isActive__c = true '+LIMIT_CLAUSE_STR;
             financialQuery = financialQuery + financialWhereClause;
             
             Map<Id,IPM_Financial__c> financialRecords = new Map<Id,IPM_Financial__c>( (List<IPM_Financial__c>) database.query(financialQuery) );

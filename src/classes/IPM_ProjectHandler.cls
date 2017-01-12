@@ -774,7 +774,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
 			  set<id> archivalprojIds = new set<id>();
               archivalprojIds.addAll(archievedProjectMap.keySet());
               archivalprojIds.addAll(unArchievedProjectMap.keySet());
-              IPM_MilestoneHelper.rollupMilestoneDuedate(archivalprojIds);
+              IPM_MilestoneHelper.rollupMilestoneDuedate(archivalprojIds,archievedProjectMap);
 			//call update project name in all objects records
             if(!updateNewProNameMap.IsEmpty()){
                 IPM_UpdateGlobalProjectName.updateProjectName(updateNewProNameMap,oldprojectnameMap);

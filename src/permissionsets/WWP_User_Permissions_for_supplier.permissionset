@@ -933,4 +933,9 @@
         <recordType>Contact.WWP_contact_layout</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+	<tabSettings>
+        <tab>Loss_Tree</tab>
+        <visibility>Visible</visibility>
+</tabSettings>
 </PermissionSet>
+

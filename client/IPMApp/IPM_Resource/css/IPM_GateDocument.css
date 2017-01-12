@@ -502,3 +502,17 @@ table.ipmTable.table.table-bordered.ecoDesignCountry tbody td div.inputField.cel
 .riskTablecolor .bggray{text-align:center;}
 .riskMainHead.projectRiskLbl{padding: 8px 8px;}
 .brandPrimaryBrd table.outerNoSidebar{table-layout:fixed;}
+.greytxt{margin-bottom:10px;display:block;}
+.srcPlanTitle {
+    padding-bottom: 5px;
+    color: #253b78;
+    border-bottom: 1px solid #7EA19D;
+    float: left;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+@media (min-width: 1024px) and (max-width: 1113px) {
+	table.table.table-bordered.productsource.darkoverlay th{height:71px;}
+}

@@ -211,14 +211,6 @@
         <label>Function</label>
         <picklist>
             <picklistValues>
-                <fullName>BB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>CD</fullName>
                 <default>false</default>
             </picklistValues>
@@ -246,8 +238,17 @@
                 <fullName>TPL</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>MKTG DEV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MKTG LOCAL</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -306,14 +307,6 @@
         <label>IPM Multiple Functional Role</label>
         <picklist>
             <picklistValues>
-                <fullName>BB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>CD</fullName>
                 <default>false</default>
             </picklistValues>
@@ -339,6 +332,14 @@
             </picklistValues>
             <picklistValues>
                 <fullName>TPL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MKTG DEV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MKTG LOCAL</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -741,14 +742,6 @@
         <picklistValues>
             <picklist>IPM_Function__c</picklist>
             <values>
-                <fullName>BB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BD</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CD</fullName>
                 <default>false</default>
             </values>
@@ -758,6 +751,14 @@
             </values>
             <values>
                 <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MKTG DEV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MKTG LOCAL</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -780,14 +781,6 @@
         <picklistValues>
             <picklist>IPM_Multiple_Functional_Role__c</picklist>
             <values>
-                <fullName>BB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BD</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CD</fullName>
                 <default>false</default>
             </values>
@@ -800,11 +793,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>PL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>R%26D</fullName>
+                <fullName>R&amp;D</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -812,7 +801,19 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>TPL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MKTG DEV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MKTG LOCAL</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -897,14 +898,6 @@
         <picklistValues>
             <picklist>IPM_Function__c</picklist>
             <values>
-                <fullName>BB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BD</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CD</fullName>
                 <default>false</default>
             </values>
@@ -914,6 +907,14 @@
             </values>
             <values>
                 <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MKTG DEV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MKTG LOCAL</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -936,14 +937,6 @@
         <picklistValues>
             <picklist>IPM_Multiple_Functional_Role__c</picklist>
             <values>
-                <fullName>BB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BD</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CD</fullName>
                 <default>false</default>
             </values>
@@ -956,11 +949,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>PL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>R%26D</fullName>
+                <fullName>R&amp;D</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -968,7 +957,19 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>TPL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MKTG DEV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MKTG LOCAL</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

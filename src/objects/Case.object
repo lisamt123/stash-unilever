@@ -112,6 +112,23 @@
             <default>false</default>
         </values>
     </businessProcesses>
+	<businessProcesses>
+        <fullName>TEL_Telesales_Support</fullName>
+        <description>Telesales - Support Process for the Telesales Solution</description>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>	
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
     <externalSharingModel>Private</externalSharingModel>
@@ -179,11 +196,265 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+	<fields>
+        <fullName>TEL_City__c</fullName>
+        <externalId>false</externalId>
+        <label>City</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>TEL_House_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>House Number</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>TEL_Job_Title__c</fullName>
+        <description>Telesales - Field to capture the Job Title of the customer on the Web-to-Case for Sample Requests.</description>
+        <externalId>false</externalId>
+        <label>Job Title</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Owner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>General manager</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food &amp; beverage manager</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chef</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head chef</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </picklistValues>			
+            <picklistValues>
+                <fullName>Purchasing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Catering manager</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>			
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Newsletter__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Telesales - Field to capture information on the Web-to-Case for Sample Requests</description>
+        <externalId>false</externalId>
+        <label>Newsletter</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Number_of_covers__c</fullName>
+        <description>Telesales - Field to capture information on the Web-to-Case for Sample Requests</description>
+        <externalId>false</externalId>
+        <label>Number of covers</label>
+		<length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Postal_code__c</fullName>
+        <description>Telesales - Field to capture information on the Web-to-Case for Sample Requests</description>
+        <externalId>false</externalId>
+        <label>Postal code</label>
+		<length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Primary_Distributor__c</fullName>
+        <description>Telesales - Field to capture information on the Web-to-Case for Sample Requests</description>
+        <externalId>false</externalId>
+        <label>Primary Distributor</label>
+		<length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Street__c</fullName>
+        <description>Telesales - Field to capture information on the Web-to-Case for Sample Requests</description>
+        <externalId>false</externalId>
+        <label>Street</label>
+		<length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Web_Surname__c</fullName>
+        <description>Telesales - Field to receive the customer last name via Web-to-Case</description>
+        <externalId>false</externalId>
+        <label>Web Surname</label>
+		<length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Type_of_Business__c</fullName>
+        <description>Telesales - Field to capture type of the business of the customer on the Web-to-Case for Sample Requests</description>
+        <externalId>false</externalId>
+        <label>Type of Business</label>
+        <picklist>
+            <picklistValues>
+                <fullName>School</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Elderly Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pub Restaurants</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>College &amp; University</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hospital</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Potential</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hotel / Resort / Lodging</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Catering</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hotel / Pub chain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Limited Services / Quick service restaurants</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cafeteria / Take away</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Travel / Leisure</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Workplace / Contract caterer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cash &amp; Carry</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wholesaler</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Distributor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Journalist / Marketing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Home cook</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Burger Joint</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>			
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Product__c</fullName>
+        <description>Telesales - Name of the product selected during a Sample Request</description>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>	
     <fields>
         <fullName>Brand_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports for the Brands.</description>
         <externalId>false</externalId>
-        <formula>IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;Unilever Corporate&apos;, Case_Brand__c )</formula>
+        <formula>Case_Brand__c</formula>
         <label>Brand Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -275,7 +546,7 @@
         <fullName>CEC_Product_Reporting_Name__c</fullName>
         <description>CEC : This field is used to create Reports for the Products with size.</description>
         <externalId>false</externalId>
-        <formula>If(isPacksizeKnown__c == TRUE, CEC_Product__r.Consumer_Product_Descriptor_Local_Lang__c , IF(isPacksizeKnown__c ==FALSE &amp;&amp; isVariantKnown__c ==TRUE, Consumer_Product_Descriptor_no_size__c ,IF( isVariantKnown__c == FALSE &amp;&amp; isFormKnown__c == TRUE, CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;Unilever Corporate&apos; ,Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))))</formula>
+        <formula>If(isPacksizeKnown__c == TRUE, CEC_Product__r.Consumer_Product_Descriptor_Local_Lang__c , IF(isPacksizeKnown__c ==FALSE &amp;&amp; isVariantKnown__c ==TRUE, Consumer_Product_Descriptor_no_size__c ,IF( isVariantKnown__c == FALSE &amp;&amp; isFormKnown__c == TRUE, CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c,Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c)))</formula>
         <label>CEC Product Reporting Name</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -287,7 +558,7 @@
         <fullName>CEC_Product_Reporting_Name_no_size__c</fullName>
         <description>CEC : This field is used to create Reports with Products without size</description>
         <externalId>false</externalId>
-        <formula>If( isVariantKnown__c == TRUE, CEC_Product__r.Consumer_Product_Descriptor_no_size__c , If( isVariantKnown__c == FALSE &amp;&amp; isFormKnown__c == TRUE, CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;Unilever Corporate&apos; ,Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c)))</formula>
+        <formula>If( isVariantKnown__c == TRUE, CEC_Product__r.Consumer_Product_Descriptor_no_size__c , If( isVariantKnown__c == FALSE &amp;&amp; isFormKnown__c == TRUE, CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c,Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))</formula>
         <label>CEC Product Reporting Name (no size)</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -755,6 +1026,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Hungary</fullName>
                 <default>false</default>
             </picklistValues>
@@ -864,6 +1139,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
             </picklistValues>
             <picklistValues>
                 <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1430,7 +1709,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L0_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L0 Products.</description>
         <externalId>false</externalId>
-        <formula>IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;, &apos;&apos;, L0_Product_Category__c)</formula>
+        <formula>L0_Product_Category__c</formula>
         <label>L0 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1455,7 +1734,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L1_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L1 Products.</description>
         <externalId>false</externalId>
-        <formula>IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;, &apos;&apos;, L1_Product_Category__c)</formula>
+        <formula>L1_Product_Category__c</formula>
         <label>L1 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1480,7 +1759,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L2_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L2 Products.</description>
         <externalId>false</externalId>
-        <formula>IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;, &apos;&apos;, L2_Product_Category__c)</formula>
+        <formula>L2_Product_Category__c</formula>
         <label>L2 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1505,7 +1784,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L3_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L3 Products.</description>
         <externalId>false</externalId>
-        <formula>IF(isFormKnown__c == TRUE, L3_Product_Category__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;&apos;, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))</formula>
+        <formula>IF(isFormKnown__c == TRUE, L3_Product_Category__c,Case_Brand__c + &apos; – &apos; + L2_Product_Category__c)</formula>
         <label>L3 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1530,7 +1809,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L4_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L4 Products</description>
         <externalId>false</externalId>
-        <formula>IF(isFormKnown__c == TRUE, L4_Product_Category__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;&apos;, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))</formula>
+        <formula>IF(isFormKnown__c == TRUE, L4_Product_Category__c, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c)</formula>
         <label>L4 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1567,7 +1846,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L5_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L5 Products.</description>
         <externalId>false</externalId>
-        <formula>IF(isFormKnown__c == TRUE, L5_Product_Category__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;&apos;, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))</formula>
+        <formula>IF(isFormKnown__c == TRUE, L5_Product_Category__c, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c)</formula>
         <label>L5 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1592,7 +1871,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L6_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L6 products</description>
         <externalId>false</externalId>
-        <formula>IF(isFormKnown__c == TRUE, L6_Product_Category__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;&apos;, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))</formula>
+        <formula>IF(isFormKnown__c == TRUE, L6_Product_Category__c, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c)</formula>
         <label>L6 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1617,7 +1896,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>L7_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L7 products</description>
         <externalId>false</externalId>
-        <formula>IF(isFormKnown__c == TRUE, L7_Product_Category__c,IF(CEC_Product__r.Product_CU_Description_English__c == &apos;Unilever Corporate&apos;,&apos;&apos;, Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c))</formula>
+        <formula>IF(isFormKnown__c == TRUE, L7_Product_Category__c,Case_Brand__c + &apos; – &apos; +  L2_Product_Category__c)</formula>
         <label>L7 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1809,6 +2088,10 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>Email Greece</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Email Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Email Hungary</fullName>
                 <default>false</default>
@@ -1881,12 +2164,20 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>Email Sri Lanka</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Email Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Email Thailand</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Email TO France</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Email Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1949,6 +2240,14 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>White Mail</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Web Shop</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Agent</fullName>
+                <default>false</default>
+            </picklistValues>			
             <sorted>true</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1996,6 +2295,11 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>United States</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>callcenter.tr@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Turkey</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>carapelliusa@deoleo.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>United States</controllingFieldValues>
@@ -2011,6 +2315,11 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>cec.hk@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Hong Kong</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>CEC.Korea@unilever.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>Korea</controllingFieldValues>
@@ -2019,6 +2328,11 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>cec.philippines@unilever.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>Philippines</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>cec.taiwan@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Taiwan</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Comments.Canada@benjerry.com</fullName>
@@ -2547,6 +2861,11 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <default>false</default>
                 <cssExposed>false</cssExposed>
             </picklistValues>
+			<picklistValues>
+                <fullName>Sample Request</fullName>
+                <default>false</default>
+                <cssExposed>false</cssExposed>
+            </picklistValues>			
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>true</trackFeedHistory>
@@ -2838,6 +3157,16 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <default>false</default>
                 <closed>false</closed>
             </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <closed>true</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <closed>true</closed>
+            </picklistValues>				
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -5144,6 +5473,42 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_User_Greece</role>
         </sharedTo>
     </listViews>
+	 <listViews>
+        <fullName>CEC_Hong_Kong_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Hong Kong Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Hong_Kong_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Hong_Kong</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_User_Hong_Kong</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Hong_Kong_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Hong Kong Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Hong_Kong_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Hong_Kong</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_User_Hong_Kong</role>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>CEC_Hungary_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
@@ -5515,6 +5880,42 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <sharedTo>
             <role>CEC_Manager_Japan</role>
             <role>CEC_User_Japan</role>
+        </sharedTo>
+    </listViews>
+	 <listViews>
+        <fullName>CEC_Korea_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Korea Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Korea_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Korea</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_User_Korea</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Korea_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Korea Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Korea_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Korea</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_User_Korea</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -8291,6 +8692,42 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_User_Sri_Lanka</role>
         </sharedTo>
     </listViews>
+	<listViews>
+        <fullName>CEC_Taiwan_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Taiwan Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Taiwan_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_Manager_Taiwan</role>
+            <role>CEC_User_Taiwan</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Taiwan_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Taiwan Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Taiwan_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_Asia</role>
+            <role>CEC_Manager_Taiwan</role>
+            <role>CEC_User_Taiwan</role>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>CEC_Thailand_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
@@ -8364,6 +8801,42 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Thailand</role>
             <role>CEC_User_Thailand</role>
+        </sharedTo>
+    </listViews>
+	 <listViews>
+        <fullName>CEC_Turkey_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Turkey Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Turkey_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_NAMETRUB</role>
+            <role>CEC_Manager_Turkey</role>
+            <role>CEC_User_Turkey</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Turkey_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Turkey Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Turkey_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_NAMETRUB</role>
+            <role>CEC_Manager_Turkey</role>
+            <role>CEC_User_Turkey</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -10268,6 +10741,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hungary</fullName>
                 <default>false</default>
             </values>
@@ -10372,7 +10849,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10548,6 +11033,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>callcenter%2Etr%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>carapelliusa%40deoleo%2Ecom</fullName>
                 <default>false</default>
             </values>
@@ -10556,7 +11045,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>cec%2Ehk%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>cec%2Ephilippines%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>cec%2Etaiwan%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10862,6 +11359,148 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
         </picklistValues>
     </recordTypes>
+	<recordTypes>
+        <fullName>TEL_Sample_Requests</fullName>
+        <active>true</active>
+        <businessProcess>TEL_Telesales_Support</businessProcess>
+        <label>Sample Requests</label>
+		<picklistValues>
+            <picklist>Origin</picklist>
+            <values>
+                <fullName>Agent</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Web Shop</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+		<picklistValues>
+            <picklist>Reason</picklist>
+            <values>
+                <fullName>Sample Request</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+		<picklistValues>
+            <picklist>TEL_Job_Title__c</picklist>
+            <values>
+                <fullName>Owner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food &amp; beverage manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head chef</fullName>
+                <default>false</default>
+            </values>	
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>	
+            <values>
+                <fullName>Purchasing</fullName>
+                <default>false</default>
+            </values>	
+            <values>
+                <fullName>Catering manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>			
+        </picklistValues>
+		<picklistValues>
+            <picklist>TEL_Type_of_Business__c</picklist>
+            <values>
+                <fullName>School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elderly Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pub Restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>College &amp; University</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotel / Resort / Lodging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotel / Pub Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Services / Quick service restaurants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cafeteria / Take Away</fullName>
+                <default>false</default>
+            </values>			
+            <values>
+                <fullName>Travel / Leisure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cash &amp; Carry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesaler</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Distributor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journalist / Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home cook</fullName>
+                <default>false</default>
+            </values>			
+            <values>
+                <fullName>Burger Joint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>			
+        </picklistValues>		
+	</recordTypes>	
     <recordTypes>
         <fullName>Spam</fullName>
         <active>true</active>
@@ -10956,7 +11595,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
         </picklistValues>
-         <picklistValues>
+        <picklistValues>
             <picklist>Country_Name__c</picklist>
             <values>
                 <fullName>Argentina</fullName>
@@ -11217,7 +11856,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
+         <picklistValues>
             <picklist>Origin</picklist>
             <values>
                 <fullName>Chat</fullName>
@@ -11577,17 +12216,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Suggestion</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Tag__c</picklist>
-            <values>
-                <fullName>CEC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>George</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

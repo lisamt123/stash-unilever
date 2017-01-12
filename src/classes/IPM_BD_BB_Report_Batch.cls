@@ -472,7 +472,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         IPM_Analytics__c ipmAnalytic = analyticObj;
         String strFinancialScope = IPM_ConstantUtils.IPMGLOBAL;
         
-          String finExternalID= buildFinancialExternal(analyticObj);
+          String finExternalID= buildFinancialExternal(analyticObj,project);
         
         if(String.isNotBlank(project.IPM_Phase__c) && String.isNotBlank(project.IPM_ProjectGKM__c) ){
             String strKey =  project.IPM_ProjectGKM__c + IPM_ConstantUtils.HYPHEN_DELIMITER + project.IPM_Phase__c;
@@ -734,6 +734,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		                                                                                  Parent_Project__r.IPM_Project_Type__c,
 		                                                                                  Local_Project__r.IPM_Project_Type__c,
 		                                                                                  Local_Project__r.IPM_Project_Name__c,
+                                                                                                  Local_Project__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c,
 		                                                                                  Misaligned__c,
 		                                                                                  IPM_Auto_Aligned_Fin_TLD__c,
 		                                                                                  IPM_Project_Rollout__r.id,
@@ -745,7 +746,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		                                                                          FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
         
             for(IPM_Financial__c fi:projectFinancialList){
-                if(fi.Local_Project__r.id !=null && (fi.Local_Project__r.IPM_Project_Name__c == fi.Financial_External_ID__c  || fi.Local_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
+                if(fi.Local_Project__r.id !=null && (fi.Local_Project__r.IPM_Project_Name__c == fi.Financial_External_ID__c  || fi.Local_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || fi.Local_Project__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c == fi.Financial_External_ID__c)){
                     projFinMap.put(fi.Local_Project__r.id,fi);
                     financialIdSet.add(fi.id);
                 }else if(fi.Regional_Project__r.id !=null &&  (fi.Financial_External_ID__c ==  fi.Regional_Project__r.IPM_Project_Name__c + IPM_Utils.CONSOLIDATED || fi.Regional_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) ){
@@ -1217,7 +1218,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     }
                 }         
                           
-                if(mile.IPM_Name__c.equalsignorecase(IPM_Utils.TargetLaunchDateShiptoTrade)){
+                if(mile.IPM_Name__c.equalsignorecase(IPM_ConstantUtils.Original_SHIPTO_TRADE_TLD) || mile.IPM_Name__c.equalsignorecase(IPM_ConstantUtils.SHIPTO_TRADE_TLD) || mile.IPM_Name__c.equalsignorecase(IPM_ConstantUtils.SHIPTO_TLD)){
                     if(mile.IPM_Actual_Target_Launch_Year__c != null){
                         a.IPM_Actual_Launch_Year__c = integer.valueOf(mile.IPM_Actual_Target_Launch_Year__c);
                     }
@@ -1243,10 +1244,11 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
    *return:String
    */
    
-   public String buildFinancialExternal(IPM_Analytics__c analyticObject){
+   public String buildFinancialExternal(IPM_Analytics__c analyticObject, IPM_Project__c project){
     
        String finExtID=null;
        IPM_Analytics__c analyticObj=analyticObject;
+       IPM_Project__c proj=project;
     
        if(analyticObj.IPM_Project_Phantom_Non_Key__c==IPM_ConstantUtils.Project  && analyticObj.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
        {
@@ -1260,7 +1262,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
           }
           else if(analyticObj.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
           {
-            finExtID=analyticObj.IPM_Project_Name__c;
+            finExtID=analyticObj.IPM_Category_Group__c==IPM_ConstantUtils.PERSONAL_CARE?proj.IPM_Project_Rollout__r.IPM_Rollout_Project__c:analyticObj.IPM_Project_Name__c;
           }
        }
        else if(analyticObj.IPM_Project_Phantom_Non_Key__c==IPM_ConstantUtils.Nonkey)

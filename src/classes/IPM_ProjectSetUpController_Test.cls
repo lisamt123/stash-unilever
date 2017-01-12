@@ -207,7 +207,16 @@ private class IPM_ProjectSetUpController_Test {
             update projectList[0];
             getPagerefences();
 
+            sic.project.IPM_Category_Text__c=CATEGORY;
+            sic.project.IPM_Region_Shr__c='Australia;New Zealand;';
+            sic.project.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_REGIONAL;
+            sic.project.IPM_Brand_Positioning__c='Lux';
             
+            projectList[0].IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+            projectList[0].IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+            projectList[0].IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
+            update projectList[0];
+            sic.getBrandPos();
         }
         Test.stopTest(); 
     }

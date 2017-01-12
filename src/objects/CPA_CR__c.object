@@ -4146,7 +4146,7 @@ if(permissionSetName == &quot;CPA_ADM&quot;){
 		else{ 
 			p.pkl_Status__c = &quot;Submitted&quot;; 
 			result = sforce.connection.update([p]); 
-	alert(result);
+	//alert(result);
 			location.reload(true); 
 		} 
 	} 

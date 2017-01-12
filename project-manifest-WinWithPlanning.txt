@@ -1,5 +1,9 @@
 src/applications/Win_With_Planning.app
 src/tabs/Loss_Tree.tab
+src/email/WinWithPlanning/WWP_Supplier_Notification_Temp.email
+src/email/WinWithPlanning/WWP_Supplier_Notification_Temp.email-meta.xml
+src/email/WinWithPlanning
+src/email/WinWithPlanning-meta.xml
 src/workflows/WWP_Loss_Tree__c.workflow
 src/classes/WWP_LossTree_CC.cls
 src/classes/WWP_LossTree_CC.cls-meta.xml

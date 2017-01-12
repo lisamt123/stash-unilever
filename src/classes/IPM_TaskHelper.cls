@@ -312,7 +312,7 @@ public with sharing class IPM_TaskHelper {
                 //assignee default user as project leader for each functional role
                 for(Schema.PicklistEntry role :functionalRole)
                 {
-                    if(project.IPM_Project_Leader__c != null)
+                    if(project.IPM_Project_Leader__c != null && role.isActive())
                     {
                         funcAssigneeId.put(role.getValue(),project.IPM_Project_Leader__c);
                     }
@@ -417,7 +417,7 @@ public with sharing class IPM_TaskHelper {
             }       
         }
     }
-    else if(newTask.IPM_Function__c.equalsIgnoreCase('TPL')&& newTask.IPM_Assignee__c == null){
+    if(newTask.IPM_Function__c.equalsIgnoreCase('TPL')&& newTask.IPM_Assignee__c == null){
     	newTask.IPM_Assignee__c = projectRec.IPM_Technical_Project_Leader__c;
     }
     // if no team member present for specific functional role assign task to PL

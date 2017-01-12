@@ -1,0 +1,290 @@
+<aura:component controller="TEL_ProductInfo_CC" implements="force:appHostable,flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:hasRecordId">
+    
+    <!-- Lightning Style --> 
+    <ltng:require styles="{!$Resource.TEL_TelesalesCSS +'/assets/styles/salesforce-lightning-design-system.css'}"/>
+    
+    <!-- Boolean Attributes -->
+    <aura:attribute name="renderOpenOrderView" type="Boolean" default="false" />
+    <aura:attribute name="renderClosedOrderView" type="Boolean" default="false" />
+    <aura:attribute name="renderSummaryTable" type="Boolean" default="false" />
+    <aura:attribute name="renderOrderTable" type="Boolean" default="false" />
+    <aura:attribute name="disableSummarizeButton" type="Boolean" default="false" />
+    <aura:attribute name="disableSendOrderButton" type="Boolean" default="true" />
+    <aura:attribute name="enableSearchBar" type="Boolean" default="false" />  
+    <aura:attribute name="showProductsList" type="Boolean" default="false" />
+    <aura:attribute name="enableSpinner" type="Boolean" default="false" description="Enables spinner while screen is being loading."/>
+    <aura:attribute name="showWarning" type="Boolean" default="false" />
+    
+    <!-- List Attributes -->
+    <aura:attribute name="fullWrapperProductsList" type="TEL_TelesalesWrapper.ProductInfo[]" />  
+    <aura:attribute name="wrapperProductsList" type="TEL_TelesalesWrapper.ProductInfo[]" />    
+    <aura:attribute name="selectedProductsList" type="TEL_TelesalesWrapper.ProductInfo[]" />
+    
+    <!-- Current Object Id Attribute -->
+    <aura:attribute name="recordId" type="Id" />
+    
+    <!-- Handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="addProduct" event="c:TEL_AddProduct" action="{!c.addProduct}" />
+    
+    <!-- Spinner Load --> 
+    <aura:renderIf isTrue="{!v.enableSpinner}">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner--brand slds-spinner slds-spinner--medium" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:renderIf>
+    
+    <div class="slds-tabs--default">
+        <ul class="slds-tabs--default__nav" role="tablist">
+            <li class="slds-tabs--default__item slds-text-title--caps slds-active" title="Products" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">Products</a></li>
+        </ul>
+        <div id="tab-default-1" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">
+            
+            <!-- Renders Products Available for Current Opp -->
+            <aura:renderIf isTrue="{!v.renderOpenOrderView}">
+                <br/>
+                
+                <div class="slds-grid">
+                    <div class="slds-col buttons-div">
+                        <!-- Renders Search Bar -->           
+                        <aura:renderIf isTrue="{!v.enableSearchBar}">
+                            <div class="slds-global-header slds-grid slds-grid--align-spread">
+                                <div class="slds-global-header__item slds-global-header__item--search">
+                                    <div class="slds-form-element slds-lookup slds-is-open left-div">
+                                        <!-- Search Bar -->
+                                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--left">
+                                            <c:svgIcon svgPath="/resource/TEL_TelesalesCSS/assets/icons/utility-sprite/svg/symbols.svg#search" 
+                                                       category="utility" class="slds-input__icon" size="small" name="search" />
+                                            
+                                            <ui:inputText aura:id="searchBox" class="slds-input slds-lookup__search-input" placeholder="Search" 
+                                                          keyup="{!c.searchKeyChange}" updateOn="keyup" />
+                                        </div>
+                                        <!-- Search Bar -->
+                                        <!-- Search Bar Result View -->
+                                        <aura:renderIf isTrue="{!v.showProductsList}">
+                                            <c:TEL_SearchBarView fullWrapperProductsList="{!v.fullWrapperProductsList}" />
+                                        </aura:renderIf>
+                                        <!-- Search Bar Result View -->
+                                    </div>
+                                </div>
+                            </div>
+                        </aura:renderIf>
+                        <!-- Renders Search Bar -->
+                    </div>
+                    
+                    <!-- Summarize and Send Order buttons -->
+                    <div class="slds-col buttons-div">    
+                        <div class="slds-button-group right-div" role="group">
+                            <ui:button class="slds-button slds-button--neutral" aura:id="closeOrderButton" label="Summarize" 
+                                       press="{!c.getSelectedProducts}" disabled="{!v.disableSummarizeButton}"/>
+                            <ui:button class="slds-button slds-button--neutral" aura:id="sendOrderButton" label="Send Order" 
+                                       press="{!c.sendOrder}" disabled="{!v.disableSendOrderButton}" />
+                        </div>
+                    </div>
+                    <!-- Summarize and Send Order buttons -->
+                </div> <br></br>  
+                
+                <!-- Products Table -->
+                <div id="productsTable">
+                    <table class="slds-table slds-table--bordered slds-table--cell-buffer fixed-width">
+                        <!-- Renders Open Order Products  -->
+                        <aura:renderIf isTrue="{!!v.renderSummaryTable}">
+                            <aura:renderIf isTrue="{!!v.renderOrderTable}">
+                                <!-- Table Header -->
+                                <thead>
+                                    <tr class="slds-text-title--caps">
+                                        <th scope="col" class="checkbox-width">
+                                            <ui:inputCheckBox aura:id="selectAll" change="{!c.checkAllProducts}" />
+                                        </th>
+                                        <th scope="col"><center>{!$Label.c.TEL_Product_Name}</center></th>
+                                        <th scope="col"><center>{!$Label.c.TEL_Quantity}</center></th>
+                                        <th scope="col"><center>{!$Label.c.TEL_Campaign}</center></th>
+                                        <th scope="col"><center>{!$Label.c.TEL_Price}</center></th>
+                                        <th scope="col"><center>{!$Label.c.TEL_Last_Order_Quantity}</center></th>
+                                        <th scope="col"><center>{!$Label.c.TEL_Close_Date}</center></th>
+                                    </tr>
+                                </thead>
+                                <!-- Table Header -->
+                                
+                                <!-- Table Body -->
+                                <tbody>
+                                    <aura:iteration var="product" items="{!v.wrapperProductsList}" indexVar="index">
+                                        <tr>
+                                            <td>
+                                                <ui:inputCheckBox aura:id="isSelected" value="{!product.isSelected}" />
+                                            </td>
+                                            <td title="{!product.name}">
+                                                <div class="fixed-cell-size">
+                                                    {!product.name}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <div class="slds-grid grid-margin-left">
+                                                        <div data-record="{!index}" onclick="{!c.diminishQuantity}" class="quantityButtonMinus">
+                                                            <button aura:id="minusButton" class="button-bkColor">—</button>
+                                                        </div>
+                                                        <div  data-record="{!index}" onclick="{!c.addQuantity}" class="quantityButtonPlus">
+                                                            <button aura:id="addButton" class="button-bkColor">+</button>
+                                                        </div>
+                                                        <div>
+                                                            <ui:inputNumber value="{!product.amount}" class="inputNumber" />
+                                                        </div>
+                                                    </div>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <div title="{!product.campaignName}">
+                                                        <aura:renderIf isTrue="{!product.activeCampaign}">
+                                                            <img src="{!$Resource.TEL_TelesalesCSS + '/assets/icons/utility/bookmark_60.png'}" width="30" height="30" />
+                                                        </aura:renderIf>
+                                                    </div>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    {!product.price}
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    {!product.lastOrderAmount}
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    {!product.closeDate}
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    </aura:iteration>
+                                </tbody>  
+                                <!-- Table Body -->
+                            </aura:renderIf>
+                        </aura:renderIf>
+                        <!-- Renders Open Order Products -->
+                        
+                        <!-- Renders Preselected Products Summary -->
+                        <aura:renderIf isTrue="{!v.renderSummaryTable}">
+                            <aura:renderIf isTrue="{!!v.renderOrderTable}">
+                                <!-- Table Header -->
+                                <thead>
+                                    <tr class="slds-text-title--caps">
+                                        <th scope="col" class="checkbox-width">
+                                            <ui:inputCheckBox aura:id="selectAllSummary" disabled="{!v.renderSummaryTable}" />
+                                        </th>
+                                        <th scope="col"><center>{!$Label.c.TEL_Product_Name}</center></th>
+                                        <th scope="col"><center>{!$Label.c.TEL_Quantity}</center></th>
+                                        <th scope="col"><center>{!$Label.c.TEL_Campaign}</center></th>
+                                        <th scope="col"><center>{!$Label.c.TEL_Price}</center></th>
+                                        <th scope="col"><center>{!$Label.c.TEL_Last_Order_Quantity}</center></th>
+                                        <th scope="col"><center>{!$Label.c.TEL_Close_Date}</center></th>
+                                    </tr>
+                                </thead>
+                                <!-- Table Header -->
+                                <!-- Table Body -->
+                                <tbody>
+                                    <aura:iteration var="product" items="{!v.selectedProductsList}" indexVar="index">
+                                        <tr>
+                                            <td>
+                                                <ui:inputCheckBox aura:id="isSelected" value="{!product.isSelected}" disabled="{!v.renderSummaryTable}" />
+                                            </td>
+                                            <td title="{!product.name}">
+                                                <div class="fixed-cell-size">
+                                                    {!product.name}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <div class="slds-grid grid-margin-left">
+                                                        <div data-record="{!index}" onclick="{!c.diminishQuantity}" class="quantityButtonMinus">
+                                                            <button aura:id="minusButton" class="button-bkColor">—</button>
+                                                        </div>
+                                                        <div  data-record="{!index}" onclick="{!c.addQuantity}" class="quantityButtonPlus">
+                                                            <button aura:id="addButton" class="button-bkColor">+</button>
+                                                        </div>
+                                                        <div>
+                                                            <ui:inputNumber value="{!product.amount}" class="inputNumber" />
+                                                        </div>
+                                                    </div>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <div title="{!product.campaignName}">
+                                                        <aura:renderIf isTrue="{!product.activeCampaign}">
+                                                            <img src="{!$Resource.TEL_TelesalesCSS + '/assets/icons/utility/bookmark_60.png'}" width="30" height="30" />
+                                                        </aura:renderIf>
+                                                    </div>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    {!product.price}
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    {!product.lastOrderAmount}
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    {!product.closeDate}
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    </aura:iteration>
+                                </tbody>
+                                <!-- Table Body -->
+                            </aura:renderIf>
+                        </aura:renderIf>
+                        <!-- Renders Preselected Products Summary -->
+                    </table>
+                    
+                    <br/>
+                    
+                    <!-- "No products found" message section -->
+                    <aura:renderIf isTrue="{!v.showWarning}">  
+                        <center>
+                            <div class="p"><p>No products found.</p></div>
+                        </center>
+                    </aura:renderIf>
+                    
+                    <!-- Renders Ordered Products Table -->
+                    <aura:renderIf isTrue="{!!v.renderSummaryTable}">
+                        <aura:renderIf isTrue="{!v.renderOrderTable}">
+                            <c:TEL_CloseOrderTable wrapperProductsList="{!v.selectedProductsList}" />
+                        </aura:renderIf>
+                    </aura:renderIf>
+                    <!-- Renders Ordered Products Table -->
+                </div>
+                <!-- Products Table -->
+            </aura:renderIf>
+            
+            <!-- Renders Released/Transmitted Opp Products Table -->
+            <aura:renderIf isTrue="{!v.renderClosedOrderView}">
+                <div id="closeOrderProductsTable">
+                    <c:TEL_CloseOrderTable wrapperProductsList="{!v.wrapperProductsList}" />
+                </div>
+            </aura:renderIf>
+            <!-- Renders Released/Transmitted Opp Products Table -->
+            
+            <!-- Renders Lost Opp Message -->
+            <aura:renderIf isTrue="{!!v.renderOpenOrderView}">
+                <aura:renderIf isTrue="{!!v.renderClosedOrderView}">
+                    <aura:iteration var="product" items="{!v.wrapperProductsList}" indexVar="index">
+                        <c:TEL_LostOrderTable lostOrderProduct="{!product}" />
+                    </aura:iteration>
+                </aura:renderIf>
+            </aura:renderIf>
+            <!-- Renders Lost Opp Message -->
+            
+        </div>
+    </div>
+</aura:component>

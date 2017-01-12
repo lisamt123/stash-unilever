@@ -162,7 +162,7 @@
                                                                     <tr>
                                                                         <td width="6%" class="custNameWidth"><apex:inputtext value="{!prodPlan.productPlan.IPM_Product_Name__c}"/></td>
                                                                         <td width="6%"><apex:inputtext value="{!prodPlan.productPlan.IPM_Format__c}"/></td>
-                                                                        <td width="6%" class="formCustWidth"><apex:inputtext value="{!prodPlan.productPlan.IPM_Formulation__c}"/></td>
+                                                                        <td width="7%" class="formCustWidth"><apex:inputtext value="{!prodPlan.productPlan.IPM_Formulation__c}"/></td>
                                                                         <td width="6%"><apex:inputtext value="{!prodPlan.productPlan.IPM_Packing__c}"/></td>
                                                                         <td width="11%" class="custSizeWidth"><apex:inputtext styleClass="sizeNumberbox" value="{!prodPlan.productPlan.IPM_ProductSize__c}"/>
                                                                             <apex:selectList styleClass="sizeSelect" value="{!prodPlan.productPlan.IPM_ProductSizeMetrics__c}" size="1">

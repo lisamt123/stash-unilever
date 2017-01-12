@@ -469,6 +469,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_External_ID__c</fullName>
+        <description>To hold the external id/Inoplan project id of the project</description>
+        <externalId>false</externalId>
+        <label>Inoplan Project ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Finance_Member__c</fullName>
         <description>Name of the Finance Member</description>
         <externalId>false</externalId>

@@ -15,6 +15,7 @@ private with sharing class IPM_ExportTeamMembersReportCntrl_Test {
 	private static List<IPM_User_Profile__c> createUserProfileList;
 	
 	private static final String LAUNDRY = 'Laundry';  
+	private static final String IPM_ALL_USERS_GROUP = 'IPM_All Users';
 	
 	/***********************************************************************************************************************************************************
 	* @description To create test data to be used in test methods
@@ -36,6 +37,13 @@ private with sharing class IPM_ExportTeamMembersReportCntrl_Test {
 			createUserProfileList[0].IPM_User__c=createUserProfileList[1].IPM_User__c=centralTeamProfileUser.Id;
 			insert createUserProfileList; 
 			
+			//Adding user to the  IPM_All_Users public group,All IPM Reports are shared with this folder
+			GroupMember grpMember = new GroupMember();
+			List<Group> listGroup =[Select Id from Group where name=:IPM_ALL_USERS_GROUP];
+			grpMember.GroupId =listGroup[0].Id;
+			grpMember.UserOrGroupId=centralTeamProfileUser.Id;
+			insert grpMember;
+			
 			system.assertEquals([Select IPM_User__c from IPM_User_Profile__c where IPM_Company_Card__c=:globalCompanyCard.Id limit 1].IPM_User__c,centralTeamProfileUser.Id,'Unable to create user profile with the specified User');    
             
         }   
@@ -53,7 +61,8 @@ private with sharing class IPM_ExportTeamMembersReportCntrl_Test {
 		//Running as Central Team Member as they are the ones using the report export functionality through the IPM_ExportTeamMembersReport page
 		system.runAs(centralTeamProfileUser) 
 		{
-		     List<IPM_Project__c> reportRecords = IPM_TestFactory_Helper.createIPMProjectList(false,5);
+			
+		     List<IPM_Project__c> reportRecords = IPM_TestFactory_Helper.projectSetUp(5,centralTeamProfileUser);
 			 
 			 for(IPM_Project__c reportPrj : reportRecords)  
 			 {
@@ -61,15 +70,17 @@ private with sharing class IPM_ExportTeamMembersReportCntrl_Test {
 			 } 
 			 
 			 //inserting project records to be shown  in Excel
+			 IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
 			 insert  reportRecords; 
-			
-			Test.StartTest(); 
-			    Test.setCurrentPage(pRef); 
+			 IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
+             
+			  Test.StartTest(); 
+				Test.setCurrentPage(pRef); 
 				IPM_ExportTeamMembersReportController expTeamMemRepCntrl = new  IPM_ExportTeamMembersReportController();
-			Test.StopTest();  
-			
-			//checking if report data is fetched onto the page
-			system.assert(expTeamMemRepCntrl.reportResults.getAllData(),'Unable to fetch the Report Records');    
+			  
+				//checking if report data is fetched onto the page
+				system.assert(expTeamMemRepCntrl.reportResults.getAllData(),'Unable to fetch the Report Records');    
+			Test.StopTest(); 			 
 		
 		} 
 	}

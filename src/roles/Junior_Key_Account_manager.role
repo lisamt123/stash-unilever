@@ -6,5 +6,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>RFS Junior Key Account manager</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>Cash_Carry_Business_Development_Manager</parentRole>
+    <parentRole>National_Development_Manager</parentRole>
 </Role>
