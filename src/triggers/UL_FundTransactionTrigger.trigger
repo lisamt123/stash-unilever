@@ -7,6 +7,7 @@ UL_FundTransactionHandler.FundTransfer(trigger.new);
 if(trigger.isafter && trigger.isinsert){
 
 UL_fundAmountCalculation.UL_availableToSpendUpdate(trigger.new);
+UL_fundTransferAvalbToSpendUpdateHandler.UL_fundTransferTransaction(trigger.new);
 }
 
 if(trigger.isafter && trigger.isupdate){
