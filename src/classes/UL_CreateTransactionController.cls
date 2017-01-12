@@ -351,9 +351,9 @@ global with sharing class UL_CreateTransactionController {
                         {
                             
                             /**Query the Customer Marketing director for the Sales org**/
-                            Profile userProfile = [SELECT Id FROM Profile WHERE Name='SoCo-Customer Marketing Director' Limit: (LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())];
-                            userLst = [SELECT Id, Name FROM User WHERE ProfileId=:userProfile.id and ACCL__Sales_Org__c=:salesOrg Limit 1];
-                            nextApproverId = userLst[0].id;
+                              permissionset permissionId =[SELECT Id FROM PermissionSet WHERE Name = 'SoCo_Customer_Marketing_Director'];
+                              PermissionSetAssignment userid = [SELECT AssigneeId FROM PermissionSetAssignment WHERE PermissionSetId =:permissionId.id Limit 1];
+                              userLst = [SELECT Id, Name FROM User WHERE id=:userid.AssigneeId and ACCL__Sales_Org__c=:salesOrg Limit 1];
                             
                             /**Create an approval request for the Cross Category Transfer transaction**/                               
                             Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
@@ -362,7 +362,6 @@ global with sharing class UL_CreateTransactionController {
                             
                             /**Submit the record for approval on behalf of the created user**/
                             req1.setSubmitterId(relatedRecord.CreatedById);
-                            req1.setNextApproverIds(new Id[] {nextApproverId});
                             
                             /**Submit the record to specific process and skip the criteria evaluation**/
                             req1.setProcessDefinitionNameOrId(UL_Utility.FUND_TRANSFER_TRANSACTION_APPROVAL_PROCESS);
@@ -371,7 +370,7 @@ global with sharing class UL_CreateTransactionController {
                             relatedRecord.UL_Approver__c = userLst[0].Name; 
                             update relatedRecord;
         
-                            /**Submit the approval request for the account**/
+                            /**Submit the approval request for the transaction**/
                             Approval.ProcessResult result = Approval.process(req1);
                             
                                 
