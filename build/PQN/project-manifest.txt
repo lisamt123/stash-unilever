@@ -78,10 +78,6 @@ src/classes/PQN_SendEmailtoDC_ClusterScheduler.cls
 src/classes/PQN_SendEmailtoDC_ClusterScheduler.cls-meta.xml
 src/classes/PQN_SendEmailtoDC_ClusterSchedulerTest.cls
 src/classes/PQN_SendEmailtoDC_ClusterSchedulerTest.cls-meta.xml
-src/classes/PQN_updateDCV.cls
-src/classes/PQN_updateDCV.cls-meta.xml
-src/classes/PQN_updateDCV_Test.cls
-src/classes/PQN_updateDCV_Test.cls-meta.xml
 src/classes/PQN_updateSUP.cls
 src/classes/PQN_updateSUP.cls-meta.xml
 src/classes/PQN_updateSUP_Test.cls
