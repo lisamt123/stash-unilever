@@ -1685,6 +1685,14 @@
                 <fullName>TEST2</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Dummy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -1925,13 +1933,13 @@
                 <default>true</default>
             </values>
         </picklistValues>
-      <!--  <picklistValues>
+        <picklistValues>
             <picklist>ACCL__Sales_Org</picklist>
             <values>
                 <fullName>0001</fullName>
                 <default>false</default>
             </values>
-        </picklistValues>-->
+        </picklistValues>
         <picklistValues>
             <picklist>ACCL__State__c</picklist>
             <values>
@@ -1993,7 +2001,15 @@
         <picklistValues>
             <picklist>UL_Material_Type__c</picklist>
             <values>
+			<fullName>Dummy</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>FERT</fullName>
+				<default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2347,7 +2363,7 @@
                 <default>true</default>
             </values>
         </picklistValues>
-       <!-- <picklistValues>
+        <picklistValues>
             <picklist>ACCL__Sales_Org</picklist>
             <values>
                 <fullName>0001</fullName>
@@ -2361,7 +2377,7 @@
                 <fullName>UK SO</fullName>
                 <default>false</default>
             </values>
-        </picklistValues>-->
+        </picklistValues>
         <picklistValues>
             <picklist>ACCL__State__c</picklist>
             <values>
@@ -2589,7 +2605,7 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <!--<picklistValues>
+        <picklistValues>
             <picklist>ACCL__Sales_Org</picklist>
             <values>
                 <fullName>0001</fullName>
@@ -2603,7 +2619,7 @@
                 <fullName>UK SO</fullName>
                 <default>false</default>
             </values>
-        </picklistValues>-->
+        </picklistValues>
         <picklistValues>
             <picklist>ACCL__State__c</picklist>
             <values>
@@ -2832,13 +2848,13 @@
                 <default>true</default>
             </values>
         </picklistValues>
-<!--        <picklistValues>
+        <picklistValues>
             <picklist>ACCL__Sales_Org</picklist>
             <values>
                 <fullName>0001</fullName>
                 <default>false</default>
             </values>
-        </picklistValues>-->
+        </picklistValues>
         <picklistValues>
             <picklist>ACCL__State__c</picklist>
             <values>
@@ -3063,13 +3079,13 @@
                 <default>true</default>
             </values>
         </picklistValues>
-        <!--<picklistValues>
+        <picklistValues>
             <picklist>ACCL__Sales_Org</picklist>
             <values>
                 <fullName>0001</fullName>
                 <default>false</default>
             </values>
-        </picklistValues>-->
+        </picklistValues>
         <picklistValues>
             <picklist>ACCL__State__c</picklist>
             <values>
