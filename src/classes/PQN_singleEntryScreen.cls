@@ -8,7 +8,7 @@ public without sharing class PQN_singleEntryScreen{
     public boolean immediatevalidate{get; set;}
     public List<selectoption> reportingdc{get;set;}
     public boolean showsingleedit{set; get;}
-    public Long dayLeft {get;set;}
+//    public Long dayLeft {get;set;}
     Id pqnId;
     integer err=0;
     public PQN_singleEntryScreen(ApexPages.StandardController controller){
@@ -32,7 +32,7 @@ public without sharing class PQN_singleEntryScreen{
             PermissionSetAssigs = [select id,PermissionSet.name,Assignee.country from PermissionSetAssignment where AssigneeId =: userinfo.getuserid()];
             for(PermissionSetAssignment psa: PermissionSetAssigs){
                 if(psa.PermissionSet.name == 'PQN_Internal_User' && psa.Assignee.country != pqn.DC_Country__c){
-                    showsingleedit = false;
+                   // showsingleedit = false;
                 }
             }
         }
@@ -95,7 +95,7 @@ public without sharing class PQN_singleEntryScreen{
                     Id pageId = ApexPages.currentPage().getParameters().get('Id');
                     List<PQN_Pallet_Quality_Non_Conformance__c> pqnListResult = [select Name , CreatedDate, Date_Pallet_Received__c from PQN_Pallet_Quality_Non_Conformance__c where Id =: pageId LIMIT 1];
                     List<PQNFreezeDate__c> freezePeriod = [select Id, Freeze_Date__c from PQNFreezeDate__c where Numeric_Value__c =: pqnListResult[0].Date_Pallet_Received__c.month()];
-                    dayLeft  =  system.Today().daysBetween(freezePeriod[0].Freeze_Date__c);
+                 //   dayLeft  =  system.Today().daysBetween(freezePeriod[0].Freeze_Date__c);
                     if (freezePeriod[0].Freeze_Date__c < system.Today()){
                             system.debug('Freeze Date crossed pls check');
                             ApexPages.Message myFreezeMessage = new ApexPages.Message(ApexPages.Severity.INFO,'You have crossed the freeze period');
@@ -191,6 +191,7 @@ public without sharing class PQN_singleEntryScreen{
                    err++;
                 }
                 if(losName!=null && maplosses.containskey(integer.valueof(losName))){
+                pqn.Loss_Level_2__c= maplosses.get(integer.valueof(losName)).Loss_L2__c;
                 pqn.loss_level_3__c = maplosses.get(integer.valueof(losName)).Loss_L3__c;
                 pqn.loss_level_4__c = maplosses.get(integer.valueof(losName)).Loss_L4__c;
                 }
@@ -268,7 +269,7 @@ public without sharing class PQN_singleEntryScreen{
                     Insert pqn1;
                 }else{
                 // adding the value to Days Left : rajesh
-                    pqn.Days_Left_Before_Freeze__c = dayLeft;
+                 //   pqn.Days_Left_Before_Freeze__c = dayLeft;
                     upsert pqn;
                 }
               

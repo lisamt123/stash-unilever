@@ -32,12 +32,12 @@ public with sharing class PQN_NewTargetExtension{
         try{
             if(targets!=null){
             upsert targets;
-            if(targetId==null)
-            {
+           // if(targetId==null)
+          //  {
             List<PQN_Targets__c> listtar=new List<PQN_Targets__c>();
             listtar.add(targets);
             PQN_updateTAR.update_TAR(listtar);
-            }
+           // }
  
             PageReference targetDetailPage = page.PQN_Target_Detail_VF;
             targetDetailPage.setRedirect(true);

@@ -26,6 +26,15 @@ Public Class PQN_NewTargetExtensionTest{
         
         PQN_NewTargetExtension ctrl = new PQN_NewTargetExtension(stdTarget);
         ctrl.saveTarget();
+        ctrl.cancelTarget();
+        
+        PageReference pageRef1 = Page.PQN_TargetEntryScreen_VF;
+        pageRef1.getParameters().put('',target.id);
+        Test.setCurrentPage(pageRef1);
+        
+        PQN_NewTargetExtension ctrl1 = new PQN_NewTargetExtension(stdTarget);
+        ctrl1.saveTarget();
+        ctrl1.cancelTarget();
         
         
     }
