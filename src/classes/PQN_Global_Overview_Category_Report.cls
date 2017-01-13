@@ -2,10 +2,138 @@ public without sharing class PQN_Global_Overview_Category_Report{
    
     public List<PQN_Global_SUWrap> xSUWRAPLISTGC{get;set;}
     public String empty{get;set;}
-      public List<PQN_chart> xChartdata1{get;set;}
-   
-    public PQN_Global_Overview_Category_Report(ApexPages.StandardController acon){
+    public List<PQN_chart> xChartdata1{get;set;}
+    
+    public Map<String,Integer> xMapCAT{get;set;}
+    public Set<String> xLOSS {get;set;}
+    public Set<String> xCAT {get;set;}
+    
+    
+    public string catKey{get;set;}
+    public string catLabel{get;set;}
+    public List<String> listLabelCatFields {get;set;}
+    public Map<String,String> chartCatLabelmap{get;set;}
+    public Map<String,List<String>> chartCatresult{get;set;}
+    
+    
+     private void callCatStackChart(){
+            List<AggregateResult> listAgg =new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c label, Product_Group__c key from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!='' AND Product_Group__c!='' group By Loss_Level_2__c, Product_Group__c Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]);
+            xMapCAT = new Map<String,Integer>();
+            xLOSS = new Set<String>();
+            xCAT= new Set<String>();
+            for( AggregateResult xA : listAgg ){
+                xMapCAT.put((String) xA.get('key')+''+(String) xA.get('label'),Integer.valueOf((Decimal) xA.get('cnt')));
+                xLOSS.add((String) xA.get('label'));
+                xCAT.add((String) xA.get('key'));
+            }
+            listLabelCatFields = getFieldsLabel2();
+            catKey= listLabelCatFields[0];
+            catLabel= listLabelCatFields[1];
+            //chartresult = generateCatStackData(catLabel);
+    }
+    
+    private List<String> getFieldsLabel2(){
+        chartCatLabelmap= new Map<String,String>();
+        String query ='';
+        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c), Loss_Level_2__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' group By Loss_Level_2__c';
+        List<String> fields =new List<String>();
+        String Key='';
+        String label='';
+        Integer i=0;
+        system.debug(query);
+        list<AggregateResult> result = Database.query(query);
+        system.debug('result--------->>>>'+result);
+        for(AggregateResult xP : result){
+                        
+            Key += ','+i;
+            if((String) xP.get('label')==null || (String) xP.get('label')==''){
+                label+= ',Other';
+            }else{
+                label+= ','+ (String) xP.get('label');
+            }
+            
+            i++;
+            
+        }
+        system.debug('Key%%---'+Key);
+        system.debug('Label%%--'+Label);
+        if(key.length()>0){
+            Key = key.subString(1,key.length());
+        }
+        if(label.length()>0){
+            label= label.subString(1,label.length());
+        }
+
+        fields.add(Key);
+        fields.add(Label);
         
+        
+        return fields;
+    
+    }
+    @RemoteAction
+    public static Map<String,List<String>> generateCatStackData(String mapStr){
+        system.debug(mapStr);
+        Map<String,List<String>> resultsMap = new Map<String,List<String>>();        
+        Map<String,Decimal> resultsMapTemp = new Map<String,Decimal>();
+        Set<String> setDiag = new Set<String>();
+        List<String> keyString = mapStr.split(',');
+        String query ='';
+        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c key, Product_Group__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' AND Product_Group__c !=\'\' group By Loss_Level_2__c, Product_Group__c Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc limit 50000';
+        Decimal totalcount = 0;
+        list<AggregateResult> result = Database.query(query);
+        
+        for(AggregateResult xP : result){
+               String gVallabel=(String) xP.get('label');
+               if(gVallabel=='' || gVallabel==null){
+                   gVallabel='Other';
+               }
+             
+             setDiag.add(gVallabel);
+             String s='';
+             if((String) xP.get('key')=='' || (String) xP.get('key')==null){
+                s='Other';
+             }else{
+                s=(String) xP.get('key');
+             }
+            resultsMapTemp.put(gVallabel+'_'+s, (Decimal) xP.get('cnt'));
+             
+         }
+        system.debug('&&&&%%%%%'+resultsMapTemp);
+        for(String sX : setDiag){
+            List<String> strList = new List<String>();
+            Decimal i =0;
+            for(String xC: keyString){
+                   
+                Decimal data =0;
+                data=resultsMapTemp.get(sX+'_'+xC);
+                if(data==null){
+                 data=0;
+                }
+                totalcount+=data;                
+                String keyVal ='MD_'+i+'MD_:'+data;
+                strList.add(keyVal);   
+               
+                i++;
+           } 
+           
+           resultsMap.put(sX,strList);
+        }
+        
+        List<String> strList2 = new List<String>();
+        String total =String.valueOf(totalcount);
+        strList2.add(total);
+        resultsMap.put('TOTAL_MD_RESULT',strList2); 
+        system.debug('---->>'+resultsMap);       
+        return resultsMap;
+      
+    }
+    
+    
+    
+       
+    public PQN_Global_Overview_Category_Report(ApexPages.StandardController acon){
+        callCatStackChart();
         empty = '';
         xChartdata1 = new List<PQN_chart>();
         xSUWRAPLISTGC = new List<PQN_Global_SUWrap>();

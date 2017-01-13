@@ -2,11 +2,149 @@ public without sharing class PQN_Global_Overview_Geography{
     
     public List<PQN_Global_SUWrap> xSUWRAPLIST{get;set;}
     public String empty{get;set;}
-     public List<PQN_chart> xChartdata{get;set;}
+    public List<PQN_chart> xChartdata{get;set;}
+    public Integer cuYear{get;set;}
+    public Integer preYear{get;set;}
+    public String cuMonth{get;set;}
+    
+    public Map<String,Integer> xMap{get;set;}
+    public Set<String> xAxisName{get;set;}
+    public Set<String> yAxisName{get;set;}
+    
+    public string dosingKey{get;set;}
+    public string dosingLabel{get;set;}
+    public List<String> listLabelFields {get;set;}
+    public Map<String,String> chartLabelmap{get;set;}
+    public Map<String,List<String>> chartresult{get;set;}
+    
+    public String xlsHeader{
+        get{
+            String strHeader = '';
+            strHeader += '<?xml version="1.0"?>';
+            strHeader += '<?mso-application progid="Excel.Sheet"?>';
+            return strHeader;
+        }
+    }
+    
+    private void callStackChart(){
+    
+            List<AggregateResult> listAgg =new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c label, Supplier_Region__c key from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!='' AND Supplier_Region__c!='' group By Loss_Level_2__c, Supplier_Region__c Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]);
+            xMap = new Map<String,Integer>();
+            xAxisName = new Set<String>();
+            yAxisName = new Set<String>();
+            for( AggregateResult xA : listAgg ){
+                xMap.put((String) xA.get('key')+''+(String) xA.get('label'),Integer.valueOf((Decimal) xA.get('cnt')));
+                xAxisName.add((String) xA.get('label'));
+                yAxisName.add((String) xA.get('key'));
+            }
+            
+            listLabelFields = getFieldsLabel();
+            dosingKey= listLabelFields[0];
+            dosingLabel= listLabelFields[1];
+            //chartresult = generateStackData(dosingLabel);
+    }
+    
+    private List<String> getFieldsLabel(){
+        chartLabelmap = new Map<String,String>();
+        String query ='';
+        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c), Loss_Level_2__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' group By Loss_Level_2__c Order by Loss_Level_2__c';
+        List<String> fields =new List<String>();
+        String Key='';
+        String label='';
+        Integer i=0;
+        system.debug(query);
+        list<AggregateResult> result = Database.query(query);
+        system.debug('result--------->>>>'+result);
+        for(AggregateResult xP : result){
+                        
+            Key += ','+i;
+            if((String) xP.get('label')==null || (String) xP.get('label')==''){
+                label+= ',Other';
+            }else{
+                label+= ','+ (String) xP.get('label');
+            }
+            
+            i++;
+            
+        }
+        system.debug('Key%%---'+Key);
+        system.debug('Label%%--'+Label);
+        if(key.length()>0){
+            Key = key.subString(1,key.length());
+        }
+        if(label.length()>0){
+            label= label.subString(1,label.length());
+        }
+
+        fields.add(Key);
+        fields.add(Label);
+        
+        
+        return fields;
+    
+    }
+    @RemoteAction
+    public static Map<String,List<String>> generateStackData(String mapStr){
+        system.debug(mapStr);
+        Map<String,List<String>> resultsMap = new Map<String,List<String>>();        
+        Map<String,Decimal> resultsMapTemp = new Map<String,Decimal>();
+        Set<String> setDiag = new Set<String>();
+        List<String> keyString = mapStr.split(',');
+        String query ='';
+        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c key, Supplier_Region__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' AND Supplier_Region__c!=\'\' group By Loss_Level_2__c, Supplier_Region__c Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc limit 50000';
+        Decimal totalcount = 0;
+        list<AggregateResult> result = Database.query(query);
+        
+        for(AggregateResult xP : result){
+               String gVallabel=(String) xP.get('label');
+               if(gVallabel=='' || gVallabel==null){
+                   gVallabel='Other';
+               }
+             
+             setDiag.add(gVallabel);
+             String s='';
+             if((String) xP.get('key')=='' || (String) xP.get('key')==null){
+                s='Other';
+             }else{
+                s=(String) xP.get('key');
+             }
+            resultsMapTemp.put(gVallabel+'_'+s, (Decimal) xP.get('cnt'));
+             
+         }
+        system.debug('&&&&%%%%%'+resultsMapTemp);
+        for(String sX : setDiag){
+            List<String> strList = new List<String>();
+            Decimal i =0;
+            for(String xC: keyString){
+                   
+                Decimal data =0;
+                data=resultsMapTemp.get(sX+'_'+xC);
+                if(data==null){
+                 data=0;
+                }
+                totalcount+=data;                
+                String keyVal ='MD_'+i+'MD_:'+data;
+                strList.add(keyVal);   
+               
+                i++;
+           } 
+           
+           resultsMap.put(sX,strList);
+        }
+        
+        List<String> strList2 = new List<String>();
+        String total =String.valueOf(totalcount);
+        strList2.add(total);
+        resultsMap.put('TOTAL_MD_RESULT',strList2); 
+        system.debug('---->>'+resultsMap);       
+        return resultsMap;
       
+    }
+   
     
     public PQN_Global_Overview_Geography(ApexPages.StandardController acon){
     
+        callStackChart();
         empty = '';
         xSUWRAPLIST = new List<PQN_Global_SUWrap>();
          xChartdata = new List<PQN_chart>();
@@ -19,7 +157,10 @@ public without sharing class PQN_Global_Overview_Geography{
              Map<String,Integer> mapOfRegionprevyrtot = new Map<String,Integer>();
              Map<String,Integer> mapOfRegioncryeartot = new Map<String,Integer>();
              Map<String,Decimal> mapOftarget = new Map<String,Decimal>();
-             
+            cuYear = integer.valueof(system.Today().year());
+            preYear = integer.valueof(system.Today().year()) - 1;
+            DateTime d = datetime.now();
+            cuMonth = d.format('MMMMM');             
               String prevRegion = '';
               Integer regionSum;
             /*for(AggregateResult xD:[select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Cluster__c!= '' group By Supplier_Cluster__c order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc ])
@@ -31,16 +172,16 @@ public without sharing class PQN_Global_Overview_Geography{
             }*/
              
               List<AggregateResult> LAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Region__c,Supplier_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Region__c != ''  group By Supplier_Region__c,Supplier_Cluster__c]);
-       
+               xSUWRAPLIST.add(new PQN_Global_SUWrap('Global','','',True,True));
         
         for(AggregateResult ar:LAGG){
             
             if (string.valueOf(ar.get('Supplier_Region__c')) == prevRegion){
-                 xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Supplier_Region__c')),string.valueOf(ar.get('Supplier_Cluster__c')),False));
+                 xSUWRAPLIST.add(new PQN_Global_SUWrap('Global',string.valueOf(ar.get('Supplier_Region__c')),string.valueOf(ar.get('Supplier_Cluster__c')),False,False));
             }
             else if (string.valueOf(ar.get('Supplier_Region__c'))!=prevRegion ){
-                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Supplier_Region__c')),'',True));
-                xSUWRAPLIST.add(new PQN_Global_SUWrap(string.valueOf(ar.get('Supplier_Region__c')),string.valueOf(ar.get('Supplier_Cluster__c')),False));
+               xSUWRAPLIST.add(new PQN_Global_SUWrap('Global',string.valueOf(ar.get('Supplier_Region__c')),'',False,True));
+                xSUWRAPLIST.add(new PQN_Global_SUWrap('Global',string.valueOf(ar.get('Supplier_Region__c')),string.valueOf(ar.get('Supplier_Cluster__c')),False,False));
                
             }
              prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
@@ -59,6 +200,7 @@ public without sharing class PQN_Global_Overview_Geography{
      
         prevRegion = '';
         regionSum = 0;
+        integer total=0;
       
         for(AggregateResult ar:ListAGG){
             
@@ -70,6 +212,8 @@ public without sharing class PQN_Global_Overview_Geography{
             mapOfRegion.put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
           
             mapOfRegion.put(string.valueOf(ar.get('Supplier_Cluster__c')), integer.valueof(ar.get('expr0')));
+            total=total+integer.valueof(ar.get('expr0'));
+            mapOfRegion.put('',total);
           
             prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
@@ -77,8 +221,12 @@ public without sharing class PQN_Global_Overview_Geography{
                 
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
-    
-            if (xA.Cluster != '') {
+             if(xA.Region== '' && xA.Cluster == ''){
+               xA.cuYeardata =mapOfRegion.get('');
+               xA.cuYearPercent=(mapOfRegion.get('')*100)/integer.valueOf(xPSU[0].get('totalshipped'));
+               xA.cuYeartarper =0;
+              }
+            else if (xA.Cluster != '') {
                 xA.cuYeardata = mapOfRegion.get(xA.Cluster);
                 if(mapOftarget.get(xA.Region)!=null){
                  xA.cuYeartarper = mapOftarget.get(xA.Region);
@@ -110,6 +258,7 @@ public without sharing class PQN_Global_Overview_Geography{
         
         prevRegion = '';
         regionSum = 0;
+         total=0;
               
         mapOfRegionPreYear = new Map<String,Integer>();
         
@@ -122,6 +271,8 @@ public without sharing class PQN_Global_Overview_Geography{
             mapOfRegionPreYear.put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
                        
             mapOfRegionPreYear.put(string.valueOf(ar.get('Supplier_Cluster__c')), integer.valueof(ar.get('expr0')));
+            total=total+integer.valueof(ar.get('expr0'));
+            mapOfRegionPreYear.put('', total);
            
             prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
@@ -129,8 +280,12 @@ public without sharing class PQN_Global_Overview_Geography{
         
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
+              if(xA.Region== '' && xA.Cluster == ''){
+               xA.preYeardata =mapOfRegionPreYear.get('');
+               xA.preYearPercent =(mapOfRegionPreYear.get('')*100)/integer.valueOf(xPSU[0].get('totalshipped'));
+              }
           
-             if (xA.Cluster != '') {
+             else if (xA.Cluster != '') {
                 xA.preYeardata = mapOfRegionPreYear.get(xA.Cluster);
                 if (mapOfRegionPreYear.get(xA.Cluster) != Null){
                     temp = Double.valueOf((mapOfRegionPreYear.get(xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
@@ -158,6 +313,7 @@ public without sharing class PQN_Global_Overview_Geography{
         
         prevRegion = '';
         regionSum = 0;
+        total=0;
       
         mapOfRegioncrmnth = new Map<String,Integer>();
         
@@ -172,6 +328,8 @@ public without sharing class PQN_Global_Overview_Geography{
             mapOfRegioncrmnth .put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
            
             mapOfRegioncrmnth .put(string.valueOf(ar.get('Supplier_Cluster__c')), integer.valueof(ar.get('expr0')));
+            total=total+integer.valueof(ar.get('expr0'));
+            mapOfRegioncrmnth .put('', total);
             
             prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
@@ -179,8 +337,12 @@ public without sharing class PQN_Global_Overview_Geography{
         
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
+            if(xA.Region== '' && xA.Cluster == ''){
+               xA.cumnthdata=mapOfRegioncrmnth.get('');
+               xA.cumnthPercent =(mapOfRegioncrmnth.get('')*100)/integer.valueOf(xPSU[0].get('totalshipped'));
+              }
           
-             if (xA.Cluster != '') {
+             else if (xA.Cluster != '') {
                 xA.cumnthdata = mapOfRegioncrmnth .get(xA.Cluster);
                 if (mapOfRegioncrmnth .get(xA.Cluster) != Null){
                     temp = Double.valueOf((mapOfRegioncrmnth .get(xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
@@ -206,6 +368,7 @@ public without sharing class PQN_Global_Overview_Geography{
         
         prevRegion = '';
         regionSum = 0;
+        total=0;
       
         mapOfRegioncrmnthdc = new Map<String,Integer>();
         
@@ -215,9 +378,11 @@ public without sharing class PQN_Global_Overview_Geography{
                 regionSum = 0;
             }   
             regionSum = regionSum + integer.valueof(ar.get('expr0'));
-            mapOfRegioncrmnth .put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
+            mapOfRegioncrmnthdc.put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
         
-            mapOfRegioncrmnth .put(string.valueOf(ar.get('Supplier_Cluster__c')), integer.valueof(ar.get('expr0')));
+            mapOfRegioncrmnthdc.put(string.valueOf(ar.get('Supplier_Cluster__c')), integer.valueof(ar.get('expr0')));
+            total=total+integer.valueof(ar.get('expr0'));
+            mapOfRegioncrmnthdc.put('', total);
             
             prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
@@ -225,8 +390,11 @@ public without sharing class PQN_Global_Overview_Geography{
         
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
+             if(xA.Region== '' && xA.Cluster == ''){
+               xA.cumnthdcdata=mapOfRegioncrmnthdc.get('');
+             }
          
-            if (xA.Cluster != '') {
+            else if (xA.Cluster != '') {
                 xA.cumnthdcdata = mapOfRegioncrmnthdc .get(xA.Cluster);
                 }
             
@@ -245,6 +413,7 @@ public without sharing class PQN_Global_Overview_Geography{
         
         prevRegion = '';
         regionSum = 0;
+        total=0;
        
         mapOfRegioncrmnthIE = new Map<String,Integer>();
         
@@ -258,6 +427,8 @@ public without sharing class PQN_Global_Overview_Geography{
             mapOfRegioncrmnthIE .put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
           
             mapOfRegioncrmnthIE .put(string.valueOf(ar.get('Supplier_Cluster__c')), integer.valueof(ar.get('expr0')));
+            total=total+integer.valueof(ar.get('expr0'));
+            mapOfRegioncrmnthIE .put('', total);
           
             prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
@@ -266,7 +437,10 @@ public without sharing class PQN_Global_Overview_Geography{
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
           
-             if (xA.Cluster != '') {
+             if(xA.Region== '' && xA.Cluster == ''){
+               xA.cumnthIEdata =mapOfRegioncrmnthIE .get('');
+             }
+             else if (xA.Cluster != '') {
                 xA.cumnthIEdata = mapOfRegioncrmnthIE .get(xA.Cluster);
                 }
             
@@ -285,6 +459,7 @@ public without sharing class PQN_Global_Overview_Geography{
         
         prevRegion = '';
         regionSum = 0;
+        total=0;
        
         mapOfRegioncrmnthtot = new Map<String,Integer>();
         
@@ -298,6 +473,8 @@ public without sharing class PQN_Global_Overview_Geography{
             mapOfRegioncrmnthtot .put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
           
             mapOfRegioncrmnthtot .put(string.valueOf(ar.get('Supplier_Cluster__c')), integer.valueof(ar.get('expr0')));
+            total=total+integer.valueof(ar.get('expr0'));
+            mapOfRegioncrmnthtot .put('', total);
         
             prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
@@ -305,8 +482,11 @@ public without sharing class PQN_Global_Overview_Geography{
         
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
+             if(xA.Region== '' && xA.Cluster == ''){
+               xA.cumnthtotdata =mapOfRegioncrmnthtot .get('');
+             }
          
-            if (xA.Cluster != '') {
+            else if (xA.Cluster != '') {
                 xA.cumnthtotdata = mapOfRegioncrmnthtot .get(xA.Cluster);
                 }
             
@@ -325,6 +505,7 @@ public without sharing class PQN_Global_Overview_Geography{
         
         prevRegion = '';
         regionSum = 0;
+        total=0;
              
         mapOfRegionprevyrtot = new Map<String,Integer>();
         
@@ -338,14 +519,19 @@ public without sharing class PQN_Global_Overview_Geography{
             mapOfRegionprevyrtot .put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
           
             mapOfRegionprevyrtot .put(string.valueOf(ar.get('Supplier_Cluster__c')), integer.valueof(ar.get('expr0')));
+            total=total+integer.valueof(ar.get('expr0'));
+            mapOfRegionprevyrtot .put('', total);
             
             prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
         }
         
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
+         if(xA.Region== '' && xA.Cluster == ''){
+               xA.preYeardatatot =mapOfRegionprevyrtot .get('');
+             }
          
-            if (xA.Cluster != '') {
+            else if (xA.Cluster != '') {
                 xA.preYeardatatot = mapOfRegionprevyrtot .get(xA.Cluster);
                 }
             
@@ -365,7 +551,7 @@ public without sharing class PQN_Global_Overview_Geography{
         
         prevRegion = '';
         regionSum = 0;
-             
+        total=0;
         mapOfRegioncryeartot = new Map<String,Integer>();
         
         for(AggregateResult ar:ListAGG){
@@ -379,6 +565,8 @@ public without sharing class PQN_Global_Overview_Geography{
             mapOfRegioncryeartot .put(string.valueOf(ar.get('Supplier_Region__c')), regionSum);
          
             mapOfRegioncryeartot .put(string.valueOf(ar.get('Supplier_Cluster__c')), integer.valueof(ar.get('expr0')));
+            total=total+integer.valueof(ar.get('expr0'));
+            mapOfRegioncryeartot .put('', total);
           
             prevRegion = string.valueOf(ar.get('Supplier_Region__c'));
             
@@ -386,8 +574,11 @@ public without sharing class PQN_Global_Overview_Geography{
         
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
+             if(xA.Region== '' && xA.Cluster == ''){
+               xA.cuYeardatatot =mapOfRegioncryeartot .get('');
+             }
         
-            if (xA.Cluster != '') {
+            else if (xA.Cluster != '') {
                 xA.cuYeardatatot = mapOfRegioncryeartot .get(xA.Cluster);
                 }
             
@@ -426,6 +617,8 @@ public without sharing class PQN_Global_Overview_Geography{
     
     public class PQN_Global_SUWrap{
         public Boolean child{get;set;}
+        public Boolean child1{get;set;}
+        public string Glo{get;set;}
         public string Region{get;set;}
         public string Cluster{get;set;}
         public Integer preYeardata {get;set;}
@@ -442,10 +635,12 @@ public without sharing class PQN_Global_Overview_Geography{
         public Integer cuYeardatatot {get;set;}
         public Double Trendper{get;set;}
         
-        public PQN_Global_SUWrap(String Region, String Cluster, Boolean child){
+        public PQN_Global_SUWrap(string Glo,String Region, String Cluster, Boolean child,Boolean child1){
             this.Region= Region;
             this.Cluster= Cluster;
             this.child= child;
+            this.Glo=Glo;
+            this.child1= child1;
            
         }
         

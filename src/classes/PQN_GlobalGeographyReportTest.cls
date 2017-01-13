@@ -59,7 +59,7 @@ private class PQN_GlobalGeographyReportTest{
          PQN_Global_Overview_Geography  overviewgeography=new  PQN_Global_Overview_Geography(sc);
          //overviewgeography.callStackChart();
          //overviewgeography.getFieldsLabel();
-         //PQN_Global_Overview_Geography.generateStackData('mapStr');
+         PQN_Global_Overview_Geography.generateStackData('mapStr');
         //testAccPlan = new newAccountPlan(sc);
         PQN_Pallet_Loss_Tree__c losstree=new PQN_Pallet_Loss_Tree__c();
         losstree.name='111';
