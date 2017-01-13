@@ -56,7 +56,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Read</externalSharingModel>
     <fields>
         <fullName>Multi_Brand_Positioning__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
@@ -114,8 +114,13 @@
     <label>Amr Multi Brand Positions</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>Multi_Category__c</columns>
+        <columns>Multi_Brand_Positioning__c</columns>
+        <columns>Multi_Brand__c</columns>
+        <columns>Status__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>BPS-{00000}</displayFormat>
@@ -124,5 +129,5 @@
     </nameField>
     <pluralLabel>Amr Multi Brand Positions</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Read</sharingModel>
 </CustomObject>

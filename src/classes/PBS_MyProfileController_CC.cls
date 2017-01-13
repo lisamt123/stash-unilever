@@ -66,6 +66,8 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
                 
         }
         
+        
+        
         totalAchievements = 0;
         profileUserId = ApexPages.currentPage().getParameters().get('id');
         String chatterPageUserId = ApexPages.currentPage().getParameters().get('sfdc.userId');

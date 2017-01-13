@@ -565,7 +565,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PlannedDeliveryTime__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PlannedDeliveryTime__c}"/> 
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ABCIndicator__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ABCIndicator__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OfficeOfEntry__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OfficeOfEntry__c}" />
-              <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ModeTransportForeignTrade__c}" /-->
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ModeTransportForeignTrade__c}" />
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReturnsVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReturnsVendor__c}"/-->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SalesPerson__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SalesPerson__c}" />
           </apex:pageBlockSection> 
@@ -696,6 +696,7 @@
           
           <apex:pageBlockSection title="{!$Label.VPM_Withholding_Tax}" rendered="{!regionalSpecificScreenU2K2}">
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCountryKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCountryKey__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CertificateWithholdingTaxExemption__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CertificateWithholdingTaxExemption__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCode__c}" />
               <apex:selectList value="{!indicatorWithHoldingDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorForWithholdingTaxType__c.Label}" size="1">
                   <apex:selectOptions value="{!indicatorWithHoldingOptions}"/>
@@ -786,6 +787,16 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountMemo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountMemo__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PreviousAccountNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PreviousAccountNumber__c}"  />
           </apex:pageBlocksection>
+                  <apex:pageBlockSection columns="2" title="{!$Label.VPM_Withholding_Tax}" rendered="{!regionalSpecificScreenCordillera}">
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCountryKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCountryKey__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCode__c}" />
+              <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorForWithholdingTaxType__c.Label}" value="{!indicatorWithHoldingDefValue}" maxlength="2"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Liable__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Liable__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionNumber__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionFrom__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionFrom__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionTo__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionRate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionRate__c}"/>              
+          </apex:pageBlockSection> 
           <apex:pageBlocksection title="{!$Label.VPM_PurchasingOrganisation}" rendered="{!regionalSpecificScreenCordillera}">
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccntWithVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccntWithVendor__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OurAccNumWithVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OurAccNumWithVendor__c}"/>
@@ -802,7 +813,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PlannedDeliveryTime__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PlannedDeliveryTime__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ABCIndicator__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ABCIndicator__c}"/> 
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OfficeOfEntry__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OfficeOfEntry__c}" />
-              <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ModeTransportForeignTrade__c}" /-->
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ModeTransportForeignTrade__c}" />
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReturnsVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReturnsVendor__c}"/-->
                <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SalesPerson__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SalesPerson__c}"/>
           </apex:pageBlocksection>
@@ -856,6 +867,8 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress1__c}"/>  
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress2__c}"/>  
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress3__c}"/>  
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryCountry__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryCountry__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThirdPartyCountry__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThirdPartyCountry__c}"/>  
               <!--<apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorPayItemsSeparately__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorPayItemsSeparately__c}"/>-->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentMethodSupplement__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PaymentMethodSupplement__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_HeadOfficeAccountNumber__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_HeadOfficeAccountNumber__c}"/>
@@ -896,7 +909,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_UnitOfMeasureGrp__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_UnitOfMeasureGrp__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ABCIndicator__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ABCIndicator__c}"/> 
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OfficeOfEntry__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OfficeOfEntry__c}" />
-              <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ModeTransportForeignTrade__c}" /-->
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ModeTransportForeignTrade__c}" />
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReturnsVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReturnsVendor__c}"/-->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SalesPerson__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SalesPerson__c}"/>
           </apex:pageBlocksection>
@@ -929,13 +942,13 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ServiceAgent__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ServiceAgent__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DepartmentNumber__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_DepartmentNumber__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PartnerNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PartnerNumber__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ArabiaOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ArabiaOldNumber__c}"/>
+              <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ArabiaOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ArabiaOldNumber__c}"/-->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IsraelOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IsraelOldNumber__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TurkeyOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TurkeyOldNumber__c}"/>
+              <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TurkeyOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TurkeyOldNumber__c}"/-->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SMSIndicator__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SMSIndicator__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndonesiaOldVendorNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndonesiaOldVendorNumber__c}"/>
+              <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndonesiaOldVendorNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndonesiaOldVendorNumber__c}"/-->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_NPIVendor__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_NPIVendor__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThaiOldVendorNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThaiOldVendorNumber__c}"/>
+              <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThaiOldVendorNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThaiOldVendorNumber__c}"/-->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountingNote__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountingNote__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TextToInput__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_TextToInput__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DataLine__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_DataLine__c}"/>

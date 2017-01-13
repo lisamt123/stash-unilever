@@ -1,0 +1,77 @@
+.THIS .p {
+    font-family: Gill Sans, Verdana;
+    font-size: 11px;
+    line-height: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.THIS .left-div {
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+
+.THIS .search-bar {
+    position: relative;
+}
+
+.THIS .right-div {
+    position:absolute;
+    bottom:0;
+    right:0;
+}
+
+.THIS .buttons-div {
+    position: relative;
+}
+
+.THIS .grid-margin-left {
+    margin-left: 15%;
+}
+
+.THIS .quantityButtonMinus {
+    margin-top: 5px;
+    margin-right: 5px;
+    width: 10x;
+    height: 10px;
+}
+
+.THIS .quantityButtonPlus {
+    margin-top: 5px;
+    width: 10x;
+    height: 10px;
+}
+
+.THIS .button-bkColor {
+    background-color: white;
+    border-radius: 10px 10px 10px 10px;
+    border: 2px solid #e7e7e7; 
+}
+
+
+.THIS .button-bkColor:hover {
+    background-color: #54678e;
+    color: white;
+    transition-duration: 0.5s;
+}
+
+.THIS .inputNumber {
+    margin-left: 5px;
+    width: 55px;
+}
+
+.THIS .fixed-cell-size {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.THIS .fixed-width {
+    table-layout: fixed;
+}
+
+.THIS .checkbox-width {
+    width: 60px;
+}

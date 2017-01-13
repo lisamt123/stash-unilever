@@ -1,0 +1,46 @@
+src
+src/classes/FS_SendEmailWithMDMRequest_CX.cls
+src/classes/FS_SendEmailWithMDMRequest_CX.cls-meta.xml
+src/classes/FS_TPRCalculationHelper.cls
+src/classes/FS_TPRCalculationHelper.cls-meta.xml
+src/classes/FS_TPRCalculationTest.cls
+src/classes/FS_TPRCalculationTest.cls-meta.xml
+src/classes/FS_TPRUtil.cls
+src/classes/FS_TPRUtil.cls-meta.xml
+src/classes/FS_ContactExtend_CX.cls
+src/classes/FS_ContactExtend_CX.cls-meta.xml
+src/labels/FS.labels
+src/layouts/Account-Feed Based Distributor Russia.layout
+src/layouts/Account-Operators Russia.layout
+src/layouts/Account-Operator Russia Read Only.layout
+src/layouts/Account-Feed Based Distributor.layout
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout ReadOnly.layout
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
+src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation.layout
+src/layouts/Product2-Food Solutions Product Russia.layout
+src/objects/Account.object
+src/objects/Opportunity.object
+src/objects/OpportunityLineItem.object
+src/objects/Product2.object
+src/pages/FS_ContactDetailPage.page
+src/pages/FS_ContactDetailPage.page-meta.xml
+src/pages/FS_ContactRelatedList.page
+src/pages/FS_ContactRelatedList.page-meta.xml
+src/pages/FS_CreateContact.page
+src/pages/FS_CreateContact.page-meta.xml
+src/pages/FS_SendEmailWithMDMRequest.page
+src/pages/FS_SendEmailWithMDMRequest.page-meta.xml
+src/permissionsets/FS_Admin.permissionset
+src/permissionsets/FS_RU_Finance.permissionset
+src/permissionsets/FS_RussiaSalesRep.permissionset
+src/profiles/Unilever Food Solution - Russia.profile
+src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
+src/workflows/Account.workflow
+src/roles/UFS_Admin.role
+src/roles/Cash_Carry_Business_Development_Manager.role
+src/roles/Distributor_Account_Executive_DAE.role
+src/roles/Field_Sales_Rep_NCM.role
+src/roles/Field_Sales_Rep_NDM.role
+src/roles/National_Chains_Manager.role
+src/roles/National_Development_Manager.role
+src/roles/UFS_Admin.role

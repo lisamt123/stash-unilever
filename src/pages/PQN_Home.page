@@ -24,39 +24,23 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
 
     <style>
-    
-
+        
         hr.star-light{
             border-top: solid 3px!important;
         }
         body{
             background-color: white;
         }
-        
-        div.footer {
-            width: auto;
-            max-width: inherit;
-            min-width: inherit;
-            background-position: center bottom;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            box-shadow: 0 11px 6px -9px rgba(0,0,0,0.15) inset;
-            margin-top: 2em;
-            position: static;
-            clear: both;
-        }
-        
-        footer .row {
-            position: fixed;
-            right: 0;
+       
+        .footer {
+            position: absolute;
             bottom: 0;
-            left: 0;
+            width: 100%;
+            background: #007dbb;
+            text-align: center;
+            color:white;
             padding: 15px 0;
             margin: 0px 0;
-            text-align: center;
-            background: #007dbb;
-            //background: #222;
-            color:white;
         }
         
         .navbar-inverse {
@@ -153,14 +137,14 @@
                     </div>
                 </div>
                 
-                <div class="col-sm-2 portfolio-item">
+                <!--<div class="col-sm-2 portfolio-item">
                     <a href="./PQN_MultiTargets_VF">
-                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/target.png')}" class="img-responsive" alt="Target"/>
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/target.png')}" class="img-responsive" alt="Multi Target"/>
                     </a>
                     <div class="text-center">
                         <span class="name">Multi Target</span>
                     </div>
-                </div>
+                </div>-->
                 
                 <div class="col-sm-2 portfolio-item">
                     <a href="./PQN_DC_Volumes_Edit_VF">
@@ -178,22 +162,19 @@
                         <span class="name">Archive</span>
                     </div>
                 </div>
-                
-<!--                <div class="col-sm-3 portfolio-item">
-                   <a href="./PQN_TargetEntryScreen_VF" target="_self">
-                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/safe.png')}" class="img-responsive" alt=""/>
+                <div class="col-sm-2 portfolio-item">
+                    <a href="./PQN_PalletLossTreeData">
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/lossTree.png')}" class="img-responsive" alt="Loss Tree Data"/>
                     </a>
+                    <div class="text-center">
+                        <span class="name">Loss Tree Data</span>
+                    </div>
                 </div>
-                <div class="col-sm-3 portfolio-item">
-                    <a href="./PQN_TargetEntryScreen_VF" target="_self">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-2x">Test</i>
-                            </div>
-                        </div>
-                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/submarine.png')}" class="img-responsive" alt=""/>
-                    </a>
-                </div>-->
+
+            </div>
+            
+            <div class="row" style="margin-top: 30px;">
+                
             </div>
         </div>
     </section>
@@ -232,20 +213,15 @@
    
     <!-- Bootstrap Core JavaScript -->
     <script src="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/js/bootstrap.min.js')}"></script>
-
+    <footer class="footer">
+      <div class="container">
+        <div class=""> 
+            <p>This website is best viewed on internet explorer 8 and above</p> 
+        </div>
+        <p>© Unilever 2016</p>
+      </div>
+    </footer>
 
 </body>
-    <div class="footer text-center">
-        <footer>
-            <div class="row">
-                <div class="large-12 columns">
-                    <div class=""> 
-                        <p>This website is best viewed on internet explorer 8 and above</p> 
-                    </div>
-                    <p>© Unilever 2016</p>
-                </div>
-            </div>
-        </footer>
-    </div>
- 
+
 </apex:page>

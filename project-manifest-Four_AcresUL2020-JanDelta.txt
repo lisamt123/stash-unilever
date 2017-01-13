@@ -1,0 +1,7 @@
+src
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation.email
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation.email-meta.xml
+src/pages/FAU_SendEmail1.page
+src/pages/FAU_SendEmail1.page-meta.xml
+src/classes/FAU_SendEmail_Custom.cls
+src/classes/FAU_SendEmail_Custom.cls-meta.xml

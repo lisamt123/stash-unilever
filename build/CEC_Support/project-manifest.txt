@@ -1,9 +1,9 @@
 src
 src/pages
-src/pages/CEC_PreChatFormDutch.page
-src/pages/CEC_PreChatFormDutch.page-meta.xml
 src/staticresources
-src/staticresources/CEC_ChatOfflineConimexNetherlandsDutch.resource
-src/staticresources/CEC_ChatOfflineConimexNetherlandsDutch.resource-meta.xml
-src/staticresources/CEC_ChatOnlineConimexNetherlandsDutch.resource
-src/staticresources/CEC_ChatOnlineConimexNetherlandsDutch.resource-meta.xml
+src/pages/CEC_PreChatFormPortugese.page
+src/pages/CEC_PreChatFormPortugese.page-meta.xml
+src/staticresources/CEC_ChatOfflineOmoBrazilPortugese.resource
+src/staticresources/CEC_ChatOfflineOmoBrazilPortugese.resource-meta.xml
+src/staticresources/CEC_ChatOnlineOmoBrazilPortugese.resource
+src/staticresources/CEC_ChatOnlineOmoBrazilPortugese.resource-meta.xml

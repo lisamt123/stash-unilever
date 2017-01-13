@@ -4,7 +4,7 @@
     <contactAccessLevel>Edit</contactAccessLevel>
     <description>RFS Sales Rep NCM</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>RFS Field Sales Rep NCM</name>
+    <name>RFS Field Sales Rep M</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
     <parentRole>Sales_Development_Executive_NCM</parentRole>
 </Role>

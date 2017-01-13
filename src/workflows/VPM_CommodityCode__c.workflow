@@ -3,7 +3,7 @@
     <fieldUpdates>
         <fullName>VPM_PopulateCommodityUnique</fullName>
         <field>VPM_CommodityRegionUnique__c</field>
-        <formula>Name &amp;&quot;_&quot;&amp; TEXT(VPM_Region__c )</formula>
+        <formula>VPM_CommodityCode__c &amp;&quot;_&quot;&amp; TEXT(VPM_Region__c )</formula>
         <name>Populate Commodity Region</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

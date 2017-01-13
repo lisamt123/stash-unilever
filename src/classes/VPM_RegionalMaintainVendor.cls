@@ -212,9 +212,7 @@ public static void callRegionalService(string vendorId)
             
              responseString =responseString + VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorId);
              VPM_HttpUtil.updateRecordType(vendorId); 
-             VPM_HttpUtil.sendEmail('ajay.rawat@capgemini.com','Global Create Response from service trigger',responseString); 
-             VPM_HttpUtil.sendEmail('deepak.moudekar@capgemini.com','Global Create Response from service trigger',responseString);
-             
+            
 }
 
 public static void requireRejectionComment(List<VPM_PurchasingRequests__c> updatedVendorRequest , Map<Id,VPM_PurchasingRequests__c> OldVendorRequestValueList)

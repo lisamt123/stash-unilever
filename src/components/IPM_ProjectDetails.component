@@ -64,7 +64,7 @@
                     </div>
                 </div>    
                 <div class="funnelBlock">                                
-                    <c:IPM_Funnel project="{!project}"/> 
+                    <c:IPM_Funnel ></c:IPM_Funnel>
                 </div>
             </div>                             
         </div>

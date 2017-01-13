@@ -63,6 +63,8 @@ src/pages/PQN_TargetEntryScreen_VF.page
 src/pages/PQN_TargetEntryScreen_VF.page-meta.xml
 src/pages/PQN_Targets_List_View.page
 src/pages/PQN_Targets_List_View.page-meta.xml
+src/pages/PQN_PalletLossTreeData.page
+src/pages/PQN_PalletLossTreeData.page-meta.xml
 src/permissionsets/PQN_Admin_User.permissionset
 src/permissionsets/PQN_DC_User.permissionset
 src/staticresources/PQN_Bootstrap_Admin.resource

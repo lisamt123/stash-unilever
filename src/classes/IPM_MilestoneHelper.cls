@@ -608,14 +608,18 @@ public with sharing class IPM_MilestoneHelper
       @Description: This method will be called from IPM_MilestoneHandler to update minimum due date from Rollout Mielstone to Gloabl Original Projects corresponding Milestones (Contract Gate Milestone & Market Ready Gate Milestone) for GKM2 projects  
       @param1 :Set of <Id of affected Project> 
     */
-    public static void rollupMilestoneDuedate(set<id> setProjIds){
+    public static void rollupMilestoneDuedate(set<id> setProjIds,Map<Id,IPM_Project__c> projectMap){
         set<id> setParentProjIds = new set<id>();
         map<string, map<string, date>> mapProjMlDuedate = new map<string, map<string, date>>(); 
         list<IPM_Milestone__c> lstUpdateMiles = new list<IPM_Milestone__c>();
         
         //Get all parent project Ids.
-        for(IPM_Project__c proj :[select id, IPM_Parent_Project__c from IPM_Project__c where id in :setProjIds and IPM_ProjectGKM__c = : IPM_ConstantUtils.GKM_2 and IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT LIMIT 50000]){
-            setParentProjIds.add(proj.IPM_Parent_Project__c);
+        for(IPM_Project__c project : projectMap.values())
+        {
+        	if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_2  && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
+        	{
+        		setParentProjIds.add(project.IPM_Parent_Project__c);
+        	}
         }
         //Get Minimum Milestone date for Parent project for each Regional Milestone type
         AggregateResult[] groupedResults = [select min(IPM_Due_Date__c) duedate, IPM_Project__r.IPM_Parent_Project__c parent, IPM_Name__c from IPM_Milestone__c where IPM_Project__r.IPM_Parent_Project__c in :setParentProjIds and IPM_project__r.IPM_ProjectGKM__c = : IPM_ConstantUtils.GKM_2 and IPM_Project__r.IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT and IPM_Project__r.is_archieved__c = false group by IPM_Project__r.IPM_Parent_Project__c, IPM_Name__c LIMIT 50000]; 

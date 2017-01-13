@@ -1,3 +1,10 @@
 src
-src/assignmentRules
-src/assignmentRules/Case.assignmentRules
+src/pages
+src/staticresources
+src/pages/CEC_PreChatFormPortugese.page
+src/pages/CEC_PreChatFormPortugese.page-meta.xml
+src/staticresources/CEC_ChatOfflineOmoBrazilPortugese.resource
+src/staticresources/CEC_ChatOfflineOmoBrazilPortugese.resource-meta.xml
+src/staticresources/CEC_ChatOnlineOmoBrazilPortugese.resource
+src/staticresources/CEC_ChatOnlineOmoBrazilPortugese.resource-meta.xml
+

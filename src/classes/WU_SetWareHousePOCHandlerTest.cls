@@ -17,6 +17,15 @@ private class WU_SetWareHousePOCHandlerTest {
         
         PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'WU_Warehouse_Admin'];
        
+        EmailTemplate validEmailTemplate = new EmailTemplate();
+        validEmailTemplate.isActive = true;
+        validEmailTemplate.Name = 'name';
+        validEmailTemplate.DeveloperName = 'test';
+        validEmailTemplate.TemplateType = 'text';
+        validEmailTemplate.FolderId = UserInfo.getUserId();
+        validEmailTemplate.Subject = 'WU_warehouse_subject';
+        validEmailTemplate.Body = 'WU_warehouse_body';
+        insert validEmailTemplate;
         // Assign the above inserted user for the above Permission Set.
         PermissionSetAssignment psa = new PermissionSetAssignment();
         psa.AssigneeId = u.Id;
@@ -33,7 +42,10 @@ private class WU_SetWareHousePOCHandlerTest {
        masterWareHouseList.add(masterWareHouse);
          masterWareHouseList.add(masterWareHouse1);
         
-           insert masterWareHouseList; 
+       system.debug('masterWareHouse-->'+masterWareHouse);
+       system.debug('masterWareHouse1-->'+masterWareHouse1);
+       system.debug('masterWareHouseList 111 -->'+masterWareHouseList);
+            insert masterWareHouseList; 
             for(WU_Master_Warehouse__c wmw:masterWareHouseList){
             wmw.WU_WarehousePOC_Email__c='tserst123@xze.com';
             }
@@ -42,6 +54,8 @@ private class WU_SetWareHousePOCHandlerTest {
            WU_SetWarehousePOCHandler.sendEmailSecPOC(masterWareHouseList);
            WU_SetWarehousePOCHandler.sendRejectionEmailSecPOC(masterWareHouseList);
            WU_SetWarehousePOCHandler.sendApprovalEmailSecPOC(masterWareHouseList);
+               
+               
            //masterWarehouseMap.put(masterWareHouse.Id,masterWareHouse);
            //WU_SetWarehousePOCHandler.onBeforeInsert(masterWareHouseList,masterWarehouseMap);
            
@@ -54,13 +68,19 @@ private class WU_SetWareHousePOCHandlerTest {
         
         
       private static WU_Master_Warehouse__c getMasterWareHouseDetails(){
+        Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator']; 
+          User u = new User(Alias = 'oneuser', Email='standarduser1@testorg.com', 
+            EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US', 
+            LocaleSidKey='en_US', ProfileId = p.Id, 
+            TimeZoneSidKey='America/Los_Angeles', UserName='test1@dummy1.com');
+          insert u;
    WU_Master_Warehouse__c masterWarehouseItem = new WU_Master_Warehouse__c (WU_SAPCode_s__c='test12',
-   WU_Procurement_Manager__c=id.valueOf('00522000000djt0'),
+   WU_Procurement_Manager__c=u.Id,
    WU_WarehouseManager_Email__c='test@xyza.com',
    WU_WarehousePOC_Email__c='tserst1231@xze.com',
    WU_Committed_Max_PalletStorage__c= 1000.0,
    WU_Current_Utilization__c = 100,
-    WU_Active_WH__c='Yes',                                                                        
+    //WU_Active_WH__c='Yes',                                                                        
    WU_Previous_Month__c=9.0,
    WU_Approval_Status__c='Rejected',                                                                     
     WU_Current_Pallet_Utilization__c= 10.0,
@@ -75,13 +95,19 @@ private class WU_SetWareHousePOCHandlerTest {
    return masterWarehouseItem ;
 }
      private static WU_Master_Warehouse__c getMasterWareHouseDetailsApproved(){
+        Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator']; 
+          User u = new User(Alias = 'twouser', Email='standarduser2@testorg.com', 
+            EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US', 
+            LocaleSidKey='en_US', ProfileId = p.Id, 
+            TimeZoneSidKey='America/Los_Angeles', UserName='test2@dummy1.com');
+          insert u;
    WU_Master_Warehouse__c masterWarehouseItem = new WU_Master_Warehouse__c (WU_SAPCode_s__c='test',
-   WU_Procurement_Manager__c=Id.valueOf('00522000000djt0'),
+   WU_Procurement_Manager__c= u.Id,
    WU_WarehouseManager_Email__c='test@xyza.com',
    WU_WarehousePOC_Email__c='tserst1231@xze.com',
    WU_Committed_Max_PalletStorage__c= 100.0,
    WU_Current_Utilization__c = 10,
-    WU_Active_WH__c='Yes',                                                                        
+    //WU_Active_WH__c='Yes',                                                                        
    WU_Previous_Month__c=9.0,
    WU_Approval_Status__c='Approved',                                                                     
     WU_Current_Pallet_Utilization__c= 10.0,

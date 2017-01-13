@@ -293,7 +293,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                         
 										copyOverSummaryData(projDocSect,section,associatedGate);
 
-								    	if(currentProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && (projDocSect.IPM_Master_Section_External_Id__c == IPM_ConstantUtils.REGIONAL_BDTEAM_EXTID ||projDocSect.IPM_Master_Section_External_Id__c == IPM_ConstantUtils.REGIONAL_FEEDBACK_EXTID))
+								    	if(currentProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && (projDocSect.IPM_Master_Section_External_Id__c == IPM_ConstantUtils.REGIONAL_BDTEAM_EXTID))
 								    	{
 								    		skipProjSec =  false;
 								    	}

@@ -290,6 +290,77 @@ public class VPM_PurchaseRequestsExtensionTest{
         
     }
     
+	
+	    static testMethod void reworkActionMDM() {
+    
+            User u = insertUser();
+        
+        System.runAs(u)
+        {
+    VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+    VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_RequestFromFLSOrBR__c =bussReq);
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+         pur.VPM_RequestFromFLSOrBR__c=bussReq;
+         pur.VPM_Status__c ='MDM Ops Review';
+         test.startTest();
+         update pur;
+         VendorDetail.ReworkAction();
+         test.stopTest();
+        } 
+     }
+	 
+	  static testMethod void reworkActionMDM2() {
+    
+            User u = insertUser();
+        
+        System.runAs(u)
+        {
+    VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+    VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_RequestFromFLSOrBR__c ='FLS');
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+         pur.VPM_RequestFromFLSOrBR__c='FLS';
+         pur.VPM_Status__c ='MDM Ops Review';
+         test.startTest();
+         update pur;
+         VendorDetail.ReworkAction();
+         test.stopTest();
+        } 
+     }
+	
     
       static testMethod void reworkActionTest1() {
     

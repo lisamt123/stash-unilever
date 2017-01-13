@@ -3,8 +3,13 @@
 * @date 20/02/2015
 * @description Used for editing project document section
 */
-public with sharing class IPM_ProjectDocumentSectionController extends IPM_ProjectIntermediateController{   
+public with sharing class IPM_ProjectDocumentSectionController {   
 	//Variable Declarations
+    public static IPM_Project__c project {
+        get {
+            return IPM_Utils.getProjectFullInfo(ApexPages.currentPage().getParameters().get('Id'));
+        }
+    }
 	public IPM_Project_Document__c projDoc{get; set;} //Contains Project Document
 	public IPM_Project_Document_Section__c projDocSec{get; set;} //Contains Project Document Section
 	public Id projDocSecId{get; set;} //Contains Project Document Section Id

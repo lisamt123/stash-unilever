@@ -241,6 +241,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>FS_Status_Update_New</fullName>
+        <description>This field Update is used to update Status from Temporary to New after LM and Admin aproved</description>
+        <field>Status__c</field>
+        <literalValue>New</literalValue>
+        <name>Status Update New</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>FS_UpdateAccountNumber</fullName>
         <field>AccountNumber</field>
         <formula>FS_Customer_Number__c</formula>
@@ -533,7 +543,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 OR 2</booleanFilter>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
         <criteriaItems>
             <field>Account.RecordTypeId</field>
             <operation>contains</operation>
@@ -543,6 +553,11 @@
             <field>Account.Type</field>
             <operation>contains</operation>
             <value>Operator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.ProfileId</field>
+            <operation>notEqual</operation>
+            <value>Generic API Only</value>
         </criteriaItems>
         <description>Created for set account status value to Temporary when type is equals to Operator.</description>
         <triggerType>onCreateOnly</triggerType>
@@ -614,6 +629,6 @@
         <active>true</active>
         <description>Created to update the distributor type,on invoice,off invoice values from parent account.</description>
         <formula>AND(Owner.Profile.Name  = &apos;Unilever Food Solution - Russia&apos;, RecordType.Name = &apos;Operator&apos;)</formula>
-        <triggerType>onCreateOnly</triggerType>
+        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

@@ -36,17 +36,8 @@
                             </tr>
                      </tbody>   
                 </table>
-                <apex:commandbutton value="Copy above values to selected losslevels" styleclass="buttonstyle" onclick="callFunCop();return false" rerender="frm1,resetor,resetm,ds,pan1,v1,v2,v3,tb" status="status"  id="btns"> 
-            <apex:actionStatus id="status">
-            <apex:facet name="start">
-            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.75; z-index: 1000; background-color: black;">
-                &nbsp;
-            </div>
-            <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 30% 50%">
-                <img src="/img/loading.gif" alt="In progress..."/>
-            </div>
-            </apex:facet>
-        </apex:actionStatus>
+                <apex:commandbutton value="Copy above values to selected losslevels" styleclass="buttonstyle" onclick="callFunCop();return false" rerender="frm1,resetor,resetm,ds,pan1,v1,v2,v3,tb"   id="btns"> 
+            
         </apex:commandbutton>
            </apex:outputpanel>
     </apex:outputpanel>

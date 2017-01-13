@@ -121,10 +121,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
             
             for (IPM_Milestone__c recentUpsertedMilestone : incomingMilestoneList) 
             {
-                if(recentUpsertedMilestone.IPM_Project__c != null)
-                {
                     lstProjectIds.add(recentUpsertedMilestone.IPM_Project__c);
-                }
             }
             
             if(!lstProjectIds.isEmpty())
@@ -161,7 +158,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
                    }
 				}
                 if(!setProjIds.isEmpty()){
-                    IPM_MilestoneHelper.rollupMilestoneDuedate(setProjIds);
+                    IPM_MilestoneHelper.rollupMilestoneDuedate(setProjIds,ipmProjects); 
                 }
             }
             /* Map with all the projects related to updated milestones */           

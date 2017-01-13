@@ -30,7 +30,7 @@
                 <apex:pageBlockSectionItem >
                     <apex:outputLabel value="{!$Label.CEC_PageSize}"></apex:outputLabel>
                     <apex:selectList value="{!pageSize}" size="1">
-                        <apex:selectOptions value="{!pageSizeOptions}"/>
+                        <apex:selectOptions value="{!PageSizeOptions}"/>
                     </apex:selectList>
                 </apex:pageBlockSectionItem>
             </apex:pageBlockSection>

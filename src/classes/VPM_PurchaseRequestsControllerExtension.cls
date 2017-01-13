@@ -20,6 +20,8 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 4.0 -    Samrin      27 Oct 2016     IAVMD-2243                Warning Message on 'Submit' button 
 5.0 -    Samrin      3 Nov 2016      IAVWD-2283                Rework Button Visibility - Bank Data User
 6.0 -    Samrin      4 Nov 2016      IAVWD-2289                Update any Existing 'FLS In Country' Components
+7.0 -    Samrin      28 Nov 2016     IAVMD-2722                MDM Rework Request for Fusion Region 
+8.0 -    Samrin      30 Nov 2016     IAVMD-2751                Warning message on submit in rapid form for Fusion
 ****************************************************************************/
 
 global with sharing class  VPM_PurchaseRequestsControllerExtension {
@@ -44,6 +46,10 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
       public static final string STR_CONST_NO='No';
       public static final string STR_CONST_SWITZERLAND='Switzerland';
       public static final string STR_CONST_UK='United Kingdom';
+    public static final string STR_CONST_INDIA='India';
+      public static final string STR_CONST_NEPAL='Nepal';
+    public static final string STR_CONST_SRILANKA='Sri Lanka';
+
       public static final string STR_CONST_EXCEPTIONDEBUGMSG='@@Exception ';
       public static final string STR_CONST_CALLJAVASCRIPTMETHOD = '<script> redirectToListView(); </script>';
       public String vendorReqId {get; set;}
@@ -183,7 +189,11 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
             AlertMsg=System.label.VPM_UKFLSEnabled;
             isDisplay=true;
          }
-         else if(VendorDetailList[0].VPM_CountryRequestingVendor__c.contains(STR_CONST_SWITZERLAND))
+         else if(VendorDetailList[0].VPM_CountryRequestingVendor__c.contains(STR_CONST_SWITZERLAND) ||
+                 VendorDetailList[0].VPM_CountryRequestingVendor__c.contains(STR_CONST_INDIA) ||
+                 VendorDetailList[0].VPM_CountryRequestingVendor__c.contains(STR_CONST_NEPAL) ||
+                 VendorDetailList[0].VPM_CountryRequestingVendor__c.contains(STR_CONST_SRILANKA)
+                )
          {
             //AlertMsg=System.label.VPM_Record_Submit_Warning;
             AlertMsg=System.label.VPM_SwitzerlandFLSEnabled;
@@ -312,12 +322,18 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
             submitRequestBtn=false;
               }
           /* End  of Changes : 595 & 277 Disable the rework & Submit button */
-             
+            /* Changes By Samrin on 28 Nov 2016 - MDM Rework Request */ 
+               if(VendorDetailList[0].VPM_Status__c.containsIgnoreCase(VPM_RecordTypeHelper.MDM_REVIEW) &&  vendorDetailList[0].VPM_ECC__c == STR_CONST_FUSION){
+                  System.debug('Hello Inside Rework MDM');
+                   reworkBtn=true;    }
+              
+              /* End Changes By Samrin on 28 Nov 2016 - MDM Rework Request */   
               
           vendorReqId = stdController.getRecord().Id;
           setPaymentTermsDefaultValues();
 
           System.debug('@@@@@@@@@@ SubmitRequestBtn  -------------------'+submitRequestBtn );
+              System.debug('@@@@@@@@@@ reworkBtn  -------------------'+reworkBtn );
       }
       catch(exception ex){system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());}
       }
@@ -627,8 +643,9 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           {
               
               callJavaScriptAlert='<script>redirectToListView(); </script>';
+              
               list<VPM_PurchasingRequests__c> VendorDetailList =[SELECT  VPM_ApprovalWorker__c,
-                                                                 VPM_ApprovalWorkerID__c,VPM_Status__c,
+                                                                 VPM_ApprovalWorkerID__c,VPM_Status__c,VPM_CountryRequestingVendor__c,
                                                                  VPM_RussianTaxApprovalRequired__c,VPM_RequestFromFLSOrBR__c, 
                                                                  VPM_RequestGroupTime__c, 
                                                                  VPM_FreightApprovalRequired__c, 
@@ -640,6 +657,9 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                                                                  FROM VPM_PurchasingRequests__c WHERE id= : recId LIMIT 1];
                 
               System.debug('@@@@@ Rework :::----'+ VendorDetailList);
+              string query ='\''+'%'+VendorDetailList[0].VPM_CountryRequestingVendor__c+'\'';
+              string queryString ='SELECT Id, Name  FROM Group  WHERE Type = \'Queue\' AND NAME LIKE \'%FLS%\' AND  NAME LIKE '+query+'  Limit 1';
+                System.debug('@@@@@ Rework :::----'+ queryString);              
                 // Ajay : BR submitted to FLS now FLS is sending for rework
               if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ && VendorDetailList[0].VPM_Status__c==STR_CONST_FLSREVIEW) 
               { 
@@ -647,12 +667,11 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById;
                   VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;
                   //VendorDetailList[0].VPM_RequestGroupTime__c=System.now();
-                  //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'FLS';
+                  VendorDetailList[0].VPM_RequestLastWithGroup__c = 'FLS';
                   VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                   VendorDetailList[0].VPM_ApprovalWorker__c=''; 
                   update VendorDetailList;
-                  //Recall
-                  //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
+
                   
               }
               // Ajay : Adv BR submitted to Pro now Pro is sending for rework
@@ -662,13 +681,11 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   VendorDetailList[0].VPM_Status__c = 'Procurement Requested Re-Work'; 
                   VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById;
                   VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;
-                  //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement';
+                  VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement';
                   VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                   VendorDetailList[0].VPM_ApprovalWorker__c=''; 
                   VendorDetailList[0].VPM_ProcurementReworks__c = VendorDetailList[0].VPM_ProcurementReworks__c + 1;
                   update VendorDetailList;
-                  //
-                  //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
               }
               // Ajay : Adv BR submitted to FIN now FIN is sending for rework
               else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ && 
@@ -682,48 +699,29 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   VendorDetailList[0].VPM_Status__c = 'Finance Requested Re-Work'; 
                   VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
                   VendorDetailList[0].VPM_Rework__c = STR_CONST_YES; 
-                  //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Finance'; 
+                  VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Finance'; 
                   VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                   VendorDetailList[0].VPM_ApprovalWorker__c=''; 
                   update VendorDetailList;
-                  //
-                  //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
               }
            
              // Ajay : Adv FLS submitted to PRO now PRO is sending for rework
               else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_FLS && VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING 
               && VendorDetailList[0].VPM_ProcurementApprovalRequired__c )
               {
-                  list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name =: STR_CONST_FLS Limit 1];
+                //  list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name =: STR_CONST_FLS Limit 1];
+                     list<Group> queueList = dataBase.query(queryString);
                   if (queueList.size() == 1){ 
                       VendorDetailList[0].VPM_Status__c = 'Procurement Requested Re-Work'; 
-                      VendorDetailList[0].OwnerId=queueList[0].QueueId; 
-                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement'; 
+                      VendorDetailList[0].OwnerId=queueList[0].Id; 
+                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement'; 
                       VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                       VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                       VendorDetailList[0].VPM_ApprovalWorker__c=''; 
                       VendorDetailList[0].VPM_ProcurementReworks__c = VendorDetailList[0].VPM_ProcurementReworks__c + 1;
                       update VendorDetailList;
-                      //
-                      //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
                   } 
               }
-              // Ajay : Adv FLS submitted to PRO now PRO is sending for rework
-              /*else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && 
-              VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_FinanceApprovalRequired__c ==true 
-              && VendorDetailList[0].VPM_ProcurementApprovalRequired__c== true )
-              {
-                  list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
-                  if (queueList.size() == 1){ 
-                      VendorDetailList[0].VPM_Status__c = 'Procurement Requested Re-Work'; 
-                      VendorDetailList[0].OwnerId=queueList[0].QueueId; 
-                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement'; 
-                      VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;   
-                      VendorDetailList[0].VPM_ApprovalWorkerID__c='';
-                      VendorDetailList[0].VPM_ApprovalWorker__c=''; 
-                      update VendorDetailList;
-                  } 
-              }*/
               // Ajay : Adv PRO submitted to FIN now FIN is sending for rework
               else if (!VendorDetailList[0].VPM_ProcurementApprovalRequired__c  &&
                     !VendorDetailList[0].VPM_FreightApprovalRequired__c  &&
@@ -733,17 +731,16 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                      VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
                      VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_FLS) 
               { 
-                  list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name =: STR_CONST_FLS Limit 1];
+                  //list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name =: STR_CONST_FLS Limit 1];
+                    list<Group> queueList = dataBase.query(queryString);
                   if (queueList.size() == 1){                     
                       VendorDetailList[0].VPM_Status__c = 'Finance Requested Re-Work';                   
-                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Finance'; 
-                      VendorDetailList[0].OwnerId=queueList[0].QueueId; 
+                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Finance'; 
+                      VendorDetailList[0].OwnerId=queueList[0].Id; 
                       VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                       VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                       VendorDetailList[0].VPM_ApprovalWorker__c=''; 
                       update VendorDetailList;
-                      //
-                      //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
                   } 
               } 
              
@@ -757,17 +754,16 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                      VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
                      VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_FLS) 
               { 
-                  list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = : STR_CONST_FLS Limit 1];
+                 // list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = : STR_CONST_FLS Limit 1];
+                    list<Group> queueList = dataBase.query(queryString);
                   if (queueList.size() == 1){                     
                       VendorDetailList[0].VPM_Status__c = 'Russian Custom Tax Requested Re-Work'; 
-                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Russian Custom Tax'; 
-                      VendorDetailList[0].OwnerId=queueList[0].QueueId;
+                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Russian Custom Tax'; 
+                      VendorDetailList[0].OwnerId=queueList[0].Id;
                       VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                       VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                       VendorDetailList[0].VPM_ApprovalWorker__c=''; 
                       update VendorDetailList;
-                      //
-                      //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
                   } 
               }
 //Samrin Shaikh
@@ -779,18 +775,17 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     !VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
                      VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
                      VendorDetailList[0].VPM_RequestFromFLSOrBR__c==STR_CONST_FLS) 
-              { 
-                  list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = : STR_CONST_FLS Limit 1];
+              {                   
+                 //list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = : STR_CONST_FLS Limit 1];
+                  list<Group> queueList = dataBase.query(queryString);
                   if (queueList.size() == 1){                     
                       VendorDetailList[0].VPM_Status__c = STR_CONST_FREIGHTREWORK; 
-                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight'; 
-                      VendorDetailList[0].OwnerId=queueList[0].QueueId;
+                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight'; 
+                      VendorDetailList[0].OwnerId=queueList[0].id;
                       VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                       VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                       VendorDetailList[0].VPM_ApprovalWorker__c=''; 
                       update VendorDetailList;
-                      //
-                      //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
                   } 
               }
               
@@ -804,17 +799,16 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                      VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
                      VendorDetailList[0].VPM_RequestFromFLSOrBR__c==STR_CONST_FLS) 
               { 
-                  list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = : STR_CONST_FLS Limit 1];
+                 // list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = : STR_CONST_FLS Limit 1];
+                  list<Group> queueList = dataBase.query(queryString);
                   if (queueList.size() == 1){                     
                       VendorDetailList[0].VPM_Status__c = STR_CONST_FREIGHTREWORK; 
-                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight'; 
-                      VendorDetailList[0].OwnerId=queueList[0].QueueId;
+                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight'; 
+                      VendorDetailList[0].OwnerId=queueList[0].Id;
                       VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                       VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                       VendorDetailList[0].VPM_ApprovalWorker__c=''; 
                       update VendorDetailList;
-                      //
-                      //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
                   } 
               }
               // Ajay : Adv BR submitted to RUS now RUS is sending for rework
@@ -828,14 +822,13 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                      VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ ) 
               { 
                       VendorDetailList[0].VPM_Status__c = 'Russian Custom Tax Requested Re-Work'; 
-                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Russian Custom Tax'; 
+                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Russian Custom Tax'; 
                       VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
                       VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                       VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                       VendorDetailList[0].VPM_ApprovalWorker__c=''; 
                       update VendorDetailList;
-                  //
-                  //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
+            
 
               }
               
@@ -850,7 +843,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                      VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ) 
               { 
                      VendorDetailList[0].VPM_Status__c = STR_CONST_FREIGHTREWORK; 
-                     //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight';
+                     VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight';
                      VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
                      VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                      VendorDetailList[0].VPM_ApprovalWorkerID__c='';
@@ -871,7 +864,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                      VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ) 
               { 
                      VendorDetailList[0].VPM_Status__c = STR_CONST_FREIGHTREWORK; 
-                     //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight';
+                     VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight';
                      VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
                      VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                      VendorDetailList[0].VPM_ApprovalWorkerID__c='';
@@ -887,11 +880,12 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                         && VendorDetailList[0].VPM_BankDataValidationRequired__c) 
               
               { 
-                  list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'ECC' Limit 1];
+                 //list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'ECC' Limit 1];
+                 list<Group> queueList = dataBase.query(queryString);
                   if (queueList.size() == 1){                     
                       VendorDetailList[0].VPM_Status__c = 'Bank Data Validation Requested Re-Work'; 
-                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Bank Data'; 
-                      VendorDetailList[0].OwnerId=queueList[0].QueueId;
+                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Bank Data'; 
+                      VendorDetailList[0].OwnerId=queueList[0].Id;
                       VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                       VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                       VendorDetailList[0].VPM_ApprovalWorker__c=''; 
@@ -904,7 +898,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                 else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ  && VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING && VendorDetailList[0].VPM_BankDataValidationRequired__c) 
               { 
                      VendorDetailList[0].VPM_Status__c = 'Bank Data Validation Requested Re-Work'; 
-                     //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Bank Data';
+                     VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Bank Data';
                      VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
                      VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                      VendorDetailList[0].VPM_ApprovalWorkerID__c='';
@@ -912,7 +906,53 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                      update VendorDetailList;
                   //
                   //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
+              }/* Start  changes by samrin Shaikh :  28 Nov 2016 : MDM Ops Rework request */ 
+              // when BR Create Request 
+                   else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_FLS  && VendorDetailList[0].VPM_Status__c.containsIgnoreCase(VPM_RecordTypeHelper.MDM_REVIEW)) 
+              { 
+                    
+                  System.debug('@@@@@ Inside Rework MDM');
+                  list<Group> queueList = dataBase.query(queryString);
+                  System.debug('@@@@@ Inside Rework MDM' + queueList);
+                  if (queueList.size() == 1){ 
+                     VendorDetailList[0].VPM_Status__c = VPM_RecordTypeHelper.MDM_RE_WROK; 
+                     VendorDetailList[0].OwnerId = queueList[0].Id; 
+                     VendorDetailList[0].VPM_Rework__c=STR_CONST_NO; 
+                     VendorDetailList[0].VPM_IsLock__c=False ;
+                     VendorDetailList[0].VPM_AdvancedFormSubmitted__c ='';
+                     VendorDetailList[0].VPM_IsInApprovalProcess__c ='';
+                     VendorDetailList[0].VPM_FinanceApprovalRequired__c= false;
+                     VendorDetailList[0].VPM_ProcurementApprovalRequired__c= false;
+                     VendorDetailList[0].VPM_FreightApprovalRequired__c= false;
+                     VendorDetailList[0].VPM_RussianTaxApprovalRequired__c= false;
+                     VendorDetailList[0].VPM_BankDataValidationRequired__c= false;
+                     VendorDetailList[0].VPM_ApprovalWorkerID__c='';
+                     VendorDetailList[0].VPM_ApprovalWorker__c=''; 
+                     update VendorDetailList;
+                  }
               }
+              // When FLS Create Request 
+               else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c==  STR_CONST_BUSREQ  && VendorDetailList[0].VPM_Status__c.containsIgnoreCase(VPM_RecordTypeHelper.MDM_REVIEW)) 
+              { 
+                      System.debug('@@@@@ Inside Rework MDM');
+                      VendorDetailList[0].VPM_Status__c = VPM_RecordTypeHelper.MDM_RE_WROK; 
+                     //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Bank Data';
+                      VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
+                      VendorDetailList[0].VPM_Rework__c=STR_CONST_NO; 
+                      VendorDetailList[0].VPM_IsLock__c=False ;
+                      VendorDetailList[0].VPM_AdvancedFormSubmitted__c ='';
+                      VendorDetailList[0].VPM_IsInApprovalProcess__c ='';
+                      VendorDetailList[0].VPM_FinanceApprovalRequired__c= false;
+                      VendorDetailList[0].VPM_ProcurementApprovalRequired__c= false;
+                      VendorDetailList[0].VPM_FreightApprovalRequired__c= false;
+                      VendorDetailList[0].VPM_RussianTaxApprovalRequired__c= false;
+                      VendorDetailList[0].VPM_BankDataValidationRequired__c= false;
+                      VendorDetailList[0].VPM_ApprovalWorkerID__c='';
+                      VendorDetailList[0].VPM_ApprovalWorker__c=''; 
+                     update VendorDetailList;
+              }
+              
+               /*End changes by samrin Shaikh :  28 Nov 2016 : MDM Ops Rework request */ 
               
           }
           catch(exception ex){

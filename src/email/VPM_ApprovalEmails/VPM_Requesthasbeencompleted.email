@@ -1,7 +1,41 @@
 <table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
 <tr valign="top" height="400" >
 <td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
-<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">The following vendor request is completed successfully<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-indent: -0.25in;"></p><ul><li style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="text-indent: -0.25in; font-size: 12pt; font-family: Arial, sans-serif;">Request Type:&nbsp;{!VPM_PurchasingRequests__c.RecordType}</span></li><li style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-family: Arial, sans-serif; font-size: 12pt; text-indent: -0.25in;">Request ID:&nbsp;&nbsp;{!VPM_PurchasingRequests__c.Name}</span></li><li style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-family: Arial, sans-serif; font-size: 12pt; text-indent: -0.25in;">Date Raised: &nbsp;{!VPM_PurchasingRequests__c.CreatedDate}</span></li><li style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-family: Arial, sans-serif; font-size: 12pt; text-indent: -0.25in;">Date Completed: {!Today()}</span></li><li style="text-indent: 0px;"><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt; text-indent: -0.25in;">ECC&nbsp;</span><span style="color: rgb(0, 0, 0); font-family: &quot;Times New Roman&quot;, serif; font-size: 7pt; text-indent: -0.25in;">&nbsp;</span><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt; text-indent: -0.25in;">Vendor Code:&nbsp;</span><font face="arial">{!VPM_PurchasingRequests__c.VPM_VendorCode__c}</font></li><li style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif; text-indent: -0.25in;">Vendor Name:&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif; text-indent: -0.25in; background: white;">{!VPM_PurchasingRequests__c.VPM_VendorName1__c}</span></li><li style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-family: Arial, sans-serif; font-size: 12pt; text-indent: -0.25in;">Status: Completed</span></li></ul><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt;"><b><i><span style="font-size: 12pt; font-family: Arial, sans-serif;">Disclaimer: Please do not reply to this mail, the sending mail box is not monitored.</span></i></b><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt;"></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;</span></p><style type="text/css">
+<![CDATA[<p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 12pt; font-family: Arial, sans-serif;">The following vendor
+request is completed successfully<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p><ul type="disc">
+ <li class="MsoNormal" style="line-height: normal;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Request
+     Type:&nbsp;{!VPM_PurchasingRequests__c.RecordType}<o:p></o:p></span></li>
+ <li class="MsoNormal" style="line-height: normal;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Request
+     ID:&nbsp;&nbsp;{!VPM_PurchasingRequests__c.Name}<o:p></o:p></span></li>
+ <li class="MsoNormal" style="line-height: normal;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Date Raised:
+     &nbsp;{!VPM_PurchasingRequests__c.CreatedDate}<o:p></o:p></span></li>
+ <li class="MsoNormal" style="line-height: normal;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Date Completed: {!Today()}<o:p></o:p></span></li>
+ <li class="MsoNormal" style="line-height: normal;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">ECC&nbsp;</span><span style="font-size:7.0pt;
+     font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;">&nbsp;</span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Vendor Code:&nbsp;{!VPM_PurchasingRequests__c.VPM_VendorCode__c}<o:p></o:p></span></li>
+ <li class="MsoNormal" style="line-height: normal;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Vendor Name:&nbsp;<span style="background:white">{!VPM_PurchasingRequests__c.VPM_VendorName1__c}</span><o:p></o:p></span></li>
+ <li class="MsoNormal" style="line-height: normal;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Status: Completed<o:p></o:p></span></li>
+</ul><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 0.0001pt;">
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><b><i><span style="font-size: 12pt; font-family: Arial, sans-serif;">Disclaimer: Please do
+not reply to this mail, the sending mail box is not monitored.</span></i></b><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><style type="text/css">
 p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #454545}
 </style>]]></td>
 </tr>

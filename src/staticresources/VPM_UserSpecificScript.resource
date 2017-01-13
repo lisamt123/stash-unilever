@@ -35,25 +35,28 @@
     }
     
     function reworkBtnClick(){
-        if ((currentstatus.indexOf('Draft') >= 0 )||(rework=='Yes') || (currentstatus.indexOf('MDM Ops') >= 0 )){ 
+		
+
+        if ((currentstatus.indexOf('Draft') >= 0 )||(rework=='Yes') || ((currentstatus.indexOf('MDM Ops') >= 0 ) && ECC !='Fusion' )){ 
+	
             if(rework=='Yes'){ 
-                alert('Already send for rework'); 
+                alert(VPMAlreadyRework); 
             } 
             else{ 
-                alert('Business Requestor & MDM Ops cannot send for rework'); 
+                alert(VPMCannotSendRework); 
             } 
             
         }
         else
         {
-            var r = confirm("Are you sure you want to rework the request? \nPlease provide guidance via the Chatter feed"); 
+            var r = confirm(VPMOkForRework); 
             if(r == true){
                     ReworkAction();
                     return false;
                }
             
             else 
-                alert("Rework Cancelled");
+                alert(VPMReworkCancel);
         } 
     }
     function callSendToSAPAPI()

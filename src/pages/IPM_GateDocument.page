@@ -12,6 +12,7 @@
     <apex:composition template="IPM_TemplateRevamp">  
         <apex:define name="body">
             <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>            
+            <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Source_Plan_Editor.css')}"/>       
             <apex:form >
                 <div class='cust-overlay'></div> 
                 <apex:pageMessages />
@@ -657,6 +658,7 @@
                                                                 <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy>
                                                                  <c:IPM_MarketPerformance projId="{!projectId}" isEditable="false" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && apxSec.IPM_Section_Sequence__c =='6.5' && (project.IPMProject_Span__c='Regional' || AND(project.IPM_ProjectGKM__c='GKM3',project.IPMProject_Span__c!='Local' )) && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance> 
                                                                 <c:IPM_PerformanceBreakdown isAppendix="true" isEditable="false" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational')}"></c:IPM_PerformanceBreakdown> 
+ <c:IPM_Local_Sourcing_Table projId="{!projectId}"  rendered="{!project.IPMProject_Span__c=='Local' && project.IPM_ProjectGKM__c=='GKM3' && apxSec.IPM_Master_Section_External_Id__c=='Technical'}"></c:IPM_Local_Sourcing_Table>
                                                                </apex:outputPanel>
                                                             </apex:repeat>
                                                              </apex:outputPanel>

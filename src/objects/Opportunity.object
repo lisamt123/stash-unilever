@@ -127,15 +127,57 @@
             <default>false</default>
         </values>
     </businessProcesses>
-
+    <businessProcesses>
+        <fullName>TEL_Telesales</fullName>
+        <description>Telesales sales process to support the UK team.</description>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Canceled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Lost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Won</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Released</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Scheduled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmitted</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>TEL_Telesales_Opportunity_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>AccountId</fields>
+        <fields>CloseDate</fields>
+        <fields>TEL_Wholesaler__c</fields>
+        <fields>TEL_Account_Phone__c</fields>
+        <fields>OwnerId</fields>
+        <label>Telesales Opportunity Compact Layout</label>
+    </compactLayouts>
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>AccountId</fullName>
         <lookupFilter>
-            <active>true</active>
+            <active>false</active>
             <filterItems>
                 <field>Account.Type</field>
                 <operation>equals</operation>
@@ -183,7 +225,7 @@ Is the customer growing?</inlineHelpText>
         <fullName>AgreementDate__c</fullName>
         <description>Created for Opportunity Forecasting and it is required before moving to stage=&apos;05-Won&apos;.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Required before moving to stage &apos;05-Won&apos;.</inlineHelpText>
+        <inlineHelpText>Expected date of customer commitment.</inlineHelpText>
         <label>Agreement Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -229,6 +271,7 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>ContractStartDate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Expected date of first shipment (agreement in force).</inlineHelpText>
         <label>Contract Start Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -281,6 +324,7 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>FSNA_BMI__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Brand Marketing Rewards</inlineHelpText>
         <label>BMI</label>
         <precision>18</precision>
         <required>false</required>
@@ -294,6 +338,7 @@ Is the customer growing?</inlineHelpText>
         <fullName>FSNA_Distributor_TMI__c</fullName>
         <description>Roll-up of the Product Level Distributor TMI</description>
         <externalId>false</externalId>
+        <inlineHelpText>Expected Distributor Earnings from opportunity.</inlineHelpText>
         <label>NA Distributor TMI</label>
         <summarizedField>OpportunityLineItem.Copy_of_DIST_TMI__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
@@ -305,11 +350,12 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>FSNA_Gross_Margin__c</fullName>
         <externalId>false</externalId>
-        <formula>(Amount - 
+        <formula>(Amount * 0.99 - 
 (FS_TotalRate__c+FSNA_Distributor_TMI__c+FS_TotalHQRate__c+FS_LumpSum__c)-
-Total_Opp_COGS__c) /(Amount - 
+Total_Opp_COGS__c) /(Amount * 0.99 - 
 (FS_TotalRate__c+FSNA_Distributor_TMI__c+FS_TotalHQRate__c+FS_LumpSum__c))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Average Gross Margin % for all products within opportunity.</inlineHelpText>
         <label>Gross Margin</label>
         <precision>18</precision>
         <required>false</required>
@@ -321,10 +367,11 @@ Total_Opp_COGS__c) /(Amount -
     <fields>
         <fullName>FSNA_Margin_Market_Code__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Respective Product groupings.</inlineHelpText>
         <label>Margin Market Code</label>
         <picklist>
             <picklistValues>
-                <fullName>6I</fullName>
+                <fullName>Z7 HOT TEA US</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -332,23 +379,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>6K</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>6K SAUCES-GRAVIES</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>8Z</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>8Z RETAIL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>93</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -356,19 +387,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>BOH MAYO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>D1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>D1 SOUPS</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>E1</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -376,23 +395,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>F1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>F1 SPREADS AND TOPPING</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>FOH ACCELERATION</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>FOH MAYO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>G1</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -400,23 +403,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>H1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>H1 FLAVOUR DELIVERY SYS-SEASONING</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>HOT TEA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ICED TEA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>K1</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -424,19 +411,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Knorr Ultimate Low/Reduced Sodium*</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>LCB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>N1 CRYSTAL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Q1</fullName>
+                <fullName>8Z RETAIL</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -444,47 +419,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SDJ</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SPECIALTY TEA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X1 US LCB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X2 SPECIALTY TEA CANADA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X3</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X3 SPECIALTY TEA US</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X4</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X4 US SDJ</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z1</fullName>
+                <fullName>Z5 FOH MAYO</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -492,15 +427,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z2 CAN LCB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z3</fullName>
+                <fullName>X4 US SDJ</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -508,15 +435,19 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z5</fullName>
+                <fullName>Z9 Knorr Ultimate Low/Reduced Sodium*</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z5 FOH MAYO</fullName>
+                <fullName>X1 US LCB</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z6</fullName>
+                <fullName>Z2 CAN LCB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X2 SPECIALTY TEA CANADA</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -524,15 +455,7 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z7</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z7 HOT TEA US</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z8</fullName>
+                <fullName>X3 SPECIALTY TEA US</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -540,15 +463,170 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z9</fullName>
+                <fullName>N1 CRYSTAL</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Z9 Knorr Ultimate Low/Reduced Sodium*</fullName>
+                <fullName>FOH ACCELERATION</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>6I</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6K</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8Z</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>93</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BOH MAYO</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>F1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FOH MAYO</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>G1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>H1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HOT TEA</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ICED TEA</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>K1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Ultimate Low/Reduced Sodium*</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LCB</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Q1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SDJ</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SPECIALTY TEA</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X2</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X3</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X4</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z2</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z3</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z5</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z6</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z7</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z8</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z9</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -622,7 +700,7 @@ CASE(FSNA_Margin_Market_Code__c,
 0),
 0)
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Expected average profitability for opportunities within respective market.</inlineHelpText>
         <label>Margin Market Target</label>
         <precision>18</precision>
         <required>false</required>
@@ -634,6 +712,7 @@ CASE(FSNA_Margin_Market_Code__c,
     <fields>
         <fullName>FSNA_TMI__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>$ Value of Operator discounts from opportunity.</inlineHelpText>
         <label>Operator TMI</label>
         <precision>18</precision>
         <required>false</required>
@@ -646,8 +725,9 @@ CASE(FSNA_Margin_Market_Code__c,
     <fields>
         <fullName>FSNA_TotalSpend__c</fullName>
         <externalId>false</externalId>
-        <formula>FSNA_BMI__c  +  FS_TotalHQRate__c +  FS_TotalRate__c +  FSNA_Distributor_TMI__c+FS_LumpSum__c</formula>
+        <formula>FS_TotalHQRate__c +   FS_TotalRate__c  +   FSNA_Distributor_TMI__c   +  FS_LumpSum__c + FSNA_BMI__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Total TMI invested in opportunity (Sum of Distributor and Operator)</inlineHelpText>
         <label>Total Spend</label>
         <precision>18</precision>
         <required>false</required>
@@ -719,6 +799,7 @@ CASE(FSNA_Margin_Market_Code__c,
     <fields>
         <fullName>FS_DistributorTMI__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Distributor expected to supply products to operator. Used for determining distributor TMI.</inlineHelpText>
         <label>Distributor TMI</label>
         <picklist>
             <picklistValues>
@@ -888,7 +969,7 @@ DealApproved__c=true,
 IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;green&quot;, 20, 20),
 IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Green when fully approved and pricing ready for customer review.</inlineHelpText>
         <label>Approval Indicator</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -899,7 +980,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     <fields>
         <fullName>FS_LumpSum__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Lump Sum TMI (Not A&amp;P)</inlineHelpText>
+        <inlineHelpText>Incentive funds paid directly to Operator, not tied Branding Activation Activities.</inlineHelpText>
         <label>Lump Sum TMI</label>
         <precision>18</precision>
         <required>false</required>
@@ -924,7 +1005,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <fullName>FS_MSCS__c</fullName>
         <externalId>false</externalId>
         <formula>IF(FS_TotalNumberOfCases__c&gt;0, FS_LumpSum__c / FS_TotalNumberOfCases__c, null)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Allocation (Rate / Case) to product of Lump sum payments.</inlineHelpText>
         <label>MS/CS</label>
         <precision>18</precision>
         <required>false</required>
@@ -990,6 +1071,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     <fields>
         <fullName>FS_Rate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Rebate Discount provided on individual product.</inlineHelpText>
         <label>Rate</label>
         <precision>18</precision>
         <required>false</required>
@@ -1096,7 +1178,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <fullName>FS_TotalDiscount__c</fullName>
         <externalId>false</externalId>
         <formula>FS_MSCS__c  + FS_TotalHQRate__c  +  FS_TotalRate__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Total discount offered to operator.</inlineHelpText>
         <label>Total Discount</label>
         <precision>18</precision>
         <required>false</required>
@@ -1125,7 +1207,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalGrossProfit__c</fullName>
-        <description>Created To display the sum of GrossProfit	from Opportunity Product.</description>
+        <description>Created To display the sum of GrossProfit  from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total GP</label>
         <summarizedField>OpportunityLineItem.FS_grossProfit__c</summarizedField>
@@ -1150,6 +1232,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     <fields>
         <fullName>FS_TotalHQRate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Total discount offered paid directly to HQ or Corporate Accounts.</inlineHelpText>
         <label>Total HQ Rate</label>
         <summarizedField>OpportunityLineItem.FSNA_TotalHQRate__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
@@ -1161,8 +1244,31 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     <fields>
         <fullName>FS_TotalNumberOfCases__c</fullName>
         <externalId>false</externalId>
-        <label>Total Number of Cases</label>
+        <inlineHelpText>Total quantity count for opportunity.</inlineHelpText>
+        <label>Total Quantity</label>
         <summarizedField>OpportunityLineItem.Quantity</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_TotalQuantityCases__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Quantity(Cases)</label>
+        <summarizedField>OpportunityLineItem.FS_QuantityCases__c</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_TotalQuantityPieces__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Quantity(Pieces)</label>
+        <summarizedField>OpportunityLineItem.FS_QuantityPieces__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
@@ -1172,6 +1278,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     <fields>
         <fullName>FS_TotalRate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Total rebate discount offered to operator.</inlineHelpText>
         <label>Total Rate</label>
         <summarizedField>OpportunityLineItem.FSNA_TotalDeviatedRate__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
@@ -1204,6 +1311,19 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_TotalTurnoverNA__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Net in Pocket for UFS (NSV - Total TMI)</inlineHelpText>
+        <label>Total Turnover (NA)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>FS_TotalTurnover__c</fullName>
@@ -1247,7 +1367,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalproductCost__c</fullName>
-        <description>Created To display the sum of productCost	from Opportunity Product.</description>
+        <description>Created To display the sum of productCost  from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total PC</label>
         <summarizedField>OpportunityLineItem.FS_productCost__c</summarizedField>
@@ -1259,7 +1379,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalsupplyCost__c</fullName>
-        <description>Created To display the sum of supplyCost	from Opportunity Product.</description>
+        <description>Created To display the sum of supplyCost   from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total SC</label>
         <summarizedField>OpportunityLineItem.FS_supplyCost__c</summarizedField>
@@ -1285,13 +1405,25 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
         <fullName>FS_Type_from_Objective__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT( Defined_Objective__r.FS_Objective_Type__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Opportunity Type as linked to Objective.</inlineHelpText>
         <label>Type from Objective</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_amountCasePiece__c</fullName>
+        <description>Roll-up Summary for the Total List Price for all Opportunity Products under Opportunity object</description>
+        <externalId>false</externalId>
+        <label>Amount (Case/Piece)</label>
+        <summarizedField>OpportunityLineItem.FS_totalListPrice__c</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>FS_casesPiece__c</fullName>
@@ -1635,7 +1767,7 @@ FSNA_Gross_Margin__c &gt;= FSNA_Margin_Market_Target__c,
 IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;green&quot;, 20, 20), 
 IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20) 
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Green is opportunity exceeds targeted opportunity margin.</inlineHelpText>
         <label>Margin Indicator</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1862,7 +1994,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1875,7 +2006,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1889,7 +2019,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1903,7 +2032,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1943,7 +2071,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1956,7 +2083,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1969,7 +2095,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1984,7 +2109,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1997,7 +2121,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2026,7 +2149,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Not Pursued</controllingFieldValues>
             </picklistValues>
@@ -2389,12 +2511,109 @@ Enter competitor pricing if available</inlineHelpText>
                 <probability>10</probability>
                 <won>false</won>
             </picklistValues>
+            <picklistValues>
+                <fullName>Pending Call</fullName>
+                <default>false</default>
+                <description>Indicate when the opportunity is created but no contact with the customer was done.</description>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>10</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+                <description>Indicate when the telesales team schedule the opportunity to make a future call to start the negotiation to make a sales.</description>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>15</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Released</fullName>
+                <default>false</default>
+                <description>Indicate that the Telesales team made a sales and the request order was made.</description>
+                <closed>false</closed>
+                <forecastCategory>BestCase</forecastCategory>
+                <probability>80</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Transmitted</fullName>
+                <default>false</default>
+                <description>Indicate that the sales order requested by the telesales team was generated and processed with success.</description>
+                <closed>true</closed>
+                <forecastCategory>Closed</forecastCategory>
+                <probability>100</probability>
+                <won>true</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+                <description>Indicate that during the sales process, the opportunity was canceled for some reason, as lake of interesting, price of product, some restriction during the order generation, etc.</description>
+                <closed>true</closed>
+                <forecastCategory>Omitted</forecastCategory>
+                <probability>0</probability>
+                <won>false</won>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Lost_Reason__c</fullName>
+        <description>Telesales - The reason why the Opp was lost</description>
+        <externalId>false</externalId>
+        <label>Lost Reason</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Delivery Date</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Wholesaler__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Telesales - Determines the Wholesaler that will fulfill the order</description>
+        <externalId>false</externalId>
+        <label>Wholesaler</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>Secondary Account</value>
+            </filterItems>
+            <infoMessage>Filtered by Secondary Accounts only</infoMessage>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Telesales Calls</relationshipLabel>
+        <relationshipName>Telesales_Calls</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>TotalOpportunityQuantity</fullName>
@@ -2406,6 +2625,7 @@ Enter competitor pricing if available</inlineHelpText>
         <fullName>Total_Opp_COGS__c</fullName>
         <description>Roll-up of Product Level COGS</description>
         <externalId>false</externalId>
+        <inlineHelpText>Total Cost of Product, production and supply chain related costs.</inlineHelpText>
         <label>Total Opportunity COGS</label>
         <summarizedField>OpportunityLineItem.FS_Copy_of_Total_COGS__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
@@ -2413,6 +2633,43 @@ Enter competitor pricing if available</inlineHelpText>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Account_Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.Phone</formula>
+        <label>Account Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Call_Date__c</fullName>
+        <description>Used to indicate when the telesales team will make a call to the customer.</description>
+        <externalId>false</externalId>
+        <label>Call Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Telesales - Used to reference the cases associated with the opportunity.</description>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Opportunities</relationshipLabel>
+        <relationshipName>Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Type</fullName>
@@ -2433,6 +2690,22 @@ Enter competitor pricing if available</inlineHelpText>
                 <fullName>Grow</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Enrichment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Standard Sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sample Request</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sales Drive</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2451,6 +2724,28 @@ Enter competitor pricing if available</inlineHelpText>
         <filterScope>Everything</filterScope>
         <label>All Opportunities</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Telesales_Opportunities</fullName>
+        <columns>OPPORTUNITY.TYPE</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>TEL_Case__c</columns>
+        <columns>OPPORTUNITY.NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.TEL_Telesales</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.STAGE_NAME</field>
+            <operation>equals</operation>
+            <value>Pending Call</value>
+        </filters>
+        <label>Telesales Pending Calls</label>
     </listViews>
     <listViews>
         <fullName>All_3a_Won_Opportunities</fullName>
@@ -3149,6 +3444,291 @@ Enter competitor pricing if available</inlineHelpText>
             <values>
                 <fullName>Win</fullName>
                 <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>TEL_Telesales</fullName>
+        <active>true</active>
+        <businessProcess>TEL_Telesales</businessProcess>
+        <compactLayoutAssignment>TEL_Telesales_Opportunity_Compact_Layout</compactLayoutAssignment>
+        <description>Record type to support the Telesales solution</description>
+        <label>Telesales</label>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonWonLost__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sales_Cycle__c</picklist>
+            <values>
+                <fullName>00 - Lost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>01 - Universe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>02 - Above</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03 - In the Funnel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04 - Best Few</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05 - Won</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>06 - Not Pursued</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07 - Deleted%2FInactive Accts</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TEL_Lost_Reason__c</picklist>
+            <values>
+                <fullName>Delivery Date</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Enrichment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Drive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sample Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Sales</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -4621,6 +5201,29 @@ Enter competitor pricing if available</inlineHelpText>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
+        <fullName>TEL_No_Return_to_Pending</fullName>
+        <active>true</active>
+        <description>Telesles - Opportunities cannot  return to Pending Call Stage after they moved on</description>
+        <errorConditionFormula>AND( 
+ISPICKVAL(StageName, &quot;Pending Call&quot;),
+NOT(
+ISPICKVAL(PRIORVALUE(StageName ), &quot;Pending Call&quot;)
+) 
+)</errorConditionFormula>
+        <errorMessage>The opportunity cannot return to the Pending Call stage</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TEL_Opp_Reschedule</fullName>
+        <active>true</active>
+        <description>Telesales - An Opportunity cannot have the close date changed and stay on the &quot;Pending Call&quot; Stage.</description>
+        <errorConditionFormula>AND(
+TEXT(StageName) = $Label.TEL_Opportunity_Status, 
+ISCHANGED( CloseDate )
+)</errorConditionFormula>
+        <errorMessage>You cannot reschedule a call keeping the stage as Pending Call</errorMessage>
+    </validationRules>
+
+    <validationRules>
         <fullName>FS_AgreementdateIsRequired</fullName>
         <active>true</active>
         <description>Agreement Date Is Required Before Moving To Stage=&apos;05 – Won&apos;.</description>
@@ -4668,7 +5271,7 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <active>true</active>
         <description>An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level.</description>
         <errorConditionFormula>(AND( DealApproved__c= true,OR(ISPICKVAL( StageName, &quot;01 - Prospecting&quot;), ISPICKVAL( StageName, &quot;02 - Qualification&quot;),ISPICKVAL( StageName, &quot;03 - Proposal&quot;))))</errorConditionFormula>
-        <errorMessage>An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level.</errorMessage>
+        <errorMessage>An opportunity that has already been approved cannot be changed.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_Notchange_at_Stage5</fullName>

@@ -121,6 +121,62 @@
         <senderType>CurrentUser</senderType>
         <template>CEC_Unilever/cec_Default_Auto_Response</template>
     </alerts>
+   <alerts>
+        <fullName>TEL_Sample_Request_Rejected_customer_alert</fullName>
+        <description>Sample Request rejected customer alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>SuppliedEmail</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>marketing@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Telesales_Email_Templates/Telesales_Rejected_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>TEL_Sample_Request_approved_Fullfillment_House_alert</fullName>
+        <description>Sample Request approved Fullfillment House alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>SuppliedEmail</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>marketing@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Telesales_Email_Templates/Telesales_Request_Fulfillment_House</template>
+    </alerts>
+    <alerts>
+        <fullName>TEL_Sample_Request_approved_customer_alert</fullName>
+        <description>Sample Request approved customer alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>SuppliedEmail</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>marketing@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Telesales_Email_Templates/Telesales_Approved_Request</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>TEL_Status_Approved</fullName>
+        <description>Telesales - Set Status as Approved</description>
+        <field>Status</field>
+        <literalValue>Approved</literalValue>
+        <name>Status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TEL_tatus_Rejected</fullName>
+        <description>Telesales - Set Status as Rejected</description>
+        <field>Status</field>
+        <literalValue>Rejected</literalValue>
+        <name>Status Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>	
 	<fieldUpdates>
         <fullName>CEC_Brand_Ambassador_Case_Queue_Assign</fullName>
         <description>CEC Brand Ambassador Case Queue Assignment - Assign case to &apos;CEC - Brand Ambassador&apos;</description>
@@ -378,7 +434,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>(1 OR 3) AND 2</booleanFilter>
+        <booleanFilter>(1 OR 3 OR 4) AND 2</booleanFilter>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
@@ -391,7 +447,12 @@
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
-            <value>Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ,Email Philippines,Email Indonesia,Email Vietnam,Email Thailand,Email Bangladesh,Email Pakistan,Email Japan</value>
+            <value>,Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ,Email Philippines,Email Indonesia,Email Vietnam,Email Thailand,Email Bangladesh,Email Pakistan,Email Japan,Email Korea,Email Taiwan,Email Hong Kong</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>contains</operation>
+            <value>Email Turkey</value>
         </criteriaItems>
         <description>CEC : To update the Case Origin field.</description>
         <triggerType>onAllChanges</triggerType>

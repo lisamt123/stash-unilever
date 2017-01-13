@@ -121,6 +121,32 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>FS_Incremental_Cases__c</fullName>
+        <description>This field be the aggregate of all &quot;Incremental Cases&quot; from the Defined Objectives within the Account Plan.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>incremental # cases for the current year</inlineHelpText>
+        <label>Incremental Cases</label>
+        <summarizedField>FS_Defined_Objective__c.FS_IncrementalCases__c</summarizedField>
+        <summaryForeignKey>FS_Defined_Objective__c.FS_Account_Plan__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_Incremental_NSV__c</fullName>
+        <description>This field be the aggregate of all &quot;Incremental NSV&quot; from the Defined Objectives within the Account Plan.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>incremental NSV for the current year</inlineHelpText>
+        <label>Incremental NSV</label>
+        <summarizedField>FS_Defined_Objective__c.FS_Volume__c</summarizedField>
+        <summaryForeignKey>FS_Defined_Objective__c.FS_Account_Plan__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>FS_No_of_Completed_Objectives__c</fullName>
         <description>This fields rolls up no of completed defined objectives</description>
         <externalId>false</externalId>
@@ -190,6 +216,7 @@
     <fields>
         <fullName>FS_PlanDollars__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>incremental NSV for the current year</inlineHelpText>
         <label>Plan $</label>
         <precision>18</precision>
         <required>false</required>
@@ -203,6 +230,7 @@
         <fullName>FS_PlanPercent__c</fullName>
         <description>Objective for increase in %</description>
         <externalId>false</externalId>
+        <inlineHelpText>incremental plan growth % over previous year</inlineHelpText>
         <label>Plan %</label>
         <precision>18</precision>
         <required>false</required>
@@ -290,6 +318,7 @@
     <fields>
         <fullName>FS_of_Units__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>incremental # cases for the current year</inlineHelpText>
         <label>Planned Volume</label>
         <precision>18</precision>
         <required>false</required>

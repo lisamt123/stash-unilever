@@ -106,6 +106,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Loss_Level_4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Loss_level_3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Losses__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -160,9 +170,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Number__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -281,6 +291,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_MultiTargets_VF</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PQN_PalletLossTreeData</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>

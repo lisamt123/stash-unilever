@@ -73,8 +73,14 @@ public with sharing class WU_UpdateMasterWarehouseHandler{
                 master.WU_ToDate__c = pastOrFutureMonthCapacityList[0].WU_Utilization_End_Date__c;
                 master.WU_Utilization_Type__c = pastOrFutureMonthCapacityList[0].WU_Utilization_Type__c;
                 master.WU_Latest_Committed_Pallet__c = pastOrFutureMonthCapacityList[0].WU_Committed_Max_PalletStorage__c;
-                master.Current_Utilization__c=currentMonthCapacityList[0].WU_Current_Pallet_Utilization_Week__c;
+                //System.debug("Value of List" +pastOrFutureMonthCapacityList);
+                // ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error,'currentMonthCapacityList.size()=='+currentMonthCapacityList.size()));
+                // return;
+                master.Current_Utilization__c=pastOrFutureMonthCapacityList[0].WU_Current_Pallet_Utilization_Week__c;
+                
                 masterWarehouseListToUpdate.add(master);
+                
+                System.debug(currentMonthCapacityList.size());
             }
             
             

@@ -6,5 +6,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>RFS National Chains Manager (NCM)</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>UFS_Russia</parentRole>
+    <parentRole>UFS_Admin</parentRole>
 </Role>

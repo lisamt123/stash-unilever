@@ -73,6 +73,8 @@ public with sharing class VPM_RecordTypeHelper {
     public static final string REQUEST_COMPLETED = 'Request Completed';
     public static final string CONST_LITERAL1 = '\\#';
     public static final string VENDOR_COUNTRY = 'BR_Brazil';
+      Public static final string MDM_REVIEW='MDM Ops Review';
+    public static final string MDM_RE_WROK='MDM Ops Review Requested Re-Work';
     //public static final string CONST_LITERAL2 = '\'%';
     
     public class OptionWrapper{

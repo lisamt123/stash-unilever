@@ -395,7 +395,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+   <fields>
         <fullName>Country__c</fullName>
         <externalId>false</externalId>
         <label>Country</label>
@@ -501,6 +501,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Hungary</fullName>
                 <default>false</default>
             </picklistValues>
@@ -526,6 +530,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Korea</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -633,7 +641,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1546,7 +1562,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+      <fields>
         <fullName>Type__c</fullName>
         <externalId>false</externalId>
         <label>Type</label>
@@ -1580,6 +1596,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Greece</controllingFieldValues>
                 <controllingFieldValues>Guatemala</controllingFieldValues>
                 <controllingFieldValues>Honduras</controllingFieldValues>
+                <controllingFieldValues>Hong Kong</controllingFieldValues>
                 <controllingFieldValues>Hungary</controllingFieldValues>
                 <controllingFieldValues>Iceland</controllingFieldValues>
                 <controllingFieldValues>India</controllingFieldValues>
@@ -1587,6 +1604,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Ireland</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Japan</controllingFieldValues>
+                <controllingFieldValues>Korea</controllingFieldValues>
                 <controllingFieldValues>Latvia</controllingFieldValues>
                 <controllingFieldValues>Lithuania</controllingFieldValues>
                 <controllingFieldValues>Luxembourg</controllingFieldValues>
@@ -1613,7 +1631,9 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sweden</controllingFieldValues>
                 <controllingFieldValues>Switzerland</controllingFieldValues>
+                <controllingFieldValues>Taiwan</controllingFieldValues>
                 <controllingFieldValues>Thailand</controllingFieldValues>
+                <controllingFieldValues>Turkey</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <controllingFieldValues>United States</controllingFieldValues>
                 <controllingFieldValues>Uruguay</controllingFieldValues>
