@@ -80,11 +80,14 @@
 	  <runTest>PQN_GlobalGeographyReportTest</runTest>
 	  <runTest>PQN_UploadNCData_CloneTest</runTest>
 	  <runTest>PQN_updateTAR_Test</runTest>
-	  <runTest>PQN_SendEmailtoDC_ClusterSchedulerTest</runTest>
 	  <runTest>PQN_updateSUP_Test</runTest>
 	  <runTest>PQNScheduleDeteleOfRecordsTest</runTest>
 	  <runTest>PQNUpdateFreezePeriodCtrlTest</runTest>
-	  <runTest>PQN_UserCreationPostProcessing_Test</runTest>	
+	  <runTest>PQN_UserCreationPostProcessing_Test</runTest>
+	  <runTest>PQN_Export_Excel_Test</runTest>
+	  <runTest>PQN_AccountDAO_Test</runTest>
+	  <runTest>PQN_CreateAccessRequest_Test</runTest>
+	  <runTest>PQN_TestLibraryUtil_Test</runTest>
     </sf:deploy>
   </target>  
 
