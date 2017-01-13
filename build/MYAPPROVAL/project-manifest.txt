@@ -17,4 +17,4 @@ src/aura/CORE_CA_ClosedSection/CORE_CA_ClosedSectionHelper.js
 src/objects
 src/objects/Core_Approver_Details__c.object
 src/labels
-src/labels/MyApprovals-CLMFixes.labels
+src/labels/MyApprovals.labels
