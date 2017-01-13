@@ -85,6 +85,7 @@ public with sharing class IPM_GateDocumentController {
     public Boolean isReadable{get;set;} //For Readable Mode    
     
     public IPM_Financial__c financialForPdf {get; set;} //Contains Financial Record
+    public IPM_Financial__c financialForPdfBI {get; set;}
     public string globalbusinessImpactStr  {get; set;}//DEF2450
     public IPM_Financial__c finProjectPriority {get; set;} //Contains Financial Record
     public list<IPM_Project_Rollout__c> rollOut {get; set;} //Contains Rollout Records
@@ -660,7 +661,14 @@ public with sharing class IPM_GateDocumentController {
                                  Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
                                  FROM IPM_Financial__c 
                                  WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-                globalbusinessImpactStr = financialForPdf.Business_Impact_Regional__c;
+                                 
+                
+                financialForPdfBI=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,
+                                 Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,
+                                 Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
+                                 FROM IPM_Financial__c 
+                                 WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];       
+                globalbusinessImpactStr = financialForPdfBI.Business_Impact_Regional__c;
             }
         }
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
