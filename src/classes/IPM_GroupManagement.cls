@@ -188,7 +188,7 @@ global without sharing class  IPM_GroupManagement {
 				}
 				if(proj.IPM_Category_Text__c!=null)  
         		{
-        	 		projCategory ='%'+proj.IPM_Category_Text__c.replace(' ','_')+'%_Business_Partners%';
+        	 		projCategory ='%'+proj.IPM_Category_Text__c.replace(' ','_').replace('&','_')+'%_Business_Partners%';  
         		}
 			}
 		}
