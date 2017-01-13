@@ -4,8 +4,18 @@
     <folder>UL_Reports</folder>
     <masterLabel>IPM UL Reports</masterLabel>
     <shares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>ignacio.perez@unilever.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
         <accessLevel>Manage</accessLevel>
         <sharedTo>nikhil.a.mishra@unilever.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>sean.e.harris@unilever.com</sharedTo>
         <sharedToType>User</sharedToType>
     </shares>
     <templateOrigin>sfdc_internal__AdminAnalytics</templateOrigin>
