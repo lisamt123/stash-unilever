@@ -5,15 +5,15 @@ private class PQN_CommunitiesSelfRegController_CC_Test {
          List<Account> listacc = new List<Account>();
          Account acc = new Account();
          acc.name='DC1';
-         acc.billingcountry = 'India';
+         acc.PQN_Country__c= 'India';
          listacc.add(acc);
          Account acc1 = new Account();
          acc1.name='DC2';
-         acc1.billingcountry = 'India';
+         acc1.PQN_Country__c= 'India';
          listacc.add(acc1);
          Account acc2 = new Account();
          acc2.name='DC3';
-         acc2.billingcountry = 'India';
+         acc2.PQN_Country__c= 'India';
          listacc.add(acc2);
          insert listacc;
          system.assertEquals(listacc.size(),3);

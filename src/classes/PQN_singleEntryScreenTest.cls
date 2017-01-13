@@ -31,14 +31,18 @@ insert lossCode;
         insert s;
         
          account acc=PQN_TestLibraryUtil.createpqnAccount('DC1','India');
+         acc.PQN_Country__c = 'India';
          insert acc;
         PQN_User_Creation_Request__c userCreationRequest = PQN_TestLibraryUtil.createUserCreationRequest();
         insert userCreationRequest;
         user u=PQN_TestLibraryUtil.createPQNUser();
+       // u.country = 'India';
         insert u;
         
      
         PQN_Pallet_Quality_Non_Conformance__c pqn=PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(s.id,acc.id,null);
+        pqn.region__c = 'Europe';
+        pqn.Date_Pallet_Received__c = system.today();
         insert pqn;
          
         PageReference pageRef = Page.PQN_SingleEntryScreen_VF;
@@ -91,6 +95,7 @@ insert lossCode;
         PQN_singleEntryScreen testPQN4 = new PQN_singleEntryScreen(sc4);
         testPQN4.validate();
         testPQN4.validateIte('153489','Test Account Name','116'); 
+        testPQN5.validateIte('153489','def','12345'); 
         
         Apexpages.currentPage().getParameters().put('userinfo.getusertype()','PowerPartner');
         Apexpages.currentPage().getParameters().put('err',null);
@@ -103,7 +108,11 @@ insert lossCode;
         testPQN6.DC_Vol_update();
         testPQN6.assignAccount();
         
-        
+        PQN_Targets__c t = new PQN_Targets__c();
+        t.Year__c = string.valueof(system.today().year());
+        t.Region__c = 'Europe';
+        insert t;
+        testPQN5.Target_update();
                
                
     Test.stopTest();
