@@ -921,11 +921,6 @@
         <name>Consumer_Note__c</name>
     </fields>
     <fields>
-        <label><!-- Contact Name --></label>
-        <name>Contact_Name__c</name>
-        <relationshipLabel><!-- Accounts (Contact Name) --></relationshipLabel>
-    </fields>
-    <fields>
         <label><!-- Financials Currency --></label>
         <name>Currency__c</name>
         <picklistValues>
@@ -3569,124 +3564,6 @@ At least 3 out of 4 = 5 --></help>
             <masterLabel>Yes</masterLabel>
             <translation><!-- Yes --></translation>
         </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Account Contract Strategy --></label>
-        <name>TEL_Account_Contract_Strategy__c</name>
-        <picklistValues>
-            <masterLabel>Renew every Quarter</masterLabel>
-            <translation><!-- Renew every Quarter --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Renew every Semester</masterLabel>
-            <translation><!-- Renew every Semester --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Renew every Year</masterLabel>
-            <translation><!-- Renew every Year --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Avg. Price per Meal --></label>
-        <name>TEL_Avg_Price_per_Meal__c</name>
-    </fields>
-    <fields>
-        <label><!-- CS Opt Out --></label>
-        <name>TEL_CS_Opt_Out__c</name>
-    </fields>
-    <fields>
-        <label><!-- Chef Rewards --></label>
-        <name>TEL_Chef_Rewards__c</name>
-    </fields>
-    <fields>
-        <label><!-- Day/Week Open --></label>
-        <name>TEL_Day_Week_Open__c</name>
-    </fields>
-    <fields>
-        <label><!-- Email OK Flag --></label>
-        <name>TEL_Email_OK_Flag__c</name>
-    </fields>
-    <fields>
-        <label><!-- Number of meal served per day --></label>
-        <name>TEL_Number_of_meal_served_per_day__c</name>
-    </fields>
-    <fields>
-        <label><!-- OTM --></label>
-        <name>TEL_OTM__c</name>
-        <picklistValues>
-            <masterLabel>A</masterLabel>
-            <translation><!-- A --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>A++</masterLabel>
-            <translation><!-- A++ --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>B</masterLabel>
-            <translation><!-- B --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>C</masterLabel>
-            <translation><!-- C --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>D</masterLabel>
-            <translation><!-- D --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>F</masterLabel>
-            <translation><!-- F --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>N</masterLabel>
-            <translation><!-- N --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Not Assigned</masterLabel>
-            <translation><!-- Not Assigned --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Price Book --></label>
-        <name>TEL_Price_Book__c</name>
-        <relationshipLabel><!-- Accounts --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- SAP Order Number --></label>
-        <name>TEL_SAP_Order_Number__c</name>
-    </fields>
-    <fields>
-        <label><!-- Sales Cycle --></label>
-        <name>TEL_Sales_Cycle__c</name>
-    </fields>
-    <fields>
-        <label><!-- Sales Orders --></label>
-        <name>TEL_Sales_Orders__c</name>
-    </fields>
-    <fields>
-        <label><!-- Sub Status --></label>
-        <name>TEL_Sub_Status__c</name>
-        <picklistValues>
-            <masterLabel>Pending Payment</masterLabel>
-            <translation><!-- Pending Payment --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Return Customer</masterLabel>
-            <translation><!-- Return Customer --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Week/Year Open --></label>
-        <name>TEL_Week_Year_Open__c</name>
-    </fields>
-    <fields>
-        <label><!-- Wholesaler ID --></label>
-        <name>TEL_Wholesaler_ID__c</name>
-    </fields>
-    <fields>
-        <label><!-- Wholesaler --></label>
-        <name>TEL_Wholesaler__c</name>
-        <relationshipLabel><!-- Accounts (Wholesaler) --></relationshipLabel>
     </fields>
     <fields>
         <label>Moment thé de la journée</label>
