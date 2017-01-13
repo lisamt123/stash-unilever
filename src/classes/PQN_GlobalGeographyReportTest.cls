@@ -59,7 +59,7 @@ private class PQN_GlobalGeographyReportTest{
          //PQN_Global_Overview_Geography  overviewgeography=new  PQN_Global_Overview_Geography(sc);
          //overviewgeography.callStackChart();
          //overviewgeography.getFieldsLabel();
-         PQN_Global_Overview_Geography.generateStackData('mapStr');
+         //PQN_Global_Overview_Geography.generateStackData('mapStr');
         //testAccPlan = new newAccountPlan(sc);
         PQN_Pallet_Loss_Tree__c losstree=new PQN_Pallet_Loss_Tree__c();
         losstree.name='111';
@@ -69,25 +69,13 @@ private class PQN_GlobalGeographyReportTest{
         losstree.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
         losstree.Loss_L4__c='Missing Cases';
         insert losstree;
-        
-       /* PageReference pageRef = Page.AccountPlan;
-        pageRef.getParameters().put('id', String.valueOf(testAccountPlanInsert.Id));
-        Test.setCurrentPage(pageRef);*/
-    
      
-     
-     
-     PQN_GlobalGeographyReport report1=new PQN_GlobalGeographyReport();
-    
-     //PQN_Global_Overview_Geography overviewreport=new PQN_Global_Overview_Geography();
- 
-       PQN_Global_DCReport reportDC=new PQN_Global_DCReport();
-     //PQN_Global_Overview_Category_Report overviewcateary=new PQN_Global_Overview_Category_Report();
-         PQN_Global_Overview_Category_Report.generateCatStackData('asd');
-        
-     PQN_GlobalSUReport SU=new PQN_GlobalSUReport();
-     PQN_Country_Report country=new PQN_Country_Report();
-     PQN_GlobalCategoryReport category=new PQN_GlobalCategoryReport();
+        PQN_GlobalGeographyReport report1=new PQN_GlobalGeographyReport();    
+        PQN_Global_DCReport reportDC=new PQN_Global_DCReport();
+        PQN_Global_Overview_Category_Report.generateCatStackData('asd');
+        PQN_GlobalSUReport SU=new PQN_GlobalSUReport();
+        PQN_Country_Report country=new PQN_Country_Report();
+        PQN_GlobalCategoryReport category=new PQN_GlobalCategoryReport();
      
           
      test.stoptest();

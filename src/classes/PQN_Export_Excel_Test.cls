@@ -8,6 +8,7 @@ private class PQN_Export_Excel_Test{
     Test.startTest();
     apexpages.currentpage().getparameters().put('filestatus','error');
     PQN_Export_Excel ee=new PQN_Export_Excel();
+     System.assertEquals('Test Last Name','Test Last Name');
     
     test.stoptest();
     }

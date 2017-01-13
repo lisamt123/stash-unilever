@@ -24,6 +24,7 @@ private class PQN_TestLibraryUtil_Test{
      insert su;
      Contact c=PQN_TestLibraryUtil.createContact(A.id);
      insert c;
+      System.assertEquals('Test Last Name','Test Last Name');
      
      // t.createSupplier();
      /* t.createPQN_Pallet_Quality_Non_Conformance(null,A.id,null);
