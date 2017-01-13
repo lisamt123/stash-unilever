@@ -294,3 +294,5 @@ src/staticresources/VPM_UserSpecificScript.resource-meta.xml
 src/triggers
 src/triggers/VPM_SetGlobalOrRegionalFieldUpdate.trigger
 src/triggers/VPM_SetGlobalOrRegionalFieldUpdate.trigger-meta.xml
+src/workflows
+src/workflows/VPM_PurchasingRequests__c.workflow
