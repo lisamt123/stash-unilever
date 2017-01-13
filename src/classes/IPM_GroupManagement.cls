@@ -177,15 +177,35 @@ global without sharing class  IPM_GroupManagement {
 		}  
 		grpList=[SELECT Id,Name FROM Group WHERE NAME IN: queuename LIMIT 50000];
 		  
-		for(IPM_Project__c proj:[SELECT Id,Name,IPM_Project_Name__c,OwnerId FROM IPM_Project__c WHERE Id IN:projectId LIMIT 50000]){
+		List<IPM_Project__c> projList=[SELECT Id,Name,IPM_Category_Text__c,IPM_Project_Name__c,OwnerId FROM IPM_Project__c WHERE Id IN:projectId LIMIT 50000];   
+		//As data migration is done for a particular category at a time  , considering one category 
+        String projCategory;
+		for(IPM_Project__c proj:projList){
 			for(Group g:grpList){
 				projectidstr = proj.Id;
 				if(g.Name.equals(IPM_ConstantUtils.IPM_IPMNNAME+projectidstr.Substring(0,15))){
 					g.Name=IPM_ConstantUtils.IPM_IPMNNAME+proj.Name;
 				}
+				if(proj.IPM_Category_Text__c!=null)  
+        		{
+        	 		projCategory ='%'+proj.IPM_Category_Text__c.replace(' ','_')+'%_Business_Partners%';
+        		}
 			}
 		}
+        if(projCategory!=null)
+        {
+	        List<Group> catBPGroups = new  List<Group>();
+	        catBPGroups = [Select Id from Group where name like : projCategory limit 1  ] ;
+	        String BPGrpId= catBPGroups.size() > 0 ?catBPGroups[0].id :null;
+	        if(BPGrpId!=null && grpList[0]!=null && grpList[0].Id!=null)
+	        {
+		        GroupMember member = new GroupMember();
 		  
+			    member.UserOrGroupId = BPGrpId;
+			    member.GroupId = grpList[0].Id;   
+			    insert  member;  
+	        }
+	    }
 		if(grpList!=null && !grpList.isEmpty()){ 
 	    	if (Test.isRunningTest()) {
 	        	// start new context via system.runAs() for the same user for test code only

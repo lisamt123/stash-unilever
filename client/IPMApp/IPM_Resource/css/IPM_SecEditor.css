@@ -805,10 +805,6 @@ input.misalignedField{border:2px solid red;}
 .glbValLeft{font-size: 0.800em;color:#222;font-weight: bold;}
 .glbfinvalContainer{float: left;max-height: 337px;overflow-y:scroll;width:100%;}
 .glbSeclist{width:50%;float:left;}
-.glbsecContainer .glbValM{width:13.2%;}
-.glbsecContainer .glbValM2{width: 11.3%;}
-.glbsecContainer .glbValM.glbVal1{width:13%;}
-.glbsecContainer .glbValM.glbVal2{width: 13.3%;}
 
 /* Financial Action Standards Inverse styles */
 .ipmFinancetable.inverse{width:100%;max-width:100%;}
