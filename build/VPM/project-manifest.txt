@@ -180,12 +180,9 @@ src/pages/VPM_AdvancedForm_V1.page-meta.xml
 src/pages/VPM_VendorRequestsHome.page
 src/pages/VPM_VendorRequestsHome.page-meta.xml
 src/permissionsets
-src/permissionsets/VPM_DataAdministrator.permissionset
 src/permissionsets/VPM_Business_Requestor.permissionset
+src/permissionsets/VPM_DataAdministrator.permissionset
 src/queues
-src/queues/MDMOpsTanzania.queue
-src/queues/MDMOpsTunisia.queue
-src/queues/MDM_Ops_Belgium.queue
 src/queues/VPM_MDMOpBermuda.queue
 src/queues/VPM_MDMOpsAlgeria.queue
 src/queues/VPM_MDMOpsArgentina.queue
@@ -193,6 +190,7 @@ src/queues/VPM_MDMOpsAustralia.queue
 src/queues/VPM_MDMOpsAustria.queue
 src/queues/VPM_MDMOpsBahrain.queue
 src/queues/VPM_MDMOpsBangladesh.queue
+src/queues/VPM_MDMOpsBelgium.queue
 src/queues/VPM_MDMOpsBolivia.queue
 src/queues/VPM_MDMOpsBrazil.queue
 src/queues/VPM_MDMOpsBulgaria.queue
@@ -268,6 +266,7 @@ src/queues/VPM_MDMOpsSriLanka.queue
 src/queues/VPM_MDMOpsSweden.queue
 src/queues/VPM_MDMOpsSwitzerland.queue
 src/queues/VPM_MDMOpsTaiwan.queue
+src/queues/VPM_MDMOpsTanzania.queue
 src/queues/VPM_MDMOpsThailand.queue
 src/queues/VPM_MDMOpsTrinidadTobago.queue
 src/queues/VPM_MDMOpsTunisia.queue
