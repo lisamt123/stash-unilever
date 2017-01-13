@@ -30,16 +30,14 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- javascript -->
     <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/jquery-1.12.0.min.js')}" />
     <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/bootstrap.min.js')}" />
-   
     <script>
         function refreshGroupId(groupId){
-            //alert(groupId);
             $( "#groupMenu img" ).removeClass("activeHex");
-            $( "#"+groupId).addClass("activeHex");
-            
+            $( "#"+groupId).addClass("activeHex");            
             refreshGroup(groupId);
         }
     </script>
+    
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_Container.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_New_UI_Changes.css')}" />
@@ -63,11 +61,11 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
         <div class="row collbrate">
             <div class="col-md-5 col-lg-5 leftNav">
                 <div class="col-md-offset-2 col-lg-offset-2  col-md-10 col-lg-10">
-                    <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/AIRPLANE.png')}" />
+                    <apex:image style="width: 240px; margin-top: 10px;"  title="PBS" value="{!URLFOR($Resource.PCResources, 'img/AIRPLANE.png')}" />
                 </div>
                 <!--<apex:form id="formId">
                 <apex:actionFunction name="callDP" action="{!demandPlanningDetails}" rerender="panelId"/>-->
-                <div id="groupMenu">
+                <div id="groupMenu" style="top: -90px; position: relative;">
                 <div class="col-md-offset-1 col-lg-offset-1  col-md-5 col-lg-5">
                     <!--<a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!PBSForumGroupId.Id}" target="_self">-->
                     <a class="blockLink" onclick="refreshGroupId('{!PBSForumGroupId.Id}');" title="PBS" target="_self">
@@ -127,6 +125,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     </div>-->
 
     <script type="text/javascript">
+    
         $('#categories').carousel({
             interval: 5000
         });
