@@ -329,7 +329,7 @@ public with sharing class IPM_MilestoneHelper
                 newProjectMilestone.ExternalField__c = project.IPM_Project_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newProjectMilestone.IPM_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newProjectMilestone.IPM_Phase__c + '-'+ newProjectMilestone.IPM_Project_Type__c;
                 
                 // If parent Milestone Belongs to a next phase than Projects current Phase, mark milestone as incomplete.
-                if(nextPhaseSet.contains(newprojectMilestone.IPM_Phase__c))
+                if(nextPhaseSet.contains(newprojectMilestone.IPM_Phase__c) && existingProjectMilestone.IPM_Name__c!=IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT)
                 {
                     newprojectMilestone.IPM_Completed__c = false;
                     newprojectMilestone.IPM_Completed_On__c = null;     
