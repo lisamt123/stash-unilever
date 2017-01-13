@@ -82,8 +82,6 @@ src/classes/PQN_updateSUP.cls
 src/classes/PQN_updateSUP.cls-meta.xml
 src/classes/PQN_updateSUP_Test.cls
 src/classes/PQN_updateSUP_Test.cls-meta.xml
-src/classes/PQNLossTreeData.cls
-src/classes/PQNLossTreeData.cls-meta.xml
 src/classes/PQNUpdateFreezePeriodCtrl.cls
 src/classes/PQNUpdateFreezePeriodCtrl.cls-meta.xml
 src/classes/PQNUpdateFreezePeriodCtrlTest.cls

@@ -56,7 +56,19 @@ private class PQN_GlobalGeographyReportTest{
         
          ApexPages.StandardController sc = new ApexPages.StandardController(PQN4);
         PQN_Global_Overview_Category_Report overviewcateary=new PQN_Global_Overview_Category_Report(sc);
+         //PQN_Global_Overview_Geography  overviewgeography=new  PQN_Global_Overview_Geography(sc);
+         //overviewgeography.callStackChart();
+         //overviewgeography.getFieldsLabel();
+         PQN_Global_Overview_Geography.generateStackData('mapStr');
         //testAccPlan = new newAccountPlan(sc);
+        PQN_Pallet_Loss_Tree__c losstree=new PQN_Pallet_Loss_Tree__c();
+        losstree.name='111';
+        losstree.Loss_Code__c=111;
+        losstree.Loss_L1__c='Distribution Pack / Pallet';
+        losstree.Loss_L2__c='Configuration / Build';
+        losstree.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree.Loss_L4__c='Missing Cases';
+        insert losstree;
         
        /* PageReference pageRef = Page.AccountPlan;
         pageRef.getParameters().put('id', String.valueOf(testAccountPlanInsert.Id));
@@ -68,11 +80,15 @@ private class PQN_GlobalGeographyReportTest{
      PQN_GlobalGeographyReport report1=new PQN_GlobalGeographyReport();
     
      //PQN_Global_Overview_Geography overviewreport=new PQN_Global_Overview_Geography();
+ 
        PQN_Global_DCReport reportDC=new PQN_Global_DCReport();
      //PQN_Global_Overview_Category_Report overviewcateary=new PQN_Global_Overview_Category_Report();
-     //PQN_GlobalSUReport SU=new PQN_GlobalSUReport();
+         PQN_Global_Overview_Category_Report.generateCatStackData('asd');
+        
+     PQN_GlobalSUReport SU=new PQN_GlobalSUReport();
      PQN_Country_Report country=new PQN_Country_Report();
      PQN_GlobalCategoryReport category=new PQN_GlobalCategoryReport();
+     
           
      test.stoptest();
      }

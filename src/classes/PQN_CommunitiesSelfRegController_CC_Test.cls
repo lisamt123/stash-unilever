@@ -17,6 +17,23 @@ private class PQN_CommunitiesSelfRegController_CC_Test {
          listacc.add(acc2);
          insert listacc;
          system.assertEquals(listacc.size(),3);
+          PQN_User_Creation_Request__c userCreationRequest = PQN_TestLibraryUtil.createUserCreationRequest();
+          userCreationRequest .User_Type__c='DC';
+        insert userCreationRequest;
+                
+        Account dc1Account = PQN_TestLibraryUtil.createpqnAccount('DC1','India');
+        insert dc1Account;
+        
+        PQN_User_Account_Request__c accessRequest = PQN_TestLibraryUtil.createAccountAccessRequest(userCreationRequest.Id, 
+                                                                                             dc1Account.Id);
+                                                                                           
+        insert accessRequest;
+         PQN_Supplier__c  sup=PQN_TestLibraryUtil.createSupplier();
+     insert sup;
+     account acc4=PQN_TestLibraryUtil.createpqnAccount('DC1','India');
+     insert acc4;
+     PQN_Pallet_Quality_Non_Conformance__c pqn=PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(sup.id,acc4.id,null);
+     insert pqn;
         Id sysProfileId = [SELECt Id FROM Profile WHERE name = 'System Administrator' LIMIT 1].Id; 
         
         User u = new User();
