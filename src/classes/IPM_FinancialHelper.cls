@@ -1070,7 +1070,8 @@ public with sharing class IPM_FinancialHelper
     {
         List<IPM_Financial__c> listFinancial = new List<IPM_Financial__c>();
         if(!newFinancials.isEmpty()){
-        	String finQuery = 'SELECT Id, Volume_Unit_Difference__c, NPV_Difference__c, IRR_Difference__c, Payback_Difference__c, CAPEX_Difference__c, BIC_Difference__c,  Total_FY_Difference__c, MisalignmentManual__c FROM IPM_Financial__c WHERE ID IN :newFinancials LIMIT 1000';
+        	
+        	String finQuery = 'SELECT Id,Local_Project__c, Regional_Project__c,Volume_Unit_Difference__c, NPV_Difference__c, IRR_Difference__c, Payback_Difference__c, CAPEX_Difference__c, BIC_Difference__c,  Total_FY_Difference__c, MisalignmentManual__c FROM IPM_Financial__c WHERE ID IN :newFinancials LIMIT 1000';
         	
         	listFinancial = Database.Query(finQuery);	
         }
