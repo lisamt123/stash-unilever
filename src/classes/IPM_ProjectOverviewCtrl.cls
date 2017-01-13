@@ -594,7 +594,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
 				if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
 				{
 					fin=[SELECT Business_Impact_Regional__c FROM IPM_Financial__c 
-							  WHERE Regional_Project__c=:project.IPM_Parent_Project__c 
+							  WHERE (Regional_Project__c=:project.IPM_Parent_Project__c OR Parent_Project__r.IPM_ProjectGKM__c =:IPM_ConstantUtils.GKM_3)
 							  AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
 					globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Regional__c != null ? fin[0].Business_Impact_Regional__c :IPM_ConstantUtils.BLANK));
 				}

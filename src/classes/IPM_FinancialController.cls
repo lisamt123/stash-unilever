@@ -3144,6 +3144,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         if(volumeUnit!=null && volumeUnit.equalsIgnoreCase(IPM_ConstantUtils.TotalTons))    
         {
             finWrapper.y0VolumeTons = finWrapper.y0Volume;
+            finWrapper.y0Volume = 0;
             
             for(Integer i=0;i<finWrapper.lstGrossPLVolume.size();i++)
             {
@@ -3151,18 +3152,21 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 IPM_FinancialValueWrapper finVolTonsWrapper = finWrapper.lstGrossPLVolumeTons.get(i);
                 
                 finVolTonsWrapper.value = finVolWrapper.value;
+                finVolWrapper.value = 0;
             }
             for(Integer i=0;i<finWrapper.lstIncrementalPLVolume.size();i++)
             {
                 IPM_FinancialValueWrapper finVolWrapper = finWrapper.lstIncrementalPLVolume.get(i);
                 IPM_FinancialValueWrapper finVolTonsWrapper = finWrapper.lstIncrementalPLVolumeTons.get(i);
                 
-                finVolTonsWrapper.value = finVolWrapper.value;     
+                finVolTonsWrapper.value = finVolWrapper.value;
+                finVolWrapper.value = 0;    
             }
         }
         else
         {
             finWrapper.y0Volume = finWrapper.y0VolumeTons;
+            finWrapper.y0VolumeTons = 0;
             
             for(Integer i=0;i<finWrapper.lstGrossPLVolumeTons.size();i++) 
             {
@@ -3170,6 +3174,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 IPM_FinancialValueWrapper finVolWrapper = finWrapper.lstGrossPLVolume.get(i);
                 
                 finVolWrapper.value = finVolTonsWrapper.value;
+                finVolTonsWrapper.value = 0; 
     
             }
             for(Integer i=0;i<finWrapper.lstIncrementalPLVolumeTons.size();i++)
@@ -3178,6 +3183,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 IPM_FinancialValueWrapper finVolWrapper = finWrapper.lstIncrementalPLVolume.get(i);
                 
                 finVolWrapper.value = finVolTonsWrapper.value;
+                finVolTonsWrapper.value = 0; 
 
             }
         }
@@ -3682,9 +3688,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 }
                 
                 if(finCounter <= BATCH_SIZE ){
-                initializeFinancials();
-            }
-                
+	                initializeFinancials();
+	            }
+	            
+	            if(finCounter == unprocessedFinIds.size()){
+	            	setValidationErrorMessage(IPMFinancial,project);
+	            }
+	             
             }
         }
         

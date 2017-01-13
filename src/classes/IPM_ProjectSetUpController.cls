@@ -114,6 +114,12 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         if(project!=null){
            initialise();
         }
+        
+        if(project.IPM_Bosscard__c!=null)
+        {
+        	populateProjectMetadataAttributes(projectMetadata); 
+        }
+        
     }
     /****************************************************************************
     @Description : To initialize all variables
@@ -401,14 +407,13 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     *****************************************************************************/
     //NPath Complexity-Based on the Business Logic all brand positions needs to be fetched for various conditions
     public List<SelectOption> getBrandPos(){
-        if( project.IPM_Category_Text__c== preSelectCategory && brandOptionsList!=NULL && !brandOptionsList.isEmpty())
-        {
-		return brandOptionsList;
-	}
-    	brandOptionsList.clear();
-    	if(!projectMetadata.IPM_MultiBrandPosApplicable__c)
-        {
-		brandOptionsList.add(new Selectoption(IPM_ConstantUtils.BLANK ,system.label.IPM_SelectBrandPosition));
+    	//Size > 1 check as default  "Select Brand Positioning" is always there
+        if( project.IPM_Category_Text__c== preSelectCategory && brandOptionsList!=NULL && !brandOptionsList.isEmpty() && brandOptionsList.size()>1){
+			return brandOptionsList;
+		}
+    	brandOptionsList.clear(); 
+    	if(!projectMetadata.IPM_MultiBrandPosApplicable__c){
+			brandOptionsList.add(new Selectoption(IPM_ConstantUtils.BLANK ,system.label.IPM_SelectBrandPosition));
         }
 
         try{

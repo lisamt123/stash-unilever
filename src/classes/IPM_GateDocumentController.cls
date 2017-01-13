@@ -659,7 +659,7 @@ public with sharing class IPM_GateDocumentController {
                                  Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,
                                  Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
                                  FROM IPM_Financial__c 
-                                 WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+                                 WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
                 globalbusinessImpactStr = financialForPdf.Business_Impact_Regional__c;
             }
         }
@@ -680,7 +680,7 @@ public with sharing class IPM_GateDocumentController {
                                                         Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,
                                                         Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
                                                         FROM IPM_Financial__c 
-                                                        WHERE Regional_Project__c=:project.IPM_Parent_Project__c 
+                                                        WHERE (Regional_Project__c=:project.IPM_Parent_Project__c  OR Parent_Project__r.ipm_ProjectGKM__c =: IPM_ConstantUtils.GKM_3)
                                                         AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
                 if(!financialList.isEmpty()){
                     financialForPdf = financialList[0];
