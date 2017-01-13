@@ -424,9 +424,9 @@ input.misalignedField{border:2px solid red;}
 
 /* Global Financial Action Standards Styles */
 .gatefinancialbg{background-color:#EBF8FC;padding: 10px;}
-.glbfinstdsContainer{background-color: #dceefa;border:1px solid #ddd;float: left;width: 97.9%;}
+.glbfinstdsContainer{background-color: #dceefa;border:1px solid #ddd;float: left;width: 98.2%;}
 .glbHeadLeft{width: 19.7%;float: left;display: block;height: 105px;border: 1px solid #ddd;margin-left:-1px;}
-.glbHeadRight{width: 80.4%;float: left;min-height: 100px;border: 1px solid #ddd;}
+.glbHeadRight{width: 80.3%;float: left;min-height: 100px;border: 1px solid #ddd;}
 .glbHeadtop1,.glbHeadtop2{float:left;min-height: 98px;}
 .glbfrstyear,.glbinnovation{padding-bottom: 5px;text-align: center;color: #364354;font-weight: bold;margin-top: 5px;border-bottom: 1px solid #ddd;}
 .glbsubHeadM{float:left;width:20%;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 11px;}
@@ -445,9 +445,6 @@ input.misalignedField{border:2px solid red;}
 .glbValLeft{font-size: 0.800em;color:#222;font-weight: bold;}
 .glbfinvalContainer{float: left;max-height: 337px;width:100%;overflow-y:scroll;}
 .glbSeclist{width:50%;float:left;}
-.glbsecContainer .glbValM{width: 13.2%;}
-.glbsecContainer .glbValM2{width: 11.2%;}
-.glbsecContainer .glbValM2.glbVal6{width: 11.1%;}
 
 /* Financial Action Standards Inverse styles */
 .ipmFinancetable.inverse{width:100%;max-width:100%;}
@@ -571,3 +568,5 @@ div.delTitlecon {
 .ipmAcrdnExpand div:first-child .consumerImgContainer {
     border-top: none;
 }
+.iframeTechnicalAppendix{width:1000px;}
+.addScroll{overflow-x:auto;}

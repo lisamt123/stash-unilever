@@ -118,30 +118,34 @@
                       {!LEFT(finAction.IPM_Financial_Action_Standard_Name__c,(FIND(' ', finAction.IPM_Financial_Action_Standard_Name__c)))} Results at Charter
                   </div>
                   <div class="glbValRight ">
-                    <div class="glbValM glbVal1">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Value_Market_Share_Global__c}" />
-                    </div>
-                    <div class="glbValM glbVal2">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Value_Market_Share_Global__c}" />
-                    </div>
-                    <div class="glbValM glbVal3">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Turnover_Global__c}" />
-                    </div>
-                    <div class="glbValM glbVal4">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Turnover_Global__c}" />
-                    </div>
-                    <div class="glbValM glbVal5">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.GM_of_TO_Global__c}"/>
-                    </div>
-                    <div class="glbValM2 glbVal6">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c}" />
-                    </div>
-                    <div class="glbValM2 glbVal7">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c}" />
-                    </div>
-                    <div class="glbValM2 glbVal8">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c}" />
-                    </div>
+					<div class="glbValSubLeft">
+						<div class="glbValM glbVal1">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Value_Market_Share_Global__c}" />
+						</div>
+						<div class="glbValM glbVal2">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Value_Market_Share_Global__c}" />
+						</div>
+						<div class="glbValM glbVal3">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Turnover_Global__c}" />
+						</div>
+						<div class="glbValM glbVal4">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Turnover_Global__c}" />
+						</div>
+						<div class="glbValM glbVal5">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.GM_of_TO_Global__c}"/>
+						</div>
+					</div>
+					<div class="glbValSubRight">
+						<div class="glbValM2 glbVal6">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c}" />
+						</div>
+						<div class="glbValM2 glbVal7">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c}" />
+						</div>
+						<div class="glbValM2 glbVal8">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c}" />
+						</div>
+					</div>
                   </div>
                 </div>
             </apex:repeat>  
