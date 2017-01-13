@@ -1,8 +1,7 @@
 @isTest
 private class PQN_GlobalGeographyReportTest{
     private static testMethod void testPQN_GlobalGeographyReport(){
-    Test.startTest();
-    
+  
     PQN_Sourcing_Unit__c source=PQN_TestLibraryUtil.createSourcingUnit();
     insert source;
     
@@ -53,10 +52,11 @@ private class PQN_GlobalGeographyReportTest{
         PQN4.Product_Category__c='Hair Care';
         insert PQN4 ;
         System.assertEquals(PQN4.Product_Category__c, 'Hair Care');
-        
+          Test.startTest();
+    
          ApexPages.StandardController sc = new ApexPages.StandardController(PQN4);
         PQN_Global_Overview_Category_Report overviewcateary=new PQN_Global_Overview_Category_Report(sc);
-         //PQN_Global_Overview_Geography  overviewgeography=new  PQN_Global_Overview_Geography(sc);
+         PQN_Global_Overview_Geography  overviewgeography=new  PQN_Global_Overview_Geography(sc);
          //overviewgeography.callStackChart();
          //overviewgeography.getFieldsLabel();
          //PQN_Global_Overview_Geography.generateStackData('mapStr');

@@ -44,8 +44,6 @@ src/classes/PQN_DC_Voulmes.cls
 src/classes/PQN_DC_Voulmes.cls-meta.xml
 src/classes/PQN_DC_VoulmesTest.cls
 src/classes/PQN_DC_VoulmesTest.cls-meta.xml
-src/classes/PQN_HelibronnJSON2Apex.cls
-src/classes/PQN_HelibronnJSON2Apex.cls-meta.xml
 src/classes/PQN_MultiTargets.cls
 src/classes/PQN_MultiTargets.cls-meta.xml
 src/classes/PQN_MultiTargetstest.cls
@@ -104,7 +102,6 @@ src/components/PQN_Navigation.component
 src/components/PQN_Navigation.component-meta.xml
 src/layouts/PQN_DC_Volumes__c-PQN_DC_Volumes Layout.layout
 src/layouts/PQN_Pallet_Quality_Non_Conformance__c-PQN_Quality Conformance Layout.layout
-src/layouts/PQN_Pallet_Quality_Non_Conformance__c-PQN_Quality Conformance Layout.layoutMODIFIED
 src/layouts/PQN_Sourcing_Unit__c-PQN_Supplier_Unit Layout.layout
 src/layouts/PQN_User_Account_Request__c-PQN Account Access Object Layout.layout
 src/layouts/PQN_User_Creation_Request__c-PQN User Creation Request Layout.layout
