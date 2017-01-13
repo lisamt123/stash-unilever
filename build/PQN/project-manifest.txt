@@ -70,8 +70,6 @@ src/classes/PQN_TestLibraryUtil.cls
 src/classes/PQN_TestLibraryUtil.cls-meta.xml
 src/classes/PQN_UploadNCData_Clone.cls
 src/classes/PQN_UploadNCData_Clone.cls-meta.xml
-src/classes/PQN_SendEmailtoDC_ClusterScheduler.cls
-src/classes/PQN_SendEmailtoDC_ClusterScheduler.cls-meta.xml
 src/classes/PQN_SendEmailtoDC_ClusterSchedulerTest.cls
 src/classes/PQN_SendEmailtoDC_ClusterSchedulerTest.cls-meta.xml
 src/classes/PQN_updateSUP.cls
