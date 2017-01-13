@@ -149,7 +149,6 @@ public class VPM_RegionalMaintainVendorTest{
         
  }
 
-    
 
  @testSetup static void setup() {
         String vCode = '5001010'; 
@@ -205,6 +204,7 @@ public class VPM_RegionalMaintainVendorTest{
         globalFields.VPM_fieldType__C = 'Global';
         globalFields.VPM_JSONFieldName__c = 'TaxNumber1';
         globalFields.VPM_parentElement__c = 'MainObject';
+        globalFields.VPM_SectionName__c = 'General Vendor Details Section Changed';
         globalFieldsList.add(globalFields);
 
         //List<VPM_listOfRegionalandGlobalField__c> globalFieldsList = new List<VPM_listOfRegionalandGlobalField__c>();
