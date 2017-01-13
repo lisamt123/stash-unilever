@@ -71,7 +71,7 @@
                  
                     <!-- <apex:commandButton value="Attach File" action="{!OpenAttachmentPopup}" rerender="popup"/> -->
                     <apex:commandButton id="cancel" value="Cancel" action="{!cancel}" immediate="true"/>
-                    <apex:commandButton id="save" value="Save" action="{!Save}" />
+                    <apex:commandButton id="save" value="Save" action="{!Save}" immediate="true" />
                 </apex:pageBlockButtons>
                 
             </div> 

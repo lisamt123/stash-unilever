@@ -10,21 +10,15 @@ Purpose: This is the Test class implements the HttpCalloutMock interface for CEC
 History                                                            
 -------                                                            
 VERSION    AUTHOR            DATE            DETAIL                   
-1.0      Sreya           Jan-2016      INITIAL DEVELOPMENT  
-2.0      Mahesh          Nov-2016      Coding Standards
+1.0      Sreya           Jan-2016      INITIAL DEVELOPMENT   
 
 ***********************************************************************/
 
 @isTest
 global class CEC_IRIProductLocator_CalloutMock implements HttpCalloutMock{
 
-    /***************************************************************** 
-        Purpose: To provide response mock response for product locator web service.
-        Parameters: HTTPRequest
-        return : HttpResponse
-    ********************************************************************/ 
 global HttpResponse respond(HTTPRequest req){
-    HttpResponse response = new HttpResponse();
+    HttpResponse res = new HttpResponse();
     string Test_Body = '<?xml version="1.0"?>'+
 '<RESULTS SUCCESS_CODE="0">'+
     '<QUERY>'+
@@ -89,8 +83,8 @@ global HttpResponse respond(HTTPRequest req){
    '</STORES>'+
 '</RESULTS>'
 ;
-    response.setBody(Test_Body);
+    res.setBody(Test_Body);
    
-    return response;
+    return res;
   }
 }

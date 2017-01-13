@@ -1,9 +1,0 @@
-src
-src/classes
-src/classes/CEC_IRIProductLocator_CalloutMock.cls
-src/classes/CEC_IRIProductLocator_CalloutMock.cls-meta.xml
-src/pages
-src/pages/CEC_NewAccountContact.page
-src/pages/CEC_NewAccountContact.page-meta.xml
-src/objects
-src/objects/Case.object

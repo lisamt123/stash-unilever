@@ -21,9 +21,7 @@
     <apex:includeScript value="{!URLFOR($Resource.jquery1112, 'jquery-1.11.2.min.js')}"/>
     <apex:includeScript value="/soap/ajax/28.0/connection.js"/>
     <apex:includeScript value="/support/console/30.0/integration.js"/>
-    <apex:includeScript value="{!URLFOR($Resource.pca__PostcodeAnywhere, 'sensor.js')}" />
-    <apex:stylesheet value="{!URLFOR($Resource.pca__PostcodeAnywhere, 'platformcaptureplus-2.00.min.css')}" />
-    <apex:includeScript value="{!URLFOR($Resource.pca__PostcodeAnywhere, 'platformcaptureplus-2.00.min.js')}" />
+    <apex:include pageName="pca__Component"/>
     <apex:form id="frm" >
         <apex:outputPanel styleClass="tabs" layout="block">  
             <ul>
@@ -348,42 +346,6 @@
                 $('.tab.results').hide();
             }
         }
-        /*** START OF PCA CODE ***/
 
-        var pcaOriginCountry =  "{!JSENCODE($User.Country)}";
-        var pcaKey = "{!JSENCODE($Setup.pca__PostcodeAnywhereSettings__c.pca__Key__c)}";
-
-        var pcaGetCountries = function() {
-            var countries = [];
-            try{
-                sforce.connection.sessionId = "{!$Api.Session_ID}"; 
-                var countryRecords = (sforce.connection.query("SELECT Name, pca__Index__c FROM pca__PostcodeAnywhereCountries__c")).getArray("records");
-                for(var i=0;i< countryRecords.length;i++){ countries.push(countryRecords[i].Name); }
-            }
-            catch(e){ 
-                countries = [];
-            }
-            return countries;
-        }
-
-        var pcaCountryList = '{!newConsumer.PersonMailingCountry}';
-        if (pcaCountryList === '') {            
-            var pcaCountryList = pcaGetCountries().join(",");
-        }
-        var pcaFields = [
-            { element: "vf_account_street", field: "{Line1}" },
-            { element: "vf_account_city", field: "{City}", mode: pca.fieldMode.POPULATE },
-            { element: "vf_account_state", field: "{Province}", mode: pca.fieldMode.POPULATE },
-            { element: "vf_account_postalcode", field: "{PostalCode}" },
-            { element: "vf_account_country", field: "{CountryName}", mode: pca.fieldMode.COUNTRY | pca.fieldMode.POPULATE }
-        ],
-        pcaOptions = {
-            "key": pcaKey,
-            "countries": { value: pcaOriginCountry },
-            "search": { countries: pcaCountryList, language: "ENG" }
-        },
-        pcaControl = new pca.Address(pcaFields, pcaOptions);
-
-        /*** END OF PCA CODE ***/
     </script>
 </apex:page>
