@@ -3,6 +3,8 @@ private class PQN_singleEntryScreenTest{
     private static testMethod void testPQN_singleEntryScreen(){
     Test.startTest();
     
+    Id p = [select id from profile where name='Partner Community User'].id;
+    
          list<PQNFreezeDate__c> freezeDateList=new list<PQNFreezeDate__c>();
      PQNFreezeDate__c date1=new PQNFreezeDate__c();
      date1.name='January';
@@ -51,6 +53,20 @@ insert lossCode;
         t.Target__c='23';
         t.Region__c = 'Europe';
         insert t;
+        
+        PQN_DC_Volumes__c volume=PQN_TestLibraryUtil.createDCvolumes();
+        insert volume;
+        
+         Contact con = new Contact(LastName ='testCon',AccountId = acc.Id);
+        insert con; 
+        User user = new User(alias = 'test123', email='test123@noemail.com',
+                emailencodingkey='UTF-8', lastname='Testing', languagelocalekey='en_US',
+                localesidkey='en_US', profileid = p, country='United States',IsActive =true,
+                ContactId = con.Id,
+                timezonesidkey='America/Los_Angeles', username='tester1234@noemail.com');
+       
+        insert user;
+       
          
         PageReference pageRef = Page.PQN_SingleEntryScreen_VF;
         Test.setCurrentPage(pageRef);
@@ -76,12 +92,13 @@ insert lossCode;
         testPQN1.checkFreezePeriod();
         testPQN1.Target_update();
         testPQN1.DC_Vol_update();
-        testPQN1.assignAccount();
+       
         
         Apexpages.currentPage().getParameters().put('skuName',pqn.SKU__c);
         ApexPages.StandardController sc2 = new ApexPages.StandardController(pqn);
         PQN_singleEntryScreen testPQN2 = new PQN_singleEntryScreen(sc2);
         testPQN2.validate();
+        
               
         Apexpages.currentPage().getParameters().put('skuname','' );
         ApexPages.StandardController sc3 = new ApexPages.StandardController(pqn);
@@ -102,12 +119,13 @@ insert lossCode;
         PQN_singleEntryScreen testPQN4 = new PQN_singleEntryScreen(sc4);
         testPQN4.validate();
         testPQN4.validateIte('153489','Test Account Name','116'); 
-        testPQN5.validateIte('153489','def','12345'); 
+        testPQN4.validateIte('153489','def','12345'); 
         
         Apexpages.currentPage().getParameters().put('userinfo.getusertype()','PowerPartner');
         Apexpages.currentPage().getParameters().put('err',null);
         ApexPages.StandardController sc6 = new ApexPages.StandardController(pqn);
         PQN_singleEntryScreen testPQN6 = new PQN_singleEntryScreen(sc6);
+        
         testPQN6.sup=s;
         testPQN6.validate();
         testPQN6 .savePQN();
@@ -115,9 +133,20 @@ insert lossCode;
         testPQN6.Target_update();
         testPQN6.DC_Vol_update();
         testPQN6.assignAccount();
-        
-       
         testPQN5.Target_update();
+        
+         system.runAs(user) {
+            // statements to be executed by this test user.
+             testPQN6.sup=s;
+        testPQN6.validate();
+        testPQN6 .savePQN();
+        testPQN6.cancelPQN();
+        testPQN6.Target_update();
+        testPQN6.DC_Vol_update();
+        testPQN6.assignAccount();
+        testPQN5.Target_update();
+        }
+        
                
                
     Test.stopTest();
