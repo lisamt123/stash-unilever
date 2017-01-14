@@ -4728,7 +4728,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,In Progress,Review Needed,On Hold</value>
+            <value>New,In Progress,Review Needed,On Hold,Reopened</value>
         </filters>
         <filters>
             <field>CORE.USERS.FIRST_NAME</field>
