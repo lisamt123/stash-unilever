@@ -54,50 +54,50 @@ global without sharing class  IPM_GroupManagement {
     @Description : This method is used to create a new queue & assignmed members to the queue
     *****************************************************************************************/
       
-	  @future
-	  public static void GroupQueueUpdate(set<id> Setgrpid, set<ID> projectidSet)
-	  {
-		List<IPM_Project__c> projList=new List<IPM_Project__c>([SELECT Id,IPM_Project_Name__c,OwnerId, 
-		                                    IPM_Technical_Project_Leader__r.id, IPM_Project_Gatekeeper__r.id,
-		                                    IPM_Project_Leader__r.id, Deputy_Project_Leader__r.id FROM IPM_Project__c 
-		                                    WHERE Id in:projectidSet LIMIT 50000]);
-		  
-		Map<String,Set<string>> QueueMemberIdMap = new Map<String,Set<string>>();
-		Set<string> QueueMemberSet;
-		string projectidstr;
+    @future
+    public static void GroupQueueUpdate(set<id> Setgrpid, set<ID> projectidSet)
+    {
+    List<IPM_Project__c> projList=new List<IPM_Project__c>([SELECT Id,IPM_Project_Name__c,OwnerId, 
+                                        IPM_Technical_Project_Leader__r.id, IPM_Project_Gatekeeper__r.id,
+                                        IPM_Project_Leader__r.id, Deputy_Project_Leader__r.id FROM IPM_Project__c 
+                                        WHERE Id in:projectidSet LIMIT 50000]);
+      
+    Map<String,Set<string>> QueueMemberIdMap = new Map<String,Set<string>>();
+    Set<string> QueueMemberSet;
+    string projectidstr;
             
-		if(projList != null & !projList.isEmpty()){
-		    for(IPM_Project__c p:projList){
-		         QueueMemberSet = new Set<string>();
-		         projectidstr = p.Id;
-		         
-		         if(p.IPM_Technical_Project_Leader__r.id !=null){
-		            QueueMemberSet.add(p.IPM_Technical_Project_Leader__r.id);
-		         }
-		         
-		         if(p.IPM_Project_Gatekeeper__r.id !=null){
-		            QueueMemberSet.add(p.IPM_Project_Gatekeeper__r.id);
-		         }
-		         
-		         if(p.IPM_Project_Leader__r.id !=null){
-		            QueueMemberSet.add(p.IPM_Project_Leader__r.id);
-		         }
-		         
-		         if(p.Deputy_Project_Leader__r.id !=null){
-		            QueueMemberSet.add(p.Deputy_Project_Leader__r.id);
-		         }
-		         projectidstr = p.Id;
-		         QueueMemberIdMap.put(IPM_ConstantUtils.IPM_IPMNNAME+projectidstr.Substring(0,15),QueueMemberSet);
-		    }
-		}
-		updategroupQueue(Setgrpid, QueueMemberIdMap);
+    if(projList != null & !projList.isEmpty()){
+        for(IPM_Project__c p:projList){
+             QueueMemberSet = new Set<string>();
+             projectidstr = p.Id;
+             
+             if(p.IPM_Technical_Project_Leader__r.id !=null){
+                QueueMemberSet.add(p.IPM_Technical_Project_Leader__r.id);
+             }
+             
+             if(p.IPM_Project_Gatekeeper__r.id !=null){
+                QueueMemberSet.add(p.IPM_Project_Gatekeeper__r.id);
+             }
+             
+             if(p.IPM_Project_Leader__r.id !=null){
+                QueueMemberSet.add(p.IPM_Project_Leader__r.id);
+             }
+             
+             if(p.Deputy_Project_Leader__r.id !=null){
+                QueueMemberSet.add(p.Deputy_Project_Leader__r.id);
+             }
+             projectidstr = p.Id;
+             QueueMemberIdMap.put(IPM_ConstantUtils.IPM_IPMNNAME+projectidstr.Substring(0,15),QueueMemberSet);
+        }
+    }
+    updategroupQueue(Setgrpid, QueueMemberIdMap);
      }
      
     /****************************************************************************************
     @Description : This method is used to create a new queue & assignmed members to the queue
     *****************************************************************************************/
     private static void updategroupQueue(set<id> Setgrpid, Map<String,Set<string>> QueueMemberIdMap){
-    	  list<QueueSobject>queueList=new List<QueueSobject>();
+        list<QueueSobject>queueList=new List<QueueSobject>();
           list<GroupMember> memberList = new List<GroupMember>();
           grpList=[SELECT Id,Name FROM Group WHERE id IN: Setgrpid LIMIT 50000];
           if(grpList != null & !grpList.isEmpty()){
@@ -129,37 +129,37 @@ global without sharing class  IPM_GroupManagement {
           }
           
           if(queueList!=null && !queueList.isEmpty()){
-	             if (Test.isRunningTest()) {
-	                // start new context via system.runAs() for the same user for test code only
-	                System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
-	                insert queueList;
-	                }
-	            } else {
-	                // in non-test code insert normally
-	                try{
-	                    insert queueList;
-	                 }catch(Exception ex){//running in future method, so we are not displaying any error in UI but create a log so system admin can track it
-	                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
-	                                                       IPM_ConstantUtils.IPM_QUEUE_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
-	                }
-	          }
+               if (Test.isRunningTest()) {
+                  // start new context via system.runAs() for the same user for test code only
+                  System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
+                  insert queueList;
+                  }
+              } else {
+                  // in non-test code insert normally
+                  try{
+                      insert queueList;
+                   }catch(Exception ex){//running in future method, so we are not displaying any error in UI but create a log so system admin can track it
+                      ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
+                                                         IPM_ConstantUtils.IPM_QUEUE_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
+                  }
+            }
          }
          
          if(memberList!=null && !memberList.isEmpty()){ 
-	            if (Test.isRunningTest()) {
-	                // start new context via system.runAs() for the same user for test code only
-	                System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
-	                    insert memberList;
-	            }
-	            } else {
-	                // in non-test code insert normally
-	                try{
-	                    insert memberList;
-	                }catch(Exception ex){//running in future method, so we are not displaying any error in UI but create a log so system admin can track it
-	                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
-	                                                       IPM_ConstantUtils.IPM_QUEUE_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
-	                }
-	          }
+              if (Test.isRunningTest()) {
+                  // start new context via system.runAs() for the same user for test code only
+                  System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
+                      insert memberList;
+              }
+              } else {
+                  // in non-test code insert normally
+                  try{
+                      insert memberList;
+                  }catch(Exception ex){//running in future method, so we are not displaying any error in UI but create a log so system admin can track it
+                      ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
+                                                         IPM_ConstantUtils.IPM_QUEUE_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
+                  }
+            }
          }
     }  
       
@@ -167,70 +167,70 @@ global without sharing class  IPM_GroupManagement {
     /*************************************************************************************************
     @Description : This method is used to update the name of the queue to inline it with project name
     **************************************************************************************************/
-	public static void groupNameUpdate(Set<Id> projectId){
-		Set<string> queuename = new Set<string>();
-		string projectidstr;
-		                  
-		for(string projid:projectId){
-			projectidstr = projid;
-			queuename.add(IPM_ConstantUtils.IPM_IPMNNAME + projectidstr.Substring(0,15));           
-		}  
-		grpList=[SELECT Id,Name FROM Group WHERE NAME IN: queuename LIMIT 50000];
-		  
-		List<IPM_Project__c> projList=[SELECT Id,Name,IPM_Category_Text__c,IPM_Project_Name__c,OwnerId FROM IPM_Project__c WHERE Id IN:projectId LIMIT 50000];   
-		//As data migration is done for a particular category at a time  , considering one category 
+  public static void groupNameUpdate(Set<Id> projectId){
+    Set<string> queuename = new Set<string>();
+    string projectidstr;
+                      
+    for(string projid:projectId){
+      projectidstr = projid;
+      queuename.add(IPM_ConstantUtils.IPM_IPMNNAME + projectidstr.Substring(0,15));           
+    }  
+    grpList=[SELECT Id,Name FROM Group WHERE NAME IN: queuename LIMIT 50000];
+      
+    List<IPM_Project__c> projList=[SELECT Id,Name,IPM_Category_Text__c,IPM_Project_Name__c,OwnerId FROM IPM_Project__c WHERE Id IN:projectId LIMIT 50000];   
+    //As data migration is done for a particular category at a time  , considering one category 
         String projCategory;
-		for(IPM_Project__c proj:projList){
-			for(Group g:grpList){
-				projectidstr = proj.Id;
-				if(g.Name.equals(IPM_ConstantUtils.IPM_IPMNNAME+projectidstr.Substring(0,15))){
-					g.Name=IPM_ConstantUtils.IPM_IPMNNAME+proj.Name;
-				}
-				if(proj.IPM_Category_Text__c!=null)  
-        		{
-        	 		projCategory ='%'+proj.IPM_Category_Text__c.replace(' ','_').replace('&','_')+'%_Business_Partners%';  
-        		}
-			}
-		}
+    for(IPM_Project__c proj:projList){
+      for(Group g:grpList){
+        projectidstr = proj.Id;
+        if(g.Name.equals(IPM_ConstantUtils.IPM_IPMNNAME+projectidstr.Substring(0,15))){
+          g.Name=IPM_ConstantUtils.IPM_IPMNNAME+proj.Name;
+        }
+        if(proj.IPM_Category_Text__c!=null)  
+            {
+               projCategory ='%'+proj.IPM_Category_Text__c.replace(' ','_').replace('&','N')+'%_BP%';   
+            }
+      }
+    }
         if(projCategory!=null)
         {
-	        List<Group> catBPGroups = new  List<Group>();
-	        catBPGroups = [Select Id from Group where name like : projCategory limit 1  ] ;
-	        String BPGrpId= catBPGroups.size() > 0 ?catBPGroups[0].id :null;
-	        if(BPGrpId!=null && grpList[0]!=null && grpList[0].Id!=null)
-	        {
-		        GroupMember member = new GroupMember();
-		  
-			    member.UserOrGroupId = BPGrpId;
-			    member.GroupId = grpList[0].Id;   
-			    insert  member;  
-	        }
-	    }
-		if(grpList!=null && !grpList.isEmpty()){ 
-	    	if (Test.isRunningTest()) {
-	        	// start new context via system.runAs() for the same user for test code only
-	        	System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
-	        		update grpList;
-	    		}
-	    	} else {
-	        	// in non-test code insert normally
-	        	try{
-	            	update grpList;
-	        	}catch(Exception ex){//running in future method, so we are not displaying any error in UI but create a log so system admin can track it
-	            	ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
-	                                               IPM_ConstantUtils.IPM_QUEUE_UPDATENAME_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
-	        	}
-	    	}
-	  	}
-	} 
+          List<Group> catBPGroups = new  List<Group>();
+          catBPGroups = [Select Id from Group where DeveloperName like : projCategory limit 1  ] ; 
+          String BPGrpId= catBPGroups.size() > 0 ?catBPGroups[0].id :null;
+          if(BPGrpId!=null && grpList[0]!=null && grpList[0].Id!=null)
+          {
+            GroupMember member = new GroupMember();
+      
+          member.UserOrGroupId = BPGrpId;
+          member.GroupId = grpList[0].Id;   
+          insert  member;  
+          }
+      }
+    if(grpList!=null && !grpList.isEmpty()){ 
+        if (Test.isRunningTest()) {
+            // start new context via system.runAs() for the same user for test code only
+            System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
+              update grpList;
+          }
+        } else {
+            // in non-test code insert normally
+            try{
+                update grpList;
+            }catch(Exception ex){//running in future method, so we are not displaying any error in UI but create a log so system admin can track it
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
+                                                 IPM_ConstantUtils.IPM_QUEUE_UPDATENAME_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
+            }
+        }
+      }
+  } 
       
     /*********************************************************************
     @Description : This method is used to update the members of the queue
     **********************************************************************/
       
-	@future
-	public static void groupmemberupdate(Set<id>projidset){
-		Set<id>grpidset = new Set<id>();
+  @future
+  public static void groupmemberupdate(Set<id>projidset){
+    Set<id>grpidset = new Set<id>();
         Map<String,Set<string>> QueueMemberIdMap = new Map<String,Set<string>>();
         Map<id,string> QueueMemberIdNameMap = new Map<id,string>(); 
         Set<string> QueueMemberSet;
@@ -241,9 +241,9 @@ global without sharing class  IPM_GroupManagement {
                                             IPM_Project__c WHERE id IN:projidset or IPM_Parent_Project__c IN:projidset or IPM_Parent_Project__r.IPM_Parent_Project__c IN:projidset LIMIT 50000]);
             
             
-		if(projList!=null && !projList.isEmpty()){  
-			for(IPM_Project__c p:projList){
-				id queueid = p.IPM_Golbal_Project_OwnerId__c;
+    if(projList!=null && !projList.isEmpty()){  
+      for(IPM_Project__c p:projList){
+        id queueid = p.IPM_Golbal_Project_OwnerId__c;
                 if(QueueMemberIdMap.containskey(queueid)){
                      QueueMemberSet = new Set<string>();
                      QueueMemberSet = QueueMemberIdMap.get(queueid);
@@ -295,33 +295,33 @@ global without sharing class  IPM_GroupManagement {
                         QueueMemberIdMap.get(queueid).add(projres.IPM_User__r.id);
                     }  
                  } 
-			}
-		}
-		updateGroupMember(grpidset, QueueMemberIdMap, QueueMemberIdNameMap);
-	}
+      }
+    }
+    updateGroupMember(grpidset, QueueMemberIdMap, QueueMemberIdNameMap);
+  }
       
       
     /****************************************************************************************
     @Description : This method is used to update the members 
     *****************************************************************************************/  
     private static void updateGroupMember(Set<id>grpidset, Map<String,Set<string>> QueueMemberIdMap, Map<id,string> QueueMemberIdNameMap){
-		Map<id, Group> grpmap = new Map<id,Group>([SELECT Id,Name FROM Group WHERE (id IN: grpidset or Name IN:QueueMemberIdNameMap.values()) LIMIT 50000]);
-		list<GroupMember> memberdeleteList = new List<GroupMember>([SELECT Id, UserOrGroupId, GroupId FROM GroupMember WHERE GroupId IN: grpmap.keyset() LIMIT 50000]);
-		Map<string, Group> grpNamemap = new Map<string,Group>();
+    Map<id, Group> grpmap = new Map<id,Group>([SELECT Id,Name FROM Group WHERE (id IN: grpidset or Name IN:QueueMemberIdNameMap.values()) LIMIT 50000]);
+    list<GroupMember> memberdeleteList = new List<GroupMember>([SELECT Id, UserOrGroupId, GroupId FROM GroupMember WHERE GroupId IN: grpmap.keyset() LIMIT 50000]);
+    Map<string, Group> grpNamemap = new Map<string,Group>();
   
-		for(Group grp:grpmap.values()){
-  			grpNamemap.put(grp.Name,grp);
-		}
+    for(Group grp:grpmap.values()){
+        grpNamemap.put(grp.Name,grp);
+    }
    
-		if(grpmap != null && !grpmap.isEmpty()){
-    		if(memberdeleteList!=null && !memberdeleteList.isEmpty()){
-        		try{
-            		delete memberdeleteList;
-        		}catch(Exception ex){
-            		ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
+    if(grpmap != null && !grpmap.isEmpty()){
+        if(memberdeleteList!=null && !memberdeleteList.isEmpty()){
+            try{
+                delete memberdeleteList;
+            }catch(Exception ex){
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
                                                IPM_ConstantUtils.IPM_GRP_MEM_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
-        		}  
-    		}
+            }  
+        }
                   
             list<GroupMember> memberList = new List<GroupMember>();           
            
@@ -351,26 +351,26 @@ global without sharing class  IPM_GroupManagement {
             insertMemberList(memberList);
         }
     }  
-	
-	/****************************************************************************************
+  
+  /****************************************************************************************
     @Description : This method is used to insert members
     *****************************************************************************************/       
     private static void insertMemberList(list<GroupMember> memberList){
-    	if(memberList!=null && !memberList.isEmpty()){ 
-			if (Test.isRunningTest()) {
-            	// start new context via system.runAs() for the same user for test code only
+      if(memberList!=null && !memberList.isEmpty()){ 
+      if (Test.isRunningTest()) {
+              // start new context via system.runAs() for the same user for test code only
                 System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) {
-                	insert memberList;
-            	}
+                  insert memberList;
+              }
             } else {
                 // in non-test code insert normally
                 try{
                     insert memberList;
                 }catch(Exception ex){//running in future method, so we are not displaying any error in UI but create a log so system admin can track it
-                	ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
+                  ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
                                                    IPM_ConstantUtils.IPM_GRP_MEM_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
-            	}   
-          	}
+              }   
+            }
         }
     }   
    
