@@ -44,6 +44,13 @@ insert lossCode;
         pqn.region__c = 'Europe';
         pqn.Date_Pallet_Received__c = system.today();
         insert pqn;
+        
+         PQN_Targets__c t = new PQN_Targets__c();
+        t.Year__c = string.valueof(system.today().year());
+        t.Target_Reduction__c=12;
+        t.Target__c='23';
+        t.Region__c = 'Europe';
+        insert t;
          
         PageReference pageRef = Page.PQN_SingleEntryScreen_VF;
         Test.setCurrentPage(pageRef);
@@ -101,6 +108,7 @@ insert lossCode;
         Apexpages.currentPage().getParameters().put('err',null);
         ApexPages.StandardController sc6 = new ApexPages.StandardController(pqn);
         PQN_singleEntryScreen testPQN6 = new PQN_singleEntryScreen(sc6);
+        testPQN6.sup=s;
         testPQN6.validate();
         testPQN6 .savePQN();
         testPQN6.cancelPQN();
@@ -108,10 +116,7 @@ insert lossCode;
         testPQN6.DC_Vol_update();
         testPQN6.assignAccount();
         
-        PQN_Targets__c t = new PQN_Targets__c();
-        t.Year__c = string.valueof(system.today().year());
-        t.Region__c = 'Europe';
-        insert t;
+       
         testPQN5.Target_update();
                
                
