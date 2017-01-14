@@ -61,14 +61,145 @@ private class PQN_GlobalGeographyReportTest{
          //overviewgeography.getFieldsLabel();
          PQN_Global_Overview_Geography.generateStackData('mapStr');
         //testAccPlan = new newAccountPlan(sc);
+        list<PQN_Pallet_Loss_Tree__c> losstreelst=new list<PQN_Pallet_Loss_Tree__c>();
         PQN_Pallet_Loss_Tree__c losstree=new PQN_Pallet_Loss_Tree__c();
-        losstree.name='111';
-        losstree.Loss_Code__c=111;
+        losstree.name='110';
+        losstree.Loss_Code__c=110;
         losstree.Loss_L1__c='Distribution Pack / Pallet';
         losstree.Loss_L2__c='Configuration / Build';
         losstree.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
         losstree.Loss_L4__c='Missing Cases';
-        insert losstree;
+        
+         PQN_Pallet_Loss_Tree__c losstree1=new PQN_Pallet_Loss_Tree__c();
+        losstree1.name='111';
+        losstree1.Loss_Code__c=111;
+        losstree1.Loss_L1__c='Distribution Pack / Pallet';
+        losstree1.Loss_L2__c='Configuration / Build';
+        losstree1.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree1.Loss_L4__c='Missing Cases';
+        
+         PQN_Pallet_Loss_Tree__c losstree2=new PQN_Pallet_Loss_Tree__c();
+        losstree2.name='112';
+        losstree2.Loss_Code__c=112;
+        losstree2.Loss_L1__c='Distribution Pack / Pallet';
+        losstree2.Loss_L2__c='Configuration / Build';
+        losstree2.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree2.Loss_L4__c='Missing Cases';
+        
+         PQN_Pallet_Loss_Tree__c losstree3=new PQN_Pallet_Loss_Tree__c();
+        losstree3.name='113';
+        losstree3.Loss_Code__c=113;
+        losstree3.Loss_L1__c='Distribution Pack / Pallet';
+        losstree3.Loss_L2__c='Configuration / Build';
+        losstree3.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree3.Loss_L4__c='Missing Cases';
+        
+         PQN_Pallet_Loss_Tree__c losstree4=new PQN_Pallet_Loss_Tree__c();
+        losstree4.name='114';
+        losstree4.Loss_Code__c=114;
+        losstree4.Loss_L1__c='Distribution Pack / Pallet';
+        losstree4.Loss_L2__c='Stretch Wrap Integrity';
+        losstree4.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree4.Loss_L4__c='Missing Cases';
+        
+         PQN_Pallet_Loss_Tree__c losstree5=new PQN_Pallet_Loss_Tree__c();
+        losstree5.name='115';
+        losstree5.Loss_Code__c=115;
+        losstree5.Loss_L1__c='Distribution Pack / Pallet';
+        losstree5.Loss_L2__c='Stretch Wrap Integrity';
+        losstree5.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree5.Loss_L4__c='Missing Cases';
+        
+         PQN_Pallet_Loss_Tree__c losstree6=new PQN_Pallet_Loss_Tree__c();
+        losstree6.name='116';
+        losstree6.Loss_Code__c=116;
+        losstree6.Loss_L1__c='Distribution Pack / Pallet';
+        losstree6.Loss_L2__c='Stretch Wrap Integrity';
+        losstree6.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree6.Loss_L4__c='Missing Cases';
+        
+         PQN_Pallet_Loss_Tree__c losstree7=new PQN_Pallet_Loss_Tree__c();
+        losstree7.name='117';
+        losstree7.Loss_Code__c=117;
+        losstree7.Loss_L1__c='Distribution Pack / Pallet';
+        losstree7.Loss_L2__c='Stretch Wrap Integrity';
+        losstree7.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree7.Loss_L4__c='Missing Cases';
+        
+         PQN_Pallet_Loss_Tree__c losstree8=new PQN_Pallet_Loss_Tree__c();
+        losstree8.name='118';
+        losstree8.Loss_Code__c=118;
+        losstree8.Loss_L1__c='Distribution Pack / Pallet';
+        losstree8.Loss_L2__c='Stretch Wrap Integrity';
+        losstree8.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree8.Loss_L4__c='Missing Cases';
+        
+         PQN_Pallet_Loss_Tree__c losstree9=new PQN_Pallet_Loss_Tree__c();
+        losstree9.name='119';
+        losstree9.Loss_Code__c=119;
+        losstree9.Loss_L1__c='Distribution Pack / Pallet';
+        losstree9.Loss_L2__c='Pallet Label';
+        losstree9.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree9.Loss_L4__c='Missing Cases';
+        
+         PQN_Pallet_Loss_Tree__c losstree10=new PQN_Pallet_Loss_Tree__c();
+        losstree10.name='120';
+        losstree10.Loss_Code__c=120;
+        losstree10.Loss_L1__c='Distribution Pack / Pallet';
+        losstree10.Loss_L2__c='Pallet Label';
+        losstree10.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree10.Loss_L4__c='Missing Cases';
+        
+         PQN_Pallet_Loss_Tree__c losstree11=new PQN_Pallet_Loss_Tree__c();
+        losstree11.name='121';
+        losstree11.Loss_Code__c=121;
+        losstree11.Loss_L1__c='Distribution Pack / Pallet';
+        losstree11.Loss_L2__c='Pallet Label';
+        losstree11.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree11.Loss_L4__c='Missing Cases';
+        
+         PQN_Pallet_Loss_Tree__c losstree12=new PQN_Pallet_Loss_Tree__c();
+        losstree12.name='122';
+        losstree12.Loss_Code__c=122;
+        losstree12.Loss_L1__c='Distribution Pack / Pallet';
+        losstree12.Loss_L2__c='Pallet Label';
+        losstree12.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree12.Loss_L4__c='Missing Cases';
+        
+         PQN_Pallet_Loss_Tree__c losstree13=new PQN_Pallet_Loss_Tree__c();
+        losstree13.name='123';
+        losstree13.Loss_Code__c=123;
+        losstree13.Loss_L1__c='Distribution Pack / Pallet';
+        losstree13.Loss_L2__c='Pallet Board';
+        losstree13.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree13.Loss_L4__c='Missing Cases';
+        
+        PQN_Pallet_Loss_Tree__c losstree14=new PQN_Pallet_Loss_Tree__c();
+        losstree14.name='124';
+        losstree14.Loss_Code__c=124;
+        losstree14.Loss_L1__c='Distribution Pack / Pallet';
+        losstree14.Loss_L2__c='Pallet Board';
+        losstree14.Loss_L3__c='Assembly Missing / Wrong, Component Missing / Wrong';
+        losstree14.Loss_L4__c='Missing Cases';
+        
+        losstreelst.add(losstree);
+        losstreelst.add(losstree1);
+        losstreelst.add(losstree2);
+        losstreelst.add(losstree3);
+        losstreelst.add(losstree4);
+        losstreelst.add(losstree5);
+        losstreelst.add(losstree6);
+        losstreelst.add(losstree7);
+        losstreelst.add(losstree8);
+        losstreelst.add(losstree9);
+        losstreelst.add(losstree10);
+        losstreelst.add(losstree11);
+        losstreelst.add(losstree12);
+        losstreelst.add(losstree13);
+        losstreelst.add(losstree14);
+       
+        
+        insert losstreelst;
      
         PQN_GlobalGeographyReport report1=new PQN_GlobalGeographyReport();    
         PQN_Global_DCReport reportDC=new PQN_Global_DCReport();

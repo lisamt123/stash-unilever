@@ -28,13 +28,16 @@ public class PQN_TestLibraryUtil {
     Sub_Cluster__c='brazil',
     Delivery_Note_Number__c='20',
     SKU__c='153489',
-    Product_Name__c='sdfsd',
+    //Product_Name__c='sdfsd',
     Supplier_Region__c='Americas',
     Supplier_Cluster__c='Europe',
     Supplier_Sub_Cluster__c='brazil',
     Supplier_Country__c='India',
-    
+    Product_Group__c='Personal Care',
+    Product_Name__c='DUDOV_BOT_SH_250ML_THICK_DEMOMEN_DACH',
+    Product_Category__c='Hair Care',
     Date_Pallet_Received__c=date.newInstance(2017,1,15),
+    Loss_Level_2__c='Configuration / Build',
     //Date_Pallet_Received__c=date.today(),
     Supplier_Number__c ='1234',
     Supplier_type__c='SU',
@@ -59,6 +62,7 @@ public class PQN_TestLibraryUtil {
         u.LanguageLocaleKey = 'en_US';
         u.TimeZoneSidKey = 'Europe/London';
         u.EmailEncodingKey = 'ISO-8859-1';
+        u.country = 'India';
         return u;
     }
      public static Account createpqnAccount(string name,string country){
@@ -88,7 +92,7 @@ public class PQN_TestLibraryUtil {
         PQN_DC_Volumes__c createdcv = new PQN_DC_Volumes__c();
         createdcv.Month__c='January';
         createdcv.Reporting_DC__c='DC1';
-        createdcv.Year__c='2016';
+        createdcv.Year__c='2017';
         createdcv.Total_Pallets_Checked_By_DC__c=123456;
         createdcv.Total_Pallets_received_by_DC__c=654321;
         return createdcv ;
@@ -96,8 +100,8 @@ public class PQN_TestLibraryUtil {
    public static PQN_Targets__c createtargets(){
        PQN_Targets__c createtar=new PQN_Targets__c();
        //createtar.Geography__c='India';
-       createtar.year__c='2016';
-       createtar.Region__c='Europe';
+       createtar.year__c='2017';
+       createtar.Region__c='Americas';
        //createtar.Target__c='India';
        createtar.Target_Reduction__c=25;
        return createtar;
