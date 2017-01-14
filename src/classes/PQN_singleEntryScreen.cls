@@ -33,6 +33,7 @@ public without sharing class PQN_singleEntryScreen{
             for(PermissionSetAssignment psa: PermissionSetAssigs){
                 if(psa.PermissionSet.name == 'PQN_Internal_User' && psa.Assignee.country != pqn.DC_Country__c){
                    // showsingleedit = false;
+                   system.debug('enter');
                 }
             }
         }

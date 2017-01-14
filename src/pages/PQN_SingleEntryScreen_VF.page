@@ -153,7 +153,7 @@
         </apex:pageBlockSection>
         <apex:pageBlockSection title="Comments" columns="2" collapsible="false">
             <apex:inputField value="{!pqn.Comments__c}"/>
-            <apex:outputText value="{!dayLeft}"/>
+            <apex:outputText value="{!pqn.Days_Left_Before_Freeze__c}"/>
         </apex:pageBlockSection>
         </apex:pageBlock>
     </apex:form>
