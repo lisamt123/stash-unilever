@@ -37,9 +37,7 @@ programme will be from&nbsp;<span style="mso-bidi-font-weight:bold">{!FAU_Module
 &quot;Times New Roman&quot;;color:black"></span></p>
 
 <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-line-height:normal"><span style="font-family: Arial, sans-serif; font-size: 10pt;">To make the stay with us
-more enjoyable we would like you to fill out your travel and accommodation
-details.</span><i style="font-size: 12pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></i></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal"><span style="font-family: Arial, sans-serif; font-size: 10pt;">In order for us to prepare for your arrival, please provide your travel and accommodation details. Kindly do so even if you are not flying in or staying at Four Acres, so that we can plan accordingly.</span><i style="font-size: 12pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></i></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
 &quot;Times New Roman&quot;;color:black"></span></p>
 
@@ -53,7 +51,7 @@ color:black"></span></p>
 <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
 line-height:normal"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
 mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">Please fill out your
-travel details here:&nbsp;{!FAU_Module_Participant__c.FAU_Module_Form__c}<u>&nbsp;o</u>n
+travel details here:&nbsp;{!FAU_Module_Participant__c.FAU_Module_Form__c} on
 before&nbsp;{!FAU_Module_Participant__c.FAU_Travel_Details_Deadline__c}</span></p>
 
 <p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;

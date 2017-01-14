@@ -15,7 +15,7 @@
               ga('set', 'dimension1', userId); 
               ga('set', 'dimension2', userCountry);
               ga('set', 'dimension3', userName );
-              ga('set', 'dimension4', homePage );
+              ga('set', 'dimension4', 'homePage' );
               ga('send', 'pageview');
     
       </script>

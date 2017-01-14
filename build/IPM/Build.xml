@@ -72,6 +72,7 @@
 			<runTest>IPM_BCC_Consolidate_Controller_Test</runTest>
 			<runTest>IPM_BD_BB_Report_BatchSchedule_Test</runTest>
 			<runTest>IPM_BD_BB_Report_Batch_Test</runTest>
+<<<<<<< HEAD
 			<runTest>IPM_CMIGateSectionController_Test</runTest>
 			<runTest>IPM_CU_Complexity_Consolidated_Test</runTest>
 			<runTest>IPM_CU_Complexity_Controller_Test</runTest>
@@ -138,6 +139,11 @@
 			<runTest>IPM_List_Milestones_Test</runTest>
 			<runTest>IPM_NewTask_Test</runTest>
 			<runTest>IPM_ProjDocSectionController_Test</runTest>
+=======
+			<runTest>IPM_BD_BB_Report_BatchSchedule_Test</runTest>
+			<runTest>IPM_OTIF_Report_BatchSchedule_Test</runTest>
+			<runTest>IPM_OTIF_Report_Batch_Test</runTest>
+>>>>>>> develop
 	</sf:deploy>
   </target>  
 

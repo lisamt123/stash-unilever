@@ -1,3 +1,6 @@
 src
-src/permissionsets/FAU_Participant_Platform.permissionset
-src/permissionsets/FAU_Program_Administrator_Platform.permissionset
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder.email
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder.email-meta.xml
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Travel_Details.email
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Travel_Details.email-meta.xml
+src/workflows/FAU_Participant__c.workflow
