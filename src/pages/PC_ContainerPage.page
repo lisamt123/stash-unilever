@@ -1,26 +1,31 @@
-<apex:page readOnly="true" docType="html-5.0" sidebar="false" standardStylesheets="false" showHeader="false">
+<apex:page controller="PBS_MyProfileController_CC" readOnly="true" docType="html-5.0" sidebar="false" standardStylesheets="false" showHeader="false">
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_Container.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_New_UI_Changes.css')}" />
     
-    <apex:composition template="PBS_Header_Template_clone"/>
-   
-    <div class="wrapper wrapper-sub-frame">
+    
+    
+  <apex:composition template="PBS_Header_Template_clone"/>
+       <div class="wrapper wrapper-sub-frame">
         <div class="row bodyRow">
         <!--<div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>-->
+        <!-- Start Anusha Edited -->
             <div class="col-xs-6 home-detail">
-                {!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;|&nbsp;&nbsp;<a style="font-size:13px; font-weight:bold;" href="{!$Page.PBS_EditProfile}" target="_self">EDIT PROFILE</a>
+                {!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;|&nbsp;&nbsp;
+                <!--<a style="font-size:13px; font-weight:bold;" href="{!$Page.PBS_EditProfile}" target="_self">EDIT PROFILE</a> -->
+                <a style="font-size:13px; font-weight:bold;cursor:Pointer" data-toggle="modal" data-target="#myModal1" target="_self" title="PBS Edit profile" href="" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="20,244,134,209,184,359,112,383,113,404,100,392,89,408,69,396" shape="poly">EDIT PROFILE</a>
             </div>
+            <!-- End Anusha Edited -->
         </div>
         <div class="mainContainer">
             <apex:image title="" value="{!URLFOR($Resource.PCResources, 'img/desk_links.jpg')}" usemap="#homeLinks" styleClass="deskLinks" />
             <map name="homeLinks" id="homeLinks">
-                <area target="_new" alt="Quizup" title="Quizup" href="http://play.trivie.com/#/home/" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="67,159,167,139,147,40,50,58,58,114" shape="poly" />
-                <area target="_self" alt="map" title="map" href="{!$page.PBS_WelcomePage_clone}" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="205,114,245,105,285,104,326,94,373,95,412,87,453,88,469,243,423,246,387,253,341,253,302,263,259,262,221,271" shape="poly"/>
-                <area target="" alt="Collaborate" title="Collaborate" href="{!$Page.PC_Forum_clone}" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="481,34,644,86,611,113,608,133,597,125,553,161" shape="poly"/>
-                <area data-toggle="modal" data-target="#myModal" target="_self" alt="PBS My profile" title="PBS My profile" href="" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="20,244,134,209,184,359,112,383,113,404,100,392,89,408,69,396" shape="poly"/>
-                <area target="" alt="your achievements" title="your achievements" href="" coords="310,298,334,305,359,298,377,315,398,324,392,355,368,384,349,398,329,404,314,385,303,355,302,332" shape="poly"/>
-                <area target="" alt="top student" title="top student" href="" coords="512,254,579,244,582,237,670,270,618,405,562,385,528,389" shape="poly"/>
+                <area target="_new" alt="Games" title="Games" href="http://play.trivie.com/#/home/" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="67,159,167,139,147,40,50,58,58,114" shape="poly" />
+                <area target="_self" alt="Plan Business School" title="Plan Business School" href="{!$page.PBS_WelcomePage_clone}" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="205,114,245,105,285,104,326,94,373,95,412,87,453,88,469,243,423,246,387,253,341,253,302,263,259,262,221,271" shape="poly"/>
+                <area target="" alt="Click here to Collaborate! with the PBS via Chatter" title="Click here to Collaborate! with the PBS via Chatter" href="{!$Page.PC_Forum_clone}" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="481,34,644,86,611,113,608,133,597,125,553,161" shape="poly"/>
+                <area data-toggle="modal" data-target="#myModal1" data-backdrop="static" data-keyboard="false" target="_self" alt="Manage your Profile" title="Manage your Profile" href="" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="20,244,134,209,184,359,112,383,113,404,100,392,89,408,69,396" shape="poly"/>
+                <area target="" alt="Your Achievements" title="Your Achievements" href="" coords="310,298,334,305,359,298,377,315,398,324,392,355,368,384,349,398,329,404,314,385,303,355,302,332" shape="poly"/>
+                <area target="" alt="Top Students" title="Top Students" href="" coords="512,254,579,244,582,237,670,270,618,405,562,385,528,389" shape="poly"/>
             </map>
      
 
@@ -29,7 +34,7 @@
         </div>-->
         
         <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="myModal1" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
 
@@ -37,12 +42,12 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-5 col-md-4" id="hb-right">
                     <div class="row">
-                        <ul class="nav nav-tabs">
-                          <li class="nav-item">
+                        <ul class="nav nav-tabs pull-right">
+                          <!--li class="nav-item">
                             <a class="nav-link active" href="#">Avatar</a>
-                          </li>
+                          </li -->
                           <li class="nav-item">
-                            <a class="nav-link" href="#">Profile</a>
+                            <a class="nav-link active" href="#">Profile</a>
                           </li>
                          </ul>
                     </div>
@@ -53,89 +58,213 @@
 
                <div class="col-xs-12 col-sm-7 col-md-8 pcr-border-left">
                 <div class="profile-data">
-                    <div class="profile-header">
-                        <h2>Vadivel Tamilarasan</h2>
-                        <ul>
-                            <li class="profile-title"></li>
-                            <li class="profile-mail"><span class="glyphicon glyphicon-envelope"></span> vadivel.tamilarasan@capgemini.com</li>
-                        </ul>
-                        <div class="pcr-border-top"></div>
-                     </div>
-                    
+                    <div class="profile-header row">
+                        <div class="col-xs-9 col-md-9 col-lg-9">
+                            <h2> {!$User.FirstName} {!$User.LastName} </h2>
+                            <ul>
+                                <li class="profile-title"></li>
+                                <li class="profile-mail"><span class="glyphicon glyphicon-envelope"></span> {!$User.Email} <span><a href="#">Edit</a></span></li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-3 col-md-3 col-lg-3">
+                            <apex:image title="" value="{!URLFOR($Resource.PCResources, 'img/avatar.jpg')}" />
+                        </div>
+                </div>
+                <div class="pcr-border-top"></div>
+                    <apex:define name="hero-banner">
                 <div class="form-horizontal">
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="geography">Geography</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="geography">
-                                        <option selected="selected" value="Guest">Guest</option>
-                                        <option value="Americas">Americas</option>
-                                        <option value="Asia / Africa / NAMET (U2K2)">Asia / Africa / NAMET (U2K2)</option>
-                                        <option value="Asia (Fusion)">Asia (Fusion)</option>
-                                        <option value="Europe">Europe</option>
-                                        <option value="Global">Global</option>
+                             <div class="col-sm-8">
+                            <select id="geography" class="form-control">
+                                <apex:repeat value="{!geographyOptions}" var="geoObj">
+                                    <apex:outputPanel layout="none" rendered="{!profile.Geography__c == geoObj}">
+                                        <option value="{!geoObj}" selected="selected">{!geoObj}</option>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel layout="none" rendered="{!profile.Geography__c != geoObj}">
+                                        <option value="{!geoObj}">{!geoObj}</option>
+                                    </apex:outputPanel>
+                                </apex:repeat>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="workLevel">Work Level</label>
+                        <label for="workLevel" class="col-sm-4 control-label">Work Level</label>
                         <div class="col-sm-8">
-                            <select class="form-control" id="workLevel" onchange="worklevelfun(this.value);" value="Guest">
-                                        <option selected="selected" value="Guest">Guest</option>
-                                        <option value="Level 1">Level 1</option>
-                                        <option value="Level 2">Level 2</option>
-                                        <option value="Level 3">Level 3</option>  
+                            <select id="workLevel" class="form-control" value="{!workLevel}" onchange="worklevelfun(this.value);">
+                                <apex:outputPanel id="wl">
+                                 <apex:repeat value="{!workLevelOptions}" var="wlObj">
+                                    <apex:outputPanel layout="none" rendered="{!profile.Work_Level__c == wlObj}">
+                                        <option value="{!wlObj}" selected="selected">{!wlObj}</option>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel layout="none" rendered="{!profile.Work_Level__c != wlObj}">
+                                        <option value="{!wlObj}">{!wlObj}</option>
+                                     </apex:outputPanel>
+                                </apex:repeat>
+                               
+                             </apex:outputPanel>  
                             </select>
                         </div>
+                    </div>
+                    <div class="form-group">
+                     <apex:outputPanel id="JobProfileSelection">
+                        <label for="jobProfile" class="col-sm-4 control-label">Job Profile</label>
+                        <div class="col-sm-8">
+                            <select id="jobProfile" class="form-control">
+                                <apex:repeat value="{!JobProfileOptions}" var="jbObj">
+                                    <apex:outputPanel layout="none" rendered="{!profile.user_role__c == jbObj.Id}">
+                                        <option value="{!jbObj.Id}" selected="selected">{!jbObj.Name}</option>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel id="jobPr" layout="none" rendered="{!profile.user_role__c != jbObj.Id}" >
+                                        <option value="{!jbObj.Id}">{!jbObj.Name}</option>
+                                    </apex:outputPanel>
+                                </apex:repeat>
+                            </select>
+                        </div>
+                        <!--<div class="col-sm-2" style="font-size: 11px; min-height: 35px; display: flex; justify-content: center; align-content: center; flex-direction: column;">
+                            <a href="http://apps.unilever.com/global/SCW/app/Pages/index.html" class="">Unsure Who You Are?</a>
+                        </div>-->
+                     </apex:outputPanel>
+                    </div>
+                     <div class="form-group">
+                        <label for="category" class="col-sm-4 control-label">Category</label>
+                        <div class="col-sm-8">
+                            <select id="category" class="form-control">
+                                <apex:repeat value="{!CategoryOptions}" var="caObj">
+                                    <apex:outputPanel layout="none" rendered="{!profile.Category__c == caObj}">
+                                        <option value="{!caObj}" selected="selected">{!caObj}</option>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel layout="none" rendered="{!profile.Category__c != caObj}">
+                                        <option value="{!caObj}">{!caObj}</option>
+                                    </apex:outputPanel>
+                                </apex:repeat>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobProfile" class="col-sm-4 control-label">Training Mentor</label>
+                        <div class="col-sm-8">
+                            <input type="text" value="{!profile.buddy__c}" class="form-control" name="buddyName" id="buddyName" data-toggle="tooltip" title="Please enter your buddy name" />
+                        </div>
+                    </div>
+                   <!-- <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="submit" class="save-btn almond-primary-btn small-btn pull-right">Save</button>
+                        </div>
+               
+            </div>-->
+                    <div class="form-group">
+                        <div class="col-sm-offset-7 col-sm-5">
+                            <button class="btn btn-warning" type="submit" data-dismiss="modal">Back</button>
+                            <button class="save-btn btn btn-success pull-right" type="submit">Save</button>
+                        </div>
+                    </div>
+               
+        </div>
+       
+            <!-- End Modal -->
+    
+          <script type="text/javascript">
+                function showModal() {
+                    $jk(".modal-backdrop").appendTo("#lms-template-wrapper"), $jk("#myModal1").modal("show")
+                }
+
+                function hideModal() {
+                    $jk("#myModal1").modal("hide")
+                }
+                var $jk = jQuery.noConflict(),
+                    availableOptions = {};
+                $jk(document).ready(function() {
+                    $jk('[data-toggle="tooltip"]').tooltip(), $jk(".save-btn").on("click", function() {
+                        showModal();
+                        var o = $jk("#geography").val(),
+                            a = $jk("#workLevel").val(),
+                            e = $jk("#jobProfile").val(),
+                            c = $jk("#category ").val(),
+                            l = $jk("#buddyName").val();
+                        PBS_MyProfileController_CC.storeUserProfile(o, a, e, c, l, function(o, a) {
+                            o !== !0 || (window.parent.postMessage({
+                                itemId: "home"
+                            }, "*"), window.location = "{!$Page.PC_ContainerPage}"), hideModal()
+                        })
+                    })
+                });
+                            </script>
+            <script type="text/javascript">         
+                function worklevelfun(parameter) {
+                   jQuery("[id$=cityId]").val(parameter); 
+                   workleveAf(parameter); 
+                }
+            </script>
+        </apex:define>
+
+        <apex:define name="hero-search">
+            <br /><br />
+            
+            <!-- <c:AchievementsUserSearchBar searchBarSize="md"/> -->
+        
+        </apex:define>
+
+        <apex:define name="hero-banner-badge">
+            <div id="hb-right" class="col-xs-12 col-sm-4 col-md-3">
+                <div class="thumb achievements-avatar" style="background:url({!JSENCODE(oUser.FullPhotoUrl)});background-size: cover;">
+                </div>
+            </div>
+        </apex:define>
+
+        
+
+        <apex:define name="body">
+
+            <apex:form id="theForm">
+                <apex:inputHidden value="{!workLevel}" id="cityId"/> 
+                <apex:actionfunction name="workleveAf" action="{!jobprofileSelection}"  rerender="JobProfileSelection"/>
+                <apex:actionStatus id="status">
+                    <apex:facet name="start">
+                        <c:PBS_LMSStatus statusComponentId="{!$Component.status}"/>
+                    </apex:facet>
+                </apex:actionStatus>
+
+                <div class="row almond-nav" >
+                    <div class="btn-group col-xs-12 col-sm-12 col-md-12">
+                    
+                        <!-- DB 16/12/15 Commented out Achievments & Certifications
+                            <apex:repeat value="{!achievementTypes}" var="at">
+                                <apex:commandLink value="{!at.label}" action="{!changeAchievementType}" status="status" rerender="theForm" styleClass="btn btn-default col-xs-5 col-sm-3 col-md-3 {!IF(achievementType == at.name,'almond-nav-active','')}">
+                                    <apex:param value="{!at.name}" name="type"/>
+                                </apex:commandLink>
+                            </apex:repeat>
+                        -->
+
+                      
+                    </div>
+                </div>
+                <div>
                     </div>
                     
-                    <div class="form-group">
-                        <span id="j_id0:j_id15:JobProfileSelection">
-                        <label class="col-sm-4 control-label" for="jobProfile">Job Profile</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="jobProfile">
-                                        <option selected="selected" value="a8g230000008OPoAAM">Guest</option>
-                            </select>
-                        </div>
-                        <!--div class="col-sm-4" style="font-size: 11px; min-height: 35px; display: flex; justify-content: center; align-content: center; flex-direction: column;">
-                            <a href="http://apps.unilever.com/global/SCW/app/Pages/index.html">Unsure Who You Are?</a>
-                        </div-->
-                        
-                        </span>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="category">Category</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="category">
-                                        <option value="Personal Care">Personal Care</option>
-                                        <option value="Home Care">Home Care</option>
-                                        <option value="Foods">Foods</option>
-                                        <option value="Refreshments">Refreshments</option>
-                                        <option value="Cross Category">Cross Category</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="jobProfile">Training Mentor</label>
-                        <div class="col-sm-8">
-                            <input class="form-control" data-toggle="tooltip" id="buddyName" name="buddyName" title="" type="text" value="" data-original-title="Please enter your buddy name"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-8 col-sm-4">
-                            <button class="btn btn-warning" type="submit" data-dismiss="modal">Back</button>
-                            <button class="btn btn-success pull-right" type="submit">Save</button>
+
+            </apex:form>
+
+          
+            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div style="padding:10px 0;">
+                                  <p>Saving data ...</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-       </div>
-   </div>     
-        </div>
-        <button type="button" class="close pcr-close" data-dismiss="modal">&times;</button>
-        </div>
-      </div>
+        </apex:define>
+</div>
     </div>
-         </div>   
-    <!-- End Modal -->
-    </div>
-</apex:page>
+        </div>
+            </div><button type="button" class="close pcr-close" data-dismiss="modal"></button>
+                   </div>
+                        </div>
+                                </div>
+                                        </div>
+                                                        </div>
+                   </apex:page>
