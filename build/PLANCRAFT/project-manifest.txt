@@ -68,3 +68,5 @@ src/pages/PBS_ReportHome.page-meta.xml
 src/staticresources/PCResources.resource
 src/classes/PBS_ReportGenerator_CC.cls
 src/classes/PBS_ReportGenerator_CC.cls-meta.xml
+src/classes/PBS_ReportGenerator_Test.cls
+src/classes/PBS_ReportGenerator_Test.cls-meta.xml
