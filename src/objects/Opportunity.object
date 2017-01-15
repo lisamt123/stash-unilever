@@ -166,8 +166,6 @@
         <fields>Name</fields>
         <fields>AccountId</fields>
         <fields>CloseDate</fields>
-        <fields>TEL_Wholesaler__c</fields>
-        <fields>TEL_Account_Phone__c</fields>
         <fields>OwnerId</fields>
         <label>Telesales Opportunity Compact Layout</label>
     </compactLayouts>
@@ -2559,95 +2557,6 @@ Enter competitor pricing if available</inlineHelpText>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>TEL_Account_Phone__c</fullName>
-        <externalId>false</externalId>
-        <formula>Account.Phone</formula>
-        <label>Account Phone</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>TEL_Call_Date__c</fullName>
-        <description>Used to indicate when the telesales team will make a call to the customer.</description>
-        <externalId>false</externalId>
-        <label>Call Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
-    </fields>
-    <fields>
-        <fullName>TEL_Case__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Telesales - Used to reference the cases associated with the opportunity.</description>
-        <externalId>false</externalId>
-        <label>Case</label>
-        <referenceTo>Case</referenceTo>
-        <relationshipLabel>Opportunities</relationshipLabel>
-        <relationshipName>Opportunities</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>TEL_Lost_Reason__c</fullName>
-        <description>Telesales - The reason why the Opp was lost</description>
-        <externalId>false</externalId>
-        <label>Lost Reason</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Price</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Delivery Date</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>TEL_Wholesaler__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Telesales - Determines the Wholesaler that will fulfill the order</description>
-        <externalId>false</externalId>
-        <label>Wholesaler</label>
-        <lookupFilter>
-            <active>true</active>
-            <filterItems>
-                <field>Account.RecordType.DeveloperName</field>
-                <operation>equals</operation>
-                <value>Distributor</value>
-            </filterItems>
-            <infoMessage>Filtered by Distributor only</infoMessage>
-            <isOptional>true</isOptional>
-        </lookupFilter>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Telesales Calls</relationshipLabel>
-        <relationshipName>Telesales_Calls</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>TotalOpportunityQuantity</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2941,7 +2850,6 @@ Enter competitor pricing if available</inlineHelpText>
         <columns>OPPORTUNITY.STAGE_NAME</columns>
         <columns>OPPORTUNITY.CLOSE_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <columns>TEL_Case__c</columns>
         <columns>OPPORTUNITY.NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -5415,21 +5323,6 @@ Enter competitor pricing if available</inlineHelpText>
             </values>
             <values>
                 <fullName>07 - Deleted%2FInactive Accts</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>TEL_Lost_Reason__c</picklist>
-            <values>
-                <fullName>Delivery Date</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Price</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
