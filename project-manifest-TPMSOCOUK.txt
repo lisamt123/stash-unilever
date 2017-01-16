@@ -445,6 +445,8 @@ src/pages/UL_Create_Cannibalisation_Rate.page
 src/pages/UL_Create_Cannibalisation_Rate.page-meta.xml
 src/pages/UL_CreatePromotion.page
 src/pages/UL_CreatePromotion.page-meta.xml
+src/pages/UL_CreatePromotionSoCo.page
+src/pages/UL_CreatePromotionSoCo.page-meta.xml
 src/pages/UL_CreateTransactionPage.page
 src/pages/UL_CreateTransactionPage.page-meta.xml
 src/pages/UL_DefaultSoldTOCustomers.page
