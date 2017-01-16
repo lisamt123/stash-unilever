@@ -176,6 +176,7 @@ src/layouts
 src/layouts/ACCL__Account_Set__c-SoCo_AccountSetLayout.layout
 src/layouts/ACCL__Account_Set__c-UKI_AccountSetLayout.layout
 src/layouts/ACCL__Fund__c-UL_SoCo_Fund_Layout.layout
+src/layouts/ACCL__Fund_Transaction__c-UL_SoCo-Transaction Layout.layout
 src/layouts/ACCL__Product__c-SOCO_Product.layout
 src/layouts/ACCL__Product__c-UKI_Product.layout
 src/layouts/ACCL__Promotion_Template__c-SoCo_PromotionTemplateLayout.layout
@@ -328,6 +329,8 @@ src/classes/UL_UtilityController.cls
 src/classes/UL_fundAmountCalculation.cls
 src/classes/UL_fundAmountCalculation_Test.cls
 src/classes/UL_fundTransferTransactionHandler.cls
+src/classes/UL_CreatePromotionControllerSoCo.cls
+src/classes/UL_CreatePromotionControllerSoCo.cls-meta.xml
 src/classes/ExceptionLoggingHelper.cls-meta.xml
 src/classes/UL_AccountExtensionTestFactory.cls-meta.xml
 src/classes/UL_AccountTestFactory.cls-meta.xml
