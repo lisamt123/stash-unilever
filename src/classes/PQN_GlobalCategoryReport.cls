@@ -2,6 +2,9 @@ public without sharing class PQN_GlobalCategoryReport{
     public List<PQN_Global_SUWrap> xSUWRAPLIST{get;set;}
       public List<PQN_chart> xChartdata{get;set;}
     public String empty{get;set;}
+     public Integer cuYear{get;set;}
+    public Integer preYear{get;set;}
+    public String cuMonth{get;set;}
     public List<PQN_Pallet_Quality_Non_Conformance__c> PQNList{get;set;}
     
     public PQN_GlobalCategoryReport(){
@@ -18,6 +21,10 @@ public without sharing class PQN_GlobalCategoryReport{
         Map<String,Integer> mapOfRegionprevyrtot = new Map<String,Integer>();
         Map<String,Integer> mapOfRegioncryeartot = new Map<String,Integer>();
         Map<String,Decimal> mapOftarget = new Map<String,Decimal>();
+         cuYear = integer.valueof(system.Today().year());
+         preYear = integer.valueof(system.Today().year()) - 1;
+         DateTime d = datetime.now();
+         cuMonth = d.format('MMMMM');  
         
         String prevCate = '';
         String prevRegion = '';
@@ -31,7 +38,7 @@ public without sharing class PQN_GlobalCategoryReport{
                 xChartdata.add(new PQN_chart(String.valueOf(xD.get('Product_Category__c')),integer.valueOf(xD.get('expr0'))));
 
         }*/
-        List<AggregateResult> LAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Product_Category__c,Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Product_Category__c !='' group By Product_Category__c,Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c]);
+        List<AggregateResult> LAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Product_Category__c,Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Product_Category__c !='' AND Supplier_Region__c!='' AND (Year__c=:string.valueOf(cuYear) OR Year__c=:string.valueOf(preYear)) group By Product_Category__c,Supplier_Region__c,Supplier_Cluster__c,Supplier_Sub_Cluster__c]);
       
          for(AggregateResult ar:LAGG){
                    

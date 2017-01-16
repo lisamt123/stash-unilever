@@ -10,6 +10,7 @@ public without sharing class PQN_Global_Overview_Geography{
     public Map<String,Integer> xMap{get;set;}
     public Set<String> xAxisName{get;set;}
     public Set<String> yAxisName{get;set;}
+    public Set<String> yMapKeySet{get;set;}
     
     public string dosingKey{get;set;}
     public string dosingLabel{get;set;}
@@ -28,16 +29,17 @@ public without sharing class PQN_Global_Overview_Geography{
     
     private void callStackChart(){
     
-            List<AggregateResult> listAgg =new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c label, Supplier_Region__c key from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!='' AND Supplier_Region__c!='' group By Loss_Level_2__c, Supplier_Region__c Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]);
+            List<AggregateResult> listAgg =new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c label, Supplier_Cluster__c key from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!='' AND Supplier_Cluster__c !='' group By Loss_Level_2__c, Supplier_Cluster__c  Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]);
             xMap = new Map<String,Integer>();
             xAxisName = new Set<String>();
             yAxisName = new Set<String>();
+            yMapKeySet = new Set<String>();
             for( AggregateResult xA : listAgg ){
                 xMap.put((String) xA.get('key')+''+(String) xA.get('label'),Integer.valueOf((Decimal) xA.get('cnt')));
                 xAxisName.add((String) xA.get('label'));
                 yAxisName.add((String) xA.get('key'));
             }
-            
+            yMapKeySet = xMap.keySet();
             listLabelFields = getFieldsLabel();
             dosingKey= listLabelFields[0];
             dosingLabel= listLabelFields[1];
@@ -91,7 +93,7 @@ public without sharing class PQN_Global_Overview_Geography{
         Set<String> setDiag = new Set<String>();
         List<String> keyString = mapStr.split(',');
         String query ='';
-        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c key, Supplier_Region__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' AND Supplier_Region__c!=\'\' group By Loss_Level_2__c, Supplier_Region__c Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc limit 50000';
+        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c key, Supplier_Cluster__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' AND Supplier_Cluster__c !=\'\' group By Loss_Level_2__c, Supplier_Cluster__c Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc limit 50000';
         Decimal totalcount = 0;
         list<AggregateResult> result = Database.query(query);
         
@@ -188,9 +190,9 @@ public without sharing class PQN_Global_Overview_Geography{
             
         } 
       
-        List<Aggregateresult> xPSU = new List<AggregateResult>([Select SUM(Total_Volume_Of_pallets_Shipped__c) totalshipped,Year__c from PQN_Sourcing_Unit__c where Year__c=:string.valueof(system.Today().year()-1) group by Year__c ]);
+        List<Aggregateresult> xPSU = new List<AggregateResult>([Select SUM(Total_Volume_Of_pallets_Shipped__c) totalshipped,Year__c from PQN_Sourcing_Unit__c where Year__c=:string.valueof(system.Today().year()) group by Year__c ]);
         
-        List<AggregateResult> ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Region__c,Supplier_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Region__c != '' AND Year__c=:string.valueof(system.Today().year()-1) AND Supplier_type__c='SU' group By Supplier_Region__c,Supplier_Cluster__c]);
+        List<AggregateResult> ListAGG=new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c),Supplier_Region__c,Supplier_Cluster__c from PQN_Pallet_Quality_Non_Conformance__c Where Supplier_Region__c != '' AND Year__c=:string.valueof(system.Today().year()) AND Supplier_type__c='SU' group By Supplier_Region__c,Supplier_Cluster__c]);
        
         List<PQN_Targets__c> listtar=new List<PQN_Targets__c>([select id,Target_Reduction__c,Region__c from PQN_Targets__c where Region__c!='' AND Year__c=:string.valueof(system.Today().year())]);
         

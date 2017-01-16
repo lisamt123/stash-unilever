@@ -18,19 +18,19 @@ global without sharing class PQN_UploadNCData_Clone{
         Map<String,Id> mapAcc = new Map<String,Id>();
         
         Map<String,PQN_Supplier__c> mapSupplier = new Map<String,PQN_Supplier__c>();
-        Map<String,PQN_Pallet_Loss_Tree__c> mapLossTree = new Map<String,PQN_Pallet_Loss_Tree__c>();
+        Map<Decimal,PQN_Pallet_Loss_Tree__c> mapLossTree = new Map<Decimal,PQN_Pallet_Loss_Tree__c>();
         Map<String,PQN_Pallet_Quality_Non_Conformance__c> mapProducts = new Map<String,PQN_Pallet_Quality_Non_Conformance__c>();
         Set<String> accName = new Set<String>();
         
         Set<String> productNos = new Set<String>();
         Set<String> supplierALias = new Set<String>();
-        Set<String> lossCodes = new Set<String>();
+        Set<Decimal> lossCodes = new Set<Decimal>();
         
         for(PQN_Pallet_Quality_Non_Conformance__c xP : xPQNLIST){
                 accName.add(xP.Reporting_DC__c);
                 productNos.add(xP.SKU__c);
                 supplierALias.add(xP.Supplier__c);
-                lossCodes.add(xP.Losses__c);
+                lossCodes.add((Decimal) xP.Non_compliance_reason_code__c);
          }
          for(PQN_Pallet_Quality_Non_Conformance__c xP : [select id,Product_Category__c,Product_Name__c,Product_Group__c,SKU__c from PQN_Pallet_Quality_Non_Conformance__c where SKU__c =:productNos]){
              mapProducts.put(xP.SKU__c,xP);
@@ -38,13 +38,10 @@ global without sharing class PQN_UploadNCData_Clone{
          for(PQN_Supplier__c xSP: [Select Id,Name,Supplier_Alias__c,Supplier_Number__c,Supplier_Type__c from PQN_Supplier__c where Supplier_Alias__c =:supplierALias]){
              mapSupplier.put(xSP.Supplier_Alias__c,xSP);
          }
-         for(PQN_Pallet_Loss_Tree__c xLos: [SELECT Loss_Code__c,Loss_L1__c,Loss_L2__c,Loss_L3__c,Loss_L4__c,Name FROM PQN_Pallet_Loss_Tree__c where Name=:lossCodes order by Loss_Code__c]){
-             mapLossTree.put(xLos.Name ,xLos);
+         for(PQN_Pallet_Loss_Tree__c xLos: [SELECT Loss_Code__c,Loss_L1__c,Loss_L2__c,Loss_L3__c,Loss_L4__c,Name FROM PQN_Pallet_Loss_Tree__c where Loss_Code__c=:lossCodes order by Loss_Code__c]){
+             mapLossTree.put(xLos.Loss_Code__c,xLos);
          }
          
-         // xSuppliers= [Select Id,Name,Supplier_Alias__c,Supplier_Number__c,Supplier_Type__c from PQN_Supplier__c where Supplier_Alias__c Like :tempInput ];
-         // select id,Product_Category__c,Product_Name__c,Product_Group__c,SKU__c from PQN_Pallet_Quality_Non_Conformance__c where SKU__c
-         // SELECT Loss_Code__c,Loss_L1__c,Loss_L2__c,Loss_L3__c,Loss_L4__c,Name FROM PQN_Pallet_Loss_Tree__c order by Loss_Code__c
         if(selectedFileType=='Unilever'){
             for(Account xA : [Select Name, Id from Account where Name=:accName]){
                 mapAcc.put(xA.Name, xA.Id);
@@ -66,7 +63,7 @@ global without sharing class PQN_UploadNCData_Clone{
                     xP.Account__c =mapAcc.get(xP.Reporting_DC__c);
                 }else{
                     xP.Account__c =errAccId;
-                    errorDesc+='Reporting DC is not in system.';
+                    errorDesc+='Reporting DC is not in system. </br>';
                 }
                
             }
@@ -75,7 +72,7 @@ global without sharing class PQN_UploadNCData_Clone{
                     xP.Account__c =xAcc[0].Id;
                 }else{
                     xP.Account__c =errAccId;
-                    errorDesc+='Reporting DC is not in system.';
+                    errorDesc+='Reporting DC is not in system. </br>';
                 }
                
             }
@@ -85,56 +82,53 @@ global without sharing class PQN_UploadNCData_Clone{
                     xP.Account__c =xAcc[0].Id;
                 }else{
                     xP.Account__c =errAccId;
-                    errorDesc+='Reporting DC is not in system.';
+                    errorDesc+='Reporting DC is not in system. </br>';
                 }
             }
         
             
-            xP.SKU__c=(xP.SKU__c ==null || xP.SKU__c=='') ? '0' : xP.SKU__c;
+            
             if(xP.Supplier__c.length()<1){
-                errorDesc +='Supplier__c can not be empty';
+                errorDesc +='Supplier__c can not be empty. </br>';
             }else{
                 
                 if(mapSupplier.get(xP.Supplier__c)!=null){
-                   //emptyif for checking
+                   xP.Supplier_Number__c = mapSupplier.get(xP.Supplier__c).Supplier_Number__c;
+                   xP.Supplier_type__c = mapSupplier.get(xP.Supplier__c).Supplier_type__c;
                    system.debug('test');
                 }
                 else{
-                    errorDesc +='Supplier not found in system';
+                    errorDesc +='Supplier not found in system. </br>';
                 }
             
             }
             
+            xP.SKU__c=(xP.SKU__c ==null || xP.SKU__c=='') ? '0' : xP.SKU__c;            
             if(xP.SKU__c.length()<1){
-                errorDesc +='Product number(SKU) can not be empty';
+                errorDesc +='Product number(SKU) can not be empty. </br>';
             }else{
                 
-                if(mapSupplier.get(xP.SKU__c)!=null){
-                  //emptyif for checking
-                  system.debug('test');
+                if(mapProducts.get(xP.SKU__c)!=null){
+                   xP.Product_Category__c = mapProducts.get(xP.SKU__c).Product_Category__c;
+                   xP.Product_Name__c = mapProducts.get(xP.SKU__c).Product_Name__c;
+                   xP.Product_Group__c = mapProducts.get(xP.SKU__c).Product_Group__c;
+                   system.debug('test');
                 }
                 else{
-                    errorDesc +='Product number(SKU) not found in system';
+                    errorDesc +='Product number(SKU) not found in system. </br>';
                 }
             
             }
             
-            xP.Losses__c=(xP.Losses__c==null || xP.Losses__c=='') ? '0' : xP.Losses__c;
-            if(xP.Losses__c.length()<1){
-                errorDesc +='Loss Code can not be empty';
-            }else{
-                
-                if(mapSupplier.get(xP.Losses__c)!=null){
-                    //emptyif for checking
-                    system.debug('test');
-                }
-                else{
-                    errorDesc +='Loss Code not found in system';
-                }
-            
+            xP.Non_compliance_reason_code__c=(xP.Non_compliance_reason_code__c==null) ? 0 : xP.Non_compliance_reason_code__c;
+            if(mapLossTree.get(xP.Non_compliance_reason_code__c)!=null){
+                xP.Loss_Level_2__c= mapLossTree.get(xP.Non_compliance_reason_code__c).Loss_L2__c;
+                xP.loss_level_3__c = mapLossTree.get(xP.Non_compliance_reason_code__c).Loss_L3__c;
+                xP.loss_level_4__c = mapLossTree.get(xP.Non_compliance_reason_code__c).Loss_L4__c;
             }
-            
-            
+            else{
+                errorDesc +='Loss Code not found in system. </br>';
+            }
             if(errorDesc.length()>0){
                 xP.Error_Description__c=errorDesc;
                 xP.Is_Error__c=true;

@@ -97,6 +97,9 @@
                 <apex:param name="losName" value=""/>
                 
             </apex:actionFunction>
+            <apex:actionFunction name="callRepDC" action="{!callRepDC}" reRender="frm" immediate="{!immediate}" oncomplete="appendSearch()">
+                <apex:param name="repDC" value=""/>
+            </apex:actionFunction>
             
 <!--        <apex:sectionHeader title="Pallet Quality Non Conformance" />  -->
 <!--        <apex:pageMessages ></apex:pageMessages> -->
@@ -115,7 +118,7 @@
         <apex:pageMessages id="renderErrorMsg"/>
         <apex:pageBlockSection title="Reporting Distribution Centre" columns="2" collapsible="false" >
             <!--<apex:inputField value="{!pqn.Reporting_DC__c}" required="true"/>-->
-            <apex:selectList value="{!pqn.Reporting_DC__c}" size="1" required="true" rendered="{!if(pqn.id!=null,false,true)}">
+            <apex:selectList value="{!pqn.Reporting_DC__c}" size="1" required="true" onchange="callRepDC(this.value)" rendered="{!if(pqn.id!=null,false,true)}">
                 <apex:selectOptions value="{!reportingdc}"/>
             </apex:selectList>
             <apex:inputField value="{!pqn.Reporting_DC__c}" required="true" rendered="{!if(pqn.id!=null,true,false)}"/>

@@ -2,9 +2,11 @@ public without sharing class PQN_Global_Overview_Category_Report{
    
     public List<PQN_Global_SUWrap> xSUWRAPLISTGC{get;set;}
     public String empty{get;set;}
+    public String tarval{get;set;}
     public List<PQN_chart> xChartdata1{get;set;}
     
     public Map<String,Integer> xMapCAT{get;set;}
+    public Set<String> xMapCATKey{get;set;}
     public Set<String> xLOSS {get;set;}
     public Set<String> xCAT {get;set;}
     
@@ -21,11 +23,13 @@ public without sharing class PQN_Global_Overview_Category_Report{
             xMapCAT = new Map<String,Integer>();
             xLOSS = new Set<String>();
             xCAT= new Set<String>();
+            xMapCATKey = new Set<String>();
             for( AggregateResult xA : listAgg ){
                 xMapCAT.put((String) xA.get('key')+''+(String) xA.get('label'),Integer.valueOf((Decimal) xA.get('cnt')));
                 xLOSS.add((String) xA.get('label'));
                 xCAT.add((String) xA.get('key'));
             }
+            xMapCATKey =xMapCAT.keySet();
             listLabelCatFields = getFieldsLabel2();
             catKey= listLabelCatFields[0];
             catLabel= listLabelCatFields[1];
@@ -135,6 +139,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
     public PQN_Global_Overview_Category_Report(ApexPages.StandardController acon){
         callCatStackChart();
         empty = '';
+        tarval='n.a';
         xChartdata1 = new List<PQN_chart>();
         xSUWRAPLISTGC = new List<PQN_Global_SUWrap>();
         Map<String,Integer> mapOfProduct_Groupcuryr= new Map<String,Integer>();

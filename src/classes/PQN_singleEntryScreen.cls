@@ -43,7 +43,7 @@ public without sharing class PQN_singleEntryScreen{
             if(userinfo.getusertype() == 'PowerPartner'){
                 List<PQN_User_Creation_Request__c> listpr = new List<PQN_User_Creation_Request__c>();
                 listpr = [select id,user__c,user__r.contactid,user__r.contact.account.name,User_Type__c,Sub_Cluster__c,Region__c,MCO__c,DC_Country__c,
-                            Cluster__c,(SELECT Account__c,Account__r.name FROM PQN_User_Account_Requests__r) from PQN_User_Creation_Request__c where user__c =: userinfo.getuserid()];
+                            Cluster__c,(SELECT Account__c,Account__r.name FROM PQN_User_Account_Requests__r ORDER by Account__r.name) from PQN_User_Creation_Request__c where user__c =: userinfo.getuserid() ];
             
                 if(!listpr.isEmpty()){
                     PQN_User_Creation_Request__c p = new PQN_User_Creation_Request__c();
@@ -65,7 +65,7 @@ public without sharing class PQN_singleEntryScreen{
                 user u = [select id,country from user where id=:userinfo.getuserid()];
                 List<Account> listac = new List<Account>();
                 if(u.country!=null){
-                    listac = [select id,name,billingcountry,pqn_country__c from Account where pqn_country__c!=null];
+                    listac = [select id,name,billingcountry,pqn_country__c from Account where pqn_country__c!=null order by Name];
                 }
                 if(!listac.isEmpty()){
                     for(Account a:listac){
@@ -76,7 +76,41 @@ public without sharing class PQN_singleEntryScreen{
         }
         
     }
+    public void callRepDC(){
+        String repDC= ApexPages.currentPage().getParameters().get('repDC');
+        if(repDC=='3512 - Jacksonville, FL DC'){
+        
+            pqn.Region__c ='Americas';
+            pqn.DC_Country__c ='United States';
+            pqn.Cluster__c = 'North America';
+            pqn.Sub_Cluster__c = 'North America';                 
+            pqn.MCO__c = 'North America';
+            
+        
+        }
+        if(repDC=='Bornem DC'){
+        
+            pqn.Region__c ='Europe';
+            pqn.DC_Country__c ='Netherlands';
+            pqn.Cluster__c = 'Europe';
+            pqn.Sub_Cluster__c = 'BeNeFra';                 
+            pqn.MCO__c = 'Benelux';
+            
+        
+        }
+        if(repDC=='Rentis DC'){
+        
+            pqn.Region__c ='Europe';
+            pqn.DC_Country__c ='Greece';
+            pqn.Cluster__c = 'Europe';
+            pqn.Sub_Cluster__c = 'South Europe';                 
+            pqn.MCO__c = 'Greece';
+            
+        
+        }
+        
     
+    }
 
 //freeze period function starts here
     Public  pageReference checkFreezePeriod(){

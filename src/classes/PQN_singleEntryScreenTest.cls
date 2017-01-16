@@ -95,17 +95,22 @@ insert lossCode;
        
         
         Apexpages.currentPage().getParameters().put('skuName',pqn.SKU__c);
+        Apexpages.currentPage().getParameters().put('repDC','3512 - Jacksonville, FL DC');
         ApexPages.StandardController sc2 = new ApexPages.StandardController(pqn);
         PQN_singleEntryScreen testPQN2 = new PQN_singleEntryScreen(sc2);
         testPQN2.validate();
+        testPQN2.callRepDC();
         
               
         Apexpages.currentPage().getParameters().put('skuname','' );
+        Apexpages.currentPage().getParameters().put('repDC','Bornem DC');
         ApexPages.StandardController sc3 = new ApexPages.StandardController(pqn);
         PQN_singleEntryScreen testPQN3 = new PQN_singleEntryScreen(sc3);
         testPQN3.validate();
+        testPQN3.callRepDC();
         
         Apexpages.currentPage().getParameters().put('suppname','abc' );
+        Apexpages.currentPage().getParameters().put('repDC','Rentis DC');
         ApexPages.StandardController sc5 = new ApexPages.StandardController(s);
         PQN_singleEntryScreen testPQN5 = new PQN_singleEntryScreen(sc5);
         testPQN5.validate();
@@ -113,6 +118,7 @@ insert lossCode;
         //testPQN5.pqn.supplier__c='';
         //testPQN5.pqn.supplier_number__c=null;
         testPQN5.validateIte('153489','def','116'); 
+        testPQN5.callRepDC();
         
         Apexpages.currentPage().getParameters().put('skuname','2#2' );
         ApexPages.StandardController sc4 = new ApexPages.StandardController(pqn);

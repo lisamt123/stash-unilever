@@ -2,6 +2,9 @@ public without sharing class PQN_GlobalSUReport{
     
     public List<PQN_Global_SUWrap> xSUWRAPLIST{get;set;}
     public String empty{get;set;}
+     public Integer cuYear{get;set;}
+    public Integer preYear{get;set;}
+    public String cuMonth{get;set;}
     public List<PQN_chart> xChartdata{get;set;}
     
     
@@ -28,6 +31,10 @@ public without sharing class PQN_GlobalSUReport{
              Map<String,Integer> mapOfClusterprevyrtot = new Map<String,Integer>();
              Map<String,Integer> mapOfClustercryeartot = new Map<String,Integer>();
              Map<String,Decimal> mapOftarget = new Map<String,Decimal>();
+             cuYear = integer.valueof(system.Today().year());
+             preYear = integer.valueof(system.Today().year()) - 1;
+             DateTime d = datetime.now();
+             cuMonth = d.format('MMMMM');
              
              String prevCluster = '';
              Integer ClusterSum;
