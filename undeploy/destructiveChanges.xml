@@ -2,10 +2,10 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
            
-					<members>PQN_CannockJSON2Apex.cls</members>
-					<members>PQN_HelibronnJSON2Apex.cls</members>
-					<members>PQN_UploadNCData.cls</members>
-					<members>PQN_UploadNCDatatest.cls</members>
+					<members>PQN_CannockJSON2Apex</members>
+					<members>PQN_HelibronnJSON2Apex</members>
+					<members>PQN_UploadNCData</members>
+					<members>PQN_UploadNCDatatest</members>
 					
                    <name>ApexClass</name>
 				   
