@@ -115,6 +115,7 @@
 			<runTest>IPM_ProjectHandler_Test</runTest>
 			<runTest>IPM_ProjectHelper_Test</runTest>
 			<runTest>IPM_ProjectOverviewCtrl_Test</runTest>
+			<runTest>IPM_ProjectOverviewCtrol_Test</runTest>
 			<runTest>IPM_ProjectOwnerUpdatescheduler_Test</runTest>
 			<runTest>IPM_ProjectResourceHandler_Test</runTest>
 			<runTest>IPM_ProjectRolloutHandler_Test</runTest>
