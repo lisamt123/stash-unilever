@@ -1,4 +1,4 @@
-/***************************************************************
+﻿/***************************************************************
     Name: MyPromotionRemoteActionExtension 
     Copyright © 2016 Accenture
     ======================================================
@@ -842,6 +842,8 @@
                     }
 
                     boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Market__c.getName(), market);
+                    boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Category__c.getName(), category);
+                    boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Brand__c.getName(), brand);
                     
                     String fromStringDate = (String)(UL_Utility.EMPTY_STRING+boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_From__c.getName()));
                     String thruStringDate = (String)(UL_Utility.EMPTY_STRING+boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_Thru__c.getName()));
