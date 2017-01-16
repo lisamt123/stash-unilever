@@ -12,6 +12,8 @@ src/classes/VPM_PicklistHelper.cls
 src/classes/VPM_PicklistHelper.cls-meta.xml
 src/classes/VPM_PurchaseRequestsControllerExtension.cls
 src/classes/VPM_PurchaseRequestsControllerExtension.cls-meta.xml
+src/classes/VPM_RecordTypeHelper.cls
+src/classes/VPM_RecordTypeHelper.cls-meta.xml
 src/classes/VPM_RegionalMaintainVendor.cls
 src/classes/VPM_RegionalMaintainVendor.cls-meta.xml
 src/classes/VPM_RegionalMaintainVendorTest.cls
@@ -60,6 +62,8 @@ src/dashboards/VPM_Dashboards-meta.xml
 src/dashboards/VPM_Dashboards/VPM_VendorRequestUserSurveys.dashboard
 src/email
 src/email/VPM_ApprovalEmails
+src/email/VPM_ApprovalEmails/VPM_RequestVendorDetails.email
+src/email/VPM_ApprovalEmails/VPM_RequestVendorDetails.email-meta.xml
 src/email/VPM_ApprovalEmails/VPM_UserSurveyRequest.email
 src/email/VPM_ApprovalEmails/VPM_UserSurveyRequest.email-meta.xml
 src/flows
