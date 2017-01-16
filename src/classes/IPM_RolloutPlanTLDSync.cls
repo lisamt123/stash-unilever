@@ -37,6 +37,22 @@ public with sharing class IPM_RolloutPlanTLDSync {
         }       
         List<IPM_EmailOut_Notification__c> emailOut = new List<IPM_EmailOut_Notification__c>{};
         for(Id RolloutId: globalProjIdRollout.keySet()){
+            partialNotifyGlobalProjectFinanceLeader(RolloutId,emailOut,globalProjIdRollout,projIdFinanceLeaderMap);
+        }
+        // removed exception handling as any exceptions/Messages  would be handled at controller 
+        if(!emailOut.isEmpty()){
+            insert emailOut;
+        }
+    }
+    
+    
+    /******************************************************************************
+        @Description: This method is created to resolve nPath Complexity issue
+        @Return: VOID
+    ******************************************************************************/
+    
+    private void partialNotifyGlobalProjectFinanceLeader(Id RolloutId,List<IPM_EmailOut_Notification__c> emailOut,Map<Id, IPM_Project_Rollout__c> globalProjIdRollout,Map<Id,IPM_Project_Resource__c>  projIdFinanceLeaderMap)
+    {
             IPM_EmailOut_Notification__c emailOutNotification = new IPM_EmailOut_Notification__c();    
             Id projectID = globalProjIdRollout.get(RolloutId).IPM_Project__c;
             if(projectID == null)
@@ -54,12 +70,11 @@ public with sharing class IPM_RolloutPlanTLDSync {
                 emailOutNotification.To_Address__c = emailAdd;
                 emailOut.add(emailOutNotification);       
             }
-        }
-        // removed exception handling as any exceptions/Messages  would be handled at controller 
-        if(!emailOut.isEmpty()){
-            insert emailOut;
-        }
+        
     }
+    
+    
+    
     /*******************************************************************************************************
     * @description  Method to notify Project Leader that Finance leader has confirmed the TLD date changes in Ideas phase
     * @param        Map projectId,projectRollout

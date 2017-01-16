@@ -297,11 +297,11 @@ table.table.table-bordered.productsourcegrey td .sizeSelect{width:50%;height: 23
 .srcList div div:hover{background: #ccc;border: #999 solid 1px;zoom: 1;}
 
 .goldenCheck{visibility: hidden;width: 0;height: 0;display: none;}
-.goldenCheckcontainer label.goldbox{width:90%;background:#FBBE2E;color:#000;border:1px solid #E28A3C;padding:5px;font-size: 11px;margin: 0;cursor: pointer;}
-.goldenCheckcontainer label{width:90%;background:#999;padding:5px;height: 29px;margin: 0;cursor: pointer;}
+.goldenCheckcontainer label.goldbox{width:65px;background:#FBBE2E;color:#000;border:1px solid #E28A3C;padding:5px;font-size: 11px;margin: 0;cursor: pointer;}
+.goldenCheckcontainer label{width:65px;background:#999;padding:5px;height: 29px;margin: 0;cursor: pointer;}
 .greenBoxCheck,.srcingGreyCheck{visibility: hidden;width: 0;height: 0;display: none;}
-.approvalCheckcontainer label.greenBox{width:90%;background:#A3C24B;color:#fff;padding:5px;font-size: 11px;margin: 0;cursor: pointer;}
-.approvalCheckcontainer label{width:90%;background:red;padding:5px;height: 24px;font-size:10px;margin: 0;cursor: pointer;color:#fff;}
+.approvalCheckcontainer label.greenBox{width:65px;background:#A3C24B;color:#fff;padding:5px;font-size: 11px;margin: 0;cursor: pointer;}
+.approvalCheckcontainer label{width:65px;background:red;padding:5px;height: 24px;font-size:10px;margin: 0;cursor: pointer;color:#fff;}
 .hdnCheckboxDiv label{background: red;padding: 8px;height: 33px; margin: 0;cursor: pointer;color: #fff;font-size: 12px;position: relative;bottom: 2px;width: 40%;text-align: center;}
 .noPointer label,.noPointer label.goldbox,.approvalCheckcontainer.noPointer label.greenBox{cursor:auto;}
 .hdnCheckboxDiv label.greenBox{background:#A3C24B;padding: 8px;height: 33px; margin: 0;cursor: pointer;color: #fff;font-size: 12px;position: relative;bottom: 2px;width: 40%;text-align: center;}
@@ -328,7 +328,7 @@ table.table.table-bordered.productsourcegrey tr .alignAddicn{text-align:left;}
 div.custMarginTop{margin-top:6px;}
 .srcErrBox {width: 60%;clear: both;}
 .custSizeWidth span.ui-spinner.ui-state-default{width:42%;}
-input.btn.ipmButton.primary{padding: 6px;font-size: 12px;}
+input.btn.ipmButton.primary{border-radius:5px;}
 .ui-spinner.ui-state-default{background:#fff;border-radius: 0;height: 23px;}
 a.ui-state-default .ui-icon{position: relative;}
 a.icoButton.delete{margin-left: 0;}
@@ -458,7 +458,7 @@ input.icoButton.clone{position:relative; background:url(../images/ico-clone.svg)
 }
 @media (min-width: 1024px) and (max-width: 1129px) {
    .darkoverlay th{height:auto;}
-   .goldenCheckcontainer label.goldbox{width:100%;font-size:9px;}
+   .goldenCheckcontainer label.goldbox{width:65px;font-size:9px;}
    .custSizeWidth span.ui-spinner.ui-state-default{width:76%;}
    table.table.table-bordered.productsourcegrey td .sizeSelect{width:75%;}
 }
@@ -481,3 +481,4 @@ input.icoButton.clone{position:relative; background:url(../images/ico-clone.svg)
 @media (min-width: 1024px) and (max-width: 1300px) {
 
 }
+.table div.approvalTip{padding-left:7px}

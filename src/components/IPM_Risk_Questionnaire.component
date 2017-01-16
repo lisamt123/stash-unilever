@@ -13,6 +13,7 @@
     <apex:attribute name="getProjectId" description="Project Id " type="Id" required="true" assignTo="{!projectId}" />
     <apex:attribute name="editSection" description="For displaying in gate document" type="Boolean" required="true" assignTo="{!edit}"/>
     <apex:attribute name="gateType" description="Gate Document Type" type="String" required="false" assignTo="{!projDocType}"/>
+	<apex:outputPanel layout="none">{!InvokeMethodsForComponent}</apex:outputPanel> 
     <!-- Condition for showing no risk identified label in market deployment gate when risk question list is empty-->
     <apex:outputPanel layout="block" styleClass="row noMargin" rendered="{!IF(AND(isMarketDeployment,displayRQSQuestionsList.size=0,displayCRQuestionsList.size=0),true,false)}">               
         <div class="col-xs-12">
