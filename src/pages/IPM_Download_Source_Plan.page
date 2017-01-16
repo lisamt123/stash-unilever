@@ -42,6 +42,7 @@
                  background-position: 20px 40px;
              }
         }
+		/* Global Font Size */
         *
         {
            font-size:10px !important;

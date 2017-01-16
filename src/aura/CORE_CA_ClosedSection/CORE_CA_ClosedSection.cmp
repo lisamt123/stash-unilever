@@ -80,7 +80,9 @@
                             <aura:if isTrue="{!v.ApprovalData.Req_Status =='Rework'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_REWORK_CAPS} </span></aura:if>
                             
                             
-                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='RETOAP'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> <!--{!$Label.c.CORE_LBL_RETURN_TO_AP_CAPS}--> {!$Label.c.CORE_LBL_RETURN_UPPER} </span></aura:if>
+                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='RETOAP'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_RETURN_UPPER} </span></aura:if>
+                            
+                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='NA'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_NA} </span></aura:if>
                             <br/>
                         </div>
                     </div>

@@ -106,7 +106,7 @@
                             </div> 
                             <div class="bcsinglecontainer">   
                                 <span class="pHead">
-                                    <span class='expico fa fa-minus'></span><a href="{!$Page.IPM_Financial}?Id={!finance.Local_Project__c}">{!$Label.IPM_BD_BB_ALIGNMENT}</a>
+                                    <span class='expico fa fa-minus'></span><a href="{!$Page.IPM_Financial}?Id={!finance.Local_Project__c}">{!$Label.IPM_Country_Category_Alignment}</a>
                                     <span class="SecButtonSet infoMarTop">
                                     	<a class="icoButton info smalllinfo" title="{!$Label.IPM_TO_EDIT_YOUR_NUMBERS}"></a>
                                     </span>

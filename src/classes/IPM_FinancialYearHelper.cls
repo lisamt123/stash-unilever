@@ -1,4 +1,3 @@
-
 /**********************************************************************************************************************
 * @author       Cognizant 
 * @date         27/04/2015
@@ -42,84 +41,74 @@ public with sharing class IPM_FinancialYearHelper
     * @param financialYearDetailMap	    Queried List of Financial Records from DB 		
     * @return                           NONE
     *********************************************************************************************************************/
-    public static Map<String,IPM_Financial_Year__c> initialiseFYConsolidation(List<IPM_Financial_Year__c> newFinancialYearList, Map<Id, IPM_Financial_Year__c> oldFinancialYearMap,Map<Id,IPM_Financial_Year__c> financialYearDetailMap)
-    {
-      List<IPM_Financial_Year__c> consolidationChangedFinancialYearList = new List<IPM_Financial_Year__c>();
-      Map<String,IPM_Financial_Year__c> consolidatedFinancialFYMap = new Map<String,IPM_Financial_Year__c>();
-      
-      Set<String> regionalProjectNames = new Set<String>();
-        Set<String> globalProjectNamesProject = new Set<String>();
-        
-    	if(newFinancialYearList!=null && !newFinancialYearList.isEmpty())
-        
-    	{
-        for(IPM_Financial_Year__c newfinancialYear : newFinancialYearList) 
-        {
-            IPM_Financial_Year__c oldFinancialYear = null;
-            if(oldFinancialYearMap !=null && oldFinancialYearMap.containsKey(newfinancialYear.Id))
-            {
-                oldFinancialYear = oldFinancialYearMap.get(newfinancialYear.Id);
-            }
-             
-	            Set<String> changedFieldSet = IPM_FinancialUtils.isConsolidationChanged(newFinancialYear.IPM_AssociatedFinancialRecordTypeId__c,newfinancialYear,oldFinancialYear,FIELDS_TO_CONSOLIDATE,'External_Id__c'); 
-	            if(!changedFieldSet.isEmpty())
-	            {
-		        	consolidationChangedFinancialYearList.add(newfinancialYear);
-        }
-	        }	
-        
-    		if(!consolidationChangedFinancialYearList.isEmpty())
-        {   
-        		if(String.isBlank(financialYearSelectQuery))
-        		{
-            		financialYearSelectQuery = IPM_FinancialYearHelper.getFinancialYearQuery();
-        		} 
-                String financialYearDetailQuery = financialYearSelectQuery + ' where Id in :consolidationChangedFinancialYearList AND IPM_Financial__r.RecordType.Name = \'Default\' LIMIT 50000 ';     
-                financialYearDetailMap = new Map<Id,IPM_Financial_Year__c>( (List<IPM_Financial_Year__c>) database.query(financialYearDetailQuery));
-            }  
-    	}
-            
-        if(financialYearDetailMap!=null && !financialYearDetailMap.isEmpty())
-            {
-	    	for(IPM_Financial_Year__c financialYear : financialYearDetailMap.values())
+    public static Map < String, IPM_Financial_Year__c > initialiseFYConsolidation(List < IPM_Financial_Year__c > newFinancialYearList, Map < Id, IPM_Financial_Year__c > oldFinancialYearMap, Map < Id, IPM_Financial_Year__c > financialYearDetailMap) {
+        List < IPM_Financial_Year__c > consolidationChangedFinancialYearList = new List < IPM_Financial_Year__c > ();
+        Map < String, IPM_Financial_Year__c > consolidatedFinancialFYMap = new Map < String, IPM_Financial_Year__c > ();
+    
+        if (newFinancialYearList != null && !newFinancialYearList.isEmpty()) {
+            for (IPM_Financial_Year__c newfinancialYear: newFinancialYearList) {
                 
-                {
-                // Check if Financials are associated with Regional Rollouts 
-                if(financialYear.IPM_Financial__r.IPM_Project_Rollout__c !=null) 
-                
-                {
-                  regionalProjectNames.add(financialYear.IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c);
-                }  
-
-            
-           
-            
-            
-                else if(financialYear.IPM_Financial__r.Regional_Project__c !=null)// Check if Financials are associated with Regional Projects.
-            {                                                      
-                	regionalProjectNames.add(financialYear.IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c);
-            }
-               
-                        
-                if(financialYear.IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__c !=null)
-                {
-                globalProjectNamesProject.add(financialYear.IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c);
+                // Bypass GKM5, 6, and 7 project from consolidation, as they don't have consolidated business case. 
+                if(newfinancialYear.Gate_Keeping_Model__c.equalsIgnorecase(IPM_ConstantUtils.GKM_5) || 
+                newfinancialYear.Gate_Keeping_Model__c.equalsIgnorecase(IPM_ConstantUtils.GKM_6) ||
+                newfinancialYear.Gate_Keeping_Model__c.equalsIgnorecase(IPM_ConstantUtils.GKM_7)){
+                	continue;
                 }
-              else if(financialYear.IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__c !=null)
-                {
+                
+                
+                IPM_Financial_Year__c oldFinancialYear = null;
+                if (oldFinancialYearMap != null && oldFinancialYearMap.containsKey(newfinancialYear.Id)) {
+                    oldFinancialYear = oldFinancialYearMap.get(newfinancialYear.Id);
+                }
+    
+                Set < String > changedFieldSet = IPM_FinancialUtils.isConsolidationChanged(newFinancialYear.IPM_AssociatedFinancialRecordTypeId__c, newfinancialYear, oldFinancialYear, FIELDS_TO_CONSOLIDATE, 'External_Id__c');
+                if (!changedFieldSet.isEmpty()) {
+                    consolidationChangedFinancialYearList.add(newfinancialYear);
+                }
+            }
+    
+            if (!consolidationChangedFinancialYearList.isEmpty()) {
+                if (String.isBlank(financialYearSelectQuery)) {
+                    financialYearSelectQuery = IPM_FinancialYearHelper.getFinancialYearQuery();
+                }
+                String financialYearDetailQuery = financialYearSelectQuery + ' where Id in :consolidationChangedFinancialYearList AND IPM_Financial__r.RecordType.Name = \'Default\' LIMIT 50000 ';
+                financialYearDetailMap = new Map < Id, IPM_Financial_Year__c > ((List < IPM_Financial_Year__c > ) database.query(financialYearDetailQuery));
+            }
+        }
+    
+        if (financialYearDetailMap != null && !financialYearDetailMap.isEmpty()) {
+            consolidatedFinancialFYMap = getConsolidatedFinancialFYMap(financialYearDetailMap);
+        }
+        return consolidatedFinancialFYMap;
+    }
+    
+    public static Map < String, IPM_Financial_Year__c > getConsolidatedFinancialFYMap(Map < Id, IPM_Financial_Year__c > financialYearDetailMap){    
+        Set < String > regionalProjectNames = new Set < String > ();
+        Set < String > globalProjectNamesProject = new Set < String > ();
+        Map < String, IPM_Financial_Year__c > consolidatedFinancialFYMap = new Map < String, IPM_Financial_Year__c > ();
+        for (IPM_Financial_Year__c financialYear: financialYearDetailMap.values()){
+            // Check if Financials are associated with Regional Rollouts 
+            if (financialYear.IPM_Financial__r.IPM_Project_Rollout__c != null){
+                regionalProjectNames.add(financialYear.IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c);
+                
+            } else if (financialYear.IPM_Financial__r.Regional_Project__c != null){ // Check if Financials are associated with Regional Projects.            
+                regionalProjectNames.add(financialYear.IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c);
+            }
+    
+            if (financialYear.IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__c != null) {
+                globalProjectNamesProject.add(financialYear.IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c);
+                
+            } else if (financialYear.IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__c != null) {
                 globalProjectNamesProject.add(financialYear.IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c);
-              }
-           }
-                         
-            if(!regionalProjectNames.isEmpty())
-            {
-        consolidatedFinancialFYMap.putall(IPM_FinancialUtils.processRegionalConsolidationFY(regionalProjectNames));
             }
-            
-            if(!globalProjectNamesProject.isEmpty())
-            {
-              consolidatedFinancialFYMap.putAll(IPM_FinancialUtils.processGlobalConsolidationFY(globalProjectNamesProject));
-            }
+        }
+    
+        if (!regionalProjectNames.isEmpty()) {
+            consolidatedFinancialFYMap.putall(IPM_FinancialUtils.processRegionalConsolidationFY(regionalProjectNames));
+        }
+    
+        if (!globalProjectNamesProject.isEmpty()) {
+            consolidatedFinancialFYMap.putAll(IPM_FinancialUtils.processGlobalConsolidationFY(globalProjectNamesProject));
         }
         return consolidatedFinancialFYMap; 
     }
@@ -173,56 +162,7 @@ public with sharing class IPM_FinancialYearHelper
                                          IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c=:IPM_ConstantUtils.PHASE_IDEAS];  
             }
             
-            for(IPM_Financial_Year__c finYear:newFinYearList)
-            {  
-                for(IPM_Project_Document_Section_Content__c secContent:projDocSecConList)
-                {  
-                    if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==finYear.Global_Project_Id__c)
-                    {
-                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental)
-                        {
-                            secContent.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
-                            secContent.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Global__c;
-                        }
-                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross)
-                        {
-                            secContent.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
-                            secContent.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Global__c;
-                            secContent.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Global__c;
-                        }
-                    }
-                    else if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==finYear.Global_Project_Id__c)
-                    {
-                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental)
-                        {
-                            secContent.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Regional__c;
-                            secContent.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Regional__c;
-                        }
-                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross)
-                        {
-                            secContent.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Regional__c;
-                            secContent.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Regional__c;
-                            secContent.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Regional__c;
-                        }
-                    }
-                    else if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==finYear.Global_Project_Id__c)
-                    {
-                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental)
-                        {
-                            secContent.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Local__c;
-                            secContent.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Local__c;
-                        }
-                        
-                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross)
-                        {
-                            secContent.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Local__c;
-                            secContent.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Local__c;
-                            secContent.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Local__c;
-                        }
-                    }
-                }
-            }
-            
+            projDocSecConList = new List<IPM_Project_Document_Section_Content__c>(updateProjDocSecConList(projDocSecConList, newFinYearList));
             if(projDocSecConList!=null && !projDocSecConList.isEmpty())
             {
                 update projDocSecConList;
@@ -234,6 +174,54 @@ public with sharing class IPM_FinancialYearHelper
                 UPDATE_FINANCIAL_ACTION_STANDARD_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
         }
     }
+    /**********************************************************************************************************************************
+    * @description                  get project documentation section content with financial year details based on project ID, content type and phase of the project.
+    * @param                        List of IPM_Project_Document_Section_Content__c, List of IPM_Financial_Year__c 
+    * @return                       List of IPM_Project_Document_Section_Content__c 
+    
+    ***********************************************************************************************************************************/
+    public static List < IPM_Project_Document_Section_Content__c > updateProjDocSecConList(List < IPM_Project_Document_Section_Content__c > projDocSecConList, List < IPM_Financial_Year__c > newFinYearList){  
+        Map<Id,IPM_Project_Document_Section_Content__c> tmpProjDocSecConMap = New Map<Id,IPM_Project_Document_Section_Content__c>(); 
+        for (IPM_Financial_Year__c finYear: newFinYearList) {
+            for (IPM_Project_Document_Section_Content__c secContent: projDocSecConList) {
+                if (secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c == finYear.Global_Project_Id__c) {
+                    if (finYear.NameYearPLtype__c == IPM_ConstantUtils.Y1InnovationIncremental) {
+                        secContent.IPM_Inc_Value_Share_Action_Charter__c = finYear.Value_Market_Share_Global__c;
+                        secContent.IPM_iTo_Action_Standard_Charter__c = finYear.Turnover_Global__c;
+                    }
+                    if (finYear.NameYearPLtype__c == IPM_ConstantUtils.Y1InnovationGross) {
+                        secContent.IPM_Innov_Value_Share_Action_Charter__c = finYear.Value_Market_Share_Global__c;
+                        secContent.IPM_gTO_Action_Standard_Charter__c = finYear.Turnover_Global__c;
+                        secContent.IPM_GM_Action_Standards_Charter__c = finYear.GM_of_TO_Global__c;
+                    }
+                } else if (secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c == finYear.Global_Project_Id__c) {
+                    if (finYear.NameYearPLtype__c == IPM_ConstantUtils.Y1InnovationIncremental) {
+                        secContent.IPM_Inc_Value_Share_Action_Charter__c = finYear.Value_Market_Share_Regional__c;
+                        secContent.IPM_iTo_Action_Standard_Charter__c = finYear.Turnover_Regional__c;
+                    }
+                    if (finYear.NameYearPLtype__c == IPM_ConstantUtils.Y1InnovationGross) {
+                        secContent.IPM_Innov_Value_Share_Action_Charter__c = finYear.Value_Market_Share_Regional__c;
+                        secContent.IPM_gTO_Action_Standard_Charter__c = finYear.Turnover_Regional__c;
+                        secContent.IPM_GM_Action_Standards_Charter__c = finYear.GM_of_TO_Regional__c;
+                    }
+                } else if (secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c == finYear.Global_Project_Id__c) {
+                    if (finYear.NameYearPLtype__c == IPM_ConstantUtils.Y1InnovationIncremental) {
+                        secContent.IPM_Inc_Value_Share_Action_Charter__c = finYear.Value_Market_Share_Local__c;
+                        secContent.IPM_iTo_Action_Standard_Charter__c = finYear.Turnover_Local__c;
+                    }
+    
+                    if (finYear.NameYearPLtype__c == IPM_ConstantUtils.Y1InnovationGross) {
+                        secContent.IPM_Innov_Value_Share_Action_Charter__c = finYear.Value_Market_Share_Local__c;
+                        secContent.IPM_gTO_Action_Standard_Charter__c = finYear.Turnover_Local__c;
+                        secContent.IPM_GM_Action_Standards_Charter__c = finYear.GM_of_TO_Local__c;
+                    }
+                }
+                tmpProjDocSecConMap.put(secContent.Id,secContent);
+            }
+        }
+        return tmpProjDocSecConMap.values(); 
+    }
+    
     
     /**********************************************************************************************************************************
     * @description                  This method queries for all the financial year record required for consolidation and updating the  
