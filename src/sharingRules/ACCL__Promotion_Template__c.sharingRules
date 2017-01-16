@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Customer_Event_Template_AR01</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share template to Account Planner</description>
+        <label>Customer Event Template AR01</label>
+        <sharedTo>
+            <group>SoCo_Account_Planner</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Parent Promotion,Account Plan,CustomerEvent,LTA,Account Specific Promotion</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>AR01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Promotion_Templates_for_Ireland_SO_Admin</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Promotion Templates for Ireland SO Admin</label>
+        <sharedTo>
+            <group>Ireland_SO_Admin</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>Ireland SO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>MarketingEvent,LTA,SpecialHoliday,Promotion</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Promotion_Templates_for_Ireland_SO_Authoriser</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Promotion Templates for Ireland SO Authoriser</label>
+        <sharedTo>
+            <group>Ireland_SO_Authoriser</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>Ireland SO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Promotion,LTA</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Promotion_Templates_for_Ireland_SO_Planner</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Promotion Templates for Ireland SO Planner</label>
+        <sharedTo>
+            <group>Ireland_SO_Planner</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>Ireland SO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Promotion,LTA</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Promotion_Templates_for_Uk_Admin</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Promotion Templates for Uk Admin</label>
+        <sharedTo>
+            <group>UK_Admin</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>UK SO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>MarketingEvent,LTA,SpecialHoliday,Promotion</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Promotion_Templates_for_Uk_Authoriser</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Promotion Templates for Uk Authoriser</label>
+        <sharedTo>
+            <group>UK_Authoriser</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>UK SO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Promotion,LTA</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Promotion_Templates_for_Uk_Planner</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Promotion Templates for Uk Planner</label>
+        <sharedTo>
+            <group>UK_Planner_CAM</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>UK SO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Promotion,LTA</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Share_with_Account_Manager_AR01</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share with Account Manager AR01</label>
+        <sharedTo>
+            <group>SoCo_Account_Manager_AR01</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Account Plan,CustomerEvent,LTA,Past Dated/Urgent</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>AR01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Share_with_Account_Manager_CL01</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share with Account Manager CL01</label>
+        <sharedTo>
+            <group>SoCo_Account_Manager_CL01</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Account Plan,CustomerEvent,LTA,Past Dated/Urgent</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>CL01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Share_with_Account_Manager_CL03</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share with Account Manager CL03</label>
+        <sharedTo>
+            <group>SoCo_Account_Manager_CL03</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Account Plan,CustomerEvent,LTA,Past Dated/Urgent</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>CL03</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Share_with_Account_Planner_CL01</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share with Account Planner CL01</label>
+        <sharedTo>
+            <group>Soco_Account_Planner_CL01</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Parent Promotion,Account Plan,CustomerEvent,LTA,Account Specific Promotion</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>CL01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Share_with_Account_Planner_CL03</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share with Account Planner CL03</label>
+        <sharedTo>
+            <group>Soco_Account_Planner_CL03</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>CustomerEvent,Promotion,Past Dated/Urgent</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>CL03</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Share_with_Category_Manager_AR01</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share with Category Manager AR01</label>
+        <sharedTo>
+            <group>SoCo_Category_Manager_AR01</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Account Plan,MarketingEvent,LTA,Past Dated/Urgent</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>AR01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Share_with_Category_Manager_CL01</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share with Category Manager CL01</label>
+        <sharedTo>
+            <group>SoCo_Category_Manager_CL01</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Account Plan,MarketingEvent,LTA,Past Dated/Urgent</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>CL01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Share_with_Category_Manager_CL03</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share with Category Manager CL03</label>
+        <sharedTo>
+            <group>SoCo_Category_Manager_CL03</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Account Plan,MarketingEvent,LTA,Past Dated/Urgent</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>CL03</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Share_with_Category_Planner_AR01</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share with Category Planner</description>
+        <label>Share with Category Planner AR01</label>
+        <sharedTo>
+            <group>SoCo_Category_Planner</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Parent Promotion,Account Plan,MarketingEvent,LTA,Account Specific Promotion</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>AR01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Share_with_Category_Planner_CL01</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share with Category Planner CL01</label>
+        <sharedTo>
+            <group>SoCo_Category_Planner_CL01</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Parent Promotion,Account Plan,MarketingEvent,LTA,Account Specific Promotion</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>CL01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Share_with_Category_Planner_CL03</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share with Category Planner CL03</label>
+        <sharedTo>
+            <group>SoCo_Category_Planner_CL03</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Parent Promotion,Account Plan,MarketingEvent,LTA,Account Specific Promotion</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>CL03</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Special_Holiday_AR01</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Special Holiday AR01</label>
+        <sharedTo>
+            <group>SoCo_Admin_AR01</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>SpecialHoliday</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>AR01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Special_Holiday_CL01</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Special Holiday CL01</label>
+        <sharedTo>
+            <group>SoCo_Admin_CL01</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>SpecialHoliday</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>CL01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Special_Holiday_CL03</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Special Holiday CL03</label>
+        <sharedTo>
+            <group>SoCo_Admin_CL03</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>SpecialHoliday</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>CL03</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

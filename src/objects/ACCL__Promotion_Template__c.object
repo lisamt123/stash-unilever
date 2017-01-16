@@ -57,6 +57,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
     <fieldSets>
         <fullName>ACCL__MobilityRelevant</fullName>
         <description>Field set used to restrict the amount of data on the mobility device.</description>
@@ -256,27 +257,27 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-   <!-- <fields>
+    <fields>
         <fullName>ACCL__Description__c</fullName>
         <deprecated>false</deprecated>
         <description>Description of language.</description>
         <externalId>false</externalId>
         <formula>CASE
-          (
-          $User.ACCL__Language_Postfix__c,
-          &quot;Language1&quot;, ACCL__Description_Language_1__c,
-          &quot;Language2&quot;, ACCL__Description_Language_2__c,
-          &quot;Language3&quot;, ACCL__Description_Language_3__c,
-          &quot;Language4&quot;, ACCL__Description_Language_4__c,
-          ACCL__Description_Language_1__c
-          )</formula>
+      (
+      $User.ACCL__Language_Postfix__c,
+      &quot;Language1&quot;, ACCL__Description_Language_1__c,
+      &quot;Language2&quot;, ACCL__Description_Language_2__c,
+      &quot;Language3&quot;, ACCL__Description_Language_3__c,
+      &quot;Language4&quot;, ACCL__Description_Language_4__c,
+      ACCL__Description_Language_1__c
+      )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Description</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>-->
+    </fields>
     <fields>
         <fullName>ACCL__Display_In_call__c</fullName>
         <defaultValue>false</defaultValue>
@@ -546,6 +547,10 @@
                 <fullName>ParentPastDatedUrgentWorkflow</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>SoCo - LTA Workflow</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -582,6 +587,15 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>UL_Consider_IIBB_Tax__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>In case the setting is ticked by creation of Promotion it IIBB tax from anchor or hierarchy above will be prepopulated to the promotion field.</description>
+        <externalId>false</externalId>
+        <label>Consider IIBB Tax</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>UL_Promo_Type_ControlView__c</fullName>
         <description>Attribute to control the visibility to end user</description>
         <externalId>false</externalId>
@@ -589,11 +603,15 @@
         <label>Sharing Type</label>
         <picklist>
             <picklistValues>
-                <fullName>CustomerEvent</fullName>
+                <fullName>Account Plan</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>MarketingEvent</fullName>
+                <fullName>Account Specific Promotion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CustomerEvent</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -601,18 +619,22 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SpecialHoliday</fullName>
+                <fullName>MarketingEvent</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Promotion</fullName>
+                <fullName>Parent Promotion</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Past Dated/Urgent</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>false</sorted>
+            <picklistValues>
+                <fullName>SpecialHoliday</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
         </picklist>
         <required>true</required>
         <trackTrending>false</trackTrending>
@@ -717,6 +739,21 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ACCL__Calculation_Mode__c</picklist>
+            <values>
+                <fullName>AdHoc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Writeback</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>ACCL__Creation_Platform__c</picklist>
             <values>
                 <fullName>Both</fullName>
@@ -793,6 +830,88 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ACCL__Trade_Calendar_Color__c</picklist>
+            <values>
+                <fullName>0x002266</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x003344</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x008899</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x00aa99</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>0x224433</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x2f539c</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x337722</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x359b4c</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x408fcd</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x551155</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x993399</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0xFf9900</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0xaa1133</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0xbbbb00</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0xdd4411</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0xeeaa00</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ACCL__Trade_Calendar_Relevant__c</picklist>
+            <values>
+                <fullName>Default</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>UL_Approval_Process_Identifier__c</picklist>
             <values>
                 <fullName>AccountSpecificWorkflow</fullName>
@@ -810,6 +929,14 @@
         <picklistValues>
             <picklist>UL_Promo_Type_ControlView__c</picklist>
             <values>
+                <fullName>Account Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Specific Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>CustomerEvent</fullName>
                 <default>false</default>
             </values>
@@ -822,7 +949,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Promotion</fullName>
+                <fullName>Parent Promotion</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -949,6 +1076,88 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ACCL__Trade_Calendar_Color__c</picklist>
+            <values>
+                <fullName>0x002266</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x003344</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x008899</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x00aa99</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>0x224433</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x2f539c</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x337722</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x359b4c</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x408fcd</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x551155</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0x993399</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0xFf9900</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0xaa1133</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0xbbbb00</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0xdd4411</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>0xeeaa00</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ACCL__Trade_Calendar_Relevant__c</picklist>
+            <values>
+                <fullName>Default</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>UL_Approval_Process_Identifier__c</picklist>
             <values>
                 <fullName>AccountSpecificWorkflow</fullName>
@@ -970,9 +1179,21 @@
                 <fullName>ParentWorkflow</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>SoCo - LTA Workflow</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>UL_Promo_Type_ControlView__c</picklist>
+            <values>
+                <fullName>Account Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Specific Promotion</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>CustomerEvent</fullName>
                 <default>false</default>
@@ -986,11 +1207,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Past Dated%2FUrgent</fullName>
+                <fullName>Parent Promotion</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Promotion</fullName>
+                <fullName>Past Dated%2FUrgent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1050,20 +1271,19 @@
         <errorDisplayField>ACCL__Calculation_Mode__c</errorDisplayField>
         <errorMessage>The selected Calculation Mode is not valid in combination with CustomerSet-Promotions</errorMessage>
     </validationRules>
-    <!--<validationRules>
+    <validationRules>
         <fullName>ACCL__Prevent_Name_Duplication</fullName>
         <active>true</active>
         <errorConditionFormula>and(
-Name = VLOOKUP
-($ObjectType.ACCL__Promotion_Template__c.Fields.Name , $ObjectType.ACCL__Promotion_Template__c.Fields.Name, Name ),
+      Name = VLOOKUP
+      ($ObjectType.ACCL__Promotion_Template__c.Fields.Name , $ObjectType.ACCL__Promotion_Template__c.Fields.Name, Name ),
 
-not(
-Id=VLOOKUP
-($ObjectType.ACCL__Promotion_Template__c.Fields.Id , $ObjectType.ACCL__Promotion_Template__c.Fields.Name, Name )))
-</errorConditionFormula>
+      not(
+      Id=VLOOKUP
+      ($ObjectType.ACCL__Promotion_Template__c.Fields.Id , $ObjectType.ACCL__Promotion_Template__c.Fields.Name, Name )))</errorConditionFormula>
         <errorMessage>Promotion Template Name already exists, please enter different Name.</errorMessage>
-    </validationRules>-->
-    <!--<webLinks>
+    </validationRules>
+    <webLinks>
         <fullName>ACCL__Update_Product_Filter_Cache</fullName>
         <availability>online</availability>
         <displayType>massActionButton</displayType>
@@ -1072,18 +1292,17 @@ Id=VLOOKUP
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>{!REQUIRESCRIPT("/soap/ajax/37.0/connection.js")}
-{!REQUIRESCRIPT("/soap/ajax/37.0/apex.js")}
-sforce.connection.query('SELECT NamespacePrefix FROM ApexClass WHERE Name = \'HerokuCacheRefresh\'', {
-onSuccess: function(data) {
-var prefix = data.records.NamespacePrefix? data.records.NamespacePrefix+'.': '';
-var result = ''+sforce.apex.execute(prefix+'HerokuCacheRefresh', 'cacheFlushStatus', {});
-window.alert(result);
-},
-onFailure: function(err) {
-window.alert(err);
-}
-});
-</url>
-    </webLinks>-->
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/37.0/connection.js&quot;)}
+      {!REQUIRESCRIPT(&quot;/soap/ajax/37.0/apex.js&quot;)}
+      sforce.connection.query(&apos;SELECT NamespacePrefix FROM ApexClass WHERE Name = \&apos;HerokuCacheRefresh\&apos;&apos;, {
+      onSuccess: function(data) {
+      var prefix = data.records.NamespacePrefix? data.records.NamespacePrefix+&apos;.&apos;: &apos;&apos;;
+      var result = &apos;&apos;+sforce.apex.execute(prefix+&apos;HerokuCacheRefresh&apos;, &apos;cacheFlushStatus&apos;, {});
+      window.alert(result);
+      },
+      onFailure: function(err) {
+      window.alert(err);
+      }
+      });</url>
+    </webLinks>
 </CustomObject>
