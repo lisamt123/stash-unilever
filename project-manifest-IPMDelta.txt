@@ -1,17 +1,1 @@
-src
-src/classes
-<<<<<<< HEAD
-src/classes/IPM_GateDocumentController.cls
-src/classes/IPM_GateDocumentController.cls-meta.xml
-src/classes/IPM_GroupManagement.cls
-src/classes/IPM_GroupManagement.cls-meta.xml
-=======
-src/classes/IPM_BD_BB_Report_Batch.cls
-src/classes/IPM_BD_BB_Report_Batch.cls-meta.xml
-src/classes/IPM_BD_BB_Report_BatchSchedule.cls
-src/classes/IPM_BD_BB_Report_BatchSchedule.cls-meta.xml
-src/classes/IPM_OTIF_Report_Batch.cls
-src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
-src/classes/IPM_OTIF_Report_BatchSchedule.cls
-src/classes/IPM_OTIF_Report_BatchSchedule.cls-meta.xml
->>>>>>> develop
+
