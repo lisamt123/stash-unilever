@@ -110,7 +110,7 @@
                             <apex:inputField value="{!nc.target.Year__c}" required="true"/>
                         </apex:column>
                         <apex:column headerValue="Region" >
-                            <apex:inputField value="{!nc.target.Region_Geography__c}" required="true"/>
+                            <apex:inputField value="{!nc.target.Region__c}" required="true"/>
                         </apex:column>
                         <apex:column headerValue="Target Reduction" >
                             <apex:inputField value="{!nc.target.Target_Reduction__c}" required="true"/>
@@ -129,7 +129,7 @@
                                 <apex:outputField value="{!nc.target.Year__c}"/>
                             </apex:column>
                             <apex:column headerValue="Region" >
-                                <apex:outputField value="{!nc.target.Region_Geography__c}"/>
+                                <apex:outputField value="{!nc.target.Region__c}"/>
                             </apex:column>
                             <apex:column headerValue="Target Reduction" >
                                 <apex:outputField value="{!nc.target.Target_Reduction__c}"/>
