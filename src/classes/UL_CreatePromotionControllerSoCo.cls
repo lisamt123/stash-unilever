@@ -36,10 +36,8 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         get
         {
             List<SelectOption> options = new List<SelectOption>();
-            options.add(new SelectOption('None','--None--'));
             Schema.DescribeFieldResult fieldResult = ACCL__Promotion__c.UL_Promotion_Template_Type__c.getDescribe();
-            List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
-            
+            List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();            
             for( Schema.PicklistEntry f : ple)
                 options.add(new SelectOption(f.getLabel(), f.getValue()));
             return options;

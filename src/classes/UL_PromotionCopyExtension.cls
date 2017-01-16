@@ -18,8 +18,8 @@ public with sharing class UL_PromotionCopyExtension {
     Map<Id,String> promotionTemplateWithSalesOrg = new Map<Id,String>();
     public List<SelectOption> AccountSets{get;set;}
     public List<SelectOption> Accounts {get;set;}
-    private string anchorCustomer;
-    private string anchorSetCustomer; 
+    private Id anchorCustomer = UL_Utility.NULL_ID;
+    private Id anchorSetCustomer = UL_Utility.NULL_ID; 
     private set<id> eligibleAnchorcust;
     set<id> eligibleCustSet;
     Set<ACCL__Account_Set__c> validAccountSets;
@@ -42,9 +42,14 @@ public with sharing class UL_PromotionCopyExtension {
             stdController.addFields(additionalFields);
         }
         PromDetails=(ACCL__Promotion__c)stdController.getRecord();
+        if(isPromotionTemplateAnchorTypeCustomer(PromDetails.ACCL__Promotion_Template__c)){
+            anchorCustomer = PromDetails.ACCL__Anchor_Account__c;            
+        }
+        else{
+              anchorSetCustomer = PromDetails.ACCL__Anchor_Account_Set__c;        
+        } 
         isValid();
         clonePromotionDetails = new ACCL__Promotion__c();
-        anchorCustomer=UL_Utility.SPACE;
         eligibleAnchorcust = new set<id>();
         eligibleCustSet = new set<id>();       
     }
@@ -60,7 +65,7 @@ public with sharing class UL_PromotionCopyExtension {
         pagereference pageReturn=null;
         
         clonePromotionDetails = PromDetails;
-        if(anchorCustomer!=UL_Utility.NULL_VALUE && String.isNotEmpty(anchorCustomer)){            
+        if(anchorCustomer!=UL_Utility.NULL_ID){            
             clonePromotionDetails.ACCL__Anchor_Account__c = anchorCustomer;
             PromDetails.ACCL__Anchor_Account_Set__c = anchorSetCustomer;
             if(!eligibleAnchorcust.contains(anchorCustomer)){
@@ -89,12 +94,12 @@ public with sharing class UL_PromotionCopyExtension {
             promotionFields.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Current_Status__c.getName(), UL_Utility.PROMOTION_STATUS);
             
             Map<String, object> tacticFields = new Map<String, object>();
-            promotionFields.put(Schema.SObjectType.ACCL__Tactic__c.fields.ACCL__Date_From__c.getName(), clonePromotionDetails.ACCL__Date_From__c);
-            promotionFields.put(Schema.SObjectType.ACCL__Tactic__c.fields.ACCL__Date_Thru__c.getName(), clonePromotionDetails.ACCL__Date_Thru__c);
-            promotionFields.put(Schema.SObjectType.ACCL__Tactic__c.fields.ACCL__Instore_Date_From__c.getName(), clonePromotionDetails.ACCL__Date_From__c);
-            promotionFields.put(Schema.SObjectType.ACCL__Tactic__c.fields.ACCL__Instore_Date_Thru__c.getName(), clonePromotionDetails.ACCL__Date_Thru__c);
-            promotionFields.put(Schema.SObjectType.ACCL__Tactic__c.fields.ACCL__Shipment_Date_From__c.getName(), clonePromotionDetails.ACCL__Date_From__c);
-            promotionFields.put(Schema.SObjectType.ACCL__Tactic__c.fields.ACCL__Shipment_Date_Thru__c.getName(), clonePromotionDetails.ACCL__Date_Thru__c);
+            tacticFields.put(Schema.SObjectType.ACCL__Tactic__c.fields.ACCL__Date_From__c.getName(), clonePromotionDetails.ACCL__Date_From__c);
+            tacticFields.put(Schema.SObjectType.ACCL__Tactic__c.fields.ACCL__Date_Thru__c.getName(), clonePromotionDetails.ACCL__Date_Thru__c);
+            tacticFields.put(Schema.SObjectType.ACCL__Tactic__c.fields.ACCL__Instore_Date_From__c.getName(), clonePromotionDetails.ACCL__Date_From__c);
+            tacticFields.put(Schema.SObjectType.ACCL__Tactic__c.fields.ACCL__Instore_Date_Thru__c.getName(), clonePromotionDetails.ACCL__Date_Thru__c);
+            tacticFields.put(Schema.SObjectType.ACCL__Tactic__c.fields.ACCL__Shipment_Date_From__c.getName(), clonePromotionDetails.ACCL__Date_From__c);
+            tacticFields.put(Schema.SObjectType.ACCL__Tactic__c.fields.ACCL__Shipment_Date_Thru__c.getName(), clonePromotionDetails.ACCL__Date_Thru__c);
             
             if(AnchorTypeCustomer){
                 List<id> accountIds = new List<id>(); 
@@ -215,12 +220,12 @@ public with sharing class UL_PromotionCopyExtension {
                                                          FROM ACCL__Account_Set__c
                                                          WHERE id=:promAccountset Limit:(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())]){
                                                              if(acntset.id!=null){
-                                                            	 promotionTemplateSalesOrg = acntset.ACCL__Sales_Org__c;
+                                                                 promotionTemplateSalesOrg = acntset.ACCL__Sales_Org__c;
                                                                  
                                                                  SelectOption custOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
-                                                         	     custOption.setValue(acntset.Id);
-                                                         	     custOption.setLabel(acntset.ACCL__Description__c+ UL_Utility.HYPHEN +acntset.ACCL__Sales_Org__c);
-                                                         	     AccountSets.add(custOption);
+                                                                 custOption.setValue(acntset.Id);
+                                                                 custOption.setLabel(acntset.ACCL__Description__c+ UL_Utility.HYPHEN +acntset.ACCL__Sales_Org__c);
+                                                                 AccountSets.add(custOption);
                                                                  
                                                                 //AccountSets.add(new SelectOption(acntset.Id, acntset.ACCL__Description__c+ UL_Utility.HYPHEN +acntset.ACCL__Sales_Org__c)); 
                                                              }
@@ -251,9 +256,9 @@ public with sharing class UL_PromotionCopyExtension {
                 if (description == UL_Utility.NULL_VALUE) {description = UL_Utility.SPACE;}
                 
                 SelectOption custOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
-        	    custOption.setValue(accountSet.Id);
-        	    custOption.setLabel(description+ UL_Utility.HYPHEN +salesOrg);
-        	    AccountSets.add(custOption);
+                custOption.setValue(accountSet.Id);
+                custOption.setLabel(description+ UL_Utility.HYPHEN +salesOrg);
+                AccountSets.add(custOption);
                 
                 //AccountSets.add(new SelectOption(accountSet.Id, description+ UL_Utility.HYPHEN +salesOrg));
             }        
@@ -335,11 +340,11 @@ public with sharing class UL_PromotionCopyExtension {
             }
             if(finalValidAccount.size()>0){
                 for(Account acnt : finalValidAccount){
-                	SelectOption custOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
-            	    custOption.setValue(acnt.Id);
-            	    custOption.setLabel(acnt.name + UL_Utility.HYPHEN + acnt.ACCL__Sales_Org__c);
-            	    Accounts.add(custOption);
-                	
+                    SelectOption custOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
+                    custOption.setValue(acnt.Id);
+                    custOption.setLabel(acnt.name + UL_Utility.HYPHEN + acnt.ACCL__Sales_Org__c);
+                    Accounts.add(custOption);
+                    
                     //Accounts.add(new SelectOption(acnt.Id, acnt.name + UL_Utility.HYPHEN + acnt.ACCL__Sales_Org__c)); 
                 }   
             }
