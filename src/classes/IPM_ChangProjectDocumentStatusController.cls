@@ -31,6 +31,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public static final String LINEBREAK_STR = '</a><br/>';
     public static final String TARGET_STR = '" target="_top">';
     public static final String HREF_STR = '<a href="';
+    public static final String PRINTDOC_STR = 'printDoc'; 
     //For Showing Validation Error Messages
     public Boolean milestoneError{get; set;}
     public Boolean riskError{get; set;}
@@ -109,14 +110,15 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         belowThresholdError=false;
         stopDisclaimer=Label.IPM_StopDisclaimer2;
         projectId=ApexPages.currentPage().getParameters().get('Id');
-        String checkPDL = ApexPages.currentPage().getParameters().get('isPDL');
+        String printDocUrlParam = ApexPages.currentPage().getParameters().get(PRINTDOC_STR); 
+        Boolean checkPDL = printDocUrlParam!=null && printDocUrlParam.EqualsIgnoreCase(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT);
         isPDL=false;
         if(projectId!=null)
         { 
             associatedProjectType = IPM_Utils.retrieveProjectType(project);
             if(associatedProjectType!=null){
                 String currentGate = associatedProjectType.IPM_Gate_Document__c;
-                if(IPM_ConstantUtils.IPM_true.EqualsIgnoreCase(checkPDL)){
+                if(checkPDL){                                                        //IPM_ConstantUtils.IPM_True.EqualsIgnoreCase(checkPDL)
                 	currentGate = IPM_ConstantUtils.PRODUCT_DESIGN_LOCK ;
                 	isPDL=true;
                 }
@@ -137,10 +139,17 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 projSectionListUpdate=[SELECT Id,IPM_Default_Section__c,IPM_Negotiable__c,IPM_Section_Type__c,IPM_Section_Sequence__c,IPM_Section_Name__c,IPM_Gate_Document_Summary__c 
                 FROM IPM_Project_Document_Section__c 
                 WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section_Status__c=:IPM_ConstantUtils.STATUS_NOT_STARTED AND IPM_Default_Section__c=true AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER ORDER BY IPM_Section_Sequence__c asc];
-                
+                String pdlDocName = IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT;// variable used in query below NO SONAR
                 String standardType = IPM_ConstantUtils.STANDARD;// variable used in query below NO SONAR
                 String milestoneQuery = IPM_Utils.prepareSOQLQuery('IPM_Milestone__c',false,null,true);
-                String milestoneWhereClause = ' WHERE IPM_Type_of_Milestone__c =:standardType AND  IPM_Project__c=:projectId AND IPM_Active__c = true order by IPM_Phase_Order__c LIMIT 50000';
+                String milestoneWhereClause;
+                if(!isPDL)
+                {
+                    milestoneWhereClause = ' WHERE IPM_Type_of_Milestone__c =:standardType AND  IPM_Project__c=:projectId AND IPM_Active__c = true order by IPM_Phase_Order__c LIMIT 50000';
+                }else{
+                    milestoneWhereClause = ' WHERE IPM_Type_of_Milestone__c =:standardType AND  (IPM_Project__c=:projectId OR IPM_Project__r.IPM_Parent_Project__c=:projectId) AND IPM_Active__c = true AND IPM_Name__c=: pdlDocName LIMIT 50000';
+                }
+                
                 milestoneQuery = milestoneQuery + milestoneWhereClause;
                 milestoneList = database.query(milestoneQuery);
                 
@@ -925,18 +934,18 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     	try{	
     		Date dt=date.parse(System.today().format());
     		if(projSectionListUpdate.isEmpty()){    			
-		    	IPM_Milestone__c oPDLMilestone=null;
-		    	for (IPM_Milestone__c oMilestone : milestoneList){
-		    		if(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT.Equals(oMilestone.IPM_Name__c)){
-		    			oPDLMilestone=oMilestone;
-		    			break;
-		    		}    		
-		    	}
-		    	if(oPDLMilestone!=null){
-		    		oPDLMilestone.IPM_Completed_On__c=dt;
-		    		oPDLMilestone.IPM_Completed__c=true;
-		    		update oPDLMilestone;
-		    	}
+		     List<IPM_Milestone__c> oPDLMilestone = new List<IPM_Milestone__c>();
+                for (IPM_Milestone__c oMilestone : milestoneList){
+                    if(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT.Equals(oMilestone.IPM_Name__c)){
+                        oMilestone.IPM_Completed_On__c=dt;
+                    	oMilestone.IPM_Completed__c=true; 
+                        oPDLMilestone.add(oMilestone);
+                       
+                    }           
+                }
+
+                    update oPDLMilestone;
+                
 		    	projectDoc.IPM_Document_Status__c = IPM_ConstantUtils.STATUS_APPROVED;		    	
 	    		projectDoc.IPM_Approval_Date__c = dt;
 	    		projectDoc.IPM_Updated_User_By__c = UserInfo.getUserId();
@@ -951,7 +960,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 		    			pdfGateDocRef.getParameters().put('SetStatus',tempProjectDoc.IPM_Document_Status__c);
 		    			pdfGateDocRef.getParameters().put('StatusComments',tempProjectDoc.IPM_Approved_Comments__c);
 		    			pdfGateDocRef.getParameters().put('DocumentType','PDF');
-		    			pdfGateDocRef.getParameters().put('printDoc',IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT);
+		    			pdfGateDocRef.getParameters().put(PRINTDOC_STR,IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT);
 		    			pdfGateDocRef.getParameters().put('StatusDate',projectDoc.IPM_Approval_Date__c.format());
 		    			pdfGateDocRef.getParameters().put('OperatedBy',tempProjectDoc.IPM_Updated_User_By__r.Name);
 		    			pdfGateDocRef.getParameters().put(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER,'true'); 

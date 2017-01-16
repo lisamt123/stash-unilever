@@ -7,23 +7,45 @@
     @Reference: IPM_CustomerChannel component
 */
 public with sharing class IPM_CustomerChannelController {
+    public boolean gdpage{
+        get {
+            if(gdpage == null) {
+                if(Apexpages.currentpage().getparameters().get('gdpage') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return gdpage; }
+        }
+        set;
+    }
     public Id projectId { // to get-set the project id from the component attribute.
         get{
-            return projectId ;// to get the project id from the component attribute.
+            if(projectId == null && Apexpages.currentpage().getparameters().get('getProjectId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('getProjectId')) ;
+            }
+            else { return projectId; }
         }
-        set{
-            projectId = value;// to set the project id from the component attribute.
-        }
+        set;
     } 
     public Id projDocSecId {// to get-set the project document section id from the component attribute.
         get{
-            return projDocSecId;// to get the project document section id from the component attribute.
+            if(projDocSecId == null && Apexpages.currentpage().getparameters().get('getSecid') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('getSecid')) ;
+            }
+            else { return projDocSecId; }
         }
-        set{
-            projDocSecId= value;// to set the project document section id from the component attribute.
-            showSectionContent(); //callig the function to show the customer channel section
-        }
+        set;
     }
+    public Boolean isEditable{
+        get {
+            if(isEditable == null) {
+                if(Apexpages.currentpage().getparameters().get('CCEdit') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEditable; }
+        }
+        set;
+    }// boolean to check if editable
+    
     public Id secConId{get; set;}// to store the section Content Id
     public string arrow{get; set;} // string to store the priority arrow
     public Integer priorityNumber{get; set;} // integer to store the priority Number
@@ -36,7 +58,6 @@ public with sharing class IPM_CustomerChannelController {
     public String content{get; set;}//string to store the content
     public String channelType{get; set;}//string to get the channel type.
     public List<String> Names{get; set;}// list of customer channel names
-    public Boolean isEditable{get;set;}// boolean to check if editable
     public Integer channelCount{get; set;}//boolean for count for number Customer channel selected
     public string channelInfo{get;set;}//string for channel Info
     //For deleting channel image
@@ -54,17 +75,31 @@ public with sharing class IPM_CustomerChannelController {
     private static final String UPDATE_INFO='updateInfo';
     
     /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForComponent() {
+        showSectionContent();
+        return 'Required methods are invoked for component';
+    }
+    
+    /************************************************************************************************************************
     * @Description: Constructor for the controller
     */
     public IPM_CustomerChannelController(){
         IPM_IECompatible.ieFix();//For IE Compatibility
+        
         Names=new List<String>();
         Schema.DescribeFieldResult fieldResult = IPM_Project_Document_Section_Content__c.IPM_Customer_Channels__c.getDescribe();
         List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();// to get the list of the Picklist values
         for( Schema.PicklistEntry f : ple){
             Names.add(f.getValue());
         }    
+        
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
     }   
+    
     
     /************************************************************************************************************************
     *  Description To retrieve customer channel contents
@@ -86,7 +121,11 @@ public with sharing class IPM_CustomerChannelController {
                                    IPM_Pack_Image_1_Id__c,IPM_Pack_Image_2_Id__c,IPM_Price_Image_1_Id__c,IPM_Price_Image_2_Id__c,IPM_Place_Image_1_Id__c
                             FROM IPM_Project_Document_Section_Content__c 
                             WHERE IPM_Project_Document_Section__c=:projDocSecId AND IPM_Content_Type__c =: IPM_ConstantUtils.CUSTOMER_CHANNEL_SECTION ORDER BY IPM_Customer_Channel_Priority__c asc];
-            }   
+            
+            
+	            show=true;
+            }
+			
         }
         catch (Exception ex) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));

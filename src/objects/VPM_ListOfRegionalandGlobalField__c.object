@@ -37,6 +37,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_SectionName__c</fullName>
+        <description>VPM - stores the name of section to which the field belongs to.</description>
+        <externalId>false</externalId>
+        <label>Section Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_fieldDatatype__c</fullName>
         <description>VPM - This field is used to store data types for all Global/regional fields</description>
         <externalId>false</externalId>
