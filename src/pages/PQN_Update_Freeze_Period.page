@@ -1,0 +1,86 @@
+<apex:page showHeader="false" docType="html-5.0" controller="PQNUpdateFreezePeriodCtrl" standardStylesheets="true" id="page">
+    <script type="text/javascript">
+        function checkDate(){
+            updateFreezeDate();
+            }
+        
+        function closePopup(){
+            
+            self.close();
+        }
+    </script>
+    <apex:form style="border:2px;" id="form">
+    <apex:actionFunction name="updateFreezeDate" action="{!updateFreezePeriod}" reRender="errMsg" />
+    <apex:pageMessages id="errMsg"></apex:pageMessages>
+    <apex:pageBlock id="pgBlock">
+    <apex:outputText style="font-weight:bold" value="Enter the date in the mm/dd/yyyy format"/>
+    <apex:pageBlockSection columns="2" id="pgSection">
+                    <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="January" style="font-weight: bold" />
+                    <apex:input type="date"  value="{!January}" style="font-weight: bold;"  id="jan" onblur="checkDate();"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="February" style="font-weight: bold"/>
+                    <apex:input type="date"   value="{!February}" style="font-weight: bold" id="feb" onblur="checkDate();"/>
+                    </apex:pageBlockSectionItem>
+                
+                    <apex:pageBlockSectionItem >                
+                    <apex:outputLabel value="March" style="font-weight: bold"/>
+                    <apex:input type="date"   value="{!March}" style="font-weight: bold" id="march" onblur="checkDate();"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="April" style="font-weight: bold"/>
+                    <apex:input type="date"   value="{!April}" style="font-weight: bold" id="april" onblur="checkDate();"/>
+                    </apex:pageBlockSectionItem>
+                    
+                
+                    <apex:pageBlockSectionItem >                
+                    <apex:outputLabel value="May" style="font-weight: bold"/>
+                    <apex:input type="date"   value="{!May}" style="font-weight: bold" id="may" onblur="checkDate();"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="June" style="font-weight: bold"/>
+                    <apex:input type="date"   value="{!June}" style="font-weight: bold" id="june" onblur="checkDate();" />
+                    </apex:pageBlockSectionItem>
+                
+                    <apex:pageBlockSectionItem >                
+                    <apex:outputLabel value="July" style="font-weight: bold"/>
+                    <apex:input type="date"    value="{!July}" style="font-weight: bold" id="july" onblur="checkDate();"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="August" style="font-weight: bold"/>
+                    <apex:input type="date"   value="{!August}" style="font-weight: bold" id="august" onblur="checkDate();" />
+                    </apex:pageBlockSectionItem>
+                
+                    <apex:pageBlockSectionItem >                
+                    <apex:outputLabel value="September" style="font-weight: bold"/>
+                    <apex:input type="date"   value="{!September}" style="font-weight: bold" id="sep" onblur="checkDate();"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    
+                    <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="October" style="font-weight: bold"/>
+                    <apex:input type="date"   value="{!October}" style="font-weight: bold" id="oct" onblur="checkDate();"/>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >                
+                    <apex:outputLabel value="November" style="font-weight: bold"/>
+                    <apex:input type="date"   value="{!November}" style="font-weight: bold" id="nov" onblur="checkDate();"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >                    
+                    <apex:outputLabel value="December" style="font-weight: bold"/>
+                    <apex:input type="date"  value="{!December}" style="font-weight: bold" id="dec" onblur="checkDate();" />  
+                    </apex:pageBlockSectionItem> 
+                </apex:pageBlockSection>
+                </apex:pageBlock>
+        <div style="align:center;"> 
+        <apex:commandButton value="Update Freeze Period" style="background:darkorange" action="{!updateFreezePeriod}" reRender="errMsg" />
+        <apex:commandButton value="Cancel" style="background:darkorange" onclick="closePopup(); " />
+        </div>
+    </apex:form>
+</apex:page>

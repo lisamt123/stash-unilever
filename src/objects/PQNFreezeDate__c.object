@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This custom setting is created to store the value of Freeze Date</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Freeze_Date__c</fullName>
+        <description>This field holds the freeze date for the PQN records</description>
+        <externalId>false</externalId>
+        <label>Freeze Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Numeric_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Numeric Value</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>PQN Freeze Date</label>
+    <visibility>Public</visibility>
+</CustomObject>
