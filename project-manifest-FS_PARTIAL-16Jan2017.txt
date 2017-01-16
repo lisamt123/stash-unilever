@@ -6,7 +6,15 @@ src/classes/FS_CHDUtility.cls
 src/classes/FS_CHDUtility.cls-meta.xml
 src/classes/FS_CHDUtilityTest.cls
 src/classes/FS_CHDUtilityTest.cls-meta.xml
+src/classes/FS_CreateContact_CC.cls
+src/classes/FS_CreateContact_CC.cls-meta.xml
+src/classes/FS_ContactDetail_CC.cls
+src/classes/FS_ContactDetail_CC.cls-meta.xml
+src/pages/FS_ContactDetailPage.page
+src/pages/FS_ContactDetailPage.page-meta.xml
 src/objects/Account.object
 src/objects/FS_Account_Plan__c.object
 src/objects/Opportunity.object
+src/objects/FS_CHD_GFCCode__c.object
 src/workflows/Account.workflow
+src/flows/FS_CHD_Segemetation_Call_Apex-10.flow
