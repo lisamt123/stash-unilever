@@ -4,6 +4,7 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
     // Public Date currentDate = date.Today();
     //Integer monthValue = currentDate.month();
     public list<PQNFreezeDate__c> currentMonthFreezePeriod {get;set;}
+    public Long daysLeft {get;set;}
     
      
     public Boolean getFlag(){
@@ -37,6 +38,8 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
     
         //Fetch the current month value of the custom setting record and display the value
         currentMonthFreezePeriod = [select Id, Name, Numeric_Value__c, Freeze_Date__c from PQNFreezeDate__c where Numeric_Value__c =: Date.Today().Month() LIMIT 1];
+        daysLeft = Date.Today().daysBetween(currentMonthFreezePeriod[0].Freeze_Date__c);
+        system.debug('the days left' + daysLeft);
         
         //Get the Profile ID of the Logged in User to check wheather logged in User is internal user or not
         Id pId = userinfo.getProfileId();

@@ -8,34 +8,26 @@
          refreshRemoteChart();
          //refreshCatRemoteChart();
      });
-     
+     </script>
+     <script>
      function refreshRemoteChart(){
-        
         var statusElement = document.getElementById('statusDisplay');
             retrieveChartData(function(statusElement){
                         return function(data){
                         RemotingstackDosingChart.reload(data);
-                        
                     };
                 }(statusElement)
             );
-            
             retrieveCatChartData(function(statusElement){
                         return function(data1){
                         RemotingstackCatDosingChart.reload(data1);
-                        
                     };
                 }(statusElement)
-            );
-        
-        
-     }
-      
-     function retrieveChartData(callback){
-            
-            var dataArray = new Array();
-            
-            
+            );}
+     </script>
+     <script>
+     function retrieveChartData(callback){            
+           var dataArray = new Array();           
            Visualforce.remoting.Manager.invokeAction(
            '{!$RemoteAction.PQN_Global_Overview_Geography.generateStackData}',
            '{!dosingLabel}',
@@ -43,44 +35,24 @@
                 console.log(result);
                 if (event.status) {
                        p$.each(result, function( key, val ) {
-                    
                        if(key!="TOTAL_MD_RESULT"){
-                           var b = "{"+val+'';          
-                                                  
+                           var b = "{"+val+'';        
                            b=b.replace(/MD_/g, '"');
-                           b+=',"name":"'+key+'"}';
-                          
-                           var obj = p$.parseJSON(b);
-                          
+                           b+=',"name":"'+key+'"}';                          
+                           var obj = p$.parseJSON(b);                          
                            dataArray.push(obj);
-                       }
-                       
-                       
+                       }                      
                     });
               
                     callback(dataArray);
                     RemotingstackDosingChart.show();
                      
-                       // console.clear();
-                        stackArray = dataArray;
-                        /*var dataArray2 = new Array();
-                       dataArray2.push({'data1':10,'data2':10,'data3':10,'name':'EMP'});
-                       dataArray2.push({'data1':20,'data2':10,'data3':10,'name':'LOCS'});*/
-                       //var obj2 = jQuery.parseJSON( '{ "name": "John" }' );
                       
-                      
-                }else if (event.type === 'exception') {
-                   document.getElementById("remoteResponseErrors").innerHTML = event.message +
-                       '<br/>' + event.where;
-               }
-               else {
-                   document.getElementById("remoteResponseErrors").innerHTML = event.message;
-               }                   
+                }else if (event.type === 'exception') { document.getElementById("remoteResponseErrors").innerHTML = event.message +'<br/>' + event.where;
+               } else { document.getElementById("remoteResponseErrors").innerHTML = event.message;}                   
            },
            {escape: true, buffer: false,timeout: 120000}
-        );
-            
-    }
+        );}
      </script>
      
      <script>
@@ -97,7 +69,8 @@
         
         
      }
-      
+     </script>
+     <script>
      function retrieveCatChartData(callback1){
             var dataArray = new Array();
            Visualforce.remoting.Manager.invokeAction(
@@ -107,49 +80,24 @@
                 console.log(result);
                 if (event.status) {
                        p$.each(result, function( key, val ) {
-                    
                        if(key!="TOTAL_MD_RESULT"){
-                           var b = "{"+val+'';          
-                                                  
+                           var b = "{"+val+'';    
                            b=b.replace(/MD_/g, '"');
                            b+=',"name":"'+key+'"}';
-                          
                            var obj = p$.parseJSON(b);
-                          
                            dataArray.push(obj);
                        }
-                       
-                       
-                    });
+                       });
               
                     callback1(dataArray);
                     RemotingstackCatDosingChart.show();
-                     
-                       // console.clear();
-                        stackArray = dataArray;
-                        /*var dataArray2 = new Array();
-                       dataArray2.push({'data1':10,'data2':10,'data3':10,'name':'EMP'});
-                       dataArray2.push({'data1':20,'data2':10,'data3':10,'name':'LOCS'});*/
-                       //var obj2 = jQuery.parseJSON( '{ "name": "John" }' );
-                      
-                      
-                }else if (event.type === 'exception') {
-                   document.getElementById("remoteResponseErrors").innerHTML = event.message +
-                       '<br/>' + event.where;
-               }
-               else {
-                   document.getElementById("remoteResponseErrors").innerHTML = event.message;
-               }                   
+                }else if (event.type === 'exception') { document.getElementById("remoteResponseErrors").innerHTML = event.message +'<br/>' + event.where; }
+               else {document.getElementById("remoteResponseErrors").innerHTML = event.message;}                   
            },
            {escape: true, buffer: false,timeout: 120000}
-        );
-            
-    }
-     
+        );}     
      </script>
-
-
-
+     
 </head>
 <div class="panel panel-default" style="padding-left:200px;">
     <div class="panel-heading" style="text-align: center!important;"><h3 class="panel-title" style="font-size: large; color: #b41955!important;">

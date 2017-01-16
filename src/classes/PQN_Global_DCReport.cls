@@ -3,11 +3,16 @@ public without sharing class PQN_Global_DCReport{
     public List<PQN_Global_SUWrap> xSUWRAPLIST{get;set;}
     public List<PQN_chart> xChartdata{get;set;}
     public String empty{get;set;}
+    public String empt{get;set;}
+     public Integer cuYear{get;set;}
+    public Integer preYear{get;set;}
+    public String cuMonth{get;set;}
       
     public PQN_Global_DCReport(){
        
         
-        empty = '';
+        empty = 'n.a';
+        empt='';
         xSUWRAPLIST = new List<PQN_Global_SUWrap>();
         xChartdata = new List<PQN_chart>();
         String prevClus = '';
@@ -40,6 +45,10 @@ public without sharing class PQN_Global_DCReport{
         Map<String,Integer> mapOfRegioncryear = new Map<String,Integer>();
         Map<String,Integer> mapOfRegionPreYear = new Map<String,Integer>();
         Map<String,Integer> mapOfRegioncrmnth = new Map<String,Integer>();
+        cuYear = integer.valueof(system.Today().year());
+        preYear = integer.valueof(system.Today().year()) - 1;
+        DateTime d = datetime.now();
+        cuMonth = d.format('MMMMM');
      //   Map<String,Decimal> mapOftarget = new Map<String,Decimal>();
         
         system.debug('listtar-->>'+listtar);
@@ -154,7 +163,7 @@ public without sharing class PQN_Global_DCReport{
               }else{xA.cumnthdata =0;}
             }
             else {
-             if( mapOfRegioncrmnth .get(xA.ReportingDC )!=null){
+             if( mapOfRegioncrmnth .get(xA.Cluster)!=null){
                 xA.cumnthdata = mapOfRegioncrmnth .get(xA.Cluster);
               }else{xA.cumnthdata =0;}
             }
