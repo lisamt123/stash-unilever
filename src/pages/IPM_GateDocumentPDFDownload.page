@@ -530,15 +530,16 @@
             
             /* Performance Breakdown Styles */      
             .performanceContainer1{background-color:#dceefa;float: left;}       
-            .performanceHead{float: left;font-weight: bold;width:44px;padding:5px;font-size:10px;}      
-            .performanceContainer2,.performanceContainer3{width: 760px;}        
+            .performanceHead{float: left;font-weight: bold;width:43.5px;padding:5px;font-size:10px;}      
+            .performanceContainer1,.performanceContainer2,.performanceContainer3{width: 760px;}        
             .performanceContainer2{background: #f8f8f8;float:left;clear:both;}      
             .performanceContainer3{clear:both;display:table;table-layout:fixed;}        
             .breakdown_Container{margin-bottom: 10px;}      
-            .performanceSecHead{float:left;width:43px;padding: 5px;font-size:10px;}     
-            .performanceCell{float:left;width:44px;padding: 5px;font-size:10px;border-bottom:1pt #7fa29e solid;min-height:15px;}        
+            .performanceSecHead{float:left;width:43.5px;padding: 5px;font-size:10px;}
+            .performanceSecHead.misaligned{width:41.5px;}
+            .performanceCell{float:left;width:43.5px;padding: 5px;font-size:10px;border-bottom:1pt #7fa29e solid;min-height:15px;}        
             .emptyCell{min-height:14px;}        
-            .misaligned{border:2px solid red;min-height:51px;}      
+            .misaligned{border:1px solid red;min-height:51px;}      
             .performanceDrpdownContainer{margin-top:10px;}      
             .SecButtonSet a.icoButton.download{margin-top:10px;}        
             .panel .ipmButtonSet{margin-bottom:10px;}       
@@ -553,18 +554,17 @@
             .glbHeadtop1{width:325px;float:left;min-height: 40px;}
             .glbHeadtop2{width:290px;float:left;min-height: 40px;}
             .glbfrstyear,.glbinnovation{padding-bottom: 2px;text-align: center;color: #364354;font-weight: bold;margin-top: 2px;border-bottom: 1px solid #ddd;}
-            .glbsubHeadM{float:left;width:64px;padding-top: 2px;text-align: center;border-right: 1px solid #ddd;min-height: 20px;font-size: 11px;min-height: 30px;}
-            .glbsubHeadM2{float:left;width:33%;padding-top: 2px;text-align: center;border-right: 1px solid #ddd;min-height: 20px;font-size: 11px;min-height: 30px;}
+            .glbsubHeadM{float:left;width:64px;padding-top: 2px;text-align: center;border-right: 1px solid #ddd;font-size: 11px;min-height: 43px;}
+            .glbsubHeadM2{float:left;width:33%;padding-top: 2px;text-align: center;border-right: 1px solid #ddd;font-size: 11px;min-height: 43px;}
             .glbHeadtop1{border-right: 1px solid #ddd;}
             .glbsubHead8,.glbValM2.glbVal8{border-right:0px;}
             .glbValLeft{height: 20px;width: 136px;float: left;display: block;text-align:center;border: 1px solid #ddd;padding-top: 5px;}
             .glbValRight{width:762px;height: 20px;}
             .glbValSubLeft{width:325px;display:block;height: 20px;float:left;}
-            .glbValSubRight{width:298px;display:block;height: 24px;float:left;border-right: 1px solid #ddd;}
+            .glbValSubRight{width:298px;display:block;height: 26px;float:left;border-right: 1px solid #ddd;}
             .glbValM{width:60px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 2px;min-height: 22px;}
             .glbValM2{width:93px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 2px;min-height: 22px;}
-            .glbVal8{border-right: 1px solid #ddd;float:left;width:96px;}        
-            .glbsecContainer .glbVal8{border-right:1px solid #ddd;width:98px;}
+            .glbVal8{border-right: 1px solid #ddd;float:left;width:97px;}        
             .glbValLeft.othValleft{height:20px !important;}
             .glbsecContainer{float:left;width:100%;}
             .glbfrstContainer{float:left;width:100%;display:table;}
@@ -669,16 +669,44 @@
             .goldenCheckcontainer label.goldbox {width: 80%;background: #FBBE2E;color: #000;border: 1px solid #E28A3C;padding: 5px;font-size: 8px !important;}
             .goldenCheckcontainer label {width:100%;background: #999;padding:4px 18px;height: 29px;}  
             .alignCenter{text-align:center;}
-            .srcbrkWord{word-wrap:break-word;word-break: break-word;background:#000;}
+            .srcbrkWord{word-wrap:break-word;word-break: break-word;}
             /* Local Source Plan Styles */
+            .lclPronamehead{width:10%;}
+            .lclProformathead{width:10%;}
+            .lclProformulationhead{width:14%;}
+            .lclPropackagehead{width:12%;}
+            .lclProsizehead{width:10%;}
+            .lclProgoldenhead{width:10%;}
+            .lclPromappinghead{width:20%;}
+            .lclProunitshead{width:40%;}
+            .lclProcapabilityhead{width:20%;}
+            .lclProsrcedintohead{width:40%;}
+            .lclPronameval{width:10%;}
+            .lclProformatval{width:10%;}
+            .lclProformulationval{width:14%;}
+            .lclPropackingval{width:12%;}
+            .lclProsizeval{width:10%;}
+            .lclProgoldenval{width:10%;}
+            .lclProcountryval{width:20%;}
+            .lclProsrcingval{width:36%;}
+            .lclProcapabilityval{width:27%;}
+            .lclProsrccountriesval{width:40%;}
+            
             .srcPlanTitle{margin-bottom: 5px;color: #253b78;width: 100%;font-size: 14px;font-weight: bold;}
             .greytxt{margin-bottom:10px;display:block;}
             .srcingHeaderContainer{display:table;width:100%;}
-            .leftHeadWidthResp {width: 66%;float: left;position: relative;}
-            .rightHeadWidthResp {width: 34%;float: left;position: relative;}
-            .custSrcWidth{width:8%;}
+            .leftHeadWidthResp {width: 490px;float: left;position: relative;}
+            .rightHeadWidthResp {width: 270px;float: left;position: relative;}
+            .custLeftTdwidth{width: 490px;}
+            .custRightTdwidth{width: 270px;}
+            .table>tbody>tr>td.noPadd {padding: 0;}
             .table>thead>tr>th>div.capcon {width: auto;margin: 0 auto;margin-top:-2px;background-color: #ececec;color: #555;padding: 2px 4px;vertical-align: middle;height: auto;border: 1px solid #ddd;}
-        </style>
+            .greenBox{background: #A3C24B;color: #fff;padding: 5px;font-size: 11px;margin: 0;display:block;}
+            .redBox{background: red;padding: 5px;margin: 3px 0px;color: #fff;display:block;}
+            .table div.approvalTip{padding-left:7px;}
+			.sfdc_richtext table{width:760px !important;}
+			.algnCenter{text-align:center;}
+		</style>
     </head>
     
     <apex:include pageName="IPM_GateDocumentPDF"/>

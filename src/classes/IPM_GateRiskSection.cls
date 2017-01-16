@@ -6,7 +6,55 @@
 @Version 1.0
 @reference IPM_GateRiskSection component
 */
-public with sharing class IPM_GateRiskSection{   
+public with sharing class IPM_GateRiskSection{  
+    
+    public Boolean IsEditable{
+        get {
+            if(isEditable == null) {
+                if(Apexpages.currentpage().getparameters().get('riskedit') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEditable; }
+        }
+        set;
+    }
+    public ID projDocSecId{ // to get-set the project id from the component attribute.
+        get{
+            if(projDocSecId == null && Apexpages.currentpage().getparameters().get('getProjectSectionId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('getProjectSectionId')) ;
+            }
+            else { return projDocSecId; }
+        }
+        set;
+    } 
+    public ID projectId{ // to get-set the project id from the component attribute.
+        get{
+            if(projectId == null && Apexpages.currentpage().getparameters().get('getProjectId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('getProjectId')) ;
+            }
+            else { return projectId; }
+        }
+        set;
+    } 
+    public boolean edit{
+        get {
+            if(edit == null) {
+                if(Apexpages.currentpage().getparameters().get('editSection') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return edit; }
+        }
+        set;
+    }
+    public string projDocType{// to get-set the project document section id from the component attribute.
+        get{
+            if(projDocType == null && Apexpages.currentpage().getparameters().get('gateType') != null) {
+                return  Apexpages.currentpage().getparameters().get('gateType');
+            }
+            else { return projDocType; }
+        }
+        set;
+    }
     //For exception handling
     private static final string CLASS_NAME = IPM_GateRiskSection.class.getName();
     private static final string RMP_PLAN='rmpPlan';
@@ -15,30 +63,12 @@ public with sharing class IPM_GateRiskSection{
     public List<IPM_Questionnaire__c> posQuestionsList{get;set;} //to get the list of the pos Question
     public List<IPM_Questionnaire__c> displayRQSQuestionsList {get;set;}//to get the list of the RQS Question
     public List<IPM_Questionnaire__c> displayCRQuestionsList {get;set;}//to get the list of the Corporate Question
-    public string projDocType{get;set;}//to get the gate document type
-    public ID projectId{ //to get the project id from teh component attribute
-        get {
-            return projectId;
-        }
-        set {
-            projectId= value;//to get the project id from teh component attribute
-            rmpPlan();//call the RMP plan to be displayed
-            setRenderValues();
-        }
-    }
-    public boolean edit{ //boolean for editable
-        get {
-            return edit;
-        }
-        set {
-            edit= value;
-        }
-    }    
+    
+       
     public static  ID recTypeIDRQS {get;set;} //Record type ID for RQS Questionnaire
     public static  ID recTypeIDCR {get;set;} //Record type ID for Corporate Risk Questionnaire   
     public static  ID recTypeIDPOS  {get;set;}//Record type ID for POS Questionnaire
-    public ID projDocSecId{get; set;}// the project doc section id
-    public Boolean IsEditable{get;set;}//boolean for editable
+    
     public  Boolean generateRisk{get;set;}//to generate risk
     public Id quesId{get; set;}//to get the question ID
     public string comments{get; set;}// to get the comments against risk
@@ -48,6 +78,25 @@ public with sharing class IPM_GateRiskSection{
     public Boolean isMarketReady{get;set;}
     public Boolean isCharter{get;set;}
     public Boolean isContract{get;set;}
+    
+     /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForComponent() {
+        rmpPlan();//call the RMP plan to be displayed
+        setRenderValues();
+        return 'Required methods are invoked for component';
+    }
+    
+     /************************************************************************************************************************
+    * @Description: CONSTRUCTOR
+    */
+    public IPM_GateRiskSection() {
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
+    }   
+    
     /***************************************************************************************************************************************
     *  @description Functions to display the RMP questions. 
     *  @name rmpPlan
@@ -75,29 +124,7 @@ public with sharing class IPM_GateRiskSection{
             displayRQSQuestionsList=new List<IPM_Questionnaire__c>();
             displayCRQuestionsList=new List<IPM_Questionnaire__c>();
             riskCategories=new Set<String>();
-            //Getting list of POS,RQS questions
-            if(questionsList!=null && !questionsList.isEmpty()){
-                for(IPM_Questionnaire__c ques:questionsList){
-                    if(ques.RecordTypeId==recTypeIDPOS){
-                        posQuestionsList.add(ques);
-                    }
-                    if(ques.RecordTypeId==recTypeIDRQS && ques.IPM_Active_RQS__c && ((projDocType==IPM_ConstantUtils.CHARTER_GATE && ques.IPM_Charter_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
-                        (projDocType==IPM_ConstantUtils.CONTRACT_GATE && ques.IPM_Contract_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
-                        (projDocType==IPM_ConstantUtils.MARKET_READY_GATE && ques.IPM_Market_Ready_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
-                        (projDocType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE && ques.IPM_Market_Deployment_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE))){
-                            displayRQSQuestionsList.add(ques);
-                            riskCategories.add(ques.IPM_RQS_Question_Type__c);
-                    }
-                }               
-                if(posQuestionsList != null && !posQuestionsList.isEmpty()){
-                    if(posQuestionsList[0].IPM_Show_Create_Link__c){
-                        generateRisk=false;
-                    }
-                    else{
-                        generateRisk=true;
-                    }
-                }
-            }
+            getRiskQuestions();
             //Getting list of Corporate risk questions
             if(projDocType==IPM_ConstantUtils.CONTRACT_GATE || projDocType==IPM_ConstantUtils.MARKET_READY_GATE || projDocType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE){
                 for(IPM_Questionnaire__c crs:questionsList){
@@ -115,6 +142,37 @@ public with sharing class IPM_GateRiskSection{
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                 RMP_PLAN,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+        }
+    }
+    
+    /***************************************************************************************************************************************
+    *  @description Functions to Getting list of POS,RQS questions. 
+    *  @name getRiskQuestions
+    *  @param none
+    *  @return void 
+    */
+    private void getRiskQuestions(){
+      if(questionsList!=null && !questionsList.isEmpty()){
+            for(IPM_Questionnaire__c ques:questionsList){
+                if(ques.RecordTypeId==recTypeIDPOS){
+                    posQuestionsList.add(ques);
+                }
+                if(ques.RecordTypeId==recTypeIDRQS && ques.IPM_Active_RQS__c && ((projDocType==IPM_ConstantUtils.CHARTER_GATE && ques.IPM_Charter_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
+                    (projDocType==IPM_ConstantUtils.CONTRACT_GATE && ques.IPM_Contract_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
+                    (projDocType==IPM_ConstantUtils.MARKET_READY_GATE && ques.IPM_Market_Ready_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
+                    (projDocType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE && ques.IPM_Market_Deployment_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE))){
+                        displayRQSQuestionsList.add(ques);
+                        riskCategories.add(ques.IPM_RQS_Question_Type__c);
+                }
+            }               
+            if(posQuestionsList != null && !posQuestionsList.isEmpty()){
+                if(posQuestionsList[0].IPM_Show_Create_Link__c){
+                    generateRisk=false;
+                }
+                else{
+                    generateRisk=true;
+                }
+            }
         }
     }
     

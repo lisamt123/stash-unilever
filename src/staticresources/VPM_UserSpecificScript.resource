@@ -23,7 +23,7 @@
     function openAdvanceform(){
         window.top.location='https://'+localhost+'/apex/VPM_AdvancedForm_V1?id='+purId;
     }
-    function PageReload(){
+    function pageReload(){
       window.top.location='https://'+localhost+'/'+purId;
       return false;
     }
@@ -37,7 +37,7 @@
     function reworkBtnClick(){
 		
 
-        if ((currentstatus.indexOf('Draft') >= 0 )||(rework=='Yes') || ((currentstatus.indexOf('MDM Ops') >= 0 ) && ECC !='Fusion' )){ 
+        if ((currentstatus.indexOf('Draft') >= 0 )||(rework=='Yes')){ 
 	
             if(rework=='Yes'){ 
                 alert(VPMAlreadyRework); 
@@ -55,8 +55,9 @@
                     return false;
                }
             
-            else 
+            else {
                 alert(VPMReworkCancel);
+			}
         } 
     }
     function callSendToSAPAPI()

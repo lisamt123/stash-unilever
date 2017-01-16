@@ -151,7 +151,7 @@ private class IPM_AssortmentStrategy_Test {
             set<string>cuname1=new set<string>();
             cuname1.add(INCUMBENT_STR);
             ipmAssort.ProdocSecId=projectDocSecListObj[0].Id;
-            ipmAssort.setProdocSecId(projectDocSecListObj[0].Id);
+            ipmAssort.ProdocSecId=projectDocSecListObj[0].Id;
             ipmAssort.setchannelName=cuname;
             ipmAssort.IPMProdocContent.IPM_Distribution_Type__c='Numeric';
             ipmAssort.setSelectedCUsNames=new set<string>();
@@ -184,7 +184,7 @@ private class IPM_AssortmentStrategy_Test {
             
             ipmAssort.AssortPriority='1';
             ipmAssort.ProdocSecId=projectDocSecListObj[0].Id;
-            ipmAssort.setProdocSecId(projectDocSecListObj[0].Id);
+            ipmAssort.ProdocSecId=projectDocSecListObj[0].Id;
             ipmAssort.selecteAssort=projDocSecCon.Id;
             ipmAssort.updateAssortS();
             List<IPM_Project_Document_Section_Content__c> secConLst1=[select IPM_Content_Type__c,IPM_Assortment_Strategy_Priority__c  from IPM_Project_Document_Section_Content__c where ID=:projDocSecCon.Id];

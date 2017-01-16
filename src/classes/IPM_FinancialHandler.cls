@@ -69,8 +69,10 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     public void bulkAfter()
     {
         Map<String,IPM_Financial_Year__c> upsertFinancialYearMap = new Map<String,IPM_Financial_Year__c>();
-        List<IPM_Financial__c> misalignedFinancials = new List<IPM_Financial__c>();
         
+        List<IPM_Financial__c> misalignedFinancials = new List<IPM_Financial__c>();
+        //IDs of projects associated with misalligned financials, this would be used to send chatter notifications on the event of misallignment.
+        Set<ID> misAlignedFinPrjIds = new Set<ID>();
         if(Trigger.isInsert || Trigger.isUpdate)
         {  
             List<IPM_Financial__c> newFinancialList = (List<IPM_Financial__c>) Trigger.new;
@@ -84,7 +86,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 IPM_FinancialHelper.insertFinancialYears(newFinancialList,upsertFinancialYearMap);    
                 
                 finIdsforProjY3iToSync.addAll(Trigger.newMap.keySet());    
-                misAlignedFinancials.addAll(IPM_FinancialHelper.updateManualMisalignment(newFinancialList));  
+
+                IPM_FinancialHelper.updateManualMisalignment(newFinancialList,misAlignedFinPrjIds,misAlignedFinancials);
                 if(!upsertFinancialYearMap.isEmpty())
                 {
                     upsert upsertFinancialYearMap.values() External_ID__c;
@@ -93,6 +96,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 
             if(Trigger.isUpdate) 
             {   
+            	Map<Id,IPM_Financial__c> NewTriggerMap = (Map<Id,IPM_Financial__c>)Trigger.NewMap;
                 List<IPM_Financial__c> eligibleForMisalignment = new List<IPM_Financial__c>();
                 
                 processFinancials(newFinancialList,upsertFinancialYearMap);
@@ -109,11 +113,36 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                         eligibleForMisalignment.add(financial);
                     }
                 }
-                misAlignedFinancials.addAll(IPM_FinancialHelper.updateManualMisalignment(eligibleForMisalignment));
-                //Insert new Financial Years to Consolidated Financials.
+                IPM_FinancialHelper.updateManualMisalignment(eligibleForMisalignment,misAlignedFinPrjIds,misAlignedFinancials);
+                
+                // Update Flags on Financial Years && Copy over data from Various Scopes(aye Global to Regional/ Global To charter etc)
+                
+                // Updating Consolidated financials first to make sure that Actual consolidation based on Default financials takes precendence. Otherwise the old consolidated data might override the calculated values. 
                 if(!upsertFinancialYearMap.isEmpty())
                 {
-                    upsert upsertFinancialYearMap.values() External_ID__c;
+                	List<IPM_Financial_Year__c> consolidatedFYList = new List<IPM_Financial_Year__c>();
+                	List<IPM_Financial_Year__c> defaultFYList = new List<IPM_Financial_Year__c>();
+                	for(IPM_Financial_Year__c financialYear : upsertFinancialYearMap.values())
+                	{
+                		Id relatedRecordType = financialYear.IPM_AssociatedFinancialRecordTypeId__c;
+	        			if(relatedRecordType == CONSOLIDATED_FINANCIAL_RECORDTYPE)
+	        			{
+	        				consolidatedFYList.add(financialYear);
+	        			}
+	        			else
+	        			{
+	        				defaultFYList.add(financialYear);
+	        			}
+                	}
+                	
+                	// Consolidated Financials should always skip Triggers.
+                	IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
+     				IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = true;
+                	upsert consolidatedFYList External_ID__c;
+                	IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = false;
+                	IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = false;
+                	
+                    upsert defaultFYList External_ID__c;  
                 }
                 Map<String,IPM_financial__c> consolidatedFinancialMap = IPM_FinancialHelper.initializeConsolidation((List<IPM_Financial__c>)Trigger.new,(Map<Id,IPM_Financial__c>)Trigger.OldMap,null);
                 Map<Id,IPM_Financial__c> financialActionStandardMap = new Map<Id,IPM_Financial__c>();
@@ -142,6 +171,10 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             {
                 IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
                 update misAlignedFinancials;
+                if(!misAlignedFinPrjIds.isEmpty())
+            	{
+            		IPM_ChatterFeedHelper.postChatterIfLocalRegionalMisaligned(misAlignedFinPrjIds); 
+                } 
                 IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
             }
             

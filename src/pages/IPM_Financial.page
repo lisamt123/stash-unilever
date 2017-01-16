@@ -265,27 +265,28 @@
                                                                     <!-- Variables -->
                                                                     <apex:variable value="{!IF(CONTAINS(currentFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
                                                                     
+                                                                    <apex:actionFunction name="refreshFromLocal" action="{!refreshFromLocal}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
+                                                                    <apex:actionFunction name="refreshFromRegional" action="{!refreshFromRegional}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
+                                                                    <apex:actionFunction name="refreshFromGlobal" action="{!refreshFromGlobal}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
+                                                                    
+                                                                    
                                                                     <!-- Rendered when current financial's misaligned field is true and its not edit mode and its not a consolidated financial record and span is Global.-->
                                                                     <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated),NOT(isProjectStop),project.IPMProject_Span__c == 'Global', isEditable,currentFinancial.Gate_Keeping_Model__c == 'GKM3')}">
                                                                         <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromLocalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}','{!LabelValueGKM3}');">{!$Label.IPM_ACCEPT_LOCAL_BC}</div>
-                                                                        <apex:actionFunction name="refreshFromLocal" action="{!refreshFromLocal}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
                                                                     </apex:outputPanel>
                                                                     
                                                                     <!-- Rendered when current financial's misaligned filed is true and its not edit mode and its not a consolidated financial record and span is Regional.-->
                                                                     <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated),NOT(isProjectStop),project.IPMProject_Span__c == 'Regional', isEditable)}">
                                                                         <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromLocalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_LOC_FIN_BUSINESS_CASE}');">{!$Label.IPM_ACCEPT_LOCAL_BC}</div>
-                                                                        <apex:actionFunction name="refreshFromLocal" action="{!refreshFromLocal}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
                                                                     </apex:outputPanel>
                                                                     <!-- Rendered when current financial's misaligned filed is true and its not edit mode and its not a consolidated financial record and span is Local and project is not GKM3-->
                                                                     <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated),NOT(isProjectStop), project.IPMProject_Span__c == 'Local', isEditable,currentFinancial.Gate_Keeping_Model__c != 'GKM3')}">
-                                                                        <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromRegionalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_REG_FIN_BUSINESS_CASE}');">{!financialAcceptFrom}</div>
-                                                                        <apex:actionFunction name="refreshFromRegional" action="{!refreshFromRegional}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
+                                                                        <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromRegionalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_REG_FIN_BUSINESS_CASE}');">{!financialAcceptFrom}</div>    
                                                                     </apex:outputPanel>
                                                                     
                                                                     <!-- Rendered when current financial's misaligned filed is true and its not edit mode and its not a consolidated financial record and span is Local  and project is GKM3-->
                                                                     <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated),NOT(isProjectStop), project.IPMProject_Span__c == 'Local', isEditable, currentFinancial.Gate_Keeping_Model__c == 'GKM3')}">
                                                                         <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromGlobalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_GLOBAL_FIN_BUSINESS_CASE}');">{!financialAcceptFrom}</div>
-                                                                        <apex:actionFunction name="refreshFromRegional" action="{!refreshFromGlobal}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
                                                                     </apex:outputPanel>
                                                                     
                                                                     
@@ -373,7 +374,7 @@
                                                              </div>
                                                             </apex:outputText>
      
-                                                             <c:IPM_FinancialTabHeader ipmFinancial="{!currentFinancial}" fieldSuffix="{!fieldSuffix}" /> 
+                                                             <c:IPM_FinancialTabHeader ipmFinancial="{!IPMFinancial}" fieldSuffix="{!fieldSuffix}" /> 
                                                                 <apex:actionFunction name="ActionUpdate" oncomplete="" action="{!updateCountry}">  
                                                                       <apex:param name="country" value="" assignTo="{!Country}"/>  
                                                                       <apex:param name="check" value="" assignTo="{!CheckCountry}"/> 
@@ -423,7 +424,7 @@
                                                                 
                                                                
                                                                 
-                                                                <c:IPM_FinancialTable ipmFinancial="{!currentFinancial}"
+                                                                <c:IPM_FinancialTable ipmFinancial="{!IPMFinancial}"
                                                                     finWrapper="{!financialsInnovation}"
                                                                     colSpan="{!colSpan}"
                                                                     sustainabilityPeriod="{!sustainabilityPeriod}"
@@ -447,7 +448,7 @@
                                                                     exRate="{!exRate}"
                                                                 />
                                                         
-                                                                <c:IPM_FinancialSummaryTable ipmFinancial="{!currentFinancial}"
+                                                                <c:IPM_FinancialSummaryTable ipmFinancial="{!IPMFinancial}"
                                                                     fieldSuffix="{!fieldSuffix}"
                                                                     isEditMode="{!isEditMode}"
                                                                     showMisalignment="{!showMisalignment}"
@@ -472,7 +473,7 @@
                                                                 </apex:outputPanel>
                                                                 <apex:outputPanel id="financialYearCalendar">
                                                                 <!-- DEF2676 fix End --> 
-                                                                <c:IPM_FinancialTable ipmFinancial="{!currentFinancial}"
+                                                                <c:IPM_FinancialTable ipmFinancial="{!IPMFinancial}"
                                                                     finWrapper="{!financialsCalendar}"
                                                                     colSpan="{!colSpan}"
                                                                     sustainabilityPeriod="{!sustainabilityPeriod}"
@@ -514,63 +515,66 @@
                                                                   </div>
                                                               </div>
                                                          </apex:outputText>
+                                                        
                                                         <div role="tabpanel" class="tab-pane {!IF(currentTab == 'topdown', 'active', '')}" id="topDown">
-                                                            <c:IPM_FinancialTabContent ipmFinancial="{!currentFinancial}"
-                                                                financialsInnovation="{!financialsInnovation}"
-                                                                financialsCalendar="{!financialsCalendar}"
-                                                                colSpan="{!colSpan}"
-                                                                sustainabilityPeriod="{!sustainabilityPeriod}"
-                                                                fieldSuffix="{!fieldSuffix}"
-                                                                showNext="{!showNext}"
-                                                                showPrevious="{!showPrevious}"
-                                                                exRate="{!exRate}"
-                                                            />
-                                                         
+                                                        	<apex:outputPanel rendered="{!currentTab == 'topdown'}" >
+	                                                            <c:IPM_FinancialTabContent ipmFinancial="{!IPMFinancial}"
+	                                                                financialsInnovation="{!financialsInnovation}"
+	                                                                financialsCalendar="{!financialsCalendar}"
+	                                                                colSpan="{!colSpan}"
+	                                                                sustainabilityPeriod="{!sustainabilityPeriod}"
+	                                                                fieldSuffix="{!fieldSuffix}"
+	                                                                showNext="{!showNext}"
+	                                                                showPrevious="{!showPrevious}"
+	                                                                exRate="{!exRate}"
+	                                                            />
+                                                        	</apex:outputPanel>
                                                         </div>
     
                                                         <!-- Rollup Summary Tab -->
                                                         <div role="tabpanel" class="tab-pane {!IF(currentTab == 'rollup', 'active', '')}" id="rollup">
                                                         
-                                                            <apex:outputPanel id="rollup" rendered="{!AND(currentTab== 'rollup',currentFinancial.Local_Project__c == NULL,!isConsolidatedOrNonkey)}" >
-	                                                            <div class="finAlertBox">
-	                                                                <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
-	                                                                <div class="col-sm-11 finalerttext">
-	                                                                  <p><apex:outputText value="{!$Label.IPM_Local_project_create_message}" /></p>
-	                                                                </div>
-	                                                            </div>
-                                                        	</apex:outputPanel>
-                                                            <div class="col-sm-6 noPadleft finBtnDiv finTabHeaderExt wid59P">
-                                                                <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,project.IPMProject_Span__c == 'Global',NOT(isEditModeBottomUp), isConsolidated)}">
-                                                                     <!-- Rendered when record is editable and project phase is not PLE-->   
-                                                                     <apex:outputPanel rendered="{!toShowEditButton}">                                                                     
-                                                                        <apex:commandButton styleclass="ipmButton primary" action="{!editFinancialsBottomUp}" reRender="finacialButtons,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()" value="{!$Label.IPM_EDIT}"/> 
-                                                                     </apex:outputPanel> 
-                                                                 </apex:outputPanel>
-                                                                 <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, isEditModeBottomUp, false)}">
-                                                                       <div class="ipmButton" onclick="cancel();">{!$Label.IPM_CANCEL}
-                                                                       </div>
-                                                                       <apex:actionFunction name="cancel" action="{!refreshFinancials}" reRender="finacialButtons,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
-                                                                           <apex:param name="isEditModeBottomUp" value="false" assignTo="{!isEditModeBottomUp}"/>
-                                                                       </apex:actionFunction>
-                                                                       <div class="ipmButton primary" onclick="saveRecord();">{!$Label.IPM_SAVE}
-                                                                       </div>
-                                                                       <apex:actionFunction name="saveRecord" action="{!saveFinancials}" reRender="finacialButtons,errorPanel,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
-                                                                           <apex:param name="isEditModeBottomUp" value="false" assignTo="{!isEditModeBottomUp}"/>
-                                                                       </apex:actionFunction>
-                                                                   </apex:outputPanel>
-                                                            </div> 
-                                                            <c:IPM_FinancialTabContent ipmFinancial="{!currentFinancial}"
-                                                                financialsInnovation="{!financialsInnovation}"
-                                                                financialsCalendar="{!financialsCalendar}"
-                                                                colSpan="{!colSpan}"
-                                                                sustainabilityPeriod="{!sustainabilityPeriod}"
-                                                                fieldSuffix="{!fieldSuffix}"
-                                                                showNext="{!showNext}"
-                                                                showPrevious="{!showPrevious}"
-                                                                isEditMode="{!isEditModeBottomUp}"
-                                                                exRate="{!exRate}"
-                                                            />
-                                                        </div>                            
+	                                                            <apex:outputPanel id="rollup" rendered="{!AND(currentTab== 'rollup',currentFinancial.Local_Project__c == NULL,!isConsolidatedOrNonkey)}" >
+		                                                            <div class="finAlertBox">
+		                                                                <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
+		                                                                <div class="col-sm-11 finalerttext">
+		                                                                  <p><apex:outputText value="{!$Label.IPM_Local_project_create_message}" /></p>
+		                                                                </div>
+		                                                            </div>
+	                                                        	</apex:outputPanel>
+	                                                            <div class="col-sm-6 noPadleft finBtnDiv finTabHeaderExt wid59P">
+	                                                                <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,project.IPMProject_Span__c == 'Global',NOT(isEditModeBottomUp), isConsolidated)}">
+	                                                                     <!-- Rendered when record is editable and project phase is not PLE-->   
+	                                                                     <apex:outputPanel rendered="{!toShowEditButton}">                                                                     
+	                                                                        <apex:commandButton styleclass="ipmButton primary" action="{!editFinancialsBottomUp}" reRender="finacialButtons,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()" value="{!$Label.IPM_EDIT}"/> 
+	                                                                     </apex:outputPanel> 
+	                                                                 </apex:outputPanel>
+	                                                                 <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, isEditModeBottomUp, false)}">
+	                                                                       <div class="ipmButton" onclick="cancel();">{!$Label.IPM_CANCEL}
+	                                                                       </div>
+	                                                                       <apex:actionFunction name="cancel" action="{!refreshFinancials}" reRender="finacialButtons,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+	                                                                           <apex:param name="isEditModeBottomUp" value="false" assignTo="{!isEditModeBottomUp}"/>
+	                                                                       </apex:actionFunction>
+	                                                                       <div class="ipmButton primary" onclick="saveRecord();">{!$Label.IPM_SAVE}
+	                                                                       </div>
+	                                                                       <apex:actionFunction name="saveRecord" action="{!saveFinancials}" reRender="finacialButtons,errorPanel,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+	                                                                           <apex:param name="isEditModeBottomUp" value="false" assignTo="{!isEditModeBottomUp}"/>
+	                                                                       </apex:actionFunction>
+	                                                                   </apex:outputPanel>
+	                                                            </div> 
+	                                                            <c:IPM_FinancialTabContent ipmFinancial="{!IPMFinancial}"
+	                                                                financialsInnovation="{!financialsInnovation}"
+	                                                                financialsCalendar="{!financialsCalendar}"
+	                                                                colSpan="{!colSpan}"
+	                                                                sustainabilityPeriod="{!sustainabilityPeriod}"
+	                                                                fieldSuffix="{!fieldSuffix}"
+	                                                                showNext="{!showNext}"
+	                                                                showPrevious="{!showPrevious}"
+	                                                                isEditMode="{!isEditModeBottomUp}"
+	                                                                exRate="{!exRate}"
+	                                                            />
+	                                                      	    
+                                                       	</div>                            
                                                     </div>
                                                 </apex:outputPanel>
                                             </div>

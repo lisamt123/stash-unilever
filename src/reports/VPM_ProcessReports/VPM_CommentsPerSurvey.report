@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <chart>
+        <chartSummaries>
+            <column>VPM_PurchasingRequests__c.VPM_OverallExperienceRating15__c</column>
+        </chartSummaries>
+        <chartType>None</chartType>
+        <enableHoverLabels>false</enableHoverLabels>
+        <expandOthers>false</expandOthers>
+        <groupingColumn>VPM_PurchasingRequests__c.VPM_UserSurveyComments__c</groupingColumn>
+        <showAxisLabels>false</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+    </chart>
+    <columns>
+        <field>CUST_LAST_UPDATE</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_OverallExperienceRating15__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_CountryRequestingVendor__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_UserSurveyComments__c</field>
+    </columns>
+    <description>Used for reports and dashboards for Vendor Request user survey</description>
+    <filter>
+        <criteriaItems>
+            <column>VPM_PurchasingRequests__c.VPM_UserSurveyStatus__c</column>
+            <operator>equals</operator>
+            <value>Survey Completed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>VPM_PurchasingRequests__c.VPM_UserSurveyComments__c</column>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Comments per Survey</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$VPM_PurchasingRequests__c</reportType>
+    <rowLimit>10</rowLimit>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>CUST_LAST_UPDATE</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmittedTime__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

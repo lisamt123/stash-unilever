@@ -213,53 +213,13 @@ public with sharing class IPM_MyList{
     
     @TestVisible private List<IPM_Task__c> loadTasks() {
         
-        String utilUserRole = IPM_Utils.userRole();
         List<IPM_Task__c> tasksToReturn = new List<IPM_Task__c>();
-        String usrRole = utilUserRole != null?utilUserRole:BLANK_STR;
-        //lastTasksMap = new Map<Id, Boolean>();
-        toggleTask ='true'; 
+        String soql; 
         brandlist= new List<String>();
         Set<String> brandsSet =new Set<String>();
+
+        soql = getTasksQuery(loadTasksQuery());
         
-        String soqlWHERE = usrRole == IPM_ConstantUtils.PROJECT_LEADER ? ' AND IPM_Function__c IN (\''+ String.escapeSingleQuotes(usrRole) +'\' , \'BD\')' : 
-        ' AND IPM_Function__c = \'' + String.escapeSingleQuotes(usrRole) + '\'';
-        String soql  =  'SELECT IPM_Task_Name__c, IPM_Phase__c, IPM_Project_Document_Section__r.IPM_Section_Name__c,IPM_Master_Task__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,IPM_Assignee__c,';
-        soql += 'IPM_Section__r.IPM_Section_Sequence__c,IPM_Project__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_Category_Text__c,IPM_Project__r.IPM_Category_Icon__c,IPM_Section__r.Name,IPM_Project__r.IPM_Brand_Positioning__c, IPM_Project__r.Is_Archieved__c,IPM_Project__r.IPM_Project_Type__c , ';
-        soql += 'IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,';
-        soql += 'IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,  ';
-        soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,';
-        soql += 'IPM_Due_Date1__c, IPM_Completed__c, IPM_Function__c, IPM_Task_Type__c  FROM IPM_Task__c ';
-        soql += 'WHERE  IPM_Project__r.IPM_PM_Approach__c = \'Internal\'  AND';        
-        
-        if(toggleTask == IPM_Utils.truevalue) {
-            soql += ' IPM_Assignee__c = \'' + UserInfo.getUserId() + '\'';
-        }        
-        if(phase != BLANK_STR) {
-            phase = IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(phase));
-            soql += ' AND IPM_Phase__c IN :phase ' ;
-        } 
-        if(toggleRole == IPM_Utils.truevalue && utilUserRole != null) {
-            soql += soqlWHERE;
-        }
-        if(isCompleteTasks == IPM_Utils.t) {
-            soql += ' AND IPM_Completed__c = true';
-        }
-        if(isCompleteTasks == IPM_Utils.f) {
-            soql += IPMCOMPLETED_STR;
-        }
-        if(user != BLANK_STR) {
-            user = String.escapeSingleQuotes(user);
-            soql += ' AND IPM_Assignee__r.Name IN ' + IPM_Utils.convertStrToSoqlList(user);
-        }
-        
-        soql += ' AND IPM_Project__r.Is_Archieved__c = false';
-        
-        if(isAsc) {
-            soql += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + DESCNULLSLAST_STR;
-        } else {
-            soql += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR ;
-        }
-        soql +=' Limit 1000';
         try{
             tasksToReturn = IPM_TaskHelper.removeDuplicateTaskForUser(Database.query(soql));
             for(IPM_Task__c taskRec : tasksToReturn)
@@ -299,6 +259,74 @@ public with sharing class IPM_MyList{
         
         return standardSetCon.getRecords();        
     }    
+    
+     /********************************************************************************
+    *@Description : Getting the tasks and display on the UI
+    *@Param: none
+    *@return:This method returns the String Query
+    *********************************************************************************/
+    
+     private string loadTasksQuery() {
+        
+        String utilUserRole = IPM_Utils.userRole();
+        String usrRole = utilUserRole != null?utilUserRole:BLANK_STR;
+        toggleTask ='true'; 
+        
+        String soqlWHERE = usrRole == IPM_ConstantUtils.PROJECT_LEADER ? ' AND IPM_Function__c IN (\''+ String.escapeSingleQuotes(usrRole) +'\' , \'BD\')' : 
+        ' AND IPM_Function__c = \'' + String.escapeSingleQuotes(usrRole) + '\'';
+        String soql  =  'SELECT IPM_Task_Name__c, IPM_Phase__c, IPM_Project_Document_Section__r.IPM_Section_Name__c,IPM_Master_Task__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,IPM_Assignee__c,';
+        soql += 'IPM_Section__r.IPM_Section_Sequence__c,IPM_Project__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_Category_Text__c,IPM_Project__r.IPM_Category_Icon__c,IPM_Section__r.Name,IPM_Project__r.IPM_Brand_Positioning__c, IPM_Project__r.Is_Archieved__c,IPM_Project__r.IPM_Project_Type__c , ';
+        soql += 'IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,';
+        soql += 'IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,  ';
+        soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,';
+        soql += 'IPM_Due_Date1__c, IPM_Completed__c, IPM_Function__c, IPM_Task_Type__c  FROM IPM_Task__c ';
+        soql += 'WHERE  IPM_Project__r.IPM_PM_Approach__c = \'Internal\'  AND';        
+        if(toggleRole == IPM_Utils.truevalue && utilUserRole != null) {
+            soql += soqlWHERE;
+        }
+        
+       return soql;
+    }
+    
+     /********************************************************************************
+    *@Description : Getting the tasks Using Query
+    *@Param: String soql
+    *@return:This method returns the String Query
+    *********************************************************************************/
+    
+     private string getTasksQuery(String soql) {
+           
+        String soqlTmp = soql;
+        if(toggleTask == IPM_Utils.truevalue) {
+            soqlTmp += ' IPM_Assignee__c = \'' + UserInfo.getUserId() + '\'';
+        }       
+        
+        if(phase != BLANK_STR) {
+            phase = IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(phase));
+            soqlTmp += ' AND IPM_Phase__c IN :phase ' ;
+        } 
+       
+        if(isCompleteTasks == IPM_Utils.t) {
+            soqlTmp += ' AND IPM_Completed__c = true';
+        }
+        if(isCompleteTasks == IPM_Utils.f) {
+            soqlTmp += IPMCOMPLETED_STR;
+        }
+        if(user != BLANK_STR) {
+            user = String.escapeSingleQuotes(user);
+            soqlTmp += ' AND IPM_Assignee__r.Name IN ' + IPM_Utils.convertStrToSoqlList(user);
+        }
+        
+        soqlTmp += ' AND IPM_Project__r.Is_Archieved__c = false';
+        
+        if(isAsc) {
+            soqlTmp += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + DESCNULLSLAST_STR;
+        } else {
+            soqlTmp += ORDERBY_STR + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ASCNULLSLAST_STR ;
+        }
+        soqlTmp +=' Limit 1000'; 
+       return soqlTmp;
+    } 
     
     /*******************************************************************************
     *@Description:To query the Next Tasks

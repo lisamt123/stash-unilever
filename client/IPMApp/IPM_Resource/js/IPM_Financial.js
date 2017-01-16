@@ -37,6 +37,12 @@ function finScriptCallBack() {
         jq('#ipmDeleteModal').modal('hide');
         refreshFromRegional();
     });
+	
+/* Below script works on click event. When clicked on confirm button it hides the opened modal and calls a function 'refreshFromGlobal' */
+     jq(document).off('click', '#ipmDeleteModal .confirmAction.refreshFromGlobal').on('click', '#ipmDeleteModal .confirmAction.refreshFromGlobal', function() {
+        jq('#ipmDeleteModal').modal('hide');
+		refreshFromGlobal();
+    });
 }
 
 /* Below function validates for a condition. If user enters any key within the set of keys provided in the condition the value will returned as false. */
@@ -97,7 +103,7 @@ function refreshFromGlobalJs(title, confirmMsg) {
 	modalFunc(title, confirmMsg);
 	var delModal = jq('#ipmDeleteModal .confirmAction');
 	delModal.removeClass('refreshFromLocal');
-	delModal.addClass('refreshFromRegional');
+	delModal.addClass('refreshFromGlobal');
 	finScriptCallBack();
 }
 
