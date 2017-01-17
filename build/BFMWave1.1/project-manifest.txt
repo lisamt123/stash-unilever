@@ -9,14 +9,14 @@ src/classes/BFM_AccountSharer_Test.cls
 src/classes/BFM_AccountSharer_Test.cls-meta.xml
 src/classes/BFM_AccountSharer.cls
 src/classes/BFM_AccountSharer.cls-meta.xml
-src/classes/BFM_AmazonConnector.cls
-src/classes/BFM_AmazonConnector.cls-meta.xml
 src/classes/BFM_BulkOccurrenceQuery.cls
 src/classes/BFM_BulkOccurrenceQuery.cls-meta.xml
 src/classes/BFM_BulkShipmentQuery.cls
 src/classes/BFM_BulkShipmentQuery.cls-meta.xml
 src/classes/BFM_CommunitiesSelfRegController_CC.cls
 src/classes/BFM_CommunitiesSelfRegController_CC.cls-meta.xml
+src/classes/BFM_CPFValidator.cls
+src/classes/BFM_CPFValidator.cls-meta.xml
 src/classes/BFM_CreateAccessRequest.cls
 src/classes/BFM_CreateAccessRequest.cls-meta.xml
 src/classes/BFM_CreateCarrierUser.cls
@@ -29,6 +29,7 @@ src/classes/BFM_LoginuserPermissions_Test.cls
 src/classes/BFM_LoginuserPermissions_Test.cls-meta.xml
 src/classes/BFM_LoginuserPermissions.cls
 src/classes/BFM_LoginuserPermissions.cls-meta.xml
+src/classes/BFM_NFEHandler.cls
 src/classes/BFM_OccurrenceHandler.cls
 src/classes/BFM_OccurrenceHandler.cls-meta.xml
 src/classes/BFM_QueryFreights.cls
@@ -57,6 +58,7 @@ src/classes/BFM_SendEmailToCarrierApprover.cls
 src/classes/BFM_SendEmailToCarrierApprover.cls-meta.xml
 src/classes/BFM_ShipmentHandler.cls
 src/classes/BFM_ShipmentHandler.cls-meta.xml
+src/classes/BFM_ShipmentUpdate_CC.cls
 src/classes/BFM_TriggerFactory.cls
 src/classes/BFM_TriggerFactory.cls-meta.xml
 src/classes/BFM_UpdateFreightData.cls
@@ -99,7 +101,6 @@ src/flows/BFM_Free_Freight_update_CTE-1.flow
 src/flows/BFM_Free_Freight_Update-1.flow
 src/flows/BFM_Update_Shipment_Field_on_CT_e-1.flow
 src/flows/BFM_Update_Shipment_in_CTe-1.flow
-src/groups/BFM_PartnerUsers.group
 src/homePageLayouts/BFM Home Page.homePageLayout
 src/layouts/BFM_AccountAccessRequest__c-BFM Account Access Request Layout.layout
 src/layouts/BFM_Bank_Information__c-BFM Bank Information Layout.layout
@@ -108,13 +109,11 @@ src/layouts/BFM_Email_Information__c-BFM Email Information Layout.layout
 src/layouts/BFM_Error_Log__c-BFM_Error Log Layout.layout
 src/layouts/BFM_NF_e__c-NF-e Layout.layout
 src/layouts/BFM_Occurrence__c-BFM Occurrence Layout.layout
-src/layouts/BFM_Occurrence_SES__c-Occurrence SES Layout.layout
 src/layouts/BFM_SES__c-SES Layout.layout
 src/layouts/BFM_Shipment__c-Shipment Layout.layout
 src/layouts/BFM_Stage__c-Stage Layout.layout
 src/layouts/BFM_User_Creation_Request_Error__c-BFM User Creation Request Error Layout.layout
 src/layouts/BFM_UserCreationRequest__c-BFM User Creation Request Layout.layout
-src/objects/Account.object
 src/objects/BFM_AccountAccessRequest__c.object
 src/objects/BFM_Bank_Information__c.object
 src/objects/BFM_Company_Code__c.object
@@ -123,13 +122,11 @@ src/objects/BFM_Email_Information__c.object
 src/objects/BFM_Error_Log__c.object
 src/objects/BFM_NF_e__c.object
 src/objects/BFM_Occurrence__c.object
-src/objects/BFM_Occurrence_SES__c.object
 src/objects/BFM_SES__c.object
 src/objects/BFM_Shipment__c.object
 src/objects/BFM_Stage__c.object
 src/objects/BFM_User_Creation_Request_Error__c.object
 src/objects/BFM_UserCreationRequest__c.object
-src/objects/Contact.object
 src/pages/BFM_AccountMoreDetails.page
 src/pages/BFM_AccountMoreDetails.page-meta.xml
 src/pages/BFM_CommunitiesSelfReg_VF.page
@@ -167,10 +164,10 @@ src/permissionsets/BFM_Tax_Capgemini.permissionset
 src/permissionsets/BFM_Tax_Unilever.permissionset
 src/permissionsets/BFM_Unilever_Tester.permissionset
 src/permissionsets/BFM_View_All_Data_User.permissionset
-rc/profiles/BFM Internal User.profile
+src/profiles/BFM Internal User.profile
 src/profiles/BFM Partner Community User.profile
 src/queues/BFM_User_Creation_Request_Approvers.queue
-src/sites/Brazil_Freight_Collaboration_Tool.site
+src/sites/BrazilFreightCollaborationTool.site
 src/staticresources/BFM_Bootstrap.resource
 src/staticresources/BFM_Bootstrap.resource-meta.xml
 src/staticresources/BFM_Green.resource
@@ -211,3 +208,4 @@ src/workflows/BFM_Shipment__c.workflow
 src/workflows/BFM_Stage__c.workflow
 src/workflows/BFM_User_Creation_Request_Error__c.workflow
 src/workflows/BFM_UserCreationRequest__c.workflow
+src/workflows/BFM_Mulesoft_Endpoint__mdt.workflow

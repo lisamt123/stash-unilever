@@ -167,7 +167,7 @@ src/permissionsets/BFM_View_All_Data_User.permissionset
 src/profiles/BFM Internal User.profile
 src/profiles/BFM Partner Community User.profile
 src/queues/BFM_User_Creation_Request_Approvers.queue
-src/sites/Brazil_Freight_Collaboration_Tool.site
+src/sites/BrazilFreightCollaborationTool.site
 src/staticresources/BFM_Bootstrap.resource
 src/staticresources/BFM_Bootstrap.resource-meta.xml
 src/staticresources/BFM_Green.resource
@@ -208,3 +208,4 @@ src/workflows/BFM_Shipment__c.workflow
 src/workflows/BFM_Stage__c.workflow
 src/workflows/BFM_User_Creation_Request_Error__c.workflow
 src/workflows/BFM_UserCreationRequest__c.workflow
+src/workflows/BFM_Mulesoft_Endpoint__mdt.workflow
