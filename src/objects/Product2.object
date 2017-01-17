@@ -1502,6 +1502,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Knorr Tomatoes</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Asian line</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -6487,6 +6491,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Hellmann%27s Real %285L%2F2%2E5L%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Asian Sauces</fullName>
                 <default>false</default>
             </values>
             <values>
