@@ -1,0 +1,1 @@
+{"query":{"query":"{&quot;aggregateFilters&quot;:[[[&quot;count&quot;,&quot;*&quot;],[[400,500]],&quot;&gt;=&lt;=&quot;]],&quot;groups&quot;:[&quot;SubscriberId.MCO__c&quot;,&quot;SubscriberId.Function__c&quot;,&quot;SubscriberId.Name&quot;],&quot;measures&quot;:[[&quot;count&quot;,&quot;*&quot;]]}","version":-1.0}}
