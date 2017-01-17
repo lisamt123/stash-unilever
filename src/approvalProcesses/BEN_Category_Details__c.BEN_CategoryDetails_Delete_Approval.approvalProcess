@@ -12,12 +12,6 @@
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
-        <approvalActions>
-            <action>
-                <name>BENSend_Email_to_GPL_for_Delete</name>
-                <type>Alert</type>
-            </action>
-        </approvalActions>
         <assignedApprover>
             <approver>
                 <name>BEN_GPL</name>

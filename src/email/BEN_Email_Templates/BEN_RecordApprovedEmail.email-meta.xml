@@ -4,7 +4,7 @@
     <description>categorydetailApproved</description>
     <encodingKey>ISO-8859-1</encodingKey>
     <letterhead>TO_Letter_Head</letterhead>
-    <name>BENRecordApprovedEmail</name>
+    <name>BEN RecordApprovedEmail</name>
     <style>freeForm</style>
     <subject>{!BEN_Category_Details__c.Name}Test Result is Approved</subject>
     <textOnly>Hi {!BEN_Category_Details__c.CreatedBy},

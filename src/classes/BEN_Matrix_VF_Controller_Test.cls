@@ -1,3 +1,17 @@
+/**********************************************************************
+Name: BEN_Matrix_VF_Controller_Test
+Copyright © 2016 Salesforce
+======================================================
+======================================================
+Purpose: Test class for Benchmarking Matrix Visualforce page COntroller clazz -------
+======================================================
+======================================================
+History
+-------
+VERSION     AUTHOR       DATE            DETAIL Description
+V1.0       mahesh     10/01/2017     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
+
 @IsTest
 public without sharing class BEN_Matrix_VF_Controller_Test {
     
@@ -65,7 +79,6 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
     }
     
     private static void init() {
-        
         
         BEN_Category_CUC_Codes__c ccc = new BEN_Category_CUC_Codes__c();
         ccc.Name = 'Test';

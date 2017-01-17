@@ -1,3 +1,16 @@
+/**********************************************************************
+Name: BEN_Matrix_Print_VF_Controller Copyright © 2016 Salesforce 
+======================================================
+======================================================
+Purpose: This class is controller class for Visualforce page BEN_Matrix_Print_VF
+======================================================
+======================================================
+History
+-------
+VERSION     AUTHOR        DATE            DETAIL Description
+V1.0         mahesh         10/01/2017    Visualforce page COntroller clazz
+***********************************************************************/
+
 public class BEN_Matrix_Print_VF_Controller {
 
     public String fromYearVal { get; set; }
@@ -17,7 +30,7 @@ public class BEN_Matrix_Print_VF_Controller {
     public String lossParity_21 { get; set; }
     public String lossWin_22 { get; set; }
     
-    
+    //Costructor
     public BEN_Matrix_Print_VF_Controller(){
         
         Map<String , String> params = ApexPages.currentPage().getParameters();

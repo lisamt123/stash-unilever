@@ -1,3 +1,15 @@
+/**********************************************************************
+Name: BEN_Matrix_VF_controller Copyright © 2016 Salesforce 
+======================================================
+======================================================
+Purpose: This class is controller class for Visualforce page BEN_Matrix3Cross3_Report
+======================================================
+======================================================
+History
+-------
+VERSION     AUTHOR        DATE            DETAIL Description
+V1.0         mahesh         10/01/2017    Visualforce page COntroller clazz
+***********************************************************************/
 public with sharing class BEN_Matrix_VF_controller {
 
     public List<SelectOption> fromYear {
@@ -36,9 +48,9 @@ public with sharing class BEN_Matrix_VF_controller {
             if(gms.size()>0){
             sOptions.add(new SelectOption('All Categories', 'All Categories'));    
             }
-            system.debug('  pcs  : '+pcs);
+            //eleminate all records with delete category.
             for(BEN_Category_Master__c master : pcs){
-                if(master.Name.trim() != 'Deleted')
+                if(!master.Name.trim().contains('Deleted'))
                 sOptions.add(new SelectOption(master.Name, master.Name));
             }
             if(sOptions!=null )
@@ -77,6 +89,7 @@ public with sharing class BEN_Matrix_VF_controller {
     public Integer lossParity_21 { get; set; }
     public Integer lossWin_22 { get; set; }
      
+    //the method used to redirct to Print version of Visualforce page (BEN_Matrix_Report_Print_VF.vfp)
     public PageReference  redirectToPDF(){
         PageReference printPageRef = Page.BEN_Matrix_Report_Print_VF;
         Map<String, String> params = printPageRef.getParameters();
@@ -110,11 +123,10 @@ public with sharing class BEN_Matrix_VF_controller {
         return catts;
     }
     
-    
+    // this action method for visualforce Command action gives report based on inputs.
     public void getReport(){
         String accid = System.currentPagereference().getParameters().get('id');
-      system.debug('Page ID : '+accid);
-        System.debug('Selected Prodcut category  : '+productCat);
+     
         if(Integer.valueof(fromYearVal.trim()) > Integer.valueof(toYearVal.trim()) ){
              ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,'From-Year should be greater than To-Year value provided  :' + 
                                                               fromYearVal +' > '+toYearVal);
@@ -147,9 +159,7 @@ public with sharing class BEN_Matrix_VF_controller {
   
        
         selectedCategories = parseProductCategory();
-        System.debug('Selected Categories from UI : '+productCat);
-         System.debug('Selected Categories  : '+selectedCategories);
-        
+              
          List<BEN_Category_Details__c> filterQuery = null;
          String query = 'Select ID, pkl_Blind_OO__c, pkl_Key_Attributes__c, pkl_Year__c, pkl_Quarter__c from BEN_Category_Details__c where pkl_Status__c=\'Approved\' AND Product_Category__c IN (Select ID from BEN_Category_Master__c where Name IN :selectedCategories) ORDER BY pkl_Year__c, pkl_Quarter__c';
             if(selectedCategories.get(0) =='All Categories'){
@@ -157,10 +167,8 @@ public with sharing class BEN_Matrix_VF_controller {
                 query = 'Select ID, pkl_Blind_OO__c, pkl_Key_Attributes__c, pkl_Year__c, pkl_Quarter__c from BEN_Category_Details__c where pkl_Status__c=\'Approved\' AND Product_Category__c IN (Select ID from BEN_Category_Master__c where (NOT Name LIKE \'%Deleted%\')) ORDER BY pkl_Year__c, pkl_Quarter__c';
             }
         filterQuery = Database.query(query);
-        System.debug('Tested records  : '+filterQuery);
-        System.debug('Number of Tested records  : '+filterQuery.size());
        
-        
+        //preparing collection based on the input queried.
         for(BEN_Category_Details__c cd : filterQuery){
             year = cd.pkl_Year__c;
             quarter = cd.pkl_Quarter__c;
@@ -207,6 +215,7 @@ public with sharing class BEN_Matrix_VF_controller {
    
     }
 
+    //helper method gives Field values based on the argumets passed.
    public static list<SelectOption> getPicklistValues( Schema.DescribeFieldResult dfr){
         list<SelectOption> options = new list<SelectOption>();
       
@@ -216,7 +225,7 @@ public with sharing class BEN_Matrix_VF_controller {
        {
          options.add(new SelectOption(f.getLabel(), f.getValue()));
        }       
-       //system.debug('slect option ='+options);
+       
        return options;
    }
 

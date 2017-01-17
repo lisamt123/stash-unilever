@@ -15,10 +15,6 @@
                 <name>BEN_In_Approval_False</name>
                 <type>FieldUpdate</type>
             </action>
-            <action>
-                <name>BENSend_Email_to_GPL</name>
-                <type>Alert</type>
-            </action>
         </approvalActions>
         <assignedApprover>
             <approver>
@@ -34,10 +30,6 @@
             <action>
                 <name>BEN_In_Approval_False</name>
                 <type>FieldUpdate</type>
-            </action>
-            <action>
-                <name>BENSendEmailToRecordCreatorApproved</name>
-                <type>Alert</type>
             </action>
         </approvalActions>
         <assignedApprover>
@@ -76,10 +68,6 @@
     </finalApprovalActions>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
-        <action>
-            <name>BEN_Category_detail_rejected</name>
-            <type>Alert</type>
-        </action>
         <action>
             <name>BEN_In_Approval_False</name>
             <type>FieldUpdate</type>

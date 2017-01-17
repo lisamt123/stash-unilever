@@ -14,7 +14,7 @@ V1.0         Swathi         20/12/2016    Approval Process for Category Details
 public class BEN_CategoryDetailsTriggerHandler{
     
     private static boolean isDone = false;
-    private static boolean rejectedRecord = false;
+    public static boolean rejectedRecord = false;
     /*******************************************************************
 Purpose: This method is used to perform submit for  Approval process& make the Reject comments require
 Parameters: Id,BEN_Category_Details__c
@@ -23,7 +23,7 @@ Throws [Exceptions]:
 ********************************************************************/  
     public static void SendRecordForApproval(List<BEN_Category_Details__c> categryList, Map<Id,BEN_Category_Details__c> oldMap,Map<Id,BEN_Category_Details__c> newMap){
         if(!isDone){
-            
+             system.debug('$$$$$$$$$$$   rejectedRecord  :'  + rejectedRecord);
             Map<Id,BEN_Category_Details__c> categoryMap = new Map<Id,BEN_Category_Details__c>([select Id,In_Approval__c,
                                                                                                Product_Category__c,
                                                                                                Product_Category__r.Name,txt_Reason_for_Deletion__c,
@@ -33,7 +33,7 @@ Throws [Exceptions]:
             
             
             Map<Id,Group> grpMap = new Map<Id,Group>([SELECT Id,DeveloperName,(SELECT Id, UserOrGroupId FROM GroupMembers) FROM Group Where Type='Queue' and Name like 'BEN_%' ]);
-            
+            System.debug('Group MAP  :  '+grpMap);
             
             /*
                 Map<Id,BEN_Category_Details__c> firstStepMap = new Map<Id,BEN_Category_Details__c>();
@@ -48,21 +48,22 @@ Throws [Exceptions]:
             
             List<String> mailToAddresses = new List<String>();
             Map<String,BEN_CategoryDetails__c> categoryQueuesMap = BEN_CategoryDetails__c.getAll();
+            SYstem.debug('All QUeues  : '+categoryQueuesMap);
             String rejectionComments  =null;
             
             Map<Id, BEN_Category_Details__c> rejectedStatements = new Map<Id, BEN_Category_Details__c>{};
                 
+               
            //Check current record is going for Submit for Approval from Reject status
            ID CurrentRecord= ((List<BEN_Category_Details__c>) trigger.new).get(0).ID;
-            Set<Id> Ids = Trigger.oldMap.keyset();
+            Set<Id> Ids = oldMap.keyset();
             if(Ids.contains(CurrentRecord)){
-                if(((BEN_Category_Details__c)Trigger.oldMap.get(CurrentRecord)).pkl_Status__c == BEN_ConstantsForBenchmarkingAppClasses.REJECTED){
+                   if(((BEN_Category_Details__c)oldMap.get(CurrentRecord)).pkl_Status__c == BEN_ConstantsForBenchmarkingAppClasses.REJECTED){
                     rejectedRecord = true;
                 }
             }
-            
-            
-            
+           
+          
             
             for(BEN_Category_Details__c  inv: (List<BEN_Category_Details__c>)trigger.new){        
                 if (inv.pkl_Status__c == BEN_ConstantsForBenchmarkingAppClasses.REJECTED){
@@ -139,7 +140,7 @@ Throws [Exceptions]:
                         usrList.addAll(GPLUserIDs);
                          Messaging.SingleEmailMessage mail =  new Messaging.SingleEmailMessage();  
                             String body =  'Hi,<br/><br/>'+        
-                                       'Test result ' +catgryDtls.Name+ ' : is been pinned for re-test '+ 
+                                       'Test result ' +catgryDtls.Name+ ' : is been pinned for re-test by CreatedBy.Name'+ 
                                        '<br/><br/>'+
                                        'You can access the result via the link below;'+
                                        URL.getSalesforceBaseUrl().toExternalForm()+'/'+catgryDtls.Id+
@@ -164,18 +165,6 @@ Throws [Exceptions]:
                     sendEmail(catgryDtls,usrList,categoryMap);
                     
                     isDone = true; 
-                }//This is for calling Approvalprocess
-                else if (catgryDtls.In_Approval__c) {   
-                    approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
-                    req1.setComments('Submitting request for approval.');
-                    req1.setObjectId(catgryDtls.id); 
-                    req1.setNextApproverIds(idList);   
-                    
-                    //if(!Test.isRunningTest())
-                    approval.ProcessResult result = Approval.process(req1);   
-                    sendEmail(catgryDtls,usrList,categoryMap);
-                    
-                    isDone = true; 
                 }//This is for calling Approvalprocess and record rejected
                 else if (catgryDtls.In_Approval__c && rejectedRecord== true) {   
                     approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
@@ -188,7 +177,19 @@ Throws [Exceptions]:
                     sendEmail(catgryDtls,usrList,categoryMap);
                     
                     isDone = true; 
-                } //This step is for sending email to particular Queue if GPL rejects
+                } //This is for calling Approvalprocess
+                else if (catgryDtls.In_Approval__c) {   
+                    approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
+                    req1.setComments('Submitting request for approval.');
+                    req1.setObjectId(catgryDtls.id); 
+                    req1.setNextApproverIds(idList);   
+                    
+                    //if(!Test.isRunningTest())
+                    approval.ProcessResult result = Approval.process(req1);   
+                    sendEmail(catgryDtls,usrList,categoryMap);
+                    
+                    isDone = true; 
+                }//This step is for sending email to particular Queue if GPL rejects
                 else if(catgryDtls.Approval_Status__c == BEN_ConstantsForBenchmarkingAppClasses.INSECONDSTEP && catgryDtls.pkl_Status__c == BEN_ConstantsForBenchmarkingAppClasses.REJECTED){
                     Messaging.SingleEmailMessage mail =  new Messaging.SingleEmailMessage();  
                     String body =  'Hi,<br/><br/>'+        
@@ -265,13 +266,10 @@ Throws [Exceptions]:
             
         }
         
-        system.debug('-----usrList----'+usrList);
+       
         mail.settoAddresses(usrList);
         mail.setHTMLBody(body);
         Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});  
-        
-        
-        
         
     }    
     
