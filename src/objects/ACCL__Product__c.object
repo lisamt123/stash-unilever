@@ -58,6 +58,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
     <fieldSets>
         <fullName>ACCL__MobilityRelevant</fullName>
         <description>Field set used to restrict the amount of data on the mobility device.</description>
@@ -378,6 +379,11 @@
         </displayedFields>
         <displayedFields>
             <field>ACCL__Container_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Material_Type__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -965,12 +971,12 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-   <!-- <fields>
+    <fields>
         <fullName>ACCL__Fund_Valid_From__c</fullName>
         <deprecated>false</deprecated>
-        <description>Fund Role status valid from date.</description>
+        <description>Fund status valid from date.</description>
         <externalId>false</externalId>
-        <label>Fund Role Valid From</label>
+        <label>Fund Valid From</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -978,13 +984,13 @@
     <fields>
         <fullName>ACCL__Fund_Valid_Thru__c</fullName>
         <deprecated>false</deprecated>
-        <description>Fund Role status valid thru date.</description>
+        <description>Fund status valid thru date.</description>
         <externalId>false</externalId>
-        <label>Fund Role Valid Thru</label>
+        <label>Fund Valid Thru</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>-->
+    </fields>
     <fields>
         <fullName>ACCL__KAM_Valid_From__c</fullName>
         <deprecated>false</deprecated>
@@ -1040,6 +1046,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>box</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CS</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -1436,18 +1446,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-   <!-- <fields>
-        <fullName>Test_ame__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Test ame</label>
-        <referenceTo>Test_ame__c</referenceTo>
-        <relationshipLabel>Products</relationshipLabel>
-        <relationshipName>Products</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>-->
     <fields>
         <fullName>UL_Criterion_7_Product_Code__c</fullName>
         <externalId>false</externalId>
@@ -1685,6 +1683,14 @@
                 <fullName>TEST2</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Dummy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -1851,6 +1857,10 @@
         </picklistValues>
         <picklistValues>
             <picklist>ACCL__Pack_Size_Unit__c</picklist>
+            <values>
+                <fullName>CS</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>box</fullName>
                 <default>false</default>
@@ -2767,6 +2777,10 @@
         <picklistValues>
             <picklist>ACCL__Pack_Size_Unit__c</picklist>
             <values>
+                <fullName>CS</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>box</fullName>
                 <default>false</default>
             </values>
@@ -2900,7 +2914,15 @@
         <picklistValues>
             <picklist>UL_Material_Type__c</picklist>
             <values>
+                <fullName>Dummy</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>FERT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2994,6 +3016,10 @@
         <picklistValues>
             <picklist>ACCL__Pack_Size_Unit__c</picklist>
             <values>
+                <fullName>CS</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>box</fullName>
                 <default>false</default>
             </values>
@@ -3016,39 +3042,39 @@
         <picklistValues>
             <picklist>ACCL__Product_Level__c</picklist>
             <values>
-                <fullName>Category</fullName>
+                <fullName>1</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Commodity</fullName>
+                <fullName>2</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Group Brand</fullName>
+                <fullName>3</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>OPCO</fullName>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Product</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Product Group</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SKU</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Size</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Variant</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3145,8 +3171,8 @@
         <customTabListAdditionalFields>ACCL__Description_1__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCL__Product_Type__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCL__UPC__c</customTabListAdditionalFields>
-        <excludedStandardButtons>Accept</excludedStandardButtons>
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
         <lookupDialogsAdditionalFields>ACCL__Product_Code__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCL__Description_1__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCL__Product_Level__c</lookupDialogsAdditionalFields>
@@ -3169,7 +3195,7 @@
         <errorDisplayField>ACCL__Criterion_1_Product__c</errorDisplayField>
         <errorMessage>Only product with &apos;Category&apos; product level can be selected.</errorMessage>
     </validationRules>
-  <validationRules>
+    <validationRules>
         <fullName>ACCL__Criterion_2_Product</fullName>
         <active>false</active>
         <description>Only product with &apos;Sub Category&apos; product level can be selected</description>

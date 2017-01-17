@@ -11,8 +11,8 @@ VERSION     AUTHOR             DATE              DETAIL            Description
 1.0         Chandra Reddy      21/11/2016        INITIAL DEV       Validate user role.
 *****************************************************************/
 public with sharing class UL_TeamConcept{
-	
-	/*******************************************************************
+    
+    /*******************************************************************
     Purpose: Validate if the user is with Account Manager role
     Version: 1.0
     Parameters: N/A
@@ -97,7 +97,7 @@ public with sharing class UL_TeamConcept{
         return isUserAccountManager(UserInfo.getUserId(), Date.Today());
     }
 
-	/*******************************************************************
+    /*******************************************************************
     Purpose: Validate if the user is account set manager
     Version: 1.0
     Parameters: UserId, Date
