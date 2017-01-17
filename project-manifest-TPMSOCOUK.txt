@@ -55,6 +55,7 @@ src/objects/ACCL__Tactic_Fund__c.object
 src/objects/ACCL__Tactic_Template__c.object
 src/objects/ACCL__Tactic__c.object
 src/objects/ACCL__Unit_of_Measure__c.object
+src/objects/ACCL__Promotion_Template_Hierarchy__c.object
 src/objects/UL_Approval_Threshold__c.object
 src/objects/UL_Cannibalisation_Rate__c.object
 src/objects/UL_Comparator__c.object
