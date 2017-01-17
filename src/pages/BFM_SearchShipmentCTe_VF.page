@@ -87,9 +87,9 @@
                     <apex:outputPanel style="color:#4a4a56;font-weight:bold" >
                     <label for="Planta">
                         <span>Planta</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                       	<apex:input value="{!stageplantcode }"/>
+                        <apex:input value="{!stageplantcode }"/>
                     </label>
-					</apex:outputPanel>
+                    </apex:outputPanel>
                 </apex:pageBlockSectionItem>-->
                </apex:pageBlockSection>
 
@@ -132,15 +132,12 @@
             </div>
         </apex:pageBlock>
         
-        <apex:pageBlock title="{!$Label.BFM_Search_Result}" id="noRec" rendered="{! IF(shipList!= null && shipList.size ==0,true,false)}" >
-            <apex:outputPanel >
+        <!-- going to iterate over Stage instead --> 
+        <apex:pageblock title="{!$Label.BFM_Search_Result}" id="pgShips">
+            <apex:outputPanel rendered="{! IF(shipList!= null && shipList.size ==0,true,false)}" >
                 <h1>{!$Label.BFM_No_Records} </h1>
             </apex:outputPanel>
-        </apex:pageBlock>
-        <!-- going to iterate over Stage instead --> 
-        <apex:pageblock title="{!$Label.BFM_Search_Result}" rendered="{!IF(AND(NOT(ISBLANK(shipList)),shipList.size>0),true,false)}" id="pgShips">
-            
-            <apex:outputPanel id="ships" >
+            <apex:outputPanel id="ships" rendered="{!IF(AND(NOT(ISBLANK(shipList)),shipList.size>0),true,false)}"  >
                 <apex:pageBlockTable value="{!shipList}" var="shp" id="ships1" StyleClass="styleships">
                     <apex:column >
                         <apex:facet name="header">
@@ -158,7 +155,9 @@
                     <apex:column headerValue="Última atualização">
                         <apex:OutputText value="{!shp.Last_Shipment_Update__c}"/>
                     </apex:column>
-                    <apex:column value="{!shp.Shipment_Status__c}"/>
+                    <apex:column value="{!shp.Created_Date__c}"/>
+                    <apex:column value="{!shp.Pricing_Calculation_Date__c}"/>
+                    <apex:column value="{!shp.Carrier_Account__r.Name}"/>
                     <apex:column value="{!shp.Carrier_Account_Vendor_Code__c}"/>
                 </apex:pageBlockTable>
             </apex:outputPanel>

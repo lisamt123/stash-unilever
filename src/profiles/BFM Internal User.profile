@@ -22,14 +22,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BFM_AmazonConnector</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_BulOccurrenceQuery</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>BFM_BulkOccurrenceQuery</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -99,10 +91,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_QueryFreightsResponse</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_QueryFreightsResponse_backup</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>

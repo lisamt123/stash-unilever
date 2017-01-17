@@ -92,7 +92,7 @@ public with sharing class BFM_SearchOccurrenceController_CC{
         }
         system.debug('===>'+occurStart);
         if(occurStart!=null){
-            searchClauses += ' Created_date__c >:occurStart AND Created_date__c <:occurTo AND ';            
+            searchClauses += ' Created_date__c >=:occurStart AND Created_date__c <=:occurTo AND ';            
         }
         
         searchClauses = searchClauses.trim().removeEndIgnoreCase('AND');

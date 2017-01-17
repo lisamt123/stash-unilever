@@ -18,7 +18,7 @@ public with sharing class BFM_SESSummaryScreen_CC {
     public List<SelectOption> recordsize{get;set;}
     
     public BFM_SESSummaryScreen_CC(ApexPages.StandardSetController controller){
-        seslistString ='Select id,name,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,CT_E__r.UF_Goods_Sender__c,CT_E__r.CT_e_Number__c,CT_E__r.Link_Status__c,CT_E__r.Is_Not_Duplicated__c, CT_E__r.CT_e_Sefaz_Check_Status__c,CT_E__r.Cte_Status__c,CT_E__r.Is_CNPJ_Valid__c from BFM_SES__c';
+        seslistString ='Select id,name,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,CT_E__r.UF_Goods_Sender__c,CT_E__r.CT_e_Number__c,CT_E__r.Link_Status__c,CT_E__r.Is_Not_Duplicated__c,CT_E__r.Cte_Status__c,CT_E__r.Is_CNPJ_Valid__c from BFM_SES__c';
         try{
             con = new ApexPages.StandardSetController(Database.getQueryLocator(seslistString));
             system.debug('con---->'+con);
@@ -81,7 +81,7 @@ public with sharing class BFM_SESSummaryScreen_CC {
         recordsize.add(new SelectOption('200','200'));
         searchWord='';
         
-        seslist =[Select id,name,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,CT_E__r.UF_Goods_Sender__c,CT_E__r.CT_e_Number__c,CT_E__r.Link_Status__c,CT_E__r.Is_Not_Duplicated__c, CT_E__r.CT_e_Sefaz_Check_Status__c,CT_E__r.Cte_Status__c ,CT_E__r.Is_CNPJ_Valid__c from BFM_SES__c];
+        seslist =[Select id,name,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,CT_E__r.UF_Goods_Sender__c,CT_E__r.CT_e_Number__c,CT_E__r.Link_Status__c,CT_E__r.Is_Not_Duplicated__c, CT_E__r.Sefaz_Check_Status__c,CT_E__r.Cte_Status__c ,CT_E__r.Is_CNPJ_Valid__c from BFM_SES__c];
         
         SESView(seslist);
     }
@@ -110,7 +110,7 @@ public with sharing class BFM_SESSummaryScreen_CC {
         } 
         
         if(sesId!=null){     
-            seslist =[Select id,name,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,CT_E__r.Link_Status__c,CT_E__r.Is_Not_Duplicated__c, CT_E__r.CT_e_Sefaz_Check_Status__c,CT_E__r.Cte_Status__c, CT_E__r.Is_CNPJ_Valid__c from BFM_SES__c where id in:sesId];
+            seslist =[Select id,name,Gross_Value_net_tax__c,Document_Upload_Date_Time__c,stage__r.Origin_city__c,stage__r.Destination_City__c,stage__r.Shipment__r.Pricing_Calculation_Date__c,CT_E__r.Link_Status__c,CT_E__r.Is_Not_Duplicated__c, CT_E__r.Sefaz_Check_Status__c, CT_E__r.Cte_Status__c, CT_E__r.Is_CNPJ_Valid__c from BFM_SES__c where id in:sesId];
             SESView(seslist);
         }
     } 

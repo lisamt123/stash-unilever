@@ -17,7 +17,7 @@
     <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>BFM_CommunitiesSelfReg_VF</selfRegPage>
-    <siteAdmin>leena.nandimandalam@capgemini.com</siteAdmin>
+    <siteAdmin>deploy.system@unilever.com</siteAdmin>
     <siteType>ChatterNetwork</siteType>
     <subdomain>unilever</subdomain>
     <urlPathPrefix>BrazilFreightCollaborationTool</urlPathPrefix>

@@ -330,23 +330,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>BFM_CT_e__c.SES__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Tax_Type__c</fields>
-        <fields>Description__c</fields>
-        <fields>Tax_group__c</fields>
-        <fields>Tax_Base__c</fields>
-        <fields>Withheld__c</fields>
-        <fields>Tax_Amount__c</fields>
-        <fields>Tax_Rate__c</fields>
-        <fields>Excluded_Base__c</fields>
-        <fields>Other_Base__c</fields>
-        <relatedList>BFM_IVA__c.SES__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>BFM_Error_Log__c.BFM_SES__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

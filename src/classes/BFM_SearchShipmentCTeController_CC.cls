@@ -62,9 +62,17 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
     public List<BFM_Shipment__c> shipList{  
         get  {  
             if(con != null)  
+            {
+                system.debug('Inside if condition');
+                system.debug('Con data:'+(List<BFM_Shipment__c>)con.getRecords());
                 return (List<BFM_Shipment__c>)con.getRecords();            
+            }
             else  
+            {
+                system.debug('Inside else condition');
                 return null ;             
+            }
+                
         }  
         
         set;
@@ -78,12 +86,12 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
         }
         system.debug('===>shipcrdate'+shipcrdate+'shipstdate==>'+shipstart+'plantcode'+stageplantcode+'shipCarrierAccount'+shipCarrierAccount);
         
-        String ShipmentString = 'SELECT id,name,Shipment_Number__c,Carrier_Account_Vendor_Code__c,Last_Shipment_Update__c,Shipment_Status__c,Shipment_Start__c,Display__c, Carrier_Account__c,(select Origin_plant_code__c from Stages__r ) ' +
+        String ShipmentString = 'SELECT id,name,Pricing_Calculation_Date__c,Created_Date__c,Carrier_Account__r.Name,Shipment_Number__c,Carrier_Account_Vendor_Code__c,Last_Shipment_Update__c,Shipment_Status__c,Shipment_Start__c,Display__c, Carrier_Account__c,(select Origin_plant_code__c from Stages__r ) ' +
         ' FROM BFM_Shipment__c ';
         
         String searchClauses = 'WHERE '; 
 
-        if(!String.isEmpty(shipmentNumber) && !String.isEmpty(carrieraccvendor)) {
+        if(!String.isEmpty(shipmentNumber)) {
             for(string str:shipmentNumber.split(',')){
                 string shipmentNumberSplit= '\''+String.escapeSingleQuotes(str.trim())+'\'' ;
                 shipmentNumberList.add(shipmentNumberSplit);
@@ -117,19 +125,18 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
             String val1 = '\'%' + String.escapeSingleQuotes(stageplantcode.trim()) + '%\'';
             searchClauses += ' Stages__r.Origin_plant_code__c LIKE ' + val1 + ' AND ';
         }
-        searchClauses = searchClauses.trim().removeEndIgnoreCase('AND');
          
         system.debug('===>'+shipcrdate);
         if(shipcrdate!= null){
-            searchClauses += ' Created_Date__c >:shipcrdate AND Created_Date__c <:shipcrdateupto AND ';
+            searchClauses += ' Created_Date__c >=:shipcrdate AND Created_Date__c <=:shipcrdateupto AND ';
         }
         
         system.debug('===>'+shipstart);
         if(shipstart!= null){
-            searchClauses += ' Shipment_Start__c >:shipstart AND Shipment_Start__c <:shipsrtupto AND ';
+            searchClauses += ' Shipment_Start__c >=:shipstart AND Shipment_Start__c <=:shipsrtupto AND ';
         }
         if(pricingDateStart!= null){
-            searchClauses += ' Pricing_Calculation_Date__c >:pricingDateStart AND Pricing_Calculation_Date__c <:pricingDateupto AND ';
+            searchClauses += ' Pricing_Calculation_Date__c >=:pricingDateStart AND Pricing_Calculation_Date__c <=:pricingDateupto AND ';
         }
         searchClauses = searchClauses.trim().removeEndIgnoreCase('AND');
         if(searchClauses == 'WHERE'){

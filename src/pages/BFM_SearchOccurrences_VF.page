@@ -61,14 +61,11 @@
             </div>
         </apex:pageBlock>
         
-        <apex:pageBlock title="Resultado da busca" id="noRec" rendered="{! IF(OccList!= null && OccList.size ==0,true,false)}" > <!-- TODO : add custom label -->
-            <apex:outputPanel >
+        <apex:pageblock title="Resultado da busca"  id="pgoccurance">
+            <apex:outputPanel rendered="{! IF(OccList!= null && OccList.size ==0,true,false)}">
                 <h1>Nenhum registro encontrado</h1> <!-- Todo : add custom label -->
             </apex:outputPanel>
-        </apex:pageBlock>
-        
-        <apex:pageblock title="Resultado da busca" rendered="{!IF(AND(NOT(ISBLANK(OccList)),OccList.size>0),true,false)}" id="pgoccurance">
-            <apex:outputPanel id="occur">
+            <apex:outputPanel id="occur" rendered="{!IF(AND(NOT(ISBLANK(OccList)),OccList.size>0),true,false)}">
                 <apex:pageBlockTable value="{!OccList}" var="Occ" id="occurnce">
                     <apex:column >
                         <apex:facet name="header">
