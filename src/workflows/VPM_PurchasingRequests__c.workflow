@@ -11,4 +11,15 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_UserSurveyRequest</template>
     </alerts>
+    <alerts>
+        <fullName>VPM_SendEmailToVendorEmail</fullName>
+        <description>VPM Send email to Vendor Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>VPM_ApprovalEmails/VPM_RequestVendorDetails</template>
+    </alerts>
 </Workflow>

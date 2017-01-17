@@ -21,6 +21,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>VPM_RecordTypeHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>VPM_RegionalMaintainVendor</apexClass>
         <enabled>false</enabled>
     </classAccesses>
