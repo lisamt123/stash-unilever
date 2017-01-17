@@ -129,7 +129,7 @@
                         <apex:inputField showDatePicker="true" value="{!relatedRecord.ACCL__Placement_Date_From__c}" required="true" id="Date_From">
                             <apex:actionSupport id="df_supp" event="onchange" rerender="AnchorLabelBlock,AnchorListBlock,DefaultListBlock,Del_profile"  action="{!loadCustomers}"/>  
                         </apex:inputField>
-                    </apex:actionRegion>    
+                    </apex:actionRegion>   
                     
                 </apex:pageBlockSectionItem>
                 
