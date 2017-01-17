@@ -1675,6 +1675,16 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_CHD_Lock__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is used in background to update Account while Account is locked. Process Builder updates the account record as well as this field and Validation rule check if this field is changed.</description>
+        <externalId>false</externalId>
+        <label>CHD Lock</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FS_ChainTargetingModel__c</fullName>
         <description>Purpose : This is the classification of your account 
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
@@ -2279,9 +2289,17 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <controllingFieldValues>ELISTA</controllingFieldValues>
                 <controllingFieldValues>GROZNIY</controllingFieldValues>
                 <controllingFieldValues>KRASNODAR</controllingFieldValues>
+                <controllingFieldValues>MAKHACHKALA</controllingFieldValues>
+                <controllingFieldValues>NALCHIK</controllingFieldValues>
+                <controllingFieldValues>NAZRAN</controllingFieldValues>
+                <controllingFieldValues>NOVOROSSIYSK</controllingFieldValues>
+                <controllingFieldValues>PYATIGORSK</controllingFieldValues>
                 <controllingFieldValues>ROSTOV-ON-DON</controllingFieldValues>
                 <controllingFieldValues>SEVASTOPOL</controllingFieldValues>
                 <controllingFieldValues>SIMFEROPOL</controllingFieldValues>
+                <controllingFieldValues>SOCHI</controllingFieldValues>
+                <controllingFieldValues>STAVROPOL</controllingFieldValues>
+                <controllingFieldValues>VLADIKAVKAZ</controllingFieldValues>
                 <controllingFieldValues>VOLGOGRAD</controllingFieldValues>
             </picklistValues>
             <picklistValues>
@@ -2290,15 +2308,25 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <controllingFieldValues>ABAKAN</controllingFieldValues>
                 <controllingFieldValues>BARNAUL</controllingFieldValues>
                 <controllingFieldValues>BIYSK</controllingFieldValues>
+                <controllingFieldValues>BLAGOVESCHENSK</controllingFieldValues>
                 <controllingFieldValues>BRATSK</controllingFieldValues>
                 <controllingFieldValues>CHITA</controllingFieldValues>
                 <controllingFieldValues>IRKUTSK</controllingFieldValues>
                 <controllingFieldValues>KEMEROVO</controllingFieldValues>
+                <controllingFieldValues>KHABAROVSK</controllingFieldValues>
+                <controllingFieldValues>KOMSOMOLSK-NA-AMURE</controllingFieldValues>
                 <controllingFieldValues>KRASNOYARSK</controllingFieldValues>
+                <controllingFieldValues>MAGADAN</controllingFieldValues>
+                <controllingFieldValues>NORILSK</controllingFieldValues>
+                <controllingFieldValues>NOVOKUZNETSK</controllingFieldValues>
                 <controllingFieldValues>NOVOSIBIRSK</controllingFieldValues>
                 <controllingFieldValues>OMSK</controllingFieldValues>
+                <controllingFieldValues>PETROPAVLOVSK-KAMCHATSKY</controllingFieldValues>
                 <controllingFieldValues>TOMSK</controllingFieldValues>
                 <controllingFieldValues>ULAN-UDE</controllingFieldValues>
+                <controllingFieldValues>VLADIVOSTOK</controllingFieldValues>
+                <controllingFieldValues>YAKUTSK</controllingFieldValues>
+                <controllingFieldValues>YUZHNO-SAKHALINSK</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ural</fullName>
@@ -3085,7 +3113,7 @@ At least 3 out of 4 = 5</inlineHelpText>
     </fields>
     <fields>
         <fullName>FS_supplyCost__c</fullName>
-        <defaultValue>0.08</defaultValue>
+        <defaultValue>0.05</defaultValue>
         <description>Used in the TPR Calculation in Opportunity Products specifically for the calculation for Supply Chain Cost (SCC)</description>
         <externalId>false</externalId>
         <label>Supply Cost</label>
@@ -25004,8 +25032,16 @@ OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilev
     <validationRules>
         <fullName>FS_Account_Lock</fullName>
         <active>true</active>
-        <description>Prevents users from editing Account records unless they are System Admin or integration.</description>
-        <errorConditionFormula>IF( ISNEW() || CreatedDate = LastModifiedDate || $Profile.Name=&quot;Generic API Only&quot; || $Profile.Name=&quot;System Administrator&quot; || $Permission.FS_Admin ||$Profile.Name=&quot;Unilever Food Solution - Russia&quot;, false , IF( (RecordType.DeveloperName  = &quot;Operators&quot; || RecordType.DeveloperName = &quot;Distributor&quot;) &amp;&amp; (ISPICKVAL(Status__c , &quot;Temporary&quot;) || ISPICKVAL(Status__c,&quot;Active&quot;)), true, false ) )</errorConditionFormula>
+        <description>Prevents users from editing Account records unless they are System Admin or integration.
+
+
+
+FS_CHD_Lock__c field is to track the record is created and updated the record in same transaction.</description>
+        <errorConditionFormula>(RecordType.DeveloperName = &quot;Operators&quot; || RecordType.DeveloperName = &quot;Distributor&quot;)
+&amp;&amp; Not(ISNEW())
+&amp;&amp; (ISPICKVAL(Status__c , &quot;Temporary&quot;) || ISPICKVAL(Status__c,&quot;Active&quot;) ) 
+&amp;&amp; NOT($Profile.Name=&quot;Generic API Only&quot; || $Profile.Name=&quot;System Administrator&quot; || $Permission.FS_Admin || $Profile.Name=&quot;Unilever Food Solution - Russia&quot; )
+&amp;&amp; (FS_CHD_Lock__c==false || Not(ISchanged(FS_CHD_Lock__c)))</errorConditionFormula>
         <errorMessage>You do not have access to edit this record. Please contact your system administrator.</errorMessage>
     </validationRules>
     <validationRules>

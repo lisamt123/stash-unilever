@@ -5258,6 +5258,14 @@ ISCHANGED( CloseDate )
         <errorMessage>Start Date TPR should not be on previous date.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>FS_Temporary_Account</fullName>
+        <active>true</active>
+        <description>Food Solution Opportunity cannot be created with a temporary Account</description>
+        <errorConditionFormula>IF(AND($Profile.Name = &apos;Unilever Food Solution - NA&apos;, TEXT(Account.Status__c)=&apos;Temporary&apos;),true,false)</errorConditionFormula>
+        <errorDisplayField>AccountId</errorDisplayField>
+        <errorMessage>The Account is in Temporary status. Opportunity cannot be created with a temporary Account</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Opportunity_For_Reason_Description</fullName>
         <active>true</active>
         <description>when select the Stage = Closed Lost, Closed Won, Not Pursued, Lost Existing Business, Replace Existing Business, It should be required to populate a text box called Reason Description. Populate Reason Description means NOT NULL.</description>
