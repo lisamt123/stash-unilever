@@ -7,6 +7,16 @@
 @Reference: Project Document Section Editor Page
 */
 public with sharing class IPM_AssortmentStrategy {
+
+    public Id prodocSecId{// to get-set the project document section id from the component attribute.
+        get{
+            if(prodocSecId == null && Apexpages.currentpage().getparameters().get('ProSecID') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('ProSecID')) ;
+            }
+            else { return prodocSecId; }
+        }
+        set;
+    } //For Project Document Section Id
     private static final String IPM_ASSORTMENTSTRATEGY_STR= IPM_AssortmentStrategy.class.getName();
     private static final String CREATEASSORTSTRATEGY_STR='createAssortStrategy';
     private static final String DLTALLASSORT_STR='dltAllAssort';
@@ -16,7 +26,6 @@ public with sharing class IPM_AssortmentStrategy {
     private static final String GETASSORTSTRATEGY_STR='getAssortStrategy';
     private static final String ERROR='Error';
     //Initializing Variables
-    public Id prodocSecId; //For Project Document Section Id
     public Integer deletedPriority; //For getting deleted priority
     public Set<String> channelNameSet{get; set;} //Customer Channel Name Set 
     public string distributionType{get;set;} //Getting Distribution type
@@ -34,7 +43,6 @@ public with sharing class IPM_AssortmentStrategy {
     public string assortTarget{get;set;} //Assortment Target value
     public string assortPriority{get;set;} //Assortment Priority
     public Map<String,Integer> assortPriorityMap{get; set;} //List of Contents associated with channel
-    public ID getProdocSecId(){ return prodocSecId; } //Project Document Section Id
     public Integer priorityNumber{get; set;} // integer to store the priority Number
     public Integer countCU{get; set;} //Number of CUs
     public Id secConId{get; set;}// to store the section Content Id
@@ -42,16 +50,13 @@ public with sharing class IPM_AssortmentStrategy {
     public Boolean isTarget{get; set;} //For checking updating target or not
     public string priorityCU{get; set;} //For updating priority
     public string arrow{get; set;} // string to store the priority arrow
-    
-    /************************************************************************************************************************
-    * @name setProdocSecId
-    * @description Get project document section details
-    * @param project document section id
-    * @return void
+            
+     /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
     */
-    public void setProdocSecId (ID p){
-        prodocSecId= p;
+    public string getInvokeMethodsForComponent() {
         getAssortStrategy();
+        return 'Required methods are invoked for component';
     }
     
     /************************************************************************************************************************
@@ -70,7 +75,9 @@ public with sharing class IPM_AssortmentStrategy {
         selecteAssort=IPM_ConstantUtils.BLANK;
         isTarget=false;
         getCChannelsNames();
-        getAssortStrategy();
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
     }
 
     /************************************************************************************************************************
@@ -211,59 +218,59 @@ public with sharing class IPM_AssortmentStrategy {
     *  @throws exception
     */
     public void getAssortStrategy(){
-    	try{
-	        lstAssortStrategy=new list<IPM_Project_Document_Section_Content__c>();
-	        setAssortStrategy=new set<string>();
-	        channelNameSet=new set<string>();
-	        setselectedCUsNames=new set<string>();
-	        setchannelName=new set<string>();
-	        assortPriorityMap=new Map<String,Integer>();
-	        lstAssortStrategy=[SELECT IPM_Assortment_Cus__c,IPM_Assortment_CU_Priority__c,IPM_Customer_Channel_Priority__c,IPM_Incumbent_CUs__c,IPM_Assortment_strategy_Target__c,IPM_Assort_Channel_Name__c,
-	        						  IPM_AssortmentStrategy_To__c,IPM_Distribution_Type__c,IPM_Project_Document_Section__c,IPM_Assortment_Strategy_Priority__c,IPM_AssortmentStrategy_From__c 
-	        				   FROM IPM_Project_Document_Section_Content__c 
-	        				   WHERE IPM_Project_Document_Section__c=:prodocSecId order by IPM_Assortment_CU_Priority__c asc];
-	        				   
-	        if(lstAssortStrategy!=null && !lstAssortStrategy.isEmpty()){        
-	            ipmProdocContent.IPM_AssortmentStrategy_From__c=lstAssortStrategy[0].IPM_AssortmentStrategy_From__c;
-	            ipmProdocContent.IPM_AssortmentStrategy_To__c=lstAssortStrategy[0].IPM_AssortmentStrategy_To__c;
-	            distributionType=lstAssortStrategy[0].IPM_Distribution_Type__c;
-	        }
-	        
-	        //Clear CU value
-	        ipmProdocContent.IPM_Incumbent_CUs__c=IPM_ConstantUtils.BLANK;
-	        
-	        for(IPM_Project_Document_Section_Content__c  AssortS:lstAssortStrategy){
-	            setAssortStrategy.add(AssortS.IPM_Incumbent_CUs__c);
-	            channelNameSet.add(AssortS.IPM_Assort_Channel_Name__c);
-	            assortPriorityMap.put(AssortS.IPM_Incumbent_CUs__c,(Integer)AssortS.IPM_Assortment_CU_Priority__c);
-	            if(String.isBlank(channelName)){
-	                channelName=AssortS.IPM_Assort_Channel_Name__c;
-	            }
-	            else{
-	                if(!channelName.contains(AssortS.IPM_Assort_Channel_Name__c)){
-	                    channelName=channelName+IPM_ConstantUtils.COMMA+AssortS.IPM_Assort_Channel_Name__c;
-	                }   
-	            }            
-	        } 
-	        List<IPM_Project_Document_Section_Content__c> appendList;
-	        assotmentMap=new Map<string,List<IPM_Project_Document_Section_Content__c>>();
-	        
-	        //For Displaying Appendix
-	        for(string assortm:setAssortStrategy){
-	            appendList=new List<IPM_Project_Document_Section_Content__c>();
-	            for(IPM_Project_Document_Section_Content__c  Assortc:lstAssortStrategy){
-	                if(Assortc.IPM_Incumbent_CUs__c==assortm){
-	                    appendList.add(Assortc);
-	                }
-	            }
-	            assotmentMap.put(assortm,appendList);
-	        }
-	        countCU=setAssortStrategy.size();  
-    	}
-    	catch(Exception ex){
+      try{
+          lstAssortStrategy=new list<IPM_Project_Document_Section_Content__c>();
+          setAssortStrategy=new set<string>();
+          channelNameSet=new set<string>();
+          setselectedCUsNames=new set<string>();
+          setchannelName=new set<string>();
+          assortPriorityMap=new Map<String,Integer>();
+          lstAssortStrategy=[SELECT IPM_Assortment_Cus__c,IPM_Assortment_CU_Priority__c,IPM_Customer_Channel_Priority__c,IPM_Incumbent_CUs__c,IPM_Assortment_strategy_Target__c,IPM_Assort_Channel_Name__c,
+                        IPM_AssortmentStrategy_To__c,IPM_Distribution_Type__c,IPM_Project_Document_Section__c,IPM_Assortment_Strategy_Priority__c,IPM_AssortmentStrategy_From__c 
+                     FROM IPM_Project_Document_Section_Content__c 
+                     WHERE IPM_Project_Document_Section__c=:prodocSecId order by IPM_Assortment_CU_Priority__c asc];
+                     
+          if(lstAssortStrategy!=null && !lstAssortStrategy.isEmpty()){        
+              ipmProdocContent.IPM_AssortmentStrategy_From__c=lstAssortStrategy[0].IPM_AssortmentStrategy_From__c;
+              ipmProdocContent.IPM_AssortmentStrategy_To__c=lstAssortStrategy[0].IPM_AssortmentStrategy_To__c;
+              distributionType=lstAssortStrategy[0].IPM_Distribution_Type__c;
+          }
+          
+          //Clear CU value
+          ipmProdocContent.IPM_Incumbent_CUs__c=IPM_ConstantUtils.BLANK;
+          
+          for(IPM_Project_Document_Section_Content__c  AssortS:lstAssortStrategy){
+              setAssortStrategy.add(AssortS.IPM_Incumbent_CUs__c);
+              channelNameSet.add(AssortS.IPM_Assort_Channel_Name__c);
+              assortPriorityMap.put(AssortS.IPM_Incumbent_CUs__c,(Integer)AssortS.IPM_Assortment_CU_Priority__c);
+              if(String.isBlank(channelName)){
+                  channelName=AssortS.IPM_Assort_Channel_Name__c;
+              }
+              else{
+                  if(!channelName.contains(AssortS.IPM_Assort_Channel_Name__c)){
+                      channelName=channelName+IPM_ConstantUtils.COMMA+AssortS.IPM_Assort_Channel_Name__c;
+                  }   
+              }            
+          } 
+          List<IPM_Project_Document_Section_Content__c> appendList;
+          assotmentMap=new Map<string,List<IPM_Project_Document_Section_Content__c>>();
+          
+          //For Displaying Appendix
+          for(string assortm:setAssortStrategy){
+              appendList=new List<IPM_Project_Document_Section_Content__c>();
+              for(IPM_Project_Document_Section_Content__c  Assortc:lstAssortStrategy){
+                  if(Assortc.IPM_Incumbent_CUs__c==assortm){
+                      appendList.add(Assortc);
+                  }
+              }
+              assotmentMap.put(assortm,appendList);
+          }
+          countCU=setAssortStrategy.size();  
+      }
+      catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
-            	GETASSORTSTRATEGY_STR,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+              GETASSORTSTRATEGY_STR,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
         }
     }
 
@@ -277,7 +284,7 @@ public with sharing class IPM_AssortmentStrategy {
     public void dltAllAssort(){
         list<IPM_Project_Document_Section_Content__c> dltAllAssortS=new list<IPM_Project_Document_Section_Content__c>();
         dltAllAssortS=[SELECT id,IPM_Assortment_CU_Priority__c FROM IPM_Project_Document_Section_Content__c 
-        			   WHERE IPM_Incumbent_CUs__c=:selecteAssortName AND IPM_Project_Document_Section__c=:prodocSecId limit 10];
+                 WHERE IPM_Incumbent_CUs__c=:selecteAssortName AND IPM_Project_Document_Section__c=:prodocSecId limit 10];
         try
         {
             if(dltAllAssortS!=null && !dltAllAssortS.isEmpty())
@@ -289,7 +296,7 @@ public with sharing class IPM_AssortmentStrategy {
         catch(DMLException ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
-            	DLTALLASSORT_STR,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+              DLTALLASSORT_STR,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
         }
         updatePriority(deletedPriority);
         channelName=IPM_ConstantUtils.BLANK;
@@ -306,12 +313,12 @@ public with sharing class IPM_AssortmentStrategy {
     public void updateAssortS(){
         IPM_Project_Document_Section_Content__c updateAssort=new IPM_Project_Document_Section_Content__c();
         updateAssort=[SELECT IPM_Assortment_Strategy_Priority__c FROM IPM_Project_Document_Section_Content__c 
-        			  WHERE id=:selecteAssort limit 1];
+                WHERE id=:selecteAssort limit 1];
         if(isTarget){
             updateAssort.IPM_Assortment_strategy_Target__c=assortTarget;
         }
         else{
-        	updateAssort.IPM_Assortment_Strategy_Priority__c=assortPriority;
+          updateAssort.IPM_Assortment_Strategy_Priority__c=assortPriority;
         }
         try{
             if(updateAssort!=null) {
@@ -321,7 +328,7 @@ public with sharing class IPM_AssortmentStrategy {
         catch(DMLException ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
-            	UPDATEASSORTS_STR,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+              UPDATEASSORTS_STR,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
         }
         getAssortStrategy();    
     }
@@ -371,7 +378,7 @@ public with sharing class IPM_AssortmentStrategy {
         catch (DMLException ex) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
-            	CHANGE_PRIORITY_STR,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+              CHANGE_PRIORITY_STR,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
     
@@ -397,7 +404,7 @@ public with sharing class IPM_AssortmentStrategy {
         catch(DMLException ex) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
-            	UPDATE_PRIORITY_STR,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+              UPDATE_PRIORITY_STR,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }   
     }    
 }

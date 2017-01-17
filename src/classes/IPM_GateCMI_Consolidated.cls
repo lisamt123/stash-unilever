@@ -206,35 +206,39 @@ public with sharing class IPM_GateCMI_Consolidated{
             getSectionCMIList();   
              
             
-            //Count of CMI Data per Gate    
-            String selectedGateCMI=IPM_ConstantUtils.BLANK;         
-            for(IPM_Gate_CMI__c gateCount:cmiList){
-                if(String.isBlank(selectedGateCMI)){
-                    selectedGateCMI=gateCount.Gate__c+IPM_ConstantUtils.Slash+gateCount.Element__c+IPM_ConstantUtils.Slash+gateCount.Test__c+IPM_ConstantUtils.Slash+IPM_ConstantUtils.SEMICOLON;
-                }
-                else{
-                    selectedGateCMI=selectedGateCMI+gateCount.Gate__c+IPM_ConstantUtils.Slash+gateCount.Element__c+IPM_ConstantUtils.Slash+gateCount.Test__c+IPM_ConstantUtils.Slash+IPM_ConstantUtils.SEMICOLON;
-                }
-                if(gateCount.Gate__c==IPM_ConstantUtils.CHARTER_GATE){
-                    charterCount++;
-                }    
-                if(gateCount.Gate__c==IPM_ConstantUtils.CONTRACT_GATE){
-                    contractCount++;
-                }    
-                if(gateCount.Gate__c==IPM_ConstantUtils.MARKET_READY_GATE){
-                    marketReadyCount++;     
-                }    
-            }
-
-            gateCount.put(IPM_ConstantUtils.CHARTER_GATE,charterCount);
-            gateCount.put(IPM_ConstantUtils.CONTRACT_GATE,contractCount);
-            gateCount.put(IPM_ConstantUtils.MARKET_READY_GATE,marketReadyCount);    
-            
-        }
-        catch(Exception ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMI_CONSOLIDATED_STR,
-                SHOW_LIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-        }   
-    }
-}
+	            countGates(cmiList);
+	
+	            gateCount.put(IPM_ConstantUtils.CHARTER_GATE,charterCount);
+	            gateCount.put(IPM_ConstantUtils.CONTRACT_GATE,contractCount);
+	            gateCount.put(IPM_ConstantUtils.MARKET_READY_GATE,marketReadyCount);    
+	            
+	        }
+	        catch(Exception ex){
+	            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+	            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMI_CONSOLIDATED_STR,
+	                SHOW_LIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+	        }   
+	    }
+	    
+	    //Count of CMI Data per Gate 
+		private void countGates(List<IPM_Gate_CMI__c> cmiList){		
+			String selectedGateCMI=IPM_ConstantUtils.BLANK;
+		    for(IPM_Gate_CMI__c gateCount:cmiList){
+	            if(String.isBlank(selectedGateCMI)){                  
+	            	 selectedGateCMI=gateCount.Gate__c+IPM_ConstantUtils.Slash+gateCount.Element__c+IPM_ConstantUtils.Slash+gateCount.Test__c+IPM_ConstantUtils.Slash+IPM_ConstantUtils.SEMICOLON;
+	            }
+	            else{
+	                selectedGateCMI=selectedGateCMI+gateCount.Gate__c+IPM_ConstantUtils.Slash+gateCount.Element__c+IPM_ConstantUtils.Slash+gateCount.Test__c+IPM_ConstantUtils.Slash+IPM_ConstantUtils.SEMICOLON;
+	            }
+	            if(gateCount.Gate__c==IPM_ConstantUtils.CHARTER_GATE){
+	                charterCount++;
+	            }    
+	            if(gateCount.Gate__c==IPM_ConstantUtils.CONTRACT_GATE){
+	                contractCount++;
+	            }    
+	            if(gateCount.Gate__c==IPM_ConstantUtils.MARKET_READY_GATE){
+	                marketReadyCount++;     
+	            }    
+		    }
+		}
+	}

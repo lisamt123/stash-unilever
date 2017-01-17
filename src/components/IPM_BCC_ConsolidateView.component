@@ -12,6 +12,7 @@
 <apex:attribute name="projectId" required="true" type="Id" assignTo="{!projId}" description="Getting Project Id" />
 <apex:attribute name="gateType" type="String" assignTo="{!gateDocType}" description="get the document name"/> 
 <apex:attribute name="showBccTab"  type="Boolean" assignTo="{!showBccTable}" description="get the visibility of BBC table"/>
+<apex:outputPanel style="display:none;">{!InvokeMethodsForComponent}</apex:outputPanel>
 <apex:pageBlock >
     <div class="bccMainblock">
         <div class="bccheadblocks rollwidthcust {!if(!showBccTable,'fourclmwidth','topwidth')}">

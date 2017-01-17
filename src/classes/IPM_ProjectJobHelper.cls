@@ -23,6 +23,10 @@ public without sharing class IPM_ProjectJobHelper
     public static Map<Id,IPM_Project__c> projectToGrandParentMapping = new Map<Id,IPM_Project__c>();
     public static Map<Id,Map<Id,IPM_Project__c>> projectToChildMapping = new Map<Id,Map<Id,IPM_Project__c>>();
     public static Map<Id,Map<Id,IPM_Project__c>> projectToGrandChildMapping = new Map<Id,Map<Id,IPM_Project__c>>();
+    public static Map<String,IPM_Project__c> rolloutProjectsMap = new Map<String,IPM_Project__c>();
+    public static Map<Id,Map<Id,IPM_Project_Rollout__c>> projectSpecificRegionalRolloutMap = new Map<Id,Map<Id,IPM_Project_Rollout__c>>();
+    public static Map<Id,Map<Id,IPM_Project_Rollout__c>> projectSpecificLocalRolloutMap = new Map<Id,Map<Id,IPM_Project_Rollout__c>>();
+    public static Set<String> projectExternalIdSet = new Set<String>(); 
      /**************************************************************
     * @description: Process Project information. Used for Setting Phases of various Projects, which internally invoke Related DMLs.
                     This class handles the core logic for :
@@ -52,7 +56,7 @@ public without sharing class IPM_ProjectJobHelper
             incomingProjectIds = incomingProjectMap.keySet();
             masterProjectDetailMap.putAll(incomingProjectMap); 
             masterProjectDetailMap.putAll(IPM_Utils.populateParentProjectDetails(incomingProjectIds));
-            masterProjectDetailMap.putAll(IPM_Utils.populateChildProjectDetails(incomingProjectIds));
+            masterProjectDetailMap.putAll(IPM_Utils.populateChildProjectDetails(incomingProjectIds,false));
         
             projectToParentMapping = IPM_Utils.prepareProjectToParentMapping(incomingProjectMap,masterProjectDetailMap);
             projectToGrandParentMapping = IPM_Utils.prepareProjectToGrandParentMapping(projectToParentMapping,masterProjectDetailMap);
@@ -188,16 +192,12 @@ public without sharing class IPM_ProjectJobHelper
         Set<Id> incomingProjectIds = incomingProjectMap.keySet();
         processingRolloutMap.clear();
         
-        Map<String,IPM_Project__c> rolloutProjectsMap = new Map<String,IPM_Project__c>();
         
-        Map<Id,Map<Id,IPM_Project_Rollout__c>> projectSpecificRegionalRolloutMap = new Map<Id,Map<Id,IPM_Project_Rollout__c>>();
-        Map<Id,Map<Id,IPM_Project_Rollout__c>> projectSpecificLocalRolloutMap = new Map<Id,Map<Id,IPM_Project_Rollout__c>>();
         
         /*Get Rollouts Starts. Need to verify whether Project has 'Change  Project On Status Change','create REgional/Local Projects' enabled. */
         String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
         String eligibleRolloutValue = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
         String rolloutWhereClause = ' WHERE (IPM_Project__c IN: incomingProjectIds OR Regional_Project__c IN: incomingProjectIds ) AND IPM_Project_Job_Status__c =:eligibleRolloutValue'; 
-        Set<String> projectExternalIdSet = new Set<String>(); 
         if(rolloutIdSet!=null && !rolloutIdSet.isEmpty())
         {
             rolloutWhereClause = rolloutWhereClause + ' AND Id in:rolloutIdSet AND isActive__c= true '; 
@@ -210,6 +210,113 @@ public without sharing class IPM_ProjectJobHelper
         {
             for(IPM_Project_Rollout__c rollout : rolloutMap.values())
             {
+                checkRolloutMap(rollout);
+            }
+        }             
+        
+                          
+        for(Id projectId : incomingProjectIds)
+        {
+            prepareRolloutMap(incomingProjectMap, projectId,qContext);
+           
+        }
+        
+        if(!processingRolloutMap.isEmpty())
+        {
+        	IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
+            update processingRolloutMap.values();
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+        }
+        
+        if(!rolloutProjectsMap.isEmpty())
+        {
+        	for(IPM_Project__c project : [SELECT Id,IPM_Project_Name__c from IPM_Project__c where IPM_Project_Name__c in : projectExternalIdSet])
+        	{
+        		if(rolloutProjectsMap.containsKey(project.IPM_Project_Name__c))
+        		{
+        			rolloutProjectsMap.remove(project.IPM_Project_Name__c);
+        		}
+        	}
+            upsert rolloutProjectsMap.values() IPM_Project_Name__c;
+        }
+    } 
+    
+    /*************************************************************
+    * This function was created to remove the npath complexities. 
+    * This function is called from processRollouts()
+    * @ description:: prepare regional and local rollout map
+    * @param: project Rollout
+    */
+    
+    private static void prepareRolloutMap(Map<Id,IPM_Project__c> incomingProjectMap, Id projectId,QueueableContext qContext){
+        
+        if(incomingProjectMap.containsKey(projectId) && incomingProjectMap.get(projectId) !=null)
+        {
+            IPM_Project__c incomingProjectDetail =  incomingProjectMap.get(projectId);
+            
+            // Set the Latest Phase
+            if(incomingProjectDetail.IPM_Phase__c != incomingProjectDetail.IPM_Temporary_Phase__c && IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Temporary_Phase__c) )
+            {
+                incomingProjectDetail.IPM_Phase__c = incomingProjectDetail.IPM_Temporary_Phase__c;
+            }
+            
+            IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(incomingProjectDetail);
+       
+            if(currentProjectType!=null && currentProjectType.IPM_CreateRegionalProjects__c && (projectSpecificRegionalRolloutMap.containsKey(projectId) &&  projectSpecificRegionalRolloutMap.get(projectId) !=null))
+            {
+                   
+                Map<Id,IPM_Project_Rollout__c> associatedRegionalRolloutsMap = projectSpecificRegionalRolloutMap.get(projectId);
+                List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedRegionalRolloutsMap.values() );
+                for(IPM_Project__c project : preparedProjectList)
+                {
+                    rolloutProjectsMap.put(project.IPM_Project_Name__c,project);  
+                    projectExternalIdSet.add(project.IPM_Project_Name__c);  
+                } 
+                
+                for(IPM_Project_Rollout__c projectRollout : associatedRegionalRolloutsMap.values())
+                {
+                    projectRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
+                    if(qContext!=null)
+                    {    
+                        projectRollout.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
+                    }
+                    processingRolloutMap.put(projectRollout.Id,projectRollout);
+                }
+            }else if(currentProjectType!=null && currentProjectType.IPM_CreateLocalProjects__c &&(projectSpecificLocalRolloutMap.containsKey(projectId) &&  projectSpecificLocalRolloutMap.get(projectId) !=null))
+            {
+                Map<Id,IPM_Project_Rollout__c> associatedLocalRolloutsMap = projectSpecificLocalRolloutMap.get(projectId);
+                if(!associatedLocalRolloutsMap.isEmpty())
+                {
+                     List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedLocalRolloutsMap.values() );
+                    
+                     for(IPM_Project__c project : preparedProjectList)
+                    {
+                        rolloutProjectsMap.put(project.IPM_Project_Name__c,project);   
+                        projectExternalIdSet.add(project.IPM_Project_Name__c); 
+                    } 
+
+                    for(IPM_Project_Rollout__c projectRollout : associatedLocalRolloutsMap.values())
+                    {
+                        projectRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
+                        if(qContext!=null)
+                        {  
+                            projectRollout.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
+                        }
+                        processingRolloutMap.put(projectRollout.Id,projectRollout);
+                    }
+                }
+            }
+        }
+    }
+    
+    /*************************************************************
+    * This function was created to remove the npath complexities. 
+    * This function is called from processRollouts()
+    * @ description:: Checks regional and local rollout map
+    * @param: project Rollout
+    */
+    
+    private static void checkRolloutMap(IPM_Project_Rollout__c rollout){
                 // Check for Regional Rollouts and Prepare projectToRolloutMap 
                 if(rollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
                 {
@@ -244,103 +351,7 @@ public without sharing class IPM_ProjectJobHelper
                     }
                     associatedlocalRolloutsMap.put(rollout.Id,rollout);
                     projectSpecificLocalRolloutMap.put(rollout.IPM_Project__c,associatedlocalRolloutsMap);
-                
-                }
-                
-            }
-        }             
         
-                          
-        for(Id projectId : incomingProjectIds)
-        {
-            if(incomingProjectMap.containsKey(projectId) && incomingProjectMap.get(projectId) !=null)
-            {
-                IPM_Project__c incomingProjectDetail =  incomingProjectMap.get(projectId);
-                
-                // Set the Latest Phase
-                if(incomingProjectDetail.IPM_Phase__c != incomingProjectDetail.IPM_Temporary_Phase__c && IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Temporary_Phase__c) )
-                {
-                    incomingProjectDetail.IPM_Phase__c = incomingProjectDetail.IPM_Temporary_Phase__c;
-                }
-                
-                IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(incomingProjectDetail);
-                
-                if(currentProjectType!=null)
-                {   
-                    // Check for Rollouts.
-                    if(currentProjectType.IPM_CreateRegionalProjects__c)
-                    {
-                           
-                        if(projectSpecificRegionalRolloutMap.containsKey(projectId) &&  projectSpecificRegionalRolloutMap.get(projectId) !=null)
-                        {
-                            Map<Id,IPM_Project_Rollout__c> associatedRegionalRolloutsMap = projectSpecificRegionalRolloutMap.get(projectId);
-                            List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedRegionalRolloutsMap.values() );
-                            for(IPM_Project__c project : preparedProjectList)
-                            {
-                                rolloutProjectsMap.put(project.IPM_Project_Name__c,project);  
-                                projectExternalIdSet.add(project.IPM_Project_Name__c);  
-                            } 
-                            
-                            for(IPM_Project_Rollout__c projectRollout : associatedRegionalRolloutsMap.values())
-                            {
-                                projectRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
-                                if(qContext!=null)
-                                {    
-                                    projectRollout.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
-                                }
-                                processingRolloutMap.put(projectRollout.Id,projectRollout);
-                            }
-                        }          
-                    }
-                    
-                    if(currentProjectType.IPM_CreateLocalProjects__c)
-                    {
-                        if(projectSpecificLocalRolloutMap.containsKey(projectId) &&  projectSpecificLocalRolloutMap.get(projectId) !=null)
-                        {
-                            Map<Id,IPM_Project_Rollout__c> associatedLocalRolloutsMap = projectSpecificLocalRolloutMap.get(projectId);
-                            if(!associatedLocalRolloutsMap.isEmpty())
-                            {
-                                 List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedLocalRolloutsMap.values() );
-                                
-                                 for(IPM_Project__c project : preparedProjectList)
-                                {
-                                    rolloutProjectsMap.put(project.IPM_Project_Name__c,project);   
-                                    projectExternalIdSet.add(project.IPM_Project_Name__c); 
-                                } 
-
-                                for(IPM_Project_Rollout__c projectRollout : associatedLocalRolloutsMap.values())
-                                {
-                                    projectRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
-                                    if(qContext!=null)
-                                    {  
-                                        projectRollout.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
-                                    }
-                                    processingRolloutMap.put(projectRollout.Id,projectRollout);
-                                }
-                            }
-                        }   
-                    }
-                }
-            }
-        }
-        
-        if(!processingRolloutMap.isEmpty())
-        {
-        	IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
-            update processingRolloutMap.values();
-            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
-        }
-        
-        if(!rolloutProjectsMap.isEmpty())
-        {
-        	for(IPM_Project__c project : [SELECT Id,IPM_Project_Name__c from IPM_Project__c where IPM_Project_Name__c in : projectExternalIdSet])
-        	{
-        		if(rolloutProjectsMap.containsKey(project.IPM_Project_Name__c))
-        		{
-        			rolloutProjectsMap.remove(project.IPM_Project_Name__c);
-        		}
-        	}
-            upsert rolloutProjectsMap.values() IPM_Project_Name__c;
         }
     } 
     

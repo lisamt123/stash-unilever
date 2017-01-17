@@ -114,7 +114,23 @@ public class IPM_CU_Complexity_Controller_Test {
             control.projDocSecCon=sectionContent;
             control.projectSecId=sectionList[0].Id;
             control.phase='Idea';
-            control.projSpan='';
+            control.isEdit=true;
+            control.gateType=CHARTER;
+            control.proModel='';
+            control.proSpan='';
+            control.projSpan=''; 
+            
+            system.assertEquals(control.isEdit, true);
+            system.assertEquals(control.gateType, CHARTER);
+            system.assertEquals(control.proModel, '');
+            system.assertEquals(control.proSpan, '');
+            system.assertEquals(control.projSpan, '');
+            
+            ApexPages.currentPage().getParameters().put('isEdit','true');
+            ApexPages.currentPage().getParameters().put('gateType','Charter');
+            ApexPages.currentPage().getParameters().put('proSpan','Test');
+            ApexPages.currentPage().getParameters().put('proModel','Test');
+            ApexPages.currentPage().getParameters().put('phaseName','Test');
 
             control.getCuCount();
             System.assertEquals(control.contentCount, 1, CONTENT_NOT_PROPER);

@@ -5,40 +5,68 @@
 *               in the gate document
 */
 public with sharing class IPM_FinGateController {
- 
+    
     public IPM_Project__c project {get; set;} //The project record for which the financial business cases are being viewed
-    public Id projectId; //Project Id of te current project
-    public ID getprojectId(){ return projectId; }
-    public void setprojectId (ID p){
-        projectId= p;
-        showFinancials();
+    public Id projectId{ // to get-set the project id from the component attribute.
+        get{
+            if(projectId == null && Apexpages.currentpage().getparameters().get('projId') != null) {
+                return Id.valueOf(Apexpages.currentpage().getparameters().get('projId')) ;
+            }
+            else { return projectId; }
+        }
+        set;
     }
-
+    public string printDoc{
+        get{
+            if(printDoc == null && Apexpages.currentpage().getparameters().get('printDoc') != null) {
+                return  Apexpages.currentpage().getparameters().get('printDoc');
+            }
+            else { return printDoc; }
+        }
+        set;
+    } //Current Document being viewed
+    
     public Integer sustainabilityPeriod {get; set;} //Sustainability Period relevant for this set of business cases. 
     public Integer colSpan {get; set;} //Derived from Sustainability Perido. Used to define the number of columns visible on the Financial Table
     public Integer colSpanCalendar {get; set;} //Derived from number of financial years for Calendar Financial Table
     public Integer totalCalendarFinYears {get; set;} //Derived from number of financial years for Calendar Financial Table
-    
-    public string printDoc {get; set;} //Current Document being viewed
-    public boolean renderGate{get;set;}
-    public static IPM_Financial__c currentFinancial {get; set;} //Used to store the financial business case (IPM_Financial & associated IPM_Financial_Year__c records)
         
-    public transient IPM_FinancialWrapper financialsInnovation {get; set;} //Wrapper to store the financial values for the Innovation Years for the currentFinancial
-    public transient IPM_FinancialWrapper financialsCalendar {get; set;} //Wrapper to store the financial values for the Calendar Years for the currentFinancial
+    public boolean renderGate{get;set;}
+    public IPM_Financial__c currentFinancial {get; set;} //Used to store the financial business case (IPM_Financial & associated IPM_Financial_Year__c records)
     
-    public transient List<String> lstClusterNames {get; set;} //List of Cluster Names for which the project is being rolled out to
-
-    public transient ipmFinancialSummaryWrapper gTOWrapper {get; set;} //gTO Financial Summay Wrapper
-    public transient ipmFinancialSummaryWrapper GMWrapper {get; set;} //GM Financial Summay Wrapper
-    public transient ipmFinancialSummaryWrapper PBOWrapper {get; set;} //PBO Financial Summay Wrapper
-    public transient ipmFinancialSummaryWrapper GMbpsWrapper {get; set;} //GM bps Financial Summay Wrapper
-    public transient ipmFinancialSummaryWrapper PBObpsWrapper {get; set;} //PBO bps Financial Summay Wrapper
-    public transient ipmFinancialSummaryWrapper iTOWrapper {get; set;} //iTO Financial Summay Wrapper
-    public transient ipmFinancialSummaryWrapper iAPWrapper {get; set;} //iAP Financial Summay Wrapper
-	public String ExternalId{get;set;}//to construct the financial external id // NO SONAR. variable used in Dyanamic SOQL
+    public IPM_FinancialWrapper financialsInnovation {get; set;} //Wrapper to store the financial values for the Innovation Years for the currentFinancial
+    public IPM_FinancialWrapper financialsCalendar {get; set;} //Wrapper to store the financial values for the Calendar Years for the currentFinancial
+    
+    public List<String> lstClusterNames {get; set;} //List of Cluster Names for which the project is being rolled out to
+    
+    public ipmFinancialSummaryWrapper gTOWrapper {get; set;} //gTO Financial Summay Wrapper
+    public ipmFinancialSummaryWrapper GMWrapper {get; set;} //GM Financial Summay Wrapper
+    public ipmFinancialSummaryWrapper PBOWrapper {get; set;} //PBO Financial Summay Wrapper
+    public ipmFinancialSummaryWrapper GMbpsWrapper {get; set;} //GM bps Financial Summay Wrapper
+    public ipmFinancialSummaryWrapper PBObpsWrapper {get; set;} //PBO bps Financial Summay Wrapper
+    public ipmFinancialSummaryWrapper iTOWrapper {get; set;} //iTO Financial Summay Wrapper
+    public ipmFinancialSummaryWrapper iAPWrapper {get; set;} //iAP Financial Summay Wrapper
+    public String ExternalId{get;set;}//to construct the financial external id // NO SONAR. variable used in Dyanamic SOQL
     public String volumeUnit {get; set;} //Volume Unit
     public String fieldSuffix {get; set;} //Used to dynamically change the field suffix based on the current view. (Accepted values are - Global,Regional.Local,Charter,Contract,MR,MD)
-    public Static List<IPM_Financial__c> lstConsolidatedFinancial = new List<IPM_Financial__c>();
+    public List<IPM_Financial__c> lstConsolidatedFinancial = new List<IPM_Financial__c>();
+    
+     /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForComponent() {
+        showFinancials();
+        return 'Required methods are invoked for component';
+    }
+    
+    /************************************************************************************************************************
+    * @Description: CONSTRUCTOR
+    */
+    public IPM_FinGateController() {
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
+    }
     
     /*******************************************************************************************************
     * @description  Constructor
@@ -154,7 +182,8 @@ public with sharing class IPM_FinGateController {
         //IPM Financial Year
         queryString+= '(SELECT ';
         For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
-            if (field != 'Id') {
+             if (!(field.equalsignoreCase('Id'))){
+            	
                 queryString+= field + ', ';
             }
         }
@@ -227,7 +256,7 @@ public with sharing class IPM_FinGateController {
             finWrapper.y0PBODifference = finYear.PBO_of_TO_Difference__c;
         } 
         //Rest of the Year Values
-        else if(Integer.valueOf(finYear.Year__c) <= sustainabilityPeriod) {
+        else if(Integer.valueOf(finYear.Year__c) <= Integer.valueOf(project.Sustainability_Period__c)) {
             //Gross P&L Values
             if (finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_GROSS){
                 finWrapper.lstYearNames.add(finYear.Name);

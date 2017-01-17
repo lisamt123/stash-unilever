@@ -297,7 +297,7 @@ public with sharing  class FAU_SendEmail_Custom{
           system.debug('@@: '+ToField);
           system.debug('***CcFieldValue==>'+CcFieldValue);
           system.debug('*****ToField='+ToField+'*****subjectLine=='+subjectLine);
-        if((!String.isBlank(subjectLine) &&(!String.isBlank(templateId))))
+        if((!String.isBlank(subjectLine) ))
          { 
              set<String> TempToEmails= new  set<string>();
             
@@ -318,7 +318,7 @@ public with sharing  class FAU_SendEmail_Custom{
              emailsave.From_Address__c = FromAddresses;
              emailsave.FAU_Program__c = ProgramId;
              system.debug('++++++++++++++Template Id is +++++++++'+templateId);
-             emailsave.FAU_Email_Template_Id__c = templateId;
+             //emailsave.FAU_Email_Template_Id__c = templateId;
              system.debug('++++++++++++++Email Template Id is +++++++++'+emailsave.FAU_Email_Template_Id__c);
              emailsave.FAU_Email_Start_Date__c = date_time;
              if(BodyContent.contains(BODYCONTENT1)){
@@ -364,7 +364,7 @@ public with sharing  class FAU_SendEmail_Custom{
             
           //**********************  Adding Custom message if there is no subject with the email. ******************
          
-         if((String.isBlank(subjectLine))&&(String.isBlank(templateId)))
+         if((String.isBlank(subjectLine)))
          {
               ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, SUBJECTERROR);
               ApexPages.addMessage(myMsg); 
@@ -472,7 +472,7 @@ public with sharing  class FAU_SendEmail_Custom{
                 message.setOrgWideEmailAddressId(owea.get(0).Id);
             }
         } 
-           EmailTemplate t = templateMap.get(templateId);   
+           //EmailTemplate t = templateMap.get(templateId);   
             
            message.setSubject(subjectLine);     
            
