@@ -1,0 +1,10 @@
+diff a/src/objects/Product2.object b/src/objects/Product2.object	(rejected hunks)
+@@ -6490,7 +6490,7 @@
+                 <default>false</default>
+             </values>
+             <values>
+-                <fullName>Knorr Asian Sauces</fullName>
++                <fullName>Knorr Asian line</fullName>
+                 <default>false</default>
+             </values>
+             <values>
