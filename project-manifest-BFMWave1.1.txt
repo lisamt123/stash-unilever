@@ -124,14 +124,18 @@ src/objects/BFM_NF_e__c.object
 src/objects/BFM_Occurrence__c.object
 src/objects/BFM_SES__c.object
 src/objects/BFM_CC_e__c.object
+src/objects/BFM_Tax_Code__c.object
 src/objects/BFM_NFS__c.object
 src/objects/BFM_CT_e__c.object
+src/objects/BFM_MDF_e__c.object
 src/objects/BFM_POD__c.object
 src/objects/BFM_MIRO_Header__c.object
 src/objects/BFM_Debit_Note__c.object
 src/objects/BFM_File__c.object
 src/objects/BFM_Shipment__c.object
 src/objects/BFM_Stage__c.object
+src/objects/Account.object
+src/objects/Contact.object
 src/objects/BFM_User_Creation_Request_Error__c.object
 src/objects/BFM_UserCreationRequest__c.object
 src/pages/BFM_AccountMoreDetails.page
@@ -174,6 +178,9 @@ src/permissionsets/BFM_View_All_Data_User.permissionset
 src/profiles/BFM Internal User.profile
 src/profiles/BFM Partner Community User.profile
 src/queues/BFM_User_Creation_Request_Approvers.queue
+src/queues/BFM_CT_e_Cancellation_Request_Approvers.queue
+src/queues/BFM_Debit_Note_Cancellation_Users.queue
+src/queues/BFM_NFS_Cancellation_users.queue
 src/sites/BrazilFreightCollaborationTool.site
 src/staticresources/BFM_Bootstrap.resource
 src/staticresources/BFM_Bootstrap.resource-meta.xml
