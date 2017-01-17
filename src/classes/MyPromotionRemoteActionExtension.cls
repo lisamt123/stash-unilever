@@ -1625,7 +1625,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                 }
                 else
                     Throw new updateException('The fund' + String.valueOf(temp.get('ACCL__Fund__c')) + ' is selected and the allocation is 0%');
-            }
+            } 
         } 
     }
     
