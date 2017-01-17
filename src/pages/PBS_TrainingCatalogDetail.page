@@ -109,7 +109,7 @@
                             <apex:outputPanel rendered="{!IF(learningcategory.Name != 'System & Tools' && o.planName == 'The CURE (Cash Up Realtime Engine)- New User Onboarding' && isCashUpProfile == true,true,false)}">
                                 <div class="col-xs-12 col-sm-6 col-md-4 catalog-plan-item " item-url="{!IF(o.hasAssignment ,$Page.PBS_TrainingPlanDetail,$Page.PBS_TrainingPlanPreview)}?id={!o.planId} " valid-item="{!validAssignment}">
                                     <div class="tplan_box {!IF(validAssignment,'','tplan_box_disabled')} ">
-                    <img src="/servlet/servlet.FileDownload?file={!cashupImageId}" width="50" height="50" style="position: absolute;bottom: 0;right: 0;" alt=""/>
+                    <img src="/servlet/servlet.FileDownload?file={!cashupImageId}" width="50" height="50" style="position: absolute;bottom: 0;right: 0;"/>
                                         <apex:outputPanel layout="none" rendered="{!hasBadge}">
                                             <div class="tplan_img">
                                                 <apex:outputField value="{!o.mainAchievement.Acquired_Image__c}"  rendered="{!o.mainAchievement.Work_Badge_Image_URL__c == null}"/>
