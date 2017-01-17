@@ -62,6 +62,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>UL_Cannibalisation_Rate__c</fullName>
         <description>Allows for entry of a cannibalisation rate.</description>
@@ -113,9 +114,26 @@
         <externalId>false</externalId>
         <globalPicklist>UL_Feature</globalPicklist>
         <label>Feature</label>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_IsAllCustomers__c</fullName>
+        <externalId>false</externalId>
+        <formula>UL_Customer__r.Name  = &apos;All Customers&apos;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IsAllCustomers</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UL_IsAllProducts__c</fullName>
+        <externalId>false</externalId>
+        <formula>UL_Product__r.Name = &apos;All Products&apos;</formula>
+        <label>IsAllProducts</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>UL_Planning_Level__c</fullName>
@@ -196,6 +214,11 @@
         <label>All</label>
         <language>en_US</language>
     </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>CR-{0000}</displayFormat>
         <label>Cannibalisation Rate ID</label>
@@ -220,59 +243,11 @@
         <picklistValues>
             <picklist>UL_Feature</picklist>
             <values>
-                <fullName>Dump Bins</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Free Standing Unit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gondola End</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hot Spot</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ladder Rack</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mid Gondola</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>None Specified</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pallet Drop</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sampling %28E-Tail%29</fullName>
-                <default>false</default>
+                <fullName>Off-Shelf</fullName>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Shelf</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shipper%2FOFD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Side Stack</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Store Entrance</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
