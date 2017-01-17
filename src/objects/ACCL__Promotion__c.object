@@ -2820,40 +2820,6 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    <fields>
-        <fullName>UL_WorkflowState__c</fullName>
-        <description>Status of Promotion Workflow</description>
-        <externalId>false</externalId>
-        <label>Workflow State</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Planning</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Finance Check</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Manager Check</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>End Date</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
     <label>Promotion</label>
     <listViews>
         <fullName>ACCL__All</fullName>
