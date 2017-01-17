@@ -3928,7 +3928,7 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <customTabListAdditionalFields>UL_Category__c</customTabListAdditionalFields>
         <listViewButtons>ACCL__Derive</listViewButtons>
         <listViewButtons>Copy</listViewButtons>
-        <listViewButtons>Close_Promotion</listViewButtons>
+        <!--<listViewButtons>Close_Promotion</listViewButtons> -->
         <lookupDialogsAdditionalFields>ACCL__Slogan__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCL__Promotion_Template__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCL__Date_From__c</lookupDialogsAdditionalFields>
@@ -4119,7 +4119,7 @@ Id=VLOOKUP
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
     </webLinks>
-    <webLinks>
+<!--    <webLinks>
         <fullName>Close_Promotion</fullName>
         <availability>online</availability>
         <displayType>massActionButton</displayType>
@@ -4143,7 +4143,7 @@ if (records[0] == null) {
       window.location.reload();
    }
 }</url>
-    </webLinks>
+    </webLinks> -->
     <webLinks>
         <fullName>Copy</fullName>
         <availability>online</availability>
