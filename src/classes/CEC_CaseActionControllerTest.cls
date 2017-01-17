@@ -50,7 +50,7 @@ public class CEC_CaseActionControllerTest{
             List<cec_Alert_Rule__c> dayCodeAlertRuleList = 
                                                 CEC_TestDataFactory.createAlertRule(1,'Safety','0','5','United Kingdom',
                                                                     reasonCodeList.get(0).Id,prodCategoryList.get(0).Id,
-                                                                    null,false,true,false,1);
+                                                                    null,false,true,false,2);
             insert dayCodeAlertRuleList;
             
             List<cec_Alert_Action__c> dayCodeQuestionAlertActionList = 

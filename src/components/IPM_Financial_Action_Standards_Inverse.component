@@ -11,6 +11,7 @@
 <apex:attribute name="secId" type="Id" required="false" assignTo="{!projDocSecId}" description="Passing Project Document Section Id"/>
 <apex:attribute name="projId" type="Id" required="true" assignTo="{!projectId}" description="Passing Project Id"/>
 <apex:attribute name="gate" type="string" assignTo="{!gateType}" description="passing gate name"/>
+<apex:outputPanel style="display:none;">{!InvokeMethodsForComponent}</apex:outputPanel>
    <!-- Render condition for checking editable to display url to financial page -->     
    <apex:outputPanel styleClass="gatefinancialbg" layout="block" rendered="{!isEditable}">
        <a href="{!$Page.IPM_Financial}?id={!projectId}">{!$Label.IPM_Navigate_Financial}</a>
@@ -132,51 +133,51 @@
             </tr>
             </apex:outputPanel>
             <apex:outputPanel rendered="{!AND(project.IPMProject_Span__c='Global',project.IPM_Project_Type__c!='Operational',project.IPM_Phase__c!='Ideas')}" layout="none">
-	            <tr>
-	                <td width="200px" class="fintleblubg fleft pl10">
-	                    <div class="col-sm-7"><apex:outputText Value="{!If(AND(project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Original'),'Global Action Standards',if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c='Rollout'),projDocSecCon.IPM_Section_Name__c,$Label.IPM_ActionStandards))}"/></div>
-	                </td>
-	                 <td class="fintlewhitebg">
-	                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
-	                        <apex:param value="{!finActionStandard.IPM_Innov_Value_Share_Action_Charter__c}" />
-	                    </apex:outputText>
-	                </td>
-	                <td class="fintlewhitebg">
-	                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
-	                        <apex:param value="{!finActionStandard.IPM_Inc_Value_Share_Action_Charter__c}" />
-	                    </apex:outputText>
-	                </td>
-	                <td class="fintlewhitebg">
-	                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
-	                        <apex:param value="{!finActionStandard.IPM_gTO_Action_Standard_Charter__c}" />
-	                    </apex:outputText>
-	                </td>
-	                 <td class="fintlewhitebg">
-	                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
-	                        <apex:param value="{!finActionStandard.IPM_iTo_Action_Standard_Charter__c}" />
-	                    </apex:outputText>
-	                </td>
-	                <td class="fintlewhitebg">
-	                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
-	                        <apex:param value="{!finActionStandard.IPM_GM_Action_Standards_Charter__c}" />
-	                    </apex:outputText> 
-	                </td>
-	                <td class="fintlewhitebg">
-	                    <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
-	                        <apex:param value="{!finActionStandard.IPM_NPV_Action_Standard_Charter__c}" />
-	                    </apex:outputText>
-	                </td>
-	                <td class="fintlewhitebg">
-	                    <apex:outputText value="{0, number, ###,###,###.###}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
-	                        <apex:param value="{!finActionStandard.IPM_IRR_Action_Standard_Charter__c}" />
-	                    </apex:outputText>
-	                </td>
-	                <td class="fintlewhitebg">
-	                    <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
-	                        <apex:param value="{!finActionStandard.IPM_Payback_Action_Standard_Charter__c}" />
-	                    </apex:outputText> 
-	                </td> 
-	            </tr>
+                <tr>
+                    <td width="200px" class="fintleblubg fleft pl10">
+                        <div class="col-sm-7"><apex:outputText Value="{!If(AND(project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Original'),'Global Action Standards',if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c='Rollout'),projDocSecCon.IPM_Section_Name__c,$Label.IPM_ActionStandards))}"/></div>
+                    </td>
+                     <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                            <apex:param value="{!finActionStandard.IPM_Innov_Value_Share_Action_Charter__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                            <apex:param value="{!finActionStandard.IPM_Inc_Value_Share_Action_Charter__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                            <apex:param value="{!finActionStandard.IPM_gTO_Action_Standard_Charter__c}" />
+                        </apex:outputText>
+                    </td>
+                     <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                            <apex:param value="{!finActionStandard.IPM_iTo_Action_Standard_Charter__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                            <apex:param value="{!finActionStandard.IPM_GM_Action_Standards_Charter__c}" />
+                        </apex:outputText> 
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                            <apex:param value="{!finActionStandard.IPM_NPV_Action_Standard_Charter__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.###}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                            <apex:param value="{!finActionStandard.IPM_IRR_Action_Standard_Charter__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                            <apex:param value="{!finActionStandard.IPM_Payback_Action_Standard_Charter__c}" />
+                        </apex:outputText> 
+                    </td> 
+                </tr>
             </apex:outputPanel>
             <apex:variable var="i" value="{!0}"/>
             <apex:repeat value="{!lstGateNames}" var="gateName">

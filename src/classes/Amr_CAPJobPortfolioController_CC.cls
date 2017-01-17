@@ -271,11 +271,11 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
     jobDetailList = new list<Amr_Job_Allocation__c>();
     acceptedString='Accepted';
     cancelledString='Cancelled';
-    string soql ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c != '+'\'Cancelled\' AND AM_Job_Detail__r.Job_Cancelled__c = false ';
+    string soql ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Multi_Category__r.name,AM_Job_Detail__r.Multi_Brand_Positioning__r.name,AM_Job_Detail__r.Multi_Brand__r.name,AM_Job_Detail__r.Single_or_multiply_project__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c != '+'\'Cancelled\' AND AM_Job_Detail__r.Job_Cancelled__c = false ';
     
     //cancellation
     jobDetailCancellationList = new list<Amr_Job_Allocation__c>();
-    string soqlForCancel ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c= '+'\'Cancelled\'AND AM_Job_Detail__r.Job_Cancelled__c = true ';
+    string soqlForCancel ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Multi_Category__r.name,AM_Job_Detail__r.Multi_Brand_Positioning__r.name,AM_Job_Detail__r.Multi_Brand__r.name,AM_Job_Detail__r.Single_or_multiply_project__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c= '+'\'Cancelled\'AND AM_Job_Detail__r.Job_Cancelled__c = true ';
 
     
     //search
@@ -309,19 +309,31 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
     
       if(String.isNotBlank(categoryName)){
       
-    soql += ' and AM_Job_Detail__r.ProductCategory__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
-    soqlForCancel += ' and AM_Job_Detail__r.ProductCategory__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    soql += ' and (AM_Job_Detail__r.ProductCategory__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    
+    soql += ' or AM_Job_Detail__r.Multi_Category__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH +')';
+    soqlForCancel += ' and (AM_Job_Detail__r.ProductCategory__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    
+     soqlForCancel += ' or AM_Job_Detail__r.Multi_Category__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH +')';
          
      }
       if(String.isNotBlank(brandPos)){
       
-    soql += ' and AM_Job_Detail__r.Brand_Position__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandPos)+Amr_ConstantForAdManager.PERCENTAGESLASH;
-    soqlForCancel +=' and AM_Job_Detail__r.Brand_Position__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandPos)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    soql += ' and ( AM_Job_Detail__r.Brand_Position__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandPos)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+
+     soql += ' or AM_Job_Detail__r.Multi_Brand_Positioning__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(brandPos)+Amr_ConstantForAdManager.PERCENTAGESLASH +')'; 
+    
+   soqlForCancel +=' and (AM_Job_Detail__r.Brand_Position__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandPos)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+   soqlForCancel +=' or AM_Job_Detail__r.Multi_Brand_Positioning__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandPos)+Amr_ConstantForAdManager.PERCENTAGESLASH +')';
           
      }
       if(String.isNotBlank(brandName) ){
-    soql += ' and AM_Job_Detail__r.Brand_Final__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
-    soqlForCancel += ' and AM_Job_Detail__r.Brand_Final__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    soql += ' and ( AM_Job_Detail__r.Brand_Final__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    
+    soql += ' or AM_Job_Detail__r.Multi_Brand__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(brandName)+Amr_ConstantForAdManager.PERCENTAGESLASH +')';
+    
+    soqlForCancel += ' and (AM_Job_Detail__r.Brand_Final__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    soqlForCancel += ' or AM_Job_Detail__r.Multi_Brand__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandName)+Amr_ConstantForAdManager.PERCENTAGESLASH +')';
           
      }
      

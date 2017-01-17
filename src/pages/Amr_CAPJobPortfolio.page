@@ -480,25 +480,46 @@
                                                         </apex:outputText>
 
                                                     </apex:column>
-                                                    <apex:column headerValue="Category" title="{!job.AM_Job_Detail__r.ProductCategory__r.name}">
-                                                        <apex:outputText >
+                                                    <apex:column headerValue="Category" title="{!job.AM_Job_Detail__r.Single_or_multiply_project__c}{!job.AM_Job_Detail__r.ProductCategory__r.name}">
+                                                        <apex:outputText >                                                        	
+                                                        	<apex:outputPanel rendered="{!if(job.AM_Job_Detail__r.Single_or_multiply_project__c=='Multiply',true,false)}">
+                                                            <div class="td-overflow width40">
+                                                                {!job.AM_Job_Detail__r.Multi_Category__r.name} 
+                                                            </div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!if(job.AM_Job_Detail__r.Single_or_multiply_project__c=='Multiply',false,true)}">
                                                             <div class="td-overflow width40">
                                                                 {!job.AM_Job_Detail__r.ProductCategory__r.name}
-                                                            </div>
+                                                            </div> 
+                                                            </apex:outputPanel>
                                                         </apex:outputText>
                                                     </apex:column>
-                                                    <apex:column headerValue="Brand Positioning" title="{!job.AM_Job_Detail__r.Brand_Position__r.name}">
+                                                    <apex:column headerValue="Brand Positioning" title="{!job.AM_Job_Detail__r.Multi_Brand_Positioning__r.name}{!job.AM_Job_Detail__r.Brand_Position__r.name}">
                                                         <apex:outputText >
+                                                        	<apex:outputPanel rendered="{!if(job.AM_Job_Detail__r.Single_or_multiply_project__c=='Multiply',true,false)}">
+                                                            <div class="td-overflow width40">
+                                                                {!job.AM_Job_Detail__r.Multi_Brand_Positioning__r.name}
+                                                            </div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!if(job.AM_Job_Detail__r.Single_or_multiply_project__c=='Multiply',false,true)}">                                                            
                                                             <div class="td-overflow width40">
                                                                 {!job.AM_Job_Detail__r.Brand_Position__r.name}
                                                             </div>
+                                                            </apex:outputPanel>
                                                         </apex:outputText>
                                                     </apex:column>
-                                                    <apex:column headerValue="Brand Name" title="{!job.AM_Job_Detail__r.Brand_Final__r.name}">
+                                                    <apex:column headerValue="Brand Name" title="{!job.AM_Job_Detail__r.Multi_Brand__r.name}{!job.AM_Job_Detail__r.Brand_Final__r.name}">
                                                         <apex:outputText >
-                                                            <div class="td-overflow width40">
-                                                                {!job.AM_Job_Detail__r.Brand_Final__r.name}
-                                                            </div>
+                                                        	<apex:outputPanel rendered="{!if(job.AM_Job_Detail__r.Single_or_multiply_project__c=='Multiply',true,false)}">
+	                                                            <div class="td-overflow width40">
+	                                                                {!job.AM_Job_Detail__r.Multi_Brand__r.name}
+	                                                            </div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!if(job.AM_Job_Detail__r.Single_or_multiply_project__c=='Multiply',false,true)}">
+	                                                            <div class="td-overflow width40">
+	                                                                {!job.AM_Job_Detail__r.Brand_Final__r.name}
+	                                                            </div>
+	                                                        </apex:outputPanel>
                                                         </apex:outputText>
                                                     </apex:column>
                                                     <apex:column headerValue="Project Name" title="{!if(job.AM_Job_Detail__r.Project_Details__r.Name !=null,job.AM_Job_Detail__r.Project_Details__r.Name,job.AM_Job_Detail__r.Project_Name_Other__c)}">
@@ -678,28 +699,51 @@
                                                             </div>
                                                         </apex:outputText>
                                                     </apex:column>
-                                                    <apex:column headerValue="Category" title="{!job.sObjRec.AM_Job_Detail__r.ProductCategory__r.name}">
-                                                        <apex:outputText >
+                                                    <apex:column headerValue="Category" title="{!if(job.sObjRec.AM_Job_Detail__r.Single_or_multiply_project__c=='Multiply',job.sObjRec.AM_Job_Detail__r.Multi_Category__r.name,job.sObjRec.AM_Job_Detail__r.ProductCategory__r.name)}">
+                                                        <apex:outputText >                                                            
+                                                            <apex:outputPanel rendered="{!if(job.sObjRec.AM_Job_Detail__r.Single_or_multiply_project__c=='Multiply',true,false)}">
+                                                            <div class="td-overflow width40">
+                                                                {!job.sObjRec.AM_Job_Detail__r.Multi_Category__r.name} 
+                                                            </div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!if(job.sObjRec.AM_Job_Detail__r.Single_or_multiply_project__c=='Multiply',false,true)}">
                                                             <div class="td-overflow width40">
                                                                 {!job.sObjRec.AM_Job_Detail__r.ProductCategory__r.name}
-                                                            </div>
+                                                            </div> 
+                                                            </apex:outputPanel>
+                                                            
+                                                            
                                                         </apex:outputText>
                                                     </apex:column>
-                                                    <apex:column headerValue="Brand Positioning" title="{!job.sObjRec.AM_Job_Detail__r.Brand_Position__r.name}">
+                                                    <apex:column headerValue="Brand Positioning" title="{!job.sObjRec.AM_Job_Detail__r.Multi_Brand_Positioning__r.name}{!job.sObjRec.AM_Job_Detail__r.Brand_Position__r.name}">
 
-                                                        <apex:outputText >
+                                                        <apex:outputText >                                                            
+                                                            <apex:outputPanel rendered="{!if(job.sObjRec.AM_Job_Detail__r.Single_or_multiply_project__c=='Multiply',true,false)}">
+                                                            <div class="td-overflow width40">
+                                                                {!job.sObjRec.AM_Job_Detail__r.Multi_Brand_Positioning__r.name}
+                                                            </div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!if(job.sObjRec.AM_Job_Detail__r.Single_or_multiply_project__c=='Multiply',false,true)}">                                                            
                                                             <div class="td-overflow width40">
                                                                 {!job.sObjRec.AM_Job_Detail__r.Brand_Position__r.name}
                                                             </div>
+                                                            </apex:outputPanel>
                                                         </apex:outputText>
 
                                                     </apex:column>
-                                                    <apex:column headerValue="Brand Name" title="{!job.sObjRec.AM_Job_Detail__r.Brand_Final__r.name}">
+                                                    <apex:column headerValue="Brand Name" title="{!job.sObjRec.AM_Job_Detail__r.Multi_Brand__r.name}{!job.sObjRec.AM_Job_Detail__r.Brand_Final__r.name}">
 
-                                                        <apex:outputText >
-                                                            <div class="td-overflow width40">
-                                                                {!job.sObjRec.AM_Job_Detail__r.Brand_Final__r.name}
-                                                            </div>
+                                                        <apex:outputText >                                                            
+                                                            <apex:outputPanel rendered="{!if(job.sObjRec.AM_Job_Detail__r.Single_or_multiply_project__c=='Multiply',true,false)}">
+	                                                            <div class="td-overflow width40">
+	                                                                {!job.sObjRec.AM_Job_Detail__r.Multi_Brand__r.name}
+	                                                            </div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!if(job.sObjRec.AM_Job_Detail__r.Single_or_multiply_project__c=='Multiply',false,true)}">
+	                                                            <div class="td-overflow width40">
+	                                                                {!job.sObjRec.AM_Job_Detail__r.Brand_Final__r.name}
+	                                                            </div>
+	                                                        </apex:outputPanel>
                                                         </apex:outputText>
 
                                                     </apex:column>

@@ -127,15 +127,57 @@
             <default>false</default>
         </values>
     </businessProcesses>
-
+    <businessProcesses>
+        <fullName>TEL_Telesales</fullName>
+        <description>Telesales sales process to support the UK team.</description>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Canceled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Lost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Won</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Released</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Scheduled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmitted</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>TEL_Telesales_Opportunity_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>AccountId</fields>
+        <fields>CloseDate</fields>
+        <fields>TEL_Wholesaler__c</fields>
+        <fields>TEL_Account_Phone__c</fields>
+        <fields>OwnerId</fields>
+        <label>Telesales Opportunity Compact Layout</label>
+    </compactLayouts>
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>AccountId</fullName>
         <lookupFilter>
-            <active>true</active>
+            <active>false</active>
             <filterItems>
                 <field>Account.Type</field>
                 <operation>equals</operation>
@@ -1165,7 +1207,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalGrossProfit__c</fullName>
-        <description>Created To display the sum of GrossProfit	from Opportunity Product.</description>
+        <description>Created To display the sum of GrossProfit  from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total GP</label>
         <summarizedField>OpportunityLineItem.FS_grossProfit__c</summarizedField>
@@ -1205,6 +1247,28 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
         <inlineHelpText>Total quantity count for opportunity.</inlineHelpText>
         <label>Total Quantity</label>
         <summarizedField>OpportunityLineItem.Quantity</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_TotalQuantityCases__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Quantity(Cases)</label>
+        <summarizedField>OpportunityLineItem.FS_QuantityCases__c</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_TotalQuantityPieces__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Quantity(Pieces)</label>
+        <summarizedField>OpportunityLineItem.FS_QuantityPieces__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
@@ -1303,7 +1367,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalproductCost__c</fullName>
-        <description>Created To display the sum of productCost	from Opportunity Product.</description>
+        <description>Created To display the sum of productCost  from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total PC</label>
         <summarizedField>OpportunityLineItem.FS_productCost__c</summarizedField>
@@ -1315,7 +1379,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalsupplyCost__c</fullName>
-        <description>Created To display the sum of supplyCost	from Opportunity Product.</description>
+        <description>Created To display the sum of supplyCost   from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total SC</label>
         <summarizedField>OpportunityLineItem.FS_supplyCost__c</summarizedField>
@@ -1930,7 +1994,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1943,7 +2006,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1957,7 +2019,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1971,7 +2032,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2011,7 +2071,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2024,7 +2083,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2037,7 +2095,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2052,7 +2109,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2065,7 +2121,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2094,7 +2149,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Not Pursued</controllingFieldValues>
             </picklistValues>
@@ -2457,12 +2511,109 @@ Enter competitor pricing if available</inlineHelpText>
                 <probability>10</probability>
                 <won>false</won>
             </picklistValues>
+            <picklistValues>
+                <fullName>Pending Call</fullName>
+                <default>false</default>
+                <description>Indicate when the opportunity is created but no contact with the customer was done.</description>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>10</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+                <description>Indicate when the telesales team schedule the opportunity to make a future call to start the negotiation to make a sales.</description>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>15</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Released</fullName>
+                <default>false</default>
+                <description>Indicate that the Telesales team made a sales and the request order was made.</description>
+                <closed>false</closed>
+                <forecastCategory>BestCase</forecastCategory>
+                <probability>80</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Transmitted</fullName>
+                <default>false</default>
+                <description>Indicate that the sales order requested by the telesales team was generated and processed with success.</description>
+                <closed>true</closed>
+                <forecastCategory>Closed</forecastCategory>
+                <probability>100</probability>
+                <won>true</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+                <description>Indicate that during the sales process, the opportunity was canceled for some reason, as lake of interesting, price of product, some restriction during the order generation, etc.</description>
+                <closed>true</closed>
+                <forecastCategory>Omitted</forecastCategory>
+                <probability>0</probability>
+                <won>false</won>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Lost_Reason__c</fullName>
+        <description>Telesales - The reason why the Opp was lost</description>
+        <externalId>false</externalId>
+        <label>Lost Reason</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Delivery Date</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Wholesaler__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Telesales - Determines the Wholesaler that will fulfill the order</description>
+        <externalId>false</externalId>
+        <label>Wholesaler</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>Secondary Account</value>
+            </filterItems>
+            <infoMessage>Filtered by Secondary Accounts only</infoMessage>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Telesales Calls</relationshipLabel>
+        <relationshipName>Telesales_Calls</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>TotalOpportunityQuantity</fullName>
@@ -2484,6 +2635,43 @@ Enter competitor pricing if available</inlineHelpText>
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>TEL_Account_Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.Phone</formula>
+        <label>Account Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Call_Date__c</fullName>
+        <description>Used to indicate when the telesales team will make a call to the customer.</description>
+        <externalId>false</externalId>
+        <label>Call Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Telesales - Used to reference the cases associated with the opportunity.</description>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Opportunities</relationshipLabel>
+        <relationshipName>Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Type</fullName>
         <picklist>
             <picklistValues>
@@ -2500,6 +2688,22 @@ Enter competitor pricing if available</inlineHelpText>
             </picklistValues>
             <picklistValues>
                 <fullName>Grow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Enrichment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Standard Sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sample Request</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sales Drive</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -2520,6 +2724,28 @@ Enter competitor pricing if available</inlineHelpText>
         <filterScope>Everything</filterScope>
         <label>All Opportunities</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Telesales_Opportunities</fullName>
+        <columns>OPPORTUNITY.TYPE</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>TEL_Case__c</columns>
+        <columns>OPPORTUNITY.NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.TEL_Telesales</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.STAGE_NAME</field>
+            <operation>equals</operation>
+            <value>Pending Call</value>
+        </filters>
+        <label>Telesales Pending Calls</label>
     </listViews>
     <listViews>
         <fullName>All_3a_Won_Opportunities</fullName>
@@ -3218,6 +3444,291 @@ Enter competitor pricing if available</inlineHelpText>
             <values>
                 <fullName>Win</fullName>
                 <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>TEL_Telesales</fullName>
+        <active>true</active>
+        <businessProcess>TEL_Telesales</businessProcess>
+        <compactLayoutAssignment>TEL_Telesales_Opportunity_Compact_Layout</compactLayoutAssignment>
+        <description>Record type to support the Telesales solution</description>
+        <label>Telesales</label>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonWonLost__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sales_Cycle__c</picklist>
+            <values>
+                <fullName>00 - Lost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>01 - Universe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>02 - Above</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03 - In the Funnel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04 - Best Few</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05 - Won</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>06 - Not Pursued</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07 - Deleted%2FInactive Accts</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TEL_Lost_Reason__c</picklist>
+            <values>
+                <fullName>Delivery Date</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Enrichment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Drive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sample Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Sales</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -4690,6 +5201,29 @@ Enter competitor pricing if available</inlineHelpText>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
+        <fullName>TEL_No_Return_to_Pending</fullName>
+        <active>true</active>
+        <description>Telesles - Opportunities cannot  return to Pending Call Stage after they moved on</description>
+        <errorConditionFormula>AND( 
+ISPICKVAL(StageName, &quot;Pending Call&quot;),
+NOT(
+ISPICKVAL(PRIORVALUE(StageName ), &quot;Pending Call&quot;)
+) 
+)</errorConditionFormula>
+        <errorMessage>The opportunity cannot return to the Pending Call stage</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TEL_Opp_Reschedule</fullName>
+        <active>true</active>
+        <description>Telesales - An Opportunity cannot have the close date changed and stay on the &quot;Pending Call&quot; Stage.</description>
+        <errorConditionFormula>AND(
+TEXT(StageName) = $Label.TEL_Opportunity_Status, 
+ISCHANGED( CloseDate )
+)</errorConditionFormula>
+        <errorMessage>You cannot reschedule a call keeping the stage as Pending Call</errorMessage>
+    </validationRules>
+
+    <validationRules>
         <fullName>FS_AgreementdateIsRequired</fullName>
         <active>true</active>
         <description>Agreement Date Is Required Before Moving To Stage=&apos;05 – Won&apos;.</description>
@@ -4724,6 +5258,14 @@ Enter competitor pricing if available</inlineHelpText>
         <errorMessage>Start Date TPR should not be on previous date.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>FS_Temporary_Account</fullName>
+        <active>true</active>
+        <description>Food Solution Opportunity cannot be created with a temporary Account</description>
+        <errorConditionFormula>IF(AND($Profile.Name = &apos;Unilever Food Solution - NA&apos;, TEXT(Account.Status__c)=&apos;Temporary&apos;),true,false)</errorConditionFormula>
+        <errorDisplayField>AccountId</errorDisplayField>
+        <errorMessage>The Account is in Temporary status. Opportunity cannot be created with a temporary Account</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Opportunity_For_Reason_Description</fullName>
         <active>true</active>
         <description>when select the Stage = Closed Lost, Closed Won, Not Pursued, Lost Existing Business, Replace Existing Business, It should be required to populate a text box called Reason Description. Populate Reason Description means NOT NULL.</description>
@@ -4737,7 +5279,7 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <active>true</active>
         <description>An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level.</description>
         <errorConditionFormula>(AND( DealApproved__c= true,OR(ISPICKVAL( StageName, &quot;01 - Prospecting&quot;), ISPICKVAL( StageName, &quot;02 - Qualification&quot;),ISPICKVAL( StageName, &quot;03 - Proposal&quot;))))</errorConditionFormula>
-        <errorMessage>An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level.</errorMessage>
+        <errorMessage>An opportunity that has already been approved cannot be changed.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_Notchange_at_Stage5</fullName>

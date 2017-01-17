@@ -7,17 +7,8 @@
 public with sharing class IPM_GlobalFinancialActionStandards {
 
     public IPM_Project__c project {get; set;} //The project record for which the financial business cases are being viewed
-    public Id projDocSecId{get; set;}
-    public Id projectId; //Project Id of te current project
-    public Id getprojectId(){ return projectId; }
-    public String gateType{get;set;}
-    public boolean editTable{get; set;} //To Check Record is Editable or Read Mode
     public List<IPM_Financial_Action_Standards__c> finActionStandardsList{get; set;}
     public IPM_Financial_Action_Standards__c finAction{get; set;}
-    public void setprojectId (ID p){
-        projectId = p;
-        showFinancialActionStandards(); 
-    }
     public Id finActionId{get; set;}
     public String finActionSpan{get;set;}
     public String field{get;set;}
@@ -32,6 +23,74 @@ public with sharing class IPM_GlobalFinancialActionStandards {
     @TestVisible private static string COMMENT_NPV = 'NPV';
     @TestVisible private static string COMMENT_IRR = 'IRR';
     @TestVisible private static string COMMENT_PAYBACK = 'PayBack';
+    
+    //Values set from the Url for the page converted from component.
+    public boolean isEditable{
+        get {
+            if(isEditable == null) {
+                if(Apexpages.currentpage().getparameters().get('isEditable') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEditable; }
+        }
+        set;
+    }// boolean to check if editable
+    public boolean editTable{
+        get {
+            if(editTable == null) {
+                if(Apexpages.currentpage().getparameters().get('isEditable') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return editTable; }
+        }
+        set;
+    }// boolean to check if editable
+    public Id projDocSecId{ // to get-set the project id from the component attribute.
+        get{
+            if(projDocSecId == null && Apexpages.currentpage().getparameters().get('secId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('secId')) ;
+            }
+            else { return projDocSecId; }
+        }
+        set;
+    } 
+    public Id projectId{ // to get-set the project id from the component attribute.
+        get{
+            if(projectId == null && Apexpages.currentpage().getparameters().get('projId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('projId')) ;
+            }
+            else { return projectId; }
+        }
+        set;
+    }
+    public String gateType{
+        get{
+            if(gateType == null && Apexpages.currentpage().getparameters().get('gate') != null) {
+                return  Apexpages.currentpage().getparameters().get('gate');
+            }
+            else { return gateType; }
+        }
+        set;
+    }
+    
+     /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForComponent() {
+        showFinancialActionStandards();
+        return 'Required methods are invoked for component';
+    }
+    
+    /************************************************************************************************************************
+    * @Description: CONSTRUCTOR
+    */
+    public IPM_GlobalFinancialActionStandards() {
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
+    }   
+
+    
     /*******************************************************************************************************
     * @description  Action Method to show Action Standards
     * @param        NONE
@@ -70,7 +129,7 @@ public with sharing class IPM_GlobalFinancialActionStandards {
         query_Str += ' FROM IPM_Financial_Action_Standards__c WHERE IPM_Project__c=:projId AND IPM_Project_Document_Section__c=:projDocSecId ';
         
         if(IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(project.IPM_ProjectGKM__c)){
-        	query_Str += ' AND IPM_Project_Span__c =: global_STR';	
+            query_Str += ' AND IPM_Project_Span__c =: global_STR';  
         }
         query_Str += ' order by Name Asc';
         finActionStandardsList = database.query(query_Str);

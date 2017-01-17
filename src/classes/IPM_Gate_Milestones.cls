@@ -8,26 +8,59 @@
 */
 public with sharing class IPM_Gate_Milestones {
     //For exception handler
+    public Id projectId{ // to get-set the project id from the component attribute.
+        get{
+            if(projectId == null && Apexpages.currentpage().getparameters().get('pId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('pId')) ;
+            }
+            else { return projectId; }
+        }
+        set;
+    } 
+    public string gateType{// to get-set the project document section id from the component attribute.
+        get{
+            if(gateType == null && Apexpages.currentpage().getparameters().get('gateDocType') != null) {
+                return  Apexpages.currentpage().getparameters().get('gateDocType');
+            }
+            else { return gateType; }
+        }
+        set;
+    }
+    public string gateDocumentStatus{// to get-set the project document section id from the component attribute.
+        get{
+            if(gateDocumentStatus == null && Apexpages.currentpage().getparameters().get('gateDocStatus') != null) {
+                return  Apexpages.currentpage().getparameters().get('gateDocStatus');
+            }
+            else { return gateDocumentStatus; }
+        }
+        set;
+    }
     private static final String IPM_GATE_MILESTONES_STR = IPM_Gate_Milestones.class.getName();
     private static final String SHOW_MILESTONES_STR='showMilestones';
-    public string gateType{get;set;}
-    public string gateDocumentStatus{get;set;}
     public boolean isCurrentDueDate{get;set;}
     public boolean isIdeaSnapShot{get;set;}
     public boolean isFeasibilitySnapShot{get;set;}
     public boolean isCapabilitySnapShot{get;set;}
     public boolean isMarketReadySnapShot{get;set;}
-    public Id projectId{ // getter setter method for project id from the component attribute
-        get {
-            return projectId;
-        }
-        set {
-            projectId= value;
-            showMilestones();// calling the function
+    
+    public transient List<IPM_Milestone__c> projectMilestones{get;set;}//used to store the value return by  loadMilestones function 
+    
+    /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForComponent() {
+        showMilestones();// calling the function
+        return 'Required methods are invoked for component';
+    }
+    
+     /************************************************************************************************************************
+    * @Description: CONSTRUCTOR
+    */
+    PUBLIC IPM_Gate_Milestones() {
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
         }
     }
-    public transient List<IPM_Milestone__c> projectMilestones{get;set;}//used to store the value return by  loadMilestones function 
-
     /************************************************************************************************************************
     *  Description Getting list of milestones to display in gate docuemnt and pdf
     *  @name loadMilestones
@@ -60,35 +93,35 @@ public with sharing class IPM_Gate_Milestones {
     }
     
     private void showSnapshot(){
-    	isIdeaSnapShot=false;
-		isFeasibilitySnapShot=false;
-		isCapabilitySnapShot=false;
-		isMarketReadySnapShot=false;
-		isCurrentDueDate=true;
-		if(String.isNotBlank(gateType) && String.isNotBlank(gateDocumentStatus))
-		{ 
-			if(IPM_ConstantUtils.CHARTER_GATE==gateType && IPM_ConstantUtils.STATUS_APPROVED==gateDocumentStatus)
-			{				
-				isIdeaSnapShot=true;
-				isCurrentDueDate=false;
-			}
-			else if(IPM_ConstantUtils.CONTRACT_GATE==gateType && IPM_ConstantUtils.STATUS_APPROVED==gateDocumentStatus)
-			{
-				isFeasibilitySnapShot=true;
-				isCurrentDueDate=false;
-			}
-			else if(IPM_ConstantUtils.MARKET_READY_GATE==gateType && IPM_ConstantUtils.STATUS_APPROVED==gateDocumentStatus)
-			{
-				isCapabilitySnapShot=true;
-				isCurrentDueDate=false;
-			}
-			else if(IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE==gateType && IPM_ConstantUtils.STATUS_APPROVED==gateDocumentStatus)
-			{
-				isMarketReadySnapShot=true;
-				isCurrentDueDate=false;
-			}
-			
-		}
+        isIdeaSnapShot=false;
+        isFeasibilitySnapShot=false;
+        isCapabilitySnapShot=false;
+        isMarketReadySnapShot=false;
+        isCurrentDueDate=true;
+        if(String.isNotBlank(gateType) && String.isNotBlank(gateDocumentStatus))
+        { 
+            if(IPM_ConstantUtils.CHARTER_GATE==gateType && IPM_ConstantUtils.STATUS_APPROVED==gateDocumentStatus)
+            {               
+                isIdeaSnapShot=true;
+                isCurrentDueDate=false;
+            }
+            else if(IPM_ConstantUtils.CONTRACT_GATE==gateType && IPM_ConstantUtils.STATUS_APPROVED==gateDocumentStatus)
+            {
+                isFeasibilitySnapShot=true;
+                isCurrentDueDate=false;
+            }
+            else if(IPM_ConstantUtils.MARKET_READY_GATE==gateType && IPM_ConstantUtils.STATUS_APPROVED==gateDocumentStatus)
+            {
+                isCapabilitySnapShot=true;
+                isCurrentDueDate=false;
+            }
+            else if(IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE==gateType && IPM_ConstantUtils.STATUS_APPROVED==gateDocumentStatus)
+            {
+                isMarketReadySnapShot=true;
+                isCurrentDueDate=false;
+            }
+            
+        }
     
     }
 }

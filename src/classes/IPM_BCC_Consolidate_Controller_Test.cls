@@ -53,13 +53,39 @@ private class  IPM_BCC_Consolidate_Controller_Test{
         initializeData();
         System.runAs(bbConsUser){
             test.startTest();
-            IPM_BCC_Consolidate_Controller conGlob=new IPM_BCC_Consolidate_Controller();
-           
+            IPM_BCC_Consolidate_Controller conGlob=new IPM_BCC_Consolidate_Controller();           
             conGlob.projId=project.Id;
-            conGlob.getprojId();
-            conGlob.setprojId(project.Id);
+            conGlob.projId = project.Id;
             conGlob.projectSpan=IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+            conGlob.projSpan=conGlob.projectSpan;
+            conGlob.gateDocType='Charter';
+            conGlob.showBccTable=false;
             conGlob.project=project;
+            conGlob.showBCC();
+            List<IPM_Project__c> proList=[SELECT Id FROM IPM_Project__c WHERE IPM_Parent_Project__r.IPM_Parent_Project__c=:conGlob.projId];
+            system.assertNotEquals(proList.size(),0,'Project list should not be empty');
+            test.stopTest();
+        }
+    }
+    /******************************************************************************
+    *@Description :Testmethod To craete projecr,rollout,company card
+    */
+    static testMethod void testForGlobalProjectFromPage(){
+        initializeData();
+        System.runAs(bbConsUser){
+            test.startTest();            
+            IPM_BCC_Consolidate_Controller conGlob=new IPM_BCC_Consolidate_Controller();           
+            Apexpages.currentpage().getparameters().put('projectId',project.Id);
+            Apexpages.currentpage().getparameters().put('projSpan',IPM_ConstantUtils.PROJECT_SPAN_GLOBAL);
+            Apexpages.currentpage().getparameters().put('gateType','Charter');
+            Apexpages.currentpage().getparameters().put('showBccTab',IPM_ConstantUtils.IPM_false);
+            string projSpanSt=conGlob.projSpan;
+            string gateDocSt=conGlob.gateDocType;
+            conGlob.project=project;
+            conGlob.showBCC();
+            Apexpages.currentpage().getparameters().put('showBccTab',IPM_ConstantUtils.IPM_true);
+            boolean showBcc=conGlob.showBccTable;
+            conGlob.showBccTable=showBcc;
             conGlob.showBCC();
             List<IPM_Project__c> proList=[SELECT Id FROM IPM_Project__c WHERE IPM_Parent_Project__r.IPM_Parent_Project__c=:conGlob.projId];
             system.assertNotEquals(proList.size(),0,'Project list should not be empty');
@@ -72,9 +98,7 @@ private class  IPM_BCC_Consolidate_Controller_Test{
     static testMethod void testForRegionalAndLocalProject(){
         initializeData();
         System.runAs(bbConsUser){
-            test.startTest();
-            
-      
+            test.startTest();      
             project.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
             update project;
             IPM_Project__c projectObjReg=[select IPMProject_Span__c from IPM_Project__c where id=:project.Id limit 1];
@@ -82,7 +106,6 @@ private class  IPM_BCC_Consolidate_Controller_Test{
             
             IPM_BCC_Consolidate_Controller conReg=new IPM_BCC_Consolidate_Controller();
             conReg.projId=project.Id;
-            conReg.getprojId();
             conReg.projectSpan=IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
             conReg.showBCC();
             conReg.projectSpan=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;

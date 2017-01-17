@@ -543,18 +543,10 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 OR 2</booleanFilter>
-        <criteriaItems>
-            <field>Account.RecordTypeId</field>
-            <operation>contains</operation>
-            <value>Operator</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Account.Type</field>
-            <operation>contains</operation>
-            <value>Operator</value>
-        </criteriaItems>
         <description>Created for set account status value to Temporary when type is equals to Operator.</description>
+        <formula>CONTAINS(RecordType.DeveloperName, &quot;Operator&quot;) &amp;&amp; 
+    CONTAINS(  Text(Type)   , &quot;Operator&quot;) &amp;&amp;
+   $Profile.Name  &lt;&gt;  &quot;Generic API Only&quot;</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -624,6 +616,6 @@
         <active>true</active>
         <description>Created to update the distributor type,on invoice,off invoice values from parent account.</description>
         <formula>AND(Owner.Profile.Name  = &apos;Unilever Food Solution - Russia&apos;, RecordType.Name = &apos;Operator&apos;)</formula>
-        <triggerType>onCreateOnly</triggerType>
+        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

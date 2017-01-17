@@ -161,7 +161,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>IPM_Emails/IPM_FailurePhaseChangeTemplate</template>
+        <template>IPM_Emails/IPM_Failure_Phase_Change_Template</template>
     </alerts>
     <alerts>
         <fullName>IPM_Send_Success_Phase_Change_Notification</fullName>

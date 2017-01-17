@@ -48,6 +48,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>TEL_Associated_Campaigns__c</fullName>
+        <externalId>false</externalId>
+        <label>Associated Campaigns</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>	
+    <fields>
         <fullName>ApprovalGranted__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -423,6 +431,29 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_QuantityCases__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(FS_copyOfCasePiece__c = &apos;cases&apos;, Quantity,Quantity /FS_UnitConversionFactor__c )</formula>
+        <label>Quantity(Cases)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_QuantityPieces__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(FS_copyOfCasePiece__c = &apos;piece&apos;, Quantity,Quantity  * FS_UnitConversionFactor__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Quantity(Pieces)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_Rate__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Rebate Discount provided on individual product.</inlineHelpText>
@@ -507,6 +538,17 @@
         <unique>true</unique>
     </fields>
     <fields>
+        <fullName>FS_UnitConversionFactor__c</fullName>
+        <description>This Value is updating from Product.</description>
+        <externalId>false</externalId>
+        <label>Unit Conversion Factor</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_additionalDiscount__c</fullName>
         <defaultValue>0</defaultValue>
         <description>Sum of discount for Pre-paid and Self-Collection. If any of these checkboxes are checked, their corresponding discount will be added to this field.</description>
@@ -524,6 +566,15 @@
         <formula>TEXT( Opportunity.FS_casesPiece__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Cases/Piece</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_copyOfCasePiece__c</fullName>
+        <externalId>false</externalId>
+        <label>Copy Of Case Piece</label>
+        <length>20</length>
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>

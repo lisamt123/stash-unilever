@@ -110,6 +110,18 @@ public with sharing class IPM_SyncFinanceTableTLD {
 		}
 		
 		if(!localProjects.isEmpty()) {
+	    		setMapLocalFin(localProjects);
+		}
+    	updateFinancialTables();
+    }
+    
+    /*******************************************************************************************************
+    * @description  	This method retrieves local financials and financial year records from updated project.
+    					retrieved the financial's Target Launch Date and financial year's name & external id fields will be updated with project's Target Lanuch Date.
+    * @param        NONE
+    * @return       NONE
+    *********************************************************************************************************/
+    private void setMapLocalFin(Map<ID, IPM_Project__c> localProjects){
 	    	Set<ID> projectIdsContainsFinancials = new Set<ID>();
 	    	Set<ID> projectIdsNotContainsFinancials = new Set<ID>();
 	    	Set<ID> parentProjectIds = new Set<ID>();
@@ -163,8 +175,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	    		}
 	    	}
 		}
-    	updateFinancialTables();
-    }
+    
     /*
     	This method retrieves local and regional financials and financial year records from updated NONKEY MCO rollouts & regional projects.
     	Once retrieved the financial's Target Launch Date and financial year's name & external id fields will be updated with NONKEY MCO rollouts' Target Lanuch Date. 
@@ -238,6 +249,19 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	        											  From IPM_Financials_Regional__r  where isActive__c=true)   
 	        										  FROM IPM_Project__c 
 	        										  WHERE id in : regionalProjectIDs];
+	        setMapRegionalFin(regionalProjList); 
+	        
+        }
+    }
+    
+    /*******************************************************************************************************
+    * @description  This method retrievesregional financials and financial year records from updated NONKEY MCO rollouts & regional projects.
+    				Once retrieved the financial's Target Launch Date and financial year's name & external id fields will be updated with NONKEY MCO rollouts' Target Lanuch Date. 
+    * @param        NONE
+    * @return       NONE
+    *********************************************************************************************************/
+    
+    private void setMapRegionalFin(List<IPM_Project__c> regionalProjList){
 	        for(IPM_Project__c regionalProject: regionalProjList) {
 	        	if(!regionalProject.Regional_Project_Rollout__r.isEmpty()) {
 		            	IPM_Project_Rollout__c earliestlocalRollout = regionalProject.Regional_Project_Rollout__r[0];
@@ -267,7 +291,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	        	}
 	        }	
         }
-    }
+    
     /*
     	This method retrieves local and regional financials and financial year records from updated KEY MCO rollouts & regional projects.
     	Once retrieved the financial's Target Launch Date and financial year's name & external id fields will be updated with NONKEY MCO rollouts' Target Lanuch Date. 

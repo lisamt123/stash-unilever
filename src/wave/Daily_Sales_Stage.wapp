@@ -5,7 +5,7 @@
     <masterLabel>Daily Sales Stage</masterLabel>
     <shares>
         <accessLevel>Manage</accessLevel>
-        <sharedTo>chatter.support@unilever.com</sharedTo>
+        <sharedTo>foodsolutions.integration.user@unilever.com</sharedTo>
         <sharedToType>User</sharedToType>
     </shares>
 

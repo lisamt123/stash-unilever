@@ -1,0 +1,233 @@
+<apex:page id="communitiesSelfRegPage" showHeader="true" controller="PQN_CommunitiesSelfRegController_CC" doctype="HTML-5.0" title="{!$Label.site.user_registration}">
+<apex:define name="body">    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>     
+     
+<style>
+form { margin: 0px 10px; }
+input[type="text"], select, textarea {
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+h2 {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.container { max-width: 360px; }
+
+.divider {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.divider hr {
+  margin: 7px 0px;
+  width: 35%;
+}
+.left { float: left; }
+
+.right { float: right; }
+
+.control-label{
+font-size: 12px;
+    color: #54698d;
+    margin: 0 0 8px 0;
+    line-height: inherit;
+    font-family: SFS, Arial, sans-serif;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.panel-primary {
+    border-color: #337ab7;
+}
+.panel-body {
+    padding: 15px;
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 25px
+}
+.container {
+    max-width: 760px;
+}
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.myClass{
+color:white !important;
+background:#1798c1 !important;
+height:25px;
+width:200px;
+}
+
+
+</style>
+     
+     
+     
+     
+    
+    <apex:form id="theForm" forceSSL="true">
+           
+        <div align='center'>
+            <apex:image id="logo" value="{!$Resource.PQN_Unilever_Logo}"/>
+        </div>
+        <div class="container">
+        <div class="row">
+        <apex:pageMessages id="error"/> 
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="col-sm-6 form-group">
+                        <label class="control-label" for="First Name">
+                            FirstName                           
+                        </label>
+                        <apex:inputField required="true" id="firstName" value="{!pqnusr.First_Name__c}" label="First Name" styleclass="form-control"/>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label class="control-label" for="Last Name">
+                            LastName
+                        </label>
+                        <apex:inputField required="true" id="lastName" value="{!pqnusr.Last_Name__c}" label="Last Name" styleclass="form-control"/>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label class="control-label" for="Username">
+                            UserName
+                        </label>
+                        <apex:inputField required="true"  type="email"  value="{!pqnusr.Username__c}" label="Username" styleclass="form-control"/>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label class="control-label" for="signupEmail">
+                            Email
+                        </label>
+                        <apex:inputField required="true" type="email" id="email" value="{!pqnusr.Email__c}" label="email" styleclass="form-control"/>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label class="control-label" for="Nickname">
+                            Nick Name
+                        </label>
+                        <apex:inputField required="true"  id="nickname" value="{!pqnusr.Nick_Name__c}" label="Nickname" styleclass="form-control"/>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label class="control-label">
+                            User Type
+                        </label>
+                        <apex:inputField required="true" value="{!pqnusr.User_Type__c}" styleclass="form-control"/>
+                    </div>
+                    
+                    <div class="col-sm-6 form-group">
+                        <label class="control-label">
+                            Region
+                        </label>
+                        <apex:inputField required="true" value="{!pqnusr.Region__c}" styleclass="form-control"/>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label class="control-label">
+                            Cluster
+                        </label>
+                        <apex:inputField required="true" value="{!pqnusr.Cluster__c}" styleclass="form-control"/>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label class="control-label">
+                            Sub Cluster
+                        </label>
+                        <apex:inputField required="true" value="{!pqnusr.Sub_Cluster__c}" styleclass="form-control"/>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label class="control-label">
+                            MCO
+                        </label>
+                        <apex:inputField required="true" value="{!pqnusr.MCO__c}" styleclass="form-control"/>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label class="control-label">
+                            DC Country &nbsp;&nbsp; <apex:actionStatus startText="Please wait..." id="dccountry"></apex:actionStatus>
+                        </label>
+                        <!--<apex:actionRegion >-->
+                        <apex:inputField required="true" value="{!pqnusr.DC_Country__c}" styleclass="form-control">
+                        <!--<apex:actionSupport action="{!changecountry}" reRender="dcs,error" event="onchange" status="dccountry"/>-->
+                        </apex:inputfield>                      
+                      <!--  </apex:actionRegion>-->
+                        
+                    </div>
+                    <div class="col-sm-12 form-group">
+                 
+                                <apex:commandButton action="{!changecountry}" value="Fetch DCs" id="fetc" status="fetchstatus" rerender="dcs,error" styleClass="myClass" />
+                                <apex:actionStatus startText="Please wait..." id="fetchstatus"></apex:actionStatus>
+                               
+                                <br/>
+                            </div>
+                    <apex:outputPanel id="dcs">
+                    <div class="{!IF(NOT(ISNULL(requestLines)), 'col-sm-12 form-group', 'hidden')}"  >
+                                <table class="table">
+                                    <tr>
+                                        <th/>
+                                        <th>
+                                            DC
+                                        </th>
+                                        <th>
+                                            Country
+                                        </th>
+                                    </tr>
+                                    <apex:repeat value="{!requestLines}"  var="requestLineId" id="branchTable">
+                                        <tr>
+                                            <td>
+                                                <apex:inputCheckbox value="{!requestLineId.isSelected}" />
+                                            </td>
+                                            <td>
+                                                <apex:outputText value="{!requestLineId.branch.Name}"/>
+                                            </td>
+                                            <td>
+                                                <apex:outputText value="{!requestLineId.branch.PQN_Country__c}"/>
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>                                      
+                                </table>
+                            </div>
+                            
+                            
+                     <div class="col-sm-12 form-group" >
+                        <apex:commandButton action="{!registerUser}" value="{!$Label.site.submit}" id="submituser" styleClass="myClass" rendered="{!submitenabled}"/>
+                     <br/>
+                    </div>
+                    </apex:outputPanel>
+                </div>
+            </div>
+        </div> 
+        </div> 
+                    
+                   
+</apex:form>
+    
+</apex:define>
+</apex:page>
