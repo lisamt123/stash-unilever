@@ -1488,6 +1488,58 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>UL_WorkflowState__c</fullName>
+        <description>Status of Promotion Workflow</description>
+        <externalId>false</externalId>
+        <label>Workflow State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Planning</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Finance Check</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Manager Check</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>End Date</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Submitted for Approval</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields> 
+	
+	<fields>
+        <fullName>UL_PromotionTemplateType__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c)</formula>
+        <label>UL_PromotionTemplateType</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields> 
     <fields>
         <fullName>ACCL__Aggregation_Category__c</fullName>
         <deprecated>false</deprecated>
@@ -3920,6 +3972,13 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <errorConditionFormula>ACCL__Commit_Date__c  &gt;  ACCL__Date_Thru__c</errorConditionFormula>
         <errorMessage>The Commit Date must be the same day or sooner than Date Thru.</errorMessage>
     </validationRules>
+	<validationRules>
+        <fullName>UL_LTA_StartDate_Should_Not_Be_PastDate</fullName>
+        <active>true</active>
+        <description>The start date on LTAs should be greater than or equal to today</description>
+        <errorConditionFormula>AND(ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), ACCL__Date_From__c &lt; TODAY() )</errorConditionFormula>
+        <errorMessage>The start date on LTAs should be greater than or equal to today</errorMessage>
+    </validationRules> 
     <validationRules>
         <fullName>ACCL__Date_From_Date_Thru_Validation</fullName>
         <active>true</active>
