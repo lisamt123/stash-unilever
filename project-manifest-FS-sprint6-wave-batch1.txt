@@ -1,4 +1,2 @@
 src
 src/applications/Unilever_Food_Solutions.app
-src/documents/Food_Solutions_Unilever/Unilever_Food_Solutions_Logo.jpg
-src/documents/Food_Solutions_Unilever/Unilever_Food_Solutions_Logo.jpg-meta
