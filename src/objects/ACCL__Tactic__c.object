@@ -115,6 +115,16 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
+        <displayedFields>
+            <field>ACCL__Payment_Method__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Payment_Method__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>Calculation Variables</label>
     </fieldSets>
     <fieldSets>
@@ -296,6 +306,26 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <label>SoCo_NotApproved</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>UL_SoCo_Planning</fullName>
+        <description>This is used for Tactic</description>
+        <displayedFields>
+            <field>ACCL__Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Filter_Criteria__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IsDeleted</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>UL_SoCo_Planning</label>
     </fieldSets>
     <fields>
         <fullName>ACCL__Amount__c</fullName>
@@ -481,7 +511,7 @@
         <fullName>ACCL__Record_Link__c</fullName>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
-        <formula>HYPERLINK(&quot;/&quot; &amp;Id, $Label.ACCL__RECORD_LINK, &quot;_top&quot;)</formula>
+        <formula>HYPERLINK(&quot;/&quot; &amp;Id, $Label.accl__record_link, &quot;_top&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Record Link</label>
         <required>false</required>
@@ -703,6 +733,18 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>UL_Redemption__c</fullName>
+        <description>% of volume that is redeemed for the promotion</description>
+        <externalId>false</externalId>
+        <label>Redemption %</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>UL_Take_Up_Rate__c</fullName>
         <externalId>false</externalId>
         <label>Take-up Rate %</label>
@@ -712,6 +754,16 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>UL_Tier_Definition__c</fullName>
+        <externalId>false</externalId>
+        <label>Tier Definition</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>UL_Volume_Type__c</fullName>
