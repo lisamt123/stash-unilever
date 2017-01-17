@@ -104,6 +104,7 @@ src/flows/BFM_Free_Freight_Update-1.flow
 src/flows/BFM_Update_Shipment_Field_on_CT_e-1.flow
 src/flows/BFM_Update_Shipment_in_CTe-1.flow
 src/homePageLayouts/BFM Home Page.homePageLayout
+src/labels/CustomLabels.labels
 src/layouts/BFM_AccountAccessRequest__c-BFM Account Access Request Layout.layout
 src/layouts/BFM_Bank_Information__c-BFM Bank Information Layout.layout
 src/layouts/BFM_Company_Code__c-Company Code Layout.layout
@@ -124,6 +125,7 @@ src/objects/BFM_Email_Information__c.object
 src/objects/BFM_Error_Log__c.object
 src/objects/BFM_NF_e__c.object
 src/objects/BFM_Occurrence__c.object
+src/objects/BFM_Fiscal_Documents__c.object
 src/objects/BFM_SES__c.object
 src/objects/BFM_CC_e__c.object
 src/objects/BFM_Tax_Code__c.object
@@ -132,6 +134,7 @@ src/objects/BFM_CT_e__c.object
 src/objects/BFM_MDF_e__c.object
 src/objects/BFM_POD__c.object
 src/objects/BFM_MIRO_Withhold_Tax__c.object
+src/objects/BFM_Withhold_Tax__c.object
 src/objects/BFM_MIRO_Header__c.object
 src/objects/BFM_Debit_Note__c.object
 src/objects/BFM_File__c.object
@@ -153,9 +156,13 @@ src/pages/BFM_SearchShipmentCTe_VF.page-meta.xml
 src/pages/BFM_ShipmentDocumentGeneration.page
 src/pages/BFM_ShipmentDocumentGeneration.page-meta.xml
 src/pages/BFM_WithholdTax.page
+src/pages/BFM_WithholdTax.page-meta.xml
 src/pages/BFM_WithholdTaxNFS.page
+src/pages/BFM_WithholdTaxNFS.page-meta.xml
 src/pages/BFM_WithholdTaxDebitNote.page
+src/pages/BFM_WithholdTaxDebitNote.page-meta.xml
 src/pages/BFM_NFSManualLink_VF.page
+src/pages/BFM_NFSManualLink_VF.page-meta.xml
 src/permissionsets/BFM_API_Permissions.permissionset
 src/permissionsets/BFM_Api_Super_User.permissionset
 src/permissionsets/BFM_API_User.permissionset

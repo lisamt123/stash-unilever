@@ -1129,6 +1129,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BFM_Fiscal_Documents__c.Fiscal_Document_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Fiscal_Documents__c.Occurrence__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BFM_MDF_e__c.CT_e_Access_Key__c</field>
         <readable>false</readable>
     </fieldPermissions>

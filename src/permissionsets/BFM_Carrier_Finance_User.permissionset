@@ -1129,6 +1129,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BFM_Fiscal_Documents__c.Fiscal_Document_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Fiscal_Documents__c.Occurrence__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BFM_MDF_e__c.CT_e_Access_Key__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -3318,7 +3328,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>BFM_Withhold_Tax__c</object>
-        <viewAllRecords>false</viewAllRecords>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
         <apexPage>BFM_AccountMoreDetails</apexPage>
