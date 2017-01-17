@@ -1,0 +1,81 @@
+<apex:page StandardController="BFM_NFS__c" extensions="BFM_NFSwithholdTaxController">
+    <!--<apex:outputField label="NFS tax code" value="{0}"/>-->
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"/>
+    <style>
+        .custom1 {
+        margin-top:10px;
+        }
+    </style>
+    
+    <script type="text/javascript">
+    $( document ).ready(function() {
+        $('[id$=nfsDisabled]').attr('disabled','disabled');
+    });
+    </script>
+    <apex:pageMessages />
+    <!-- TODO : ADD CUSTOM LABEL -->
+    <p>
+        * Informações de IVA e de Taxa somente serão exibidas quando houverem registros.
+    </p>    
+    <apex:form >
+        <apex:pageBlock title="{!$Label.BFM_Tax_Validation}">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="{!$Label.BFM_Save}" action="{!saveWithholdTaxes}"/> 
+                <apex:commandButton value="{!$Label.BFM_Cancel}" action="{!cancel}"/> 
+                <apex:commandButton value="{!$Label.BFM_Reset}" action="{!reset}"/>
+            </apex:pageBlockButtons>
+            
+            <apex:dataTable cellpadding="4px" border="1px" value="{!withholdTaxList}" var="currLine" rendered="{!IF(AND(NOT(ISBLANK(withholdTaxList)),withholdTaxList.size>0),true,false)}">
+                <apex:column headerValue="Tipo Retenção"> 
+                    <apex:inputField id="nfsDisabled" value="{!currLine.Withholding_Tax_Type__c}" />
+                </apex:column>
+                <apex:column headerValue="Cód. Retenção"> 
+                    <apex:inputField value="{!currLine.Withholding_Tax_Code__c}"/>
+                </apex:column>
+                <apex:column headerValue="Desc.Retenção" > 
+                    <apex:inputField value="{!currLine.Withholding_Tax_Text__c}" /> 
+                </apex:column>                       
+                <apex:column headerValue="Ind.Sujeito" > 
+                    <apex:inputCheckbox value="{!currLine.Withholding_Tax_Flag__c}"/>
+                </apex:column>
+            </apex:dataTable>
+            
+            <apex:outputPanel layout="block" styleClass="custom1">
+                <apex:pageBlockSection title="Informações da IVA" rendered="{!IF(AND(NOT(ISBLANK(ivalist)),ivalist.size>0),true,false)}">
+                    <apex:pageBlockTable value="{!ivalist}" var="iva" align="center">
+                        <apex:column headerValue="SES">
+                            <apex:outputField value="{!iva.SES__c}" />
+                        </apex:column>
+                        <apex:column headerValue="IVA"> 
+                            <apex:outputField value="{!iva.Name}" />
+                        </apex:column>                    
+                        <apex:column headerValue="Total de Bases Excluídas {!excludedBaseSum}">  
+                            <apex:outputText value="{!iva.Excluded_Base__c}"/>
+                        </apex:column>                    
+                        <apex:column headerValue="Total de Outras bases {!otherBaseSum}">  
+                            <apex:outputText value="{!iva.Other_Base__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Total de Valor Imposto {!taxAmountSum}" >  
+                            <apex:outputText value="{!iva.Tax_Amount__c}" /> 
+                        </apex:column>                       
+                        <apex:column headerValue="Total de Valor Base Imposto {!taxBaseSum}" >  
+                            <apex:outputText value="{!iva.Tax_Base__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Total de Alíquota Imposto {!taxRateSum}" >  
+                            <apex:outputText value="{!iva.Tax_Rate__c}"/>
+                        </apex:column>                    
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+            
+            <apex:pageBlockSection columns="2" title="Informações da NFS" >
+                <apex:outputText value="{!nfs.Base_Value__c}" />
+                <apex:outputText value="{!taxCode}" label="Código do Imposto do SESs"/>  
+                <apex:inputField value="{!nfs.Tax_Code_Id__c}" label="Código do Imposto" /> 
+                <apex:inputField value="{!nfs.Tax_Code_Description__c}" required="true"/>                 
+            </apex:pageBlockSection>            
+            
+        </apex:pageBlock>
+    </apex:form>
+    <apex:detail />
+</apex:page>

@@ -758,6 +758,7 @@
         <columns>SES_Number__c</columns>
         <columns>ISS_Value__c</columns>
         <columns>NAME</columns>
+        <columns>Vendor_Code__c</columns>
         <columns>Gross_Value_net_tax__c</columns>
         <columns>ICMS_Value__c</columns>
         <columns>PIS_law__c</columns>
@@ -766,12 +767,36 @@
         <columns>Shipment__c</columns>
         <columns>CT_E__c</columns>
         <columns>NFS__c</columns>
-        <columns>Occurrence_Number__c</columns>
         <columns>Occurrence__c</columns>
-        <columns>PO_Type__c</columns>
         <columns>PO_Umbrella_Number__c</columns>
+        <columns>PO_Type__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>pt_BR</language>
+    </listViews>
+    <listViews>
+        <fullName>Fornecedor_10089638</fullName>
+        <columns>SES_Number__c</columns>
+        <columns>NAME</columns>
+        <columns>SES_Plant_Code__c</columns>
+        <columns>Vendor_Code__c</columns>
+        <columns>Unilever_company_code__c</columns>
+        <columns>Gross_Value_net_tax__c</columns>
+        <columns>ICMS_Value__c</columns>
+        <columns>PIS_law__c</columns>
+        <columns>COFINS_Value__c</columns>
+        <columns>Net_Value__c</columns>
+        <columns>Shipment__c</columns>
+        <columns>CT_E__c</columns>
+        <columns>NFS__c</columns>
+        <columns>Occurrence__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Vendor_Code__c</field>
+            <operation>contains</operation>
+            <value>10089638</value>
+        </filters>
+        <label>Fornecedor 10089638</label>
         <language>pt_BR</language>
     </listViews>
     <nameField>

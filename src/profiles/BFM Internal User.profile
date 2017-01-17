@@ -680,11 +680,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>BFM_CT_e__c.SES__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>BFM_CT_e__c.Sefaz_Check_Status__c</field>
         <readable>true</readable>
@@ -1663,6 +1658,41 @@
         <editable>false</editable>
         <field>BFM_MIRO_Item__c.Tax_Code__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_MIRO_Withhold_Tax__c.Apply__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_MIRO_Withhold_Tax__c.Base_Amount__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_MIRO_Withhold_Tax__c.MIRO_Header__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_MIRO_Withhold_Tax__c.Withhold_Tax__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_MIRO_Withhold_Tax__c.Withholding_Tax_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_MIRO_Withhold_Tax__c.Withholding_Tax_Text__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_MIRO_Withhold_Tax__c.Withholding_Tax_Type__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -3265,6 +3295,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>BFM_NFSManualLink_VF</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>BFM_SearchOccurrences_VF</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -3274,6 +3308,18 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>BFM_ShipmentDocumentGeneration</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>BFM_WithholdTax</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>BFM_WithholdTaxDebitNote</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>BFM_WithholdTaxNFS</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <recordTypeVisibilities>

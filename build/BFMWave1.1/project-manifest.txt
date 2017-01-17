@@ -129,6 +129,7 @@ src/objects/BFM_NFS__c.object
 src/objects/BFM_CT_e__c.object
 src/objects/BFM_MDF_e__c.object
 src/objects/BFM_POD__c.object
+src/objects/BFM_MIRO_Withhold_Tax__c.object
 src/objects/BFM_MIRO_Header__c.object
 src/objects/BFM_Debit_Note__c.object
 src/objects/BFM_File__c.object
@@ -136,6 +137,7 @@ src/objects/BFM_Shipment__c.object
 src/objects/BFM_Stage__c.object
 src/objects/Account.object
 src/objects/Contact.object
+src/objects/BFM_MIRO_Item__c.object
 src/objects/BFM_User_Creation_Request_Error__c.object
 src/objects/BFM_UserCreationRequest__c.object
 src/pages/BFM_AccountMoreDetails.page
@@ -148,6 +150,10 @@ src/pages/BFM_SearchShipmentCTe_VF.page
 src/pages/BFM_SearchShipmentCTe_VF.page-meta.xml
 src/pages/BFM_ShipmentDocumentGeneration.page
 src/pages/BFM_ShipmentDocumentGeneration.page-meta.xml
+src/pages/BFM_WithholdTax.page
+src/pages/BFM_WithholdTaxNFS.page
+src/pages/BFM_WithholdTaxDebitNote.page
+src/pages/BFM_NFSManualLink_VF.page
 src/permissionsets/BFM_API_Permissions.permissionset
 src/permissionsets/BFM_Api_Super_User.permissionset
 src/permissionsets/BFM_API_User.permissionset
@@ -181,6 +187,7 @@ src/queues/BFM_User_Creation_Request_Approvers.queue
 src/queues/BFM_CT_e_Cancellation_Request_Approvers.queue
 src/queues/BFM_Debit_Note_Cancellation_Users.queue
 src/queues/BFM_NFS_Cancellation_users.queue
+src/quickActions/BFM_Shipment__c.Mark_6th_Flag.quickAction
 src/sites/BrazilFreightCollaborationTool.site
 src/staticresources/BFM_Bootstrap.resource
 src/staticresources/BFM_Bootstrap.resource-meta.xml
