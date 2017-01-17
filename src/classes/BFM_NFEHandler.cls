@@ -29,12 +29,13 @@ public with sharing class BFM_NFEHandler implements ITrigger {
                     nfeKey = nfe.NF_e_access_key__c;
                 }
             }
+            /*
             if(nfeKey != '')
             {       
 				system.debug('nfeKey:'+nfeKey);
 				cnpj = nfeKey.substring(6, 20);
 				system.debug('cnpj:'+cnpj);
-				List<Account> acc = [SELECT id,Name,Address__c,City__c,Vendor_UF_State__c FROM  Account where CNPJ__c=:cnpj];
+				List<Account> acc = [SELECT id,Name,Address__c,City__c,Vendor_UF_State__c,CNPJ__c FROM  Account where CNPJ__c=:cnpj];
 				system.debug('acc:'+acc);
 				if(acc.size()>0)
 				{
@@ -47,6 +48,7 @@ public with sharing class BFM_NFEHandler implements ITrigger {
 								nfe.City_Taker__c = a.City__c; 
 								nfe.Taker_Name__c = a.Id;
 								nfe.State_Taker__c = a.Vendor_UF_State__c;
+                                nfe.Taker_CNPJ__c = a.CNPJ__c; 
 							}
 							if(nfe.Incoterms__c == 'FOB')
 							{
@@ -64,6 +66,7 @@ public with sharing class BFM_NFEHandler implements ITrigger {
 					}
 				} 
             }
+			*/
             if(setCteKeys.size() > 0){
                 List<BFM_Ct_e__c> cteList = [SELECT id, CT_e_key__c, Shipment__c FROM  BFM_Ct_e__c where id =: setCteKeys];
                 

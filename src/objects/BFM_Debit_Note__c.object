@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Amazon_File_Link__c</fullName>
+        <externalId>false</externalId>
+        <label>Amazon File Link</label>
+        <length>1500</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Carrier_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Carrier Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Debit Notes (Carrier Account)</relationshipLabel>
+        <relationshipName>Debit_Notes1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Company_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>Service_Taker_CNPJ__r.Company_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Company Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DN_Auto_Number__c</fullName>
+        <displayFormat>{YYYY}{MM}{DD}_SF{0000000000}</displayFormat>
+        <externalId>false</externalId>
+        <label>DN Auto Number</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>DN_Company_Code_check_status__c</fullName>
+        <externalId>false</externalId>
+        <label>DN Company Code check status</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DN_Date_check_status__c</fullName>
+        <externalId>false</externalId>
+        <label>DN Date check status</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DN_Emission_date_time__c</fullName>
+        <externalId>false</externalId>
+        <label>DN Emission date &amp; time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>DN_Link_Check_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>DN Link Check Status</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DN_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>DN Emission Number</label>
+        <length>16</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DN_Vendor_Code_Check_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>DN Vendor Code Check Status</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DN_cnpj_check_status__c</fullName>
+        <externalId>false</externalId>
+        <label>DN cnpj check status</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DN_total_value__c</fullName>
+        <externalId>false</externalId>
+        <label>DN total value</label>
+        <precision>15</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Debit_Note_Definitive__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Debit Note Definitive</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Debit_Note_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Debit Note Status</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>File_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>File Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Free_Freight__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Free Freight</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_CNPJ_Invalid__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates if the CNPJ is Valid or Not (2th validation in fiscal document)</description>
+        <externalId>false</externalId>
+        <label>Is CNPJ Invalid</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Duplicated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates if the record is duplicated (1st validation in fiscal document)</description>
+        <externalId>false</externalId>
+        <label>Is Duplicated</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Occurrence__c</fullName>
+        <externalId>false</externalId>
+        <label>Occurrence</label>
+        <referenceTo>BFM_Occurrence__c</referenceTo>
+        <relationshipLabel>Debit Notes</relationshipLabel>
+        <relationshipName>Debit_Notes</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Request_For_Cancellation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Request For Cancellation</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Service_Detailed_Info__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Detailed Info</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Service_Taker_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>Service_Taker_CNPJ__r.BillingStreet+Br()+Service_Taker_CNPJ__r.BillingCity+BR()+Service_Taker_CNPJ__r.BillingState+&apos; &apos;+Service_Taker_CNPJ__r.BillingPostalCode</formula>
+        <label>Service Taker Company Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Taker_CNPJ__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Service Taker CNPJ</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Debit Notes (Service Taker CNPJ)</relationshipLabel>
+        <relationshipName>Debit_Notes2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Service_Taker_Company_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Service_Taker_CNPJ__r.Name</formula>
+        <label>Service Taker Company Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Taker_Telephone_number__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Taker Telephone number</label>
+        <length>12</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tax_Code_Description__c</fullName>
+        <description>Tax Code Description based on the option selected in Tax Code picklist field.</description>
+        <externalId>false</externalId>
+        <label>Tax Code Description</label>
+        <picklist>
+            <controllingField>Tax_Code_Id__c</controllingField>
+            <picklistValues>
+                <fullName>Ind.Frete: ICMS+ST(Credito Presumido)+PIS+COFINS</fullName>
+                <default>false</default>
+                <controllingFieldValues>FB</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cons.Frete: ICMS+ST(Credito Presumido)+PIS+COFINS</fullName>
+                <default>false</default>
+                <controllingFieldValues>FD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ativo Frete:ICMS+ST(Credito Presumido)+PIS+COFINS</fullName>
+                <default>false</default>
+                <controllingFieldValues>FF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Frete Consumo Serviço: ISS + PIS + COFINS</fullName>
+                <default>false</default>
+                <controllingFieldValues>FG</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Frete Industrialização Serviço: ISS  + PIS + COFIN</fullName>
+                <default>false</default>
+                <controllingFieldValues>FH</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Frete Ativo Fixo Serviço: ISS  + PIS + COFINS</fullName>
+                <default>false</default>
+                <controllingFieldValues>FI</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consumo: Isento de imposto + PIS + COFINS</fullName>
+                <default>false</default>
+                <controllingFieldValues>FK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Frete Industrialização Isento ICMS + PIS +COFINS</fullName>
+                <default>false</default>
+                <controllingFieldValues>FZ</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Industrialização: ICMS  + PIS + COFINS sobre frete</fullName>
+                <default>false</default>
+                <controllingFieldValues>XA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Industrialização:ICMS+ST (sobre frete)+PIS+COFINS</fullName>
+                <default>false</default>
+                <controllingFieldValues>XB</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consumo: ICMS  + PIS + COFINS sobre frete</fullName>
+                <default>false</default>
+                <controllingFieldValues>XC</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consumo: ICMS + ST (sobre frete) + PIS + COFINS</fullName>
+                <default>false</default>
+                <controllingFieldValues>XD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ativo: ICMS + ICMS  + PIS + COFINS sobre frete</fullName>
+                <default>false</default>
+                <controllingFieldValues>XE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ativo: ICMS + ST (sobre frete) + PIS + COFINS</fullName>
+                <default>false</default>
+                <controllingFieldValues>XF</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Frete Isento de Impostos</fullName>
+                <default>false</default>
+                <controllingFieldValues>XG</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Tax_Code_Id__c</fullName>
+        <description>Tax code for MIRO processing</description>
+        <externalId>false</externalId>
+        <label>Tax Code</label>
+        <picklist>
+            <picklistValues>
+                <fullName>FB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FZ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Unilever_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Unilever Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Debit Notes</relationshipLabel>
+        <relationshipName>Debit_Notes</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Vendor_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>Carrier_Account__r.Address__c</formula>
+        <label>Vendor Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vendor_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vendor_s_CNPJ_or_CPF__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor´s CNPJ or CPF</label>
+        <length>14</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Debit Note</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Occurrence__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Minhas_Notas_de_D_bito</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>Minhas Notas de Débito</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>DN-{00000000}</displayFormat>
+        <label>DN Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Debit Notes</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>BFM_DN_Definitive_with_Validation_Error</fullName>
+        <active>true</active>
+        <errorConditionFormula>Debit_Note_Definitive__c  = true &amp;&amp;  (DN_Vendor_Code_Check_Status__c != &apos;Vendor Ok&apos; || ISBLANK(Amazon_File_Link__c) )</errorConditionFormula>
+        <errorMessage>Debit Note cannot be Definitive without passing Validations</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>BFM_DebitNote_Invoice_Posted_Edit_Err</fullName>
+        <active>true</active>
+        <errorConditionFormula>!ISNEW() &amp;&amp; UPPER(PRIORVALUE( Debit_Note_Status__c )) = &apos;INVOICE POSTED&apos; &amp;&amp; $Profile.Name != &apos;System Administrator&apos;</errorConditionFormula>
+        <errorMessage>Record is not editable if status is Invoice Posted</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Debit_Note_upload</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Debit Note upload</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>{!URLFOR($Site.Prefix+&apos;/apex/BFM_DebitNoteUpload_VF?obj=DebitNote&amp;id=&apos;+BFM_Debit_Note__c.Id)}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>File_Link</fullName>
+        <availability>online</availability>
+        <description>Please click here to download DebitNote file.</description>
+        <displayType>link</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Download File</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)}
+var result = sforce.apex.execute(&quot;BFM_AmazonConnector&quot;,&quot;getPDFFile&quot;,{amazonlink:&quot;{!BFM_Debit_Note__c.Amazon_File_Link__c}&quot;});
+
+location.href=result;</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Tax_Classification</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Tax Classification</masterLabel>
+        <openType>sidebar</openType>
+        <page>BFM_WithholdTaxDebitNote</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

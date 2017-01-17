@@ -49,28 +49,19 @@ public class BFM_RecordutilityController {
         string ctekey;
         if(FileType == 'CT-e'){
             for(BFM_CT_e__c cte : CTeRecord){
-                cte.Cte_Status__c = 'Pending Link';
                 cte.Link_Status__c = 'Pending Link';
                 ctekey = cte.CT_e_Key__c;
                 if(OldKeyMap.containsKey(cte.CT_e_Key__c)) {
-                    //cte.Cte_Status__c = Label.BFM_Validation_Error; 
-                    cte.Is_Duplicated__c = true;
-                    system.debug('Inside if condition CT_e_Key__c recordutilitycontroller:');
+                    cte.Is_Not_Duplicated__c = false;
                 } else {
-                    //cte.Cte_Status__c = Label.BFM_Validation_OK;  
-                    cte.is_Duplicated__c = false;
-                    system.debug('Inside else condition CT_e_Key__c recordutilitycontroller:');
+                    cte.Is_Not_Duplicated__c = true;
                 } 
                 
-                if(!cte.is_Duplicated__c) {
+                if(cte.Is_Not_Duplicated__c) {
                     if((cte.CNPJ_Issuer__c!=null && accCNPJ.contains(cte.CNPJ_Issuer__c)) || (cte.CNPJ_Service_Taker__c!=null && accCNPJ.contains(cte.CNPJ_Service_Taker__c)) ){
-                        //cte.Cte_Status__c = Label.BFM_Valid_CNPJ;   
-                        cte.Is_CNPJ_Invalid__c = false;
-                        system.debug('Inside if condition is_Duplicated__c:');
+                        cte.Is_CNPJ_Valid__c = true;
                     } else {
-                        //cte.Cte_Status__c = 'Invalid CNPJ';  
-                        cte.Is_CNPJ_Invalid__c = true;
-                        system.debug('Inside else condition is_Duplicated__c:');
+                        cte.Is_CNPJ_Valid__c = false;
                     }
                 }
                 yrString = '20';
@@ -81,9 +72,9 @@ public class BFM_RecordutilityController {
                 Date newdate = Date.newInstance(integer.valueOf(yrString), integer.valueOf(mnstring), 01);
                 system.debug('===>mn'+newdate);
                 Date today1 = Date.today();
-				Integer diffDate = newdate.daysBetween(today1) ;
+                Integer diffDate = newdate.daysBetween(today1) ;
                 if(newdate!=null && diffDate >=180){
-                	cte.CT_e_6_Months__c = true;    
+                    cte.CT_e_6_Months__c = true;    
                 }
             }
         }
@@ -98,12 +89,12 @@ public class BFM_RecordutilityController {
             mapacc.put(ac.CNPJ__c,ac);
         }
         for(BFM_MDF_e__c mdfe : mdfeRecord){
-            if(mapacc.containskey(mdfe.Issuer_CNPJ__c) && mapacc.get(mdfe.Issuer_CNPJ__c)!=null){
+            /*if(mapacc.containskey(mdfe.Issuer_CNPJ__c) && mapacc.get(mdfe.Issuer_CNPJ__c)!=null){
                 //      mdfe.Carrier_Account__c = mapacc.get(mdfe.Issuer_CNPJ__c).id;
             }
             if(mapacc.containskey(mdfe.Taker_CNPJ__c) && mapacc.get(mdfe.Taker_CNPJ__c)!=null){
                 //      mdfe.Unilever_Account__c = mapacc.get(mdfe.Taker_CNPJ__c).id;
-            }
+            }*/
                 
             if(OldKeyMap.containsKey(mdfe.MDFE_Access_Key__c)){
                 mdfe.MDF_e_Status__c = Label.BFM_Validation_Error;     
@@ -219,7 +210,7 @@ public class BFM_RecordutilityController {
         
         for(BFM_POD__c pod : podRecord){
             // if(pod.POD_Status__c== 'In Progress'){
-            if(pod.NF_e__c==null && nferecordmap.containskey(pod.NF_e_Access_Key__c)){
+            if(pod.NF_e__c==null && nferecordmap.containskey(pod.NF_e_Access_Key__c)&&pod.NF_e_Access_Key__c!=null){
                 pod.NF_e__c = nferecordmap.get(pod.NF_e_Access_Key__c).id;
             }  
             if(OldKeyMap.containsKey(pod.NF_e_Access_Key__c ) || !nferecordmap.containskey(pod.NF_e_Access_Key__c)){

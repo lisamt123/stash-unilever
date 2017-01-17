@@ -123,6 +123,13 @@ src/objects/BFM_Error_Log__c.object
 src/objects/BFM_NF_e__c.object
 src/objects/BFM_Occurrence__c.object
 src/objects/BFM_SES__c.object
+src/objects/BFM_CC_e__c.object
+src/objects/BFM_NFS__c.object
+src/objects/BFM_CT_e__c.object
+src/objects/BFM_POD__c.object
+src/objects/BFM_MIRO_Header__c.object
+src/objects/BFM_Debit_Note__c.object
+src/objects/BFM_File__c.object
 src/objects/BFM_Shipment__c.object
 src/objects/BFM_Stage__c.object
 src/objects/BFM_User_Creation_Request_Error__c.object
@@ -189,6 +196,8 @@ src/tabs/BFM_Occurrence__c.tab
 src/tabs/BFM_Occurrence_SES__c.tab
 src/tabs/BFM_SES__c.tab
 src/tabs/BFM_Shipment__c.tab
+src/tabs/Search_Shipment_Cte.tab
+src/tabs/Search_Occurrence.tab
 src/tabs/BFM_Stage__c.tab
 src/tabs/BFM_UserCreationRequest__c.tab
 src/triggers/BFM_Occurrence.trigger
