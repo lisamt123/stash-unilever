@@ -325,11 +325,7 @@
             <actionType>QuickAction</actionType>
             <sortOrder>14</sortOrder>
         </platformActionListItems>
-        <platformActionListItems>
-            <actionName>SendEmail</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>15</sortOrder>
-        </platformActionListItems>
+        
         <platformActionListItems>
             <actionName>Submit</actionName>
             <actionType>StandardButton</actionType>
