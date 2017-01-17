@@ -161,7 +161,7 @@
         </values>
     </businessProcesses>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-	<compactLayouts>
+    <compactLayouts>
         <fullName>TEL_Telesales_Opportunity_Compact_Layout</fullName>
         <fields>Name</fields>
         <fields>AccountId</fields>
@@ -1207,7 +1207,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalGrossProfit__c</fullName>
-        <description>Created To display the sum of GrossProfit	from Opportunity Product.</description>
+        <description>Created To display the sum of GrossProfit  from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total GP</label>
         <summarizedField>OpportunityLineItem.FS_grossProfit__c</summarizedField>
@@ -1367,7 +1367,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalproductCost__c</fullName>
-        <description>Created To display the sum of productCost	from Opportunity Product.</description>
+        <description>Created To display the sum of productCost  from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total PC</label>
         <summarizedField>OpportunityLineItem.FS_productCost__c</summarizedField>
@@ -1379,7 +1379,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalsupplyCost__c</fullName>
-        <description>Created To display the sum of supplyCost	from Opportunity Product.</description>
+        <description>Created To display the sum of supplyCost   from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total SC</label>
         <summarizedField>OpportunityLineItem.FS_supplyCost__c</summarizedField>
@@ -2555,7 +2555,7 @@ Enter competitor pricing if available</inlineHelpText>
                 <forecastCategory>Omitted</forecastCategory>
                 <probability>0</probability>
                 <won>false</won>
-            </picklistValues>			
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>true</trackFeedHistory>
@@ -2563,7 +2563,7 @@ Enter competitor pricing if available</inlineHelpText>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-	<fields>
+    <fields>
         <fullName>TEL_Lost_Reason__c</fullName>
         <description>Telesales - The reason why the Opp was lost</description>
         <externalId>false</externalId>
@@ -2644,7 +2644,7 @@ Enter competitor pricing if available</inlineHelpText>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>	
+    </fields>
     <fields>
         <fullName>TEL_Call_Date__c</fullName>
         <description>Used to indicate when the telesales team will make a call to the customer.</description>
@@ -2670,7 +2670,7 @@ Enter competitor pricing if available</inlineHelpText>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>	
+    </fields>
     <fields>
         <fullName>Type</fullName>
         <picklist>
@@ -2705,7 +2705,7 @@ Enter competitor pricing if available</inlineHelpText>
             <picklistValues>
                 <fullName>Sales Drive</fullName>
                 <default>false</default>
-            </picklistValues>			
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2746,7 +2746,7 @@ Enter competitor pricing if available</inlineHelpText>
             <value>Pending Call</value>
         </filters>
         <label>Telesales Pending Calls</label>
-    </listViews>	
+    </listViews>
     <listViews>
         <fullName>All_3a_Won_Opportunities</fullName>
         <columns>OPPORTUNITY.NAME</columns>
@@ -3477,7 +3477,7 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
         </picklistValues>
-         <picklistValues>
+        <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
                 <fullName>Advertisement</fullName>
@@ -3731,7 +3731,7 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>true</default>
             </values>
         </picklistValues>
-    </recordTypes>	
+    </recordTypes>
     <recordTypes>
         <fullName>FS_OpportunityMABE</fullName>
         <active>true</active>
@@ -5201,6 +5201,29 @@ Enter competitor pricing if available</inlineHelpText>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
+        <fullName>TEL_No_Return_to_Pending</fullName>
+        <active>true</active>
+        <description>Telesles - Opportunities cannot  return to Pending Call Stage after they moved on</description>
+        <errorConditionFormula>AND( 
+ISPICKVAL(StageName, &quot;Pending Call&quot;),
+NOT(
+ISPICKVAL(PRIORVALUE(StageName ), &quot;Pending Call&quot;)
+) 
+)</errorConditionFormula>
+        <errorMessage>The opportunity cannot return to the Pending Call stage</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TEL_Opp_Reschedule</fullName>
+        <active>true</active>
+        <description>Telesales - An Opportunity cannot have the close date changed and stay on the &quot;Pending Call&quot; Stage.</description>
+        <errorConditionFormula>AND(
+TEXT(StageName) = $Label.TEL_Opportunity_Status, 
+ISCHANGED( CloseDate )
+)</errorConditionFormula>
+        <errorMessage>You cannot reschedule a call keeping the stage as Pending Call</errorMessage>
+    </validationRules>
+
+    <validationRules>
         <fullName>FS_AgreementdateIsRequired</fullName>
         <active>true</active>
         <description>Agreement Date Is Required Before Moving To Stage=&apos;05 – Won&apos;.</description>
@@ -5233,6 +5256,14 @@ Enter competitor pricing if available</inlineHelpText>
 &amp;&amp; NOT ( ISBLANK (FS_startDateTPR__c))
 &amp;&amp; FS_startDateTPR__c &lt;=  TODAY()</errorConditionFormula>
         <errorMessage>Start Date TPR should not be on previous date.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FS_Temporary_Account</fullName>
+        <active>true</active>
+        <description>Food Solution Opportunity cannot be created with a temporary Account</description>
+        <errorConditionFormula>IF(AND($Profile.Name = &apos;Unilever Food Solution - NA&apos;, TEXT(Account.Status__c)=&apos;Temporary&apos;),true,false)</errorConditionFormula>
+        <errorDisplayField>AccountId</errorDisplayField>
+        <errorMessage>The Account is in Temporary status. Opportunity cannot be created with a temporary Account</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_For_Reason_Description</fullName>

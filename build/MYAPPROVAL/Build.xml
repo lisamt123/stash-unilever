@@ -76,6 +76,8 @@
 	  <runTest>Core_CA_RemoteServiceCallControllerTest</runTest>
 	  <runTest>Core_CA_Test</runTest>
 	  <runTest>Core_CA_Test_MobileAPP</runTest>
+	  <runTest>CORE_CA_Delete_FullyScheduler_Test</runTest>
+	  <runTest>CORE_CA_Delete_Fullyapproved_Batch_Test</runTest>
   </sf:deploy>
   <!--<antcall target="generatePackage"/>-->
   </target>

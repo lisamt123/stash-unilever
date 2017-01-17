@@ -53,6 +53,7 @@ public class Amr_JobSheetController_Test{
             MDO_Brand__c brand = new MDO_Brand__c(Name=Amr_ConstantForAdManager.TESTBRANDNAME);
             insert brand;
             
+            
             //MDO_BrandPositions__c brandPostions= new MDO_BrandPositions__c()
             MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
             insert MDOBrandPositions;
@@ -101,6 +102,10 @@ public class Amr_JobSheetController_Test{
             List<selectOption> options = new List<selectOption>();
             options.add(new SelectOption(String.valueOf(currencyConversion.Currency_Unit_To_Euro__c),currencyConversion.Name+'-'+currencyConversion.Currency_Unit__c));
             
+            jobAllocation.currencyMap=NULL;
+            
+            List<selectOption> optionsTest = jobAllocation.currencyRecords;
+            
             Amr_JobSheetController_CC.rapAllocateCheck = false;
             jobAllocation.jobId=jobDetail.Id;
             jobAllocation.jobSharedList = jobSharedDetailList;
@@ -120,6 +125,7 @@ public class Amr_JobSheetController_Test{
             jobAllocation.brandPosName = Amr_ConstantForAdManager.TESTBRANDPOSITION;
             jobAllocation.brandNameFromPage = Amr_ConstantForAdManager.TESTBRANDNAME;
             jobAllocation.updateJob();
+            jobAllocation.validateSuccess=true;            
             jobAllocation.updateJobForNotes();
             jobAllocation.reallocateRAP(); 
             jobAllocation.recordShare();
@@ -137,7 +143,16 @@ public class Amr_JobSheetController_Test{
             jobAllocation.brandPositionListData();
             jobAllocation.selectedBrandPosName = Amr_ConstantForAdManager.TESTBRANDPOSITION;
             jobAllocation.getBrandList();
-            
+            jobAllocation.getMultiCategoryList();
+            //jobAllocation.getMultiBrandPositioningList();
+            jobAllocation.beginningForSavingJobs();
+            jobAllocation.nextForSavingJobs();
+            jobAllocation.previousForSavingJobs();
+            jobAllocation.lastForSavingJobs();
+            jobAllocation.getDisableNextForSavingJobs();
+            jobAllocation.getDisablePreviousForSavingJobs();  
+            jobAllocation.multiBrandPositionListData();
+            jobAllocation.getMultiBrandList();
             jobAllocation.getMethodToPassProjectNames();
             jobAllocation.brandNameFromPage =Amr_ConstantForAdManager.TESTBRANDNAME;
             // jobAllocation.updateAdManagerText();
@@ -156,8 +171,9 @@ public class Amr_JobSheetController_Test{
             
             //  jobAllocation.listOfSelectedUsername=userStr;
             jobAllocation.reAllocate();
+            jobAllocation.reAllocateSecRAP();
             jobAllocation.validateJobList();
-            
+            jobAllocation.makeAcceptanceEmailFalse();
             FeedItem FI = new FeedItem();
             FI.ParentId = jobDetail.id;
             FI.Body = 'Attachment added';
@@ -202,12 +218,19 @@ public class Amr_JobSheetController_Test{
         insert brandpos;
         MDO_Brand__c brand = new MDO_Brand__c(Name=Amr_ConstantForAdManager.TESTBRANDNAME);
         insert brand;
-        
+         Amr_Multi_Category__c multiCategory= new Amr_Multi_Category__c(name='TestMultiCategory');
+            insert multiCategory;
+            Amr_Multi_Brand_Positioning__c multiPositioning = new Amr_Multi_Brand_Positioning__c(name='TestMultiPositioning');
+            insert multiPositioning;
+            Amr_Multi_Brand__c multiBrand = new Amr_Multi_Brand__c(name='testMultiBrand');
+            insert multiBrand;
+            Amr_Multi_Brand_Positions__c multiPosition = new Amr_Multi_Brand_Positions__c(Multi_Category__c=multiCategory.Id,Multi_Brand_Positioning__c= multiPositioning.Id,Multi_Brand__c=multiBrand.Id);
+            insert multiPosition;
         //MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
         
         Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = Amr_ConstantForAdManager.AMR_REPORT);
         insert customSetting;
-        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Single_or_multiply_project__c='Single',Project_Details__c= projDetail.Id,Job_Cancelled__c = False, Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAILADDR,Broadcast_Market__c=Amr_ConstantForAdManager.TESTMARKET,Name=Amr_ConstantForAdManager.TESTNAME,Project_Leader_Cluster__c=Amr_ConstantForAdManager.TESTCLUSTER,Project_Leader_Country__c=Amr_ConstantForAdManager.TESTCOUNTRYNAME,Lead_Creative_Agency_name__c=Amr_ConstantForAdManager.TESTAGENCY,Project_Name__c=Amr_ConstantForAdManager.TESTPROJECT,Stage_of_Production_Activity__c=Amr_ConstantForAdManager.TESTSTAGE,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Your_Email_Address__c=Amr_ConstantForAdManager.EMAILADDR,Unilever_Finance_Member_Email__c=Amr_ConstantForAdManager.EMAILADDR,Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c=Amr_ConstantForAdManager.EMAILADDR,Digital_Agency_Name__c=Amr_ConstantForAdManager.TESTAGENCY,Campaign_Name__c=Amr_ConstantForAdManager.TESTCAMPAING,Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c =Amr_ConstantForAdManager.ADNumber,Agency_Contact_Account_Director_Email__c = Amr_ConstantForAdManager.EMAILADDR,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,Brodcast_Market__c=Amr_ConstantForAdManager.BROADMARKET,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id);
+        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Single_or_multiply_project__c='Multiply',Project_Details__c= projDetail.Id,Job_Cancelled__c = False, Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAILADDR,Broadcast_Market__c=Amr_ConstantForAdManager.TESTMARKET,Name=Amr_ConstantForAdManager.TESTNAME,Project_Leader_Cluster__c=Amr_ConstantForAdManager.TESTCLUSTER,Project_Leader_Country__c=Amr_ConstantForAdManager.TESTCOUNTRYNAME,Lead_Creative_Agency_name__c=Amr_ConstantForAdManager.TESTAGENCY,Project_Name__c=Amr_ConstantForAdManager.TESTPROJECT,Stage_of_Production_Activity__c=Amr_ConstantForAdManager.TESTSTAGE,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Your_Email_Address__c=Amr_ConstantForAdManager.EMAILADDR,Unilever_Finance_Member_Email__c=Amr_ConstantForAdManager.EMAILADDR,Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c=Amr_ConstantForAdManager.EMAILADDR,Digital_Agency_Name__c=Amr_ConstantForAdManager.TESTAGENCY,Campaign_Name__c=Amr_ConstantForAdManager.TESTCAMPAING,Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c =Amr_ConstantForAdManager.ADNumber,Agency_Contact_Account_Director_Email__c = Amr_ConstantForAdManager.EMAILADDR,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,Brodcast_Market__c=Amr_ConstantForAdManager.BROADMARKET,  Multi_Category__c = multiCategory.Id,Multi_Brand_Positioning__c =multiPositioning.Id,Multi_Brand__c=multiBrand.Id,ownerId=u.id);
         insert jobDetail;
         
         
@@ -227,6 +250,7 @@ public class Amr_JobSheetController_Test{
         jobAllocation.jobList=jobDetail;
         Amr_JobSheetController_CC.rapAllocateCheck = false;
         jobAllocation.jobId=jobDetail.Id;
+        jobAllocation.updateJob();
         jobAllocation.cancelRapJob();   
         system.assert(jobAllocation!= null);
     }

@@ -1613,6 +1613,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Amr_Job_Details__c.Single_or_multiply_project__c</field>
+        <readable>true</readable>
+    </fieldPermissions>	
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Amr_Job_Details__c.Stage_of_Production_Activity__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1661,6 +1666,21 @@
         <field>Amr_Job_Details__c.Your_Email_Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>Amr_Job_Details__c.Multi_Category__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>Amr_Job_Details__c.Multi_Brand__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>Amr_Job_Details__c.Multi_Brand_Positioning__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Amr_Logging_Form_Setting__c.Allocation__c</field>

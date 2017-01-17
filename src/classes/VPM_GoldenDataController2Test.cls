@@ -750,6 +750,8 @@ static VPM_PurchasingRequests__c TestCordillera(){
         purId.recordTypeId=recordTypeId;
         purId.VPM_Fieldtype__c ='Global';
         //purId.VPM_Fieldtype__c ='VPM_ECC__c';
+        purId.VPM_ProvidedBankDetails__c=true;
+        purId.VPM_IsChangedVAT__c=true;
          update purId;
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
          
@@ -766,7 +768,8 @@ static VPM_PurchasingRequests__c TestCordillera(){
          update purId;
         goldenData.saveRecord();
         goldenData.vendorName = '';
-        goldenData.checkValidations();         
+        goldenData.checkValidations();   
+        goldenData.setLevelApproval('Global');
     
     
     }
@@ -846,6 +849,21 @@ static VPM_PurchasingRequests__c TestCordillera(){
         
     }
     
+     static testMethod void approvalMaintain1UnBlock2(){
+        
+       // PageReference pg =null;
+        ApexPages.currentPage().getParameters().put('isMaintain2','isMaintain2');
+                    ApexPages.Message msg = null;
+        VPM_PurchasingRequests__c purId = TestDataApprovalMethodcreate();
+        purId.VPM_DeletionBlockFlag__c='MDM Ops Review - Block';
+        update purId;
+        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+        goldenData.ApprovalMaintain1();
+        
+        
+    }
+    
   /*  static testMethod void ApprovalMaintain2(){
     
     PageReference pg;
@@ -872,6 +890,43 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
     
     }
+    
+        static testMethod void newMethod34(){
+    
+       // PageReference pg =null;
+    VPM_PurchasingRequests__c purId = TestDataApprovalMethod();
+            
+              VPM_L2InculdeApproval__c cs = new VPM_L2InculdeApproval__c();
+        cs.Name='Brazil';
+            cs.VPM_L2CreateExtendApproval__c=true;
+        //cs.Other fiels values
+     insert cs;
+         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and DeveloperName ='VPM_VendorReqExtend'].Id; 
+       
+         purId.VPM_TaxJurisdictionCode__c ='9900_Dummy';
+        purId.recordTypeId=recordTypeId;
+        purId.VPM_ProvidedBankDetails__c=true;
+        purId.VPM_CountryRequestingVendor__c = STR_BRAZIL;
+       // purId.VPM_VendorCodeLookup__r.mdm_ecc__c='Fusion';
+        //   purId.VPM_CompanyCode__r.ECC__c='Fusion';
+        purId.VPM_ProvidedBlockDelete__c=false;
+        purId.VPM_ProvidedUnblockUndelete__c=false;    
+        update purId;
+        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+        goldenData.pr = purId;
+        goldenData.newMethod();
+      
+        goldenData.setLevelApproval('Regional');
+        purId.VPM_IsChangedVAT__c=false;    
+        update purId;    
+          goldenData.setLevelApproval('Global');   
+          purId.VPM_ProvidedBankDetails__c=false;    
+        update purId;   
+    goldenData.setLevelApproval('Regional');
+    
+    }
+    
     
     
     
@@ -960,7 +1015,11 @@ static testMethod void VPM_ApprovalMethodFreight12(){
         obj.Name=COUNTRIES;
         obj.VPM_CountryName__c= 'AR_Argentina,BO_Bolivia,CL_Chile,CO_Colombia,CR_Costa Rica,DO_Dominican Rep.,EC_Ecuador,GT_Guatemala';
         insert obj; 
-        
+        VPM_L2InculdeApproval__c cs=new VPM_L2InculdeApproval__c();
+        cs.Name='Philippines';
+        cs.VPM_L2CreateExtendApproval__c=true;
+        cs.VPM_ECC__c=STR_CONST_U2K2;
+        insert cs;
         customSettingData(STR_CONST_U2K2);     
     
  //customSettingData('U2K2');    

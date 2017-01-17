@@ -6,7 +6,7 @@
     <letterhead>FAU_Letterhead</letterhead>
     <name>FAU UL2020 Milestone Reminder</name>
     <style>freeForm</style>
-    <subject>RESPONSE REQUIRED: {!FAU_Milestone_Participant__c.FAU_Milestone_Name__c}</subject>
+    <subject>REMINDER: {!FAU_Participant__c.FAU_Program_Type__c} {!FAU_Milestone_Participant__c.FAU_Milestone_Name__c}</subject>
     <textOnly>Dear {!FAU_Participant__c.FAU_First_Name__c}
 
 {!FAU_Participant__c.FAU_Program_Type__c}
@@ -15,7 +15,7 @@
 
 We have noticed in our records that you have an outstanding task.
 
-Could you please complete the {!FAU_Milestone_Participant__c.FAU_Milestone__c} as soon as possible on {!FAU_Milestone_Participant__c.FAU_Front_End_Link__c}
+Please complete the {!FAU_Milestone_Participant__c.FAU_Milestone__c} as soon as possible on {!FAU_Milestone_Participant__c.FAU_Front_End_Link__c} To mark the task as completed and turn off this task reminder, please check the corresponding box on the link.
 
 To see your progress, check out your: {!FAU_Participant__c.FAU_Participants_Workbook__c}
 

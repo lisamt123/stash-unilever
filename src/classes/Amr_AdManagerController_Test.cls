@@ -19,16 +19,27 @@ public class Amr_AdManagerController_Test {
         test.amountEntered = 1.000000;
         test.ToUserEmailId = 'test';
         test.thresholdValue = 2.000000; 
-        Amr_Project_Details__c projDetail = new Amr_Project_Details__c(Name='testProject');
+        Amr_Project_Details__c projDetail = new Amr_Project_Details__c(Name='--None--');
         insert projDetail;    
+            Amr_Multi_Category__c multiCategory= new Amr_Multi_Category__c(name='--None--',status__c = 'Active');
+    insert multiCategory;
+    Amr_Multi_Brand_Positioning__c multiBrandPositioning = new Amr_Multi_Brand_Positioning__c(name='--None--',status__c = 'Active');
+    insert multiBrandPositioning;
         
-        MDO_Category__c category1 = new MDO_Category__c(Name='testCat');
+    Amr_Multi_Brand__c multiBrand = new Amr_Multi_Brand__c(name='testMultiBrand',status__c = 'Active');
+        insert multiBrand;
+        Amr_AdManagerHelper_CC admHelper= new Amr_AdManagerHelper_CC();
+        admHelper.createMultiBrandPositions('TestMultiCategory','testMultiBrandPositioning', 'testMultiBrand','--None--','--None--','--None--','--None--' );
+        admHelper.createMultiBrandPos(multiCategory.Id,multiBrandPositioning.Id,multiBrand.Id);
+        
+        
+        MDO_Category__c category1 = new MDO_Category__c(Name='--None--');
         insert category1;
         
         MDO_BrandPositions__c brandPos = new MDO_BrandPositions__c(product_category_id__c =category1.id);
         insert brandpos;
         
-        MDO_Brand__c brand = new MDO_Brand__c(Name='testBrand');
+        MDO_Brand__c brand = new MDO_Brand__c(Name='--None--');
         insert brand;
         
         Amr_Trigger_Pattern__c customSetting1 = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
@@ -83,7 +94,8 @@ public class Amr_AdManagerController_Test {
         controller.multiBrandPositionListData();
         controller.getMultiBrandList();
         controller.getMultiCategoryList();
-        
+        controller.checkerMultiBrandPositionListData();
+        controller.getCheckerMultiBrandList();
         List<SelectOption>catList=new List<SelectOption>();
         catList.add(new selectOption(category1.Id,category1.Name));
         

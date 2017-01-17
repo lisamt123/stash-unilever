@@ -107,6 +107,9 @@ public class PQN_MultiTargets {
             listTargets.add(t.target);
         }
          Database.SaveResult[] SR = Database.insert(listTargets, false);
+         
+            PQN_updateTAR.update_TAR(listTargets);
+         
          for(Integer i=0;i<SR.size();i++){
              if (sr[i].isSuccess()) {
                 setsucessindex.add(i);                  

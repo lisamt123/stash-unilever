@@ -88,22 +88,22 @@ public with sharing class  TEL_TelesalesBO {
             
             // Create the new event log.
             Task  task			= new Task();
-            task.Status			= 'Completed';
-            task.RecordTypeId	= [SELECT Id FROM RecordType WHERE DeveloperName = 'TEL_Task_Telesales' LIMIT 1].Id;
+            task.Status			= Label.TEL_Completed_Task;
+            task.RecordTypeId	= [SELECT Id FROM RecordType WHERE DeveloperName =: Label.TEL_Task_Telesales LIMIT 1].Id;
             task.ActivityDate	= System.today();
             task.WhatId			= oppId;
-            task.Type 			= 'Call';
+            task.Type 			= Label.TEL_Task_Type_Call;
             
             // Check if the stage changes. 
             if(newStage != oldStage || oldCloseDate != newCloseDate){
                 if(newStage == Label.TEL_Stage_Recheduled){
-                    task.Subject = Label.TEL_Subject_Rescheduled_Call + ' - '+datetime.now();
+                    task.Subject = Label.TEL_Subject_Rescheduled_Call + ' - '+ datetime.now();
                 } 
-                if(newStage == 'Closed Lost'){
-                    task.Subject = Label.TEL_Subject_Close_Lost + ' - '+datetime.now();
+                if(newStage == Label.TEL_OppStageClosedLost){
+                    task.Subject = Label.TEL_Subject_Close_Lost + ' - '+ datetime.now();
                 } 
-                if(newStage == 'Transmitted'){
-                    task.Subject = Label.TEL_Subject_Close_Won + ' - '+datetime.now();
+                if(newStage == Label.TEL_OppStageReleased){
+                    task.Subject = Label.TEL_Subject_Close_Won + ' - '+ datetime.now();
                 } 
                 
                 // Insert the event log.
