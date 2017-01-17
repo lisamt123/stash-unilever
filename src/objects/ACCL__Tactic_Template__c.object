@@ -203,6 +203,15 @@ ACCL__Description_Language_1__c
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>UL_Redemption_Required__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox would control the visibility of the Redemption % field on the Tactic</description>
+        <externalId>false</externalId>
+        <label>Redemption % Required</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>UL_TacticOverlap__c</fullName>
         <defaultValue>false</defaultValue>
         <description>This field is to control overlap based on the Tactic Template</description>

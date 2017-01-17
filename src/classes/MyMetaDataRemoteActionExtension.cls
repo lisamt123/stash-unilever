@@ -149,6 +149,10 @@ global with sharing class MyMetaDataRemoteActionExtension {
             result = LOExtFiscalYear();
         } else if (businessObject == 'LOExtPromotionAttachment') {
             result = LOExtPromotionAttachment();
+        }else if(businessObject == 'LOExtTacticTiers'){
+            result = LOExtTacticTiers();
+        }else if(businessObject == 'LOExtChildAccounts'){
+            result =LOExtChildAccounts();
         }
         return result;
     }
@@ -173,6 +177,45 @@ global with sharing class MyMetaDataRemoteActionExtension {
             }
         }
         return resList;
+    }
+    
+                     /** This method return the object metadata to the Smart UI for the businessObject LOExTacticTier
+     *  @returnBoMetaData Internal class with the fields of the businessobject required
+     */
+    @RemoteAction
+    global static BoMetaData LOExtTacticTiers() {
+        List<Field> fieldList = New List<Field> ();
+        List<object> s = new List<object> ();
+        BoMetaData result = new BoMetaData();
+        fieldList.add(new Field('tacticId', 'tacticId', s, 'string'));
+        fieldList.add(new Field('JSONTier', 'JSONTier', s, 'string'));
+        result.fields = fieldList;
+        system.debug('LOExtTacticTiers'+result);
+        return result;
+    }
+    
+            /** This method return the object metadata to the Smart UI for the businessObject LOExtChildAccounts
+     *  @returnBoMetaData Internal class with the fields of the businessobject required
+     */
+    @RemoteAction
+    global static BoMetaData LOExtChildAccounts() {
+        List<Field> fieldList = New List<Field> ();
+        List<object> s = new List<object> ();
+        BoMetaData result = new BoMetaData();
+        fieldList.add(new Field('PromotionID', 'PromotionID', s, 'string'));
+        fieldList.add(new Field('Included', 'Included', s, 'boolean'));
+        fieldList.add(new Field('ChildAccountID', 'ChildAccountID', s, 'string'));
+        fieldList.add(new Field('ChildAccountName', 'ChildAccountName', s, 'string'));
+        fieldList.add(new Field('PushedPromoID', 'PushedPromoID', s, 'string'));
+        fieldList.add(new Field('PushedPromoSFID', 'PushedPromoSFID', s, 'string'));
+        fieldList.add(new Field('CustomerUnique', 'CustomerUnique', s, 'string'));
+        fieldList.add(new Field('PromotionSlogan', 'PromotionSlogan', s, 'string'));
+        result.fields = fieldList;
+        system.debug('LOExtChildAccounts'+result);
+
+        
+        
+        return result;
     }
 
      /** This method return the object metadata to the Smart UI for the businessObject LOExtPrdFilters

@@ -522,6 +522,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>UL_Allow_past_Promotions__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Allow past Promotions</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>UL_Approval_Process_Identifier__c</fullName>
         <description>Approval Process Identifier</description>
         <externalId>false</externalId>
