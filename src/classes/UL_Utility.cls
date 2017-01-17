@@ -130,6 +130,8 @@
         public static final String ROLE_CATEGORY_MANAGER = 'category manager';
         public static final String ROLE_FINANCE_MANAGER = 'finance manager';
         public static final String ROLE_ACCOUNT_MANAGER = 'account manager';
+        public static final String UKI_SALESORG_UK= 'UK SO';
+        public static final String UKI_SALESORG_IRELAND= 'Ireland SO';
 
         //Exception Status Codes
         public static final String FIELD_CUSTOM_VALIDATION_EXCEPTION = 'FIELD_CUSTOM_VALIDATION_EXCEPTION';
@@ -139,6 +141,7 @@
             AR01,
             CL01,
             CL03
+           
         }
         
     /** ------------------------------------------------------------------ Public methods Section  ------------------------------------------------------------------/** 

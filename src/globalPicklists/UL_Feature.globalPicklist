@@ -56,6 +56,10 @@
         <fullName>Sampling (E-Tail)</fullName>
         <default>false</default>
     </globalPicklistValues>
+	<globalPicklistValues>
+        <fullName>Off-Shelf</fullName>
+        <default>false</default>
+    </globalPicklistValues>
     <masterLabel>Feature</masterLabel>
     <sorted>false</sorted>
 </GlobalPicklist>
