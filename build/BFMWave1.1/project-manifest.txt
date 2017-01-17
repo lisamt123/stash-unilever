@@ -59,6 +59,8 @@ src/classes/BFM_SendEmailToCarrierApprover.cls-meta.xml
 src/classes/BFM_ShipmentHandler.cls
 src/classes/BFM_ShipmentHandler.cls-meta.xml
 src/classes/BFM_ShipmentUpdate_CC.cls
+src/classes/BFM_ShipmentDocumentGeneration_CC.cls
+src/classes/BFM_ShipmentDocumentGeneration_CC.cls-meta.xml
 src/classes/BFM_TriggerFactory.cls
 src/classes/BFM_TriggerFactory.cls-meta.xml
 src/classes/BFM_UpdateFreightData.cls
@@ -207,12 +209,12 @@ src/tabs/BFM_Bank_Information__c.tab
 src/tabs/BFM_Company_Code__c.tab
 src/tabs/BFM_NF_e__c.tab
 src/tabs/BFM_Occurrence__c.tab
-src/tabs/BFM_Occurrence_SES__c.tab
 src/tabs/BFM_SES__c.tab
 src/tabs/BFM_Shipment__c.tab
 src/tabs/Search_Shipment_Cte.tab
 src/tabs/Search_Occurrence.tab
 src/tabs/BFM_Stage__c.tab
+src/tabs/CT_e.tab
 src/tabs/BFM_UserCreationRequest__c.tab
 src/triggers/BFM_Occurrence.trigger
 src/triggers/BFM_Occurrence.trigger-meta.xml
@@ -226,7 +228,6 @@ src/workflows/BFM_Company_Code__c.workflow
 src/workflows/BFM_Email_Information__c.workflow
 src/workflows/BFM_NF_e__c.workflow
 src/workflows/BFM_Occurrence__c.workflow
-src/workflows/BFM_Occurrence_SES__c.workflow
 src/workflows/BFM_Shipment__c.workflow
 src/workflows/BFM_Stage__c.workflow
 src/workflows/BFM_User_Creation_Request_Error__c.workflow

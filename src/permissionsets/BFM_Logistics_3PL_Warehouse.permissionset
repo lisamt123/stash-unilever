@@ -3338,6 +3338,10 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>CT_e</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Search_Occurrence</tab>
         <visibility>None</visibility>
     </tabSettings>
