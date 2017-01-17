@@ -1,0 +1,324 @@
+<apex:page standardController="SAFE_Solutions__c" extensions="SAFE_SolutionsTabBPSec_CC" docType="html-5.0" sidebar="false" showHeader="false">
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1 " charset="utf-8" />      
+        <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/SAFE_Tabs.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/Slide11.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/jquery-ui.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-1.12.4.js')}"/> 
+        <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-ui.js')}"/> 
+        <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/themes_smoothness_jquery-ui.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery.min.js')}"/> 
+        <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-ui.min.js')}"/>
+    </head>
+    
+    <style type="text/css">    
+        .individualPalette .apexDefaultPageBlock.secondaryPalette.bPageBlock .pbBody .customPopup .Selection_CTA{min-width: 100px;margin: 0 10px 20px 0;float:left;}
+        
+        .customPopup {
+        background-color: white;
+        border-style: solid;
+        border-width: 2px;
+        left: 30%;
+        padding: 10px;
+        position: absolute;
+        z-index: 2000;
+        width: 400px;
+        top:50%;
+        padding:0;
+        border:1px solid #d4d4d4
+        }
+        
+        .disabledTextBox {
+        background-color: white;
+        border: 1px solid;
+        color: black;
+        cursor: default;
+        width: 90px;
+        display: table;
+        padding: 2px 1px;
+        text-align:right;
+        }
+              
+        .ButtonStyling{
+        color:black !important;
+        background:#8eb4e3  !important;
+        border: 1px solid #8eb4e3  !important;
+        font-size: 15px  !important;
+        padding: 8px 50px 8px 50px  !important;
+        margin-top: 20px  !important;
+        }
+        
+        .displayNone { 
+        display:none; 
+        }
+        
+        .displayBlock {
+        display:block;
+        }
+        
+        .ui-autocomplete-loading { 
+        background: white url(/img/loading32.gif) right center no-repeat;
+        background-size:15px 15px; 
+        font-style: UnileverDINOffcPro;
+        }
+        
+        .placeHolder {
+        font-style: UnileverDINOffcPro;
+        }
+          
+        .ui-widget.ui-widget-content.ui-autocomplete {
+        top: 320px;
+        position: absolute;
+        z-index: 9999;
+        }
+        
+        .customPopup table tr {
+        background-color: #fff;
+        border: none;
+        }
+        
+        .customPopup input.placeHolder, .customPopup input.placeHolder:focus, 
+        input[type="text" i] {
+        width: 235px;
+        margin: 5px 0 10px 0;
+        border: 1px solid #ccc;
+        height: 20px;
+        padding: 0 4px;
+        font: normal 12px/20px UnileverDINOffcPro;
+        border-radius: 3px;
+        }
+        
+        .customPopup label.popupfontstyling {
+        display: inline;
+        font: bold 14px/16px UnileverDINOffcPro;
+        opacity: 0.7;
+        padding: 3px 0;
+        clear: both;
+        float: left;
+        color: #666;
+        }
+        
+        .secondaryPalette.bPageBlock .pbBody .customPopup .Selection_CTA[value="Close"]{margin:0 0 0 15px}
+    </style>
+    
+    <div id="tab-8">
+        <apex:pageBlock id="solutionsList">
+            <apex:outputPanel rendered="{!showSolution=false}">
+                <apex:form id="pg1">
+                    <apex:pageBlock >
+                        <h3>List of SAFE Solutions</h3>
+                        <!--<apex:commandButton styleClass="Selection_CTA" value="New SAFE Solution"/> -->
+                        <apex:outputLink value="javascript:void(0)"  styleClass="Selection_CTA" id="solutionCreate" style="float:right; text-align:center;">New SAFE Solution
+                            <apex:actionSupport event="onclick"  action="{!createSolution}" reRender="solutionsList,createSolution" />
+                        </apex:outputLink>
+                    </apex:pageBlock>
+                </apex:form>
+
+                <apex:form id="pg2" styleClass="Table_View Solution_Table">
+                    <apex:pageBlock >
+                        <apex:pageblockTable value="{!solutionList}" var="solutionRec">
+                            <apex:column headerValue="Actions" style="text-align:center;width:10%;">
+                                <apex:outputLink value="javascript:void(0)" styleClass="Edit CTA_Icons"  >
+                                    <apex:actionSupport event="onclick" action="{!editSolution}" reRender="solutionsList,createSolution,viewSolution" > 
+                                        <apex:param name="solutionId" value="{!solutionRec.Id}"/> 
+                                        <apex:param name="actionPerform" value="edit"/>
+                                    </apex:actionSupport>
+                                </apex:outputLink>
+                            <!--</apex:column>
+                            <apex:column >-->
+                                <apex:outputLink value="javascript:void(0)" styleClass="Del CTA_Icons"  >
+                                    <apex:actionSupport event="onclick" action="{!showPopup}" rerender="popup" status="status" > 
+                                        <apex:param name="solutionId" value="{!solutionRec.Id}"/> 
+                                    </apex:actionSupport>
+                                </apex:outputLink>
+                            <!--</apex:column>
+                            <apex:column >-->
+                                <apex:outputLink value="javascript:void(0)" styleClass="Clone CTA_Icons"  >
+                                    <apex:actionSupport event="onclick" action="{!cloneSolution}" reRender="solutionsList,createSolution,viewSolution" > 
+                                        <apex:param name="solutionId" value="{!solutionRec.Id}"/> 
+                                        <apex:param name="actionPerform" value="clone"/>
+                                    </apex:actionSupport>
+                                </apex:outputLink> 
+                            </apex:column>
+                            <apex:column headerValue="Solution Name">
+                                <apex:outputLink value="javascript:void(0)">{!solutionRec.Name}
+                                    <apex:actionSupport event="onclick" action="{!viewSolutionRecord}" reRender="solutionsList,createSolution,viewSolution">
+                                        <apex:param name="solutionId" value="{!solutionRec.Id}"/>
+                                    </apex:actionSupport>
+                                </apex:outputLink>
+                            </apex:column>
+                            <apex:column value="{!solutionRec.SAFE_Solution_Status__c}"/>
+                            <apex:column value="{!solutionRec.SAFE_Material_Type__c}"/>
+                            <apex:column value="{!solutionRec.SAFE_Solution_Type__c}"/>
+                            <apex:column value="{!solutionRec.SAFE_Solution_in_Use__c}"/>
+                            <apex:column value="{!solutionRec.SAFE_Solution_Category__c}"/>
+                            <apex:column value="{!solutionRec.SAFE_Price_Per_Unit__c}"/>
+                            <apex:column value="{!solutionRec.Owner.Name}"/>
+                        </apex:pageblockTable>
+                        <!--pagination code-->
+                        <table class=" Table_View Solution_Table">
+                            <tbody>
+                                <tr>  
+                                    <td><apex:commandButton value="First Page" action="{!Firstbtn}" disabled="{!prv}" reRender="pg2"/></td>
+                                    <td> <apex:commandButton value="PreviousPage" action="{!prvbtn}" disabled="{!prv}" reRender="pg2"/></td>
+                                    <td> <apex:commandButton value="NextPage" action="{!Nxtbtn}" disabled="{!nxt}"  reRender="pg2"/></td>
+                                    <td> <apex:commandButton value="LastPage" action="{!lstbtn}" disabled="{!nxt}" reRender="pg2"/></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </apex:pageBlock>
+                </apex:form>
+            </apex:outputPanel>
+        </apex:pageBlock>
+        
+        <apex:pageBlock id="createSolution">
+            <apex:outputPanel rendered="{!showSolution=true && viewSolution=false}"  styleClass="Main_Container" style="background:none;width:800px;">
+                <apex:form id="pg3" style="padding:0px;border:0px;">
+                    <apex:pageBlock >
+                        <apex:outputLink value="javascript:void(0)"  styleClass="Selection_CTA">Back to List
+                            <apex:actionSupport event="onclick" action="{!backToSolutionsList}" reRender="solutionsList,createSolution,viewSolution"/> 
+                        </apex:outputLink>
+                        <apex:pageMessages id="showmsg"></apex:pageMessages>
+                    </apex:pageBlock>
+                </apex:form>
+                <apex:form style="background:none;width:800px;padding:0px;">
+                    <div>
+                        <div class="pageBlock">
+                            <apex:pageBlock >
+                                <apex:pageBlockSection title="Information">
+                                    <apex:inputField required="true" value="{!solution.Name}"/>
+                                    <apex:inputField required="false" value="{!solution.SAFE_Solution_Status__c}"/> 
+                                                            
+                                    <apex:inputField required="false" value="{!solution.SAFE_Solution_Category__c}"/>
+                                    <apex:inputField required="false" value="{!solution.SAFE_Material_Type__c}"/>  
+                                                           
+                                    <apex:inputField required="false" value="{!solution.SAFE_Solution_Type__c}"/>
+                                    <apex:inputField required="false" value="{!solution.SAFE_Price_Per_Unit__c}"/>  
+                                    
+                                    <apex:inputField required="false" value="{!solution.SAFE_Solution_in_Use__c}"/>
+                                    <apex:inputField required="false" value="{!solution.Owner.Name}" label="Author"/>
+                                    
+                                    <apex:inputField required="false" value="{!solution.SAFE_Geography_Deployed__c}"/>
+                                    <apex:inputField required="false" value="{!solution.SAFE_Brand_Deployed_To__c}"/>                            
+                                    
+                                    <apex:inputField required="false" value="{!solution.SAFE_Benefits__c}"/>
+                                    <apex:inputField required="false" value="{!solution.SAFE_Description__c}"/>                            
+                                </apex:pageBlockSection>
+                
+                                <apex:pageBlockSection title="Unilever Contact Details">
+                                    <apex:inputField required="false" value="{!solution.SAFE_Contact_Name__c}"/>
+                                    <apex:inputField required="false" value="{!solution.SAFE_Contact_Address__c}"/>                            
+                                    
+                                    <apex:inputField required="false" value="{!solution.SAFE_Contact_Phone__c}"/>
+                                    <apex:inputField required="false" value="{!solution.SAFE_Contact_Email__c}"/>                            
+                                </apex:pageBlockSection>
+                
+                                <apex:pageBlockSection title="Supplier Contact Details">
+                                    <apex:inputField required="false" value="{!solution.SAFE_Supplier_Name__c}"/>
+                                    <apex:inputField required="false" value="{!solution.SAFE_Supplier_Address__c}"/>                            
+                                    
+                                    <apex:inputField required="false" value="{!solution.SAFE_Supplier_Phone__c}"/>
+                                    <apex:inputField required="false" value="{!solution.SAFE_Supplier_Email__c}"/>                            
+                                </apex:pageBlockSection>
+                            </apex:pageBlock>
+                        </div>
+                    </div>
+                    <div id="Form_BtnSet">
+                        <apex:commandButton action="{!insertSolution}" styleClass="Selection_CTA" value="Next" style="float:right" rerender="solutionsList,createSolution,viewSolution"/>
+                        <apex:commandButton action="{!cancelSolution}" styleClass="Selection_CTA" value="Cancel" style="float:right" rerender="solutionsList,createSolution,viewSolution"/>  
+                    </div>
+                </apex:form>
+            </apex:outputPanel>
+        </apex:pageBlock>
+        
+        <apex:pageBlock id="viewSolution">
+            <apex:outputPanel rendered="{!viewSolution=true}"  styleClass="Main_Container" style="background:none;width:800px;">
+                <apex:form id="pg3" style="padding:0px;border:0px;">
+                    <apex:pageBlock >
+                        <apex:outputLink value="javascript:void(0)"  styleClass="Selection_CTA">Back to List
+                            <apex:actionSupport event="onclick" action="{!backToSolutionsList}" reRender="solutionsList,createSolution,viewSolution"/> 
+                        </apex:outputLink>
+                        <apex:pageMessages id="showmsg"></apex:pageMessages>
+                    </apex:pageBlock>
+                </apex:form>
+                
+                <apex:form style="background:none;width:800px;padding:0px;">
+                    <div>
+                        <div class="pageBlock">
+                            <apex:pageBlock >
+                                <apex:pageBlockSection title="Information">
+                                    <apex:outputField value="{!solutionRecord.Name}"/>
+                                    <apex:outputField value="{!solutionRecord.SAFE_Solution_Status__c}"/> 
+                                    
+                                    <apex:outputField value="{!solutionRecord.SAFE_Solution_Category__c}"/>
+                                    <apex:outputField value="{!solutionRecord.SAFE_Material_Type__c}"/>  
+                                    
+                                    <apex:outputField value="{!solutionRecord.SAFE_Solution_Type__c}"/>
+                                    <apex:outputField value="{!solutionRecord.SAFE_Price_Per_Unit__c}"/>  
+                                    
+                                    <apex:outputField value="{!solutionRecord.SAFE_Solution_in_Use__c}"/>
+                                    <apex:outputField value="{!solutionRecord.Owner.Name}" label="Author"/>
+                                    
+                                    <apex:outputField value="{!solutionRecord.SAFE_Geography_Deployed__c}"/>
+                                    <apex:outputField value="{!solutionRecord.SAFE_Brand_Deployed_To__c}"/>                            
+                                    
+                                    <apex:outputField value="{!solutionRecord.SAFE_Benefits__c}"/>
+                                    <apex:outputField value="{!solutionRecord.SAFE_Description__c}"/>                            
+                                </apex:pageBlockSection>
+                            
+                                <apex:pageBlockSection title="Unilever Contact Details">
+                                    <apex:outputField value="{!solutionRecord.SAFE_Contact_Name__c}"/>
+                                    <apex:outputField value="{!solutionRecord.SAFE_Contact_Address__c}"/>                            
+                                    
+                                    <apex:outputField value="{!solutionRecord.SAFE_Contact_Phone__c}"/>
+                                    <apex:outputField value="{!solutionRecord.SAFE_Contact_Email__c}"/>                            
+                                </apex:pageBlockSection>
+                            
+                                <apex:pageBlockSection title="Supplier Contact Details">
+                                    <apex:outputField value="{!solutionRecord.SAFE_Supplier_Name__c}"/>
+                                    <apex:outputField value="{!solutionRecord.SAFE_Supplier_Address__c}"/>                            
+                                    
+                                    <apex:outputField value="{!solutionRecord.SAFE_Supplier_Phone__c}"/>
+                                    <apex:outputField value="{!solutionRecord.SAFE_Supplier_Email__c}"/>                            
+                                </apex:pageBlockSection>
+                            </apex:pageBlock>
+                        </div> 
+                    </div>
+                </apex:form>
+                <apex:relatedList subject="{!solutionRecord.Id}" list="AttachedContentDocuments"/>
+            </apex:outputPanel>
+        </apex:pageBlock>
+        
+        <apex:form id="del">
+            <apex:pageBlock >
+                <apex:outputPanel id="popup">
+                    <apex:outputPanel id="popInnerOutputPnl" styleClass="customPopup" layout="block" rendered="{!displayPopUp}">
+                        <apex:outputPanel style="Outputpanel">
+                            <table width="100%" align="Center">
+                                <apex:pageMessages ></apex:pageMessages>          
+                                <tr>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ><apex:outputText >Are you Sure you want to delete the solution?</apex:outputText></td>
+                                </tr>
+                                <tr></tr>
+                                <tr>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td >
+                                        <apex:commandButton value="Delete" action="{!deleteSolution}" styleClass="Selection_CTA" rerender="popup,solutionsList"></apex:commandButton>
+                                    </td>
+                                    <td >
+                                        <apex:commandButton value="Cancel" title="Close the popup" action="{!closePopup}" styleClass="Selection_CTA" rerender="popup"/>
+                                    </td>
+                                </tr> 
+                            </table>
+                        </apex:outputPanel>  
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </apex:pageBlock>
+        </apex:form>
+    </div>
+</apex:page>

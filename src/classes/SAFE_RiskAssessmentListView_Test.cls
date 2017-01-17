@@ -22,7 +22,7 @@ public static testMethod void testPagination() {
  /*code by Sibatri for ProcesslinkClick,Save,Submit functionality*/
 public static testMethod void testResponseList() {
    
-       SAFE_Risk_Assessment__c newriskAss =new SAFE_Risk_Assessment__c(SAFE_Project_Name__c='proj1',SAFE_Project_End_Date__c=date.parse('1/1/2017'),SAFE_Project_Start_Date__c=date.parse('1/12/2016'),SAFE_Risk_Score_X__c=12,SAFE_Risk_Status__c='Not Started',SAFE_Risk_Assessment_Link__c='http://',SAFE_Status__c='Not Completed');
+       SAFE_Risk_Assessment__c newriskAss =new SAFE_Risk_Assessment__c(SAFE_Project_Name__c='proj1',SAFE_Project_End_Date__c=date.parse('1/1/2017'),SAFE_Project_Start_Date__c=date.parse('1/12/2016'),SAFE_Risk_Assessment_Link__c='http://',SAFE_Status__c='Not Completed');
     //   riskAssList.add(newriskAss);
    
     insert newriskAss;
@@ -32,6 +32,7 @@ public static testMethod void testResponseList() {
     System.AssertEquals(newriskAss.SAFE_Status__c, 'Not Completed'); 
     ////
      PageReference pg = Page.SAFE_QuestionaireTab;
+     
     Test.setCurrentPage(pg);  
     string riskId = newriskAss.Id; 
    

@@ -1,5 +1,4 @@
-<apex:page docType="html-5.0" sidebar="false" showHeader="true" >
-
+<apex:page docType="html-5.0" sidebar="false" showHeader="true">
    <html lang="en">
       <head>
          <meta name="viewport" content="width=device-width, initial-scale=1 " charset="utf-8" />
@@ -35,7 +34,7 @@
                <li><a href="#tab-4" id="sol">Solution</a></li>
             </ul>
             <apex:include pageName="SAFE_OverviewTab"/>
-            <apex:include pageName="SAFE_QuestionaireTab"/>
+            <apex:include pageName="SAFE_QuestionairreTabSharon"/>
             <apex:include pageName="SAFE_SolutionTab"/>
            
          </div>

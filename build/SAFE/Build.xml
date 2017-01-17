@@ -69,6 +69,10 @@
 	 <runTest>PACV_Questionnaire_StatusUpdate_Test</runTest>
 	 <runTest>SAFE_RiskAssessmentListView_Test</runTest>
 	 <runTest>SAFE_SolutionTabTest</runTest>
+	 <runTest>SAFE_Overview_Test</runTest>
+	 <runTest>SAFE_RiskAssessQuestionnaireView_Test</runTest>
+	 <runTest>SAFE_SolutionArchivedTabBPSec_Test</runTest>
+	 <runTest>SAFE_SolutionsTabBPSec_Test</runTest>
     </sf:deploy>
   </target>  
 

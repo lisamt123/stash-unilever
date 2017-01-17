@@ -1,0 +1,16 @@
+<apex:page standardController="SAFE_Overview__c" extensions="SAFE_Overview_CC">    
+    <div id="tab-1">
+               <div id="accordion-overview" class="accordion">
+                   <apex:repeat value="{!overview}" var="Records"> 
+                   <h3>{!Records.Question__c}</h3>
+                  <div>
+                     <p>{!Records.Description__c}
+                     </p>
+                  </div>
+                   </apex:repeat>
+               </div>
+         <div class="Btn_Container" >
+          <button class="Selection_CTA align-left" type="button" id="donebtn">Next</button>
+         </div>
+            </div>
+</apex:page>

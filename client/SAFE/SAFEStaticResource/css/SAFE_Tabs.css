@@ -27,26 +27,37 @@ input[type="radio"] {
     height: 16px;
     border-radius: 8px;
     background: #fff;
-    border: 1px solid #00a9e0;
+    border: 2px solid #00a9e0;
     -webkit-border-radius: 8px;
     position: relative;
     top: 3px;
-    margin: 0 10px 0 0;
+    margin: 0 10px 0 0;outline:none;
 }
+/*input[type="radio"]:before {
+    content: '';
+    display: block;
+    width:60%;
+    height:60%;
+    margin: 20% auto;
+    border-radius: 50%;
+}*/
 input[type="radio"]:before {
     content: '';
     display: block;
-    width: 55%;
-    height: 55%;
-    margin: 20% auto;
+    width: 50%;
+    height: 50%;
+    margin: 28%;
     border-radius: 50%;
+    top: 0.25px;
+    position: relative;
 }
+
 input[type="radio"]:checked:before {
     background: #00a9e0;
 }
 input[type="checkbox"] {
     -webkit-appearance: none;
-    border: 1px solid #00a9e0;
+    border: 2px solid #00a9e0;
     width: 17px;
     height: 17px;
     margin: 0 15px 0 0;
@@ -54,7 +65,8 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked:before {
     content: '\2713';
     color: #00a9e0;
-	padding: 0px 0 0px 3px
+	padding: 0px 0 0px 3px;top: -3px;right:2px;
+    position: relative;
 
 }
 table.Table_View,.Table_View th,.Table_View td{border-collapse:collapse;}
@@ -147,7 +159,8 @@ ul.nav_tabs li a:hover {
     .Ans {
     width: 15px;
     height: 15px;
-	content:url(../image/Tick-icon.png);
+	background:url(../image/Tick-icon.png);
+	background-size: 15px;
     float: right;
     position: relative;
     right: 3%;
@@ -165,7 +178,7 @@ label.options{margin:3px 0;}
 
 .ui-widget-content div.Acc_ActionItems>a:hover, .ui-widget-content div.Acc_ActionItems>a {
     color: #00a9e0;
-    font: normal 14px/16px UnileverDINOffcPro;text-decoration:none;padding: 0 10px;
+    font: normal 13px/16px UnileverDINOffcPro;text-decoration:none;padding: 0 10px;
 }
 #Questionairre_Container #accordion-quest{width:100%;clear:both;}
 #accordion-overview{width:80%;margin: 20px auto;display: table;clear:both;}
@@ -184,6 +197,7 @@ label.options{margin:3px 0;}
       border-top-left-radius: 0;
 	  border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
+	  /*position:relative;*/
 	}
 #accordion-overview .ui-accordion-header{border-right: 1px solid #d4d4d4!important;border-left: 1px solid #d4d4d4!important;}
 #accordion-quest .ui-accordion-header:last-of-type,
@@ -225,7 +239,9 @@ background-repeat:no-repeat;
     height:15px;
 	background-repeat:no-repeat;
 	margin:0 4% 0 0;
-	display:inline-block;position:relative;
+	display:inline-block;
+	/*position:absolute;
+	display:block;*/
 }
 .ui-accordion .ui-accordion-header .ui-accordion-header-icon.ui-icon.iconClosed,
 #accordion-quest .ui-accordion-header.answered .ui-accordion-header-icon.ui-icon.iconClosed{
@@ -236,7 +252,12 @@ background-repeat:no-repeat;
 	background-repeat:no-repeat;
 	margin: 0 4% 0 0;
 	display:inline-block;
+	/*display:block;*/
 }
+/*#accordion-quest .ui-accordion-header a,#accordion-overview .ui-accordion-header>a{
+    color: #d4d4d4;
+    margin-left: 20px;display:block;
+}*/
 .ui-widget button.Selection_CTA a {color: #fff;}
 #accordion-quest .ui-accordion-header-active.ui-accordion-header,#accordion-overview .ui-accordion-header-active {
     color: #555;border-top-right-radius: 0;border-top-left-radius: 0;
@@ -274,43 +295,6 @@ background-repeat:no-repeat;
 .accordion .ui-accordion-header-active.ui-accordion-header {
     color: #555;
 }
-#delegate {
-    padding: 0.5em 1em 0 0.5em;display:none;
-}
-.ui-dialog.ui-widget{width:400px!important;top:110px;left:575px}
-.ui-dialog.ui-widget .ui-dialog-titlebar.ui-corner-all {
-    padding: 0.2em 0.4em;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-.ui-dialog .ui-dialog-title {
-    height: 18px;
-    font: bold 12px/18px UnileverDINOffcPro;
-}
-.ui-dialog.ui-widget.ui-corner-all{    border-bottom-right-radius: 0px;}
-.ui-dialog .ui-dialog-content label{display:inline;font:bold 14px/16px UnileverDINOffcPro;color#555;opacity:0.7;margin:0 22px;padding:3px 0;clear:both;float:left;color:#666;}
-.ui-dialog.ui-widget .ui-dialog-content input{width:235px;margin:0 0 10px 0;border: 1px solid #ccc;height: 20px;}
-.ui-dialog .ui-dialog-content label:nth-child(2) {margin: 0 24px;}
-.ui-dialog .ui-dialog-content label:nth-child(1)+input[type="textbox"] {
-    background-image: url(../image/search.png);
-    background-repeat: no-repeat;
-    background-position: right;
-}
-.ui-dialog .ui-dialog-content .Dialog_Content{float:left;margin:30px 0 0 0;}
-.ui-dialog .ui-dialog-content .Dialog_Content label:first-child {
-    margin: 0 24px;
-}
-.ui-dialog .ui-dialog-content .Help_Text{position:absolute;right:25%;color: #00a9e0;font-family:UnileverDINOffcPro;}
-	.ui-dialog .ui-dialog-buttonpane .Dialog_Save {
-    position: relative;
-    right: 50%;
-}
-.ui-dialog.ui-widget .ui-dialog-buttonpane {
-    margin: 0;
-    padding: .3em 2em 2em .4em;
-}
 /*----Slide6 Styles-----*/	
 
 
@@ -332,7 +316,7 @@ background-repeat:no-repeat;
 }
 ul.nav_tabs li:nth-child(even)>a.ui-tabs-anchor {
     background-image: url(../image/lgreen.png);
-    background-repeat: no-repeat;color:#fff;background-size:cover;
+    background-repeat: no-repeat;color:#fff;background-size:100%;
 }
 
 
@@ -364,7 +348,7 @@ ul.nav_tabs li:nth-child(even)>a.ui-tabs-anchor {
     font: bold 12px/16px UnileverDINOffcPro;
     letter-spacing: 1px;
     font-weight: 500;height: 25px;color:#fff;
-    min-width: 150px;background:#81bf42;margin:0 0 0 10px;text-decoration:none;border-radius:3px;
+    min-width: 150px;background:#81bf42;margin:0 0 0 10px;text-decoration:none;border-radius:3px;margin-top: 10px;
 	}
 	.ui-dialog.ui-widget .ui-dialog-buttonpane .ui-dialog-buttonset .Selection_CTA{min-width:80px;margin:0;}
 
@@ -449,11 +433,19 @@ body .bPageBlock, body .individualPalette .secondaryPalette.bPageBlock {
     border-radius: 0px
 }
 
-
+body .apexp .individualPalette, body .apexp .individualPalette .secondaryPalette.bPageBlock .pbBody{float:none;}
+body .CreateSoln .apexp .individualPalette .secondaryPalette.bPageBlock .pbBody{background:#efefef; margin:0;font: bold 14px/16px UnileverDINOffcPro;}
+.Custom83Tab .tertiaryPalette, .individualPalette .Custom83Block .tertiaryPalette, .layoutEdit .individualPalette .Custom83Block .tertiaryPalette{background-color:white}
+.pbBody .Main_Container table.list.Questionairre_Dashboard {
+    background: #efefef;
+    border: 0px solid #e0e3e5;
+    display: table;
+}
+.pbBody .Main_Container table.list.Questionairre_Dashboard .headerRow th {border: none;background: #d4d4d4;}
+.Main_Container form.Create_Questionairre .individualPalette .secondaryPalette {background-color: #efefef;}
 /*Form Generic Styles....*/
 #Form_BtnSet{float:right}
 .Main_Container form{
-	float: left;
     border-bottom: 1px solid #d4d4d4;
     border-top: 1px solid #d4d4d4;
     padding:50px 20px 25px 50px;width:initial;
@@ -461,44 +453,49 @@ body .bPageBlock, body .individualPalette .secondaryPalette.bPageBlock {
 	color: #555;
 	opacity: 0.7
 	}
-.Main_Container form .Form_Sections{float:left;width:47%;margin:0 10px;display:table}
-.Main_Container form .Form_Sections .Form_Fields{display:table-row}
-.Main_Container form .Form_Sections .Form_Fields>label {display:table-cell;min-width: 160px;float: left}
-	
-.Main_Container form .Form_Sections .Form_Fields>select, 
-.Main_Container form .Form_Sections .Form_Fields>textarea,
-.Main_Container form .Form_Sections .Form_Fields>input{
-    display: table-cell;
-    width:55%;
-    float: left;
-    margin:0 10px 20px 10px;
-    border: 1.5px solid #d4d4d4;
-	padding: 2px;
-    color: #555
+.Main_Container form.Create_Questionairre {
+    width: 92%;
+    display: table;
 }
-.Main_Container form[name="Create_Questionairre"] .Form_Fields>input, 
-.Main_Container form[name="Create_Questionairre"] .Form_Fields>textarea, 
-.Main_Container form[name="Create_Questionairre"] .Form_Fields>select{margin:0 10px 30px 10px}
-
-.Main_Container form[name="Create_Questionairre"] .Selection_CTA,
-.Main_Container form[name="Create_Question"] .Selection_CTA{
-	padding: 5px 10px;
-    border: 1px solid #d4d4d4;
-    font: bold 12px/16px UnileverDINOffcPro;
-    letter-spacing: 1px;
-    font-weight: 500;height: 25px;color:#fff;
-    min-width: 150px;
-	background:#81bf42;
-	margin:0 0 0 10px;
-	text-decoration:none;
-	border-radius:3px
-	}
+.Main_Container form.Create_Questionairre .Form_Sections {
+    float: left;
+    width: 60%;
+    display: table-column;
+}
+.Main_Container form.Create_Questionairre .Form_Sections+span{width:40%}
+.Main_Container form.Create_Questionairre .Form_Sections+span>.Status_Info{display:table-row;float:left;margin: 7px 0}
+.Main_Container form.Create_Questionairre .Form_Sections+span>.Status_Info>label{display: inline;float: left;min-width:75px}
+.Main_Container form.Create_Questionairre .Form_Sections+span>.Status_Info .requiredInput{float: left;display: inline-block;width: 240px}
+.Main_Container form .Form_Sections .Form_Fields {display: block;}
+.Main_Container form.Create_Questionairre .Form_Sections .Form_Fields .pbBody {margin: 0;background;#efefef}
+.Main_Container form.Create_Questionairre .Form_Sections .Form_Fields .pbBody .pbSubsection .detailList td.dataCol{
+    float: left;
+    margin: 0 10px 20px 10px;
+    min-width: 250px;
+    color: #555;
+    padding: 2px
+}
+.Main_Container form .Form_Sections .Form_Fields .pbBody .pbSubsection .detailList tbody th label{min-width:160px}
+.Main_Container form.Create_Questionairre .Form_Sections .Form_Fields .dataCol input, 
+.Main_Container form.Create_Questionairre .Form_Sections .Form_Fields .dataCol select, 
+.Main_Container form.Create_Questionairre .Form_Sections .Form_Fields .dataCol textarea{display: table-cell;width: 100%;border: 1.5px solid #d4d4d4}
+.Main_Container form.Create_Questionairre .Form_Sections+span .Status_Info select{min-width:220px;display: table-cell;border: 1.5px solid #d4d4d4}
+.Main_Container form.Create_Questionairre .Form_Sections .Form_Fields label>span.assistiveText {
+    color: #f00;
+    float: right;
+    position: static!important;
+    height: auto;
+    width: auto;
+    padding: 0 2px
+}
+.Main_Container form.Create_Questionairre .Form_Sections .Form_Fields .pbBody .pbSubsection .detailList td.empty {display: none}
+.Main_Container form.Create_Questionairre .Form_Sections .Form_Fields .requiredInput .requiredBlock ,.Main_Container form.Create_Questionairre .Form_Sections+span .Status_Info .requiredInput .requiredBlock{background-color: #efefef}
 .Main_Container .Selection_CTA[value="Cancel"]{background: #fff;color: #ccc}
 .Main_Container .Selection_CTA[value="Cancel"]:hover{color:#00a9e0}
 
 /*Form Styles for Wireframe -2*/
 
-.Main_Container{width:960px;margin:0 auto;min-height:100%;background:#efefef;padding:20px}
+.Main_Container{margin:0 auto;min-height:100%;background:#efefef;padding:20px;display:block}
 .Main_Container form[name="Create_Questionairre"]{border-bottom:none;margin:0}
 .Main_Container form[name="Create_Questionairre"] .Status_Info>select {min-width: 250px;margin:0 30px}
 .Main_Container .Details_Container p.Status_Info span{text-decoration:underline}

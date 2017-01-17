@@ -1,5 +1,5 @@
 <apex:page standardController="SAFE_Risk_Assessment__c" extensions="SAFE_RiskAssessmentListView_CC">   
-
+    
     <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-1.12.4.js')}"/> 
     <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-ui.js')}"/> 
     <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery.min.js')}"/> 
@@ -7,21 +7,21 @@
     <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/themes_smoothness_jquery-ui.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/jquery-ui.css')}"/>
     
-
+    
     <style type="text/css">    
         .individualPalette .apexDefaultPageBlock.secondaryPalette.bPageBlock .pbBody .customPopup .Selection_CTA,
         .individualPalette .apexDefaultPageBlock.secondaryPalette.bPageBlock .pbBody .submitPopup .Selection_CTA{min-width: 100px;margin: 0 10px 20px 0;float:left;}
-
+        
         .customPopup {
         background-color: white;
         border-style: solid;
         border-width: 2px;
-        left: 30%;
+        left: 35rem;
         padding: 10px;
-        position: absolute;
+        position:fixed;
         z-index: 2000;
         width: 400px;
-        top:50%;
+        top:15rem;
         padding:0;
         border:1px solid #d4d4d4
         }
@@ -104,15 +104,15 @@
         background-color: white;
         border-style: solid;
         border-width: 2px;
-        left: 35%;
+        left:35rem;
         padding: 10px;
-        position: absolute;
+        position:fixed;
         width: 400px;
-        top:30%;
+        top:15rem;
         padding:0;
         border:1px solid #d4d4d4;
         z-index:99999;
-        opacity:1;
+        
         
         }
         .submitPopup table{
@@ -138,234 +138,251 @@
         font-weight: 700;
         } 
         
-        .popupBackground{
-        background-color:#c0c0c0;
-        opacity: 0.95;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index:9998;
-        }
     </style>
-
+    
     <apex:form id="Delegate">
-    <apex:pageBlock >
-    <apex:outputPanel id="popup">
-    <apex:outputPanel id="popInnerOutputPnl" styleClass="customPopup" layout="block" rendered="{!displayPopUp}">
-    <apex:commandButton value="Delegating" title="Close the popup" action="{!closePopup}" styleClass="closeButton" rerender="popup"></apex:commandButton>                     
-    <apex:outputPanel style="Outputpanel">
-
-        <script type="text/javascript">
-        
-        var PLACEHOLDER = 'User Name'; var userObjects;var queryTerm;
-        $('[id$=userTextBoxId]').autocomplete({ minLength: 2,source: function(request, response){queryTerm = request.term;SAFE_RiskAssessmentListView_CC.searchuser(request.term, function(result, event)
-         {if(event.type == 'exception'){alert(event.message);} else{   userObjects = result; response(userObjects);}});},
-          focus: function( event, ui ){ $('[id$=userTextBoxId]').val( ui.item.Name ); return false;},select: function( event, ui ) {$('[id$=userTextBoxId]').val( ui.item.Name );$('[id$=searchuserId]').val( ui.item.Id );return false;},})
-        .data( "ui-autocomplete" )._renderItem = function( ul, item ) { var entry = "<a>" + item.Name; entry = entry + "</a>";entry = entry.replace(queryTerm, "<b>" + queryTerm + "</b>");return $( "<li></li>" )
-        .data( "item.autocomplete", item ).append( entry ).appendTo( ul );};
-        $('[id$=userTextBoxId]').val(PLACEHOLDER);$('[id$=userTextBoxId]').on("focus",  function(event){ $tgt = $(event.target);if($tgt.val() === PLACEHOLDER ){$tgt.val('');$tgt.removeClass('placeHolder');}});
-        $('[id$=userTextBoxId]').on( "blur",  function(event){$tgt = $(event.target);if($tgt.val() === '' ){$tgt.val(PLACEHOLDER);$tgt.addClass('placeHolder');}});
-        </script>
-
-        <table width="100%" align="Center">
-            <tr><td colspan="2"> 
-                <apex:pageMessages ></apex:pageMessages></td> </tr>          
-            <tr>
-                <td align="center"><apex:outputLabel value="Internal User" styleClass="popupfontstyling"></apex:outputLabel></td>  
-                <td>
-                    <apex:inputText id="userTextBoxId" value="{!searchTerm}" styleClass="placeHolder"/>
-                    <apex:inputHidden id="searchuserId" value="{!selecteduser}"   />                                                 
-                </td>                          
-            </tr>      
-            <tr>
-                <td  align="center"><apex:outputLabel value="External User" styleClass="popupfontstyling"></apex:outputLabel></td>
-                <td ><apex:inputText label="Email" id="SendEmail" value="{!ExtUserEmail}" /></td>
-            </tr>  
-            <tr>
-                <td ><apex:outputText ></apex:outputText></td>
-                <td >
-                    <apex:commandButton value="Save" action="{!redirectPopup}" styleClass="Selection_CTA" rerender="popup"></apex:commandButton>
-                    <div class="divider"/>    
-                    <apex:commandButton value="Cancel" title="Close the popup" action="{!closePopup}" styleClass="Selection_CTA" rerender="popup"/>
-                </td>
-            </tr> 
-        </table>
-        </apex:outputPanel>  
-        </apex:outputPanel>
-        </apex:outputPanel>
+        <apex:pageBlock >
+            <apex:outputPanel id="popup">
+                <apex:outputPanel id="popInnerOutputPnl" styleClass="customPopup" layout="block" rendered="{!displayPopUp}">
+                    <apex:commandButton value="Delegating" title="Close the popup" action="{!closePopup}" styleClass="closeButton" rerender="popup"></apex:commandButton>                     
+                    <apex:outputPanel style="Outputpanel">
+                        
+                        <script type="text/javascript">
+                        
+                        var PLACEHOLDER = 'User Name'; var userObjects;var queryTerm;
+                        $('[id$=userTextBoxId]').autocomplete({ minLength: 2,source: function(request, response){queryTerm = request.term;SAFE_RiskAssessmentListView_CC.searchuser(request.term, function(result, event)
+                                                                                                                                                                                    {if(event.type == 'exception'){alert(event.message);} else{   userObjects = result; response(userObjects);}});},
+                                                               focus: function( event, ui ){ $('[id$=userTextBoxId]').val( ui.item.Name ); return false;},select: function( event, ui ) {$('[id$=userTextBoxId]').val( ui.item.Name );$('[id$=searchuserId]').val( ui.item.Id );return false;},})
+                        .data( "ui-autocomplete" )._renderItem = function( ul, item ) { var entry = "<a>" + item.Name; entry = entry + "</a>";entry = entry.replace(queryTerm, "<b>" + queryTerm + "</b>");return $( "<li></li>" )
+                        .data( "item.autocomplete", item ).append( entry ).appendTo( ul );};
+                        $('[id$=userTextBoxId]').val(PLACEHOLDER);$('[id$=userTextBoxId]').on("focus",  function(event){ $tgt = $(event.target);if($tgt.val() === PLACEHOLDER ){$tgt.val('');$tgt.removeClass('placeHolder');}});
+                        $('[id$=userTextBoxId]').on( "blur",  function(event){$tgt = $(event.target);if($tgt.val() === '' ){$tgt.val(PLACEHOLDER);$tgt.addClass('placeHolder');}});
+                        </script>
+                        
+                        <table width="100%" align="Center">
+                            <tr><td colspan="2"> 
+                                <apex:pageMessages ></apex:pageMessages></td> </tr>          
+                            <tr>
+                                <td align="center"><apex:outputLabel value="Internal User" styleClass="popupfontstyling"></apex:outputLabel></td>  
+                                <td>
+                                    <apex:inputText id="userTextBoxId" value="{!searchTerm}" styleClass="placeHolder"/>
+                                    <apex:inputHidden id="searchuserId" value="{!selecteduser}"   />                                                 
+                                </td>                          
+                            </tr>      
+                            <tr>
+                                <td  align="center"><apex:outputLabel value="External User" styleClass="popupfontstyling"></apex:outputLabel></td>
+                                <td ><apex:inputText label="Email" id="SendEmail" value="{!ExtUserEmail}" /></td>
+                            </tr>  
+                            <tr>
+                                <td ><apex:outputText ></apex:outputText></td>
+                                <td >
+                                    <apex:commandButton value="Save" action="{!redirectPopup}" styleClass="Selection_CTA" rerender="popup"></apex:commandButton>
+                                    <div class="divider"/>    
+                                    <apex:commandButton value="Cancel" title="Close the popup" action="{!closePopup}" styleClass="Selection_CTA" rerender="popup"/>
+                                </td>
+                            </tr> 
+                        </table>
+                    </apex:outputPanel>  
+                </apex:outputPanel>
+            </apex:outputPanel>
         </apex:pageBlock>
     </apex:form>
-       
+    
     <!-- rendered="{IF(!completedCount !=null, true, false)}"-->
-         <apex:outputPanel id="showDivRiskList" >
-              <apex:form id="pg1">
- <div id="tab-3" >       
-     <div id="Dynamic_Container" style="display:{!IF(showStatus, "block","none")};">
-           <h3>Risk Assessment MileStone And To Dos</h3>
-        <table class="Table_View Dashboard">
-          <thead>
-            <th>Project Name</th>
-            <th>Risk Assessment Questionnaire</th>
-            <th>Risk Assessment Status</th>
-            <th>Project Start Date</th>
-            <th>Project End Date</th>
-            <!--th>Owner</th>
-            <th>Delegated to..</th-->
-          </thead>
-          <tbody>
-              
-          <apex:repeat value="{!ResponseList}" var="Record" id="lead"> 
-            
-          <!--apex:repeat value="{!username}" var="createdbyname" id="list2"--> 
-
-          <tr>
-           <td >{!Record.SAFE_Project_Name__c}</td>
-        <td>     
-        <!--apex:commandLink value="Project Assessment" styleClass="Selection_CTA" onclick="showList();return false;">
-            <apex:param name="responseId" value="{!Record.Id}" assignTo="{!responseId}"/>
-        </apex:commandLink-->
-             <apex:outputLink value="javascript:void(0)" id="itemLink" styleClass="Selection_CTA"  >Project Assessment
-                 <apex:actionSupport event="onclick" action="{!processLinkClick}" reRender="showDivQuestion,showDivRiskList" > 
-                     <apex:param name="id1" value="{!Record.Id}"/> 
-                 </apex:actionSupport>
-              </apex:outputLink>
-              </td>
-           <!--td><button class="Primary_CTA"><a href="#">Project Assessment</a></button></td-->
-          <td>{!Record.SAFE_Status__c}</td>
-           <td>
-           <apex:outputText value="{0, date, d MMM ','  yyyy}">
-           <apex:param value="{!Record.SAFE_Project_Start_Date__c}"/> 
-           </apex:outputText>
-           </td>
-           <td>
-           <apex:outputText value="{0, date, d MMM ','  yyyy}">
-           <apex:param value="{!Record.SAFE_Project_End_Date__c}"/> 
-           </apex:outputText>
-           </td>
-           
-           <!--td width="30%" align="center" valign="center"><img src="{!createdbyname.FullPhotoUrl}" class="Circular" style="width:30px;height:30px;"></img> {!createdbyname.FirstName} {!createdbyname.LastName}</td>
-           <!--td width="30%">{!createdbyname.FirstName} {!createdbyname.LastName}</td-->
-           </tr>
-           </apex:repeat>
-            
-           <!--/apex:repeat-->
-              <tr> <td> <!--pagination code-->
-                  <apex:commandButton value="First Page" action="{!Firstbtn}" disabled="{!prv}" reRender="pg1"/></td>
-                  <td> <apex:commandButton value="PreviousPage" action="{!prvbtn}" disabled="{!prv}" reRender="pg1"/></td>
-                  <td> <apex:commandButton value="NextPage" action="{!Nxtbtn}" disabled="{!nxt}"  reRender="pg1"/></td>
-                  <td> <apex:commandButton value="LastPage" action="{!lstbtn}" disabled="{!nxt}" reRender="pg1"/></td>
-                  <td></td>
-              </tr>
-            </tbody>
-         </table>
-         <div >
-             To Do's 
-             <div class="Status"><span class=" Badge Done">{!completedCount} </span>Completed</div>
-             <div class="Status"><span class=" Badge Open">{!NotcompletedCount} </span>Open</div>
-         </div>
-     </div>
-                  </div> 
-             </apex:form>
-    </apex:outputPanel>
-       
-    <apex:outputPanel id="showDivQuestion" >
-          <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/SAFE_Tabs.css')}"/>
-          <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/jquery-ui.css')}"/>
-          <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-1.12.4.js')}"/> 
-          <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-ui.js')}"/> 
-          <style type="text/css">
-          #accordion-quest .ui-accordion-content .content table tr {border-bottom: none;}
-          #accordion-quest .ui-accordion-content .content table tr:nth-child(even){background:none;}
-          #accordion-quest .ui-accordion-content .content table td>input {float: left;}
-          #accordion-quest .ui-accordion-content .content table td>input+label {float: left;padding:3px 0;}
-          </style>
-          <script>
-         $( function() {var icons = {header: "iconOpen",activeHeader: "iconClosed"};
-           /*Questionairre Tab Styles...*/
-            $("#tab-2").find(".accordion").accordion({collapsible:true,active:false,icons:icons});$("#accordion-quest .ui-accordion-content").each(function(){var checkedOptions=$(this).find('input:checked');                  
-                  if((checkedOptions).length==0){  $(this).find('.Btn_Confirm').attr('disabled',true);}else{$(this).find('.Btn_Confirm').attr('disabled',false);$(this).prev("h3").css({'color':'#555'});}});            
-        $('input[value="Submit"],input[value="Save"]').attr('disabled',true);$(".Btn_Confirm").on("click",function(){
-             var activeheader=($(this).closest('.content').parent().prev("h3"));activeheader.css({"color":"#555"}).addClass('answered');activeheader.find('.done').addClass('Ans');
-             $(this).siblings('.Btn_Delegate').attr('disabled',true).css("cursor", "default");$(this).parentsUntil('.ui-accordion-content').find("input:not(:checked)").attr('disabled',true);
-             if($('#accordion-quest .ui-accordion-header .Ans').length==1){$('input[value="Save"]').removeAttr('disabled');}});$(".Btn_Delegate").on('click',function(){var Del_BtnClickHeader=($(this).closest('.content').parent().prev("h3")); });
-             $('#accordion-quest .ui-accordion-content .Selection_CTA').on('click',function(){if($('#accordion-quest h3.ui-accordion-header').length==$('#accordion-quest .ui-accordion-header .Ans').length){$('input[value="Submit"]').removeAttr('disabled');} else{$('input[value="Submit"]').attr('disabled',true);}}); $('#accordion-quest .ui-accordion-content .content table td>input').on('change',function(){ 
-              $(this).closest('.content').parent('.ui-accordion-content').find('.Btn_Confirm').removeAttr('disabled');  }); $("#Acc_Expand").click(function(){$(".ui-accordion-header-icon").addClass('iconClosed').removeClass('iconOpen').parent('.ui-accordion-header').attr('aria-expanded',true);$(".ui-accordion-content").show();});
-            $("#Acc_Collapse").click(function(){$(".ui-accordion-header-icon").addClass('iconOpen').removeClass('iconClosed');$(".ui-accordion-content").hide();});});
-         </script>
- <apex:form id="pg2">
-      
-       <div id="tab-2"   style="display:{!IF(showStatus, "none","block")};">   
-                <div id="Questionairre_Container">
-                  <div class="Acc_ActionItems align-right" style="margin:20px 0">
-                  <a id="Acc_Expand">Expand All</a>
-                  <a id="Acc_Collapse">Collapse All</a>
-                 </div>
-                  <div id="accordion-quest" class="accordion">                
-                 <apex:repeat var="q" value="{!questionWrapperList }"  id="repeatBlock"  >
-                     <h3><apex:outputText value="{!q.questionValue}"/><span class="done"></span></h3>
-                      <div>
-                         <div class="content">
-                             <apex:outputPanel rendered="{!q.multiSelect}" styleClass="options" >
-                                    <apex:selectCheckboxes value="{!q.selectedAnswersList}" layout="pageDirection">
-                                        <apex:selectOptions value="{!q.answerOptions}"></apex:selectOptions>
-                                    </apex:selectCheckboxes>
-                            </apex:outputPanel>
-                            <apex:outputPanel rendered="{!q.singleSelect}" styleClass="options" >
-                                <apex:selectRadio value="{!q.answerSelected}" styleClass="options" id="selected" style="" layout="pageDirection"  >
-                                   <apex:selectOptions value="{!q.answerOptions}"  rendered="true" >
-                                        
-                                     </apex:selectOptions>
-                                </apex:selectRadio>
-                           </apex:outputPanel>
-                         <div class="Btn_Container">
-                              <button type="button" class="Selection_CTA align-left Btn_Confirm">Confirm</button>                              
+    <apex:outputPanel id="showDivRiskList" >
+        <apex:form id="pg1">
+            <div id="tab-3" >       
+                <div id="Dynamic_Container" style="display:{!IF(showStatus, "block","none")};">
+                    <h3>Risk Assessment MileStone And To Dos</h3>
+                    <table class="Table_View Dashboard">
+                        <thead>
+                            <th>Action</th>
+                            <th>Project Name</th>
+                            <th>Risk Assessment Questionnaire</th>
+                            <th>Risk Assessment Status</th>
+                            <th>Project Start Date</th>
+                            <th>Project End Date</th>
+                            <!--th>Owner</th>
+<th>Delegated to..</th-->
+                        </thead>
+                        <tbody>
                             
-                              <apex:commandButton styleClass="Selection_CTA Btn_Delegate"  value="Delegate" action="{!showPopup}" rerender="popup" status="status">
-                              <apex:param name="QuestionID" value="{!q.ID}" />
-                             </apex:commandButton>
-
-                             
-                         </div>
-                         </div>
-                         <span class="Help_Icon"></span>
-                         <div class="Help_Container">
-                            <h4>Guidance for solution selection</h4>
-                            <p class="helptext">{!q.helpText}</p>
-                         </div>
-                      </div>
-                  </apex:repeat>
+                            <apex:repeat value="{!ResponseList}" var="Record" id="lead"> 
+                                
+                                <!--apex:repeat value="{!username}" var="createdbyname" id="list2"--> 
+                                
+                                <tr>
+                                    
+                                    <td>
+                                        <apex:outputLink value="javascript:void(0)" styleClass="Clone CTA_Icons"  >
+                                            <apex:actionSupport event="onclick" action="{!processLinkClick}" reRender="showDivQuestion,showDivRiskList"> 
+                                                <apex:param name="id1" value="{!Record.Id}"/> 
+                                                <apex:param name="actionPerform" value="CloneButton"/>
+                                            </apex:actionSupport>
+                                        </apex:outputLink>
+                                    </td>
+                                    
+                                    <td >{!Record.SAFE_Project_Name__c}</td>
+                                    <td>     
+                                        <!--apex:commandLink value="Project Assessment" styleClass="Selection_CTA" onclick="showList();return false;">
+<apex:param name="responseId" value="{!Record.Id}" assignTo="{!responseId}"/>
+</apex:commandLink-->
+                                        <apex:outputLink value="javascript:void(0)" id="itemLink" styleClass="Selection_CTA"  >Project Assessment
+                                            <apex:actionSupport event="onclick" action="{!processLinkClick}" reRender="showDivQuestion,showDivRiskList" > 
+                                                <apex:param name="id1" value="{!Record.Id}"/> 
+                                            </apex:actionSupport>
+                                        </apex:outputLink>
+                                    </td>
+                                    <!--td><button class="Primary_CTA"><a href="#">Project Assessment</a></button></td-->
+                                    <td>{!Record.SAFE_Status__c}</td>
+                                    <td>
+                                        <apex:outputText value="{0, date, d MMM ','  yyyy}">
+                                            <apex:param value="{!Record.SAFE_Project_Start_Date__c}"/> 
+                                        </apex:outputText>
+                                    </td>
+                                    <td>
+                                        <apex:outputText value="{0, date, d MMM ','  yyyy}">
+                                            <apex:param value="{!Record.SAFE_Project_End_Date__c}"/> 
+                                        </apex:outputText>
+                                    </td>
+                                    
+                                    <!--td width="30%" align="center" valign="center"><img src="{!createdbyname.FullPhotoUrl}" class="Circular" style="width:30px;height:30px;"></img> {!createdbyname.FirstName} {!createdbyname.LastName}</td>
+<!--td width="30%">{!createdbyname.FirstName} {!createdbyname.LastName}</td-->
+                                </tr>
+                            </apex:repeat>
+                            
+                            <!--/apex:repeat-->
+                            <tr> <td> <!--pagination code-->
+                                <apex:commandButton value="First Page" action="{!Firstbtn}" disabled="{!prv}" reRender="pg1"/></td>
+                                <td> <apex:commandButton value="PreviousPage" action="{!prvbtn}" disabled="{!prv}" reRender="pg1"/></td>
+                                <td> <apex:commandButton value="NextPage" action="{!Nxtbtn}" disabled="{!nxt}"  reRender="pg1"/></td>
+                                <td> <apex:commandButton value="LastPage" action="{!lstbtn}" disabled="{!nxt}" reRender="pg1"/></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div >
+                        To Do's 
+                        <div class="Status"><span class=" Badge Done">{!completedCount} </span>Completed</div>
+                        <div class="Status"><span class=" Badge Open">{!NotcompletedCount} </span>Open</div>
+                    </div>
                 </div>
-                <div class="Btn_Container">
-          <apex:pageBlock id="riskAssesmentBlock">
-                            <apex:outputPanel id="tstpopup">
-                                <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopup1}">
-                                    <apex:outputPanel styleClass="submitPopup" layout="block" rendered="{!displayPopUp1}">               
-                                        <apex:outputPanel style="Outputpanel">
-                                            <table width="100%" align="Center">
-                                                <tr>
-                                                    <td>
-                                                        Thank you for completing the Anti-Counterfeiting Risk Assessment,please submit now
-                                                    </td>                          
-                                                </tr>      
-                                                <tr>
-                                                    <td>
-                                                        <apex:commandButton value="Ok" action="{!submitQuestionAnswerResponseObj}" styleClass="Selection_CTA" immediate="true" id="submitBtn" rerender="tstpopup"/>
-                                                        <div class="divider"/>    
-                                                        <apex:commandButton style="float:right" value="Cancel" title="Close the popup" action="{!closePopup1}" styleClass="Selection_CTA" rerender="tstpopup"/>
-                                                    </td>
-                                                </tr>
-                                                <tr><td>
-                                                    <span class="warning_text"> Once the assessment is submitted you cannot edit this further.If you need to make any further changes you will have to edit this as a new version in the overview.
-                                                    </span>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </apex:outputPanel>  
+            </div> 
+        </apex:form>
+    </apex:outputPanel>
+    
+    <apex:outputPanel id="showDivQuestion" >
+        <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/SAFE_Tabs.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/jquery-ui.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-1.12.4.js')}"/> 
+        <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-ui.js')}"/> 
+        <style type="text/css">
+            #accordion-quest .ui-accordion-content .content table tr {border-bottom: none;}
+            #accordion-quest .ui-accordion-content .content table tr:nth-child(even){background:none;}
+            #accordion-quest .ui-accordion-content .content table td>input {float: left;}
+            #accordion-quest .ui-accordion-content .content table td>input+label {float: left;padding:3px 0;}
+        </style>
+        <script>
+        $( function() {var Del_BtnClickHeader;var icons = {header: "iconOpen",activeHeader: "iconClosed"};
+                       /*Questionairre Tab Styles...*/
+                       $("#tab-2").find(".accordion").accordion({collapsible:true,active:false,icons:icons}); 
+                       $('input[value="Submit"],input[value="Save"]').attr('disabled',true);
+                       $("#accordion-quest .ui-accordion-content").each(function(){var checkedOptions=$(this).find('input:checked');                  
+                                                                                   if((checkedOptions).length!=0)
+                                                                                   {$(this).prev("h3").css({'color':'#555'}).addClass('answered').find('.done').addClass('Ans');
+                                                                                    $(this).find('.Btn_Delegate').attr('disabled',false);
+                                                                                    CheckQuestionairre();}});
+                       function CheckQuestionairre(){var questions=$("#accordion-quest .ui-accordion-header").length;var answered=$("#accordion-quest .ui-accordion-header .Ans").length;
+                                                     if(answered!=0){$('input[value="Save"]').attr('disabled',false);
+                                                                     if(answered==questions){$('input[value="Submit"]').attr('disabled',false);}
+                                                                     else{$('input[value="Submit"]').attr('disabled',true);}}
+                                                     else{$('input[value="Save"]').attr('disabled',true);}
+                                                    }
+                       function showDelIcon(){Del_BtnClickHeader.find('.done').addClass('User_Del');}
+                       $(".Btn_Delegate").on('click',function(){Del_BtnClickHeader=($(this).closest('.content').parent().prev("h3"));
+                                                                var checkedOpt=($(this).closest('.content').find('input:checked'));
+                                                                if((checkedOpt).length>0){checkedOpt.prop('checked',false);/*$(this).closest('.content').find('.options').find('input').attr('disabled',true);*/
+                                                                                          Del_BtnClickHeader.removeClass('answered').find('.done').removeClass('Ans');}});                        
+                       $('#accordion-quest .ui-accordion-content .content table td>input').on('change',function(){ 
+                           if(($(this).is(':checked')).length!=0){$('input[value="Save"]').attr('disabled',false);                                                         
+                                                                  $(this).closest('.content').find('.options').find('input:not(:checked)').attr('disabled',true);
+                                                                  $(this).closest('.content').parent().prev("h3").addClass('answered').css({'color':'#555'}).find('.done').addClass('Ans');
+                                                                  if($('#accordion-quest h3.ui-accordion-header').length==$('#accordion-quest .ui-accordion-header .Ans').length){$('input[value="Submit"]').removeAttr('disabled');}
+                                                                  else{$('input[value="Submit"]').attr('disabled',true);}}
+                       }); 
+                       $("#Acc_Expand").click(function(){$(".ui-accordion-header-icon").addClass('iconClosed').removeClass('iconOpen').parent('.ui-accordion-header').attr('aria-expanded',true);$(".ui-accordion-content").show();});
+                       $("#Acc_Collapse").click(function(){$(".ui-accordion-header-icon").addClass('iconOpen').removeClass('iconClosed');$(".ui-accordion-content").hide();});});
+        </script>
+        <apex:form id="pg2">
+            
+            <div id="tab-2"   style="display:{!IF(showStatus, "none","block")};">   
+                <div id="Questionairre_Container">
+                    <div class="Acc_ActionItems align-right" style="margin:20px 0;color: #00a9e0;">
+                        <a id="Acc_Expand">Expand All</a>|
+                        <a id="Acc_Collapse">Collapse All</a>
+                    </div>
+                    <div id="accordion-quest" class="accordion">                
+                        <apex:repeat var="q" value="{!questionWrapperList }"  id="repeatBlock"  >
+                            <h3><apex:outputText value="{!q.questionValue}"/><span class="done"></span></h3>
+                            <div>
+                                <div class="content">
+                                    <apex:outputPanel rendered="{!q.multiSelect}" styleClass="options" >
+                                        <apex:selectCheckboxes value="{!q.selectedAnswersList}" layout="pageDirection">
+                                            <apex:selectOptions value="{!q.answerOptions}"></apex:selectOptions>
+                                        </apex:selectCheckboxes>
                                     </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!q.singleSelect}" styleClass="options" >
+                                        <apex:selectRadio value="{!q.answerSelected}" styleClass="options" id="selected" style="" layout="pageDirection"  >
+                                            <apex:selectOptions value="{!q.answerOptions}"  rendered="true" >
+                                                
+                                            </apex:selectOptions>
+                                        </apex:selectRadio>
+                                    </apex:outputPanel>
+                                    <div class="Btn_Container">                    
+                                        <!--<button type="button" class="Selection_CTA align-left Btn_Confirm">Confirm</button>
+                                        <apex:inputCheckbox id="checkAnswered"/>-->                                        
+                                        <apex:commandButton styleClass="Selection_CTA Btn_Delegate"  value="Delegate" action="{!showPopup}" rerender="popup" status="status">
+                                            <apex:param name="QuestionID" value="{!q.ID}" />
+                                        </apex:commandButton>
+                                        
+                                        
+                                    </div>
+                                </div>
+                                <span class="Help_Icon"></span>
+                                <div class="Help_Container">
+                                    <h4>Guidance for solution selection</h4>
+                                    <p class="helptext">{!q.helpText}</p>
+                                </div>
+                            </div>
+                        </apex:repeat>
+                    </div>
+                    <div class="Btn_Container">
+                        <apex:pageBlock id="riskAssesmentBlock">
+                            <apex:outputPanel id="tstpopup">
+                                <apex:outputPanel styleClass="submitPopup" layout="block" rendered="{!displayPopUp1}">               
+                                    <apex:outputPanel style="Outputpanel">
+                                        <table width="100%" align="Center">
+                                            <tr>
+                                                <td>
+                                                    Thank you for completing the Anti-Counterfeiting Risk Assessment,please submit now
+                                                </td>                          
+                                            </tr>      
+                                            <tr>
+                                                <td>
+                                                    <apex:commandButton value="Ok" action="{!submitQuestionAnswerResponseObj}" styleClass="Selection_CTA" immediate="true" id="submitBtn" rerender="tstpopup"/>
+                                                    <div class="divider"/>    
+                                                    <apex:commandButton style="float:right" value="Cancel" title="Close the popup" action="{!closePopup1}" styleClass="Selection_CTA" rerender="tstpopup"/>
+                                                </td>
+                                            </tr>
+                                            <tr><td>
+                                                <span class="warning_text"> Once the assessment is submitted you cannot edit this further.If you need to make any further changes you will have to edit this as a new version in the overview.
+                                                </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </apex:outputPanel>  
                                 </apex:outputPanel>
-                            </apex:outputPanel>  
+                            </apex:outputPanel>
                             
                         </apex:pageBlock>
                         
@@ -375,14 +392,14 @@
                     </div>
                     <!-- <apex:messages />-->
                     
-                <p class="hide Confirm_msg">
+                    <p class="hide Confirm_msg">
                     </p>
-                    </div>
+                </div>
                 <div id="Gen_Report" class="hide">
                     <p><strong>View Risk Assessment Result</strong></p>
                     <p>Vulnerability to CounterFeiting-<strong>Medium</strong></p>
-                     <button class="Generate_CTA">Generate Report</button>
-                     <button class="SelectSoln_CTA">Select Solution</button>
+                    <button class="Generate_CTA">Generate Report</button>
+                    <button class="SelectSoln_CTA">Select Solution</button>
                     <div id="CaseStudy_Upload">
                         <p>
                             ACS2015NOV009
@@ -394,19 +411,19 @@
                             ACS2015NOV009
                         </p>
                     </div>
-                <p>
-                    <strong>Guidance for Solution Selection</strong>
+                    <p>
+                        <strong>Guidance for Solution Selection</strong>
                     </p>
-                <p class="recommend_Text">For medium risk we recommend you to use the overt solution.
-                 However there are other overt solutions also available which may be better solution
-                   which may be better suited to your product.
+                    <p class="recommend_Text">For medium risk we recommend you to use the overt solution.
+                        However there are other overt solutions also available which may be better solution
+                        which may be better suited to your product.
                     </p>
                     <p class="recommend_Text">
                         For high risk it is recommended that you use a overt solution like Inexo along with a covert solution
                     </p>
                 </div>                    
             </div>
-            </apex:form>
-        </apex:outputPanel>
-
+        </apex:form>
+    </apex:outputPanel>
+    
 </apex:page>

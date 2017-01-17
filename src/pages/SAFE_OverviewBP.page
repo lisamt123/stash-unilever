@@ -1,0 +1,62 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="true" >
+
+   <html lang="en">
+      <head>
+         <meta name="viewport" content="width=device-width, initial-scale=1 " charset="utf-8" />
+         <title>Overview</title>
+        <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/SAFE_Tabs.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/jquery-ui.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-1.12.4.js')}"/> 
+        <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-ui.js')}"/> 
+        
+      
+         <script>
+            $( function() {
+                var answered=0;
+                  var icons = {
+               header: "iconOpen",
+               activeHeader: "iconClosed"
+             };
+            /*Overview Tab*/
+               $("#tab-1").find(".accordion").accordion({collapsible:true,active:false,icons:icons});
+             /*Qusetionairre Tab Styles...*/
+           
+            $(".Tabs_Menu").tabs();
+            $(".Btn_Confirm").on("click",function(){
+              $('.ui-state-active').find('.done').removeClass('hide');
+              $('.ui-accordion-header-active').css({'color':'#555'});
+              $('.ui-accordion-content-active').find('.Btn_Delegate').attr('disabled',true).css("cursor", "default");     
+            });
+                        
+              $("#Acc_Expand").click(function(){
+              $(".ui-accordion-header-icon").addClass('iconClosed').removeClass('iconOpen');
+              $(".ui-accordion-content").show();
+            });
+            
+                $("#Acc_Collapse").click(function(){
+                  $(".ui-accordion-header-icon").addClass('iconOpen').removeClass('iconClosed');
+                  $(".ui-accordion-content").hide();
+            });
+                //  $("#o").click(function(){
+                //    window.location.reload(true);
+                // }); 
+               
+             });
+         </script>
+       
+      </head>
+      <body >
+         <div class="Tabs_Menu" id='mytabs'>
+            <ul class="nav_tabs">
+               <li><a  href="#tab-1" id="o">OverView</a></li>
+               <li><a href="#tab-2" id="q" >Questionnaire</a></li>
+               <!--li><a href="#tab-4" id="sol">Solution</a></li-->
+            </ul>
+            <apex:include pageName="SAFE_OverviewTabBP"/>
+            <apex:include pageName="SAFE_QuestionnaireTabBPSteffi"/>
+            <!--apex:include pageName="SAFE_SolutionTab"/-->
+           
+         </div>
+      </body>
+   </html>
+</apex:page>

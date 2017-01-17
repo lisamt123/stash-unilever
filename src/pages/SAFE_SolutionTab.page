@@ -123,6 +123,7 @@
     font: bold 12px/18px UnileverDINOffcPro;
     background-image: url(../image/user.png);}
    .secondaryPalette.bPageBlock .pbBody .customPopup .Selection_CTA[value="Close"]{margin:0 0 0 15px}
+    body .apexp .individualPalette .secondaryPalette.bPageBlock .pbBody{margin:0}
 </style>
 
 </head>
@@ -133,7 +134,7 @@
    
 <apex:form id="pg1">
 <apex:pageBlock >
-<apex:commandButton styleClass="Selection_CTA" value="Grant Access to User" action="{!showPopup}" rerender="popup" status="status"/>
+<apex:commandButton styleClass="Selection_CTA align-right" style="margin:10px 0" value="Grant Access to User" action="{!showPopup}" rerender="popup" status="status"/>
  <apex:outputPanel id="popup"> 
     
 <apex:outputPanel id="popInnerOutputPnl" styleClass="customPopup" layout="block" rendered="{!displayPopUp}">
@@ -198,14 +199,14 @@
         <thead>
                     <th></th>
 
-            <th>AntiCounterFeit <br/>Solution Library</th>
+        <th>AntiCounterFeit <br/>Solution Library</th>
         <th>Status</th>
         <th>Supplier Name</th>
         <th>Solution Type</th>
-            <th>Solution in <br/>Use</th>
-            <th>Solution <br/>Category</th>
-            <th>Price per <br/>unit in $</th>
-            <th>Material <br/>Type</th>
+        <th>Solution in <br/>Use</th>
+        <th>Solution <br/>Category</th>
+        <th>Price per <br/>unit in $</th>
+        <th>Material <br/>Type</th>
         <th>Owner</th>
         </thead>
         <tbody>

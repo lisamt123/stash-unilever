@@ -6,6 +6,7 @@
 
 public with sharing class SAFE_SolutionsTab_CC{
 
+    public boolean isExport{get; set;}
     public Boolean displayPopup {get;set;}
     public List<SAFE_Solutions__c> Records {get; set;} 
     //  public User username {get; set;} 
@@ -14,7 +15,7 @@ public with sharing class SAFE_SolutionsTab_CC{
     public String selecteduser {get; set;}
     integer totalRecs = 0;//By sibatri
     integer count= 0;//By sibatri
-    integer limitSize= 2;//By sibatri
+    integer limitSize= 5;//By sibatri
     //  public String uId {get; set;}
     public List<User> UserTemp = new List<User>();
     public Boolean showSolutionsList{get;set;}
@@ -26,8 +27,9 @@ public with sharing class SAFE_SolutionsTab_CC{
         userid = Userinfo.getUserId();       
         showSolutionsList = true;
     } 
-    
+	   
      public List<SAFE_Solutions__c> getsolutionList() {
+         isExport= true; 
           List<SAFE_Solutions__c> solutionList =   [SELECT Name,SAFE_Solution_Status__c,SAFE_Supplier_Name__c,SAFE_Solution_Type__c,
                      SAFE_Solution_in_Use__c,SAFE_Solution_Category__c,SAFE_Price_Per_Unit__c,SAFE_Material_Type__c,
                      Owner.name FROM SAFE_Solutions__c LIMIT:limitsize OFFSET:count]; 
@@ -116,6 +118,11 @@ public with sharing class SAFE_SolutionsTab_CC{
             //return null;
         }
     
+     public PageReference  exportToExcel(){
+        
+       isExport= true;
+        return null;
+}
     // To show popup and its functionality   onclick="MyjavaFunction('{!$Component.inptID}')"
     
     public void showPopup()

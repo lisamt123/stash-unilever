@@ -1,0 +1,460 @@
+<apex:page standardController="SAFE_Risk_Assessment_Questionnaire__c" extensions="SAFE_RiskAssessmentQuestionnaireView_CC">
+    <style type="text/css">    
+        .individualPalette .apexDefaultPageBlock.secondaryPalette.bPageBlock .pbBody .customPopup .Selection_CTA{min-width: 100px;margin: 0 10px 20px 0;float:left;}
+        .customPopup {
+        background-color: white;
+        border-style: solid;
+        border-width: 2px;
+        left: 30%;
+        padding: 10px;
+        position: absolute;
+        z-index: 2000;
+        width: 400px;
+        top:50%;
+        padding:0;
+        border:1px solid #d4d4d4
+        }
+        
+        .disabledTextBox {
+        background-color: white;
+        border: 1px solid;
+        color: black;
+        cursor: default;
+        width: 90px;
+        display: table;
+        padding: 2px 1px;
+        text-align:right;
+        }      
+        .ButtonStyling{
+        color:black !important;
+        background:#8eb4e3  !important;
+        border: 1px solid #8eb4e3  !important;
+        font-size: 15px  !important;
+        padding: 8px 50px 8px 50px  !important;
+        margin-top: 20px  !important;
+        }
+        .displayNone { 
+        display:none; 
+        }
+        .displayBlock {
+        display:block;
+        }
+        .ui-autocomplete-loading { 
+        background: white url(/img/loading32.gif) right center no-repeat;
+        background-size:15px 15px; 
+        font-style: UnileverDINOffcPro;
+        }
+        .placeHolder {
+        font-style: UnileverDINOffcPro;
+        }  
+        .ui-widget.ui-widget-content.ui-autocomplete {
+        top: 320px;
+        position: absolute;
+        z-index: 9999;
+        }
+        .customPopup table tr {
+        background-color: #fff;
+        border: none;
+        }
+        .customPopup input.placeHolder, .customPopup input.placeHolder:focus, 
+        input[type="text" i] {
+        width: 235px;
+        margin: 5px 0 10px 0;
+        border: 1px solid #ccc;
+        height: 20px;
+        padding: 0 4px;
+        font: normal 12px/20px UnileverDINOffcPro;
+        border-radius: 3px;
+        }
+        .customPopup label.popupfontstyling {
+        display: inline;
+        font: bold 14px/16px UnileverDINOffcPro;
+        opacity: 0.7;
+        padding: 3px 0;
+        clear: both;
+        float: left;
+        color: #666;
+        }
+        
+        .secondaryPalette.bPageBlock .pbBody .customPopup .Selection_CTA[value="Close"]{margin:0 0 0 15px}
+    </style>
+    <div id="tab-2">
+        
+        
+        <apex:pageBlock id="showDivQuestionnaire"  >
+            <apex:outputPanel rendered="{!showStatus1}">
+                <apex:form id="pg1">
+                    
+                    <style>.Questionairre_Dashboard th{padding: 0 0 0 10px;font: bold 14px/16px UnileverDINOffcPro;color: #555;}</style>    
+                    <div class="Main_Container">
+                        <h3>Recent SAFE Questionairre</h3>
+                        <apex:outputpanel id="Form_BtnSet" style="float:right">
+                            
+                            <apex:outputLink value="javascript:void(0)"  styleClass="Selection_CTA" id="questionnaireCreate">Create New Questionairre
+                                <!--apex:commandButton styleClass="Selection_CTA" id="questionnaireCreate" style="float:right" value="Create New Questionairre"  /-->
+                                <apex:actionSupport event="onclick"  action="{!createQuestionnaire}" reRender="showDivQuestionnaire,showDivQuestionnaireCr" />
+                                
+                            </apex:outputLink>
+                        </apex:outputpanel>
+                        
+                        <apex:pageBlockTable value="{!QuestionnaireList}" var="Record" styleClass="Table_View Questionairre_Dashboard" style="width:100%">
+                            
+                            <apex:column headerValue="Actions" style="text-align:center;align:center">
+                                <apex:outputLink value="javascript:void(0)" styleClass="Edit CTA_Icons"  >
+                                    <apex:actionSupport event="onclick" action="{!editQuestionnaire}" reRender="showDivQuestionnaire,showDivQuestionnaireCr" > 
+                                        <apex:param name="id1" value="{!Record.Id}"/> 
+                                        <apex:param name="actionPerform" value="edit"/>
+                                    </apex:actionSupport>
+                                </apex:outputLink>
+                                
+                                
+                                <apex:outputLink value="javascript:void(0)" styleClass="Del CTA_Icons"  >
+                                    <apex:actionSupport event="onclick" action="{!showPopup}" rerender="popup" status="status" > 
+                                        <apex:param name="id1" value="{!Record.Id}"/> 
+                                    </apex:actionSupport>
+                                </apex:outputLink>
+                                
+                                <apex:outputLink value="javascript:void(0)" styleClass="Clone CTA_Icons"  >
+                                    <apex:actionSupport event="onclick" action="{!cloneQuestionnaire}" reRender="showDivQuestionnaire,showDivQuestionnaireCr" > 
+                                        <apex:param name="id1" value="{!Record.Id}"/> 
+                                        <apex:param name="actionPerform" value="clone"/>
+                                    </apex:actionSupport>
+                                </apex:outputLink> 
+                            </apex:column>                                
+                            
+                            <apex:column headerValue="Solution Name">
+                                <apex:outputLink value="javascript:void(0)">{!Record.name}
+                                    <apex:actionSupport event="onclick" action="{!viewQuestionnaireRecord}" reRender="showDivQuestionnaire,showDivQuestionnaireCr,viewQuestionnaire">
+                                        <apex:param name="id1" value="{!Record.Id}"/>
+                                    </apex:actionSupport>
+                                </apex:outputLink>
+                            </apex:column>    
+                            <apex:column value="{!Record.SAFE_Status__c}"/>
+                            <apex:column value="{!Record.CreatedDate}"/>
+                            <apex:column value="{!Record.lastModifiedDate}"/>
+                            <apex:column value="{!Record.SAFE_Description__c}"/>
+                        </apex:pageBlockTable>
+                        <!--pagination code-->
+                        <apex:commandButton value="First Page" action="{!Firstbtn}" disabled="{!prv}" reRender="pg1"/>
+                        <apex:commandButton value="PreviousPage" action="{!prvbtn}" disabled="{!prv}" reRender="pg1"/>
+                        <apex:commandButton value="NextPage" action="{!Nxtbtn}" disabled="{!nxt}"  reRender="pg1"/>
+                        <apex:commandButton value="LastPage" action="{!lstbtn}" disabled="{!nxt}" reRender="pg1"/>
+                        <!--pagination code-->              
+                        
+                    </div>  
+                </apex:form>
+            </apex:outputPanel>
+        </apex:pageBlock>
+        <apex:pageBlock id="message" >   
+            <apex:pageMessages id="showmsg"></apex:pageMessages>
+        </apex:pageBlock>
+          <apex:pageBlock id="showDivQuestionnaireCr" >   
+            <apex:outputPanel rendered="{!showStatus2}"  styleClass="Main_Container">
+                   <h3>Information for initiating new Questionairre</h3>
+                    <apex:form styleClass="Create_Questionairre">
+            
+                        <apex:outputPanel styleClass="Form_Sections">
+                              <apex:outputPanel styleClass="Form_Fields">
+                                  <apex:pageBlock >
+                                    <apex:pageBlockSection >
+                                      <apex:inputField value="{!raq.Name}" required="true"></apex:inputField>
+                                    </apex:pageBlockSection>
+                                    <apex:pageBlockSection >
+                                        <apex:inputField value="{!raq.SAFE_Description__c}" required="true" ></apex:inputField>
+                                    </apex:pageBlockSection>
+                                    <apex:pageBlockSection >
+                                        <apex:inputField value="{!raq.Owner.Name}" label="Author"/>
+                                    </apex:pageBlockSection>
+                                 </apex:pageBlock>
+                              </apex:outputPanel>
+                        </apex:outputPanel>
+                        <apex:outputPanel styleClass="align-left">
+                          <apex:outputPanel styleClass="Status_Info">
+                            <apex:outputLabel style="display:inline" value="{!$ObjectType.SAFE_Risk_Assessment_Questionnaire__c.fields.SAFE_Status__c.Label}" />
+                              <apex:inputField value="{!raq.SAFE_Status__c}"  />
+                          </apex:outputPanel>
+                        </apex:outputPanel>
+                        <div styleClass="align-left" style="width:69%;margin: 10px 0 0 40px;">
+                           <apex:commandButton action="{!saveQuestionnaire}" styleClass="Selection_CTA" value="Next" rerender="showDivQuestion,showDivQuestionnaireCr"/>
+                          </div>
+                 </apex:form>
+                           <apex:form >
+                               <div>                    
+                 <apex:commandButton action="{!backToQuestionnaireList}" styleClass="Selection_CTA" value="Cancel" style="float:right" rerender="showDivQuestionnaire,showDivQuestionnaireCr,viewQuestionnaire"/>  
+                               </div> 
+                </apex:form>         
+ 
+         </apex:outputPanel>
+        </apex:pageBlock>
+        <!--Code to show questionnaire in readable format-->
+        <apex:pageBlock id="viewQuestionnaire">
+            <apex:outputPanel rendered="{!showStatus5}"  styleClass="Main_Container" style="background:none;width:800px;">
+                <apex:form >
+                    <apex:pageBlock >
+                        <apex:outputLink value="javascript:void(0)"  styleClass="Selection_CTA"  style="float:right">Back to List
+                            
+                            <apex:actionSupport event="onclick"  action="{!backToQuestionnaireList}" reRender="showDivQuestionnaire,showDivQuestionnaireCr,viewQuestionnaire" />
+                            
+                        </apex:outputLink>
+                    </apex:pageBlock>
+                </apex:form>
+                
+                <apex:form style="background:none;width:800px;padding:0px;">
+                    <div>
+                        <div class="pageBlock">
+                            <apex:pageBlock >
+                                
+                                <apex:pageBlockSection >
+                                    <apex:pageBlockSection ><apex:outputField value="{!raq.Name}"/></apex:pageBlockSection>
+                                    <apex:pageBlockSection > <apex:outputField value="{!raq.SAFE_Description__c}"/> </apex:pageBlockSection>
+                                    <apex:pageBlockSection > <apex:outputField value="{!raq.SAFE_Status__c}"/> </apex:pageBlockSection>
+                                    <apex:pageBlockSection > <apex:outputField value="{!raq.Owner.Name}"/> </apex:pageBlockSection>
+                                    
+                                </apex:pageBlockSection>
+                                
+                            </apex:pageBlock>
+                            
+                        </div> 
+                    </div>
+                </apex:form>
+                
+            </apex:outputPanel>
+        </apex:pageBlock>
+        
+        
+        
+        <!--start of pop up-->
+        <apex:form id="del">
+            <apex:pageBlock >
+                <apex:outputPanel id="popup">
+                    <apex:outputPanel id="popInnerOutputPnl" styleClass="customPopup" layout="block" rendered="{!displayPopUp}">
+                        <apex:outputPanel style="Outputpanel">
+                            <table width="100%" align="Center">
+                                <apex:pageMessages ></apex:pageMessages>          
+                                <tr>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ><apex:outputText >Are you Sure you want to delete the Questionnaire?</apex:outputText></td>
+                                </tr>
+                                <tr></tr>
+                                <tr>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td >
+                                        <apex:commandButton value="Delete" action="{!deleteQuestionnaire}" styleClass="Selection_CTA" rerender="popup,showDivQuestionnaire"></apex:commandButton>
+                                    </td>
+                                    <td >
+                                        <apex:commandButton value="Cancel" title="Close the popup" action="{!closePopup}" styleClass="Selection_CTA" rerender="popup"/>
+                                    </td>
+                                </tr> 
+                            </table>
+                        </apex:outputPanel>  
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </apex:pageBlock>
+        </apex:form>
+        <!--end of pop up-->
+        <!--Code for sagar-->
+        
+        <apex:pageBlock id="showDivQuestion"  >
+            <apex:outputPanel rendered="{!showStatus3}">
+                <apex:form id="pg3"> 
+                    
+                    <div class="Main_Container">
+                        <h3>PACV Questionairre Details</h3>
+                        <div id="Form_BtnSet">
+                            <input type="button" style="float:right" class="Selection_CTA" value="Publish"/>
+                        </div>
+                        <div style="border-top: 1px solid #d4d4d4;">
+                            <div class="Details_Container">
+                                <div class="Panel">
+                                    <p><label>Questionairre Name:</label>
+                                        <span>{!QuestionnaireDetails.Name}</span>
+                                    </p>
+                                    <p><label>Owner:</label>
+                                        <span>{!Owner_name.Name}</span>
+                                    </p>
+                                    <p><label>Description:</label>
+                                        <span>{!QuestionnaireDetails.SAFE_Description__c}</span>
+                                    </p>
+                                </div>
+                                <div class="Panel">
+                                    <p class="Status_Info">
+                                        <label>Status</label>
+                                        <span>{!QuestionnaireDetails.SAFE_Status__c}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!--  To display list of questions -->
+                        
+                            <h3>PACV Questions.... </h3>
+                            <div id="Form_BtnSet">
+                                
+                                <apex:outputpanel id="Form_BtnSet" style="float:right">
+                                    
+                                    <apex:outputLink value="javascript:void(0)"  styleClass="Selection_CTA" id="questionnaireCreate" style="float:right"  >New PACV_Question
+                                        
+                                        <apex:actionSupport event="onclick"  action="{!createQuestion}" reRender="showDivQuestion,showDivQuestionCr,Questions_List" />
+                                        
+                                    </apex:outputLink>
+                                </apex:outputpanel>                    
+                                
+                            </div>
+                            <!-- added here -->
+                            <apex:pageBlockTable value="{!questionList}" var="Records" styleClass="Table_View Solution_Table" style="width:100%">
+                                
+                                <apex:column headerValue="Actions" style="text-align:center;align:center">
+                                    <apex:outputpanel id="Form_BtnSet" style="float:right"> 
+                                        <apex:outputLink value="javascript:void(0)" styleClass="Edit CTA_Icons"  >
+                                            <apex:actionSupport event="onclick" action="{!EditQuestion}" reRender="showDivQuestion,showDivQuestionCr"> 
+                                                <apex:param name="editStatus" value="edit" />    
+                                                <apex:param name="q_Id" value="{!Records.Id}" assignTo="{!Records.Id}"/> 
+                                            </apex:actionSupport>
+                                        </apex:outputLink> 
+                                    </apex:outputpanel>
+                                    
+                                    <apex:outputpanel id="QForm_BtnSet" style="float:right"> 
+                                        <apex:outputLink value="javascript:void(0)" styleClass="Del CTA_Icons"  >
+                                            <apex:actionSupport event="onclick" action="{!showPopup_deleteQuestion}" rerender="popupquestion" status="status" > 
+                                                <apex:param name="iddeleteQ" value="{!Records.Id}" assignTo="{!Records.Id}"/> 
+                                            </apex:actionSupport>
+                                        </apex:outputLink>
+                                    </apex:outputpanel>  
+                                </apex:column>                                
+                                
+                                
+                                <apex:column value="{!Records.Id}"/>
+                                <apex:column value="{!Records.SAFE_Question__c}"/>
+                                <apex:column value="{!Records.SAFE_Answering_Method__c}"/>
+                                <apex:column value="{!Records.SAFE_Answers__c}"/>
+                                <apex:column value="{!Records.SAFE_Scores__c}"/>
+                                <apex:column value="{!Records.SAFE_Weightage__c}"/>
+                            </apex:pageBlockTable>
+                    </div> 
+                </apex:form>
+            </apex:outputPanel>
+        </apex:pageBlock>
+        
+        <!-- show popup for deleting Questions -->
+        
+        <apex:form id="Questiondel">
+            <apex:pageBlock >
+                <apex:outputPanel id="popupquestion">
+                    <apex:outputPanel id="popInnerOutputPnl" styleClass="customPopup" layout="block" rendered="{!displayPopUp}">
+                        <apex:outputPanel style="Outputpanel">
+                            <table width="100%" align="Center">
+                                <apex:pageMessages ></apex:pageMessages>          
+                                <tr>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ><apex:outputText >Are you Sure you want to delete the Question?</apex:outputText></td>
+                                </tr>
+                                <tr></tr>
+                                <tr>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td >
+                                        <apex:commandButton value="Delete" action="{!deleteQuestion}" styleClass="Selection_CTA" rerender="popupquestion,showDivQuestion"></apex:commandButton>
+                                    </td>
+                                    <td >
+                                        <apex:commandButton value="Cancel" title="Close the popup" action="{!closePopup_deleteQuestion}" styleClass="Selection_CTA" rerender="popupquestion"/>
+                                    </td>
+                                </tr> 
+                            </table>
+                        </apex:outputPanel>  
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </apex:pageBlock>
+        </apex:form>
+        
+        <!-- Create and Editing of questions -->
+        
+        <apex:pageBlock id="showDivQuestionCr" >   
+            <apex:outputPanel rendered="{!showStatus4}"  styleClass="Main_Container">
+                
+                <apex:form id="Create_Question">    
+                    <div class="Main_Container">
+                        <apex:outputLink value="javascript:void(0)"  styleClass="Selection_CTA"  style="float:right">Back to List
+                            
+                            <apex:actionSupport event="onclick"  action="{!backToQuestionList}" reRender="showDivQuestion,showDivQuestionCr" />
+                            
+                        </apex:outputLink>
+                        
+                        <h3>New PACV Question</h3>
+                        <form name="Create_Question">
+                            
+                            
+                            <apex:outputPanel styleClass="Form_Sections">
+                                <apex:outputPanel styleClass="Status_Info">
+                                    <label>Questionairre Name<sup>*</sup></label>
+                                    <apex:inputField value="{!PrepopulateQuestion.SAFE_Questionnaire__c}"  />
+                                </apex:outputPanel>
+                                
+                                <apex:outputPanel styleClass="Form_Fields">            
+                                    <label>Question<sup>*</sup></label>          
+                                    <apex:inputTextarea rows="5" cols="50" value="{!PrepopulateQuestion.SAFE_Question__c}"/>            
+                                </apex:outputPanel>
+                                
+                                <apex:outputPanel styleClass="Form_Fields">                                    
+                                    <apex:outputLabel style="display:inline" value="{!$ObjectType.SAFE_Questions__c.fields.SAFE_Answering_Method__c.Label}" />
+                                    <apex:inputField value="{!PrepopulateQuestion.SAFE_Answering_Method__c}"  />
+                                </apex:outputPanel>            
+                                
+                                <apex:outputPanel styleClass="Form_Fields">            
+                                    <label>Answer<sup>*</sup></label>
+                                    <apex:inputTextarea rows="5" cols="50" Id="Ques_name" value="{!PrepopulateQuestion.SAFE_Answers__c}"/>        
+                                </apex:outputPanel>             
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel styleClass="Form_Sections">
+                                <apex:outputPanel styleClass="Form_Fields">                                    
+                                    <apex:outputLabel style="display:inline" value="{!$ObjectType.SAFE_Questions__c.fields.SAFE_Question_Status__c.Label}" />
+                                    <apex:inputField value="{!PrepopulateQuestion.SAFE_Question_Status__c}"  />
+                                </apex:outputPanel>                                   
+                                
+                                
+                                
+                                <apex:outputPanel styleClass="Form_Fields">
+                                    <label>Weightage<sup>*</sup></label>
+                                    <apex:inputTextarea rows="5" cols="50" value="{!PrepopulateQuestion.SAFE_Weightage__c}"/>   
+                                </apex:outputPanel>
+                                
+                                
+                                <apex:outputPanel styleClass="Form_Fields">
+                                    <label>HelpText<sup>*</sup></label>
+                                    <apex:inputTextarea rows="5" cols="50" value="{!PrepopulateQuestion.SAFE_Help_Text__c}"/>
+                                </apex:outputPanel>
+                                
+                                
+                                <apex:outputPanel styleClass="Form_Fields">
+                                    <label>Scores<sup>*</sup></label>
+                                    <apex:inputTextarea rows="5" cols="50" value="{!PrepopulateQuestion.SAFE_Scores__c}"/>
+                                </apex:outputPanel>
+                            </apex:outputPanel>      
+                        </form>
+                        <div id="Form_BtnSet">
+                            <apex:outputpanel id="Form_BtnSet1" style="float:right">                      
+                                <apex:outputLink value="javascript:void(0)"  styleClass="Selection_CTA" id="saveCreate" style="float:right"  >Save                         
+                                    <apex:actionSupport event="onclick"  action="{!SaveQuestion}" reRender="showDivQuestion,showDivQuestionCr,Questions_List" />                          
+                                </apex:outputLink>
+                            </apex:outputpanel>   
+                            
+                            <apex:outputpanel id="Form_BtnSet2" style="float:right">                      
+                                <apex:outputLink value="javascript:void(0)"  styleClass="Selection_CTA" id="cancelCreate" style="float:right"  >Cancel                         
+                                    <apex:actionSupport event="onclick"  action="{!cancelQuestion}" reRender="showDivQuestion,showDivQuestionnaireCr,Questions_List" />                          
+                                </apex:outputLink>
+                            </apex:outputpanel>   
+                            
+                        </div>
+                        
+                    </div>  
+                </apex:form>
+            </apex:outputPanel>
+        </apex:pageBlock>
+        
+        <!--end of sagar-->
+        
+    </div>
+</apex:page>

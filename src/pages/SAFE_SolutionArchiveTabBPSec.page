@@ -1,0 +1,59 @@
+<apex:page standardController="SAFE_Solutions__c" extensions="SAFE_SolutionArchivedTabBPSec_CC" docType="html-5.0" sidebar="false" showHeader="false">
+    
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1 " charset="utf-8" />      
+        <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/SAFE_Tabs.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/Slide11.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/jquery-ui.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-1.12.4.js')}"/> 
+        <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-ui.js')}"/> 
+        <apex:stylesheet value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/css/themes_smoothness_jquery-ui.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery.min.js')}"/> 
+        <apex:includeScript value="{!URLFOR($Resource.SAFEStaticResource, '/SAFEStaticResource/jsfile/jquery-ui.min.js')}"/>
+    </head>    
+    
+    
+    <div id="tab-9">
+        <apex:pageBlock id="solutionsList">
+            <apex:outputPanel >
+                
+                <apex:form id="pg2" styleClass="Table_View Solution_Table">
+                    <table class=" Table_View Solution_Table">
+                        <thead>
+                            
+                            <th>Solution Name</th>
+                            <th>Material Type</th>
+                            <th>Price Per Unit</th>
+                            <th>Solution Category</th>
+                            <th>Solution in Use</th>
+                            <th>Solution Type</th>
+                            
+                        </thead>
+                        <tbody>
+                            <apex:repeat value="{!solutionList}" var="Record"> 
+                                <tr>                                    
+                                    <td><a>{!Record.Name}</a></td>
+                                    <td><a>{!Record.SAFE_Material_Type__c}</a></td>
+                                    <td><a>{!Record.SAFE_Price_Per_Unit__c}</a></td>
+                                    <td><a>{!Record.SAFE_Solution_Category__c}</a></td>
+                                    <td><a>{!Record.SAFE_Solution_in_Use__c}</a></td>                           
+                                    <td><a>{!Record.SAFE_Solution_Type__c} </a></td>                                    
+                                </tr>  
+                            </apex:repeat>
+                            <tr> <td> <!--pagination code-->
+                                
+                                <apex:commandButton value="First Page" action="{!Firstbtn}" disabled="{!prv}" reRender="pg2"/></td>
+                                <td> <apex:commandButton value="PreviousPage" action="{!prvbtn}" disabled="{!prv}" reRender="pg2"/></td>
+                                <td> <apex:commandButton value="NextPage" action="{!Nxtbtn}" disabled="{!nxt}"  reRender="pg2"/></td>
+                                <td> <apex:commandButton value="LastPage" action="{!lstbtn}" disabled="{!nxt}" reRender="pg2"/></td>
+                                <td></td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </apex:form>
+            </apex:outputPanel>
+        </apex:pageBlock>
+        
+    </div>
+</apex:page>

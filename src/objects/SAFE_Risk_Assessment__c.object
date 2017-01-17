@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -143,65 +143,6 @@
         <type>Url</type>
     </fields>
     <fields>
-        <fullName>SAFE_Risk_Score_X__c</fullName>
-        <externalId>false</externalId>
-        <label>Risk Score %</label>
-        <precision>18</precision>
-        <required>true</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>SAFE_Risk_Score__c</fullName>
-        <externalId>false</externalId>
-        <label>Risk Score</label>
-        <summarizedField>SAFE_Responses__c.SAFE_Score_Value__c</summarizedField>
-        <summaryForeignKey>SAFE_Responses__c.SAFE_Risk_Assessment__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>SAFE_Risk_Status__c</fullName>
-        <externalId>false</externalId>
-        <label>Risk Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Not Started</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>In Progress</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Completed</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>SAFE_Solution_Name__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Solution Name</label>
-        <referenceTo>SAFE_Solutions__c</referenceTo>
-        <relationshipLabel>SAFE Risk Assessments</relationshipLabel>
-        <relationshipName>Risk_Assessments</relationshipName>
-        <required>false</required>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>SAFE_Status__c</fullName>
         <externalId>false</externalId>
         <label>Status</label>
@@ -220,6 +161,19 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SAFE_version__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>SAFE version</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <label>SAFE Risk Assessment</label>
     <listViews>
@@ -247,7 +201,7 @@
         <customTabListAdditionalFields>LAST_UPDATE</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>SAFE_Project_Name__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>SAFE_Risk_Assessment_Link__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>SAFE_Risk_Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields xsi:nil="true"/>
         <lookupDialogsAdditionalFields>CREATED_DATE</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>LAST_UPDATE</lookupDialogsAdditionalFields>
     </searchLayouts>
@@ -275,16 +229,14 @@
     </validationRules>
     <validationRules>
         <fullName>SAFE_RA_Risk_Score_Percent</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>ISNULL( SAFE_Risk_Score_X__c )</errorConditionFormula>
-        <errorDisplayField>SAFE_Risk_Score_X__c</errorDisplayField>
         <errorMessage>Please enter the risk score percentage</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAFE_RA_Risk_Status</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>ISPICKVAL( SAFE_Risk_Status__c , &quot;&quot;)</errorConditionFormula>
-        <errorDisplayField>SAFE_Risk_Status__c</errorDisplayField>
         <errorMessage>Please enter the risk status</errorMessage>
     </validationRules>
     <validationRules>
