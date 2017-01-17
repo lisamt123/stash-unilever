@@ -28,7 +28,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public boolean bLinkBET {get;set;}
     //Variable to store reset BET options
     public string resetBEToption;
-    
     //*@description: store project id from url parameter
     public string ProjectID{get;set;}
     //*@description: get details of coreparameter
@@ -199,19 +198,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             isEmptySearchResult = false;
         }
         
+        searchBET1(setOwnerIds, setBrandPosIds);
         
-        if(!setOwnerIds.isEmpty()){
-            mapIdOwner= new map<id, string>();
-            for(user usr : [select id, firstname, lastName from user where id in :setOwnerIds LIMIT 1000]){
-                mapIdOwner.put(usr.id,(usr.firstname!=null?usr.firstname+' ':'')+usr.LastName);      
-            }
-        }
-        if(!setBrandPosIds.isEmpty()){
-            mapIdBrandPos = new map<id, string>();
-            for(MDO_BrandPosition__c brnd: [select id, Name from MDO_BrandPosition__c where id in :setBrandPosIds LIMIT 1000]){
-                mapIdBrandPos.put(brnd.id,brnd.Name);       
-            }
-        }
         for(string it :  betWapMap .keyset()){
             IPM_BET_BETWrapper temp = new IPM_BET_BETWrapper(betWapMap.get(it));
             if(betWapMap.get(it).betOwner!=null && !mapIdOwner.isEmpty() && mapIdOwner.containskey(betWapMap.get(it).betOwner)){
@@ -223,13 +211,27 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             searchresultBet.add(temp);
         }
     } 
+    //Method created to reduce N-Path Complexity.
+    public void searchBET1(set<id> setOwnerIds, set<id> setBrandPosIds){
+    	if(!setOwnerIds.isEmpty()){
+            mapIdOwner= new map<id, string>();
+            for(user usr : [select id, firstname, lastName from user where id in :setOwnerIds LIMIT 1000]){
+                mapIdOwner.put(usr.id,(usr.firstname!=null?usr.firstname+' ':'')+usr.LastName);      
+            }
+        }
+        if(!setBrandPosIds.isEmpty()){
+            mapIdBrandPos = new map<id, string>();
+            for(MDO_BrandPosition__c brnd: [select id, Name from MDO_BrandPosition__c where id in :setBrandPosIds LIMIT 1000]){
+                mapIdBrandPos.put(brnd.id,brnd.Name);       
+            }
+        }
+    } 
     public Boolean reactivateProjFlag; 
     /**BET Search related Changes: End**/
     /****************************************************************************
     @Description : constructor To initialize IPM_CoreParameterRevamp object
     *****************************************************************************/
     public ipm_Coreparameters (){
-        
         // call utility class to save having to do this multiple times in multiple places
         super();
         reactivateProjFlag = project.Is_Archieved__c;
@@ -244,7 +246,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c))
         {   
             isBrandVisible=true;
-            
         }
     }
     @TestVisible private  void initialise(){
@@ -445,45 +446,54 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         for(IPM_CoreParameter_Questions__c coreQ:allCorepQuestionList){
             //get coreparameter questions for Innovation/Renovation project
             if(IPM_Coreparameter.IPM_ProjectSubType__c!=null && IPM_Coreparameter.IPM_ProjectSubType__c.equals(IPM_ConstantUtils.IPM_INNOVATION_RENOVATION)){
-                if(coreQ.IPM_Innovation_Renovation__c && coreQ.IPM_Question_Number__c==qOne){
-                    questiononeList.add(coreQ.name);
-                }
-                if(coreQ.IPM_Innovation_Renovation__c && coreQ.IPM_Question_Number__c==qTwo){
-                    questiontwoList.add(coreQ.name);
-                }
-                if(coreQ.IPM_Innovation_Renovation__c && coreQ.IPM_Question_Number__c==qThree){
-                    questionthreeList.add(coreQ.name);
-                }
+            	chkInnoRenoQuestions(coreQ,qOne,qTwo,qThree);
             }
             //get coreparameter questions for Operational project
             if(IPM_Coreparameter.IPM_ProjectSubType__c!=null && (IPM_Coreparameter.IPM_ProjectSubType__c.equals(IPM_ConstantUtils.IPM_OPERATIONAL))){
-                if(coreQ.IPM_Operational__c && coreQ.IPM_Question_Number__c==qOne){
-                    questiononeList.add(coreQ.name);
-                }
-                if(coreQ.IPM_Operational__c && coreQ.IPM_Question_Number__c==qTwo){
-                    questiontwoList.add(coreQ.name);
-                }
-                if(coreQ.IPM_Operational__c && coreQ.IPM_Question_Number__c==qThree){
-                    questionthreeList.add(coreQ.name);
-                }
-                isOperational=true;
+            	chkOperQuestions(coreQ,qOne,qTwo,qThree);
             } 
             //get coreparameter questions for BLG project 
-            if(IPM_Coreparameter.IPM_ProjectSubType__c!=null && (IPM_Coreparameter.IPM_ProjectSubType__c.equals(IPM_ConstantUtils.IPM_BLG))){    
-                if(coreQ.IPM_BLG__c && coreQ.IPM_Question_Number__c==qOne){
-                    questiononeList.add(coreQ.name);
-                }
-                if(coreQ.IPM_BLG__c && coreQ.IPM_Question_Number__c==qTwo){
-                    questiontwoList.add(coreQ.name);
-                }
-                if(coreQ.IPM_BLG__c && coreQ.IPM_Question_Number__c==qThree){
-                    questionthreeList.add(coreQ.name);
-                }
+            if(IPM_Coreparameter.IPM_ProjectSubType__c!=null && (IPM_Coreparameter.IPM_ProjectSubType__c.equals(IPM_ConstantUtils.IPM_BLG))){  
+            	chkBLGQuestions(coreQ,qOne,qTwo,qThree);
             }
-             
         }
-        
-        
+    }
+    //Methods created to reduce N-Path Complexity.
+    public void chkInnoRenoQuestions(IPM_CoreParameter_Questions__c coreQ, Integer qOne, Integer qTwo, Integer qThree){
+    	if(coreQ.IPM_Innovation_Renovation__c && coreQ.IPM_Question_Number__c==qOne){
+            questiononeList.add(coreQ.name);
+        }
+        if(coreQ.IPM_Innovation_Renovation__c && coreQ.IPM_Question_Number__c==qTwo){
+            questiontwoList.add(coreQ.name);
+        }
+        if(coreQ.IPM_Innovation_Renovation__c && coreQ.IPM_Question_Number__c==qThree){
+            questionthreeList.add(coreQ.name);
+        }
+    }
+    
+    public void chkOperQuestions(IPM_CoreParameter_Questions__c coreQ, Integer qOne, Integer qTwo, Integer qThree){
+    	if(coreQ.IPM_Operational__c && coreQ.IPM_Question_Number__c==qOne){
+            questiononeList.add(coreQ.name);
+        }
+        if(coreQ.IPM_Operational__c && coreQ.IPM_Question_Number__c==qTwo){
+            questiontwoList.add(coreQ.name);
+        }
+        if(coreQ.IPM_Operational__c && coreQ.IPM_Question_Number__c==qThree){
+            questionthreeList.add(coreQ.name);
+        }
+        isOperational=true;
+    }
+    
+    public void chkBLGQuestions(IPM_CoreParameter_Questions__c coreQ, Integer qOne, Integer qTwo, Integer qThree){
+    	if(coreQ.IPM_BLG__c && coreQ.IPM_Question_Number__c==qOne){
+            questiononeList.add(coreQ.name);
+        }
+        if(coreQ.IPM_BLG__c && coreQ.IPM_Question_Number__c==qTwo){
+            questiontwoList.add(coreQ.name);
+        }
+        if(coreQ.IPM_BLG__c && coreQ.IPM_Question_Number__c==qThree){
+            questionthreeList.add(coreQ.name);
+        }
     }
     /****************************************************************************
     @Description :Method to get questions helps contents
@@ -534,7 +544,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(IPM_Coreparameter.IPM_Project_Type__c) || IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)){
                 isOriginal=true;
             }
-            
         } 
     }
     /****************************************************************************
@@ -589,7 +598,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         answerone_STR=SelectedAnswer;
         getCoreStrategicIntent();
         getcoreparameterHelps();
-        
     }
     /****************************************************************************
     @Description :method to update answer two
@@ -598,7 +606,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         answertwo_STR=SelectedAnswer;
         getCoreStrategicIntent();
         getcoreparameterHelps();
-        
     } 
     /****************************************************************************
     @Description :method to update answer two
@@ -607,7 +614,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         answerthree_STR=SelectedAnswer;
         getCoreStrategicIntent();
         getcoreparameterHelps();
-        
     } 
     /****************************************************************************
     @Description :method to update selected answer
@@ -630,7 +636,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     @Description :method to show messages on save       
     *****************************************************************************/      
     public void showMessage(){      
-    isThresholdSaved = false;       
+    	isThresholdSaved = false;       
     }
     /****************************************************************************
     @Description :method to update answer two
@@ -651,8 +657,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_COREPARAMETERREVAMP_STR,
                     UPDATECOREPRAMETER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null); 
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));         
-        } 
-        
+        }
     }     
     /****************************************************************************
     @Description :Get user type with access permission
@@ -684,18 +689,20 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             userRole.equals(IPM_ConstantUtils.IPM_ROLE_RD) || userRole.equals(IPM_ConstantUtils.IPM_ROLE_SUPPLY_CHAIN)||
             userRole.equals(IPM_ConstantUtils.IPM_ROLE_FINANCE)){
                 isEditable=false;
-                
             }
             //BD user access
             if(userRole.equals(IPM_ConstantUtils.IPM_ROLE_BD) && extraEditable && !(IPM_Coreparameter.IPM_PrepareForArchival__c || reactivateProjFlag)){
                 isEditCoreparam=true;
                 editMPAByBD=true;
                 editCPVByBD=true;
-                
             }
-            
         }
-        //TPL user access
+        getIpmuserType1();
+        chkCentralOrBPUser();
+    }
+    //Methods created to reduce N-Path Complexity.
+    public void getIpmuserType1(){
+ 		//TPL user access
         if(IPM_Coreparameter.IPM_Technical_Project_Leader__c!=null && IPM_Coreparameter.IPM_Technical_Project_Leader__c==userinfo.getuserid() && 
             !reactivateProjFlag && extraEditable && (IPM_Coreparameter.IPM_Technical_Project_Leader__c!=IPM_Coreparameter.IPM_Project_Leader__c || 
             IPM_Coreparameter.IPM_Technical_Project_Leader__c!=IPM_Coreparameter.Deputy_Project_Leader__c) && !(IPM_Coreparameter.IPM_PrepareForArchival__c || reactivateProjFlag)){
@@ -724,8 +731,9 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
                 isEditable=false;
             }
         }
-        
-        //security for central team and BP users
+    } 
+    public void chkCentralOrBPUser(){
+    	//security for central team and BP users
         IPM_CustomPermission cpr = new IPM_CustomPermission();
         boolean isCentralTeam=false;
         boolean isBPUser=false;
@@ -742,9 +750,9 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(IPM_Coreparameter.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equalsIgnoreCase(IPM_Coreparameter.IPM_Project_Type__c)))){
                 isExemptFromThresholdITO = true;
             }
-        }                                       
-        
-    }     
+        }
+    } 
+    
     /****************************************************************************
     @Description :To retrieve the Subsector/Makert/Sector details
     *****************************************************************************/  
@@ -798,7 +806,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     @Testvisible private void getAccessonPage(){
         if((coreConfig.IPM_FastTrack__c!=null && coreConfig.IPM_FastTrack__c) || (coreConfig.IPM_WhiteSpace__c!=null && coreConfig.IPM_WhiteSpace__c)){
             isShowFastTOrWhiteS=true;
-        
         }
         if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && !IPM_Coreparameter.IPM_PrepareForArchival__c && !reactivateProjFlag){
             isEditCoreparamPage=true;
@@ -806,7 +813,12 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         if(coreConfig.IPM_MPA__c!=null && coreConfig.IPM_MPA__c && (isEditable||isEditCoreparam)){
             isMPAEditable=true;
         }
-        if(coreConfig.IPM_CPV__c!=null && coreConfig.IPM_CPV__c && (isEditable||isEditCoreparam)){
+        getAccessonPage1();
+        getAccessonPage2();
+    }
+    //Methods created to reduce N-Path Complexity.    
+    public void getAccessonPage1(){
+    	if(coreConfig.IPM_CPV__c!=null && coreConfig.IPM_CPV__c && (isEditable||isEditCoreparam)){
             isCPVEditable=true;
         }
         if(coreConfig.IPM_ET__c!=null && coreConfig.IPM_ET__c && (isEditable||isEditCoreparam)){
@@ -815,31 +827,26 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         if(coreConfig.IPM_MPA__c!=null && !coreConfig.IPM_MPA__c && isEditable && !isEditCoreparameter){
             isMPABack=true;
         }
-        if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && !(IPM_Coreparameter.IPM_PrepareForArchival__c || reactivateProjFlag) &&
+    }
+    public void getAccessonPage2(){ 
+    	if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && !(IPM_Coreparameter.IPM_PrepareForArchival__c || reactivateProjFlag) &&
         !((IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c))
             ||(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(IPM_Coreparameter.IPMProject_Span__c)
-            ))){
-            
+            )))
+        { 
             isAdditionalPara=true;
         }
         if(isEditable && !IPM_ConstantUtils.PHASE_MARKET_READY.Equals(IPM_Coreparameter.IPM_Phase__c) && !IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT.Equals(IPM_Coreparameter.IPM_Phase__c) &&
         !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && !(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c) && !IPM_ConstantUtils.IPM_OPERATIONAL.equals(IPM_Coreparameter.IPM_Project_Type__c)) && !(IPM_Coreparameter.IPM_PrepareForArchival__c || reactivateProjFlag))
-            {
+        {
             isEditCoreparam=true;
-            
         }
-        
-    }
-        
-    
-      
+    }  
     
     /****************************************************************************
     @Description :Wrapper class to hold data from BET as well as IPM
     *****************************************************************************/
-
     public class IPM_BET_BETWrapper {
-    
     //Id of Bet
     public Id betId{get;set;}
     //Name of Bet
@@ -873,20 +880,20 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     //Date of launch
     public Datetime targetLaunchDate{get;set;}
     Public IPM_BET_BETWrapper(BET_BETWrapper bw){
-    this.betId=bw.betId;
-    this.betName = bw.betName;
-    this.status = bw.status;
-    this.firstReleaseDate = bw.firstReleaseDate ;
-    this.firstReleaseDueDate = bw.firstReleaseDueDate;
-    this.finalReleaseDate = bw.finalReleaseDate;
-    this.finalReleaseDueDate = bw.finalReleaseDueDate;
-    this.isArchived = bw.isArchived;
-    this.betOwner = bw.betOwner;
-    this.groupCategory = bw.groupCategory;
-    this.category = bw.category;
-    this.brandPosition = bw.brandPosition;
-    this.brand = bw.brand;
-    this.targetLaunchDate = bw.targetLaunchDate;
-    }
+	    this.betId=bw.betId;
+	    this.betName = bw.betName;
+	    this.status = bw.status;
+	    this.firstReleaseDate = bw.firstReleaseDate ;
+	    this.firstReleaseDueDate = bw.firstReleaseDueDate;
+	    this.finalReleaseDate = bw.finalReleaseDate;
+	    this.finalReleaseDueDate = bw.finalReleaseDueDate;
+	    this.isArchived = bw.isArchived;
+	    this.betOwner = bw.betOwner;
+	    this.groupCategory = bw.groupCategory;
+	    this.category = bw.category;
+	    this.brandPosition = bw.brandPosition;
+	    this.brand = bw.brand;
+	    this.targetLaunchDate = bw.targetLaunchDate;
+    	}
     }
 }

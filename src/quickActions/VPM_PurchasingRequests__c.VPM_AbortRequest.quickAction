@@ -2,6 +2,9 @@
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>VPM - Ability to Abort a request</description>
     <fieldOverrides>
+        <field>VPM_AdvancedFormSubmitted__c</field>
+    </fieldOverrides>
+    <fieldOverrides>
         <field>VPM_Status__c</field>
         <literalValue>Aborted</literalValue>
     </fieldOverrides>

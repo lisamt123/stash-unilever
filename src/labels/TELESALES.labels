@@ -377,3 +377,100 @@
 	<shortDescription>TEL Type OppGen</shortDescription>
 	<value>Type</value>
 </labels>
+<labels>
+	<fullName>TEL_Assign_Owner_Message</fullName>
+	<categories>TEL Assign opportunity owner message success.</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Assign Owner Message</shortDescription>
+	<value>The opportunity ownership was changed successfully!</value>
+</labels>
+<labels>
+	<fullName>Tel_Associate_Campaign</fullName>
+	<categories>Associate Account Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Tel Associate Campaign</shortDescription>
+	<value>CAMPAIGN</value>
+</labels>
+<labels>
+	<fullName>Tel_Product_Code</fullName>
+	<categories>Associate Product Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Tel Product Code</shortDescription>
+	<value>PRODUCT CODE</value>
+</labels>
+<labels>
+	<fullName>TEL_Stage_Recheduled</fullName>
+	<categories>TEL Stage Name to indicate when the stage name is
+		scheduled.</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Stage Recheduled</shortDescription>
+	<value>Scheduled</value>
+</labels>
+<labels>
+	<fullName>TEL_Subject_Close_Lost</fullName>
+	<categories>TEL Event Subject</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Subject Close Lost</shortDescription>
+	<value>Opportunity Close Lost on</value>
+</labels>
+<labels>
+	<fullName>TEL_Subject_Close_Won</fullName>
+	<categories>TEL Event Subject</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Subject Close Won</shortDescription>
+	<value>Opportunity Won on</value>
+</labels>
+<labels>
+	<fullName>TEL_Subject_Rescheduled_Call</fullName>
+	<categories>TEL Event Subject</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Subject Rescheduled Call</shortDescription>
+	<value>Call Rescheduled on</value>
+</labels>
+    <labels>
+        <fullName>TEL_Task_Telesales</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Task Telesales</shortDescription>
+        <value>TEL_Task_Telesales</value>
+    </labels>
+        <labels>
+        <fullName>TEL_Biweekly</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Biweekly</shortDescription>
+        <value>Biweekly</value>
+    </labels>
+        <labels>
+        <fullName>TEL_Monthly</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Monthly</shortDescription>
+        <value>Monthly</value>
+    </labels>
+        <labels>
+        <fullName>TEL_Completed_Task</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Completed Task</shortDescription>
+        <value>Completed</value>
+    </labels>
+        <labels>
+        <fullName>TEL_Task_Type_Call</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Task Type Call</shortDescription>
+        <value>Call</value>
+    </labels>

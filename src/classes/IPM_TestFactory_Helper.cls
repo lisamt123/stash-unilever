@@ -8,6 +8,7 @@ public class IPM_TestFactory_Helper
 {
     public static final String CHARTER_GATE_FULL = 'Charter Gate Full';
     public static final String IDEA_GRAPHIC= 'Idea / Graphic';
+    public static final String TRADE_STORY= 'Trade Story';
     public static final String IDEAS = 'Ideas';
     public static boolean FALSE_VAR = False;
     public static final String GCLT_RCLT = 'GCLT Leader & CCVP';
@@ -26,6 +27,7 @@ public class IPM_TestFactory_Helper
     public static final string IPM_PROJECT_TEMPLATE = 'IPM_Project_Template__c';
     public static final string IPM_DOCUMENT_TEMPLATE_NAME = 'IPM_Document_Template_Name__c'; 
     public static final string IPM_SECTION_SEQUENCE = 'IPM_Section_Sequence__c';
+    public static final string IPM_SECTION_LABEL = 'IPM_Section_Label_Type__c';
     public static final string IPM_PROJECT_NAME = 'IPM_Project_Name__c';
     public static final string FULL = 'Full';
     public static final string EXTERNAL = 'External';
@@ -457,7 +459,17 @@ public class IPM_TestFactory_Helper
     **************************************************************************************************/
     public static IPM_Section__c createIPMSection(Boolean doInsert) {
         Map<String,Object> sectMap =  new Map<String,Object>{IPM_SECTION_SEQUENCE=> IPM_ConstantUtils.IDEAS_SEQUENCE, 
-            IPM_SECTION_Name => IDEA_GRAPHIC, IPMNEGOTIABLE => FALSE};
+            IPM_SECTION_Name => IDEA_GRAPHIC, IPMNEGOTIABLE => FALSE, IPM_SECTION_LABEL => IPM_ConstantUtils.SECTION_TYPE_SUBHEADER};
+        IPM_Section__c secMast = (IPM_Section__c)IPM_TestFactory.createSObject('IPM_Section__c',sectMap,FALSE);
+        if(doInsert) { 
+            insert secMast;
+        }
+        return secMast;
+    }
+    
+    public static IPM_Section__c createIPMSection(Boolean doInsert, string secseq, string secname, string seclabel) {
+        Map<String,Object> sectMap =  new Map<String,Object>{IPM_SECTION_SEQUENCE=> secseq, 
+            IPM_SECTION_Name => secname, IPMNEGOTIABLE => FALSE, IPM_SECTION_LABEL => seclabel};
         IPM_Section__c secMast = (IPM_Section__c)IPM_TestFactory.createSObject('IPM_Section__c',sectMap,FALSE);
         if(doInsert) { 
             insert secMast;

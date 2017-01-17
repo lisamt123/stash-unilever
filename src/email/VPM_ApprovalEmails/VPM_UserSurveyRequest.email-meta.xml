@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email sent to the creator of the Vendor Request requesting a user survey is completed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>VPM_User Survey Request</name>
+    <style>none</style>
+    <subject>{!VPM_PurchasingRequests__c.VPM_UserSurveyReminderEmailSubject__c}</subject>
+    <textOnly>Your recent Vendor Request {!VPM_PurchasingRequests__c.Name}
+
+Complete our 1 minute survey
+
+We are continuously working to improve our service and are keen to hear about your experience.
+
+Please click the link below to give us your rating on the service received and confirm your query/request is resolved
+
+http://survey.clicktools.com/app/survey/go.jsp?iv=1jy2kwcsfg66a&amp;q4={!VPM_PurchasingRequests__c.Id}
+
+Overview of your recently completed request:
+
+Request Type: {!VPM_PurchasingRequests__c.RecordType}
+Date Raised: {!VPM_PurchasingRequests__c.CreatedDate}
+Vendor Code: {!VPM_PurchasingRequests__c.VPM_VendorCode__c}
+Vendor Name: {!VPM_PurchasingRequests__c.VPM_VendorName1__c}</textOnly>
+    <type>custom</type>
+</EmailTemplate>

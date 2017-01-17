@@ -3,7 +3,6 @@ Public with sharing class FS_ContactDetail_CC {
     Public Contact varContactDetail{get;set;}
     public FS_ContactDetailHelper_CC varContactDetailHelper {get;set;}
     public String Position {get;set;}
-    public String State{get;set;}
     public Boolean DecisionMakerBoolean{get;set;}
     public String FName {get;set;}
     public Boolean EditMode{get;set;}
@@ -22,11 +21,7 @@ Public with sharing class FS_ContactDetail_CC {
     Public final String POSITIONTEXT{get;set;}
     Public final String DECISIONMAKERTEXT{get;set;}
     Public final String MAILINGSTREETTEXT{get;set;}
-    Public final String MAILINGCITYTEXT{get;set;}
-    Public final String MAILINGSTATETEXT{get;set;}
-    Public final String MAILINGPOSTALTEXT{get;set;}
-    Public final String MAILINGCOUNTRYTEXT{get;set;}
-    Public final String ADDRESSTEXT{get;set;}
+   
     
     
     
@@ -47,11 +42,6 @@ Public with sharing class FS_ContactDetail_CC {
         POSITIONTEXT='Position';
         DECISIONMAKERTEXT='Decision Maker';
         MAILINGSTREETTEXT='Mailing Street';
-        MAILINGCITYTEXT='Mailing City';
-        MAILINGSTATETEXT='Mailing State/Province';
-        MAILINGPOSTALTEXT='Mailing PostalCode';
-        MAILINGCOUNTRYTEXT='Mailing Country';
-        ADDRESSTEXT='Address Information';
         EditMode=false;
         
         cryptoKey = Crypto.generateAesKey(FS_ContactUtility.ENCRYPTINTEGER);
@@ -64,7 +54,7 @@ Public with sharing class FS_ContactDetail_CC {
             EditMode=true;
         }
         
-        varContactDetail = [select id,FirstName, LastName,FS_PIEncryptKey__c,Phone,Email,FS_Position__c,FS_Decision_Maker__c,MailingStreet,MailingCity,MailingPostalCode,MailingCountry, OwnerId,Owner.name, FS_RefId__c,Account.Name, AccountId from Contact where FS_RefId__c=:accountId limit 1];
+        varContactDetail = [select id,FirstName, LastName,FS_PIEncryptKey__c,Phone,Email,FS_Position__c,FS_Decision_Maker__c,MailingStreet, OwnerId,Owner.name, FS_RefId__c,Account.Name, AccountId from Contact where FS_RefId__c=:accountId limit 1];
         String urlId =Label.FS_UrlId+FS_ContactUtility.SITELEADID+accountId;
         String clientId =Label.FS_PIIClientId; 
         String clientSecretKey=Label.FS_ClientSecretKey; 
@@ -125,31 +115,6 @@ Public with sharing class FS_ContactDetail_CC {
             {
                 varContactDetail.MailingStreet=null;
             }
-            if(!String.isBlank(varContactDetailHelper.GetSiteLeadResult.SiteLead.City))
-            {
-                varContactDetail.mailingcity=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(varContactDetailHelper.GetSiteLeadResult.SiteLead.City))).toString();
-            }
-            else
-            {
-                varContactDetail.mailingcity=null;
-            }
-            if(!String.isBlank(varContactDetailHelper.GetSiteLeadResult.SiteLead.BusinessPostalCode))
-            {
-                varContactDetail.MailingPostalCode=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(varContactDetailHelper.GetSiteLeadResult.SiteLead.BusinessPostalCode))).toString();
-            }
-            else
-            {
-                varContactDetail.MailingPostalCode=null;
-            }
-            if(!String.isBlank(varContactDetailHelper.GetSiteLeadResult.SiteLead.Country))
-            {
-                varContactDetail.MailingCountry=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(varContactDetailHelper.GetSiteLeadResult.SiteLead.Country))).toString();
-            }  
-            else
-            {
-                varContactDetail.MailingCountry=null;
-            }
-            
             
             SecretKey=varContactDetailHelper.GetSiteLeadResult.SiteLead.SecretKey;
             
@@ -161,11 +126,6 @@ Public with sharing class FS_ContactDetail_CC {
                     {       
                         varContactDetail.Email=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(str.Value))).toString();        
                     }       
-                    if(str.name.equals(FS_ContactUtility.CODEPOSTALTEXT))       
-                    {       
-                        varContactDetail.MailingPostalCode=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(str.Value))).toString();       
-                    }
-                    
                     if(str.name.equals(FS_ContactUtility.MOBILEPHONETEXT))        
                     {       
                         varContactDetail.Phone=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(str.Value))).toString();        
@@ -178,12 +138,6 @@ Public with sharing class FS_ContactDetail_CC {
                     {       
                         personalPhoneNumber=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(str.Value))).toString();       
                     }
-                    
-                    if (str.name.equals(FS_ContactUtility.STATETEXTVALUE))
-                    {
-                        varContactDetail.MailingState=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(str.Value))).toString();
-                    }
-                    
                 }
                 
             }    
@@ -216,19 +170,14 @@ Public with sharing class FS_ContactDetail_CC {
                 varSiteLead.SecretKey=SecretKey;
                 varSiteLead.UserId=varContactDetail.FS_RefId__c;
                 varSiteLead.Address=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c), Blob.valueOf(varContactDetail.MailingStreet)));
-                varSiteLead.City=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c), Blob.valueOf(varContactDetail.mailingcity)));
-                varSiteLead.BusinessPostalCode=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c), Blob.valueOf(varContactDetail.MailingPostalCode)));
-                varSiteLead.Country=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c), Blob.valueOf(varContactDetail.MailingCountry)));
-                
+              
                 
                 addExtraParameter(FS_ContactUtility.DECISIONMAKER,string.valueOf(varContactDetail.FS_Decision_Maker__c));
                 addExtraParameter(FS_ContactUtility.MYEMAILTEXT,varContactDetail.Email);     
-                addExtraParameter(FS_ContactUtility.CODEPOSTALTEXT,varContactDetail.MailingPostalCode);        
                 addExtraParameter(FS_ContactUtility.MOBILEPHONETEXT,varContactDetail.phone); 
                 addExtraParameter(FS_ContactUtility.WORKPHONETEXT,workPhoneNumber); 
                 addExtraParameter(FS_ContactUtility.PERSONALPHONETEXT,personalPhoneNumber);
                 addExtraParameter(FS_ContactUtility.POSITIONTEXT,varContactDetail.FS_Position__c);
-                addExtraParameter(FS_ContactUtility.STATETEXT,varContactDetail.MailingState);
                 addExtraParameter(FS_ContactUtility.OWNERIDTEXT,UserInfo.getUserId());
                 addExtraParameter(FS_ContactUtility.OWNERNAMETEXT,UserInfo.getName());
                 addExtraParameter(FS_ContactUtility.ACCOUNTIDTEXT,varContactDetail.AccountId);
@@ -299,10 +248,7 @@ Public with sharing class FS_ContactDetail_CC {
                         varContactDetail.Phone=null;
                         varContactDetail.Email=null;
                         varContactDetail.MailingStreet=null;
-                        varContactDetail.mailingcity=null;
                         varContactDetail.mailingState=null;
-                        varContactDetail.MailingPostalCode=null;
-                        varContactDetail.MailingCountry=null;
                         update varContactDetail; 
                         PageReference acctPage = new PageReference(FS_ContactUtility.CONTACTDETAILURL+varContactDetail.FS_RefId__c);
                         acctPage.setRedirect(true);

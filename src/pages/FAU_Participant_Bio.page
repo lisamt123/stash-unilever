@@ -157,6 +157,16 @@
                 <table style="width:700px; margin-left:auto; margin-right:auto;">
                     <tr>
                         <td>
+                            <h2 style="color:#0D85C7 !important; font-size:22px;">Purpose Statement </h2>
+                              <p><apex:outputLabel value=" The maximum length of the field can be: 1000" /></p>
+                        </td>
+                        <td>
+                            <apex:inputField id="purposestatement" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Purpose_Statement__c}" required="false"/>
+                        </td>
+                    </tr>
+                    <apex:outputPanel rendered="{!!isUL2020}">
+                    <tr>
+                        <td>
                             <h2 style="color:#0D85C7 !important; font-size:22px;">Biography</h2>
                             <p><apex:outputLabel value=" This is the 'About Me' section of your Chatter home page : 1000 max" for="bioDetailsBiography2" /></p>
                         </td>
@@ -164,6 +174,7 @@
                             <apex:inputField id="bioDetailsBiography" styleClass="WidthClass" value="{!FAU_Participant__c.FAU_Biography__c}" required="false"/>
                         </td>
                     </tr>
+                    </apex:outputPanel>
                     <tr>
                         <td>
                             <h2 style="color:#0D85C7 !important; font-size:22px;">Unilever Career</h2>

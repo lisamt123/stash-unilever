@@ -11,6 +11,7 @@
     <apex:attribute name="getSecid" description="Pass the project document section id" type="Id" required="true" assignTo="{!projDocSecId}" />
     <apex:attribute name="CCEdit" description="This is used for security" type="Boolean"  assignTo="{!isEditable}" />
     <apex:attribute name="gdpage" description="This is used hiding the default images" type="Boolean"  />
+    <apex:outputPanel style="display:none;">{!InvokeMethodsForComponent}</apex:outputPanel>
     <apex:actionFunction status="Loading" name="updateInfoLogo" action="{!updateInfo}" reRender="">
         <apex:param name="chInfo" assignTo="{!channelInfo}" value=""/>
     </apex:actionFunction>

@@ -1,0 +1,19 @@
+<!--  
+*************************************************************************
+*@Description: Component used to local country feedback
+*@Author: Cognizant
+*@Created Date: 30/06/2015
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+<apex:page sidebar="false" showHeader="false" >
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/> 
+    <apex:composition template="IPM_TemplateForPlainStyling">  
+        <apex:define name="body">
+            <apex:form >
+                <c:IPM_Country_Feedback ></c:IPM_Country_Feedback>
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/iframeResizer.contentWindow.min.js')}" type="text/javascript"></script>
+</apex:page>

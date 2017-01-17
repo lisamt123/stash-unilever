@@ -30,6 +30,11 @@
             <operation>equals</operation>
             <value>Sample Requests</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </criteriaItems>
     </entryCriteria>
     <finalApprovalActions>
         <action>

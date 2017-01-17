@@ -56,32 +56,38 @@
     getAccounts : function(component,event) {
         console.log("Entering <getAccounts>"); 
         var typeSelected = component.find("oppGenType").get("v.value");
+        var types = component.find("types").get("v.value");
+        var segment = component.find("segment").get("v.value");
+        var subSegment = component.find("subSegment").get("v.value");
         console.log("Valor do typeSelected: "+typeSelected);
-        if(typeSelected === 'None'){
+        if(typeSelected === 'None' ||
+           (types === 'None' && 
+            segment === 'None' && 
+            subSegment === 'None')) 
+        {
             var toastEvent 	= $A.get("e.force:showToast");
             toastEvent.setParams({
                 "title"		: "Alert!",
-                "message"	: "The type field is mandatory!",
+                "message"	: "The type field and at least one of OTM, Segment or SubSegment are mandatory!",
                 "duration"	: 2000,
                 "type"		: "warning"
             });
             toastEvent.fire();
-        }
-        else{
+        } else {
             this.retrieveAccountSearch(component,event);
             var accounts = component.get("v.lstAccounts");
             console.log("Valor da lista de contas retornadas: "+accounts.length);
             console.log("Valor da lista de contas $A.util.isUndefined(accounts): "+$A.util.isUndefined(accounts));
             console.log("Valor da lista de contas $A.util.isEmpty(accounts): "+$A.util.isEmpty(accounts));
-            if((!$A.util.isEmpty(accounts) && !$A.util.isUndefined(accounts)) || typeSelected !== 'None'){
+            if((!$A.util.isEmpty(accounts) && !$A.util.isUndefined(accounts)) || typeSelected !== 'None') {
                 console.log("Entrou no if");
                 this.retrieveFrequencyParam(component,event);	
                 this.enableAccountResult(component,event);
-            }
-            else{
+            } else {
                 this.enableToastAlert(component,event, 'SEARCH');
-            }      
-        }  
+            }
+            
+        }
         console.log("Exit <getAccounts>");
     },
     
@@ -154,7 +160,7 @@
         }
         else{
             console.log("Entrou no else"+state);
-            alertMsg 	= "The records has been updated successfully.";
+            alertMsg 	= "The records have been updated successfully.";
             typeMsg 	= "success";
             titleMsg	= "Success!";
         }
@@ -182,10 +188,40 @@
         var fridayWeek		= component.get("v.fridayWeek");
         var frequency		= component.find("frequency").get("v.value");
         
+        var daysSelected = 0;
+        if(mondayWeek !== "none") {
+            daysSelected++;
+        } 
+        if(tuesdayWeek !== "none") {
+            daysSelected++;
+        }
+        if(wednesdayWeek !== "none") {
+            daysSelected++;
+        }
+        if(thursdayWeek !== "none") {
+            daysSelected++;
+        }
+        if(fridayWeek !== "none") {
+            daysSelected++;
+        }
         
         component.set('v.spinnerEnable',true);
         
-        if(!$A.util.isEmpty(lstAccounts) && !$A.util.isUndefined(lstAccounts)){
+        if(($A.util.isEmpty(lstAccounts) || $A.util.isUndefined(lstAccounts)) ||
+           (frequency === $A.get("$Label.c.TEL_Biweekly") && daysSelected > 1) ||
+           (frequency === $A.get("$Label.c.TEL_Monthly") && daysSelected > 1)) 
+        {
+            var toastEvent 	= $A.get("e.force:showToast");
+            toastEvent.setParams({
+                "title"		: "Alert!",
+                "message"	: "For Biweekly or Monthly options, only one weekday must be selected.",
+                "duration"	: 5000,
+                "type"		: "warning"
+            });
+            toastEvent.fire();
+            
+            component.set('v.spinnerEnable', false);
+        } else {
             var action 		= component.get("c.createOpp");
             var accounts	= JSON.stringify(lstAccounts);
             
@@ -208,9 +244,10 @@
                     $A.get('e.force:refreshView').fire();
                 }
             });
+            $A.enqueueAction(action);
+            this.enableToastAlert(component, 'OPPORTUNITY');
         }
-        $A.enqueueAction(action);
-        this.enableToastAlert(component, 'OPPORTUNITY');
+        
         console.log("Exit <createOpp>");
     },
     

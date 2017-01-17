@@ -47,7 +47,7 @@ public with sharing class FAU_Participant_Biography_Doc_Controller {
         
         //image = URL.getSalesforceBaseUrl().toExternalForm() +'/Resource/' + str.subString(str.indexOf('/')+1);
         
-        participantList = [select Id,Name,FAU_User__c, FAU_Company_City__c, FAU_User__r.Name,FAU_User__r.Email,FAU_User__r.Title, FAU_User__r.UserName, FAU_User__r.FullPhotoURL, FAU_Biography_Deadline__c, FAU_Job_Title__c, FAU_Biography__c, FAU_Unilever_Career__c,
+        participantList = [select Id, Name, FAU_Purpose_Statement__c, FAU_User__c, FAU_Company_City__c, FAU_User__r.Name,FAU_User__r.Email,FAU_User__r.Title, FAU_User__r.UserName, FAU_User__r.FullPhotoURL, FAU_Biography_Deadline__c, FAU_Job_Title__c, FAU_Biography__c, FAU_Unilever_Career__c,
                         FAU_Prior_Career__c, FAU_Education__c, FAU_Personal__c, Current_Role_Responibilities__c,FAU_Company_Name__c From FAU_Participant__c where FAU_Program_Wave__c = :parentId AND FAU_Invite_State__c != :PARTICIPANT_DECLINE Limit 50000];
     }
     Public static String getResourceURL(string resourceName){

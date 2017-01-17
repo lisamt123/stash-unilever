@@ -51,8 +51,8 @@
                 
                 <apex:outputPanel layout="block" styleClass="pull-right" id="newblock" >  
                     <apex:actionStatus id="displayTasksChkBoxStatus" startStyleClass="Proint" /> 
-                    <apex:actionFunction name="saveApproach" action="{!saveIPMApproach}" reRender="showtask,nonnego,statsPanel,showInfoMsg,tmpPanel,cmdBtnPanel,newblock,tskPanel,ipmTableDiv,checkBoxScript" status="displayTasksChkBoxStatus" oncomplete="callbackLoadAction();checkBoxScript();location.reload();"/>     
-                    <div class="pull-left askManageTodos Todosalign">
+                    <apex:actionFunction name="saveApproach" action="{!saveIPMApproach}" reRender="showtask,nonnego,statsPanel,showInfoMsg,tmpPanel,cmdBtnPanel,newblock,tskPanel,ipmTableDiv,checkBoxScript" status="displayTasksChkBoxStatus" oncomplete="callbackLoadAction();checkBoxScript();"/>     
+                    <div class="pull-left askManageTodos todosalign">
                         <div class="ipmCheckbox"> 
                             <input id="displayTasksChkBox"  value="{!IF(projectObj.IPM_PM_Approach__c='Internal','true','false')}"  isChecked="{!projectObj.IPM_PM_Approach__c}" type="checkbox"  onchange="saveApproach();" isDisabled="{! if(isApproachEdit=true && isTaskReadOnly=false,'false','true')}"/>
                             <label for="displayTasksChkBox"></label>   

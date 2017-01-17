@@ -4,8 +4,10 @@ public with sharing class TEL_FullProductsList {
     private Map<String, String> productsPriceMap;
     private List<String> productsIdsList;
     private List<Product2> productsList;
+    private String oppId;
     
-    public TEL_FullProductsList() {
+    public TEL_FullProductsList(String oppId) {
+        this.oppId = oppId;
         this.productsList = [SELECT Id, Name, Family FROM Product2 LIMIT 1000];
         this.productsIdsList = createProductsIdsList();
         this.productsPriceMap = getPrices();
@@ -35,9 +37,9 @@ public with sharing class TEL_FullProductsList {
         
         for(Product2 prod : productsList) {
             productInfoWrapper = new TEL_TelesalesWrapper.ProductInfo();
+            productInfoWrapper.opportunityId = this.oppId;
             productInfoWrapper.productId = prod.Id;
             productInfoWrapper.isSelected = false;
-            //productInfoWrapper.productId = prod.Family;
             productInfoWrapper.name = prod.Name;
             productInfoWrapper.price = this.productsPriceMap.get(prod.Id);
             productInfoWrapper.amount = 0;

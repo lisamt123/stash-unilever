@@ -41,9 +41,9 @@ private with sharing class IPM_FunnelController_Test {
         initializeData();
         test.startTest();
         system.runAs(testUser){
-           ApexPages.currentPage().getParameters().put('Id', project.Id);
-            IPM_FunnelController funnelController = new IPM_FunnelController ();
-            IPM_FunnelController.ipmProject = project;
+            ApexPages.currentPage().getParameters().put('Id', project.Id);
+            IPM_FunnelController funnelController = new IPM_FunnelController ();            
+            IPM_FunnelController.ipmProjectClone = project;
             funnelController.currentProjectPhaseSeq=4;
             funnelController.getAssociatedProjectPhases();
             IPM_FunnelController.ipmProject.IPM_CompanyCardText__c='Global Company Card';
