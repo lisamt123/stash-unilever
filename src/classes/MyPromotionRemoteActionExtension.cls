@@ -873,7 +873,7 @@ Throws : N/A
                     String marketId;
                     String customerId = (String)boPromotion.get('UL_Account__c');
                     String feature = (String)boPromotion.get('UL_Feature__c');
-                    feature = feature==System.Label.UL_Shelf ? feature : System.Label.UL_Off_Shelf;
+                    //feature = feature==System.Label.UL_Shelf ? feature : System.Label.UL_Off_Shelf;
                     String tempMarketId;
                     String tempCustomerId;
                     String tempFeature;
