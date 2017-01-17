@@ -36,12 +36,7 @@
                 $("#Acc_Collapse").click(function(){
                   $(".ui-accordion-header-icon").addClass('iconOpen').removeClass('iconClosed');
                   $(".ui-accordion-content").hide();
-            });
-                //  $("#o").click(function(){
-                //    window.location.reload(true);
-                // }); 
-               
-             });
+            });});
          </script>
        
       </head>

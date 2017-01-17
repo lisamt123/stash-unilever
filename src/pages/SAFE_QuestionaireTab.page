@@ -309,9 +309,7 @@
                                                                   $(this).closest('.content').parent().prev("h3").addClass('answered').css({'color':'#555'}).find('.done').addClass('Ans');
                                                                   if($('#accordion-quest h3.ui-accordion-header').length==$('#accordion-quest .ui-accordion-header .Ans').length){$('input[value="Submit"]').removeAttr('disabled');}
                                                                   else{$('input[value="Submit"]').attr('disabled',true);}}
-                       }); 
-                       $("#Acc_Expand").click(function(){$(".ui-accordion-header-icon").addClass('iconClosed').removeClass('iconOpen').parent('.ui-accordion-header').attr('aria-expanded',true);$(".ui-accordion-content").show();});
-                       $("#Acc_Collapse").click(function(){$(".ui-accordion-header-icon").addClass('iconOpen').removeClass('iconClosed');$(".ui-accordion-content").hide();});});
+                       });                       $("#Acc_Expand").click(function(){$(".ui-accordion-header-icon").addClass('iconClosed').removeClass('iconOpen').parent('.ui-accordion-header').attr('aria-expanded',true);$(".ui-accordion-content").show();});                      $("#Acc_Collapse").click(function(){$(".ui-accordion-header-icon").addClass('iconOpen').removeClass('iconClosed');$(".ui-accordion-content").hide();});});
         </script>
         <apex:form id="pg2">
             

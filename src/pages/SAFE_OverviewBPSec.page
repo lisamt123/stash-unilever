@@ -13,10 +13,7 @@
          <script>
             $( function() {
                 var answered=0;
-                  var icons = {
-               header: "iconOpen",
-               activeHeader: "iconClosed"
-             };
+                  var icons = {header: "iconOpen",activeHeader: "iconClosed"};
             /*Overview Tab*/
                $("#tab-7").find(".accordion").accordion({collapsible:true,active:false,icons:icons});
                $('#donebtn').click(function () {$(".Tabs_Menu").tabs({active:1});});
@@ -36,10 +33,7 @@
                 $("#Acc_Collapse").click(function(){
                   $(".ui-accordion-header-icon").addClass('iconOpen').removeClass('iconClosed');
                   $(".ui-accordion-content").hide();
-            });
-                
-                
-             });
+            });});
          </script>
        
       </head>
