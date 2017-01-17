@@ -1497,10 +1497,7 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
+        <sorted>false</sorted>
                 <value>
                     <fullName>Planning</fullName>
                     <default>true</default>
@@ -1525,8 +1522,6 @@
                     <fullName>Submitted for Approval</fullName>
                     <default>false</default>
                 </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields> 
 	
 	<fields>
@@ -3909,7 +3904,7 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <customTabListAdditionalFields>UL_Category__c</customTabListAdditionalFields>
         <listViewButtons>ACCL__Derive</listViewButtons>
         <listViewButtons>Copy</listViewButtons>
-        <listViewButtons>Close_Promotion</listViewButtons>
+        <!--<listViewButtons>Close_Promotion</listViewButtons> -->
         <lookupDialogsAdditionalFields>ACCL__Slogan__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCL__Promotion_Template__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCL__Date_From__c</lookupDialogsAdditionalFields>
@@ -4099,7 +4094,7 @@ Id=VLOOKUP
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
     </webLinks>
-    <webLinks>
+    <!--<webLinks>
         <fullName>Close_Promotion</fullName>
         <availability>online</availability>
         <displayType>massActionButton</displayType>
@@ -4123,7 +4118,7 @@ if (records[0] == null) {
       window.location.reload();
    }
 }</url>
-    </webLinks>
+    </webLinks> -->
     <webLinks>
         <fullName>Copy</fullName>
         <availability>online</availability>
