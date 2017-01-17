@@ -32,8 +32,9 @@ public without sharing class VPM_RegionalMaintainVendor {
     final static string STR_CONST_RegionalSpec = 'Regional Specific Section Changed';
     final static string STR_CONST_BankDetails = 'Bank Details Section Changed';
     final static string STR_CONST_GeneralVendorDetails = 'General Vendor Details Section Changed';
+    final static string STR_CONST_PIVendor = 'PI Vendor Section Changed';
     static boolean feedCreated = false;
-    Static Map<string,string> FormatedFeed=  new Map<string,string>{STR_CONST_PurchasingOrg =>'',STR_CONST_FinancialDetails =>'',STR_CONST_RegionalSpec =>'',STR_CONST_BankDetails=>'', STR_CONST_GeneralVendorDetails => ''};
+    Static Map<string,string> FormatedFeed=  new Map<string,string>{STR_CONST_PurchasingOrg =>'',STR_CONST_FinancialDetails =>'',STR_CONST_RegionalSpec =>'',STR_CONST_BankDetails=>'', STR_CONST_GeneralVendorDetails => '', STR_CONST_PIVendor=>''};
     static Set<Id> oldRegionSet = new Set<Id>();
     //static Set<Id> newRegionSet = new Set<Id>();
 
@@ -323,7 +324,7 @@ public static void requireRejectionComment(List<VPM_PurchasingRequests__c> updat
            pi.Steps[0].Comments.trim().length() == 0))
       {
         rejectedStatements.get(pi.TargetObjectId).addError(
-          'Operation Cancelled: Please provide a rejection reason!');
+          'Please provide a rejection reason!');
       }
     }  
   }
@@ -411,7 +412,7 @@ public static void updateChatterFeed(List<VPM_PurchasingRequests__c> updatedVend
       for(string objectName : FormatedFeed.keySet())
       {
       system.debug('chatter Feed 1'+FormatedFeed.get(objectName));
-      if( FormatedFeed.get(objectName) != '')
+      if( FormatedFeed.get(objectName) != '' && FormatedFeed.get(objectName) !=null)
         chatterText = chatterText + FormatedFeed.get(objectName)+'</ul>';
       }
       system.debug('Chatter Feed '+chatterText  );
