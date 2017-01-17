@@ -3377,6 +3377,18 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>FAU_CustomLookupSelectionController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FAU_EmailHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FAU_EmailHandler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FAU_EmailSender</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3394,6 +3406,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FAU_GenrateAndAttachPDFControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FAU_GroupCreationPIIClass</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FAU_GroupCreationPIIClass_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -3474,6 +3494,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FAU_ProgramTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FAU_SendEmail_Custom</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FAU_SendEmail_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -26211,6 +26239,61 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FAU_Email__c.FAU_Additional_To__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Email__c.FAU_Body__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Email__c.FAU_CC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Email__c.FAU_Email_Start_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Email__c.FAU_Email_Template_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Email__c.FAU_ProgramId__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Email__c.FAU_Program__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Email__c.FAU_Send_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Email__c.FAU_Subject__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Email__c.FAU_To_Address__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Email__c.From_Address__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FAU_Milestone_Participant__c.FAU_1st_Reminder__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -26566,6 +26649,81 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FAU_PII_Table__c.FAU_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII_Table__c.FAU_Focus__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII_Table__c.FAU_Geographic_Focus__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII_Table__c.FAU_Objectives_Deliverables__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII_Table__c.FAU_Participant_Chatter_Group_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII_Table__c.FAU_Participant_Chatter_Group__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII__c.FAU_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII__c.FAU_Focus__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII__c.FAU_Geographic_Focus__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII__c.FAU_Objectives_Deliverables__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII__c.FAU_PII_Chatter_Group_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII__c.FAU_PII_Chatter_Group__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII__c.FAU_Participant_Chatter_Group_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII__c.FAU_Participant_Chatter_Group__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_PII__c.PII_Table__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FAU_Participant__c.Chatter_Group_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -26831,6 +26989,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FAU_Participant__c.FAU_PII__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Participant__c.FAU_Participant_Chatter_Group_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FAU_Participant__c.FAU_Participants_Workbook__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -26901,6 +27069,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FAU_Participant__c.FAU_Program_Group_Chatter_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FAU_Participant__c.FAU_Program_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -26936,6 +27109,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FAU_Participant__c.FAU_Purpose_Statement__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FAU_Participant__c.FAU_RSVP_Deadline__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -26947,6 +27125,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAU_Participant__c.FAU_Title__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Participant__c.FAU_UL2020_Travel_details__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -26982,6 +27165,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAU_Participant__c.FAU_Webinar_Date_Time__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Participant__c.PA_Email_and_PA_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Participant__c.PII_Chatter_Group_Link__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Participant__c.PII_Chatter_Group__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Participant__c.PII_Table_Chatter_Group_Link__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -27137,6 +27340,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAU_Program__c.FAU_Video_Introduction__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Sponsor__c.FAU_Participant_Chatter_Group_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Sponsor__c.PII_Chatter_Group__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Sponsor__c.Sponsor__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -59103,6 +59321,9 @@
         <layout>FAQ_Enhanced__kav-FAQ Enhanced Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>FAU_Email__c-Email Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>FAU_Milestone_Participant__c-Milestone Participant Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -59123,7 +59344,21 @@
         <layout>FAU_Module__c-Module Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>FAU_PII_Table__c-PII Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FAU_PII__c-PII Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>FAU_Participant__c-FAU Participant Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FAU_Participant__c-FAU Participant Layout</layout>
+        <recordType>FAU_Participant__c.Program_participant</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FAU_Participant__c-FAU Participant Layout</layout>
+        <recordType>FAU_Participant__c.UL2020_Participant</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>FAU_Program__c-FAU Core</layout>
@@ -59143,6 +59378,13 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>FAU_Program__c-Program Wave Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FAU_Program__c-Program Wave Layout</layout>
+        <recordType>FAU_Program__c.UL2020</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FAU_Sponsor__c-Sponsor Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>FAU_Webinar_Participant__c-Webinar Participant Layout</layout>
@@ -61914,6 +62156,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>FAU_CustomLookupSelectionPage</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>FAU_EmailTemplateSender</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -61939,6 +62185,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>FAU_Participant_Register</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FAU_SendEmail1</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -63977,6 +64227,16 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>FAU_Participant__c.Program_participant</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>FAU_Participant__c.UL2020_Participant</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>FAU_Program__c.Core</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -63993,6 +64253,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>FAU_Program__c.Template_Inactive</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>FAU_Program__c.UL2020</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -65243,6 +65508,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>FAU_Module__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>FAU_PII_Table__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>

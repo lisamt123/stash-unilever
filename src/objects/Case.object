@@ -3711,65 +3711,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <unique>false</unique>
     </fields>
     <listViews>
-        <fullName>ANZ_All_open_cases</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>OWNER_NAME</field>
-            <operation>notContain</operation>
-            <value>CEC ANZ Queue</value>
-        </filters>
-        <filters>
-            <field>Case_ISO_Country_Code__c</field>
-            <operation>equals</operation>
-            <value>AU,NZ</value>
-        </filters>
-        <label>ANZ All open cases</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_ANZ</role>
-            <role>CEC_User_ANZ</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>ANZ_CEC_Spam</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Global_Reason_L3_desc__c</field>
-            <operation>equals</operation>
-            <value>Hang up</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>contains</operation>
-            <value>ANZ Queue</value>
-        </filters>
-        <label>ANZ CEC Spam</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_ANZ</role>
-            <role>CEC_User_ANZ</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>ANZ_My_Emails</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -3795,57 +3736,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>ANZ</value>
         </filters>
         <label>CEC ANZ My New Emails</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_ANZ</role>
-            <role>CEC_User_ANZ</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>ANZ_My_Open_Cases</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>Action_Taken__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <label>ANZ My Open Cases</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_ANZ</role>
-            <role>CEC_User_ANZ</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>ANZ_My_closed_cases1</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.CLOSED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>ANZ</value>
-        </filters>
-        <label>ANZ My closed cases</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_ANZ</role>
@@ -3967,43 +3857,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_ANZ_All_ABT_cases</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>OWNER_NAME</field>
-            <operation>notContain</operation>
-            <value>CEC ANZ Queue</value>
-        </filters>
-        <filters>
-            <field>Case_ISO_Country_Code__c</field>
-            <operation>equals</operation>
-            <value>AU,NZ</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Reopened</value>
-        </filters>
-        <label>ANZ All ABT cases</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_ANZ</role>
-            <role>CEC_User_ANZ</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_ANZ_All_new_e_mails_assigned</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -4055,38 +3908,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <queue>CEC_ANZ_Escalation_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
-            <role>CEC_Manager_ANZ</role>
-            <role>CEC_User_ANZ</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_ANZ_New_Emails</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <filters>
-            <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>Email ANZ,Web,Email</value>
-        </filters>
-        <filters>
-            <field>OWNER_NAME</field>
-            <operation>notContain</operation>
-            <value>queue</value>
-        </filters>
-        <label>ANZ CEC New Emails</label>
-        <language>en_US</language>
-        <sharedTo>
             <role>CEC_Manager_ANZ</role>
             <role>CEC_User_ANZ</role>
         </sharedTo>
@@ -4875,9 +4696,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>CORE.USERS.FIRST_NAME</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -7131,7 +6952,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.SUBJECT</field>
             <operation>contains</operation>
-            <value>surf,free,promo,load</value>
+            <value>surf,free,promo,load,code</value>
         </filters>
         <filters>
             <field>CASES.ORIGIN</field>
@@ -7953,103 +7774,22 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>Casos_Jorge</fullName>
+        <fullName>Casos_en_progreso</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CORE.USERS.FIRST_NAME</field>
-            <operation>contains</operation>
-            <value>jorge</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>notContain</operation>
-            <value>Cerrado,Cerrado como duplicado</value>
-        </filters>
-        <label>Casos Jorge</label>
-        <language>es</language>
-        <sharedTo>
-            <roleAndSubordinatesInternal>CEC_Manager_Spain</roleAndSubordinatesInternal>
-            <roleAndSubordinatesInternal>CEC_User_Spain</roleAndSubordinatesInternal>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Casos_Liliana3</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CORE.USERS.FIRST_NAME</field>
-            <operation>equals</operation>
-            <value>liliana</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>notContain</operation>
-            <value>Cerrado,Cerrado como duplicado</value>
-        </filters>
-        <label>Casos Liliana</label>
-        <language>es</language>
-        <sharedTo>
-            <roleAndSubordinatesInternal>CEC_Manager_Spain</roleAndSubordinatesInternal>
-            <roleAndSubordinatesInternal>CEC_User_Spain</roleAndSubordinatesInternal>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Casos_Marta2</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CORE.USERS.FIRST_NAME</field>
-            <operation>equals</operation>
-            <value>marta</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>notContain</operation>
-            <value>Cerrado,Cerrado como duplicado</value>
-        </filters>
-        <label>Casos Marta</label>
-        <language>es</language>
-        <sharedTo>
-            <roleAndSubordinatesInternal>CEC_Manager_Spain</roleAndSubordinatesInternal>
-            <roleAndSubordinatesInternal>CEC_User_Spain</roleAndSubordinatesInternal>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Casos_Nuevo_En_Progreso</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
-        <columns>CASES.ORIGIN</columns>
         <columns>Country_Name__c</columns>
+        <columns>CASES.ORIGIN</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>contains</operation>
-            <value>Nuevo,En progreso,Escalado,Esperando información del consumidor,Reabierto</value>
+            <operation>equals</operation>
+            <value>New,In Progress,Escalated,Awaiting Information from Consumer,Reopened</value>
         </filters>
         <filters>
             <field>Country_Name__c</field>
@@ -8061,11 +7801,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>CEC Southern Cone Queue,CEC Southern Cone Escalation Queue,acous,mlore,aport</value>
         </filters>
-        <label>Casos Nuevo En Progreso 1</label>
+        <label>◄Casos en progreso►</label>
         <language>es_MX</language>
     </listViews>
     <listViews>
-        <fullName>Casos_cerrados_spam_2015</fullName>
+        <fullName>Casos_sin_SKU</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -8075,12 +7815,17 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>Global_Reason_L3_desc__c</field>
+            <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>Hang up</value>
+            <value>Review Needed</value>
         </filters>
-        <label>Casos cerrados spam 2015</label>
-        <language>es</language>
+        <filters>
+            <field>Country_Name__c</field>
+            <operation>notEqual</operation>
+            <value>Chile</value>
+        </filters>
+        <label>Casos sin SKU</label>
+        <language>es_MX</language>
     </listViews>
     <listViews>
         <fullName>DACH_Vacation_Queue_2</fullName>

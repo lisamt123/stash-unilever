@@ -23,6 +23,10 @@
             <masterLabel>Franchise</masterLabel>
             <translation><!-- Franchise --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>UL2020</masterLabel>
+            <translation><!-- UL2020 --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <help><!-- Cancel All Reminders for the Program. --></help>
@@ -308,6 +312,25 @@
         </sections>
     </layouts>
     <layouts>
+        <layout>FAU UL2020</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dates --></label>
+            <section>Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Media --></label>
+            <section>Media</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>Program Wave Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
@@ -333,6 +356,10 @@
     <recordTypes>
         <label><!-- Template (Inactive) --></label>
         <name>Template_Inactive</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UL2020 --></label>
+        <name>UL2020</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
     <validationRules>

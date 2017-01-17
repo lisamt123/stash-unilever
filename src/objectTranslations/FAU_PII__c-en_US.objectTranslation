@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>PII</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>PII</value>
+    </caseValues>
+    <fields>
+        <label><!-- Description --></label>
+        <name>FAU_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Focus --></label>
+        <name>FAU_Focus__c</name>
+    </fields>
+    <fields>
+        <label><!-- Geographic Focus --></label>
+        <name>FAU_Geographic_Focus__c</name>
+    </fields>
+    <fields>
+        <label><!-- Objectives/Deliverables --></label>
+        <name>FAU_Objectives_Deliverables__c</name>
+    </fields>
+    <fields>
+        <label><!-- PII Chatter Group Id --></label>
+        <name>FAU_PII_Chatter_Group_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- PII Chatter Group --></label>
+        <name>FAU_PII_Chatter_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Participant Chatter Group Id --></label>
+        <name>FAU_Participant_Chatter_Group_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Participant Chatter Group --></label>
+        <name>FAU_Participant_Chatter_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program --></label>
+        <name>FAU_Program__c</name>
+        <relationshipLabel><!-- PII --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- PII Table --></label>
+        <name>PII_Table__c</name>
+        <relationshipLabel><!-- PII --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>PII Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

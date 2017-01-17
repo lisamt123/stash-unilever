@@ -25,13 +25,14 @@
                     <div style="font-size: 14pt;" align="right"> <b>Name: &nbsp; <apex:outputField value="{!p.FAU_User__r.Name}"/>  </b> </div> <br/><br/> <br/><br/><br/><br/>
                     <b>E-mail:</b>&nbsp; <apex:outputField value="{!p.FAU_User__r.Email}"/> <br/>
                     <b>Job Title:</b>&nbsp; <apex:outputField value="{!p.FAU_Job_Title__c}"/> <br/>
-                    <b>Business:</b>&nbsp; <apex:outputField value="{!p.FAU_Company_Name__c}"/> <br/>                    
-                    <b>Location:</b>&nbsp; <apex:outputField value="{!p.FAU_Company_City__c}"/> <br/>    
+             <!---       <b>Business:</b>&nbsp; <apex:outputField value="{!p.FAU_Company_Name__c}"/> <br/>                    
+                    <b>Location:</b>&nbsp; <apex:outputField value="{!p.FAU_Company_City__c}"/> <br/>    --->
                 </td> 
             </tr>
         </table>
         <br/><br/>
-        <b> Current Role and Responsibilities:</b><br/> <apex:outputField value="{!p.Current_Role_Responibilities__c }"/> <br /><br />
+     <!--   <b> Current Role and Responsibilities:</b><br/> <apex:outputField value="{!p.Current_Role_Responibilities__c }"/> <br /><br /> --->
+        <b>Purpose Statement:</b><br/> <apex:outputfield value="{!p.FAU_Purpose_Statement__c}"/> <br /><br />
         <b>Unilever Career: </b><br/> <apex:outputField value="{!p.FAU_Unilever_Career__c}"/> <br /><br />
         <b>Prior Career:</b><br/> <apex:outputField value="{!p.FAU_Prior_Career__c}"/> <br /><br />
         <b>Education:</b> <br/> <apex:outputField value="{!p.FAU_Education__c}"/> <br /><br />

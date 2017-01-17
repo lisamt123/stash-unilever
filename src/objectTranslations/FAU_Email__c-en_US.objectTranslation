@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Email</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Emails</value>
+    </caseValues>
+    <fields>
+        <label><!-- Additional To --></label>
+        <name>FAU_Additional_To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Body --></label>
+        <name>FAU_Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- CC --></label>
+        <name>FAU_CC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Start Date --></label>
+        <name>FAU_Email_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Template Id --></label>
+        <name>FAU_Email_Template_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- ProgramId --></label>
+        <name>FAU_ProgramId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program --></label>
+        <name>FAU_Program__c</name>
+        <relationshipLabel><!-- Emails --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Send Email --></label>
+        <name>FAU_Send_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Subject --></label>
+        <name>FAU_Subject__c</name>
+    </fields>
+    <fields>
+        <label><!-- To Address --></label>
+        <name>FAU_To_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- From Address --></label>
+        <name>From_Address__c</name>
+    </fields>
+    <layouts>
+        <layout>Email Layout</layout>
+        <sections>
+            <label><!-- Body --></label>
+            <section>Body</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Send_Email --></label>
+        <name>Send_Email</name>
+    </webLinks>
+</CustomObjectTranslation>

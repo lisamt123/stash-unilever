@@ -143,6 +143,7 @@ private class FAU_ParticipantControllerExtensionTest
         //{
             controller = new FAU_ParticipantControllerExtension(standardController);
             controller.acceptInvite();
+            controller.cancel();
         //}
         Test.stopTest();
 

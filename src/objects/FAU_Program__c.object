@@ -82,6 +82,10 @@
                 <fullName>Franchise</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>UL2020</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -303,7 +307,7 @@
     </fields>
     <fields>
         <fullName>FAU_Program_Banner_URL__c</fullName>
-        <defaultValue>&apos;resource/FAU_Excelrator_Logo&apos;</defaultValue>
+        <defaultValue>IF( $RecordType.DeveloperName  = &apos;UL2020&apos;, &apos;resource/FAU_UL2020&apos;, &apos;resource/FAU_Excelrator_Logo&apos;)</defaultValue>
         <externalId>false</externalId>
         <label>Program Banner URL</label>
         <required>false</required>
@@ -390,6 +394,7 @@
                 <fullName>UL2020</fullName>
                 <default>false</default>
                 <controllingFieldValues>Core</controllingFieldValues>
+                <controllingFieldValues>UL2020</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>eXcel-rator WL2</fullName>
@@ -777,6 +782,10 @@
                 <fullName>Franchise</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>UL2020</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>FAU_Primary_Location__c</picklist>
@@ -978,6 +987,115 @@
             </values>
         </picklistValues>
     </recordTypes>
+    <recordTypes>
+        <fullName>UL2020</fullName>
+        <active>true</active>
+        <label>UL2020</label>
+        <picklistValues>
+            <picklist>FAU_Category__c</picklist>
+            <values>
+                <fullName>Core</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Franchise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UL2020</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FAU_Primary_Location__c</picklist>
+            <values>
+                <fullName>Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latin America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>London</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAMET %26 RUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Asia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Singapore</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Asia</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FAU_Program_Type__c</picklist>
+            <values>
+                <fullName>HP2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HP3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HP4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UL2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>eXcel-rator WL2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>eXcel-rator WL3</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FAU_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Active</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>FAU_Program_Type__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>FAU_Start_Date__c</customTabListAdditionalFields>
@@ -1014,8 +1132,8 @@
         <fullName>FAU_Active_Program_needs_a_Webinear</fullName>
         <active>true</active>
         <description>FAU Must have at least one webinar to make program active. Please create an webinar to proceed.</description>
-        <errorConditionFormula>( ISPICKVAL(FAU_Status__c, &apos;Active&apos;) )
-       &amp;&amp; ( FAU_Number_of_Webinars__c == 0)</errorConditionFormula>
+        <errorConditionFormula>IF(  (RecordType.DeveloperName = &quot;Core&quot; || RecordType.DeveloperName = &quot;Franchise&quot; || RecordType.DeveloperName = &quot;Template&quot; ),  IF(( ISPICKVAL(FAU_Status__c, &apos;Active&apos;) )
+&amp;&amp; ( FAU_Number_of_Webinars__c == 0),TRUE,FALSE) , FALSE)</errorConditionFormula>
         <errorDisplayField>FAU_Status__c</errorDisplayField>
         <errorMessage>Must have at least one webinar to make program active. Please create an webinar to proceed.</errorMessage>
     </validationRules>

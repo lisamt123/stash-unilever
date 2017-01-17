@@ -10971,6 +10971,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Your P.A. will receive instructions to complete the registration</value>
     </labels>
     <labels>
+        <fullName>FAU_Program_Protected</fullName>
+        <categories>FAU, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU Program Protected</shortDescription>
+        <value>UL2020 Static Templates</value>
+    </labels>
+    <labels>
         <fullName>FAU_To_Defer_To_PA_error_message</fullName>
         <categories>FAU</categories>
         <language>en_US</language>
