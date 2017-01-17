@@ -1,5 +1,5 @@
-<apex:page standardController="BFM_Occurrence__c" doctype="html-5.0" recordSetVar="BFM_Occurrence" extensions="BFM_SearchOccurrenceController_CC"  sidebar="false" id="pge" >  
-      <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" />
+<apex:page standardController="BFM_Occurrence__c" doctype="html-5.0" recordSetVar="BFM_Occurrence" extensions="BFM_SearchOccurrenceController_CC" standardStylesheets="false" sidebar="false" id="pge" >  
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" />
     <apex:form id="frm">        
         <style>
             th, td { white-space: nowrap; }
@@ -25,19 +25,39 @@
             </apex:facet>
         </apex:actionstatus>
         
-        <apex:pageBlock id="pb1">
+        <apex:pageBlock id="pb1" mode="edit">
             <apex:pageBlockSection columns="2" id="ocrno">
                 <!--<apex:inputText value="{!searchOccurrence.Occurrence_Number__c}"/>-->
-                <apex:inputtext value="{!occurNumber}" id="shpn" label="{!$ObjectType.BFM_Occurrence__c.fields.Occurrence_Number__c.label}" />
-				 <apex:inputText value="{!vendorName}" label="{!$Label.BFM_Vendor_Name}" id="shpvan" required="false" />
-                <apex:input type="date" value="{!occurStart}" id="shpd" label="{!$ObjectType.BFM_Occurrence__c.fields.Range_of_Extent_of_Occurrence_From__c.label}"/>
-				<apex:input type="date" value="{!occurTo}" id="shpd1" label="{!$ObjectType.BFM_Occurrence__c.fields.Range_of_Extent_of_Occurrence_To__c.label}"/>
-            </apex:pageBlockSection>
+                    <apex:inputtext value="{!occurNumber}" id="shpn" label="Número Ocorrência"/>
+                    <apex:inputText value="{!occCarrierVendor}" label="Código da Transportadora"/>
+                    <apex:inputText value="{!occStatus}" label="Status da Ocorrência"/>
+                    <apex:inputText value="{!occCarrierAccount}" label="Nome transportadora"/>
+                    <apex:inputText value="{!occurCode}" label="Tipo de Ocorrência"/>
+                    <apex:inputText value="{!occFromAccount}" label="CNPJ Transportadora"/>
+                </apex:pageBlockSection>
+            
+                <apex:pageBlockSection >
+                    <apex:pageBlockSectionItem dataStyle="text-align:center; width: 52%; max-width: 55%;">
+                    <apex:outputpanel >    
+                        <label for="frm">
+                            <span>Data da Ocorrência</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <apex:input type="date" value="{!occurStart}"/>
+                            <!--<input type="date" id="frm" value="{!occurStart}"/>-->
+                        </label>
+                        <label for="to">
+                            <span>Até</span>
+                            <apex:input type="date" value="{!occurTo}"/>
+                            <!--<input type="date" id="to" value="{!occurTo}"/>-->
+                        </label>  
+                        </apex:outputpanel>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection><br/>
+ 
             <div align="center">
-                <apex:commandButton value="Procurar ocorrência" action="{!searchoccurs}" status="status" reRender="occurnce"/>&nbsp; <!-- todo : Add custom label -->
+                <apex:commandButton value="Procurar ocorrência" action="{!searchoccurs}" status="status" reRender="pgoccurance"/>&nbsp; <!-- todo : Add custom label -->
                 <apex:commandButton action="{!redirectPage}" value="{!$Label.BFM_Clear}"/>
-                <button class="btn" style="padding:4px;">{!$Label.BFM_Occurrence}</button>
-                 <button class="btnRep" style="padding:4px;">Gerar Prévia de Custo</button>
+                <button class="btnSearch" style="padding:4px;">{!$Label.BFM_Occurrence}</button>
+                <button class="btnRep" style="padding:4px;">Gerar Prévia de Custo</button>
             </div>
         </apex:pageBlock>
         
@@ -47,10 +67,10 @@
             </apex:outputPanel>
         </apex:pageBlock>
         
-        <apex:pageblock title="Resultado da busca" rendered="{!IF(AND(NOT(ISBLANK(OccList)),OccList.size>0),true,false)}">
+        <apex:pageblock title="Resultado da busca" rendered="{!IF(AND(NOT(ISBLANK(OccList)),OccList.size>0),true,false)}" id="pgoccurance">
             <apex:outputPanel id="occur">
                 <apex:pageBlockTable value="{!OccList}" var="Occ" id="occurnce">
-                      <apex:column >
+                    <apex:column >
                         <apex:facet name="header">
                             <input type="checkbox" value="0" onclick="selectAllCheckboxes(this,'inputId')"/>
                         </apex:facet>
@@ -60,9 +80,10 @@
                         <apex:outputlink target="_blank" value="/{!Occ.id}">{!Occ.Name}</apex:outputlink>  
                     </apex:column> 
                     <apex:column value="{!Occ.Occurrence_Number__c}"/>
+                    <apex:column value="{!Occ.Occurrence_Code__c}"/>
                     <apex:column value="{!Occ.Status__c}"/>
-                    <apex:column value="{!Occ.Range_of_Extent_of_Occurrence_From__c}"/>
-                    <apex:column value="{!Occ.Range_of_Extent_of_Occurrence_To__c}"/>
+                    <apex:column value="{!Occ.Last_Occurrence_Update__c}"/>
+                    <apex:column value="{!Occ.Created_date__c}"/>
                 </apex:pageBlockTable>
             </apex:outputPanel>
             <apex:pageBlockButtons location="top">
@@ -109,8 +130,8 @@
                 window.close();   
             }   
         }
-        }
-</script>
+    }
+    </script>
     <script type="text/javascript">
     function selectAllCheckboxes(obj,receivedInputID){
         var inputCheckBox = document.getElementsByTagName("input");                  
@@ -120,7 +141,7 @@
             }
         }
     }
-    $('.btn').click(function(){
+    $('.btnSearch').click(function(){
         var str='';
         $("input[type=checkbox]:checked").each(function() {
             if($(this).val()!='0' && $(this).val()!=null)
@@ -140,7 +161,7 @@
         );
     }); 
     
-     $('.btnRep').click(function(){
+    $('.btnRep').click(function(){
         var str='';
         $("input[type=checkbox]:checked").each(function() {
             if($(this).val()!='0' && $(this).val()!=null)
@@ -149,8 +170,8 @@
             }
         });
         str=str.slice(0,-1);
-     //alert(str);
-     window.open("/{!cteIssuingReport.Id}?pv0="+str,"_blank");
+        //alert(str);
+        window.open("/{!cteIssuingReport.Id}?pv0="+str,"_blank");
     }); 
     </script>
 </apex:page>

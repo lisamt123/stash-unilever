@@ -5,9 +5,15 @@ public with sharing class BFM_SearchOccurrenceController_CC{
     List<string> conditions = new List<string>();
     
     public String occurNumber{get;set;}
+    public String occCarrierVendor{get;set;}
+    public String occStatus{get;set;}
+    public String occCarrierAccount{get;set;}
+    public String occurCode{get;set;}
+    public String occFromAccount{get;set;}
+        
     public String vendorName{get;set;}
     public Date occurStart{get;set;}
-    public Date occurTo{get;set;}	
+    public Date occurTo{get;set;}   
     public Boolean secondBlock{get;set;} 
     public string recordscount{get;set;}
     public List<SelectOption> recordsize{get;set;}
@@ -45,46 +51,68 @@ public with sharing class BFM_SearchOccurrenceController_CC{
 
     public void searchoccurs(){
         OccurrencesList = new List<String>();
-   	if(OccList != null && !OccList.isEmpty()){
-  		OccList = null;
-		}
+    if(OccList != null && !OccList.isEmpty()){
+        OccList = null;
+        }
         conditions.clear();
         system.debug('value is'+occurNumber+'dd'+occurStart);
         
 
        
-        String OccurenceString = 'SELECT id,name,Occurrence_Number__c,Status__c,Range_of_Extent_of_Occurrence_From__c,Range_of_Extent_of_Occurrence_To__c FROM BFM_Occurrence__c';
+        String OccurenceString = 'SELECT id,name,Occurrence_Number__c,Created_date__c,Carrier_Vendor_Code__c,Status__c,Carrier_Account__r.Name,Carrier_Account__r.CNPJ__c,Occurrence_Code__c,Range_of_Extent_of_Occurrence_From__c,Range_of_Extent_of_Occurrence_To__c,Last_Occurrence_Update__c  FROM BFM_Occurrence__c ';
+        String searchClauses = 'WHERE'; 
         
         if(!String.isEmpty(occurNumber)){
             for(string str:occurNumber.split(',')){
                 string occNumberSplit= '\''+String.escapeSingleQuotes(str.trim())+'\'' ;
                 OccurrencesList.add(occNumberSplit);
             }
-            conditions.add('Occurrence_Number__c IN ' + OccurrencesList) ;
+            searchClauses += ' Occurrence_Number__c IN ' + OccurrencesList + ' AND ';         
         }
         
+        if(String.isNotEmpty(occCarrierVendor)){
+            searchClauses += ' Carrier_Vendor_Code__c Like \'%' + occCarrierVendor + '%\' AND ';
+        }
+        
+        if(String.isNotEmpty(occStatus)){
+            searchClauses += ' Status__c Like \'%' + occStatus + '%\' AND ';
+        }
+        
+        if(!String.isEmpty(occCarrierAccount)){            
+            String val1 = '\'%' + String.escapeSingleQuotes(occCarrierAccount.trim()) + '%\'';
+            searchClauses += ' Carrier_Account__r.Name LIKE ' + val1 + ' AND ';
+        }
+        
+        if(String.isNotEmpty(occurCode)){
+            searchClauses += ' Occurrence_Code__c Like \'%' + occurCode + '%\' AND ';            
+        }
+        
+        if(String.isNotEmpty(occFromAccount)){
+            searchClauses += ' Carrier_Account__r.CNPJ__c Like \'%' +occFromAccount +'%\' AND ';
+        }
+        system.debug('===>'+occurStart);
         if(occurStart!=null){
-            conditions.add('Range_of_Extent_of_Occurrence_From__c Like \'%' +occurStart +'%\' ');
-        }
-        if(occurTo!=null){
-            conditions.add('Range_of_Extent_of_Occurrence_To__c Like \'%' +occurTo +'%\' ');
+            searchClauses += ' Created_date__c >:occurStart AND Created_date__c <:occurTo AND ';            
         }
         
-              System.debug('carrierCompanyAccountName ' + vendorName);
-        if(!String.isEmpty(vendorName)){
-            String val1 = '\'%' + String.escapeSingleQuotes(vendorName.trim()) + '%\'';
-            conditions.add(' Carrier_Account__r.Name LIKE ' + val1 );
+        searchClauses = searchClauses.trim().removeEndIgnoreCase('AND');
+    
+        if(searchClauses == 'WHERE'){
+            searchClauses = '  ';
         }
         
-        
-        
+        OccurenceString += searchClauses;
+        OccurenceString += ' ORDER BY CreatedDate LIMIT 10000';
+        /*
+        system.debug('conditions:'+conditions);
         
         if (conditions.size() > 0) {
-   		OccurenceString += '  WHERE ' + conditions[0];
-   		for (Integer i = 1; i < conditions.size(); i++)
+        OccurenceString += '  WHERE ' + conditions[0];
+        for (Integer i = 1; i < conditions.size(); i++)
             OccurenceString += '  AND ' + conditions[i];
         }
-  		OccurenceString += ' ORDER BY CreatedDate';
+        OccurenceString += ' ORDER BY CreatedDate';
+        */
         try{
             system.debug('occ string is '+OccurenceString);
        // OccList = Database.Query(OccurenceString);
@@ -93,7 +121,8 @@ public with sharing class BFM_SearchOccurrenceController_CC{
         }catch(QueryException ex){
             String errorMessage = ex.getMessage() + ' ' + ex.getStackTraceString()+' /n \n'+OccurenceString;
             ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, errorMessage));
-        	} 
+            system.debug(errorMessage);
+            } 
         
         con.setPageSize(10);
         }

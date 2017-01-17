@@ -31,7 +31,6 @@ public class BFM_QueryOccurrencesResponse {
 		public String sesCurrency;
 		public String sesLineDescription;
 		public String costDocumentNumber;
-		public String occurrenceNumber;
 		public String acctountAssingmentCategory;
 		public String costCenter;
 		public String sesPlantCode;
@@ -78,6 +77,7 @@ public class BFM_QueryOccurrencesResponse {
 		public String equipTypeDescription;
 		public String loadType;
 		public String loadTypeDescription;
+        public String occurrenceNumber;
 		public String occurrenceValue;
 		public String tax;
 		public String occurrenceQuantity;
@@ -99,7 +99,6 @@ public class BFM_QueryOccurrencesResponse {
 		public String approvalDate5;
 		public String approvalDate6;
 		public List<FiscalDocuments> fiscalDocuments;
-        public String occurrenceNumber;
         public string occcreateddate;
 		public List<Shipment> shipment;
 		public List<Ses> ses;
@@ -129,7 +128,7 @@ public class BFM_QueryOccurrencesResponse {
 		public String stateDestination;
 		public String countryCodeDestination;
 		public String countryNameDestination;
-		public String nfeCreationDate;
+		//public String nfeCreationDate;
 		public String incoterms;
 		public String nfeTotalQuantity;
 		public String nfeItemSpecie;

@@ -20,7 +20,7 @@ public without sharing class BFM_AccountSharer {
             AccountTeamMember atm = new AccountTeamMember();
             atm.accountId = accountId;
             atm.UserId = userId;
-            atm.accountAccessLevel = 'Read';
+            atm.accountAccessLevel = 'Edit';
             atm.OpportunityAccessLevel = 'None';
             atm.CaseAccessLevel = 'None';
             accountTeamMembers.add(atm);

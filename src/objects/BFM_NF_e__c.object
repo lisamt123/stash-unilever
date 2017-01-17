@@ -167,17 +167,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>CNPJ_Taker__c</fullName>
-        <externalId>false</externalId>
-        <label>CNPJ Taker</label>
-        <length>14</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>CNPJ_destination__c</fullName>
         <externalId>false</externalId>
         <label>CNPJ destination</label>
@@ -358,7 +347,7 @@
         <fullName>Complement_destination__c</fullName>
         <externalId>false</externalId>
         <label>Complement destination</label>
-        <length>40</length>
+        <length>72</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -458,7 +447,7 @@
     <fields>
         <fullName>District_Recipient__c</fullName>
         <externalId>false</externalId>
-        <label>District Destination</label>
+        <label>District Recipient</label>
         <length>40</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -558,6 +547,7 @@
     </fields>
     <fields>
         <fullName>NF_e_access_key__c</fullName>
+        <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
         <label>NF-e access key</label>
         <length>45</length>
@@ -565,7 +555,7 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>NF_e_creation_date__c</fullName>
@@ -654,17 +644,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Name_Taker__c</fullName>
-        <externalId>false</externalId>
-        <label>Name Taker</label>
-        <length>40</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Name_destination__c</fullName>
         <externalId>false</externalId>
         <label>Name destination</label>
@@ -688,11 +667,11 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Occurrence_SES__c</fullName>
+        <fullName>Occurrence__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>SES</label>
-        <referenceTo>BFM_Occurrence_SES__c</referenceTo>
+        <label>Occurrence</label>
+        <referenceTo>BFM_Occurrence__c</referenceTo>
         <relationshipLabel>NF-es</relationshipLabel>
         <relationshipName>NF_es</relationshipName>
         <required>false</required>
@@ -782,6 +761,18 @@
         <externalId>false</externalId>
         <label>Predominant product</label>
         <length>72</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SES_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>SES__r.SES_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SES Number</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1003,11 +994,11 @@
         <columns>CNPJ_destination__c</columns>
         <columns>Taker_CNPJ__c</columns>
         <columns>SES__c</columns>
+        <columns>Shipment__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>NF_e_serie__c</field>
-            <operation>equals</operation>
-            <value>5</value>
+            <field>SES__c</field>
+            <operation>notEqual</operation>
         </filters>
         <label>All</label>
         <language>en_US</language>

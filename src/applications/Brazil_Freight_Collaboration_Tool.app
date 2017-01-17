@@ -7,6 +7,7 @@
     <tab>CT_e</tab>
     <tab>NFS</tab>
     <tab>BFM_Debit_Note__c</tab>
+    <tab>BFM_NF_e__c</tab>
     <tab>Search_Occurrence</tab>
     <tab>BFM_File__c</tab>
     <tab>BFM_Error_Log__c</tab>
@@ -20,4 +21,5 @@
     <tab>BFM_Payment_Document_Item__c</tab>
     <tab>POD_Search</tab>
     <tab>BFM_IVA__c</tab>
+    <tab>Search_SES</tab>
 </CustomApplication>

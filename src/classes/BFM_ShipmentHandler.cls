@@ -25,14 +25,11 @@ public class BFM_ShipmentHandler implements ITrigger {
     public void beforeUpdate(SObject oldSo, SObject so) {
         BFM_Shipment__c shipmentOld = oldMap.get(oldSo.Id);
         BFM_Shipment__c shipmentNew = newMap.get(so.Id);
-        // TODO : VEHICLE PLATE PROCESS SHOULD BE SENT IN OTHER WAY.
-        if(shipmentOld.Vehicle_Plate__c != shipmentNew.Vehicle_Plate__c ){
-            BFM_UpdateFreightData.sendUpdateShipmentRequestFuture(shipmentOld.Id);
-        }
-        if(shipmentOld.X6th_flag__c == false && shipmentNew.X6th_flag__c == true && !System.isBatch()){
+        
+        if(!shipmentOld.X6th_flag__c  && shipmentNew.X6th_flag__c && !System.isBatch()){
             shipmentNew.Shipment_Start__c = System.today();
             BFM_UpdateFreightData.send6thFlagUpdate(shipmentOld.Id);
-        } else if(shipmentOld.X6th_flag__c == true && shipmentNew.X6th_flag__c == false) {
+        } else if(shipmentOld.X6th_flag__c && !shipmentNew.X6th_flag__c) {
             shipmentNew.Shipment_Start__c = null;
         }
         
@@ -63,7 +60,6 @@ public class BFM_ShipmentHandler implements ITrigger {
     }
     
     public void checkIfNeedsToBeDeleted(BFM_Shipment__c shipmentNew) {
-        System.debug('shipmentNew' + shipmentNew);
         Set<Id> deleteRecords = new Set<Id>();
         if(shipmentNew.Is_Deleted_in_SAP__c) {
             deleteRecords.add(shipmentNew.id);

@@ -19,7 +19,7 @@ global class BFM_QueryFreights {
     // created/updated objects in result of the JSON parsing
     private List<BFM_Shipment__c> shipments;
     private List<BFM_Stage__c> stages;
-    private List<BFM_SES__c> sess;
+    private List<BFM_SES__c> frs;
     private List<BFM_Delivery__c> deliveries;
     private List<BFM_Nf_e__c> nfes;
     private Map<String, String> mapDeliveries;   
@@ -35,7 +35,7 @@ global class BFM_QueryFreights {
         this.shipmentNumbers = shipmentNumbers;
         shipments = new List<BFM_Shipment__c>();
         stages = new List<BFM_Stage__c>();
-        sess = new List<BFM_Ses__c>();
+        frs = new List<BFM_Ses__c>();
         deliveries = new List<BFM_Delivery__c>();
         nfes = new List<BFM_NF_e__c>();
         mapDeliveries = new Map<String, String>();
@@ -102,8 +102,8 @@ global class BFM_QueryFreights {
         jsonBody = jsonBody.removeEnd('"');
         
         BFM_QueryFreightsResponse response = BFM_QueryFreightsResponse.parse(jsonBody);
-        if(response.QueryFreightResponse.message != null){
-            System.debug('WARNING: Something is not ok');
+        if(response.QueryFreightResponse.message != null) {
+            System.debug('WARNING: Something is not ok in the message');
             createErrorLogs(shipmentNumbers, response.QueryFreightResponse.message, 'Falha no Shipment');
         }
         
@@ -126,9 +126,9 @@ global class BFM_QueryFreights {
                                 BFM_SES__c newSes = parseSes(ses, newStage.Stage_Number__c, newShipment.Shipment_Number__c);
                                 System.debug('newSes.SES_Number__c' + newSes.SES_Number__c);
                                 if(newSes.SES_Number__c != '') {
-                                    sess.add(newSes);
+                                    frs.add(newSes);
                                 }
-                                System.debug('sess: ' + sess);
+                                System.debug('frs: ' + frs);
                                 if(ses.nfe != null){
                                     for(BFM_QueryFreightsResponse.Nfe nfe : ses.nfe) {
                                         if(!mapDeliveries.containsKey(nfe.deliveryNumber)) {
@@ -138,7 +138,9 @@ global class BFM_QueryFreights {
                                             System.debug('deliveries: ' + deliveries);
                                         }
                                         BFM_NF_e__c newNfe = parseNFe(nfe, ses.sesNumber, newShipment.shipment_Number__c);
-                                        nfes.add(newNfe);
+                                        if(newNfe.NF_e_access_key__c != ''){
+                                            nfes.add(newNfe);
+                                        }
                                         System.debug('nfes: ' + nfes);
                                     }
                                 }
@@ -184,13 +186,13 @@ global class BFM_QueryFreights {
     private void processSesUpserts(Database.upsertResult[] results){
         for(Integer i = 0; i< results.size(); i++){
             if(!results[i].isSuccess()){
-                BFM_SES__c theSes = sess[i];
+                BFM_SES__c theSes = frs[i];
                 String errorMessage = 'Failed updating Ses' + theSes.Ses_Number__c + '\n';
                 System.debug('processSesUpserts errorMessage ' + errorMessage);     
-                System.debug('processSesUpserts sess[i].Shipment__r.Shipment_Number__c ' + sess[i].Shipment__r.Shipment_Number__c);
+                System.debug('processSesUpserts frs[i].Shipment__r.Shipment_Number__c ' + frs[i].Shipment__r.Shipment_Number__c);
                 for(Database.Error theError : results[i].getErrors()){
                     System.debug('processSesUpserts theError.getMessage() ' + theError.getMessage());
-                    createUpsertErrorLog(sess[i].Shipment__r.Shipment_Number__c, errorMessage + theError.getMessage());
+                    createUpsertErrorLog(frs[i].Shipment__r.Shipment_Number__c, errorMessage + theError.getMessage());
                 }
             }
         }
@@ -255,8 +257,8 @@ global class BFM_QueryFreights {
             processDeliveryUpserts(resultsDelivery);
         }        
         
-        if(sess != null) {
-            Database.upsertResult[] resultsSES = database.upsert(sess, Schema.getGlobalDescribe().get('BFM_SES__c')
+        if(frs != null) {
+            Database.upsertResult[] resultsSES = database.upsert(frs, Schema.getGlobalDescribe().get('BFM_SES__c')
                                                                  .getDescribe()
                                                                  .fields
                                                                  .getMap()
@@ -284,6 +286,7 @@ global class BFM_QueryFreights {
     * Creates an error log related to the shipment being currently processed
     * */
     private void treatTypeException(System.TypeException ex){
+        System.debug('treatTypeException getStackTraceString: ' + ex.getStackTraceString());
         BFM_Error_Log__c newError = new BFM_Error_Log__c();
         newError.BFM_Shipment__r = new BFM_Shipment__c(Shipment_Number__c = this.currentShipmentNumber);
         newError.Error_log__c = ex.getMessage() + ' ' + ex.getTypeName() +' ';
@@ -300,9 +303,12 @@ global class BFM_QueryFreights {
     }
     
     private void createErrorLogs(Set<String> shipmentNumbers, String errorMessage, String errorType){
-        for(String shipNumber :shipmentNumbers){
+        for(String shipNumber :shipmentNumbers) {
             BFM_Error_Log__c newError = new BFM_Error_Log__c();
             newError.BFM_Shipment__r = new BFM_Shipment__c(Shipment_Number__c = shipNumber);
+            /*if(errorMessage.contains(shipNumber)){
+                newError.BFM_Shipment__r.Is_Deleted_In_Sap__c = true;
+            }*/
             newError.Error_log__c = errorMessage;
             newError.Reason__c = errorType;
             this.generatedErrors.add(newError);
@@ -313,20 +319,24 @@ global class BFM_QueryFreights {
     
     private BFM_Shipment__c parseShipment(BFM_QueryFreightsResponse.Shipment ship ){
         BFM_Shipment__c newShipment = new BFM_Shipment__c(Shipment_Number__c = ship.shipmentNumber);
+        newShipment.Shipment_Type__c = ship.shipmentType;
         newShipment.ANTT__c = ship.antt;
+        newShipment.Vehicle_Plate__c = ship.vehicleplt;
+        
         try{
             if(ship.shipmentStart !=null)
                 newShipment.Shipment_Start__c = Date.valueOf(ship.shipmentStart);
         } catch(System.TypeException ex){
             treatTypeException(ex);
         }
+        
         try{
-            if(ship.pricingCalculationDate != null)
+            if(ship.pricingCalculationDate != null && ship.pricingCalculationDate != '')
                 newShipment.Pricing_Calculation_Date__c = Date.valueOf(ship.pricingCalculationDate);
         } catch(System.TypeException ex){
             treatTypeException(ex);
         }
-        newShipment.Vehicle_Plate__c = ship.vehicleplt;
+        
         return newShipment;
     }
     
@@ -367,18 +377,23 @@ global class BFM_QueryFreights {
         newSes.PO_Umbrella_Number__c = ses.poUmbrellaNumber;
         newSes.PO_Type__c = ses.poType;
         newSes.Shipment__r = new BFM_Shipment__c (Shipment_Number__c = shipmentNumber);
+        
         try{
-            if(ses.modificationDate != null && ses.modificationDate!='0000-00-00')
+            System.debug('ses.modificationDate' + ses.modificationDate);
+            if(ses.modificationDate != null && ses.modificationDate!= '')
                 newSes.Modification_Date__c = Date.valueOf(ses.modificationDate);
         } catch(System.TypeException ex){
             treatTypeException(ex);
         }
+        
         try{
-            if(ses.creationDate != null && ses.creationDate!='0000-00-00')
+            System.debug('ses.creationDate' + ses.creationDate);
+            if(ses.creationDate != null && ses.creationDate!='')
                 newSes.Creation_Date__c = Date.valueOf(ses.creationDate);
         } catch(System.TypeException ex){
             treatTypeException(ex);
         }
+        
         newSes.Gross_Value_net_tax__c = ses.grossValue;
         //newSes.Tax_Code__c = ses.taxCode.left(2);
         newSes.Tax_Code__c = ses.taxCode;
@@ -420,10 +435,10 @@ global class BFM_QueryFreights {
         return delivery;
     }
     
-    private BFM_NF_e__c parseNFe(BFM_QueryFreightsResponse.Nfe nfe, String sesnumber,String shipmentNumber){
+    private BFM_NF_e__c parseNFe(BFM_QueryFreightsResponse.Nfe nfe, String sesnumber, String shipmentNumber){
         BFM_Delivery__c delivery = new BFM_Delivery__c(Delivery_Number__c = nfe.deliveryNumber);
-        BFM_NF_e__c newNfe = new BFM_NF_e__c(NF_e_access_key__c = nfe.nfeAccessKey);   
-        
+        BFM_NF_e__c newNfe = new BFM_NF_e__c();
+        newNfe.NF_e_access_key__c = nfe.nfeAccessKey;   
         newNfe.NF_e_Total_Value__c = nfe.nfeTotalValue;
         newNfe.Delivery__r = delivery; 
         newNfe.shipment__r = new BFM_Shipment__c(Shipment_Number__c = shipmentNumber); 
@@ -439,6 +454,7 @@ global class BFM_QueryFreights {
         newNfe.SUFRAMA_registration__c = nfe.inscricaoSUFRAMA;
         newNfe.Street_Destination__c = nfe.addressDestination;
         newNfe.Address_Number_Destination__c = nfe.numberDestination;
+        newNfe.Complementary_information__c = nfe.complementaryInformation;
         
         if(sesnumber != ''){
             newNfe.SES__r = new BFM_SES__c(SES_Number__c = sesnumber);   
@@ -455,16 +471,17 @@ global class BFM_QueryFreights {
         newNfe.Country_name_destination__c = nfe.countryNameDestination;
         
         try{
+            if(nfe.nfeCreationDate != null && nfe.nfeCreationDate != '')
             newNfe.NF_e_creation_date__c = Date.valueOf(nfe.nfeCreationDate);
         } catch(System.TypeException ex){
             treatTypeException(ex);    
         }
+        
         newNfe.Incoterms__c = nfe.incoterms.left(3);
         newNfe.Nf_e_total_quantity__c = nfe.nfeTotalQuantity;
         newNfe.NF_e_item_specie__c = nfe.nfeItemSpecie.left(2);
         newNfe.Predominant_product__c = nfe.predominantProduct;
         newNfe.Material_Usage__c = nfe.materialUsage.left(1);
-        //public String complementaryInformation;
         return newNFe;
     }
 }

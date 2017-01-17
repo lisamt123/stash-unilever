@@ -55,7 +55,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Accouting_Account__c</fullName>
         <externalId>false</externalId>
@@ -159,7 +159,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Company_Code__c</fullName>
+        <fullName>Company_Code_del__c</fullName>
         <externalId>false</externalId>
         <label>Company Code</label>
         <length>4</length>
@@ -254,6 +254,16 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Free_Freight__c</fullName>
+        <externalId>false</externalId>
+        <formula>Stage__r.Free_freight__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Free Freight</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Gross_Value_net_tax__c</fullName>
@@ -428,6 +438,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Minimum_number_of_customers__c</fullName>
+        <description>Minimum number of customers for One CT-e</description>
+        <externalId>false</externalId>
+        <label>Minimum number of customers</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -661,17 +684,16 @@
     </fields>
     <fields>
         <fullName>Stage__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Stage</label>
         <referenceTo>BFM_Stage__c</referenceTo>
         <relationshipLabel>SESs</relationshipLabel>
         <relationshipName>BFM_SESs</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Tax_Code_Picklist__c</fullName>
@@ -697,7 +719,7 @@
     <fields>
         <fullName>Unilever_company_code__c</fullName>
         <externalId>false</externalId>
-        <formula>Stage__r.Shipment__r.Unilever_Company__r.Company_Code__c</formula>
+        <formula>Stage__r.Shipment__r.Company_Code__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Unilever company code</label>
         <required>false</required>
@@ -753,12 +775,12 @@
         <language>pt_BR</language>
     </listViews>
     <nameField>
-        <displayFormat>SES-{0000}</displayFormat>
-        <label>SES Name</label>
+        <displayFormat>FRS-{0000}</displayFormat>
+        <label>SES Number</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>SESs</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

@@ -98,8 +98,8 @@ public class BFM_FileConnector {
         HttpRequest request = new HttpRequest();
         request.setMethod(method);
         request.setEndpoint(pr.getUrl());
-        if (payload != Blob.valueOf('')) request.setBodyAsBlob(payload); //affects http method
-        for (String header : headers.keySet()) request.setHeader(header, headers.get(header));
+        if (payload != Blob.valueOf('')) {request.setBodyAsBlob(payload);} //affects http method
+        for (String header : headers.keySet()) {request.setHeader(header, headers.get(header));}
 
         return request;
     }
@@ -139,12 +139,12 @@ public class BFM_FileConnector {
         
         //prepare values
         List<String> canonicalParameters = new List<String>();
-        for (String sortedKey : sortedKeys) canonicalParameters.add(
+        for (String sortedKey : sortedKeys){ canonicalParameters.add(
             sortedKey + 
             '=' + 
             rfc3986For(parameters.get(sortedKey), true)
         );
-        
+        }
         return String.join(canonicalParameters, '&');
     }
 
@@ -157,7 +157,7 @@ public class BFM_FileConnector {
         
         //lowercase header keys
         Map<String,String> lower2value = new Map<String,String>();
-        for (String key : key2value.keySet()) lower2value.put(key.toLowerCase(), key2value.get(key).trim().replaceAll('\\s+', ' '));
+        for (String key : key2value.keySet()) { lower2value.put(key.toLowerCase(), key2value.get(key).trim().replaceAll('\\s+', ' '));}
         
         //sort canonical keys by ascii code
         List<String> sortedKeys = new List<String>(lower2value.keySet());
@@ -165,7 +165,7 @@ public class BFM_FileConnector {
         
         //prepare values
         List<String> canonicalHeaders = new List<String>();
-        for (String sortedKey : sortedKeys) canonicalHeaders.add(sortedKey + ':' + lower2value.get(sortedKey) + '\n');
+        for (String sortedKey : sortedKeys) {canonicalHeaders.add(sortedKey + ':' + lower2value.get(sortedKey) + '\n');}
         
         return String.join(canonicalHeaders, '');
     }
@@ -180,14 +180,14 @@ public class BFM_FileConnector {
         
         //lowercase header keys
         List<String> keys = new List<String>(headers.keySet());
-        for (Integer i = 0; i < keys.size(); i++) keys.set(i, keys[i].toLowerCase());
+        for (Integer i = 0; i < keys.size(); i++) {keys.set(i, keys[i].toLowerCase());}
         
         //sort ascii
         keys.sort();
         
         //prepare values
         List<String> signedHeaders = new List<String>();
-        for (String key : keys) signedHeaders.add(key);
+        for (String key : keys) {signedHeaders.add(key);}
         
         return String.join(signedHeaders, ';');
     }

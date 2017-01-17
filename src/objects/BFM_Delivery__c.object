@@ -80,6 +80,17 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Stage_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>Stage__r.Stage_Number_Only__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Stage Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Stage__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>

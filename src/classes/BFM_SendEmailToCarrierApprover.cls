@@ -55,11 +55,12 @@ public without sharing class BFM_SendEmailToCarrierApprover {
         System.debug('masterCNPJ: ' + masterCNPJ);
         for(Account acc : [SELECT Id, (SELECT email  FROM Contacts WHERE title = 'SF_APPROVAL' AND email != null) 
                            FROM Account
-                           WHERE cnpj__c LIKE : cnpjPrefix LIMIT 1]){
+                           WHERE cnpj__c LIKE : cnpjPrefix]){
                                
                                System.debug('acc' + acc);
                                if(!acc.Contacts.isEmpty()){
-                                   contactEmail = acc.Contacts;    
+                                   contactEmail = acc.Contacts;  
+                                   break;
                                }
                            }
         

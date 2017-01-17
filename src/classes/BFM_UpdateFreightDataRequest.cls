@@ -29,7 +29,7 @@ public class BFM_UpdateFreightDataRequest {
         if(!String.isEmpty(shipmentNumber)){
             returnObj.updateFreightData.Shipment = new BFM_UpdateFreightDataRequest.Shipment();
         	returnObj.updateFreightData.Shipment.shipmentId = shipmentNumber;
-            returnObj.updateFreightData.shipment.checkoutDateTime = System.now();
+           // returnObj.updateFreightData.shipment.checkoutDateTime = System.now();
         } else if(!String.isEmpty(occurrenceNumber)){
             returnObj.updateFreightData.occurrence = new BFM_UpdateFreightDataRequest.Occurrence();
             returnObj.UpdateFreightData.occurrence.occurrenceNumber = occurrenceNumber;

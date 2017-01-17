@@ -53,6 +53,7 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         newCarrierUserRequest.cpf__c = cpf;
         newCarrierUserRequest.Operational_User__c = operationalUser;
         newCarrierUserRequest.Tax_User__c = taxUser;
+        newCarrierUserRequest.CurrencyIsoCode = 'BRL';
         if(validateCarrierRequest(newCarrierUserRequest) && newCarrierUserRequest.cnpj__c.length()==8){
             List<Account> branches = BFM_AccountDAO.getAccountsWithCNPJPrefix(cnpj);
             if(branches.isEmpty()){

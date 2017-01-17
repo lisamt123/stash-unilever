@@ -1,0 +1,34 @@
+<messaging:emailTemplate subject="Solicitação de acesso de funcionário {!recipient.Account.Name} para Sistema de Fretes Unilever" 
+   recipientType="Contact"
+   relatedToType="BFM_UserCreationRequest__c" 
+   replyTo="xxxxxxx@unilever.com"
+   >
+<messaging:plainTextEmailBody >
+
+</messaging:plainTextEmailBody>
+
+<messaging:htmlEmailBody >
+<p>
+Prezado(a) {!recipient.Name},
+</p>
+<p>
+foi criada um nova solicitação de acesso ao sistema de fretes Unilever. Por gentileza analise os dados da solicitação abaixo e envie 
+email para {!replyTo} com seu parecer. Apenas após o recebimento do email daremos continuidade ao processo de criação de 
+usuário.
+</p>
+<p>
+Dados da Solicitação de novo Usuário:<br/>
+ Nome: {!relatedTo.FirstName__c}<br/>
+ Sobrenome: {!relatedTo.LastName__c}<br/>
+ Email de cadastro: {!relatedTo.Email__c}<br/>
+ Nome de usuário no sistema de fretes: {!relatedTo.Username__c}<br/> 
+</p>
+
+<p>
+<apex:dataTable border="1px"  value="{!relatedTo.BFM_Access_Requests__r}" var="accountRequest">
+    <apex:column headerValue="Nome da empresa" value="{!accountRequest.Account__r.Name}"/>
+    <apex:column headerValue="CNPJ da empresa" value="{!accountRequest.Account__r.CNPJ__c}" />
+</apex:dataTable>
+</p>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

@@ -1,4 +1,4 @@
-<apex:page standardController="BFM_Shipment__c" showHeader="true" recordSetVar="BFM_Shipment" doctype="html-5.0" extensions="BFM_SearchShipmentCTeController_CC"  sidebar="false" id="pge">
+<apex:page standardController="BFM_Shipment__c" standardStylesheets="false" showHeader="true" recordSetVar="BFM_Shipment" doctype="html-5.0" extensions="BFM_SearchShipmentCTeController_CC"  sidebar="false" id="pge">
     <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" />
     <apex:form id="frm">     
         <apex:pageMessages />
@@ -8,51 +8,43 @@
             width: 1250px;
             margin: 0 auto;
             }   
-            
         </style>
         
         <script>
         
         $ = jQuery.noConflict();
         </script>
+        
         <script>
         $(document).ready(function()
-                          {
-                              /*
-                         When page get load then below script will run
-                         and collapse all the section which are under .firstSectionClass( Element Class).
-                         */
-                              var element= $('.styleships .hideListButton');
-                              for(var i = 0;i<element.length;i++)
-                                  twistSection(element[i]);
-                              
-                              /*
-                         Below script it bind with arrow icon (Icon which are being used for collapse) which are displaying on section.
-                         When Icon are clicked then below script will run.
-                         */
-                              $('.styleships .showListButton').bind('click',function(event){
-                                  event.preventDefault();
-                                  var el= $('.styleships .hideListButton');
-                                  for(var i = 0;i<el.length;i++)
-                                      twistSection(el[i]);
-                                  if(el.length!=0)
-                                      twistSection(this);
-                                  
-                                  //this --> represent currently pressed section img element. You can write any script for this element fi you want to do something on section.
-                              });
-                          });
-        </script>
-        
-        
-        <script>
-        /* $(document).ready(function() {
-                    $('#example').dataTable( {
-                        "scrollY": 200,
-                        "scrollX": true
-                    } );
-                } );
+        {
+            /*
+            when page get load then below script will run
+             and collapse all the section which are under .firstSectionClass( Element Class).
              */
+              var element= $('.styleships .hideListButton');
+              for(var i = 0;i<element.length;i++)
+                  twistSection(element[i]);
+                  
+                  /*
+             Below script it bind with arrow icon (Icon which are being used for collapse) which are displaying on section.
+             When Icon are clicked then below script will run.
+             */
+              $('.styleships .showListButton').bind('click',function(event){
+                  event.preventDefault();
+                  var el= $('.styleships .hideListButton');
+                  for(var i = 0;i<el.length;i++)
+                      twistSection(el[i]);
+                  if(el.length!=0)
+                      twistSection(this);
+                  
+                  //this --> represent currently pressed section img element. You can write any script for this element fi you want to do something on section.
+              });
+                              
+                              
+        });
         </script>
+        
         
         <apex:actionstatus id="status">
             <apex:facet name="start">
@@ -66,24 +58,76 @@
             </apex:facet>
         </apex:actionstatus>
         
-        <apex:pageBlock title="Buscar Documento de Transporte" id="pb1"> <!-- TODO : ADD CUSTOM LABEL -->
+        <apex:pageBlock title="Buscar Documento de Transporte" id="pb1" mode="edit"> <!-- TODO : ADD CUSTOM LABEL -->
             <apex:pageBlockSection columns="2" id="pbs">
-                <apex:inputtext value="{!shipmentNumber}" id="shpn" label="{!$ObjectType.BFM_Shipment__c.fields.Shipment_Number__c.label}" />
-                <apex:input type="date" value="{!shipmentStart}" id="shpd" label="Início de transporte De"/> <!-- TODO : Add custom label -->
+                <apex:inputtext value="{!shipmentNumber}" id="shpn" label="Número doc.Transp"/>
+                <apex:inputtext value="{!carrieraccvendor}" id="carvendor" label="Código da Transportadora"/>
+                <!--<apex:inputtext value="{!carrieracc}" label="Doc Atualizados S/N"/>--> 
+                <apex:inputtext value="{!shipCarrierAccount}" label="Nome transportadora"/>
+                <apex:inputtext value="{!shpmnttype}" label="Tipo doc Transp"/>
+                <apex:inputtext value="{!shipFromAccount}" label="CNPJ Transportadora" id="shpvac"/>
+                <apex:inputtext value="{!stageplantcode}" label="Planta"/>
             </apex:pageBlockSection>
-            <apex:pageBlockSection columns="2" >
-                <apex:inputText value="{!unileverCompanyAccountCNPJ}" label="{!$Label.BFM_Unilever_Account_CNPJ}" id="shpucc" />
-                <apex:input type="date" value="{!shipmentStartTo}" id="shpd1" label="Início de transporte Até"/> <!-- TODO : Add custom label -->          
-            </apex:pageBlockSection>
-            <apex:pageBlockSection columns="2" >  
-                <apex:inputText value="{!carrierCompanyAccountName}" label="{!$Label.BFM_Vendor_Name}" id="shpvan" required="false" />
-                <apex:inputtext value="{!vendorAccountCNPJ}" label="{!$Label.BFM_Vendor_CNPJ}" id="shpvac" />
-            </apex:pageBlockSection>
-            <div align="center">
-                <apex:commandButton value="{!$Label.BFM_Search_Shipment}" id="searchButton" action="{!mySearch}" status="status" rerender="frm,pb1,pbs,shpd,shpn,ships,ships1"/>
+            
+            <apex:pageBlockSection columns="2">
+                <apex:pageBlockSectionItem dataStyle="text-align:center; width: 50.5%; max-width: 55%;">
+                    <apex:outputPanel >
+                        <label for="frm">
+                            <span>Data Doc Transp  From</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <apex:input type="date" value="{!shipcrdate}"/>
+                        </label>
+                        <label for="to">
+                            <span>To</span>&nbsp;&nbsp;
+                            <apex:input type="date" value="{!shipcrdateupto}"/>
+                        </label>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
                 
+                <!--<apex:pageBlockSectionItem dataStyle="text-align:left; width: 45%; max-width: 55%;padding:0px 0px 0px 220px;margin:0px;">
+                    <apex:outputPanel style="color:#4a4a56;font-weight:bold" >
+                    <label for="Planta">
+                        <span>Planta</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       	<apex:input value="{!stageplantcode }"/>
+                    </label>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>-->
+               </apex:pageBlockSection>
+
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem dataStyle="text-align:center; width: 50.5%; max-width: 55%;">
+                    <apex:outputPanel >
+                        <label for="frm">
+                            <span>Inicio Transporte  From</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <apex:input type="date" value="{!shipstart}"/>
+                        </label>
+                        <label for="to">
+                            <span>To</span>&nbsp;&nbsp;
+                            <apex:input type="date" value="{!shipsrtupto}"/>
+                        </label>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+             </apex:pageBlockSection>
+            
+            <apex:pageBlockSection columns="2">
+             <apex:pageBlockSectionItem dataStyle="text-align:center; width: 54.5%; max-width: 55%;">
+                    <apex:outputPanel >
+                        <label for="frm">
+                            <span>Data de Preço</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <apex:input type="date" value="{!pricingDateStart}"/>
+                        </label>
+                        <label for="to">
+                            <span>Até</span>&nbsp;&nbsp;
+                            <apex:input type="date" value="{!pricingDateupto}"/>
+                        </label>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection><br/>
+            
+            <div align="center">
+                <apex:commandButton value="{!$Label.BFM_Search_Shipment}" id="searchButton" action="{!mySearch}" status="status" rerender="pgShips"/>
+                <apex:commandButton action="{!redirectPage}" value="{!$Label.BFM_Clear}"/>
                 <apex:commandButton id="btnFileUpload" value="{!$Label.BFM_Filleupload}"  onclick="window.open('{!$Site.prefix}/apex/BFM_Fileupload_VF');"/>
-                <button class="btn" style="padding:4px;">{!$Label.Update_Shipment}</button>
+                <button class="btnSearch" style="padding:4px;">{!$Label.Update_Shipment}</button>
                 <button class="btnRep" style="padding:4px;">Gerar prévia de custo</button> <!-- TODO : add custom label -->
             </div>
         </apex:pageBlock>
@@ -115,11 +159,13 @@
                         <apex:OutputText value="{!shp.Last_Shipment_Update__c}"/>
                     </apex:column>
                     <apex:column value="{!shp.Shipment_Status__c}"/>
+                    <apex:column value="{!shp.Carrier_Account_Vendor_Code__c}"/>
                 </apex:pageBlockTable>
             </apex:outputPanel>
             <apex:pageBlockButtons location="top">
                 <div style="text-align:right">
-                    Total de Registros: {!Con.resultSize}     <!-- TODO : ADD CUSTOM LABEL -->     
+                    <!--Total de Registros: {!Con.resultSize} -->    <!-- TODO : ADD CUSTOM LABEL -->
+                    {!$Label.BFM_Select_Records}
                     <apex:selectList value="{!recordscount}" multiselect="false" size="1">                
                         <apex:selectOptions value="{!recordsize}"/>
                         <apex:actionSupport event="onchange" action="{!getshipments}" reRender="ships,ships1"/>
@@ -148,50 +194,50 @@
         
     </apex:form>
     <script type="text/javascript">
-    function selectAllCheckboxes(obj,receivedInputID){
-        var inputCheckBox = document.getElementsByTagName("input");                  
-        for(var i=0; i<inputCheckBox.length; i++){          
-            if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                     
-                inputCheckBox[i].checked = obj.checked;
+        function selectAllCheckboxes(obj,receivedInputID){
+            var inputCheckBox = document.getElementsByTagName("input");                  
+            for(var i=0; i<inputCheckBox.length; i++){          
+                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                     
+                    inputCheckBox[i].checked = obj.checked;
+                }
             }
         }
-    }
-    
-    $('.btn').click(function() {
-        var str = '';
-        $("input[type=checkbox]:checked").each(function() {
-            if ($(this).val() != '0' && $(this).val() != null) {
-                str += $(this).val() + ',';
-            }
+        
+        $('.btnSearch').click(function() {
+            var str = '';
+            $("input[type=checkbox]:checked").each(function() {
+                if ($(this).val() != '0' && $(this).val() != null) {
+                    str += $(this).val() + ',';
+                }
+            });
+            str = str.slice(0, -1);
+            //alert(str);
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.BFM_SearchShipmentCTeController_CC.updateShipments}',
+                str,
+                function(result, event) {
+                    //alert('result '+result);
+                }, {
+                    escape: true
+                }
+            );
         });
-        str = str.slice(0, -1);
-        //alert(str);
-        Visualforce.remoting.Manager.invokeAction(
-            '{!$RemoteAction.BFM_SearchShipmentCTeController_CC.updateShipments}',
-            str,
-            function(result, event) {
-                //alert('result '+result);
-            }, {
-                escape: true
+        
+        $('.btnRep').click(function() {
+            var str = '';
+            $("input[type=checkbox]:checked").each(function() {
+                if ($(this).val() != '0' && $(this).val() != null) {
+                    str += $(this).val().substring(0, 15) + ',';
+                }
+            });
+            str = str.slice(0, -1);
+            var profileName = '{!profile}';
+            //alert(profileName);
+            if(profileName == 'BFM Partner Community User') {
+                window.open("/BrazilFreightCollaborationTool/{!cteIssuingReport.Id}?pv0=" + str, "_blank"); 
+            } else {
+                window.open("/{!cteIssuingReport.Id}?pv0=" + str, "_blank");
             }
-        );
-    });
-    
-    $('.btnRep').click(function() {
-        var str = '';
-        $("input[type=checkbox]:checked").each(function() {
-            if ($(this).val() != '0' && $(this).val() != null) {
-                str += $(this).val().substring(0, 15) + ',';
-            }
-        });
-        str = str.slice(0, -1);
-        var profileName = '{!profile}';
-        //alert(profileName);
-        if(profileName == 'BFM Partner Community User') {
-            window.open("/BrazilFreightCollaborationTool/{!cteIssuingReport.Id}?pv0=" + str, "_blank"); 
-        } else {
-            window.open("/{!cteIssuingReport.Id}?pv0=" + str, "_blank");
-        }
-    }); 
+        }); 
     </script>
 </apex:page>

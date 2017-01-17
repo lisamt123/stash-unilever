@@ -157,6 +157,26 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Delivery_System_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Delivery System Description</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Delivery_System__c</fullName>
+        <externalId>false</externalId>
+        <label>Delivery System</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Equip_Type__c</fullName>
         <externalId>false</externalId>
         <label>Equip. Type</label>
@@ -194,6 +214,15 @@
         <label>Is Deleted in SAP</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Last_Occurrence_Update__c</fullName>
+        <description>Indicates last update datetime after pushing &quot;Update occurrence&quot; button</description>
+        <externalId>false</externalId>
+        <label>Last Occurrence Update</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>Load_Type_Description__c</fullName>

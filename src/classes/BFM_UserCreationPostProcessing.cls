@@ -23,8 +23,8 @@ public with sharing class BFM_UserCreationPostProcessing implements Queueable{
      * */
     public void execute(QueueableContext SC){
         BFM_UserCreationRequest__c accessRequest = [SELECT Created_User__c, Tax_User__c
-                                                        FROM BFM_UserCreationRequest__c 
-                                                  WHERE Id =:userRequestId];
+                                                    FROM BFM_UserCreationRequest__c 
+                                                    WHERE Id =:userRequestId];
         accessRequest.Created_User__c = userId;
         update accessRequest;
         
