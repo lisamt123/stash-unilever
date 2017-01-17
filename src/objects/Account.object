@@ -3449,6 +3449,30 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>PQN_Cluster__c</fullName>
+        <description></description>
+        <externalId>false</externalId>
+        <label>PQN Cluster</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>PQN_Country__c</fullName>
+        <description></description>
+        <externalId>false</externalId>
+        <label>PQN Country</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>	
     <fields>
         <fullName>Latest_Case_Product_Code__c</fullName>
         <description>cec_Latest Primary Case&apos;s product code</description>
