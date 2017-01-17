@@ -30,7 +30,7 @@
                     <li><a onclick="setActiveLink('forum');" id="forum" href="{!$Page.PC_Forum_clone}" target="_self">Collaborate!</a></li>
                     <li><a href="http://play.trivie.com/#/home/" target ="_new"><span class="text-muted">Games</span></a></li>
                 <!--    <li><a onclick="setActiveLink('profile');" id="profile" href="{!$Page.PBS_MyProfile}" target="_self">My Profile</a></li> -->
-              <!-- Raju Edited -->    
+              <!-- Anusha Edited -->    
                     <li><a data-toggle="modal" data-target="#myModal2" target="_self" alt="PBS My profile" title="PBS My profile" href="" onclick="callparentWindow();" coords="20,244,134,209,184,359,112,383,113,404,100,392,89,408,69,396" shape="poly">My Profile</a></li>
                    
                     <!--<apex:image value="{!loggedUsernameImageUrl}" styleClass="profilePic-header"/>-->
@@ -41,7 +41,9 @@
 
 function callparentWindow()
 {
+
 jQuery(window.parent.document).find('#myModal1').modal({
+
     appendTo: jQuery(window.parent.document).find('body'),
     overlayCss: {backgroundColor:"#333"}, // Optional overlay style
     overlayClose:true, 
@@ -58,8 +60,217 @@ jQuery(window.parent.document).find('#myModal1').modal({
     
     </div> 
 
-     <!--End Model -->
      
+        <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-5 col-md-4" id="hb-right">
+                    <div class="row">
+                        <ul class="nav nav-tabs pull-right">
+                          <!--li class="nav-item">
+                            <a class="nav-link active" href="#">Avatar</a>
+                          </li
+                          <li class="nav-item">
+                            <a class="nav-link active" href="#">Profile</a>
+                          </li> -->
+                         </ul>
+                    </div>
+                    <!--Anusha Edit for to show profile image -->
+                   <!-- <div class="thumb achievements-avatar" style="background:url(https://unilever--SDFCPlanCr--c.cs28.content.force.com/profilephoto/005/F);background-size: cover;"> 
+                     <div class="thumb achievements-avatar" style="background:url(https://unilever--SDFCPlanCr--c.cs28.content.force.com/profilephoto/005/F);background-size: cover;">
+                    <img src="https://unilever--SDFCPlanCr--c.cs28.content.force.com/profilephoto/005/F" />
+                    </div>-->
+                   
+                    <div id="hb-right" class="col-xs-12 col-sm-4 col-md-3">
+                <div class="thumb achievements-avatar" style="background:url({!JSENCODE(oUser.FullPhotoUrl)});background-size: cover;">
+                <img src="{!JSENCODE(oUser.FullPhotoUrl)}" />
+                </div>
+                <!--End Anusha -->
+            </div>
+                </div>
+
+               <div class="col-xs-12 col-sm-7 col-md-8 pcr-border-left">
+                <div class="profile-data">
+                    <div class="profile-header row">
+                        <div class="col-xs-9 col-md-9 col-lg-9">
+                            <h2> {!$User.FirstName} {!$User.LastName} </h2>
+                            <ul>
+                                <li class="profile-title"></li>
+                                <li class="profile-mail"><span class="glyphicon glyphicon-envelope"></span> {!$User.Email}
+                                <!-- <span><a href="#">Edit</a></span>  -->  
+                                </li> 
+                            </ul>
+                        </div>
+                        <!--<div class="col-xs-3 col-md-3 col-lg-3">
+                            <apex:image title="" value="{!URLFOR($Resource.PCResources, 'img/avatar.jpg')}" />
+                        </div>-->    
+                </div>
+                <div class="pcr-border-top"></div>
+                    
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="geography">Geography</label>
+                             <div class="col-sm-8">
+                            <select id="geography" class="form-control">
+                                <apex:repeat value="{!geographyOptions}" var="geoObj">
+                                    <apex:outputPanel layout="none" rendered="{!profile.Geography__c == geoObj}">
+                                        <option value="{!geoObj}" selected="selected">{!geoObj}</option>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel layout="none" rendered="{!profile.Geography__c != geoObj}">
+                                        <option value="{!geoObj}">{!geoObj}</option>
+                                    </apex:outputPanel>
+                                </apex:repeat>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="workLevel" class="col-sm-4 control-label">Work Level</label>
+                        <div class="col-sm-8">
+                            <select id="workLevel" class="form-control" value="{!workLevel}" onchange="worklevelfun(this.value);">
+                                <apex:outputPanel id="wl">
+                                 <apex:repeat value="{!workLevelOptions}" var="wlObj">
+                                    <apex:outputPanel layout="none" rendered="{!profile.Work_Level__c == wlObj}">
+                                        <option value="{!wlObj}" selected="selected">{!wlObj}</option>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel layout="none" rendered="{!profile.Work_Level__c != wlObj}">
+                                        <option value="{!wlObj}">{!wlObj}</option>
+                                     </apex:outputPanel>
+                                </apex:repeat>
+                               
+                             </apex:outputPanel>  
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                     <apex:outputPanel id="JobProfileSelection">
+                        <label for="jobProfile" class="col-sm-4 control-label">Job Profile</label>
+                        <div class="col-sm-8">
+                            <select id="jobProfile" class="form-control">
+                                <apex:repeat value="{!JobProfileOptions}" var="jbObj">
+                                    <apex:outputPanel layout="none" rendered="{!profile.user_role__c == jbObj.Id}">
+                                        <option value="{!jbObj.Id}" selected="selected">{!jbObj.Name}</option>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel id="jobPr" layout="none" rendered="{!profile.user_role__c != jbObj.Id}" >
+                                        <option value="{!jbObj.Id}">{!jbObj.Name}</option>
+                                    </apex:outputPanel>
+                                </apex:repeat>
+                            </select>
+                        </div>
+                        <!--<div class="col-sm-2" style="font-size: 11px; min-height: 35px; display: flex; justify-content: center; align-content: center; flex-direction: column;">
+                            <a href="http://apps.unilever.com/global/SCW/app/Pages/index.html" class="">Unsure Who You Are?</a>
+                        </div>-->
+                     </apex:outputPanel>
+                    </div>
+                     <div class="form-group">
+                        <label for="category" class="col-sm-4 control-label">Category</label>
+                        <div class="col-sm-8">
+                            <select id="category" class="form-control">
+                                <apex:repeat value="{!CategoryOptions}" var="caObj">
+                                    <apex:outputPanel layout="none" rendered="{!profile.Category__c == caObj}">
+                                        <option value="{!caObj}" selected="selected">{!caObj}</option>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel layout="none" rendered="{!profile.Category__c != caObj}">
+                                        <option value="{!caObj}">{!caObj}</option>
+                                    </apex:outputPanel>
+                                </apex:repeat>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobProfile" class="col-sm-4 control-label">Training Mentor</label>
+                        <div class="col-sm-8">
+                            <input type="text" value="{!profile.buddy__c}" class="form-control" name="buddyName" id="buddyName" data-toggle="tooltip" title="Please enter your buddy name" />
+                        </div>
+                    </div>
+                   <!-- <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="submit" class="save-btn almond-primary-btn small-btn pull-right">Save</button>
+                        </div>
+               
+            </div>-->
+                    <div class="form-group">
+                        <div class="col-sm-offset-7 col-sm-5">
+                            <button class="btn btn-warning" type="submit" onClick="location.reload();" data-dismiss="modal">Back</button>
+                            <button class="save-btn btn btn-success pull-right" type="submit">Save</button>
+                        </div>
+                    </div>
+               
+        </div>
+       
+            <!-- End Modal -->
+ <script type="text/javascript">
+                function showModal() {
+                    $jk(".modal-backdrop").appendTo("#lms-template-wrapper"), $jk("#myModal1").modal("show")
+                }
+
+                function hideModal() {
+                    $jk("#myModal1").modal("hide")
+                }
+                var $jk = jQuery.noConflict(),
+                    availableOptions = {};
+                $jk(document).ready(function() {
+                    $jk('[data-toggle="tooltip"]').tooltip(), $jk(".save-btn").on("click", function() {
+                        showModal();
+                        var o = $jk("#geography").val(),
+                            a = $jk("#workLevel").val(),
+                            e = $jk("#jobProfile").val(),
+                            c = $jk("#category ").val(),
+                            l = $jk("#buddyName").val();
+                        PBS_MyProfileController_CC.storeUserProfile(o, a, e, c, l, function(o, a) {
+                            o !== !0 || (window.parent.postMessage({
+                                itemId: "home"
+                            }, "*"), location.reload()), hideModal()
+                        })
+                    })
+                });
+                            </script>
+            <script type="text/javascript">         
+                function worklevelfun(parameter) {
+                   jQuery("[id$=cityId]").val(parameter); 
+                   workleveAf(parameter); 
+                }
+            </script>
+             <div id="hb-right" class="col-xs-12 col-sm-4 col-md-3">
+                <div class="thumb achievements-avatar" style="background:url({!JSENCODE(oUser.FullPhotoUrl)});background-size: cover;">
+                </div>
+            </div>
+            
+            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div style="padding:10px 0;">
+                                  <p>Saving data ...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+        </div>
+            </div><button type="button" class="close pcr-close" data-dismiss="modal"></button>
+                   </div>
+                        </div>
+                                </div>
+                                <apex:form id="theForm">
+     <apex:inputHidden value="{!workLevel}" id="cityId"/> 
+                <apex:actionfunction name="workleveAf" action="{!jobprofileSelection}"  rerender="JobProfileSelection"/>
+                <apex:actionStatus id="status">
+                    <apex:facet name="start">
+                        <c:PBS_LMSStatus statusComponentId="{!$Component.status}"/>
+                    </apex:facet>
+                </apex:actionStatus>
+
+                <div class="row almond-nav" >
+                    <div class="btn-group col-xs-12 col-sm-12 col-md-12">
+                    </div>
+                    </div>
+                    </apex:form>
      <!--End Anusha Edited -->
     
 </apex:Component>
