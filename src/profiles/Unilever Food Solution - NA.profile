@@ -15642,12 +15642,7 @@
         <field>Case.WorkIt2__Total_Seconds__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.agf__ADM_Work__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
+   <fieldPermissions>
         <editable>false</editable>
         <field>Case.dgai__Sugestion_ID__c</field>
         <readable>false</readable>
