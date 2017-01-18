@@ -48777,6 +48777,7 @@
         <recordType>uw_Links__c.Pinnovate_Wall_Link</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+	
     <tabVisibilities>
         <tab>mdm_Product_Category__c</tab>
         <visibility>DefaultOff</visibility>
@@ -48796,6 +48797,10 @@
     <tabVisibilities>
         <tab>standard-Campaign</tab>
         <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+	 <tabVisibilities>
+        <tab>standard-WaveHome</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Case</tab>
