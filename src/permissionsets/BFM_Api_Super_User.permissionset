@@ -29,6 +29,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BFM_CCeHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BFM_CPFValidator</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -70,6 +74,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_NFEHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BFM_NFSManualLink_CC</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BFM_NFSwithholdTaxController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -190,6 +202,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_ValidateCNPJ</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BFM_WithholdTaxController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BFM_WithholdTaxDebitNoteController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <fieldPermissions>
@@ -3405,6 +3425,10 @@
     <pageAccesses>
         <apexPage>BFM_AccountMoreDetails</apexPage>
         <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>BFM_CTeSearch_VF</apexPage>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>BFM_CommunitiesSelfReg_VF</apexPage>

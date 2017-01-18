@@ -1,0 +1,147 @@
+<apex:page standardController="BFM_CT_e__c" extensions="BFM_CTeSearch_CC" recordSetVar="BFM_CT_e" doctype="html-5.0" standardStylesheets="false" sidebar="false" id="pge">
+    <apex:form id="frm">
+        <style>
+            th, td { white-space: nowrap; }
+            div.dataTables_wrapper {
+            width: 1250px;
+            margin: 0 auto;
+            }   
+        </style>
+        
+        <script>
+        $ = jQuery.noConflict();
+        </script>
+        
+        <apex:actionstatus id="status">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                                                                     height: 100%;opacity:0.65;width:100%;"> 
+                    <div class="waitingHolder" style="top: 74.2px; width: 91px;">
+                        <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                        <span class="waitingDescription">Loading...</span>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+        
+        <apex:pageBlock id="pb1" mode="edit">
+            <apex:pageBlockSection columns="2" id="cteno">
+                    <apex:inputtext value="{!ctename}" label="Número CT-e do Salesforce"/>
+                    <apex:inputText value="{!ctenumber}" label="Número CT-e"/>
+                    <apex:inputText value="{!cnpjservice}" label="CNPJ Tomador"/>
+                    <apex:inputText value="{!cnpjemissor}" label="CNPJ Emissor Cte"/>
+                    <apex:inputText value="{!plant}" label="Planta"/>
+                    <apex:inputText value="{!ctekey}" label="Chave de Acesso"/>
+                    <apex:inputText value="{!suppliercode}" label="Código Fornecedor"/>
+                </apex:pageBlockSection>
+            
+                <apex:pageBlockSection >
+                    <apex:pageBlockSectionItem dataStyle="text-align:center; width: 52%; max-width: 55%;">
+                    <apex:outputpanel >    
+                        <label for="frm">
+                            <span>Date de Criação de</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <apex:input type="date" value="{!cteemistart}"/>                            
+                        </label>
+                        <label for="to">
+                            <span>Até</span>
+                            <apex:input type="date" value="{!cteemito}"/>
+                        </label>  
+                        </apex:outputpanel>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+            
+                <apex:pageBlockSection >
+                    <apex:pageBlockSectionItem dataStyle="text-align:center; width: 53.5%; max-width: 55%;">
+                    <apex:outputpanel >    
+                        <label for="frm">
+                            <span>Data upload SF</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <apex:input type="date" value="{!ctecrdatestart}"/>                            
+                        </label>
+                        <label for="to">
+                            <span>Até</span>
+                            <apex:input type="date" value="{!ctecrdateto}"/>
+                        </label>  
+                        </apex:outputpanel>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection><br/>
+ 
+            <div align="center">
+                <apex:commandButton value="Procurar cte" action="{!searchctes}" status="status" reRender="ctrecs"/>&nbsp; <!-- todo : Add custom label -->
+                <apex:commandButton action="{!redirectPage}" value="{!$Label.BFM_Clear}"/>
+            </div>
+        </apex:pageBlock>
+        
+        <apex:pageblock title="Resultado da busca" id="ctrecs">
+            <apex:outputPanel rendered="{! IF(ctelist!= null && ctelist.size ==0,true,false)}">
+                <h1>Nenhum registro encontrado</h1> <!-- Todo : add custom label -->
+            </apex:outputPanel>
+            <apex:outputPanel id="cte" rendered="{!IF(AND(NOT(ISBLANK(ctelist)),ctelist.size>0),true,false)}" >
+                <apex:pageBlockTable value="{!ctelist}" var="cte" id="ctes">
+                    <apex:column headerValue="Name">  
+                        <apex:outputlink target="_blank" value="/{!cte.id}">{!cte.Name}</apex:outputlink>  
+                    </apex:column> 
+                    <apex:column value="{!cte.CT_e_Number__c}"/>
+                    <apex:column value="{!cte.CT_e_key__c}"/>
+                    <apex:column value="{!cte.CNPJ_issuer__c}"/>
+                    <apex:column value="{!cte.Cte_Emission_date_time__c}"/>
+                    <apex:column headerValue="Duplicate Record Status">
+                        <apex:image id="img" value="{!If(cte.Is_Not_Duplicated__c == True, $Resource.BFM_Green,If(cte.Is_Not_Duplicated__c == false, $Resource.BFM_White, $Resource.BFM_Red))}"/>
+                    </apex:column>
+                    <apex:column headerValue="CNPJ Status">
+                        <apex:image id="img1" value="{!If(cte.Is_CNPJ_Valid__c == True, $Resource.BFM_Green,If(cte.Is_CNPJ_Valid__c == False, $Resource.BFM_White, $Resource.BFM_Red))}"/>
+                    </apex:column>
+                    <apex:column headerValue="Link Status">
+                        <apex:image id="img2" value="{!If(cte.Link_Status__c == "Link Ok", $Resource.BFM_Green,If(cte.Link_Status__c == " ",$Resource.BFM_White, $Resource.BFM_Red))}"/>
+                    </apex:column>
+                    <apex:column headerValue="Sefaz Status">
+                        <apex:image id="img3" value="{!If(cte.Sefaz_Check_Status__c == "Sefaz Status Requested", $Resource.BFM_Green,If(cte.Sefaz_Check_Status__c == " ",$Resource.BFM_White,$Resource.BFM_Red))}"/>
+                    </apex:column>
+				</apex:pageBlockTable>
+            </apex:outputPanel>
+            <apex:pageBlockButtons location="top">
+                <div style="text-align:right"> 
+                    {!$Label.BFM_Select_Records}
+                    <apex:selectList value="{!recordscount}" multiselect="false" size="1">                
+                        <apex:selectOptions value="{!recordsize}"/>
+                        <apex:actionSupport event="onchange" action="{!getctes}" reRender="cte,ctes"/>
+                    </apex:selectList>
+                    <!-- Todo : add custom label -->
+                    <apex:commandLink action="{!First}" title="First" value="First" rendered="{!Con.HasPrevious}"/>&nbsp;    
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">Primeira</apex:outputPanel>&nbsp;
+                    <!-- Todo : add custom label -->
+                    <apex:image url="/img/search_prevarrow_disabled.gif" styleClass="prevArrow" rendered="{!NOT(Con.HasPrevious)}"/> 
+                    <apex:image url="/img/search_prevarrow.gif" title="Previous Page" styleClass="prevArrow" rendered="{!Con.HasPrevious}"/>&nbsp;  
+                    <apex:commandLink action="{!Previous}" title="Previous Page" value="Previous Page" rendered="{!Con.HasPrevious}"/>&nbsp;    
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">Página anterior</apex:outputPanel>&nbsp;
+                    <!-- Todo : add custom label -->
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">Próxima página</apex:outputPanel>          
+                    <apex:commandLink title="Next Page" value="Next Page" rendered="{!Con.HasNext}" action="{!Next}"/>&nbsp;  
+                    <apex:image url="/img/search_nextarrow.gif" title="Next Page" styleClass="nextArrow" rendered="{!Con.HasNext}"/>&nbsp; 
+                    <apex:image url="/img/search_nextarrow_disabled.gif" rendered="{!NOT(Con.HasNext)}"/> 
+                    <!-- Todo : add custom label -->
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">Última</apex:outputPanel> 
+                    <apex:commandLink title="Last"  value="Last" rendered="{!Con.HasNext}" action="{!last}"/> 
+                    
+                </div>
+            </apex:pageBlockButtons>                      
+        </apex:pageblock>
+    </apex:form>
+    <script language="JavaScript" type="text/javascript">
+    function CloseWindow(){  
+        var ctenum=document.getElementById("pge:frm:pb1:ocrno:ctenum").value;
+        if(ctenum==''){
+            alert('Please enter cte no');
+        }else{
+            if(window.parent){
+                window.parent.opener.location.href = window.parent.opener.location.href;
+                window.parent.close();
+                window.parent.reload();
+            }   
+            else{
+                window.opener.location.href = "{!JSENCODE($CurrentPage.parameters.cteid)}"
+                window.close();   
+            }   
+        }
+    }
+    </script>
+</apex:page>

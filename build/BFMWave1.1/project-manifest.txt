@@ -17,6 +17,8 @@ src/classes/BFM_CommunitiesSelfRegController_CC.cls
 src/classes/BFM_CommunitiesSelfRegController_CC.cls-meta.xml
 src/classes/BFM_CPFValidator.cls
 src/classes/BFM_CPFValidator.cls-meta.xml
+src/classes/BFM_CCeHandler.cls
+src/classes/BFM_CCeHandler.cls-meta.xml
 src/classes/BFM_CreateAccessRequest.cls
 src/classes/BFM_CreateAccessRequest.cls-meta.xml
 src/classes/BFM_CreateCarrierUser.cls
@@ -25,11 +27,18 @@ src/classes/BFM_CreateContactFromEmailInformation.cls
 src/classes/BFM_CreateContactFromEmailInformation.cls-meta.xml
 src/classes/BFM_CreateUserQueueable.cls
 src/classes/BFM_CreateUserQueueable.cls-meta.xml
+src/classes/BFM_GeneralServiceCalls.cls
+src/classes/BFM_GeneralServiceCalls.cls-meta.xml
 src/classes/BFM_LoginuserPermissions_Test.cls
 src/classes/BFM_LoginuserPermissions_Test.cls-meta.xml
 src/classes/BFM_LoginuserPermissions.cls
 src/classes/BFM_LoginuserPermissions.cls-meta.xml
 src/classes/BFM_NFEHandler.cls
+src/classes/BFM_NFEHandler.cls-meta.xml
+src/classes/BFM_NFSManualLink_CC.cls
+src/classes/BFM_NFSManualLink_CC.cls-meta.xml
+src/classes/BFM_NFSwithholdTaxController.cls
+src/classes/BFM_NFSwithholdTaxController.cls-meta.xml
 src/classes/BFM_OccurrenceHandler.cls
 src/classes/BFM_OccurrenceHandler.cls-meta.xml
 src/classes/BFM_QueryFreights.cls
@@ -59,6 +68,7 @@ src/classes/BFM_SendEmailToCarrierApprover.cls-meta.xml
 src/classes/BFM_ShipmentHandler.cls
 src/classes/BFM_ShipmentHandler.cls-meta.xml
 src/classes/BFM_ShipmentUpdate_CC.cls
+src/classes/BFM_ShipmentUpdate_CC.cls-meta.xml
 src/classes/BFM_ShipmentDocumentGeneration_CC.cls
 src/classes/BFM_ShipmentDocumentGeneration_CC.cls-meta.xml
 src/classes/BFM_TriggerFactory.cls
@@ -85,6 +95,8 @@ src/classes/BFM_UserCreationRequestHandler.cls
 src/classes/BFM_UserCreationRequestHandler.cls-meta.xml
 src/classes/BFM_ValidateCNPJ.cls
 src/classes/BFM_ValidateCNPJ.cls-meta.xml
+src/classes/BFM_WithholdTaxDebitNoteController.cls
+src/classes/BFM_WithholdTaxDebitNoteController.cls-meta.xml
 src/customMetadata/BFM_Mulesoft_Endpoint.Query_Freights.md
 src/customMetadata/BFM_Mulesoft_Endpoint.Query_Occurrence.md
 src/customMetadata/BFM_Mulesoft_Endpoint.Update_Freight_Data.md
@@ -149,6 +161,8 @@ src/pages/BFM_AccountMoreDetails.page
 src/pages/BFM_AccountMoreDetails.page-meta.xml
 src/pages/BFM_CommunitiesSelfReg_VF.page
 src/pages/BFM_CommunitiesSelfReg_VF.page-meta.xml
+src/pages/BFM_CTeSearch_VF.page
+src/pages/BFM_CTeSearch_VF.page-meta.xml
 src/pages/BFM_SearchOccurrences_VF.page
 src/pages/BFM_SearchOccurrences_VF.page-meta.xml
 src/pages/BFM_SearchShipmentCTe_VF.page
