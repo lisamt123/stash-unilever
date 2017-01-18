@@ -1810,11 +1810,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_MDMOpsEmail__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_MDMOpsFirstSubmittedToSAP__c</field>
         <readable>false</readable>
     </fieldPermissions>
