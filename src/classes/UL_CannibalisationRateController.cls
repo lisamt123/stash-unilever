@@ -22,6 +22,15 @@ public with sharing class UL_CannibalisationRateController{
     public UL_CannibalisationRateController(ApexPages.StandardController stdController) {
         this.stdController = stdController;
         this.record = (UL_Cannibalisation_Rate__c)stdController.getRecord();
+        
+        try{
+            ACCL__Product__c allProducts = [SELECT Id, Name FROM ACCL__Product__c WHERE UL_Generic_Product__c=TRUE LIMIT 1];
+            UL_Planning_Level__c allAccounts = [SELECT Id, Name, UL_Customer__c FROM UL_Planning_Level__c WHERE UL_Customer__r.UL_Generic_Customer__c=TRUE LIMIT 1];
+            
+            this.record.UL_Planning_Level__c = allAccounts.Id;
+            this.record.UL_Product__c = allProducts.Id;
+        }
+        catch(Exception e){}
     }
     
     /*******************************************************************

@@ -112,8 +112,19 @@
     <fields>
         <fullName>UL_Feature__c</fullName>
         <externalId>false</externalId>
-        <globalPicklist>UL_Feature</globalPicklist>
         <label>Feature</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Off-Shelf</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shelf</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
         <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -156,10 +167,16 @@
         <label>Product</label>
         <lookupFilter>
             <active>true</active>
+            <booleanFilter>1 OR 2</booleanFilter>
             <filterItems>
                 <field>ACCL__Product__c.ACCL__Product_Level__c</field>
                 <operation>equals</operation>
                 <value>Commodity</value>
+            </filterItems>
+            <filterItems>
+                <field>ACCL__Product__c.UL_Generic_Product__c</field>
+                <operation>equals</operation>
+                <value>True</value>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>
