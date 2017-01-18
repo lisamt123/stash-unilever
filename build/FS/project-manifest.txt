@@ -18,3 +18,7 @@ src/objects/Opportunity.object
 src/objects/FS_CHD_GFCCode__c.object
 src/workflows/Account.workflow
 src/flows/FS_CHD_Segemetation_Call_Apex-10.flow
+src/classes/FS_Utility.cls
+src/classes/FS_Utility.cls-meta.xml
+src/objects/Product2.object
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
