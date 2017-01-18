@@ -132,7 +132,6 @@ src/objects/BFM_File__c.object
 src/objects/BFM_Email_Information__c.object
 src/objects/BFM_Error_Log__c.object
 src/objects/BFM_NFS__c.object
-src/objects/BFM_MIRO_Header__c.object
 src/objects/BFM_POD__c.object
 src/objects/BFM_NF_e__c.object
 src/objects/BFM_Occurrence__c.object
