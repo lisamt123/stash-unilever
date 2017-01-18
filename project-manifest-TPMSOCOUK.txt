@@ -253,10 +253,6 @@ src/tabs/UL_Approval_Threshold__c.tab
 src/tabs/UL_Workflow_Threshold_Template__c.tab
 src/tabs/UL_Delivery_Profile__c.tab
 src/tabs/UL_Cannibalisation_Rate__c.tab
-src/flows
-src/flows/UL_Tactic_update_from_Promotion-3.flow
-src/flows/UL_Tactic_End_Date_Update_from_Promotion-1.flow
-src/flows/UL_UpdatePromotiontype-3.flow
 src/labels
 src/labels/TPMSOCOUK.labels
 src/classes
@@ -484,3 +480,10 @@ src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Parent_Workflow.approvalProces
 src/profiles
 src/profiles/UnileverACTPMSOCO.profile
 src/profiles/UnileverACTPMUKI.profile
+src/sharingRules/ACCL__Promotion_Template__c.sharingRules
+src/groups/SoCo_Account_Manager_AR01.group
+src/groups/SoCo_Account_Manager_CL01.group
+src/groups/SoCo_Account_Manager_CL03.group
+src/groups/SoCo_Category_Manager_AR01.group
+src/groups/SoCo_Category_Manager_CL01.group
+src/groups/SoCo_Category_Manager_CL03.group
