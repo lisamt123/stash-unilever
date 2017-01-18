@@ -6062,14 +6062,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     </fields>
 	<fields>
         <fullName>Vendor__c</fullName>
-        <externalId>true</externalId>
+        <externalId>false</externalId>
         <label>Vendor</label>
         <length>10</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
-        <unique>true</unique>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Vimeo_Link__c</fullName>

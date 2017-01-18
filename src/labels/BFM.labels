@@ -1,0 +1,28 @@
+	<labels>
+        <fullName>BFM_Freight_Ok</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Freight Ok</shortDescription>
+        <value>Documento de Transporte atualizado</value>
+    </labels>
+	<labels>
+        <fullName>BFM_Invalid_CPF_Format</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The CPF must be exactly 11 numeric characters long.</shortDescription>
+        <value>Forum</value>
+    </labels>
+	<labels>
+        <fullName>BFM_NF_e_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_NF-e Information</shortDescription>
+        <value>NF-e Information</value>
+    </labels>
+	<labels>
+        <fullName>BFM_Cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>

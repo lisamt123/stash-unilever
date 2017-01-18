@@ -4,7 +4,6 @@
     <label>Brazil Freight Collaboration Tool</label>
     <tab>Search_Shipment_Cte</tab>
     <tab>standard-Account</tab>
-    <tab>CT_e</tab>
     <tab>NFS</tab>
     <tab>BFM_Debit_Note__c</tab>
     <tab>BFM_NF_e__c</tab>
