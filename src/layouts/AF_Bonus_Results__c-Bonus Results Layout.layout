@@ -97,6 +97,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>AF_Qual_BonusValue__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>AF_Total_Bonus_Sub__c</field>
             </layoutItems>
         </layoutColumns>
