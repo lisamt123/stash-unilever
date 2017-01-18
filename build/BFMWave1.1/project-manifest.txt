@@ -19,6 +19,8 @@ src/classes/BFM_CPFValidator.cls
 src/classes/BFM_CPFValidator.cls-meta.xml
 src/classes/BFM_CCeHandler.cls
 src/classes/BFM_CCeHandler.cls-meta.xml
+src/classes/BFM_CTeSearch_CC.cls
+src/classes/BFM_CTeSearch_CC.cls-meta.xml
 src/classes/BFM_CreateAccessRequest.cls
 src/classes/BFM_CreateAccessRequest.cls-meta.xml
 src/classes/BFM_CreateCarrierUser.cls
@@ -95,6 +97,8 @@ src/classes/BFM_UserCreationRequestHandler.cls
 src/classes/BFM_UserCreationRequestHandler.cls-meta.xml
 src/classes/BFM_ValidateCNPJ.cls
 src/classes/BFM_ValidateCNPJ.cls-meta.xml
+src/classes/BFM_WithholdTaxController.cls
+src/classes/BFM_WithholdTaxController.cls-meta.xml
 src/classes/BFM_WithholdTaxDebitNoteController.cls
 src/classes/BFM_WithholdTaxDebitNoteController.cls-meta.xml
 src/customMetadata/BFM_Mulesoft_Endpoint.Query_Freights.md
@@ -236,6 +240,7 @@ src/tabs/Search_Shipment_Cte.tab
 src/tabs/Search_Occurrence.tab
 src/tabs/BFM_Stage__c.tab
 src/tabs/CT_e.tab
+src/tabs/NFS.tab
 src/tabs/BFM_UserCreationRequest__c.tab
 src/triggers/BFM_Occurrence.trigger
 src/triggers/BFM_Occurrence.trigger-meta.xml

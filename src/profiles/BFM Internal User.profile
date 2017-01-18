@@ -38,6 +38,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BFM_CTeSearch_CC</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BFM_CommunitiesSelfRegController_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
