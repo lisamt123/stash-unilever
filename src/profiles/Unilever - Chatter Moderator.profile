@@ -19690,6 +19690,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FAU_Participant__c.FAU_PII__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Participant__c.FAU_Participant_Chatter_Group_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FAU_Participant__c.FAU_Participants_Workbook__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -19760,6 +19770,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FAU_Participant__c.FAU_Program_Group_Chatter_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FAU_Participant__c.FAU_Program_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -19795,6 +19810,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FAU_Participant__c.FAU_Purpose_Statement__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FAU_Participant__c.FAU_RSVP_Deadline__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -19806,6 +19826,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAU_Participant__c.FAU_Title__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Participant__c.FAU_UL2020_Travel_details__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -19841,6 +19866,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAU_Participant__c.FAU_Webinar_Date_Time__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Participant__c.PA_Email_and_PA_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Participant__c.PII_Chatter_Group_Link__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Participant__c.PII_Chatter_Group__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Participant__c.PII_Table_Chatter_Group_Link__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -41691,6 +41736,14 @@
         <layout>FAU_Participant__c-FAU Participant Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>FAU_Participant__c-FAU Participant Layout</layout>
+        <recordType>FAU_Participant__c.Program_participant</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FAU_Participant__c-FAU Participant Layout</layout>
+        <recordType>FAU_Participant__c.UL2020_Participant</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>FAU_Program__c-FAU Core</layout>
         <recordType>FAU_Program__c.Core</recordType>
     </layoutAssignments>
@@ -41708,6 +41761,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>FAU_Program__c-Program Wave Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FAU_Program__c-Program Wave Layout</layout>
+        <recordType>FAU_Program__c.UL2020</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>FAU_Webinar_Participant__c-Webinar Participant Layout</layout>
@@ -45054,6 +45111,16 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>FAU_Participant__c.Program_participant</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>FAU_Participant__c.UL2020_Participant</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>FAU_Program__c.Core</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -45070,6 +45137,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>FAU_Program__c.Template_Inactive</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>FAU_Program__c.UL2020</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

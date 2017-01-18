@@ -285,6 +285,15 @@ Declined - The Participant Declined a place on the program --></help>
         <name>FAU_No_of_Incomplete_Modules__c</name>
     </fields>
     <fields>
+        <label><!-- PII --></label>
+        <name>FAU_PII__c</name>
+        <relationshipLabel><!-- Participants --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Participant Chatter Group Id --></label>
+        <name>FAU_Participant_Chatter_Group_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Participants Workbook --></label>
         <name>FAU_Participants_Workbook__c</name>
     </fields>
@@ -350,6 +359,10 @@ Declined - The Participant Declined a place on the program --></help>
         <name>FAU_Program_Fee__c</name>
     </fields>
     <fields>
+        <label><!-- Program Group Chatter Id --></label>
+        <name>FAU_Program_Group_Chatter_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Program Id --></label>
         <name>FAU_Program_Id__c</name>
     </fields>
@@ -379,6 +392,10 @@ Declined - The Participant Declined a place on the program --></help>
         <relationshipLabel><!-- Participants --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Purpose Statement --></label>
+        <name>FAU_Purpose_Statement__c</name>
+    </fields>
+    <fields>
         <label><!-- RSVP Deadline --></label>
         <name>FAU_RSVP_Deadline__c</name>
     </fields>
@@ -406,6 +423,10 @@ Declined - The Participant Declined a place on the program --></help>
             <masterLabel>Ms.</masterLabel>
             <translation><!-- Ms. --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- FAU UL2020 Travel details --></label>
+        <name>FAU_UL2020_Travel_details__c</name>
     </fields>
     <fields>
         <label><!-- Unilever Career --></label>
@@ -440,6 +461,23 @@ Declined - The Participant Declined a place on the program --></help>
         <label><!-- Webinar Date/Time --></label>
         <name>FAU_Webinar_Date_Time__c</name>
     </fields>
+    <fields>
+        <label><!-- Email and PA Email --></label>
+        <name>PA_Email_and_PA_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- PII Chatter Group Link --></label>
+        <name>PII_Chatter_Group_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- PII Chatter Group --></label>
+        <name>PII_Chatter_Group__c</name>
+    </fields>
+    <fields>
+        <help><!-- Link for PII table --></help>
+        <label><!-- PII Table Chatter Group Link --></label>
+        <name>PII_Table_Chatter_Group_Link__c</name>
+    </fields>
     <layouts>
         <layout>FAU Participant Layout</layout>
         <sections>
@@ -471,6 +509,14 @@ Declined - The Participant Declined a place on the program --></help>
             <section>Program Information</section>
         </sections>
     </layouts>
+    <recordTypes>
+        <label><!-- Program participant --></label>
+        <name>Program_participant</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UL2020 Participant --></label>
+        <name>UL2020_Participant</name>
+    </recordTypes>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- If application has been assigned to Personal Assistant to fill the forms then the Personal Assistant needs to be identified. --></errorMessage>
@@ -496,6 +542,14 @@ Declined - The Participant Declined a place on the program --></help>
         <errorMessage><!-- Participants can only be added to Active Programs.
 Change the program status to &apos;Active&apos; to continue. --></errorMessage>
         <name>FAU_Participants_added_Active_Programs</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- PII should belong to same program as participant belong. --></errorMessage>
+        <name>UL2020_PII_should_belong_to_same_progra</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the UL2020 Record --></errorMessage>
+        <name>UL2020_Participant_PII_Same_record_type</name>
     </validationRules>
     <webLinks>
         <label><!-- FAU_Send_Email --></label>

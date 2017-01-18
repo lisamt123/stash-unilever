@@ -23,6 +23,10 @@
             <masterLabel>Franchise</masterLabel>
             <translation><!-- Franchise --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>UL2020</masterLabel>
+            <translation><!-- UL2020 --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <help><!-- Cancel All Reminders for the Program. --></help>
@@ -333,6 +337,10 @@
     <recordTypes>
         <label><!-- Template (Inactive) --></label>
         <name>Template_Inactive</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UL2020 --></label>
+        <name>UL2020</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
     <validationRules>
