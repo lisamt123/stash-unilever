@@ -26,3 +26,10 @@
         <shortDescription>BFM_Cancel</shortDescription>
         <value>Cancel</value>
     </labels>
+	<labels>
+        <fullName>BFM_NF_e</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_NF-e</shortDescription>
+        <value>NF-e</value>
+    </labels>

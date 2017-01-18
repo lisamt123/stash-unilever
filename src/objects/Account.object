@@ -5994,7 +5994,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Text</type>
         <unique>false</unique>
     </fields>
-<<<<<<< HEAD
 	<fields>
         <fullName>City__c</fullName>
         <externalId>false</externalId>
@@ -6056,15 +6055,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Region1</label>
         <length>3</length>
         <required>false</required>
-=======
-    <fields>
-        <fullName>Website</fullName>
->>>>>>> develop
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
+    </fields>    
 	<fields>
         <fullName>Vendor__c</fullName>
         <externalId>false</externalId>
@@ -6088,7 +6079,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
         <fullName>Website</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -6106,8 +6096,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
-=======
->>>>>>> develop
         <fullName>Zone__c</fullName>
         <description>Purpose : Created to display user Zone value from user object
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
