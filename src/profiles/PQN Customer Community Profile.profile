@@ -616,9 +616,6 @@
         <layout>PQN_Sourcing_Unit__c-PQN_Supplier_Unit Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PQN_Supplier_Details__c-Supplier_Details Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>PQN_Supplier__c-Supplier Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
