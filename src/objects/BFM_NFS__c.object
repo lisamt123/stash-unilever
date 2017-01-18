@@ -493,7 +493,7 @@
     <fields>
         <fullName>Service_Taker_Company_UF__c</fullName>
         <externalId>false</externalId>
-        <formula>Service_Taker__r.Region__c</formula>
+        <formula>Service_Taker__r.Region1__c</formula>
         <label>Service Taker Company UF</label>
         <required>false</required>
         <trackTrending>false</trackTrending>

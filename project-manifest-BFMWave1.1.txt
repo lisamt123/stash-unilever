@@ -1,8 +1,12 @@
 src
 src/classes/BFM_AccountDAO.cls
 src/classes/BFM_AccountDAO.cls-meta.xml
+src/classes/BFM_AccountDAO_Test.cls
+src/classes/BFM_AccountDAO_Test.cls-meta.xml
 src/classes/BFM_AccountMoreDetailsController.cls
 src/classes/BFM_AccountMoreDetailsController.cls-meta.xml
+src/classes/BFM_AccountMoreDetailsController_Test.cls
+src/classes/BFM_AccountMoreDetailsController_Test.cls-meta.xml
 src/classes/BFM_AccountSharer_Test.cls
 src/classes/BFM_AccountSharer_Test.cls-meta.xml
 src/classes/BFM_AccountSharer.cls
