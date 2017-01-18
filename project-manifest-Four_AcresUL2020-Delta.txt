@@ -1,6 +1,6 @@
 src
-src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder.email
-src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder.email-meta.xml
-src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Travel_Details.email
-src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Travel_Details.email-meta.xml
-src/workflows/FAU_Participant__c.workflow
+src/permissionsets/FAU_Participant_Platform.permissionset
+src/workflows/FAU_Email__c.workflow
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation.email
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation.email-meta.xml
+src/permissionsets/FAU_Participant_Salesforce.permissionset
