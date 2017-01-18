@@ -216,15 +216,14 @@ Throws : N/A
     }
     
     /*******************************************************************
-Purpose: Invokes Promotion workflow  
-Version 1.0
-Parameters: Transaction Id, Promotion Id, Status Mode 
-Returns: String
-Throws : N/A 
-********************************************************************/     
+    Purpose: Invokes Promotion workflow  
+    Version 1.0
+    Parameters: Transaction Id, Promotion Id, Status Mode 
+    Returns: String
+    Throws : N/A 
+    ********************************************************************/     
     @RemoteAction
-    global static String invokeWfBOPromotion(String txId, String objectId, String Mode) {
-        
+    global static String invokeWfBOPromotion(String txId, String objectId, String Mode) {        
         String result = 'test';
         
         try{
@@ -234,40 +233,32 @@ Throws : N/A
             Id apprFuncRet = UL_Utility.NULL_ID;
             List<ACCL__Promotion__c> promoLst = new List<ACCL__Promotion__c>() ;
             List<Id> approverIdsLst = new List<Id>() ;
+                    
+            promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;
+            approverIdsLst.add(promoLst[0].createdbyid) ;
+            THViolate = promoLst[0].UL_ThresholdViolated__c ;
             
-            promoLst = [SELECT Id, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;
-            
-            if((promoLst[0].ACCL__Sales_Org__c == UL_Utility.UKI_SALESORG_UK) || (promoLst[0].ACCL__Sales_Org__c == UL_Utility.UKI_SALESORG_UK)){
-                
-                promoLst[0].UL_Current_Status__c = Mode;
-                Database.Update(promoLst);
-            }
-            else{
-                approverIdsLst.add(promoLst[0].createdbyid) ;
-                THViolate = promoLst[0].UL_ThresholdViolated__c ;
-                
-                if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.toUpperCase())){
-                    //if(!THViolate){
-                    UL_PromotionWorkflowService.submitForApproval(promoId,promoLst,promoLst[0].createdby.UL_Finance_Manager__c,false) ;
-                    if(!THViolate){
+            if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.toUpperCase())){
+                //if(!THViolate){
+                UL_PromotionWorkflowService.submitForApproval(promoId,promoLst,promoLst[0].createdby.UL_Finance_Manager__c,false) ;
+                    if(!THViolate && promoLst[0].UL_Threshold_Window_Result__c != null){
                         do{ 
                             apprFuncRet = UL_PromotionWorkflowService.approveWorkflow(promoId,promoLst,null,false) ;
-                            promoLst = [SELECT Id, Name,CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c,  ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;        
+                            promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name,CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c,  ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;        
                         } while(apprFuncRet != null && !THViolate && promoLst[0].UL_Current_Status__c != UL_Utility.STATUS_APPROVED);
                     }
-                    //}
-                }
-                
-                if(Mode.equalsIgnoreCase(UL_Utility.STATUS_APPROVE)){           
-                    apprFuncRet = UL_PromotionWorkflowService.approveWorkflow(promoId,promoLst,promoLst[0].UL_Current_Status__c, false) ; 
-                }
-                
-                if(Mode.equalsIgnoreCase(UL_Utility.STATUS_REJECT.toUpperCase())){
-                    UL_PromotionWorkflowService.rejectWorkflow(promoId,promoLst,false);
-                }
-            }           
+                //}
+            }
+           
+            if(Mode.equalsIgnoreCase(UL_Utility.STATUS_APPROVE)){           
+                apprFuncRet = UL_PromotionWorkflowService.approveWorkflow(promoId,promoLst,promoLst[0].UL_Current_Status__c, false) ; 
+            }
+            
+            if(Mode.equalsIgnoreCase(UL_Utility.STATUS_REJECT.toUpperCase())){
+                UL_PromotionWorkflowService.rejectWorkflow(promoId,promoLst,false);
+            }       
         }catch(Exception ex){
-            UL_Utility.logError(ex, UserInfo.getUserId());
+          UL_Utility.logError(ex, UserInfo.getUserId());
         }
         return result;
     }

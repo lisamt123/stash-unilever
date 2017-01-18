@@ -370,4 +370,178 @@
          this.inlineTacticFundMap = tacticFundMap;
      }
   }
+    /*******************************************************************
+    Purpose: Parameterized constructor to build wrapper object
+    Version 1.0
+    Parameters: 
+    Returns: N/A
+    Throws : N/A 
+    ********************************************************************/ 
+    @future (callout=true) // indicates that this is an asynchronous call
+    public static void promotionOutbound(Set<Id> promoIds, String OBAction){
+        ACCL__Promotion__c promoObj = new ACCL__Promotion__c() ;
+        ACCL__Promotion__c promoObj1 = new ACCL__Promotion__c() ;
+        Account accObj = new Account() ;
+        
+        List<Account> accountLst = new List<Account>() ;
+        List<ACCL__Tactic__c> tacticLst = new List<ACCL__Tactic__c>() ;
+        List<ACCL__Product__c> prodLst = new List<ACCL__Product__c>() ;
+        List<ACCL__Tactic_Product__c> tacProdLst = new List<ACCL__Tactic_Product__c>() ;        
+        List<UL_Condition_Codes__c> conditionCodeLst = new List<UL_Condition_Codes__c>() ;    
+        
+        Set<Id> tacticTemplateIdSet = new Set<Id>() ;
+        
+        List<UL_TacticOutboundWrapper> tacWrapLst = new List<UL_TacticOutboundWrapper>() ;      
+        UL_PromotionOutboundWrapper promoOBWrapper ;
+        UL_CustomerOBWrapper custWrapObj;
+        String jsonString;
+        
+        try{
+            system.debug('promoIds '+promoIds) ;
+            promoObj =[SELECT Id, Name,
+                    ACCL__Anchor_Account__c,ACCL__Anchor_Account__r.Name,ACCL__Anchor_Account__r.ACCL__Sales_Org__c,ACCL__Anchor_Account__r.UL_Distribution_Channel_Code__c
+                    ,ACCL__Anchor_Account__r.UL_Activity_Sector_Division_Code__c,ACCL__Anchor_Account__r.AccountNumber,ACCL__Anchor_Account__r.UL_Currency__c
+                    ,(SELECT Id,Name,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Amount__c,ACCL__Tactic_Template__c FROM ACCL__Tactics__r)
+                    FROM ACCL__Promotion__c WHERE Id =: promoIds] ;                    
+            
+            custWrapObj = new UL_CustomerOBWrapper(promoObj.ACCL__Anchor_Account__c, promoObj.ACCL__Anchor_Account__r.Name, promoObj.ACCL__Anchor_Account__r.ACCL__Sales_Org__c,
+                                                promoObj.ACCL__Anchor_Account__r.UL_Distribution_Channel_Code__c,promoObj.ACCL__Anchor_Account__r.UL_Activity_Sector_Division_Code__c,
+                                                promoObj.ACCL__Anchor_Account__r.AccountNumber,promoObj.ACCL__Anchor_Account__r.UL_Currency__c) ;
+            
+            tacticLst = [SELECT Id,Name,ACCL__Tactic_Template__c,(SELECT ACCL__Product__c,ACCL__Product__r.Name FROM ACCL__Tactic_Products__r) FROM ACCL__Tactic__c WHERE ACCL__Promotion__c =: promoIds];
+            
+            if(tacticLst.size() > 0){
+                for(ACCL__Tactic__c tactic : tacticLst){
+                    tacticTemplateIdSet.add(tactic.ACCL__Tactic_Template__c);
+                }       
+            
+                conditionCodeLst = [SELECT UL_Tactic_Template__c,Id,Name,UL_Compensation_Model__c,UL_Payment_Type__c,UL_Price_Condition__c,UL_Table_ID__c 
+                                    FROM UL_Condition_Codes__c WHERE UL_Tactic_Template__c =: tacticTemplateIdSet];
+                                    
+                for(ACCL__Tactic__c tac : tacticLst){
+                    tacticTemplateIdSet.add(tac.ACCL__Tactic_Template__c);
+                    UL_TacticOutboundWrapper tacWrapObj ;
+                    List<UL_ProductOutboundWrapper> prodWrapLst = new List<UL_ProductOutboundWrapper>() ; 
+                    List<UL_ConditionCodeOutboundWrapper > CCWrapLst = new List<UL_ConditionCodeOutboundWrapper >() ;
+                                 
+                    for(ACCL__Tactic_Product__c tacProd : tac.ACCL__Tactic_Products__r){
+                        UL_ProductOutboundWrapper prodWrapObj ;
+                        prodWrapObj = new UL_ProductOutboundWrapper(tacProd.ACCL__Product__c,tacProd.ACCL__Product__r.Name) ;
+                        prodWrapLst.add(prodWrapObj) ;
+                    }
+                    
+                    if(conditionCodeLst.size() > 0){
+                        for(UL_Condition_Codes__c CC : conditionCodeLst){
+                            if(CC.UL_Tactic_Template__c == tac.ACCL__Tactic_Template__c){
+                                UL_ConditionCodeOutboundWrapper CCWrapObj ;
+                                CCWrapObj = new UL_ConditionCodeOutboundWrapper(CC.Id,CC.Name,CC.UL_Compensation_Model__c,CC.UL_Payment_Type__c,CC.UL_Price_Condition__c,CC.UL_Table_ID__c) ;
+                                CCWrapLst.add(CCWrapObj) ;
+                            }
+                        }
+                    }
+                    
+                    tacWrapObj = new UL_TacticOutboundWrapper(tac.Id,tac.Name,prodWrapLst,CCWrapLst) ;
+                    tacWrapLst.add(tacWrapObj) ;
+                }  
+            }
+            
+            //system.debug('promoLst '+promoLst) ;
+            system.debug('promoObj '+promoObj) ;
+            //system.debug('accObj '+accObj) ;
+            system.debug('tacticLst '+tacticLst) ;
+            system.debug('tacWrapLst '+tacWrapLst) ;
+            promoOBWrapper = new UL_PromotionOutboundWrapper(OBAction, promoObj.Id,promoObj.Name,custWrapObj,tacWrapLst) ;
+            system.debug('promoOBWrapper '+promoOBWrapper) ;
+            jsonString = JSON.serialize(promoOBWrapper) ;
+            System.debug('jsonString: ' + jsonString);
+        }
+        catch(Exception ex){
+            UL_Utility.logError(ex, UserInfo.getUserId());
+        }
+        
+        HttpRequest req = new HttpRequest();
+        req.setMethod('POST');
+        req.setEndpoint('http://mft-mulesoft-herokuqa.eu.cloudhub.io/api/v1/promotion');
+        req.setHeader('Content-Type', 'application/json');
+        req.setBody(jsonString);
+        Http http = new Http();
+        HTTPResponse res;
+        try{
+            res = http.send(req);
+        }
+        catch(Exception ex){
+            UL_Utility.logError(ex, UserInfo.getUserId());
+        }
+        System.debug('Fulfillment service returned '+ res.getBody());
+    }
+    
+    public with sharing class UL_PromotionOutboundWrapper{
+        String CONDITION_ACTION;
+        Id PROMOTION_ID;
+        String PROMOTION_NAME;
+        UL_CustomerOBWrapper CUSTOMER ;
+        List<UL_TacticOutboundWrapper> TACTICS = new List<UL_TacticOutboundWrapper>() ;
+        
+        public UL_PromotionOutboundWrapper(String OBAction, Id promoId, String promoName,UL_CustomerOBWrapper custWrapObj,List<UL_TacticOutboundWrapper> tacWrapLst){
+            this.CONDITION_ACTION = OBAction;
+            this.PROMOTION_ID = promoId;
+            this.PROMOTION_NAME = promoName;
+            this.CUSTOMER = custWrapObj;
+            this.TACTICS = tacWrapLst;
+        }
+    }
+    public with sharing class UL_CustomerOBWrapper{
+        Id CUSTOMER_ID ;
+        String CUSTOMER_NAME;
+        String ACCOUNT_NUMBER;
+        String SALES_ORG ;
+        String DISTR_CHANNEL_CODE;
+        String ACTY_SECTOR_DIV_CODE;
+        String CUST_CURRENCY ;
+        public UL_CustomerOBWrapper(Id customerId, String customerName, String salesOrg, String distributionChannelCode, String activitySectorDivisionCode, String accountNumber, String custCurrency ){
+            this.CUSTOMER_ID = customerId ;
+            this.CUSTOMER_NAME = customerName ;
+            this.ACCOUNT_NUMBER = accountNumber ;
+            this.SALES_ORG = salesOrg ;         
+            this.DISTR_CHANNEL_CODE = distributionChannelCode ;
+            this.ACTY_SECTOR_DIV_CODE = activitySectorDivisionCode ;
+            this.CUST_CURRENCY = custCurrency ;
+        }
+    } 
+    public with sharing class UL_TacticOutboundWrapper{
+        Id TId ;
+        String TName ;
+        List<UL_ProductOutboundWrapper> PRODUCTS = new List<UL_ProductOutboundWrapper>();
+        List<UL_ConditionCodeOutboundWrapper> CONDITION_CODES = new List<UL_ConditionCodeOutboundWrapper>();
+        public UL_TacticOutboundWrapper(Id tacticId, String tacticName,List<UL_ProductOutboundWrapper> prodWrapLst,List<UL_ConditionCodeOutboundWrapper> CCWrapLst){
+            this.TId = tacticId ;
+            this.TName = tacticName ;
+            this.PRODUCTS = prodWrapLst ;
+            this.CONDITION_CODES = CCWrapLst ;
+        }
+    }
+    public with sharing class UL_ProductOutboundWrapper{
+        Id PRODUCT_ID ;
+        String PRODUCT_NAME ;
+        public UL_ProductOutboundWrapper(Id productId, String productName){
+            this.PRODUCT_ID = productId ;
+            this.PRODUCT_NAME = productName ;
+        }
+    }
+    public with sharing class UL_ConditionCodeOutboundWrapper{
+        Id CONDITIONCODE_ID ;
+        String CONDITIONCODE_NAME ;
+        String COMPENSATION_MODEL ;
+        String PAYMENT_TYPE ;
+        String PRICE_CONDITION ;
+        String TABLE_ID ;
+        public UL_ConditionCodeOutboundWrapper(Id CCId,String CCName,String compModel,String payType,String priceCondition,String tableId){
+            this.CONDITIONCODE_ID = CCId ;
+            this.CONDITIONCODE_NAME = CCName ;
+            this.COMPENSATION_MODEL = compModel ;
+            this.PAYMENT_TYPE = payType ;
+            this.PRICE_CONDITION = priceCondition ;
+            this.TABLE_ID = tableId ;
+        }
+    }
 }

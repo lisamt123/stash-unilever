@@ -1488,58 +1488,6 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-	<fields>
-        <fullName>UL_WorkflowState__c</fullName>
-        <description>Status of Promotion Workflow</description>
-        <externalId>false</externalId>
-        <label>Workflow State</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Planning</fullName>
-                    <default>true</default>
-                </value>
-                <value>
-                    <fullName>Finance Check</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Manager Check</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Approved</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>End Date</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Submitted for Approval</fullName>
-                    <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields> 
-	
-	<fields>
-        <fullName>UL_PromotionTemplateType__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c)</formula>
-        <label>UL_PromotionTemplateType</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields> 
     <fields>
         <fullName>ACCL__Aggregation_Category__c</fullName>
         <deprecated>false</deprecated>
@@ -2332,6 +2280,29 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>UL_PromotionTemplateType__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c)</formula>
+        <label>UL_PromotionTemplateType</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_PromotionTemplate_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>ACCL__Promotion_Template__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>UL_PromotionTemplateType~</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>UL_Promotion_ID__c</fullName>
         <externalId>false</externalId>
         <formula>HYPERLINK(&quot;/&quot; &amp; Id ,  Name,&apos;_self&apos;)</formula>
@@ -2363,23 +2334,11 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <label>Promotion Type</label>
         <picklist>
             <picklistValues>
-                <fullName>Account Specific Promotion</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Parent Promotion</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Promotion</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Account Plan</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>LTA</fullName>
+                <fullName>Account Specific Promotion</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2387,7 +2346,15 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>LTA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>MarketingEvent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Parent Promotion</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2395,11 +2362,15 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>SpecialHoliday</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
         </picklist>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -2465,6 +2436,19 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Sequence__c</fullName>
+        <description>Field value maintained by MuleSoft  for Promotion Outbound.</description>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>UL_Sharing_Type_Form__c</fullName>
@@ -2846,6 +2830,10 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
                 <fullName>End Date</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Submitted for Approval</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -2864,6 +2852,7 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <columns>ACCL__Active__c</columns>
         <columns>ACCL__Commit_Date__c</columns>
         <columns>ACCL__Phase__c</columns>
+        <columns>UL_Current_Status__c</columns>
         <columns>ACCL__Date_From__c</columns>
         <columns>ACCL__Date_Thru__c</columns>
         <columns>ACCL__Anchor_Account__c</columns>
@@ -3274,10 +3263,6 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Promotion</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SpecialHoliday</fullName>
                 <default>false</default>
             </values>
@@ -3612,6 +3597,10 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
                 <fullName>Planning</fullName>
                 <default>true</default>
             </values>
+            <values>
+                <fullName>Submitted for Approval</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -3855,10 +3844,6 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Promotion</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SpecialHoliday</fullName>
                 <default>false</default>
             </values>
@@ -3972,13 +3957,6 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <errorConditionFormula>ACCL__Commit_Date__c  &gt;  ACCL__Date_Thru__c</errorConditionFormula>
         <errorMessage>The Commit Date must be the same day or sooner than Date Thru.</errorMessage>
     </validationRules>
-	<validationRules>
-        <fullName>UL_LTA_StartDate_Should_Not_Be_PastDate</fullName>
-        <active>true</active>
-        <description>The start date on LTAs should be greater than or equal to today</description>
-        <errorConditionFormula>AND(ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), ACCL__Date_From__c &lt; TODAY() )</errorConditionFormula>
-        <errorMessage>The start date on LTAs should be greater than or equal to today</errorMessage>
-    </validationRules> 
     <validationRules>
         <fullName>ACCL__Date_From_Date_Thru_Validation</fullName>
         <active>true</active>
@@ -4059,6 +4037,13 @@ Id=VLOOKUP
         <errorMessage>You can set Workflow State from &apos;Approved&apos; to &apos;Planning&apos; only if the Promotion is not currently running</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>UL_LTA_StartDate_Should_Not_Be_PastDate</fullName>
+        <active>true</active>
+        <description>The start date on LTAs should be greater than or equal to today</description>
+        <errorConditionFormula>AND( OR( ISNEW() , ISCHANGED(ACCL__Date_From__c ) ), ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), ACCL__Date_From__c &lt; TODAY() )</errorConditionFormula>
+        <errorMessage>The start date on LTAs should be greater than or equal to today</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>UL_LTA_Time_Period_of_Longer_Than_a_Year</fullName>
         <active>true</active>
         <description>(TPM 1759) - If a time period of longer than a year is defined within the date fields then a validation should be returned and the user is warned that a LTA cannot be created which is longer than one year.</description>
@@ -4112,13 +4097,14 @@ Id=VLOOKUP
     </validationRules>
     <validationRules>
         <fullName>validation_for_date_ranges</fullName>
-        <active>false</active>
+        <active>true</active>
         <errorConditionFormula>IF(ACCL__Promotion_Template__r.Calculate_In_store_Dates__c = true,
  IF((ACCL__Placement_Date_Thru__c - ACCL__Placement_Date_From__c)&gt;ACCL__Promotion_Template__r.UL_Calculate_for_Max_Min_Dates__c || 
  (ACCL__Placement_Date_Thru__c - ACCL__Placement_Date_From__c)&lt;0 , true, false), false) || 
  IF(ACCL__Promotion_Template__r.UL_Validate_for_Max_Min_Dates__c = true, 
  IF((ACCL__Date_Thru__c - ACCL__Date_From__c)&gt; ACCL__Promotion_Template__r.UL_Calculate_for_Max_Min_Dates__c || 
  (ACCL__Date_Thru__c - ACCL__Date_From__c)&lt;0 , true, false),false)</errorConditionFormula>
+        <errorDisplayField>ACCL__Active__c</errorDisplayField>
         <errorMessage>In store dates range should be more than 1 day or below 91 days</errorMessage>
     </validationRules>
     <webLinks>
