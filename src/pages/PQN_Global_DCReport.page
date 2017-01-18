@@ -56,6 +56,7 @@
             width: 16%!important;
             float: left!important;
         }
+        
 </style>*/
 <style>
 
@@ -69,13 +70,12 @@
            }
         
        
-        body .pbBody table.list tr.dataRow td:first-child th:first-child{
+        body .pbBody table.list tr.dataRow td:first-child {
           text-align: left;
+          width:400px;
           
         }
-         tr.headerRow {
-            width: 98.6%!important;
-        }
+        
         .RedBack{
             background-color:#FF0000!important;
         }
@@ -126,7 +126,7 @@
      
       <apex:pageBlock >
           <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" styleclass="tableclass"  >
-              <apex:column headerClass="Gray" headerValue="" >
+              <apex:column headerClass="Gray" headerValue="Global DCs" >
                   <apex:outputText value="{!xD.Cluster}" style="font-weight:800" rendered="{!xD.child}" />
                   <apex:outputText value="{!empt}" rendered="{!xD.child}" />
                 <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">

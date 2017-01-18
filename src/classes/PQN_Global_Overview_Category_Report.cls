@@ -134,9 +134,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
     }
     
     
-    
-       
-    public PQN_Global_Overview_Category_Report(ApexPages.StandardController acon){
+     public PQN_Global_Overview_Category_Report(ApexPages.StandardController acon){
         callCatStackChart();
         empty = '';
         tarval='n.a';
@@ -206,18 +204,18 @@ public without sharing class PQN_Global_Overview_Category_Report{
             decimal temp = 0;
           
             if (xA.Product_Group+xA.Product_Category != '') {
+               if (mapOfProduct_Groupcuryr.get(xA.Product_Group+xA.Product_Category) != Null){
                 xA.cuYeardata = mapOfProduct_Groupcuryr.get(xA.Product_Group+xA.Product_Category);
-                if (mapOfProduct_Groupcuryr.get(xA.Product_Group+xA.Product_Category) != Null){
                  temp = Double.valueOf((mapOfProduct_Groupcuryr.get(xA.Product_Group+xA.Product_Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
-               }else{xA.cuYearPercent=0;}
+               }else{xA.cuYearPercent=0;xA.cuYeardata =0;}
             }
             else {
-                xA.cuYeardata = mapOfProduct_Groupcuryr.get(xA.Product_Group);
-                if (mapOfProduct_Groupcuryr.get(xA.Product_Group) != Null){
-                 temp = Double.valueOf((mapOfProduct_Groupcuryr.get(xA.Product_Group)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+             if (mapOfProduct_Groupcuryr.get(xA.Product_Group) != Null){
+               xA.cuYeardata = mapOfProduct_Groupcuryr.get(xA.Product_Group);
+                temp = Double.valueOf((mapOfProduct_Groupcuryr.get(xA.Product_Group)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
-               }else{xA.cuYearPercent=0;}
+               }else{xA.cuYearPercent=0;xA.cuYeardata =0;}
             }
           
         }          
@@ -253,18 +251,18 @@ public without sharing class PQN_Global_Overview_Category_Report{
             decimal temp = 0;
            
              if (xA.Product_Group+xA.Product_Category != '') {
-                xA.preYeardata = mapOfProduct_GroupPreYear.get(xA.Product_Group+xA.Product_Category);
-                if (mapOfProduct_GroupPreYear.get(xA.Product_Group+xA.Product_Category) != Null){
-                    temp = Double.valueOf((mapOfProduct_GroupPreYear.get(xA.Product_Group+xA.Product_Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+             if (mapOfProduct_GroupPreYear.get(xA.Product_Group+xA.Product_Category) != Null){
+                 xA.preYeardata = mapOfProduct_GroupPreYear.get(xA.Product_Group+xA.Product_Category);
+                  temp = Double.valueOf((mapOfProduct_GroupPreYear.get(xA.Product_Group+xA.Product_Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.preYearPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.preYearPercent = 0;xA.preYeardata =0; }
             }
             else {
                 xA.preYeardata = mapOfProduct_GroupPreYear.get(xA.Product_Group);
                 if (mapOfProduct_GroupPreYear.get(xA.Product_Group) != Null){
                     temp = Double.valueOf((mapOfProduct_GroupPreYear.get(xA.Product_Group)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.preYearPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.preYearPercent = 0;xA.preYeardata =0; }
             }
           
         }
@@ -301,18 +299,18 @@ public without sharing class PQN_Global_Overview_Category_Report{
             decimal temp = 0;
            
              if (xA.Product_Group+xA.Product_Category != '') {
+              if (mapOfProduct_Groupcrmnth .get(xA.Product_Group+xA.Product_Category) != Null){
                 xA.cumnthdata = mapOfProduct_Groupcrmnth .get(xA.Product_Group+xA.Product_Category);
-                if (mapOfProduct_Groupcrmnth .get(xA.Product_Group+xA.Product_Category) != Null){
-                    temp = Double.valueOf((mapOfProduct_Groupcrmnth .get(xA.Product_Group+xA.Product_Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+                 temp = Double.valueOf((mapOfProduct_Groupcrmnth .get(xA.Product_Group+xA.Product_Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.cumnthPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.preYearPercent = 0;xA.cumnthdata =0; }
             }
             else {
+            if (mapOfProduct_Groupcrmnth .get(xA.Product_Group) != Null){
                 xA.cumnthdata = mapOfProduct_Groupcrmnth .get(xA.Product_Group);
-                if (mapOfProduct_Groupcrmnth .get(xA.Product_Group) != Null){
-                    temp = Double.valueOf((mapOfProduct_Groupcrmnth.get(xA.Product_Group)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+                  temp = Double.valueOf((mapOfProduct_Groupcrmnth.get(xA.Product_Group)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.cumnthPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.preYearPercent = 0;xA.cumnthdata =0; }
             }
             
          }
@@ -348,12 +346,16 @@ public without sharing class PQN_Global_Overview_Category_Report{
             decimal temp = 0;
        
             if (xA.Product_Group+xA.Product_Category != '') {
-                xA.cumnthdcdata = mapOfProduct_Groupcrmnthdc .get(xA.Product_Group+xA.Product_Category);
-                }
+              if( mapOfProduct_Groupcrmnthdc .get(xA.Product_Group+xA.Product_Category)!=null){
+                 xA.cumnthdcdata = mapOfProduct_Groupcrmnthdc .get(xA.Product_Group+xA.Product_Category);
+                }else{xA.cumnthdcdata =0;}
+             }
             
             else {
-                xA.cumnthdcdata = mapOfProduct_Groupcrmnthdc .get(xA.Product_Group);
-                }
+                if( mapOfProduct_Groupcrmnthdc .get(xA.Product_Group)!=null){
+                 xA.cumnthdcdata = mapOfProduct_Groupcrmnthdc .get(xA.Product_Group);
+                }else{xA.cumnthdcdata =0;}
+             }
           
         }
         
@@ -389,12 +391,16 @@ public without sharing class PQN_Global_Overview_Category_Report{
             decimal temp = 0;
         
              if (xA.Product_Group+xA.Product_Category != '') {
+               if(mapOfProduct_GroupcrmnthIE .get(xA.Product_Group+xA.Product_Category)!=null){
                 xA.cumnthIEdata = mapOfProduct_GroupcrmnthIE .get(xA.Product_Group+xA.Product_Category);
-                }
+                }else{xA.cumnthIEdata = 0;}
+             }
             
             else {
+                 if(mapOfProduct_GroupcrmnthIE .get(xA.Product_Group)!=null){
                 xA.cumnthIEdata = mapOfProduct_GroupcrmnthIE .get(xA.Product_Group);
-                }
+                }else{xA.cumnthIEdata =0;}
+             }
         
         }
         
@@ -429,12 +435,16 @@ public without sharing class PQN_Global_Overview_Category_Report{
             decimal temp = 0;
           
             if (xA.Product_Group+xA.Product_Category != '') {
+              if(mapOfProduct_Groupcrmnthtot .get(xA.Product_Group+xA.Product_Category)!=null){
                 xA.cumnthtotdata = mapOfProduct_Groupcrmnthtot .get(xA.Product_Group+xA.Product_Category);
-                }
+                }else{xA.cumnthtotdata =0;}
+             }
             
             else {
+                 if(mapOfProduct_Groupcrmnthtot .get(xA.Product_Group)!=null){
                 xA.cumnthtotdata = mapOfProduct_Groupcrmnthtot .get(xA.Product_Group);
-                }
+                }else{xA.cumnthtotdata =0;}
+             }
            
         }
         
@@ -468,12 +478,16 @@ public without sharing class PQN_Global_Overview_Category_Report{
             decimal temp = 0;
         
             if (xA.Product_Group+xA.Product_Category != '') {
+              if(mapOfProduct_Groupprevyrtot .get(xA.Product_Group+xA.Product_Category)!=null){
                 xA.preYeardatatot = mapOfProduct_Groupprevyrtot .get(xA.Product_Group+xA.Product_Category);
-                }
+                }else{xA.preYeardatatot = 0;}
+             }
             
             else {
+               if(mapOfProduct_Groupprevyrtot .get(xA.Product_Group)!=null){
                 xA.preYeardatatot = mapOfProduct_Groupprevyrtot .get(xA.Product_Group);
-                }
+                }else{xA.preYeardatatot = 0;}
+             }
            
         }
         
@@ -507,12 +521,16 @@ public without sharing class PQN_Global_Overview_Category_Report{
             decimal temp = 0;
          
             if (xA.Product_Group+xA.Product_Category != '') {
+              if( mapOfProduct_Groupcryeartot .get(xA.Product_Group+xA.Product_Category)!=null){
                 xA.cuYeardatatot = mapOfProduct_Groupcryeartot .get(xA.Product_Group+xA.Product_Category);
-                }
+                }else{xA.cuYeardatatot=0;}
+             }
             
             else {
+                if( mapOfProduct_Groupcryeartot .get(xA.Product_Group)!=null){
                 xA.cuYeardatatot = mapOfProduct_Groupcryeartot .get(xA.Product_Group);
-                }
+                }else{xA.cuYeardatatot=0;}
+             }
            
         }
         
