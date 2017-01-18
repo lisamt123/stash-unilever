@@ -1,6 +1,3 @@
-src
-src/applications/Brazil_Freight_Collaboration_Tool.app
-src/approvalProcesses/BFM_UserCreationRequest__c.BFM_Carrier_User_Request_Approval.approvalProcess
 src/classes/BFM_AccountDAO.cls
 src/classes/BFM_AccountDAO.cls-meta.xml
 src/classes/BFM_AccountMoreDetailsController.cls
@@ -259,3 +256,5 @@ src/workflows/BFM_Stage__c.workflow
 src/workflows/BFM_User_Creation_Request_Error__c.workflow
 src/workflows/BFM_UserCreationRequest__c.workflow
 src/workflows/BFM_Mulesoft_Endpoint__mdt.workflow
+src/approvalProcesses/BFM_UserCreationRequest__c.BFM_Carrier_User_Request_Approval.approvalProcess
+src/applications/Brazil_Freight_Collaboration_Tool.app
