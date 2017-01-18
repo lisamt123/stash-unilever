@@ -48944,7 +48944,10 @@
         <tab>Agency_Fee_Field_History__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
-    
+     <tabVisibilities>
+        <tab>standard-WaveHome</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Contact</tab>
         <visibility>DefaultOff</visibility>

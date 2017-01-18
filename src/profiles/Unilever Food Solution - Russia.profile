@@ -48781,6 +48781,10 @@
         <tab>mdm_Product_Category__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
+	 <tabVisibilities>
+        <tab>standard-WaveHome</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Account</tab>
         <visibility>DefaultOn</visibility>
