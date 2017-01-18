@@ -6,7 +6,10 @@
         <visible>true</visible>
     </applicationVisibilities>
     <custom>true</custom>
-    
+    <tabVisibilities>
+        <tab>standard-WaveHome</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <pageAccesses>
         <apexPage>AccountHierarchyPage</apexPage>
         <enabled>true</enabled>
