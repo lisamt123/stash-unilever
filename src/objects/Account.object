@@ -6018,7 +6018,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     </fields>
 	<fields>
         <fullName>Company_Code__c</fullName>
-        <externalId>true</externalId>
+        <externalId>false</externalId>
         <label>Company Code</label>
         <length>4</length>
         <required>false</required>
@@ -6050,9 +6050,9 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
 	<fields>
-        <fullName>Region__c</fullName>
+        <fullName>Region1__c</fullName>
         <externalId>false</externalId>
-        <label>Region</label>
+        <label>Region1</label>
         <length>3</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>

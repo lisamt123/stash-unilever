@@ -127,6 +127,7 @@ src/objects/BFM_Email_Information__c.object
 src/objects/BFM_Error_Log__c.object
 src/objects/BFM_NF_e__c.object
 src/objects/BFM_Occurrence__c.object
+src/objects/BFM_Fiscal_Documents__c.object
 src/objects/BFM_SES__c.object
 src/objects/BFM_Shipment__c.object
 src/objects/BFM_Stage__c.object
@@ -189,7 +190,6 @@ src/staticresources/BFM_White.resource-meta.xml
 src/staticresources/BFMUnileverLogo.resource
 src/staticresources/BFMUnileverLogo.resource-meta.xml
 src/tabs/BFM_AccountAccessRequest__c.tab
-src/tabs/BFM_Bank_Information__c.tab
 src/tabs/BFM_Bank_Information__c.tab
 src/tabs/BFM_Company_Code__c.tab
 src/tabs/BFM_NF_e__c.tab

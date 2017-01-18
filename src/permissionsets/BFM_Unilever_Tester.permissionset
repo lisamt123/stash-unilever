@@ -3404,7 +3404,7 @@
     </tabSettings>
     <tabSettings>
         <tab>CT_e</tab>
-        <visibility>Available</visibility>
+        <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
         <tab>NFS</tab>
