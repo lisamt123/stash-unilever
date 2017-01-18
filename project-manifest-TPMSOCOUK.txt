@@ -480,7 +480,9 @@ src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Parent_Workflow.approvalProces
 src/profiles
 src/profiles/UnileverACTPMSOCO.profile
 src/profiles/UnileverACTPMUKI.profile
+src/sharingRules
 src/sharingRules/ACCL__Promotion_Template__c.sharingRules
+src/groups
 src/groups/SoCo_Account_Manager_AR01.group
 src/groups/SoCo_Account_Manager_CL01.group
 src/groups/SoCo_Account_Manager_CL03.group
