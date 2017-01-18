@@ -24725,8 +24725,35 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
     <listViews>
         <fullName>IPM_a7I0L000000H9Zx_IPM_Project</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000H9Zx</label>
+        <label>IPM_APPLETREE NA_NA</label>
         <queue>IPM_a7I0L000000H9Zx</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H9a2_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MALIBU CA_NA</label>
+        <queue>IPM_a7I0L000000H9a2</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H9aC_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_WIMBLEDON18</label>
+        <queue>IPM_a7I0L000000H9aC</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H9aM_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MTX WOW2 NR IL_N&amp;R</label>
+        <queue>IPM_a7I0L000000H9aM</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

@@ -27115,7 +27115,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAU_Participant__c.FAU_RSVP_Deadline__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
