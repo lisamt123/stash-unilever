@@ -1,0 +1,22 @@
+@isTest
+public class BFM_BulkShipmentQuery_Test {
+	private static testMethod void BFM_BulkShipmentQueryTestMethod(){
+        Set<String> shipIds = new Set<String>();
+        BFM_Shipment__c ship = new BFM_Shipment__c();
+        ship.Shipment_Number__c = '12345678';
+        ship.CreatedDate = datetime.now();
+        ship.LastModifiedDate = datetime.now();
+        ship.Last_Shipment_Update__c = datetime.now();
+        ship.Carrier_Account__c = '0018A000008GbLg';
+		insert ship;
+        shipIds.add(ship.Id);
+        List<BFM_Shipment__c> bfmship = new List<BFM_Shipment__c>();
+        bfmship.add(ship);
+        Test.startTest();
+        BFM_BulkShipmentQuery c = new BFM_BulkShipmentQuery(shipIds);
+        Database.executeBatch(c);
+        Database.BatchableContext bc; 
+        c.execute(bc, bfmship);
+        Test.stopTest();
+    }
+}

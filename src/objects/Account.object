@@ -6071,6 +6071,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Vendor_UF_State__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor UF (State)</label>
+        <length>3</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Vimeo_Link__c</fullName>
         <externalId>false</externalId>

@@ -5,49 +5,65 @@
  * Author: Zanquini, Vinicius
  */
 @isTest
-private class BFM_AccountSharer_Test {
-    private static User createUser(){
-        Profile p=[Select Id from Profile where Name='Carrier Operational']; 
-        User usr = new User(Alias = 'testo', 
-                 	Email='standarduserbec@unilever.com', 
-      				EmailEncodingKey='UTF-8', 
-                 	LastName='Test Userbec', 
-                 	LanguageLocaleKey='en_US', 
-      				LocaleSidKey='en_US', 
-                 	ProfileId = p.Id, 
-      				TimeZoneSidKey='Europe/London',
-                 	isActive=true, 
-      				UserName='testuserbec@test123321.com');
-        return usr;
-    }
+private class BFM_AccountSharer_Test{
+private static testMethod void passwordresettest(){
+    UserRole portalRole = [Select Id From UserRole Where PortalType = 'None' Limit 1];
+    system.debug('portalRole is ' + portalRole);
     
-    private static Account createAccount(){
-        Account acc = new Account();
-        acc.Name = 'Account test';
-        return acc;
-    }
-    
-    /**
-     * Tests if an Account is visible for a Carrier user after Apex sharing through the BFM_AccountSharer class
-	 * Creation Date: 2016/07/28 
-	 * Author: Zanquini, Vinicius
-	 * 
-     **/
-    private static testMethod void testAccountSharing(){
-        User usr = createUser();
-		insert usr;
-        Account acc = createAccount();
-        insert acc;
-        List<Account> accVisibleBeforeSharing = null;
-        List<Account> accVisibleAfterSharing = null;
-        System.runAs(usr){
-            accVisibleBeforeSharing = [SELECT Id, Owner.Name FROM Account];
-        }	
-        new BFM_AccountSharer().shareAccountsReadOnly(usr.Id, new Set<Id>{acc.Id});
-        System.runAs(usr){
-        	accVisibleAfterSharing = [SELECT Id FROM Account];
+    Profile profile1 = [Select Id from Profile where name = 'System Administrator'];
+    User portalAccountOwner1 = new User(
+    UserRoleId = portalRole.Id,
+    ProfileId = profile1.Id,
+    Username = System.now().millisecond() + 'test2@test.com',
+    Alias = 'batman',
+    Email='bruce.wayne@wayneenterprises.com',
+    EmailEncodingKey='UTF-8',
+    Firstname='Bruce',
+    Lastname='Wayne',
+    LanguageLocaleKey='en_US',
+    LocaleSidKey='en_US',
+    TimeZoneSidKey='America/Chicago'
+    );
+    Database.insert(portalAccountOwner1);
+
+        //User u1 = [Select ID From User Where Id =: portalAccountOwner1.Id];
+        
+        System.runAs ( portalAccountOwner1 ) {
+        //Create account
+        Account portalAccount1 = new Account(
+        Name = 'TestAccount',
+        OwnerId = portalAccountOwner1.Id
+        );
+        Database.insert(portalAccount1);
+        
+        //Create contact
+        Contact contact1 = new Contact(
+        FirstName = 'Test',
+        Lastname = 'McTesty',
+        AccountId = portalAccount1.Id,
+        Email = System.now().millisecond() + 'test@test.com'
+        );
+        Database.insert(contact1);
+        
+        //Create user
+        Profile portalProfile = [SELECT Id FROM Profile Limit 1];
+        User user1 = new User(
+        Username = System.now().millisecond() + 'test12345@test.com',
+        ContactId = contact1.Id,
+        ProfileId = portalProfile.Id,
+        Alias = 'test123',
+        Email = 'test12345@test.com',
+        EmailEncodingKey = 'UTF-8',
+        LastName = 'McTesty',
+        CommunityNickname = 'test12345',
+        TimeZoneSidKey = 'America/Los_Angeles',
+        LocaleSidKey = 'en_US',
+        LanguageLocaleKey = 'en_US'
+        );
+        Database.insert(user1);
+        BFM_AccountSharer accshare  = new BFM_AccountSharer();
+        accshare.shareAccountsReadOnly(user1.Id, new Set<Id>{portalAccount1.Id});
         }
-        System.assertEquals(0, accVisibleBeforeSharing.size());
-        system.assertEquals(1, accVisibleAfterSharing.size());
-    }
+		
+	}
 }
