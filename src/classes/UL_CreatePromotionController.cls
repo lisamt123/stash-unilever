@@ -479,7 +479,7 @@ public with sharing class UL_CreatePromotionController{
              relatedRecord.ACCL__Delivery_Date_Thru__c = dateThru;
              relatedRecord.ACCL__Placement_Date_Thru__c = dateThru;
          }
-         relatedRecord.ACCL__Commit_Date__c = System.today();
+         relatedRecord.ACCL__Commit_Date__c= relatedRecord.ACCL__Placement_Date_From__c;
          relatedRecord.ACCL__Anchor_Account__c = defaultsoldto;
          relatedRecord.UL_Account__c = planingLevelCustomers;
          relatedRecord.ACCL__Anchor_Account_Set__c = customerset;
