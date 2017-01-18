@@ -204,4 +204,25 @@
         }
         return selectOption;
     }
+	/*****************************
+    Purpose: Get generic product from system
+    Version: 1.0
+    Parameters: N/A
+    Returns: Product Record
+    Throws: N/A
+    ******************************/
+    public static ACCL__Product__c returnGenericProduct(){
+        return [SELECT Id, Name FROM ACCL__Product__c WHERE UL_Generic_Product__c=TRUE LIMIT 1];
+    }
+    
+    /*****************************
+    Purpose: Get generic customer planning level from system
+    Version: 1.0
+    Parameters: N/A
+    Returns: Product Record
+    Throws: N/A
+    ******************************/
+    public static UL_Planning_Level__c returnGenericCustomer(){
+        return [SELECT Id, Name, UL_Customer__c FROM UL_Planning_Level__c WHERE UL_Customer__r.UL_Generic_Customer__c=TRUE LIMIT 1];
+    }
   }
