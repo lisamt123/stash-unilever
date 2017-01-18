@@ -1,0 +1,35 @@
+<!-- **********************************************************************
+Name: TEL_CallButton	
+Copyright © 2017 Unilever
+======================================================
+Purpose: Provide contact info and a button to make a call using external 
+app. 
+
+History 
+VERSION AUTHOR 				DATE 		DETAIL Description
+1.0 	Ronaldo Garcia  	03/01/2016  Component Creation
+*********************************************************************** --> 
+<aura:component controller="TEL_CallButtonController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	
+    <!-- Lightning Style --> 
+    <ltng:require styles="{!$Resource.TEL_TelesalesCSS +'/assets/styles/salesforce-lightning-design-system.css'}"/>
+    
+    <!-- Attributes --> 
+    <aura:attribute name="callNumber" 	type="String" 	default="none" 			description="Store the call number used to make a call for external app."/>
+    
+    <!-- Handlers --> 
+    <aura:handler name="init" 		value="{!this}" action="{!c.doInit}"/>
+    
+    <!-- Call Button --> 
+    <form class="slds-form--inline">
+        <div class="slds-form-element">
+            <lightning:icon iconName="action:call" size="x-small"/>
+        </div>
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <ui:outputURL value="{!v.callNumber}" label="Click to Talk"/>
+            </div>
+        </div>
+    </form>
+    
+</aura:component>

@@ -110,6 +110,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Hong_Kong</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Hong Kong</label>
+        <sharedTo>
+            <role>CEC_User_Hong_Kong</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Hong Kong</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Case_Country_Equals_Hungary</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Case Country Equals Hungary</label>
@@ -279,6 +292,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Taiwan</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Taiwan</label>
+        <sharedTo>
+            <role>CEC_User_Taiwan</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Taiwan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Case_Country_Equals_Thailand</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Case Country Equals Thailand</label>
@@ -289,6 +315,19 @@
             <field>Country_Name__c</field>
             <operation>equals</operation>
             <value>Thailand</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Turkey</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Turkey</label>
+        <sharedTo>
+            <role>CEC_User_Turkey</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Turkey</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -513,6 +552,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Hong_Kong_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Hong Kong - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Hong_Kong</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Hong_Kong</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Hungary_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Hungary - Manager</label>
@@ -711,6 +761,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Taiwan_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Taiwan - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Taiwan</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Taiwan</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Thailand_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Thailand - Manager</label>
@@ -719,6 +780,17 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_Thailand</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Turkey_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Turkey - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Turkey</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Turkey</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
@@ -796,6 +868,17 @@
         </sharedTo>
         <sharedFrom>
             <role>CEC_Manager_HGS_Europe</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_NAMETRUB_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Role Equals NAMETRUB - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_NAMETRUB</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_NAMETRUB</role>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

@@ -11,6 +11,7 @@
 <apex:attribute name="secId" type="Id" required="false" assignTo="{!projDocSecId}" description="Passing Project Document Section Id"/>
 <apex:attribute name="projId" type="Id" required="true" assignTo="{!projectId}" description="Passing Project Id"/>
 <apex:attribute name="gate" type="string" assignTo="{!gateType}" description="passing gate name"/>
+<apex:outputPanel style="display:none;">{!InvokeMethodsForComponent}</apex:outputPanel>
 <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay"/>
    <!-- Render condition for checking editable to display url to financial page -->     
    <apex:outputPanel styleClass="gatefinancialbg" layout="block" rendered="{!isEditable}">
@@ -117,30 +118,34 @@
                       {!LEFT(finAction.IPM_Financial_Action_Standard_Name__c,(FIND(' ', finAction.IPM_Financial_Action_Standard_Name__c)))} Results at Charter
                   </div>
                   <div class="glbValRight ">
-                    <div class="glbValM glbVal1">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Value_Market_Share_Global__c}" />
-                    </div>
-                    <div class="glbValM glbVal2">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Value_Market_Share_Global__c}" />
-                    </div>
-                    <div class="glbValM glbVal3">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Turnover_Global__c}" />
-                    </div>
-                    <div class="glbValM glbVal4">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Turnover_Global__c}" />
-                    </div>
-                    <div class="glbValM glbVal5">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.GM_of_TO_Global__c}"/>
-                    </div>
-                    <div class="glbValM2 glbVal6">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c}" />
-                    </div>
-                    <div class="glbValM2 glbVal7">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c}" />
-                    </div>
-                    <div class="glbValM2 glbVal8">
-                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c}" />
-                    </div>
+					<div class="glbValSubLeft">
+						<div class="glbValM glbVal1">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Value_Market_Share_Global__c}" />
+						</div>
+						<div class="glbValM glbVal2">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Value_Market_Share_Global__c}" />
+						</div>
+						<div class="glbValM glbVal3">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Turnover_Global__c}" />
+						</div>
+						<div class="glbValM glbVal4">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Turnover_Global__c}" />
+						</div>
+						<div class="glbValM glbVal5">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.GM_of_TO_Global__c}"/>
+						</div>
+					</div>
+					<div class="glbValSubRight">
+						<div class="glbValM2 glbVal6">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c}" />
+						</div>
+						<div class="glbValM2 glbVal7">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c}" />
+						</div>
+						<div class="glbValM2 glbVal8">
+							<apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c}" />
+						</div>
+					</div>
                   </div>
                 </div>
             </apex:repeat>  

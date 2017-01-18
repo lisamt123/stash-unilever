@@ -274,61 +274,27 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                                         valY5CalI = setMapValues(valY5CalI,value, row);
                                         mapfields.put(targetdate.addYears(4).year()+IPM_ConstantUtils.CalendarIncremental,valY5CalI); 
                                 } 
-                                if(col == IPM_ConstantUtils.col_five && row == IPM_ConstantUtils.rowValue19){
-                                       NPV = value;
-                                } 
-                                if(col == IPM_ConstantUtils.col_five && row == IPM_ConstantUtils.rowValue20){
-                                       IRR = value;
-                                } 
-                                if(col == IPM_ConstantUtils.col_five && row == IPM_ConstantUtils.rowValue21){
-                                       payback = value;
-                                }
-                                if(col == IPM_ConstantUtils.col_eight && row == IPM_ConstantUtils.rowValue19){
-                                       capex = value;
-                                }
-                                if(col == IPM_ConstantUtils.col_eight && row == IPM_ConstantUtils.rowValue20){
-                                       BIC = value;
-                                }
-                                if(col == IPM_ConstantUtils.col_one && row == IPM_ConstantUtils.row_seven){
-                                       volumeUnit = value.replace('\'',IPM_ConstantUtils.EMPTY_STRING_INITIAL).trim(); 
-                                } 
+                                
+                                NPV = (col == IPM_ConstantUtils.col_five && row == IPM_ConstantUtils.rowValue19) ? value :NPV;
+				IRR = (col == IPM_ConstantUtils.col_five && row == IPM_ConstantUtils.rowValue20) ? value :IRR;
+				payback = (col == IPM_ConstantUtils.col_five && row == IPM_ConstantUtils.rowValue21) ? value :payback;
+				capex = (col == IPM_ConstantUtils.col_eight && row == IPM_ConstantUtils.rowValue19) ? value :capex;
+				BIC = (col == IPM_ConstantUtils.col_eight && row == IPM_ConstantUtils.rowValue20) ? value :BIC;
+                volumeUnit = (col == IPM_ConstantUtils.col_one && row == IPM_ConstantUtils.row_seven) ? value.replace('\'',IPM_ConstantUtils.EMPTY_STRING_INITIAL).trim() :volumeUnit;
         
                         }
                         UpdateFinancialYear(mapfields, selectedMCO, pspan, projectType);
-                        if(pspan == IPM_ConstantUtils.SpanGlobal || projectType == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                           finUpdate.NPV_Global__c = SetFieldValues(NPV);
-                           finUpdate.IRR_Global__c = SetFieldValues(IRR);
-                           finUpdate.Payback_Global__c = SetFieldValues(payback);
-                           finUpdate.CAPEX_Global__c = SetFieldValues(capex);
-                           finUpdate.BIC_Global__c = SetFieldValues(BIC);
-                           finUpdate.Volume_Unit_Global__c = volumeUnit;
-                           finUpdate.Last_Saved_by_Global__c = UserInfo.getUserId();
-                           finUpdate.Last_Saved_Global__c = System.now(); 
-                           finUpdate.Status_Global__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
-                        }
-                        if(pspan == IPM_ConstantUtils.Regional && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
-                           finUpdate.NPV_Regional__c = SetFieldValues(NPV);
-                           finUpdate.IRR_Regional__c = SetFieldValues(IRR);
-                           finUpdate.Payback_Regional__c = SetFieldValues(payback);
-                           finUpdate.CAPEX_Regional__c = SetFieldValues(capex);
-                           finUpdate.BIC_Regional__c = SetFieldValues(BIC);
-                           finUpdate.Volume_Unit_Regional__c = volumeUnit;
-                           finUpdate.Last_Saved_by_Regional__c = UserInfo.getUserId();
-                           finUpdate.Last_Saved_Regional__c = System.now();
-                           finUpdate.Status_Regional__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
-                        } 
-                         if(pspan == IPM_ConstantUtils.Local && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
-                            finUpdate.NPV_Local__c = SetFieldValues(NPV);
-                            finUpdate.IRR_Local__c = SetFieldValues(IRR);
-                            finUpdate.Payback_Local__c = SetFieldValues(payback);
-                            finUpdate.CAPEX_Local__c = SetFieldValues(capex);
-                            finUpdate.BIC_Local__c = SetFieldValues(BIC);
-                            finUpdate.Volume_Unit_Local__c = volumeUnit;
-                            finUpdate.Last_Saved_by_Local__c = UserInfo.getUserId();
-                            finUpdate.Last_Saved_Local__c = System.now();
-                            finUpdate.Status_Local__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
-                        }
-                        finUpdate.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;                                              
+
+                        finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_NPV+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, SetFieldValues(NPV));
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_IRR+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, SetFieldValues(IRR));
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_PAYBACK+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, SetFieldValues(payback));
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_CAPEX+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, SetFieldValues(capex));
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_BIC+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, SetFieldValues(BIC));
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, volumeUnit);
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_LAST_SAVED_BY+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, UserInfo.getUserId());
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_LAST_SAVED+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, System.now()); 
+			finUpdate.put(IPM_ConstantUtils.FIELD_LITERAL_STATUS+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,IPM_ConstantUtils.STATUS_IN_PROGRESS);
+                        finUpdate.put('Status__c', IPM_ConstantUtils.STATUS_IN_PROGRESS);
                         update finUpdate;
                         return null;
                 }
@@ -362,12 +328,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
     ***************************************************************************************************************************************/    
     public static void UpdateFinancialYear(map<String,String> mapfields , String finID, String pspan, String projectType){
         try{
-                        String valueMarketShare;
-                        String vol;
-                        String turnover;
-                        String grossProfit ;
-                        String advertisingPromotions;
-                        String profitBeforeOverheads;
+                        
                         list<IPM_Financial_Year__c> updateFinancialyears = new list<IPM_Financial_Year__c>();
                         list<String> fieldList = new list<String>();                 
                         for(IPM_Financial_Year__c fy : [Select NameYearPLtype__c, Year__c, Year_Type__c, Volume_Unit_Regional__c, Volume_Unit_Local__c, Volume_Unit_Global__c, Volume_Tons_Regional__c, 
@@ -378,61 +339,11 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                         Gross_Profit_Local__c, Gross_Profit_Global__c, GM_of_TO_Regional__c, GM_of_TO_Local__c, GM_of_TO_Global__c, 
                         Advertising_Promotions_Regional__c, Advertising_Promotions_Local__c, Advertising_Promotions_Global__c, AP_of_TO_Regional__c, 
                         AP_of_TO_Local__c, AP_of_TO_Global__c From IPM_Financial_Year__c where IPM_Financial__c =: FinID limit: IPM_ConstantUtils.QueryLimt]){
-                                valueMarketShare = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
-                                vol = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
-                                turnover = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
-                                grossProfit  = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
-                                advertisingPromotions = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
-                                profitBeforeOverheads = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+                    
                                 if(mapfields.containskey(fy.NameYearPLtype__c)){
                                          fieldList = mapfields.get(fy.NameYearPLtype__c).split(IPM_ConstantUtils.Comma);
-                                         for(String field : fieldList){ 
-                                                if(IPM_ConstantUtils.rowValue1 == field.split(IPM_ConstantUtils.Colon)[0] || IPM_ConstantUtils.rowValue28 == field.split(IPM_ConstantUtils.Colon)[0]){
-                                                        valueMarketShare = setRowValuestoField(field);
-                                                }
-                                                if(IPM_ConstantUtils.rowValue4 == field.split(IPM_ConstantUtils.Colon)[0] || IPM_ConstantUtils.rowValue31 == field.split(IPM_ConstantUtils.Colon)[0]){
-                                                        vol = setRowValuestoField(field);
-                                                }
-                                                if(IPM_ConstantUtils.rowValue6 == field.split(IPM_ConstantUtils.Colon)[0] || IPM_ConstantUtils.rowValue33 == field.split(IPM_ConstantUtils.Colon)[0]){
-                                                        turnover = setRowValuestoField(field);
-                                                }
-                                                if(IPM_ConstantUtils.rowValue8 == field.split(IPM_ConstantUtils.Colon)[0] || IPM_ConstantUtils.rowValue35 == field.split(IPM_ConstantUtils.Colon)[0]){
-                                                        grossProfit  = setRowValuestoField(field);
-                                                }               
-                                                if(IPM_ConstantUtils.rowValue9 == field.split(IPM_ConstantUtils.Colon)[0] || IPM_ConstantUtils.rowValue36 == field.split(IPM_ConstantUtils.Colon)[0]){ 
-                                                        advertisingPromotions = setRowValuestoField(field);                        
-                                                }  
-                                                if(IPM_ConstantUtils.rowValue10 == field.split(IPM_ConstantUtils.Colon)[0] || IPM_ConstantUtils.rowValue37 == field.split(IPM_ConstantUtils.Colon)[0]){                           
-                                                        profitBeforeOverheads = setRowValuestoField(field);                       
-                                                }   
-                                        }
-                                       if(pspan == IPM_ConstantUtils.SpanGlobal || projectType == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                                                fy.Value_Market_Share_Global__c = setFieldValues(valueMarketShare);
-                                                fy.Turnover_Global__c = setFieldValues(turnover);
-                                                fy.Gross_Profit_Global__c = setFieldValues(grossProfit );
-                                                fy.Advertising_Promotions_Global__c = setFieldValues(advertisingPromotions);
-                                                fy.Profit_Before_Overheads_Global__c = setFieldValues(profitBeforeOverheads);
-                                                fy = assignVolumevaluesGlobal(mapfields,fy,vol);
-                                        }
-
-                                        if(pspan == IPM_ConstantUtils.Regional && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){ 
-                                                fy.Value_Market_Share_Regional__c = setFieldValues(valueMarketShare);
-                                                fy.Turnover_Regional__c = setFieldValues(turnover);
-                                                fy.Gross_Profit_Regional__c = setFieldValues(grossProfit );
-                                                fy.Advertising_Promotions_Regional__c = setFieldValues(advertisingPromotions);
-                                                fy.Profit_Before_Overheads_Regional__c = setFieldValues(profitBeforeOverheads);
-                                                fy = assignVolumevaluesRegional(mapfields,fy,vol);
-                                                
-                                                
-                                        }
-                                        if(pspan == IPM_ConstantUtils.Local && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
-                                                fy.Value_Market_Share_Local__c = setFieldValues(valueMarketShare);
-                                                fy.Turnover_Local__c = setFieldValues(turnover);
-                                                fy.Gross_Profit_Local__c = setFieldValues(grossProfit );
-                                                fy.Advertising_Promotions_Local__c = setFieldValues(advertisingPromotions);
-                                                fy.Profit_Before_Overheads_Local__c = setFieldValues(profitBeforeOverheads);
-                                                fy = assignVolumevaluesLocal(mapfields,fy,vol);
-                                        }
+                             
+                            fy = getUpdateFinancialyears(pspan, projectType, fy, fieldList, mapfields);
                                         UpdateFinancialyears.add(fy);  
                                                                              
                                 }
@@ -454,7 +365,53 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                
         }
         
-        }
+    }
+    
+    /***************************************************************************************************************
+    *  @Description: sets the field values of the financial year record and returns the same.
+    *  @name : getUpdateFinancialyears
+    *  @param : pspan, projectType, fy, fieldList, mapfields.
+    *  @return: IPM_Financial_Year__c Value.
+    ***************************************************************************************************************/ 
+    public static IPM_Financial_Year__c getUpdateFinancialyears(String pspan, String projectType, IPM_Financial_Year__c fy, list<String> fieldList, map<String,String> mapfields){
+    	string valueMarketShare = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+		string vol = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+		string turnover = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+		string grossProfit  = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+		string advertisingPromotions = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+		string profitBeforeOverheads = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+		IPM_Financial_Year__c fyearTmp = New IPM_Financial_Year__c();
+    	for(String field : fieldList){ 
+	        if(IPM_ConstantUtils.rowValue1 == field.split(IPM_ConstantUtils.Colon)[0] || IPM_ConstantUtils.rowValue28 == field.split(IPM_ConstantUtils.Colon)[0]){
+	                valueMarketShare = setRowValuestoField(field);
+	        }else if(IPM_ConstantUtils.rowValue4 == field.split(IPM_ConstantUtils.Colon)[0] || IPM_ConstantUtils.rowValue31 == field.split(IPM_ConstantUtils.Colon)[0]){
+	                vol = setRowValuestoField(field);
+	        }else if(IPM_ConstantUtils.rowValue6 == field.split(IPM_ConstantUtils.Colon)[0] || IPM_ConstantUtils.rowValue33 == field.split(IPM_ConstantUtils.Colon)[0]){
+	                turnover = setRowValuestoField(field);
+	        }else if(IPM_ConstantUtils.rowValue8 == field.split(IPM_ConstantUtils.Colon)[0] || IPM_ConstantUtils.rowValue35 == field.split(IPM_ConstantUtils.Colon)[0]){
+	                grossProfit  = setRowValuestoField(field);
+	        }else if(IPM_ConstantUtils.rowValue9 == field.split(IPM_ConstantUtils.Colon)[0] || IPM_ConstantUtils.rowValue36 == field.split(IPM_ConstantUtils.Colon)[0]){ 
+	                advertisingPromotions = setRowValuestoField(field);                        
+	        }else if(IPM_ConstantUtils.rowValue10 == field.split(IPM_ConstantUtils.Colon)[0] || IPM_ConstantUtils.rowValue37 == field.split(IPM_ConstantUtils.Colon)[0]){                           
+	                profitBeforeOverheads = setRowValuestoField(field);                       
+	        }   
+	    }
+    
+        fy.put(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(valueMarketShare));
+	fy.put(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(turnover));
+	fy.put(IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(grossProfit ));
+	fy.put(IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(advertisingPromotions));
+	fy.put(IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS+pspan+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, setFieldValues(profitBeforeOverheads));
+	    if(pspan.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)){
+	    	fyearTmp = assignVolumevaluesGlobal(mapfields,fy,vol);
+	    }else if(pspan.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)){
+	    	fyearTmp = AssignVolumeValuesRegional(mapfields,fy,vol);
+	    }else if(pspan.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_SPAN_LOCAL)){
+	    	fyearTmp = AssignVolumeValuesLocal(mapfields,fy,vol);
+	    }
+    	return fyearTmp;
+    }
+    
         
     /***************************************************************************************************************
     *  @Description: sets the field values of the financial year record..

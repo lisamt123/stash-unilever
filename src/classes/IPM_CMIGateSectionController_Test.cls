@@ -140,8 +140,17 @@ private class IPM_CMIGateSectionController_Test {
         Test.startTest();
          
         system.RunAs(globalUser){
-            ipmCmiCon.projectId=project.Id;
-            ipmCmiCon.setprojDocSecId(projectDocSecListObj[0].ID);
+        	Apexpages.currentpage().getparameters().put('secId',projectDocSecListObj[0].ID);
+        	Id projDocSecId = ipmCmiCon.projDocSecId;
+        	
+        	Apexpages.currentpage().getparameters().put('projId',project.Id);
+        	Id projectId = ipmCmiCon.projectId;
+        	
+        	Apexpages.currentpage().getparameters().put('gate','Charter');
+        	String gateType = ipmCmiCon.gateType;
+        	
+            ipmCmiCon.projectId = project.Id;
+            ipmCmiCon.projDocSecId=projectDocSecListObj[0].ID;
             ipmCmiCon.gateType='Charter';
             ipmCmiCon.showTableData();
             List<IPM_Project_Document_Section_Content__c> projectDocSecConObj=[select IPM_Content_Type__c,IPM_Project_Document_Section__c from IPM_Project_Document_Section_Content__c where IPM_Project_Document_Section__c=:ipmCmiCon.projDocSecId];
@@ -231,7 +240,7 @@ private class IPM_CMIGateSectionController_Test {
                 
                 
             ipmCmiCon.projectId=project.Id;
-            ipmCmiCon.setprojDocSecId(projectDocSecListObj[0].ID);
+            ipmCmiCon.projDocSecId=projectDocSecListObj[0].ID;
             ipmCmiCon.gateType='Contract';
             ipmCmiCon.showTableData();
             List<IPM_Project_Document_Section_Content__c> projectDocSecConObj=[select IPM_Content_Type__c,IPM_Project_Document_Section__c from IPM_Project_Document_Section_Content__c where IPM_Project_Document_Section__c=:ipmCmiCon.projDocSecId];
@@ -373,7 +382,7 @@ private class IPM_CMIGateSectionController_Test {
          
         system.RunAs(globalUser){
             ipmCmiCon.projectId=project.Id;
-            ipmCmiCon.setprojDocSecId(projectDocSecListObj[0].ID);
+            ipmCmiCon.projDocSecId=projectDocSecListObj[0].ID;
             ipmCmiCon.gateType='Market Ready';
             ipmCmiCon.showTableData();
             List<IPM_Project_Document_Section_Content__c> projectDocSecConObj=[select IPM_Content_Type__c,IPM_Project_Document_Section__c from IPM_Project_Document_Section_Content__c where IPM_Project_Document_Section__c=:ipmCmiCon.projDocSecId];
@@ -388,7 +397,7 @@ private class IPM_CMIGateSectionController_Test {
          
         system.RunAs(globalUser){
             ipmCmiCon.projectId=project.Id;
-            ipmCmiCon.setprojDocSecId(projectDocSecListObj[0].ID);
+            ipmCmiCon.projDocSecId=projectDocSecListObj[0].ID;
             ipmCmiCon.gateType='Market Deployment';
             ipmCmiCon.showTableData();
             List<IPM_Project_Document_Section_Content__c> projectDocSecConObj=[select IPM_Content_Type__c,IPM_Project_Document_Section__c from IPM_Project_Document_Section_Content__c where IPM_Project_Document_Section__c=:ipmCmiCon.projDocSecId];

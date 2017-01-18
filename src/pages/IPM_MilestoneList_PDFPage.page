@@ -1,0 +1,27 @@
+<!--  
+*************************************************************************
+*@Description: Component to display the milestone details
+*@Author: Cognizant
+*@Created Date: 24/03/2015
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+<apex:page sidebar="false" showHeader="false" >
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>  
+    <style>
+        .ipmPlainContainer {
+        padding-right: 0%;
+        }
+    </style>
+    <apex:composition template="IPM_TemplateForPlainStyling">  
+        <apex:define name="body">
+            <apex:form >
+                <c:IPM_MilestoneList_PDF pId="{!$CurrentPage.parameters.pId}"
+                gateDocType="{!$CurrentPage.parameters.gateDocType}"
+                gateDocStatus="{!$CurrentPage.parameters.gateDocStatus}">
+                </c:IPM_MilestoneList_PDF>
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/iframeResizer.contentWindow.min.js')}" type="text/javascript"></script>
+</apex:page>

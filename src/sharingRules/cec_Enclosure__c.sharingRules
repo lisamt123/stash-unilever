@@ -137,6 +137,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Hong_Kong_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Hong Kong - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Hong_Kong</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Hong_Kong</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Hungary_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Hungary – Manager</label>
@@ -324,6 +335,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Taiwan_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Taiwan - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Taiwan</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Taiwan</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Thailand_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Thailand - Manager</label>
@@ -332,6 +354,17 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_Thailand</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Turkey_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Turkey - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Turkey</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Turkey</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

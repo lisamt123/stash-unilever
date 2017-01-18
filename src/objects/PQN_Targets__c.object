@@ -135,10 +135,23 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>Region_Geography__c</fullName>
+        <fullName>PQN__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Pallet Quality Non Conformance</label>
+        <referenceTo>PQN_Pallet_Quality_Non_Conformance__c</referenceTo>
+        <relationshipLabel>Targets</relationshipLabel>
+        <relationshipName>Targets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
         <description>The region for which target is entered</description>
         <externalId>false</externalId>
-        <label>Region/ Geography</label>
+        <label>Region</label>
         <picklist>
             <picklistValues>
                 <fullName>Asia/RAM</fullName>
@@ -195,17 +208,6 @@
         <unique>false</unique>
     </fields>
     <label>Targets</label>
-    <listViews>
-        <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>Year__c</columns>
-        <columns>Region_Geography__c</columns>
-        <columns>Target_Reduction__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-        <language>en_US</language>
-    </listViews>
     <nameField>
         <displayFormat>{0}</displayFormat>
         <label>Name</label>

@@ -63,7 +63,7 @@ public with sharing Class FS_Utility{
         
         for(Account a : accounts){
            FS_User_Territory__c ut = FS_User_Territory__c.getInstance(a.ownerId);
-           acts.add(new Account(Id=a.Id, Region__c = ut.Region__c, Zone__c=ut.Zone__c, Territory__c=ut.Territory__c));
+           acts.add(new Account(Id=a.Id, Region__c = ut.Region__c,FS_CHD_Lock__c=true, Zone__c=ut.Zone__c, Territory__c=ut.Territory__c));//CurrencyIsoCode='CAD'
         }
         try{
             update acts;

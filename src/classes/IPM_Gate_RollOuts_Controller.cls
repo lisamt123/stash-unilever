@@ -8,24 +8,40 @@
 */
 public with sharing class IPM_Gate_RollOuts_Controller
 {
-    
-    public String[] headers {get;set;} //Containd table headers
+
+    public Id proId{ // to get-set the project id from the component attribute.
+        get{
+            if(proId == null && Apexpages.currentpage().getparameters().get('projId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('projId')) ;
+            }
+            else { return proId; }
+        }
+        set;
+    } 
+    public String span{// to get-set the project document section id from the component attribute.
+        get{
+            if(span == null && Apexpages.currentpage().getparameters().get('span') != null) {
+                return  Apexpages.currentpage().getparameters().get('span');
+            }
+            else { return span; }
+        }
+        set;
+    }
+    public String[] headers {get;set;} //Containd table headers 
     public transient List<RegionalRollOutWrapper> regionalRollOutWrapperList {get;set;} 
     public static  ID regionalRecordTypeId =  Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).RecordTypeId;//used for displaying Regional To Local To Country Mapping ;  
     public static  ID localRecordTypeId = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).RecordTypeId;//used for displaying Regional To Local To Country Mapping;
     public String showEntity{get;set;}
-    public Id proId
-    {
-        get 
-        { 
-            return proId; // to get the project document section ID from the component used from Gate document page
-        }
-        set 
-        {
-            proId= value;// setting the value of project document section
-            prepareIPMLocalToCountryWrapper();
-        }
+    
+    
+    /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForComponent() {
+        prepareIPMLocalToCountryWrapper();
+        return 'Required methods are invoked for component';
     }
+    
     /************************************************************************************************************************
     *  Description Constructor Getting Project Id From Page URL Parameter
     *  @name IPM_GatekeeperChecklist
@@ -33,7 +49,12 @@ public with sharing class IPM_Gate_RollOuts_Controller
     public IPM_Gate_RollOuts_Controller(){
        
         IPM_IECompatible.ieFix();//For IE Compatibility
-      	showEntity = IPM_ConstantUtils.BLANK;
+        showEntity = IPM_ConstantUtils.BLANK;
+        
+        if(test.isRunningTest()) {
+            getInvokeMethodsForComponent();
+        }
+        
     }
     
     /************************************************************************************************************************
@@ -78,16 +99,15 @@ public with sharing class IPM_Gate_RollOuts_Controller
                     queryString = 'SELECT Id,Name,IPM_Rollout_Project__c,Market_Cluster_Name__c,(SELECT Id,IPM_Brand__c,Name,IPM_Rollout_Project__c,Target_Launch_Date__c,IPM_Status__c,IPM_Regional_Rollout_Status__c  FROM Local_Rollouts__r WHERE recordTypeId =: localRecordTypeId) FROM IPM_Project_Rollout__c WHERE IPM_Project__c = :proId AND recordTypeId =:regionalRecordTypeId AND  ( isActive__c = true OR '+ showEntity +' = true ) LIMIT 10000';
                     list<IPM_Project_Rollout__c> listRollouts = Database.Query(queryString); 
                     for(IPM_Project_Rollout__c regRollout : listRollouts)
-                    {
+                    { 
                         if(!regRollout.Local_Rollouts__r.isEmpty())
                         {
                             if(bIsGKM3Project) {
-		                    	regionalToLocalRolloutList.put(regRollout.Market_Cluster_Name__c,regRollout.Local_Rollouts__r);
-		                    }
-		                	else {
-		                    	regionalToLocalRolloutList.put(regRollout.IPM_Rollout_Project__c,regRollout.Local_Rollouts__r);
-		                    }
-		                    
+                                regionalToLocalRolloutList.put(regRollout.Market_Cluster_Name__c,regRollout.Local_Rollouts__r);
+                            }
+                            else {
+                                regionalToLocalRolloutList.put(regRollout.IPM_Rollout_Project__c,regRollout.Local_Rollouts__r);
+                            }                            
                             completeLocalRolloutMap.putAll(new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>)regRollout.Local_Rollouts__r));
                         }      
                     }
@@ -118,6 +138,7 @@ public with sharing class IPM_Gate_RollOuts_Controller
                             completeLocalRolloutMap.putAll(new Map<Id,IPM_Project_Rollout__c>((List<IPM_Project_Rollout__c>) regProject.Regional_Project_Rollout__r));
                         }
                     }   
+                    
                 }
                 
                 List<IPM_Project_Rollout__c> listProjectRollout = completeLocalRolloutMap.values();

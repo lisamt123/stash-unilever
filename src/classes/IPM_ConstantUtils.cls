@@ -69,6 +69,7 @@ public class IPM_ConstantUtils {
     
     public static final String SECTION_TYPE_HEADER='Header';
     public static final String SECTION_TYPE_SUBHEADER='Sub Header';
+    public static final String SECTION_TYPE_TOPIC='Topic';
     
     public static final String PROJECT_SPAN_GLOBAL='Global';
     public static final String PROJECT_SPAN_REGIONAL='Regional';
@@ -369,7 +370,7 @@ public class IPM_ConstantUtils {
     //Regional
     public static final String TAB_CHARTER_LABEL = 'Charter';
     public static final String TAB_GLOBALCHARTER_LABEL = 'Global Charter';
-    public static final String TAB_LOCALBBROLLUP_LABEL = 'Local BB rollup';
+    public static final String TAB_LOCALBBROLLUP_LABEL = 'Local Rollup';
     //Local
     public static final String TAB_MYVIEW_LABEL = 'My View'; 
      
@@ -466,7 +467,8 @@ public class IPM_ConstantUtils {
     
     
     public static final String IDEAS_SEQUENCE='1.1';
-     
+    public static final String TRADE_STORY_SEQUENCE='2.2.2';  
+       
     //Delimitor
     public static final String Delimiter=';';
      
@@ -1301,8 +1303,8 @@ public class IPM_ConstantUtils {
     public static final String PDL_FINACIAL_GLOBAL_CLAIMS = 'Final_Global_Claims';
     public static final String PDL_GOLDEN_PROTOTYPE = 'Golden_Prototype';
     public static final String PDL_QUALITY_STANDARDS = 'Quality_Standards';
-	public static final String SELECT_CLAIM = 'Select Claim';
-	
-	public static final String REGIONAL_PROJECT = ' Regional Project,';
+    public static final String SELECT_CLAIM = 'Select Claim';
+    
+    public static final String REGIONAL_PROJECT = ' Regional Project,';
     public static final String GLOBAL_PROJECT = ' Global Project,';
 }

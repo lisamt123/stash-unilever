@@ -10,6 +10,8 @@
             "oppId" : oppId
         });
         
+        component.set("v.enableSpinner", true);
+        
         action.setCallback(this, function(response) {
             var state = response.getState();
             if(state === "SUCCESS") {
@@ -30,6 +32,11 @@
            opp.StageName === $A.get("$Label.c.TEL_OppStageScheduled")) 
         {
             var action = component.get("c.getFullProductsList");
+            
+            action.setParams({
+                "oppId" : opp.Id 
+            });
+            
             action.setCallback(this, function(response) {
                 var state = response.getState();
                 if(state === "SUCCESS") {
@@ -65,19 +72,26 @@
             if(state === "SUCCESS") {
                 var productsList = response.getReturnValue();
                 
-                for(var prod = 0; prod < productsList.length; prod++) {
-                    for(var fullProd = 0; fullProd < fullProdList.length; fullProd++) {
-                        if(productsList[prod].productId === fullProdList[fullProd].productId) {
-                            fullProdList.splice(fullProd, 1);
+                
+                    for(var prod = 0; prod < productsList.length; prod++) {
+                        for(var fullProd = 0; fullProd < fullProdList.length; fullProd++) {
+                            if(productsList[prod].productId === fullProdList[fullProd].productId) {
+                                fullProdList.splice(fullProd, 1);
+                            }
                         }
                     }
-                }
+                
                 
                 component.set("v.wrapperProductsList", productsList);
                 component.set("v.fullWrapperProductsList", fullProdList);
                 component.set("v.renderOpenOrderView", true);
                 component.set("v.renderClosedOrderView", false);
                 component.set("v.enableSearchBar", true);
+                component.set("v.enableSpinner", false);
+                
+                if(productsList.length === 0) {    
+                    component.set("v.showWarning", true);  
+                }
             }
         });
         $A.enqueueAction(action);
@@ -101,6 +115,7 @@
                 component.set("v.wrapperProductsList", productsList);
                 component.set("v.renderOpenOrderView", false);
                 component.set("v.renderClosedOrderView", true);
+                component.set("v.enableSpinner", false);
             }
         });
         $A.enqueueAction(action);
@@ -121,6 +136,7 @@
                 component.set("v.wrapperProductsList", productsList);
                 component.set("v.renderOpenOrderView", false);
                 component.set("v.renderClosedOrderView", false);
+                component.set("v.enableSpinner", false);
             }
         });
         $A.enqueueAction(action);
@@ -132,33 +148,58 @@
     retrieveSelectedItemsList : function(component, event) {
         console.log("Initiating retrieveSelectedItemsList");
         
+        component.set("v.enableSpinner", true); 
+        
         var action = component.get("c.getSelectedItems");
         var productsList = component.get("v.wrapperProductsList");
-        var productsJSON = JSON.stringify(productsList);
         
-        action.setParams({
-            "productsJSONList" : productsJSON
-        });
-        
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if(state === "SUCCESS") {
-                var wrapperProductsList = response.getReturnValue();
-                
-                for(var counter = 0; counter < wrapperProductsList.length; counter++) {
-                    if(wrapperProductsList[counter].opportunityId === null || wrapperProductsList[counter].opportunityId === "") {
-                        wrapperProductsList[counter].opportunityId = component.get("v.recordId");
-                    }
-                }
-                
-                component.set("v.selectedProductsList", wrapperProductsList);
-                component.set("v.renderSummaryTable", true);
-                component.set("v.disableSummarizeButton", true);
-                component.set("v.disableSendOrderButton", false);
-                component.set("v.enableSearchBar", false);
+        var quantityValidation = false;
+        for(var prod = 0; prod < productsList.length; prod++) {
+            if(productsList[prod].amount <= 0 && productsList[prod].isSelected) {
+                quantityValidation = true;
             }
-        });
-        $A.enqueueAction(action);
+        }
+        
+        if(quantityValidation) {
+            component.set("v.enableSpinner", false);
+            
+            var toastEvent 	= $A.get("e.force:showToast");
+            toastEvent.setParams({
+                "title"		: "Alert!",
+                "message"	: "Each selected product must have its quantity above 0.",
+                "duration"	: 5000,
+                "type"		: "warning"
+            });
+            toastEvent.fire();
+        } else {
+            
+            var productsJSON = JSON.stringify(productsList);
+            
+            action.setParams({
+                "productsJSONList" : productsJSON
+            });
+            
+            action.setCallback(this, function(response) {
+                var state = response.getState();
+                if(state === "SUCCESS") {
+                    var wrapperProductsList = response.getReturnValue();
+                    
+                    for(var counter = 0; counter < wrapperProductsList.length; counter++) {
+                        if(wrapperProductsList[counter].opportunityId === null || wrapperProductsList[counter].opportunityId === "") {
+                            wrapperProductsList[counter].opportunityId = component.get("v.recordId");
+                        }
+                    }
+                    
+                    component.set("v.selectedProductsList", wrapperProductsList);
+                    component.set("v.renderSummaryTable", true);
+                    component.set("v.disableSummarizeButton", true);
+                    component.set("v.disableSendOrderButton", false);
+                    component.set("v.enableSearchBar", false);
+                    component.set("v.enableSpinner", false);
+                }
+            });
+            $A.enqueueAction(action);
+        }
         
         console.log("Exiting retrieveSelectedItemsList");
     },
@@ -167,24 +208,48 @@
     saveOrder : function(component) {
         console.log("Initiating saveOrder");
         
+        component.set("v.enableSpinner", true);
+        
         var action = component.get("c.createOrder");
         var orderedProductsList = component.get("v.selectedProductsList");
-        var orderedProductsJSON = JSON.stringify(orderedProductsList);
         
-        action.setParams({
-            "orderedProductsJSONList" : orderedProductsJSON
-        });
-        
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if(state === "SUCCESS") {
-                component.set("v.renderSummaryTable", false);
-                component.set("v.renderOrderTable", true);
-                component.set("v.disableSendOrderButton", true);
+        var quantityValidation = false;
+        for(var prod = 0; prod < orderedProductsList.length; prod++) {
+            if(orderedProductsList[prod].amount <= 0) {
+                quantityValidation = true;
             }
-        });
-        $A.enqueueAction(action);        
-        $A.get('e.force:refreshView').fire();
+        }
+        
+        if(quantityValidation) {
+            component.set("v.enableSpinner", false); 
+            
+            var toastEvent 	= $A.get("e.force:showToast");
+            toastEvent.setParams({
+                "title"		: "Alert!",
+                "message"	: "Each selected product must have its quantity above 0.",
+                "duration"	: 5000,
+                "type"		: "warning"
+            });
+            toastEvent.fire();
+        } else {
+            var orderedProductsJSON = JSON.stringify(orderedProductsList);
+            
+            action.setParams({
+                "orderedProductsJSONList" : orderedProductsJSON
+            });
+            
+            action.setCallback(this, function(response) {
+                var state = response.getState();
+                if(state === "SUCCESS") {
+                    component.set("v.renderSummaryTable", false);
+                    component.set("v.renderOrderTable", true);
+                    component.set("v.disableSendOrderButton", true);
+                    component.set("v.enableSpinner", false);
+                }
+            });
+            $A.enqueueAction(action);        
+            $A.get('e.force:refreshView').fire();
+        }
         
         console.log("Exiting saveOrder");
     },
@@ -228,6 +293,7 @@
             component.set("v.wrapperProductsList", openProductsList);
             component.find("searchBox").set("v.value", "");
             component.set("v.showProductsList", false);
+            component.set("v.showWarning", false);
         }
         
         console.log("Exiting addSelectedProduct");

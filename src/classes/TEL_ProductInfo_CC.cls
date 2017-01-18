@@ -44,8 +44,8 @@ public with sharing class TEL_ProductInfo_CC {
     
     //Returns list with all products available for current user
     @AuraEnabled
-    public static List<TEL_TelesalesWrapper.ProductInfo> getFullProductsList() {
-        TEL_FullProductsList fullProdList = new TEL_FullProductsList();
+    public static List<TEL_TelesalesWrapper.ProductInfo> getFullProductsList(String oppId) {
+        TEL_FullProductsList fullProdList = new TEL_FullProductsList(oppId);
         return fullProdList.createWrapperProducts();
     }   
     

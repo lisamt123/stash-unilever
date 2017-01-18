@@ -337,16 +337,25 @@ soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdM
        } 
        
        if(String.isNotBlank(categoryName)){
-           soql += ' and Job_Details__r.ProductCategory__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH ;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
-       }
+           soql += ' and ( Job_Details__r.ProductCategory__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH ;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
+        
+		   soql += ' or Job_Details__r.Multi_Category__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH +')';
+		   
+      	   }
        
        if(String.isNotBlank(brandPosName)){
-           soql += ' and Job_Details__r.Brand_Position__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandPosName)+Amr_ConstantForAdManager.PERCENTAGESLASH ;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
-       } 
+           soql += ' and ( Job_Details__r.Brand_Position__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandPosName)+Amr_ConstantForAdManager.PERCENTAGESLASH ;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ; 
+		   
+		    soql += ' or AM_Job_Detail__r.Multi_Brand_Positioning__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(brandPosName)+Amr_ConstantForAdManager.PERCENTAGESLASH +')';	
+			                     
+	  } 
 
        if(String.isNotBlank(brandNameFromPage)){
-           soql += ' and Job_Details__r.Brand_Final__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandNameFromPage)+Amr_ConstantForAdManager.PERCENTAGESLASH ;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
-       }
+           soql += ' and ( Job_Details__r.Brand_Final__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandNameFromPage)+Amr_ConstantForAdManager.PERCENTAGESLASH ;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
+       
+	   soql += ' or AM_Job_Detail__r.Multi_Brand__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(brandNameFromPage)+Amr_ConstantForAdManager.PERCENTAGESLASH +')';	
+	   
+	   }
 
        if(String.isNotBlank(numberOfAdditionalFilm)){
          //  String finalNumberOfFilms = numberOfAdditionalFilm.replace(Amr_ConstantForAdManager.COMMA,Amr_ConstantForAdManager.SINGLE_QUOTE);

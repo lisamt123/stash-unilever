@@ -51,7 +51,15 @@
             <runTest>TestDataFactory</runTest>
             <runTest>UserTestUtil</runTest>
             <runTest>UserTrigger_Test</runTest>
-            <runTest>VPM_SearchVendor1Test</runTest>
+            <runTest>VPM_ApprovalSubmitTest</runTest>
+			<runTest>VPM_CreateVendorServiceHelper_Test</runTest>
+			<runTest>VPM_FetchVendorsDetails_Test</runTest>
+			<runTest>VPM_GoldenDataController2Test</runTest>
+			<runTest>VPM_MaintainGlobalVendorService_Test</runTest>
+			<runTest>VPM_ProcurementCentralController_Test</runTest>
+			<runTest>VPM_PurchaseRequestsExtensionTest</runTest>
+			<runTest>VPM_RegionalMaintainVendorTest</runTest>
+			<runTest>VPM_SearchVendor1Test</runTest>
 	</sf:deploy>
     </target>
 </project>

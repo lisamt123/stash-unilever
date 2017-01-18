@@ -1,0 +1,257 @@
+<messaging:emailTemplate subject="Invitiation to Share Company Details with Unilever" recipientType="User" relatedToType="VPM_PurchasingRequests__c">
+<messaging:htmlEmailBody >
+<html><head>
+<title>UNILEVER MOVES FROM PAPER TO ELECTRONIC INVOICES</title>
+    <meta name="robots" content="noindex,nofollow"/>
+    <link href="/notessa/unileverexternalpurchasetopay/content/contentPreview.do?action=previewCss&cssType=COMMON&pageId=48034238&t=1480579887553" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/notessa/unileverexternalpurchasetopay/content/contentPreview.do?action=previewCss&cssType=INBOX&pageId=48034238&t=1480579887553" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/notessa/unileverexternalpurchasetopay/content/contentPreview.do?action=previewCss&cssType=MOBILE&pageId=48034238&t=1480579887553" media="all" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/notessa/includes/js-css/common/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/notessa/includes/js-css/common/jquery/jquery.ui.js"></script>
+    <link href="/notessa/includes/js-css/common/jquery/themes/newsweaver/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/nwstatic/scripts/fancybox/jquery.fancybox.js"></script>
+    <link href="/nwstatic/scripts/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/nwstatic/scripts/microsite.js"></script>
+    <script type="text/javascript" src="/notessa/includes/js-css/content/preview/previewScripts.js"></script>
+    <script type="text/javascript" src="/notessa/includes/js-css/content/preview/commonPreviewScripts.js"></script>
+    <script src="/notessa/includes/js-css/common/ga/performance.js"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:v="urn:schemas-microsoft-com:vml"
+    xmlns:o="urn:schemas-microsoft-com:office:office">
+    
+    <head>
+    <!--[if gte mso 9]><xml>
+    <o:OfficeDocumentSettings>
+    <o:AllowPNG/>
+    <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    </xml><![endif]-->
+    </head>
+    </html></head>
+<body style="background-color: #ffffff; margin: 0; padding: 0;">
+<div class="content" id="wrapper" style="background-color: #ffffff; margin: 0; padding: 0; padding-top: 1em;">
+<div class="nw_layout_LAYOUT2">
+<table
+ align="center"
+
+ border="0" cellpadding="0" cellspacing="0" class="CoverPage" id="CoverPage"
+ style="background-color: #ffffff; margin-bottom: 1em; width: 650px;" width="650">
+  <tr>
+                <td width="500" valign="top" align="center">
+                  <p class="MsoNormal"><span style="mso-bookmark:_MailOriginal"><span style="mso-fareast-language:EN-GB;text-align:center;
+                  mso-no-proof:yes"><!--[if !vml]--><img src="http://survey.clicktools.com/app/org/capgemin14/images/Header.png" alt="UnileverHeader" ></img><!--[endif]--></span></span></p>
+                </td>
+            </tr>
+   <tr>
+   <td>
+       <table align="center" id="before_text" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+    <tr><td class="before_text" id="inner_before_text" style="color: #444444; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; padding: 0; text-decoration: none;"><table style="background-color: #ffffff; width: 100%;" class="before_text_wrapper" align="center" border="0" cellpadding="0" cellspacing="0">
+     
+    <tbody>
+    <tr>
+     <td width="500" valign="top" align="center" style="width:5000pt;padding:0cm 0cm 0cm 0cm;">
+                    <palign="centre" style="text-align:center"><b>
+                       <span style="color:#00ACBC;text-decoration:none;font-size:1.1em;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif;">
+                           <apex:outputLabel value="{!$Label.VPM_InvitationLabel}"></apex:outputLabel>
+                       </span>
+                      </b></p>
+     </td>
+     </tr>
+        <tr><td style="color: #000001; font-family: Arial,Helvetica,sans-serif; font-style: normal; font-weight: normal; padding: 4px 0; text-align: center; text-decoration: none;"><table style="width: 650px;" align="center" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td style="color: #000001; font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-style: normal; font-weight: normal; padding: 4px 0; text-align: center; text-decoration: none;"></td></tr></tbody></table></td></tr></tbody></table><!-- Extra spacer table for Outlook 2007+ --><table style="width: 100%;" align="center" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td style="color: #444444; display: none; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; padding: 4px; text-decoration: none;">&nbsp;</td></tr>
+    
+    </tbody>
+    </table></td></tr>
+</table>
+   </td>
+   </tr>
+<tr><!-- buildCellForTableRow -->
+<!-- buildCellForTableRow -->
+<td id="header" valign="top" width="650" style="color: #444444; font-family: Arial,Helvetica,sans-serif;font-style: normal; font-weight: normal; padding: 0; text-decoration: none; width: 100%;">
+<!-- renderCellComponentsList --><!-- renderCellComponentsList_list -->
+<!-- renderTemplateComponent -->
+
+<table id="nw_masthead_wrapper" class="nw_component_wrapper" cellpadding="0" cellspacing="0"
+style="width: 100%;">
+<tr><td class="nw-componentSpacerMainCell" style="color: #444444; font-family: Arial,Helvetica,sans-serif;font-style: normal; font-weight: normal; padding-bottom: 0; text-decoration: none;"><!-- buildTemplateComponentStructure -->
+<table cellpadding="0" cellspacing="0" class="ContentBlock" id="masthead" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;" width="100%">
+<tr><td class="nw-componentMainCell" style="background-color: #ffffff; border-top-color: #0085ca; border-top-style: solid; border-top-width: 4px; color: #444444; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; padding: 0; text-decoration: none;"></td></tr></table>
+<!-- /buildTemplateComponentStructure --></td></tr>
+</table>    
+
+<!-- /renderTemplateComponent -->
+<!-- /renderCellComponentsList_list --><!-- renderCellComponentsList_list -->
+<!-- renderTemplateComponent -->
+
+<table id="nw_titlebar_wrapper" class="nw_component_wrapper" cellpadding="0" cellspacing="0"
+style="width: 100%;">
+<tr><td class="nw-componentSpacerMainCell" style="color: #444444; font-family: Arial,Helvetica,sans-serif; font-style: normal; font-weight: normal; padding-bottom: 0; text-decoration: none;"><!-- buildTemplateComponentStructure -->
+<!-- /buildTemplateComponentStructure --></td></tr>
+</table>    
+
+<!-- /renderTemplateComponent -->
+<!-- /renderCellComponentsList_list --><!-- renderCellComponentsList_list -->
+<!-- renderTemplateComponent -->
+
+
+<!-- /renderTemplateComponent -->
+<!-- /renderCellComponentsList_list --><!-- renderCellComponentsList_list -->
+<!-- renderTemplateComponent -->
+
+<table id="nw_featurearticle_wrapper" class="nw_component_wrapper" cellpadding="0" cellspacing="0"
+style="width: 100%;">
+<tr><td class="nw-componentSpacerMainCell" style="color: #444444; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; padding-bottom: 15px; text-decoration: none;"><!-- buildTemplateComponentStructure -->
+<table cellpadding="0" cellspacing="0" class="ArticleSummary" id="featurearticle" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;" width="100%">
+<tr><td class="nw-componentMainCell" style="background-color: #ffffff; color: #444444; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; padding: 20px 10px; text-decoration: none;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td style="color: #444444; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; text-decoration: none;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td class="article_wrapper" style="color: #444444; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; text-decoration: none;">
+<!-- [-ARTICLES-] -->
+<div class="nw_summary_wrapper">
+<!-- After Article Title Fragment --><table style="width: 10%;" class="after_article_title_fragment" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td style="color: #444444; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; line-height: 1px; padding-bottom: 8px; text-decoration: none;"></td></tr></tbody></table>
+<span class="summary" id="articleSummary_19586081" style="color: #444444; font-size: 16px; font-style: normal; font-weight: normal; text-decoration: none;">
+<p style="margin: 0; padding: 0;">  <apex:outputLabel value="{!$Label.VPM_InvitationLabelLine1}"></apex:outputLabel> <br /><apex:outputLabel value="{!$Label.VPM_InvitationLabelLine2}"></apex:outputLabel><br /></p>
+<br/><div>
+    <a href="{!$Label.VPM_ClickToolsURL}{!relatedTo.Id}&language={!relatedTo.VPM_LanguageISOCode__c}">{!$Label.VPM_Click_Here}</a>
+</div>
+
+<p style="margin: 0; padding: 0;"><p>
+    <apex:outputLabel value="{!$Label.VPM_InvitationLabelLine3}"></apex:outputLabel>
+</p>
+</p><p style="margin: 0; padding: 0;">
+        
+        <div><apex:outputLabel value="{!$Label.VPM_InvitationLabelRegards}"></apex:outputLabel></div>
+    </p>
+    <b><apex:outputLabel value="{!relatedTo.CreatedBy.Name}"></apex:outputLabel><br /><apex:outputLabel value="{!relatedTo.CreatedBy.Email}"></apex:outputLabel></b>
+    <p style="margin: 0; padding: 0;"> <apex:outputLink target="{!$Label.VPM_UnileverEMail}">{!$Label.VPM_UnileverEMail}</apex:outputLink></p>
+</span>
+</div>
+
+</td></tr>
+<tr>
+    <td><br/>
+         <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:_MailOriginal"><b><span style="font-size:7.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"> <apex:outputLabel value="{!$Label.VPM_InvitationAgreementLine1}"></apex:outputLabel></span></b></span></p>
+    </td>
+</tr>
+<tr>
+    <td>
+         <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:_MailOriginal"><b><span style="font-size:7.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"> <apex:outputLabel value="{!$Label.VPM_InvitationAgreementLine2}"></apex:outputLabel></span></b></span></p>
+    </td>
+</tr>
+<tr>
+    <td>
+         <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:_MailOriginal"><b><span style="font-size:7.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"> <apex:outputLabel value="{!$Label.VPM_InvitationPrivacyLine1}"></apex:outputLabel></span></b></span></p>
+    </td>
+</tr>
+<tr>
+    <td>
+         <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:_MailOriginal"><b><span style="font-size:7.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"> <apex:outputLabel value="{!$Label.VPM_InvitationPrivacyLine2}"></apex:outputLabel></span></b></span></p>
+    </td>
+</tr>
+<tr>
+     <td>
+         <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:_MailOriginal"><b><span style="font-size:7.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"> <apex:outputLabel value="{!$Label.VPM_InvitationPrivacyLine3}"></apex:outputLabel></span></b></span></p>
+    </td>
+</tr>
+<tr>   
+     <td>
+         <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:_MailOriginal"><b><span style="font-size:7.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"> <apex:outputLabel value="{!$Label.VPM_InvitationPrivacyLine4}"></apex:outputLabel></span></b></span></p>
+    </td>
+</tr>
+</table>
+<!-- close article wrapper -->
+<!-- After Sections Fragment --><table style="width: 100%;" class="after_sections_fragment" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td style="border-bottom: solid 1px #aaaaaa; color: #444444; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; line-height: 1px; padding-bottom: 16px; text-decoration: none;"></td></tr></tbody></table>
+</td>
+</tr>
+</table>
+</td></tr></table>
+<!-- /buildTemplateComponentStructure --></td></tr>
+</table>    
+
+<!-- /renderTemplateComponent -->
+<!-- /renderCellComponentsList_list -->
+
+<!-- /renderCellComponentsList --></td> 
+<!-- /buildCellForTableRow --></tr>
+<tr><td valign="top" id="nw-layout-containercell1" style="border-bottom: solid 1px #aaaaaa; color: #444444; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; padding-bottom: 16px; text-decoration: none;"><table cellpadding="0" cellspacing="0" width="100%">
+<tr><!-- buildCellForTableRow -->
+<!-- buildCellForTableRow -->
+<td id="left" valign="top" width="325" style="background-color: #ffffff; border-right: none; color: #444444; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; padding-bottom: 0; padding-left: 10px; padding-right: 10px; text-decoration: none; width: 50%;">
+<!-- renderCellComponentsList --><!-- renderCellComponentsList_list -->
+<!-- renderTemplateComponent -->
+
+
+<!-- /renderTemplateComponent -->
+<!-- /renderCellComponentsList_list --><!-- renderCellComponentsList_list -->
+<!-- renderTemplateComponent -->
+
+
+<!-- /renderTemplateComponent -->
+<!-- /renderCellComponentsList_list -->
+
+<!-- /renderCellComponentsList --></td> 
+<!-- /buildCellForTableRow -->
+<!-- buildCellForTableRow -->
+<!-- buildCellForTableRow -->
+<td id="main" valign="top" width="325" style="background-color: #ffffff; color: #444444; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; padding-bottom: 0; padding-left: 10px; padding-right: 10px; text-decoration: none; width: 50%;">
+<!-- renderCellComponentsList --><!-- renderCellComponentsList_list -->
+<!-- renderTemplateComponent -->
+
+
+<!-- /renderTemplateComponent -->
+<!-- /renderCellComponentsList_list --><!-- renderCellComponentsList_list -->
+<!-- renderTemplateComponent -->
+
+
+<!-- /renderTemplateComponent -->
+<!-- /renderCellComponentsList_list -->
+
+<!-- /renderCellComponentsList --></td> 
+<!-- /buildCellForTableRow --></tr>
+</table></td></tr>
+<tr><!-- buildCellForTableRow -->
+<!-- buildCellForTableRow -->
+<td id="footer" valign="top" width="650" style="background-color: #003da5; color: #444444; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; padding: 0; text-decoration: none; width: 100%;">
+<!-- renderCellComponentsList --><!-- renderCellComponentsList_list -->
+<!-- renderTemplateComponent -->
+
+
+<!-- /renderTemplateComponent -->
+<!-- /renderCellComponentsList_list --><!-- renderCellComponentsList_list -->
+<!-- renderTemplateComponent -->
+
+
+<!-- /renderTemplateComponent -->
+<!-- /renderCellComponentsList_list --><!-- renderCellComponentsList_list -->
+<!-- renderTemplateComponent -->
+
+
+<!-- /renderTemplateComponent -->
+<!-- /renderCellComponentsList_list --><!-- renderCellComponentsList_list -->
+<!-- renderTemplateComponent -->
+<!-- /renderTemplateComponent -->
+<!-- /renderCellComponentsList_list --><!-- renderCellComponentsList_list -->
+<!-- renderTemplateComponent -->
+
+<table id="nw_footertext_wrapper" class="nw_component_wrapper" cellpadding="0" cellspacing="0"
+style="width: 100%;">
+<tr><td class="nw-componentSpacerMainCell" style="background-color: #ffffff; border-top-color: #003da5; border-top-style: solid; border-top-width: 4px; color: #444444; font-family: Arial,Helvetica,sans-serif; font-size: 13px; font-style: normal; font-weight: normal; padding-bottom: 0px; padding-top: 4px; text-decoration: none;"><!-- buildTemplateComponentStructure -->
+<table cellpadding="0" cellspacing="0" class="ContentBlock" id="footertext" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;" width="100%">
+<tr><td class="nw-componentMainCell" style="background-color: #003da5; color: #ffffff; font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-style: normal; font-weight: normal; padding: 15px; text-decoration: none;"><p style="margin: 0; padding: 0;"><apex:outputLabel value="{!$Label.VPM_InvitationFooterLine1}"></apex:outputLabel> <a href="{!$Label.VPM_SupplierCenterURL}" target="_blank" style="color: #ffffff; font-style: normal; font-weight: normal; text-decoration: underline;">{!$Label.VPM_SupplierCenter}</a>.</p></td></tr></table>
+<!-- /buildTemplateComponentStructure --></td></tr>
+</table>    
+
+<!-- /renderTemplateComponent -->
+<!-- /renderCellComponentsList_list -->
+
+<!-- /renderCellComponentsList --></td> 
+<!-- /buildCellForTableRow --></tr>
+</table>
+</div>
+</div>
+</body></html>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

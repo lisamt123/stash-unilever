@@ -442,8 +442,8 @@ to view there progress as they go throught the program -->
 
                    <span id="link"><h2> Chatter Groups :<br/>
                    <apex:outputLabel ><apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+ FAU_Participant__c.FAU_Program_Chatter_Group_Id__c}" target="_blank">{!FAU_Participant__c.FAU_program_wave__r.name}</apex:outputlink><br/></apex:outputLabel>
-                   <apex:outputLabel rendered="{!chatterGroupId}"><apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+ FAU_Participant__c.FAU_PII__r.FAU_PII_Chatter_Group_Id__c}" target="_blank">PII Chatter Group</apex:outputlink><br/></apex:outputLabel>
-                   <apex:outputLabel rendered="{!tablechatterGroupId}"><apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+ FAU_Participant__c.FAU_PII__r.PII_Table__r.FAU_Participant_Chatter_Group_Id__c}" target="_blank">PII Table Chatter Group</apex:outputlink><br/></apex:outputLabel>
+                   <apex:outputLabel rendered="{!chatterGroupId}"><apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+ FAU_Participant__c.FAU_PII__r.FAU_PII_Chatter_Group_Id__c}" target="_blank">{!FAU_Participant__c.FAU_PII__r.name}</apex:outputlink><br/></apex:outputLabel>
+                   <apex:outputLabel rendered="{!tablechatterGroupId}"><apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+ FAU_Participant__c.FAU_PII__r.PII_Table__r.FAU_Participant_Chatter_Group_Id__c}" target="_blank">{!FAU_Participant__c.FAU_PII__r.PII_Table__r.name}</apex:outputlink><br/></apex:outputLabel>
                    </h2></span>
                    <br/><br/>                     
 

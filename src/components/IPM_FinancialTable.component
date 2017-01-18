@@ -30,7 +30,7 @@
     <!--
         Renders if there any validation error for innovation financial year records
     -->
-    <apex:outputPanel id="errorPanel" rendered="{!AND(NOT(isProjectStop),OR(isValidationError, isValidationErrorCal, ipmFinancial.IsFinancialInvalid__c), validationErrorMessage != '',  isInnovation)}">
+    <apex:outputPanel id="errorPanel" rendered="{!AND(NOT(isProjectStop), validationErrorMessage != '',  isInnovation)}">
         <div class="finAlertBox">
             <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
             <div class="col-sm-11 finalerttext">
@@ -206,6 +206,9 @@
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>
             </tr>
             
+            <apex:variable value="{!AND(showMisalignment,ipmFinancial.Volume_Unit_Difference__c > 0)}" var="volumeMetricsMisAligned" />
+            <apex:variable value="{!IF(AND(showMisalignment,ipmFinancial.Volume_Unit_Difference__c > 0),$Label.IPM_Volume_Unit_Misalignment_Message,'')}" var="volumeMetricsMisAlignedMsg" />
+            
             <!-- Volume Units  starts -->
             <apex:outputText id="VolumePanel" >
                 <!--
@@ -215,7 +218,9 @@
                     <tr>
                         <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
                             <apex:actionStatus startText="" id="changeVolumeType" startStyleClass="proInit"/>
-                            <td class="fintleblubg" >
+                            
+                            
+                            <td class="fintleblubg {!IF(volumeMetricsMisAligned,'misaligned','')}">
                             <!--
                                 This block will be rendered for non-consolisated records
                             -->
@@ -228,14 +233,15 @@
                                     <!--
                                         This block will be rendered for non-edit mode
                                     -->
-                                    <apex:outputField value="{!ipmFinancial.Volume_Unit_Global__c}" rendered="{!NOT(isEditMode) }"/>
-                                    
+                                    <span class="info" data-html="true" data-original-title="{!volumeMetricsMisAlignedMsg}">
+                                    	<apex:outputField value="{!ipmFinancial.Volume_Unit_Global__c}" rendered="{!NOT(isEditMode) }" />
+                                    </span>
                                     <!--
                                         This block will be rendered for Innovation records, edit mode
                                     -->
                                     <apex:selectList value="{!ipmFinancial.Volume_Unit_Global__c}" size="1" rendered="{!IF(isInnovation, isEditMode, false)}" onchange="updateVolumeType()">
                                         <apex:selectOption itemValue="Total Tons" itemLabel="Total Tons"/>
-                                        <apex:selectOption itemValue="Total 000 Units" itemLabel="Total 000 Units"/>
+                                        <apex:selectOption itemValue="Total 000 Units" itemLabel="Total 000 Units"/> 
                                     </apex:selectList>
                                 </apex:outputPanel>
             
@@ -244,12 +250,13 @@
                                 <!--
                                     This block will be rendered for Regional project records
                                 -->
-                                <apex:outputPanel layout="block" rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}" styleClass="misaligned">
+                                <apex:outputPanel layout="block" rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}" >
                                     <!--
                                         This block will be rendered for non-edit mode
                                     -->
-                                    <apex:outputField value="{!ipmFinancial.Volume_Unit_Regional__c}" rendered="{!NOT(isEditMode) }"/>
-                                    
+                                    <span class="info" data-html="true" data-original-title="{!volumeMetricsMisAlignedMsg}">
+                                    	<apex:outputField value="{!ipmFinancial.Volume_Unit_Regional__c}" rendered="{!NOT(isEditMode) }" />
+                                    </span>
                                     <!--
                                         This block will be rendered for Innovation records, edit mode
                                     -->
@@ -264,12 +271,13 @@
                                 <!--
                                     This block will be rendered for Local project records
                                 -->
-                                <apex:outputPanel layout="block" rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}" styleClass="misaligned">
+                                <apex:outputPanel layout="block" rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}" >
                                     <!--
                                         This block will be rendered for non-edit mode
                                     -->
-                                    <apex:outputField value="{!ipmFinancial.Volume_Unit_Local__c}" rendered="{!NOT(isEditMode) }"/>
-                                    
+                                    <span class="info" data-html="true" data-original-title="{!volumeMetricsMisAlignedMsg}">
+                                    	<apex:outputField value="{!ipmFinancial.Volume_Unit_Local__c}" rendered="{!NOT(isEditMode) }" />
+                                    </span>
                                     <!--
                                         This block will be rendered for Innovation records, edit mode
                                     -->
@@ -301,9 +309,9 @@
                        <td class="fintleblubg blueBorder"></td>
                         <!-- Y0 -->
                         
-                        <apex:variable value="{!AND(showMisalignment, (finWrapper.y0VolumeDifference != NULL), finWrapper.y0VolumeDifference > 0)}" var="Y0VolumeUnitsMisAligned" />    
+                        <apex:variable value="{!AND(showMisalignment, (finWrapper.y0VolumeDifference != NULL), finWrapper.y0VolumeDifference > 0, NOT(volumeMetricsMisAligned))}" var="Y0VolumeUnitsMisAligned" />    
                 
-                        <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0VolumeDifference==0 )}" var="Y0VolumeUnitsAligned" /> 
+                        <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0VolumeDifference==0, volumeMetricsMisAligned )}" var="Y0VolumeUnitsAligned" /> 
                 
                         <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,NOT(isProjectStop),Y0VolumeUnitsMisAligned), 'misaligned', '')}">
                             <!--
@@ -350,9 +358,9 @@
                         <!-- GROSS -->
                         <apex:repeat value="{!finWrapper.lstGrossPLVolume}" var="valueWrapper">
                             
-                            <apex:variable value="{!AND(showMisalignment,valueWrapper.difference != NULL, valueWrapper.difference > 0)}" var="GrossVolumeUnitsMisAligned" />    
+                            <apex:variable value="{!AND(showMisalignment,valueWrapper.difference != NULL, valueWrapper.difference > 0, NOT(volumeMetricsMisAligned))}" var="GrossVolumeUnitsMisAligned" />    
                 
-                            <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="GrossVolumeUnitsAligned" /> 
+                            <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 ,volumeMetricsMisAligned )}" var="GrossVolumeUnitsAligned" /> 
                         
                             <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),GrossVolumeUnitsMisAligned), 'misaligned', '') }">
                                 <!--
@@ -387,9 +395,9 @@
                         <!-- INCREMENTAL -->
                         <apex:repeat value="{!finWrapper.lstIncrementalPLVolume}" var="valueWrapper">
                         
-                            <apex:variable value="{!AND(showMisalignment,valueWrapper.difference != NULL, valueWrapper.difference > 0)}" var="IncrementalVolumeUnitsMisAligned" />    
+                            <apex:variable value="{!AND(showMisalignment,valueWrapper.difference != NULL, valueWrapper.difference > 0, NOT(volumeMetricsMisAligned))}" var="IncrementalVolumeUnitsMisAligned" />    
                 
-                            <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="IncrementalVolumeUnitsAligned" /> 
+                            <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 , volumeMetricsMisAligned)}" var="IncrementalVolumeUnitsAligned" /> 
                         
                         
                             <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),IncrementalVolumeUnitsMisAligned), 'misaligned', '')}">
@@ -431,7 +439,9 @@
                <apex:outputText rendered="{!OR(AND(fieldSuffix=='Regional',ipmFinancial.Volume_Unit_Regional__c='Total Tons'),AND(fieldSuffix=='Global',ipmFinancial.Volume_Unit_Global__c='Total Tons'),AND(fieldSuffix=='Local',ipmFinancial.Volume_Unit_Local__c='Total Tons'),AND(fieldSuffix=='Charter',ipmFinancial.Volume_Unit_Charter__c='Total Tons'),isConsolidated)}">
                     <tr>
                         <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
-                            <td class="fintleblubg">
+                            
+                            
+                            <td class="fintleblubg {!IF(AND(volumeMetricsMisAligned),'misaligned','')}" >
                                 
                                 <!--
                                     This block will be rendered for non-consolisated records
@@ -440,10 +450,11 @@
                                 
                                     <!-- Global Values -->
                                     <!-- For only Global the following section will be rendered -->
-                                    <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                                    <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}" >
                                         <!-- This section will be rendered if its non-edit mode -->
-                                        <apex:outputField value="{!ipmFinancial.Volume_Unit_Global__c}" rendered="{!NOT(isEditMode) }"/>
-                                        
+                                        <span class="info" data-html="true" data-original-title="{!volumeMetricsMisAlignedMsg}">
+                                        	<apex:outputField value="{!ipmFinancial.Volume_Unit_Global__c}" rendered="{!NOT(isEditMode) }"/>
+                                        </span>
                                         <!--
                                             This block will be rendered when the following condition is met
                                             non-Innovation and non-Edit mode
@@ -457,10 +468,11 @@
                                     <!-- Regional Values -->
                                     
                                     <!-- For only Regional the following section will be rendered -->
-                                    <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                                    <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}" >
                                         <!-- This section will be rendered if its non-edit mode -->
-                                        <apex:outputField value="{!ipmFinancial.Volume_Unit_Regional__c}" rendered="{!NOT(isEditMode) }"/>
-                                        
+                                        <span class="info" data-html="true" data-original-title="{!volumeMetricsMisAlignedMsg}">
+                                        	<apex:outputField value="{!ipmFinancial.Volume_Unit_Regional__c}" rendered="{!NOT(isEditMode) }" />
+                                        </span>
                                         <!--
                                             This block will be rendered when the following condition is met
                                             non-Innovation and non-Edit mode
@@ -474,10 +486,11 @@
                                     <!-- Local Values -->
                                     
                                     <!-- For only Local the following section will be rendered -->
-                                    <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                                    <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}" >
                                         <!-- This section will be rendered if its non-edit mode -->
-                                        <apex:outputField value="{!ipmFinancial.Volume_Unit_Local__c}" rendered="{!NOT(isEditMode) }"/>
-                                        
+                                        <span class="info" data-html="true" data-original-title="{!volumeMetricsMisAlignedMsg}">
+                                        	<apex:outputField value="{!ipmFinancial.Volume_Unit_Local__c}" rendered="{!NOT(isEditMode) }" />
+                                        </span>
                                         <!--
                                             This block will be rendered when the following condition is met
                                             non-Innovation and non-Edit mode
@@ -504,9 +517,9 @@
      
                             <td class="fintleblubg blueBorder"></td>
                             <!-- Y0 -->
-                            <apex:variable value="{!AND(showMisalignment, (finWrapper.y0VolumeTonsDifference != NULL), finWrapper.y0VolumeTonsDifference > 0)}" var="Y0VolumeTonsMisAligned" />    
+                            <apex:variable value="{!AND(showMisalignment, (finWrapper.y0VolumeTonsDifference != NULL), finWrapper.y0VolumeTonsDifference > 0, NOT(volumeMetricsMisAligned))}" var="Y0VolumeTonsMisAligned" />    
                 
-                            <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0VolumeTonsDifference==0 )}" var="Y0VolumeTonsAligned" />
+                            <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0VolumeTonsDifference==0, volumeMetricsMisAligned )}" var="Y0VolumeTonsAligned" />
                         
                             <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(isInnovation,NOT(isProjectStop),Y0VolumeTonsMisAligned),'misaligned', '')}">
                                 <!--
@@ -551,9 +564,9 @@
                             <!-- GROSS -->
                             <apex:repeat value="{!finWrapper.lstGrossPLVolumeTons}" var="valueWrapper">
                                 
-                                <apex:variable value="{!AND(showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0)}" var="GrossVolumeTonsMisAligned" />    
+                                <apex:variable value="{!AND(showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0, NOT(volumeMetricsMisAligned))}" var="GrossVolumeTonsMisAligned" />    
                 
-                                <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="GrossVolumeTonsAligned" />
+                                <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 ,volumeMetricsMisAligned)}" var="GrossVolumeTonsAligned" />
                             
                                 <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),GrossVolumeTonsMisAligned),'misaligned', '')}">
                                     <!--
@@ -586,9 +599,9 @@
                             <!-- INCREMENTAL -->
                             <apex:repeat value="{!finWrapper.lstIncrementalPLVolumeTons}" var="valueWrapper">
                                 
-                                <apex:variable value="{!AND(showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0)}" var="IncrementVolumeTonsMisAligned" />    
+                                <apex:variable value="{!AND(showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0, NOT(volumeMetricsMisAligned))}" var="IncrementVolumeTonsMisAligned" />    
                 
-                                <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="IncrementVolumeTonsAligned" />
+                                <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0, volumeMetricsMisAligned )}" var="IncrementVolumeTonsAligned" />
                                 
                                 <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),IncrementVolumeTonsMisAligned), 'misaligned', '')}">
                                     <!--

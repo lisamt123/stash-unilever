@@ -11,7 +11,8 @@ History
 -------                                                            
 VERSION  AUTHOR            DATE              DETAIL                 Description
    1.0   Jack Dermody      07/09/2014        INITIAL DEVELOPMENT           
-***********************************************************************/
+   1.1	 NIkhil Mishra	   05/01/2017		 Improving Code Coverage
+************************************************************************/
 @isTest
 private class FAU_Module_Part_ControllerExtTest
 {
@@ -51,6 +52,43 @@ private class FAU_Module_Part_ControllerExtTest
         Test.stopTest();
 
         System.assertEquals(controller.getIsLocal(), true);
+  
+    }
+ @isTest
+    static void testIsLocalModulefalse()
+    {
+        User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
+
+        Date startDateFixture = Date.newInstance(2015, 10, 25);
+        String locationFixture = 'Singapore';
+        String inviteStateFixture = '';
+
+        FAU_Participant__c participantRecord
+             = FAU_TestUtil.createParticipantFixture(user, startDateFixture, locationFixture, inviteStateFixture);
+
+        FAU_Module_Participant__c moduleParticipantRecord = [select ID, FAU_Participant__c, FAU_Is_Local__c,FAU_Dietary_Restrictions__c,FAU_Dietary_Restrictions_Describe_Other__c from FAU_Module_Participant__c
+                                                        WHERE FAU_Participant__c = :participantRecord.id LIMIT 1];
+		moduleParticipantRecord.FAU_Is_Local__c=true;
+        PageReference pageReference = Page.FAU_ModuleParticipant;
+        Test.setCurrentPage(pageReference);
+
+        ApexPages.StandardController standardController
+             = new ApexPages.StandardController(moduleParticipantRecord);
+
+        FAU_Module_Part_ControllerExt controller;
+
+        Test.startTest(); 
+
+  //      System.runAs(user)
+  //      {
+            controller = new FAU_Module_Part_ControllerExt(standardController);
+            controller.getIsLocal();
+            controller.updateIsLocal();
+
+   //     }
+        Test.stopTest();
+
+        System.assertEquals(controller.getIsLocal(), false);
   
     }
 
@@ -110,6 +148,7 @@ private class FAU_Module_Part_ControllerExtTest
 
         FAU_Module_Participant__c moduleParticipantRecord = [select ID, FAU_Participant__c, FAU_Is_Local__c,FAU_Dietary_Restrictions__c,FAU_Dietary_Restrictions_Describe_Other__c from FAU_Module_Participant__c
                                                         WHERE FAU_Participant__c = :participantRecord.id LIMIT 1];
+        
 
         PageReference pageReference = Page.FAU_ModuleParticipant;
         Test.setCurrentPage(pageReference);
@@ -127,14 +166,61 @@ private class FAU_Module_Part_ControllerExtTest
 
         //System.runAs(user) Check why this is a problem with Dan; it doesn't happen on the front end
         //{ 
-            nextPage= controller.submitMP().getUrl();       
+            nextPage= controller.submitMP().getUrl();
+        
         //}
         Test.stopTest();
 
         System.assertEquals(LANDING_PAGE + participantRecord.Id, nextPage);
        
     }
+ @isTest
+    static void testSaveModuleParticipantException()
+    {
+        String nextPage= '';
+        
+        User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
+        Date startDateFixture = Date.newInstance(2015, 10, 25);
+        String locationFixture = 'Singapore';
+        String inviteStateFixture = '';
+
+        FAU_Participant__c participantRecord
+             = FAU_TestUtil.createParticipantFixture(user, startDateFixture, locationFixture, inviteStateFixture);
+
+        FAU_Module_Participant__c moduleParticipantRecord = [select ID, FAU_Participant__c,FAU_Module__r.FAU_Start_Date__c,FAU_Module__r.FAU_End_Date__c, FAU_Is_Local__c,FAU_Dietary_Restrictions__c,FAU_Dietary_Restrictions_Describe_Other__c from FAU_Module_Participant__c
+                                                        WHERE FAU_Participant__c = :participantRecord.id LIMIT 1];
+       // moduleParticipantRecord.FAU_Participant__c=null;
+       	date startd=date.newInstance(2000,10,10);
+       	date endd=date.newInstance(2000,10,05);
+        moduleParticipantRecord.FAU_Module__r.FAU_Start_Date__c=startd;
+        moduleParticipantRecord.FAU_Module__r.FAU_End_Date__c=endd;
+
+        PageReference pageReference = Page.FAU_ModuleParticipant;
+        Test.setCurrentPage(pageReference);
+
+        ApexPages.StandardController standardController
+             = new ApexPages.StandardController(moduleParticipantRecord);
+
+        FAU_Module_Part_ControllerExt controller;
+
+        controller = new FAU_Module_Part_ControllerExt(standardController);
+        controller.hotelAlreadySetUpInModule=true;
+
+
+
+        Test.startTest(); 
+
+        //System.runAs(user) Check why this is a problem with Dan; it doesn't happen on the front end
+        //{ 
+            nextPage= controller.submitMP().getUrl();
+        
+        //}
+        Test.stopTest();
+
+        System.assertEquals(LANDING_PAGE + participantRecord.Id, nextPage);
+       
+    }
 
       @isTest
     static void testCancelModule()
