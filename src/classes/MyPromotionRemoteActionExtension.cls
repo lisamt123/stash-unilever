@@ -216,15 +216,14 @@ Throws : N/A
     }
     
     /*******************************************************************
-Purpose: Invokes Promotion workflow  
-Version 1.0
-Parameters: Transaction Id, Promotion Id, Status Mode 
-Returns: String
-Throws : N/A 
-********************************************************************/     
+    Purpose: Invokes Promotion workflow  
+    Version 1.0
+    Parameters: Transaction Id, Promotion Id, Status Mode 
+    Returns: String
+    Throws : N/A 
+    ********************************************************************/     
     @RemoteAction
-    global static String invokeWfBOPromotion(String txId, String objectId, String Mode) {
-        
+    global static String invokeWfBOPromotion(String txId, String objectId, String Mode) {        
         String result = 'test';
         
         try{
@@ -234,40 +233,32 @@ Throws : N/A
             Id apprFuncRet = UL_Utility.NULL_ID;
             List<ACCL__Promotion__c> promoLst = new List<ACCL__Promotion__c>() ;
             List<Id> approverIdsLst = new List<Id>() ;
+                    
+            promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;
+            approverIdsLst.add(promoLst[0].createdbyid) ;
+            THViolate = promoLst[0].UL_ThresholdViolated__c ;
             
-            promoLst = [SELECT Id, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;
-            
-            if((promoLst[0].ACCL__Sales_Org__c == UL_Utility.UKI_SALESORG_UK) || (promoLst[0].ACCL__Sales_Org__c == UL_Utility.UKI_SALESORG_UK)){
-                
-                promoLst[0].UL_Current_Status__c = Mode;
-                Database.Update(promoLst);
-            }
-            else{
-                approverIdsLst.add(promoLst[0].createdbyid) ;
-                THViolate = promoLst[0].UL_ThresholdViolated__c ;
-                
-                if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.toUpperCase())){
-                    //if(!THViolate){
-                    UL_PromotionWorkflowService.submitForApproval(promoId,promoLst,promoLst[0].createdby.UL_Finance_Manager__c,false) ;
-                    if(!THViolate){
+            if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.toUpperCase())){
+                //if(!THViolate){
+                UL_PromotionWorkflowService.submitForApproval(promoId,promoLst,promoLst[0].createdby.UL_Finance_Manager__c,false) ;
+                    if(!THViolate && promoLst[0].UL_Threshold_Window_Result__c != null){
                         do{ 
                             apprFuncRet = UL_PromotionWorkflowService.approveWorkflow(promoId,promoLst,null,false) ;
-                            promoLst = [SELECT Id, Name,CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c,  ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;        
+                            promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name,CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c,  ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;        
                         } while(apprFuncRet != null && !THViolate && promoLst[0].UL_Current_Status__c != UL_Utility.STATUS_APPROVED);
                     }
-                    //}
-                }
-                
-                if(Mode.equalsIgnoreCase(UL_Utility.STATUS_APPROVE)){           
-                    apprFuncRet = UL_PromotionWorkflowService.approveWorkflow(promoId,promoLst,promoLst[0].UL_Current_Status__c, false) ; 
-                }
-                
-                if(Mode.equalsIgnoreCase(UL_Utility.STATUS_REJECT.toUpperCase())){
-                    UL_PromotionWorkflowService.rejectWorkflow(promoId,promoLst,false);
-                }
-            }           
+                //}
+            }
+           
+            if(Mode.equalsIgnoreCase(UL_Utility.STATUS_APPROVE)){           
+                apprFuncRet = UL_PromotionWorkflowService.approveWorkflow(promoId,promoLst,promoLst[0].UL_Current_Status__c, false) ; 
+            }
+            
+            if(Mode.equalsIgnoreCase(UL_Utility.STATUS_REJECT.toUpperCase())){
+                UL_PromotionWorkflowService.rejectWorkflow(promoId,promoLst,false);
+            }       
         }catch(Exception ex){
-            UL_Utility.logError(ex, UserInfo.getUserId());
+          UL_Utility.logError(ex, UserInfo.getUserId());
         }
         return result;
     }
@@ -873,7 +864,8 @@ Throws : N/A
                     String marketId;
                     String customerId = (String)boPromotion.get('UL_Account__c');
                     String feature = (String)boPromotion.get('UL_Feature__c');
-                    //feature = feature==System.Label.UL_Shelf ? feature : System.Label.UL_Off_Shelf;
+                    String salesOrg = (String)boPromotion.get('ACCL__Sales_Org__c');
+                    feature = feature==System.Label.UL_Shelf ? feature : System.Label.UL_Off_Shelf;
                     String tempMarketId;
                     String tempCustomerId;
                     String tempFeature;
@@ -930,43 +922,127 @@ Throws : N/A
                     boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Category__c.getName(), category);
                     boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Brand__c.getName(), brand);
                     
-                    String fromStringDate = (String)(UL_Utility.EMPTY_STRING+boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_From__c.getName()));
-                    String thruStringDate = (String)(UL_Utility.EMPTY_STRING+boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_Thru__c.getName()));
-                    Datetime fromDate = fromStringDate.contains(UL_Utility.HYPHEN) ? null : Datetime.newInstance((Long)boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_From__c.getName()));
-                    Date instoreDateFrom = fromStringDate.contains(UL_Utility.HYPHEN) ? Date.valueOf(fromStringDate) : Date.newInstance(fromDate.year(), fromDate.month(), fromDate.day());
-                    Datetime thruDate = thruStringDate.contains(UL_Utility.HYPHEN) ? null : Datetime.newInstance((Long)boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_Thru__c.getName()));
-                    Date instoreDateThru = thruStringDate.contains(UL_Utility.HYPHEN) ? Date.valueOf(thruStringDate) : Date.newInstance(thruDate.year(), thruDate.month(), thruDate.day());
-                    
-                    Map<String, UL_Cannibalisation_Rate__c> cannibRateMap = new Map<String, UL_Cannibalisation_Rate__c>();
-                    for(UL_Cannibalisation_Rate__c cannibRate : [SELECT Id, UL_Valid_From__c, UL_Valid_Thru__c, UL_Customer__c, UL_Product__c, UL_Feature__c, UL_Cannibalisation_Rate__c, UL_IsAllCustomers__c, UL_IsAllProducts__c FROM UL_Cannibalisation_Rate__c WHERE UL_Valid_From__c <= :instoreDateFrom AND UL_Valid_Thru__c >= :instoreDateFrom ]){
-                        if(cannibRate.UL_IsAllCustomers__c){
-                            cannibRate.UL_Customer__c = null;
-                        }
-                        if(cannibRate.UL_IsAllProducts__c){
-                            cannibRate.UL_Product__c = null;
-                        }
-                        cannibRateMap.put(String.valueOf(cannibRate.UL_Customer__c) + String.valueOf(cannibRate.UL_Product__c) + cannibRate.UL_Feature__c, cannibRate);
-                    }
-                    
-                    tempCustomerId = customerId;
-                    tempMarketId = marketId;
-                    tempFeature = feature;
-                    //Single Market
-                    if(marketLevelIds.size()==1){
+                    if(salesOrg!=null && (salesOrg =='US SO' || salesOrg == 'Ireland SO')){
+                        String fromStringDate = (String)(UL_Utility.EMPTY_STRING+boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_From__c.getName()));
+                        String thruStringDate = (String)(UL_Utility.EMPTY_STRING+boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_Thru__c.getName()));
+                        Datetime fromDate = fromStringDate.contains(UL_Utility.HYPHEN) ? null : Datetime.newInstance((Long)boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_From__c.getName()));
+                        Date instoreDateFrom = fromStringDate.contains(UL_Utility.HYPHEN) ? Date.valueOf(fromStringDate) : Date.newInstance(fromDate.year(), fromDate.month(), fromDate.day());
+                        Datetime thruDate = thruStringDate.contains(UL_Utility.HYPHEN) ? null : Datetime.newInstance((Long)boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_Thru__c.getName()));
+                        Date instoreDateThru = thruStringDate.contains(UL_Utility.HYPHEN) ? Date.valueOf(thruStringDate) : Date.newInstance(thruDate.year(), thruDate.month(), thruDate.day());
                         
-                        //#1
-                        //For Customer/Market/Fearure combination
-                        String key = tempCustomerId + tempMarketId + tempFeature;
-                        if(cannibRateMap.containsKey(key)){
-                            cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
-                            boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
-                            foundCannRate = true;
+                        Map<String, UL_Cannibalisation_Rate__c> cannibRateMap = new Map<String, UL_Cannibalisation_Rate__c>();
+                        for(UL_Cannibalisation_Rate__c cannibRate : [SELECT Id, UL_Valid_From__c, UL_Valid_Thru__c, UL_Customer__c, UL_Product__c, UL_Feature__c, UL_Cannibalisation_Rate__c, UL_IsAllCustomers__c, UL_IsAllProducts__c FROM UL_Cannibalisation_Rate__c WHERE UL_Valid_From__c <= :instoreDateFrom AND UL_Valid_Thru__c >= :instoreDateFrom ]){
+                            if(cannibRate.UL_IsAllCustomers__c){
+                                cannibRate.UL_Customer__c = null;
+                            }
+                            if(cannibRate.UL_IsAllProducts__c){
+                                cannibRate.UL_Product__c = null;
+                            }
+                            cannibRateMap.put(String.valueOf(cannibRate.UL_Customer__c) + String.valueOf(cannibRate.UL_Product__c) + cannibRate.UL_Feature__c, cannibRate);
+                        }
+                        
+                        tempCustomerId = customerId;
+                        tempMarketId = marketId;
+                        tempFeature = feature;
+                        //Single Market
+                        if(marketLevelIds.size()==1){
+                            
+                            //#1
+                            //For Customer/Market/Fearure combination
+                            String key = tempCustomerId + tempMarketId + tempFeature;
+                            if(cannibRateMap.containsKey(key)){
+                                cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
+                                boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
+                                foundCannRate = true;
+                            }
+                            if(!foundCannRate){
+                                //#2
+                                //For Customer/Market/NULL Fearure combination
+                                tempFeature = null;
+                                key = tempCustomerId + tempMarketId + tempFeature;
+                                if(cannibRateMap.containsKey(key)){
+                                    cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
+                                    boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
+                                    foundCannRate = true;
+                                }
+                            }
+                        }
+                        //Multiple Markets
+                        if(!foundCannRate){
+                            //#3
+                            //For Customer/Null Market/Fearure combination
+                            tempFeature = feature;
+                            tempMarketId = null;
+                            String key = tempCustomerId + tempMarketId + tempFeature;
+                            if(cannibRateMap.containsKey(key)){
+                                cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
+                                boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
+                                foundCannRate = true;
+                            }
                         }
                         if(!foundCannRate){
-                            //#2
-                            //For Customer/Market/NULL Fearure combination
+                            //#4
+                            //For Customer/Null Market/ NULL Fearure combination
                             tempFeature = null;
+                            tempMarketId = null;
+                            String key = tempCustomerId + tempMarketId + tempFeature;
+                            if(cannibRateMap.containsKey(key)){
+                                cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
+                                boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
+                                foundCannRate = true;
+                            }
+                        }
+                        
+                        //Single Market & Null Customer
+                        if(marketLevelIds.size()==1 && !foundCannRate){
+                            //#5
+                            //Null Customer/Market/Feature
+                            tempFeature = feature;
+                            tempMarketId = marketId;
+                            tempCustomerId = null;
+                            String key = tempCustomerId + tempMarketId + tempFeature;
+                            if(cannibRateMap.containsKey(key)){
+                                cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
+                                boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
+                                foundCannRate = true;
+                            }
+                            
+                            //#6
+                            //Null Customer/Market/Null Feature
+                            tempFeature = null;
+                            tempMarketId = marketId;
+                            tempCustomerId = null;
                             key = tempCustomerId + tempMarketId + tempFeature;
+                            if(cannibRateMap.containsKey(key) && !foundCannRate){
+                                cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
+                                boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
+                                foundCannRate = true;
+                            }
+                        }
+                        
+                        //Multiple Market & Null Customer
+                        if(!foundCannRate){
+                            
+                            //#7
+                            //Null Customer/Null Market/Feature
+                            tempFeature = feature;
+                            tempMarketId = null;
+                            tempCustomerId = null;
+                            String key = tempCustomerId + tempMarketId + tempFeature;
+                            if(cannibRateMap.containsKey(key)){
+                                cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
+                                boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
+                                foundCannRate = true;
+                            }
+                        }
+                        
+                        if(!foundCannRate){
+                            //#8
+                            //For NULL Customer/Null Market/ NULL Fearure combination
+                            tempFeature = null;
+                            tempMarketId = null;
+                            tempCustomerId = null;
+                            String key = tempCustomerId + tempMarketId + tempFeature;
                             if(cannibRateMap.containsKey(key)){
                                 cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
                                 boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
@@ -974,88 +1050,7 @@ Throws : N/A
                             }
                         }
                     }
-                    //Multiple Markets
-                    if(!foundCannRate){
-                        //#3
-                        //For Customer/Null Market/Fearure combination
-                        tempFeature = feature;
-                        tempMarketId = null;
-                        String key = tempCustomerId + tempMarketId + tempFeature;
-                        if(cannibRateMap.containsKey(key)){
-                            cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
-                            boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
-                            foundCannRate = true;
-                        }
-                    }
-                    if(!foundCannRate){
-                        //#4
-                        //For Customer/Null Market/ NULL Fearure combination
-                        tempFeature = null;
-                        tempMarketId = null;
-                        String key = tempCustomerId + tempMarketId + tempFeature;
-                        if(cannibRateMap.containsKey(key)){
-                            cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
-                            boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
-                            foundCannRate = true;
-                        }
-                    }
                     
-                    //Single Market & Null Customer
-                    if(marketLevelIds.size()==1 && !foundCannRate){
-                        //#5
-                        //Null Customer/Market/Feature
-                        tempFeature = feature;
-                        tempMarketId = marketId;
-                        tempCustomerId = null;
-                        String key = tempCustomerId + tempMarketId + tempFeature;
-                        if(cannibRateMap.containsKey(key)){
-                            cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
-                            boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
-                            foundCannRate = true;
-                        }
-                        
-                        //#6
-                        //Null Customer/Market/Null Feature
-                        tempFeature = null;
-                        tempMarketId = marketId;
-                        tempCustomerId = null;
-                        key = tempCustomerId + tempMarketId + tempFeature;
-                        if(cannibRateMap.containsKey(key) && !foundCannRate){
-                            cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
-                            boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
-                            foundCannRate = true;
-                        }
-                    }
-                    
-                    //Multiple Market & Null Customer
-                    if(!foundCannRate){
-                        
-                        //#7
-                        //Null Customer/Null Market/Feature
-                        tempFeature = feature;
-                        tempMarketId = null;
-                        tempCustomerId = null;
-                        String key = tempCustomerId + tempMarketId + tempFeature;
-                        if(cannibRateMap.containsKey(key)){
-                            cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
-                            boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
-                            foundCannRate = true;
-                        }
-                    }
-                    
-                    if(!foundCannRate){
-                        //#8
-                        //For NULL Customer/Null Market/ NULL Fearure combination
-                        tempFeature = null;
-                        tempMarketId = null;
-                        tempCustomerId = null;
-                        String key = tempCustomerId + tempMarketId + tempFeature;
-                        if(cannibRateMap.containsKey(key)){
-                            cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
-                            boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
-                            foundCannRate = true;
-                        }
-                    }
                 }
             }
             content = JSON.serialize(tacticDeserializedMap);
