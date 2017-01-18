@@ -47,8 +47,8 @@ private class PBS_TrainingPlanExportController_Test {
         Id tplanId = tplan.get(0).Id;
         List<PBS_Achievement_Category__c > lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievements = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, 'Achievements');
-        List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, new List<PBS_Achievement__c>{lAchievements.get(0)});
-
+        //List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, new List<PBS_Achievement__c>{lAchievements.get(0)});
+        PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, new List<PBS_Achievement__c>{lAchievements.get(0)});
         PageReference ref = Page.PBS_TrainingPlanExport;
         ref.getParameters().put('id',tplanId);
 

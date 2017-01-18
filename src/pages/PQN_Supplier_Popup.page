@@ -1,0 +1,190 @@
+<apex:page showHeader="false" Controller="PQN_Supplier_Popup_Ctlr" readOnly="true">
+    <script language="javascript">
+        window.onload = new function() 
+        { 
+          // bring popup window to front
+          window.focus(); 
+          var ele=document.getElementById('{!$Component.form.block.section.query}');
+          if (ele)
+          {
+             ele.focus();
+          }
+        }
+   </script>
+   <script language="javascript">
+       function fillSupplier(Name,Supplier_Number__c,Supplier_Type__c)
+       {
+           
+          var winMain=window.opener;
+          if (null==winMain)
+          {
+             winMain=window.parent.opener;
+          }
+          var ele=winMain.document.getElementById('{!$CurrentPage.parameters.Supplier_Name}');
+          ele.value=Name;
+          var ele=winMain.document.getElementById('{!$CurrentPage.parameters.Supplier_No}');
+          ele.value=Supplier_Number__c;
+          var ele=winMain.document.getElementById('{!$CurrentPage.parameters.Supplier_Type}');
+          ele.value=Supplier_Type__c;
+          CloseWindow();
+       }
+
+    </script>
+    
+    <script language="javascript">
+       function fillProduct(Product_Name__c,SKU__c,Product_Group__c,Product_Category__c)
+       {
+           
+          var winMain=window.opener;
+          if (null==winMain)
+          {
+             winMain=window.parent.opener;
+          }
+          var ele=winMain.document.getElementById('{!$CurrentPage.parameters.Product_Name}');
+          ele.value=Product_Name__c;
+          var ele=winMain.document.getElementById('{!$CurrentPage.parameters.Product_No}');
+          ele.value=SKU__c;
+          var ele=winMain.document.getElementById('{!$CurrentPage.parameters.Product_Group}');
+          ele.value=Product_Group__c;
+          var ele=winMain.document.getElementById('{!$CurrentPage.parameters.Product_Category}');
+          ele.value=Product_Category__c;
+          CloseWindow();
+       }
+
+    </script>
+    <script language="javascript">
+       function fillLosscode(Loss_Code__c)
+       {
+           
+          var winMain=window.opener;
+          if (null==winMain)
+          {
+             winMain=window.parent.opener;
+          }
+          var ele=winMain.document.getElementById('{!$CurrentPage.parameters.Loss_Code}');
+          ele.value=Loss_Code__c;
+          
+          CloseWindow();
+       }
+
+    </script>
+    
+    <script language="javascript">
+       function CloseWindow()
+       {
+          var winMain=window.opener;
+          if (null==winMain)
+          {
+             winMain=window.parent.opener;
+          }
+          winMain.closeSupplierPopup();
+       }
+    </script>
+
+    <style>
+        input[type="text"],select,textarea {
+            //display: block;
+            width: 80%;
+            padding: 3px 9px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+        
+    </style>
+
+  <!--<apex:messages />-->
+  
+        
+     <div style="width 100%">
+     <apex:form id="form" >
+  
+        <apex:pageBlock title="{!objectName}" id="block" rendered="{!If(objectName!='Loss Codes' ,'true','false')}">
+             <apex:pageBlockSection columns="3" id="section">
+              Enter search text and click Go
+              <apex:inputText value="{!query}" id="query"/>
+              <apex:commandButton value="Go" action="{!runQuery}"/><br/>
+          </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+        </apex:form>  
+              <apex:outputPanel layout="block" id="supplierPanel" rendered="{!If(objectName=='Suppliers' ,'true','false')}">
+                  <table class="list">
+                    <thead>
+                     <tr class="headerRow">
+                         <th>Supplier Name</th>
+                         <th>Supplier Alias</th>
+                         <th>Supplier Number</th>
+                         <th>Supplier Type</th>
+                     </tr>
+                    </thead>
+                      <apex:repeat value="{!xSuppliers}" var="sup">
+                          <tr>
+                              <td><apex:outputLink value="#" onclick="fillSupplier('{!sup.Name}','{!sup.Supplier_Number__c}','{!sup.Supplier_Type__c}')">{!sup.Name}</apex:outputLink></td>
+                              <td>{!sup.Supplier_Alias__c}</td>
+                              <td>{!sup.Supplier_Number__c}</td>
+                              <td>{!sup.Supplier_Type__c}</td>
+                          
+                          </tr>
+                      
+                      </apex:repeat> 
+                  </table>             
+              </apex:outputPanel>
+              
+              <apex:outputPanel layout="block" id="productPanel" rendered="{!If(objectName=='Products' ,'true','false')}">
+                  <table class="list">
+                    <thead>
+                     <tr class="headerRow">
+                         <th>Product Name</th>
+                         <th>Product Number</th>
+                         <th>Product Group</th>
+                         <th>Product Category</th>
+                     </tr>
+                    </thead>
+                      <apex:repeat value="{!xProducts}" var="sup">
+                          <tr>
+                              <td><apex:outputLink value="#" onclick="fillProduct('{!sup.Product_Name__c}','{!sup.SKU__c}','{!sup.Product_Group__c}','{!sup.Product_Category__c}')">{!sup.Product_Name__c}</apex:outputLink></td>
+                              <td>{!sup.SKU__c}</td>
+                              <td>{!sup.Product_Group__c}</td>
+                              <td>{!sup.Product_Category__c}</td>
+                          
+                          </tr>
+                      
+                      </apex:repeat> 
+                  </table>             
+              </apex:outputPanel>
+              
+              <apex:outputPanel layout="block" id="losscodePanel" rendered="{!If(objectName=='Loss Codes' ,'true','false')}">
+                  <table class="list">
+                    <thead>
+                     <tr class="headerRow">
+                         <th>Loss Code</th>
+                         <th>Loss1</th>
+                         <th>Loss2</th>
+                         <th>Loss3</th>
+                         <th>Loss4</th>
+                     </tr>
+                    </thead>
+                      <apex:repeat value="{!xLosscode}" var="sup">
+                          <tr>
+                              <td><apex:outputLink value="#" onclick="fillLosscode('{!sup.Loss_Code__c}')">{!sup.Loss_Code__c}</apex:outputLink></td>
+                              <td>{!sup.Loss_L1__c}</td>
+                              <td>{!sup.Loss_L2__c}</td>
+                              <td>{!sup.Loss_L3__c}</td>
+                              <td>{!sup.Loss_L4__c}</td>
+                          
+                          </tr>
+                      
+                      </apex:repeat> 
+                  </table>             
+              </apex:outputPanel>                       
+              
+        <button type="button" onclick="CloseWindow();">Close Window</button>
+     </div>
+
+</apex:page>

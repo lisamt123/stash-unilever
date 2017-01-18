@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>FS 10610 Sales Rep</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>FS_10610_Club_Stores_US_Regional_Manager</parentRole>
+</Role>

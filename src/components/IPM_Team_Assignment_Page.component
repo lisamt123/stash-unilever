@@ -21,7 +21,7 @@
                                 <div class="col-sm-6 noPadleft pageTitlefont">
                                     {!$Label.IPM_Team}
                                 </div>
-                                <apex:outputPanel rendered="{! if(OR(isCoreMemEditable=true,isEditable=true),'true','false')}">
+                                <apex:outputPanel rendered="{! IF(AND(OR(isCoreMemEditable=true,isEditable=true),NOT(isStopped)),'true','false')}">
                                 <apex:outputPanel rendered="{!!isShowEditmode}">
                                     <div class="txtRight pull-right editButton">
                                         <input type="button" class="ipmButton primary" data-dismiss="modal" onclick="refreshTeam()" value="{!$Label.IPM_Edit_Team}"/>
@@ -42,9 +42,13 @@
                                 <div class="custPosition noPadleft">
                                     <div class="memContainer">
                                         <apex:outputPanel rendered="{! if(plImage==null,'true','false')}">
-                                            <apex:image url="{!URLFOR($Resource.IPM_Resource, 'images/add_2.png')}" id="plImage1" styleClass="circular ipmImage custImagewidth1"  />
-                                            <span class="txtAligncenter teamMembername">{!$Label.IPM_Add_Member}</span>
+										<apex:outputPanel rendered="{!isShowEditmode}">
+										    <div class="proLeader teamMemberButton" value="{!$Page.IPM_Resource_Allocation_Landing}?id={!projectID}&Category={!IPM_proj.IPM_Category_Text__c}&ProjectLead={!IPM_proj.IPM_Project_Leader__c}&PLeader={!isPLeader}&DPLeader={!isDPLeader}&CoreMember=PL" data-target="#ipmAddMemberModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+												<apex:image url="{!URLFOR($Resource.IPM_Resource, 'images/add_2.png')}" id="plImage1" styleClass="circular ipmImage custImagewidth1"  />
+                                            </div>
+											<span class="txtAligncenter teamMembername">{!$Label.IPM_Add_Member}</span>
                                             <span class="txtAligncenter designation">{!$Label.IPM_Project_Lead}</span>
+											</apex:outputPanel>
                                         </apex:outputPanel>
                                          <apex:outputPanel rendered="{! if(plImage==null,'false','true')}">
                                             <apex:outputPanel rendered="{!isCoreMemEditable}">
@@ -68,9 +72,13 @@
                                 <div class="custPosition noPadleft">
                                     <div class="memContainer">
                                        <apex:outputPanel rendered="{! if(DPLimg==null,'true','false')}">
-                                           <apex:image url="{!URLFOR($Resource.IPM_Resource, 'images/add_2.png')}" styleClass="circular ipmImage custImagewidth1" id="dplImage1"/>
-                                           <span class="txtAligncenter teamMembername">{!$Label.IPM_Add_Member}</span>
+									   <apex:outputPanel rendered="{!isShowEditmode}">
+									        <div class="depproLeader teamMemberButton" value="{!$Page.IPM_Resource_Allocation_Landing}?id={!projectID}&Category={!IPM_proj.IPM_Category_Text__c}&ProjectLead={!IPM_proj.IPM_Project_Leader__c}&PLeader={!isPLeader}&DPLeader={!isDPLeader}&CoreMember=DPL" data-target="#ipmAddMemberModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+												<apex:image url="{!URLFOR($Resource.IPM_Resource, 'images/add_2.png')}" styleClass="circular ipmImage custImagewidth1" id="dplImage1"/>
+                                           </div>
+										   <span class="txtAligncenter teamMembername">{!$Label.IPM_Add_Member}</span>
                                            <span class="txtAligncenter designation">{!$Label.IPM_Deputy_Project_Leaders}</span>
+										   </apex:outputPanel>
                                        </apex:outputPanel>
                                        <apex:outputPanel rendered="{! if(DPLimg==null,'false','true')}">
                                         <apex:outputPanel rendered="{!isCoreMemEditable}">
@@ -95,9 +103,13 @@
                                     <div class="memContainer">
                                     <apex:outputPanel id="TPLUser">
                                      <apex:outputPanel rendered="{! if(TPLimg==null,'true','false')}">
-                                        <apex:image url="{!URLFOR($Resource.IPM_Resource, 'images/add_2.png')}" styleClass="custImagewidth1 circular ipmImage" id="tlImage1"/>
-                                        <span class="txtAligncenter teamMembername">{!$Label.IPM_Add_Member}</span>
+									  <apex:outputPanel rendered="{!isShowEditmode}">
+                                        <div class="techLeader teamMemberButton" value="{!$Page.IPM_Resource_Allocation_Landing}?id={!projectID}&Category={!IPM_proj.IPM_Category_Text__c}&ProjectLead={!IPM_proj.IPM_Project_Leader__c}&PLeader={!isPLeader}&DPLeader={!isDPLeader}&CoreMember=TPL" data-target="#ipmAddMemberModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+											<apex:image url="{!URLFOR($Resource.IPM_Resource, 'images/add_2.png')}" styleClass="custImagewidth1 circular ipmImage" id="tlImage1"/>
+                                        </div>
+										<span class="txtAligncenter teamMembername">{!$Label.IPM_Add_Member}</span>
                                         <span class="txtAligncenter designation">{!$Label.IPM_Technical_Project_Leader}</span>
+										</apex:outputPanel>
                                      </apex:outputPanel>
                                      <apex:outputPanel rendered="{! if(TPLimg==null,'false','true')}">
                                       <apex:outputPanel rendered="{!isCoreMemEditable}">
@@ -122,9 +134,13 @@
                                 <div class="custPosition noPadleft">
                                     <div class="memContainer">
                                     <apex:outputPanel rendered="{! if(GKImage==null,'true','false')}">
-                                        <apex:image url="{!URLFOR($Resource.IPM_Resource, 'images/add_2.png')}" styleClass="custImagewidth1 circular ipmImage" id="gkImage1"/>
-                                        <span class="txtAligncenter teamMembername">{!$Label.IPM_Add_Member}</span>
+									<apex:outputPanel rendered="{!isShowEditmode}">
+                                        <div class="gatekeeper teamMemberButton" value="{!$Page.IPM_Resource_Allocation_Landing}?id={!projectID}&Category={!IPM_proj.IPM_Category_Text__c}&ProjectLead={!IPM_proj.IPM_Project_Leader__c}&PLeader={!isPLeader}&DPLeader={!isDPLeader}&CoreMember=GateK" data-target="#ipmAddMemberModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+                                           <apex:image url="{!URLFOR($Resource.IPM_Resource, 'images/add_2.png')}" styleClass="custImagewidth1 circular ipmImage" id="gkImage1"/>
+                                        </div>
+										<span class="txtAligncenter teamMembername">{!$Label.IPM_Add_Member}</span>
                                         <span class="txtAligncenter designation">{!$Label.IPM_Gatekeeper}</span>
+										</apex:outputPanel>
                                     </apex:outputPanel>
                                     <apex:outputPanel rendered="{! if(GKImage==null,'false','true')}">
                                      <apex:outputPanel rendered="{! if(Or(isTPLEditable=true,isCoreMemEditable=true),'true','false')}">
@@ -159,8 +175,8 @@
                                             <div class="pHead">
                                                 <span class='expico fa fa-minus'></span>
                                                 <span class="teamHead">
-                                                    <apex:outputtext value="{!$Label.IPM_BD_Marketing}" rendered="{! if(uRole='BD','true','false')}"/>
-                                                    <apex:outputtext value="{!$Label.IPM_Brand_Builders_BB}" rendered="{! if(uRole='BB','true','false')}"/>
+                                                    <apex:outputtext value="{!$Label.IPM_BD_Marketing}" rendered="{! if(uRole='MKTG DEV','true','false')}"/>
+                                                    <apex:outputtext value="{!$Label.IPM_Brand_Builders_BB}" rendered="{! if(uRole='MKTG LOCAL','true','false')}"/>
                                                     <apex:outputtext value="{!$Label.IPM_Customer_Development_CD}" rendered="{! if(uRole='CD','true','false')}"/>
                                                     <apex:outputtext value="{!$Label.IPM_Consumer_Marketing_Insight_CMI}" rendered="{! if(uRole='CMI','true','false')}"/>
                                                     <apex:outputtext value="{!$Label.IPM_Brand_Development_Finance_BD_Finance}" rendered="{! if(AND(uRole='Finance',IPM_proj.IPMProject_Span__c!='Local'),'true','false')}"/>
@@ -170,8 +186,8 @@
                                                     <apex:outputtext value="{!$Label.IPM_Guest}" rendered="{! if(uRole='Guest','true','false')}"/>
                                                 </span>
                                                 <span class="teamCount">
-                                                <apex:outputtext value="{!countBB}" rendered="{! if(uRole='BB','true','false')}"/>
-                                                <apex:outputtext value="{!countBD}" rendered="{! if(uRole='BD','true','false')}"/>
+                                                <apex:outputtext value="{!countBB}" rendered="{! if(uRole='MKTG LOCAL','true','false')}"/>
+                                                <apex:outputtext value="{!countBD}" rendered="{! if(uRole='MKTG DEV','true','false')}"/>
                                                 <apex:outputtext value="{!countCD}" rendered="{! if(uRole='CD','true','false')}"/>
                                                 <apex:outputtext value="{!countCMI}" rendered="{! if(uRole='CMI','true','false')}"/>
                                                 <apex:outputtext value="{!countFinance}" rendered="{! if(uRole='Finance','true','false')}"/>

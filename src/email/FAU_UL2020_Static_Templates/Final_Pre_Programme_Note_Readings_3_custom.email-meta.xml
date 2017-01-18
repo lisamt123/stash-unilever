@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Final Pre-Programme Note &amp; Readings 3</name>
+    <style>none</style>
+    <subject>Final Pre-Programme Note &amp; Readings</subject>
+    <textOnly>Dear all,
+
+Thank you for your registration for UL2020 in 2017. This email is the confirmation of your participation in Class 4 on 13 – 17 Feb 2017 in Singapore.
+
+We are looking forward to have you on this exciting, pioneering programme. Please watch this short video showing the programme overview.
+
+Via this email we would kindly ask you to start preparing for the programme via the following steps:
+
+
+1) Book your travel in advance. The programme starts on Monday at 12pm with lunch, and end on Friday at 4pm (you should not fly out earlier than 6pm on Friday). Included in the course fee is your accommodation at Four Acres between the day before the start (Sunday) and one day after the end of the programme (Saturday). Any extended stay at Four Acres will be charged to your credit card.
+
+2) Prepare your CV, Photo &amp; Purpose Statement. Closer to the date of the programme you will receive a link to a special UL2020 page, where you can find all course information, where you have to upload your travel details and any special requirements, as also your photo, CV and Purpose Statement.
+
+3) Start your 360-degree feedback process. Part of the programme is 360 feedback, based on the C4G Mindset. You will need to do a self-assessment and collect input from managers, peers and direct reports. You will receive an email from INSEAD with instructions on how to complete this (check your Clutter folder as well). You will receive the link approximately three months in advance of the start of your programme. The due date to complete is 3 weeks before the programme starts.
+
+4) Complete the EMPOWERMENT survey: One of the previous groups has worked on a PII (Purpose to Impact Initiatives) on empowerment. They have created a survey, which they would like to be completed by as many Unilever colleagues as possible. So please complete the survey via this link – and as it contains also great videos, feel free to send to your teams to watch and complete also.
+
+5)  Complete the WELLBEING survey:  As wellbeing continues to be an important topic, also during this UL2020 week, we would kindly ask you to complete this short survey before joining the programme at Four Acres.
+
+6)  Purpose to Impact Initiatives (PII): Your work on the PII projects form the backbone of the UL2020 experience. You will be working on breakthrough ideas for Unilever and prototyping solutions in the weeks following the face-to-face programme. Look out for further communication on the PII themes.
+
+Feel free to contact the Learning Team in Singapore  if have any questions.
+
+Thank you!</textOnly>
+    <type>custom</type>
+</EmailTemplate>

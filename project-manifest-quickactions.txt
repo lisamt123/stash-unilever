@@ -1,0 +1,10 @@
+src
+src/quickActions
+src/quickActions/CollaborationGroup.NewGroupMember.quickAction
+src/quickActions/CollaborationGroup.NewGroupRecord.quickAction
+src/quickActions/Core_Approval_Details__c.Approve.quickAction
+src/quickActions/Core_Approval_Details__c.Reject.quickAction
+src/quickActions/Core_Approval_Header__c.Approve.quickAction
+src/quickActions/Core_Approval_Header__c.Reject.quickAction
+src/quickActions/Core_Approver_Details__c.Approve.quickAction
+src/quickActions/Core_Approver_Details__c.Reject.quickAction

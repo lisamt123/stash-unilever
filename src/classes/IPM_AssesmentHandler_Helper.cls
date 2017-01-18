@@ -169,7 +169,7 @@ public with sharing class IPM_AssesmentHandler_Helper {
                         if(assmnt.IPM_Project__c == projectId && projectIdCountryListMap.get(projectId) != null && !projectIdCountryListMap.get(projectId).isEmpty()){
                             //loops over the list of countries
                             for(IPM_Country__c country:projectIdCountryListMap.get(projectId) ){
-                                if(String.isNotBlank(String.valueOf(assmnt.IPM_Country_Name__c))&& String.isNotBlank(String.valueOf(country.Country_Name__c)) && assmnt.IPM_Country_Name__c == country.Country_Name__c){
+                                if(String.isNotBlank(String.valueOf(assmnt.IPM_Country_Code__c))&& String.isNotBlank(String.valueOf(country.Country_Code__c)) && assmnt.IPM_Country_Code__c == country.Country_Code__c){
                                     assmnt.IPM_Country__c = country.Id;
                                 }
                             }
@@ -190,10 +190,13 @@ public with sharing class IPM_AssesmentHandler_Helper {
     *****************************************************************************/
     public static void copyOverAssessments(List<IPM_Project__c> incomingProjectsWithChangedPhase, Map<Id, IPM_Project__c> oldProjectsMap){
          
+        if(incomingProjectsWithChangedPhase == null || incomingProjectsWithChangedPhase.isEmpty())
+        {
+        	return;
+        }
         Map<Id,String> projectIdPhaseMap = new Map<Id,String>();
         Map<Id,String> projectIdOldPhaseMap = new Map<Id,String>();
         List<IPM_Assessment__c> actualAssesmentsToCopy =  new List<IPM_Assessment__c>();
-        List<IPM_Assessment__c> assessmentsCloned =  new List<IPM_Assessment__c>();
             
         //use the custom setting IPM_Project_Type to find if the assessments are to be copied over to the next phase for the projects
         for(IPM_Project__c project :incomingProjectsWithChangedPhase){
@@ -210,7 +213,7 @@ public with sharing class IPM_AssesmentHandler_Helper {
             
             String queryStr = '';
             queryStr = IPM_Utils.prepareSOQLQuery('IPM_Assessment__c', false, null,true);
-            queryStr += ' Where IPM_Project__c IN:projectIdSet';
+            queryStr += ' Where IPM_Project__c IN:projectIdSet and IPM_Country__r.isActive__c = true';
             
             //find all the assessments which are required to be copied over
             List<IPM_Assessment__c> probableAssesmentsToCopy = Database.Query(queryStr);
@@ -224,7 +227,15 @@ public with sharing class IPM_AssesmentHandler_Helper {
         
         
         //clone the assessment and set the phase as the next phase
-        if(actualAssesmentsToCopy != null && !actualAssesmentsToCopy.isEmpty()){
+       cloneAndInsertAssessments(actualAssesmentsToCopy,projectIdPhaseMap);
+        
+    }
+    
+    public static void cloneAndInsertAssessments(List<IPM_Assessment__c> actualAssesmentsToCopy,Map<Id,String>projectIdPhaseMap)
+    {
+    	
+         List<IPM_Assessment__c> assessmentsCloned =  new List<IPM_Assessment__c>();
+    	 if(actualAssesmentsToCopy != null && !actualAssesmentsToCopy.isEmpty()){
             
             for(IPM_Assessment__c assessmentToCopy : actualAssesmentsToCopy){
                 IPM_Assessment__c assessment = assessmentToCopy.clone(false, true, false, true);
@@ -235,7 +246,7 @@ public with sharing class IPM_AssesmentHandler_Helper {
         }
         
         //insert the cloned assessments
-        if(assessmentsCloned != null && !assessmentsCloned.isEmpty()){
+        if(!assessmentsCloned.isEmpty()){
             Insert assessmentsCloned;
         }
         

@@ -141,7 +141,7 @@ background: #A3C24B url(../images/img_pb_1a.png) 12px 8px no-repeat;
 background-size: 56%;
 }
 
-ul.progress-bar {background-color:#dedede ;}
+.ipmFunnelPanel ul.progress-bar {background-color:#dedede;}
 ul.progress-bar a {
   color: #00A8B3;
   font-size: 16px;

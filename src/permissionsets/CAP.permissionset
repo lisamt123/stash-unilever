@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <applicationVisibilities>
+        <application>AD_Manager</application>
+        <visible>true</visible>
+    </applicationVisibilities>
     <classAccesses>
         <apexClass>Amr_AdManagerController_CC</apexClass>
         <enabled>true</enabled>
@@ -1609,6 +1613,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Amr_Job_Details__c.Single_or_multiply_project__c</field>
+        <readable>true</readable>
+    </fieldPermissions>		
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Amr_Job_Details__c.Stage_of_Production_Activity__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1657,6 +1666,21 @@
         <field>Amr_Job_Details__c.Your_Email_Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>Amr_Job_Details__c.Multi_Category__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>Amr_Job_Details__c.Multi_Brand__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>Amr_Job_Details__c.Multi_Brand_Positioning__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Amr_Logging_Form_Setting__c.Allocation__c</field>
@@ -3942,6 +3966,26 @@
         <field>User.isll_SME__c</field>
         <readable>false</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Amr_Multi_Brand_Positioning__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Amr_Multi_Brand_Positions__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Amr_Multi_Brand__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Amr_Multi_Category__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>	
     <label>AdManager CAP</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -4069,6 +4113,42 @@
         <object>MDO_Category__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Amr_Multi_Brand_Positioning__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Amr_Multi_Brand_Positions__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Amr_Multi_Brand__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Amr_Multi_Category__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>	
     <pageAccesses>
         <apexPage>Amr_AdManager</apexPage>
         <enabled>true</enabled>

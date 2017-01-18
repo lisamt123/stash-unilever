@@ -55,6 +55,36 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fieldSets>
+        <fullName>IPM_Export_List_FieldSet</fullName>
+        <description>Field set for the fields to be exported in excel sheet</description>
+        <displayedFields>
+            <field>IPM_Project__r.IPM_Project_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Phase__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Due_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Completed_On__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>IPM Export List FieldSet</label>
+    </fieldSets>
     <fields>
         <fullName>BET_Status_Check_Trigger__c</fullName>
         <defaultValue>false</defaultValue>
@@ -176,21 +206,30 @@
         <fullName>IPM_Category__c</fullName>
         <description>IPM Category of the project.</description>
         <externalId>false</externalId>
-        <label>Category</label>
+        <label>Category Group</label>
         <picklist>
             <picklistValues>
                 <fullName>Home Care</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>PC</fullName>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Refreshments</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>IPM_Charter_Gate_Approval_Charter_Gate__c</fullName>
@@ -285,6 +324,15 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>IPM_Due_Date_For_Sorting__c</fullName>
+        <externalId>false</externalId>
+        <label>Due Date For Sorting</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>IPM_Due_Date_Idea__c</fullName>
         <description>Snapshot of Idea Due Date</description>
         <externalId>false</externalId>
@@ -327,6 +375,20 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+	<fields>
+        <fullName>IPM_Due_Date_isNull__c</fullName>
+        <description>This field will advice if IPM_Due_Date__c is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK(IPM_Due_Date__c) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if Due Date is null or not</inlineHelpText>
+        <label>IPM_Due_Date_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Due_Date__c</fullName>
@@ -532,14 +594,20 @@
         <externalId>false</externalId>
         <formula>IF(text(IPM_Phase__c)=&apos;Ideas&apos;,
 1, 
-IF(text(IPM_Phase__c)=&apos;Feasibility&apos;, 
+IF(AND(text(IPM_Phase__c)=&apos;Feasibility&apos;,IPM_Name__c=&apos;Product Design Lock&apos;), 
 2, 
+IF(AND(text(IPM_Phase__c)=&apos;Feasibility&apos;,IPM_Name__c &lt;&gt; &apos;Product Design Lock&apos;), 
+3,
 IF(text(IPM_Phase__c)=&apos;Capability&apos;, 
-3, 
-IF(text(IPM_Phase__c)=&apos;Market Ready&apos;, 
 4, 
+IF(text(IPM_Phase__c)=&apos;Market Ready&apos;, 
+5, 
 IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
-5,6
+6,
+IF(text(IPM_Phase__c)=&apos;Post Launch Evaluation&apos;,
+7,
+-1)
+)
 )
 )
 )
@@ -600,6 +668,20 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+	<fields>
+        <fullName>IPM_Planned_Date_isNull__c</fullName>
+        <description>This field will advice if IPM_Planned_Date__c is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( IPM_Planned_Date__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if Suggested Planned date is null or not</inlineHelpText>
+        <label>IPM_Planned_Date_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Project_Launch_Date__c</fullName>
@@ -866,6 +948,15 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+    <fields>
+        <fullName>SystemSetDueDate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>SystemSetDueDate</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <label>IPM Milestone</label>
     <listViews>
         <fullName>All</fullName>
@@ -955,11 +1046,19 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <picklistValues>
             <picklist>IPM_Category__c</picklist>
             <values>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Home Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>PC</fullName>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Refreshments</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1067,11 +1166,19 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <picklistValues>
             <picklist>IPM_Category__c</picklist>
             <values>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Home Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>PC</fullName>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Refreshments</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1178,11 +1285,19 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <picklistValues>
             <picklist>IPM_Category__c</picklist>
             <values>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Home Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>PC</fullName>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Refreshments</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

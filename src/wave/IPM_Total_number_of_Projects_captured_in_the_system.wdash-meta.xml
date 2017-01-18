@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveDashboard xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <content xsi:nil="true"/>
+    <application>UL_Reports</application>
+    <description>Total number of Projects captured in the system
+
+• All BOSSCARDs
+• All projects
+• Lite projects
+• Full projects
+• Operational
+• White space</description>
+    <masterLabel>IPM Report 5 - Total number of Projects captured in the system</masterLabel>
+</WaveDashboard>

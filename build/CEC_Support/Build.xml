@@ -1,0 +1,86 @@
+<!--    *******************************************************************************************************************-->
+<!--    Build Script in Ant for Unilever Salesforce Projects - BEGIN                                               -->
+<!--    ******************************************************************************************************************* -->
+<project name="salesforce" default="validate" basedir="." xmlns:sf="antlib:com.salesforce">
+    <!-- *************************************************************** -->
+    <!--   Properties for Salesforce ANT targets                         -->
+    <!-- *************************************************************** -->
+    <property file="${basedir}/build.properties" />
+    <property environment="env" />
+    <!-- Properties for salesforce dataloader CLI for IPM NG-->
+    <property name="dataLoaderAPIVersion" value="35.0.0-uber" />
+    <!-- *************************************************************** -->
+    <!--   Set-Up of Salesforce Ant / CLI Jar Classpath for IPM NG       -->
+    <!-- *************************************************************** -->
+    <!-- Define required jars for salesforce dataloder CLI-->
+    <path id="taskDependencies">
+        <pathelement location="${basedir}/lib/ant.jar" />
+        <pathelement location="${basedir}/lib/antutils.jar" />
+        <pathelement location="${basedir}/lib/commons-io-2.4.jar" />
+        <pathelement location="${basedir}/lib/commons-lang-2.6.jar" />
+        <pathelement location="${basedir}/lib/commons-logging-1.1.3.jar" />
+        <pathelement location="${basedir}/lib/gson-2.2.4.jar" />
+        <pathelement location="${basedir}/lib/httpclient-4.3.5.jar" />
+        <pathelement location="${basedir}/lib/httpcore-4.3.2.jar" />
+        <pathelement location="${basedir}/lib/json-20080701.jar" />
+    </path>
+    <!-- Define salesforce Ant Jar-->
+    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+        <classpath>
+            <pathelement location="${basedir}/lib/ant-salesforce.jar" />
+        </classpath>
+    </taskdef>
+    <!-- ***************************************************************************** -->
+    <!-- ANT Import Files for invoking APEX inside ANT Scripts                         -->
+    <!-- ***************************************************************************** -->
+    <import file="${basedir}/lib/exec_anon.xml" />
+    <import file="${basedir}/lib/deploy.xml" />
+    <import file="${basedir}/lib/undeploy.xml" />
+    <import file="${basedir}/lib/run_tests.xml" />
+    <import file="${basedir}/lib/package_generator.xml" />
+    <target name="validate">
+        <echo level="info">Agent App Lightning Deployment</echo>
+        <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" checkOnly="true" logType="Debugonly" testLevel="RunSpecifiedTests" allowMissingFiles="true" autoUpdatePackage="true" ignoreWarnings="true" deployRoot="src" pollWaitMillis="${sfdc.pollWaitMillis}" maxPoll="${sfdc.maxPoll}">
+            <runTest>CommunitiesLandingControllerTest</runTest>
+            <runTest>CommunitiesLoginControllerTest</runTest>
+            <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+            <runTest>CommunitiesSelfRegControllerTest</runTest>
+            <runTest>ExceptionLoggingHelper_Test</runTest>
+            <runTest>ExceptionsTest</runTest>
+            <runTest>TriggerFactoryTest</runTest>
+            <runTest>TestDataFactory</runTest>
+            <runTest>UserTestUtil</runTest>
+            <runTest>UserTrigger_Test</runTest>
+            <runTest>CEC_AlertActionHelperTest</runTest>
+            <runTest>CEC_AnonymiseConsumerBatchScheduler_Test</runTest>
+			<runTest>CEC_ChatSurveyBatchScheduler_Test</runTest>
+            <runTest>CEC_ClearAlertData_BatchScheduler_Test</runTest>
+			<runTest>cec_TestEmailMessageHelper</runTest>
+			<runTest>CEC_CaseActionControllerTest</runTest>
+            <runTest>CEC_CaseInlineControllerTest</runTest>
+			<runTest>CEC_CaseTriggerHelperExtTest</runTest>
+            <runTest>CEC_CaseTriggerHelperTest</runTest>
+			<runTest>CEC_TestAlertActionTriggerHelper</runTest>
+			<runTest>CEC_TestAlertActionBatchScheduler</runTest>
+			<runTest>CEC_FulfilmentHelperExtensionTest</runTest>
+			<runTest>CEC_FufilmentProductInlineControllerTest</runTest>
+            <runTest>CEC_FulfilmentHelperTest</runTest>
+			<runTest>CEC_IRIProductLocatorControllerTest</runTest>
+			<runTest>CEC_IRIProductLocator_CalloutMock</runTest>
+			<runTest>CEC_LiveAgentControllerSpanishTest</runTest>
+			<runTest>CEC_LiveAgentControllerTest</runTest>
+			<runTest>CEC_NewAccountControllerTest</runTest>
+			<runTest>CEC_OCWidgetRedirectControllerTest</runTest>
+			<runTest>CEC_ProductRangeControllerTest</runTest>
+			<runTest>CEC_RetrievalRequestTriggerHelperTest</runTest>
+			<runTest>CEC_TH1_DraftTrigger_Test</runTest>
+			<runTest>CEC_TestDataFactory</runTest>
+			<runTest>CEC_Test_FulfilmentQualityCheckHelper</runTest>
+			<runTest>CEC_Test_IssueCreationPageController</runTest>
+			<runTest>CEC_Test_NewAccountCaseController</runTest>
+			<runTest>CEC_TypeaheadTest</runTest>
+			<runTest>CEC_UserDefaultSettingTriggerHelperTest</runTest>
+			<runTest>CEC_UserTriggerHelperTest</runTest>
+        </sf:deploy>
+    </target>
+</project>

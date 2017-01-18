@@ -1,0 +1,6 @@
+src/aura
+src/aura/ICB_CockpitContacts/ICB_CockpitContacts.cmp
+src/aura/ICB_CockpitContacts/ICB_CockpitContacts.cmp-meta.xml
+src/aura/ICB_CockpitContacts/ICB_CockpitContacts.css
+src/aura/ICB_CockpitContacts/ICB_CockpitContactsController.js
+src/aura/ICB_CockpitContacts/ICB_CockpitContactsHelper.js

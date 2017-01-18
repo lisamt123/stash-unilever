@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Fixed Price Review of Opportunity Product</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Fixed Price Review of Opportunity Product</name>
+    <style>none</style>
+    <subject>Review the fixed price proposal of opportunity product</subject>
+    <type>text</type>
+</EmailTemplate>

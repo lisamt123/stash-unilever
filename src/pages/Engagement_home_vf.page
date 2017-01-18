@@ -1,0 +1,122 @@
+<apex:page Controller="Engagement_home_cc" standardStylesheets="false" showHeader="false" doctype="HTML-5.0" action="{!onload}">
+<apex:form >
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=no"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Engagement App</title>
+     
+  <!-- Bootstrap core CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, '/Engagement/dist/css/bootstrap.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, '/Engagement/EngagementApp/dist/css/bootstrap.css')}"/>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, '/Engagement/assets/css/ie10-viewport-bug-workaround.css')}"/>
+
+    <!-- Custom styles for this template -->
+   <apex:stylesheet value="{!URLFOR($Resource.Engagement, '/Engagement/EngagementApp/style.css')}"/>
+   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"/>
+   <apex:stylesheet value="{!URLFOR($Resource.Engagement, '/Engagement/EngagementApp/css/main.css')}"/>
+   <apex:stylesheet value="{!URLFOR($Resource.Engagement, '/Engagement/EngagementApp/css/normalize.css')}"/>
+   <apex:stylesheet value="{!URLFOR($Resource.Engagement, '/Engagement/EngagementApp/css/demo.css')}"/>
+        <!-- Pushy CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, '/Engagement/EngagementApp/css/pushy.css')}"/>
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <script type="text/javascript" src="{!URLFOR($Resource.Engagement, '/Engagement/assets/js/ie-emulation-modes-warning.js')}"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  </head>
+
+  <body>
+    <div class="site-overlay"></div>
+    <div class="container" id="container">
+    <div class="logo" style="height:50px"><apex:image url="{!URLFOR($Resource.engagementpic)}" style="width:200px;height:100px;align:center"/></div>
+    <div style="color:red;font-size:15px;height:15px;" align="left">
+    <apex:pagemessages ></apex:pagemessages>
+    </div>
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+     <form class="form-signin">
+    <label for="sel1" ><h2 style="color:white;font-size:15px;">Select Your Location</h2></label>
+    <apex:actionRegion >
+    <apex:inputField styleClass="form-control" value="{!home.Location__c}" html-placeholder="Select Your Location" id="id1">
+    <apex:actionSupport event="onchange" action="{!start1}" reRender="panel1,panel2"/>
+    </apex:inputField>
+    </apex:actionRegion>
+  
+  <div id = "dependentlist">
+  <apex:outputPanel id="panel1">
+  <apex:outputPanel rendered="{!rend1}">
+  <label for="sel1"><h2 style="color:white;font-size:15px;">Select Your Location Name</h2></label>
+  <apex:inputField styleClass="form-control" value="{!home.Location_Name__c}"></apex:inputField>
+  </apex:outputPanel>
+  </apex:outputPanel> 
+  </div> 
+  <apex:outputPanel id="panel2" >
+  <apex:outputPanel rendered="{!rend2}">
+  <label for="sel1"><h2 style="color:white;font-size:15px;">Enter RS Code</h2></label>
+  <apex:inputField styleClass="form-control" value="{!rs.RS_Code__c}" required="true"></apex:inputField> 
+  </apex:outputPanel>
+  </apex:outputPanel>
+  <apex:commandButton value="Start" styleClass="btn btn-lg btn-primary btn-block sub" action="{!start}"/>
+  </form>
+  </div>
+  </div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+ 
+   <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{!URLFOR($Resource.Engagement, '/Engagement/assets/js/vendor/jquery.min.js')}" ><\/script>')</script>
+     <script type="text/javascript" src="{!URLFOR($Resource.Engagement, '/Engagement/dist/js/bootstrap.min.js')}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript" src="{!URLFOR($Resource.Engagement, '/Engagement/assets/js/ie10-viewport-bug-workaround.js')}"></script>
+   <script>
+   (function ($) {
+    var pushy = $('.pushy'), //menu css class
+        body = $('body'),
+        container = $('#container'), //container css class
+        push = $('.push'), //css class to add pushy capability
+        pushyLeft = 'pushy-left', //css class for left menu position
+        pushyOpenLeft = 'pushy-open-left', //css class when menu is open (left position)
+        pushyOpenRight = 'pushy-open-right', //css class when menu is open (right position)
+        siteOverlay = $('.site-overlay'), //site overlay
+        menuBtn = $('.menu-btn, .pushy-link'), //css classes to toggle the menu
+        menuSpeed = 200, //jQuery fallback menu speed
+        menuWidth = pushy.width() + 'px', //jQuery fallback menu width
+        submenuClass = '.pushy-submenu',
+        submenuOpenClass = 'pushy-submenu-open',
+        submenuClosedClass = 'pushy-submenu-closed',
+        submenu = $(submenuClass);
+    </script>
+
+<script>
+// Mutation object
+var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+
+// Defining observer 
+var observer = new MutationObserver(function(mutations) { 
+    // If the myListClass was removed from the list - re-assign it
+    if(!jQuery('#dependentlist select').first().hasClass('form-control')){
+        jQuery('#dependentlist select').first().addClass('form-control');
+    }
+});
+
+// A target object fot the observer
+var myNode = document.querySelector('#dependentlist'); 
+
+// Assigning observer to the dependent picklist
+observer.observe(myNode, {
+    childList: true,
+    subtree: true,
+    attributes: true
+});
+</script>
+   
+ </body>
+</html>
+</apex:form>
+</apex:page>

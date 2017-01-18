@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Your Purpose to Impact Projects (PIIs)</name>
+    <style>none</style>
+    <subject>UL2020 (Class #) : Your Purpose to Impact Projects (PIIs) test</subject>
+    <textOnly>Dear UL2020 Participants,
+
+
+We are a couple of weeks away from the face-to-face workshop and we look forward to having you on this exciting, pioneering programme. This email outlines the ‘Purpose to Impact Initiatives’ process.
+
+
+The UL2020 programme focuses on breakthrough Purpose to Impact initiatives (PII). The PIIs are at the heart of UL2020, driving real learning for you and real impact for Unilever. During the week at Four Acres you will be working in your PII groups together with INSEAD professor Phil Parker to define and plan your project, and in the 12 weeks after the program you will deliver the project. At the end of the 12 weeks every team has to wrap up the PII by presenting to their sponsors and other stakeholders (e.g. pilot business unit heads) and then define next steps for future PII group, if applicable.
+
+
+Together with the ULE we’ve created some PII topics for your class:
+
+
+(insert photo of potential PII’s for this class)
+
+
+However, we would also like to give you the opportunity to define a PII for yourself. A PII needs to:-
+
+
+- Focus on an area which is a significant challenge or opportunity for Unilever which will deliver real commercial value;
+
+- Deliver significant business impact either through potential organisational change aligned to C4G, through an emerging opportunity or threat, or through the delivery of the USLP;
+
+- It should not be someone’s day job. Nor should it be so “blue sky” that it can’t lead to a concept pilot within 12 weeks.
+
+
+You will also find examples above. Please find here a short film of Paul Polman talking about PIIs at a recent UL2020 to give you more information.
+
+
+If you would like to propose a PII, please provide us the following information before (deadline) – using this link:
+
+
+1) The PII Challenge or Opportunity
+
+2) Context: why should this be a PII project for Unilever?
+
+3) How does this relate to your personal purpose?
+
+4) Who (which ULE member or WL5 leader) could be the potential sponsor?
+
+
+If you have any questions about a potential PII, please contact Betty Lau.
+
+
+During the week commencing 31st October, you will receive the final selection and description of PIIs for your class, and we will ask you to list 3 PIIs that you would like to work on from the list, so that you can find a PII that aligns with your purpose and interests. A week before the programme we will announce the PII groups, pre-readings and sponsors.
+
+
+Please don’t hesitate to ask any questions about the current PIIs, your ideas and /or other questions related to the programme.
+
+
+Thank you!
+
+
+
+Tim Munden
+
+Chief Learning Officer</textOnly>
+    <type>custom</type>
+</EmailTemplate>

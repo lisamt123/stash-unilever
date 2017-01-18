@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>VPM - This custom setting is used to store the MDM Country details.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Country_Code__c</fullName>
+        <description>VPM - This field is used to store the value of Country code.</description>
+        <externalId>false</externalId>
+        <label>Country Code</label>
+        <length>15</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Country_Name__c</fullName>
+        <description>VPM - This field is used to store the Name of the Country.</description>
+        <externalId>false</externalId>
+        <label>Country Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Country_Name_with_Code__c</fullName>
+        <description>VPM - This field is used to store the Name of the Country along with the country code.</description>
+        <externalId>false</externalId>
+        <label>Country Name with Code</label>
+        <length>60</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>VPM MDM Country</label>
+    <visibility>Public</visibility>
+</CustomObject>

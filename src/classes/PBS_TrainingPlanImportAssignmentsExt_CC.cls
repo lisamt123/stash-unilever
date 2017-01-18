@@ -178,7 +178,8 @@ public with sharing class PBS_TrainingPlanImportAssignmentsExt_CC {
 
             //Start batch job here
             try{
-                Id batchJobId = Database.executeBatch(new PBS_TrainingPlanAsgmtsUpsertBatch_CC(trainingPlanId,tpbo.Id), 10);
+                //Id batchJobId = 
+               Database.executeBatch(new PBS_TrainingPlanAsgmtsUpsertBatch_CC(trainingPlanId,tpbo.Id), 10);
             }catch(Exception e){
                 tpbo.Status__c = 'Failed';
                 update tpbo;

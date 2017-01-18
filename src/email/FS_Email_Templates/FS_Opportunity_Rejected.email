@@ -1,0 +1,1 @@
+{!Opportunity.Name} is Rejected Please click here to review: {!Opportunity.Link}

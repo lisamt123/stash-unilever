@@ -1,0 +1,7 @@
+<aura:component access="global">
+    <aura:registerEvent name="mapLatLng_map" type="c:ICB_StaticGoogleMaps_Lat_Lng"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<div>
+        <img max-width="100%" height="auto" class="img-map" src="{!v.mapsrc}"/>	
+    </div>
+</aura:component>

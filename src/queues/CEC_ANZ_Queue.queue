@@ -6,6 +6,9 @@
         <sobjectType>CEC_Case_Market_Mapping__c</sobjectType>
     </queueSobject>
     <queueSobject>
+        <sobjectType>CEC_Factory_Details__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
         <sobjectType>Case</sobjectType>
     </queueSobject>
     <queueSobject>

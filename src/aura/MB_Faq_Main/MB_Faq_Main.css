@@ -1,0 +1,36 @@
+.THIS .backImageStyle-new {
+    height: 37px;
+    width: 18px;
+    display: inline;
+    float: left;
+}
+
+.THIS .homePageSectionTitle {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.THIS .backImageStyle {
+    height: 18px;
+    width: 18px;
+    float: right;
+}
+
+.THIS .test{
+    padding: 10px;
+    background-color: #F5F6F7 !important;
+}
+
+.THIS .answer_list{
+    display:none;
+    padding: 20px 0px;
+}
+
+.THIS hr{
+    margin: 0 0 1rem 0;
+}
+.THIS .back-button{
+    width: 5%;
+    margin-left: 18px;
+    margin-top: 10px;
+}

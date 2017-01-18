@@ -151,6 +151,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Total Campaign Fees for this FY</displayNameOverride>
             <field>Total_Campaigns_This_FY__c</field>
             <table>Marketing_SOW__c</table>
         </columns>
@@ -214,6 +215,22 @@
             <field>Stage_Projected_CFY__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>OblixTotalProjectsFees__c</field>
+            <table>Marketing_SOW__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Campaign_Status1__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Stages Projected</displayNameOverride>
+            <field>Projected_Stage_CFY__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
         <masterLabel>SWOP</masterLabel>
     </sections>
     <sections>
@@ -274,6 +291,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Stages Completed</displayNameOverride>
+            <field>Completed_Stage_CFY__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Campaign_Points__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r</table>
         </columns>
@@ -310,6 +333,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Live_date_Asset_delivery__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Campaign_FY__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r</table>
         </columns>
         <columns>
@@ -454,6 +482,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Projected_Stage_PFY__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Fees_To_Be_Paid_In_Current_FY_Agency__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r</table>
         </columns>
@@ -565,6 +598,16 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Total_Digital_Fee__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BET_Required__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BET_Required_Yes_No__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r</table>
         </columns>
         <masterLabel>SWOP Projects</masterLabel>
@@ -698,6 +741,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Category_Trimmed__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Description__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r</table>
         </columns>
         <masterLabel>SWOP Project Assets</masterLabel>

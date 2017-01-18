@@ -155,7 +155,7 @@ global with sharing class Core_CA_LineItemDetail {
             objLineItemDetailResponseInvoice.RequestName =objApprovalHeader.External_System_Id__c;
             objLineItemDetailResponseInvoice.IntOrder =objApprovalDetails.Air_Fare_Details__c;
             objLineItemDetailResponseInvoice.GLAccount =objApprovalDetails.Allowance_Details__c;
-            objLineItemDetailResponseInvoice.NetAmnt =objApprovalDetails.Amount__c;
+            objLineItemDetailResponseInvoice.NetAmnt =objApprovalDetails.Charge_To__c; 
             objLineItemDetailResponseInvoice.CstCntr =objApprovalDetails.Attachment__c;
             objLineItemDetailResponseInvoice.ProfitCntr =objApprovalDetails.Attendees_Details__c;
             objLineItemDetailResponseInvoice.Description =objApprovalDetails.Description__c;

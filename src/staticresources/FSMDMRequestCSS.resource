@@ -1,0 +1,50 @@
+@page {
+
+	@top-center {
+
+		content: element(header);
+
+	}
+
+	@bottom-left {
+
+    		content: element(footer);
+
+	}
+	margin-bottom: 5cm;
+
+	
+}
+
+div.header {
+
+	padding: 10px;
+
+	position: running(header);
+
+
+}
+
+div.footer {
+
+	display: block;
+
+	padding: 5px;
+
+	position: running(footer);
+	
+}
+
+ 
+
+.pagenumber:before {
+
+	content: counter(page);
+
+}
+
+.pagecount:before {
+
+	content: counter(pages);
+
+}

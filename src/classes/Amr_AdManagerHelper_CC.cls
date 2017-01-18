@@ -17,12 +17,10 @@ Purpose:
 public with sharing Class Amr_AdManagerHelper_CC{
 
 
-    public String gbvmEmail;
-   // public String thresholdValue;
-     public double amountEntered{get;set;}
+    public String gbvmEmail = NULL;
+    public double amountEntered{get;set;}
     public String ToUserEmailId{get;set;}
-   // public String gbvmEmail  {get;set;}
-    public Double thresholdValue  {get;set;}
+    public Double thresholdValue  {get;set;}    
     Amr_AdManagerController_CC admanagerObj;
     public Amr_AdManagerHelper_CC(){
         admanagerObj = new Amr_AdManagerController_CC(); 
@@ -261,31 +259,44 @@ public with sharing Class Amr_AdManagerHelper_CC{
    Parameters: Country(String), vategory(String), Brand position(String), Brand(String), Job Detail(Object), project name(String), Brand Value(List<SelectOption>)
    Returns: It’s return Pagereference
    ********************************************************************/ 
-        public PageReference createJob(String selectedCountryValue, String categoryNameValue, String brandPosNameValue,  String brandNameFromPageValue,Amr_Job_Details__c jobDetailsObj, String projectNameFromPageValue, List<SelectOption> listOfBrandValue){
+        public PageReference createJob(String selectedCountryValue, String categoryNameValue, String brandPosNameValue,  String brandNameFromPageValue,Amr_Job_Details__c jobDetailsObj, String projectNameFromPageValue, List<SelectOption> listOfBrandValue, Boolean singleOrMultiCategory){
                 try{  
                       
                     Amr_CurrencyConversionRate__c currencyObject =[SELECT Currency_Unit__c,Name FROM Amr_CurrencyConversionRate__c WHERE Currency_Unit_To_Euro__c =:double.valueOf(selectedCountryValue) limit 1];
                     String currencyFinalString = currencyObject.Name+Amr_ConstantForAdManager.DASH+currencyObject.Currency_Unit__c;
-                    List<MDO_BrandPositions__c> MDOBrandPositionslst =[select  brand_position_id__c,product_category_id__c,brand_id__c from MDO_BrandPositions__c where product_category_id__r.name = :categoryNameValue AND brand_position_id__r.name = :brandPosNameValue AND brand_id__r.name = :brandNameFromPageValue];
-                    
-                    if(MDOBrandPositionslst.size()>0){
-                        MDO_BrandPositions__c MDOobj = MDOBrandPositionslst[0];
-                        jobDetailsObj.ProductCategory__c = MDOobj.product_category_id__c;
-                        jobDetailsObj.Brand_Position__c = MDOobj.brand_position_id__c;
-                        jobDetailsObj.Brand_Final__c = MDOobj.brand_id__c;
+
+                    if(singleOrMultiCategory){
+                        jobDetailsObj.ProductCategory__c = [SELECT Id FROM MDO_Category__c WHERE Name =:categoryNameValue AND status__c = 'Active' LIMIT 1].Id;
+                        jobDetailsObj.Brand_Position__c = [SELECT Id FROM MDO_BrandPosition__c WHERE Name =:brandPosNameValue AND status__c = 'Active' LIMIT 1].Id;
+                        jobDetailsObj.Brand_Final__c = [SELECT Id FROM MDO_Brand__c WHERE Name =:brandNameFromPageValue AND status__c = 'Active' LIMIT 1].Id;
                     }
+                    else{
+                        jobDetailsObj.Multi_Category__c = [SELECT Id FROM Amr_Multi_Category__c WHERE Name =:categoryNameValue AND status__c = 'Active' LIMIT 1].Id;
+                        jobDetailsObj.Multi_Brand_Positioning__c = [SELECT Id FROM Amr_Multi_Brand_Positioning__c WHERE Name =:brandPosNameValue AND status__c = 'Active' LIMIT 1].Id;
+                        jobDetailsObj.Multi_Brand__c = [SELECT Id FROM Amr_Multi_Brand__c WHERE Name =:brandNameFromPageValue AND status__c = 'Active' LIMIT 1].Id;
+                    }
+                    
                     jobDetailsObj.Currency_Conversion_Country_List__c = currencyFinalString;
                                      
                     adManagerNumberCreation(jobDetailsObj);
                     jobDetailsObj.Is_Submitt__c = true;
+                    if(singleOrMultiCategory){
                     compareThresold(jobDetailsObj, categoryNameValue,brandPosNameValue,brandNameFromPageValue);
+                    }
                     jobDetailsObj.GBVM_Email__c = gbvmEmail;
                     jobDetailsObj.Threshold_Amount__c = thresholdValue ;
                     jobDetailsObj.Job_Status__c = 'Pending';
                     jobDetailsObj.BroadcastMarketText__c = jobDetailsObj.Brodcast_Market__c;
+                    if( singleOrMultiCategory ){
+                        jobDetailsObj.Single_or_multiply_project__c = 'single';
+                        admanagerObj.getCategoryList();
+                    }
+                    else{
+                        jobDetailsObj.Single_or_multiply_project__c = 'multiply';
+                        admanagerObj.getMultiCategoryList();
+                    }
                     insert jobDetailsObj;
                     
-                    admanagerObj.getCategoryList();
                     InnerJobDetail innerClassObj = new InnerJobDetail(jobDetailsObj.Project_Leader_Cluster__c,jobDetailsObj.Project_Leader_Country__c,jobDetailsObj.id,jobDetailsObj.AdManagerText__c);
                     String obj = JSON.serialize(innerClassObj);
                     
@@ -358,48 +369,54 @@ public with sharing Class Amr_AdManagerHelper_CC{
 
     public void adManagerNumberCreation(Amr_Job_Details__c jobDetailsObj){
         try{
-            Amr_Job_Details__c[] jobDetailList=[select Id,AdManagerText__c from Amr_Job_Details__c order by CreatedDate desc limit 1];
-          
-            Id id = jobDetailsObj.Brand_Final__c ;
-          
-            MDO_Brand__c jobBrand = [select Name from MDO_Brand__c  where Id =: id];
-            String brandStr = jobBrand.Name;
+            String brandStr = '';
+            if(jobDetailsObj.Single_or_multiply_project__c == 'single'){
+                Id id = jobDetailsObj.Brand_Final__c ;
+                MDO_Brand__c jobBrand = [select Name from MDO_Brand__c  where Id =: id];
+                brandStr = jobBrand.Name;
+            }
+            else{
+                Id id = jobDetailsObj.Multi_Brand__c;
+                Amr_Multi_Brand__c jobBrand = [select Name from Amr_Multi_Brand__c  where Id =: id];
+                brandStr = jobBrand.Name;            
+            }
+
             String brandName = brandStr.Left(3);
-            
-            if(jobDetailList.size()>0){
-                String textStr = jobDetailList[0].AdManagerText__c;
-                String adNumber = textStr.Right(5);
-                if(adNumber == Amr_ConstantForAdManager.NINTY_SERIES){
-                    jobDetailsObj.AdManagerText__c = brandName+Amr_ConstantForAdManager.BACK_SLASH+Amr_ConstantForAdManager.ZERO_SERIES;
-                }else{
-                    Integer num = integer.valueOf(adNumber)+1;
-                    String numStr =string.valueof(num);
-                    for(;numStr.length()<5;){
-                        numstr=Amr_ConstantForAdManager.ZERO+numStr;
-                        
-                    }
-                    jobDetailsObj.AdManagerText__c =brandName+Amr_ConstantForAdManager.BACK_SLASH+numstr;}
+            AmrAdManagerNumber__c AdMgNumber = AmrAdManagerNumber__c.getInstance('AdManagerNumber');
+            String adNumber = AdMgNumber.AdManagerNumber__c;
+            if(adNumber != Amr_ConstantForAdManager.NINTY_SERIES ){
+                Integer num = integer.valueOf(adNumber)+1;
+                String numStr =string.valueof(num);
+                for(;numStr.length()<5;){
+                    numstr=Amr_ConstantForAdManager.ZERO+numStr;
+                }
+                jobDetailsObj.AdManagerText__c =brandName+Amr_ConstantForAdManager.BACK_SLASH+numstr;
+                AdMgNumber.AdManagerNumber__c = numstr;
             }else{
                 jobDetailsObj.AdManagerText__c =brandName+Amr_ConstantForAdManager.BACK_SLASH+Amr_ConstantForAdManager.ZERO_SERIES;
+                AdMgNumber.AdManagerNumber__c = Amr_ConstantForAdManager.ZERO_SERIES;
             }
+             
+             update AdMgNumber;
            
         }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
-     /*******************************************************************    
-   Purpose:  This method is used to allocate job to RAP                                         
-   Parameters: Job Object(String)
-   Returns: It’s return Nothing
-   ********************************************************************/ 
+    
+/*******************************************************************    
+Purpose:  This method is used to allocate job to RAP                                         
+Parameters: Job Object(String)
+Returns: It’s return Nothing
+********************************************************************/ 
 
     @future
     @TestVisible static void automaticJobAllocation(String JobObject){
         try{
             InnerJobDetail jobDetailsNew = (InnerJobDetail)JSON.deserialize(JobObject, InnerJobDetail.class);
            
-            //Autometic assigment
+            //Automatic assigment
             
             if(jobDetailsNew.Cluster!=null && jobDetailsNew.Country!=null){
                 
@@ -412,9 +429,7 @@ public with sharing Class Amr_AdManagerHelper_CC{
                         emailIds.add(obj.Primary_RAP_Email__c); 
                 }
             }
-            system.debug('emailIds!!'+emailIds);
             List<PermissionSetAssignment> userList =  [SELECT Id,Assignee.Name,Assignee.id,Assignee.Email FROM PermissionSetAssignment where PermissionSet.Name = :Label.Amr_RAP AND Assignee.Email = :emailIds ];
-           system.debug('userList!!'+userList);
             if(userList.size()>0){
                 if(userinfo.getuserid() != userList[0].Assignee.id){
                     Amr_Job_Details__Share jobShareObj  = new Amr_Job_Details__Share();
@@ -444,4 +459,143 @@ public with sharing Class Amr_AdManagerHelper_CC{
             AdManagerText = AdManagertxt;
         }
     }
+    
+public boolean multiCategoryNameFlag = FALSE;
+public boolean multiBrandPosNameFlag = FALSE;
+public boolean multiBrandNameFlag = FALSE;
+public boolean validationFlag = TRUE;
+public boolean successMessage = TRUE;
+        
+/*******************************************************************    
+Purpose:  This method is used to insert/update multiply/Non Specific brands                                 
+Parameters: String multiCategory value, String multiBrandPositioning value, String multiBrand value from CAP Admin space
+Returns: It’s return Pagereference
+********************************************************************/ 
+public PageReference createMultiBrandPositions(String multiCategory, String multiBrandPositioning, String multiBrand1,String multiBrand2,String multiBrand3,String multiBrand4,String multiBrand5 ){
+    
+    Id multicatId = NULL;
+    Id multibrandPositioningId = NULL;
+    
+    PageReference pageRef = Page.Amr_CAPAdmin;
+    pageRef.setRedirect(false);
+    
+    
+    if( multiCategory == NULL || multiBrandPositioning == NULL || multiCategory == '' || multiBrandPositioning == ''){
+     return null;
+    }
+
+    if( multiBrand1 == NULL && multiBrand2 == NULL && multiBrand3 == NULL && multiBrand4 == NULL && multiBrand5 == NULL){
+    return null;
+    }  
+
+    //Validation
+    /*
+    if(multiCategory != Amr_ConstantForAdManager.NONE ){
+        multiCategoryNameFlag = TRUE;
+    }
+    if(multiBrandPositioning != Amr_ConstantForAdManager.NONE ){
+        multiBrandPosNameFlag = TRUE;
+    }
+    if( multiBrand1 != NULL || multiBrand2 != NULL || multiBrand3 != NULL || multiBrand4 != NULL || multiBrand5 != NULL){
+        multiBrandNameFlag = TRUE;
+    }
+      
+    if( !multiCategoryNameFlag && !multiBrandPosNameFlag && !multiBrandNameFlag  ){
+     return NULL;
+    }
+
+   if( multiCategoryNameFlag &&  multiBrandPosNameFlag &&   multiBrandNameFlag ){
+    validationFlag = FALSE;
+    }
+    if (validationFlag ){
+        successMessage = false;
+        return null;    
+    }
+    */
+    Set<String> multiBrand =  new Set<String>{multiBrand1,multiBrand2,multiBrand3,multiBrand4,multiBrand5};
+try{
+
+    //Multi Category
+
+    List<Amr_Multi_Category__c> categoryId = [select id from Amr_Multi_Category__c  where name =:multiCategory ORDER BY Name limit 1];
+    if(categoryId.size() > 0){
+    multicatId = categoryId[0].Id;
+    }
+    else{
+    Amr_Multi_Category__c mCategory = new Amr_Multi_Category__c();
+    mCategory.Name = multiCategory;
+    mCategory.Status__c = 'Active';
+    insert mCategory;
+    multicatId = mCategory.Id;    
+    }
+
+    //Multi BrandPositioning
+    List<Amr_Multi_Brand_Positioning__c> mbrandPositioningId = [select id from Amr_Multi_Brand_Positioning__c  where name =:multiBrandPositioning ORDER BY Name limit 1];
+    
+    if(mbrandPositioningId.size() > 0){
+    multibrandPositioningId = mbrandPositioningId[0].Id;
+    }
+    else{
+    Amr_Multi_Brand_Positioning__c mBrandPositioning = new Amr_Multi_Brand_Positioning__c();
+    mBrandPositioning.Name = multiBrandPositioning;
+    mBrandPositioning.Status__c = 'Active';
+    insert mBrandPositioning;
+    multibrandPositioningId = mBrandPositioning.Id;    
+    }
+
+    for(String mB :multiBrand){
+        if(mB.length() > 0 ){
+        createMultiBrandPos(multicatId, multibrandPositioningId, mB);
+        }
+    }    
+    pageRef = Page.Amr_CAPAdmin;
+    pageRef.setRedirect(true);
+    //return pageRef;
+    return null;
+                    
+}catch(exception ex){
+    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+    system.debug('ex****'+ex.getMessage());
+}
+return Null;
+}
+
+/*******************************************************************    
+Purpose:  This method is used to insert/update multiply/Non Specific brands                                 
+Parameters: String multiCategory value, String multiBrandPositioning value, String multiBrand value from CAP Admin space
+Returns: It’s return Pagereference
+********************************************************************/ 
+public void createMultiBrandPos(Id multicatId, Id multiBrandPositioningId, String multiBrand){
+    Id multibrandId = NULL;
+    //Multi Brand
+    List<Amr_Multi_Brand__c> mBrandId = [select id from Amr_Multi_Brand__c  where name =:multiBrand ORDER BY Name limit 1];
+
+    if(mBrandId.size() > 0){
+    multibrandId = mBrandId[0].Id;
+    }
+    else{
+    Amr_Multi_Brand__c mBrand = new Amr_Multi_Brand__c();
+    mBrand.Name = multiBrand;
+    mBrand.Status__c = 'Active';
+    insert mBrand;
+    multibrandId = mBrand.Id;    
+    }
+
+    //Multi BrandPositions
+    List<Amr_Multi_Brand_Positions__c> multiBrandPositionsId = [select id, Multi_Category__c, Multi_Brand_Positioning__c, Multi_Brand__c from Amr_Multi_Brand_Positions__c  where Multi_Category__c =:multicatId and Multi_Brand_Positioning__c =:multiBrandPositioningId and Multi_Brand__c =:multibrandId ORDER BY Name limit 1];
+
+    if(multiBrandPositionsId.size() == 0){
+    Amr_Multi_Brand_Positions__c mBrandPositions = new Amr_Multi_Brand_Positions__c();
+    mBrandPositions.Multi_Category__c = multicatId;
+    mBrandPositions.Multi_Brand_Positioning__c = multibrandPositioningId;
+    mBrandPositions.Multi_Brand__c = multibrandId;
+    mBrandPositions.Status__c = 'Active';
+    insert mBrandPositions;
+    }
+ 
+}
+    
+
+
+    
 }

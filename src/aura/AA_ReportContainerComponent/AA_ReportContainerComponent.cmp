@@ -1,0 +1,20 @@
+<aura:component controller="AA_AgentAppService">
+    <aura:attribute name="objPassAgentReportsToNG" type="AA_WrapperClass.agentReportDetail" />
+    <aura:attribute name="totalReportCount" type="Integer" default="0"/>   
+    <aura:attribute name="limitRecords" type="Integer" default="12"/>
+    <aura:if isTrue="{!v.totalReportCount == 0}">
+        <div style="text-align: center">
+            Your filter criteria has not yielded any results
+        </div>
+    </aura:if> 
+    
+    <div>
+        <aura:iteration items="{!v.objPassAgentReportsToNG}" var="objReport" > 
+            <div >
+                <c:AA_ReportDetailNavigation objReport="{!objReport}"/> 
+            </div>
+        </aura:iteration>
+    </div>
+    
+    
+</aura:component>

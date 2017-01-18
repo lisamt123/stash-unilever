@@ -57,6 +57,20 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
+        <fullName>Average_Utilization_in_Master_Warehou__c</fullName>
+        <externalId>false</externalId>
+        <formula>Master_Warehouse__r.WU_Average_Current_Utilization__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Average Utilization %	 in Master Warehou</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>CommitedPalletFromMaster__c</fullName>
         <externalId>false</externalId>
         <formula>Master_Warehouse__r.WU_Committed_Max_PalletStorage__c</formula>
@@ -173,9 +187,24 @@ false
     <fields>
         <fullName>WU_Current_Pallet_Utilization_Week__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( WU_Committed_Max_PalletStorage__c = 0,
-    0,
-    ( WU_Current_Pallet_Utilization__c / WU_Committed_Max_PalletStorage__c ) * 100)</formula>
+        <formula>IF( 
+
+
+AND(NOT(WU_Committed_Max_PalletStorage__c = 0),NOT(ISBLANK(WU_Committed_Max_PalletStorage__c))),
+
+
+IF(AND(NOT(WU_Current_Pallet_Utilization__c = 0),NOT(ISBLANK(WU_Current_Pallet_Utilization__c))),  
+
+IF( (WU_Current_Pallet_Utilization__c / WU_Committed_Max_PalletStorage__c)  * 100 &gt; 100, 100 , (WU_Current_Pallet_Utilization__c / WU_Committed_Max_PalletStorage__c ) * 100 ),
+
+100 ),
+
+100
+
+
+
+
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Average Pallet Utilization (%)</label>
         <precision>18</precision>
@@ -268,6 +297,7 @@ false
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -321,6 +351,15 @@ MOD( WU_Utilization_Start_Date__c - DATE(1900, 1, 7), 7) &lt;&gt; 0 , MOD( WU_Ut
         <errorConditionFormula>WU_Utilization_Start_Date__c &gt; WU_Utilization_End_Date__c</errorConditionFormula>
         <errorDisplayField>WU_Utilization_Start_Date__c</errorDisplayField>
         <errorMessage>Utilization Start Date should not be greater than Utilization End Date.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ValidationForCurrentUtilizationDetails</fullName>
+        <active>true</active>
+        <errorConditionFormula>if(not(isnew()),if(and(ispickval(WU_Utilization_Type__c,&apos;&apos;),
+isBlank(WU_Utilization_Start_Date__c),isBlank(WU_Utilization_End_Date__c),
+isBlank(WU_Current_Pallet_Utilization__c)),false,or(ispickval(WU_Utilization_Type__c,&apos;&apos;),
+isBlank(WU_Utilization_Start_Date__c),isBlank(WU_Utilization_End_Date__c),isBlank(WU_Current_Pallet_Utilization__c))),false)</errorConditionFormula>
+        <errorMessage>In utilization section all fields should have values</errorMessage>
     </validationRules>
     <webLinks>
         <fullName>New_Warehouse_Capacity_Detail</fullName>

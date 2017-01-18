@@ -1,7 +1,16 @@
 @isTest
+/**
+ * Name:        -   AA_WrapperUtility_Test
+ * @description -   This is the test class for AA_WrapperUtility Class to verify the code to get request, send response in wrapper Objects.
+ 					and provide list of reports to angularJs from Salesforce 
+ *	@Author      -   Aslesha R K     
+ */
 private class AA_WrapperUtility_Test {
 
     static testMethod void myUnitTest() {
+		/*********************************************************************************************************************
+			Purpose: Method to test if we could get request, send Respose and provide List of Reports to AngularJS from Salesorce .
+		************************************************************************************************************************/
         AA_WrapperUtility.AgentAppDataRequest req= new AA_WrapperUtility.AgentAppDataRequest();
         AA_WrapperUtility.AgentAppDataResponse res = new AA_WrapperUtility.AgentAppDataResponse();
         AA_WrapperUtility.AgentReportDataResponse repResp = new AA_WrapperUtility.AgentReportDataResponse();
@@ -24,7 +33,7 @@ private class AA_WrapperUtility_Test {
         req.LimitRecords='12';
         req.SortOnMostLike='true';
         
-        List<aa_Agent_Report__c> reportList=new List<aa_Agent_Report__c>();
+       // List<aa_Agent_Report__c> reportList=new List<aa_Agent_Report__c>();
        aa_Country__c country =new aa_Country__c();
        aa_Agent_Report__c report1=new aa_Agent_Report__c(Report_Title__c='test report',country__c=country.id);
        aa_Agent_Report__c report2=new aa_Agent_Report__c(Report_Title__c='test report1',country__c=country.id); 
@@ -45,12 +54,6 @@ private class AA_WrapperUtility_Test {
         repDetail2.agentReportID=report3.Id;
         repDetail2.LikeCount=2;
         repDetail2.compareTo(repDetail1); 
-        
-        /*List<AA_WrapperUtility.agentReportDetail> objFinalReport = new List<AA_WrapperUtility.agentReportDetail>();
-        objFinalReport.add(repDetail);
-        objFinalReport.sort();*/
-        
-        //system.assertNotEquals(objFinalReport!=null,null);
         
         system.assertNotEquals(req!=null,null);
         system.assertNotEquals(res!=null,null);

@@ -22,6 +22,17 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
     public static ID recTypeRnDFeasibility = Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.RNDFEASIBILITYQUESTION_RECORD_TYPE).RecordTypeId;
     public static ID recTypeSCFeasibility = Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.SCFEASIBILITY_RECORD_TYPE).RecordTypeId;
     public static ID recTypeTradeMark = Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE).RecordTypeId;
+    
+    private static Boolean rndQuestionAlreadyExists = false;
+    private static Boolean posQuestionAlreadyExists = false;
+    private static Boolean rqsQuestionAlreadyExists = false;
+    private static Boolean rndFeasibilityQuestionAlreadyExists = false;
+    private static Boolean scFeasibilityQuestionAlreadyExists = false;
+    private static Boolean tradeMarkQuestionAlreadyExists = false;
+    private static Boolean corporateRiskQuestionAlreadyExists = false;
+    private static Boolean gkCheckListAlreadyExists = false;
+    
+    
     /**************************************************************
     * @description: used to create Questionnaire when project is created.
     * @param1 projectSectionList : newly Created project Document SectionList
@@ -54,77 +65,10 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
         {
             for(IPM_Questionnaire__c questionnaireObj : IPM_ProjectHelper.masterQuestionnaireMap.values())
             {  
-                String gateType = questionnaireObj.IPM_RQS_Gate_Type__c;
-                
-                if(questionnaireObj.RecordTypeId == recTypeGK )
-                {
-                    List<IPM_Questionnaire__c> tempQuestionare  = new List<IPM_Questionnaire__c>();
-                    
-                    if(gateType!=null && gateToMasterCheckListMap.containsKey(gateType))
-                    {
-                        tempQuestionare = gateToMasterCheckListMap.get(gateType);
-                    }
-                    tempQuestionare.add(questionnaireObj);
-                    gateToMasterCheckListMap.put(gateType,tempQuestionare);
-                    
-                }
-                else if(questionnaireObj.RecordTypeId == recTypeRnD)
-                {
-                    rndMasterQuesList.add(questionnaireObj);
-                }
-                else if(questionnaireObj.RecordTypeId == recTypeIDPOS)
-                {
-                    // Based on Gate
-                    List<IPM_Questionnaire__c> posMasterQuestionList  = new List<IPM_Questionnaire__c>();
-                    
-                    if(gateType!=null && gateToPOSMasterQuestionMap.containsKey(gateType))
-                    {
-                        posMasterQuestionList = gateToPOSMasterQuestionMap.get(gateType);
-                    }
-                    posMasterQuestionList.add(questionnaireObj);
-                    gateToPOSMasterQuestionMap.put(gateType,posMasterQuestionList);             
-                }
-                else if(questionnaireObj.RecordTypeId == recTypeIDRQS)
-                {
-                    rqsMasterQuestionList.add(questionnaireObj);
-                }
-                else if(questionnaireObj.RecordTypeId == recTypeRnDFeasibility)
-                {
-                    List<IPM_Questionnaire__c> rndFeasibilityList = new List<IPM_Questionnaire__c>();
-                    
-                    if(rndFeasibilityQuestionMap.containsKey(gateType))
-                    {
-                        rndFeasibilityList = rndFeasibilityQuestionMap.get(gateType);
-                    }
-                    rndFeasibilityList.add(questionnaireObj);
-                    rndFeasibilityQuestionMap.put(gateType,rndFeasibilityList);
-                } 
-                else if(questionnaireObj.RecordTypeId == recTypeSCFeasibility)
-                {
-                    List<IPM_Questionnaire__c> SCFeasibilityQuestionList = new List<IPM_Questionnaire__c>();
-                    
-                    if(scFeasibilityQuestionMap.containsKey(gateType))
-                    {
-                        SCFeasibilityQuestionList = scFeasibilityQuestionMap.get(gateType);
-                    }
-                    SCFeasibilityQuestionList.add(questionnaireObj);
-                    scFeasibilityQuestionMap.put(gateType,SCFeasibilityQuestionList);
-                } 
-                 else if(questionnaireObj.RecordTypeId == recTypeTradeMark)
-                {
-                    List<IPM_Questionnaire__c> TradeMarkQuestionList = new List<IPM_Questionnaire__c>();
-                    
-                    if(tradeMarkQuestionMap.containsKey(gateType))
-                    {
-                        TradeMarkQuestionList= tradeMarkQuestionMap.get(gateType);
-                    }
-                    TradeMarkQuestionList.add(questionnaireObj);
-                    tradeMarkQuestionMap.put(gateType,TradeMarkQuestionList);
-                } 
-                else if(questionnaireObj.RecordTypeId == recTypeIDCR){
-                    corporateRiskQuestionList.add(questionnaireObj);
-                }
-            }
+            	getQuestionnaireDetails(questionnaireObj,corporateRiskQuestionList,gateToMasterCheckListMap, rndMasterQuesList,
+     			gateToPOSMasterQuestionMap, rqsMasterQuestionList,rndFeasibilityQuestionMap, scFeasibilityQuestionMap,
+     			tradeMarkQuestionMap);
+    		}
             
             for(Id associatedProjectID : projectMap.keySet())
             {
@@ -137,130 +81,13 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                     String projectCurrentGate = associatedProjectType.IPM_Gate_Document__c;
                     List<IPM_Questionnaire__c> addedQuestionareAtParent = new List<IPM_Questionnaire__c>();
                     
-                    Boolean rndQuestionAlreadyExists = false;
-                    Boolean posQuestionAlreadyExists = false;
-                    Boolean rqsQuestionAlreadyExists = false;
-                    Boolean rndFeasibilityQuestionAlreadyExists = false;
-                    Boolean scFeasibilityQuestionAlreadyExists = false;
-                    Boolean tradeMarkQuestionAlreadyExists = false;
-                    Boolean corporateRiskQuestionAlreadyExists = false;
-                    Boolean gkCheckListAlreadyExists = false;
                     
                     /* Creating R&D Questionnaires for Project */
-                    if(IPM_ProjectHelper.projectMasterMap.containsKey(associatedProjectID) && IPM_ProjectHelper.projectMasterMap.get(associatedProjectID) !=null)
-                    {
-                        
-                        if( IPM_ProjectHelper.DBprojectSpecificQuestionareMap.containsKey(associatedProjectID) && 
-                                IPM_ProjectHelper.DBprojectSpecificQuestionareMap.get(associatedProjectID)!=null)
-                        {
-                            for(IPM_Questionnaire__c existingQuestionare : IPM_ProjectHelper.DBprojectSpecificQuestionareMap.get(associatedProjectID))
-                            {
-                                if(existingQuestionare.RecordTypeId == recTypeRnD)
-                                {
-                                    rndQuestionAlreadyExists = true;
-                                }
-                                else if(existingQuestionare.RecordTypeId == recTypeIDPOS && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
-                                {
-                                    posQuestionAlreadyExists = true;
-                                }
-                                else if(existingQuestionare.RecordTypeId == recTypeIDRQS)
-                                {
-                                    rqsQuestionAlreadyExists = true;
-                                } // Gate Specific (Contract)
-                                else if(existingQuestionare.RecordTypeId == recTypeRnDFeasibility && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
-                                {
-                                    rndFeasibilityQuestionAlreadyExists = true;
-                                } // Gate Specific (Contract)
-                                else if(existingQuestionare.RecordTypeId == recTypeSCFeasibility && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
-                                {
-                                    scFeasibilityQuestionAlreadyExists = true;
-                                } // Gate Specific (Contract)
-                                else if(existingQuestionare.RecordTypeId == recTypeGK && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
-                                {
-                                    gkCheckListAlreadyExists = true;
-                                } 
-                                else if(existingQuestionare.RecordTypeId == recTypeIDCR)
-                                {
-                                    corporateRiskQuestionAlreadyExists = true;
-                                }
-                                 else if(existingQuestionare.RecordTypeId == recTypeTradeMark && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
-                                {
-                                tradeMarkQuestionAlreadyExists=true;
-                                }
-                                
-                            }
-                        }
-                    }
+                    checkAlreadyExistsQuestions(associatedProjectID,projectCurrentGate);
+                    addQuestionnaireAndGenerateChecklist(projectCurrentGate,parentProjectId,incomingProject,addedQuestionareAtParent,gateToMasterCheckListMap,insertQuestionnaireList,projectSectionList,projectDocumentList);
+                    getLevelBasedQuestionnaire(insertQuestionnaireList,rndMasterQuesList,incomingProject,gateToPOSMasterQuestionMap,projectCurrentGate,rqsMasterQuestionList,addedQuestionareAtParent,rndFeasibilityQuestionMap);
                     
-                    if(IPM_ProjectHelper.projectMasterMap.containsKey(parentProjectId) && IPM_ProjectHelper.projectMasterMap.get(parentProjectId) !=null)
-                    {
-                        
-                        if(IPM_ProjectHelper.DBprojectSpecificQuestionareMap.containsKey(parentProjectId) && 
-                                IPM_ProjectHelper.DBprojectSpecificQuestionareMap.get(parentProjectId)!=null)
-                        {
-                            for(IPM_Questionnaire__c existingQuestionare : IPM_ProjectHelper.DBprojectSpecificQuestionareMap.get(parentProjectId))
-                            {
-                                
-                                if(incomingProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && projectCurrentGate == IPM_ConstantUtils.CONTRACT_GATE && 
-                                        existingQuestionare.RecordTypeId == recTypeIDRQS && (existingQuestionare.IPM_Active_RQS__c || existingQuestionare.IPM_Is_Added_Question__c))
-                                {
-                                    addedQuestionareAtParent.add(existingQuestionare);
-                                }
-                                
-                                if(incomingProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && projectCurrentGate == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE &&
-                                        existingQuestionare.RecordTypeId == recTypeIDRQS && (existingQuestionare.IPM_Active_RQS__c || existingQuestionare.IPM_Is_Added_Question__c) &&  
-                                        existingQuestionare.IPM_Market_Deployment_Score__c>= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE )
-                                {
-                                    addedQuestionareAtParent.add(existingQuestionare);
-                                }
-                            }
-                        }
-                    }
-                    
-                    // Generate CheckList is based on Gate Level and should be present for every Gate once.
-                    if(!gkCheckListAlreadyExists && !gateToMasterCheckListMap.isEmpty())
-                    {                                                   
-                        if(gateToMasterCheckListMap.containsKey(projectCurrentGate) && gateToMasterCheckListMap.get(projectCurrentGate)!=null)
-                        {
-                            List<IPM_Questionnaire__c> gateKeeperCheckList = gateToMasterCheckListMap.get(projectCurrentGate);
-                            insertQuestionnaireList.addAll(manageGateKeeperCheckList(projectSectionList,projectDocumentList,incomingProject,gateKeeperCheckList,projectCurrentGate));
-                        }
-                    }
-                    
-                    // RND Questionare is based on Project Level. Should be visible for Every project Just Once.(Includes Global,Regional,Local)
-                    if(!rndQuestionAlreadyExists)
-                    {
-                        insertQuestionnaireList.addAll(generateProjectQuestionnaire(rndMasterQuesList,recTypeRnD,incomingProject));
-                    }
-                    
-                    //  POS Question is applicable at Gate Level(Applies only for Charter Gate)
-                    if(!posQuestionAlreadyExists && !gateToPOSMasterQuestionMap.isEmpty())
-                    {
-                        if(gateToPOSMasterQuestionMap.containsKey(projectCurrentGate) && gateToPOSMasterQuestionMap.get(projectCurrentGate)!=null)
-                        {
-                            List<IPM_Questionnaire__c> posMasterQuestionList = gateToPOSMasterQuestionMap.get(projectCurrentGate);
-                            insertQuestionnaireList.addAll(generateProjectQuestionnaire(posMasterQuestionList,recTypeIDPOS,incomingProject));
-                        }   
-                    }
- 
-                    if(!rqsQuestionAlreadyExists && !insertQuestionnaireList.isEmpty())
-                    {
-                        insertQuestionnaireList.addAll(generateProjectQuestionnaire(rqsMasterQuestionList,recTypeIDRQS,incomingProject));
-                        if(!addedQuestionareAtParent.isEmpty())
-                        {
-                            insertQuestionnaireList.addAll(generateProjectQuestionnaire(addedQuestionareAtParent,recTypeIDRQS,incomingProject));    
-                        }
-                    }
-                    
-                    if(!rndFeasibilityQuestionAlreadyExists && !rndFeasibilityQuestionMap.isEmpty())
-                    {
-                        if(rndFeasibilityQuestionMap.containsKey(projectCurrentGate) && rndFeasibilityQuestionMap.get(projectCurrentGate)!=null)
-                        {
-                            List<IPM_Questionnaire__c> RnDFeasibilityQuestionList = rndFeasibilityQuestionMap.get(projectCurrentGate);
-                            insertQuestionnaireList.addAll(generateProjectQuestionnaire(RnDFeasibilityQuestionList,recTypeRnDFeasibility,incomingProject));
-                        }
-                    }
-                    
+                                        
                     if(!scFeasibilityQuestionAlreadyExists && !scFeasibilityQuestionMap.isEmpty())
                     {
                         if(scFeasibilityQuestionMap.containsKey(projectCurrentGate) && scFeasibilityQuestionMap.get(projectCurrentGate)!=null)
@@ -293,6 +120,240 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
             }
         }
     }
+    
+    
+    /*****************************************************************************************
+      @Description:  This Method is used to get the questionnaire details
+      @Return:       void
+      @Note:         This method is created to resolve nPath Complexity Issue
+    *****************************************************************************************/
+    
+    private static void getQuestionnaireDetails(IPM_Questionnaire__c questionnaireObj,List<IPM_Questionnaire__c> corporateRiskQuestionList,
+    Map<String,List<IPM_Questionnaire__c>> gateToMasterCheckListMap,list<IPM_Questionnaire__c> rndMasterQuesList,
+    Map<String,List<IPM_Questionnaire__c>> gateToPOSMasterQuestionMap,List<IPM_Questionnaire__c> rqsMasterQuestionList,
+    Map<String,List<IPM_Questionnaire__c>> rndFeasibilityQuestionMap,Map<String,List<IPM_Questionnaire__c>> scFeasibilityQuestionMap,
+    Map<String,List<IPM_Questionnaire__c>> tradeMarkQuestionMap)
+    {
+    	String gateType = questionnaireObj.IPM_RQS_Gate_Type__c;
+        
+        if(questionnaireObj.RecordTypeId == recTypeGK )
+        {
+            List<IPM_Questionnaire__c> tempQuestionare  = new List<IPM_Questionnaire__c>();
+            
+            if(gateType!=null && gateToMasterCheckListMap.containsKey(gateType))
+            {
+                tempQuestionare = gateToMasterCheckListMap.get(gateType);
+            }
+            tempQuestionare.add(questionnaireObj);
+            gateToMasterCheckListMap.put(gateType,tempQuestionare);
+            
+        }
+        else if(questionnaireObj.RecordTypeId == recTypeRnD)
+        {
+            rndMasterQuesList.add(questionnaireObj);
+        }
+        else if(questionnaireObj.RecordTypeId == recTypeIDPOS)
+        {
+            // Based on Gate
+            List<IPM_Questionnaire__c> posMasterQuestionList  = new List<IPM_Questionnaire__c>();
+            
+            if(gateType!=null && gateToPOSMasterQuestionMap.containsKey(gateType))
+            {
+                posMasterQuestionList = gateToPOSMasterQuestionMap.get(gateType);
+            }
+            posMasterQuestionList.add(questionnaireObj);
+            gateToPOSMasterQuestionMap.put(gateType,posMasterQuestionList);             
+        }
+        else if(questionnaireObj.RecordTypeId == recTypeIDRQS)
+        {
+            rqsMasterQuestionList.add(questionnaireObj);
+        }
+        else if(questionnaireObj.RecordTypeId == recTypeRnDFeasibility)
+        {
+            List<IPM_Questionnaire__c> rndFeasibilityList = new List<IPM_Questionnaire__c>();
+            
+            if(rndFeasibilityQuestionMap.containsKey(gateType))
+            {
+                rndFeasibilityList = rndFeasibilityQuestionMap.get(gateType);
+            }
+            rndFeasibilityList.add(questionnaireObj);
+            rndFeasibilityQuestionMap.put(gateType,rndFeasibilityList);
+        } 
+        else if(questionnaireObj.RecordTypeId == recTypeSCFeasibility)
+        {
+            List<IPM_Questionnaire__c> SCFeasibilityQuestionList = new List<IPM_Questionnaire__c>();
+            
+            if(scFeasibilityQuestionMap.containsKey(gateType))
+            {
+                SCFeasibilityQuestionList = scFeasibilityQuestionMap.get(gateType);
+            }
+            SCFeasibilityQuestionList.add(questionnaireObj);
+            scFeasibilityQuestionMap.put(gateType,SCFeasibilityQuestionList);
+        } 
+         else if(questionnaireObj.RecordTypeId == recTypeTradeMark)
+        {
+            List<IPM_Questionnaire__c> TradeMarkQuestionList = new List<IPM_Questionnaire__c>();
+            
+            if(tradeMarkQuestionMap.containsKey(gateType))
+            {
+                TradeMarkQuestionList= tradeMarkQuestionMap.get(gateType);
+            }
+            TradeMarkQuestionList.add(questionnaireObj);
+            tradeMarkQuestionMap.put(gateType,TradeMarkQuestionList);
+        } 
+        else if(questionnaireObj.RecordTypeId == recTypeIDCR){
+            corporateRiskQuestionList.add(questionnaireObj);
+        }
+    
+    }	
+    
+    /*****************************************************************************************
+      @Description:  This Method is used to check whether questions are already exist or not
+      @Return:       void
+      @Note:         This method is created to resolve nPath Complexity Issue
+    *****************************************************************************************/
+    
+    private static void checkAlreadyExistsQuestions(Id associatedProjectID,string projectCurrentGate)
+    {
+        rndQuestionAlreadyExists = false;
+        posQuestionAlreadyExists = false;
+        rqsQuestionAlreadyExists = false;
+        rndFeasibilityQuestionAlreadyExists = false;
+        scFeasibilityQuestionAlreadyExists = false;
+        tradeMarkQuestionAlreadyExists = false;
+        corporateRiskQuestionAlreadyExists = false;
+        gkCheckListAlreadyExists = false;
+    	if(IPM_ProjectHelper.projectMasterMap.containsKey(associatedProjectID) && IPM_ProjectHelper.projectMasterMap.get(associatedProjectID) !=null)
+        {
+            
+            if( IPM_ProjectHelper.DBprojectSpecificQuestionareMap.containsKey(associatedProjectID) && 
+                    IPM_ProjectHelper.DBprojectSpecificQuestionareMap.get(associatedProjectID)!=null)
+            {
+                for(IPM_Questionnaire__c existingQuestionare : IPM_ProjectHelper.DBprojectSpecificQuestionareMap.get(associatedProjectID))
+                {
+                    if(existingQuestionare.RecordTypeId == recTypeRnD)
+                    {
+                        rndQuestionAlreadyExists = true;
+                    }
+                    else if(existingQuestionare.RecordTypeId == recTypeIDPOS && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
+                    {
+                        posQuestionAlreadyExists = true;
+                    }
+                    else if(existingQuestionare.RecordTypeId == recTypeIDRQS)
+                    {
+                        rqsQuestionAlreadyExists = true;
+                    } // Gate Specific (Contract)
+                    else if(existingQuestionare.RecordTypeId == recTypeRnDFeasibility && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
+                    {
+                        rndFeasibilityQuestionAlreadyExists = true;
+                    } // Gate Specific (Contract)
+                    else if(existingQuestionare.RecordTypeId == recTypeSCFeasibility && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
+                    {
+                        scFeasibilityQuestionAlreadyExists = true;
+                    } // Gate Specific (Contract)
+                    else if(existingQuestionare.RecordTypeId == recTypeGK && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
+                    {
+                        gkCheckListAlreadyExists = true;
+                    } 
+                    else if(existingQuestionare.RecordTypeId == recTypeIDCR)
+                    {
+                        corporateRiskQuestionAlreadyExists = true;
+                    }
+                     else if(existingQuestionare.RecordTypeId == recTypeTradeMark && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
+                    {
+                    tradeMarkQuestionAlreadyExists=true;
+                    }
+                }
+            }
+        }
+        	
+    }
+    
+    /*****************************************************************************************
+      @Description:  This Method is used to add Questionnaire to the list and generate checklist based on Gate Level
+      @Return:       void
+      @Note:         This method is created to resolve nPath Complexity Issue
+    *****************************************************************************************/
+    
+    private static void addQuestionnaireAndGenerateChecklist(string projectCurrentGate,Id parentProjectId,IPM_Project__c incomingProject,List<IPM_Questionnaire__c> addedQuestionareAtParent,
+    					Map<String,List<IPM_Questionnaire__c>> gateToMasterCheckListMap,List<IPM_Questionnaire__c> insertQuestionnaireList,List<IPM_Project_Document_Section__c> projectSectionList,List<IPM_Project_Document__c> projectDocumentList)
+    {
+        if(IPM_ProjectHelper.projectMasterMap.containsKey(parentProjectId) && IPM_ProjectHelper.projectMasterMap.get(parentProjectId) !=null)
+        {
+            
+            if(IPM_ProjectHelper.DBprojectSpecificQuestionareMap.containsKey(parentProjectId) && 
+                    IPM_ProjectHelper.DBprojectSpecificQuestionareMap.get(parentProjectId)!=null)
+            {
+                for(IPM_Questionnaire__c existingQuestionare : IPM_ProjectHelper.DBprojectSpecificQuestionareMap.get(parentProjectId))
+                {
+                    
+                    if(incomingProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && projectCurrentGate == IPM_ConstantUtils.CONTRACT_GATE && 
+                            existingQuestionare.RecordTypeId == recTypeIDRQS && (existingQuestionare.IPM_Active_RQS__c || existingQuestionare.IPM_Is_Added_Question__c))
+                    {
+                        addedQuestionareAtParent.add(existingQuestionare);
+                    }
+                    
+                    if(incomingProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && projectCurrentGate == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE &&
+                            existingQuestionare.RecordTypeId == recTypeIDRQS && (existingQuestionare.IPM_Active_RQS__c || existingQuestionare.IPM_Is_Added_Question__c) &&  
+                            existingQuestionare.IPM_Market_Deployment_Score__c>= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE )
+                    {
+                        addedQuestionareAtParent.add(existingQuestionare);
+                    }
+                }
+            }
+        }
+        // Generate CheckList is based on Gate Level and should be present for every Gate once.
+        if(!gkCheckListAlreadyExists && !gateToMasterCheckListMap.isEmpty())
+        {                                                   
+            if(gateToMasterCheckListMap.containsKey(projectCurrentGate) && gateToMasterCheckListMap.get(projectCurrentGate)!=null)
+            {
+                List<IPM_Questionnaire__c> gateKeeperCheckList = gateToMasterCheckListMap.get(projectCurrentGate);
+                insertQuestionnaireList.addAll(manageGateKeeperCheckList(projectSectionList,projectDocumentList,incomingProject,gateKeeperCheckList,projectCurrentGate));
+            }
+        }
+    }
+    
+    /*****************************************************************************************
+      @Description:  This Method is used to generate Level based Qustionnaire checklist
+      @Return:       void
+      @Note:         This method is created to resolve nPath Complexity Issue
+    *****************************************************************************************/
+    
+    private static void getLevelBasedQuestionnaire(List<IPM_Questionnaire__c> insertQuestionnaireList,list<IPM_Questionnaire__c> rndMasterQuesList,IPM_Project__c incomingProject,
+    					Map<String,List<IPM_Questionnaire__c>> gateToPOSMasterQuestionMap,string projectCurrentGate,List<IPM_Questionnaire__c> rqsMasterQuestionList,
+    					List<IPM_Questionnaire__c> addedQuestionareAtParent,Map<String,List<IPM_Questionnaire__c>> rndFeasibilityQuestionMap)
+    {
+    	// RND Questionare is based on Project Level. Should be visible for Every project Just Once.(Includes Global,Regional,Local)
+        if(!rndQuestionAlreadyExists)
+        {
+            insertQuestionnaireList.addAll(generateProjectQuestionnaire(rndMasterQuesList,recTypeRnD,incomingProject));
+        }	
+        
+        //  POS Question is applicable at Gate Level(Applies only for Charter Gate)
+        if(!posQuestionAlreadyExists && !gateToPOSMasterQuestionMap.isEmpty())
+        {
+            if(gateToPOSMasterQuestionMap.containsKey(projectCurrentGate) && gateToPOSMasterQuestionMap.get(projectCurrentGate)!=null)
+            {
+                List<IPM_Questionnaire__c> posMasterQuestionList = gateToPOSMasterQuestionMap.get(projectCurrentGate);
+                insertQuestionnaireList.addAll(generateProjectQuestionnaire(posMasterQuestionList,recTypeIDPOS,incomingProject));
+            }   
+        }
+        if(!rqsQuestionAlreadyExists && !insertQuestionnaireList.isEmpty())
+        {
+            insertQuestionnaireList.addAll(createRQSQuestions(rqsMasterQuestionList,incomingProject,addedQuestionareAtParent).values());
+        }
+        if(!rndFeasibilityQuestionAlreadyExists && !rndFeasibilityQuestionMap.isEmpty())
+        {
+            if(rndFeasibilityQuestionMap.containsKey(projectCurrentGate) && rndFeasibilityQuestionMap.get(projectCurrentGate)!=null)
+            {
+                List<IPM_Questionnaire__c> RnDFeasibilityQuestionList = rndFeasibilityQuestionMap.get(projectCurrentGate);
+                insertQuestionnaireList.addAll(generateProjectQuestionnaire(RnDFeasibilityQuestionList,recTypeRnDFeasibility,incomingProject));
+            }
+        }
+        
+    }
+    
+    
     
     /**************************************************************
     * @description: used to create GateKeeperCheckList when project is created.
@@ -355,6 +416,8 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                         tempGKQ.IPM_Project_Document_Section__c = projectDocumentSection.Id;
                         tempGKQ.IPM_Section_External_Id__c= gkQ.IPM_Section_External_Id__c; 
                         tempGKQ.IPM_GK_Answers_Multiselect__c=	gkQ.IPM_GK_Answers_Multiselect__c;                
+                        tempGKQ.DependentFieldAPIName__c = gkQ.DependentFieldAPIName__c;
+                        tempGKQ.IPM_HelpText_ReadOnly__c = gkQ.IPM_HelpText_ReadOnly__c;
                         insertProjectGKCheckList.add(tempGKQ);
                     }
                     break;
@@ -381,6 +444,8 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                         tempGKQ.IPM_Sequence_Number__c = questionSequence;
                         tempGKQ.IPM_Section_External_Id__c= gkQ.IPM_Section_External_Id__c;
                         tempGKQ.IPM_GK_Answers_Multiselect__c=	gkQ.IPM_GK_Answers_Multiselect__c;
+                        tempGKQ.DependentFieldAPIName__c = gkQ.DependentFieldAPIName__c;
+                        tempGKQ.IPM_HelpText_ReadOnly__c = gkQ.IPM_HelpText_ReadOnly__c;
                         insertProjectGKCheckList.add(tempGKQ);
                     }
                     break;
@@ -417,7 +482,8 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
             
             if(recordTypeId == recTypeRnDFeasibility || recordTypeId == recTypeSCFeasibility  || recordTypeId == recTypeRnD ||recordTypeId==recTypeGK || recordTypeId==recTypeTradeMark)
             {
-                tempQuestionare.IPM_GK_Answers__c = questionMasterObj.IPM_GK_Answers__c;    
+                tempQuestionare.IPM_Sequence_Number__c = questionMasterObj.IPM_Sequence_Number__c; 
+		tempQuestionare.IPM_GK_Answers__c = questionMasterObj.IPM_GK_Answers__c;    
             }
             else if(recordTypeId == recTypeIDCR)
             {                   
@@ -452,4 +518,32 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
         }  
         return projectQuestionareList;
     }
+     /**************************************************************
+    * @description: used to create specific Questionnaire records based on Record Type when project is created.
+    * @param1 rqsMasterQuestionList : RQS Questionnaire List
+    * @param2 incomingProject : Project record
+    * */
+    public static Map<String,IPM_Questionnaire__c> createRQSQuestions(List<IPM_Questionnaire__c> rqsMasterQuestionList,IPM_Project__c incomingProject,List<IPM_Questionnaire__c> addedQuestionareAtParent){
+        // Need Map to eliminate the duplicated Between master questions and questions related to RQS from the parent project
+            Map<String,IPM_Questionnaire__c> uniqueRQSQuestionnaireMap = new  Map<String,IPM_Questionnaire__c>();
+            
+            for(IPM_Questionnaire__c ipQ :generateProjectQuestionnaire(rqsMasterQuestionList,recTypeIDRQS,incomingProject))
+            {
+              String rqsMapKey = ipQ.IPM_RQS_Gate_Type__c+ipQ.recordTypeId+ipQ.IPM_Sequence_Number__c ;
+              uniqueRQSQuestionnaireMap.put(rqsMapKey,ipQ);
+            }                        
+                        if(!addedQuestionareAtParent.isEmpty())
+                        {
+                            for(IPM_Questionnaire__c ipQ :generateProjectQuestionnaire(addedQuestionareAtParent,recTypeIDRQS,incomingProject))
+              {
+                String rqsMapKey = ipQ.IPM_RQS_Gate_Type__c+ipQ.recordTypeId+ipQ.IPM_Sequence_Number__c ;
+                uniqueRQSQuestionnaireMap.put(rqsMapKey,ipQ);
+              }
+              
+            }
+            // the below list will contain the unique combined list of the RQS questions from Master list and Parent project
+            return uniqueRQSQuestionnaireMap;
+        
+    }
+    
 }

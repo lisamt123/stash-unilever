@@ -429,8 +429,18 @@ public with sharing class cp_PoapController {
                 Boolean isOptOut            = false;
                 Boolean plannerInvited      = false;
                 Boolean globalEvent         = oEvent.Local_or_Global__c == 'Global';
-                Boolean hostIsDefault       = oEvent.HostPlanner__c == defaultPreference.Planner__c;
-
+                
+                /* Author : Sowmya Y J
+                   Date : 25/10/2016
+                   Comments: considering the plannerfilter for hostIsdefault flag when the user selects the planner other than the default
+                 */
+                 Boolean hostIsDefault = false;
+                 if(plannerFilter != '')
+                     hostIsDefault       = oEvent.HostPlanner__c == plannerFilter;
+                 else
+                     hostIsDefault       = oEvent.HostPlanner__c == defaultPreference.Planner__c;
+                 
+                 /*End of the changes */
                 // If the event is Do Not Display or a Non Unilever Event
                 if (oEvent.Activity_Type__c == EVT_NOT_IN_POAP)
                 {
@@ -462,7 +472,7 @@ public with sharing class cp_PoapController {
                             for (cp_PlannerLocation__c plannerLoc :eventsMap.get(childEvent.Id).Planner_Locations__r)
                             {
                                 // If the filters include an activated planner
-                                if (plannerFilter == plannerLoc.Planner__c && plannerLoc.Activate__c)
+                                if (plannerFilter != '' && plannerFilter == plannerLoc.Planner__c && plannerLoc.Activate__c)
                                 {
                                     eventActivated = true;
                                 }
@@ -480,7 +490,7 @@ public with sharing class cp_PoapController {
                     // Also, build string of planners that have activated the event
                     for (cp_PlannerLocation__c plannerLoc :oEvent.Planner_Locations__r)
                     {
-                        if (plannerFilter == plannerLoc.Planner__c)
+                        if (plannerFilter !='' && plannerFilter == plannerLoc.Planner__c)
                         {
                             plannerInvited = true;
                             if (plannerLoc.OptOut__c)

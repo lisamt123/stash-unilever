@@ -132,7 +132,8 @@ public class PBS_TrainingPlanData_Test {
         //create question line
         List<PBS_Question_Line__c> qline = PBS_LearningData_Test.createTestQuestionLine(quiz, 3);
         //create question
-        List<PBS_Question__c> question = PBS_LearningData_Test.createTestQuestions(qline, 4, null);
+        //List<PBS_Question__c> question = PBS_LearningData_Test.createTestQuestions(qline, 4, null);
+        PBS_LearningData_Test.createTestQuestions(qline, 4, null);
         //create training resources
         List<PBS_Training_Resource__c> tresources = PBS_LearningData_Test.createTestTrainingResource(resourceLearnings);
         //create task resources
@@ -156,18 +157,21 @@ public class PBS_TrainingPlanData_Test {
         List<PBS_Training_Plan__c> tplans = createTrainingPlans(new List<PBS_Params_Test.TrainingPlanParam>{tplan});
 
         //Add learning categories to training plan
-        List<PBS_Training_Plan_Category__c> tplanCategories = createTrainingPlanCategories(tplans,learningCategories);
+        //List<PBS_Training_Plan_Category__c> tplanCategories = createTrainingPlanCategories(tplans,learningCategories);
+        createTrainingPlanCategories(tplans,learningCategories);
 
         //Create training plan sections
         List<PBS_Training_Plan_Section__c> tplanSections = createTrainingPlanSections(tplans.get(0).Id,3);
 
         //Create training plan section items for quizzes
-        List<PBS_Training_Plan_Section_Item__c> tplanSectionItmes1 = createTrainingPlanSectionItems(tplanSections.get(0).Id,quizLearnings);
+      //  List<PBS_Training_Plan_Section_Item__c> tplanSectionItmes1 = createTrainingPlanSectionItems(tplanSections.get(0).Id,quizLearnings);
+        createTrainingPlanSectionItems(tplanSections.get(0).Id,quizLearnings);
         //Create training plan section items for resources
-        List<PBS_Training_Plan_Section_Item__c> tplanSectionItmes2 = createTrainingPlanSectionItems(tplanSections.get(1).Id,resourceLearnings);
+      //  List<PBS_Training_Plan_Section_Item__c> tplanSectionItmes2 = createTrainingPlanSectionItems(tplanSections.get(1).Id,resourceLearnings);
+        createTrainingPlanSectionItems(tplanSections.get(1).Id,resourceLearnings);
         //Create training plan section items for tasks
-        List<PBS_Training_Plan_Section_Item__c> tplanSectionItmes3 = createTrainingPlanSectionItems(tplanSections.get(2).Id,taskLearnings);
-
+       // List<PBS_Training_Plan_Section_Item__c> tplanSectionItmes3 = createTrainingPlanSectionItems(tplanSections.get(2).Id,taskLearnings);
+        createTrainingPlanSectionItems(tplanSections.get(2).Id,taskLearnings);
     }
 
     public static void createSampleDataWithSharedLearnings(){
@@ -183,7 +187,8 @@ public class PBS_TrainingPlanData_Test {
         //create question line
         List<PBS_Question_Line__c> qline = PBS_LearningData_Test.createTestQuestionLine(quiz, 3);
         //create question
-        List<PBS_Question__c> question = PBS_LearningData_Test.createTestQuestions(qline, 4, null);
+        //List<PBS_Question__c> question = PBS_LearningData_Test.createTestQuestions(qline, 4, null);
+        PBS_LearningData_Test.createTestQuestions(qline, 4, null);
         //create training resources
         List<PBS_Training_Resource__c> tresources = PBS_LearningData_Test.createTestTrainingResource(resourceLearnings);
         //create task resources
@@ -205,24 +210,32 @@ public class PBS_TrainingPlanData_Test {
         //Create training plans
         List<PBS_Training_Plan__c> tplans = createTrainingPlans(new List<PBS_Params_Test.TrainingPlanParam>{new PBS_Params_Test.TrainingPlanParam (),new PBS_Params_Test.TrainingPlanParam ()});
         //Add learning categories to training plan
-        List<PBS_Training_Plan_Category__c> tplanCategories = createTrainingPlanCategories(tplans,learningCategories);
+        //List<PBS_Training_Plan_Category__c> tplanCategories = createTrainingPlanCategories(tplans,learningCategories);
+         createTrainingPlanCategories(tplans,learningCategories);
         //Create training plan sections
         List<PBS_Training_Plan_Section__c> tplanSections1 = createTrainingPlanSections(tplans.get(0).Id,3);
+        
         //Create training plan section items for quizzes
-        List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems1 = createTrainingPlanSectionItems(tplanSections1.get(0).Id,quizLearnings);
+       // List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems1 = createTrainingPlanSectionItems(tplanSections1.get(0).Id,quizLearnings);
+        createTrainingPlanSectionItems(tplanSections1.get(0).Id,quizLearnings);
         //Create training plan section items for resources
-        List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems2 = createTrainingPlanSectionItems(tplanSections1.get(1).Id,resourceLearnings);
+       // List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems2 = createTrainingPlanSectionItems(tplanSections1.get(1).Id,resourceLearnings);
+        createTrainingPlanSectionItems(tplanSections1.get(1).Id,resourceLearnings);
         //Create training plan section items for tasks
-        List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems3 = createTrainingPlanSectionItems(tplanSections1.get(2).Id,taskLearnings);
+       // List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems3 = createTrainingPlanSectionItems(tplanSections1.get(2).Id,taskLearnings);
+        createTrainingPlanSectionItems(tplanSections1.get(2).Id,taskLearnings);
 
         //Create training plan sections
         List<PBS_Training_Plan_Section__c> tplanSections2 = createTrainingPlanSections(tplans.get(1).Id,3);
         //Create training plan section items for quizzes
-        List<PBS_Training_Plan_Section_Item__c> tplan2SectionItems1 = createTrainingPlanSectionItems(tplanSections2.get(0).Id,quizLearnings);
+        //List<PBS_Training_Plan_Section_Item__c> tplan2SectionItems1 = createTrainingPlanSectionItems(tplanSections2.get(0).Id,quizLearnings);
+        createTrainingPlanSectionItems(tplanSections2.get(0).Id,quizLearnings);
         //Create training plan section items for resources
-        List<PBS_Training_Plan_Section_Item__c> tplan2SectionItems2 = createTrainingPlanSectionItems(tplanSections2.get(1).Id,resourceLearnings);
+       // List<PBS_Training_Plan_Section_Item__c> tplan2SectionItems2 = createTrainingPlanSectionItems(tplanSections2.get(1).Id,resourceLearnings);
+        createTrainingPlanSectionItems(tplanSections2.get(1).Id,resourceLearnings);
         //Create training plan section items for tasks
-        List<PBS_Training_Plan_Section_Item__c> tplan2SectionItems3 = createTrainingPlanSectionItems(tplanSections2.get(2).Id,taskLearnings);
+        //List<PBS_Training_Plan_Section_Item__c> tplan2SectionItems3 = createTrainingPlanSectionItems(tplanSections2.get(2).Id,taskLearnings);
+        createTrainingPlanSectionItems(tplanSections2.get(2).Id,taskLearnings);
 
     }
 

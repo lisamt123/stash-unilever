@@ -1,0 +1,80 @@
+<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true"
+       sidebar="false" extensions="VPM_GoldenDataController2" language="{!userlang}" action="{!ApprovalMaintain1}">
+<script>
+debugger;
+ localStorage.removeItem("cancelClicked");
+</script>
+<chatter:feedWithFollowers entityid="{!VPM_PurchasingRequests__c.Id}" id="ChatterBlock"  />
+<apex:form >
+<apex:pageBlock title="{!$Label.VPM_Golden_Data_Screen_1}" id="thePageBlock">
+    <apex:pagemessages id="pageMessages"/>
+    <apex:pageBlockButtons >    
+        <apex:commandButton action="{!backToFlow}" value="{!$Label.VPM_GoldenDataBackButton}" immediate="true" status="actStatusId"/>
+        <apex:commandButton action="{!saveAndBackToLaunchScreen}" value="{!$Label.VPM_SaveButton}" reRender="hiddenBlock,pageMessages" status="actStatusId"/>
+        <apex:commandButton action="{!saveRecord}" value="{!$Label.VPM_Next}" reRender="hiddenBlock,pageMessages" status="actStatusId" rendered="{!NOT(showSaveExit)}"/>
+        <apex:commandButton action="{!saveRecord}" value="{!$Label.VPM_SaveSubmitLabel}" reRender="hiddenBlock,pageMessages" status="actStatusId" rendered="{!showSaveExit}"/>
+        
+    </apex:pageBlockButtons>
+    
+       <apex:pageBlock id="hiddenBlock" rendered="false"></apex:pageBlock> 
+    
+       <apex:pageBlockSection columns="1">
+          <b><apex:outputLabel value="{!$Label.VPM_GoldenDataDisplayText}" style="font-weight:bold;color:#4a4a56;"></apex:outputlabel></b>  
+           <apex:pageBlockSectionItem >
+           
+              <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Country__c .label}" 
+                    for="stage"/>
+                <apex:outputPanel >
+                   <apex:actionRegion >                  
+                     <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Country__c.Label}" value="{!purchReqVar.VPM_Country__c }" required="true">
+                     <apex:actionSupport event="onchange" action="{!newMethod}"  reRender="thePageBlock"/>                     
+                   </apex:inputField>
+                 </apex:actionRegion>
+               </apex:outputPanel>             
+            </apex:pageBlockSectionItem>  
+            
+            <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CountryRequestingVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CountryRequestingVendor__c}" />
+            <!-- apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ECC__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ECC__c}" required="true" / -->
+           <apex:pageBlockSectionItem labelStyle="width: 300px" dataStyle="width: 200px" >                  
+               <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorName1__c.Label}"/>
+               <apex:outputPanel layout="block" styleClass="requiredInput">
+                   <apex:outputpanel layout="block" styleClass="requiredBlock"/>
+                   <apex:actionRegion >
+                       <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorName1__c.Label}" value="{!VendorName}" maxlength="40">
+                           <apex:actionSupport event="onchange" reRender="section1" action="{!vendorNameChange}"/>
+                       </apex:inputText>
+                   </apex:actionRegion>
+               </apex:outputpanel>                 
+           </apex:pageBlockSectionItem>
+           <apex:pageBlockSection id="section1">
+               <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
+                   <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SearchTerm_1__c.Label}"/>
+                   <apex:outputPanel layout="block" styleClass="requiredInput">
+                       <apex:outputpanel layout="block" styleClass="requiredBlock"/>
+                       <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SearchTerm_1__c.Label}" value="{!searchTerm1}" />
+                   </apex:outputPanel>
+               </apex:pageBlockSectionItem>
+           </apex:pageBlockSection>
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Street1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Street1__c}" required="true"/>                 
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OrderingEmailAddress__c.Label}"   value="{!VPM_PurchasingRequests__c.VPM_OrderingEmailAddress__c}" required="{!isReqOrderingEmail}" rendered="{!showOrderingEmail}"/>
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_HouseNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_HouseNumber__c}" required="{!isRequiredFieldCountry}"/>
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="{!$Label.VPM_PostalCode}"/>
+               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ZIPPostcode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ZIPPostcode__c}" required="{!isRequiredFieldCountry}"/>
+            </apex:pageBlockSectionItem>
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Regions__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Regions__c }" required="{!isRequiredFieldCountry}" />
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_City__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_City__c }" required="true" />
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxNumber1__c.Label}" value="{!purchReqVar.VPM_TaxNumber1__c }" required="{!isRequiredtax1}" />
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxNumber3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TaxNumber3__c }" required="{!isRequiredFieldCountry}"/>
+           
+           <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" value="{!taxJuriCodeDefValue}" maxlength="15"/>
+           <!--apex:selectList value="{!taxJuriCodeDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" size="1" rendered="{!isU2k2}" required="{!isrequiredtaxJurCode}">
+               <apex:selectOptions value="{!taxJuriCodeOptions}"/>
+           </apex:selectList--> 
+           <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Spend__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Spend__c}"  required="{!isRequiredSpend}"  rendered="{!AND(NOT(isMaintainRecord),isReqSpend)}"/>      
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AlreadyAvailableSupplierUse__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AlreadyAvailableSupplierUse__c}" required="true"  rendered="{!NOT(isMaintainRecord)}"/>            
+            </apex:pageBlockSection>  
+     </apex:pageBlock>          
+</apex:form>
+<c:VPM_LoadingComponent />
+</apex:page>

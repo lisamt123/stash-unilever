@@ -3,8 +3,8 @@
     <aura:attribute name="NewsType" type="String"/>
     <aura:attribute name="filterType" type="String"/>
 	<aura:attribute name="UserId" type="String"/>
-    <aura:attribute name="GAId" type="String"/>
-    
+    <aura:attribute name="GAId" type="String"/>  
+    <aura:attribute name="sortTypeforGlobalNews" type="String"/>
     <!--<div class="bootstrap-sf1">-->
         <div class="container">
             <div id="list" class="row">

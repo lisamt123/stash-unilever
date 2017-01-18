@@ -1,0 +1,20 @@
+<apex:page standardController="Opportunity" extensions="FS_SendEmailWithMDMRequest_CX" action="{!identifyAction}" applyBodyTag="false" >
+    <apex:form >
+        <apex:pageBlock >
+            <apex:messages />
+            <apex:outputPanel rendered="{!sendButton}">  
+                <apex:outputText >Opportunity Owner:{!opportunityRecord.Owner.Email}<br/> <br/></apex:outputText>
+                <apex:outputLabel for="Subject" value="Subject" >:<br/></apex:outputLabel>
+                <apex:inputtext id="Subject" value="{!emailSubject}" size="50" maxlength="100" styleclass="stylefont"/><br/><br/>
+                <apex:outputLabel for="EmailBody" value="Body" rendered="{!sendButton}">:<br/></apex:outputLabel>
+                <apex:inputTextarea id="EmailBody" value="{!emailBody}" cols="80" rows="10" styleclass="stylefont"/><br/><br/>
+                <apex:outputLabel value="Attachments" rendered="{!sendButton}">:<br/></apex:outputLabel>
+                <apex:commandLink id="Attachment" value="{!MDMDefaultValue.FS_AttachmentFileName__c}"  onclick="window.open('/apex/FS_GenerateMDMRequest?id={!opportunityRecord.Id}')" /><br/>
+                <apex:commandLink id="AttachmentExcel" value="{!MDMDefaultValue.FS_ExcelAttachmentFileName__c}"  onclick="window.open('/apex/FS_GenerateMDMRequestExcel?id={!opportunityRecord.Id}')"/><br/><br/>
+            </apex:outputPanel>
+                <apex:commandButton value="Send" action="{!sendEmailAttachment}" rendered="{!sendButton}"/>
+                <apex:commandButton value="Cancel" action="{!returnToOpportunity}"/>
+
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

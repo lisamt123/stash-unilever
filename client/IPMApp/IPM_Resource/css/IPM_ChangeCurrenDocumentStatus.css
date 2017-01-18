@@ -24,6 +24,7 @@
         
         .postpone .toolTipMsg::before {left: 384px;}
         .approve .toolTipMsg::before {left: 257px;}
+		.pdlapprove .toolTipMsg::before {left: 270px;}
         .slider3 .stop .toolTipMsg::before {left: 410px;}
         .slider4 .stop .toolTipMsg::before {left: 775px;}
         .slider3 .propose .toolTipMsg::before {left: 270px;}
@@ -129,3 +130,19 @@
 		.errTitle{margin-bottom:10px;font-weight:bold;}
 		.topErrMsgContainer{  background-color: #FFEBEC;  margin: 20px;  padding: 10px;  border: 1px solid #F3BEB6;  border-radius: 4px;  color: #E13728;}
 		.redInfoIcon{background:url('../images/red_i_icon.png');display:block;  width: 20px;  height: 20px;  float: left;  margin-right: 10px;}
+		.thStatusBox{background-color: #FFEBEC;border: 1px solid #E9C3BA;padding:10px;float:left;margin-top:20px;}
+		.thBoxText{color:#C73E36;}
+		.SecButtonSet {display: inline-block;text-align: right;margin-top: 0;}
+		.SecButtonSet .icoButton {
+			display: inline-block;
+			width: 30px;
+			margin: 0 5px;
+			cursor: pointer;
+			height: 30px;
+			border: 1px solid #C73E36;
+			border-radius: 50%;
+			-webkit-border-radius: 50%;
+			-moz-border-radius: 50%;
+		}
+		.clrBoth{clear:both;}
+		.messageBox .SecButtonSet .msgTxt.fullWidth{width:100%;top:0px;}

@@ -1,0 +1,23 @@
+<labels>
+        <fullName>WU_MCO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU MCO</shortDescription>
+        <value>Cluster</value>
+</labels>
+<labels>
+        <fullName>WU_Active_WH</fullName>
+        <categories>WareHouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Active WH</shortDescription>
+        <value>Active WH</value>
+    </labels>
+	<labels>
+        <fullName>WU_Building_ContractType</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Building ContractType</shortDescription>
+        <value>In-House / 3PL</value>
+    </labels>

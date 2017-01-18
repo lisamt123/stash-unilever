@@ -1,0 +1,8 @@
+<aura:component >
+    
+    <aura:attribute name="refId" type="String" description=""/>
+    <aura:attribute name="refName" type="String" description=""/>
+    
+    <a onclick="{!c.openSObject}">{!v.refName}</a>
+	
+</aura:component>

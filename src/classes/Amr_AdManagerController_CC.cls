@@ -4,8 +4,8 @@ Name:  Amr_AdManagerController_CC ()  Copyright © 2015  Salesforce
 ====================================================== 
 Purpose:                                                           
 -------   This class is holds the  business logic for Creation Of New Saving,Quote and Accepted Quote.                                                         
- ====================================================== 
- ====================================================== 
+ =======================================================
+ =======================================================
  History                                                             
  -------                                                             
  VERSION   AUTHOR                        DATE              DETAIL                    Description    
@@ -14,7 +14,7 @@ Purpose:
 public with sharing class Amr_AdManagerController_CC{
 
     public Amr_Job_Details__c jobDetails{get;set;}
-    public Amr_Logging_Form_Setting__c r  {get; set;}
+    public Amr_Logging_Form_Setting__c adminHeaderFooter {get; set;}
     public String selectedCountry {get;set;}
     public String projectNameFromPage{get;set;}
     public String productionActivityData {get;set;}
@@ -24,7 +24,6 @@ public with sharing class Amr_AdManagerController_CC{
             List<selectOption> optionsNew = new List<selectOption>();
             options.add(new SelectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
             List<Amr_CurrencyConversionRate__c> lstcov = Amr_CurrencyConversionRate__c.getAll().values();
-            System.debug('Currency List Size --> ' + lstcov.size());
             lstcov.sort();
             
             Map<String,String> mapAmountToCurrency = new Map<String,String>();
@@ -52,13 +51,31 @@ public with sharing class Amr_AdManagerController_CC{
     public String categoryName{get;set;}
     public String brandPosName{get;set;}
     public String brandNameFromPage{get;set;} 
+    
+    public String multicategoryName{get;set;}
+    public String checkerMulticategoryName{get;set;}
+    public String multibrandPosName{get;set;}
+    public String checkerMultibrandPosName{get;set;}
+    public String multibrandNameFromPage{get;set;}
+    public String checkerMultibrandNameFromPage{get;set;}
+    
+    public String multibrandPosNameForCAP{get;set;}
+    
+    public Boolean singleOrMultiFlag{get;set;}
+    
     public List<SelectOption> listOfCategory{get;set;} 
     public List<SelectOption> listOfBrandPosition{get;set;}
     public List<SelectOption> listOfBrand{get;set;}
+    
+    public List<SelectOption> listOfMultiCategory{get;set;} 
+    public List<SelectOption> listOfMultiBrandPosition{get;set;}
+    public List<SelectOption> checkerListOfMultiBrandPosition{get;set;}
+    public List<SelectOption> listOfMultiBrand{get;set;}
    
     public List<Amr_Project_Details__c> projNameList {get;set;}
     public String[]  listString{get;set;}
     public String[]  categoryString{get;set;}
+    public String[]  multicategoryString{get;set;}
     public String UserLoginId{get;set;}
     public List<PermissionSetAssignment> PermissionSetAssignmentList{get;set;}
     public boolean flag{get;set;}
@@ -66,13 +83,22 @@ public with sharing class Amr_AdManagerController_CC{
     public boolean displayRap{get;set;}
     public boolean boolIsProductionActivityError{get;set;}
     public String CheckWithCMI{get;set;}
+    public String CAPCategory{get;set;}
+    public String CAPBrandPosition{get;set;}
+    public String CAPCategory2{get;set;}
+    public String CAPBrandPosition2{get;set;}
+    public String CAPBrand1{get;set;}
+    public String CAPBrand2{get;set;}
+    public String CAPBrand3{get;set;}
+    public String CAPBrand4{get;set;}
+    public String CAPBrand5{get;set;}
 
     public Amr_AdManagerController_CC(){
         try{
-        	boolIsProductionActivityError = false;
+            boolIsProductionActivityError = false;
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
             jobDetails = new Amr_Job_Details__c();
-            r = [SELECT Introduction__c, Header__c, Footer__c, Allocation__c, Automatic_Allocation_On__c FROM Amr_Logging_Form_Setting__c LIMIT 1];
+            adminHeaderFooter = [SELECT Introduction__c, Header__c, Footer__c, Allocation__c, Automatic_Allocation_On__c FROM Amr_Logging_Form_Setting__c LIMIT 1];
             projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
 
             listString = new list<string>();
@@ -83,26 +109,116 @@ public with sharing class Amr_AdManagerController_CC{
                 listString.add(i.name);
             }
             
+            //Single Category
             Set<MDO_Category__c> categorylst = utiltyObj.categoryValues();
             for(MDO_Category__c mdCat : categorylst){
                 categoryString.add(mdCat.name);
             }
+            //Multi Category
+            multicategoryString = new list<string>();
+            Set<Amr_Multi_Category__c> multiCategorylst = utiltyObj.multiCategoryValues();
+            for(Amr_Multi_Category__c multiCat : multiCategorylst){
+                multicategoryString.add(multiCat.name);
+            }           
 
             listOfBrandPosition = new List<SelectOption>();
             listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
-            system.debug('inside constructor ===>'+listOfBrandPosition);
+            
+            listOfMultiBrandPosition = new List<SelectOption>();
+            listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE)); 
+            
+            listOfMultiCategory = new List<SelectOption>();
+            listOfMultiCategory.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));           
+            
+            listOfMultiBrand = new List<SelectOption>();
+            listOfMultiBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+            
+            checkerListOfMultiBrandPosition = new List<SelectOption>();
+            checkerListOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));                          
         
         }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
-
-    public void updateSetting(){
-        update r;       
+    
+    public PageReference updateSetting(){
+    	boolean multiCategoryNameFlag 	= false;
+        boolean multiBrandPosNameFlag 	= false;
+        boolean multiBrandNameFlag 		= false;
+        boolean IsErrorInCAPInsertion 	= false;
+        boolean successMessage 			= true;
+        Integer errorCount				= 0;
+        
+        capErrorMessage 				= false;
+        capSuccessMessage 				= false;
+        
+        PageReference pageRef 			= null;
+        //Validation
+        
+        if(CAPCategory ==null || CAPCategory.trim()=='' ) {
+	        CAPCategory = multicategoryName;	        
+	    }
+	    if(CAPBrandPosition ==null || CAPBrandPosition.trim()=='' ) {
+	        CAPBrandPosition = multibrandPosNameForCAP;
+	    }
+	    system.debug('value of CAPCategory to send:'+CAPCategory);
+    	system.debug('value of CAPBrandPosition to send:'+CAPBrandPosition);
+    	
+    	/*Validation starts*/    	
+    	if( CAPCategory ==null || CAPCategory.trim()=='' || CAPCategory == Amr_ConstantForAdManager.NONE || CAPCategory == 'none' ) {
+	        IsErrorInCAPInsertion = true;
+	        errorCount++;	        
+	    }
+	    if( CAPBrandPosition ==null || CAPBrandPosition.trim()=='' || CAPBrandPosition == Amr_ConstantForAdManager.NONE || CAPBrandPosition == 'none' ) {
+	        IsErrorInCAPInsertion = true;
+	        errorCount++;	        
+	    }
+	    if((CAPBrand1 == null || CAPBrand1.trim() == ''  ) && (CAPBrand2 == null || CAPBrand2.trim() == ''  ) && ( CAPBrand3 == null || CAPBrand3.trim() == '' ) && ( CAPBrand4 == null || CAPBrand4.trim() == '' ) && (CAPBrand5 == null || CAPBrand5.trim() == '')) {	    		
+	    	IsErrorInCAPInsertion = true;
+	    	errorCount++;
+	    }
+	    /*Validation ends*/
+	    
+	    if(IsErrorInCAPInsertion == true && errorCount != 0 && errorCount < 3) {
+	    	CAPCategory = '';
+	    	CAPBrandPosition = '';
+	    	capErrorMessage  = true;
+	    	pageRef = Page.Amr_CAPAdmin;            
+    		pageRef.setRedirect(true);
+    		return null;
+	    } else {
+	    	Amr_AdManagerHelper_CC admanagerHelper = new Amr_AdManagerHelper_CC();
+	    	capSuccessMessage = true;
+	    	admanagerHelper.createMultiBrandPositions(CAPCategory, CAPBrandPosition, CAPBrand1, CAPBrand2, CAPBrand3, CAPBrand4, CAPBrand5);
+            update adminHeaderFooter;
+            
+            /*Reset all fields*/
+            listOfMultiBrandPosition = new List<SelectOption>();
+            listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE)); 
+            multicategoryName 		= Amr_ConstantForAdManager.NONE;             
+            multibrandPosNameForCAP = Amr_ConstantForAdManager.NONE;  
+            CAPBrand1 ='';
+            CAPBrand2 ='';
+            CAPBrand3 ='';
+            CAPBrand4 ='';
+            CAPBrand5 ='';
+            /*End of reset fields*/
+            
+            //Multi Category
+            Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+            
+            multicategoryString = new list<string>();
+            Set<Amr_Multi_Category__c> multiCategorylst = utiltyObj.multiCategoryValues();
+            for(Amr_Multi_Category__c multiCat : multiCategorylst){
+                multicategoryString.add(multiCat.name);
+            } 
+            
+            pageRef = Page.Amr_CAPAdmin;            
+    		pageRef.setRedirect(true);
+    		return null;
+	    }    
     }
-
-
     
    /*******************************************************************    
    Purpose:  This method is used to get Category Values                                                       
@@ -115,7 +231,19 @@ public with sharing class Amr_AdManagerController_CC{
       
         return JSON.serialize(categoryString);
     }
-    
+
+   /*******************************************************************    
+   Purpose:  This method is used to get multi Category Values                                                       
+   Parameters: 
+   Returns: It’s return String
+
+   ********************************************************************/ 
+
+    public String getMultiCategoryList(){ 
+      
+        return JSON.serialize(multicategoryString);
+        }
+        
         
    /*******************************************************************    
    Purpose:  This method is used to get Project Name                                                     
@@ -138,24 +266,23 @@ public with sharing class Amr_AdManagerController_CC{
         try{  
            
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-            Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
+            Set<MDO_BrandPosition__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
             Set<String> brnadPosNameSet = new Set<String>();
             
             /* start Added later */
-            brandNameFromPage 	= null;
+            brandNameFromPage   = null;
             
             listOfBrandPosition = new List<SelectOption>(); 
-        	listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
-        	listOfBrand = new List<SelectOption>();
-         	listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
-         	
-        	/* end Added later */
-        	
-            system.debug('inside brand postition======>'+listOfBrandPosition);
-            for(MDO_BrandPositions__c bps : brandPositionlst){
-                if(!brnadPosNameSet.contains(bps.brand_position_id__r.name)){
-                    listOfBrandPosition.add(new selectOption(bps.brand_position_id__r.name,bps.brand_position_id__r.name));
-                    brnadPosNameSet.add(bps.brand_position_id__r.name);
+            listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+            listOfBrand = new List<SelectOption>();
+            listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+            
+            /* end Added later */
+            
+            for(MDO_BrandPosition__c bps : brandPositionlst){
+                if(!brnadPosNameSet.contains(bps.name)){
+                    listOfBrandPosition.add(new selectOption(bps.name,bps.name));
+                    brnadPosNameSet.add(bps.name);
                 }
             }            
            }catch(Exception ex){
@@ -179,13 +306,13 @@ public with sharing class Amr_AdManagerController_CC{
             listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
         
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-            Set<MDO_BrandPositions__c> brandlst = utiltyObj.brandValues(categoryName,brandPosName);
+            Set<MDO_Brand__C> brandlst = utiltyObj.brandValues(categoryName,brandPosName);
             Set<String> brnadNameSet = new Set<String>();
             
-            for(MDO_BrandPositions__c bps : brandlst){
-                if(!brnadNameSet.contains(bps.brand_id__r.name)){
-                    listOfBrand.add(new selectOption(bps.brand_id__r.name,bps.brand_id__r.name));
-                    brnadNameSet.add(bps.brand_id__r.name);
+            for(MDO_Brand__C bps : brandlst){
+                if(!brnadNameSet.contains(bps.name)){
+                    listOfBrand.add(new selectOption(bps.name,bps.name));
+                    brnadNameSet.add(bps.name);
                 }
             }
             
@@ -197,6 +324,143 @@ public with sharing class Amr_AdManagerController_CC{
         }
     }
 
+    /*******************************************************************    
+   Purpose:  This method is used to get Brand Position Data                                                 
+   Parameters: 
+   Returns: It’s return PageReference
+
+   ********************************************************************/ 
+    public PageReference  multiBrandPositionListData(){  
+        try{  
+           
+            Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+            Set<Amr_Multi_Brand_Positioning__c> multibrandPositionlst = utiltyObj.multiBrandPostitionValues(multicategoryName);
+            Set<String> multibrnadPosNameSet = new Set<String>();
+            
+            /* start Added later */
+            multibrandNameFromPage   = null;
+            
+            listOfMultiBrandPosition = new List<SelectOption>(); 
+            listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+            listOfMultiBrand = new List<SelectOption>();
+            listOfMultiBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+            
+            /* end Added later */
+            
+            for(Amr_Multi_Brand_Positioning__c bps : multibrandPositionlst){
+                if(!multibrnadPosNameSet.contains(bps.name)){
+                    listOfMultiBrandPosition.add(new selectOption(bps.name,bps.name));
+                    multibrnadPosNameSet.add(bps.name);
+                }
+            }            
+           }catch(Exception ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            system.debug(ex.getMessage());
+        }
+        
+        return null;
+
+    }
+    
+   /*******************************************************************    
+   Purpose:  This method is used to get Brand Position Data                                                 
+   Parameters: 
+   Returns: It’s return PageReference
+
+   ********************************************************************/ 
+    public PageReference checkerMultiBrandPositionListData(){  
+        try{  
+           
+            Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+            Set<Amr_Multi_Brand_Positioning__c> multibrandPositionlst = utiltyObj.multiBrandPostitionValues(checkerMulticategoryName);
+            Set<String> multibrnadPosNameSet = new Set<String>();
+            
+            /* start Added later */
+            checkerMultibrandNameFromPage   = null;
+            
+            checkerListOfMultiBrandPosition = new List<SelectOption>(); 
+            checkerListOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+            listOfMultiBrand = new List<SelectOption>();
+            listOfMultiBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+            
+            /* end Added later */
+            
+            for(Amr_Multi_Brand_Positioning__c bps : multibrandPositionlst){
+                if(!multibrnadPosNameSet.contains(bps.name)){
+                    checkerListOfMultiBrandPosition.add(new selectOption(bps.name,bps.name));
+                    multibrnadPosNameSet.add(bps.name);
+                }
+            }            
+           }catch(Exception ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            system.debug(ex.getMessage());
+        }
+        
+        return null;
+
+    }
+    
+    /*******************************************************************    
+   Purpose:  This method is used to get Brand Data                                                 
+   Parameters: 
+   Returns: It’s return optionValue
+
+   ********************************************************************/ 
+    public List<SelectOption> getMultiBrandList(){  
+        try{    
+            listOfMultiBrand = new List<SelectOption>();
+            listOfMultiBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+        
+            Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+            Set<Amr_Multi_Brand__c> brandlst = utiltyObj.multiBrandValues(multicategoryName,multibrandPosName);
+            Set<String> brnadNameSet = new Set<String>();
+            
+            for(Amr_Multi_Brand__c bps : brandlst){
+                if(!brnadNameSet.contains(bps.name)){
+                    listOfMultiBrand.add(new selectOption(bps.name,bps.name));
+                    brnadNameSet.add(bps.name);
+                }
+            }
+            
+            return listOfMultiBrand;
+        }catch(Exception ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            system.debug(ex.getMessage());
+            return null;
+        }
+    }
+   
+   /*******************************************************************    
+   Purpose:  This method is used to get Brand Data                                                 
+   Parameters: 
+   Returns: It’s return optionValue
+
+   ********************************************************************/ 
+    public List<SelectOption> getCheckerMultiBrandList(){  
+        try{    
+            listOfMultiBrand = new List<SelectOption>();
+            listOfMultiBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+        	
+            Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+            system.debug('value of multicategoryName='+checkerMulticategoryName);
+            system.debug('value of multibrandPosName='+checkerMultibrandPosName);
+            Set<Amr_Multi_Brand__c> brandlst = utiltyObj.multiBrandValues(checkerMulticategoryName,checkerMultibrandPosName);
+            Set<String> brnadNameSet = new Set<String>();
+            
+            for(Amr_Multi_Brand__c bps : brandlst){
+                if(!brnadNameSet.contains(bps.name)){
+                    listOfMultiBrand.add(new selectOption(bps.name,bps.name));
+                    brnadNameSet.add(bps.name);
+                }
+            }
+            
+            return listOfMultiBrand;
+        }catch(Exception ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            system.debug(ex.getMessage());
+            return null;
+        }
+    } 
     public boolean CheckWithCMIflag{get;set;}
     public boolean yourEmailAddressFlag{get;set;}
     public boolean unileverFinanceMemberEmailFlag{get;set;}
@@ -223,6 +487,8 @@ public with sharing class Amr_AdManagerController_CC{
     public boolean RequireTalentFlag{get;set;}
     public boolean StageProductionActivity{get;set;}
     public boolean successmessage{get;set;}
+    public boolean capSuccessMessage{get;set;}
+    public boolean capErrorMessage{get;set;}    
     
     /*******************************************************************    
    Purpose:  This method is used to validate job Values                                            
@@ -304,20 +570,46 @@ public with sharing class Amr_AdManagerController_CC{
                 budgetAllocatedInputFlag =  true;
                 
             }
+            //Single Category validation
             
-            if(categoryName == Amr_ConstantForAdManager.NONE){
-                
-                categoryNameFlag = true;
-                
+            singleOrMultiFlag = false;
+            
+            if( jobDetails.Single_or_multiply_project__c == 'single' ) {
+                singleOrMultiFlag = true;
             }
-            if(brandPosName == Amr_ConstantForAdManager.NONE){
-                brandPosNameFlag = true;
-                
+            
+            if(singleOrMultiFlag){
+                if(categoryName == Amr_ConstantForAdManager.NONE){
+                    
+                    categoryNameFlag = true;
+                    
+                }
+                if(brandPosName == Amr_ConstantForAdManager.NONE){
+                    brandPosNameFlag = true;
+                    
+                }
+                if(brandNameFromPage == Amr_ConstantForAdManager.NONE){
+                    brandNameFromPageFlag = true;
+                   
+                }
             }
-            if(brandNameFromPage == Amr_ConstantForAdManager.NONE){
-                brandNameFromPageFlag = true;
-               
+            else{
+                //Multi Category validation
+                if(multicategoryName == Amr_ConstantForAdManager.NONE){
+                    
+                    categoryNameFlag = true;
+                    
+                }
+                if(multibrandPosName == Amr_ConstantForAdManager.NONE){
+                    brandPosNameFlag = true;
+                    
+                }
+                if(multibrandNameFromPage == Amr_ConstantForAdManager.NONE){
+                    brandNameFromPageFlag = true;
+                   
+                }
             }
+            
             if(jobDetails.Agency_Contact_Account_Director_Email__c == null){
                 AgencyDirectorEmailFlag = true;
                 
@@ -403,16 +695,28 @@ public with sharing class Amr_AdManagerController_CC{
                 successmessage = false;
                 return null;
             }
-    
-            admanagerHelper.createJob(selectedCountry,categoryName,brandPosName,brandNameFromPage,jobDetails,projectNameFromPage,listOfBrand);
+            if(singleOrMultiFlag){
+            admanagerHelper.createJob(selectedCountry,categoryName,brandPosName,brandNameFromPage,jobDetails,projectNameFromPage,listOfBrand, singleOrMultiFlag);
+            }else{
+            admanagerHelper.createJob(selectedCountry,multicategoryName,multibrandPosName,multibrandNameFromPage,jobDetails,projectNameFromPage,listOfMultiBrand, singleOrMultiFlag);
+            }           
+            
+            
+            
             jobDetails = new Amr_Job_Details__c();
             selectedCountry =Amr_ConstantForAdManager.NONE;
             categoryName =Amr_ConstantForAdManager.NONE;
             brandPosName =Amr_ConstantForAdManager.NONE;
             brandNameFromPage =Amr_ConstantForAdManager.NONE;
+            multicategoryName =Amr_ConstantForAdManager.NONE;
+            multibrandPosName =Amr_ConstantForAdManager.NONE;
+            multibrandNameFromPage =Amr_ConstantForAdManager.NONE;          
             projectNameFromPage = Amr_ConstantForAdManager.NONE;
             listOfBrandPosition = new List<SelectOption>();
             listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+
+            listOfMultiBrandPosition = new List<SelectOption>();
+            listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));            
         }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
@@ -474,19 +778,15 @@ public with sharing class Amr_AdManagerController_CC{
             UserLoginId = userinfo.getuserid();  
             User userObj = [select id,SessionId__c from User where id = :UserLoginId];
             PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id,PermissionSet.Name from PermissionSetAssignment where (PermissionSet.Name = :Label.Amr_CAP OR PermissionSet.Name = :Label.Amr_RAP OR PermissionSet.Name = :Label.Amr_AdManager) order by Assignee.name];
-            system.debug('------>PermissionSetAssignmentList=='+PermissionSetAssignmentList );
             PageReference pageRef =null;
             flag = false;
             display = false;
             displayRap = false;
-            system.debug(userObj.SessionId__c +'======'+sessionIdVal);
             
             for(PermissionSetAssignment permissionObject:PermissionSetAssignmentList ){
-                system.debug('=======>'+permissionObject.PermissionSet.Name);
                 
           //      if(permissionObject.PermissionSet.Name == Label.Amr_CAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
                           if(permissionObject.PermissionSet.Name == Label.Amr_CAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
-                    system.debug('inside cap==>');
         
                     pageRef = Page.Amr_CAPJobPortfolio;
                     pageRef.setRedirect(true);
@@ -495,7 +795,6 @@ public with sharing class Amr_AdManagerController_CC{
                                 } 
          //       if(permissionObject.PermissionSet.Name == Label.Amr_RAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
                           if(permissionObject.PermissionSet.Name == Label.Amr_RAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
-                    system.debug('inside RAP==>');
     
                     pageRef = Page.Amr_RAPJobPortfolio;
                     pageRef.setRedirect(true);
@@ -518,9 +817,6 @@ public with sharing class Amr_AdManagerController_CC{
     }
     
     public void prodActivity(){
-       
-       
-        System.debug('PRod -> ' + productionActivityData);
         
     }
     

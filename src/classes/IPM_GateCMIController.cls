@@ -172,6 +172,15 @@ public with sharing class IPM_GateCMIController{
                             consolidatedOptions.add(new SelectOption(gate.getValue()+IPM_ConstantUtils.Slash+element.getValue()+IPM_ConstantUtils.Slash+test.getValue(), gate.getValue()+IPM_ConstantUtils.Slash+element.getValue()+IPM_ConstantUtils.Slash+test.getValue())); 
                         }
                     }
+                    gettingConsolidatedGate(gate,element,test);
+                }  
+            }  
+        }        
+        return gates;
+    }
+   
+   // This method is used also Get Gates
+    private void gettingConsolidatedGate(SelectOption gate,SelectOption element,SelectOption test){
                     if(projDocSec.IPM_Project_Document__r.IPM_GateDocuments__c==IPM_ConstantUtils.CHARTER_GATE || 
                         projDocSec.IPM_Project_Document__r.IPM_GateDocuments__c==IPM_ConstantUtils.CONTRACT_GATE){
                         if(gate.getValue()==IPM_ConstantUtils.CONTRACT_GATE &&  element.getValue()==IPM_ConstantUtils.ELEMENT_PRODUCT_TEST  
@@ -192,6 +201,11 @@ public with sharing class IPM_GateCMIController{
                             contractOptionList.add(new SelectOption(gate.getValue()+IPM_ConstantUtils.Slash+element.getValue()+IPM_ConstantUtils.Slash+test.getValue(), gate.getValue()+IPM_ConstantUtils.Slash+element.getValue()+IPM_ConstantUtils.Slash+test.getValue())); 
                         }
                     }
+        getGatescontractMarketReady(gate,element,test);
+    }
+    
+    /* This method is used also  */
+     private void getGatescontractMarketReady(SelectOption gate,SelectOption element,SelectOption test){
                     if(projDocSec.IPM_Project_Document__r.IPM_GateDocuments__c==IPM_ConstantUtils.CHARTER_GATE || projDocSec.IPM_Project_Document__r.IPM_GateDocuments__c==IPM_ConstantUtils.CONTRACT_GATE || 
                         projDocSec.IPM_Project_Document__r.IPM_GateDocuments__c==IPM_ConstantUtils.MARKET_READY_GATE){
                         
@@ -204,11 +218,7 @@ public with sharing class IPM_GateCMIController{
                             && (test.getValue()==IPM_ConstantUtils.TEST_BASES_III || test.getValue()==IPM_ConstantUtils.TEST_DESIGNER_POST_USE_MIX)){
                             contractMarketReadyList.add(new SelectOption(gate.getValue()+IPM_ConstantUtils.Slash+element.getValue()+IPM_ConstantUtils.Slash+test.getValue(), gate.getValue()+IPM_ConstantUtils.Slash+element.getValue()+IPM_ConstantUtils.Slash+test.getValue())); 
                         }
-                    }
-                }  
             }
-        }
-        return gates;
     }
     
     /**********************************************************************************************************************************
@@ -306,9 +316,16 @@ public with sharing class IPM_GateCMIController{
             
             //Getting Gate CMI and CMI Contents List
             getSectionCMIList();   
-             
+            CountCMIData();  
+        }
+        catch(Exception ex){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
+                            'showList',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+        }   
+    }
             
             //Count of CMI Data per Gate    
+    private void CountCMIData(){   
             String selectedGateCMI=IPM_ConstantUtils.BLANK;         
             for(IPM_Gate_CMI__c gateCount:cmiList){
                 if(String.isBlank(selectedGateCMI)){
@@ -349,11 +366,6 @@ public with sharing class IPM_GateCMIController{
             //For Showing CMI List
             if(cmiList != null && !cmiList.isEmpty()){
                 showCMI=true;
-            }    
-        }
-        catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
-                            'showList',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }   
     }
 
@@ -473,20 +485,7 @@ public with sharing class IPM_GateCMIController{
                         projDocSecConList.add(projDocSecCon);
                     }
                 }
-                //Mapping Selected Country in Gate CMI and Project Document Section
-                if(String.isBlank(gateCMI.Country__c)){
-                    gateCMI.Country__c=countryNameList[i];
-                }    
-                else{
-                    gateCMI.Country__c=gateCMI.Country__c+IPM_ConstantUtils.SEMICOLON+countryNameList[i];
-                }
-                    
-                if(String.isBlank(projDocSec.IPM_CMI_Selected_Countries__c)){
-                    projDocSec.IPM_CMI_Selected_Countries__c=countryNameList[i];
-                }    
-                else if(!projDocSec.IPM_CMI_Selected_Countries__c.contains(countryNameList[i])){
-                    projDocSec.IPM_CMI_Selected_Countries__c=projDocSec.IPM_CMI_Selected_Countries__c+IPM_ConstantUtils.SEMICOLON+countryNameList[i];
-                }    
+                MapSelectedCountry(gateCMI,i);  
             }
         }   
         try{
@@ -511,6 +510,23 @@ public with sharing class IPM_GateCMIController{
         }    
     }
     
+    //Mapping Selected Country in Gate CMI and Project Document Section
+    private void MapSelectedCountry(IPM_Gate_CMI__c gateCMI,Integer i){
+    	if(String.isBlank(gateCMI.Country__c)){
+            gateCMI.Country__c=countryNameList[i];
+        }    
+        else{
+            gateCMI.Country__c=gateCMI.Country__c+IPM_ConstantUtils.SEMICOLON+countryNameList[i];
+        }
+            
+        if(String.isBlank(projDocSec.IPM_CMI_Selected_Countries__c)){
+            projDocSec.IPM_CMI_Selected_Countries__c=countryNameList[i];
+        }    
+        else if(!projDocSec.IPM_CMI_Selected_Countries__c.contains(countryNameList[i])){
+            projDocSec.IPM_CMI_Selected_Countries__c=projDocSec.IPM_CMI_Selected_Countries__c+IPM_ConstantUtils.SEMICOLON+countryNameList[i];
+        }
+    }
+    
     /**********************************************************************************************************************************
     * @description For Updating country level CMI data
     ***********************************************************************************************************************************/
@@ -526,31 +542,8 @@ public with sharing class IPM_GateCMIController{
                     secCon.IPM_CMI_Comments__c=commentsCMI; 
                 }
                 else{
-                    if(secCon.IPM_CMI_Is_Free_Text__c){
-                        secCon.IPM_CMI_Free_Text__c=resultCMI;
-                    }
-                    else{
-                        if(colorMapping!=null && !String.isBlank(colorMapping.get(resultCMI).IPM_CMI_Color__c)){
-                            if(gateType==IPM_ConstantUtils.CHARTER_GATE || !isEditActionStandard){
-                                secCon.IPM_CMI_Outcome_Color__c=colorMapping.get(resultCMI).IPM_CMI_Color__c;
-                            }
-                            else{
-                                secCon.IPM_CMI_Outcome_Color_Achieved__c=colorMapping.get(resultCMI).IPM_CMI_Color__c;
-                            }
-                        }
-                        if(colorMapping!=null && !String.isBlank(colorMapping.get(resultCMI).IPM_Color_Score_Value__c) && (gateType==IPM_ConstantUtils.CHARTER_GATE || !isEditActionStandard)){
-                                secCon.IPM_CMI_Color_Score_Value__c=colorMapping.get(resultCMI).IPM_Color_Score_Value__c;
-                        }
-                        if(colorMapping!=null && !String.isBlank(colorMapping.get(resultCMI).IPM_Color_Score_Value__c) && gateType!=IPM_ConstantUtils.CHARTER_GATE && isEditActionStandard){
-                                secCon.IPM_CMI_Color_Score_Value_Achieved__c=colorMapping.get(resultCMI).IPM_Color_Score_Value__c;
-                        }
-                        if(gateType==IPM_ConstantUtils.CHARTER_GATE || !isEditActionStandard){
-                            secCon.IPM_CMI_Result__c=resultCMI;
-                        }    
-                        else{
-                            secCon.IPM_CMI_Results_Acheived__c=resultCMI;
-                        }
-                    }
+                  	 
+			IPMCMIColorScoreValue();
                 }    
                 update secCon;
                 if(String.isNotBlank(secCon.IPM_CMI_Overall_Colour_Coding_Method__c) && secCon.IPM_CMI_Overall_Colour_Coding_Method__c=='System'){
@@ -569,6 +562,35 @@ public with sharing class IPM_GateCMIController{
         //For Showing CMI List
         if(cmiList != null && !cmiList.isEmpty()){
             showCMI=true;
+        }    
+    }
+    
+    private void IPMCMIColorScoreValue(){
+    	  if(secCon.IPM_CMI_Is_Free_Text__c){
+	          secCon.IPM_CMI_Free_Text__c=resultCMI;
+	          secCon.IPM_CMI_Input__c=resultCMI;
+	      }
+        else{
+            if(colorMapping!=null && !String.isBlank(colorMapping.get(resultCMI).IPM_CMI_Color__c)){
+                if(gateType==IPM_ConstantUtils.CHARTER_GATE || !isEditActionStandard){
+                    secCon.IPM_CMI_Outcome_Color__c=colorMapping.get(resultCMI).IPM_CMI_Color__c;
+                }
+                else{
+                    secCon.IPM_CMI_Outcome_Color_Achieved__c=colorMapping.get(resultCMI).IPM_CMI_Color__c;
+                }
+            }
+            if(colorMapping!=null && !String.isBlank(colorMapping.get(resultCMI).IPM_Color_Score_Value__c) && (gateType==IPM_ConstantUtils.CHARTER_GATE || !isEditActionStandard)){
+                    secCon.IPM_CMI_Color_Score_Value__c=colorMapping.get(resultCMI).IPM_Color_Score_Value__c;
+            }
+            if(colorMapping!=null && !String.isBlank(colorMapping.get(resultCMI).IPM_Color_Score_Value__c) && gateType!=IPM_ConstantUtils.CHARTER_GATE && isEditActionStandard){
+                    secCon.IPM_CMI_Color_Score_Value_Achieved__c=colorMapping.get(resultCMI).IPM_Color_Score_Value__c;
+            }
+            if(gateType==IPM_ConstantUtils.CHARTER_GATE || !isEditActionStandard){
+                secCon.IPM_CMI_Result__c=resultCMI;
+            }    
+            else{
+                secCon.IPM_CMI_Results_Acheived__c=resultCMI;
+            }
         }    
     }
     

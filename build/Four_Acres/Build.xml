@@ -1,0 +1,267 @@
+<!--    *******************************************************************************************************************-->
+<!--    Build Script in Ant for Unilever Salesforce Projects - BEGIN                                               -->
+<!--    ******************************************************************************************************************* -->
+<project name="salesforce" default="validate" basedir="." xmlns:sf="antlib:com.salesforce">
+
+  <!-- *************************************************************** -->
+  <!--   Properties for Salesforce ANT targets                         -->
+  <!-- *************************************************************** -->
+  <property file="${basedir}/build.properties"/>
+  <property environment="env"/>
+  <!-- Properties for salesforce dataloader CLI for IPM NG-->
+  <property name="dataLoaderAPIVersion" value="35.0.0-uber" />
+  <!-- *************************************************************** -->
+  <!--   Set-Up of Salesforce Ant / CLI Jar Classpath for IPM NG       -->
+  <!-- *************************************************************** -->
+  <!-- Define required jars for salesforce dataloder CLI-->
+  <path id="taskDependencies">
+    <pathelement location="${basedir}/lib/ant.jar"/>
+    <pathelement location="${basedir}/lib/antutils.jar"/>
+    <pathelement location="${basedir}/lib/commons-io-2.4.jar"/>
+    <pathelement location="${basedir}/lib/commons-lang-2.6.jar"/>
+    <pathelement location="${basedir}/lib/commons-logging-1.1.3.jar"/>
+    <pathelement location="${basedir}/lib/gson-2.2.4.jar"/>
+    <pathelement location="${basedir}/lib/httpclient-4.3.5.jar"/>
+    <pathelement location="${basedir}/lib/httpcore-4.3.2.jar"/>
+    <pathelement location="${basedir}/lib/json-20080701.jar"/>
+  </path>
+  <!-- Define salesforce Ant Jar-->
+  <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+    <classpath>
+      <pathelement location="${basedir}/lib/ant-salesforce.jar" />
+    </classpath>
+  </taskdef>
+  <!-- ***************************************************************************** -->
+  <!-- ANT Import Files for invoking APEX inside ANT Scripts                         -->
+  <!-- ***************************************************************************** -->
+  <import file="${basedir}/lib/exec_anon.xml"/>
+  <import file="${basedir}/lib/deploy.xml"/>
+  <import file="${basedir}/lib/undeploy.xml"/>
+  <import file="${basedir}/lib/run_tests.xml"/>
+  <import file="${basedir}/lib/package_generator.xml"/>
+
+
+<!-- ***************************************************************************** -->
+  <!-- Validate the  set of BET meta-data before deployment                          -->
+  <!-- ***************************************************************************** -->
+  <target name="validate">
+    <echo level="info">Testing the deployment of Approvals</echo>
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      checkOnly="true"
+      logType="Debugonly"
+      testLevel="RunSpecifiedTests"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="src"
+      pollWaitMillis="10000"
+      maxPoll="4000">
+	  <runTest>CommunitiesLandingControllerTest</runTest>
+      <runTest>CommunitiesLoginControllerTest</runTest>
+      <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+      <runTest>CommunitiesSelfRegControllerTest</runTest>
+      <runTest>ExceptionLoggingHelper_Test</runTest>
+      <runTest>ExceptionsTest</runTest>
+      <runTest>TriggerFactoryTest</runTest>
+      <runTest>TestDataFactory</runTest>
+      <runTest>UserTestUtil</runTest>
+      <runTest>UserTrigger_Test</runTest>
+      <runTest>FAU_EmailHandler_Test</runTest>
+      <runTest>FAU_GroupCreationPIIClass_Test</runTest>
+      <runTest>FAU_SendEmail_Test</runTest>
+      <runTest>FAU_GroupCreationPIIClass_Test</runTest>	
+      <runtest>FAU_ChatterServiceImplTest</runtest>
+	  <runtest>FAU_CreateProgramControllerTest</runtest>
+	  <runtest>FAU_CreateTemplateControllerTest</runtest>
+	  <runtest>FAU_EmailTemplateSenderContllerTest</runtest>
+	  <runtest>FAU_GenrateAndAttachPDFControllerTest</runtest>
+	  <runtest>FAU_LandingPage_ControllerTest</runtest>
+	  <runtest>FAU_MilestoneTriggerTest</runtest>
+	  <runtest>FAU_ModuleTriggerTest</runtest>
+	  <runtest>FAU_Module_Part_ControllerExtTest</runtest>
+	  <runtest>FAU_ParticipantControllerExtensionTest</runtest>
+	  <runtest>FAU_Participant_BioControllerExtTest</runtest>
+	  <runtest>FAU_Participant_Biography_Doc_ConTest</runtest>
+	  <runtest>FAU_ProgramTest</runtest>
+	  <runtest>FAU_UpdateParticipantMilestoneContrTest</runtest>
+	  <runtest>FAU_UtilitiesTest</runtest>
+	  <runtest>FAU_WebinarTriggerTest</runtest>
+  </sf:deploy>
+  <!--<antcall target="generatePackage"/>-->
+  </target>
+
+<!-- *************************************************************************************** -->
+  <!-- Performing validate undeploy Salesforce components from Salesforce Org- DESTRUCTIVE CHANGE       -->
+  <!-- *************************************************************************************** -->  
+   <target name="validate-undeploy">
+      <echo level="info">Performing validate undeploy - DESTRUCTIVE CHANGE</echo>  
+      <sf:deploy username="${sf.username}" 
+        password="${sf.password}" 
+        serverurl="${sf.serverurl}" 
+        checkOnly="true"
+        runAllTests="true"
+        logType="Debugonly"
+        testLevel="RunLocalTests"
+        allowMissingFiles="true"
+        autoUpdatePackage="true"
+        ignoreWarnings="true"       
+        deployRoot="${basedir}/undeploy"
+        pollWaitMillis="${sfdc.pollWaitMillis}"
+        maxPoll="${sfdc.maxPoll}"/>        
+    </target>
+  <!-- *************************************************************************************** -->
+  <!-- Performing deploy undeploy Salesforce components from Salesforce Org- DESTRUCTIVE CHANGE       -->
+  <!-- *************************************************************************************** -->  
+    <target name="deploy-undeploy">
+      <echo level="info">Performing validate undeploy - DESTRUCTIVE CHANGE</echo>  
+      <sf:deploy username="${sf.username}" 
+        password="${sf.password}" 
+        serverurl="${sf.serverurl}" 
+        runAllTests="false"
+        testLevel="NoTestRun"
+        logType="Debugonly"
+        allowMissingFiles="true"
+        autoUpdatePackage="true"
+        ignoreWarnings="true"       
+        deployRoot="${basedir}/undeploy"
+        pollWaitMillis="${sfdc.pollWaitMillis}"
+        maxPoll="${sfdc.maxPoll}"/>        
+    </target>
+    <!-- *************************************************************************************** -->
+  <!-- Performing deploy undeploy Salesforce components from Salesforce Org- DESTRUCTIVE CHANGE       -->
+  <!-- *************************************************************************************** -->  
+    <target name="deploy-undeploy-specific">
+      <echo level="info">Performing validate undeploy - DESTRUCTIVE CHANGE</echo>  
+      <sf:deploy username="${sf.username}" 
+        password="${sf.password}" 
+        serverurl="${sf.serverurl}" 
+        testLevel="RunSpecifiedTests"
+        logType="Debugonly"
+        allowMissingFiles="true"
+        autoUpdatePackage="true"
+        ignoreWarnings="true"       
+        deployRoot="${basedir}/undeploy"
+        pollWaitMillis="${sfdc.pollWaitMillis}"
+        maxPoll="${sfdc.maxPoll}">    
+        <runTest>CommunitiesLandingControllerTest</runTest>
+      <runTest>CommunitiesLoginControllerTest</runTest>
+      <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+      <runTest>CommunitiesSelfRegControllerTest</runTest>
+      <runTest>ExceptionLoggingHelper_Test</runTest>
+      <runTest>ExceptionsTest</runTest>
+      <runTest>TriggerFactoryTest</runTest>
+      <runTest>TestDataFactory</runTest>
+      <runTest>UserTestUtil</runTest>
+      <runTest>UserTrigger_Test</runTest>      
+      <runtest>FAU_ChatterServiceImplTest</runtest>
+      <runtest>FAU_CreateProgramControllerTest</runtest>
+      <runtest>FAU_CreateTemplateControllerTest</runtest>
+      <runtest>FAU_EmailTemplateSenderContllerTest</runtest>
+      <runtest>FAU_GenrateAndAttachPDFControllerTest</runtest>
+      <runtest>FAU_LandingPage_ControllerTest</runtest>
+      <runtest>FAU_MilestoneTriggerTest</runtest>
+      <runtest>FAU_ModuleTriggerTest</runtest>
+      <runtest>FAU_Module_Part_ControllerExtTest</runtest>
+      <runtest>FAU_ParticipantControllerExtensionTest</runtest>
+      <runtest>FAU_Participant_BioControllerExtTest</runtest>
+      <runtest>FAU_Participant_Biography_Doc_ConTest</runtest>
+      <runtest>FAU_ProgramTest</runtest>
+      <runtest>FAU_UpdateParticipantMilestoneContrTest</runtest>
+      <runtest>FAU_UtilitiesTest</runtest>
+      <runtest>FAU_WebinarTriggerTest</runtest>    
+      </sf:deploy>
+    </target>
+    <!-- *************************************************************************************** -->
+  <!-- Performing validate undeploy Salesforce components from Salesforce Org- DESTRUCTIVE CHANGE       -->
+  <!-- *************************************************************************************** -->  
+    <target name="validate-undeploy-specific">
+      <echo level="info">Performing validate undeploy - DESTRUCTIVE CHANGE</echo>  
+      <sf:deploy username="${sf.username}" 
+        password="${sf.password}" 
+        serverurl="${sf.serverurl}" 
+        checkOnly="true"
+        logType="Debugonly"
+        testLevel="RunSpecifiedTests"
+        allowMissingFiles="true"
+        autoUpdatePackage="true"
+        ignoreWarnings="true"       
+        deployRoot="${basedir}/undeploy"
+        pollWaitMillis="${sfdc.pollWaitMillis}"
+        maxPoll="${sfdc.maxPoll}">  
+         <runTest>CommunitiesLandingControllerTest</runTest>
+      <runTest>CommunitiesLoginControllerTest</runTest>
+      <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+      <runTest>CommunitiesSelfRegControllerTest</runTest>
+      <runTest>ExceptionLoggingHelper_Test</runTest>
+      <runTest>ExceptionsTest</runTest>
+      <runTest>TriggerFactoryTest</runTest>
+      <runTest>TestDataFactory</runTest>
+      <runTest>UserTestUtil</runTest>
+      <runTest>UserTrigger_Test</runTest>      
+      <runtest>FAU_ChatterServiceImplTest</runtest>
+      <runtest>FAU_CreateProgramControllerTest</runtest>
+      <runtest>FAU_CreateTemplateControllerTest</runtest>
+      <runtest>FAU_EmailTemplateSenderContllerTest</runtest>
+      <runtest>FAU_GenrateAndAttachPDFControllerTest</runtest>
+      <runtest>FAU_LandingPage_ControllerTest</runtest>
+      <runtest>FAU_MilestoneTriggerTest</runtest>
+      <runtest>FAU_ModuleTriggerTest</runtest>
+      <runtest>FAU_Module_Part_ControllerExtTest</runtest>
+      <runtest>FAU_ParticipantControllerExtensionTest</runtest>
+      <runtest>FAU_Participant_BioControllerExtTest</runtest>
+      <runtest>FAU_Participant_Biography_Doc_ConTest</runtest>
+      <runtest>FAU_ProgramTest</runtest>
+      <runtest>FAU_UpdateParticipantMilestoneContrTest</runtest>
+      <runtest>FAU_UtilitiesTest</runtest>
+      <runtest>FAU_WebinarTriggerTest</runtest>    
+      </sf:deploy>      
+    </target>
+     <!-- *************************************************************************************** -->
+  <!-- Performing validate undeploy Salesforce components from Salesforce Org- DESTRUCTIVE CHANGE       -->
+  <!-- *************************************************************************************** -->  
+     <target name="validate-undeploy-specific-Hard-Delete">
+      <echo level="info">Performing validate undeploy - DESTRUCTIVE CHANGE</echo>  
+      <sf:deploy username="${sf.username}" 
+        password="${sf.password}" 
+        serverurl="${sf.serverurl}" 
+        checkOnly="true"
+        logType="Debugonly"
+        purgeOnDelete="true"
+        testLevel="RunSpecifiedTests"
+        allowMissingFiles="true"
+        autoUpdatePackage="true"
+        ignoreWarnings="true"       
+        deployRoot="${basedir}/undeploy"
+        pollWaitMillis="${sfdc.pollWaitMillis}"
+        maxPoll="${sfdc.maxPoll}">  
+         <runTest>CommunitiesLandingControllerTest</runTest>
+      <runTest>CommunitiesLoginControllerTest</runTest>
+      <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+      <runTest>CommunitiesSelfRegControllerTest</runTest>
+      <runTest>ExceptionLoggingHelper_Test</runTest>
+      <runTest>ExceptionsTest</runTest>
+      <runTest>TriggerFactoryTest</runTest>
+      <runTest>TestDataFactory</runTest>
+      <runTest>UserTestUtil</runTest>
+      <runTest>UserTrigger_Test</runTest>      
+      <runtest>FAU_ChatterServiceImplTest</runtest>
+      <runtest>FAU_CreateProgramControllerTest</runtest>
+      <runtest>FAU_CreateTemplateControllerTest</runtest>
+      <runtest>FAU_EmailTemplateSenderContllerTest</runtest>
+      <runtest>FAU_GenrateAndAttachPDFControllerTest</runtest>
+      <runtest>FAU_LandingPage_ControllerTest</runtest>
+      <runtest>FAU_MilestoneTriggerTest</runtest>
+      <runtest>FAU_ModuleTriggerTest</runtest>
+      <runtest>FAU_Module_Part_ControllerExtTest</runtest>
+      <runtest>FAU_ParticipantControllerExtensionTest</runtest>
+      <runtest>FAU_Participant_BioControllerExtTest</runtest>
+      <runtest>FAU_Participant_Biography_Doc_ConTest</runtest>
+      <runtest>FAU_ProgramTest</runtest>
+      <runtest>FAU_UpdateParticipantMilestoneContrTest</runtest>
+      <runtest>FAU_UtilitiesTest</runtest>
+      <runtest>FAU_WebinarTriggerTest</runtest>    
+      </sf:deploy>      
+    </target>
+    </project>

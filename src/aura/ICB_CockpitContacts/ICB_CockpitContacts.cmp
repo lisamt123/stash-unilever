@@ -1,0 +1,146 @@
+<aura:component controller="ICB_Cockpit_CC">
+    <aura:attribute name="listContacts" type="ICB_Wrapper_Cockpit_CC[]" description="list contacts returned of the controller apex" />
+    <aura:attribute name="qtdKits" type="String" default="0" description="amount of product seller"  />
+    <aura:attribute name="inventoryList" type="ICB_Wrapper_Cockpit_CC[]"  description="List of PriceBookEntry" />
+    <aura:attribute name="indexOld" type="Integer" default="0" description="Attribute for save the old index of list" />
+    <aura:attribute name="indexContact" type="Integer" default="0" description="Attribute for save the index of list contact" />
+    <aura:attribute name="mapInventory" type="Map" default="{0:0}" description="Attribute for save the index of list inventories" />
+    <aura:attribute name="quantityUpdate" type="Integer" default="0" description="Amount of products" />
+    <aura:attribute name="HeaderCockPit" type="Boolean" default="true"/>
+    <aura:attribute name="isDisabled" type="Boolean" default="false" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <c:ICB_MobileChannelHeader HeaderCockPit="{!v.HeaderCockPit}"/>
+   
+    <table class="slds-table slds-table--bordered slds-max-medium-table--stacked">
+        <tbody>
+            <aura:iteration var="wrapper" items="{!v.listContacts}" indexVar="index">
+                <tr>
+                    <td scope="row" class ="BorderBlue">
+                        <img src="{!wrapper.urlImage}" class=" image--align ImagePhoto"/>
+                        
+                        &nbsp;&nbsp;
+                        <aura:if isTrue="{!(wrapper.oppItem.StageName == 'Pending')}">
+                            <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/Car.png'}" class="ImageSimbol ImageHidden ImageShow" />  
+                        </aura:if>
+                        <aura:if isTrue="{!(wrapper.oppItem.StageName == 'Available')}">
+                            <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/sunVector3.png'}" class="ImageSimbol ImageHidden ImageShow" />  
+                        </aura:if>
+                        <aura:if isTrue="{!(wrapper.oppItem.StageName == null)}">
+                            <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/bed.png'}" class="ImageSimbol ImageHidden ImageShow" />  
+                        </aura:if>
+                        <ui:outputText value="{!wrapper.contactItem.Name}" class="image--align" /><br />
+                        <aura:if isTrue="{!wrapper.quantityIce != null}">
+                            <ui:outputText value="{!wrapper.quantityIce + ' ' + $Label.c.ICB_ICE_CREAMS}" class="image--align" />
+                        </aura:if>
+                    </td>
+                    <td class ="hidden">
+                        <aura:if isTrue="{!(wrapper.oppItem.StageName == 'Pending')}">
+                            <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/Car.png'}" class="ImageSimbol hidden" />  
+                        </aura:if>
+                        <aura:if isTrue="{!(wrapper.oppItem.StageName == 'Available')}">
+                            <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/sunVector3.png'}" class="ImageSimbol hidden" />  
+                        </aura:if>
+                        <aura:if isTrue="{!(wrapper.oppItem.StageName == null)}">
+                            <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/bed.png'}" class="ImageSimbol hidden" />  
+                        </aura:if>
+                    </td>
+                    <td class="colum-padding BorderWhite">
+                        
+                    </td>
+                    <aura:if isTrue="{!(wrapper.oppItem.StageName == 'Pending') || (wrapper.oppItem.StageName == 'Available') 
+                                     || (wrapper.oppItem.StageName == 'Closed')}">
+                        <td >
+                            <div class="slds-truncate" >
+                                <div class="slds-form-element" >
+                                    <label class="slds-checkbox--toggle slds-grid slds-grid--vertical-align-center">
+                                        <aura:if isTrue="{!(wrapper.oppItem.StageName == 'Pending') || (wrapper.oppItem.StageName == 'Available') 
+                                                         || (wrapper.oppItem.StageName == 'Closed')}">
+                                            <aura:if isTrue="{!(wrapper.oppItem.StageName == 'Available') || (wrapper.oppItem.StageName == 'Closed')}">
+                                                <span class="slds-form-element__label slds-m-bottom--none">{!$Label.c.ICB_AVAILABLE}</span>
+                                            </aura:if>
+                                            <aura:if isTrue="{!wrapper.oppItem.StageName == 'Pending'}">
+                                                <span class="slds-form-element__label slds-m-bottom--none">{!$Label.c.ICB_PENDING}</span>
+                                            </aura:if>
+                                            <div data-record="{!index}" onchange="{!c.changeCheckBox}">
+                                                <ui:inputCheckBox value="{!(wrapper.oppItem.StageName == 'Available') || (wrapper.oppItem.StageName == 'Closed')}" aura:id="available" 
+                                                                  disabled="{!wrapper.oppItem.StageName == 'Available'}"/>
+                                                <span class="slds-checkbox--faux" data-check-on="" data-check-off=""></span>
+                                            </div>
+                                        </aura:if>
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                        <aura:set attribute="else">
+                            <td class ="hidden">
+                                <div class="slds-form-element" >
+                                    <label class="slds-checkbox--toggle slds-grid slds-grid--vertical-align-center">
+                                    </label>
+                                </div>
+                            </td>
+                        </aura:set>
+                    </aura:if>
+                    
+                    <td >
+                        <div class="slds-truncate slds-grid btnCollor">
+                            <aura:if isTrue="{!and(wrapper.oppItem.StageName != 'Pending',wrapper.oppItem.StageName != 'Available')}">
+                                <aura:if isTrue="{!!v.isDisabled}">
+                                    <div data-record="{!index}" onclick="{!c.solicitation}" >
+                                        <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_REQUEST}"  disabled="false"/>
+                                    </div>
+                                </aura:if>
+                                <aura:if isTrue="{!v.isDisabled}">
+                                    <div data-record="{!index}"  >
+                                        <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_REQUEST}"  disabled="false"/>
+                                    </div>
+                                </aura:if>
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{!wrapper.oppItem.StageName == 'Available'}">
+                                        <div data-record="{!index}" onclick="{!c.updatedItem}">
+                                             <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_UPDATE_INVENTORY}" disabled="false" />
+                                        </div>
+                                    </aura:if>
+                                    <aura:if isTrue="{!wrapper.oppItem.StageName == 'Pending'}">
+                                        <div onclick="{!c.reload}">
+                                             <ui:button label="{!$Label.c.ICB_UPDATE_INVENTORY}" disabled="false" />
+                                        </div>
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+                            <div data-record="{!index}" onclick="{!c.menuOpenClose}" class=" btnCollor slds-truncate slds-grid">
+                                <!--<aura:renderIf isTrue="{!wrapper.spinnerShow}">
+                                    <ui:spinner/>-->
+                                    <!--<aura:set attribute="else">-->
+                                        <aura:renderIf isTrue="{!!wrapper.checkButton}">
+                                            <ui:button aura:id="menuButton"  >
+                                                <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/icons/utility/arrowdown_60.png'}" class="buttons-left"/>
+                                            </ui:button>    
+                                            <aura:set attribute="else">
+                                                <ui:button aura:id="menuButtonArroDown">
+                                                    <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/icons/utility/arrowup_60.png'}" class="buttons-left"/>
+                                                </ui:button>
+                                            </aura:set>
+                                        </aura:renderIf>
+                                    <!--</aura:set> -->                               
+                                <!--</aura:renderIf>-->
+                                
+                                <!--</aura:renderIf>-->
+                            </div>
+                        </div>
+                    </td>
+                </tr >
+                <!--<aura:if isTrue="{!!wrapper.spinnerShow}">-->
+                    <aura:iteration var="inventory" items="{!v.inventoryList}" indexVar="index">
+                        <tr>
+                            <aura:renderIf isTrue="{!wrapper.checkButton}">
+                                <c:ICB_Inventory inventory="{!inventory}" operation="open" contact="{!wrapper}"/>
+                            </aura:renderIf>
+                        </tr>
+                    </aura:iteration>
+                <!--</aura:if>-->
+            </aura:iteration> 
+        </tbody>
+    </table>
+</aura:component>

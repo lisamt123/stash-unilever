@@ -727,7 +727,7 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
     public Iterable<JobComponent> start(Database.BatchableContext BC) {
         
         // set job is running to block workflows updating campaigns
-        updateJobRunningCustomSetting(true);
+        Oblix_Utils.updateJobRunningCustomSetting(true);
         sync_job = this;
         return sync_job.list_job_components;
     }
@@ -744,7 +744,8 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
             if (sync_job.job_has_error){
 
                 addEvent('ERROR OCCURED ABORTING JOB!',NULL);
-                
+                incrementFailedJobsCustomSetting(BC.getJobId());
+
         		finalise();
                 // update the job status 
                 //finaliseBatchJob();
@@ -769,13 +770,14 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
         addEvent(EVENT_ADD,NULL);
         addEvent('completed sync batch job',NULL);
         addEvent(EVENT_ADD,NULL);
+        Oblix_Utils.resetJobStatusBackToNormalRunning();
         finalise();
     }
 
     private void finalise(){
 
         // set job running back to false to allow workflows working again
-        updateJobRunningCustomSetting(false);
+        Oblix_Utils.updateJobRunningCustomSetting(false);
         
         system.debug(sync_job.process_result);
 
@@ -840,12 +842,23 @@ public with sharing class Oblix_SyncBatchJob implements Database.Batchable<JobCo
     }
 
 
-	public void updateJobRunningCustomSetting(boolean new_value){
+    public void incrementFailedJobsCustomSetting(Id job_id){
 
-		Oblix_Job_Orchestration__c job_is_running = Oblix_Job_Orchestration__c.getOrgDefaults();
-		job_is_running.Job_Is_Running__c = new_value;
+        Oblix_Job_Orchestration__c job = Oblix_Job_Orchestration__c.getOrgDefaults();
+        job.Count_Failures__c = NULL == job.Count_Failures__c
+            ? 1
+            : job.Count_Failures__c + 1;
 
-		update job_is_running;
+        // also set the requires attention flag if we reached 3 failures
+        if (job.Count_Failures__c >= 3){
+            job.Requires_Manual_Attention__c = true;
+            // notify admin about the job failures to manually resolve the issue
+            Oblix_Utils.sendNotificationEmail(Oblix_Utils.job_orchestration_email_subject, Oblix_Utils.job_orchestration_notification_email 
+                ,Oblix_Utils.job_orchestration_reply_to, Oblix_Utils.job_orchestration_email_display_name 
+                ,'Sync Job with Id: ' + job_id + ' failed. Please see the event log for this job as below:<br/>' + sync_job.process_result.replace('\n','<br/>'));
+        }
+
+        update job;
 
     }
 }

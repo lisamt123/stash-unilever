@@ -252,7 +252,7 @@ Returns:
     public void jobCancellation(Amr_Job_Details__c jobDetail, String jobId, Amr_Job_Allocation__c jobAlloc,String ownerIdOfSelectedJob){
        try{
         
-        List<String> toEmailAddress = new List<String>();
+     //   List<String> toEmailAddress = new List<String>();
         List<Amr_Job_Allocation__c> jbAlloc  = [select Id,Name,User__c,Job_Status__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND Is_Primary__c = TRUE ];
         jobDetail.Job_Cancelled__c = TRUE;
         if(jbAlloc != null && !jbAlloc.isEmpty() ){

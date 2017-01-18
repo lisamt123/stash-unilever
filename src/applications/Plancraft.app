@@ -5,4 +5,5 @@
     <logo>PBS/PBS_LOGO_MAIN_LAND_Transparent_small_jpg.jpg</logo>
     <tab>Plancraft</tab>
     <tab>PC_Group__c</tab>
+    <tab>Plancraft_Admin_Reports</tab>
 </CustomApplication>

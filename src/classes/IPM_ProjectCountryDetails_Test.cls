@@ -16,6 +16,9 @@ private class IPM_ProjectCountryDetails_Test {
     public static List<IPM_Company_Card__c> companyCardList; 
     public static String COUNTRY_FRANCE = 'France';
     public static String PROJ_STRATEGIC_INTENT = 'test1';
+    public static String PROJ_ECODESIGN_SYNC_STATUS ='Ready';
+     public static String PROJ_ECODESIGN_SYNC_ACTIVE ='Active';
+    public static String PROJ_ECODESIGN_SYNC_NAME='TESTGEO';
     
     @testSetup static void projectSetUpData() 
      {
@@ -37,21 +40,43 @@ private class IPM_ProjectCountryDetails_Test {
 
          System.runAs(platformUser)
          {
-           for(IPM_Project__c proj : projectList){
-            proj.First_Sync_To_EcoDesign__c = true;
-            proj.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
-            proj.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
-            proj.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
-            proj.IPM_CompanyCardText__c = 'Global Company Card';
-            proj.IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
-          }
-           insert projectList;
-         }  
-         List<IPM_Project__c> insertedProjList = [Select id from IPM_Project__c Where IPM_GateKeeping_Model__c =:IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH AND IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL AND IPM_Project_Type__c =:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL Limit 100]; 
+             for(IPM_Project__c proj : projectList){
+                 proj.First_Sync_To_EcoDesign__c = true;
+                 proj.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
+                 proj.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+                 proj.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
+                 proj.IPM_CompanyCardText__c = 'Global Company Card';
+                 proj.IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
+                 proj.EcoDesign_Sync_Status__c = PROJ_ECODESIGN_SYNC_STATUS;
+             }
+             insert projectList;
+         } 
+         
+         List<IPM_Project__c> insertedProjList = [Select id from IPM_Project__c Where IPM_GateKeeping_Model__c like: IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH AND IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL AND IPM_Project_Type__c =:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL Limit 100]; 
+        
          system.assertEquals(insertedProjList.size(),8,'Projects are not created');
 
          IPM_USLP_Country__c uslpCountry = new IPM_USLP_Country__c(Name=COUNTRY_FRANCE,USLPCountryISCode__c='FR');
          insert uslpCountry;
+         
+         MDO_Geography__c geo = new MDO_Geography__c(Name= PROJ_ECODESIGN_SYNC_NAME, Status__c = PROJ_ECODESIGN_SYNC_ACTIVE);
+         insert geo;     
+         MDO_Market__c market = new MDO_Market__c(Type__c=IPM_ConstantUtils.IPM_PROJECT_MARKET_TYPE_DEVELOPED);
+         insert market;
+         MDO_MarketGeographys__c marketGeo = new MDO_MarketGeographys__c(Geography_ID__c=geo.id,Market_ID__c=market.id);   
+         insert marketGeo;      
+         IPM_Country__c Country = new  IPM_Country__c(MDO_Geography__c = geo.Id, IPM_Project__c = projectList[0].id,
+                                                      IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
+                                                      IS_EI_Country__c = true, isActive__c = true);
+         insert Country;        
+         
+         List<IPM_Assessment__c> assessments = New List<IPM_Assessment__c>();
+         for(IPM_Project__c pr : projectList){
+             assessments.add(IPM_TestFactory_Helper.createAssessments(false, pr.Id, Country.Id, pr.IPM_Phase__c));             
+         }
+         IPM_AssesmentHandler_Helper.SKIP_TRIGGER_EXECUTION = true;
+         insert assessments;
+         IPM_AssesmentHandler_Helper.SKIP_TRIGGER_EXECUTION = false;
          List<IPM_USLP_Country__c> insertedUSLPCountry = [Select id from IPM_USLP_Country__c limit 100]; 
          system.assertEquals(insertedUSLPCountry.size(),1,'USLP countries not created');
       }   
@@ -86,6 +111,8 @@ private class IPM_ProjectCountryDetails_Test {
             globalProjNew.IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
             globalProjNew.IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true;
             globalProjNew.IPM_Strategic_Intent__c = PROJ_STRATEGIC_INTENT;
+            globalprojNew.EcoDesign_Sync_Status__c = PROJ_ECODESIGN_SYNC_STATUS;
+            
             insert globalProjNew;
                     
             IPM_Project__c regionalProjNew = IPM_TestFactory_Helper.createIPMProject(false);
@@ -106,7 +133,7 @@ private class IPM_ProjectCountryDetails_Test {
             localProjNew.IPM_Strategic_Intent__c = PROJ_STRATEGIC_INTENT;
             insert localProjNew;
 
-            MDO_Geography__c geo = new MDO_Geography__c(Name= 'TESTGEO', Status__c = 'Active');
+            MDO_Geography__c geo = new MDO_Geography__c(Name= PROJ_ECODESIGN_SYNC_NAME, Status__c = PROJ_ECODESIGN_SYNC_ACTIVE);
             	insert geo;     
             MDO_Market__c market = new MDO_Market__c(Type__c=IPM_ConstantUtils.IPM_PROJECT_MARKET_TYPE_DEVELOPED);
             	insert market;
@@ -143,7 +170,7 @@ private class IPM_ProjectCountryDetails_Test {
             test.stopTest();
                
             IPM_Project__c updatedproj = [Select Id,First_Sync_To_EcoDesign__c,EcoDesign_Sync_Status__c from IPM_Project__c Limit 1][0];
-            System.assertEquals('Ready',updatedproj.EcoDesign_Sync_Status__c,'Ecodesign sync status not set to Ready');
+            System.assertEquals(PROJ_ECODESIGN_SYNC_STATUS,updatedproj.EcoDesign_Sync_Status__c,'Ecodesign sync status not set to Ready');
                 
         }
     }
@@ -209,7 +236,7 @@ private class IPM_ProjectCountryDetails_Test {
             //Delete assessment so that there no assessment for the country and the IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag on the project is set to false
             delete assessment1;
             IPM_Project__c projWithNoAssessment = [Select id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c from IPM_Project__c Where Id =:projectList[0].Id limit 1][0];
-           	System.assertEquals(false,projWithNoAssessment.IPM_Exists_AtLeast_OneAssmntPerEICountry__c,'Flag IPM_Exists_AtLeast_OneAssmntPerEICountry__c not not set properly');
+           	System.assertEquals(FALSE,projWithNoAssessment.IPM_Exists_AtLeast_OneAssmntPerEICountry__c,'Flag IPM_Exists_AtLeast_OneAssmntPerEICountry__c  not set properly');
             
             
             IPM_Country__c tempCountry2 = new  IPM_Country__c(
@@ -218,7 +245,7 @@ private class IPM_ProjectCountryDetails_Test {
            insert tempCountry2;
            
            IPM_Project__c projToCheck = [Select id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c from IPM_Project__c Where Id =:projectList[0].Id limit 1][0];
-           System.assertEquals(false,projToCheck.IPM_Exists_AtLeast_OneAssmntPerEICountry__c,'Flag IPM_Exists_AtLeast_OneAssmntPerEICountry__c not not set properly');
+           System.assertEquals(FALSE,projToCheck.IPM_Exists_AtLeast_OneAssmntPerEICountry__c,'Flag IPM_Exists_AtLeast_OneAssmntPerEICountry__c not not set properly');
            test.stopTest();
         }    
     }
@@ -236,9 +263,9 @@ private class IPM_ProjectCountryDetails_Test {
         System.runAs(globalUser){
             test.startTest();
             List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();
-            toUpdateProjList = [Select Id,IPM_Strategic_Intent__c from IPM_Project__c where IPM_Project_Type__c =:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL limit 50000];
+            toUpdateProjList = [Select Id,IPM_Strategic_Intent__c,EcoDesign_Sync_Status__c from IPM_Project__c where IPM_Project_Type__c =:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL limit 50000];
 
-			MDO_Geography__c geo = new MDO_Geography__c(Name= 'TESTGEO', Status__c = 'Active');
+			MDO_Geography__c geo = new MDO_Geography__c(Name= PROJ_ECODESIGN_SYNC_NAME, Status__c = PROJ_ECODESIGN_SYNC_ACTIVE);
             	insert geo;     
             MDO_Market__c market = new MDO_Market__c(Type__c=IPM_ConstantUtils.IPM_PROJECT_MARKET_TYPE_DEVELOPED);
             	insert market;
@@ -259,10 +286,10 @@ private class IPM_ProjectCountryDetails_Test {
             
             delete countryList[0];
             List<IPM_Country__c> tempCountryList = [Select Id from IPM_Country__c limit 100];
-            System.assert(tempCountryList.size()==3,'Country Not deleted');
+            System.assert(tempCountryList.size()==4,'Country Not deleted');
             
             IPM_Project__c updatedproj = [Select Id,First_Sync_To_EcoDesign__c,EcoDesign_Sync_Status__c from IPM_Project__c Where Id =:toUpdateProjList[0].Id limit 1][0];
-            System.assertEquals('Ready',updatedproj.EcoDesign_Sync_Status__c,'ecodesign sync status not set to Ready');
+            System.assertEquals(PROJ_ECODESIGN_SYNC_STATUS,updatedproj.EcoDesign_Sync_Status__c,'ecodesign sync status not set to Ready');
             test.stopTest();
             
         }
@@ -282,9 +309,10 @@ private class IPM_ProjectCountryDetails_Test {
         System.runAs(globalUser){
             test.startTest();
             List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();
-            toUpdateProjList = [Select Id,IPM_Strategic_Intent__c from IPM_Project__c where IPM_Project_Type__c =:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL limit 50000];
+            toUpdateProjList = [Select Id,IPM_Strategic_Intent__c,EcoDesign_Sync_Status__c from IPM_Project__c where IPM_Project_Type__c =:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL limit 50000];
             for(IPM_Project__c proj:toUpdateProjList){
                 proj.IPM_Strategic_Intent__c = PROJ_STRATEGIC_INTENT;
+                proj.EcoDesign_Sync_Status__c = PROJ_ECODESIGN_SYNC_STATUS;
             }
             
             update toUpdateProjList;
@@ -295,7 +323,7 @@ private class IPM_ProjectCountryDetails_Test {
             globalProjNew.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
             globalProjNew.IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
             globalProjNew.IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true;
-            globalProjNew.IPM_Strategic_Intent__c = PROJ_STRATEGIC_INTENT;
+            globalProjNew.IPM_Strategic_Intent__c = PROJ_STRATEGIC_INTENT;            
             insert globalProjNew;
                     
             IPM_Project__c regionalProjNew = IPM_TestFactory_Helper.createIPMProject(false);
@@ -316,14 +344,14 @@ private class IPM_ProjectCountryDetails_Test {
             localProjNew.IPM_Strategic_Intent__c = PROJ_STRATEGIC_INTENT;
             insert localProjNew;
             
-    		MDO_Geography__c geo = new MDO_Geography__c(Name= 'TESTGEO', Status__c = 'Active');
+    		MDO_Geography__c geo = new MDO_Geography__c(Name= PROJ_ECODESIGN_SYNC_NAME, Status__c = PROJ_ECODESIGN_SYNC_ACTIVE);
             	insert geo;     
             MDO_Market__c market = new MDO_Market__c(Type__c=IPM_ConstantUtils.IPM_PROJECT_MARKET_TYPE_DEVELOPED);
             	insert market;
             MDO_MarketGeographys__c marketGeo = new MDO_MarketGeographys__c(Geography_ID__c=geo.id,Market_ID__c=market.id);   
             	insert marketGeo;      
             List<MDO_MarketGeographys__c> insertedMarketGeographies = [Select id from MDO_MarketGeographys__c limit 100];
-            System.assertEquals(insertedMarketGeographies.size(),1,'Market Geogrphies not inserted'); 
+            System.assertEquals(insertedMarketGeographies.size(),2,'Market Geogrphies not inserted'); 
             	
             List<IPM_Country__c> countryList = new List<IPM_Country__c>();
                 for(integer i=0; i<4 ; i++) {
@@ -335,7 +363,17 @@ private class IPM_ProjectCountryDetails_Test {
                 
             insert countryList;
             IPM_Project__c updatedproj = [Select Id,First_Sync_To_EcoDesign__c,EcoDesign_Sync_Status__c from IPM_Project__c Where Id =:toUpdateProjList[0].Id limit 1][0];
-            System.assertEquals('Ready',updatedproj.EcoDesign_Sync_Status__c,'ecodesign sync status not set to Ready');
+            IPM_Project_Document__c proDoc = IPM_TestFactory_Helper.createIPMProjectDocument(false); 
+            proDoc.IPM_Project__c = globalProjNew.Id;
+            insert proDoc;
+            IPM_Project_Document_Section__c proDocSec = IPM_TestFactory_Helper.createIPMProjectDocumentSection(false); 
+            proDocSec.IPM_Master_Section_External_Id__c = 'Environmental_Impact';            
+            proDocSec.IPM_Project_Document__c= proDoc.Id;
+            insert proDocSec;
+            
+            System.assertEquals(PROJ_ECODESIGN_SYNC_STATUS,updatedproj.EcoDesign_Sync_Status__c,'ecodesign sync status not set to Ready');
+            IPM_ProjectCountryDetails.getAvailableBrands(localProjNew);
+            IPM_ProjectCountryDetails.setEISectionStatus(new List<IPM_Project__c>{globalProjNew});
             test.stopTest();
         }
     }

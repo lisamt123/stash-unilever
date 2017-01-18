@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Telesales - Approved Sample Request (Customer)</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>TEL_Telesales_Letterhead</letterhead>
+    <name>Telesales Approved Request</name>
+    <style>freeForm</style>
+    <subject>Request Approved</subject>
+    <textOnly>Dear {!Case.SuppliedName} {!Case.TEL_Web_Surname__c},
+
+Your request for a sample of {!Case.Product__c} is approved.
+
+Best Regards,
+
+Unilever.</textOnly>
+    <type>html</type>
+</EmailTemplate>

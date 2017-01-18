@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Activity Record Count --></label>
+        <name>Activity_Record_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Activity ID --></label>
+        <name>CHD__Activity_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Activity Internal ID --></label>
+        <name>CHD__Activity_Internal_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD ID --></label>
+        <name>CHD__CHD_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Content --></label>
+        <name>CHD__Content__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Creation Datetime --></label>
+        <name>CHD__Creation_Datetime__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Note Type --></label>
+        <name>CHD__Note_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD User First Name --></label>
+        <name>CHD__User_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD User Last Name --></label>
+        <name>CHD__User_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD User Login --></label>
+        <name>CHD__User_Login__c</name>
+    </fields>
+    <fields>
+        <label><!-- Activity Type --></label>
+        <name>Call_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distributor name --></label>
+        <name>FS_Distributorname__c</name>
+    </fields>
+    <fields>
+        <label><!-- Survey Name --></label>
+        <name>FS_SurveyName__c</name>
+        <relationshipLabel><!-- Activities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Task Type --></label>
+        <name>FS_Task_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Visit with Chef --></label>
+        <name>FS_VisitwithChef__c</name>
+    </fields>
+    <fields>
+        <label><!-- Visit with DSR --></label>
+        <name>FS_VisitwithDSR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Website1 --></label>
+        <name>FS_Website__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account ID Reference --></label>
+        <name>ICB_AccountIDReference__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Geolocation --></label>
+        <name>ICB_CustomerGeolocation__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Executed Visit --></label>
+        <name>ICB_End_Executed_Visit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Executed Distance --></label>
+        <name>ICB_ExecutedDistance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Executed Visit Duration Time --></label>
+        <name>ICB_ExecutedVisitDurationTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Executed Visit Duration --></label>
+        <name>ICB_ExecutedVisitDuration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Executed Visit --></label>
+        <name>ICB_ExecutedVisit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Geolocation Check-Out --></label>
+        <name>ICB_GeolocationCheckOut__c</name>
+    </fields>
+    <fields>
+        <label><!-- Geolocation Check-In --></label>
+        <name>ICB_GeolocationCheckin__c</name>
+    </fields>
+    <fields>
+        <label><!-- ICB Golden Minute Open --></label>
+        <name>ICB_GoldenMinuteOpen__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Icon --></label>
+        <name>ICB_Icon__c</name>
+    </fields>
+    <fields>
+        <label><!-- In-store Discipline Index --></label>
+        <name>ICB_InStoreDisciplineIndex__c</name>
+    </fields>
+    <fields>
+        <label><!-- Out-of-Route Visit --></label>
+        <name>ICB_OutOfRouteVisit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planned Distance --></label>
+        <name>ICB_PlannedDistance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planned Visit --></label>
+        <name>ICB_PlannedVisit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Route Effectiveness Index --></label>
+        <name>ICB_RouteEffectivenessIndex__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Area --></label>
+        <name>ICB_Sales_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sequence --></label>
+        <name>ICB_Sequence__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Executed Visit --></label>
+        <name>ICB_Start_Executed_Visit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>ICB_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manager --></label>
+        <name>Manager__c</name>
+    </fields>
+    <recordTypes>
+        <label>FS Задание</label>
+        <name>FS_Task</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- Send_Twitter_Message --></label>
+        <name>sf4twitter__Send_Twitter_Message</name>
+    </webLinks>
+</CustomObjectTranslation>

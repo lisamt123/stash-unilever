@@ -15,15 +15,16 @@ VERSION  AUTHOR            DATE              DETAIL                 Description
 @isTest
 private class FAU_ParticipantControllerExtensionTest
 {
-
-
+    public static string city='Singapore';//Modified by yugandhar
+    public static string invitation='Invited';//Modified by yugandhar
+    
     @isTest
     static void testInviteWhenNew()
     {
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
         Date startDateFixture = Date.newInstance(2015, 10, 25);
-        String locationFixture = 'Singapore';
+        String locationFixture = city;
         String inviteStateFixture = 'New';
 
         FAU_Participant__c participantRecord
@@ -57,8 +58,8 @@ private class FAU_ParticipantControllerExtensionTest
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
         Date startDateFixture = Date.newInstance(2015, 10, 25);
-        String locationFixture = 'Singapore';
-        String inviteStateFixture = 'Invited';
+        String locationFixture = city;
+        String inviteStateFixture = invitation;
 
         FAU_Participant__c participantRecord
              = createParticipantFixture(user, startDateFixture, locationFixture, inviteStateFixture);
@@ -89,8 +90,8 @@ private class FAU_ParticipantControllerExtensionTest
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
         Date startDateFixture = Date.newInstance(2015, 10, 25);
-        String locationFixture = 'Singapore';
-        String inviteStateFixture = 'Invited';
+        String locationFixture = city;
+        String inviteStateFixture = invitation;
 
         FAU_Participant__c participantRecord
              = createParticipantFixture(user, startDateFixture, locationFixture, inviteStateFixture);
@@ -101,7 +102,7 @@ private class FAU_ParticipantControllerExtensionTest
         ApexPages.StandardController standardController
              = new ApexPages.StandardController(participantRecord);
 
-        FAU_ParticipantControllerExtension controller;
+      FAU_ParticipantControllerExtension controller;
 
         Test.startTest(); 
 
@@ -122,8 +123,8 @@ private class FAU_ParticipantControllerExtensionTest
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
         Date startDateFixture = Date.newInstance(2015, 10, 25);
-        String locationFixture = 'Singapore';
-        String inviteStateFixture = 'Invited';
+        String locationFixture = city;
+        String inviteStateFixture = invitation;
 
         FAU_Participant__c participantRecord
              = createParticipantFixture(user, startDateFixture, locationFixture, inviteStateFixture);
@@ -142,6 +143,7 @@ private class FAU_ParticipantControllerExtensionTest
         //{
             controller = new FAU_ParticipantControllerExtension(standardController);
             controller.acceptInvite();
+            controller.cancel();
         //}
         Test.stopTest();
 
@@ -155,8 +157,8 @@ private class FAU_ParticipantControllerExtensionTest
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
         Date startDateFixture = Date.newInstance(2015, 10, 25);
-        String locationFixture = 'Singapore';
-        String inviteStateFixture = 'Invited';
+        String locationFixture = city;
+        String inviteStateFixture = invitation;
 
         FAU_Participant__c participantRecord
              = createParticipantFixture(user, startDateFixture, locationFixture, inviteStateFixture);
@@ -188,13 +190,13 @@ private class FAU_ParticipantControllerExtensionTest
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
         Date startDateFixture = Date.newInstance(2015, 10, 25);
-        String locationFixture = 'Singapore';
-        String inviteStateFixture = 'Invited';
+        String locationFixture = city;
+        String inviteStateFixture = invitation;
 
         FAU_Participant__c participantRecord
              = createParticipantFixture(user, startDateFixture, locationFixture, inviteStateFixture);
 
-		participantRecord.FAU_Decline_Reason__c = 'Other';
+        participantRecord.FAU_Decline_Reason__c = 'Other';
 
         PageReference pageReference = Page.FAU_Participant_Register;
         Test.setCurrentPage(pageReference);
@@ -223,8 +225,8 @@ private class FAU_ParticipantControllerExtensionTest
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
         Date startDateFixture = Date.newInstance(2015, 10, 25);
-        String locationFixture = 'Singapore';
-        String inviteStateFixture = 'Invited';
+        String locationFixture = city;
+        String inviteStateFixture = invitation;
 
         FAU_Participant__c participantRecord
              = createParticipantFixture(user, startDateFixture, locationFixture, inviteStateFixture);
@@ -256,8 +258,8 @@ private class FAU_ParticipantControllerExtensionTest
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
         Date startDateFixture = Date.newInstance(2015, 10, 25);
-        String locationFixture = 'Singapore';
-        String inviteStateFixture = 'Invited';
+        String locationFixture = city;
+        String inviteStateFixture = invitation;
 
         Account a = new Account(Name = 'Test Account ');
         insert a;
@@ -305,7 +307,7 @@ private class FAU_ParticipantControllerExtensionTest
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
         Date startDateFixture = Date.newInstance(2015, 10, 25);
-        String locationFixture = 'Singapore';
+        String locationFixture = city;
         String inviteStateFixture = 'Accepted';
 
         FAU_Participant__c participantRecord
@@ -337,7 +339,7 @@ private class FAU_ParticipantControllerExtensionTest
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
         Date startDateFixture = Date.newInstance(2015, 10, 25);
-        String locationFixture = 'Singapore';
+        String locationFixture = city;
         String inviteStateFixture = 'Declined';
 
         FAU_Participant__c participantRecord

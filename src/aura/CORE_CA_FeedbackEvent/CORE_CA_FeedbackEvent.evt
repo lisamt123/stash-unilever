@@ -1,0 +1,16 @@
+<!--
+  Component Name: Core_CA_FeedbackEvent
+  Author : Mindtree
+  Date: 03 June 2016
+  Requirement/Description: FeedBack APP navigation code.
+-->
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="Pagename" type="string"/>
+    
+    
+    <aura:attribute name="RequestId" type="string"/>
+    <aura:attribute name="ApproverId" type="string"/>
+    <aura:attribute name="Sourcesystem" type="string"/>
+    <aura:attribute name="sourcePage" type="string"/>
+    <aura:attribute name="filterValue" type="string"/>
+</aura:event>

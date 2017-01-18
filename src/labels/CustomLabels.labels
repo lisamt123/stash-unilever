@@ -496,6 +496,14 @@
         <value>Consumer Services Case #:</value>
     </labels>
     <labels>
+        <fullName>CEC_EnterMktMappingMsg</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_EnterMktMappingMsg</shortDescription>
+        <value>Please Enter Case Market Mapping to Search</value>
+    </labels>
+    <labels>
         <fullName>CEC_EvoucherDetails_No_Active_EVoucher_For_Country</fullName>
         <categories>CEC:E_VoucherDetails_Error</categories>
         <language>en_US</language>
@@ -585,7 +593,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>To display Last Name required message</shortDescription>
-        <value>Last Name: You must enter a value</value>
+        <value>Last Name:You must enter Last Name to search a Consumer</value>
     </labels>
     <labels>
         <fullName>CEC_Latitude</fullName>
@@ -648,6 +656,13 @@
         <shortDescription>If Duplicate accounts found display this error message</shortDescription>
         <value>[ERR001] Multiple consumer records exist with the same email, a manual update is required.</value>
     </labels>
+	<labels>
+        <fullName>CEC_MatchingResponse_DuplicateAccountMobileNumber</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC_MatchingResponse_DuplicateAccountMobileNumber</shortDescription>
+        <value>Multiple consumer records exist with the same mobile number, a manual update is required.</value>
+    </labels>
     <labels>
         <fullName>CEC_Missing_Information</fullName>
         <categories>CEC: VF Page Global Display</categories>
@@ -662,6 +677,22 @@
         <protected>false</protected>
         <shortDescription>CEC_Multilanguage_Birth</shortDescription>
         <value>Birth-Nascimento-Nacimiento-Geburt-La naissance-Nascita-誕生-Födelse-출생-分娩-Geboorte-Fødsel-syntymä-рождение</value>
+    </labels>
+	<labels>
+        <fullName>CEC_No_Product_Details</fullName>
+        <categories>CEC_IRIProductLocatorController</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC No Product Details</shortDescription>
+        <value>Unable to fetch product details due to technical issue. Please contact sys admin</value>
+    </labels>
+    <labels>
+        <fullName>CEC_No_Store_Information</fullName>
+        <categories>CEC_IRIProductLocatorController</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC No Store Information</shortDescription>
+        <value>No store information is available for this product</value>
     </labels>
     <labels>
         <fullName>CEC_Name</fullName>
@@ -696,12 +727,28 @@
         <value>Please save the pending changes to the case record first and then search the Consumer to link to the case. If a new Consumer creation is attempted in this transaction, then this Consumer can be found again by Search.</value>
     </labels>
     <labels>
+        <fullName>CEC_NoAccessForChequeProcess</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_NoAccessForChequeProcess</shortDescription>
+        <value>No Access for Cheque Process</value>
+    </labels>
+    <labels>
         <fullName>CEC_NoAccessForRetrievalProcess</fullName>
         <categories>CEC:Retrieval_Request_Error</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_NoAccessForRetrievalProcess</shortDescription>
         <value>No Access for Retrieval Process</value>
+    </labels>
+    <labels>
+        <fullName>CEC_NoResultFoundMsg</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_NoResultFoundMsg</shortDescription>
+        <value>No search results found</value>
     </labels>
     <labels>
         <fullName>CEC_No_Cases_are_available_based_on_the_skill</fullName>
@@ -765,6 +812,38 @@
         <protected>false</protected>
         <shortDescription>CEC_PhoneSearchValidationError</shortDescription>
         <value>The Phone Search should be 6 Character length</value>
+    </labels>
+	<labels>
+        <fullName>CEC_NoAccessForSMSProcess</fullName>
+        <categories>CEC:SMSError</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_NoAccessForSMSProcess</shortDescription>
+        <value>No Access for SMS Process</value>
+    </labels>
+	<labels>
+        <fullName>CEC_Home_Phone</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC Home Phone</shortDescription>
+        <value>Home Phone</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Mobile_Phone</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC Mobile Phone</shortDescription>
+        <value>Mobile Phone</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Other_Phone</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC Other Phone</shortDescription>
+        <value>Other Phone</value>
     </labels>
     <labels>
         <fullName>CEC_PostCode</fullName>
@@ -928,6 +1007,22 @@
         <value>Role</value>
     </labels>
     <labels>
+        <fullName>CEC_SearchCountry</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>label for search box.</shortDescription>
+        <value>Search Country</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SearchMarketButtonName</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SearchMarketButtonName</shortDescription>
+        <value>Go!</value>
+    </labels>
+    <labels>
         <fullName>CEC_SearchValidationError</fullName>
         <categories>CEC:Case_Error</categories>
         <language>en_US</language>
@@ -936,12 +1031,27 @@
         <value>Validation Error : Please fill at least one field in the search form</value>
     </labels>
     <labels>
+        <fullName>CEC_SearchWarningMsg</fullName>
+        <categories>CEC_CaseTransfer VF Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SearchWarningMsg</shortDescription>
+        <value>The search returned more than the maximum number of rows (200). Please refine your search criteria.</value>
+    </labels>
+    <labels>
         <fullName>CEC_Search_Button</fullName>
         <categories>Visualforce Page :CEC_NewAccountContact</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_Search_Button</shortDescription>
         <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SelectMktMappingMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SelectMktMappingMsg</shortDescription>
+        <value>Please select Market Mapping to transfer the case</value>
     </labels>
     <labels>
         <fullName>CEC_Specify_Details_in_Missing_Info</fullName>
@@ -1039,6 +1149,7 @@
     </labels>
     <labels>
         <fullName>CEC_ValidEmailTemplate</fullName>
+		<categories>CEC : Error</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_ValidEmailTemplate</shortDescription>
@@ -1076,4 +1187,8 @@
         <shortDescription>CEC_isVariantKnown</shortDescription>
         <value>Is Variant Known?</value>
     </labels>
+<<<<<<< HEAD:src/labels/CustomLabels.labels
 </CustomLabels>
+=======
+    
+>>>>>>> develop:src/labels/CEC.labels

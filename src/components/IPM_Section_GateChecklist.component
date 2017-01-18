@@ -10,7 +10,7 @@
     <apex:attribute name="editgatesect" type="Boolean" AssignTo="{!isEditable}" description="This is used for security"/>
     <apex:attribute name="getSecid" description="Pass the document type parameter" type="ID" required="true" assignTo="{!SecId}" />
     <apex:attribute name="getDocType" description="Pass the document type parameter" type="String" required="true" assignTo="{!gateType}" />
-    <apex:outputPanel layout="block" id="ren">
+     <apex:outputPanel layout="block" id="ren">
        <!--Below rendered condition is used to show the checklist question-->
         <apex:outputPanel layout="block" styleClass="altBGcolor" rendered="{!AND(gkChecklist!=null,gkChecklist.size>0)}"> 
             <table class="ipmTable table table-bordered gkTable otifTable"> 
@@ -29,23 +29,24 @@
                             <apex:outputPanel layout="block" rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c==gk.IPM_Section_External_Id__c,true,false)}">
                             <tr>   
                                 <td>
-                                    <apex:outputText value="{!gk.IPM_Question__c}"/> 
+                                    <apex:outputText styleClass="info" title="{!gk.IPM_HelpText_ReadOnly__c}" value="{!gk.IPM_Question__c}"/>
                                 </td>
                             </tr>
                             <tr>     
                                 <td> 
                                 <!--Below rendered condition is used to show slider for checklist question-->
                                     <apex:outputPanel rendered="{!isEditable}">                                        
-                                        <apex:outputPanel id="gkSecSlide" styleClass="sliderGk sliderDynamic">
-                                            <input type="hidden" name="secGkans" value="{!gk.IPM_GK_Answers__c}"/>
-                                            <div class="legendSld gateKeeperSlider" id="legendSldGK{!counter}">
+                                         <apex:outputPanel id="gkSecSlide" styleClass="sliderGk sliderDynamic">
+                                            <input type="hidden" name="secGkans" value="{!gk.IPM_GK_Answers__c}" disabled="disabled"  />
+                                            <div class="legendSld gateKeeperSlider" id="legendSldGK{!counter}" >
                                                 <apex:variable var="counter" value="{!counter+1}" /> 
-                                                <apex:selectRadio value="{!ans}"  onclick="updateSecGateKeeperList('{!gk.Id}',this.value,'{!JSENCODE(gk.IPM_Comments__c)}',false);" styleClass="info" id="radioResponseGK" >
-                                                    <apex:selectOptions value="{!gkChecklistAnsMap[gk.Id]}" id="selectoptionsGK"/> 
+                                                <apex:selectRadio value="{!ans}" onclick="updateSecGateKeeperList('{!gk.Id}',this.value,'{!JSENCODE(gk.IPM_Comments__c)}',false);" styleClass="info" id="radioResponseGK" readonly="true">
+                                                    <apex:selectOptions html-new="{!IF(LEN(gk.DependentFieldAPIName__c) >0,'ReadonlySlider', 'EditableSlider')}" value="{!gkChecklistAnsMap[gk.Id]}" id="selectoptionsGK"/> 
                                                 </apex:selectRadio><br/>  
                                             </div> 
                                         </apex:outputPanel>
                                     </apex:outputPanel>
+                                 
                                     <!--Below rendered condition is used to show the below text-->
                                     <apex:outputText rendered="{!!isEditable}" id="gkAnswer"><div class="gkcStatus {!IF(gk.IPM_GK_Answers__c=='{!$Label.IPM_NO_APPLICABLE}','{!$Label.IPM_NO_APPLICABLE}',gk.IPM_GK_Answers__c)}">{!gk.IPM_GK_Answers__c}</div></apex:outputText>
                                 </td>
@@ -70,9 +71,13 @@
         <apex:param name="thirdParam" assignTo="{!comment}" value=""/>
         <apex:param name="fourthParam" assignTo="{!cmts}" value=""/>
         </apex:actionFunction>
+        
+        <apex:actionFunction name="updateReadOnlyAnswers" action="{!updateReadOnlyGKchecklist}" reRender="" rendered="{!isEditable}" />
+        
+        
        <!------------------Gatekeeper Checklist Section--------------->       
         <script>
-        var IPMAppSecGK = {select:'{!$Label.IPM_SELECT}', yes:'{!$Label.IPM_YES}', partly:'{!$Label.IPM_PARTLY}', no:'{!$Label.IPM_NO}', na:'{!$Label.IPM_NO_APPLICABLE}'};      
+        var IPMAppSecGK = {select:'{!$Label.IPM_SELECT}', yes:'{!$Label.IPM_YES}', partly:'{!$Label.IPM_PARTLY}', no:'{!$Label.IPM_NO}', na:'{!$Label.IPM_NO_APPLICABLE}',editable:'{!isEditable}'};      
         </script>        
         <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Section_GateChecklist.js')}" type="text/javascript"></script>
     </apex:outputPanel>

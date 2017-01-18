@@ -4,18 +4,39 @@
 * @description To Show CMI Table
 */
 public with sharing Class IPM_CMIGateSectionController{
-    public Id projDocSecId; //Contains Project Document Section Id 
-    public Id projectId{get; set;} //For Getting Project Id
-    public List<IPM_Project_Document_Section_Content__c> secConList{get; set;} //For Getting CMI Contents
-    public ID getprojDocSecId(){ return projDocSecId; } //Getting Project Document Section Id 
-    //Setter for Project Document Section Id and Retrieving Project Document Section Contents
-    public void setprojDocSecId (ID secId){
-        projDocSecId= secId;
-        showTableData();
+
+    public Id projDocSecId{// to get-set the project document section id from the component attribute.
+        get{
+            if(projDocSecId == null && Apexpages.currentpage().getparameters().get('secId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('secId')) ;
+            }
+            else { return projDocSecId; }
+        }
+        set;
     }
+    public Id projectId{ // to get-set the project id from the component attribute.
+        get{
+            if(projectId == null && Apexpages.currentpage().getparameters().get('projId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('projId')) ;
+            }
+            else { return projectId; }
+        }
+        set;
+    } 
+    public String gateType{// to get-set the project document section id from the component attribute.
+        get{
+            if(gateType == null && Apexpages.currentpage().getparameters().get('gate') != null) {
+                return  Apexpages.currentpage().getparameters().get('gate');
+            }
+            else { return gateType; }
+        }
+        set;
+    }
+    public List<IPM_Project_Document_Section_Content__c> secConList{get; set;} //For Getting CMI Contents
+    //Setter for Project Document Section Id and Retrieving Project Document Section Contents
     public List<IPM_Gate_CMI__c> gateCMIList{get; set;} //For Getting Gate CMI Data
     public IPM_Project__c project{get; set;} //For Getting Project
-    public String gateType{get; set;} //For Getting Project Gate Type
+    
     public List<String> gateTypes{get; set;} //Contains Gate Types
     public Map<Id,Integer> contentCount{get; set;}
     public Integer count;
@@ -28,6 +49,24 @@ public with sharing Class IPM_CMIGateSectionController{
     public static final string CLASS_NAME=IPM_CMIGateSectionController.class.getName();
     public Static final String SHOW_TABLE_DATA = 'showTableData';
     public Static final String GET_CMI_DATA = 'getCMIData';
+    
+     /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForComponent() {
+        showTableData();
+        return 'Required methods are invoked for component';
+    }
+    
+     /************************************************************************************************************************
+    * @Description: CONSTRUCTOR
+    */
+    public IPM_CMIGateSectionController() {
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
+    }   
+    
     /**********************************************************************************************************************************
     @description For Showing Gate CMI Data Values in Table
     **********************************************************************************************************************************/
@@ -81,7 +120,7 @@ public with sharing Class IPM_CMIGateSectionController{
             countryList=new List<IPM_Country__c>();
             mapCountryNameWithCode=new map<String,String>();
             //Getting Project
-            project=[SELECT Id,IPM_Parent_Project__c FROM IPM_Project__c WHERE Id=:projectId];  
+            project=[SELECT Id,IPM_ProjectGKM__c,IPM_Parent_Project__c FROM IPM_Project__c WHERE Id=:projectId];   
             if(gateType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE){
                 //Getting Gate CMI Records
                 gateCMIList=[SELECT Id,Gate__c,IPM_CMI_Overall_Colour_Score_Method__c,Element__c,Test__c,KPI__c,Input__c,Results__c,Country__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c 
@@ -92,7 +131,7 @@ public with sharing Class IPM_CMIGateSectionController{
                 secConList=[SELECT Id,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Colour_Achieved__c ,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Free_Text__c,IPM_CMI_Overall_Comments__c,IPM_CMI_Is_Free_Text__c,IPM_CMI_Result_Timing__c,IPM_CMI_Country__c,IPM_Gate_CMI__c,IPM_CMI_Input__c,IPM_CMI_Comments__c,IPM_CMI_Result__c,
                                    IPM_Project_Document_Section__c,IPM_CMI_Outcome_Color_Achieved__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Outcome_Color__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c 
                             FROM IPM_Project_Document_Section_Content__c 
-                            WHERE IPM_CMI_Country__c!=NULL AND IPM_Content_Type__c=:IPM_ConstantUtils.CMIGATE_CONTENT_TYPE AND IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c=:gateDocument AND IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c=:project.IPM_Parent_Project__c LIMIT 1000];
+                            WHERE IPM_CMI_Country_isNull__c = :IPM_ConstantUtils.IPM_false AND IPM_Content_Type__c=:IPM_ConstantUtils.CMIGATE_CONTENT_TYPE AND IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c=:gateDocument AND IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c=:project.IPM_Parent_Project__c LIMIT 1000];
             }
             else{
                 //Getting Gate CMI Records
@@ -104,33 +143,40 @@ public with sharing Class IPM_CMIGateSectionController{
                 secConList=[SELECT Id,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Colour_Achieved__c ,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Free_Text__c,IPM_CMI_Overall_Comments__c,IPM_CMI_Is_Free_Text__c,IPM_CMI_Result_Timing__c,IPM_CMI_Country__c,IPM_Gate_CMI__c,IPM_CMI_Input__c,IPM_CMI_Comments__c,IPM_CMI_Result__c,
                                    IPM_Project_Document_Section__c,IPM_CMI_Outcome_Color_Achieved__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Outcome_Color__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c 
                             FROM IPM_Project_Document_Section_Content__c 
-                            WHERE IPM_CMI_Country__c!=NULL AND IPM_Content_Type__c=:IPM_ConstantUtils.CMIGATE_CONTENT_TYPE AND IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c=:gateDocument AND IPM_Project_Document_Section__c=:projDocSecId LIMIT 1000];
+                            WHERE IPM_CMI_Country_isNull__c = :IPM_ConstantUtils.IPM_false AND IPM_Content_Type__c=:IPM_ConstantUtils.CMIGATE_CONTENT_TYPE AND IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c=:gateDocument AND IPM_Project_Document_Section__c=:projDocSecId LIMIT 1000];
             }       
-            for(IPM_Gate_CMI__c cmi:gateCMIList){
-                 count=1;   
-                 for(IPM_Project_Document_Section_Content__c con:secConList){
-                    if(cmi.Id==con.IPM_Gate_CMI__c){
-                        displayCon.put(cmi.Test__c+con.IPM_CMI_Country__c,con);
-                        countryNames.add(cmi.Test__c+con.IPM_CMI_Country__c);
-                        ++count;
-                    }
-                }
-                contentCount.put(cmi.Id,count);
-            }
+            
             String query='SELECT Id,Country_Name__c,Country_Code__c,IPM_Project__c,IPM_Regional_Project__c FROM IPM_Country__c';
             string projectId=string.escapeSingleQuotes(project.Id);//exception of unused local varaibale of Sonar. Used in below query
             if(gateType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE){
-            	string parentProjectId=string.escapeSingleQuotes(project.IPM_Parent_Project__c);//exception of unused local varaibale of Sonar. Used in below query
-            	countryList=Database.Query(query+' WHERE IPM_Regional_Project__c=:parentProjectId');
+                string parentProjectId=string.escapeSingleQuotes(project.IPM_Parent_Project__c);//exception of unused local varaibale of Sonar. Used in below query
+                
+                String projParentRefOnCountry = project.IPM_ProjectGKM__c == 'GKM3' ?' IPM_Project__c ' : ' IPM_Regional_Project__c ';
+                
+                countryList=Database.Query(query+' WHERE ' + projParentRefOnCountry + ' = : parentProjectId');
+            
             }
-            else{
-            	countryList=Database.Query(query+' WHERE IPM_Project__c=:projectId OR IPM_Regional_Project__c=:projectId');
+            
+            else {
+                countryList=Database.Query(query+' WHERE IPM_Project__c=:projectId OR IPM_Regional_Project__c=:projectId');
             }
 
             if(countryList != null && !countryList.isEmpty()){
                 for(IPM_Country__c c:countryList){
                     mapCountryNameWithCode.put(c.Country_Code__c,c.Country_Name__c);
                 }
+            }
+            // Moved the code block down to generate country name  based on the available countries
+            for(IPM_Gate_CMI__c cmi:gateCMIList){
+                 count=1;   
+                 for(IPM_Project_Document_Section_Content__c con:secConList){
+                    if(cmi.Id==con.IPM_Gate_CMI__c && mapCountryNameWithCode.containskey(con.IPM_CMI_Country__c)){
+                        displayCon.put(cmi.Test__c+con.IPM_CMI_Country__c,con);
+                        countryNames.add(cmi.Test__c+con.IPM_CMI_Country__c);
+                        ++count;
+                    }
+                }
+                contentCount.put(cmi.Id,count);
             }
         }
         catch(Exception ex){

@@ -4,7 +4,7 @@
 *@Description :     Handler class for WU_SetWarehousePOCHandler_Test
 *************************************************************/
 
-public class WU_TestFactory_Helper{
+public with sharing class WU_TestFactory_Helper{
     /**CONSTANTS **/
     public static String WAREHOUSE_POC = 'WU-Warehouse Excellence Operations';  //'';
     public static final string EMPTY_STRING = '';
@@ -51,7 +51,8 @@ public class WU_TestFactory_Helper{
             WU_Country__c='Turkey',
             WU_CityName__c='Kocaeli',
             WU_SAPCode_s__c=String.valueof(1+i),
-            OwnerId =ur.Id
+            OwnerId =ur.Id,
+             WU_Active_WH__c='Yes'
             );
             warehouseList.add(w);
         }
@@ -60,7 +61,7 @@ public class WU_TestFactory_Helper{
                 
                                    
             List<WU_Master_Warehouse__c> lstWRHSCU = new List<WU_Master_Warehouse__c>();
-            lstWRHSCU = [Select Id, WU_Current_Utilization__c, WU_WarehousePOC_Email__c, WU_Committed_Max_PalletStorage__c,
+            lstWRHSCU = [Select Id,WU_Active_WH__c, WU_Current_Utilization__c, WU_WarehousePOC_Email__c, WU_Committed_Max_PalletStorage__c,
                          WU_Network__c,WU_Region__c, WU_MCO__c, WU_Country__c, WU_CityName__c, WU_SAPCode_s__c,WU_FromDate__c,WU_ToDate__c              
                          from WU_Master_Warehouse__c 
                          where Id in:warehouseList];            
@@ -74,16 +75,16 @@ public class WU_TestFactory_Helper{
             
             lstWRHSCU[1].WU_Current_Utilization__c=50;
             
-			try
-			{
-				database.update(lstWRHSCU,false);
-			}
-			
-			catch(exception e)
-			{
-				Boolean expectedExceptionThrown =  e.getMessage().contains(Label.WU_DuplicateCapacityDetailWhileInsert) ? true : false;
-				System.AssertEquals(expectedExceptionThrown, true);
-			}
+            try
+            {
+                database.update(lstWRHSCU,false);
+            }
+            
+            catch(exception e)
+            {
+                Boolean expectedExceptionThrown =  e.getMessage().contains(Label.WU_DuplicateCapacityDetailWhileInsert) ? true : false;
+                System.AssertEquals(expectedExceptionThrown, true);
+            }
             
                         
 
@@ -189,14 +190,14 @@ public class WU_TestFactory_Helper{
     
     public Static void assignPermSet()
     {
-    	PermissionSetAssignment psa = new PermissionSetAssignment();
-    	psa.AssigneeId = ur.Id;
-    	if(perms!=null)
-    	{
-    		psa.PermissionSetId = perms.Id;
-	    	insert psa;
-    	}
-	    
-	    //return psa;
+        PermissionSetAssignment psa = new PermissionSetAssignment();
+        psa.AssigneeId = ur.Id;
+        if(perms!=null)
+        {
+            psa.PermissionSetId = perms.Id;
+            insert psa;
+        }
+        
+        //return psa;
     }
 }

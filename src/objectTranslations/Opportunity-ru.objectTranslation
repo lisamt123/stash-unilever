@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help>Выигранная/Потерянная возможность? 
+Как они справляются? Добавьте скриншот - жёлтая вкладка
+Is покупатель растет?</help>
+        <label>История клиента</label>
+        <name>Account_History__c</name>
+    </fields>
+    <fields>
+        <help>План по клиенту, относящийся к данной возможности</help>
+        <label><!-- Account Plan --></label>
+        <name>Account_Plan__c</name>
+        <relationshipLabel>Возможности</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Требуется перед переходом на стадию &quot;05-Выигранный&quot;</help>
+        <label>Дата соглашения</label>
+        <name>AgreementDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract Start Date --></label>
+        <name>ContractStartDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- DealApproved --></label>
+        <name>DealApproved__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Defined Objective related to this Opportunity. --></help>
+        <label><!-- Defined Objective --></label>
+        <name>Defined_Objective__c</name>
+        <relationshipLabel><!-- Opportunities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- BMI --></label>
+        <name>FSNA_BMI__c</name>
+    </fields>
+    <fields>
+        <label><!-- NA Distributor TMI --></label>
+        <name>FSNA_Distributor_TMI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Margin --></label>
+        <name>FSNA_Gross_Margin__c</name>
+    </fields>
+    <fields>
+        <label><!-- Margin Market Code --></label>
+        <name>FSNA_Margin_Market_Code__c</name>
+        <picklistValues>
+            <masterLabel>6I DRESSINGS-CONDIMENTS-DIPS</masterLabel>
+            <translation><!-- 6I DRESSINGS-CONDIMENTS-DIPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6K SAUCES-GRAVIES</masterLabel>
+            <translation><!-- 6K SAUCES-GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8Z RETAIL</masterLabel>
+            <translation><!-- 8Z RETAIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>93 MAYONNAISE</masterLabel>
+            <translation><!-- 93 MAYONNAISE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOH MAYO</masterLabel>
+            <translation><!-- BOH MAYO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D1 SOUPS</masterLabel>
+            <translation><!-- D1 SOUPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E1 BASES-BOUILLIONS</masterLabel>
+            <translation><!-- E1 BASES-BOUILLIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>F1 SPREADS AND TOPPING</masterLabel>
+            <translation><!-- F1 SPREADS AND TOPPING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FOH MAYO</masterLabel>
+            <translation><!-- FOH MAYO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>G1 TEA-BEVERAGES</masterLabel>
+            <translation><!-- G1 TEA-BEVERAGES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>H1 FLAVOUR DELIVERY SYS-SEASONING</masterLabel>
+            <translation><!-- H1 FLAVOUR DELIVERY SYS-SEASONING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HOT TEA</masterLabel>
+            <translation><!-- HOT TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ICED TEA</masterLabel>
+            <translation><!-- ICED TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>K1 MEALS</masterLabel>
+            <translation><!-- K1 MEALS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Knorr Ultimate Low/Reduced Sodium*</masterLabel>
+            <translation><!-- Knorr Ultimate Low/Reduced Sodium* --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LCB</masterLabel>
+            <translation><!-- LCB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q1 MISCELLANEOUS</masterLabel>
+            <translation><!-- Q1 MISCELLANEOUS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SDJ</masterLabel>
+            <translation><!-- SDJ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SPECIALTY TEA</masterLabel>
+            <translation><!-- SPECIALTY TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X4</masterLabel>
+            <translation><!-- X4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z7 HOT TEA US</masterLabel>
+            <translation><!-- Z7 HOT TEA US --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Margin Market Target --></label>
+        <name>FSNA_Margin_Market_Target__c</name>
+    </fields>
+    <fields>
+        <label><!-- Operator TMI --></label>
+        <name>FSNA_TMI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Spend --></label>
+        <name>FSNA_TotalSpend__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distributor TMI --></label>
+        <name>FSNA_US_Distributor_TMI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Gross Profit --></label>
+        <name>FS_AverageGrossProfit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Claimed Case Generated --></label>
+        <name>FS_ClaimedCaseGenerated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comment --></label>
+        <name>FS_Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distributer Payer Code --></label>
+        <name>FS_Distributer_Payer_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distributor TMI --></label>
+        <name>FS_DistributorTMI__c</name>
+        <picklistValues>
+            <masterLabel>CA Direct</masterLabel>
+            <translation><!-- CA Direct --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA GFS</masterLabel>
+            <translation><!-- CA GFS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA Other</masterLabel>
+            <translation><!-- CA Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA Sysco</masterLabel>
+            <translation><!-- CA Sysco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Colabor</masterLabel>
+            <translation><!-- Colabor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PFG</masterLabel>
+            <translation><!-- PFG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reinhart</masterLabel>
+            <translation><!-- Reinhart --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US Direct / CED</masterLabel>
+            <translation><!-- US Direct / CED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US Foods</masterLabel>
+            <translation><!-- US Foods --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US GFS</masterLabel>
+            <translation><!-- US GFS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US OTher</masterLabel>
+            <translation><!-- US OTher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US Only (Food Buy, Aramark, Sodexho, Compass)</masterLabel>
+            <translation><!-- US Only (Food Buy, Aramark, Sodexho, Compass) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US Sysco</masterLabel>
+            <translation><!-- US Sysco --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Distributor Type --></label>
+        <name>FS_Distributor_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Existing Business Type --></label>
+        <name>FS_ExistingBusinessType__c</name>
+        <picklistValues>
+            <masterLabel>Grab</masterLabel>
+            <translation><!-- Grab --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grib</masterLabel>
+            <translation><!-- Grib --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grow</masterLabel>
+            <translation><!-- Grow --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Existing TradePro Contract ID --></label>
+        <name>FS_ExistingTradeProContractID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fixed Price Count --></label>
+        <name>FS_Fixed_Price_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- GPO Name --></label>
+        <name>FS_GPOName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Margin Target --></label>
+        <name>FS_GrossMarginTarget__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Indicator --></label>
+        <name>FS_Indicator__c</name>
+    </fields>
+    <fields>
+        <help><!-- Lump Sum TMI (Not A&amp;P) --></help>
+        <label><!-- Lump Sum TMI --></label>
+        <name>FS_LumpSum__c</name>
+    </fields>
+    <fields>
+        <label>MDM заявка отправлена</label>
+        <name>FS_MDMRequestSent__c</name>
+    </fields>
+    <fields>
+        <label><!-- MS/CS --></label>
+        <name>FS_MSCS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Target --></label>
+        <name>FS_MarketTarget__c</name>
+    </fields>
+    <fields>
+        <label><!-- No OF Sample Orders --></label>
+        <name>FS_NoOFSampleOrders__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Manager --></label>
+        <name>FS_Owner_Manager__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field tracks many times an Opportunity has been pushed from month to month --></help>
+        <label><!-- Push Counter --></label>
+        <name>FS_Push_Counter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rate --></label>
+        <name>FS_Rate__c</name>
+    </fields>
+    <fields>
+        <label>Описание причины</label>
+        <name>FS_ReasonDescription__c</name>
+    </fields>
+    <fields>
+        <label><!-- Siebel ID --></label>
+        <name>FS_SiebelID__c</name>
+    </fields>
+    <fields>
+        <label>Дата начала</label>
+        <name>FS_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Sector --></label>
+        <name>FS_Sub_Sector__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supply Cost --></label>
+        <name>FS_SupplyCost__c</name>
+    </fields>
+    <fields>
+        <label><!-- TPR Approved by Line Manager --></label>
+        <name>FS_TPRApprovedByLineManager__c</name>
+    </fields>
+    <fields>
+        <label>TPR согласован</label>
+        <name>FS_TPRApproved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Discount Volume --></label>
+        <name>FS_TotalDiscountVolume__c</name>
+    </fields>
+    <fields>
+        <label>Итоговая скидка</label>
+        <name>FS_TotalDiscount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total GM with TPR = 0% --></label>
+        <name>FS_TotalGMwithTPR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total GP --></label>
+        <name>FS_TotalGrossProfit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total GSV --></label>
+        <name>FS_TotalGrossSalesValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total HQ Rate --></label>
+        <name>FS_TotalHQRate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Number of Cases --></label>
+        <name>FS_TotalNumberOfCases__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Rate --></label>
+        <name>FS_TotalRate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total TPR % --></label>
+        <name>FS_TotalTPRPercent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total TPR --></label>
+        <name>FS_TotalTPR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Turnover --></label>
+        <name>FS_TotalTurnover__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total GM --></label>
+        <name>FS_TotalgrossMargin__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total NIV --></label>
+        <name>FS_TotalnetInvoiceValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total PC --></label>
+        <name>FS_TotalproductCost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total SC --></label>
+        <name>FS_TotalsupplyCost__c</name>
+    </fields>
+    <fields>
+        <label><!-- TradePro Contract ID --></label>
+        <name>FS_TradeProContractID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type from Objective --></label>
+        <name>FS_Type_from_Objective__c</name>
+    </fields>
+    <fields>
+        <label>Коробка/штука</label>
+        <name>FS_casesPiece__c</name>
+        <picklistValues>
+            <masterLabel>cases</masterLabel>
+            <translation><!-- cases --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>piece</masterLabel>
+            <translation><!-- piece --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Distributor --></label>
+        <name>FS_distributor__c</name>
+        <relationshipLabel><!-- Distributor Opportunities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Дата окончания TPR</label>
+        <name>FS_endDateTPR__c</name>
+    </fields>
+    <fields>
+        <label>Внутренний заказ</label>
+        <name>FS_internalOrder__c</name>
+        <picklistValues>
+            <masterLabel>40002843 TPRs of Chains team_RUS</masterLabel>
+            <translation><!-- 40002843 TPRs of Chains team_RUS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>40002981 TPRs of Moscow_Rus</masterLabel>
+            <translation><!-- 40002981 TPRs of Moscow_Rus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>40002982 TPRs of St Peterburg_Rus</masterLabel>
+            <translation><!-- 40002982 TPRs of St Peterburg_Rus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>40002983 TPRs of Slabco team_RUS</masterLabel>
+            <translation><!-- 40002983 TPRs of Slabco team_RUS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>40002984 TPRs of Metro team_RUS</masterLabel>
+            <translation><!-- 40002984 TPRs of Metro team_RUS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>40002985 TPRs of Regions_Rus</masterLabel>
+            <translation><!-- 40002985 TPRs of Regions_Rus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>40002986 TPRs for write-off_RUS</masterLabel>
+            <translation><!-- 40002986 TPRs for write-off_RUS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Test1</masterLabel>
+            <translation><!-- Test1 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Тип  TPR</label>
+        <name>FS_kindOfTPR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Off Invoice --></label>
+        <name>FS_offInvoice__c</name>
+    </fields>
+    <fields>
+        <label><!-- On Invoice --></label>
+        <name>FS_onInvoice__c</name>
+    </fields>
+    <fields>
+        <label>Предоплаченный</label>
+        <name>FS_prePaid__c</name>
+    </fields>
+    <fields>
+        <label>Самовывоз</label>
+        <name>FS_selfCollection__c</name>
+    </fields>
+    <fields>
+        <label>Дата начала TPR</label>
+        <name>FS_startDateTPR__c</name>
+    </fields>
+    <fields>
+        <help><!-- Are there branding opportunities with this customer? If so, have you reached 
+to marketing? Is the branding impressions template included? 
+Is the customer growing? --></help>
+        <label><!-- Future potential opportunities --></label>
+        <name>Future_potential_opportunities__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>ICB_Contact__c</name>
+        <relationshipLabel><!-- Opportunities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Quantity Returned --></label>
+        <name>ICB_OLD_QUANTITY_RETURNED__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Locale List --></label>
+        <name>ICB_Sales_Locale_List__c</name>
+        <picklistValues>
+            <masterLabel>Empty</masterLabel>
+            <translation><!-- Empty --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sales Locale --></label>
+        <name>ICB_Sales_Locale__c</name>
+        <relationshipLabel><!-- Opportunities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Total Sold Price --></label>
+        <name>ICB_Total_Sold_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Margin Indicator --></label>
+        <name>Margin_Indicator__c</name>
+    </fields>
+    <fields>
+        <help><!-- If new business, is the opportunity above 20K? --></help>
+        <label><!-- If new business, is it min. 20K NSV? --></label>
+        <name>New_Biz_20K__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number Of Locations --></label>
+        <name>NumberOfLocations__c</name>
+    </fields>
+    <fields>
+        <help><!-- Adding new SKUs?
+Increasing rates on new SKUs?
+How were allowances calculated? 
+Is business at risk? 
+Enter competitor pricing if available --></help>
+        <label><!-- Rationale for funding request? --></label>
+        <name>Rationale_for_funding_request__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason Won / Lost --></label>
+        <name>ReasonWonLost__c</name>
+        <picklistValues>
+            <masterLabel>Converted To Another Pack</masterLabel>
+            <translation><!-- Converted To Another Pack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Cancelled</masterLabel>
+            <translation><!-- Customer Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Discontinued Application</masterLabel>
+            <translation><!-- Discontinued Application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Good Lead</masterLabel>
+            <translation><!-- Good Lead --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Innovation Presentation</masterLabel>
+            <translation><!-- Innovation Presentation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lost To Competition-Branded</masterLabel>
+            <translation><!-- Lost To Competition-Branded --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lost To Competition-Custom</masterLabel>
+            <translation><!-- Lost To Competition-Custom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lost To Competition-PL</masterLabel>
+            <translation><!-- Lost To Competition-PL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Match</masterLabel>
+            <translation><!-- No Match --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price</masterLabel>
+            <translation><!-- Price --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Relationship</masterLabel>
+            <translation><!-- Relationship --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Taste Test</masterLabel>
+            <translation><!-- Taste Test --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Timeline Not Met</masterLabel>
+            <translation><!-- Timeline Not Met --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transfer to GSC/ILT</masterLabel>
+            <translation><!-- Transfer to GSC/ILT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Value-added Service</masterLabel>
+            <translation><!-- Value-added Service --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Reason --></label>
+        <name>Reason__c</name>
+        <picklistValues>
+            <masterLabel>Converted To Another Pack</masterLabel>
+            <translation><!-- Converted To Another Pack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Cancelled</masterLabel>
+            <translation><!-- Customer Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Discontinued Application</masterLabel>
+            <translation><!-- Discontinued Application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Good Lead</masterLabel>
+            <translation><!-- Good Lead --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Innovation Presentation</masterLabel>
+            <translation><!-- Innovation Presentation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lost To Competition-Branded</masterLabel>
+            <translation><!-- Lost To Competition-Branded --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lost To Competition-Custom</masterLabel>
+            <translation><!-- Lost To Competition-Custom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lost To Competition-PL</masterLabel>
+            <translation><!-- Lost To Competition-PL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Match</masterLabel>
+            <translation><!-- No Match --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Out Of Business</masterLabel>
+            <translation><!-- Out Of Business --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price</masterLabel>
+            <translation><!-- Price --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Relationship</masterLabel>
+            <translation><!-- Relationship --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Taste Test</masterLabel>
+            <translation><!-- Taste Test --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Timeline Not Met</masterLabel>
+            <translation><!-- Timeline Not Met --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transfer to GSC/ILT</masterLabel>
+            <translation><!-- Transfer to GSC/ILT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Value-added Service</masterLabel>
+            <translation><!-- Value-added Service --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sales Cycle --></label>
+        <name>Sales_Cycle__c</name>
+        <picklistValues>
+            <masterLabel>00 - Lost</masterLabel>
+            <translation><!-- 00 - Lost --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>01 - Universe</masterLabel>
+            <translation><!-- 01 - Universe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>02 - Above</masterLabel>
+            <translation><!-- 02 - Above --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>03 - In the Funnel</masterLabel>
+            <translation><!-- 03 - In the Funnel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>04 - Best Few</masterLabel>
+            <translation><!-- 04 - Best Few --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>05 - Won</masterLabel>
+            <translation><!-- 05 - Won --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>06 - Not Pursued</masterLabel>
+            <translation><!-- 06 - Not Pursued --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>07 - Deleted/Inactive Accts</masterLabel>
+            <translation><!-- 07 - Deleted/Inactive Accts --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Ship To Code --></label>
+        <name>ShipToCode__c</name>
+        <relationshipLabel><!-- Opportunities (Ship To) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Shipment Verified --></label>
+        <name>ShipmentVerified__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Opportunity COGS --></label>
+        <name>Total_Opp_COGS__c</name>
+    </fields>
+    <recordTypes>
+        <label>Существующий</label>
+        <name>FS_ExistingBusiness</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Возможность с ценами (MA-BE)</label>
+        <name>FS_OpportunityMABE</name>
+    </recordTypes>
+    <recordTypes>
+        <label>UFS Возможность - Россия</label>
+        <name>FS_OpportunityTPR</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Mobile Channel --></label>
+        <name>ICB_Mobile_Channel</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage>Введите дату соглашения перед продвижением на стадию &quot;05а-Выигранная&quot;</errorMessage>
+        <name>FS_AgreementdateIsRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- End Date TPR should not be on previous date. --></errorMessage>
+        <name>FS_EndDate_should_be_future_date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Дата закрытия не может быть в прошлом</errorMessage>
+        <name>FS_OpportunityColsedDateInFutureDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Start Date TPR should not be on previous date. --></errorMessage>
+        <name>FS_StartDate_should_be_future_date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Enter valid reason in the Reason Description field according to the selection of Stage field. --></errorMessage>
+        <name>Opportunity_For_Reason_Description</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level. --></errorMessage>
+        <name>Opportunity_Notchange_at_Stage4</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- An opportunity at stage 05 - Won/Closed Won  can not be changed at the opportunity level. --></errorMessage>
+        <name>Opportunity_Notchange_at_Stage5</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must save the opportunity in Stage 04 - Verbal Commitment before advancing to Stage 05 - Won --></errorMessage>
+        <name>Opportunity_Stage_Based_on_Prior_Value</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Opportunities must be approved in order to advance it to 04 - Verbal Commitment --></errorMessage>
+        <name>Opportunity_Validation_for_Stage_4</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- An opportunity at stage 03 must have at least one line item. Please add a line item to your opportunity in stage 03, then submit for approval. --></errorMessage>
+        <name>Opportunity_for_Stage_3</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Opportunities must be approved in order to advance it to 05 - Won --></errorMessage>
+        <name>Opportunity_for_Stage_5</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cases / Pieces is a required field. --></errorMessage>
+        <name>Required_Cases_Pieces_field</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Comment is a required field. --></errorMessage>
+        <name>Required_Comment_field</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Distributor is a required field. --></errorMessage>
+        <name>Required_Distributor_field</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- End Date TPR is a required field. --></errorMessage>
+        <name>Required_End_Date_TPR</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Internal Order is a required field. --></errorMessage>
+        <name>Required_Internal_Order</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Ship to Code value is a required field. --></errorMessage>
+        <name>Required_ShipToCode_Field</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Start Date TPR is a required field. --></errorMessage>
+        <name>Required_Start_Date_TPR</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Количество образцов должно быть с ограничением 10 шт на Возможность</errorMessage>
+        <name>Samples_Line_Items_Per_Opportunity</name>
+    </validationRules>
+    <webLinks>
+        <label>Отправить MDM заявку</label>
+        <name>FS_SendMDMEmail</name>
+    </webLinks>
+</CustomObjectTranslation>

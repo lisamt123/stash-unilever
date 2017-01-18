@@ -11,6 +11,7 @@ var jq = jQuery.noConflict();
 /* Below script calls a function 'initSliderOTIF' on page load. */
 jq(document).ready(function() {
     initSliderOTIF();
+	updateReadOnlyOTIF();
 });
 
 /* Below function calls another function 'callupdateOtifList' which updates the otif list */
@@ -40,8 +41,8 @@ function initSliderOTIF() {
                     score = itemsGK[pointer];
                 },
                 slide: function( event, ui ) {
-                    jq('label', ".legendSld").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
-                    jq('label', ".legendSld").eq(ui.value -1).click();
+                    jq('label', ".legendSldOtifTable").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+                    jq('label', ".legendSldOtifTable").eq(ui.value -1).click();
                 }
             });
             if (answer === IPMAppOTT.green) {            
@@ -83,8 +84,8 @@ function initSliderOTIF() {
                     score = itemsGK3[pointer];
                 },
                 slide: function( event, ui ) {
-                    jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
-                    jq(this).find(".legendSld label").eq(ui.value -1).click();
+                    jq(this).find(".legendSldOtifTable label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+                    jq(this).find(".legendSldOtifTable label").eq(ui.value -1).click();
                 }
             });
         if (answer === IPMAppOTT.green) { 
@@ -115,9 +116,9 @@ function initSliderOTIF() {
 
 function labelClick(){
     /* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */    
-    jq(".legendSld label").on("click", function() {
-        var lpos = jq(".legendSld label").offset().left;
-        jq(this).closest(".legendSld").find("label").css({
+    jq(".legendSldOtifTable label").on("click", function() {
+        var lpos = jq(".legendSldOtifTable label").offset().left;
+        jq(this).closest(".legendSldOtifTable").find("label").css({
             'color': '#222222'
         });
         jq(this).css({

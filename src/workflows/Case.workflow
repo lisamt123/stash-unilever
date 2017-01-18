@@ -66,6 +66,50 @@
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/Close_Case_Survey</template>
     </alerts>
+	<alerts>
+        <fullName>CEC_Close_Case_Survey_Indonesia</fullName>
+        <description>CEC: Close Case Survey Indonesia</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactEmail</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CEC_Emails_Indonesia/CSAT_Indonesia_Email</template>
+    </alerts>
+    <alerts>
+        <fullName>CEC_Close_Case_Survey_Philippines</fullName>
+        <description>CEC: Close Case Survey Philippines</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactEmail</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CEC_Emails_Philippines/CSAT_Philippines_Email</template>
+    </alerts>
+    <alerts>
+        <fullName>CEC_Close_Case_Survey_Thailand</fullName>
+        <description>CEC: Close Case Survey Thailand</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactEmail</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CEC_Emails_Thailand/CSAT_Thailand_Email</template>
+    </alerts>
+    <alerts>
+        <fullName>CEC_Close_Case_Survey_Vietnam</fullName>
+        <description>CEC: Close Case Survey Vietnam</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactEmail</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CEC_Emails_Vietnam/CSAT_Vietnam_Email</template>
+    </alerts>
     <alerts>
         <fullName>CEC_Send_Auto_Response</fullName>
         <description>CEC Send Auto Response</description>
@@ -77,6 +121,73 @@
         <senderType>CurrentUser</senderType>
         <template>CEC_Unilever/cec_Default_Auto_Response</template>
     </alerts>
+   <alerts>
+        <fullName>TEL_Sample_Request_Rejected_customer_alert</fullName>
+        <description>Sample Request rejected customer alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>SuppliedEmail</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>marketing@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Telesales_Email_Templates/Telesales_Rejected_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>TEL_Sample_Request_approved_Fullfillment_House_alert</fullName>
+        <description>Sample Request approved Fullfillment House alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>SuppliedEmail</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>marketing@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Telesales_Email_Templates/Telesales_Request_Fulfillment_House</template>
+    </alerts>
+    <alerts>
+        <fullName>TEL_Sample_Request_approved_customer_alert</fullName>
+        <description>Sample Request approved customer alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>SuppliedEmail</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>marketing@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Telesales_Email_Templates/Telesales_Approved_Request</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>TEL_Status_Approved</fullName>
+        <description>Telesales - Set Status as Approved</description>
+        <field>Status</field>
+        <literalValue>Approved</literalValue>
+        <name>Status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TEL_tatus_Rejected</fullName>
+        <description>Telesales - Set Status as Rejected</description>
+        <field>Status</field>
+        <literalValue>Rejected</literalValue>
+        <name>Status Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>	
+	<fieldUpdates>
+        <fullName>CEC_Brand_Ambassador_Case_Queue_Assign</fullName>
+        <description>CEC Brand Ambassador Case Queue Assignment - Assign case to &apos;CEC - Brand Ambassador&apos;</description>
+        <field>OwnerId</field>
+        <lookupValue>CEC_Brand_Ambassador</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CEC Brand Ambassador Case Queue Assign</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>CEC_Benelux_Market_Field_Update</fullName>
         <description>CEC: Set the Market field to the market value</description>
@@ -182,6 +293,34 @@
         <name>CEC UK Market Field Update</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+	<fieldUpdates>
+        <fullName>CEC_Update_Case_Priority_Field</fullName>
+        <description>CEC_Update &apos;Case Priority&apos; info to Null: To Update &apos;Case Priority&apos; information to Null</description>
+        <field>Priority</field>
+        <name>CEC Update Case Priority Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+	<fieldUpdates>
+        <fullName>CEC_Update_Case_Status_In_Progress</fullName>
+        <description>CEC Update Case Status into In Progress</description>
+        <field>Status</field>
+        <literalValue>In Progress</literalValue>
+        <name>CEC Update Case Status(In Progress)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+	<fieldUpdates>
+        <fullName>CEC_Update_SMS_Mobile_Number</fullName>
+        <field>SMS_Mobile_Number__c</field>
+        <formula>Account.Mobile_Phone_No_Special_Char__c</formula>
+        <name>CEC Update SMS Mobile Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -295,7 +434,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>(1 OR 3) AND 2</booleanFilter>
+        <booleanFilter>(1 OR 3 OR 4) AND 2</booleanFilter>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
@@ -308,7 +447,12 @@
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
-            <value>Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ</value>
+            <value>,Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ,Email Philippines,Email Indonesia,Email Vietnam,Email Thailand,Email Bangladesh,Email Pakistan,Email Japan,Email Korea,Email Taiwan,Email Hong Kong</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>contains</operation>
+            <value>Email Turkey</value>
         </criteriaItems>
         <description>CEC : To update the Case Origin field.</description>
         <triggerType>onAllChanges</triggerType>
@@ -346,9 +490,24 @@
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
     </rules>
+	<rules>
+        <fullName>CEC Brand Ambassador Case Assignment</fullName>
+        <actions>
+            <name>CEC_Brand_Ambassador_Case_Queue_Assign</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CEC_Update_Case_Status_In_Progress</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>CEC Brand Ambassador Case Assignment  - Assignment case For Brand Ambassador and Shut the status to InProgress</description>
+        <formula>AND(CONTAINS(LOWER(Country__r.Brand_Ambassador_Brands__c),LOWER(Brand__c)) , ISPICKVAL( Origin , &apos;Web&apos;),ISPICKVAL(  Type  , &apos;Product Question&apos;)  )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
     <rules>
         <fullName>CEC Close Case Survey</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>CEC: to send CSAT survey link</description>
         <formula>ExecuteCaseSurveyWorkflow__c &amp;&amp;  ISBLANK(ParentId) &amp;&amp; ISPICKVAL( Status, &apos;Closed&apos;)&amp;&amp; NOT(ISBLANK(Case_Market_Mapping_Country_Id__c)) &amp;&amp; NOT(Reason_Code__r.Global_Listening_Tree__r.Exclude_From_CSAT__c) &amp;&amp; IF(ISPICKVAL(Origin, &apos;Email&apos;), VALUE(MID(TEXT((NOW()- $System.OriginDateTime)),13,2)) &lt; (Country__r.CSAT_Email_Percentage__c * 100), IF(ISPICKVAL(Origin,  &apos;Phone&apos;), VALUE(MID(TEXT((NOW()- $System.OriginDateTime)),13,2)) &lt; (Country__r.CSAT_Phone_Percentage__c * 100), IF(ISPICKVAL(Origin,  &apos;Social&apos;), VALUE(MID(TEXT((NOW()- $System.OriginDateTime)),13,2)) &lt; (Country__r.CSAT_Social_Percentage__c * 100), IF(ISPICKVAL(Origin,  &apos;Web&apos;), VALUE(MID(TEXT((NOW()- $System.OriginDateTime)),13,2)) &lt; (Country__r.CSAT_Web_Percentage__c * 100), FALSE))))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -517,6 +676,39 @@
             <value>UK &amp; Ireland</value>
         </criteriaItems>
         <description>Auto Response Email on Case Creation for UK &amp; Ireland for Case Origin Web</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+	<rules>
+        <fullName>CEC Update Case Priority Field</fullName>
+        <actions>
+            <name>CEC_Update_Case_Priority_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Priority</field>
+            <operation>equals</operation>
+            <value>2 - Medium</value>
+        </criteriaItems>
+        <description>CEC Update Email Case Priority Field: To Update &apos;Case Priority&apos; information to Null</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+	<rules>
+        <fullName>CEC Update SMS Mobile From Account</fullName>
+        <actions>
+            <name>CEC_Update_SMS_Mobile_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.SMS_Mobile_Number__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.PersonMobilePhone</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Whenever account information gets populated on the case or updated on the case then we need to update &apos;SMS Mobile Number&apos; field only if this field is not populated with any value.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

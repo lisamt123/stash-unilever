@@ -1,0 +1,11 @@
+<!--
+  Component Name: Core_CA_HomeEvent
+  Author : Mindtree
+  Date: 03 June 2016
+  Requirement/Description: home page navigation code.
+-->
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="closednavigation" type="String"/> 
+    <aura:attribute name="filterValue" type="String"/>
+    <aura:attribute name="isFeedBackPopup" type="boolean"/>
+</aura:event>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>WWP Supplier Notification Temp</name>
+    <style>none</style>
+    <subject>Loss Reason Codes Edited by the Planner</subject>
+    <textOnly>Hi Supplier, Loss codes for the item  {!WWP_Loss_Tree__c.Name} is edited by the planner.</textOnly>
+    <type>custom</type>
+</EmailTemplate>

@@ -1,8 +1,8 @@
 <!--  
 ***************************************************************************************
-*@Description:This page is used to display regions and countries for creating rollouts 
+*@Description:This page is used to display regions and countries for creating rollouts   
 *@Author: Cognizant
-*@Created Date: 22/02/2015 
+*@Created Date: 22/02/2015  
 *@Copyright © 2015  Unilever  
 ***************************************************************************************
 -->
@@ -15,55 +15,56 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Table.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_RolloutPlans.css')}"/>
     <apex:composition template="IPM_TemplateRevamp">
-    
-   <apex:define name="body">
-       <apex:form id="rolloutPlansForm">
-         <div class="gradientbg"> 
-         <!-- Project Detail Component added in Global Rollout Page -->
-              <c:IPM_ProjectDetails project="{!project}" activeItem="rolloutPlan"/>                    
+        
+        <apex:define name="body">
+            <apex:form id="rolloutPlansForm">
+                <div class="gradientbg"> 
+                    <!-- Project Detail Component added in Global Rollout Page -->
+                    <c:IPM_ProjectDetails project="{!project}" activeItem="rolloutPlan"/>                    
                 </div>                
-  
+                
                 <div class="ipmContent">
                     <div class="row finwrapper">
                         <div class="col-sm-12">
                             <div class="panel-group pageHeadToolbar clearfix">
                                 <div class="row">
-                                
-                                <!-- To place the help symbol in the top right hand corner of page -->
-                                <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
-                                    <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
-                                </apex:outputPanel> 
-                                
+                                    
+                                    <!-- To place the help symbol in the top right hand corner of page -->
+                                    <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+                                        <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
+                                    </apex:outputPanel> 
+                                    
                                     <div class="col-sm-5 pull-left">
                                         <h3 class="pageTitle">{!$Label.IPM_ROLLOUTS}</h3>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>                  
-                     <!--  Component added based on Global and Regional Rollout   -->                  
-                    <c:IPM_RolloutPlansTable rendered="{!isSpanGlobal}"/>
-                    <c:IPM_LocalRolloutPlansTable rendered="{!isSpanRegional}"/>
+                    </div>
+                    <!--  iFrames added based on Global and Regional Rollout   -->   
+                    
+                    <!--  Page Name - IPM_RolloutPlansTablePage   -->
+                    <apex:outputPanel layout="block" styleClass="incHeightFrame" rendered="{!OR(AND(isSpanGlobal,project.IPM_ProjectGKM__c != 'GKM3'),AND(project.IPM_ProjectGKM__c == 'GKM3',project.IPM_Phase__c == 'Ideas'))}">
+                        <iframe id="rolloutmpage" class="rolloutsPageClass" scrolling="no" frameborder="0" height="0" width="100%" marginheight="0" marginwidth="0" allowtransparency="true"/>
+                    </apex:outputPanel>                    
+                    <!--  Page Name - IPM_LocalRolloutPlansTablePage   -->
+                    <apex:outputPanel layout="block" styleClass="incHeightFrame" rendered="{!isSpanRegional}">
+                        <iframe id="localrolloutpage" class="rolloutsPageClass" scrolling="no" frameborder="0" height="0" width="100%" marginheight="0" marginwidth="0" allowtransparency="true"/>
+                    </apex:outputPanel>
+                    <!--  Page Name - IPM_RolloutPlansTable_GKM3Page   -->
+                    <apex:outputPanel layout="block" styleClass="incHeightFrame" rendered="{!AND(project.IPM_ProjectGKM__c == 'GKM3',project.IPM_Phase__c != 'Ideas')}">
+                        <iframe id="rolloutgkmpage" class="rolloutsPageClass" src="" scrolling="no" frameborder="0" height="0" width="100%" marginheight="0" marginwidth="0" allowtransparency="true"/>
+                    </apex:outputPanel>    
                     
                 </div>
-                <div id="ipmAddMemberModal" tabindex="-1" data-backdrop-limit="1" class="modal fade ipmAddMemberModal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <div class="modal-title"></div>
-                            </div>
-                            <div class="modal-body">    
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </apex:form> 
         </apex:define>
     </apex:composition>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/iframeResizer.min.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_RolloutPlansjs.js')}" type="text/javascript"></script>
-     <script>
-		var IPMProAppRP = {wmessage:'{!$Label.IPM_Unsaved_Alert}'};
-	</script>
-  </apex:page>
+    <script>
+        var IPMProAppRP = {wmessage:'{!$Label.IPM_Unsaved_Alert}',rolloutplans:/{!strIPM_RolloutPlans}/i,rolloutplanstablepage:'{!strIPM_RolloutPlansTablePage}',localrolloutpage:'{!strIPM_LocalRolloutPlansTablePage}',rolloutsgkmpage:'{!strIPM_RolloutPlansTable_GKM3Page}'};    
+    </script>
+</apex:page>

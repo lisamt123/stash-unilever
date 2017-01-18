@@ -48,16 +48,24 @@ private class PBS_TrainingTrackDetailCtrl_Test{
         System.assertEquals(1,tracks.size());
         System.assert(trackItems.size()>0);
 
+        PBS_Standard_Job_Profile__c psp= new PBS_Standard_Job_Profile__c();
+        psp.name='Guest';
+        insert psp;
+        
         List<PBS_Training_Track__Share> shares = new List<PBS_Training_Track__Share>();
 
         for(PBS_Training_Track__c t : tracks){
+            t.Work_Level__c = 'Guest';
+            t.PBS_Standard_Job_Profile__c = psp.id;
+            t.Geography__c ='Guest';    
+            
             PBS_Training_Track__Share tShr  = new PBS_Training_Track__Share();
             tShr.ParentId = t.Id;
             tShr.UserOrGroupId = lmsUsers.get(0).Id;
             tShr.AccessLevel = 'Read';
             shares.add(tShr);
         }
-
+        update tracks;
         insert shares;
 
 
@@ -84,7 +92,7 @@ private class PBS_TrainingTrackDetailCtrl_Test{
                     for(PBS_TrainingTrackItem_CC titem :trackItemslist){
                         System.assert(titem.getItemURL()==null);
                     }
-                }
+                 }
                 
             }
 

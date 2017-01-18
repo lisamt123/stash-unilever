@@ -1,7 +1,11 @@
+/**
+ * Name:        -   AA_WrapperUtility()
+ * @description -   Contains the wrapper class to bundle required variables for Agent Report
+ * @Author      -   Aslesha R K     
+ */
 global with sharing class AA_WrapperUtility {
 
-
-    global class AgentReportDataResponse extends AA_BaseApplicationWrapperObj{
+global class AgentReportDataResponse extends AA_BaseApplicationWrapperObj{
            // public list<AllAgentReports> responseReports;
         }
         
@@ -44,6 +48,14 @@ global with sharing class AA_WrapperUtility {
             public String RecordType;
             public String AgentReportId;
             public String SortOnMostLike;
+            public String Status;
+            public String searchString;
+            public String searchType;
+            public List<String> usertomentionIds;
+            public List<String> topicIds;
+            /* Other brand and company names */
+            public String OtherBrandName;
+            public String OtherCompetitor; 
            
         }
     
@@ -67,9 +79,9 @@ global with sharing class AA_WrapperUtility {
             public List<aa_Agent_App_Brand_Category__c> selectedCompetitorCategoryOnBrand;
             public List<aa_Topic__c> topicList;
             public String agentReportId;
-            public String googleApiVaue;
-            
-        }
+           // public String googleApiVaue;
+            public List<sObject>  autocompleteList;
+    }
         
      
      /**
@@ -109,31 +121,15 @@ global with sharing class AA_WrapperUtility {
            
             global Integer compareTo(Object objToCompare) {
           
-           agentReportDetail compareToreport=(agentReportDetail)objToCompare;
+            agentReportDetail compareToreport=(agentReportDetail)objToCompare;
             
                if (LikeCount == compareToreport.LikeCount)  return 0;
                if (LikeCount < compareToreport.LikeCount) return 1;
                return -1; 
-          
-           
-              
-             
-       
-         
-          }
-           
-            /*public String feedId;
-            public String likeCount; 
-            public String CommentCount;*/
+            }          
     }
-    
-    /*global class listOfAgentReport {
-        public List<agentReportDetail> responseListofAgentReport; 
-    }*/
-     
-        
-     global class FilterTypeRequest{
+            
+    global class FilterTypeRequest{
           public String FilterType;
-        
-     }
+    }
 }

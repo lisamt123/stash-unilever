@@ -35,21 +35,23 @@
         });
         $A.enqueueAction(action);        
         console.log('------------3----------------');
-        var action1 = component.get("c.getCFCGAID");
-        action1.setCallback(this, function(response) {
-            var state = response.getState();
-            if (state == "SUCCESS" && response.getReturnValue()!='') {
-              //  if(response.getReturnValue()!=''){                                         
-                    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                                            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-                    ga('create', response.getReturnValue(), 'auto');
-                    ga('send', 'pageview');
-                }               
-        });
-        $A.enqueueAction(action1);
+                    
+                    var action1 = component.get("c.getCFCGAID");
+                    action1.setCallback(this, function(response) {
+                        var state = response.getState();
+                        if (state == "SUCCESS" && response.getReturnValue()!='') {
+                          //  if(response.getReturnValue()!=''){                                         
+                                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                                        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                                                        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                                ga('create', response.getReturnValue(), 'auto');
+                                ga('send', 'pageview');
+                            }               
+                    });
+                    $A.enqueueAction(action1);
 	},
+    
     gotoFilter: function(component, event, helper) {
 		var eventDetail=component.get("v.eventItem");
         var selectEvent=$A.get("e.c:CFC_HandleEvent");

@@ -26,14 +26,14 @@
                 
                     <div class="col-xs-12">
                         <div class="panel" id="CommentText">       
-                            <apex:inputTextarea value="{!CommentRecord.Body}" html-placeholder="Add your comments here" />
+                            <apex:inputTextarea value="{!CommentRecord.Body}" html-placeholder="Add your comments here" rendered="{!isCommentEditable}" />
                         </div>
                     </div>
                 </div>
                 <div class="row clearfix">
                     <div class="col-xs-6 secButtonSet pull-right">
                         <div class="panel">
-                            <apex:commandButton value="Add Comment" styleClass="ipmButton primary"  action="{!AddComment}" reRender="onLoadComments1,pgmsg,viewall" onComplete="window.location.reload()"/>
+                            <apex:commandButton value="Add Comment" styleClass="ipmButton primary"  action="{!AddComment}" reRender="onLoadComments1,pgmsg,viewall" onComplete="window.location.reload();parent.getCommentsCount('{!$CurrentPage.parameters.id}');" rendered="{!isCommentEditable}"  />
                         </div>
                     </div>
                 </div>  
@@ -75,7 +75,7 @@
                                                     </div>
                                                     <div class="col-xs-2 right">       
                                                         <div class="panel SecButtonSet delete">
-                                                            <apex:commandLink styleClass="icoButton delete" action="{!doDelete}" onComplete="window.location.reload()">
+                                                            <apex:commandLink styleClass="icoButton delete" action="{!doDelete}" onComplete="window.location.reload();parent.getCommentsCount('{!$CurrentPage.parameters.id}');">
                                                                 <apex:param name="CommentID" value="{!cmnts.feedItem.Id}" assignTo="{!CommentsID}"/>
                                                             </apex:commandLink> 
                                                         </div>

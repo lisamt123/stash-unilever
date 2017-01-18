@@ -1,0 +1,3 @@
+<apex:page showHeader="true" sidebar="true" action="{!redirectToCampaignMain}" recordSetVar="campaigns" standardController="Oblix_SOW_Projects__c" extensions="Oblix_CampaignRedirectController" >
+	<apex:listViews type="Oblix_SOW_Projects__c" />
+</apex:page>

@@ -232,6 +232,12 @@ public with sharing class IPM_Team_Assignment_Controller {
     * @description: checking whether current logged in user has edit permission to team assigned page.
     */
     public boolean isShowEditmode{get;set;}
+    
+     /*******************************************************************************************************
+    * @description: checking whether current logged in user has edit permission to team assigned page on stopped Projects.
+    */
+    public boolean isStopped{get
+        { return ( IPM_proj.IPM_PrepareForArchival__c || IPM_proj.Is_Archieved__c);}set;}
    
     /*******************************************************************************************************
     * @Description: This is IPM_Resource_Allocation_FinalRevamp constructor and Initialise all variables.Get Project id FROM url parameter
@@ -288,8 +294,8 @@ public with sharing class IPM_Team_Assignment_Controller {
         IPM_proj=new IPM_Project__c();
         List<IPM_Project__c>ipmProjectList=new List<IPM_Project__c>();
         ipmProjectList=[SELECT IPM_Project_Name__c,IPMProject_Span__c,IPM_Project_Gatekeeper__c,
-        Deputy_Project_Leader__c,IPM_Brand_Positioning__c,IPM_Project_Logo__c,
-        IPM_Technical_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Description__c,
+        Deputy_Project_Leader__c,IPM_Brand_Positioning__c,IPM_Project_Logo__c,IPM_PrepareForArchival__c,
+        IPM_Technical_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Description__c,Is_Archieved__c,
         IPM_CPP__c,IPM_CPP_Change_Reason__c,IPM_Technical_Project_Leader__r.name,
         Deputy_Project_Leader__r.name,Deputy_Project_Leader__r.id,IPM_Project_Gatekeeper__r.name,
         IPM_Project_Leader__r.name,IPM_Project_Leader__r.SmallPhotoUrl,
@@ -578,13 +584,13 @@ public with sharing class IPM_Team_Assignment_Controller {
     * @Description:Get user type with access permission   
     */
     public void getIpmuserType(){
+        list<IPM_Project__c> projectList = [SELECT IPM_Project_Leader__c,IPM_PrepareForArchival__c,Is_Archieved__c FROM IPM_Project__c WHERE 
+        id=:projectID AND (IPM_Project_Leader__c =:userinfo.getuserid() OR Deputy_Project_Leader__c=:userinfo.getuserid() ) LIMIT 1];
         
-            list<IPM_Project__c>lstofuser=[SELECT IPM_Project_Leader__c FROM IPM_Project__c WHERE 
-        id=:projectID AND (IPM_Project_Leader__c =:userinfo.getuserid() 
-        OR Deputy_Project_Leader__c=:userinfo.getuserid() ) AND Is_Archieved__c=false LIMIT 1];
-        if(lstofuser != NULL && !lstofuser.isEmpty()){
+        if(!projectList.isEmpty())
+        {
             isCoreMemEditable=true;
-            isEditable=true;  
+            isEditable=true;
         }
          
         //security for central team and BP users

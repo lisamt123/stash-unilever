@@ -102,28 +102,33 @@
         <picklist>
             <picklistValues>
                 <fullName>Not Started</fullName>
-                <closed>false</closed>
                 <default>true</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>In Progress</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Completed</fullName>
-                <closed>true</closed>
                 <default>false</default>
+                <closed>true</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Waiting on someone else</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <picklistValues>
                 <fullName>Deferred</fullName>
-                <closed>false</closed>
                 <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Checked</fullName>
+                <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -142,6 +147,38 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Send Quote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Prepare business review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Organize materials for upcoming meeting or presentation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Prep for meetings or presentations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Conduct analysis on sales volume for promotional planning or forecasting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Compliance administration</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Coordinate field based support</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Write, review and maintain strategic account plan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Verify win implementation schedule</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -170,6 +207,154 @@
                 <fullName>Other</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Personal Task</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - District meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - General sales meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Foodshow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Meet with key decision makers or management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Trade event - present and coordinate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Trade event – local activity (ex: sample)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Trade event – check in (mid point, final)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Trade event – launch at general sales meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Conduct business review or program update</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Conduct annual joint business planning session</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - DSR Work-With</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Market blitz</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Lead follow up on behalf of distributor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Development/execution of local promotion – local led</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Development/execution of local promotion – center led</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Distributor email communication</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Phone mtg - discuss product/program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Phone mtg - arrange appointment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Phone mtg - follow up</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Virtual call - present/review marketing program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Virtual call - general</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Virtual call - RAP/profile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Virtual call - discuss pricing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Virtual call - strategy meeting/top to top</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - In person sales call - present/review marketing program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - In person sales call - product demo/cutting/ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - In person sales call - general</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - In person sales call - RAP/profile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - In person sales call - review pricing quote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - In person sales call - strategy meeting/top to top</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Restaurant visit - RAP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Email/text - provide follow up information</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Email/text - confirm appointment / agenda</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Order sample products</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
@@ -182,5 +367,531 @@
         <fullName>WhoId</fullName>
         <type>Lookup</type>
     </fields>
+    <recordTypes>
+        <fullName>FS_Task</fullName>
+        <active>true</active>
+        <description>Task for Food Solutions</description>
+        <label>FS Task</label>
+        <picklistValues>
+            <picklist>Call_Type__c</picklist>
+            <values>
+                <fullName>Claims Recontacts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inbound Call - Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inbound Call - Primary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inbound Mail - Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Call - Answerphone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Call - Not Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Call - Not Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Recontact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound call - Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recommended Alternative Products %2F Stores</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secondary Contact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Distributorname__c</picklist>
+            <values>
+                <fullName>3Cafe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Akademiya Edy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Alidi-Nord</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Alyans-M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Azbuka food trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bakaleya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Beloe More</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecoland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Frostway</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Globalfoods Kazan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Globalfoods Krym</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Globalfoods Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Globalfoods Rostov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Globalfoods Samara</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Globalfoods Sochi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Globalfoods Yaroslavl</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grand Marche</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GurmanM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Holod</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IP Bulatova N%2EN%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IP Sherbakova T%2EA%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integrita Krasnodar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integrita Rostov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integrita Sochi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integrita St%2EPete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ladya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lotos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MARRusia Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MARRusia St%2EPete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mariya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mega Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Produktovaya mozaika</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Produktovaya mozaika Tatarstan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pyataya Armiya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restoratsiya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Samson-Opt</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Snabzhenie i logistika</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SoyuzPischeProm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suomi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweet Life</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweet Life Tatarstan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TD Elite Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TD Global Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TD KTK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Urenholt Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Urenholt St%2EPete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vershina Vkusa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virgo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vladelita</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vostok-Zapad Ekaterinburg</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vostok-Zapad Krasnodar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vostok-Zapad Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vostok-Zapad Novosibirsk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vostok-Zapad St%2EPete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yurinat</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Task_Type__c</picklist>
+            <values>
+                <fullName>Centrally Led</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Locally Led</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Checked</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Compliance administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Conduct analysis on sales volume for promotional planning or forecasting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Coordinate field based support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Organize materials for upcoming meeting or presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prep for meetings or presentations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prepare business review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Verify win implementation schedule</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Write%2C review and maintain strategic account plan</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>D - Conduct annual joint business planning session</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Conduct business review or program update</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - DSR Work-With</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Development%2Fexecution of local promotion %E2%80%93 center led</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Development%2Fexecution of local promotion %E2%80%93 local led</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Distributor email communication</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - District meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Foodshow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - General sales meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Lead follow up on behalf of distributor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Market blitz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Meet with key decision makers or management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Trade event %E2%80%93 check in %28mid point%2C final%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Trade event %E2%80%93 launch at general sales meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Trade event %E2%80%93 local activity %28ex%3A sample%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Trade event - present and coordinate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Email%2Ftext - confirm appointment %2F agenda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Email%2Ftext - provide follow up information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - In person sales call - RAP%2Fprofile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - In person sales call - general</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - In person sales call - present%2Freview marketing program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - In person sales call - product demo%2Fcutting%2Fideation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - In person sales call - review pricing quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - In person sales call - strategy meeting%2Ftop to top</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Order sample products</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Phone mtg - arrange appointment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Phone mtg - discuss product%2Fprogram</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Phone mtg - follow up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Restaurant visit - RAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Virtual call - RAP%2Fprofile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Virtual call - discuss pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Virtual call - general</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Virtual call - present%2Freview marketing program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Virtual call - strategy meeting%2Ftop to top</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>FS_Type_Mandatory</fullName>
+        <active>true</active>
+        <description>FS_Type_Mandatory</description>
+        <errorConditionFormula>AND($Profile.Name = &apos;Unilever Food Solution - NA&apos;,  ISPICKVAL(Type,&apos;&apos;))</errorConditionFormula>
+        <errorMessage>Type is Mandatory, Please select a Type.</errorMessage>
+    </validationRules>
 </CustomObject>

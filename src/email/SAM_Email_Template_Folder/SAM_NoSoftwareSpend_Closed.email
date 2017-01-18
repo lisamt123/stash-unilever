@@ -1,0 +1,11 @@
+Hi {!SAM_Request__c.CreatedBy},
+
+Your Service Request number {!SAM_Request__c.Name} is now closed.
+
+Please login to the portal for more details.
+
+You can access your Service Request via the link below;
+{!SAM_Request__c.Link}
+
+Thanks,
+{!SAM_Request__c.lkp_Assign_To__c}

@@ -238,8 +238,8 @@
                             </div>
                             <div class="job-field-parent job-field-parent-smaller displayIB VATop margin-bottom20" style="margin-top:8px;">
                                 <div class="job-field-label"><span>{!$Label.Amr_Shoot_Location}<strong></strong></span></div>
-                                <div class="job-field-input job-field-input-multiselect" style="font-weight:bold;">
-                                    <apex:selectList value="{!selectedCountry}" multiselect="true" size="5" label="Shoot Location">
+                                <div class="job-field-input job-field-input-multiselect job-field-input-multiselectJq" style="font-weight:bold;">
+                                    <apex:selectList value="{!selectedCountry}" multiselect="true" size="5" label="Shoot Location" html-datalist="{!savingObj.Shoot_Location__c}">
                                         <apex:selectOptions value="{!shootLocation}" />
                                     </apex:selectList>
                                 </div>

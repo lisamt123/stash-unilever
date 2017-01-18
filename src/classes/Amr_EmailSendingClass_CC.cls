@@ -11,10 +11,7 @@ public with sharing Class Amr_EmailSendingClass_CC{
 */    
     
     public static void emailSending(String whatId, List<String> userEmail, String developerNameString){
-    
-        System.debug('Record Id -> '+ whatId + '  Email Address List ->  ' + userEmail + ' Email Template Name ->  ' + developerNameString );
-        
-        
+               
         try{
             Id emailTemplate = [select Id from EmailTemplate where developerName = :developerNameString].id;
             Contact tempContact = new Contact();

@@ -7,7 +7,7 @@ public class Amr_NewSaving_Test{
            Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
         insert customSetting;
           
-           Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
+           Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(single_or_multiply_project__c='single',name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
                                             Digital_Agency_Name__c = Amr_ConstantForAdManager.TEST,Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
                                             Any_other_agencies_involved__c = 'abc',Budget_Allocated_Input_Value__c = 5,Campaign_Name__c = 'xyz',
                                             Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com',Project_Description__c = Amr_ConstantForAdManager.EXECUTION
@@ -27,7 +27,7 @@ public class Amr_NewSaving_Test{
         
       
         ApexPages.currentPage().getParameters().put('id',jobDetailsObj.id);
-        Amr_NewSaving_CC controller = new Amr_NewSaving_CC();
+      //  Amr_NewSaving_CC controller = new Amr_NewSaving_CC();
         //controller.addRowQuote();
         Amr_Quote__c  QuoteObj1 = new Amr_Quote__c(Saving__c = savingObjTest.id, Name =  'test2');
         
@@ -64,7 +64,6 @@ public class Amr_NewSaving_Test{
         Amr_NewSaving_CC   savingObject = new Amr_NewSaving_CC ();
         
         savingObject.savingObj = savingObjTest;
-        System.debug('IDDDDD --->' + savingObjTest.id);
         savingObject.jobId = jobDetailsObj.id;
         savingObject.jobDetailObj = jobDetailsObj;
         savingObject.adManagerNumber = 'Ego/12345';
@@ -119,7 +118,7 @@ public class Amr_NewSaving_Test{
            Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
         insert customSetting;
           
-           Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
+           Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(single_or_multiply_project__c='single',name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
                                             Digital_Agency_Name__c = Amr_ConstantForAdManager.TEST,Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
                                             Any_other_agencies_involved__c = 'abc',Budget_Allocated_Input_Value__c = 5,Campaign_Name__c = 'xyz',
                                             Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com',Project_Description__c = Amr_ConstantForAdManager.EXECUTION

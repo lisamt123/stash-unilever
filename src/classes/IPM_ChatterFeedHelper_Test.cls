@@ -125,7 +125,7 @@ private class IPM_ChatterFeedHelper_Test {
         globalprojects[0].Deputy_Project_Leader__c = deputyPL.Id;
         globalprojects[0].IPM_Technical_Project_Leader__c = technicalPL.id;
         globalprojects[0].IPM_Project_Gatekeeper__c = gateKeeper.id;
-        globalprojects[0].IPM_Finance_Member__c= financeMember.id;
+        globalprojects[0].IPM_Finance_Lead__c= financeMember.id;
         globalprojects[0].IPM_Project_Leader__c= pL.id;
            
         IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = true;
@@ -143,11 +143,7 @@ private class IPM_ChatterFeedHelper_Test {
         
         regionalProjectList = createRegionalProjects(lstProjects);
         
-               
-        createLocalProjectList(regionalProjectList);       
-        
-        
-         //Bulk insert of project resources
+        //Bulk insert of project resources
         IPM_Project_Resource__c projectResourceBDUser = IPM_TestFactory_Helper.createIPMProjectResource(globalprojects[0].Id,false); 
         IPM_Project_Resource__c projectResourceCDUser = IPM_TestFactory_Helper.createIPMProjectResource(globalprojects[0].Id,false);
         IPM_Project_Resource__c projectResourceCMIUser = IPM_TestFactory_Helper.createIPMProjectResource(globalprojects[0].Id,false);
@@ -209,7 +205,7 @@ private class IPM_ChatterFeedHelper_Test {
             project.Deputy_Project_Leader__c = UserInfo.getUserId();
             project.IPM_Technical_Project_Leader__c = UserInfo.getUserId();
             project.IPM_Project_Leader__c = UserInfo.getUserId();
-            project.IPM_Finance_Member__c = financeMember.id;
+            project.IPM_Finance_Lead__c = financeMember.id;
             project.IPM_Project_Type__c =IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
             project.IPM_Company_Card__c = lstProjects[0].IPM_Company_Card__c;
             project.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
@@ -247,7 +243,7 @@ private class IPM_ChatterFeedHelper_Test {
             project.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
             project.Deputy_Project_Leader__c = UserInfo.getUserId();
             project.IPM_Project_Leader__c = UserInfo.getUserId();
-            project.IPM_Finance_Member__c = UserInfo.getUserId();
+            project.IPM_Finance_Lead__c = UserInfo.getUserId();
             project.IPM_Technical_Project_Leader__c = UserInfo.getUserId();
             project.IPM_Project_Type__c =IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
             project.IPM_Company_Card__c = lstProjects[0].IPM_Company_Card__c;
@@ -274,7 +270,7 @@ private class IPM_ChatterFeedHelper_Test {
         lstProjects.addAll(lstLocalProjects);
         
         lstProjects =[Select Id,Name,IPM_Project_Name__c,IPM_Phase__c,IPM_Temporary_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c,
-            IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Finance_Member__c,
+            IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Finance_Lead__c,
             IPM_Technical_Project_Leader__c,IPM_Project_Type__c,IPM_Company_Card__c,IPMProject_Span__c,
             IPM_Target_Launch_Dates__c,IPM_Parent_Project__c from IPM_Project__c where id in:lstProjects];
         
@@ -398,7 +394,8 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testNotifyFinanceMemberAddedToRollout() {
-        
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=true;
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
         initializeData();
         Test.startTest();
         System.runAs(platformUser) 
@@ -443,6 +440,8 @@ private class IPM_ChatterFeedHelper_Test {
                 }
            }
         }
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=false;
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
         Test.stopTest();                              
     }
     
@@ -494,11 +493,12 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testPostChatterIfLocalRegionalTLDMisaligned() {
-        
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=true;
             initializeData();
-            
             Test.startTest();
             System.runAs(platformUser) {
+            createLocalProjectList(regionalProjectList);  
             regionalProjectList[0].IPM_Target_Launch_Dates__c = System.today() + 8;
             update regionalProjectList;
             
@@ -526,7 +526,8 @@ private class IPM_ChatterFeedHelper_Test {
             }
              
             }
-            
+            IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=false;
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
             Test.stopTest(); 
     }
     
@@ -537,12 +538,14 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testPostChatterIfLocalRegionalMisaligned() {
-        
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=true;
             initializeData();   
         
             Test.startTest();  
             System.runAs(platformUser) {
             
+            createLocalProjectList(regionalProjectList);  
             Id  financeMasterRecordType = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();  
             IPM_Financial__c financial = IPM_TestFactory_Helper.createIPMFinancial(false);
             financial.Parent_Project__c = lstLocalProjects[0].Id;
@@ -568,6 +571,8 @@ private class IPM_ChatterFeedHelper_Test {
                     System.assert(projectFeed.Body.contains(FINANCIAL_ALIGN),FEED_UPDATED_NOT_ASSERTED);
                 }
             }
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=false;
+                IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
             Test.stopTest();
        }
     }
@@ -579,7 +584,8 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testPostChatterRegionalRolloutAddedToPlan() {
-        
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=true;
             initializeData();
             
             Test.startTest();
@@ -592,6 +598,8 @@ private class IPM_ChatterFeedHelper_Test {
                       System.assert(projectFeed.Body.contains(System.Label.IPM_Included_In),FEED_UPDATED_NOT_ASSERTED);
                 }      
             }
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=false;
+                IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
             Test.stopTest();
         }
      }
@@ -603,7 +611,8 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
    private static testmethod void testPostChatterIfDocumentStatusChanged(){
-        
+       IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=true;
         initializeData();
         
         Test.startTest(); 
@@ -648,7 +657,9 @@ private class IPM_ChatterFeedHelper_Test {
                     System.assert(projectFeed.Body.contains(Label.IPM_Gate_Approved_With_Edits),FEED_UPDATED_NOT_ASSERTED);
                 }    
             }
-            Test.stopTest();
+            IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=false;
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
+            Test.stopTest();            
         }
     }
     
@@ -689,14 +700,18 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testManageChatterMembers (){
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=true;
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
         initializeData(); 
         
         Map<Id,IPM_Project__c> newProjectMap= new Map<Id,IPM_Project__c>();
         Map<Id,IPM_Project__c> oldProjectMap= new Map<Id,IPM_Project__c>();
-        for(IPM_Project__c proj:lstProjects)
-        {
-            newProjectMap.put(proj.id,proj);
-        }   
+        if(lstProjects!=null){
+            for(IPM_Project__c proj:lstProjects)
+            {
+                newProjectMap.put(proj.id,proj);
+            }
+        }  
         for(IPM_Project__c proj:regionalProjectList)
         {
             oldProjectMap.put(proj.id,proj);
@@ -712,7 +727,9 @@ private class IPM_ChatterFeedHelper_Test {
             System.assert(projectFeed.Body.contains(IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project),FEED_UPDATED_NOT_ASSERTED);
          }
         }   
-        }   
+        }
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=false;
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
         Test.stopTest();
     }
     
@@ -723,7 +740,9 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testBusinessCaseChanged() {
-            
+         IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION=true;
+         IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;	
+         IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION=true;   
          initializeData();
          
          System.runAs(platformUser) {
@@ -748,6 +767,9 @@ private class IPM_ChatterFeedHelper_Test {
                 System.assert(projectFeed.Body.contains(IPM_ConstantUtils.BUSINESS_CASE_SAVED),BUSINESS_NOT_SAVED);
             }   
          }
+         IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
+         IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION=false;
+         IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION=false;
          Test.stopTest();   
          }      
     }    
@@ -758,32 +780,32 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testmethod void testProjectTriggerHandler(){
-       
+       IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
         initializeData();
         System.runAs(platformUser) {
             Test.startTest();   
-
+            createLocalProjectList(regionalProjectList);  
             IPM_ProjectTriggerHandler IPM_ProjectTriggerHandlerctrl = new IPM_ProjectTriggerHandler();
             IPM_ProjectTriggerHandlerctrl.onAfterInsert(regionalProjectList);
             IPM_ProjectTriggerHandlerctrl.onBeforeUpdate(regionalProjectList);
             
             Map<Id,IPM_Project__c> newProjectMap= new Map<Id,IPM_Project__c>();
-            
-            for(IPM_Project__c proj:lstProjects)
-            {
-               proj.IPM_Project_Leader__c = UserInfo.getUserId();
-               proj.IPM_Technical_Project_Leader__c = UserInfo.getUserId();
-               proj.Deputy_Project_Leader__c = UserInfo.getUserId();
-               proj.IPM_Finance_Member__c = UserInfo.getUserId();
-               proj.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
-               newProjectMap.put(proj.id,proj);
-            }   
-    
+            if(lstProjects!=null){
+                for(IPM_Project__c proj:lstProjects)
+                {
+                   proj.IPM_Project_Leader__c = UserInfo.getUserId();
+                   proj.IPM_Technical_Project_Leader__c = UserInfo.getUserId();
+                   proj.Deputy_Project_Leader__c = UserInfo.getUserId();
+                   proj.IPM_Finance_Lead__c = UserInfo.getUserId();
+                   proj.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
+                   newProjectMap.put(proj.id,proj);
+                }   
+            }
             IPM_ProjectTriggerHandler.getProjectUsersMap(regionalProjectList, newProjectMap, false);
             
             system.assertNotEquals(Null, IPM_GroupManagement.grpList,PROJECT_GROUP_CREATED );
             system.assert(IPM_GroupManagement.grpList.size() > 0,PROJECT_GROUP_CREATED );
-            
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
             Test.stopTest();    
         }
     }

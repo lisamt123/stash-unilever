@@ -66,8 +66,11 @@ public with sharing class PBS_QuizResultsController_CC extends PBS_LMSBaseContro
             if(!String.isBlank(aid)){
 
                 //Fetch assignment information
+                System.debug(aid);
+                System.debug(UserInfo.getUserId());
+                
                 assignment = PBS_LMSService_CC.getLearningAssignmentDetails(aid,UserInfo.getUserId());
-
+				System.debug('Assignment='+assignment);
                 if(assignment == null){
                     throw new PBS_LMSException(System.Label.ALMS_Invalid_Assignment_Id);
                 }
@@ -78,7 +81,7 @@ public with sharing class PBS_QuizResultsController_CC extends PBS_LMSBaseContro
                 evalResult = assignment.Evaluation_Result__c;
                 Decimal score = assignment.Evaluation_Score__c;
                 evalScore = score.setScale(2).format();
-
+				System.debug(evalResult+' : '+evalScore);
                 if(evalResult == PBS_LMSConstants_CC.ASSIGNMENT_EVAL_PASSED){
                     messageStyle = 'alert-success';
                     resultPreMessage = System.Label.ALMS_Quiz_Success_Pre_Message;

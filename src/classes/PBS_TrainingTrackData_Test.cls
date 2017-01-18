@@ -90,7 +90,8 @@ public class PBS_TrainingTrackData_Test {
         //create question line
         List<PBS_Question_Line__c> qline = PBS_LearningData_Test.createTestQuestionLine(quiz, 3);
         //create question
-        List<PBS_Question__c> question = PBS_LearningData_Test.createTestQuestions(qline, 4, null);
+        //List<PBS_Question__c> question = 
+        PBS_LearningData_Test.createTestQuestions(qline, 4, null);
         //create training resources
         List<PBS_Training_Resource__c> tresources = PBS_LearningData_Test.createTestTrainingResource(resourceLearnings);
         //create task resources
@@ -116,7 +117,8 @@ public class PBS_TrainingTrackData_Test {
         List<PBS_Training_Plan__c> tplans = PBS_TrainingPlanData_Test.createTrainingPlans(new List<PBS_Params_Test.TrainingPlanParam>{tplan1,tplan2,tplan3});
 
         //Add learning categories to training plan
-        List<PBS_Training_Plan_Category__c> tplanCategories = PBS_TrainingPlanData_Test.createTrainingPlanCategories(tplans,learningCategories);
+        //List<PBS_Training_Plan_Category__c> tplanCategories =
+        PBS_TrainingPlanData_Test.createTrainingPlanCategories(tplans,learningCategories);
 
         //Create training plan sections
         List<PBS_Training_Plan_Section__c> tplanSections1 = PBS_TrainingPlanData_Test.createTrainingPlanSections(tplans.get(0).Id,1);
@@ -125,19 +127,25 @@ public class PBS_TrainingTrackData_Test {
 
 
         //Create training plan section items for quizzes
-        List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,quizLearnings);
+       //List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems1 = 
+        PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,quizLearnings);
 
-        List<PBS_Training_Plan_Section_Item__c> tplan2SectionItems1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections2.get(0).Id,resourceLearnings);
-        List<PBS_Training_Plan_Section_Item__c> tplan2SectionItems2 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections2.get(1).Id,taskLearnings);
+        //List<PBS_Training_Plan_Section_Item__c> tplan2SectionItems1 = 
+        PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections2.get(0).Id,resourceLearnings);
+        //List<PBS_Training_Plan_Section_Item__c> tplan2SectionItems2 = 
+        PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections2.get(1).Id,taskLearnings);
 
-        List<PBS_Training_Plan_Section_Item__c> tplan3SectionItems1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections3.get(0).Id,resourceLearnings);
+        //List<PBS_Training_Plan_Section_Item__c> tplan3SectionItems1 =
+         PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections3.get(0).Id,resourceLearnings);
 
         //Create a training track
         PBS_Params_Test.TrainingTrackParam ttrack1 = new PBS_Params_Test.TrainingTrackParam();
         List<PBS_Training_Track__c> ttracks = createTrainingTracks(new List<PBS_Params_Test.TrainingTrackParam>{ttrack1});
 
         //Add training track items
-        List<PBS_Training_Track_Level_Item__c> trackItems1 = createTrainingTrackItems(ttracks.get(0).Id,new List<PBS_Training_Plan__c>{tplans.get(0)},1);
-        List<PBS_Training_Track_Level_Item__c> trackItems2 = createTrainingTrackItems(ttracks.get(0).Id,new List<PBS_Training_Plan__c>{tplans.get(1),tplans.get(2)},2);
+        //List<PBS_Training_Track_Level_Item__c> trackItems1 = 
+        createTrainingTrackItems(ttracks.get(0).Id,new List<PBS_Training_Plan__c>{tplans.get(0)},1);
+        //List<PBS_Training_Track_Level_Item__c> trackItems2 = 
+        createTrainingTrackItems(ttracks.get(0).Id,new List<PBS_Training_Plan__c>{tplans.get(1),tplans.get(2)},2);
     }
 }

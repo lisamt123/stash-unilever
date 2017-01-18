@@ -112,6 +112,19 @@
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
+	<fields>
+        <fullName>IPM_BosscardName_isNull__c</fullName>
+        <description>This field will advice if IPM_BosscardName__c is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( IPM_BosscardName__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if Bosscard Name is null or not</inlineHelpText>
+        <label>IPM_BosscardName_isNull</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>IPM_BosscardName__c</fullName>
         <caseSensitive>false</caseSensitive>
@@ -167,6 +180,19 @@
         <trackTrending>false</trackTrending>
         <type>Html</type>
         <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Bosscard_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The users who created the Bosscaard</description>
+        <externalId>false</externalId>
+        <label>Bosscard Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>IPM_BosscardOwner</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>IPM_Bosscard_Span_Logo__c</fullName>
@@ -245,16 +271,45 @@ IMAGE(&apos;/resource/IPM_Resource/images/icoLocal.png&apos;,&apos;Regional/Loca
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Category_Group__c</fullName>
+        <description>This field gives the category group to which the category belongs.</description>
+        <externalId>false</externalId>
+        <label>IPM Category Group</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Home Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Refreshment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_Category_Icon__c</fullName>
         <description>To display the icon based on category.</description>
         <externalId>false</externalId>
         <formula>IF(IPM_Category__c  = &apos;Beverages&apos; || IPM_Category__c  = &apos;BEVERAGES&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_beverages.png&apos;,&apos;BEVERAGES&apos;,21,21), 
-IF(IPM_Category__c  = &apos;DEODARANTS&apos; || IPM_Category__c  = &apos;Deodarants&apos;, 
+IF(IPM_Category__c  = &apos;DEODARANTS &amp; FRAGRANCES&apos; || IPM_Category__c  = &apos;Deodorants &amp; Fragrances&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_deo.png&apos;,&apos;DEO&apos;,21,21), 
 IF(IPM_Category__c  = &apos;Dressings&apos; || IPM_Category__c  = &apos;DRESSINGS&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_dressings.png&apos;,&apos;DRESSINGS&apos;,21,21), 
-IF(IPM_Category__c  = &apos;Hair&apos; || IPM_Category__c  = &apos;HAIR&apos;, 
+IF(IPM_Category__c  = &apos;Hair Care&apos; || IPM_Category__c  = &apos;HAIR&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_hair.png&apos;,&apos;HAIR&apos;,21,21), 
 IF(IPM_Category__c  = &apos;Home Care&apos; || IPM_Category__c  = &apos;HOME CARE&apos; , 
 IMAGE(&apos;/resource/IPM_Resource/images/category_homecare.png&apos;,&apos;HOMECARE&apos;,21,21), 

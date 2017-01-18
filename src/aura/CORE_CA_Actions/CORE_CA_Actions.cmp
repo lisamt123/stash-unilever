@@ -1,0 +1,44 @@
+<aura:component >
+     <style>
+        .action_bar{
+            background: #fff;
+            height: 50px;
+            Position: fixed;
+            bottom: 0;
+            width: 100%;
+         }
+        .icons{ 
+            width: 20%;
+            text-align:center;
+            float: left;
+         } 
+        .alignCenter{
+             text-align:center;       
+         }
+        .actionBarWidth {
+             width: 100%;
+         }
+         .img{    
+            width: 40px;
+         }
+         .actionBarHeight {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            text-align:center; 
+         }
+    </style>
+    
+    <div class="action_bar">
+        <div class="actionBarHeight">                   
+           <table class="actionBarWidth">
+            <tr class="alignCenter"> 
+                <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/Comment.svg"/></td>
+                <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/Approve.svg"/></td> 
+                <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/Return.svg"/></td> 
+                <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/rework.png"/></td>
+                <td class="alignCenter"><img class="img" src="/resource/ApprovalsLightning/images/querywithvendor.png"/></td>
+            </tr>
+          </table>
+       </div>  
+    </div>
+</aura:component>

@@ -450,7 +450,19 @@ public with sharing class Oblix_CampaignStageLogic{
     public void saveStage(){
         system.debug('## saving stage for campaign: '  + sow_project_in_scope.name);
         sow_project_in_scope.Campaign_Attributes_Updated__c = true;
-        upsert sow_project_in_scope;
+        //upsert sow_project_in_scope;
+        
+        //Code added by Suresh Ds 
+        
+            Oblix_Check_For_Manual_Edit_Of_Campaign__c me = Oblix_Check_For_Manual_Edit_Of_Campaign__c.getOrgDefaults();
+            me.Manual_Edit_Check__c = True;
+            update me; 
+
+            upsert sow_project_in_scope;
+            
+            me.Manual_Edit_Check__c = False;
+            update me; 
+        
     }
 
 

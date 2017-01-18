@@ -1,0 +1,98 @@
+<apex:page standardController="Account" sidebar="false" showHeader="false" extensions="FS_ContactExtend_CX">
+    
+    <style>
+            .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+.custPopup{
+            background-color: white;
+            border-width: 2px;
+            border-style: solid;
+            z-index: 9999;
+            left: 50%;
+            padding:10px;
+            position: absolute;
+           
+            width: 300px;
+            margin-left: -250px;
+            top:90px;
+        }
+
+    </style>
+    
+    <script>
+    function createContact()
+    {
+        window.open('/apex/FS_CreateContact?Id={!Account.id}','_top');
+    }
+    
+     function editContact(test1)
+    {
+        window.open('/apex/FS_ContactDetailPage?Id='+test1+'&mode=edit','_top');
+    }
+    
+    </script>
+    <apex:form > 
+        <apex:pageBlock title="{!$Label.FS_ContactSection}">
+            <apex:pageBlockButtons location="Top" >
+                <apex:commandButton Value="{!$Label.FS_NewContactButton}" onclick="createContact();"></apex:commandButton>
+            </apex:pageBlockButtons>
+            <apex:pageblockSection columns="1" id="pbsection">
+                <apex:pageBlockTable value="{!myContacts}" var="item" id="pbtable">
+                    <apex:column headerValue="{!$Label.FS_ActionHeader}" style="width: 6%;" >
+                       <!-- <apex:commandLink action="{!EditContact}" onclick=""> -->
+                       <apex:commandLink onclick="editContact('{!item.FS_RefId__c}');">
+                            <apex:outputText value="Edit" title="Edit" Style="color:#015ba7;" /> 
+                            <apex:param name="Edit" value="{!item.FS_RefId__c}" assignTo="{!varContactRefIdForEdit}"/>
+                            &nbsp;|&nbsp;
+                        </apex:commandLink>
+                        <apex:commandLink action="{!deletePopupOpen}" reRender="tstpopup1" >
+                            <apex:outputText value="Del" title="Del" Style="color:#015ba7;" /> 
+                            <apex:param name="Delete" value="{!item.id}" assignTo="{!varContactIdForDeletion}"/>
+                        </apex:commandLink>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.FS_ContactNameHeader}"  >
+                        <apex:outputLink value="/apex/FS_ContactDetailPage?id={!item.FS_RefId__c}" target="_blank"> 
+                            <apex:outputText value="{!item.name}">
+                            </apex:outputText> 
+                        </apex:outputLink>
+                    </apex:column>
+                    <apex:column value="{!item.FS_Position__c}" headerValue="{!$Label.FS_PositionHeader}"  />
+                    <apex:column value="{!item.FS_Decision_Maker__c}" headerValue="{!$Label.FS_DecisionMakerHeader}" />
+                </apex:pageBlockTable>
+            </apex:pageblockSection>
+        </apex:pageBlock> 
+        
+        <apex:outputPanel id="tstpopup1">
+            <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/>
+                <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!displayPopUp}">
+                   Вы действительно хотите удалить контакт? <br/><br/><br/>
+                    <apex:commandButton value="Да" action="{!deleteContact}" rerender="pbsection,tstpopup1"/>&nbsp;&nbsp;&nbsp;
+                    <apex:commandButton value="Нет" action="{!deletePopupClose}" rerender="tstpopup1"/>
+                </apex:outputPanel>
+            </apex:outputPanel>
+
+        
+        <apex:outputpanel >
+            <apex:actionstatus id="status">
+                <apex:facet name="start">
+                    <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                                                                         height: 100%;opacity:0.65;width:100%;"> 
+                        <div class="waitingHolder" style=" width: 100px;">
+                            <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                            <span class="waitingDescription">Please Wait...</span>
+                        </div>
+                    </div>
+                </apex:facet>
+            </apex:actionstatus>
+        </apex:outputpanel> 
+    </apex:form>  
+</apex:page>

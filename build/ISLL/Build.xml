@@ -1,0 +1,103 @@
+<!--    *******************************************************************************************************************-->
+<!--    Build Script in Ant for Unilever Salesforce Projects - BEGIN                                               -->
+<!--    ******************************************************************************************************************* -->
+<project name="salesforce" default="validate" basedir="." xmlns:sf="antlib:com.salesforce">
+
+  <!-- *************************************************************** -->
+  <!--   Properties for Salesforce ANT targets                         -->
+  <!-- *************************************************************** -->
+  <property file="${basedir}/build.properties"/>
+  <property environment="env"/>
+  <!-- Properties for salesforce dataloader CLI for IPM NG-->
+  <property name="dataLoaderAPIVersion" value="35.0.0-uber" />
+  <!-- *************************************************************** -->
+  <!--   Set-Up of Salesforce Ant / CLI Jar Classpath for IPM NG       -->
+  <!-- *************************************************************** -->
+  <!-- Define required jars for salesforce dataloder CLI-->
+  <path id="taskDependencies">
+    <pathelement location="${basedir}/lib/ant.jar"/>
+    <pathelement location="${basedir}/lib/antutils.jar"/>
+    <pathelement location="${basedir}/lib/commons-io-2.4.jar"/>
+    <pathelement location="${basedir}/lib/commons-lang-2.6.jar"/>
+    <pathelement location="${basedir}/lib/commons-logging-1.1.3.jar"/>
+    <pathelement location="${basedir}/lib/gson-2.2.4.jar"/>
+    <pathelement location="${basedir}/lib/httpclient-4.3.5.jar"/>
+    <pathelement location="${basedir}/lib/httpcore-4.3.2.jar"/>
+    <pathelement location="${basedir}/lib/json-20080701.jar"/>
+  </path>
+  <!-- Define salesforce Ant Jar-->
+  <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+    <classpath>
+      <pathelement location="${basedir}/lib/ant-salesforce.jar" />
+    </classpath>
+  </taskdef>
+  <!-- ***************************************************************************** -->
+  <!-- ANT Import Files for invoking APEX inside ANT Scripts                         -->
+  <!-- ***************************************************************************** -->
+  <import file="${basedir}/lib/exec_anon.xml"/>
+  <import file="${basedir}/lib/deploy.xml"/>
+  <import file="${basedir}/lib/undeploy.xml"/>
+  <import file="${basedir}/lib/run_tests.xml"/>
+  <import file="${basedir}/lib/package_generator.xml"/>
+
+
+<!-- ***************************************************************************** -->
+  <!-- Validate the  set of FS meta-data before deployment                          -->
+  <!-- ***************************************************************************** -->
+  <target name="validate">
+    <echo level="info">Testing the deployment of FS</echo>
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      checkOnly="true"
+      logType="Debugonly"
+      testLevel="RunSpecifiedTests"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="src"
+      pollWaitMillis="10000"
+      maxPoll="4000">
+	  <runTest>CommunitiesLandingControllerTest</runTest>
+      <runTest>CommunitiesLoginControllerTest</runTest>
+      <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+      <runTest>CommunitiesSelfRegControllerTest</runTest>
+      <runTest>ExceptionLoggingHelper_Test</runTest>
+      <runTest>ExceptionsTest</runTest>
+      <runTest>TriggerFactoryTest</runTest>
+      <runTest>TestDataFactory</runTest>
+      <runTest>UserTestUtil</runTest>
+      <runTest>UserTrigger_Test</runTest>
+	  <runTest>GSurveysController_Test</runTest>
+	  <runTest>SurveyManagerController_Test</runTest>
+	  <runTest>isll_AdditionalContentControllerTest</runTest>
+      <runTest>isll_ArticleComponentControllerTest</runTest>
+      <runTest>isll_ArticleEditControllerTest</runTest>
+      <runTest>isll_BrainResultsControllerTest</runTest>
+      <runTest>isll_CarouselControllerTest</runTest>
+      <runTest>isll_ChatterComponentControllerTest</runTest>
+      <runTest>isll_ChatterGroupSearchControllerTest</runTest>
+	  <runTest>isll_CmsContentComponentControllerTest</runTest>
+      <runTest>isll_ContentUploaderControllerTest</runTest>
+      <runTest>isll_DeleteChatterHistoryControllerTest</runTest>
+      <runTest>isll_EditPageContentControllerTest</runTest>
+      <runTest>isll_EventControllerTest</runTest>
+      <runTest>isll_EventDetailExtentionTest</runTest>
+      <runTest>isll_EventHandlerTest</runTest>
+      <runTest>isll_FeedItemTriggerHandlerTest</runTest>
+      <runTest>isll_LibraryControllerTest</runTest>
+      <runTest>isll_ModeratorComponentControllerTest</runTest>
+      <runTest>isll_MultiselectControllerTest</runTest>
+      <runTest>isll_NewsArchiveControllerTest</runTest>
+      <runTest>isll_ReturnUrlExtentionTest</runTest>
+      <runTest>isll_SustainableLivingExpertsCntrTest</runTest>
+      <runTest>isll_SustainExpComponentControllerTest</runTest>
+      <runTest>isll_TopInfluencersCloudControllerTest</runTest>
+      <runTest>isll_UserpicWithFlagControllerTest</runTest>
+      <runTest>isll_USLPBrandTableCompControllerTest</runTest>
+      <runTest>isll_UtilityTest</runTest>
+      <runTest>isll_WordCloudControllerTest</runTest>
+</sf:deploy>
+  <!--<antcall target="generatePackage"/>-->
+  </target>
+</project>

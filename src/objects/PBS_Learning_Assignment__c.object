@@ -486,5 +486,15 @@
         <fullName>PBS_LMS_Approval_Sharing__c</fullName>
         <label>PBS_LMS Approval Sharing</label>
     </sharingReasons>
-    
+     <webLinks>
+        <fullName>Approve</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Approve</masterLabel>
+        <openType>noSidebar</openType>
+        <page>PBS_LearningAssignmentApprove</page>
+        <protected>false</protected>
+    </webLinks>
 </CustomObject>

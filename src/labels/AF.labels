@@ -1,4 +1,4 @@
-    <labels>
+<labels>
         <fullName>AF_Action</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -6,10 +6,24 @@
         <value>Action</value>
     </labels>
     <labels>
+        <fullName>AF_Approve_Reject_BonusMatrix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Approve/Reject BonusMatrix</shortDescription>
+        <value>You are about to either approve/reject these records. Do you wish to proceed?</value>
+    </labels>
+	<labels>
         <fullName>AF_Adapation</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_Adapation</shortDescription>
+        <value>Adaptation</value>
+    </labels>
+    <labels>
+        <fullName>AF_Adaptation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Adaptation</shortDescription>
         <value>Adaptation</value>
     </labels>
     <labels>
@@ -226,6 +240,14 @@
         <value>please check the base fees</value>
     </labels>
     <labels>
+        <fullName>AF_BonusApprover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BonusApprover</shortDescription>
+        <value>Important : By APPROVING the annual bonus you are automatically signing off the bonus payout. As a result a Purchase Order will be issued to the agency by category finance.
+REJECTING the annual bonus would require category finance to revise and re-submit.</value>
+    </labels>
+    <labels>
         <fullName>AF_BonusMatrixHelp</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -254,6 +276,13 @@
         <value>The Thresholds entered do not match the Unilever entity/entities in the Base Fees matrix. Please resolve the following mismatches by setting Bonus Threshold for Unilever entities:</value>
     </labels>
     <labels>
+        <fullName>AF_BonusValidation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BonusValidation</shortDescription>
+        <value>The overall bonus (%) is more than 40%</value>
+    </labels>
+    <labels>
         <fullName>AF_Bonus_Matrix</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -266,6 +295,13 @@
         <protected>false</protected>
         <shortDescription>AF_Bonus_Quarterly</shortDescription>
         <value>Bonus Quarterly</value>
+    </labels>
+    <labels>
+        <fullName>AF_Bonus_Submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Bonus_Submit</shortDescription>
+        <value>You are about to submit this record for approval. Do you wish to proceed?</value>
     </labels>
     <labels>
         <fullName>AF_Bonus_Value</fullName>
@@ -293,7 +329,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_Bonusable_Fees</shortDescription>
-        <value>Bonusable Fees</value>
+        <value>Bonusable Fees :</value>
     </labels>
     <labels>
         <fullName>AF_BrandEstimateDisplayText</fullName>
@@ -414,6 +450,13 @@
         <protected>false</protected>
         <shortDescription>AF_Country_Breakdown</shortDescription>
         <value>Please indicate the country breakdown percentage within UK</value>
+    </labels>
+    <labels>
+        <fullName>AF_Country_Targets</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Country_Targets</shortDescription>
+        <value>Country Targets</value>
     </labels>
     <labels>
         <fullName>AF_Country_breakdown_percentage</fullName>
@@ -545,6 +588,13 @@ Are you sure you wish to proceed?</value>
         <value>You cannot flag the record</value>
     </labels>
     <labels>
+        <fullName>AF_Global_Targets</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Global_Targets</shortDescription>
+        <value>Global Targets</value>
+    </labels>
+    <labels>
         <fullName>AF_Insert</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -673,6 +723,13 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>AF_NoBonus</shortDescription>
         <value>No Bonus</value>
+    </labels>
+    <labels>
+        <fullName>AF_NoBonus_Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_NoBonus_Value</shortDescription>
+        <value>By selecting this option you are confirming that this brand will not be subjected to bonus.please engage with CMCO team for agreement for use</value>
     </labels>
     <labels>
         <fullName>AF_No_Bonus</fullName>
@@ -872,7 +929,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_Pilot_Model_Bonus</shortDescription>
-        <value>Pilot Model</value>
+        <value>Exceptional Targets</value>
     </labels>
     <labels>
         <fullName>AF_Pilot_Model_Instructions</fullName>
@@ -910,11 +967,18 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Please enter the Quant fields</value>
     </labels>
     <labels>
+        <fullName>AF_Quant_Bonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Quant_Bonus</shortDescription>
+        <value>The Quant Bonus (%) greater than 24%</value>
+    </labels>
+    <labels>
         <fullName>AF_Quant_Fields</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_Quant_Fields</shortDescription>
-        <value>Please enter the Quant and Qual fields</value>
+        <value>Please enter the Result field</value>
     </labels>
     <labels>
         <fullName>AF_Quantative_Bonus</fullName>
@@ -1245,7 +1309,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_UBFLB-Type_of_Fees</shortDescription>
-        <value>Now select which type of fees will be included in the Bonus calculations</value>
+        <value>By selecting Exceptional targets you can set up unique targets for your brand.This should only be used where the standard KPIs cannot be applied.</value>
     </labels>
     <labels>
         <fullName>AF_Uncheck_pilot</fullName>
@@ -1381,6 +1445,90 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>a3o</value>
     </labels>
     <labels>
+        <fullName>AR_StepEight</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepEight</shortDescription>
+        <value>Expertise</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepEleven</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepEleven</shortDescription>
+        <value>Rate Card</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepFive</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepFive</shortDescription>
+        <value>Geography</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepFour</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepFour</shortDescription>
+        <value>Business Breakdown</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepNine</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepNine</shortDescription>
+        <value>Experience</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepOne</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepOne</shortDescription>
+        <value>Supplier Code</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepSeven</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepSeven</shortDescription>
+        <value>Supplier Info</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepSix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepSix</shortDescription>
+        <value>Insurance</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepTen</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepTen</shortDescription>
+        <value>Agency Profile</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepThree</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepThree</shortDescription>
+        <value>Financials</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepTwelve</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepTwelve</shortDescription>
+        <value>Fixed Price Rate Card</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepTwo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepTwo</shortDescription>
+        <value>General Information</value>
+    </labels>
+    <labels>
         <fullName>Agency_Email_Alerts</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1394,17 +1542,3 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <shortDescription>Agency Fee Title</shortDescription>
         <value>Agency Fees Online</value>
     </labels>
-    <labels>
-        <fullName>af_lp_AgencyFeeTarget</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>af_lp_AgencyFeeTarget</shortDescription>
-        <value>This is the sum of the latest base fee matrix for the category</value>
-    </labels>
-    <labels>
-        <fullName>af_lp_UnileverBaseFee</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>af_lp_UnileverBaseFee</shortDescription>
-        <value>This is the sum of annual base fee targets for the category</value>
-    </labels>   

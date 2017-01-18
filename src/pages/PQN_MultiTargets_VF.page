@@ -1,0 +1,291 @@
+<apex:page showHeader="false" sidebar="false" controller="PQN_MultiTargets"  apiVersion="36.0" docType="html-5.0">
+    
+    <apex:form id="frm1">
+    <head>
+        <title>IMPORT EXCEL DATA</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/js/jquery-1.11.1.min.js')}"></script>
+        <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/js/jquery.dataTables.min.js')}"></script>       
+    </head>
+<style>
+
+</style>    
+    <body>
+        <div id="wrapper">
+        
+        <c:PQN_Navigation navigationName="multiple_target"/>
+        <!-- /#page-wrapper -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+
+            <div class ="row">            
+                <div class="col-md-6">
+                <h3>Please Upload Targets Data <br/> <small>You can import up to 1000 records at a time.</small></h3>
+                </div>
+                <div class="col-md-6">
+                    <div class="pull-right">
+
+                    </div>
+                </div>
+            </div>
+             <hr/>
+           
+          <div class="panel panel-default">
+            <div class="panel-heading"><strong>Import Data</strong> <small>Excel file upload</small></div>
+            <div class="panel-body">
+               
+             
+              
+              <!-- Standar Form -->
+              
+              <h4>Select files from your computer
+                <sup style= "font-size:13px;">
+                    <a href="#" data-toggle="tooltip" title="Choose the file containing the data you want to import. You can import up to 1000 records at a time."> ? </a>
+                </sup>
+            </h4>
+            
+                <div class="form-inline pull-right">
+                  <div class="form-group">
+                    <input type="file" name="xlfile" id="xlf" class="sfilename"/>
+                  </div>
+                </div>
+                
+                <br/>
+                <br/>
+              
+                  <div style="margin:20px;">
+                   
+                    <input class="btn" value="Start Import" type="button" onclick="initiateInsertion();"/>
+
+                    </div>
+                    <apex:actionStatus id="submitbut" startText="Please Wait...."/>
+                  <div class = "panel panel-info">
+                   <div class = "panel-heading">
+                      <h3 class = "panel-title">Output</h3>
+                   </div>
+                
+                 
+              
+                    <apex:actionFunction name="passStringToUploadDataTosObject" action="{!parseData}" reRender="NCData" status="submitbut">
+                        <apex:param name="data" value="" assignTo="{!myString}" />
+                        <apex:param name="sdata" value="" assignTo="{!sfileformat}" />
+                    </apex:actionFunction>
+                    <apex:actionFunction name="saveexceldatainapex" action="{!savedata}" reRender="NCData" status="savewait"/>
+                  
+                        
+                    
+             
+              
+                    
+                 <apex:actionStatus id="savewait" startText="Please Wait...."/>
+                 
+                   <div class = "panel-body" >
+                   
+                       <apex:outputPanel id="NCData" >
+                       
+                       {!message}
+                       <apex:commandLink value="Show Inserted Data" rendered="{!ShowsuccessLink}" action="{!clicksuccesslink}" reRender="NCData" status="savewait"/>
+                       <apex:commandLink value="Show Error Data" rendered="{!ShowerrorLink}" action="{!clickerrorlink}" reRender="NCData" status="savewait"/>
+                       <apex:pageBlock title="" rendered="{!showallsuccessmsg}">
+                         <p style="color:green">  <strong> Success! </strong> All rows inserted successfully. Please click on show inserted data to view the data.</p>
+                       </apex:pageblock>
+                      <apex:outputpanel layout="block">
+                       <apex:pageBlock title="Uploaded Targets Data" rendered="{!if(listTargetWrapper!=null && listTargetWrapper.size>0,true,false) && showerrortable}">
+                       <apex:pagemessages />
+                       <!--<apex:commandButton value="Save" action="{!savedata}" reRender="NCdata"/>-->
+                       
+                        <apex:pageBlockButtons >
+                           <input class="btn" value="Save" type="button" onclick="saveexceldata();"/>
+                       </apex:pageBlockButtons>
+                       
+                       <apex:pageBlockTable value="{!listTargetWrapper}" var="nc" >
+                       
+                       <apex:column headerValue=""  >
+                           <apex:outputPanel rendered="{!if(nc.errorMessage!=null,true,false)}">
+                           <p style="color:red"> {!nc.errormessage}</p>
+                            </apex:outputPanel>
+                        </apex:column>
+                        
+                       <apex:column headerValue="Year" >
+                            <apex:inputField value="{!nc.target.Year__c}" required="true"/>
+                        </apex:column>
+                        <apex:column headerValue="Region" >
+                            <apex:inputField value="{!nc.target.Region__c}" required="true"/>
+                        </apex:column>
+                        <apex:column headerValue="Target Reduction" >
+                            <apex:inputField value="{!nc.target.Target_Reduction__c}" required="true"/>
+                        </apex:column>
+                           <apex:column headerValue="Notes" >
+                            <apex:inputField value="{!nc.target.Notes__c}"/>
+                        </apex:column>
+                        
+                        </apex:pageBlockTable>
+                  
+                       </apex:pageBlock>
+                       
+                       <apex:pageBlock title="Inserted Data" rendered="{!if(listSuccessTargetWrapper!=null && listSuccessTargetWrapper.size>0,true,false) && (!showsuccesslink)}">
+                        <apex:pageBlockTable value="{!listSuccessTargetWrapper}" var="nc" >                        
+                           <apex:column headerValue="Year" >
+                                <apex:outputField value="{!nc.target.Year__c}"/>
+                            </apex:column>
+                            <apex:column headerValue="Region" >
+                                <apex:outputField value="{!nc.target.Region__c}"/>
+                            </apex:column>
+                            <apex:column headerValue="Target Reduction" >
+                                <apex:outputField value="{!nc.target.Target_Reduction__c}"/>
+                            </apex:column>
+                               <apex:column headerValue="Notes" >
+                                <apex:outputField value="{!nc.target.Notes__c}"/>
+                            </apex:column>                        
+                        </apex:pageBlockTable>
+                       
+                       </apex:pageBlock>
+                       
+                       </apex:outputpanel>
+                       </apex:outputPanel>
+                       <apex:outputPanel id="outjson">
+                      <div style="display:none">
+                      <pre id="out">
+                      </pre>
+                      </div>
+                      </apex:outputPanel>
+                     
+                   </div>
+                    
+                   
+                </div>
+                
+            </div>
+          </div>
+     
+        <div class="footer">
+           <div class="container">
+
+          </div>
+        </div>
+        
+                               
+
+        
+        <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/xls/es5-shim_4.5.7_es5-shim.js')}"></script>
+        <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/xls/xlsx_0.8_jszip.js')}"></script>
+        <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/xls/xlsx_0.8_xlsx.js')}"></script>
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+            </script>
+            
+        <script>
+            
+        
+            var X = XLSX;
+            var fileName ;
+            function fixdata(data) {
+                var o = "", l = 0, w = 10240;
+                for(l=0; l<data.byteLength/w; ++l) o+=String.fromCharCode.apply(null,new Uint8Array(data.slice(l*w,l*w+w)));
+                o+=String.fromCharCode.apply(null, new Uint8Array(data.slice(l*w)));
+                return o;
+            }
+            
+            function saveexceldata(){
+                saveexceldatainapex();
+            }
+         </script>    
+          <script>  
+            function to_json(workbook) {
+                var result = {};
+                workbook.SheetNames.forEach(function(sheetName) {                    
+                    var roa = X.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                    console.log(roa);
+                    if(roa.length > 0){                        
+                        result[sheetName] = roa;
+                    }
+                });
+                return result;
+            }
+            </script>
+           
+            
+            <script>
+            function process_wb(wb) {
+                var output = "";
+                switch("json") {
+                    case "json":
+                        output = JSON.stringify(to_json(wb), 2, 2);
+                        break;
+                    case "form":
+                        output = to_formulae(wb);
+                        break;
+                    default:
+                    output = to_csv(wb);
+                }                 
+                if(out.innerText === undefined) out.textContent = output;
+                  else out.innerText = output;                
+                if(typeof console !== 'undefined') console.log("output", new Date());
+            }
+            </script>
+            <script>
+            function initiateInsertion(){
+                var seletedfilename = document.getElementsByClassName('sfilename')[0].value;
+                //alert('ssss'+seletedfilename)
+              passStringToUploadDataTosObject(document.getElementById('out').innerText,seletedfilename);            
+            }
+            function saveexceldata(){
+                saveexceldatainapex();
+            } 
+            </script>
+            <script>    
+            var xlf = document.getElementById('xlf');
+            function handleFile(e) {   
+                 var sfiname = document.getElementsByClassName('sfilename')[0].value;
+            if(sfiname!=''){
+                var dots = sfiname.split(".")
+                var fileType = dots[dots.length - 1];
+            }   
+                if(fileType == 'xlsx' || fileType == 'xls') {   
+                var files = e.target.files;
+                var f = files[0];
+                {
+                    var reader = new FileReader();
+                    var name = f.name;
+                    fileName = name
+                    reader.onload = function(e) {
+                        var data = e.target.result;
+                            var arr = fixdata(data);
+                            var wb =  X.read(btoa(arr), {type: 'base64'});
+                            process_wb(wb);
+                    };
+                    reader.readAsArrayBuffer(f);
+                }
+                }
+                return false;
+            }            
+            if(xlf.addEventListener) xlf.addEventListener('change', handleFile, false);    
+            </script>
+            <script>                      
+                function tableToExcel(file_Name){
+                       var a = document.createElement('a');
+                        //getting data from our div that contains the HTML table
+                        var data_type = 'data:application/vnd.ms-excel';
+                        var table_div = document.getElementById('dvData');
+                        var table_html = table_div.outerHTML.replace(/ /g, '%20');
+                        a.href = data_type + ', ' + table_html;
+                        //setting the file name
+                        if(fileName.length>0){
+                            fileName = fileName.substr(0, fileName.lastIndexOf('.'));
+                        }else{
+                            fileName= '';
+                        }
+                        a.download = fileName+'_error.xls';
+                        //triggering the function
+                        a.click();
+                   }                  
+                  </script>
+            </div>
+            </div>
+         </div>
+     </body>
+ </apex:form>
+
+</apex:page>

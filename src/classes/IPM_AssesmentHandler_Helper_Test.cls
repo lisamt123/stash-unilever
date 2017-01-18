@@ -142,6 +142,7 @@ private class IPM_AssesmentHandler_Helper_Test
 			projectType.IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
 			projectType.IPM_Source_Company_Card__c = GLOBAL_COMPANY_CARD;
 			projectType.IPM_Copy_Over_Assessments__c = true; 
+                        projectType.GKM_Model__c = 'GKM1';
 			insert projectType;
 			
 			List<IPM_Country__c> countryList = IPM_TestFactory_Helper.createIPMCountryList(false,4);

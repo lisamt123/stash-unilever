@@ -1,0 +1,18 @@
+Hi {!SAM_Request__c.CreatedBy},
+
+You have approved the quotation for Service Request  {!SAM_Request__c.Name} with the Cost Code details as mentioned below: 
+
+Entity Code: {!SAM_Request__c.txt_Entity_Code__c}
+Cost Center (CC): {!SAM_Request__c.txt_Cost_Center_CC__c}
+ICC/GLC/LCC: {!SAM_Request__c.txt_ICC_GLC_LCC__c}
+GL Account: {!SAM_Request__c.txt_GL_Account__c}
+Budget Owner Name : {!SAM_Request__c.txt_Budget_Owner_Name__c}
+Invoice Approver Name : {!SAM_Request__c.txt_Invoice_Approver_Name__c}
+  
+Request you to take Approval on this email from the Invoice, Budget approver. Upload the emails(as an attachment) in the System, as this will be forwarded to Finance for cross Charge.
+
+You can access your Service Request via the link below;
+{!SAM_Request__c.Link}
+
+Thanks,
+{!SAM_Request__c.lkp_Assign_To__c}

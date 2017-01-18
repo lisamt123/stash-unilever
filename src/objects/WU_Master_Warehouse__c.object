@@ -30,7 +30,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <type>Default</type>
+        <content>WU_LeadershipCheck</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -57,6 +59,117 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Read</externalSharingModel>
+    <fields>
+        <fullName>Current_Utilization__c</fullName>
+        <description>This  will Calculate average utilization</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will calculate the average Utilization</inlineHelpText>
+        <label>Current Utilization</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Operations_ContractType__c</fullName>
+        <externalId>false</externalId>
+        <label>Operations Contract Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ABC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C (Activity)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C (Fixed)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C (Weight)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unilever</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Submitted_by__c</fullName>
+        <externalId>false</externalId>
+        <label>Submitted by</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WH_Visibility_Process__c</fullName>
+        <description>reports sent through email, in 3PL system / WMS, in SAP system, etc.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Reports sent through email, in 3PL system / WMS, in SAP system, etc.</inlineHelpText>
+        <label>WH Data Visibility Process</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Automated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ManualSAP&amp;3PL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Manual-SAP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>WU_Active_WH__c</fullName>
+        <description>This field is used to indicate whether Warehouse is active or not.</description>
+        <externalId>false</externalId>
+        <label>Active WH</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
     <fields>
         <fullName>WU_Address__c</fullName>
         <externalId>false</externalId>
@@ -109,17 +222,7 @@
     <fields>
         <fullName>WU_Average_Current_Utilization__c</fullName>
         <externalId>false</externalId>
-        <formula>/*IF( WU_Approval_Status__c =&apos;Submitted&apos;,( WU_Current_Utilization__c / WU_Prior_CommittedPalletStorage__c)*100 ,(WU_Current_Utilization__c/ WU_Committed_Max_PalletStorage__c)*100 )*/
-/*
-IF(AND(WU_Count_Avg_Current_Month_Utilization__c = 0,WU_Approval_Status__c =&apos;Submitted&apos;),( WU_Current_Utilization__c / WU_Prior_CommittedPalletStorage__c)*100,IF(WU_Count_Avg_Current_Month_Utilization__c &gt; 0,( WU_Current_Utilization__c /  IF(ISBLANK(WU_Latest_Committed_Pallet__c ),WU_Committed_Max_PalletStorage__c,WU_Latest_Committed_Pallet__c ))*100,0) )*/
-
-IF(
-OR(
-ISBLANK(WU_Latest_Committed_Pallet__c),WU_Latest_Committed_Pallet__c = 0),
-(WU_Current_Utilization__c/WU_Committed_Max_PalletStorage__c)*100,
-(WU_Current_Utilization__c/WU_Latest_Committed_Pallet__c)*100
-)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>IF(  ISBLANK(WU_Average_Pallet_Utilization_Day__c ) ,  IF( ISBLANK(WU_Average_Pallet_Utilization_Week__c) ,  IF( ISBLANK(WU_Average_Pallet_Utilization_Month__c) , 0, WU_Average_Pallet_Utilization_Month__c) , WU_Average_Pallet_Utilization_Week__c) , WU_Average_Pallet_Utilization_Day__c )</formula>
         <label>Average Utilization %</label>
         <precision>18</precision>
         <required>false</required>
@@ -242,6 +345,7 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -249,7 +353,7 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
     <fields>
         <fullName>WU_Building_ContractType__c</fullName>
         <externalId>false</externalId>
-        <label>Building ContractType</label>
+        <label>Building Contract Type</label>
         <picklist>
             <picklistValues>
                 <fullName>C</fullName>
@@ -263,11 +367,21 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <fullName>Unilever</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>WU_Building_Contract_Expiry__c</fullName>
+        <externalId>false</externalId>
+        <label>Building Contract Expiry</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>WU_CityName__c</fullName>
@@ -328,92 +442,96 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             <controllingField>WU_MCO__c</controllingField>
             <picklistValues>
                 <fullName>Algeria</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Argentina, GBA</fullName>
-                <controllingFieldValues>SoCo</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SoCo</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Australia</fullName>
-                <controllingFieldValues>SEAA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Austria</fullName>
-                <controllingFieldValues>DACH</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>DACH</controllingFieldValues>
+                <controllingFieldValues>NorDach</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bahrain</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bangladesh</fullName>
-                <controllingFieldValues>South Asia</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>South Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Belgium</fullName>
-                <controllingFieldValues>Benelux</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Benefra</controllingFieldValues>
+                <controllingFieldValues>Benelux</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bolivia</fullName>
-                <controllingFieldValues>SoCo</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SoCo</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+                <controllingFieldValues>Brazil</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Brazil, Bahia</fullName>
-                <controllingFieldValues>Brazil</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Brazil, Goiais</fullName>
-                <controllingFieldValues>Brazil</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Brazil, Minas Gerais</fullName>
-                <controllingFieldValues>Brazil</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Brazil, Pernambuco</fullName>
-                <controllingFieldValues>Brazil</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Brazil, Rio Grande do Sul</fullName>
-                <controllingFieldValues>Brazil</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Brazil, São Paulo</fullName>
-                <controllingFieldValues>Brazil</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Cambodia</fullName>
-                <controllingFieldValues>SEAA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Canada</fullName>
-                <controllingFieldValues>NA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Chile</fullName>
-                <controllingFieldValues>SoCo</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SoCo</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>China</fullName>
                 <default>false</default>
+                <controllingFieldValues>North Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>China, Beijing</fullName>
@@ -429,386 +547,448 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </picklistValues>
             <picklistValues>
                 <fullName>Colombia</fullName>
-                <controllingFieldValues>MA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>MA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Costa Rica</fullName>
-                <controllingFieldValues>MA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>MA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Czech Republic</fullName>
-                <controllingFieldValues>CEE</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>CEE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Denmark</fullName>
-                <controllingFieldValues>Nordics</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NorDach</controllingFieldValues>
+                <controllingFieldValues>Nordics</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dominican Republic</fullName>
-                <controllingFieldValues>Caribbean</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Caribbean</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dubai</fullName>
+                <default>false</default>
+                <controllingFieldValues>NAME</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ecuador</fullName>
-                <controllingFieldValues>MA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>MA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Egypt</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>El Salvador</fullName>
-                <controllingFieldValues>MA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>MA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ethiopia</fullName>
+                <default>false</default>
+                <controllingFieldValues>EAST AFRICA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Finland</fullName>
-                <controllingFieldValues>Nordics</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NorDach</controllingFieldValues>
+                <controllingFieldValues>Nordics</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>France</fullName>
-                <controllingFieldValues>France</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Benefra</controllingFieldValues>
+                <controllingFieldValues>France</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Germany</fullName>
-                <controllingFieldValues>DACH</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>DACH</controllingFieldValues>
+                <controllingFieldValues>NorDach</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ghana</fullName>
-                <controllingFieldValues>Africa</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>WEST AFRICA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Greece</fullName>
-                <controllingFieldValues>Greece</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Greece</controllingFieldValues>
+                <controllingFieldValues>South Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Guatemala</fullName>
-                <controllingFieldValues>MA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>MA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Honduras</fullName>
-                <controllingFieldValues>MA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>MA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hong Kong</fullName>
-                <controllingFieldValues>North Asia</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>North Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hungary</fullName>
-                <controllingFieldValues>CEE</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>CEE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>India</fullName>
-                <controllingFieldValues>South Asia</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>South Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Indonesia</fullName>
-                <controllingFieldValues>SEAA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Iran</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
+                <controllingFieldValues>TUII</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+                <controllingFieldValues>UK&amp;I</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Israel</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
+                <controllingFieldValues>TUII</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Italy</fullName>
-                <controllingFieldValues>Italy</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>South Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ivory Coast</fullName>
+                <default>false</default>
                 <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>WEST AFRICA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ivory Cost</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Japan</fullName>
-                <controllingFieldValues>North Asia</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>North Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Kenya</fullName>
-                <controllingFieldValues>Africa</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>EAST AFRICA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Korea</fullName>
-                <controllingFieldValues>North Asia</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>North Asia</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KSA</fullName>
+                <default>false</default>
+                <controllingFieldValues>NAME</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Kuwait</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Malawi</fullName>
-                <controllingFieldValues>Africa</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>SOUTHERN AFRICA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Malaysia</fullName>
-                <controllingFieldValues>SEAA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mexico</fullName>
-                <controllingFieldValues>Mexico</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Mexico</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Morocco</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mozambique</fullName>
-                <controllingFieldValues>Africa</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>SOUTHERN AFRICA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Myanmar</fullName>
-                <controllingFieldValues>SEAA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SEAA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nepal</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Netherlands</fullName>
-                <controllingFieldValues>Benelux</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Benefra</controllingFieldValues>
+                <controllingFieldValues>Benelux</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>New Zealand</fullName>
-                <controllingFieldValues>SEAA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Nicaragua</fullName>
-                <controllingFieldValues>MA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>MA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Nigeria</fullName>
-                <controllingFieldValues>Africa</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>WEST AFRICA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Oman</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Pakistan</fullName>
-                <controllingFieldValues>South Asia</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>South Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Paraguay</fullName>
-                <controllingFieldValues>SoCo</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SoCo</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Perú</fullName>
-                <controllingFieldValues>SoCo</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SoCo</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Philippines</fullName>
-                <controllingFieldValues>SEAA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Poland</fullName>
-                <controllingFieldValues>CEE</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>CEE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Portugal</fullName>
-                <controllingFieldValues>Portugal</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Portugal</controllingFieldValues>
+                <controllingFieldValues>South Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Qatar</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Romania</fullName>
-                <controllingFieldValues>CEE</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>CEE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Russia</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
+                <controllingFieldValues>RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Saudi Arabia</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Singapore</fullName>
-                <controllingFieldValues>SEAA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Slovakia</fullName>
-                <controllingFieldValues>CEE</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>CEE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>South Africa</fullName>
-                <controllingFieldValues>Africa</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>SOUTH AFRICA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Spain</fullName>
-                <controllingFieldValues>Spain</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>South Europe</controllingFieldValues>
+                <controllingFieldValues>Spain</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sri Lanka</fullName>
-                <controllingFieldValues>South Asia</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>South Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sweden</fullName>
-                <controllingFieldValues>Nordics</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NorDach</controllingFieldValues>
+                <controllingFieldValues>Nordics</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Switzerland</fullName>
-                <controllingFieldValues>DACH</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>DACH</controllingFieldValues>
+                <controllingFieldValues>NorDach</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Taiwan</fullName>
-                <controllingFieldValues>North Asia</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>North Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Tanzania</fullName>
-                <controllingFieldValues>Africa</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>EAST AFRICA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Thailand</fullName>
-                <controllingFieldValues>SEAA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Trinidad &amp; Tobago</fullName>
-                <controllingFieldValues>Caribbean</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Caribbean</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Tunisia</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Turkey</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
+                <controllingFieldValues>TUII</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>UAE</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Uganda</fullName>
-                <controllingFieldValues>Africa</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>EAST AFRICA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>UK</fullName>
-                <controllingFieldValues>UK&amp;IE</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>UK&amp;I</controllingFieldValues>
+                <controllingFieldValues>UK&amp;IE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ukraine</fullName>
-                <controllingFieldValues>NAMETRUB</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
+                <controllingFieldValues>RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>UL China Mainland</fullName>
-                <controllingFieldValues>North Asia</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Uruguay</fullName>
-                <controllingFieldValues>SoCo</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SoCo</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US</fullName>
+                <default>false</default>
+                <controllingFieldValues>NA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>US, North Central</fullName>
-                <controllingFieldValues>NA</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>US, Northeast</fullName>
-                <controllingFieldValues>NA</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>US, South Central</fullName>
-                <controllingFieldValues>NA</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>US, Southeast</fullName>
-                <controllingFieldValues>NA</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>US, West Coast</fullName>
-                <controllingFieldValues>NA</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Venezuela</fullName>
-                <controllingFieldValues>MA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>MA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Vietnam</fullName>
-                <controllingFieldValues>SEAA</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Zambia</fullName>
-                <controllingFieldValues>Africa</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>SOUTHERN AFRICA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Zimbabwe</fullName>
-                <controllingFieldValues>Africa</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>SOUTHERN AFRICA</controllingFieldValues>
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -821,36 +1001,37 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             <controllingField>WU_Network__c</controllingField>
             <picklistValues>
                 <fullName>Foods</fullName>
-                <controllingFieldValues>Cross-Category</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Cross-Category</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Foods Chill</fullName>
-                <controllingFieldValues>Cross-Category</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Cross-Category</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Foods Ultra</fullName>
-                <controllingFieldValues>Cross-Category</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Cross-Category</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>HPC</fullName>
-                <controllingFieldValues>Cross-Category</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Cross-Category</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>IC</fullName>
-                <controllingFieldValues>Cross-Category</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Cross-Category</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Overflow</fullName>
-                <controllingFieldValues>Cross-Category</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Cross-Category</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -868,6 +1049,18 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>WU_Current_Pallet_Utilization__c</fullName>
+        <externalId>false</externalId>
+        <label>Current Pallet Utilization</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>WU_Current_Utilization__c</fullName>
         <externalId>false</externalId>
         <label>Current Pallet Utilization Count</label>
@@ -880,6 +1073,31 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>WU_DC_Interface__c</fullName>
+        <externalId>false</externalId>
+        <label>WH Interface</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>N/A</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>WU_FromDate__c</fullName>
         <externalId>false</externalId>
         <label>Utilization Start Date</label>
@@ -889,40 +1107,13 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>WU_HandlingIn_FG__c</fullName>
+        <fullName>WU_Is_Submitted__c</fullName>
+        <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>FG</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
+        <label>Is Submitted</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>WU_HandlingIn_RM_PM_SF_NPI__c</fullName>
-        <externalId>false</externalId>
-        <label>RM/PM/SF/NPI</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>WU_HandlingIn_Total__c</fullName>
-        <externalId>false</externalId>
-        <label>Total</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>WU_LandOwner__c</fullName>
@@ -1036,6 +1227,7 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1065,116 +1257,161 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
     <fields>
         <fullName>WU_MCO__c</fullName>
         <externalId>false</externalId>
-        <label>MCO</label>
+        <label>Cluster</label>
         <picklist>
             <controllingField>WU_Region__c</controllingField>
             <picklistValues>
                 <fullName>Africa</fullName>
-                <controllingFieldValues>AAR</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Benelux</fullName>
+                <fullName>Benefra</fullName>
+                <default>false</default>
                 <controllingFieldValues>Europe</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Benelux</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Brazil</fullName>
-                <controllingFieldValues>AMS</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>LATAM</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Caribbean</fullName>
-                <controllingFieldValues>AMS</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>LATAM</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>CEE</fullName>
-                <controllingFieldValues>Europe</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>DACH</fullName>
-                <controllingFieldValues>Europe</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>EAST AFRICA</fullName>
+                <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>France</fullName>
-                <controllingFieldValues>Europe</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Greece</fullName>
-                <controllingFieldValues>Europe</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Italy</fullName>
-                <controllingFieldValues>Europe</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>MA</fullName>
-                <controllingFieldValues>AMS</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>LATAM</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mexico</fullName>
-                <controllingFieldValues>AMS</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>LATAM</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>NA</fullName>
-                <controllingFieldValues>AMS</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>AM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NAME</fullName>
+                <default>false</default>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>NAMETRUB</fullName>
-                <controllingFieldValues>AAR</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Nordics</fullName>
+                <fullName>NorDach</fullName>
+                <default>false</default>
                 <controllingFieldValues>Europe</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nordics</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>North Asia</fullName>
-                <controllingFieldValues>AAR</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Portugal</fullName>
-                <controllingFieldValues>Europe</controllingFieldValues>
                 <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RUB</fullName>
+                <default>false</default>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>SEAA</fullName>
-                <controllingFieldValues>AAR</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>SoCo</fullName>
-                <controllingFieldValues>AMS</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>LATAM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SOUTH AFRICA</fullName>
+                <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>South Asia</fullName>
-                <controllingFieldValues>AAR</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Asia</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SOUTHERN AFRICA</fullName>
+                <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Spain</fullName>
-                <controllingFieldValues>Europe</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>UK&amp;IE</fullName>
+                <fullName>TUII</fullName>
+                <default>false</default>
+                <controllingFieldValues>NAMETRUB</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UK&amp;I</fullName>
+                <default>false</default>
                 <controllingFieldValues>Europe</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UK&amp;IE</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <picklistValues>
+                <fullName>WEST AFRICA</fullName>
+                <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Europe</fullName>
+                <default>false</default>
+                <controllingFieldValues>Europe</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1194,6 +1431,7 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1233,44 +1471,19 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>WU_Operations_ContractType__c</fullName>
+        <fullName>WU_Operation_Contract_Expiry__c</fullName>
         <externalId>false</externalId>
-        <label>Operations ContractType</label>
-        <picklist>
-            <picklistValues>
-                <fullName>ABC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>C (Activity)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>C (Fixed)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>C (Weight)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>O</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Unilever</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>true</sorted>
-        </picklist>
+        <label>Operation Contract Expiry</label>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>WU_Previous_Month__c</fullName>
@@ -1316,19 +1529,32 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <label>Region</label>
         <picklist>
             <picklistValues>
-                <fullName>AAR</fullName>
+                <fullName>Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>AMS</fullName>
+                <fullName>AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Asia</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Europe</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>LATAM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NAMETRUB</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1371,45 +1597,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>WU_Storage_FG__c</fullName>
-        <externalId>false</externalId>
-        <label>Storage FG</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>WU_Storage_RM_PM_SF_NPI__c</fullName>
-        <externalId>false</externalId>
-        <label>Storage RM/PM/SF/NPI</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>WU_Storage_Total__c</fullName>
-        <externalId>false</externalId>
-        <label>Storage Total</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_ToDate__c</fullName>
@@ -1469,6 +1660,7 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1504,6 +1696,7 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1522,24 +1715,12 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
     <fields>
         <fullName>WU_WMSType__c</fullName>
         <externalId>false</externalId>
-        <label>WMSType</label>
+        <label>WMS Type</label>
         <length>200</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>WU_WMS_IT_Spend__c</fullName>
-        <externalId>false</externalId>
-        <label>WMS/IT Spend (€k/year)</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>3</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1592,6 +1773,17 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>WU_Warehouse_Secondary_POC_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Warehouse Secondary POC Email</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>WU_Year__c</fullName>
         <externalId>false</externalId>
         <label>Year</label>
@@ -1615,7 +1807,67 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
     </fields>
     <label>Master Warehouse</label>
     <listViews>
-        <fullName>AAR</fullName>
+        <fullName>AFRICA</fullName>
+        <columns>NAME</columns>
+        <columns>WU_SAPCode_s__c</columns>
+        <columns>WU_SAPName_s__c</columns>
+        <columns>WU_Region__c</columns>
+        <columns>WU_MCO__c</columns>
+        <columns>WU_CityName__c</columns>
+        <columns>WU_Country__c</columns>
+        <columns>WU_Logistics_ServiceProvider__c</columns>
+        <columns>WU_Building_ContractType__c</columns>
+        <columns>WU_Average_Current_Utilization__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Day__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Month__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
+        </filters>
+        <filters>
+            <field>WU_Region__c</field>
+            <operation>equals</operation>
+            <value>Africa</value>
+        </filters>
+        <label>AFRICA</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>AM</fullName>
+        <columns>NAME</columns>
+        <columns>WU_SAPCode_s__c</columns>
+        <columns>WU_SAPName_s__c</columns>
+        <columns>WU_Region__c</columns>
+        <columns>WU_MCO__c</columns>
+        <columns>WU_Country__c</columns>
+        <columns>WU_CityName__c</columns>
+        <columns>WU_Logistics_ServiceProvider__c</columns>
+        <columns>WU_Building_ContractType__c</columns>
+        <columns>WU_Average_Current_Utilization__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Day__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Month__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
+        </filters>
+        <filters>
+            <field>WU_Region__c</field>
+            <operation>equals</operation>
+            <value>AM</value>
+        </filters>
+        <label>AM</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ASIA</fullName>
         <columns>NAME</columns>
         <columns>WU_SAPCode_s__c</columns>
         <columns>WU_SAPName_s__c</columns>
@@ -1639,9 +1891,9 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <filters>
             <field>WU_Region__c</field>
             <operation>equals</operation>
-            <value>AAR</value>
+            <value>Asia</value>
         </filters>
-        <label>AAR</label>
+        <label>ASIA</label>
         <language>en_US</language>
     </listViews>
     <listViews>
@@ -1700,7 +1952,7 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>LatAM</fullName>
+        <fullName>LATAM</fullName>
         <columns>NAME</columns>
         <columns>WU_SAPCode_s__c</columns>
         <columns>WU_SAPName_s__c</columns>
@@ -1712,8 +1964,8 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <columns>WU_Building_ContractType__c</columns>
         <columns>WU_Average_Current_Utilization__c</columns>
         <columns>WU_Average_Pallet_Utilization_Day__c</columns>
-        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
         <columns>WU_Average_Pallet_Utilization_Month__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
         <columns>OWNER.FIRST_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -1724,9 +1976,9 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <filters>
             <field>WU_Region__c</field>
             <operation>equals</operation>
-            <value>LatAm</value>
+            <value>LATAM</value>
         </filters>
-        <label>LatAM</label>
+        <label>LATAM</label>
         <language>en_US</language>
     </listViews>
     <listViews>
@@ -1755,7 +2007,7 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>NA</fullName>
+        <fullName>NAMETRUB</fullName>
         <columns>NAME</columns>
         <columns>WU_SAPCode_s__c</columns>
         <columns>WU_SAPName_s__c</columns>
@@ -1767,8 +2019,8 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <columns>WU_Building_ContractType__c</columns>
         <columns>WU_Average_Current_Utilization__c</columns>
         <columns>WU_Average_Pallet_Utilization_Day__c</columns>
-        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
         <columns>WU_Average_Pallet_Utilization_Month__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
         <columns>OWNER.FIRST_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -1779,9 +2031,9 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <filters>
             <field>WU_Region__c</field>
             <operation>equals</operation>
-            <value>NA</value>
+            <value>NAMETRUB</value>
         </filters>
-        <label>NA</label>
+        <label>NAMETRUB</label>
         <language>en_US</language>
     </listViews>
     <nameField>
@@ -1797,6 +2049,59 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <active>true</active>
         <description>Used if need to Edit a Warehouse capacity record</description>
         <label>Edit Warehouse Capacity</label>
+        <picklistValues>
+            <picklist>Operations_ContractType__c</picklist>
+            <values>
+                <fullName>ABC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C %28Activity%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C %28Fixed%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C %28Weight%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>WH_Visibility_Process__c</picklist>
+            <values>
+                <fullName>Automated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manual-SAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ManualSAP%263PL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>WU_Active_WH__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>WU_Benchmarking__c</picklist>
             <values>
@@ -1855,6 +2160,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
             <values>
                 <fullName>Bolivia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1930,6 +2239,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>Dubai</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Ecuador</fullName>
                 <default>false</default>
             </values>
@@ -1939,6 +2252,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
             <values>
                 <fullName>El Salvador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ethiopia</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1990,6 +2307,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Israel</fullName>
                 <default>false</default>
             </values>
@@ -2002,7 +2323,15 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>Ivory Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Japan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KSA</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2039,6 +2368,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
             <values>
                 <fullName>Myanmar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nepal</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2166,6 +2499,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>US</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>US%2C North Central</fullName>
                 <default>false</default>
             </values>
@@ -2242,6 +2579,21 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>WU_DC_Interface__c</picklist>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>WU_Logistics_MainActivity__c</picklist>
             <values>
                 <fullName>Copack</fullName>
@@ -2311,6 +2663,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>Benefra</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Benelux</fullName>
                 <default>false</default>
             </values>
@@ -2328,6 +2684,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
             <values>
                 <fullName>DACH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EAST AFRICA</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2355,7 +2715,15 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>NAME</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>NAMETRUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NorDach</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2371,7 +2739,19 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>RUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SOUTH AFRICA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SOUTHERN AFRICA</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2383,11 +2763,27 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>South Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Spain</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>TUII</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UK%26I</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>UK%26IE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WEST AFRICA</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2434,44 +2830,29 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>WU_Operations_ContractType__c</picklist>
-            <values>
-                <fullName>ABC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C %28Activity%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C %28Fixed%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C %28Weight%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>O</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unilever</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>WU_Region__c</picklist>
             <values>
-                <fullName>AAR</fullName>
+                <fullName>AM</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>AMS</fullName>
+                <fullName>Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asia</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LATAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAMETRUB</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2535,6 +2916,59 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <description>Used if need to create a Warehouse capacity record</description>
         <label>New Warehouse Capacity</label>
         <picklistValues>
+            <picklist>Operations_ContractType__c</picklist>
+            <values>
+                <fullName>ABC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C %28Activity%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C %28Fixed%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C %28Weight%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>WH_Visibility_Process__c</picklist>
+            <values>
+                <fullName>Automated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manual-SAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ManualSAP%263PL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>WU_Active_WH__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>WU_Benchmarking__c</picklist>
             <values>
                 <fullName>DC Bench</fullName>
@@ -2592,6 +3026,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
             <values>
                 <fullName>Bolivia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2667,6 +3105,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>Dubai</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Ecuador</fullName>
                 <default>false</default>
             </values>
@@ -2676,6 +3118,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
             <values>
                 <fullName>El Salvador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ethiopia</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2727,6 +3173,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Israel</fullName>
                 <default>false</default>
             </values>
@@ -2739,7 +3189,15 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>Ivory Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Japan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KSA</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2776,6 +3234,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
             <values>
                 <fullName>Myanmar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nepal</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2903,6 +3365,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>US</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>US%2C North Central</fullName>
                 <default>false</default>
             </values>
@@ -2979,6 +3445,21 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>WU_DC_Interface__c</picklist>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>WU_Logistics_MainActivity__c</picklist>
             <values>
                 <fullName>Copack</fullName>
@@ -3048,6 +3529,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>Benefra</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Benelux</fullName>
                 <default>false</default>
             </values>
@@ -3065,6 +3550,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
             <values>
                 <fullName>DACH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EAST AFRICA</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3092,7 +3581,15 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>NAME</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>NAMETRUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NorDach</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3108,7 +3605,19 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>RUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SOUTH AFRICA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SOUTHERN AFRICA</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3120,11 +3629,27 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
             </values>
             <values>
+                <fullName>South Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Spain</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>TUII</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UK%26I</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>UK%26IE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WEST AFRICA</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3171,44 +3696,29 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>WU_Operations_ContractType__c</picklist>
-            <values>
-                <fullName>ABC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C %28Activity%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C %28Fixed%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C %28Weight%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>O</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unilever</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>WU_Region__c</picklist>
             <values>
-                <fullName>AAR</fullName>
+                <fullName>AM</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>AMS</fullName>
+                <fullName>Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asia</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LATAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAMETRUB</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3326,11 +3836,24 @@ MOD( WU_FromDate__c - DATE(1900, 1, 7), 7)&lt;&gt; 0,MOD( WU_ToDate__c - DATE(19
         <errorMessage>Weekly Utilization should be entered  from Sunday to Saturday. Please Re- Enter the Utilization Start Date as Sunday and End Date as Saturday.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>POC_Mandatory</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISBLANK(WU_WarehousePOC_Email__c)</errorConditionFormula>
+        <errorDisplayField>WU_WarehousePOC_Email__c</errorDisplayField>
+        <errorMessage>Populate POC</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>StartDate_NotGreaterThan_Enddate</fullName>
         <active>true</active>
         <description>Utilization Start date should not be greater than end date</description>
         <errorConditionFormula>WU_FromDate__c  &gt;  WU_ToDate__c</errorConditionFormula>
         <errorDisplayField>WU_FromDate__c</errorDisplayField>
         <errorMessage>Utilization Start  Date should not be greater than Utilization End Date.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ValidationForCurrentUtilizationDetails</fullName>
+        <active>true</active>
+        <errorConditionFormula>if(not(isnew()),if(and(ispickval(WU_Utilization_Type__c,&apos;&apos;),isBlank(WU_FromDate__c),isBlank(WU_ToDate__c),isBlank(WU_Current_Utilization__c)),false,or(ispickval(WU_Utilization_Type__c,&apos;&apos;),isBlank(WU_FromDate__c),isBlank(WU_ToDate__c),isBlank(WU_Current_Utilization__c))),false)</errorConditionFormula>
+        <errorMessage>In utilization section all fields should have values</errorMessage>
     </validationRules>
 </CustomObject>

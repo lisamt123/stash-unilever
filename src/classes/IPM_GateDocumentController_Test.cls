@@ -17,6 +17,7 @@ private class IPM_GateDocumentController_Test{
     private static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
     private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static User globalUser;
+    //private static User globalProjectLeader;
     private static List<IPM_Milestone__c> mileList;
     private static IPM_ProjectIntermediateController interCon;
     private static IPM_Project_Document_Section__c docSec;
@@ -26,12 +27,14 @@ private class IPM_GateDocumentController_Test{
     private static final string REGIONAL_STR='Regional';
     private static List<IPM_Project_Rollout__c> regionalRolloutList;
     private static List<IPM_Project_Rollout__c> localRolloutList;
-      private static IPM_Document_Template__c ipdt;
+    private static IPM_Document_Template__c ipdt;
     private static IPM_Project_Template__c projTempl;
+   
    /*************************************************************************************************************************
     * @description Test Data
     */
     @testSetup static void initializeData(){
+         test.startTest();
           System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
             // user has to be created as system admin 
@@ -60,14 +63,14 @@ private class IPM_GateDocumentController_Test{
             List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
             System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project insertion failed');//positive test
             
-              regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForGateDocument,stdUserForGateDocument,stdUserForGateDocument});
+            regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForGateDocument,stdUserForGateDocument,stdUserForGateDocument});
             insert regionalRolloutList;
             List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
             System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout not created');//positive test
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
             List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
-	    for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
+            for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
             {
                 if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
                 {
@@ -79,7 +82,7 @@ private class IPM_GateDocumentController_Test{
             }
             
             // Create local Rollouts for Created regional Rollouts.
-             localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{stdUserForGateDocument});  
+            localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{stdUserForGateDocument});  
             
             insert localRolloutList; 
             localRolloutList[0].Regional_Project__c=regionalRolloutList[0].IPM_Project__c;
@@ -89,17 +92,18 @@ private class IPM_GateDocumentController_Test{
             
             
         }
+        test.stopTest();
     }
     
     /*************************************************************************************************************************
     * @description Test Data to set up the project related data
     */
-    static void initializeTestMethodData(){
+    public static void initializeTestMethodData(){
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         system.runAs(globalUser){
-            projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
+            projectListObj = [Select Id,IPM_Project_Type__c,IPMProject_Span__c, Source_Rollout_External_Id__c,IPM_ProjectGKM__c,IPM_CompanyCardText__c,IPM_GateKeeping_Model__c,IPM_Phase__c, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
             (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID,IPM_Project__c from IPM_Questionnaires__r)
             from IPM_Project__c where Name in:projectNameSet];
             project=projectListObj[0];
@@ -112,7 +116,7 @@ private class IPM_GateDocumentController_Test{
             }
            
            
-             IPM_Project_Template__c projTemplate = IPM_TestFactory_Helper.createIPMProjectTemplate(FALSE);
+            IPM_Project_Template__c projTemplate = IPM_TestFactory_Helper.createIPMProjectTemplate(FALSE);
             insert projTemplate;
             List<IPM_Project_Template__c> projTemplList=[SELECT ID,IPM_Template_Complexity__c FROM IPM_Project_Template__c WHERE ID=:projTemplate.ID LIMIT 1];
             projTempl=projTemplList[0];        
@@ -127,7 +131,7 @@ private class IPM_GateDocumentController_Test{
             
             IPM_Section__c secMastParent = IPM_TestFactory_Helper.createIPMSection(FALSE);
             secMastParent.IPM_Document_Template__c = ipdt.ID;
-            
+            secMastParent.IPM_Section_Label_Type__c = IPM_ConstantUtils.SECTION_TYPE_HEADER;
             insert secMastParent;
             List<IPM_Section__c> projSecMstlList=[SELECT ID,IPM_Document_Template__c,IPM_Section_Sequence__c,IPM_Section_Name__c FROM IPM_Section__c WHERE ID=:secMastParent.ID LIMIT 1];
            
@@ -143,15 +147,55 @@ private class IPM_GateDocumentController_Test{
           
             System.assertEquals(projSecMstlList1[0].IPM_Document_Template__c,ipdt.ID, 'Section is not properly mapped with document template.');//positive test
             
+            IPM_Section__c secMastHeader = IPM_TestFactory_Helper.createIPMSection(FALSE, '1', 'Introduction', 'Header');
+            secMastHeader.IPM_Document_Template__c = ipdt.ID;
+            secMastHeader.IPM_Section_Type__c=IPM_ConstantUtils.SECTION_TYPE_HEADER;
+            insert secMastHeader;
+            List<IPM_Section__c> projSecMstlList2=[SELECT ID,IPM_Document_Template__c,IPM_Section_Sequence__c,IPM_Section_Name__c FROM IPM_Section__c WHERE ID=:secMastHeader.ID LIMIT 1];
+            System.assertEquals(projSecMstlList2[0].IPM_Document_Template__c,ipdt.ID, 'Section is not properly mapped with document template.');//positive test
+            
+            IPM_Section__c secMastSubHeader = IPM_TestFactory_Helper.createIPMSection(FALSE, '1.2', 'Justification', 'Sub Header');
+            secMastSubHeader.IPM_Document_Template__c = ipdt.ID;
+            secMastSubHeader.IPM_Parent_Section__c =secMastHeader.Id;
+            secMastSubHeader.IPM_Section_Type__c=IPM_ConstantUtils.SECTION_TYPE_SUBHEADER;
+            insert secMastSubHeader;
+            List<IPM_Section__c> projSecMstlList3=[SELECT ID,IPM_Document_Template__c,IPM_Section_Sequence__c,IPM_Section_Name__c FROM IPM_Section__c WHERE ID=:secMastSubHeader.ID LIMIT 1];
+            System.assertEquals(projSecMstlList3[0].IPM_Document_Template__c,ipdt.ID, 'Section is not properly mapped with document template.');//positive test
+            
+            IPM_Section__c secMastTopic = IPM_TestFactory_Helper.createIPMSection(FALSE, '1.2.1', 'Consumer Need', 'Topic');
+            secMastTopic.IPM_Document_Template__c = ipdt.ID;
+            secMastTopic.IPM_Parent_Section__c =secMastSubHeader.Id;
+            secMastTopic.IPM_Section_Type__c=IPM_ConstantUtils.SECTION_TYPE_TEXT;
+            insert secMastTopic;
+            List<IPM_Section__c> projSecMstlList4=[SELECT ID,IPM_Document_Template__c,IPM_Section_Sequence__c,IPM_Section_Name__c FROM IPM_Section__c WHERE ID=:secMastTopic.ID LIMIT 1];
+            System.assertEquals(projSecMstlList4[0].IPM_Document_Template__c,ipdt.ID, 'Section is not properly mapped with document template.');//positive test
+            
+            
             document=projDocList[0];
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Section__r.IPM_Parent_Section__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:document.Id];
+            system.assertNotEquals(projDocList[0].Id, Null, 'There is no project document');
             system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id, 'Project documents does not match');
             docSec=projectDocSecListObj[0];
             projectDocSecListObj[0].IPM_Section__c=secMast.Id;
             projectDocSecListObj[0].IPM_Default_Section__c=true;
             projectDocSecListObj[0].IPM_Master_Section_External_Id__c =IPM_ConstantUtils.IPM_CU_COMPLEXITY;
             projectDocSecListObj[0].IPM_FunctionalRole__c=IPM_ConstantUtils.FUNCTIONAL_ROLE_PL;
+            
+            projectDocSecListObj[1].IPM_Section__c=secMastHeader.Id;
+            projectDocSecListObj[1].IPM_Default_Section__c=true;
+            projectDocSecListObj[1].IPM_Master_Section_External_Id__c ='Introduction';
+            projectDocSecListObj[1].IPM_FunctionalRole__c='MKTG DEV';
+            
+            projectDocSecListObj[2].IPM_Section__c=secMastSubHeader.Id;
+            projectDocSecListObj[2].IPM_Default_Section__c=true;
+            projectDocSecListObj[2].IPM_Master_Section_External_Id__c ='Justification';
+            
+            projectDocSecListObj[3].IPM_Section__c=secMastTopic.Id;
+            projectDocSecListObj[3].IPM_Default_Section__c=true;
+            projectDocSecListObj[3].IPM_Master_Section_External_Id__c ='Consumer_Need';
+            projectDocSecListObj[3].IPM_FunctionalRole__c='MKTG DEV';
+            
             update projectDocSecListObj;
             pRef = Page.IPM_GateDocument;
             pRef.getParameters().put(IPM_ConstantUtils.SF_ID, projectListObj[0].Id);
@@ -174,6 +218,7 @@ private class IPM_GateDocumentController_Test{
             test.startTest();
          ipmGateDocContrl=new IPM_GateDocumentController();
             ipmGateDocContrl.DueDateMsg=false;
+            ipmGateDocContrl.isPDLApproved = TRUE;
             ipmGateDocContrl.lstMstn=new List<IPM_Milestone__c>();
             ipmGateDocContrl.lstMstn.add(mileList[0]);
             ipmGateDocContrl.getProjectDocument();
@@ -199,6 +244,7 @@ private class IPM_GateDocumentController_Test{
             ipmGateDocContrl.getProjectDocument();
             ipmGateDocContrl.project.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
             ipmGateDocContrl.getProjectDocument();
+            
             List<IPM_Project_Document__c> lstProjectDoc=[SELECT Id,IPM_Contract_GateKeeper_Model__c,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,
             IPM_Approval_Date__c,LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c,LastModifiedBy.Name,IPM_GateDocuments__c 
             FROM IPM_Project_Document__c 
@@ -208,95 +254,6 @@ private class IPM_GateDocumentController_Test{
         }
     }
     
-    
-    /*************************************************************************************************************************
-* @description Running Test Script to test the Filter Sections
-*/ 
-    static testMethod void filterSectionsTest(){   
-        initializeTestMethodData();
-        system.RunAs(globalUser){
-            test.startTest();
-            ipmGateDocContrl=new IPM_GateDocumentController();
-            ipmGateDocContrl.appendixCCId='abc';
-            ipmGateDocContrl.projectDoc=document;
-            ipmGateDocContrl.dueDate=String.valueOf(system.today());
-            ipmGateDocContrl.globalbusinessImpactStr='xyz';
-            ipmGateDocContrl.proSubSectionParentsSequences='qwe';
-            ipmGateDocContrl.proDocSectionListForAppendix=new List<IPM_Project_Document_Section__c>();
-            ipmGateDocContrl.proDocSectionListForAppendix.add(projectDocSecListObj[0]);
-            ipmGateDocContrl.getIpmuserType();
-            ipmGateDocContrl.IsTypeAll=true;
-            ipmGateDocContrl.filterSections();
-            ipmGateDocContrl.IsTypeAll=false;
-            ipmGateDocContrl.IsNegotiable=true;
-            ipmGateDocContrl.Isoptional=true;
-            ipmGateDocContrl.filterSections();
-            ipmGateDocContrl.IsStatusAll=true;
-            ipmGateDocContrl.filterSections();
-            ipmGateDocContrl.IsStatusAll=false;
-            ipmGateDocContrl.IsNotstarted=true;
-            ipmGateDocContrl.IsFilledIn=true;
-            ipmGateDocContrl.filterSections();
-            ipmGateDocContrl.IsRoleAll=true;
-            ipmGateDocContrl.filterSections();
-            ipmGateDocContrl.IsRoleAll=false;
-            ipmGateDocContrl.IsBD=true;
-            ipmGateDocContrl.IsCMI=true;
-            ipmGateDocContrl.IsCD=true;
-            ipmGateDocContrl.IsRnD=true;
-            ipmGateDocContrl.IsSC=true;
-            ipmGateDocContrl.IsFinance=true;
-            ipmGateDocContrl.IsBB=true;
-            ipmGateDocContrl.IsPL=true;
-            ipmGateDocContrl.proSubSectionParentsSequenceList1=new Set<String>();
-            ipmGateDocContrl.proSubSectionParentsSequenceList1.add('ert');
-            ipmGateDocContrl.projSubSectionList=new List<IPM_Project_Document_Section__c>();
-            ipmGateDocContrl.projSubSectionList.add(projectDocSecListObj[0]);
-            ipmGateDocContrl.filterSections();
-            System.assertEquals(ipmGateDocContrl.IsFilledIn,false,'value not reset properly');
-            ipmGateDocContrl.IsCMI=true;
-            ipmGateDocContrl.filterSections();
-            ipmGateDocContrl.IsCD=true;
-            ipmGateDocContrl.filterSections();
-            ipmGateDocContrl.IsRnD=true;
-            ipmGateDocContrl.filterSections();
-            ipmGateDocContrl.IsSC=true;
-            ipmGateDocContrl.filterSections();
-            ipmGateDocContrl.IsFinance=true;
-            ipmGateDocContrl.filterSections();
-            ipmGateDocContrl.IsBB=true;
-            ipmGateDocContrl.filterSections();
-            ipmGateDocContrl.IsPL=true;
-            ipmGateDocContrl.projectDoc=document;
-            ipmGateDocContrl.filterSections();
-            System.assertEquals(ipmGateDocContrl.IsFilledIn,false,'value failed to reset');
-            ipmGateDocContrl.project.IPM_ProjectSubType__c=IPM_ConstantUtils.IPM_BLG;
-            ipmGateDocContrl.filterSections();
-            test.stopTest();
-        }
-    }  
-    
-    
-    /*************************************************************************************************************************
-* @description Running to set the filter sections set from the UI
-*/ 
-    static testMethod void setFilterTest(){
-        initializeTestMethodData();
-        system.RunAs(globalUser){
-            test.startTest();
-        ipmGateDocContrl=new IPM_GateDocumentController();
-            ipmGateDocContrl.typeFilters=IPM_ConstantUtils.TYPE_ALL+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.TYPE_NON_NEGOTIABLE+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.TYPE_OPTIONAL;
-            ipmGateDocContrl.statusFilters=IPM_ConstantUtils.STATUS_ALL+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.STATUS_NOT_STARTED+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.SECTION_STATUS_FILLED;
-            ipmGateDocContrl.roleFilters=IPM_ConstantUtils.FUNCTIONAL_ROLE_ALL+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.FUNCTIONAL_ROLE_BD+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI+IPM_ConstantUtils.COMMA +
-            IPM_ConstantUtils.FUNCTIONAL_ROLE_CD+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.FUNCTIONAL_ROLE_RD+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.FUNCTIONAL_ROLE_Finance+IPM_ConstantUtils.COMMA +
-            IPM_ConstantUtils.FUNCTIONAL_ROLE_BB+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.FUNCTIONAL_ROLE_SC+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.FUNCTIONAL_ROLE_PL;
-            ipmGateDocContrl.setFilter();
-            System.assertEquals(ipmGateDocContrl.IsPL,false,'value not reset');
-            test.stopTest();
-        }
-    }  
-    
-    
     /*************************************************************************************************************************
 * @description Running Test Script to check the Documet Sections are fetched
 */ 
@@ -304,10 +261,23 @@ private class IPM_GateDocumentController_Test{
         initializeTestMethodData();
         system.RunAs(globalUser){
             test.startTest();
+            ApexPages.currentPage().getParameters().put('setStatus',IPM_ConstantUtils.STATUS_APPROVED);
+            ApexPages.currentPage().getParameters().put('StatusDate', '11/11/2016');
+            ApexPages.currentPage().getParameters().put('StatusComments','test comment');
+            Attachment att = new Attachment(name='att',  parentId = projDocList[0].Id, body = Blob.valueOf('test att'));
+            insert att;
         ipmGateDocContrl=new IPM_GateDocumentController();
+            ipmGateDocContrl.dueDate = '11/11/2016';
+            ipmGateDocContrl.regionalCPP = 'test';
+            ipmGateDocContrl.localCPP = 'test';
+            ipmGateDocContrl.reactivateProjectFlag = true;
+            ipmGateDocContrl.attachmentName = 'test';
             ipmGateDocContrl.projectDoc.Id=projDocList[0].Id;
-            ipmGateDocContrl.getDocumentSectionMap();
+            ipmGateDocContrl.isPDLApproved = true;
+            ipmGateDocContrl.isPDLDocument = true;
+            ipmGateDocContrl.getFilledInPercent();
             ipmGateDocContrl.getProjectDocumentSection();
+            ipmGateDocContrl.getPdlDocumentStatus();
             List<IPM_Project_Document_Section__c>projSubSectionList=[SELECT Id,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c, IPM_Section_Sequence__c, 
             IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
             IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
@@ -315,88 +285,15 @@ private class IPM_GateDocumentController_Test{
             IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
             FROM IPM_Project_Document_Section__c 
             WHERE IPM_Project_Document__c=:ipmGateDocContrl.projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__c =:ipmGateDocContrl.parentSectionId AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];  
-			
-			if(!projSubSectionList.isEmpty())	
-			{
-				System.assert(projSubSectionList[0].IPM_Default_Section__c,'project section is not proper');
-			}
+            
+            if(!projSubSectionList.isEmpty())   
+            {
+                System.assert(projSubSectionList[0].IPM_Default_Section__c,'project section is not proper');
+            }
             test.stopTest();
         }
     }
 
-
-    /*************************************************************************************************************************
-* @description Running Test Script to Reset the Filters
-*/ 
-    static testMethod void resetFiltersTest(){
-    initializeTestMethodData();
-        system.RunAs(globalUser){
-            test.startTest();  
-       
-            ipmGateDocContrl=new IPM_GateDocumentController();
-            ipmGateDocContrl.exportToPdf();
-            ipmGateDocContrl.moveToPLE();
-            ipmGateDocContrl.ResetFilters();
-           
-             ipmGateDocContrl.exportToPdf();
-            
-            System.assert(ipmGateDocContrl.IsTypeAll,'value failed to reset');
-            test.stopTest();
-        }
-    }
-    
-    /*************************************************************************************************************************
-* @description Running Test Script to get the Dynamic sections based on Refactor
-*/ 
-    static testMethod void getDynamicSectionTest(){
-        initializeTestMethodData();
-        system.RunAs(globalUser){
-            test.startTest();
-          ipmGateDocContrl=new IPM_GateDocumentController();
-           
-            
-            ipmGateDocContrl.moveToNextDocument();
-            
-            ipmGateDocContrl.projectDoc.Id=projDocList[0].Id;
-            ipmGateDocContrl.getDynamicSection();
-            List<IPM_Project_Document_Section__c>projSubLevelSectionList=[SELECT Id,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c, IPM_Section_Sequence__c, 
-            IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
-            IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
-            IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,
-            IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
-            FROM IPM_Project_Document_Section__c 
-            WHERE IPM_Project_Document__c=:ipmGateDocContrl.projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID=:ipmGateDocContrl.parentSectionId AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
-			if(!projSubLevelSectionList.isEmpty())	
-			{
-				System.assert(projSubLevelSectionList[0].IPM_Default_Section__c,'Project document sections not updated properly');
-			}
-            test.stopTest();
-        }
-    }
-    /*************************************************************************************************************************
-* @description Running Test Script to get the 2nd level sections
-*/ 
-    static testMethod void getProjectSubSectionsTest(){
-        initializeTestMethodData();
-        system.RunAs(globalUser){
-            test.startTest();
-        ipmGateDocContrl=new IPM_GateDocumentController();
-            ipmGateDocContrl.projectDoc.Id=projDocList[0].Id;
-            ipmGateDocContrl.getProjectSubSections();
-            List<IPM_Project_Document_Section__c>projSubLevelSectionList=[SELECT Id,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c, IPM_Section_Sequence__c, 
-            IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
-            IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
-            IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,
-            IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
-            FROM IPM_Project_Document_Section__c 
-            WHERE IPM_Project_Document__c=:ipmGateDocContrl.projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID=:ipmGateDocContrl.parentSectionId AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
-			if(!projSubLevelSectionList.isEmpty())	
-			{
-				System.assert(projSubLevelSectionList[0].IPM_Default_Section__c,'Project document sections not updated properly');
-			}
-            test.stopTest();
-        }
-    }
     /*************************************************************************************************************************
 * @description Running Test Script to get the Appendix sections
 */ 
@@ -404,22 +301,23 @@ private class IPM_GateDocumentController_Test{
         initializeTestMethodData();
         system.RunAs(globalUser){
             test.startTest();   
-        ipmGateDocContrl=new IPM_GateDocumentController();
+            ipmGateDocContrl=new IPM_GateDocumentController();
+            ipmGateDocContrl.isPDLApproved = true;
             ipmGateDocContrl.projectDoc.Id=projDocList[0].Id;
-      docSec.IPM_Has_Appendix__c=true;
-      docSec.IPM_Default_Section__c=true;
-      update docSec;
-      system.assertEquals(docSec.IPM_Project_Document__c,projDocList[0].Id, 'Record Not Same');
-     
-      ipmGateDocContrl=new IPM_GateDocumentController ();
-      ipmGateDocContrl.projectDoc.Id=document.Id;
-      ipmGateDocContrl.getAppendixSections();
-     List<IPM_Project_Document_Section__c>projDocAppdxSectionList=[SELECT ID,IPM_Has_Appendix__c,IPM_FunctionalRole__c,IPM_Master_Section_External_Id__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section_Sequence__c,IPM_Section_Name__c 
-      FROM IPM_Project_Document_Section__c 
-      WHERE IPM_Project_Document__c=:ipmGateDocContrl.projectDoc.Id 
-      AND IPM_Has_Appendix__c=true AND IPM_Default_Section__c=true 
-      ORDER BY IPM_Section_Sequence_Number__c asc limit 50000];
-      System.assert(projDocAppdxSectionList[0].IPM_Has_Appendix__c,'Project document sections not updated properly');           
+            docSec.IPM_Has_Appendix__c=true;
+            docSec.IPM_Default_Section__c=true;
+            update docSec;
+            system.assertEquals(docSec.IPM_Project_Document__c,projDocList[0].Id, 'Record Not Same');
+            
+            ipmGateDocContrl=new IPM_GateDocumentController ();
+            ipmGateDocContrl.projectDoc.Id=document.Id;
+            ipmGateDocContrl.getAppendixSections();
+            List<IPM_Project_Document_Section__c>projDocAppdxSectionList=[SELECT ID,IPM_Has_Appendix__c,IPM_FunctionalRole__c,IPM_Master_Section_External_Id__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section_Sequence__c,IPM_Section_Name__c 
+                                                                          FROM IPM_Project_Document_Section__c 
+                                                                          WHERE IPM_Project_Document__c=:ipmGateDocContrl.projectDoc.Id 
+                                                                          AND IPM_Has_Appendix__c=true AND IPM_Default_Section__c=true 
+                                                                          ORDER BY IPM_Section_Sequence_Number__c asc limit 50000];
+            System.assert(projDocAppdxSectionList[0].IPM_Has_Appendix__c,'Project document sections not updated properly');           
             test.stopTest();                                         
         }
     }
@@ -444,13 +342,240 @@ private class IPM_GateDocumentController_Test{
         initializeTestMethodData();
         system.RunAs(globalUser){
             test.startTest();
-        ipmGateDocContrl=new IPM_GateDocumentController();
+            ipmGateDocContrl=new IPM_GateDocumentController();
             ipmGateDocContrl.sectionId=projectDocSecListObj[0].Id;
-            ipmGateDocContrl.showAttchSection();
             List<Attachment>attachmentList=[SELECT Id,Name,ParentId,Description FROM Attachment WHERE ParentId=:ipmGateDocContrl.sectionId limit 1];
             System.assertEquals(attachmentList.size(),0,'Attachment found');//Negative Assert
             test.stopTest();
         }
     }
     
+    //Test method for controller class IPM_PDocAttachmentListCtrl
+    static testMethod void IPM_PDocAttachmentListCtrlTest(){
+        initializeTestMethodData();
+        system.runAs(globalUser){
+            
+            ApexPages.StandardController sc = new ApexPages.StandardController(project);
+            IPM_PDocAttachmentListCtrl docCtrl = new IPM_PDocAttachmentListCtrl(sc);
+            System.assert(docCtrl.documentList.size() == 0,'Attachment Exists!!');  
+            
+            attachment att = new attachment(name='Gate_Document', ParentId= projectDocSecListObj[0].Id, body=blob.ValueOf('test'));
+            insert att;
+            
+            pRef = Page.IPM_GateDocAttchList;
+            pRef.getParameters().put('id', project.Id);
+            Test.setCurrentPage(pRef);
+            Test.startTest();
+            List<Attachment> lstAttachment = [Select Id,Name from attachment where Name like :IPM_ConstantUtils.GD_ATTACHMENT_SUFFIX limit 1];
+            System.assertEquals(lstAttachment.size(),1,'Attachment missing for Gate doc.');// Negative Test
+  
+            Test.stopTest();
+        }
+    }
+    
+     /*************************************************************************************************************************
+* @description Running Test Script to check the Documet Sections are fetched
+*/ 
+    static testMethod void IPMSequenceTest(){
+        
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            test.startTest();
+            ipmGateDocContrl=new IPM_GateDocumentController();
+            List<IPM_Project_Document_Section__c> projectDocSecList = [Select Id,IPM_Section__c from IPM_Project_Document_Section__c where IPM_Project_Document__c=:document.Id];
+            ipmGateDocContrl.isPDLApproved = TRUE;
+            IPM_Section__c sec = [Select Id, IPM_Section_Sequence__c From IPM_Section__c WHERE Id =:projectDocSecList[0].IPM_Section__c];
+            sec.IPM_Section_Sequence__c = '2.2';
+            sec.IPM_Negotiable__c = true;
+            update sec;
+            ipmGateDocContrl=new IPM_GateDocumentController();            
+            
+            sec.IPM_Section_Sequence__c = '3.2';
+            update sec;
+            ipmGateDocContrl=new IPM_GateDocumentController();
+            
+            sec.IPM_Section_Sequence__c = '4.2';
+            update sec;
+            System.assertEquals(sec.IPM_Section_Sequence__c,'4.2','Section Sequence Not updated');
+            ipmGateDocContrl=new IPM_GateDocumentController();
+          
+            
+            test.stopTest();
+        }
+    }
+    /*************************************************************************************************************************
+* @description Running Test Script to check the Documet Sections are fetched
+*/  
+    static testMethod void IPMSequenceTest2(){
+        
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+             test.startTest();
+            //ipmGateDocContrl=new IPM_GateDocumentController();
+            List<IPM_Project_Document_Section__c> projectDocSecList = [Select Id,IPM_Section__c from IPM_Project_Document_Section__c where IPM_Project_Document__c=:document.Id];
+            
+            IPM_Section__c sec = [Select Id, IPM_Section_Sequence__c From IPM_Section__c WHERE Id =:projectDocSecList[0].IPM_Section__c];
+            sec.IPM_Section_Sequence__c = '2.2';
+            sec.IPM_Negotiable__c = false;
+            update sec;
+            ipmGateDocContrl=new IPM_GateDocumentController();    
+            
+            sec.IPM_Section_Sequence__c = '3.2';
+            sec.IPM_Negotiable__c = false;
+            update sec;
+            ipmGateDocContrl=new IPM_GateDocumentController();
+            
+            sec.IPM_Section_Sequence__c = '4.2';
+            sec.IPM_Negotiable__c = false;
+            update sec;
+            ipmGateDocContrl=new IPM_GateDocumentController();
+            
+            sec.IPM_Section_Sequence__c = '5.2';
+            sec.IPM_Negotiable__c = false;
+            update sec;
+            projectDocSecList[0].IPM_FunctionalRole__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_SC;
+            update projectDocSecList;
+            ipmGateDocContrl=new IPM_GateDocumentController();
+            
+            sec.IPM_Section_Sequence__c = '6.2';
+            sec.IPM_Negotiable__c = false;
+            update sec;
+            
+            System.assertEquals(sec.IPM_Section_Sequence__c,'6.2','Section Sequence Not updated');
+            
+            projectDocSecList[0].IPM_FunctionalRole__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_BB;
+            update projectDocSecList;
+            
+          
+            ipmGateDocContrl=new IPM_GateDocumentController();
+         
+            test.stopTest();
+        }
+
+    }
+    
+     static testMethod void IPMSequenceTest3(){
+          initializeTestMethodData();
+         system.RunAs(globalUser){
+             test.startTest();
+             
+             List<IPM_Project_Document_Section__c> projectDocSecList = [Select Id,IPM_Section__c from IPM_Project_Document_Section__c where IPM_Project_Document__c=:document.Id];
+             IPM_Section__c sec = [Select Id, IPM_Section_Sequence__c From IPM_Section__c WHERE Id =:projectDocSecList[0].IPM_Section__c];
+             sec.IPM_Section_Sequence__c = '7.2';
+             sec.IPM_Negotiable__c = false;
+             update sec;
+             projectDocSecList[0].IPM_FunctionalRole__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_RD;
+             update projectDocSecList;
+             ipmGateDocContrl=new IPM_GateDocumentController();
+             
+            sec.IPM_Section_Sequence__c = '5.2';
+            sec.IPM_Negotiable__c = true;
+            update sec;
+            projectDocSecList[0].IPM_FunctionalRole__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_Finance;
+            update projectDocSecList;
+            ipmGateDocContrl=new IPM_GateDocumentController();
+             
+            sec.IPM_Section_Sequence__c = '6.2';
+            sec.IPM_Negotiable__c = true;
+            update sec;
+            System.assertEquals(sec.IPM_Section_Sequence__c,'6.2','Section Sequence Not updated');
+            
+            projectDocSecList[0].IPM_FunctionalRole__c =  IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
+            update projectDocSecList;
+            ipmGateDocContrl=new IPM_GateDocumentController(); 
+             
+             test.stopTest();
+         }
+     }
+    
+     static testMethod void IPMSequenceTest4(){
+          initializeTestMethodData();
+          system.RunAs(globalUser){
+             test.startTest();
+             
+             List<IPM_Project_Document_Section__c> projectDocSecList = [Select Id,IPM_Section__c from IPM_Project_Document_Section__c where IPM_Project_Document__c=:document.Id];
+             IPM_Section__c sec = [Select Id, IPM_Section_Sequence__c From IPM_Section__c WHERE Id =:projectDocSecList[0].IPM_Section__c];
+             sec.IPM_Section_Sequence__c = '1.2';
+             sec.IPM_Negotiable__c = true;
+             update sec;
+             projectDocSecList[0].IPM_Section_Status__c = 'Filled-in';
+             projectDocSecList[0].IPM_FunctionalRole__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI;
+             update projectDocSecList;
+             
+             ipmGateDocContrl=new IPM_GateDocumentController();
+             ipmGateDocContrl.isPDLApproved = TRUE;
+             sec.IPM_Section_Sequence__c = '7.2';
+             sec.IPM_Negotiable__c = true;
+             update sec;
+             System.assertEquals(sec.IPM_Section_Sequence__c,'7.2','Section Sequence Not updated');
+             
+             projectDocSecList[0].IPM_Section_Status__c = 'Excluded';
+             projectDocSecList[0].IPM_FunctionalRole__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_CD;
+             update projectDocSecList;
+             System.assertEquals(projectDocSecList[0].IPM_FunctionalRole__c,IPM_ConstantUtils.FUNCTIONAL_ROLE_CD,'Function Role Not updated');
+
+             ipmGateDocContrl=new IPM_GateDocumentController();
+             test.stopTest();
+         }
+     }
+     /*************************************************************************************************************************
+* @description Running Test Script to get the Dynamic sections based on Refactor
+*/ 
+    static testMethod void testDocumentAndCancel(){
+        initializeTestMethodData();
+       // Test.setCurrentPage(Page.IPM_GateDocumentPDF);
+        system.RunAs(globalUser){
+            test.startTest();
+           
+           ipmGateDocContrl=new IPM_GateDocumentController();
+            
+            ipmGateDocContrl.moveToNextDocument();
+            IPM_Financial__c finr = [SELECT  Financial_External_ID__c FROM IPM_Financial__c WHERE Parent_Project__c =: projectListObj[0].Id limit 1];
+            
+            /*IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(projectListObj[0]);*/
+           
+  			projectListObj[0].IPMProject_Span__c = 'Local';
+  			 projectListObj[0].IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
+  			update projectListObj[0];
+  			
+            finr.Financial_External_ID__c =  projectListObj[0].Source_Rollout_External_Id__c;
+            update finr;
+            
+            ipmGateDocContrl.moveToNextDocument();
+            
+            ipmGateDocContrl.projectDoc.Id=projDocList[0].Id;
+            List<IPM_Project_Document_Section__c>projSubLevelSectionList=[SELECT Id,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c, IPM_Section_Sequence__c, 
+            IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
+            IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
+            IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,
+            IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
+            FROM IPM_Project_Document_Section__c 
+            WHERE IPM_Project_Document__c=:ipmGateDocContrl.projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID=:ipmGateDocContrl.parentSectionId AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
+      if(!projSubLevelSectionList.isEmpty())  
+      {
+        System.assert(projSubLevelSectionList[0].IPM_Default_Section__c,'Project document sections not updated properly');
+      }
+      
+       ipmGateDocContrl=new IPM_GateDocumentController();
+            ipmGateDocContrl.projectDoc.Id=projDocList[0].Id;
+            projSubLevelSectionList=[SELECT Id,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c, IPM_Section_Sequence__c, 
+            IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
+            IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
+            IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,
+            IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
+            FROM IPM_Project_Document_Section__c 
+            WHERE IPM_Project_Document__c=:ipmGateDocContrl.projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID=:ipmGateDocContrl.parentSectionId AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
+      if(!projSubLevelSectionList.isEmpty())  
+      {
+        System.assert(projSubLevelSectionList[0].IPM_Default_Section__c,'Project document sections not updated properly');
+      }
+      ipmGateDocContrl.cancelStoppingProject();
+
+      ipmGateDocContrl.showAllCurrentDocSummaryAttch();
+      ipmGateDocContrl=new IPM_GateDocumentController();
+      ipmGateDocContrl.moveToPLE();
+          test.stopTest();
+      }
+    }
+
 }

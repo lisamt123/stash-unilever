@@ -6,7 +6,7 @@ Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
     * Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+    this list of conditions and the following disclaimer. 
     * Redistributions in binary form must reproduce the above copyright notice,
     this list of conditions and the following disclaimer in the documentation
     and/or other materials provided with the distribution.
@@ -34,7 +34,13 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
     public String achievementType{get;private set;}
     private String profileUserId{get;set;}
     public Integer totalAchievements{get;private set;}
-
+    
+    
+     // created by Nag for R001.001.001
+    public string workLevel{get;set;}
+    public string workLevel2{get;set;}
+    public PBS_Profile__c Profilenew;
+    public List<PBS_Standard_Job_Profile__c> JobProfileOptions;
     public List<AchievementTypeWrapper> getAchievementTypes(){
         List<AchievementTypeWrapper> results = new List<AchievementTypeWrapper>();
         Schema.DescribeFieldResult fieldResult = PBS_Achievement__c.Type__c.getDescribe();
@@ -47,8 +53,31 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
         }
         return results;
     }
-
+    public List<string> workleveloptionsnew= new list<string>();
     public PBS_MyProfileController_CC(){
+    
+          init();
+        
+        
+    }
+   
+
+    public void init()
+    {
+        
+        
+        workleveloptionsnew=PBS_ProfileService.getPicklistOptions('PBS_Profile__c', 'Work_Level__c', false);
+        Profilenew= new PBS_Profile__c();
+        Profilenew=PBS_ProfileService.getCurrentUserProfile();
+        for(string s: workleveloptionsnew){
+                if(s==Profilenew.Work_Level__c ){
+                    worklevel=Profilenew.Work_Level__c;
+                }
+                
+        }
+        
+        
+        
         totalAchievements = 0;
         profileUserId = ApexPages.currentPage().getParameters().get('id');
         String chatterPageUserId = ApexPages.currentPage().getParameters().get('sfdc.userId');
@@ -188,8 +217,12 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
             acw.achievements = achievementRecs;
             lcategories.add(acw);
         }
+   
+        
+        
     }
-
+    
+    
     public PageReference changeAchievementType(){
         String paramAchievementType = ApexPages.currentPage().getParameters().get('type');
         String isSubTab = ApexPages.currentPage().getParameters().get('subtab');
@@ -218,20 +251,51 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
     }
 
     public List<String> getWorkLevelOptions()
-    {
+     {
+       
         return PBS_ProfileService.getPicklistOptions('PBS_Profile__c', 'Work_Level__c', false);
+        
+    }
+   
+    
+    public List<String> getCategoryOptions()
+    {
+        return PBS_ProfileService.getPicklistOptions('PBS_Profile__c', 'Category__c', false);
     }
 
     public List<PBS_Standard_Job_Profile__c> getJobProfileOptions()
-    {
-        return [
+    {   
+        List<PBS_Standard_Job_Profile__c> jobprofileOptionsnew = new List<PBS_Standard_Job_Profile__c>(); 
+        system.debug('@@@Worklevel'+worklevel);
+        system.debug('@@@Worklevel2'+worklevel2);
+        for(PBS_Standard_Job_Profile__c psp: [SELECT Id, Name  FROM PBS_Standard_Job_Profile__c  ORDER BY Name limit:integer.valueof(System.Label.PBS_soqllimit)]){
+          System.debug('@@psp'+ psp);
+            if((workLevel=='Guest' || Worklevel=='') && psp.Name=='Guest' ){
+                jobprofileOptionsnew.add(psp);
+                System.debug('===');
+            }
+            else if(workLevel=='Level 1' && label.PBS_Worklevel1.contains(psp.Name)){
+                jobprofileOptionsnew.add(psp);
+            }
+            else if( workLevel=='Level 2' && label.PBS_Worklevel2.contains(psp.Name)){
+                    jobprofileOptionsnew.add(psp);
+            }
+            else if(workLevel=='Level 3' && label.PBS_Worklevel3.contains(psp.Name)){
+                        jobprofileOptionsnew.add(psp);
+            }
+       } 
+        system.debug('@@@@ jobprofilesoptionnew'+jobprofileOptionsnew);
+        
+        return jobprofileOptionsnew;/*[
             SELECT
                 Id, Name
             FROM
                 PBS_Standard_Job_Profile__c
             ORDER BY
                 Name limit:integer.valueof(System.Label.PBS_soqllimit)
-        ];
+        ];*/
+        
+        
     }
 
     public PBS_Profile__c getProfile()
@@ -240,16 +304,53 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
     }
 
     @RemoteAction
-    global static boolean storeUserProfile(String geography, String WorkLevel, Id UserRoleId, String Buddy)
+    global static boolean storeUserProfile(String geography, String WorkLevelnew, Id UserRoleId, String category, String Buddy)
     {
         PBS_Profile__c profile = PBS_ProfileService.getCurrentUserProfile();
         profile.Geography__c   = geography;
-        profile.Work_Level__c  = WorkLevel;
+        profile.Work_Level__c  = WorkLevelnew;
         profile.User_Role__c   = UserRoleId;
+        profile.Category__c    = category;
         profile.Buddy__c       = Buddy;
-
+        //To update Userinfo
         upsert profile;
+        updateUserDetails(profile.Geography__c,profile.Work_Level__c,profile.User_Role__c,profile.Category__c);
+        
         return true;
+    }
+    
+    //Used to Update UserInfo
+    global static boolean updateUserDetails(String geography, String WorkLevelnew, id UserRoleId, String category)
+    {
+    
+    List<User> userList = [
+            SELECT
+                Id, Name, User_Role__c, Work_Level__c, Geography__c, PC_Category__c
+            FROM
+                User
+            WHERE
+                User.Id = :UserInfo.getUserId()
+            LIMIT 1
+        ];
+        //List<PBS_Standard_Job_Profile__c> userRoleList = [SELECT Name FROM PBS_Standard_Job_Profile__c WHERE id=:UserRoleId];
+        PBS_Standard_Job_Profile__c userRoleList = [SELECT Name FROM PBS_Standard_Job_Profile__c WHERE id=:UserRoleId];
+        for(User user: userList){
+        user.Geography__c   = geography;
+        user.Work_Level__c  = WorkLevelnew;
+       // for(PBS_Standard_Job_Profile__c userRole : userRoleList ){
+        user.User_Role__c  =userRoleList.Name; //= userRole.Name;
+        //} 
+        user.PC_Category__c = category;
+        }
+        
+        update userList;
+        return true;
+    }
+    
+    public void jobprofileSelection(){
+      system.debug('@@@work level'+ worklevel);
+      //worklevel='Level 1'; 
+        
     }
 
 }

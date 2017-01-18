@@ -97,6 +97,15 @@
         <label>All</label>
     </listViews>
     <listViews>
+        <fullName>CAP_ULPM_CPA_Key_Contacts</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CAP_ULPM_PWORFKey_Contacts</fullName>
         <filterScope>Queue</filterScope>
         <label>ULPM</label>
@@ -106,10 +115,28 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CAP_VDM_Queue_CPA_Key_Contacts</fullName>
+        <filterScope>Queue</filterScope>
+        <label>VDM</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CAP_VDM_Queue_PWORFKey_Contacts</fullName>
         <filterScope>Queue</filterScope>
         <label>VDM</label>
         <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_Key_Contacts</fullName>
+        <filterScope>Queue</filterScope>
+        <label>SMT</label>
+        <queue>CPA_SMT</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -140,14 +167,14 @@
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
 
 if(permissionSetName == &quot;CPA_ADM&quot;){
 	alert(&quot;Key Contact cannot be created by Vendor Team.&quot;); 
-}else if(permissionSetName == &quot;CPA_ULPM&quot;){
+}else if(permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_ULPM_SL&quot;){
 	
 	if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Auto Accepted&quot; ||&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Accepted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Answered&quot;) 
 	{ 

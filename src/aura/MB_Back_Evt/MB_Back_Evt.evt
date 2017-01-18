@@ -1,0 +1,9 @@
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="pagename" type="string"/>
+    <aura:attribute name="month" type="string"/>
+    <aura:attribute name="selectedMonth" type="string"/>
+    <aura:attribute name="UsageType" type="String"/>
+    <aura:attribute name="deviceName" type="String"/>
+    <aura:attribute name="deviceId" type="String"/>
+    <aura:attribute name="ServiceName" type="String"/>
+</aura:event>

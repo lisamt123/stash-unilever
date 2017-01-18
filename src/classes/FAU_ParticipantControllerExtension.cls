@@ -17,8 +17,8 @@ public with sharing class FAU_ParticipantControllerExtension
 {
   
   public Boolean declineReasonAvailable {get;set;}
-  
-    public FAU_ParticipantControllerExtension(ApexPages.StandardController standardController)
+  public Boolean isUL2020{get;set;}
+  public FAU_ParticipantControllerExtension(ApexPages.StandardController standardController)
     {
         this.webinars = new List<FAU_Webinar_Participant__c>();
         this.standardController = standardController;
@@ -30,6 +30,7 @@ public with sharing class FAU_ParticipantControllerExtension
         this.modules = modulesForParticipant(this.participant);
         this.selectedWebinars = new List<String>();
         this.idWebinarMap = new Map<Id, FAU_Webinar_Participant__c>(this.webinars);
+        isUL2020 = FAU_Utilities.isRectypeUL2020(this.participant);
         declineReasonAvailable = false;
     }
 
@@ -146,9 +147,10 @@ public with sharing class FAU_ParticipantControllerExtension
         FAU_Participant__c recordToSave = (FAU_Participant__c)this.standardController.getRecord();
         recordToSave.FAU_Invite_State__c = INVITE_STATE_ACCEPTED;
         PageReference PgRef = save();
-
+        
+        if(!isUL2020){
         updateSelectedWebinars();
-
+        }
         System.debug('Exiting FAU_ParticipantControllerExtension.acceptInvite');
 
         return PgRef;
@@ -256,7 +258,7 @@ public with sharing class FAU_ParticipantControllerExtension
  
         if(inviteState == INVITE_STATE_INVITED)
         {          
-            if (participant.FAU_Is_deferred_To_PA__c == true){
+            if ((participant.FAU_Is_deferred_To_PA__c)&&(!FAU_Utilities.isRectypeUL2020(participant))){
                 this.stage = STAGE_REGISTERING;
             }else{
                 this.stage = STAGE_INITIAL; 
@@ -286,7 +288,7 @@ public with sharing class FAU_ParticipantControllerExtension
     {
         System.debug('Entering FAU_ParticipantControllerExtension.programForParticipant participant: ' + participant);
 
-        List<FAU_Program__c> programs = [SELECT Id, Name, FAU_Start_Date__c, FAU_Primary_Location__c, FAU_Invite_Form_Text__c FROM FAU_Program__c WHERE Id = :participant.FAU_Program_Wave__c LIMIT 1];
+        List<FAU_Program__c> programs = [SELECT Id, recordtype.name, Name, FAU_Start_Date__c, FAU_Primary_Location__c, FAU_Invite_Form_Text__c FROM FAU_Program__c WHERE Id = :participant.FAU_Program_Wave__c LIMIT 1];
         if(programs.size() != 1)
         {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, ERROR_PROGRAM_NOT_FOUND));

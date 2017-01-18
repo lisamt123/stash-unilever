@@ -1,0 +1,6 @@
+<aura:event type="APPLICATION" description="Event template" >
+	<aura:attribute name="latitude" type="Decimal" />
+    <aura:attribute name="longitude" type="Decimal" />
+    <aura:attribute name="countryName" type="string" />
+    <aura:attribute name="townName" type="string" />
+</aura:event>

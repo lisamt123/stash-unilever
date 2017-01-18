@@ -10,7 +10,7 @@
 *    Execloud ©            	2016-02-19          Created
 *
 ******************************************************************************************/
-public without sharing class Oblix_CalculatorLogic {
+public with sharing class Oblix_CalculatorLogic {
 
 
 

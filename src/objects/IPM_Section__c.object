@@ -113,10 +113,6 @@
         <label>IPM_FunctionalRole</label>
         <picklist>
             <picklistValues>
-                <fullName>BD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>CMI</fullName>
                 <default>false</default>
             </picklistValues>
@@ -126,10 +122,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Finance</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BB</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -144,8 +136,17 @@
                 <fullName>PL</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>MKTG DEV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MKTG LOCAL</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -162,9 +163,19 @@
     </fields>
     <fields>
         <fullName>IPM_IS_Default_Section__c</fullName>
-        <defaultValue>true</defaultValue>
+        <defaultValue>false</defaultValue>
         <description>To display the section in gate document</description>
         <label>Default Section</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Is_Parent_Exist__c</fullName>
+        <description>To improve performance by eliminating !=null checks from query</description>
+        <externalId>false</externalId>
+        <formula>NOT( OR(ISBLANK(IPM_Parent_Section__c),ISNULL(IPM_Parent_Section__c)))</formula>
+        <label>Is Parent Exist</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>

@@ -1,6 +1,9 @@
 <aura:component >
     <aura:handler name="init" value="{!this}" action="{!c.getEventItemData}"/>
     <aura:attribute name="eventItem" type="CFC_EventsWrapper"/>
+    <aura:attribute name="FromDate" type="String"/>
+    <aura:attribute name="ToDate" type="String"/>
+    <aura:attribute name="eventBannerImage" type="String"/>
     <aura:attribute name="banner" type="String" default="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR38PVsgqlKth2NiISGakB_SDHGiDurk-BF8JE0kSj0gkrLNxEFlQ"/>
    <!-- <div class="itemPanel" > 
         <div style="width:100%" value="{!v.eventItem}" onclick="{!c.loadEventDetail}">

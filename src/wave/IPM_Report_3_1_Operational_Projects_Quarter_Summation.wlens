@@ -1,0 +1,1 @@
+{"query":{"query":"{&quot;filters&quot;:[[&quot;IPM_Project_Type__c&quot;,[&quot;Operational&quot;],&quot;in&quot;],[&quot;Created Date&quot;,[[[&quot;quarter&quot;,-1],[&quot;quarter&quot;,-1]]],&quot;&gt;=&lt;=&quot;]],&quot;measures&quot;:[[&quot;count&quot;,&quot;*&quot;]]}","version":-1.0}}

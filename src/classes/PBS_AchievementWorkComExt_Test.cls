@@ -33,7 +33,7 @@ private class PBS_AchievementWorkComExt_Test{
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, 'Achievements');
-        List<WorkBadgeDefinition> lWorkBadges = PBS_AchievementData_Test.createWorkBadges(10);
+        PBS_AchievementData_Test.createWorkBadges(10);
 
         PageReference pageRef = Page.PBS_AchievementWorkCom;
         Test.setCurrentPage(pageRef);

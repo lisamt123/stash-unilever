@@ -2,8 +2,8 @@
 private class FAU_LandingPage_ControllerTest {
 
     static testMethod void controllerTest() {
-    	
-    	User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
+      
+      User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
         Date startDateFixture = Date.newInstance(2015, 10, 25);
         String locationFixture = 'Singapore';
@@ -16,6 +16,16 @@ private class FAU_LandingPage_ControllerTest {
         
         FAU_LandingPage_Controller controller = new FAU_LandingPage_Controller(new ApexPages.StandardController(participantRecord));
         
+        FAU_LandingPage_Controller defaultController = new FAU_LandingPage_Controller();
+        defaultController.chatterGroupId=false;
+            defaultController.tablechatterGroupId=false;
         Test.stopTest();
+        //system.assert('singapore', participantRecord.locationFixture );
+        try{
+        system.assert(null,participantRecord );
+        }catch(Exception e)
+        {
+            System.debug('NullPointerException caught: ' + e.getMessage());
+        }
     }
 }

@@ -25,7 +25,7 @@
 	.coreDelete{padding: 15px 0 0 10px;}
 	.aboutProContainer{border:1px solid #929292;padding-top:10px;border-radius:4px;}
 	.coreProtitle{color:#3B516D;font-weight:bold;display:block;} 
-	.coreProvalue{display:block;font-size:1.5em;color:#007DBB;word-break: break-word;}
+	.coreProvalue{display:block;font-size:1.1em;color:#007DBB;word-break: break-word;}
 	.coreTopContainer{padding:10px 0;border-bottom:1px solid #C9CBC4;width:100%;float:left;}
 	.coreMtitle{font-weight:bold;display:block;color:#555;}
 	.coreMvalue{color:#555;display:block;word-break: break-all;}
@@ -117,3 +117,4 @@
 .tooltip.top .tooltip-arrow {
     border-top-color: #00b1a5;
 }
+.brandDropdown{width:100%;}

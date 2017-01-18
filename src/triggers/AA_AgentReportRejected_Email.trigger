@@ -66,11 +66,11 @@ trigger AA_AgentReportRejected_Email on aa_Agent_Report__c (before delete) {
                        
                        
                         mail.setSubject('Sorry, we were unable to publish your competitor report: '+AgentReportObj.Report_Title__c);
-                        mail.setPlainTextBody('Dear'+userObj.FirstName+' '+userObj.LastName+','+'\n\n'+
+                        mail.setPlainTextBody('Dear'+userObj.FirstName+' '+userObj.LastName+','+AA_Constants.NextLineText+
                         'Thank you for your competitor report. However we were unable to publish your report.'
-                        +'\n\n'+CommentsValue
-                        +'\n\n'+'PS: This is an auto generated mail, please do not reply. If you have any questions, please refer back to your regional Competitor Intelligence manager'
-                        +'\n\n'+'Thanks,'+'\n\n'+'Agent App');
+                        +AA_Constants.NextLineText+CommentsValue
+                        +AA_Constants.NextLineText+'PS: This is an auto generated mail, please do not reply. If you have any questions, please refer back to your regional Competitor Intelligence manager'
+                        +AA_Constants.NextLineText+'Thanks,'+AA_Constants.NextLineText+'Agent App');
                       
                         
                         mail.setHtmlBody('<div style="border:2px solid blue;width:800px"> <img src="https://unilever--chazwa--c.cs14.content.force.com/servlet/servlet.ImageServer?id=015c0000000O5Wf&oid=00Dc0000003vcv1&lastMod=1441542616000" width="800px"/><br/><br>'+'<p style="font-family:sans-serif;font-size:14px;margin-left:30px">Sorry, we were unable to publish your competitor report</br></br><span style="font-size:18px;color:#3366CC;font-weight:bold;">'+AgentReportObj.Report_Title__c+'</span> </br></br>Dear&nbsp;<span>'+userObj.Name+',</span><br/><br/>'+

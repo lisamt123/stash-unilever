@@ -1,0 +1,171 @@
+<apex:page Controller="FS_ContactDetail_CC" tabStyle="Contact" >
+    
+    <script>
+function isNumberKey(evt)
+       {
+        
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+          
+           if (charCode != 46 && (charCode == 8 || charCode >31) 
+            && ((charCode == 40) || (charCode == 41)  || charCode == 8 || (charCode == 45) || (charCode > 47 && charCode < 58) || (charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 122)))
+             return true;
+          
+          return false;
+       }
+</script>
+    
+    <apex:pagemessages ></apex:pagemessages>
+    
+   <apex:form >
+        <apex:pageBlock >
+            
+           <apex:pageBlockSection title="{!$Label.FS_ContactInformationSection}"  columns="1" rendered="{!Not(EditMode)}"> 
+           <!--   <apex:pageBlockSection title="{!}"  columns="1" > -->
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="{!$Label.FS_Owner}" />
+                    <apex:outputLink value="/{!varContactDetail.Ownerid}" id="OwnerId">{!varContactDetail.Owner.name}</apex:outputLink>
+                   
+                </apex:pageBlockSectionItem>
+             
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_FirstName}" />
+                   <apex:outputText value="{!varContactDetail.firstname}" />
+                     <!--<apex:outputText value="{!FName}" />-->
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_LastName}" />
+                    <apex:outputText value="{!varContactDetail.lastname}" />
+                </apex:pageBlockSectionItem>
+                
+                
+                 <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_AccountName}" />
+                    <apex:outputLink value="/{!varContactDetail.accountid}" id="AccountId">{!varContactDetail.Account.Name}</apex:outputLink>
+                </apex:pageBlockSectionItem>
+                
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_Mobile}" />
+                    <apex:outputText value="{!varContactDetail.Phone}" />
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_Work}" />
+                    <apex:outputText value="{!workPhoneNumber}" />
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_Personal}" />
+                    <apex:outputText value="{!personalPhoneNumber}" />
+                </apex:pageBlockSectionItem>
+                
+                
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_Email}" />
+                    <apex:outputText value="{!varContactDetail.Email}" />
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_PositionHeader}" />
+                    <apex:outputText value="{!varContactDetail.FS_Position__c}" />
+                </apex:pageBlockSectionItem> 
+                
+                 <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_DecisionMakerHeader}" />
+               <apex:inputCheckbox value="{!varContactDetail.FS_Decision_Maker__c}" disabled="true"/>   
+                </apex:pageBlockSectionItem> 
+            </apex:pageBlockSection>
+            <apex:pageBlocksection title="{!$Label.FS_AdditionalInformationSection}" columns="1" rendered="{!Not(EditMode)}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_Comment}" />
+                    <apex:outputText value="{!varContactDetail.MailingStreet}" />
+                </apex:pageBlockSectionItem>
+               
+            </apex:pageBlockSection>
+            
+            
+            <apex:pageBlockSection title="{!$Label.FS_ContactInformationSection}"  columns="1" rendered="{!(EditMode)}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="{!$Label.FS_Owner}" />
+                    <apex:outputLink value="/{!varContactDetail.Ownerid}" id="OwnerId">{!varContactDetail.Owner.name}</apex:outputLink>
+                   
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_FirstName}" />
+                  
+                   <apex:inputText value="{!varContactDetail.firstname}" />
+                     <!--<apex:outputText value="{!FName}" />-->
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    
+                  
+                 <apex:outputLabel value="{!$Label.FS_LastName}" />    <apex:inputField value="{!varContactDetail.lastname}" />
+                </apex:pageBlockSectionItem>
+                
+                
+                 <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_AccountName}" />
+                    <apex:inputField value="{!varContactDetail.AccountId}" required="true"/>
+                  </apex:pageBlockSectionItem>
+                
+                
+                <apex:pageBlockSectionItem >
+                  <apex:outputLabel value="{!$Label.FS_Mobile}" />
+                   <apex:inputfield value="{!varContactDetail.Phone}" onkeypress="return isNumberKey(event);">
+                </apex:inputfield>
+               <!--     <apex:outputLabel value="Telephone" >
+                   <apex:inputText value="{!varContactDetail.Phone}" >
+                  
+                   </apex:inputText>
+                    <c:helpicon helpText="Please enter 11 digit valid Phone number"/>
+                   </apex:outputLabel> -->
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_Work}" />
+                    <apex:inputText value="{!workPhoneNumber}" onkeypress="return isNumberKey(event);"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_Personal}" />
+                    <apex:inputText value="{!personalPhoneNumber}" onkeypress="return isNumberKey(event);"/>
+                </apex:pageBlockSectionItem>
+                
+                
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_Email}" />
+                    <apex:inputField value="{!varContactDetail.Email}" />
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_PositionHeader}" />
+                     <apex:inputField value="{!varContactDetail.FS_Position__c}" required="true" />
+                </apex:pageBlockSectionItem> 
+                
+                 <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_DecisionMakerHeader}" />
+                <apex:inputCheckbox value="{!varContactDetail.FS_Decision_Maker__c}" />   
+                </apex:pageBlockSectionItem> 
+            </apex:pageBlockSection>
+            <apex:pageBlocksection title="{!$Label.FS_AdditionalInformationSection}" columns="1" rendered="{!(EditMode)}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.FS_Comment}" />
+                   
+                     <apex:inputTextArea value="{!varContactDetail.MailingStreet}" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+            <apex:commandButton title="Edit" value="Edit" action="{!editPage}" rendered="{!Not(EditMode)}"/>
+             
+             <apex:commandButton title="Edit" value="Save"  rendered="{!(EditMode)}" action="{!updateContact}"/>
+             <apex:commandButton title="Cancel" value="Cancel" action="{!DetailPage}" rendered="{!EditMode}"/>
+            </apex:pageBlockButtons>
+            
+            
+        </apex:pageBlock>
+    </apex:form>  
+</apex:page>

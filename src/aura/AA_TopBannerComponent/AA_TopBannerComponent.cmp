@@ -1,0 +1,96 @@
+<aura:component implements="force:appHostable">
+    <aura:attribute name="sortTopic" type="String"/>
+    <aura:attribute name="filterType" type="String"/>
+    <aura:attribute name="offSet" type="Integer"/>
+    <aura:attribute name="limitRecords" type="Integer"/>
+    <aura:attribute name="sortType" type="String"/>
+    <aura:attribute name="clusterId" type="String"/>
+    <aura:attribute name="countryId" type="String"/>
+    <aura:attribute name="applyFilter" type="String"/>
+    <!--Register Hanndler -->
+    <!-- winter 17' critical issue-->
+    <aura:registerEvent name="navigateToPageDetailEvent" type="c:AA_NavigateToPageDetail"/>
+    <style>
+        .container{
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color:#f0f0f0;
+        }
+        .header{
+        border: 1px solid #d1d1d4;
+        padding-bottom: 10px;
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color:white;
+        }
+        .back{
+        position:absolute;
+        top:0px;
+        left:0px;
+        width:10px;
+        }
+        .back-text{
+        position:absolute;
+        top:60px;
+        left:0px;
+        width:10px;
+        color:white;
+        }
+        .button-home {
+        border-radius: 30px;
+        padding: 0 7px;
+        font-size: 10.8px;
+        font-size: 3.5vw;
+        width: 46%;
+        height: 36px;
+        font-weight: bold;
+        }
+        .unilever-report,.unilever-report:hover, .unilever-report:focus  {
+        background-color: #0070d2;
+        color:white;
+        }  
+        .compitetor-report,.compitetor-report:hover, .compitetor-report:focus  {
+        background-color: #1CA9DE;
+        color:white;
+        }          
+        .rest-body{
+        padding:20px;
+        margin-bottom: 14px;
+        
+        }
+        .slds-list__item{
+        width:50%;
+        }
+        .banner-text{
+        position: absolute;
+        bottom: 11px;
+        left: 20px;
+        font-size: 22px;
+        color: #FFF;
+        }
+        .UnileverButton{
+        margin: 0 auto;
+        text-align: center;
+        }
+        @media screen and (min-width:768px){
+        .UnileverButton {
+        margin: 0 auto;
+        text-align: left;
+        margin-left: 16px;
+        }
+        .button-home {
+        width: 14%;
+        font-size:12.8px !important;
+        }
+        }
+    </style>
+    <div class="header">
+        <div class="slds-text-heading--medium img-banner"> 
+            Agent
+        </div>
+        <div class="UnileverButton">
+            <button class="unilever-report slds-button button-home slds-not-selected" onclick="{!c.goToUnileverForm}"><img src="/resource/AA_Agent_LightningAppStatic/images/icon_unilever.png" style="width:26px;margin-right: 2px;margin-left:-13px;"></img> Unilever Report</button>
+            <button class="compitetor-report  slds-button button-home slds-not-selected" onclick="{!c.goToCompetitorpage}"><img src="/resource/AA_Agent_LightningAppStatic/images/icon_competitor.png" style="width:26px;margin-right: 1px;"></img>Competitor Report</button>
+        </div>
+    </div>  
+</aura:component>

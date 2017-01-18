@@ -94,7 +94,7 @@
 	.secAttachment .secTitle,.secAttachment .secLink {font-weight:bold; padding:7px;}
 	.secAttachment .secLink {cursor:pointer; color:#1568b6;}
 	.secAttachment .fileName {  margin-left: 10px; margin-right:5px;  display: block;  float: left;  margin-top: 12px;}
-	.secAttachment .panelListFiles {color:#1568b6; background:transparent;} 
+	.secAttachment .panelListFiles {background:transparent;} 
 	.asterisk:before{ content:"* ";} 
 	.noTxtAlign{text-align:left ;}
 	.attchContainer{margin: 10px 10px 20px 10px;float:left;display:block ;}
@@ -349,6 +349,7 @@
 	.navbar-nav li:last-child > a > span{margin-top:2px ;}
 	.navbar-default .navbar-nav>.active a, .navbar-default .navbar-nav>.active a:hover, .navbar-default .navbar-nav>.active a:focus{background-color: #fff; padding-right:0; padding-left:0;color:#007dbb; border-top-left-radius:3px;border-top-right-radius:3px; -webkit-border-top-left-radius:3px;-webkit-border-top-right-radius:3px; -moz-border-top-left-radius:3px;-moz-border-top-right-radius:3px;}
 	.greytxt,.subtitle{color:#666;}
+	.greytxt{margin-bottom:10px;display:block;}
 	.mt15{margin-top:15px;}
 	.mb15{margin-bottom:15px;}    
 	.notifyTeam input[type=checkbox]{right:6px;}
@@ -495,6 +496,7 @@
 	.fieldLabel{padding-top: 7px;font-weight: bold;font-size: 0.83em;}
 	.inputField{margin:0 0 10px 0;}
 	.table>thead>tr>th:first-child {padding-left: 10px;}
+	.glbPLDtableHead.table>thead>tr>th:first-child {padding-left: 5px;}
 	.ipmSelect { border:1px solid #dce3e2;border-radius:3px;-webkit-border-radius:3px;-webkit-border-radius:3px;position:relative; z-index:0; display:inline-block;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;}
 	.cmiTable.table>thead>tr>th>div{border-right: 1px #ddd solid ;}
 	.CMIcountryAccordian{border: 0px #dce3e2 solid;margin: -11px 0;} 
@@ -524,8 +526,8 @@
         .ipmButtonGroup .ipmAssortDone, .ipmButtonGroup .ipmAssortReset {font-weight:bold;text-align: center; padding: 5px 21px;  width: 100%;  display: inline-block;  margin: 5px 0; cursor:pointer;}	
 	
 	/* Country Feeback BB Styles */
-	.feedbackContainer{margin-bottom: 10px;  border-bottom: 1px solid #ccc;  padding-bottom: 10px;}
-	.countryProName{margin-bottom:10px;}
+	.feedbackContainer{margin-bottom: 10px;  border-bottom: 1px solid #ccc;  padding-bottom: 10px; margin-bottom:0;}
+	.countryProName{margin-bottom:10px; margin-top:10px;}
 	.countryProName span{margin-left:10px;}
 	
 	/* CMI Table */
@@ -781,31 +783,34 @@
 input.misalignedField{border:2px solid red;}
 
 /* Global Financial Action Standards */
-.glbfinstdsContainer{background-color: #dceefa;border:1px solid #ddd;float: left;width: 100%;}
-.glbHeadLeft{min-width: 20%;float: left;display: block;height: 105px;border: 1px solid #ddd;}
-.glbHeadRight{width:80%;float: left;min-height: 100px;border: 1px solid #ddd;}
-.glbHeadtop1,.glbHeadtop2{width:50%;float:left;min-height: 98px;}
+.glbfinstdsContainer{background-color: #dceefa;border:1px solid #ddd;float: left;width: 98.6%;}
+.glbHeadLeft{width: 19.7%;float: left;display: block;height: 105px;border: 1px solid #ddd;}
+.glbHeadRight{width: 80.3%;float: left;min-height: 100px;border: 1px solid #ddd;}
+.glbHeadtop1,.glbHeadtop2{float:left;min-height: 98px;}
 .glbfrstyear,.glbinnovation{padding-bottom: 5px;text-align: center;color: #364354;font-weight: bold;margin-top: 5px;border-bottom: 1px solid #ddd;}
 .glbsubHeadM{float:left;width:20%;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 13px;}
 .glbsubHeadM2{float:left;width:33%;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 13px;}
-.glbHeadtop1{border-right: 1px solid #ddd;}
-.glbsubHead8,.glbValM2.glbVal8{border-right:0px;}
-.glbValLeft{min-height: 42px;min-width: 20%;float: left;display: block;border: 1px solid #ddd;text-align:center;padding-top: 5px;}
+.glbHeadtop1{border-right: 1px solid #ddd;width: 66%;}
+.glbHeadtop2{width: 34%;}
+.glbsubHead8,.glbValM2.glbVal8{border-right:0;}
+.glbValLeft{min-height: 42px;width: 19.8%;float: left;display: block;border: 1px solid #ddd;text-align:center;padding-top: 5px;}
 .glbValRight{width:80%;float: left;min-height: 33px;border: 1px solid #ddd;}
-.glbValSubLeft,.glbValSubRight{width:50%;float:left;}
+.glbValSubLeft,.glbValSubRight{float:left;}
+.glbValSubLeft{width: 66%;}
+.glbValSubRight{width: 34%;}
 .glbValM{width:20%;float:left;border-right: 1px solid #ddd;padding: 5px;min-height: 40px;}
+.glbValM.glbVal1{width:19.8%;}
 .glbValM2{width:33%;float:left;border-right: 1px solid #ddd;padding: 5px;min-height: 40px;}
-.glbsubHeadM,.glbsubHeadM2{font-size: 14px;color: #364354;font-weight: bold;}
+.glbsubHeadM,.glbsubHeadM2{font-size: 13px;color: #364354;font-weight: bold;}
 .glbValLeft{font-size: 0.800em;color:#222;font-weight: bold;}
-.glbfinvalContainer{float: left;max-height: 337px;overflow: auto;width:100%;}
+.glbfinvalContainer{float: left;max-height: 337px;overflow-y:scroll;width:100%;}
 .glbSeclist{width:50%;float:left;}
-.glbsecContainer .glbValM{width:10%;}
-.glbsecContainer .glbValM2{width:16.5%;}
 
 /* Financial Action Standards Inverse styles */
 .ipmFinancetable.inverse{width:100%;max-width:100%;}
-.ipmFinancetable.inverse .finproject{font-size: 14px;color: #364354;font-weight: bold;float: none;}
+.ipmFinancetable.inverse .finproject{font-size: 12px;color: #364354;font-weight: bold;float: none;padding: 0px 0px;border-right: 0px;}
 .ipmFinancetable.inverse td div{font-size: 0.800em;color:#222;}
+.custInverseWidth{width:11%;}
 
 /* Market Performance Appendix Styles */
 .apexp {padding: 0px 20px;}
@@ -831,12 +836,47 @@ div.metric table.ecoDesignCountry tr th.fourthCol div.colProject span{
 }
 
 div.metric table.ecoDesignCountry tbody tr td div.cellWidth:first-child{
-    width:57%;
+    width:56px;
     float: left;
  }
  div.metric table.ecoDesignCountry tbody tr td div.cellWidth:last-child{
-    width: 41%;
+    width: 70px;
     float: left;
     padding-left: 10px;
  }
  .assortChannelList1 .assortList1{background:#fff;min-width: 270px;margin-top:10px;}
+ .widmax40P{max-width:40%;}
+ .panel-group.mrgbtmnone {margin-bottom: 0px;}
+.ipmButtonSet.mrgbtmnone {margin-bottom: 0px;}
+.padtopbtm{margin:10px 0px;display:inline-block;}
+.Mtop {margin-top: 33px;}
+.feedbkbluebox{background: #dceefa;border:1px solid #ccc;padding:10px;margin-bottom:10px;font-weight:bold;}
+
+.glbPLDtableHead thead th{height: 40px;background-color: #dceefa;}
+.glbPLDtablebody{background-color: #f2f8fc;margin-top: -20px;}
+.claimHeader{width:195px;float:left;}
+.glbCmnWidth{width:400px;}
+.removeClaimText{padding:10px;}
+.glbPLDdrpdown{margin-top: -20px;}
+.glbPLDdrpdown>tbody>tr:nth-child(even) {background: #f8f8f8;}
+.selectClaim{position:relative;display:block;}
+.gatepdlContainer{width: 100%;float: left;height: 100%;padding-left: 15px;}
+.claimList{width:100%;}
+.paddleft{padding-left:15px;}
+.noteclaim label {font-weight:normal; padding:5px 0px;}
+.globalclaim {font-weight: bold;border-bottom: 2px solid #ddd;}
+.channelList.claimList  ul {height: auto;min-height:auto;}
+.claimList .pdlCheckbox {width: 45px;}
+
+.srcplanTable thead th{height: 40px;background-color: #dceefa;font-size: 12px;}
+.srcplanTable{font-size: 12px;}
+.table.srcplanTable>thead>tr>th:first-child{padding-left:5px;}
+.srcPlanTitle{padding-bottom: 5px;color: #253b78;border-bottom: 1px solid #7EA19D;float: left;width: 100%;font-size: 14px;margin-bottom: 20px;font-weight: bold;}
+.srcApprGreenbg{background:#A3C24B;padding: 5px;color: #fff;width: 49px;display: block;text-align: center;}
+.srcApprRedbg{background:red;padding: 5px;color: #fff;width: 49px;display: block;text-align: center;}
+.goldenCheck{background: #FBBE2E;color: #000;border: 1px solid #E28A3C;padding: 5px;font-size: 11px;margin: 0;width: 50px;display: block;}
+.srcGreyBg{background: #999;padding: 5px;height: 29px;margin: 0;width: 50px;display: block;}
+
+@media screen and (min-width: 1024px) and (max-width: 1113px) {
+	.glbfinstdsContainer{width: 98.1%;}
+}

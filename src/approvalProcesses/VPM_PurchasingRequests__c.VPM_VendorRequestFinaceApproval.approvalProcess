@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>VPM_CountryRequestingVendor__c</field>
+        <field>VPM_VendorName1__c</field>
+        <field>VPM_WhatAreYouBuying__c</field>
+        <field>VPM_Country__c</field>
+        <field>VPM_PaymentTerms__c</field>
+        <field>VPM_VATRegistrationNumber__c</field>
+        <field>VPM_ReconciliationAccount__c</field>
+        <field>VPM_SortKey__c</field>
+        <field>VPM_CashManagementGroup__c</field>
+        <field>VPM_PaymentMethod__c</field>
+        <field>VPM_BankAccountNumber__c</field>
+        <field>VPM_BankCountryKey__c</field>
+        <field>VPM_BankKey__c</field>
+        <field>VPM_BankName__c</field>
+        <field>VPM_SwiftKey__c</field>
+        <field>VPM_PANNumber__c</field>
+        <field>VPM_CSTno__c</field>
+        <field>VPM_LSTno__c</field>
+        <field>VPM_SerRegNo__c</field>
+        <field>VPM_ExcIndVendor__c</field>
+        <field>RecordType</field>
+        <field>CreatedBy</field>
+        <field>LastModifiedBy</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Owner</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <label>Single Approval Step</label>
+        <name>Single_Approval_Step</name>
+    </approvalStep>
+    <description>The approval process triggered by the Advanced Form being submitted by the Business Requestor or FLS.</description>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos; 
+&amp;&amp; 
+OR 
+( 
+/*MBS/SCS Cap-MRO*/ 
+( 
+BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) || CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;CAP&quot;) 
+)&amp;&amp; 
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot; &amp;&amp; ((VPM_ProvidedBankDetails__c || VPM_ProvidedFinancialSensitive__c) 
+&amp;&amp; (RecordType.DeveloperName == &apos;VPM_VendorReqMaintain&apos; ) || (RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; )) 
+
+, 
+/*MBS(Indirect) Others (Out Scope Proc)*/ 
+BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) 
+&amp;&amp; 
+VPM_Commodity_Family__c == &quot;Out of Scope Procurement&quot; 
+&amp;&amp; 
+(RecordType.DeveloperName = &apos;VPM_VendorReqCreate&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || 
+AND 
+(RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;, 
+VPM_ProvidedUnblockUndelete__c || VPM_ProvidedBlockDelete__c || VPM_ProvidedPaymentTerms__c || VPM_ProvidedBankDetails__c || VPM_ProvidedFinancialSensitive__c 
+)), 
+/* Freight,SCS Log*/ 
+(BEGINS(Text(VPM_VendorType__c),&quot;FRGT&quot;)||BEGINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-L&quot;)) 
+&amp;&amp; 
+RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; 
+&amp;&amp; 
+( VPM_ProvidedBankDetails__c || VPM_ProvidedFinancialSensitive__c ), 
+(BEGINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-L&quot;) &amp;&amp; RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos;) 
+, 
+/*PI,3PM*/ 
+( 
+BEGINS(Text(VPM_VendorType__c),&quot;PI&quot;) || (BEGINS(Text(VPM_VendorType__c),&quot;SCS&quot;) &amp;&amp; BEGINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;3PM&quot;)) 
+)&amp;&amp; 
+(RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; || (RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; &amp;&amp; 
+VPM_ProvidedUnblockUndelete__c || VPM_ProvidedBlockDelete__c || VPM_ProvidedPaymentTerms__c || VPM_ProvidedBankDetails__c || VPM_ProvidedFinancialSensitive__c || VPM_IsChangedVAT__c ) 
+), 
+/*USCC/UASCC,MBS/SCSCap,2611,5449,5496,5487*/ 
+(BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) || CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;CAP&quot;)) 
+&amp;&amp; 
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot; 
+&amp;&amp; 
+(VPM_Company_Code_Value__c = &apos;2611&apos; || VPM_Company_Code_Value__c = &apos;5449&apos; || VPM_Company_Code_Value__c = &apos;5496&apos; || VPM_Company_Code_Value__c = &apos;5487&apos; ) 
+&amp;&amp; 
+(RecordType.DeveloperName = &apos;VPM_VendorReqCreate&apos; || (RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; &amp;&amp; VPM_IsChangedVAT__c &amp;&amp; !CONTAINS(VPM_VendorCodeLookup__r.mdm_ecc__c,TEXT(VPM_CompanyCode__r.ECC__c))) || 
+AND 
+(RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;, 
+VPM_ProvidedBankDetails__c || VPM_ProvidedFinancialSensitive__c || VPM_IsChangedVAT__c 
+)) , 
+
+/* USCC/UASCC,MBS(Indir)2611,5449,5496,5487*/ 
+BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) 
+&amp;&amp; 
+VPM_Commodity_Family__c = &quot;Out of Scope Procurement&quot; 
+&amp;&amp; 
+(VPM_Company_Code_Value__c = &apos;2611&apos; || VPM_Company_Code_Value__c = &apos;5449&apos; || VPM_Company_Code_Value__c = &apos;5496&apos; || VPM_Company_Code_Value__c = &apos;5487&apos; ) 
+&amp;&amp; 
+(RecordType.DeveloperName = &apos;VPM_VendorReqCreate&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || 
+AND ( 
+RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;, 
+VPM_ProvidedUnblockUndelete__c || VPM_ProvidedBlockDelete__c || VPM_ProvidedPaymentTerms__c || VPM_ProvidedBankDetails__c || VPM_ProvidedFinancialSensitive__c || VPM_IsChangedVAT__c 
+)) , 
+/*MBS Lakme,SCS Unica*/ 
+OR( 
+(BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;)&amp;&amp; CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;Lakme&quot;) &amp;&amp; VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;), 
+(BEGINS(Text(VPM_VendorType__c),&quot;SCS&quot;)&amp;&amp; CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;UNICA&quot;)) 
+) 
+&amp;&amp; 
+( 
+RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; || AND(RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; &amp;&amp;( VPM_ProvidedUnblockUndelete__c || VPM_ProvidedBlockDelete__c || VPM_ProvidedPaymentTerms__c || VPM_ProvidedBankDetails__c || VPM_ProvidedFinancialSensitive__c ) 
+)) 
+
+)</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>VPM_ApprovalStatusAproval</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeIsInApprovalProcess</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeReworkStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesStatusFinanceApproved</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_FinanceApprovedTime</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_FinanceSubmittedYes</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>VPM_ApprovalStatusRejection</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_FinanceApprovedTime</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_RequestRejectNotification</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>VPM_StatusFinanceRejected</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>true</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>VPM_ApprovalStatusPending</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeIsinApprovalStatus</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeReworkStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_IsLockTrue</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_NextApproverNameFin</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_NotificationForLogged</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>VPM_StatustoApprovalPending</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Finance</label>
+    <recallActions>
+        <action>
+            <name>VPM_ChangeAdvanceFormSubmittedtonull</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeReworkStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_FinanceReworks</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_IsInApprovalProcessBlank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetBankApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetFinanceApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetFreightApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetProcurementApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetRussianApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+    </recallActions>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

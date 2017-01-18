@@ -73,3 +73,6 @@ jq(function(){
  function skipValidation() {
      unsaved = false;
  }
+ function pageclosetodo() { 
+    window.top.location.href = IPMApp.TasklistPageRef + '?id=' + IPMApp.projectId + '&name=todolistcontent'; 
+}

@@ -1,0 +1,55 @@
+<apex:page standardController="PQN_Targets__c" extensions="PQN_NewTargetExtension" showHeader="false" sidebar="false">
+<head>
+    <style>
+    input[type="text"],select,textarea {
+        //display: block;
+        width: 80%;
+        height: 30px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    textarea {
+        height: auto;
+    }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+    <c:PQN_Navigation navigationName="target"/>
+        <div id="page-wrapper">
+           <div class="container-fluid">
+               <apex:form id="frm">
+<!--                    <apex:sectionHeader title="Targets" subtitle="New Targets"/>
+                    <apex:pageMessages ></apex:pageMessages> -->
+                    <apex:pageMessages ></apex:pageMessages>
+                    <apex:pageBlock title="Target Edit" mode="edit">
+                    <apex:pageblockbuttons >
+                        <apex:commandButton value="Save" action="{!saveTarget}"/>
+                        <apex:commandButton value="Cancel" action="{!cancelTarget}" immediate="true"/>    
+                    </apex:pageblockbuttons>
+                    <apex:pageBlockSection title="Information" columns="2" collapsible="false">
+                        <!--<apex:inputField id="year" value="{!targets.Year__c}" required="true"/>-->
+                        <apex:selectList id="chooseYear" value="{!targets.Year__c}" size="1" rendered="true">
+                        <apex:selectOptions value="{!yearOptions}"/>
+                        </apex:selectList>
+                        <apex:inputField value="{!targets.Region__c}" required="true"/>
+                       <!-- <apex:inputField value="{!targets.Geography__c  }" required="true"/>-->
+                        <apex:inputField value="{!targets.Target_Reduction__c}" required="true" />
+                        <apex:inputField value="{!targets.Notes__c}"/>
+                    </apex:pageBlockSection>
+                    </apex:pageBlock>
+                </apex:form>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+    <!-- /#page-wrapper -->
+    </div>
+</body>
+</apex:page>

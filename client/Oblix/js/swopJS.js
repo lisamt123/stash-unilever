@@ -14,7 +14,7 @@ function blockme() {
     });
 }
 
-function onKeyPress_IsDigitAndDecimalValidation(event, element) {
+function onKeyPressIsDigitAndDecimalValidation(event, element) {
     var isDigitOrDot = event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46;
     var parts = $(element).val().split(/[.,]/);
     if (parts.length <= 1) { //Has no decimals - check if is digit
@@ -24,7 +24,7 @@ function onKeyPress_IsDigitAndDecimalValidation(event, element) {
     }
     return true;
 }
-
+     
 
 $(document).ready(function() {
     

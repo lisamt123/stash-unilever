@@ -26,7 +26,7 @@ public with sharing class IPM_SoqlUtilities {
         String queryString = 'SELECT ';
         for (String field : Schema.SObjectType.IPM_Bosscard__c.fields.getMap().KeySet())
         {
-            if (field != 'Id')
+            if (!field.equalsIgnoreCase('Id'))
             {
                 queryString+= field + ', ';
             }

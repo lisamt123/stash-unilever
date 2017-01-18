@@ -3,6 +3,28 @@
     <customSettingsType>Hierarchy</customSettingsType>
     <description>CEC: Stores settings related to the CEC org and application</description>
     <enableFeeds>false</enableFeeds>
+	<fields>
+        <fullName>ACCC_Survey_Id__c</fullName>
+        <description>To Store the ACCC Survey Id.</description>
+        <externalId>false</externalId>
+        <label>ACCC Survey Id</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LiveChatQuestionaireSpanishId__c</fullName>
+        <description>CEC: to store survey id for live chats spanish</description>
+        <externalId>false</externalId>
+        <label>LiveChatQuestionaireSpanishId</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>AlertAction_Time_Scheduler__c</fullName>
         <description>CEC - Time past hour separated by semicolon for AlertAction Email Scheduler</description>
@@ -122,6 +144,16 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Notification_Email_Id__c</fullName>
+        <description>CEC Notification Email Id is used to set the support teams email address for TH Notification Email</description>
+        <externalId>false</externalId>
+        <label>Notification Email Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>PII_Account_Address_Check__c</fullName>
         <defaultValue>false</defaultValue>
@@ -221,6 +253,15 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>UpdateAccountOnSMSCase__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This is used as flag to identify whether to associate existing account to SMS Cases or not</description>
+        <externalId>false</externalId>
+        <label>UpdateAccountOnSMSCase</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <label>cec Org Settings</label>
     <visibility>Public</visibility>

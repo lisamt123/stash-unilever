@@ -63,6 +63,7 @@ private class IPM_BosscardStatusController_Test
             boss.IPM_BosscardName__c=bosscarName;
             boss.IPM_Bosscard_Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
             boss.IPM_Company_Card__c=compCard.id;
+            boss.IPM_Category__c ='HouseHold Care';
             insert boss;
             List<IPM_Bosscard__c>bossList=[SELECT IPM_Bosscard_Status__c FROM IPM_Bosscard__c WHERE ID=:boss.id LIMIT 1];
             System.AssertEquals(bossList[0].IPM_Bosscard_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS, bosscardStatus_STR+bossList[0].IPM_Bosscard_Status__c); //Positive test

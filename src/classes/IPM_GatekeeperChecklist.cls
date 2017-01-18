@@ -13,9 +13,10 @@ public with sharing class IPM_GatekeeperChecklist{
     private static final String GET_SECTION_WISE_GKCHECKLIST_STR='getSectioWiseGKChecklist'; 
     private static final String GET_GKCHECKLIST_STR='getGKChecklist';
     private static final String UPDATE_GKCHECKLIST_STR='updateGKchecklist';
+    private static final String UPDATE_READONLY_GKCHECKLIST_STR='updateReadOnlyGKchecklist';
     private static final String GET_RECORDTYPEID_STR='getRecordTypeId';
     //Initializing Variables
-    public static  ID recTypeGK; //Contains Gatekeeper Check list Record type Id
+    public static  ID recTypeGK{get;set;} //Contains Gatekeeper Check list Record type Id
     public static  ID recTypeRnD; //Contains R&D  Record type Id
     public static  ID recTypeRnDFeasibility; //Contains R&D Feasibility  Record type Id
     public static  ID recTypeSCFeasibility; //Contains SC Feasibility  Record type Id
@@ -29,73 +30,12 @@ public with sharing class IPM_GatekeeperChecklist{
     public Id quesId{get; set;} //Questionnaire Record Id
     public string comment{get; set;} //Comments for Questionnaire
     public string ans{get; set;} //Answer for Questionnaire
-    public Boolean isEditable{get;set;} //To Check Read Only Mode or Editable
-    public ID projectID{get;set;} //Project Id
     public Boolean cmts{get; set;} //Used for updating comments and Check list Value
     public IPM_Project_Document_Section__c  projDocSec {get;set;} //Contains Project Document Section Record
+    public Map<Id,IPM_Questionnaire__c> readOnlyQuestionnaireMap {get;set;}
     
     public static final Map<String,String> GK_DEF_APPLICABLE_ANSMAP = new  Map<String,String>{Label.IPM_YES => Label.IPM_YES ,Label.IPM_PARTLY => Label.IPM_PARTLY , Label.IPM_NO => Label.IPM_NO, Label.IPM_NA => Label.IPM_NO_APPLICABLE };
     
-    //Contains Gate Document Type and Retrieving Gatekeeper Check list Questionnaires
-    public string gateType{ 
-        get {
-            return gateType;
-        }
-        set {
-            gateType = value;
-            getGKChecklist(); 
-        }
-    }
-    //Contains Gate Document Type to Retrieve R&D Questionnaires
-    public string gateTypeRND{  
-        get {
-            return gateType;
-        }
-        set {
-            gateTypeRND = value;
-            getChecklistQuestions(IPM_ConstantUtils.RND,gateTypeRND);
-        }
-    }
-    //Contains Gate Document Type to Retrieve SC Feasibility Questionnaires
-    public string gateTypeSCFeas{  
-        get {
-            return gateType;
-        }
-        set {
-            gateTypeSCFeas = value;
-            getChecklistQuestions(IPM_ConstantUtils.SC_FEASIBILITY,gateTypeSCFeas);
-        }
-    }
-    //Contains Gate Document Type to Retrieve R&D Feasibility Questionnaires
-    public string gateTypeRNDFeas{  
-        get {
-            return gateType;
-        }
-        set {
-            gateTypeRNDFeas = value;
-            getChecklistQuestions(IPM_ConstantUtils.RND_FEASIBILITY,gateTypeRNDFeas);
-        }
-    }
-    
-    public string gateTypeTradeMark{  
-        get {
-            return gateType;
-        }
-        set {
-            gateTypeTradeMark= value;
-            getChecklistQuestions(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE,gateTypeTradeMark);
-        }
-    }
-    
-    //To Check Record is Editable or Read Mode
-    public boolean editTable{ 
-        get {
-            return editTable;
-        }
-        set {
-            editTable= value;
-        }
-    }
     //Contains Project Document Section Id to Retrieve Gatekeeper Checklist Questionnaires Section Wise
     public ID SecId{ 
         get {
@@ -106,14 +46,136 @@ public with sharing class IPM_GatekeeperChecklist{
             getSectioWiseGKChecklist();
         }
     }
+    //////////////////////////////////////////
+    //
+    //Getting values from Url. These are created when related components are changed to page.
+    //
+    ///////////////////////////////////////////
+    public Boolean isEditable{
+        get {
+            if(isEditable == null) {
+                if(Apexpages.currentpage().getparameters().get('TradeMarkEdit') == IPM_ConstantUtils.IPM_true
+                    || Apexpages.currentpage().getparameters().get('RNDEdit') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEditable; }
+        }
+        set;
+    }// boolean to check if editable
+     public Id projectId{ // to get-set the project id from the component attribute.
+        get{
+            if(projectId == null && Apexpages.currentpage().getparameters().get('id') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('id')) ;
+            }
+            else { return projectId; }
+        }
+        set;
+    } 
+    public string gateTypeTradeMark{
+        get{
+            if(gateTypeTradeMark == null && Apexpages.currentpage().getparameters().get('gateDocType') != null) {
+                return  Apexpages.currentpage().getparameters().get('gateDocType');
+            }
+            else { return gateTypeTradeMark; }
+        }
+        set;
+    }
+    //Contains Gate Document Type and Retrieving Gatekeeper Check list Questionnaires
+    public string gateType{
+        get{
+            if(gateType == null && Apexpages.currentpage().getparameters().get('getDocType') != null) {
+                return  Apexpages.currentpage().getparameters().get('getDocType');
+            }
+            else { return gateType; }
+        }
+        set;
+    }
+    //To Check Record is Editable or Read Mode
+    public boolean editTable{
+        get {
+            if(editTable == null) {
+                if(Apexpages.currentpage().getparameters().get('setEdit') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return editTable; }
+        }
+        set;
+    }// boolean to check if editable
+    //Contains Gate Document Type to Retrieve R&D Questionnaires
+    public string gateTypeRND{
+        get{
+            if(gateTypeRND == null && Apexpages.currentpage().getparameters().get('gateDocType') != null) {
+                return  Apexpages.currentpage().getparameters().get('gateDocType');
+            }
+            else { return gateTypeRND; }
+        }
+        set;
+    }
+    //Contains Gate Document Type to Retrieve SC Feasibility Questionnaires
+    public string gateTypeSCFeas{
+        get{
+            if(gateTypeSCFeas == null && Apexpages.currentpage().getparameters().get('gateDocType') != null) {
+                return  Apexpages.currentpage().getparameters().get('gateDocType');
+            }
+            else { return gateTypeSCFeas; }
+        }
+        set;
+    }
+    //Contains Gate Document Type to Retrieve R&D Feasibility Questionnaires
+    public string gateTypeRNDFeas{
+        get{
+            if(gateTypeRNDFeas == null && Apexpages.currentpage().getparameters().get('gateDocType') != null) {
+                return  Apexpages.currentpage().getparameters().get('gateDocType');
+            }
+            else { return gateTypeRNDFeas; }
+        }
+        set;
+    }
+    
+     /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForIPM_TradeMark_QuestionsViewComponent() {
+        getChecklistQuestions(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE,gateTypeTradeMark);
+        return 'Required methods are invoked for component';
+    }
+    
+    public string getInvokeMethodsForIPM_GateKeeperListViewComponent() {
+        getGKChecklist();
+        return 'Required methods are invoked for component';
+    }
+    
+    public string getInvokeMethodsForIPM_RND_QuestionsViewComponent() {
+        getChecklistQuestions(IPM_ConstantUtils.RND,gateTypeRND);
+        return 'Required methods are invoked for component';
+    }
+    
+    public string getInvokeMethodsForIPM_SC_Feasibility_QuestionsViewComponent() {
+        getChecklistQuestions(IPM_ConstantUtils.SC_FEASIBILITY,gateTypeSCFeas);
+        return 'Required methods are invoked for component';
+    }
+    
+    public string getInvokeMethodsForIPM_RND_Feasibility_QuestionsViewComponent() {
+        getChecklistQuestions(IPM_ConstantUtils.RND_FEASIBILITY,gateTypeRNDFeas);
+        return 'Required methods are invoked for component';
+    }
     
     /************************************************************************************************************************
     *  Description Constructor Getting Project Id From Page URL Parameter
     *  @name IPM_GatekeeperChecklist
     */
+    
     public IPM_GatekeeperChecklist(){
-        IPM_IECompatible.ieFix();//For IE Compatibility
-        projectID=ApexPages.currentPage().getParameters().get('Id'); 
+        IPM_IECompatible.ieFix();//For IE Compatibility        
+        readOnlyQuestionnaireMap = new Map<Id,IPM_Questionnaire__c>(); 
+        
+        if(test.isRunningTest()){
+            getInvokeMethodsForIPM_TradeMark_QuestionsViewComponent();
+            getInvokeMethodsForIPM_GateKeeperListViewComponent();
+            getInvokeMethodsForIPM_RND_QuestionsViewComponent();
+            getInvokeMethodsForIPM_SC_Feasibility_QuestionsViewComponent();
+            getInvokeMethodsForIPM_RND_Feasibility_QuestionsViewComponent();
+        }
     }
     
     /************************************************************************************************************************
@@ -147,23 +209,54 @@ public with sharing class IPM_GatekeeperChecklist{
     *  @return void
     *  @throws query exception
     */
-    public void getGKChecklist(){
-        try{
+    public void getGKChecklist()
+    {
+        try
+        {
             //Retrieving Record Type Ids
-            getRecordTypeId();  
-            String query='SELECT ID,IPM_Section_External_Id__c,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_Partly__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,IPM_GK_Answers_Multiselect__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Section_Name__c FROM IPM_Questionnaire__c WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
-            if(projDocSec!=null){
-                string projDocSecSequence=string.escapeSingleQuotes(projDocSec.IPM_Section_Sequence__c);//exception of unused local varaibale of Sonar. Used in below query
-                gkChecklist=Database.query(query+' AND IPM_Section_Sequence_Number__c=:projDocSecSequence order by IPM_Sequence_Number__c ASC LIMIT 50000');
-            }
-            else{
-               
-               gkChecklist=Database.Query(query+' order by IPM_Sequence_Number__c ASC LIMIT 50000');     
+            readOnlyQuestionnaireMap = new Map<Id,IPM_Questionnaire__c>(); 
+            getRecordTypeId();
+            String sObjectName = 'IPM_Questionnaire__c';
+            Schema.DescribeSObjectResult sObjectDescribe = Schema.getGlobalDescribe().get(sObjectName).getDescribe();
+        
+            Map<String,Schema.SObjectField> sobjectFieldMap = sObjectDescribe.fields.getMap();
+            If(gateType != NULL) {
+                String query = ' SELECT ';
+                for(String fieldAPIName :  sobjectFieldMap.keySet())
+                {   
+                    if(!(fieldAPIName.equalsIgnoreCase('Id')))
+                    {
+                        query += ' '+fieldAPIName+',';
+                    }
+                }
                 
-            } 
+                query += 'Id,IPM_Project_Document_Section__r.IPM_Section_Name__c from '+ sObjectName +' WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
+                
+                if(projDocSec!=null){
+                    string projDocSecSequence=string.escapeSingleQuotes(projDocSec.IPM_Section_Sequence__c);//exception of unused local varaibale of Sonar. Used in below query
+                    gkChecklist=Database.query(query+' AND IPM_Section_Sequence_Number__c=:projDocSecSequence order by IPM_Sequence_Number__c ASC LIMIT 50000');
+                } 
+                else
+                {   
+                    gkChecklist=Database.Query(query+' order by IPM_Sequence_Number__c ASC LIMIT 50000');        
+                } 
+            }
+          
+            // Get BET status and Set BET Gatekeeping answer
+              
             
             if(gkChecklist!=null && !gkChecklist.isEmpty())  
             {
+                for(IPM_Questionnaire__c ipmQue : gkChecklist) 
+                {
+                    String dependentFieldAPIName = ipmQue.DependentFieldAPIName__c; 
+                    if(String.isNotBlank(dependentFieldAPIName))
+                    {
+                        ipmQue.put('IPM_GK_Answers__c',(String)ipmQue.get(dependentFieldAPIName));
+                        readOnlyQuestionnaireMap.put(ipmQue.Id,ipmQue);
+                    }   
+                } 
+                
                 gkChecklistAnsMap  = new Map<Id , List<SelectOption>>();
                 
                 for(IPM_Questionnaire__c ipmQue : gkChecklist) 
@@ -196,7 +289,7 @@ public with sharing class IPM_GatekeeperChecklist{
                                 }
                                 else
                                 {
-                                    answerOption = new SelectOption(optionValue,'<span title='+  gkHelpTextMap.get(optionLabel)  + '>' +optionLabel+'</span>');
+                                    answerOption = new SelectOption(optionValue,'<span title= " '+  gkHelpTextMap.get(optionLabel)  + ' " >' +optionLabel+'</span>');
                                 }
                                 answerOption.setEscapeItem(false);
                                 applicableGKOptions.add(answerOption);              
@@ -207,7 +300,7 @@ public with sharing class IPM_GatekeeperChecklist{
                      {
                          for(String key :GK_DEF_APPLICABLE_ANSMAP.keyset())
                          {
-                            SelectOption answerOption =new SelectOption( GK_DEF_APPLICABLE_ANSMAP.get(key),'<span title='+  gkHelpTextMap.get(key)  + '>' +key+'</span>');
+                            SelectOption answerOption =new SelectOption( GK_DEF_APPLICABLE_ANSMAP.get(key),'<span title= " '+  gkHelpTextMap.get(key)  + ' ">' +key+'</span>');
                          
                             answerOption.setEscapeItem(false);
                          
@@ -234,8 +327,23 @@ public with sharing class IPM_GatekeeperChecklist{
     *  @return void
     *  @throws dml exception
     */
+    
+    public void  updateReadOnlyGKchecklist()
+    {
+        try
+        {
+            update readOnlyQuestionnaireMap.values(); 
+        }  
+        catch(Exception ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
+                                                  UPDATE_READONLY_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+        }
+    }
+    
     public pageReference updateGKchecklist(){
-        if(quesId != null)  {
+        if(quesId != null)  
+        {
             gkCheck=new IPM_Questionnaire__c();
             gkCheck.Id=quesId;
             try{
@@ -305,7 +413,7 @@ public with sharing class IPM_GatekeeperChecklist{
             else if(checklistType==IPM_ConstantUtils.TRADEMARK_RECORD_TYPE){ 
                 checklistRecordType=recTypeTrademark;
             }
-            if(String.isNotBlank(checklistRecordType)){
+            if(String.isNotBlank(checklistRecordType) && gateType != NULL){
                 //Getting Supply Chain Questionnaires for Project
                 quesList=[SELECT ID,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,
                           IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_Section_External_Id__c,IPM_GK_Answers__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId 

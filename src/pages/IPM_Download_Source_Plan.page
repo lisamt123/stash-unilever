@@ -1,0 +1,264 @@
+<apex:page controller="IPM_SourcePlanController" sidebar="false" renderAs="PDF" standardStylesheets="false" applyHtmlTag="false" showHeader="false" applyBodyTag="false" readOnly="true">
+<html>
+    <head>
+        <style type="text/css" media="print">
+         @page { 
+            margin-top:15mm; 
+            margin-bottom:25mm;          
+            margin-left: 0mm; 
+            margin-right: 0mm;     
+            background-image: url('{!URLFOR($Resource.IPM_Resource, 'images/pebbleline.png')}');
+            background-repeat: repeat-y;
+            background-position: -5px 0;
+            @top-center{
+                 content: element(header); 
+                 width:100%;                                   
+                 overflow:visible;                 
+             }
+            @top-right {                 
+                 content: element(secProd); 
+            }
+            /*@top-left{
+                  content: element(secLogo); 
+             }*/
+             @bottom-center{
+                 content: element(footer);
+                 color:#666666!important;
+             }
+             @bottom-left{                
+                content: "Pg. " counter(page) " / " counter(pages);
+                font-family:sans-serif ;
+                font-size:9pt;
+                color:#666666;
+                text-indent:10mm;
+                 background-image: url('{!URLFOR($Resource.IPM_Resource, 'images/printFooter.png')}');
+                 background-repeat: no-repeat;
+                 background-position: left bottom;
+                 height:100mm;
+             }
+             @bottom-right{                                                   
+                 background-image: url('{!URLFOR($Resource.IPM_Resource, 'images/fooLogo.png')}');
+                 background-repeat: no-repeat;
+                 background-position: 20px 40px;
+             }
+        }
+		/* Global Font Size */
+        *
+        {
+           font-size:10px !important;
+        }
+        table tr th, 
+        table tr td, 
+        table thead tr th,
+        table tbody tr th,
+        {
+           font-size:10px !important
+        }
+        /* Header,Footer Styles */
+        body, table{font-family:Arial Unicode MS; font-size:14px;color: rgb(102, 102, 102);border-collapse:collapse}
+        table td {text-align:left; vertical-align:top;}
+        .bold {font-weight: bold; font-family: sans-serif;}
+        .header {margin-left:5mm!important; margin-right:5mm!important;}
+        .secLogo{width:550px;float:left; min-height:40px; overflow:hidden;}
+        .secProd{width:30%;float:right; color:#253b78; text-align:left; display:block;}
+        .secProd .subText {color:#666666; font-size:8pt!important; display:block;}        
+        .secCategory {padding-right:5px;font-size:13pt;color:#0d0d99;text-transform: uppercase;}
+        .secCategory img {max-width:100%; width:100%;}
+        .spacer{padding:0!important; border-bottom:0.5pt solid #e6e533;clear:both;}
+        .pdfTitle{float-left;color:#007dbb; font-size:17pt; padding-right:8px; padding-left:8px; margin:0; line-height:30px; font-weight: bold; font-family: sans-serif; white-space: nowrap;}         
+        .dataTableTop {background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/Printview_pebble_top.png')}'); background-repeat:no-repeat;height:51px;}
+        .dataTableBottom {background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/Printview_pebble_bottom.png')}'); background-repeat:no-repeat;height:58px;}
+        .dataTable {padding:0 15px 0 15px; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/Printview_pebble_bg.png')}'); background-repeat:repeat-y;}
+        .dataTable tr.lastchild td {border:none!important;}
+        .dataTable td {font-family: sans-serif; font-size:9pt!important; color:#000; vertical-align:middle; border-bottom:0.25pt solid #a2b868; padding-top:5px;padding-bottom:5px; }
+        .dataTable td.label {color:#000!important; text-align:right; padding-right:3px;  font-weight: bold; font-family: sans-serif; }
+        .dataTable td span.ps {font-size:7pt;font-weight:normal!important;}
+        #wrapper {margin-left:5mm!important; margin-right:5mm!important;margin-top:0mm !important;float:left;}
+        .headSecBlock {display:inline-block; padding-left:8px; text-transform:uppercase; padding-right:8px; margin-top:6px; color:#555!important; border-left:0.25pt solid #a8a8a8!important; }        
+        .headSecBlock.smallText {font-size:10px!important;font-weight:normal;} 
+        .headSecBlock.global{font-size:10px!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/star_s.png')}'); background-repeat:no-repeat;background-position:10px 0px;} 
+        .headSecBlock.operational{font-size:10px!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/hammer_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
+        .headSecBlock.local{font-size:10px!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/location_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; }      
+        .projLogo{width:100%!important;}  
+        div.footer{position: running(footer); font-size:8pt; text-align:right; color:#434343!important;}
+        div.header{position: running(header); font-size:16px;}
+        .Iwidth{width:30%;}
+        .heading2, .heading3, .heading4, .bdText {display:block; padding-top:8px; padding-bottom:8px; }
+        .bdText {font-size:11pt; color:#666!important;}
+        .heading2 {color:#253b78!important; font-size:17pt; display:block; border-bottom:0.25pt solid #7fa19e;}
+        .heading3 {color:#0f81bb!important; font-size:13pt; display:block; border-bottom:0.25pt solid #ccd9d8;}
+        .heading4 {color:#0f81bb!important; font-size:11pt; display:block; border-bottom:0.25pt solid #ccd9d8;} 
+        .waterMark {position: fixed; top:20%; left:50%; z-index:0; margin-left:-375px; margin-top:-172px; width:750px; height:auto;}   
+        
+        /* Source Plan Styles */
+        .marketingHeader {width: 490px;}
+        .chainHeader {width: 270px;}
+        .padzero {padding: 0;}
+        .col-sm-12{width:100%;}
+        .pull-left{float:left;}
+        .pull-right{float:right;}
+		.chainHeader .darkoverlay>thead>tr>th{height:83px;}
+        table.table.table-bordered.productsource {position: relative;border: 2px solid #72c4e9;margin-right: -18px;border-spacing: 0;border-collapse: collapse;}
+        .table {width: 100%;max-width: 100%;margin-bottom: 20px;}
+        table {border-spacing: 0;border-collapse: collapse;}
+        table {background-color: transparent;}
+        .ipmTable.table>thead>tr>th{background:#f2f8fc;color:#3b516d; font-size:1em;font-weight:bold;}
+        .table>thead>tr>th span {float: left;display: inline-block;}
+        .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding: 2px 5px;vertical-align: middle;word-wrap:break-word;word-break: break-word;color: rgb(102, 102, 102);}
+        .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th{padding: 2px 5px;vertical-align: middle;}
+        table.table.table-bordered.productsource th {padding-top: 35px;background-color: #f2f8fc;border: 2px solid #ddd;text-align: center;}
+        table.table.table-bordered.productsource th span {display: block;text-align: center;width: 100%;}
+        table.table.table-bordered.productsource th span {display: block;text-align: center;width: 100%;}
+        table.table.table-bordered.productsource.darkoverlay th {background-color: #dceefa;border: 2px solid #ddd;padding-top: 47px;}
+        .table>thead>tr>th>div.capcon {width: 75px;margin: 0 auto;background-color: #ececec;color: #555;vertical-align: middle;padding: 2px 0 2px;height: auto;}
+        .tobe {margin-bottom: 40px;position: absolute;left: 0;margin-left:40px;right: 0;top: 43px;background-color: #f2f8fc;width: 465px;height: 0;padding: 8px 0px;}
+        .line {height: 0;border: 1px solid #ccc;position: relative;}
+        .line span {position: absolute;text-align: center;top: -8px;left: 0;right: 0;width: 150px;margin-left:140px;background-color: #f2f8fc;}
+        .tobesup {margin-bottom: 40px;position: absolute;left: 0;right: 0;top: 43px;margin-left:530px;background-color: #dceefa;width: 245px;height: 0;padding: 8px 0px;}
+        .line.dark {height: 0;border: 1px solid #ccc;position: relative;}
+        .line.dark span {background-color: #dceefa;width: 160px;margin-left:45px;}
+        table.table.table-bordered.productsourcegrey tr {background-color: #efefef;}
+        table.table.table-bordered.productsourcegrey tr td {border: none;text-align: center;}
+        .arrImgName{margin-left:13px;}
+        .arrImgFormat{margin-left:12px;}
+        .arrImgFormulation{margin-left:20px;}
+        .arrImgPackage{margin-left:17px;}
+        .arrImgPrototype{margin-left:10px;}
+        .teamHeading{float:left;margin-bottom:20px;}
+        .teamHeading .pageTitlefont{font-size: 2em;color: #253A79;font-weight:bold;}
+        .goldenCheckcontainer{margin-top:2px;}
+        .goldenCheckcontainer label.goldbox {width: 80%;background: #FBBE2E;color: #000;border: 1px solid #E28A3C;padding: 5px;font-size: 8px !important;}
+        .goldenCheckcontainer label {width:100%;background: #999;padding:4px 18px;height: 29px;}
+	.greenBox{background: #A3C24B;color: #fff;padding: 5px;font-size: 11px;margin: 0;display:block;}
+        .redBox{background: red;padding: 5px;margin: 3px 0px;color: #fff;display:block;}
+        </style>
+    </head>
+    <body class="docBody">
+        <!-- Header Start -->
+        <div class="header">
+            <div class="secLogo">
+                <table>
+                    <tr>
+                        <td width="10%">
+                          <apex:image value="/servlet/servlet.FileDownload?file={!project.IPM_Project_Logo_Id__c}" styleClass="projLogo" rendered="{!project.IPM_Project_Logo__c!=null}" />
+                          <apex:image value="{!URLFOR($Resource.IPM_Resource, '/images/upload_img2b.png')}" rendered="{!project.IPM_Project_Logo__c=null}" styleClass="projLogo"/>
+                        </td>
+                        <td align="center">
+                            <div class="pdfTitle"><apex:outputText value="{!project.IPM_Project_Name__c}"/></div>
+                        </td>
+                        <td align="center">        
+                            <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock global" rendered="{!project.IPM_Project_Type__c='Original'}"/>
+                            <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock operational"  rendered="{!project.IPM_Project_Type__c='Operational'}"/>    
+                            <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock local"  rendered="{!project.IPM_Project_Type__c='Rollout'}"/>
+                         </td>       
+                    </tr>
+                </table>
+            </div>
+                                    
+            <div class="categoryContainer pull-right"> 
+                <div class="cTitle pull-right">           
+                    <apex:outputText value="{!project.IPM_Category_Text__c}" styleClass="secCategory"/>                               
+                </div>  
+                 <div class="cImage pull-right secCategory">
+                    <apex:outputField styleClass="categoryImage"  value="{!project.IPM_Category_Icon__c}" rendered="{!if(ISBLANK(project.IPM_Category_Icon__c),'false','true')}"/>
+                </div>                              
+            </div>   
+            <div class="spacer"></div>  
+        </div>
+        <!--/ Header End-->
+
+        <!-- Footer Start -->
+        <div class="footer">
+        <apex:outputText value="{!$Label.IPM_UNILEVER_HIGHLY_CONFIDENTIAL}"></apex:outputText>
+        </div>
+        <!--/ Footer Start -->
+        
+        <!-- Content Start -->
+        <div id="wrapper">
+            <div class="col-sm-12 noPadleft noPadright teamHeading">
+                <div class="col-sm-6 noPadleft pageTitlefont">
+                    {!$Label.IPM_Product_Sourcing_Plan_Global_Scope}
+                </div>
+            </div>
+            <div class="marketingHeader pull-left">
+                <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsource ">
+                    <thead> 
+                        <tr>
+                            <th scope="col" width="10%"><span>{!$Label.IPM_Product_Name}</span><img class="arrImgName pull-left" src="{!URLFOR($Resource.IPM_Resource, '/images/down-icon.png')}" /></th>
+                            <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Format}</span><img class="arrImgFormat pull-left" src="{!URLFOR($Resource.IPM_Resource, '/images/down-icon.png')}" /></th>
+                            <th scope="col"  width="14%"><span>{!$Label.IPM_Product_Formulation}</span><img class="arrImgFormulation pull-left" src="{!URLFOR($Resource.IPM_Resource, '/images/down-icon.png')}" /></th>
+                            <th scope="col"  width="12%"><span>{!$Label.IPM_Product_Packaging}</span><img class="arrImgPackage pull-left" src="{!URLFOR($Resource.IPM_Resource, '/images/down-icon.png')}" /></th>
+                            <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Size}</span></th>
+                            <th scope="col"  width="8%"><span>{!$Label.IPM_Product_of_GTo}</span></th>
+                            <th scope="col" width="10%"><span>{!$Label.IPM_Product_Golden_Prototype}</span><img class="arrImgPrototype pull-left" src="{!URLFOR($Resource.IPM_Resource, '/images/down-icon.png')}" /></th>
+                            <th scope="col"  width="20%"><span>{!$Label.IPM_Product_Country_Mapping}</span></th>
+                        </tr>
+                    </thead>               
+                </table>
+                <div class="tobe"><div class="line"><span>{!$Label.IPM_To_be_completed_by_Marketing}</span></div></div>
+            </div>
+            <div class="chainHeader padzero pull-left">
+                <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsource darkoverlay">
+                    <thead> 
+                        <tr>
+                            <th scope="col" width="40%"><span>{!$Label.IPM_Sourcing_Units}</span></th>
+                            <th scope="col" width="20%"><div class="{!if(bIsPDLApproved,'approvalTip','capcon approvalTip')}">{!$Label.IPM_Capability_Confirmed}</div></th>
+                            <th scope="col" width="40%"><span>{!$Label.IPM_Sourced_Into}</span></th>
+                        </tr>
+                    </thead>               
+                </table>
+                <div class="tobesup"><div class="line dark"><span>{!$Label.IPM_To_be_completed_by_Supply_Chain}</span></div></div>
+            </div>
+            <apex:variable value="{!0}" var="rowNum"/>
+            <apex:repeat value="{!wrapperKeys}" var="wrKey">
+                <apex:repeat value="{!sourcePlanMap[wrKey]}" var="prodPlan">
+                    <div class="col-sm-12 padzero pull-left">
+                        <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsourcegrey">
+                            <tbody>
+                                <tr class="{!if(prodPlan.isDuplicateRow,'duplicateRow','')}">
+                                    <td width="64%" class="noPadd">
+                                        <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsourcegrey noTabborder">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="10%"><span >{!prodPlan.productPlan.IPM_Product_Name__c}</span></td>
+                                                    <td width="10%"><span >{!prodPlan.productPlan.IPM_Format__c}</span></td>
+                                                    <td width="14%"><span >{!prodPlan.productPlan.IPM_Formulation__c}</span></td>
+                                                    <td width="12%"><span >{!prodPlan.productPlan.IPM_Packing__c}</span></td>
+                                                    <td width="10%"><span >{!prodPlan.productPlan.IPM_ProductSize__c}</span>
+                                                                    <span >{!prodPlan.productPlan.IPM_ProductSizeMetrics__c}</span></td>
+                                                    <td width="8%"><span >{!prodPlan.productPlan.IPM_Of_gTO__c}</span></td>
+                                                    <td width="10%">
+                                                        <div class="goldenCheckcontainer">
+                                                            <label class="{!if(prodPlan.productPlan.IPM_GoldenPrototype__c,'goldbox','')}">{!if(prodPlan.productPlan.IPM_GoldenPrototype__c,'Golden','')}</label>
+                                                        </div>
+                                                    </td>
+                                                    <td width="20%"><span >{!prodPlan.countryStrToDisplay}</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td> 
+                                    <td class="noPadd">
+                                        <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsourcegrey noTabborder">
+                                            <tbody>
+                                                <apex:repeat value="{!sourceUnitMap[prodPlan.productProsition]}" var="sourcep">
+                                                    <tr>
+                                                        <td width="38%"><span> {!sourcep.sourcingPlan.IPM_SourcingUnit__c}</span></td>
+                                                        <td width="20%"><span class="{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'greenBox','redBox')}">{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Yes','Not Yet')}</span></td>
+                                                        <td width="40%">
+                                                            <span>{!sourcep.sourceCountriesToDisplay}</span>
+                                                        </td>
+                                                    </tr>
+                                                </apex:repeat>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                     </div>
+                 </apex:repeat>
+             </apex:repeat>
+         </div>
+    </body>
+</html>
+</apex:page>

@@ -38,6 +38,16 @@
         <name>AF_Send_Email_Notification__c</name>
     </fields>
     <fields>
+        <help><!-- Please type numbers only --></help>
+        <label><!-- CNPJ --></label>
+        <name>CNPJ__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please type numbers only --></help>
+        <label><!-- CPF --></label>
+        <name>CPF__c</name>
+    </fields>
+    <fields>
         <label><!-- Day Rate --></label>
         <name>Day_Rate__c</name>
         <picklistValues>
@@ -482,6 +492,18 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Gender --></label>
+        <name>Gender__c</name>
+        <picklistValues>
+            <masterLabel>Female</masterLabel>
+            <translation><!-- Female --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Male</masterLabel>
+            <translation><!-- Male --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Homebase --></label>
         <name>Homebase__c</name>
         <picklistValues>
@@ -547,6 +569,129 @@
         <picklistValues>
             <masterLabel>Tokyo</masterLabel>
             <translation><!-- Tokyo --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Have another source of income or  or another economic activity? --></help>
+        <label><!-- Additional source of income --></label>
+        <name>ICB_Additional_Source_Income__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work only with Ice Cream sales</masterLabel>
+            <translation><!-- Work only with Ice Cream sales --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Is a Ice Cream Community User? --></help>
+        <label><!-- Ice Cream Community User --></label>
+        <name>ICB_Community_User__c</name>
+    </fields>
+    <fields>
+        <label><!-- Education Level --></label>
+        <name>ICB_Education_Level__c</name>
+        <picklistValues>
+            <masterLabel>Fundamental Education (Complete)</masterLabel>
+            <translation><!-- Fundamental Education (Complete) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fundamental Education (Incomplete)</masterLabel>
+            <translation><!-- Fundamental Education (Incomplete) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Middle Education (Complete)</masterLabel>
+            <translation><!-- Middle Education (Complete) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Middle Education (Incomplete)</masterLabel>
+            <translation><!-- Middle Education (Incomplete) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Never been to school</masterLabel>
+            <translation><!-- Never been to school --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>University (Complete)</masterLabel>
+            <translation><!-- University (Complete) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>University (Incomplete)</masterLabel>
+            <translation><!-- University (Incomplete) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Internet Access --></label>
+        <name>ICB_Internet_Access__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes, at home (3G or 4G via mobile phone)</masterLabel>
+            <translation><!-- Yes, at home (3G or 4G via mobile phone) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes, at home (Broadband)</masterLabel>
+            <translation><!-- Yes, at home (Broadband) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes, using a Lan House or in other places</masterLabel>
+            <translation><!-- Yes, using a Lan House or in other places --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Marital Status --></label>
+        <name>ICB_Marital_Status__c</name>
+        <picklistValues>
+            <masterLabel>Divorced, Widowed, Separated</masterLabel>
+            <translation><!-- Divorced, Widowed, Separated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Married (Formal or Informal)</masterLabel>
+            <translation><!-- Married (Formal or Informal) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Single</masterLabel>
+            <translation><!-- Single --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Mobile Phone --></label>
+        <name>ICB_Mobile_Phone__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes, one or more Smartphones</masterLabel>
+            <translation><!-- Yes, one or more Smartphones --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes, one or more regular devices</masterLabel>
+            <translation><!-- Yes, one or more regular devices --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sales Locale --></label>
+        <name>ICB_Sales_Locale__c</name>
+        <relationshipLabel><!-- Contacts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>ICB_Type__c</name>
+        <picklistValues>
+            <masterLabel>Ice Cream Salesman</masterLabel>
+            <translation><!-- Ice Cream Salesman --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operator</masterLabel>
+            <translation><!-- Operator --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -644,16 +789,21 @@
         <label><!-- Twitter Username --></label>
         <name>hoot2sf_TwitterUsername__c</name>
     </fields>
-    <layouts>
-        <layout>Pitch Contact Layout</layout>
-        <sections>
-            <label><!-- Description --></label>
-            <section>Description</section>
-        </sections>
-    </layouts>
     <recordTypes>
         <label><!-- Agency Contact --></label>
         <name>Agency_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Ice Cream Operator --></label>
+        <name>ICB_Operator</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Ice Cream Salesman --></label>
+        <name>ICB_Salesman</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Ice Cream --></label>
+        <name>Ice_Cream</name>
     </recordTypes>
     <recordTypes>
         <label><!-- Pitch Contact --></label>
@@ -663,6 +813,30 @@
         <label><!-- Standard Contact --></label>
         <name>Standard_Contact</name>
     </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Please verify if CNPJ is correct. --></errorMessage>
+        <name>CNPJ_Validation_Spark</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please verify if CPF is correct. --></errorMessage>
+        <name>CPF_Validation_Spark</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The E-Mail must have at least 4 characters before the @ --></errorMessage>
+        <name>EMail_minimum_size</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Birthdate is mandatory. Please fill in an appropriate value. --></errorMessage>
+        <name>Mandatory_Birthdate_Spark_Salesman</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- CPF is Mandatory. Please fill in an appropriate value. --></errorMessage>
+        <name>Mandatory_CPF_Spark_Salesman</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- E-Mail is mandatory. Please fill in  an appropriate value. --></errorMessage>
+        <name>Mandatory_Email_Spark_Operator</name>
+    </validationRules>
     <validationRules>
         <errorMessage><!-- You must enter an email address or a phone number. --></errorMessage>
         <name>Pitch_Email_or_Phone_Mandatory</name>

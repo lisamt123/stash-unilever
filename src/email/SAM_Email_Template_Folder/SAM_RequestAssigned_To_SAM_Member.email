@@ -1,0 +1,12 @@
+Dear SAM Team,
+
+New Service Request number {!SAM_Request__c.Name} has been assigned to SAM Team. 
+Please take necessary action.
+
+You can access your Service Request via the link below;
+{!SAM_Request__c.Link} 
+
+This is an automatically generated email, please do not reply.
+
+Thanks,
+SAM Demand Management

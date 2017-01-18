@@ -1,0 +1,714 @@
+<!-- 
+*************************************************
+*@Description: To Doqnload Gate Document PDF
+*@Author: Cognizant
+*@Created Date: 11/11/2016
+*************************************************
+-->
+
+<apex:page id="MainPage" controller="IPM_GateDocumentPDFDownloadController" 
+           showHeader="false" 
+           cache="true"
+           contentType="{!fileName}">
+    <head>   
+        <style type="text/css" media="print">
+            @page { 
+            margin-top:15mm; 
+            margin-bottom:25mm;          
+            margin-left: 0mm; 
+            margin-right: 0mm;     
+            background-image: url('{!URLFOR($Resource.IPM_Resource, 'images/pebbleline.png')}');
+            background-repeat: repeat-y;
+            background-position: -5px 0;
+            @top-center{
+            content: element(header); 
+            width:100%;                                   
+            overflow:visible;                 
+            }
+            @top-right {                 
+            content: element(secProd); 
+            }
+            /*@top-left{
+            content: element(secLogo); 
+            }*/
+            @bottom-center{
+            content: element(footer);
+            color:#666666!important;
+            }
+            @bottom-left{                
+            content: "Pg. " counter(page) " / " counter(pages);
+            font-family:sans-serif ;
+            font-size:9pt;
+            color:#666666;
+            text-indent:10mm;
+            background-image: url('{!URLFOR($Resource.IPM_Resource, 'images/printFooter.png')}');
+            background-repeat: no-repeat;
+            background-position: left bottom;
+            height:100mm;
+            }
+            @bottom-right{                                                   
+            background-image: url('{!URLFOR($Resource.IPM_Resource, 'images/fooLogo.png')}');
+            background-repeat: no-repeat;
+            background-position: 20px 40px;
+            }
+            }
+            *
+            {
+            font-size:10px !important;
+            }
+            table tr th, 
+            table tr td, 
+            table thead tr th,
+            table tbody tr th,
+            {
+            font-size:10px !important
+            }
+            body, table{font-family:Arial Unicode MS; font-size:14px;color: rgb(102, 102, 102);border-collapse:collapse}
+            table td {text-align:left; vertical-align:top;}
+            .bold {font-weight: bold; font-family: sans-serif;}
+            .header {margin-left:5mm!important; margin-right:5mm!important;}
+            .secLogo{width:550px;float:left; min-height:40px; overflow:hidden;}
+            .secProd{width:30%;float:right; color:#253b78; text-align:left; display:block;}
+            .secProd .subText {color:#666666; font-size:8pt!important; display:block;}        
+            .secCategory {padding-right:5px;font-size:13pt;color:#0d0d99;text-transform: uppercase;}
+            .secCategory img {max-width:100%; width:100%;}
+            .spacer{padding:0!important; border-bottom:0.5pt solid #e6e533;clear:both;}
+            .pdfTitle{float-left;color:#007dbb; font-size:17pt; padding-right:8px; padding-left:8px; margin:0; line-height:30px; font-weight: bold; font-family: sans-serif; white-space: nowrap;}         
+            .dataTableTop {background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/Printview_pebble_top.png')}'); background-repeat:no-repeat;height:51px;}
+            .dataTableBottom {background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/Printview_pebble_bottom.png')}'); background-repeat:no-repeat;height:58px;}
+            .dataTable {padding:0 15px 0 15px; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/Printview_pebble_bg.png')}'); background-repeat:repeat-y;}
+            .dataTable tr.lastchild td {border:none!important;}
+            .dataTable td {font-family: sans-serif; font-size:9pt!important; color:#000; vertical-align:middle; border-bottom:0.25pt solid #a2b868; padding-top:5px;padding-bottom:5px; }
+            .dataTable td.label {color:#000!important; text-align:right; padding-right:3px;  font-weight: bold; font-family: sans-serif; }
+            .dataTable td span.ps {font-size:7pt;font-weight:normal!important;}
+            #wrapper {margin-left:5mm!important; margin-right:5mm!important;margin-top:0mm !important;float:left;}
+            .headSecBlock {display:inline-block; padding-left:8px; text-transform:uppercase; padding-right:8px; margin-top:6px; color:#555!important; border-left:0.25pt solid #a8a8a8!important; }        
+            .headSecBlock.smallText {font-size:10px!important;font-weight:normal;} 
+            .headSecBlock.global{font-size:10px!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/star_s.png')}'); background-repeat:no-repeat;background-position:10px 0px;} 
+            .headSecBlock.operational{font-size:10px!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/hammer_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
+            .headSecBlock.local{font-size:10px!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/location_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
+            h5 {font-size:13px!important;}        
+            .projLogo{width:100%!important;}        
+            .floatLeft{float:left;}
+            .floatRight{float:right;}
+            .full-width{width:100%;}
+            .terques{background: #00B389 !important; color:#fff;overflow-wrap: break-word !important;}
+            .tblData{color: #00B389 !important;}
+            .panel-title{padding:10px;}
+            .marginTop{margin-top:10px;}
+            .panel-data .panel-body span{overflow-wrap: break-word; word-wrap:break-word; color:#000; white-space: pre-wrap;}        
+            .fieldLabel{font-weight:bold;}  
+            div.footer{position: running(footer); font-size:8pt; text-align:right; color:#434343!important;}
+            div.header{position: running(header); font-size:16px;}
+            .Iwidth{width:30%;}
+            .heading2, .heading3, .heading4, .bdText {display:block; padding-top:8px; padding-bottom:8px; }
+            .bdText {font-size:11pt; color:#666!important;}
+            .heading2 {color:#253b78!important; font-size:17pt; display:block; border-bottom:0.25pt solid #7fa19e;}
+            .heading3 {color:#0f81bb!important; font-size:13pt; display:block; border-bottom:0.25pt solid #ccd9d8;}
+            .heading4 {color:#0f81bb!important; font-size:11pt; display:block; border-bottom:0.25pt solid #ccd9d8;} 
+            .waterMark {position: fixed; top:20%; left:50%; z-index:0; margin-left:-375px; margin-top:-172px; width:750px; height:auto;}  
+            
+            /* gatekeeperlist table styling */
+            .gateKeeperlist{table-layout:fixed;}
+            .ipmTable.table.gateKeeperlist>thead>tr>th{padding:0px;}
+            .ipmTable.table.gateKeeperlist>thead>tr>th>div{border-right:0px;padding: 2px 10px 2px 0;}
+            .ipmTable.table.gateKeeperlist>tbody>tr>td{padding:2px 2px;height:10px;}
+            .incHeight{height: 17px;}
+            .gateKeeperlist>thead>tr>th:first-child {padding-left: 5px !important;}
+            .gateKeeperlist>tbody>tr>td:first-child{text-align:left !important;}
+            .Yes{max-width:30px;background:#81bf42;color:#fff;text-align:center;font-size:10px;}
+            .No{max-width:30px;background:#d01620;color:#fff;text-align:center;font-size:10px;}
+            .Not.Applicable{max-width:80px;background:#999999;color:#fff;text-align:center;font-size:10px;}
+            .Partly{background:#f1993e;color:#fff;text-align:center;font-size:10px;}
+            .noPadleft{padding-left:0px !important;}
+            .noPadright{padding-right:0px !important;}  
+            
+            .firstCol{width:7%;}
+            .secondCol{width:35%;}
+            .thirdCol{width:20%;}
+            .fourthCol{width:10%;} 
+            .uploadImage {width: 50px; height: 50px;}
+            img.ipmImage{width: 100%;height: 100%;}
+            /* Appendix reference styling*/
+            .appBlock {color: #797979;display: block;background: #f7f7f7;border: 1px solid #dce3e2;margin-bottom: 2px;padding: 2px 10px 2px;margin-top:2px;}
+            
+            /* otif 5.1 table styling */
+            .ipmTable.table.otifTable>thead>tr>th{padding:0px;}
+            .ipmTable.table.otifTable>thead>tr>th>div{border-right:0px;padding: 2px 10px 2px 0;}
+            .ipmTable.table.otifTable>tbody>tr>td{padding:2px 5px;height:10px;}
+            
+            /* 6.1,6.2 Finance Table table styling */
+            .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign>thead>tr>th{padding:0px 5px;height:10px;}
+            .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign>thead>tr>th>div{border-right:0px;padding: 2px 10px 2px 0;}
+            .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign>tbody>tr>td{padding:2px 5px;height:10px;}
+            .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign tr{height:10px;}
+            .fintable.inverse.table.ipmFinancetable.textareabig.ipmFintableAlign{table-layout:inherit;}
+            .ipmFinancetable.inverse thead th{width:auto;}
+            .algnCenter{text-align:center;}
+            
+            /*Table Style*/
+            .ipmTable.table{border-left:none; border-right:none;width:100%;}
+            .ipmTable.table>thead>tr>th{background:#f2f8fc;color:#3b516d; font-size:1em;font-weight:bold;}
+            .ipmTable>thead>tr>th, .ipmTable>tbody>tr>th, .ipmTable>tfoot>tr>th, .ipmTable>thead>tr>td, .ipmTable>tbody>tr>td, .ipmTable>tfoot>tr>td{border-left:none; border-right:none;border-top:0.5pt #9ab4b1 solid;border-bottom:none;}
+            .ipmTable.table-bordered{border-top: 0.5pt solid #7fa19e;border-bottom: 0.5pt solid #7fa19e;}
+            .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding: 2px 5px;vertical-align: middle;word-wrap:break-word;word-break: break-word;color: rgb(102, 102, 102);}
+            .table>thead>tr>td>a, .table>tbody>tr>td a, .table>tfoot>tr>td>a{color:#428bca; text-decoration: none;word-break: break-word;}
+            .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th{padding: 2px 5px;vertical-align: middle;}
+            .table>thead>tr>th>div{padding: 2px 10px 2px 0;}
+            .table>thead>tr>th:last-child>div{border-right:none;}
+            .table>tbody>tr:nth-child(even){background:#f8f8f8;}
+            .table>tbody>tr>td.selected{background:#e1f9dd;border-top:0.5pt #007DBB solid;}
+            .table>tbody>tr.selected{background:#e1f9dd;}
+            .table>thead>tr>th span {float:left;display:inline-block;}
+            .table>thead>tr>th .btn-group, .ipmTable>thead>tr>th span.sortIcon, .ipmTable>thead>tr>th span.sortIcon1{float:right!important;}
+            .ipmFinancetable.table>tbody>tr>td.textleft{text-align:left; background-color: #f3ffe7;font-weight: bold;}
+            .ipmFinancetable.table{width:100%;table-layout:fixed;}
+            .ipmFinancetable.table.inEstmateTable,.ipmFinancetable.table.inEstmateCharter,.ipmFinancetable.table.nofixedlayout{table-layout:inherit;width:100%;}
+            
+            table.innertable td {border: 0.5pt solid #ddd;padding: 5px;table-layout: fixed;word-wrap: break-word;}
+            table.innertable {border-spacing: 15px; width:100%;table-layout: fixed;}
+            .gatedoctable tr td{table-layout:fixed;font-size:12px;word-wrap: break-word; word-break: break-word;}
+            .gatedoctable th{font-size:12px;font-weight:bold;text-align:center;}
+            .noborder{border:0px !important;}
+            .borleft{border-left:0.5pt solid #ddd;}
+            .gatedoctable thead th {background-color: #dceefa;color: #253b78;}
+            table.ipmTable>tbody>tr:nth-child(even) {background: #f8f8f8;}
+            
+            /* Customer Channel Styles*/
+            #upImg .modal-body{padding:0;}
+            .customerSelect{padding: 5px 5px;background:#fff;border: 0.5pt solid #dddddd;}
+            .selectBackground{padding:10px 15px;background:#f5f5f5;}
+            .listContainer{border:0.5pt solid #636363; margin-bottom:15px;}
+            .noPadleft{padding-left:0px !important;}
+            .noPadright{padding-right:0px !important;}
+            .customerSelect:after{display: block;font-family: FontAwesome;content: "\f107";font-size: 1.4em;position: absolute;top: 3px;right: 0px;margin-right: 25px;top: 0.5pt\9;right: 1px\9;width: 20px;height: 20px;text-align: center;background: #fff;color: #000;}
+            .keep-open1{height: 18px;width: 25px;position: relative;left: 45px;cursor: pointer;}
+            .dropdown-toggle1{padding: 0px;position: relative;top: -11px;left: 2px;}
+            .dropdown-toggle a{margin:-7px -2px;}
+            .channelList{border:0.5pt solid #c9c9c9 !important;background:#fff !important;left: 15px !important;top: 41px;}
+            .channelList .ipmDropbuttons,.channelList .ipmDropreset{font-weight:bold;cursor:pointer;}
+            .channelList:before{left: 8%;top: -8px;position: absolute;border-top: 0.5pt #c9c9c9 solid;border-right: 0.5pt #c9c9c9 solid;background: #fff;content: " ";height: 15px;width: 15px;-ms-transform:rotate(-45deg);transform: rotate(-45deg);}
+            .customerstaticLabel{font-weight:normal;color:#666666;font-size:1em;padding-right: 8px !important;padding-top: 0px;padding-left: 8px !important;}
+            .ipmDropDown .dropdown-menu .scroll>li {padding: 10px 0px 36px 10px !important;border-bottom: 0.5pt solid #ddd;margin: 0px;}  
+            .scroll{height:300px;overflow:auto;}
+            /*Info Box*/
+            .infobox{padding-top: 15px;padding-right: 10px; padding-bottom:15px;text-align: center;margin-top: 15px;}
+            .infobox .SecButtonSet {display:block; text-align:center;}
+            .infobox .ipmCheckbox {left:38%;}
+            .infotext{margin-top:10px;margin-bottom:10px;text-align:left;}
+            
+            /*channel container */
+            .channelContainer{border:0.2pt solid #636363; margin-bottom:15px; }
+            .channelType{padding-right:10px;color:#364354;font-size:1.2em;font-weight:bold;}
+            .priorityNumber{color:#555E6B;font-weight: normal;border-left:0.5pt solid #BDBDBD;padding-left: 10px;line-height: 15px;display:block;float:left;}
+            .channelContainer .typeBorderbottom{border-bottom:0.5pt solid #ddd;padding:2px 15px;margin-right:5px;height:13px;width:100%;}
+            .channelContainer  .uploadImage {width: 60px; height: 50px;}
+            .channelContainer .uploadImage img{max-width:100%; height:100%; cursor:pointer;}
+            .frstImage{margin-right:20px;}
+            .commentBox{margin-bottom:10px;}
+            .commentBox textarea{width:100%;border-radius: 2px;border: 0.5pt solid #ddd;}
+            .channelText{display:block;float:left;padding-right: 15px;margin-left:5px;}
+            .channelOptions{color:#364354;font-size:1.2em;font-weight:bold;display: block;margin-top: 2px;margin-bottom: 5px;text-align: left !important;padding-left: 15px;}
+            .custImageContainer{margin:20px;width:100%; height:50px;}
+            .noMtop{margin-top:0px !important;}
+            .greyArrow{cursor:pointer;display: inline-block;width: 23px;height: 23px;margin-left: 4px;margin-top: -5px;position: relative;top: 6px;}
+            
+            .ccPurpleBox span {  border-bottom: 0.5pt solid #B2C6C5;  display: block;  padding-bottom: 2px;  color: #565E6B;  text-align: center;}
+            .infobox {padding-top: 2px;  padding-right: 10px;  padding-bottom: 15px;  text-align: center;}
+            .col-sm-4 {  width: 32%;float:left;}
+            .ccPurpleBox{clear:both;margin-bottom:-10px;}
+            .channelContainer{clear:both;}
+            .custImageContainer{margin-bottom:5px;margin-top:5px;}
+            .frstImage,.secImage {  margin-right: 20px;width:25%;margin-bottom: 20px;}
+            .frstImage .ipmImage,.secImage .ipmImage{  max-width: 100%;}
+            .commentBox span {  margin-top:5px;margin-bottom: 2px;display:block;}
+            .commentBox{ clear:both;}
+            .col-sm-12 .channelOptions{clear:both;}
+            
+            .categoryContainer{min-width:125px;text-align:right; max-width:200px; margin-top:10px;}
+            .cImage{width:20px;height:20px;}
+            .cImage img{display:block;text-align:right;}
+            .pull-left{float:left;}
+            .gaterollouts th{white-space:initial;}
+            .gaterollouts thead{width:100%;}
+            .gaterollouts th:last-child {display:none;}
+            .gaterollouts>thead>tr>td, .gaterollouts>tbody>tr>td, .gaterollouts>tfoot>tr>td {  color: #666;  height: 40px;  padding: 2px 5px;  vertical-align: middle;  word-wrap: break-word;word-break: break-all;}
+            .empty-column-content {display: none; }
+            .riskMainHead {  font-weight: bold;  padding: 2px 0px;  color: #344454;}
+            .col-sm-12{with:100%;float:none;}
+            .col-sm-3{with:25%;float:left;}
+            .col-sm-1{width:10px;}
+            .clearfix{clear:both !important;}
+            
+            .Red{max-width:40px;background:#fe0000;color:#fff;text-align:center;font-size:10px;}
+            .Green{max-width:40px;color:#fff;text-align:center;font-size:10px; background: #81bf42;}
+            .Amber{max-width:40px;color:#fff;text-align:center;font-size:10px; background: #f1993e;}
+            .Not.Apllicable{max-width:60px;color:#fff;text-align:center;font-size:10px;background: orange;}
+            .pageTitle{border-right:0px !important;}
+            .colHeight{height:0px;}
+            .noteimg .icoButton {display: inline-block;width: 15px;cursor: text;margin: 2px 6px -9px 0px; height: 30px;float:left; }
+            a.icoButton.document {position: relative;background-image:url("{!URLFOR($Resource.IPM_Resource, 'images/icon-document.png')}"); background-repeat:no-repeat;}
+            a.icoButton.document-grey {position: relative;background-image:url("{!URLFOR($Resource.IPM_Resource, 'images/icon-document-grey.png')}"); background-repeat:no-repeat;margin-left:5px;}
+            .dataCell{word-wrap: break-word;height:30px;padding:0 !important;}
+            .mstonelgd{margin-top:15px;}
+            .mstone{top:5px;}
+            .commentBox{margin-left:20px;margin-right:20px;}
+            
+            /* 5.1 Table styles */
+            .otifTable{width:100%;table-layout:fixed;border-top:0px;border-spacing:0;}
+            .otifTable.table>thead>tr{background:#f2f8fc;}
+            .otifTable.table>thead>tr>th{background:none;border-top:0px;}
+            .otifTable.table>thead>tr>th:first-child{padding-left:10px;}
+            
+            .gateKeeperlist{border-spacing:0;}
+            .risktabhead {  float: left;width:90%;}
+            .gaterollouts{width:100%;table-layout:fixed;border-top:0px !important;border-spacing: 0;border-collapse: collapse;}
+            .risktabhead .noBold {display: block;float: none;}
+            .riskTablecolor .bggray {text-align: center;}
+            .riskMainHead.projectRiskLbl,td.riskCustBackground,td.bggray{padding-left:5px;}
+            .risktabhead{}
+            table.riskTablecolor.gateKeeperlist th.width30P .risktabhead{width:200px;}
+            table.riskTablecolor.gateKeeperlist th.width15P .risktabhead{width:100px;}
+            table.riskTablecolor.gateKeeperlist th.width55P .risktabhead{width:410px;}
+            
+            /* financial estimate oppurtunity styles 6.2 */
+            .table-responsive{margin-bottom:10px;}
+            .col-sm-4 .table {width: 100%;  max-width: 100%;  }
+            .col-sm-4 .table>tbody>tr:nth-child(even) {  background: #f8f8f8;}
+            .ipmFinancetable tbody>tr>td{border:0.5pt #ddd solid;word-wrap: break-word;}
+            .col-sm-4 .fintable td{border:0.5pt #ddd solid;color: #666;  height: 10px;  padding: 2px 5px;  vertical-align: middle;  word-wrap: break-word;}
+            .col-sm-4 .fintable{padding-right:10px;}
+            tr.innertd td{padding-left:11px;font-weight:Bold;font-size:15px;color:#3b516d;}
+            .ipmFinancetable thead th{width:100%;background-color:#dceefa;border: 0.5pt #ddd solid;padding: 2px 5px;vertical-align: middle;  }
+            .ipmFinancetable.inEstmateCharter thead th{width:auto;}
+            .ipmFinancetable tr{height:11px;}
+            .finproject{font-weight:bold !important;font-size:15px;color:#3b516d !important;}
+            .fintotal{font-weight:Bold;font-size:12px;color:#253b78;line-height:10px;}
+            .fintable td{font-size:15px;color:#364354 !important;}
+            .ipmFinancetable>tbody>tr>td{border:0.4pt solid #ddd;}
+            .col-sm-4 .fintable td{border:0.4pt solid #ddd;}
+            .fintlegreenbg{background-color:#f3ffe7 !important;}
+            .fintlegrybg{background-color:#f8f8f8 !important;}
+            .fintleblubg{background-color:#f2f8fc !important;}
+            .fintlewhitebg{background-color:#FFF !important;}
+            .fininnertable td + td{font-weight:Bold;font-size:15px;color:#666;}
+            .greenplus{font-weight:bold;font-size:15px;color:#81bf42 !important;} 
+            .redminus{font-weight:bold;font-size:15px;color:#d01620 !important;}     
+            .table-bordered>thead>tr>th, .table-bordered>thead>tr>td {border-bottom-width: 0;} 
+            .ipmfinHeading1{font-weight:bold;font-size:1.2em;color:#253b78;padding:10px 0;}
+            .ipmfinHeading2{font-weight:bold;font-size:1.2em;color:#364354;padding:10px 0;clear:both;}
+            .pull-right{float:right;}
+            .mr78{margin-right:78px;}
+            .fleft{text-align:left !important;}
+            .pl10{padding-left:0px !important;}
+            .fintable td div {font-size: 15px;color: #364354;font-weight:bold;}
+            .pl15{padding-left:15px !important;}
+            
+            /* dropdown styles 1 */
+            .channelText{line-height:15px;}
+            .customerSelect:after{display: block;font-family: FontAwesome;content: "\f107";font-size:20px!important;;position: absolute;top:1px!important;right: 0px;margin-right: 25px; top: -1px\9; right: -1px\9;width: 20px;height: 20px;text-align: center;background: #fff;color: #000;}
+            .keep-open1{height: 18px;width: 25px;position: relative;left: 45px;cursor: pointer;}
+            .dropdown-toggle1{padding: 0px;position: relative;top: -11px;left: 2px;}
+            .dropdown-toggle a{margin:-7px -2px;}
+            .channelList{border:0.5pt solid #c9c9c9 !important;background:#fff !important;left: 15px !important;top: 41px;}
+            .channelList .ipmDropbuttons,.channelList .ipmDropreset{font-weight:bold;cursor:pointer;}
+            .channelList:before{left: 8%;top: -8px;position: absolute;border-top: 0.5pt #c9c9c9 solid;border-right: 0.5pt #c9c9c9 solid;background: #fff;content: " ";height: 15px;width: 15px;-ms-transform:rotate(-45deg);transform: rotate(-45deg);}
+            .customerstaticLabel{font-weight:normal;color:#666666;font-size:1em;padding-right: 8px !important;padding-top: 0px;padding-left: 8px !important;}
+            .ipmDropDown .dropdown-menu .scroll>li {padding: 10px 0px 36px 10px !important;border-bottom: 0.5pt solid #ddd;margin: 0px;}  
+            .scroll{height:300px;overflow:auto;}
+            .cmiLabel{display:block;float:left; margin-left:7px;}
+            .ipmSelect { border:0.5pt solid #dce3e2;border-radius:3px;-webkit-border-radius:3px;-webkit-border-radius:3px;position:relative; z-index:0; display:inline-block;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;}
+            .ipmSelect select {padding:5px;-webkit-appearance: none;-ms-appearance: none; appearance: none; padding-right:20px; padding-right:5px\9; background: transparent;border: none;}
+            select::-ms-expand {display: none;}
+            .ipmSelect::after {display:block; font-family:FontAwesome; content:"\f107"; font-size:1.4em; position:absolute; top:3px; right:0; top:1px\9; right:1px\9; z-index:-1;width:20px;height:20px; text-align:center; background:#fff;color:#000;}
+            
+            .ipmAccordian.ecoDesignTable .aHead {background:transparent!important; color:#666!important; font-family: sans-serif; font-weight:bold; border:none; font-size:1.1em; margin-top:10px!important;padding:0;display:block!important;clear:both;}
+            .ipmAccordian.ecoDesignTable .aHead.noBG {border-top: 0.5pt solid #d1d1d1!important;border-left: 0.5pt solid #d1d1d1!important;border-right: 0.5pt solid #d1d1d1!important;}
+            .ipmAccordian.ecoDesignTable .aHead span.expico {line-height:22px!important;display:none!important;}
+            .ipmAccordian.ecoDesignTable > .aHead > strong {font-weight:normal!important;}
+            .ipmAccordian.ecoDesignTable .ipmAcrdnExpand {border: 0.5pt solid transparent!important;display:block!important;float:none;padding-left: 0; clear:both;}
+            .ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .aHead { color:#666!important;padding:10px; font-size: 1em;border-bottom: 0.5pt solid transparent!important;border: 0.5pt solid #d1d1d1; }
+            .ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .aHead span.expico { width: 20.5pt; height: 20.5pt; line-height: 23px; background: #81bd42; font-size: 0.8em;}
+            .ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .aHead > .SecButtonSet {margin-top:-3px; margin-right:8px;}
+            .ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .aHead > .SecButtonSet .icoButton {border:0.5pt solid #81bd42;}
+            .ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .aHead > .SecButtonSet .icoButton.tick { position: relative; background: url(../images/Tick_icon.svg) no-repeat 50% 50%;background-size:60%;display:none!important;}
+            .ipmAccordian.ecoDesignTable .ipmAcrdnExpand .ipmAcrdnExpand {background-color: #fff;margin-bottom:10px;padding-top:0;border-bottom: 0.5pt solid #d1d1d1!important;border-left: 0.5pt solid #d1d1d1!important;border-right: 0.5pt solid #d1d1d1!important;display:block!important;clear:both;}
+            .ipmAccordian.ecoDesignTable > .ipmAcrdnExpand {padding-left: 0!important;} 
+            .ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .ipmAcrdnExpand {padding: 0 10px 10px 10px!important;}        
+            .ipmAccordian.ecoDesignTable .table>thead>tr>th:first-child{padding-left:10px!important;}
+            .ipmAccordian.ecoDesignTable td label {margin-bottom: 5px!important;}
+            .table.ecoDesignCountry>thead>tr>th span {float:none!important;}
+            .ipmAccordian.ecoDesignTable .pt2 {padding: 2px 5px;}        
+            .ipmAccordian.ecoDesignTable .OuterBorderRight { border-right: 0.5pt solid #d1d1d1!important; min-height: 74px;}
+            .ipmAccordian.ecoDesignTable .borderRight {  border-right: 0.5pt solid #d1d1d1!important; }
+            .ecoDesignCountry th label { display: block;margin-bottom: 0;}
+            .ecoDesignCountry, .ecoDesignCountry table, .skuTbl {width:100%; border-spacing:0; border-collapse: collapse;}
+            .ipmAccordian.ecoDesignTable .inputField.inline {width:49%; float:left; margin-top:-10px;}
+            .skuTbl {margin-bottom:10px;}
+            .skuTbl label span, .skuTbl label {color:#666666!important;}
+            .bluetxt { color: #3b516d;}
+            .dblcolumn { border-bottom: 0.5pt solid #d1d1d1!important; text-align:center!important;}
+            
+            /* dropdown styles 2 */
+            .ipmDropDown .dropdown-menu{border:0.5pt solid #252525;z-index:1000;min-width: 190px;border-radius:4px 0px 4px 4px;background:#f9f9f9;margin-top: 0px;margin-right: -3px;}  
+            .ipmDropDown .dropdown-menu>li{padding:10px 0px 36px 10px !important;border-bottom: 0.5pt solid #ddd;margin: 0px;}
+            .ipmDropDown .dropdown-menu>li:last-child{border-bottom:0px;padding-left:0px !important;padding-bottom:10px !important;}
+            .ipmButtonGroup .ipmDropbuttons{border-right:0.5pt solid #252525;padding:10px 21px 10px 21px;}
+            .ipmButtonGroup .ipmDropreset{padding:0px 13px;}
+            
+            .ipmButtonGroup .ipmDropcompletebuttons{border-right:0.5pt solid #252525;padding:10px 15px 10px 0px;}
+            .ipmButtonGroup .ipmDropcompletereset{padding:0px;}
+            .completedFilter .dropdown-menu{border:0.5pt solid #252525;min-width: 136px;z-index:1;border-radius:4px 0px 4px 4px;background:#f9f9f9;margin-top: 0px;margin-right: -3px;} 
+            .completedFilter .dropdown-menu>li{padding:10px 0px 36px 10px !important;border-bottom: 0.5pt solid #ddd;}
+            .completedFilter .dropdown-menu>li:last-child{border-bottom:0px;padding-left:0px !important;}
+            .completedFilter .dropdown-menu>li label{text-indent:30px;line-height:14px;font-weight: normal;}
+            .dateInput .dateInputBox{width:100%;height: 30px;border: 0.5pt solid #ddd;border-radius:3px;}
+            .dateFormat{display:none;}
+            .calendar{background-position-x: 97%;}
+            .ecoInfoSave {margin-top:20px;}
+            .ecoInfoSave .saveEcoDeg {text-align:right;}
+            
+            .edLabelinput { border:none!important;background:transparent!important;color: #3B516D;width: 100%!important; font-weight:bold!important; outline: none; padding: 0; margin-bottom: 5px;height: 20px!important;}
+            .inputFieldOne {margin:10px;}
+            .inputFieldOne input[type=text] {width:41%!important;}
+            .threshold{display:block;}
+            
+            /* consumer evidence styles */
+            .consumerContainer{clear:both;display:table;width:100%;}
+            .ceContainer{border:1px solid #ddd;margin-bottom:5px;margin-top:5px;}
+            .cevidenceborder{border-bottom: 3px solid #E8E848;padding: 2px 15px;width:100%;float:left;}
+            .evidenceType{color: #344356;font-size: 1.2em;font-weight: bold;margin-left: 20px;}
+            .consumerImgContainer{margin-bottom: 5px;border-top: 0px !important;padding-top: 2px;clear: both;}
+            .evidenceHead{float:left;  margin-top: 3px;}
+            .evidenceHead > span.expico{display: inline-block;cursor: pointer;font-family: FontAwesome;width: 21px;height: 21px;text-align: center;font-weight: normal;line-height: 23px;background: #81bd42;position: relative;margin-right: 5px;font-size: 0.8em;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;color: #fff;}
+            .consumerContainer .uploadImage img {  max-width: 100%;height:100%;}
+            .consumerContainer .uploadImage {width: 60px;height: 50px;}
+            .ceImage{margin-right: 10px; margin-left: 20px;margin-bottom:10px;float:left;}
+            .ceInfoContainer{margin-bottom: 3px;width:100%;clear:both;}
+            .ceCommentBox{clear:both;}
+            .ceCommentBox textarea{  width: 100%;  height: 90px;  border-radius: 2px;  border: 1px solid #A8A8A8;}
+            .conceptLink{font-weight: bold;cursor: pointer;color: #027DC1;  margin-right: 10px;  margin-top: 5px;}
+            .ceImgDel{position: absolute;  bottom: 96px;  left: 47px;}
+            .consumerimgloader{width:120px;height:120px;cursor:pointer;}
+            
+            .ceImageBig div > div.uploadImagebig {width:80px;height:80px;border:0 !important;text-align: center;position:relative;}
+            .delTitlecon{width: 94%;padding: 0px 21px 0px 21px;}
+            .marginL0 {margin-left: 0px;}
+            .delTitlecon > span{font-size:1.2em;font-weight:bold;color:#344356;}
+            .floatR{float:right}
+            .ceCommentBox > textarea.smallTextarea{width: 100%;height: 120px;}
+            .frstImagesmall > img, .secImagesmall > img {width: 80px;height: 80px;}      
+            .ceContainer .selectBackground,.evidenceHead > span.expico{display:none;}
+            .gateRolloutPadding{padding-left:5px;}
+            .gateRolloutTable{width:100%;table-layout:fixed;}
+            .gateRCountry{display:block;word-break:break-word;width:80%;}   
+            
+            .gateRname span{font-size:12px;word-break:break-word;white-space: pre-wrap;display:block;width:100px;}
+            
+            .noOfCu{width:100%;}
+            .altBGcolor{width:100%;float:none !important;}
+            .cusText{display:block;}
+            
+            /* Assortment Styles */
+            .viewassortpriority {display: block;font-weight: 700;}
+            .viewDistribType, .viewDataPeriod {margin-right: 10px;font-weight: 700;}
+            .cmiGateSectionTable{width:100%;}
+            
+            /* ===CMI GATE SECTION STYLES=== */
+            .cmiTabHeader{font-size:9px;color: #3b516d;font-weight: bold;padding: 5px;}
+            .cmiHeaderHolder{border-top: 1px solid #7fa19e;width:100%;background: #f2f8fc;min-height:50px;margin-top: 10px;border-bottom: 0.5pt #9ab4b1 solid;}
+            .cmiGateName{width:100%;background: #f3ffe7;padding:5px;display:table;border-bottom: 0.5pt solid #ddd;}
+            .cmiTabContainer{width:100%;}
+            .cmiValue{padding:5px;font-size: 9px;min-height: 20px;width: 100%;display: block;}
+            .cmiTimingValue{width:43px;padding:3px;maring-top:40px;font-size: 9px;}
+            .elemWidth{width:90px;}
+            .testValWidth{width:50px;display:block;}
+            .kpiWidth{width:90px;display:block;}
+            .cmiRenBlock{width:100%;border-bottom: 0.5pt solid #ddd;}
+            .cmiActionStnds{width:117px;}
+            .cmiChrtrResWidth{width:120px;}
+            .cmiActionOvrall{width: 42px;}
+            .cmiConResOvrall{width: 70px;}
+            .cmiResultsOvrall{width: 40px;}
+            .cmiComments{width: 270px;}
+            .cmiConComments{width: 40px;}
+            .cmiCountryWidth{width: 45px;}
+            .cmiValContainer{width:100%;}
+            .charterCmiTable{clear:both;width:100%;}
+            .mainCmiTable{width:100%;clear:both;margin-top:5px;display:table;}
+            .cmiColumnTitle{display:block;float:left;padding: 5px;}
+            .cmiColumnDesc {text-align: center;width: 85%;display: inline-block;float: left;padding: 5px;}
+            .cmiCountryValue{width: 45px;padding:5px;font-size: 9px;display:block;}
+            .cmiInputVal{display:block;height:100%;padding:3px;font-size: 9px;min-height: 56px;border-bottom:0.5pt solid #ccc;}
+            .cmiCntryContainer{float:left;clear:both;}
+            .cmiTimingHead{width:43px;}
+            .cmiInputHead{width:53px;}
+            .cmiInputContainer{width:66px;}
+            .cmiActOvrValContainer{font-size: 9px;width: 57px;padding-bottom: 5px;}
+            .cmiChrtrLeftValue{display:block;width:50px;padding:5px;border-right: 0.5pt solid #ddd;font-size: 9px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
+            .cmiChrtrRightValue{display:block;width:50px;padding:5px;border-right: 0.5pt solid #ddd;font-size: 9px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
+            .cmiRightClrBox{display:block;}
+            .cmiConRes1{display:block;width:50px;border-right: 1px solid #ddd;font-size: 11px;min-height: 52px;}
+            .cmiConRes2{display:block;width:50px;border-right: 1px solid #ddd;font-size: 11px;min-height: 52px;}
+            .cmiConResValue1{display:block;font-size: 8px;padding:5px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
+            .cmiConResValue2{display:block;width:42px;padding:5px;font-size: 8px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
+            .cmiConResHeader{width:90px;}
+            .cmichrtrOvrallClr{display:block;width:80px;font-size: 8px;min-height: 45px;}
+            .cmiconOvrallClr{display:block;width:52px;font-size: 8px;min-height: 45px;}
+            .cmiChrtrRightValue .CMIRed,.cmiChrtrRightValue .CMIGreen,.cmiChrtrRightValue .CMIAmber,.cmiChrtrRightValue .CMILGreen,.cmiChrtrRightValue .CMIPink{min-width:5px !important;min-height:10px;display:block;margin-top:5px;padding:2px !important;color:#fff;margin-left:-3px !important;margin-right:0px !important;}
+            .cmiConResValue2 .CMIRed,.cmiConResValue2 .CMIGreen,.cmiConResValue2 .CMIAmber,.cmiConResValue2 .CMILGreen,.cmiConResValue2 .CMIPink{min-width:5px !important;min-height:10px;display:block;margin-top:5px;padding:1px !important;color:#fff;margin-left:-3px !important;margin-right:0px !important;}
+            .CMIRed,.CMIPink,.CMIGreen,.CMIAmber,.CMILGreen{margin-top:5px;margin-left:3px !important;margin-right:2px !important;padding:2px !important;color:#fff;}
+            .cmiCommentsValue{width:144px;display:block;font-size: 9px;padding:5px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
+            .cmiChrtrComment{width:275px !important;}
+            .CMIRed{background-color:#FF0000;}
+            .CMIGreen{background-color:#4F6228;}
+            .CMIAmber{background-color:#FFC000;}
+            .CMILGreen{background-color:#C4D79B;}
+            .CMIPink{background: #E6B8B7;}
+            .cmiRightContainer{height:100%;clear:both;border-bottom: 0.5pt solid #ddd;}
+            .cmiLeftContainer{height:100%;width:100px;}
+            .cmiTabRight{border-left:1px solid #ccc;width:660px;}
+            .cmiTimeContainer2,.cmiChrtrResMcontainer,.cmiConResContainer,.cmiCommentsContainer{border-left:0.5pt solid #ccc;}
+            .cpart2{display:table-cell;border-right:0.5pt solid #ccc;}
+            .cmiTimeContainer1{display:table-cell;}
+            .cpart1{display:table-cell;}
+            .cmiRes1Container .cmiChrtrLeftValue:first-child,.cmiRes2Container .cmiChrtrRightValue:first-child{border-bottom:0.5pt solid #ccc;}
+            
+            .ipmFintableAlign .finproject,.ipmFintableAlign tr.fintleblubg div,.ipmFintableAlign tr td.fintleblubg div{font-size:10px !important;}
+            .ipmFintableAlign tr td.fintleblubg div{padding-left:10px;}
+            
+            td.bggray:first-child{width:27.5%}         
+            td.bggray:first-child + td{width:16.5%} 
+            td.bggray:first-child + td +td{width:55%}
+            .riskCustBackground{background: #dceefa;color: #3b516d;font-weight: bold;padding:2px 0;border-top:#9ab4b1 solid 1px;border-bottom:#9ab4b1 solid 3px;}
+            .noMargin .ipmAcrdnExpand:first-child{background-color:red}
+            .Consumer_Evidence_Concept{clear:both}
+            .ceContainer{clear:both !important;}
+            .ipmFinancetable tbody tr td
+            {
+            font-size:10px
+            }
+            .htmlDetailElementTable
+            {
+            clear:both;
+            }
+            .ceCommentBox
+            {
+            width:78%;
+            float:right;
+            }
+            .consumerImgContainer
+            {
+            min-height:25px;
+            display:block;
+            }
+            .ipmFinancetable thead th .finproject{font-size:11px;}
+            .ipmFinancetable thead th .fintotal{font-size:12px;}        
+            .performanceTable table{font-size:10px;}        
+            .performanceTableHead{font-weight: bold;background-color:#dceefa;}      
+            
+            .bPageBlock .list.monitor {     
+            width: 100%;        
+            }       
+            .bPageBlock .list.ipmTable.monitor thead th {       
+            background-color: #dceefa;      
+            }       
+            .bPageBlock .list.monitor tr.odd {      
+            background-color: #f8f8f8;      
+            }       
+            .errorConsole .x-grid3-row-over, body .pbBody table.list.monitor tr.dataRow.highlight td, body .pbBody table.list.monitor tr.dataRow.highlight th {     
+            background-color: transparent;      
+            }       
+            body .pbBody table.list.monitor tr.headerRow td,        
+            body .pbBody table.list.monitor tr.headerRow th {       
+            font-size: 8.5px;        
+            }       
+            body .pbBody table.list.monitor tr.dataRow th,      
+            body .pbBody table.list.monitor tr.dataRow td {     
+            font-size:8.5px;        
+            }       
+            
+            /* Performance Breakdown Styles */      
+            .performanceContainer1{background-color:#dceefa;float: left;}       
+            .performanceHead{float: left;font-weight: bold;width:43.5px;padding:5px;font-size:10px;}      
+            .performanceContainer1,.performanceContainer2,.performanceContainer3{width: 760px;}        
+            .performanceContainer2{background: #f8f8f8;float:left;clear:both;}      
+            .performanceContainer3{clear:both;display:table;table-layout:fixed;}        
+            .breakdown_Container{margin-bottom: 10px;}      
+            .performanceSecHead{float:left;width:43.5px;padding: 5px;font-size:10px;}
+            .performanceSecHead.misaligned{width:41.5px;}
+            .performanceCell{float:left;width:43.5px;padding: 5px;font-size:10px;border-bottom:1pt #7fa29e solid;min-height:15px;}        
+            .emptyCell{min-height:14px;}        
+            .misaligned{border:1px solid red;min-height:51px;}      
+            .performanceDrpdownContainer{margin-top:10px;}      
+            .SecButtonSet a.icoButton.download{margin-top:10px;}        
+            .panel .ipmButtonSet{margin-bottom:10px;}       
+            input.misalignedField{border:1px solid red;}        
+            .breakdown_Container{width: 762px;font-size:10px;clear:both;}
+            
+            /* Global Financial Action Standards Styles */
+            .gatefinancialbg{background-color:#EBF8FC;padding: 10px;}
+            .glbfinstdsContainer{background-color: #dceefa;border:1px solid #ddd;float: left;width: 100%;}
+            .glbHeadLeft{min-width: 135px;float: left;height: 50px;border: 1px solid #ddd;border-bottom:0px;}
+            .glbHeadRight{width:623px;float: left;min-height: 35px;border: 1px solid #ddd;}
+            .glbHeadtop1{width:325px;float:left;min-height: 40px;}
+            .glbHeadtop2{width:290px;float:left;min-height: 40px;}
+            .glbfrstyear,.glbinnovation{padding-bottom: 2px;text-align: center;color: #364354;font-weight: bold;margin-top: 2px;border-bottom: 1px solid #ddd;}
+            .glbsubHeadM{float:left;width:64px;padding-top: 2px;text-align: center;border-right: 1px solid #ddd;font-size: 11px;min-height: 43px;}
+            .glbsubHeadM2{float:left;width:33%;padding-top: 2px;text-align: center;border-right: 1px solid #ddd;font-size: 11px;min-height: 43px;}
+            .glbHeadtop1{border-right: 1px solid #ddd;}
+            .glbsubHead8,.glbValM2.glbVal8{border-right:0px;}
+            .glbValLeft{height: 20px;width: 136px;float: left;display: block;text-align:center;border: 1px solid #ddd;padding-top: 5px;}
+            .glbValRight{width:762px;height: 20px;}
+            .glbValSubLeft{width:325px;display:block;height: 20px;float:left;}
+            .glbValSubRight{width:298px;display:block;height: 26px;float:left;border-right: 1px solid #ddd;}
+            .glbValM{width:60px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 2px;min-height: 22px;}
+            .glbValM2{width:93px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 2px;min-height: 22px;}
+            .glbVal8{border-right: 1px solid #ddd;float:left;width:97px;}        
+            .glbValLeft.othValleft{height:20px !important;}
+            .glbsecContainer{float:left;width:100%;}
+            .glbfrstContainer{float:left;width:100%;display:table;}
+            .glbsubHeadM,.glbsubHeadM2{font-size: 11px;color: #364354;font-weight: bold;}
+            .glbValLeft{font-size: 0.800em;color:#222;font-weight: bold;}
+            .glbSeclist{width:50%;float:left;}
+            .glbfinvalContainer{float:left;display:table;width:100%;}
+            
+            /* Financial Action Standards Inverse styles */
+            .ipmFinancetable.inverse .finproject{font-size: 11px;color: #364354;font-weight: bold;display:block;}
+            .ipmFinancetable.inverse td div{font-size: 0.800em;color:#222;}
+            
+            @media print
+            {
+            div.gkcStatus{page-break-inside: avoid;}
+            }
+            .cTitle{text-align:left;}
+            .alertimg
+            {
+            background-image: url('{!URLFOR($Resource.IPM_Resource, 'images/alert_ico.png')}');
+            float:right;
+            margin:-18px 0px -10px -30px;
+            height:20px;
+            width:20px;
+            }
+            .redtxt{
+            color:red !important;
+            }
+            table.ipmTable.table.table-bordered.ecoDesignCountry tbody td div.inputField.cellWidth {
+            float: left;
+            width: 50%;
+            }
+            .dataTable table tr.lastchild td.tldfontchange span{font-size:12px !important;}
+            .dataTable table td.tldfontchange span{font-size:12px !important;}
+            
+            /* BCC Consolidate View Styles */
+            .bccMainblock{background: #f2f8fc;width:100%;display:table;}
+            .bccheadblocks{height:30px;padding:10px;display:table-cell;border-top: 1px solid #7fa19e;border-bottom: 1px solid #7fa19e;}
+            .bcclowerblock{background: #fff;height:40px;width:100%;display:table;}
+            .bccvalueblocks{height:30px;padding:10px;display:table-cell;border-bottom: 1px solid #7fa19e;}
+            .fourclmwidth{width:100px;}
+            .compltwidth{width:50px; text-align:left; padding-left:5px;}
+            .topwidth{width:100px;text-align:left;padding-left:5px;}
+            .rollwidthcust.topwidth{width:140px;}
+            
+            /* For Global Claims Table */
+            .glbPLDtableHead{width:100%;margin-bottom:10px;margin-top:5px;}
+            .glbPLDtableHead thead th{background-color: #dceefa;}
+            .glbPLDtableHead thead th .finproject,.glbPLDtableHead thead th .claimHeader{margin-left:10px;}
+            .glbPLDtablebody{background-color: #f2f8fc;}
+            .removeClaimText{padding:10px;}
+            .glbPLDdrpdown{margin-top: -20px;}
+            .glbPLDdrpdown>tbody>tr:nth-child(even) {background: #f8f8f8;}
+            .selectClaim{position:relative;}
+            .gatepdlContainer{width: 100%;float: left;height: 100%;}
+            .claimList{width:100%;}
+            .paddleft{padding:0px 20px;}
+            .noteclaim label {font-weight:normal; padding:5px 0px;}
+            .globalclaim {font-weight: bold;margin-top:3px;} 
+            .glbNewTable{width:100%;margin-top:-9px;}
+            .glbNewTable tbody tr td{background-color: #f2f8fc;}
+            .glbNewTable tbody tr td.custBgTr{background-color: #dceefa !important;}
+            .custTdWidth{width:44%;}
+            .yellowAlertPdl{padding: 10px;font-size: 1em;background: #FFF372;color: #333;width:97%;margin-top:3px;border-radius:4px;}
+            .yellowAlertPdl .alertimgpdl{margin-top:-4px;margin-left:5px;height:20px;width:20px;}
+            .pdlalrtText{margin-left:20px;}
+            .teamHeading .pageTitlefont{font-size: 2em;color: #253A79;font-weight:bold;}
+            
+            /* Source Plan Styles */
+            .proName{padding-left:5px;}
+            .marketingHeader{width:100%;}
+            .chainHeader {width: 270px;}
+            .padzero {padding: 0;}
+            .col-sm-12{width:100%;}
+            .pull-left{float:left;}
+            .pull-right{float:right;}
+            table.table.table-bordered.productsource {position: relative;border: 2px solid #72c4e9;margin-right: -18px;border-spacing: 0;border-collapse: collapse;}
+            .table {width: 100%;max-width: 100%;margin-bottom: 20px;}
+            table {border-spacing: 0;border-collapse: collapse;}
+            table {background-color: transparent;}
+            .ipmTable.table>thead>tr>th{background:#f2f8fc;color:#3b516d; font-size:1em;font-weight:bold;}
+            .innerTable>thead>tr>th{color:#3b516d;}
+            .table>thead>tr>th span {float: left;display: inline-block;}
+            .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding: 2px 5px;vertical-align: middle;word-wrap:break-word;word-break: break-word;color: rgb(102, 102, 102);}
+            .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th{padding: 2px 5px;vertical-align: middle;}
+            table.table.table-bordered.productsource th {padding-top: 14px;background-color: #f2f8fc;border: 2px solid #ddd;text-align: center;}
+            table.table.table-bordered.productsource th span {display: block;text-align: center;width: 100%;}
+            table.table.table-bordered.productsource th span {display: block;text-align: center;width: 100%;}
+            table.table.table-bordered.productsource.darkoverlay th {background-color: #dceefa;border: 2px solid #ddd;padding-top: 10px;}
+            .innerTable>thead>tr>th>div.capcon {width: 75px;margin: 0 auto;background-color: #ececec;color:#3b516d;vertical-align: middle;text-align:center;padding: 2px 0 2px;height: auto;}
+            .tobe {margin-bottom: 40px;position: absolute;left: 0;margin-left:40px;right: 0;top: 43px;background-color: #f2f8fc;width: 465px;height: 0;padding: 8px 0px;}
+            .line {height: 0;border: 1px solid #ccc;position: relative;}
+            .line span {position: absolute;text-align: center;top: -8px;left: 0;right: 0;width: 150px;margin-left:140px;background-color: #f2f8fc;}
+            .tobesup {margin-bottom: 40px;position: absolute;left: 0;right: 0;top: 43px;margin-left:530px;background-color: #dceefa;width: 245px;height: 0;padding: 8px 0px;}
+            .line.dark {height: 0;border: 1px solid #ccc;position: relative;}
+            .line.dark span {background-color: #dceefa;width: 160px;margin-left:45px;}
+            table.table.table-bordered.productsourcegrey tr {background-color: #efefef;}
+            table.table.table-bordered.productsourcegrey tr td {border: none;text-align: center;}
+            .teamHeading{float:left;margin-bottom:10px;}
+            .teamHeading .pageTitlefont{font-size: 2em;color: #253A79;font-weight:bold;}
+            .goldenCheckcontainer{margin-top:2px;}
+            .goldenCheckcontainer label.goldbox {width: 80%;background: #FBBE2E;color: #000;border: 1px solid #E28A3C;padding: 5px;font-size: 8px !important;}
+            .goldenCheckcontainer label {width:100%;background: #999;padding:4px 18px;height: 29px;}  
+            .alignCenter{text-align:center;}
+            .srcbrkWord{word-wrap:break-word;word-break: break-word;}
+            /* Local Source Plan Styles */
+            .lclPronamehead{width:10%;}
+            .lclProformathead{width:10%;}
+            .lclProformulationhead{width:14%;}
+            .lclPropackagehead{width:12%;}
+            .lclProsizehead{width:10%;}
+            .lclProgoldenhead{width:10%;}
+            .lclPromappinghead{width:20%;}
+            .lclProunitshead{width:40%;}
+            .lclProcapabilityhead{width:20%;}
+            .lclProsrcedintohead{width:40%;}
+            .lclPronameval{width:10%;}
+            .lclProformatval{width:10%;}
+            .lclProformulationval{width:14%;}
+            .lclPropackingval{width:12%;}
+            .lclProsizeval{width:10%;}
+            .lclProgoldenval{width:10%;}
+            .lclProcountryval{width:20%;}
+            .lclProsrcingval{width:36%;}
+            .lclProcapabilityval{width:27%;}
+            .lclProsrccountriesval{width:40%;}
+            
+            .srcPlanTitle{margin-bottom: 5px;color: #253b78;width: 100%;font-size: 14px;font-weight: bold;}
+            .greytxt{margin-bottom:10px;display:block;}
+            .srcingHeaderContainer{display:table;width:100%;}
+            .leftHeadWidthResp {width: 490px;float: left;position: relative;}
+            .rightHeadWidthResp {width: 270px;float: left;position: relative;}
+            .custLeftTdwidth{width: 490px;}
+            .custRightTdwidth{width: 270px;}
+            .table>tbody>tr>td.noPadd {padding: 0;}
+            .table>thead>tr>th>div.capcon {width: auto;margin: 0 auto;margin-top:-2px;background-color: #ececec;color: #555;padding: 2px 4px;vertical-align: middle;height: auto;border: 1px solid #ddd;}
+            .greenBox{background: #A3C24B;color: #fff;padding: 5px;font-size: 11px;margin: 0;display:block;}
+            .redBox{background: red;padding: 5px;margin: 3px 0px;color: #fff;display:block;}
+            .table div.approvalTip{padding-left:7px;}
+			.sfdc_richtext table{width:760px !important;}
+			.algnCenter{text-align:center;}
+		</style>
+    </head>
+    
+    <apex:include pageName="IPM_GateDocumentPDF"/>
+    
+</apex:page>

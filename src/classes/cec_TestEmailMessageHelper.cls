@@ -11,6 +11,7 @@ History
 VERSION  AUTHOR            DATE            DETAIL               Description
 1.0 -   Aalok           21/10/2014      INITIAL DEVELOPMENT  CSR
 1.1     Sathish         Mar-2016        Code Refacctoring   Included CEC_TestDataFactory.
+1.2     Mahesh         November-2016    Included test scenario if case country is not present.
 ***********************************************************************/
 
 /**
@@ -140,7 +141,7 @@ public class cec_TestEmailMessageHelper{
             case c = new case();        
             cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c();
             
-            cbm.Inbound_Email__c='unknown@unilever.com';
+            cbm.Inbound_Email__c=CEC_Constants.unknownEmail;
             cbm.Country__c = cmm.Id;
             cbm.Brand__c ='Dove1';
             cbm.External_Image_Address__c ='http://unilever.com/central/img/so_logo.gif';
@@ -148,9 +149,9 @@ public class cec_TestEmailMessageHelper{
             cbm.Default_Template_Name__c = 'DoveIndia';
             
             insert cbm;
-            cec_Case_Brand_Mapping__c cbmtest = [Select Default_Template_Name__c, Brand_Market__c from cec_Case_Brand_Mapping__c Where Default_Template_Name__c = 'DoveIndia' limit 1];
+            //cec_Case_Brand_Mapping__c cbmtest = [Select Default_Template_Name__c, Brand_Market__c from cec_Case_Brand_Mapping__c Where Default_Template_Name__c = 'DoveIndia' limit 1];
             
-            System.assertEquals(cbm.Inbound_Email__c,'unknown@unilever.com');          
+            System.assertEquals(cbm.Inbound_Email__c,CEC_Constants.unknownEmail);          
             
             c.Origin = 'Email';
             c.Status = 'New';
@@ -167,9 +168,9 @@ public class cec_TestEmailMessageHelper{
             EmailMessage e =  new EmailMessage();
             e.Status = '0';
             e.ParentId = c.id;
-            e.ToAddress = 'unknown@unilever.com';
-            e.CcAddress = 'unknown@unilever.com';
-            e.BccAddress = 'unknown@unilever.com';
+            e.ToAddress = CEC_Constants.unknownEmail;
+            e.CcAddress = CEC_Constants.unknownEmail;
+            e.BccAddress = CEC_Constants.unknownEmail;
             e.Incoming = true;
             em.add(e);
             
@@ -216,9 +217,9 @@ public class cec_TestEmailMessageHelper{
             EmailMessage e =  new EmailMessage();
             e.Status = '0';
             e.ParentId = c.id;
-            e.ToAddress = 'unknown@unilever.com';
-            e.CcAddress = 'unknown@unilever.com';
-            e.BccAddress = 'unknown@unilever.com';
+            e.ToAddress = CEC_Constants.unknownEmail;
+            e.CcAddress = CEC_Constants.unknownEmail;
+            e.BccAddress = CEC_Constants.unknownEmail;
             e.Incoming = true;
             em.add(e);
             
@@ -244,9 +245,130 @@ public class cec_TestEmailMessageHelper{
             mail.setToAddresses(new String[] {Notifymail.EmailId__c});
             mail.setSubject(emailSubject);
             mail.setHTMLBody(msgString);
-            if(!Test.isRunningTest()){ Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail}); }
+            Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
             
-            CEC_Util.sendNotificationEmail(msgString, emailSubject);
+           
+        }
+        Test.stopTest(); 
+        
+    }
+    
+     public static testMethod void testCaseWithoutCntry(){
+        
+        
+        User u = CEC_TestDataFactory.getStandardCECTestUser();
+        System.runAs(u) {
+            
+            //insert case market mapping
+            CEC_Case_Market_Mapping__c cmm = new CEC_Case_Market_Mapping__c();
+            cmm.Market__c     = 'India';
+            cmm.CaseOrigin__c = 'Email India';
+            insert cmm;
+            
+            List<EmailMessage> em = new List<EmailMessage>();
+            case c = new case();        
+            cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c();
+            
+            cbm.Inbound_Email__c=CEC_Constants.unknownEmail;
+            cbm.Country__c = cmm.Id;
+            cbm.Brand__c ='Dove1';
+            cbm.External_Image_Address__c ='http://unilever.com/central/img/so_logo.gif';
+            cbm.Default_Outbound_Email__c = true;
+            cbm.Default_Template_Name__c = 'DoveIndia';
+            
+            insert cbm;
+            //cec_Case_Brand_Mapping__c cbmtest = [Select Default_Template_Name__c, Brand_Market__c from cec_Case_Brand_Mapping__c Where Default_Template_Name__c = 'DoveIndia' limit 1];
+            
+            System.assertEquals(cbm.Inbound_Email__c,CEC_Constants.unknownEmail);          
+            
+            c.Origin = 'Email';
+            c.Status = 'New';
+            c.Subject ='My PC is not working2';
+            //c.Brand__c = 'Dove';
+            c.Set_Assignment_Fields__c = true;
+            // c.Country__c = cmm.id;
+            insert c;
+            
+            /*case caseTest = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove'];*/
+            case caseTest = [Select Case_Brand__c, Case_Market__c from case Where Case_Brand__c = :c.Case_Brand__c];
+            //System.assertEquals(cmm.Market__c, caseTest.Case_Market__c);
+            
+            Test.startTest(); 
+            EmailMessage e =  new EmailMessage();
+            e.Status = '0';
+            e.ParentId = c.id;
+            e.ToAddress = CEC_Constants.unknownEmail;
+            e.CcAddress = CEC_Constants.unknownEmail;
+            e.BccAddress = CEC_Constants.unknownEmail;
+            e.Incoming = true;
+            em.add(e);
+            
+            //System.assertEquals(em.size(),1);  
+            insert em;
+            
+            cec_EmailMessageHandler ocec_cec_EmailMessageHandler = new cec_EmailMessageHandler();
+            ocec_cec_EmailMessageHandler.forbeforeInsert(em);
+            
+            cec_EmailMessageHelper ocec_EmailMessageHelper = new cec_EmailMessageHelper();
+            ocec_EmailMessageHelper.emailMessage(em);
+        }
+        Test.stopTest(); 
+        
+    }
+    
+     public static testMethod void testCaseWithoutBrndCntry(){
+        
+        
+        User u = CEC_TestDataFactory.getStandardCECTestUser();
+        System.runAs(u) {
+            
+            //insert case market mapping
+            CEC_Case_Market_Mapping__c cmm = new CEC_Case_Market_Mapping__c();
+            cmm.Market__c     = 'India';
+            cmm.CaseOrigin__c = 'Email';
+            insert cmm;
+            
+            List<EmailMessage> em = new List<EmailMessage>();
+            case c = new case();        
+            cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c();
+            
+            cbm.Inbound_Email__c='axe@customer.com';
+            cbm.Country__c = cmm.Id;
+            cbm.Brand__c ='Dove1';
+            cbm.External_Image_Address__c ='http://unilever.com/central/img/so_logo.gif';
+            cbm.Default_Outbound_Email__c = true;
+            cbm.Default_Template_Name__c = 'DoveIndia';
+            
+            insert cbm;
+            
+            c.Origin = 'Email';
+            c.Status = 'New';
+            c.Subject ='My PC is not working2';      
+            c.Set_Assignment_Fields__c = true;
+           
+            insert c;
+            
+           
+            case caseTest = [Select Case_Brand__c, Case_Market__c from case Where Case_Brand__c = :c.Case_Brand__c];
+            
+            Test.startTest(); 
+            EmailMessage e =  new EmailMessage();
+            e.Status = '0';
+            e.ParentId = c.id;
+            e.ToAddress = CEC_Constants.unknownEmail;
+            e.CcAddress = CEC_Constants.unknownEmail;
+            e.BccAddress = CEC_Constants.unknownEmail;
+            e.Incoming = true;
+            em.add(e);
+            
+            //System.assertEquals(em.size(),1);  
+            insert em;
+            
+            cec_EmailMessageHandler ocec_cec_EmailMessageHandler = new cec_EmailMessageHandler();
+            ocec_cec_EmailMessageHandler.forbeforeInsert(em);
+            
+            cec_EmailMessageHelper ocec_EmailMessageHelper = new cec_EmailMessageHelper();
+            ocec_EmailMessageHelper.emailMessage(em);
         }
         Test.stopTest(); 
         

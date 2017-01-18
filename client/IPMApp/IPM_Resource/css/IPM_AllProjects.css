@@ -1,3 +1,4 @@
+
 .date1, .date2{width:42%;}
 .iTORange1, .iTORange2{width:26%;}
 .leftSideBar ul.docFilter li {margin-left:0; display:block; background:#F0F7DF; color:#253b78; border-bottom:1px solid #c0d3bf; padding:7px;}
@@ -79,8 +80,8 @@
 .checkboxLabel{color:#3B516D;}
 .checkboxLabeltree {padding: 0 0 0 0 ;margin-top: -2px;color: #3b516d;font-size: 0.95em;display:inline;font-weight:normal ;}
 .leftSideBar ul.docFilter .subCheck{margin-left: -7px ;margin-right: -7px ;padding-left: 18px ;}
-.ipmCheckbox label.disabled:after{border-color: #adadad ;color: #adadad ;}
-.ipmCheckbox label.disabled{background:#f0f0f0 ; border-color:#d4d4d4 ;}
+.ipmCheckbox input[type=checkbox] + label.disabled:after{border-color: #adadad ;color: #adadad ;}
+.ipmCheckbox input[type=checkbox] + label.disabled{background:#f0f0f0 ; border-color:#d4d4d4 ;}
 .showallbutton{font-family:Arial;font-size:1em;font-weight:bold;color:#007DBB;border-right:1px solid #ddd;padding:5px 10px;}
 .paginationDiv input.btnDisabled, .paginationDiv input.btn{background: none ; border:none ;}
 .paginationLink{margin-left:3px ;margin-right:3px ;}
@@ -90,6 +91,7 @@ li.brndFilter::before {content:"x"; display:block; position:absolute; right:2px;
 .projLogo{height:50px;}
 .proLoader {position:relative;}
 .proLoader .proInit {text-align: center; position:absolute; z-index:100; top:0; left:0; opacity:0.9; -moz-opacity:0.9; -webkit-opacity:0.9; filter:alpha(opacity=90); width:100%; height:100%; background:#fff url(../images/ajax-loader.gif) no-repeat 45% 5%;}
+.table-responsive .loaderDiv div.proLoader {width:200px;z-index:2000;position:relative}
 .sortIcon {cursor:pointer;}
 .phaseSort{position: relative;left: 4px;bottom:11px;}
 .tldSort{position: relative;left: 5px;bottom:15px;}   
@@ -116,12 +118,63 @@ li.clusterCheckLi{padding: 7px 0 20px 7px ;border-bottom: 1px #c0d3bf solid ;}
 .proTypeLabel{float: left;display: block;}
 .filterBrandList .clear_input{left:174.5px ;}
 .pgFetch {color:#4AA02C;font-weight:bold;}
-.orgIcon, .rollIcon, .oprtnIcon{float:right ;}
+.orgIcon, .rollIcon, .oprtnIcon,.stopicon{float:right;}
 .input-group.date .dateFormat{display:none;}
 .input-group.date .dateInput{width: 72%;float: left;}
 .input-group.date .dateOnlyInput input{width:100%;}
-.stopProject{border:1px #a8a8a8 solid ;background: #fff ;}
+.stopProject{border:1px #a8a8a8 solid ;background: #fff;}
 .ipmCheckbox label.stopProject:after{opacity:0;}
 .not-active {
      display:none;
 }
+
+
+div.searchBox{
+position:relative;
+}
+ul.docFilter.accordionFilters.geographyAllUl{
+display:none;
+}
+div.brandSearchResultsClass{
+display:none;
+border: #999 solid 1px;
+max-height: 200px;
+overflow-x: auto;
+border-radius: 4px;
+background: #fff;
+position: absolute;
+z-index: 1;
+min-width: 201px;
+}
+
+div.brandSearchResultsClass div{
+color: #000;
+margin:0 2px;
+padding:4px 0px 4px 5px;
+cursor:default;
+}
+div.brandSearchResultsClass div:hover{
+background:#ccc;
+border:#999 solid 1px;
+border-radius: 5px;
+zoom:1;
+}
+ul.docFilter.typeLabel li:first-child{
+padding: 0px;
+border-bottom: none;
+}
+
+div.loaderDiv{
+position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 30% 50%
+}
+div.loaderDiv div{
+display: inline-block; padding: 2px; background-color: #fff; width: 125px;
+}
+
+div.loaderDiv div img {
+float: left; margin: 8px;
+}
+div.loaderDiv div span{
+display: inline-block; padding: 10px 0px;
+}
+.ipmAcrdnExpand blockquote{padding: 0px;margin: 0;font-size: 14px;border-left: 0;}

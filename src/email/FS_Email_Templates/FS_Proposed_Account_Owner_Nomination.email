@@ -1,0 +1,7 @@
+Hello {!Account.FS_ProposedAccountOwner__c},
+
+You are nominated as an Account Owner for {!Account.Name}. 
+
+
+Regards,
+Salesforce Team

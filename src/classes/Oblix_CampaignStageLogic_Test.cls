@@ -11,6 +11,9 @@ private class Oblix_CampaignStageLogic_Test {
             insert Oblix_TestUtils.createOblixCustomSettings();
             insert Oblix_TestUtils.createBoxRangeCalculatorRecords();
             insert Oblix_TestUtils.createCountryCalculatorRecords();
+            // Code added by suresh
+            Oblix_Check_For_Manual_Edit_Of_Campaign__c me = new Oblix_Check_For_Manual_Edit_Of_Campaign__c(Manual_Edit_Check__c = false);
+            insert me;
         }
     }
 
@@ -64,6 +67,7 @@ private class Oblix_CampaignStageLogic_Test {
     @isTest static void Oblix_CampaignStageLogic_TestInitStages(){
         User u = Oblix_TestUtils.createQA1User();
         System.runAs(u) {
+       
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
@@ -162,8 +166,16 @@ private class Oblix_CampaignStageLogic_Test {
 
 
     @isTest static void Oblix_CampaignStageLogic_TestToggleProjectedStage(){
-        User u = Oblix_TestUtils.createQA1User();
-        System.runAs(u) {
+       // User u = Oblix_TestUtils.createTestUser();
+          Profile profile = [Select Id from Profile where Name='System Administrator'];       
+          User user = new User(Alias = 'test123', Email = 'standarduser1@unilever.com', 
+          EmailEncodingKey = 'UTF-8', LastName = 'af test', LanguageLocaleKey = 'EN_US', 
+          LocaleSidKey = 'EN_US', ProfileId = profile.Id,firstname = 'sf test one', 
+          TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
+          UserName = 'testuseradmin1@test123321.com');
+        insert user; 
+        System.runAs(user) {
+       
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
@@ -229,8 +241,15 @@ private class Oblix_CampaignStageLogic_Test {
 
 
     @isTest static void Oblix_CampaignStageLogic_TestToggleCompletedStage(){
-        User u = Oblix_TestUtils.createQA1User();
-        System.runAs(u) {
+        //User u = Oblix_TestUtils.createQA1User();
+         Profile profile = [Select Id from Profile where Name='System Administrator'];       
+         User user = new User(Alias = 'test123', Email = 'standarduser2@unilever.com', 
+         EmailEncodingKey = 'UTF-8', LastName = 'af test', LanguageLocaleKey = 'EN_US', 
+         LocaleSidKey = 'EN_US', ProfileId = profile.Id,firstname = 'sf test one', 
+         TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
+         UserName = 'testuseradmin2@test123321.com');
+        insert user; 
+        System.runAs(user) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_NAME, mSow.id);
@@ -289,6 +308,6 @@ private class Oblix_CampaignStageLogic_Test {
         }
     }
 
-	
-	
+    
+    
 }

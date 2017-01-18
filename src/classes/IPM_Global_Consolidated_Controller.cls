@@ -24,7 +24,7 @@ public with sharing class IPM_Global_Consolidated_Controller{
             summaryList=new List<IPM_Project_Document_Section__c>();
             summaryList=[SELECT IPM_PDP_Document_Summary__c,IPM_Gate_Document_Summary__c,IPM_Project_Document__r.IPM_Project__r.IPM_Project_Name__c 
                          FROM IPM_Project_Document_Section__c
-                         WHERE IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__c=:projectId AND IPM_Master_Section_External_Id__c=:secExtId
+                         WHERE IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__c=:projectId AND IPM_Project_Document__r.IPM_Project__r.Is_Archieved__c = false  AND IPM_Master_Section_External_Id__c=:secExtId
                                AND IPM_Project_Document__r.IPM_GateDocuments__c=:gateDocument];
         }
            catch(Exception ex){

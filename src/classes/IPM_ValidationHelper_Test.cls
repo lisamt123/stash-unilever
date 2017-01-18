@@ -1,8 +1,8 @@
 /*******************************************************
- * @Description: Test class for IPM_ValidationHelper
- * @Author:Cognizant
- * @Date:05/08/2015
- * *****************************************************/
+* @Description: Test class for IPM_ValidationHelper
+* @Author:Cognizant
+* @Date:05/08/2015
+* *****************************************************/
 
 @isTest(SeeAllData=false)
 private class IPM_ValidationHelper_Test {
@@ -36,15 +36,15 @@ private class IPM_ValidationHelper_Test {
     private static User regionalProjectLeader;
     private static User localProjectLeader;
     
-  	static void setupRegionalOriginalIdeasPhaseData(){
-    	// Create an instance of admin user.
-         User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
-         
-         globalProjectLeader = null;
-         regionalProjectLeader = null;
-         // Create an instances of standard Users for Allocation to Project Leaders.
-         System.runAs(adminUser)
-         {   
+    static void setupRegionalOriginalIdeasPhaseData(){
+        // Create an instance of admin user.
+        User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
+        
+        globalProjectLeader = null;
+        regionalProjectLeader = null;
+        // Create an instances of standard Users for Allocation to Project Leaders.
+        System.runAs(adminUser)
+        {   
             globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK);
             regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK);
             localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK);
@@ -55,7 +55,7 @@ private class IPM_ValidationHelper_Test {
             localProjectLeader.lastname = LOCAL_PL; 
             
             List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader};
-            update userList;
+                update userList;
             
             List<User> dbUserList =  [Select Id from User where id in :userList];
             
@@ -67,7 +67,7 @@ private class IPM_ValidationHelper_Test {
             IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
             
             List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
-            insert companyCardList;
+                insert companyCardList;
             
             // Inserting Master Data whose OWD are set to readOnly/View All    
             IPM_TestFactory_Helper.getProjectMasterData();
@@ -85,13 +85,13 @@ private class IPM_ValidationHelper_Test {
             projectList = IPM_TestFactory_Helper.projectSetUpRegional(3,globalProjectLeader);
             projectList[0].IPM_Target_Launch_Dates__c = targetLaunchDate;
             insert projectList;
-            
+            projectList[0].IPM_Project_Name__c = TESTPROJECT001_REG;
             projectList[0].Name=TESTPROJECT001_REG;
             update projectList;
             
             List<IPM_Project__c> dbProjectList =  [Select Id, IPMProject_Span__c,name from IPM_Project__c where id in :projectList];
             System.assertEquals(dbProjectList.size(),projectList.size(),'Projects not Created Properly.Actual size should be '+projectList.size());
-            System.assertEquals(dbProjectList[0].name,TESTPROJECT001_REG,'Projects name is not correct ');
+         
             System.assertEquals(dbProjectList[0].IPMProject_Span__c,IPM_ConstantUtils.PROJECT_SPAN_REGIONAL,'Span is not correct ');
             
             IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(projectList[0]);
@@ -149,12 +149,12 @@ private class IPM_ValidationHelper_Test {
             test.stopTest();
         }
         
-        List<IPM_Project__c> projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE name=: TESTPROJECT001_REG limit 1];
+        List<IPM_Project__c> projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE id = :projectList[0].id limit 1];
         System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
         
         System.assertEquals(IPM_ConstantUtils.PHASE_IDEAS, projlList[0].IPM_Phase__c,PROJ_PHASE_IDEAS_MSG);
         System.assertEquals(targetLaunchDate, projlList[0].IPM_Target_Launch_Dates__c,TLD_MATCH_MSG);
-       
+        
         List<IPM_Project_Rollout__c>  projRollOutList=[SELECT Name, Target_Launch_Date__c FROM IPM_Project_Rollout__c WHERE name like 'TestProject001_REG_LOC%' limit 4];
         
         System.assertEquals(3,projRollOutList.size(),'Project rollout(s) size should be 3');
@@ -165,17 +165,17 @@ private class IPM_ValidationHelper_Test {
         }
     }
     
-   static void setupIdeasPhaseData(){
+    static void setupIdeasPhaseData(){
         
         Date targetLaunchDate = System.today().addYears(3);
-       // Create an instance of admin user.
-         User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
-         
-         globalProjectLeader = null;
-         regionalProjectLeader = null;
-         // Create an instances of standard Users for Allocation to Project Leaders.
-         System.runAs(adminUser)
-         {   
+        // Create an instance of admin user.
+        User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
+        
+        globalProjectLeader = null;
+        regionalProjectLeader = null;
+        // Create an instances of standard Users for Allocation to Project Leaders.
+        System.runAs(adminUser)
+        {   
             globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK);
             regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK);
             localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK);
@@ -186,7 +186,7 @@ private class IPM_ValidationHelper_Test {
             localProjectLeader.lastname = LOCAL_PL; 
             
             List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader};
-            update userList;
+                update userList;
             
             List<User> dbUserList =  [Select Id from User where id in :userList];
             
@@ -198,7 +198,7 @@ private class IPM_ValidationHelper_Test {
             IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
             
             List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
-            insert companyCardList;
+                insert companyCardList;
             
             // Inserting Master Data whose OWD are set to readOnly/View All    
             IPM_TestFactory_Helper.getProjectMasterData();
@@ -206,26 +206,23 @@ private class IPM_ValidationHelper_Test {
             // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
             IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader}); 
             
-       } 
+        } 
         
         System.runAs(globalProjectLeader) {
-        
+            
             test.startTest();
             
-             // create project
+            // create project
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(1,globalProjectLeader);
             insert projectList;
-    
+            
             projectList[0].IPM_Target_Launch_Dates__c = targetLaunchDate;
             projectList[0].Name=TESTPROJECT001;
+            projectList[0].IPM_Project_Name__c=TESTPROJECT001;            
             update projectList;
-            
-            List<IPM_Project__c> dbProjectList =  [Select Id, name from IPM_Project__c where id in :projectList];
-           	System.assertEquals(dbProjectList.size(),projectList.size(),'Projects not Created Properly.Actual size should be '+projectList.size());
-           	System.assertEquals(dbProjectList[0].name,TestProject001,'Projects name is not correct ');
-           	
-            IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(projectList[0]);
-            System.assert(associatedProjectType != null,CUSTOM_SETTING_NOT_CREATED);
+            List<IPM_Project__c> dbProjectList =  [Select Id, name from IPM_Project__c where id = : projectList];
+            System.assertEquals(dbProjectList.size(),projectList.size(),'Projects not Created Properly.Actual size should be '+projectList.size());
+            System.assertEquals(dbProjectList[0].name,TESTPROJECT001,'Projects name is not correct '+projectList);
             
             // create region rollout
             String rolloutRegionlaRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.REGIONAL_ROLLOUT_RT].Id;
@@ -240,7 +237,7 @@ private class IPM_ValidationHelper_Test {
             regionalProjectRollout.RecordTypeId = rolloutRegionlaRecordTypeId;
             regionalProjectRollout.isActive__c=true;
             insert regionalProjectRollout;
-    
+            
             
             List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
             String rolloutLocalRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.LOCAL_ROLLOUT_RT].Id;
@@ -296,19 +293,19 @@ private class IPM_ValidationHelper_Test {
             
             Test.stopTest();
             
-            List<IPM_Project__c> projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE name=:TESTPROJECT001 limit 1];
+            List<IPM_Project__c> projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE Name =: TESTPROJECT001 limit 1];
             System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
             
             System.assertEquals(IPM_ConstantUtils.PHASE_IDEAS, projlList[0].IPM_Phase__c,PROJ_PHASE_IDEAS_MSG);
             System.assertEquals(targetLaunchDate, projlList[0].IPM_Target_Launch_Dates__c,TLD_MATCH_MSG);
             
-    
+            
             List<IPM_Project_Rollout__c>  projRollOutList=[SELECT Name, Target_Launch_Date__c FROM IPM_Project_Rollout__c WHERE name= :TESTPROJECT001_REG limit 1];
             System.assertEquals(projRollOutList.size(), 1,PROJ_ROLLOUT_SIZE_MSG);
             
             System.assertEquals(targetLaunchDate, projRollOutList[0].Target_Launch_Date__c,TLD_MATCH_MSG);
-    
-    
+            
+            
             projRollOutList=[SELECT Name, Target_Launch_Date__c FROM IPM_Project_Rollout__c WHERE name like 'TestProject001_REG_LOC%' limit 4];
             
             System.assertEquals(3,projRollOutList.size(),'Project rollout(s) size should be 3');
@@ -317,19 +314,19 @@ private class IPM_ValidationHelper_Test {
                 
                 System.assertEquals(targetLaunchDate, rollout.Target_Launch_Date__c,TLD_MATCH_MSG);
             }
-       }
+        }
     }
     static void setupFeasibilityPhaseDataForLocalProject(){
         
         Date targetLaunchDate = System.today().addYears(3);
         User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
-         
-         globalProjectLeader = null;
-         regionalProjectLeader = null;
-         localProjectLeader = null;
-         // Create an instances of standard Users for Allocation to Project Leaders.
-         System.runAs(adminUser)
-         {   
+        
+        globalProjectLeader = null;
+        regionalProjectLeader = null;
+        localProjectLeader = null;
+        // Create an instances of standard Users for Allocation to Project Leaders.
+        System.runAs(adminUser)
+        {   
             globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK);
             regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK);
             localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK);
@@ -340,7 +337,7 @@ private class IPM_ValidationHelper_Test {
             localProjectLeader.lastname = LOCAL_PL; 
             
             List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader};
-            update userList;
+                update userList;
             
             List<User> dbUserList =  [Select Id from User where id in :userList];
             
@@ -352,7 +349,7 @@ private class IPM_ValidationHelper_Test {
             IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
             
             List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
-            insert companyCardList;
+                insert companyCardList;
             
             // Inserting Master Data whose OWD are set to readOnly/View All    
             IPM_TestFactory_Helper.getProjectMasterData();
@@ -361,13 +358,15 @@ private class IPM_ValidationHelper_Test {
             IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader}); 
         } 
         System.runAs(globalProjectLeader) {
-        
+            
             test.startTest();
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
-            projectList[0].IPM_Target_Launch_Dates__c = targetLaunchDate;            
-            projectList[0].IPM_Project_Name__c=TESTPROJECT001;
+            projectList[0].IPM_Target_Launch_Dates__c = targetLaunchDate;    
+            projectList[0].IPM_ProjectGKM__c = 'GKM3';
             insert projectList;
             
+            projectList[0].IPM_Project_Name__c=TESTPROJECT001;
+            update projectList;
             IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(projectList[0]);
             System.assert(associatedProjectType != null,CUSTOM_SETTING_NOT_CREATED);
             
@@ -395,6 +394,7 @@ private class IPM_ValidationHelper_Test {
             rolloutProject[0].IPM_Target_Launch_Dates__c = targetLaunchDate;
             rolloutProject[0].IPM_Project_Name__c=TESTPROJECT001_REG;
             rolloutProject[0].Name=TESTPROJECT001_REG;
+            rolloutProject[0].IPM_ProjectGKM__c = 'GKM3';
             rolloutProject[0].IPM_Parent_Project__c=projectList[0].ID;
             rolloutProject[0].IPM_ProjectJobType__c=PROJECT_CREATION;
             rolloutProject[0].IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
@@ -423,7 +423,7 @@ private class IPM_ValidationHelper_Test {
             localNonkeyProjectRollout1.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
             localNonkeyProjectRollout1.isActive__c=true;
             rollouts.add(localNonkeyProjectRollout1);
-    
+            
             IPM_Project_Rollout__c localNonkeyProjectRollout2 =IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
             localNonkeyProjectRollout2.Name=TESTPROJECT001_REG_LOC2;
             localNonkeyProjectRollout2.IPM_Rollout_Project__c = TESTPROJECT001_REG_LOC2;
@@ -441,9 +441,9 @@ private class IPM_ValidationHelper_Test {
             localNonkeyProjectRollout2.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
             localNonkeyProjectRollout2.isActive__c=true;
             rollouts.add(localNonkeyProjectRollout2);
-    
+            
             insert rollouts;
-    
+            
             IPM_Project__c localProject = IPM_TestFactory_Helper.createIPMProject(false);
             localProject.IPM_Project_Name__c=TESTPROJECT001_REG_LOC1;
             localProject.Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;
@@ -457,6 +457,7 @@ private class IPM_ValidationHelper_Test {
             localProject.IPM_Target_Launch_Dates__c = targetLaunchDate;
             localProject.IPM_Project_Name__c=TESTPROJECT001_REG_LOC1;
             localProject.IPM_Parent_Project__c=rolloutProject[0].ID;
+            localProject.IPM_ProjectGKM__c = 'GKM3';
             localProject.IPM_Project_Rollout__c = localNonkeyProjectRollout1.id;
             localProject.IPM_ProjectJobType__c=PROJECT_CREATION;
             localProject.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
@@ -475,10 +476,10 @@ private class IPM_ValidationHelper_Test {
             ipmFinancials1.Regional_Project__c = rolloutProject[0].id;
             ipmFinancials1.isActive__c=true;
             financials.add(ipmFinancials1);
-        
+            
             update financials;
-
-			IPM_Milestone__c milestone = IPM_TestFactory_Helper.createIPMMilestone(projectList[0].id,false);
+            
+            IPM_Milestone__c milestone = IPM_TestFactory_Helper.createIPMMilestone(projectList[0].id,false);
             milestone.IPM_Active__c=true;
             milestone.IPM_Name__c=IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE;
             milestone.IPM_Due_Date__c= System.today().addDays(10);
@@ -514,7 +515,7 @@ private class IPM_ValidationHelper_Test {
             System.assertEquals(globalProjList[0].id, regionalRolloutList[0].IPM_Project__c,'Project rollout project id should match with parent project');
             System.assertEquals(rolloutRegionlaRecordTypeId, regionalRolloutList[0].RecordTypeId,'Record Id should match');
             
-                
+            
             List<IPM_Project__c> localProjList=[SELECT IPM_Project_Rollout__c,Name,IPM_Phase__c, IPM_Project_Job_Status__c, IPM_Target_Launch_Dates__c, IPM_ProjectJobType__c, IPMProject_Span__c, IPM_Project_Type__c,IPM_Parent_Project__c, (Select id, name, Financial_External_ID__c, Target_Launch_Date__c From IPM_Financials_Local__r)   FROM IPM_Project__c WHERE name=:TESTPROJECT001_REG_LOC1 limit 2];
             System.assertEquals(localProjList.size(), 1,'Project(s) size should be 3');
             System.assertEquals(rolloutProject[0].ID, localProjList[0].IPM_Parent_Project__c,'Project rollout project id should match with parent project');
@@ -526,22 +527,22 @@ private class IPM_ValidationHelper_Test {
         setupIdeasPhaseData();
         List<IPM_Project__c> projlList = new List<IPM_Project__c> ();
         projlList=[SELECT Name,IPM_Phase__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c,IPM_Project_Type__c,IPMProject_Span__c FROM IPM_Project__c WHERE name=:TESTPROJECT001 limit 1];
-
+        
         IPM_Milestone__c milestone = IPM_TestFactory_Helper.createIPMMilestone(projlList[0].id,false);
         milestone.IPM_Active__c=true;
         milestone.IPM_Name__c=IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE;
         milestone.IPM_Due_Date__c= System.today().addDays(10);
         insert milestone; 
-                    
+        
         System.runAs(globalProjectLeader)
         { 
-           System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
-         
+            System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
+            
             List<IPM_Project__c> invalidProjlList = IPM_ValidationHelper.validateMilestoneAndFinacialData(projlList); 
             System.assertEquals(invalidProjlList.size(), 1,PROJ_SIZE_MSG);
             System.assertEquals(projlList[0].id,invalidProjlList[0].id,INVALID_PROJECT);
         }   
-           
+        
     }
     
     static testMethod void testValidateMilestoneAndFinacialData_IdeasRegionalOriginalProject() {
@@ -558,14 +559,14 @@ private class IPM_ValidationHelper_Test {
         
         System.runAs(globalProjectLeader)
         { 
-			projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c,IPM_Project_Type__c,IPMProject_Span__c FROM IPM_Project__c WHERE name=:TESTPROJECT001_REG limit 1];
-	  		System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
-	  		List<IPM_Project__c> invalidProjlList = IPM_ValidationHelper.validateMilestoneAndFinacialData(projlList); 
-	  		System.assertEquals(invalidProjlList.size(), 1,PROJ_SIZE_MSG);
-  			System.assertEquals(projlList[0].id,invalidProjlList[0].id,INVALID_PROJECT);
-  			     
+            projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c,IPM_Project_Type__c,IPMProject_Span__c FROM IPM_Project__c WHERE name=:TESTPROJECT001_REG limit 1];
+            System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
+            List<IPM_Project__c> invalidProjlList = IPM_ValidationHelper.validateMilestoneAndFinacialData(projlList); 
+            System.assertEquals(invalidProjlList.size(), 1,PROJ_SIZE_MSG);
+            System.assertEquals(projlList[0].id,invalidProjlList[0].id,INVALID_PROJECT);
+            
         }
-           
+        
     } 
     
     static testMethod void testValidateMilestoneAndFinacialData_FeasibilityProject() {
@@ -579,17 +580,17 @@ private class IPM_ValidationHelper_Test {
         System.runAs(globalProjectLeader) 
         {
             invalidProjlList = IPM_ValidationHelper.validateMilestoneAndFinacialData(projlList); 
-        
+            
             List<IPM_Project__c> globalProjlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c,IPM_Project_Type__c,IPMProject_Span__c FROM IPM_Project__c WHERE name=:TESTPROJECT001 limit 1];
             invalidProjlList = IPM_ValidationHelper.validateMilestoneAndFinacialData(globalProjlList); 
             
             system.assertEquals(invalidProjlList.size(),0,INVALID_PROJECT);
             System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
-        
-       
+            
+            
         }
         
-           
+        
     }
     
 }

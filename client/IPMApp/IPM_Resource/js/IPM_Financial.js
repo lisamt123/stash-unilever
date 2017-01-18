@@ -27,15 +27,21 @@ function finScriptCallBack() {
     }
     
 /* Below script works on click event. When clicked on confirm button it hides the opened modal and calls a function 'refreshFromLocal' */
-    jq(document).on('click', '#ipmDeleteModal .confirmAction.refreshFromLocal', function() {
+    jq(document).off('click', '#ipmDeleteModal .confirmAction.refreshFromLocal').on('click', '#ipmDeleteModal .confirmAction.refreshFromLocal', function() {
         jq('#ipmDeleteModal').modal('hide');
         refreshFromLocal();
     });
     
 /* Below script works on click event. When clicked on confirm button it hides the opened modal and calls a function 'refreshFromRegional' */
-    jq(document).on('click', '#ipmDeleteModal .confirmAction.refreshFromRegional', function() {
+     jq(document).off('click', '#ipmDeleteModal .confirmAction.refreshFromRegional').on('click', '#ipmDeleteModal .confirmAction.refreshFromRegional', function() {
         jq('#ipmDeleteModal').modal('hide');
         refreshFromRegional();
+    });
+	
+/* Below script works on click event. When clicked on confirm button it hides the opened modal and calls a function 'refreshFromGlobal' */
+     jq(document).off('click', '#ipmDeleteModal .confirmAction.refreshFromGlobal').on('click', '#ipmDeleteModal .confirmAction.refreshFromGlobal', function() {
+        jq('#ipmDeleteModal').modal('hide');
+		refreshFromGlobal();
     });
 }
 
@@ -90,6 +96,15 @@ function refreshFromRegionalJs(title, confirmMsg) {
     delModal.removeClass('refreshFromLocal');
     delModal.addClass('refreshFromRegional');
     finScriptCallBack();
+}
+
+/* Below function calls two other functions and also deletes a css class and adds new css class. */
+function refreshFromGlobalJs(title, confirmMsg) {
+	modalFunc(title, confirmMsg);
+	var delModal = jq('#ipmDeleteModal .confirmAction');
+	delModal.removeClass('refreshFromLocal');
+	delModal.addClass('refreshFromGlobal');
+	finScriptCallBack();
 }
 
 /*Below function changes the modal title and message in the modal content */
@@ -194,7 +209,7 @@ function accordion(elem) {
 
 function hilightTaskScript(){
     jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' },tooltipClass:'info_tip'});
-    jq(".smalllinfo").tooltip({ position: { my: 'center top', at: 'center bottom+10'},tooltipClass:'normal_tip'});
+    jq(".info.smalllinfo").tooltip({ position: { my: 'center bottom', at: 'center bottom+10'},tooltipClass:'normal_tip'});
 }
 
 function isNumber(evt, finval) {
@@ -209,3 +224,5 @@ function isNumber(evt, finval) {
     }
     return true;
 }
+
+

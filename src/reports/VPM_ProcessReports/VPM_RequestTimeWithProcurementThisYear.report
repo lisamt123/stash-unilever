@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithProcurement__c</field>
+    </columns>
+    <description>Number of days requests worked on by Procurement per year</description>
+    <filter>
+        <criteriaItems>
+            <column>VPM_PurchasingRequests__c.VPM_HoursSpentWithProcurement__c</column>
+            <operator>greaterThan</operator>
+            <value>0</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>VPM_PurchasingRequests__c.VPM_CountryRequestingVendor__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Request Time with Procurement This Year</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$VPM_PurchasingRequests__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CURY</interval>
+    </timeFrameFilter>
+</Report>

@@ -16,6 +16,29 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_FinancialScope__c</fullName>
+        <description>This field will be used to identify the financial Turn Over/Gross Profit field set. i.e. Global/Regional/Local.</description>
+        <externalId>false</externalId>
+        <label>Financial Scope</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Start_Year__c</fullName>
+        <description>This field will contain the start year of Financials.</description>
+        <externalId>false</externalId>
+        <label>Start Year</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Last_Batch_RunDate__c</fullName>
         <description>This field will hold the last successful BD BB reporting batch run date. so next time the batch will process the records created/updated post last run</description>
         <externalId>false</externalId>

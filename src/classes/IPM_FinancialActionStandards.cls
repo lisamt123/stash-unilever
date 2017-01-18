@@ -7,47 +7,23 @@
 public with sharing class IPM_FinancialActionStandards {
 
     public IPM_Project__c project {get; set;} //The project record for which the financial business cases are being viewed
-    public Id projDocSecId{get; set;}
     public Id conId{get; set;}
     public IPM_Project_Document_Section_Content__c projDocSecCon{get; set;}
-    public Id projectId; //Project Id of te current project
-    public ID getprojectId(){ return projectId; }
+    public List<IPM_Financial_Action_Standards__c> finActionStandardsList{get;set;}  
+    public IPM_Financial_Action_Standards__c finActionStandard{get;set;}
     public string commentField{get; set;}
     public string comments{get; set;}
     public Boolean isComment{get; set;}
     public Decimal numValue{get; set;}
-    public String gateType{get;set;}
-    public void setprojectId (ID p){
-        projectId = p;
-        showFinancialActionStandards(); 
-    }
-    
-    /***********************************************************************************************************************************************************
-    * @description To Check Record is Editable or Read Mode
-    * @return True If Enabled
-    */
-    public boolean editTable{ 
-        get {
-            return editTable;
-        }
-        set {
-            editTable= value;
-        }
-    }
-    
+    public Integer countString {get; set;}
     public Map<String,IPM_Financial_Year__c> mapFinancialYears{get;set;}
-
     public String fieldSuffix {get; set;} //Used to dynamically change the field suffix based on the current view. (Accepted values are - Global,Regional.Local,Charter,Contract,MR,MD)
     public String printDoc {get; set;} //Current Document being viewed
-
     public IPM_Financial__c financial; //Current Financial Record
     public IPM_Financial_Year__c firstFullYearGross; //First Full Year Gross Wrapper
     public IPM_Financial_Year__c firstFullYearIncremental; //First Full Year Incremental Wrapper
-
     public List<String> lstGateNames {get; set;} //List of Different Gate Names relevant for the current gate document
-
     public String colSpan {get; set;} //Used to define the number of columns visible on the Financial Table
-
     public ipmFinancialActionStandardWrapper innovationValueShareWrapper {get; set;} //Innovation Value Market Share Wrapper
     public ipmFinancialActionStandardWrapper incrementalValueShareWrapper {get; set;} //Incremental Value Market Share Wrapper
     public ipmFinancialActionStandardWrapper gTOWrapper {get; set;} //Gross Turnover Wrapper
@@ -56,7 +32,6 @@ public with sharing class IPM_FinancialActionStandards {
     public ipmFinancialActionStandardWrapper NPVWrapper {get; set;} //NPV Wrapper
     public ipmFinancialActionStandardWrapper IRRWrapper {get; set;} //IRR Wrapper
     public ipmFinancialActionStandardWrapper PaybackWrapper {get; set;} //Payback Wrapper
-
     public static final String CLASS_NAME = IPM_FinancialActionStandards.Class.getName(); //Class Name for Exception Logging
     @TestVisible private static string UPDATE_ACTION_STANDARDS_STR = 'updateActionStandards';
     @TestVisible private static string COMMENT_INNOVATION = 'Innovation';
@@ -68,6 +43,73 @@ public with sharing class IPM_FinancialActionStandards {
     @TestVisible private static string COMMENT_IRR = 'IRR';
     @TestVisible private static string COMMENT_PAYBACK = 'PayBack';
     
+    //Values set from Url. This is for page created from component.
+    public Boolean isEditable{
+        get {
+            if(isEditable == null) {
+                if(Apexpages.currentpage().getparameters().get('isEditable') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEditable; }
+        }
+        set;
+    }// boolean to check if editable
+    public boolean editTable{
+        get {
+            if(editTable == null) {
+                if(Apexpages.currentpage().getparameters().get('isEditable') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return editTable; }
+        }
+        set;
+    }// boolean to check if editable
+    public Id projectId{ // to get-set the project id from the component attribute.
+        get{
+            if(projectId == null && Apexpages.currentpage().getparameters().get('projId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('projId')) ;
+            }
+            else { return projectId; }
+        }
+        set;
+    } 
+    public Id projDocSecId{// to get-set the project document section id from the component attribute.
+        get{
+            if(projDocSecId == null && Apexpages.currentpage().getparameters().get('secId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('secId')) ;
+            }
+            else { return projDocSecId; }
+        }
+        set;
+    }
+    public String gateType{
+        get{
+            if(gateType == null && Apexpages.currentpage().getparameters().get('gate') != null) {
+                return  Apexpages.currentpage().getparameters().get('gate');
+            }
+            else { return gateType; }
+        }
+        set;
+    }
+    
+     /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForComponent() {
+        showFinancialActionStandards(); 
+        getFinancialActionStandards();
+        return 'Required methods are invoked for component';
+    }
+    
+    /************************************************************************************************************************
+    * @Description: CONSTRUCTOR
+    */
+    public IPM_FinancialActionStandards() {
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
+    }   
+    
     /*******************************************************************************************************
     * @description  Action Method to show Action Standards
     * @param        NONE
@@ -75,7 +117,7 @@ public with sharing class IPM_FinancialActionStandards {
     */
     public void showFinancialActionStandards(){
         try{
-            project = [SELECT IPM_Project_Name__c,IPM_Project_Type__c,IPMProject_Span__c, IPM_Phase__c
+            project = [SELECT IPM_Project_Name__c,IPM_ProjectGKM__c,IPM_Project_Type__c,IPMProject_Span__c, IPM_Phase__c,Source_Rollout_External_Id__c
                        FROM IPM_Project__c 
                        WHERE ID =: projectId];
             
@@ -130,7 +172,7 @@ public with sharing class IPM_FinancialActionStandards {
             financialExternalId = project.IPM_Project_Name__c;
         }        
         else{
-            financialExternalId = project.IPM_Project_Name__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+             financialExternalId = project.Source_Rollout_External_Id__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
         }
         financial = [SELECT Id, NPV_Global__c, NPV_Regional__c, NPV_Local__c, NPV_Charter__c, NPV_Contract__c, NPV_MR__c, NPV_MD__c, 
                             IRR_Global__c, IRR_Regional__c, IRR_Local__c, IRR_Charter__c, IRR_Contract__c, IRR_MR__c, IRR_MD__c, 
@@ -184,12 +226,25 @@ public with sharing class IPM_FinancialActionStandards {
             IRRWrapper.actionStandardValue = ((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_IRR + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(3);
             PaybackWrapper.actionStandardValue = ((Decimal) financial.get(IPM_ConstantUtils.FIELD_LITERAL_PAYBACK + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(2);
     
+            getGateNames();
+            //1 Column (attributes) + 1 column (Action Standards) + 1 column (Comments) + Number of Gates to be made visible
+            Integer calcColSpan = IPM_ConstantUtils.CHANNEL_PRIORITY_THREE + lstGateNames.size();
+            colSpan = '' + calcColSpan;
+        }
+    }
+    
+    /*******************************************************************************************************
+    * @description                  Process List of relevant gate values
+    * @param        				NONE
+    * @return                       NONE
+    *******************************************************************************************************/
+     
+     private void getGateNames(){
             //Charter - Always Process Charter Results
             lstGateNames.add(IPM_ConstantUtils.CHARTER_GATE);
             if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) {
                 processWrapperListGateValues(fieldSuffix);
-            }
-            else {
+		} else {
                 processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_CHARTER);
             }
     
@@ -201,8 +256,7 @@ public with sharing class IPM_FinancialActionStandards {
                 lstGateNames.add(IPM_ConstantUtils.CONTRACT_GATE);
                 if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY){
                     processWrapperListGateValues(fieldSuffix);
-                }
-                else {
+			} else {
                     processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_CONTRACT);
                 }
             }
@@ -216,15 +270,9 @@ public with sharing class IPM_FinancialActionStandards {
                 lstGateNames.add(IPM_ConstantUtils.MARKET_READY_GATE);
                 if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY){
                     processWrapperListGateValues(fieldSuffix);
-                }
-                else {
+			} else {
                     processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_MARKET_READY);
                 }
-            }
-                
-            //1 Column (attributes) + 1 column (Action Standards) + 1 column (Comments) + Number of Gates to be made visible
-            Integer calcColSpan = IPM_ConstantUtils.CHANNEL_PRIORITY_THREE + lstGateNames.size();
-            colSpan = '' + calcColSpan;
         }
     }
     
@@ -245,8 +293,8 @@ public with sharing class IPM_FinancialActionStandards {
     }
     
     public void getActionStandards(){
+        if(String.isNotBlank(projDocSecId) && projDocSecCon==null){
         projDocSecCon=new IPM_Project_Document_Section_Content__c();
-        if(String.isNotBlank(projDocSecId)){
             projDocSecCon=[SELECT Id,IPM_GM_Action_Standards_Charter__c,IPM_GM_Action_Standards_Charter_Cmts__c,IPM_gTO_Action_Standard_Charter__c,IPM_gTO_Action_Standard_Charter_Cmts__c,IPM_Section_Name__c,
                                   IPM_Inc_Val_Share_Action_Charter_Cmts__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_Inov_Value_Share_Action_Charter_Cmts__c,
                                   IPM_IRR_Action_Standard_Charter__c,IPM_IRR_Action_Standard_Charter_Cmts__c,IPM_iTo_Action_Standard_Charter__c,IPM_iTo_Action_Standard_Charter_Cmts__c,IPM_NPV_Action_Standard_Charter__c,
@@ -348,5 +396,40 @@ public with sharing class IPM_FinancialActionStandards {
         public ipmFinancialActionStandardWrapper(){
             this.lstGateValues = new List<Decimal>();
         }
+    }
+        /*******************************************************************************************************
+    * @description  Action Method to get Global Action Standards
+    * @param        NONE
+    * @return       NONE
+    */
+    public void getFinancialActionStandards()
+    {
+        string projId = project.Id;
+        
+        string global_STR = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+        string query_Str = 'SELECT IPM_Financial_Action_Standard_Name__c,IPM_Financial_Year_Y1_Gross__c,IPM_Financial_Year_Y1_Incremental__c,IPM_GM_Action_Standards_Charter__c,IPM_Project_Span__c,';
+        query_Str += 'IPM_gTO_Action_Standard_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_IRR_Action_Standard_Charter__c,Name,';
+        query_Str += 'IPM_iTo_Action_Standard_Charter__c,IPM_NPV_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter__c,IPM_Project__c,IPM_Project_Document_Section__c,';
+        query_Str += 'IPM_Financial_Year_Y1_Gross__r.Value_Market_Share_Global__c,IPM_Financial_Year_Y1_Gross__r.Turnover_Global__c,IPM_Financial_Year_Y1_Gross__r.GM_of_TO_Global__c,';
+        query_Str += 'IPM_Financial_Year_Y1_Incremental__r.Value_Market_Share_Global__c,IPM_Financial_Year_Y1_Incremental__r.Turnover_Global__c,IPM_Financial_Year_Y1_Gross__r.IPM_Financial__c,';
+        query_Str += 'IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c,IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c,IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c';
+        query_Str += ' FROM IPM_Financial_Action_Standards__c WHERE IPM_Project__c=:projId';
+        if(IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(project.IPM_ProjectGKM__c)){
+            query_Str += ' AND IPM_Project_Span__c =: global_STR';  
+        }
+        query_Str += ' order by Name Asc limit 1';
+        if(finActionStandardsList==NULL ||finActionStandardsList.isEmpty())
+        {
+            finActionStandardsList=new List<IPM_Financial_Action_Standards__c>();
+            finActionStandardsList = database.query(query_Str);
+        }
+		if(!finActionStandardsList.isEmpty())
+		{
+			finActionStandard= finActionStandardsList[0];
+		}
+		else
+		{
+			finActionStandard = new IPM_Financial_Action_Standards__c();	
+		}
     }
 }

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Планирование</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Планирование</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Планирование</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Планирование</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Планирование</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Планирование</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Планирование</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Планирование</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>false</plural>
+        <value>Планирование</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>true</plural>
+        <value>Планирование</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>false</plural>
+        <value>Планирование</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>true</plural>
+        <value>Планирование</value>
+    </caseValues>
+    <fields>
+        <label>Наименования Бизнес-плана</label>
+        <name>FS_Account_Business_Plan_Name__c</name>
+    </fields>
+    <fields>
+        <label>Согласовано</label>
+        <name>FS_Approved__c</name>
+    </fields>
+    <fields>
+        <label>Выполнено %</label>
+        <name>FS_Completed__c</name>
+    </fields>
+    <fields>
+        <label>Покупатель</label>
+        <name>FS_Customer__c</name>
+        <relationshipLabel>Прогнозы</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Конечная дата</label>
+        <name>FS_End_Date__c</name>
+    </fields>
+    <fields>
+        <label>Количество выполненных целей</label>
+        <name>FS_No_of_Completed_Objectives__c</name>
+    </fields>
+    <fields>
+        <label>Количество целей</label>
+        <name>FS_No_of_Objectives__c</name>
+    </fields>
+    <fields>
+        <label>Количество возможностей</label>
+        <name>FS_No_of_Opportunities__c</name>
+    </fields>
+    <fields>
+        <label>Потенциал возможности</label>
+        <name>FS_Opportunity_Amount__c</name>
+    </fields>
+    <fields>
+        <label>Выгода возможности</label>
+        <name>FS_Opportunity_Gain__c</name>
+    </fields>
+    <fields>
+        <label>План $</label>
+        <name>FS_PlanDollars__c</name>
+    </fields>
+    <fields>
+        <label>План %</label>
+        <name>FS_PlanPercent__c</name>
+    </fields>
+    <fields>
+        <label>План</label>
+        <name>FS_Plan_Statement__c</name>
+    </fields>
+    <fields>
+        <label>Тип плана</label>
+        <name>FS_Plan_Type__c</name>
+        <picklistValues>
+            <masterLabel>Grow</masterLabel>
+            <translation>Рост</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retain/Differentiate</masterLabel>
+            <translation>Сохранить/Различать</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Win</masterLabel>
+            <translation>Выиграть</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Начальная дата</label>
+        <name>FS_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label>Статус</label>
+        <name>FS_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approval Requested</masterLabel>
+            <translation>Запрошено согласование</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation>Согласовано</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation>В процессе</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planning</masterLabel>
+            <translation>Планируется</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Планируемый объём</label>
+        <name>FS_of_Units__c</name>
+    </fields>
+    <fields>
+        <label>Риск</label>
+        <name>Identified_Risk__c</name>
+    </fields>
+    <gender>Neuter</gender>
+    <nameFieldLabel>Планирование</nameFieldLabel>
+    <recordTypes>
+        <label>Дистрибутор</label>
+        <name>Distributor</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Оператор</label>
+        <name>Operator</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage>Создайте Выбранные цели перед отправлением на согласование</errorMessage>
+        <name>CheckNoofDefineObjective</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- End date can not be before start date. --></errorMessage>
+        <name>FS_End_Date_Before_Start_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Вы не можете вносить изменения в план по клиенту после согласования</errorMessage>
+        <name>Restrict_approved_Account_Plan_change</name>
+    </validationRules>
+</CustomObjectTranslation>

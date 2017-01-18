@@ -1,6 +1,15 @@
 ({
-	scrollToLocation : function(component, location) {
-        var scroller = this.getScroller(component),
+	scrollToLocation : function(component) {
+        
+        
+   	  var cssScrolltoTop = $(".scroller");
+        if (cssScrolltoTop) {
+            var cssScrolltoTopTransform = cssScrolltoTop.css("transform");
+            if (cssScrolltoTopTransform) {
+                cssScrolltoTop.css("transform", "translate3d(0px, 0px, 0px)"); //set 'transform' since lighntning architecture uses css 'transfrom' property to scroll 
+            }
+        } 
+     /**   var scroller = this.getScroller(component),
             payload = {
                 time: 300,
             };
@@ -13,7 +22,7 @@
         	payload.ycoord = -location.offsetTop;
         }
         
-	    scroller.getEvent("scrollTo").setParams(payload).fire();
+	    scroller.getEvent("scrollTo").setParams(payload).fire();**/
 	},
     
     //THIS IS AN ABSOLUTE HACK AND MOST LIKELY WILL BREAK IN SUMMER16!

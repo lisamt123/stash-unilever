@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <name>CheckNullSenderId</name>
+        <label>Check Null SenderId</label>
+        <locationX>625</locationX>
+        <locationY>28</locationY>
+        <defaultConnectorLabel>Do Nothing</defaultConnectorLabel>
+        <rules>
+            <name>Not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IncomingSenderId</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Query_SenderId</targetReference>
+            </connector>
+            <label>Not Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Record_Present</name>
+        <label>Is Record Present</label>
+        <locationX>632</locationX>
+        <locationY>300</locationY>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>TRUE</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SenderOwnerId</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Incoming_SMS_OwnerId</targetReference>
+            </connector>
+            <label>TRUE</label>
+        </rules>
+    </decisions>
+    <description>To update the Incoming SMS Owner Id</description>
+    <interviewLabel>CEC Update Incoming SMS Owner Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CEC Update Incoming SMS Owner Flow</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Query_SenderId</name>
+        <label>Query SenderId</label>
+        <locationX>630</locationX>
+        <locationY>157</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Record_Present</targetReference>
+        </connector>
+        <filters>
+            <field>smagicinteract__senderId__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>IncomingSenderId</elementReference>
+            </value>
+        </filters>
+        <object>smagicinteract__SMS_SenderId__c</object>
+        <outputAssignments>
+            <assignToReference>SenderOwnerId</assignToReference>
+            <field>OwnerId</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Incoming_SMS_OwnerId</name>
+        <label>Update Incoming SMS OwnerId</label>
+        <locationX>632</locationX>
+        <locationY>467</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>IncomingSMSId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>SenderOwnerId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>smagicinteract__Incoming_SMS__c</object>
+    </recordUpdates>
+    <startElementReference>CheckNullSenderId</startElementReference>
+    <variables>
+        <description>To store the incoming sender Id</description>
+        <name>IncomingSenderId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>To store the SMS Incoming Id</description>
+        <name>IncomingSMSId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>To store the senderOwner Id</description>
+        <name>SenderOwnerId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

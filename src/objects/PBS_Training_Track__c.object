@@ -271,5 +271,16 @@
         <errorDisplayField>Work_Level__c</errorDisplayField>
         <errorMessage>Value is required</errorMessage>
     </validationRules>
-   
+       <webLinks>
+        <fullName>Export_Training_Track</fullName>
+        <availability>online</availability>
+        <description>Display VF page for exporting a training track</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Export</masterLabel>
+        <openType>noSidebar</openType>
+        <page>PBS_TrainingTrackExport</page>
+        <protected>false</protected>
+    </webLinks>
 </CustomObject>

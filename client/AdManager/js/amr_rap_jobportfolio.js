@@ -26,7 +26,7 @@ function transferValue(projName) {
 }
 
 $j(function() {
-	$j("#datepicker").datepicker();
+	//$j("#datepicker").datepicker();
 	
 	$j('.alert-popup').hide();
 	$j('.advance-search-popup').hide();

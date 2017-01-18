@@ -26,7 +26,7 @@ public with sharing class AR_AgencyGridView {
     public Boolean filterApplied {
         get {
             if (disciplineSelectedOptions.size() > 0 ||
-            	expertiseSelectedOptions.size() > 0 || 
+                expertiseSelectedOptions.size() > 0 || 
                 categorySelectedOptions.size() > 0 || 
                 brandSelectedOptions.size() > 0 || 
                 locationSelectedOptions.size() > 0 ||
@@ -180,12 +180,12 @@ public with sharing class AR_AgencyGridView {
         {
             if (allAgencies == null)
             {
-                string agencyQuery = '  Select Id, Name, Agency_Expertise__c, Description, Strategic_Capabilities__c, Overall_Rating__c, Featured__c, Discipline__c, ' + 
+                string agencyQuery = '  Select Id, Name, Agency_Expertise__c, Description, Strategic_Capabilities__c, Overall_Rating__c, Featured__c, agency_Discipline__c, ' + 
                                      '      (Select Id, RecordType.Name, Category__c, Brand__c From Experiences__r ' +
                                      '          Where RecordType.Name = \'Experience\' ' +
                                      '              OR  RecordType.Name = \'Project\' ' +
                                      '           Order by Category__c, Brand__c), ' + 
-                                     '      (Select City__c From Geographies__r Where City__c != null Order by City__c), ' +
+                                     '      (Select Country__c From Geographies__r Where Country__c != null Order by Country__c), ' +
                                      '      (Select Id From Ratings__r), ' +
                                      '      (Select Id From Attachments Where Name LIKE \'three_%\') ' +
                                      '  From Account ' +
@@ -306,21 +306,22 @@ public with sharing class AR_AgencyGridView {
             }
             
             // If discipline option selected, filter agency
-            if (disciplineSelectedOptions != null && disciplineSelectedOptions.size() > 0)
+          if (disciplineSelectedOptions != null && disciplineSelectedOptions.size() > 0)
             {
                 meetsCriteria = false;
+                integer matchCount = 0;
+                
                 for (String discipline :disciplineSelectedOptions)
                 {
-                    if (agencies[i].Discipline__c != null)
+                    if (agencies[i].Agency_Discipline__c != null)
                     {
-                        if (discipline == agencies[i].Discipline__c)
+                        for (String agencyDiscipline :agencies[i].Agency_Discipline__c.split(';'))
                         {
-                        	meetsCriteria = true;
-                        	break; // break out now if agency matches discipline on any selected option
+                            if (discipline == agencyDiscipline) matchCount++;
                         }
                     }
                 }
-
+                if (matchCount >= disciplineSelectedOptions.size()) meetsCriteria = true;
             }
             // Remove agency if fails above, then skip to next record in loop.
             if (!meetsCriteria)
@@ -410,7 +411,7 @@ public with sharing class AR_AgencyGridView {
                 {
                     for (ar_Geography__c geography :agencies[i].Geographies__r)
                     {
-                        if (location == geography.City__c) matchCount++;
+                        if (location == geography.Country__c) matchCount++;
                     }
                 }
                 if (matchCount >= locationSelectedOptions.size()) meetsCriteria = true;
@@ -452,11 +453,12 @@ public with sharing class AR_AgencyGridView {
             {
                 if (agency.Agency_Expertise__c != null)
                 {
-                    if (agency.Agency_Expertise__c.contains(pickListEntry.getValue()))
-                    {
-                        optionCount++;
-                    }
-                }
+                
+                 for (String agencyExpertise :agency.Agency_Expertise__c.split(';'))
+                        {
+                            if (agencyExpertise.equals(pickListEntry.getValue())) optionCount++;
+                        }
+                 }
             }
             if (optionCount > 0) expertiseOptionsToCount.put(pickListEntry.getValue(),optionCount);
         }
@@ -466,61 +468,64 @@ public with sharing class AR_AgencyGridView {
 
         // The other filter options are built based on child data records of agencies.
         // Here we are looping through all published agencies and child data, building our options and count for each
-        for (Account agency :agencies)
-        {   
-        	
-            if (agency.Discipline__c != null)
+        for (Schema.PicklistEntry disciplinePickListEntry :Account.Agency_Discipline__c.getDescribe().getPicklistValues())
+        {
+            integer disciplineOptionCount = 0;
+            for (Account agency :agencies)
             {
-            	// Build map for discipline filter and count
-            	if (disciplineOptionsToCount.containsKey(agency.Discipline__c))
-            	{
-            		disciplineOptionsToCount.put(agency.Discipline__c, disciplineOptionsToCount.get(agency.Discipline__c) + 1);
-            	}
-            	else
-            	{
-            		disciplineOptionsToCount.put(agency.Discipline__c, 1);
-            	}
+                if (agency.Agency_Discipline__c != null)
+                {
+                
+                for (String agencyDiscipline :agency.Agency_Discipline__c.split(';'))
+                        {
+                            if (agencyDiscipline.equals(disciplinePickListEntry.getValue())) disciplineOptionCount++;
+                        }
+                
+                  }
             }
-        	
+            if (disciplineOptionCount> 0) disciplineOptionsToCount.put(disciplinePickListEntry.getValue(),disciplineOptionCount);
+        }
             // Build map for category and brand options and count of agencies for each
+             for (Account agency :agencies)
+        { 
             for (ar_Experience__c experience :agency.Experiences__r)
             {
                 if (experience.RecordType.Name == 'Experience')
                 {
                     if (experience.Category__c != null)
                     {
-                    	// Make sure this category hasn't already been counted for this agency
-                    	if (agency.Id != filterToAccountIdMap.get(experience.Category__c)) 
-            			{
-	                        // if category already exists as an option, increment the count
-	                        if (categoryOptionsToCount.containsKey(experience.Category__c))
-	                        {
-	                            categoryOptionsToCount.put(experience.Category__c, categoryOptionsToCount.get(experience.Category__c) + 1);
-	                        }
-	                        else // first count of this category, set to 1
-	                        {
-	                            categoryOptionsToCount.put(experience.Category__c, 1);
-	                        }
-	                        filterToAccountIdMap.put(experience.Category__c, agency.Id); // add to the map to exclude counting the same category twice for the same agency
-            			}
+                        // Make sure this category hasn't already been counted for this agency
+                        if (agency.Id != filterToAccountIdMap.get(experience.Category__c)) 
+                        {
+                            // if category already exists as an option, increment the count
+                            if (categoryOptionsToCount.containsKey(experience.Category__c))
+                            {
+                                categoryOptionsToCount.put(experience.Category__c, categoryOptionsToCount.get(experience.Category__c) + 1);
+                            }
+                            else // first count of this category, set to 1
+                            {
+                                categoryOptionsToCount.put(experience.Category__c, 1);
+                            }
+                            filterToAccountIdMap.put(experience.Category__c, agency.Id); // add to the map to exclude counting the same category twice for the same agency
+                        }
                     }   
                     
                     if (experience.Brand__c != null)
                     {
-                    	// Make sure this brand hasn't already been counted for this agency
-                    	if (agency.Id != filterToAccountIdMap.get(experience.Brand__c))
-            			{
-	                        // if brand option already in map, increment the count by 1
-	                        if (brandOptionsToCount.containsKey(experience.Brand__c))
-	                        {
-	                            brandOptionsToCount.put(experience.Brand__c, brandOptionsToCount.get(experience.Brand__c) + 1);
-	                        }
-	                        else // first count of this brand, set the count to 1
-	                        {
-	                            brandOptionsToCount.put(experience.Brand__c, 1);
-	                        }
-	                        filterToAccountIdMap.put(experience.Brand__c, agency.Id); // add to the map to exclude counting the same brand twice for the same agency
-            			}
+                        // Make sure this brand hasn't already been counted for this agency
+                        if (agency.Id != filterToAccountIdMap.get(experience.Brand__c))
+                        {
+                            // if brand option already in map, increment the count by 1
+                            if (brandOptionsToCount.containsKey(experience.Brand__c))
+                            {
+                                brandOptionsToCount.put(experience.Brand__c, brandOptionsToCount.get(experience.Brand__c) + 1);
+                            }
+                            else // first count of this brand, set the count to 1
+                            {
+                                brandOptionsToCount.put(experience.Brand__c, 1);
+                            }
+                            filterToAccountIdMap.put(experience.Brand__c, agency.Id); // add to the map to exclude counting the same brand twice for the same agency
+                        }
                     }
                     
                 }
@@ -529,20 +534,20 @@ public with sharing class AR_AgencyGridView {
             // Build map for city options and count of agencies per city
             for (ar_Geography__c geography :agency.Geographies__r)
             {
-            	// Make sure this location hasn't already been counted for this agency
-            	if (agency.Id != filterToAccountIdMap.get(geography.City__c))
-            	{
-	                // if location already exists in map, add it to the count
-	                if (locationOptionsToCount.containsKey(geography.City__c))
-	                {
-	                    locationOptionsToCount.put(geography.City__c, locationOptionsToCount.get(geography.City__c) + 1);
-	                }
-	                else // first count of this location, put it in as 1
-	                {
-	                    locationOptionsToCount.put(geography.City__c, 1);
-	                }
-	                filterToAccountIdMap.put(geography.City__c, agency.Id); // add to the map to exclude counting the same city twice for the same agency
-            	}
+                // Make sure this location hasn't already been counted for this agency
+                if (agency.Id != filterToAccountIdMap.get(geography.Country__c))
+                {
+                    // if location already exists in map, add it to the count
+                    if (locationOptionsToCount.containsKey(geography.Country__c))
+                    {
+                        locationOptionsToCount.put(geography.Country__c, locationOptionsToCount.get(geography.Country__c) + 1);
+                    }
+                    else // first count of this location, put it in as 1
+                    {
+                        locationOptionsToCount.put(geography.Country__c, 1);
+                    }
+                    filterToAccountIdMap.put(geography.Country__c, agency.Id); // add to the map to exclude counting the same city twice for the same agency
+                }
             }
             
         }
@@ -645,7 +650,7 @@ public with sharing class AR_AgencyGridView {
     
     public void removeFilter()
     {
-    	disciplineSelectedOptions = removeFilterFromList(disciplineSelectedOptions);
+        disciplineSelectedOptions = removeFilterFromList(disciplineSelectedOptions);
         expertiseSelectedOptions = removeFilterFromList(expertiseSelectedOptions);
         brandSelectedOptions = removeFilterFromList(brandSelectedOptions);
         categorySelectedOptions = removeFilterFromList(categorySelectedOptions);

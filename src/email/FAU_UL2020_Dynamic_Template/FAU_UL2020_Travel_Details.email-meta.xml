@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FAU_Letterhead</letterhead>
+    <name>FAU UL2020 Travel Details</name>
+    <style>formalLetter</style>
+    <subject>REMINDER:  {!FAU_Participant__c.FAU_Program_Type__c} Travel Details</subject>
+    <textOnly>Dear {!FAU_Participant__c.FAU_First_Name__c},
+
+{!FAU_Participant__c.FAU_Program_Wave__c}
+
+Travel Details
+
+
+Your residential programme will be from {!FAU_Module_Participant__c.FAU_Module_Start_Date__c} to {!FAU_Module_Participant__c.FAU_Module_End_Date__c}.
+
+In order for us to prepare for your arrival, please provide your travel and accommodation details. Kindly do so even if you are not flying in or staying at Four Acres, so that we can plan accordingly.
+
+
+Immediate Action Required:
+
+Please fill out your travel details here: {!FAU_Module_Participant__c.FAU_Module_Form__c} on before {!FAU_Module_Participant__c.FAU_Travel_Details_Deadline__c}
+
+To see your progress, check out your: {!FAU_Participant__c.FAU_Participants_Workbook__c}
+
+UL2020 Chatter group: {!FAU_Participant__c.FAU_Chatter_Group__c}
+
+PII Class Chatter group: {!FAU_Participant__c.PII_Chatter_Group_Link__c}
+
+PII Chatter group: {!FAU_Participant__c.PII_Table_Chatter_Group_Link__c}
+
+Kind regards,
+
+{!FAU_Participant__c.OwnerFullName}
+
+{!FAU_Participant__c.OwnerTitle}
+
+Ph: {!FAU_Participant__c.OwnerPhone}
+
+Email: {!FAU_Participant__c.OwnerEmail}</textOnly>
+    <type>html</type>
+</EmailTemplate>

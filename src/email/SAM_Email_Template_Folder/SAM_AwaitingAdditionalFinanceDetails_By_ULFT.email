@@ -1,0 +1,11 @@
+Hi {!SAM_Request__c.LastModifiedBy},
+
+You have requested for additional Cross-Charge details for service request number {!SAM_Request__c.Name}. The current status is "Awaiting CC Details".
+
+Your request will answered shortly. Please check the chatter/comments section for more information.
+
+You can access the Service Request via the link below;
+{!SAM_Request__c.Link}
+
+Thanks,
+{!SAM_Request__c.lkp_Assign_To__c}

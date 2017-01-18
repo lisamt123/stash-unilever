@@ -24,7 +24,7 @@ global without sharing class IPM_BETDueDateNotificationBatch implements Database
         Date dueInFifteeneDays = system.today().addDays(15); // Milestones approaching due date in next 15 days. // variable used in query below NO SONAR
         
         String query = 'SELECT BET_MS_First_Release_Date__c,BET_MS_Final_Release_Date__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,';
-        query += 'IPM_Project_Name__c,IPM_Target_Launch_Dates__c,(SELECT IPM_Project_Leader__c from IPM_Projects__r) from IPM_Project__c ';
+        query += 'IPM_Project_Name__c,Is_Archieved__c,IPM_Target_Launch_Dates__c,(SELECT IPM_Project_Leader__c from IPM_Projects__r) from IPM_Project__c ';
         query += 'WHERE BET_MS_First_Release_Date__c =: dueInFifteeneDays or BET_MS_Final_Release_Date__c =: dueInFifteeneDays';
         
         return Database.getQueryLocator(query);
@@ -46,13 +46,13 @@ global without sharing class IPM_BETDueDateNotificationBatch implements Database
             	Datetime targetLaunchDate=datetime.newInstance(eachProject.IPM_Target_Launch_Dates__c.year(),eachProject.IPM_Target_Launch_Dates__c.month(),eachProject.IPM_Target_Launch_Dates__c.day());
                 
                 //post chatter feed for BET First release
-                if(String.IsNotBlank(String.valueOf(eachProject.BET_MS_First_Release_Date__c)))
+                if(String.IsNotBlank(String.valueOf(eachProject.BET_MS_First_Release_Date__c)) && !eachProject.Is_Archieved__c)
                 {
                 	Datetime betFirstReleaseDate=datetime.newInstance(eachProject.BET_MS_First_Release_Date__c.year(),eachProject.BET_MS_First_Release_Date__c.month(),eachProject.BET_MS_First_Release_Date__c.day());
                     chatterFeedForBETRelease(eachProject,eachProject.BET_MS_First_Release_Date__c,IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(DATEFORMAT) + IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR2+betFirstReleaseDate.format(DATEFORMAT));
                 }
                 //post chatter feed for BET Final release
-                if(String.IsNotBlank(String.valueOf(eachProject.BET_MS_Final_Release_Date__c)))
+                if(String.IsNotBlank(String.valueOf(eachProject.BET_MS_Final_Release_Date__c)) && !eachProject.Is_Archieved__c)
                 {
                 	Datetime betFinalReleaseDate=datetime.newInstance(eachProject.BET_MS_Final_Release_Date__c.year(),eachProject.BET_MS_Final_Release_Date__c.month(),eachProject.BET_MS_Final_Release_Date__c.day());
                     chatterFeedForBETRelease(eachProject,eachProject.BET_MS_Final_Release_Date__c,IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(DATEFORMAT) + IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR2+betFinalReleaseDate.format(DATEFORMAT));

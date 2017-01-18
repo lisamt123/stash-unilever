@@ -56,7 +56,7 @@
                 </apex:dataTable>
                 <!----- Add button to create mini milestones ------>
                 <div class="ipmButtonGroup pull-right">
-                    <apex:commandLink action="{!createMileStones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" reRender="frm1" onclick="skipValidation();" onComplete="{!if(validateSuccess,'pageclose()','')};"/>
+                    <apex:commandLink action="{!createMileStones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" reRender="frm1" onclick="skipValidation();" onComplete="{!if(validateSuccess,'pageclose();pageclosemilestone()','')};"/>
                 </div>
             </apex:form>
         </div>
@@ -104,8 +104,8 @@
                                 </apex:outputPanel>
                                 <!-- Button related code to created new Adhoc Milestones ------>
                                 <div class="buttonMarginRight marginTop ipmButtonGroup pull-right">               
-                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rendered="{!if(milestoneId == null,true,false)}" reRender="form" onclick="skipValidation();" onComplete="{!if(validateSuccess,'pageclose()','')};"/>
-                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_Save_button}" styleClass="ipmButton green" rendered="{!if(milestoneId != null,true,false)}" onclick="skipValidation();" onComplete="pageclose();"/>
+                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rendered="{!if(milestoneId == null,true,false)}" reRender="form" onclick="skipValidation();" onComplete="{!if(validateSuccess,'pageclose();pageclosemilestone();','')};"/>
+                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_Save_button}" styleClass="ipmButton green" rendered="{!if(milestoneId != null,true,false)}" onclick="skipValidation();" onComplete="pageclose();pageclosemilestone();"/>
                                 </div>
                             </apex:outputPanel>
                         </apex:facet>

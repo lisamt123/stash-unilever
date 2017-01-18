@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layoutSections>
+        <customLabel>false</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Information</label>
+        <layoutColumns>
+            <layoutItems>
+                <field>Information__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Information_Source_Date__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>OneColumn</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Attached Files</label>
+        <layoutColumns>
+            <layoutItems>
+                <field>Attached_File_1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Attached_File_2__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Attached_File_3__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Attached_File_4__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Attached_File_5__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>OneColumn</style>
+    </layoutSections>
+</Layout>

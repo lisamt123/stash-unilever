@@ -1,9 +1,17 @@
 <aura:component implements="flexipage:availableForAllPageTypes,force:appHostable">
-    <!--Including Jquery and bootstrap files-->
-    <ltng:require scripts="/resource/CORE_NC_JsFiles/jquery.js,/resource/CORE_NC_JsFiles/jqueryUiJs.js" styles="/resource/CORE_NC_JsFiles/jqueryUiCss.css,/resource/CORE_NC_JsFiles/lightningBootStrap.css,/resource/CORE_NC_JsFiles/lightningBootstrapMin.css"/>   
+    <ltng:require scripts="/resource/CORE_NC_JsFiles/jquery.js,/resource/CORE_NC_JsFiles/jqueryUiJs.js" 
+                  styles="/resource/CORE_NC_JsFiles/jqueryUiCss.css"/>
     <style>
         .button-type-filament, .flare-total, .flare-button-count {
             display: none !important;
+        }
+        ul{
+        	list-style-type: disc;
+    		margin-left: 40px;
+        }
+        ol{
+        	list-style-type: decimal;
+    		margin-left: 40px;
         }
     </style>
     <!--Handling Events-->
@@ -13,11 +21,7 @@
     <aura:handler event="c:Core_ShareCancelButton" action="{!c.shareCancelButton}" />
     <aura:handler event="c:CORE_NC_FilterEvent" action="{!c.displayFilter}" />
     <aura:handler event="c:Core_NC_ChatterShareEvent" action="{!c.chatterShare}" />               
-    
-    <aura:attribute name="articleId" type="String" default="ankish"/>
-    <ui:outputText value="{!v.articleId}" />
-
-    
+        
     <!--Creating attributes-->    
     <aura:attribute name="BaseComponent" type="Boolean" default="true"/>
     <aura:attribute name="NewsDetailComponent" type="Boolean" default="false"/>

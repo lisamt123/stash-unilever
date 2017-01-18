@@ -497,6 +497,119 @@ public with sharing class Oblix_Utils {
         return matchingValues;
     }
 
+    public static Oblix_Job_Orchestration__c job_orchestraion{
+            get{
+                return Oblix_Job_Orchestration__c.getOrgDefaults();
+            }
+        } 
+
+
+    public static String job_orchestration_notification_email{
+        get{
+            job_orchestration_notification_email = NULL == job_orchestraion.Notification_Email__c
+            ? 'nikhil.pradhan@accenture.com'
+            : job_orchestraion.Notification_Email__c;
+
+            return job_orchestration_notification_email;
+        }
+    }
+
+
+    public static String job_orchestration_email_subject{
+        get{
+            job_orchestration_email_subject = NULL == job_orchestraion.Sync_Job_Failure_Email_Subject__c
+            ? 'SWOP version control job failed'
+            : job_orchestraion.Sync_Job_Failure_Email_Subject__c;
+
+            return job_orchestration_email_subject;
+        }
+    }
+
+    public static String job_orchestration_email_display_name{
+        get{
+            job_orchestration_email_display_name = NULL == job_orchestraion.Email_Sender_display_Name__c
+            ? 'SWOP version control job failed'
+            : job_orchestraion.Email_Sender_display_Name__c;
+
+            return job_orchestration_email_display_name;
+        }
+    }
+
+
+    public static String job_orchestration_reply_to{
+        get{
+            job_orchestration_reply_to = NULL == job_orchestraion.Reply_To_Email__c
+            ? 'support@accenture.com'
+            : job_orchestraion.Reply_To_Email__c;
+
+            return job_orchestration_reply_to;
+        }
+    }
+
+
+    /********************************************************************
+    * @author       Execloud ©
+    * @date         2016-06-10
+    * @description  Send single email to a recipient
+    *********************************************************************/
+    public static void sendNotificationEmail(String email_subject, String recipient,String reply_to,String display_name,String email_body_text){
+
+        system.debug('started sending notification email');
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+
+    
+        String[] toAddresses = new String[] {recipient};
+        // Assign the addresses for the To and CC lists to the mail object.
+        mail.setToAddresses(toAddresses);
+        //mail.setCcAddresses(ccAddresses);
+        
+        // Specify the address used when the recipients reply to the email. 
+        mail.setReplyTo(reply_to);
+        
+        // Specify the name used as the display name.
+        mail.setSenderDisplayName(display_name);
+        
+        // Specify the subject line for your email address.
+        mail.setSubject(email_subject);
+        
+        // Set to True if you want to BCC yourself on the email.
+        mail.setBccSender(false);
+        
+        // Optionally append the salesforce.com email signature to the email.
+        // The email address of the user executing the Apex Code will be used.
+        mail.setUseSignature(false);
+        
+        
+        // Specify the text content of the email.
+        
+        mail.setHtmlBody(email_body_text);
+        system.debug(mail);
+
+       Messaging.SendEmailResult [] r = Messaging.sendEmail(new Messaging.Email[] { mail } , False);   
+       System.debug('SendEmailResult @@ '+r);
+    }
+
+
+    public static void updateJobRunningCustomSetting(boolean new_value){
+
+        job_orchestraion.Job_Is_Running__c = new_value;
+
+        update job_orchestraion;
+
+    }
+
+
+    public static void resetJobStatusBackToNormalRunning(){
+
+        job_orchestraion.Count_Failures__c = 0;
+        job_orchestraion.Requires_Manual_Attention__c = false;
+    
+        update job_orchestraion;
+
+    }
+
+
+
     /********************************************************************************
     *                                                                               *
     *                                  CONSTANTS                                    *

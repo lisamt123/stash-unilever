@@ -248,6 +248,14 @@
                                     data-keyboard="false" data-src="{!URLFOR($Page.AF_BrandAgencyCombination,null,[Year=financialyear])}"  data-target="#myModal"/>
                               </apex:outputpanel>
                            </td>
+                           <!-- Added for AFO Release enhancement BonusMatrix approval  -->
+                           <td class="Create_BrandAgency">
+                              <apex:outputpanel rendered="{!AND(NOT(isAgencyFlag),isBonusApproverFlag)}">
+                                 <input type="button" value="Approve Bonus" class="modalButton btn" data-toggle="modal" data-backdrop="static" 
+                                    data-keyboard="false" data-src="{!URLFOR($Page.AF_BonusMatrix_BonusApprover,null,[Year=financialyear])}" data-target="#myModal" />
+                              </apex:outputpanel>
+                           </td>
+                           <!-- End -->
                            <td>  </td>
                            <td class="Print_img">
                               <apex:image url="{!$Resource.print_icon}" title="Please click to Print " onclick="window.print();" />
@@ -368,7 +376,7 @@
                                                          <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Action_Pending}">
                                                             <apex:image url="{!$Resource.NoAction}" rendered="{!IF(OR(AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='Ready for PO'), AND(isAgencyFlag,best.AF_Status_OOPs_Estimate__c=='Ready for PO'),AND(IsCMCO),AND(isAgencyFlag,best.AF_Status_OOPs_Estimate__c!='with agency'),AND(IsFinance,best.AF_Status_OOPs_Estimate__c!='with category finance')) , 'true', 'false') }" />
                                                             <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isAgencyFlag,best.AF_Status_OOPs_Estimate__c=='with agency') , 'true', 'false') }" />
-                                                            <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='with category finance'),AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='with category finance')) , 'true', 'false') }" />
+                                                            <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='with category finance'),AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='with category finance',NOT(isBonusApproverFlag))) , 'true', 'false') }" />
                                                             <apex:image url="{!$Resource.Review}" rendered="{!IF(AND(AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='with category finance'), AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='Ready for PO') ) , 'true', 'false') }"/>
                                                             <apex:image url="{!$Resource.NoAction}" rendered="{!isController}"/>
                                                             <apex:image url="{!$Resource.NoAction}" rendered="{!isProcurement}"/>
@@ -388,7 +396,7 @@
                                                          <td class="CrossBorderPOcell"></td>
                                                          <td class="ActionCell">
                                                             <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Action_Pending}">
-                                                               <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isFinance,best.AF_Bonus_Quaterly_Status__c=='W/Cat Finance',NOT(best.AF_Pilot_Model__c)),'true','false')}"/>
+                                                               <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isFinance,best.AF_Bonus_Quaterly_Status__c=='W/Cat Finance',NOT(best.AF_Pilot_Model__c),NOT(isBonusApproverFlag)),'true','false')}"/>
                                                                <apex:image url="{!$Resource.NoAction}" rendered="{!IF(AND(IsCMCOFinance,best.AF_Bonus_Quaterly_Status__c=='with CMCO',NOT(best.AF_Pilot_Model__c)),'true','false')}"/>
                                                                <apex:image url="{!$Resource.NoAction}" rendered="{!IF(OR(AND(NOT(IsFinance),best.AF_Bonus_Quaterly_Status__c=='W/Cat Finance'),best.AF_Pilot_Model__c,best.AF_Bonus_Quaterly_Status__c=='',IsCatFinanceRegional,AND(NOT(IsCMCOFinance),best.AF_Bonus_Quaterly_Status__c=='with CMCO')),'true', 'false')}"/>
                                                             </apex:outputLink>
@@ -411,7 +419,8 @@
                                                          </td>
                                                          <td class="ActionCell">
                                                             <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Action_Pending}">
-                                                               <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isFinance,best.AF_Bonus_Yearly_Status__c=='W/Cat Finance'),'true','false')}"/>
+                                                               <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isFinance,best.AF_Bonus_Yearly_Status__c=='W/Cat Finance',NOT(isBonusApproverFlag)),'true','false')}"/>
+                                                               <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isBonusApproverFlag,best.AF_Bonus_Yearly_Status__c=='With BonusApprover',best.AF_Bonus_Yearly_Status__c!='W/Cat Finance'),'true','false')}"/>
                                                                <apex:image url="{!$Resource.NoAction}" rendered="{!IF (OR(best.AF_Bonus_Yearly_Status__c=='Ready For PO',best.AF_Bonus_Yearly_Status__c=='',isController,isProcurement,IsCatFinanceRegional,AND(NOT(isFinance),best.AF_Bonus_Yearly_Status__c=='W/Cat Finance')),'true','false')}"/>
                                                             </apex:outputLink>
                                                          </td>

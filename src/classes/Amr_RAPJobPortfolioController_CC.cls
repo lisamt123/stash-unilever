@@ -24,6 +24,9 @@ public with sharing class Amr_RAPJobPortfolioController_CC{
         public String categoryName{get;set;}
         public String brandPos{get;set;}
         public String brandName{get;set;}
+        public String multiCategoryName{get;set;}
+        public String multiBrandPos{get;set;}
+        public String multiBrandName{get;set;}      
         public String stageLogged{get;set;}
         public String jobAccepted{get;set;}
         public String jobStared{get;set;}
@@ -87,6 +90,11 @@ public with sharing class Amr_RAPJobPortfolioController_CC{
         public List<SelectOption> listOfCategory{get;set;} 
         public List<SelectOption> listOfBrandPosition{get;set;}
         public List<SelectOption> listOfBrand{get;set;}
+        
+        public List<SelectOption> listOfMultiCategory{get;set;} 
+        public List<SelectOption> listOfMultiBrandPosition{get;set;}
+        public List<SelectOption> listOfMultiBrand{get;set;}    
+        
         public List<SelectOption> listOfSortOptions{get;set;}
     
         transient List<Amr_Project_Details__c> projNameList;
@@ -109,6 +117,7 @@ public with sharing class Amr_RAPJobPortfolioController_CC{
         public String selectedAlert {get;set;}
         public String selectedUser {get;set;}
         transient  String[]  categoryString{get;set;}
+        transient  String[]  multiCategoryString{get;set;}
         public Integer closedJob  {get;set;}
         public Integer openJobs {get;set;}
         public Integer totalJobAccepted {get;set;}
@@ -170,6 +179,16 @@ public with sharing class Amr_RAPJobPortfolioController_CC{
         
             listOfBrandPosition = new List<SelectOption>();
             listOfBrandPosition.add(new selectOption(NONE,NONE));
+            
+            multiCategoryString = new list<string>();
+            Set<Amr_Multi_Category__c> multiCategorylst = utiltyObj.multiCategoryValues();
+            for(Amr_Multi_Category__c mdCat : multiCategorylst){
+                multiCategoryString.add(mdCat.name);
+            }
+        
+            listOfMultiBrandPosition = new List<SelectOption>();
+            listOfMultiBrandPosition.add(new selectOption(NONE,NONE));
+            
             List<PermissionSetAssignment> userData = [select PermissionSet.Name from PermissionSetAssignment  where Assignee.id = :userinfo.getUserId()];
         
         Set<String> userNameSet = new Set<String>();
@@ -220,7 +239,7 @@ Returns:
         
         TotalJobs =0;
         TotalJobs = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and AM_Job_Detail__r.Job_Cancelled__c = false  limit 50000];
-        List<Amr_Job_Allocation__c> listDisplay =[SELECT AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__c  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes' and AM_Job_Detail__r.Job_Cancelled__c = false  limit 50000];
+    //    List<Amr_Job_Allocation__c> listDisplay =[SELECT AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__c  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes' and AM_Job_Detail__r.Job_Cancelled__c = false  limit 50000];
         for(Amr_Job_Allocation__c objJobAlloction : [SELECT AM_Job_Detail__c FROM  Amr_Job_Allocation__c where  AM_Job_Detail__c != null and Job_Allocated__c = 'Yes' and AM_Job_Detail__r.Job_Cancelled__c = false limit 50000] ){
                jobDetailsId.add(objJobAlloction.AM_Job_Detail__c);
         }        
@@ -303,12 +322,12 @@ Returns: It will return submitted saving data.
         public List<PieWedgeData> getPieData(){  
             try{
             List<PieWedgeData> data = new List<PieWedgeData>();
-            Integer i = 0;
-            Date startOfMonth = Date.today().toStartOfMonth();
-            Date startOfNextMonth = startOfMonth.addMonths(1);
+         //   Integer i = 0;
+        //    Date startOfMonth = Date.today().toStartOfMonth();
+        //    Date startOfNextMonth = startOfMonth.addMonths(1);
             DateTime currentDay = DateTime.now();
             //loggedIn user
-            AggregateResult[] groupedResults = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) and CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+            AggregateResult[] groupedResults = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Display__c = true and Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) and CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
 
                     savingSubmitted = 0;
                    
@@ -317,7 +336,7 @@ Returns: It will return submitted saving data.
                   
                     }
            //total savings
-           AggregateResult[] groupedResultsAll = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c where Job_Details__c IN : jobDetailsId and CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+           AggregateResult[] groupedResultsAll = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c where  Display__c = true and Job_Details__c IN : jobDetailsId and CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
               savingSubmittedAll = 0;
               if(groupedResultsAll[0].get(AVERAGE_QUOTE) != null &&  groupedResultsAll[0].get(ACCEPT_QUOTE) != null){
                     savingSubmittedAll = Decimal.valueOf(String.valueOf(groupedResultsAll[0].get(AVERAGE_QUOTE)));
@@ -342,17 +361,17 @@ Returns: It will return submitted saving data of current month.
          public List<PieWedgeData> getPieDataSaving(){  
             try{
             List<PieWedgeData> data = new List<PieWedgeData>();
-            Integer i = 0;
+     //       Integer i = 0;
             
             Date startOfMonth = Date.today().toStartOfMonth();
             Date startOfNextMonth = startOfMonth.addMonths(1);
-            AggregateResult[] groupedResults  = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) and  Createddate >= :startOfMonth AND CreatedDate < :startOfNextMonth];
+            AggregateResult[] groupedResults  = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where   Display__c = true and Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) and  Createddate >= :startOfMonth AND CreatedDate < :startOfNextMonth];
                     savingSubmitted = 0;
                     savingSubmittedMonth = 0;
                     if(groupedResults[0].get(AVERAGE_QUOTE) != null){
                     savingSubmitted = Decimal.valueOf(String.valueOf(groupedResults[0].get(AVERAGE_QUOTE)));
                    }
-            AggregateResult[] groupedResultsAll  = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId and Createddate >= :startOfMonth AND CreatedDate < :startOfNextMonth];
+            AggregateResult[] groupedResultsAll  = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where   Display__c = true and Job_Details__c IN : jobDetailsId and Createddate >= :startOfMonth AND CreatedDate < :startOfNextMonth];
                    savingSubmittedAll = 0;
                     if(groupedResultsAll[0].get(AVERAGE_QUOTE) != null ){
                     
@@ -393,7 +412,6 @@ Returns:
             try{
             alertList = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today limit 50000];          
             totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today limit 50000];
-            System.debug('ALert COUNT -> ' + totalAlertCount);
             alertListForUnhide= [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:true limit 50000];
               }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -424,6 +442,32 @@ Returns: It will return category records in JSON format.
           }
         
      }
+     
+/***********************************************************************************************************************************
+Purpose: Method to get multi category records from utility class.
+Parameters: 
+Returns: It will return category records in JSON format.
+
+************************************************************************************************************************************/  
+   
+     public String getMultiCategoryList(){ 
+        try{
+               Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+              multiCategoryString = new list<string>();
+              Set<Amr_Multi_Category__c> multiCategorylst = utiltyObj.multiCategoryValues();
+              for(Amr_Multi_Category__c mdCat : multiCategorylst){
+                multiCategoryString.add(mdCat.name);
+            }
+            return JSON.serialize(categoryString);
+        }
+            catch(exception ex){
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                system.debug(ex.getmessage());
+                return null;
+          }
+        
+     }
+     
 /***********************************************************************************************************************************
 Purpose: Method to get brand position records from utility class.
 Parameters: 
@@ -433,16 +477,16 @@ Returns:
       public PageReference  brandPositionListData(){    
           try{
              Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-             Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
+             Set<MDO_BrandPosition__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
              listOfBrandPosition = new List<SelectOption>();
              listOfBrandPosition.add(new selectOption(NONE,NONE));
              Set<String> brnadPosNameSet = new Set<String>();
-             for(MDO_BrandPositions__c bps : brandPositionlst){
+             for(MDO_BrandPosition__c bps : brandPositionlst){
                  
-                 if(!brnadPosNameSet.contains(bps.brand_position_id__r.name)){
-                     listOfBrandPosition.add(new selectOption(bps.brand_position_id__r.name,bps.brand_position_id__r.name));
+                 if(!brnadPosNameSet.contains(bps.name)){
+                     listOfBrandPosition.add(new selectOption(bps.name,bps.name));
                  
-                     brnadPosNameSet.add(bps.brand_position_id__r.name);
+                     brnadPosNameSet.add(bps.name);
                  }
              }
      
@@ -455,7 +499,40 @@ Returns:
             return null;
          
      }
- /***********************************************************************************************************************************
+     
+/***********************************************************************************************************************************
+Purpose: Method to get multi brand position records from utility class.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/      
+      public PageReference  multiBrandPositionListData(){    
+          try{
+             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+             Set<Amr_Multi_Brand_Positioning__c> multiBrandPositionlst = utiltyObj.multiBrandPostitionValues(multiCategoryName);
+             listOfMultiBrandPosition = new List<SelectOption>();
+             listOfMultiBrandPosition.add(new selectOption(NONE,NONE));
+             Set<String> multiBrandPosNameSet = new Set<String>();
+             for(Amr_Multi_Brand_Positioning__c bps : multiBrandPositionlst){
+                 
+                 if(!multiBrandPosNameSet.contains(bps.name)){
+                     listOfBrandPosition.add(new selectOption(bps.name,bps.name));
+                 
+                     multiBrandPosNameSet.add(bps.name);
+                 }
+             }
+     
+         }
+            catch(exception ex){
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                system.debug(ex.getmessage());
+                return null;
+          }
+            return null;
+         
+     }
+     
+/***********************************************************************************************************************************
 Purpose: Method to get brand records from utility class.
 Parameters: 
 Returns: It will return brand records.
@@ -466,13 +543,13 @@ Returns: It will return brand records.
         listOfBrand = new List<SelectOption>();
         listOfBrand.add(new selectOption(NONE,NONE));
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-        Set<MDO_BrandPositions__c> brandlst = utiltyObj.brandValues(categoryName,brandPos);
+        Set<MDO_Brand__C> brandlst = utiltyObj.brandValues(categoryName,brandPos);
         Set<String> brnadNameSet = new Set<String>();
-        for(MDO_BrandPositions__c bps : brandlst){
-            if(!brnadNameSet.contains(bps.brand_id__r.name)){
-                listOfBrand.add(new selectOption(bps.brand_id__r.name,bps.brand_id__r.name));
+        for(MDO_Brand__C bps : brandlst){
+            if(!brnadNameSet.contains(bps.name)){
+                listOfBrand.add(new selectOption(bps.name,bps.name));
 
-                brnadNameSet.add(bps.brand_id__r.name);
+                brnadNameSet.add(bps.name);
             }
         }
         }
@@ -484,6 +561,37 @@ Returns: It will return brand records.
 
         return listOfBrand;
     }
+    
+/***********************************************************************************************************************************
+Purpose: Method to get multi brand records from utility class.
+Parameters: 
+Returns: It will return brand records.
+
+************************************************************************************************************************************/        
+          public List<SelectOption> getMultiBrandList(){      
+          try{
+        listOfMultiBrand = new List<SelectOption>();
+        listOfMultiBrand.add(new selectOption(NONE,NONE));
+        Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+        Set<Amr_Multi_Brand__c> brandlst = utiltyObj.multiBrandValues(multiCategoryName,multiBrandPos);
+        Set<String> multiBrandNameSet = new Set<String>();
+        for(Amr_Multi_Brand__c bps : brandlst){
+            if(!multiBrandNameSet.contains(bps.name)){
+                listOfMultiBrand.add(new selectOption(bps.name,bps.name));
+
+                multiBrandNameSet.add(bps.name);
+            }
+        }
+        }
+        catch(exception ex){
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                system.debug(ex.getmessage());
+                return null;
+          }
+
+        return listOfBrand;
+    }
+    
 /***********************************************************************************************************************************
 Purpose: Method to create options for sort by functionality.
 Parameters: 
@@ -536,7 +644,7 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
                 
         jobDetailList = new list<Amr_Job_Allocation__c>();
          
-        string soql ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Project_Name_Other__c ,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__c,AM_Job_Detail__r.Brand_Position__c,AM_Job_Detail__r.Brand_Final__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where Name!=null and AM_Job_Detail__r.Job_Cancelled__c = false';
+        string soql ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Project_Name_Other__c ,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__c,AM_Job_Detail__r.Brand_Position__c,AM_Job_Detail__r.Brand_Final__c,AM_Job_Detail__r.Multi_Category__c,AM_Job_Detail__r.Multi_Brand_Positioning__c,AM_Job_Detail__r.Multi_Brand__c,AM_Job_Detail__r.Single_or_multiply_project__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where Name!=null and AM_Job_Detail__r.Job_Cancelled__c = false';
         if(String.isNotBlank(loggedInUserId)){
         
         soql += ' and ((AM_Job_Detail__r.OwnerId = \''+loggedInUserId+'\' AND User__c = \''+loggedInUserId+'\') or  User__c = \''+loggedInUserId+'\')';
@@ -588,17 +696,22 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
          }
           if(String.isNotBlank(categoryName)){
           
-        soql += ' and AM_Job_Detail__r.ProductCategory__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+        soql += ' and ( AM_Job_Detail__r.ProductCategory__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+        
+        soql += ' or AM_Job_Detail__r.Multi_Category__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH +')';
              
          }
           if(String.isNotBlank(brandPos)){
           
-        soql += ' and AM_Job_Detail__r.Brand_Position__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(brandPos)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+        soql += ' and ( AM_Job_Detail__r.Brand_Position__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(brandPos)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+
+        soql += ' or AM_Job_Detail__r.Multi_Brand_Positioning__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(brandPos)+Amr_ConstantForAdManager.PERCENTAGESLASH +')';      
                
          }
           if(String.isNotBlank(brandName)){
-        soql += ' and AM_Job_Detail__r.Brand_Final__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(brandName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
-              
+        soql += ' and ( AM_Job_Detail__r.Brand_Final__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(brandName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+
+        soql += ' or AM_Job_Detail__r.Multi_Brand__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE +String.escapeSingleQuotes(brandName)+Amr_ConstantForAdManager.PERCENTAGESLASH +')';     
          }
          if(String.isNotBlank(stageLogged)){
         soql += ' and AM_Job_Detail__r.Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(stageLogged)+Amr_ConstantForAdManager.SLASH;
@@ -668,7 +781,7 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
                Integer myIntYear = integer.valueOf(startDateSplitSlash[2]);
                Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
                DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
-               DateTime refDate2 = startDateFinal.addDays(1);
+          //     DateTime refDate2 = startDateFinal.addDays(1);
        //        soql += ' and AM_Job_Detail__r.createdDate '+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ;
          //      soql += ' and AM_Job_Detail__r.createdDate '+  '< '+ refDate2.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT);
           soql += ' and AM_Job_Detail__r.createdDate'+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ; 
@@ -727,7 +840,7 @@ Returns:
                }
            }
                      
-          String prioritySoql = 'select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:priorityJobIds  ';
+          String prioritySoql = 'select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name, AM_Job_Detail__r.Multi_Category__r.Name,AM_Job_Detail__r.Multi_Brand_Positioning__r.Name,AM_Job_Detail__r.Multi_Brand__r.Name,AM_Job_Detail__r.Single_or_multiply_project__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:priorityJobIds  ';
              if(String.isNotBlank(selectedSortPriorityOption) && selectedSortPriorityOption !=NONE){
              
                     if(selectedSortPriorityOption == Label.Amr_Query_Category){
@@ -786,7 +899,7 @@ Returns:
                }
            }
      
-          String pendingSoql ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:pendingJobIds  and ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) ';
+          String pendingSoql ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Multi_Category__r.Name,AM_Job_Detail__r.Multi_Brand_Positioning__r.Name,AM_Job_Detail__r.Multi_Brand__r.Name,AM_Job_Detail__r.Single_or_multiply_project__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:pendingJobIds  and ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) ';
          
           if(String.isNotBlank(selectedSortPendingOption) && selectedSortPendingOption !=NONE){
                    
@@ -843,7 +956,7 @@ Returns:
                    dormantJobIds.add(jobId.AM_Job_Detail__r.Id);
                }
            }
-           String dormantSoql ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__r.name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:dormantJobIds  and AM_Job_Detail__r.Job_Cancelled__c = false and ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) ';
+           String dormantSoql ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__r.name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Multi_Category__r.Name,AM_Job_Detail__r.Multi_Brand_Positioning__r.Name,AM_Job_Detail__r.Multi_Brand__r.Name,AM_Job_Detail__r.Single_or_multiply_project__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:dormantJobIds  and AM_Job_Detail__r.Job_Cancelled__c = false and ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) ';
            if(String.isNotBlank(selectedSortDormantOption) && selectedSortDormantOption !=NONE){
            
                    if(selectedSortDormantOption == Label.Amr_Query_Category){
@@ -902,7 +1015,7 @@ Returns:
                }
            }
              
-          String liveSoql ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:liveJobIds and ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) ';
+          String liveSoql ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Multi_Category__r.Name,AM_Job_Detail__r.Multi_Brand_Positioning__r.Name,AM_Job_Detail__r.Multi_Brand__r.Name,AM_Job_Detail__r.Single_or_multiply_project__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:liveJobIds and ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) ';
           if(String.isNotBlank(selectedSortLiveOption) && selectedSortLiveOption != NONE){
                    if(selectedSortLiveOption == Label.Amr_Query_Category){
                         liveSoql += ' ORDER BY AM_Job_Detail__r.ProductCategory__r.Name ASC';   
@@ -1456,7 +1569,6 @@ Returns:
             liveJobsToShow.clear();
             counterForLiveJobs=counterForLiveJobs-limitSizeForLiveJobs;       
                 for(Integer i=counterForLiveJobs;i<(counterForLiveJobs+limitSizeForLiveJobs); i++){
-                    system.debug('i!!'+i);
                 liveJobsToShow.add(lstLiveJobsNew.get(i));
             }
              totalLiveJobPages = Math.ceil((decimal.valueOf(totalSizeForLiveJobs))/(decimal.valueOf(limitSizeForLiveJobs))).intValue();
@@ -1530,7 +1642,6 @@ Returns:
 ************************************************************************************************************************************/   
         public void alertHide(){
             try{
-            System.debug('Alert Id -> ' + selectedAlert);
             
             List<Amr_Alert__c> alertHideList = new List<Amr_Alert__c>();
             alertHideList = [SELECT Alert_Message__c,Hide__c FROM Amr_Alert__c where id = :selectedAlert limit 50000];

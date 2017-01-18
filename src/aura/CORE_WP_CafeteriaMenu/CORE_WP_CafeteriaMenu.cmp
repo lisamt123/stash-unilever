@@ -2,6 +2,7 @@
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:attribute name="workplaceLocationId" type="String"/>
     <aura:attribute name="noDataErrorMessage" type="Boolean" default="false"/>
+    <aura:attribute name="cafeteriaMenuDetail" type="String"/>
     <!--make the richtext information as responsive -->
     <style>
         .responsiveRichText img {

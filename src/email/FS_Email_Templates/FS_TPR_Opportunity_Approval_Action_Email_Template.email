@@ -1,0 +1,6 @@
+Your opportunity has been approved from {!ApprovalRequest.Process_Step_Name} step with the below comments:
+{!ApprovalRequest.Comments}
+
+
+Refer to link below for more details.
+ {!Opportunity.Link}.

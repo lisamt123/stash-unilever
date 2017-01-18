@@ -1,0 +1,9 @@
+Hi {!SAM_Request__c.CreatedBy},
+
+You have provided the Cost Code information for service request number {!SAM_Request__c.Name}. Your request will be answered shortly
+
+You can access the Service Request via the link below;
+{!SAM_Request__c.Link}
+
+Thanks,
+{!SAM_Request__c.lkp_Assign_To__c}

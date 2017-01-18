@@ -369,7 +369,7 @@
     <fields>
         <fullName>GM__c</fullName>
         <externalId>false</externalId>
-        <formula>IPMFinancialYear__r.GM_of_TO_Regional__c</formula>
+        <formula>IF( IPMProjectRollout__r.IPM_Project_GKM__c = &apos;GKM3&apos;, IPMFinancialYear__r.GM_of_TO_Global__c, IPMFinancialYear__r.GM_of_TO_Regional__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>GM% (%)</label>
         <precision>18</precision>
@@ -381,7 +381,7 @@
     <fields>
         <fullName>GrossPBO__c</fullName>
         <externalId>false</externalId>
-        <formula>IPMFinancialYear__r.Profit_Before_Overheads_Regional__c</formula>
+        <formula>IF( IPMProjectRollout__r.IPM_Project_GKM__c = &apos;GKM3&apos;,IPMFinancialYear__r.Profit_Before_Overheads_Global__c , IPMFinancialYear__r.Profit_Before_Overheads_Regional__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Gross PBI (€)</label>
         <precision>18</precision>
@@ -393,7 +393,7 @@
     <fields>
         <fullName>GrossTurnover__c</fullName>
         <externalId>false</externalId>
-        <formula>IPMFinancialYear__r.Turnover_Regional__c</formula>
+        <formula>IF( IPMProjectRollout__r.IPM_Project_GKM__c = &apos;GKM3&apos;,IPMFinancialYear__r.Turnover_Global__c , IPMFinancialYear__r.Turnover_Regional__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Gross Turnover (€)</label>
         <precision>18</precision>
@@ -405,7 +405,7 @@
     <fields>
         <fullName>Gross_AP__c</fullName>
         <externalId>false</externalId>
-        <formula>IPMFinancialYear__r.Advertising_Promotions_Regional__c</formula>
+        <formula>IF( IPMProjectRollout__r.IPM_Project_GKM__c = &apos;GKM3&apos;,IPMFinancialYear__r.Advertising_Promotions_Global__c , IPMFinancialYear__r.Advertising_Promotions_Regional__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Gross BMI (€)</label>
         <precision>18</precision>
@@ -505,7 +505,7 @@
     <fields>
         <fullName>InnovationValueShare__c</fullName>
         <externalId>false</externalId>
-        <formula>IPMFinancialYear__r.Value_Market_Share_Regional__c</formula>
+        <formula>IF( IPMProjectRollout__r.IPM_Project_GKM__c = &apos;GKM3&apos;,IPMFinancialYear__r.Value_Market_Share_Global__c , IPMFinancialYear__r.Value_Market_Share_Regional__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Innovation Value Share (%)</label>
         <precision>18</precision>

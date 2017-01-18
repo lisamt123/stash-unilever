@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This is used to enable or disable FS functionality on opportunity trigger.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This is used to enable or disable NAFS functionality on opportunity trigger.</description>
+        <externalId>false</externalId>
+        <label>Enabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>FS Opportunity Trigger Settings</label>
+    <visibility>Protected</visibility>
+</CustomObject>

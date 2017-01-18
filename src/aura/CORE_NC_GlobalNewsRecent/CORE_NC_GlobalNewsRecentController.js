@@ -11,7 +11,9 @@
         	var state = response.getState();
             console.log('------------0----------------'+state);
         	if (state === "SUCCESS") {
-                if(response.getReturnValue()!=''){      
+                if(response.getReturnValue()!=''){  
+                              
+                    component.set("v.showspinner",false);
                     console.log('------------1----------------'+selectedFilterType);  
                     var updatedData = []; 
                     var responseData = [];
@@ -28,6 +30,7 @@
                             component.set("v.ErrorMessage", true); 
                         } 
                         component.set("v.wrapper", updatedData);
+                         
                     } else {
                         updatedData = response.getReturnValue(); 
                     }
@@ -47,7 +50,9 @@
                         component.set("v.NewsList",updatedData); 
                     }                   
                 } else {
+                    //change for spinner error
                     component.set("v.ErrorMessage", true);
+                    component.set("v.showspinner",false);                    
                 }
         	}
         });

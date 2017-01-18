@@ -95,7 +95,14 @@ public class IPM_CU_Complexity_Consolidated_Test{
             List<IPM_Project_Document_Section_Content__c>conList=[select Id,IPM_Content_Type__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecConListObj.Id];
             System.assertEquals(conList[0].IPM_Content_Type__c,IPM_ConstantUtils.CUCOMPLEXITY_CONTENT_TYPE,'content not created');
             
+            // Added for coverage - 
+            
+            ApexPages.currentPage().getParameters().put('getProjId',ParentProject.id);
+            ApexPages.currentPage().getParameters().put('getGateType','Charter');
+            
             ipm_cuConsolidated=new IPM_CU_Complexity_Consolidated();
+            
+            ipm_cuConsolidated.isGateDocument = true ;
             
         }
     }
@@ -116,6 +123,7 @@ public class IPM_CU_Complexity_Consolidated_Test{
         List<IPM_Project_Document_Section_Content__c>prjconList=[select Id,IPM_Project_Document_Section__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecConListObj.Id];
         System.assertEquals(prjconList[0].IPM_Project_Document_Section__c,projectDocSecListObj[0].Id,'project not updated');
         ipm_cuConsolidated.projectId=ParentProject.Id;
+        ipm_cuConsolidated.gateType = 'Charter';
         List<IPM_Project_Document_Section_Content__c>contentList=[select Id,IPM_Content_Type__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecConListObj.Id];
         System.assertEquals(contentList[0].IPM_Content_Type__c,IPM_ConstantUtils.CUCOMPLEXITY_CONTENT_TYPE,'content not created');
          test.stopTest();

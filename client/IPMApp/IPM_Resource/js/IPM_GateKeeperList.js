@@ -35,8 +35,13 @@ function initSliderGk() {
                 score = itemsGK[pointer];
             },
             slide: function( event, ui ) {
-                jq(this).find(".legendSld.gateKeeperSlider label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
-                jq(this).find(".legendSld.gateKeeperSlider label").eq(ui.value -1).click();
+                if(jq(this).find(".legendSld input").attr('new') === 'ReadonlySlider')
+                {
+                    event.preventDefault();
+                }else{ 
+                    jq(this).find(".legendSld.gateKeeperSlider label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+                    jq(this).find(".legendSld.gateKeeperSlider label").eq(ui.value -1).click();
+                }
             }
         });
         if (answerGK === IPMAppGKC.yes) {
@@ -69,21 +74,24 @@ function initSliderGk() {
                 'font-weight': 'bold'
             });     
         }
-
     });
-    
 /* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */
     jq(".legendSld label").on("click", function() {
-        var lpos = jq(".legendSld label").offset().left;
-        jq(".legendSld label").css({
-            'color': '#222222',
-            'font-weight': 'normal'
-        });
-        jq(this).css({
-            'color': '#e98824',
-            'font-weight': 'bold'
-        });
-        jq("toolTipMsg:before").css("left", lpos + "px");
+        if(jq(this).prev().attr('new') === 'ReadonlySlider')
+        {
+            event.preventDefault();
+        }else{
+            var lpos = jq(".legendSld label").offset().left;
+            jq(".legendSld label").css({
+                'color': '#222',
+                'font-weight': 'normal'
+            });
+            jq(this).css({
+                'color': '#e98824',
+                'font-weight': 'bold'
+            });
+            jq("toolTipMsg:before").css("left", lpos + "px");
+        }
     });
     jq("input[type=radio][id^='s']").hide();
 }

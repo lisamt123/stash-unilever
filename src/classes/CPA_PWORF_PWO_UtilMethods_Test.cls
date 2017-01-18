@@ -73,8 +73,8 @@ private class CPA_PWORF_PWO_UtilMethods_Test {
             System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPworf2.pkl_Status__c); 
             objPworf2.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
             update objPworf2; 
-        	CPA_PWORF_TriggerUtil.isSubmitted =  false;
-        	objPworf2.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
+            CPA_PWORF_TriggerUtil.isSubmitted =  false;
+            objPworf2.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
             update objPworf2;
              System.assert (CPA_ConstantsForContractingAppClasses.CANCELLED == objPworf2.pkl_Status__c);
             

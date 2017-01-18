@@ -1,0 +1,13 @@
+src
+src/approvalProcesses/Opportunity.FS_MABE_Opportunity_1_Step_Process_CAN.approvalProcess
+src/approvalProcesses/Opportunity.FS_MABE_Opportunity_1_Step_Process_US.approvalProcess
+src/approvalProcesses/Opportunity.FS_MABE_Opportunity_2_Step_Process_CAN.approvalProcess
+src/approvalProcesses/Opportunity.FS_MABE_Opportunity_2_Step_Process_US.approvalProcess
+src/objects/Account.object
+src/objects/PricebookEntry.object
+src/roles/FS_55015_Midwest_District_Manager.role
+src/roles/FS_55020_North_Central_Region_Manager.role
+src/roles/FS_59030_Rocky_Mountain_District_Manager.role
+src/roles/FS_59035_South_West_Region_Manager.role
+src/roles/FS_HYBRID_North_Central_Midwest_Region.role
+src/roles/FS_HYBRID_South_West_Rocky_Mountain_Region.role

@@ -17,7 +17,7 @@ VERSION    AUTHOR            DATE            DETAIL
 
 public class CEC_TypeaheadTest {
     @testSetup static void setUpTestData() {
-        User u = CEC_TestDataFactory.createStandardCECTestUser();
+        CEC_TestDataFactory.createStandardCECTestUser();
     } 
 
    static  testmethod void testSearchRecords(){

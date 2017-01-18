@@ -117,7 +117,9 @@ public with sharing class IPM_ProjectCountryDetails{
         }
         
         if(!lstUpdateProjects.isEMpty()){
+        	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             Update lstUpdateProjects;
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         }
                  
     }
@@ -590,95 +592,90 @@ public with sharing class IPM_ProjectCountryDetails{
     }
     
     
-    /****************************************************************************
-    @Description : check if all the EI Countries of a project have at least one assessment for them
-    @Params projIdSet:   the set of IDs of the projects which need to be updated with IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag.
-    *****************************************************************************/
-    
-    public static void checkAtLeastOneAssmntPerEICountry(Set<Id> projIdSet ){       
-        List<IPM_Project__c> projList  = [Select Id,IPM_Phase__c, IPM_Exists_AtLeast_OneAssmntPerEICountry__c, (Select Id, Name,IPM_Country__c,IPM_Country__r.IS_EI_Country__c,IPM_Country__r.Country_Name__c,Project_Phase__c from IPM_Assessments__r Where IPM_Country__c != null ) from IPM_Project__c Where Id IN:projIdSet LIMIT 50000];
-        Set<String> EICountriesForTheProject = new Set<String>();
-        Set<String> EICountriesForAssessmentsOfProject = new Set<String>();
-        List<IPM_Project__c> toUpdateProjList;
-        map<id, set<string>> mapProjCountries = new map<id,set<string>>();
-
-        //Map of projectId and set of it's EI Countries
-        for (IPM_Country__c country : [select id,Name, IPM_Project__c,IPM_Regional_Project__c, IPM_Local_Project__c,Country_Name__c,Country_Code__c,IS_EI_Country__c from IPM_Country__c 
-                                        where (IPM_Project__c in:projIdSet or IPM_Regional_Project__c in:projIdSet OR IPM_Local_Project__c in:projIdSet) And IS_EI_Country__c = true AND isActive__c = true LIMIT 50000 ]){
-            if(country.IPM_Project__c != null){ 
-                if(!mapProjCountries.isEmpty() && mapProjCountries.containsKey(country.IPM_Project__c)){
-                    mapProjCountries.get(country.IPM_Project__c).add(country.Country_Name__c);
-                }
-                else{
-                    mapProjCountries.put(country.IPM_Project__c,new Set<String>{country.Country_Name__c});
-                }
-            }
-            
-            if(country.IPM_Regional_Project__c != null){
-                if(!mapProjCountries.isEmpty() && mapProjCountries.containsKey(country.IPM_Regional_Project__c)){
-                    mapProjCountries.get(country.IPM_Regional_Project__c).add(country.Country_Name__c);
-                }
-                else{
-                    mapProjCountries.put(country.IPM_Regional_Project__c,new Set<String>{country.Country_Name__c});
-                }
-            }
-            
-            if(country.IPM_Local_Project__c != null){
-                if(!mapProjCountries.isEmpty() && mapProjCountries.containsKey(country.IPM_Local_Project__c)){
-                    mapProjCountries.get(country.IPM_Local_Project__c).add(country.Country_Name__c);
-                }
-                else{
-                    mapProjCountries.put(country.IPM_Local_Project__c,new Set<String>{country.Country_Name__c});
-                }
-            }
-            
-        }
+    public static void checkAtLeastOneAssmnt(Map<Id,IPM_Project__c> projectMap)
+    {       
+        List<IPM_Project__c> projList  = [Select Id,IPM_Phase__c, IPM_Exists_AtLeast_OneAssmntPerEICountry__c, (Select Id, Name,IPM_Country__c,IPM_Country__r.IS_EI_Country__c,IPM_Country__r.Country_Name__c,Project_Phase__c from IPM_Assessments__r  where    IPM_Country__r.isActive__c=true) from IPM_Project__c Where Id IN:projectMap.keySet() LIMIT 50000]; 
         
-        
-        if(projList != null && !projList.isEmpty()){
-            toUpdateProjList = new List<IPM_Project__c>();
-            for(IPM_Project__c proj : projList){
-            
-                
-                //find all the EI countries for the project
-                if(!mapProjCountries.isEmpty() && mapProjCountries.get(proj.Id) != null && !mapProjCountries.get(proj.Id).isEmpty()){
-                        EICountriesForTheProject = mapProjCountries.get(proj.Id);
-                }
-                
-                //find all the EI countries which have an assessment for the current project phase
-                if(proj.IPM_Assessments__r != null && !proj.IPM_Assessments__r.isEmpty()){
-                    for(IPM_Assessment__c assmnt : proj.IPM_Assessments__r){
-                        if( assmnt.IPM_Country__c != null && String.isNotBlank(proj.IPM_Phase__c) && String.isNotBlank(assmnt.Project_Phase__c) && assmnt.IPM_Country__r.IS_EI_Country__c && String.valueOf(proj.IPM_Phase__c).equalsIgnoreCase(assmnt.Project_Phase__c) ){
-                            EICountriesForAssessmentsOfProject.add(assmnt.IPM_Country__r.Country_Name__c);
+        set<id> setAssProjIds = new set<id>();
+        //find all Projects which have an assessment for the current project phase
+       if(projList != null && !projList.isEmpty())
+       {
+            for(IPM_Project__c proj : projList)
+            {
+                if(proj.IPM_Assessments__r != null && !proj.IPM_Assessments__r.isEmpty())
+                {
+                    for(IPM_Assessment__c assmnt : proj.IPM_Assessments__r)
+                    {
+                        if( assmnt.IPM_Country__c != null && String.isNotBlank(proj.IPM_Phase__c) && String.isNotBlank(assmnt.Project_Phase__c) && String.valueOf(proj.IPM_Phase__c).equalsIgnoreCase(assmnt.Project_Phase__c) )
+                        {
+                            projectMap.get(proj.Id).IPM_Exists_AtLeast_OneAssmntPerEICountry__c= true;
+                            setAssProjIds.add(proj.Id);
+                            break;
                         }
                     }
                 }
+            }
+        }
+        
+        //Update eligible projects
+         if(projList != null && !projList.isEmpty())
+         {
+            for(IPM_Project__c proj : projList)
+            {
+                if(!setAssProjIds.isEmpty() && setAssProjIds.contains(proj.id))
+                {
+                    projectMap.get(proj.Id).IPM_Exists_AtLeast_OneAssmntPerEICountry__c= true;          
+                }
+                else
+                {
+                    projectMap.get(proj.Id).IPM_Exists_AtLeast_OneAssmntPerEICountry__c= false;
+                }               
+            }               
+         }
+    }
+    /****************************************************************************
+    @Description : check if the Projects have at least one assessment for them
+    @Params projIdSet:   the set of IDs of the projects which need to be updated with IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag.
+                @Update: As per new requirement for Release 2.0- Now this method will not enforce Assessment validation only for EI Countries.
+                                                All Countries' Assessment will be considered irrespective of whether they are EI or non-EI.
+    *****************************************************************************/
+    
+    public static void checkAtLeastOneAssmntPerEICountry(Set<Id> projIdSet ){       
+        List<IPM_Project__c> projList  = [Select Id,IPM_Phase__c, IPM_Exists_AtLeast_OneAssmntPerEICountry__c, (Select Id, Name,IPM_Country__c,IPM_Country__r.IS_EI_Country__c,IPM_Country__r.Country_Name__c,Project_Phase__c from IPM_Assessments__r  where    IPM_Country__r.isActive__c=true) from IPM_Project__c Where Id IN:projIdSet LIMIT 50000];
+        Map<Id,IPM_Project__c> toUpdateProjMap = new Map<Id,IPM_Project__c>();   
+        set<id> setAssProjIds = new set<id>();
+        //find all Projects which have an assessment for the current project phase
+       if(projList != null && !projList.isEmpty()){
 
-                
-                if(!EICountriesForTheProject.isEmpty() && !EICountriesForAssessmentsOfProject.isEmpty()){
-                    
-                    //to change IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag from false to true when all the EI countries in the project have atleast one assessment
-                    if(EICountriesForTheProject.size() != EICountriesForAssessmentsOfProject.size()){
-                        toUpdateProjList.add(new IPM_Project__c( Id = proj.Id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c = false ));
+            for(IPM_Project__c proj : projList){
+                if(proj.IPM_Assessments__r != null && !proj.IPM_Assessments__r.isEmpty()){
+                    for(IPM_Assessment__c assmnt : proj.IPM_Assessments__r){
+                        if( assmnt.IPM_Country__c != null && String.isNotBlank(proj.IPM_Phase__c) && String.isNotBlank(assmnt.Project_Phase__c) && String.valueOf(proj.IPM_Phase__c).equalsIgnoreCase(assmnt.Project_Phase__c) ){
+                            toUpdateProjMap.put(proj.Id, new IPM_Project__c(Id= proj.Id,IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true));
+                            setAssProjIds.add(proj.Id);
+                            break;
+                        }
                     }
-                    else{
-                        toUpdateProjList.add(new IPM_Project__c( Id = proj.Id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true ));
-                    }
-                }
-                else if(!EICountriesForTheProject.isEmpty() && EICountriesForAssessmentsOfProject.isEmpty()){
-                    toUpdateProjList.add(new IPM_Project__c( Id = proj.Id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c = false ));
-                }
-                else if(EICountriesForTheProject.isEmpty()){
-                    toUpdateProjList.add(new IPM_Project__c( Id = proj.Id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true ));
                 }
             }
         }
         
-        
+        //Update eligible projects
+         if(projList != null && !projList.isEmpty()){
+            for(IPM_Project__c proj : projList){
+                if(!setAssProjIds.isEmpty() && setAssProjIds.contains(proj.id)){
+                    toUpdateProjMap.put(proj.Id, new IPM_Project__c(Id= proj.Id,IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true));         
+                }
+                else{
+                    toUpdateProjMap.put(proj.Id, new IPM_Project__c(Id= proj.Id,IPM_Exists_AtLeast_OneAssmntPerEICountry__c = false));
+                }               
+            }               
+         }
+                                
         //update the project with appropriate value of IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag
-        if(toUpdateProjList != null && !toUpdateProjList.isEmpty()){
-			IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
-            Update toUpdateProjList;
+        if(toUpdateProjMap != null && !toUpdateProjMap.isEmpty()){
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+            Update toUpdateProjMap.values();
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         }
         checkAtLeastOneAssmntPerEICountryVar = true;
@@ -860,7 +857,7 @@ public with sharing class IPM_ProjectCountryDetails{
     @Params ProjectsToEvaluate:  Set Of Project Ids
     *****************************************************************************/
     public static Map<Id,Boolean> getProjectIdToSyncMap(Set<Id> projectsToEvaluate) {
-        Map<Id,IPM_Project__c> projIdProjectMap =new Map<Id,IPM_Project__c> ([Select Id,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c From IPM_Project__c Where Id IN :projectsToEvaluate LIMIT 50000 ]);
+        Map<Id,IPM_Project__c> projIdProjectMap =new Map<Id,IPM_Project__c> ([Select Id,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c, IPM_ProjectGKM__c From IPM_Project__c Where Id IN :projectsToEvaluate LIMIT 50000 ]);
         Map<Id,Boolean> projectIdToSyncMap =  new Map<Id,Boolean>(); //Map of Project Id and Boolean(Whetehr the project is to be synced or not)
         
         for(IPM_Project__c project: projIdProjectMap.values()){
@@ -1077,67 +1074,184 @@ public with sharing class IPM_ProjectCountryDetails{
     }
     
       /*************************************************************************************************************
-  * @description:Assign Company Card to rollouts
-  */
- public static void assignCompanyCardLocal(Map<id,IPM_Country__c> countyrMap)
-{
-  List<IPM_Country__c>countryList=new list<IPM_Country__c>();
-  countryList=[select Local_Rollout__c,Local_Rollout__r.IPM_Small_C__c,Country_Name__c from IPM_Country__c where 
-                id IN:countyrMap.keyset() LIMIT 5000]; 
-  List<IPM_Company_Card__c>companyCardLst=new List<IPM_Company_Card__c>(); 
-  companyCardLst=[select Id,IPM_MCO__c,IPM_CompanyCard_Type__c,IPM_Managed_Category__c,RecordType.Name,IPM_TxtGeographical_Scope__c from IPM_Company_Card__c 
-  where RecordType.Name=:IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_LOCAL Limit 5000];
-                                       
-  
-  List<IPM_Project_Rollout__c>rolloutList=new List<IPM_Project_Rollout__c>();
-  IPM_Project_Rollout__c newRollout;
-  Set<id> rolloutIdSet=new Set<id>();
+	  * @description:Assign Company Card to rollouts
+	  */
+	 public static void assignCompanyCardLocal(Map<id,IPM_Country__c> countyrMap)
+	{
+	  List<IPM_Country__c>countryList=new list<IPM_Country__c>();
+         countryList=[select Local_Rollout__c,IPM_Brand_Position__c,Local_Rollout__r.IPM_Small_C__c,Country_Name__c from IPM_Country__c where 
+					id IN:countyrMap.keyset() LIMIT 5000]; 
+	  List<IPM_Company_Card__c>companyCardLst=new List<IPM_Company_Card__c>(); 
+	  companyCardLst=[select Id,IPM_MCO__c,IPM_CompanyCard_Type__c,IPM_Managed_Category__c,RecordType.Name,IPM_TxtGeographical_Scope__c from IPM_Company_Card__c 
+	  where RecordType.Name=:IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_LOCAL Limit 5000];
+										   
+	  
+	  List<IPM_Project_Rollout__c>rolloutList=new List<IPM_Project_Rollout__c>();
+	  IPM_Project_Rollout__c newRollout;
+	  Set<id> rolloutIdSet=new Set<id>();
 
 
-    
-  for(IPM_Country__c country : countryList)
-  {
-    for(IPM_Company_Card__c companyCard : companyCardLst)
-    {
-      
-      
-      
-      if(companyCard.IPM_Managed_Category__c!=null && country.Local_Rollout__r.IPM_Small_C__c!=null && 
-        companyCard.IPM_TxtGeographical_Scope__c!=null && country.Country_Name__c!=null && 
-        companyCard.IPM_TxtGeographical_Scope__c.contains(country.Country_Name__c) && 
-               companyCard.IPM_Managed_Category__c.contains(country.Local_Rollout__r.IPM_Small_C__c) && 
-               country.Local_Rollout__c !=null)
-          
-      
-      {
-      	if(!rolloutIdSet.contains(country.Local_Rollout__c)){
-       
-        newRollout=new IPM_Project_Rollout__c();
+		
+	  for(IPM_Country__c country : countryList)
+	  {
+		for(IPM_Company_Card__c companyCard : companyCardLst)
+		{
+		  
+		  
+		  
+		  if(companyCard.IPM_Managed_Category__c!=null && country.Local_Rollout__r.IPM_Small_C__c!=null && 
+			companyCard.IPM_TxtGeographical_Scope__c!=null && country.Country_Name__c!=null && 
+			companyCard.IPM_TxtGeographical_Scope__c.contains(country.Country_Name__c) && 
+				   companyCard.IPM_Managed_Category__c.contains(country.Local_Rollout__r.IPM_Small_C__c) && 
+				   country.Local_Rollout__c !=null)
+			  
+		  
+		  {
+			if(!rolloutIdSet.contains(country.Local_Rollout__c)){
+		   
+			newRollout=new IPM_Project_Rollout__c();
+			
+			
+			newRollout.IPM_Company_Card__c=companyCard.Id; //assigning company card to rollout
+			newRollout.id=country.Local_Rollout__c; 
+			rolloutList.add(newRollout);
+			rolloutIdSet.add(newRollout.id);
+			} 
+		  }
+		  
+		}
+		
+	  
+	  
+	 
+	  
+	}
+	 if(!rolloutList.isEmpty()){
+		 IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true; // for skipping trigger execution
+							
+						
+	  update rolloutList;
+	 
+	  IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+	 }
+	 }
+    /**********************************************************************************************
+      *@Description:Assign brand to MCO Rollout based on project brand position and rllout country
+      *@Param:List of ipm country
+      ***********************************************************************************************/
+      public static void assignBrandToRollout(List<IPM_Country__c>countryList){
+        map<string,string> brandPosMap = new map<string,string>();//map of country name and brand positioning
+        map<id,set<string>> brandsMap = new map<id,set<string>>();
+        for(IPM_Country__c country :countryList){
+        	if(country.IPM_Brand_Position__c !=null)
+        	{ 
+            	brandPosMap.put(country.Country_Name__c,country.IPM_Brand_Position__c);
+        	}
+        } 
+        //get all brand values based on country and brand positioning.
+        List<MDO_BrandPositions__c>brandPosList = New list<MDO_BrandPositions__c>();
+        brandPosList=[SELECT id,brand_position_id__r.Name,geo_id__r.Name,brand_id__r.Name FROM MDO_BrandPositions__c where 
+                         geo_id__r.Name IN :brandPosMap.Keyset() AND brand_position_id__r.Name IN :brandPosMap.values() ORDER BY brand_id__r.Name ASC NULLS LAST
+                         LIMIT 50000];
         
-        
-        newRollout.IPM_Company_Card__c=companyCard.Id; //assigning company card to rollout
-        newRollout.id=country.Local_Rollout__c; 
-        rolloutList.add(newRollout);
-        rolloutIdSet.add(newRollout.id);
-      	} 
-      }
-      
+        for(IPM_Country__c country :countryList) 
+        {
+            if(country.Local_Rollout__c !=null && !brandsMap.ContainsKey(country.Local_Rollout__c)){
+                brandsMap.put(country.Local_Rollout__c,new set<string>());  
+            }
+			for(MDO_BrandPositions__c  brandPos:brandPosList)
+            {
+                
+                if(brandPos.brand_id__r.Name != null && !brandsMap.get(country.Local_Rollout__c).contains(brandPos.brand_id__r.Name) && country.Country_Name__c !=null && country.Country_Name__c.equals(brandPos.geo_id__r.Name) 
+                && country.IPM_Brand_Position__c !=null && country.IPM_Brand_Position__c.equals(brandPos.brand_position_id__r.Name))
+                {
+                    brandsMap.get(country.Local_Rollout__c).add(brandPos.brand_id__r.Name); 
+				} 
+			}
+           
+        }
+        assignBrandToRolloutSplit(countryList,brandsMap);
     }
-    
-  
-  
- 
-  
-}
- if(!rolloutList.isEmpty()){
-     IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true; // for skipping trigger execution
-                        
-                    
-  update rolloutList;
- 
-  IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
- }
- }
+    /**************************************************************************************************************
+    @Description:split assignBrandToRollout method, assign brand value to local rollout while adding country or 
+	* 			 updating country.
+	@Param:list of country,map of rollout id and set of brand values
+    ***************************************************************************************************************/
+    public static void assignBrandToRolloutSplit(List<IPM_Country__c>countryList,map<id,set<string>> brandsMap)
+    {
+    	map<id,IPM_Project_Rollout__c> rolloutMap=new map<id,IPM_Project_Rollout__c>();//list of rollout which all need to update with brand value.
+        IPM_Project_Rollout__c newRollout;// declaration of local rollout
+    	for(IPM_Country__c country :countryList)
+        {
+            if(country.Local_Rollout__c !=null && !rolloutMap.containsKey(country.Local_Rollout__c) && !IPM_ConstantUtils.IPM_true.Equals(country.IPM_Brand_and_BrandPos_Matched__c)
+            	&& IPM_ConstantUtils.IPM_true.Equals(country.IPM_Brand_Null_or_Brand_Not_Matched__c)){
+				newRollout=new IPM_Project_Rollout__c();
+				newRollout.id=country.Local_Rollout__c; 
+				if(brandsMap.get(country.Local_Rollout__c).isEmpty())
+				{
+					newRollout.IPM_Brand__c = system.label.IPM_Brand_Not_Found;
+				}
+				else if(brandsMap.get(country.Local_Rollout__c).contains(country.IPM_Brand_Position__c))
+				{
+					newRollout.IPM_Brand__c = country.IPM_Brand_Position__c;	
+				}
+				else
+				{
+					for(string brands: brandsMap.get(country.Local_Rollout__c)){
+						newRollout.IPM_Brand__c = brands;
+						break;
+					}
+				}
+				rolloutMap.put(newRollout.id,newRollout);
+			}
+		}  
         
+        if(!rolloutMap.isEmpty())
+		{
+           IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true; // for skipping trigger execution
+           update rolloutMap.values();
+           IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+        }	
     
+    }   
+      /*************************************************************************************************************
+      *@Description:Returns the selectoptions for brands available to a local project 
+      *@Param:Local project 
+      *************************************************************************************************************/ 
+       public static List<selectoption> getAvailableBrands(IPM_project__c localProject){ 
+        
+            List<selectoption> listBrandOptions = new List<selectoption>();
+            Set<selectoption> setBrandOptions = new Set<selectoption>();  
+            
+            if(!String.isBlank(localProject.IPM_LocalProject_Brand__c))
+            {
+                setBrandOptions.add(new selectoption(localProject.IPM_LocalProject_Brand__c,localProject.IPM_LocalProject_Brand__c));    
+            }
+            
+            Map<String,IPM_Country__c> countryMap = new Map<String,IPM_Country__c>();
+            
+            for(IPM_Country__c country: [SELECT IPM_Brand_Position__c,Country_Name__c,Local_Rollout__c  FROM IPM_Country__c WHERE isActive__c=true AND Local_Rollout__c=: localProject.IPM_Project_Rollout__c LIMIT 50000])
+            {
+                countryMap.put(country.Country_Name__c,country);  
+            }
+            
+            for(MDO_BrandPositions__c  brandPos:[SELECT Id,brand_position_id__r.Name,geo_id__r.Name,brand_id__r.Name FROM MDO_BrandPositions__c where 
+                                                 brand_position_id__r.Name =: localProject.IPM_Brand_Positioning__c AND geo_id__r.Name IN :countryMap.keyset() ORDER BY brand_id__r.Name ASC LIMIT 50000])
+            {
+                if(!String.isBlank(brandPos.brand_id__r.Name)&& brandPos.brand_id__r.Name!=localProject.IPM_LocalProject_Brand__c)
+                {
+                    IPM_Country__c country = countryMap.get(brandPos.geo_id__r.Name);  
+                    
+                    if(country.IPM_Brand_Position__c!=null && country.IPM_Brand_Position__c.equals(brandPos.brand_position_id__r.Name) )
+                    {
+                        setBrandOptions.add(new selectoption(brandPos.brand_id__r.Name,brandPos.brand_id__r.Name));
+                    }    
+                }
+                
+            }  
+            
+            listBrandOptions.addAll(setBrandOptions);
+            return listBrandOptions; 
+            
+    	} 
   }

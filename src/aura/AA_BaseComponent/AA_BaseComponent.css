@@ -1,0 +1,10 @@
+.THIS .spinner-location{
+    position: fixed;
+    top: 16rem;
+    left: 40%;
+    Z-index:1000;
+}
+.THIS .spinner-img{
+    width: 70%;
+    content: url("/resource/Lightning_designing_style/assets/images/spinners/slds_spinner_brand.gif");
+}

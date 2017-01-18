@@ -637,16 +637,11 @@ This method selects all distinct categories from ProductCategory table
         if (productCategoryList != null && productCategoryList.size() > 0){
             Integer increment = 0;
             for (AggregateResult ar : productCategoryList ){
-                /* if ( (productCategory == null || productCategory == '') && increment == 0 ){
-if (ar.get('L2_Product_Category__c') != null && ar.get('L2_Product_Category__c') != ''){
-productCategory = String.valueOf(ar.get('L2_Product_Category__c'));
-}
-}
-*/if (ar.get('L2_Product_Category__c') != null && ar.get('L2_Product_Category__c') != ''){
-    //if(String.valueOf(ar.get('L2_Product_Category__c'))!=caseRecord.Category__c)
-    categoryOptions.add(new SelectOption(String.valueOf(ar.get('L2_Product_Category__c')), String.valueOf(ar.get('L2_Product_Category__c') )));
-}
-                increment++;                
+                if (ar.get('L2_Product_Category__c') != null && ar.get('L2_Product_Category__c') != ''){
+                        categoryOptions.add(new SelectOption(String.valueOf(ar.get('L2_Product_Category__c')), String.valueOf(ar.get('L2_Product_Category__c') )));
+                    }
+                
+                    increment++;                
             }
         }
         

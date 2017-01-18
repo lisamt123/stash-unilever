@@ -224,6 +224,8 @@ public with sharing class IPM_GateDocumentRiskManagement{
         List<IPM_Questionnaire__c> activateRqsQuestionsList=new List<IPM_Questionnaire__c>(); // list of RQS questions
         List<IPM_Questionnaire__c> activateContractRqsQuestionsList=new List<IPM_Questionnaire__c>(); // list of RQS generated questions
         List<IPM_Questionnaire__c> deActivateRqsQuestionsList=new List<IPM_Questionnaire__c>(); // deactivated RQS list
+         Set<Integer> activeNumberCharter=new Set<Integer>();// set integers of the active RQS questions in Charter
+        Set<Integer> activeNumberContract=new Set<Integer>();// set integers of the active RQS questions in Contract
         try{
         //Getting RecordType Id
         getRecordTypeId();
@@ -244,11 +246,36 @@ public with sharing class IPM_GateDocumentRiskManagement{
                 }
             }
         }
+        activateContractRqsQuestionsList = getproceedQuestions(rqsQuestionsList,activatePosQuestionList,activateRqsQuestionsList,activateContractRqsQuestionsList,deActivateRqsQuestionsList,activeNumberContract,activeNumberCharter);
+        activateRqsQuestionsList = seqActiveNumberCharterContract(activateRqsQuestionsList,activateContractRqsQuestionsList,activeNumberCharter);
+        getRecords();   
+        posComplete=true;
+        }
+        catch(DMLException ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATE_DOCUMENT_RISK_MANAGEMENT,
+                PROCEED_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+        }
+        catch(Exception ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATE_DOCUMENT_RISK_MANAGEMENT,
+                PROCEED_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+        }                
+        return null;
+    }
+    
+          /***************************************************************************************************************************************
+    *  @description function to generate RQS questions Based on POS selections. 
+    *  @name getproceedQuestions
+    *  @param Lists of IPM_Questionnaire__c
+    *  @return List of IPM_Questionnaire__c
+    */
+    private List<IPM_Questionnaire__c> getproceedQuestions(List<IPM_Questionnaire__c> rqsQuestionsList,List<IPM_Questionnaire__c> activatePosQuestionList,List<IPM_Questionnaire__c> activateRqsQuestionsList,List<IPM_Questionnaire__c> activateContractRqsQuestionsList,List<IPM_Questionnaire__c> deActivateRqsQuestionsList,Set<Integer> activeNumberContract,Set<Integer> activeNumberCharter){
         posRQSMapping=new List<IPM_POS_RQS_Mapping__c>();
         posRQSMapping=IPM_POS_RQS_Mapping__c.getAll().values();
+        List<IPM_Questionnaire__c> activateContractRqsQuestionsList1 = new List<IPM_Questionnaire__c>();
         
-        Set<Integer> activeNumberCharter=new Set<Integer>();// set integers of the active RQS questions in Charter
-        Set<Integer> activeNumberContract=new Set<Integer>();// set integers of the active RQS questions in Contract
+       
         
         for(Integer i=0;i<activatePosQuestionList.size();i++){
             for(IPM_POS_RQS_Mapping__c prm : posRQSMapping){
@@ -272,19 +299,35 @@ public with sharing class IPM_GateDocumentRiskManagement{
             update deActivateRqsQuestionsList;
         }
         if(projDocType==IPM_ConstantUtils.CHARTER_GATE){
-            activateRqsQuestionsList=[SELECT Id,IPM_Is_Added_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_No__c,IPM_HelpText_Partly__c,IPM_RQS_Question_Type__c,
-                                             IPM_Question__c,IPM_Project__c ,IPM_Sequence_Number__c,IPM_RQS_Gate_Type__c,RecordTypeId,IPM_Active_RQS__c,IPM_Score__c,IPM_Charter_Comments__c,
-                                             IPM_Contract_Comments__c,IPM_Market_Ready_Comments__c,IPM_Market_Deployment_Comments__c,IPM_Charter_Score__c,IPM_Contract_Score__c,IPM_Market_Deployment_Score__c,IPM_Market_Ready_Score__c 
-                                      FROM IPM_Questionnaire__c 
-                                      WHERE RecordTypeId =: recTypeIDRQS  AND IPM_Project__c =:projectId  AND IPM_Sequence_Number__c in:activeNumberCharter];
             
-            activateContractRqsQuestionsList=[SELECT Id,IPM_Is_Added_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_No__c,IPM_HelpText_Partly__c,IPM_RQS_Question_Type__c,
+            activateContractRqsQuestionsList1=[SELECT Id,IPM_Is_Added_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_No__c,IPM_HelpText_Partly__c,IPM_RQS_Question_Type__c,
                                                      IPM_Question__c,IPM_Project__c ,IPM_Sequence_Number__c,IPM_RQS_Gate_Type__c,RecordTypeId,IPM_Active_RQS__c,IPM_Score__c,IPM_Charter_Comments__c,
                                                      IPM_Contract_Comments__c,IPM_Market_Ready_Comments__c,IPM_Market_Deployment_Comments__c,IPM_Charter_Score__c,IPM_Contract_Score__c,IPM_Market_Deployment_Score__c,IPM_Market_Ready_Score__c 
                                               FROM IPM_Questionnaire__c 
                                               WHERE RecordTypeId =: recTypeIDRQS  AND IPM_Project__c =:projectId  AND IPM_Sequence_Number__c in:activeNumberContract];    
         }
-        for(IPM_Questionnaire__c rqRQS : activateRqsQuestionsList){
+        //seqActiveNumberCharterContract(activateRqsQuestionsList,activateContractRqsQuestionsList);
+        return activateContractRqsQuestionsList1;
+    }
+    
+               /***************************************************************************************************************************************
+    *  @description function to generate RQS questions Based on POS selections. 
+    *  @name seqActiveNumberCharterContract
+    *  @param List of IPM_Questionnaire__c
+    *  @return List of IPM_Questionnaire__c
+    */
+    private List<IPM_Questionnaire__c> seqActiveNumberCharterContract(List<IPM_Questionnaire__c> activateRqsQuestionsList,List<IPM_Questionnaire__c> activateContractRqsQuestionsList,Set<Integer> activeNumberCharter)
+    {
+       List<IPM_Questionnaire__c> activateRqsQuestionsList1 = new List<IPM_Questionnaire__c>();
+        
+       if(projDocType==IPM_ConstantUtils.CHARTER_GATE){
+            activateRqsQuestionsList1=[SELECT Id,IPM_Is_Added_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_No__c,IPM_HelpText_Partly__c,IPM_RQS_Question_Type__c,
+                                             IPM_Question__c,IPM_Project__c ,IPM_Sequence_Number__c,IPM_RQS_Gate_Type__c,RecordTypeId,IPM_Active_RQS__c,IPM_Score__c,IPM_Charter_Comments__c,
+                                             IPM_Contract_Comments__c,IPM_Market_Ready_Comments__c,IPM_Market_Deployment_Comments__c,IPM_Charter_Score__c,IPM_Contract_Score__c,IPM_Market_Deployment_Score__c,IPM_Market_Ready_Score__c 
+                                      FROM IPM_Questionnaire__c 
+                                      WHERE RecordTypeId =: recTypeIDRQS  AND IPM_Project__c =:projectId  AND IPM_Sequence_Number__c in:activeNumberCharter];
+       }    
+       for(IPM_Questionnaire__c rqRQS : activateRqsQuestionsList){
             rqRQS.IPM_Active_RQS__c=true;
         }
         if(activateRqsQuestionsList != NULL && !activateRqsQuestionsList.isEmpty()){
@@ -297,20 +340,7 @@ public with sharing class IPM_GateDocumentRiskManagement{
         if(activateContractRqsQuestionsList != NULL && !activateContractRqsQuestionsList.isEmpty()){
             update activateContractRqsQuestionsList;
         }
-        getRecords();   
-        posComplete=true;
-        }
-        catch(DMLException ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATE_DOCUMENT_RISK_MANAGEMENT,
-                PROCEED_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-        }
-        catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATE_DOCUMENT_RISK_MANAGEMENT,
-                PROCEED_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-        }                
-        return null;
+        return activateRqsQuestionsList1;
     }
     
     /***************************************************************************************************************************************
@@ -320,6 +350,10 @@ public with sharing class IPM_GateDocumentRiskManagement{
     *  @return PageReference
     */
     public PageReference generateMitigationPlan(){
+    	String suffix = 'RiskIdentified__c';
+        IPM_Project__c proUpdate = new IPM_Project__c(id = projectId);
+        proUpdate.put(projDocType+suffix,true);
+        update proUpdate;
         //Getting RecordType Id
         getRecordTypeId();
         getRecords();

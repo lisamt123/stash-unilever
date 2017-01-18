@@ -31,8 +31,12 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
 
         if (sowId != null && !String.isEmpty(sowId)) {
             selected_sow = getSOW(sowId, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail'), null);
+        }
+
+        if (selected_sow != null){
             helper = new Oblix_SOWNonCampaignPageHelper(selected_sow, ApexPages.currentPage().getParameters().get('preSelectedSection'));
         }
+
 
         system.debug('HELPER %% ' + helper);
     

@@ -24,7 +24,7 @@ public with sharing virtual class Oblix_SWOPparentController {
             if(NULL == selected_sow){
                 return Oblix_PermissionHandler.hasEditAccess(null);
             } else{
-                return Oblix_PermissionHandler.hasEditAccess(selected_sow.Id);
+                return Oblix_PermissionHandler.hasEditAccess(selected_sow);
             }
         }
     }
@@ -80,6 +80,13 @@ public with sharing virtual class Oblix_SWOPparentController {
         }
     }
 
+    //Only UL users can see warning about SOW going through a rollover if SOW has at least 1 B/Fwd Campaign
+    public Boolean can_see_rollover_warning {
+        get {
+            return !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet() && !Oblix_PermissionHandler.hasUL3permissionSet();
+        }
+    }
+
     public Oblix_SWOPparentController() {
 
     }
@@ -106,13 +113,13 @@ public with sharing virtual class Oblix_SWOPparentController {
     * @author       Shahin Movahedi
     * @date         2016-01-17
     * @description  depending on the sow Id in scope and the required fields
-    				populate the selected sow in scope - used by sub-classes
+                    populate the selected sow in scope - used by sub-classes
     ********************************************************************************/
     public Marketing_SOW__c getSOW(String sow_id, List<String> fields_to_query, String related_query_string){
 
-    	Marketing_SOW__c sow;
+        Marketing_SOW__c sow;
 
-    	try{
+        try{
 
             if (String.isNotBlank(sow_id) && !fields_to_query.isEmpty()){
 
@@ -140,21 +147,21 @@ public with sharing virtual class Oblix_SWOPparentController {
     * @author       Shahin Movahedi
     * @date         2016-01-17
     * @description  depending on the campaign Id in scope and the required fields
-    				populate the selected campaign in scope - used by sub-classes
+                    populate the selected campaign in scope - used by sub-classes
     ********************************************************************************/
     public Oblix_SOW_Projects__c getCampaign(String campaign_id, List<String> fields_to_query, String related_query_string){
 
         Oblix_SOW_Projects__c sow_project;
 
         try{
-        	
-        	if (String.isNotBlank(campaign_id) && !fields_to_query.isEmpty()){
+            
+            if (String.isNotBlank(campaign_id) && !fields_to_query.isEmpty()){
 
                 Id converted_campaign_id = (Id) campaign_id;
-
+               
                 // build SOQL for querying campaign fields
                 String s_query_string = buildSOQLquery(fields_to_query, 'Oblix_SOW_Projects__c', related_query_string, 'Id = ' + '\'' + converted_campaign_id + '\'',null,null );
-                    sow_project = Database.query(s_query_string);
+                sow_project = Database.query(s_query_string);
             }
             else{
                 return null;
@@ -205,14 +212,23 @@ public with sharing virtual class Oblix_SWOPparentController {
     public virtual PageReference checkUserHasPermissionToSOW(){
 
         if (NULl == selected_sow){
-            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
-            permission_denied_page.setRedirect(true);
-            return permission_denied_page;            
+            return redirectToPermissionDeniedPage();
         }
         else{
             return null;
         }
 
+    }
+
+    /*******************************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-17
+    * @description  Send user to permission denied page
+    ********************************************************************************/
+    public PageReference redirectToPermissionDeniedPage(){
+        Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
+        permission_denied_page.setRedirect(true);
+        return permission_denied_page;   
     }
 
     /*******************************************************************************
@@ -224,9 +240,7 @@ public with sharing virtual class Oblix_SWOPparentController {
     public PageReference checkUserHasPermissionToProject(){
 
         if (NULl == selected_project){
-            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
-            permission_denied_page.setRedirect(true);
-            return permission_denied_page;            
+            return redirectToPermissionDeniedPage();            
         }
         else{
             return null;

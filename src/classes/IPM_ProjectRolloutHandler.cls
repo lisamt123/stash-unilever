@@ -21,6 +21,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     
     private Map<Id,IPM_Project_Rollout__c> rolloutProjectTLDChanged = new Map<Id,IPM_Project_Rollout__c> {};
     private Map<Id,IPM_Project_Rollout__c> globalProjIdRollout = new Map<Id,IPM_Project_Rollout__c> {};     
+    private List<Id> projIdList = new List<Id>{};
     private Map<Id,IPM_Project_Rollout__c> misAlignedConfirmedRollout = new Map<Id,IPM_Project_Rollout__c> {};      
     
     /**
@@ -121,7 +122,17 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         {
             newRollout.IPM_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
             newRollout.IPM_Regional_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;                       
-        }               
+        }   
+        if(newRollout.KeyMCO__c != oldRollout.KeyMCO__c && newRollout.KeyMCO__c && newRollout.IPM_Regional_PL__c != null)
+	{
+		newRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;   
+		newRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;  
+	}            
+	if(!newRollout.isActive__c)
+	{
+		newRollout.IPM_Project_Job_Status__c = null;   
+		newRollout.IPM_RolloutJobType__c = null;	
+	}             
     }
     
     /**
@@ -151,7 +162,6 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                 phaseChangeProjects.add(newRollout.IPM_Project__c);
                 phaseChangeRolloutSet.add(newRollout.Id);
             }
-            
             if(LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.Regional_Project__c !=null)
             {   
                 phaseChangeProjects.add(newRollout.Regional_Project__c);
@@ -176,7 +186,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                 newRollout.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && 
                 newRollout.IPM_RolloutJobType__c == IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC)
         {
-            if( REGIONAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.IPM_Project__c !=null )
+            if( ( REGIONAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.IPM_Project__c !=null) || (LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.IPM_Project_GKM__c == IPM_ConstantUtils.GKM_3))
             {   
                 phaseChangeProjects.add(newRollout.IPM_Project__c);
                 phaseChangeRolloutSet.add(newRollout.Id);
@@ -187,25 +197,32 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                 phaseChangeProjects.add(newRollout.Regional_Project__c);
                 phaseChangeRolloutSet.add(newRollout.Id);
             }
-        }
-        if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c ||  oldRollout.isActive__c != newRollout.isActive__c){
-            rolloutProjectTLDChanged.put(oldRollout.Id,newRollout);
-            if(!globalProjIdRollout.containskey(newRollout.IPM_Project__c) && !globalProjIdRollout.containskey(newRollout.Regional_Project__c)  && oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c){
-                if(newRollout.Regional_Project__c != null){
-                    globalProjIdRollout.put(newRollout.Regional_Project__c,newRollout);  
-                } else if(newRollout.IPM_Project__c != null){
-                    globalProjIdRollout.put(newRollout.IPM_Project__c,newRollout); 
-                }
-            }            
-        }  
-        if( oldRollout.MisAligned_Confirmed_By_Finance_Leader__c != newRollout.MisAligned_Confirmed_By_Finance_Leader__c &&  newRollout.MisAligned_Confirmed_By_Finance_Leader__c ){
-            if(newRollout.Regional_Project__c != null){
-                misAlignedConfirmedRollout.put(newRollout.Regional_Project__c,newRollout);
-            } else {
-                misAlignedConfirmedRollout.put(newRollout.IPM_Project__c,newRollout);           
-            }
+        } 
+        setTLDchange(oldRollout,newRollout);
+        if(oldRollout.MisAligned_Confirmed_By_Finance_Leader__c != newRollout.MisAligned_Confirmed_By_Finance_Leader__c &&  newRollout.MisAligned_Confirmed_By_Finance_Leader__c && newRollout.Regional_Project__c != null){
+            misAlignedConfirmedRollout.put(newRollout.Regional_Project__c,newRollout);
+        } else if(oldRollout.MisAligned_Confirmed_By_Finance_Leader__c != newRollout.MisAligned_Confirmed_By_Finance_Leader__c &&  newRollout.MisAligned_Confirmed_By_Finance_Leader__c) {
+            misAlignedConfirmedRollout.put(newRollout.IPM_Project__c,newRollout);           
         }
 
+    }
+    
+    public void setTLDchange(IPM_Project_Rollout__c oldRollout, IPM_Project_Rollout__c newRollout){
+        if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c ||  oldRollout.isActive__c != newRollout.isActive__c){
+            rolloutProjectTLDChanged.put(oldRollout.Id,newRollout);
+            if(!globalProjIdRollout.containskey(newRollout.Id) && !globalProjIdRollout.containskey(newRollout.Regional_Project__c)  && oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c){
+                if(newRollout.Regional_Project__c != null && newRollout.IPM_Project_GKM__c != IPM_ConstantUtils.GATE_KEEPING_MODEL_3){
+                    globalProjIdRollout.put(newRollout.Id,newRollout);  
+                    projIdList.add(newRollout.Regional_Project__c);
+                } else if(newRollout.IPM_Project__c != null && newRollout.IPM_Project_GKM__c != IPM_ConstantUtils.GATE_KEEPING_MODEL_3){
+                    globalProjIdRollout.put(newRollout.Id,newRollout); 
+                    projIdList.add(newRollout.IPM_Project__c);
+                }else if(newRollout.IPM_Project_GKM__c == IPM_ConstantUtils.GATE_KEEPING_MODEL_3 && newRollout.IPM_Rollout_Span__c == IPM_ConstantUtils.Local){
+                    globalProjIdRollout.put(newRollout.Id,newRollout);
+                    projIdList.add(newRollout.IPM_Project__c);
+                }
+            }            
+        }   
     }
     /**
     * @description:afterDelete
@@ -244,8 +261,8 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         
         if(!rolloutProjectTLDChanged.isEmpty()){
             IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
-            rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);
-            rolloutPlanTLDSync.notifyGlobalProjectFinanceLeader(globalProjIdRollout);                      
+
+            rolloutPlanTLDSync.notifyGlobalProjectFinanceLeader(globalProjIdRollout, projIdList);                      
         }
         if(!misAlignedConfirmedRollout.isEmpty()){
             IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();

@@ -30,26 +30,6 @@ private class BET_LinkingServiceTestOne {
 		Test.stopTest();
 	}
 
-	@isTest static void UnFollowLeadWithOtherProjectsTest(){
-		Test.startTest();
-		uw_Bet__c bet = BET_TestUtils.getTestBet();
-		insert bet;
-		Id BetId = bet.id;
-		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
-		bet.IPM_Project__c = ProjectId;
-		update bet;
-
-		IPM_Project__c fproject = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME+'_1');
-		fproject.BET__c = bet.id;
-		fproject.IPM_Target_Launch_Dates__c = date.today();
-		update fproject;
-
-		BET_LinkingService.UnFollow(ProjectId, BetId);
-		bet = [select IPM_Project__c from uw_Bet__c where id=:BetId];
-		System.assertEquals(bet.IPM_Project__c,fproject.id,'Should have lead project set for BET');
-		Test.stopTest();
-	}
-
 	@isTest static void checkIfFollowRequestShouldBeAutoapprovedTest(){
 		Test.startTest();
 		uw_Bet__c relatedBet = BET_TestUtils.getTestBet();

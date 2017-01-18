@@ -29,7 +29,9 @@
             display        : block;
             padding        : 15px 15px;
         }
-
+        #lms-nav-header{
+            display:block !important;
+        }
 
         /** KW **/
         /*#AppBodyHeader div.zen #tabContainer {
@@ -58,7 +60,7 @@
     </div> -->
 
 
-    <header id="lms-nav-header" class="navbar navbar-inverse bs-docs-nav lms-nav" role="banner">
+    <header id="lms-nav-header" class="navbar navbar-inverse bs-docs-nav lms-nav" role="banner" >
         <div class="container">
             <div class="navbar-header">
                 <button class="navbar-toggle collapsed" data-target=".bs-navbar-collapse" data-toggle="collapse" type="button">
@@ -67,7 +69,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{!$Page.PBS_WelcomePage}">
+                <a class="navbar-brand" href="{!$Page.PBS_WelcomePage_clone}">
                     <apex:image value="{!IF(customLogo == null,URLFOR($Resource.almond_uilib, '/img/almond_logo.png'),customLogo)}" />
                 </a>
             </div>

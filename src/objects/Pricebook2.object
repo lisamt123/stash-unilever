@@ -52,8 +52,25 @@
     </fields>
     <fields>
         <fullName>Name</fullName>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
     </fields>
+    <recordTypes>
+        <fullName>FS_Pricebook</fullName>
+        <active>true</active>
+        <label>FS Pricebook</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Price_Book</fullName>
+        <active>true</active>
+        <description>Standard price book.</description>
+        <label>Price Book</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>TEL_Telesales</fullName>
+        <active>true</active>
+        <description>For telesales project products.</description>
+        <label>Telesales</label>
+    </recordTypes>	
     <searchLayouts>
         <customTabListAdditionalFields>PRICEBOOK2.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>PRICEBOOK2.DESCRIPTION</customTabListAdditionalFields>
@@ -72,5 +89,5 @@
         <searchResultsAdditionalFields>PRICEBOOK2.LAST_UPDATE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PRICEBOOK2.IS_ACTIVE</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadSelect</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>

@@ -1,0 +1,9 @@
+Hi Finance Team,
+
+Service request number {!SAM_Request__c.Name} has been submitted for Cross-Charging. The current status is "Awaiting Charge".
+
+You can access the Service Request via the link below;
+{!SAM_Request__c.Link}
+
+Thanks,
+{!SAM_Request__c.lkp_Assign_To__c}

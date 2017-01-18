@@ -1,0 +1,20 @@
+<apex:page controller="IPM_ExportTeamMembersReportController" cache="true" contentType="application/vnd.ms-excel#ReportDataExport.xls"   showHeader="false"> 
+	<table>
+		<tr> 
+			<apex:repeat value="{!reportResults.reportMetadata.detailColumns}" var="colName">
+			    <th>
+			    	<apex:outputText value="{!reportResults.reportExtendedMetadata.detailColumnInfo[colName].label}"/>
+			    </th>
+			</apex:repeat>
+		</tr> 
+		<apex:repeat value="{!reportResults.factMap['T!T'].rows}" var="row"> 
+			<tr>
+				<apex:repeat value="{!row.dataCells}" var="cell" > 
+					<td>
+						<apex:outputText value="{!cell.label}"/>    
+					</td> 
+				</apex:repeat> 
+			</tr> 
+		</apex:repeat> 
+	</table>
+</apex:page>

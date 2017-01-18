@@ -85,7 +85,7 @@ private with sharing class IPM_ProjectDocumentSectionHandler_Test{
         }
     System.runAs(projectLeader){
 
-        projectList = IPM_TestFactory_Helper.createIPMProjectList(FALSE,2);  
+        projectList = IPM_TestFactory_Helper.createOriginalProjectList(false,2);
         for(Integer i=0; i <= 1; i++)
             {
                 projectList[i].IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;

@@ -13,6 +13,8 @@ private class IPM_ProjectSetUpController_Test {
     private static User userInitialize; 
     private static IPM_ProjectSetUpController  sic;  
     private static final string GOT_ERROR_STRING='got error while saving a project';
+    private static final string CATEGORY='Household Care';
+    private static List<IPM_Project_Type__c> projectTypeList;
     /**************************************************
     * @description : Master data 
     ***************************************************/ 
@@ -27,40 +29,38 @@ private class IPM_ProjectSetUpController_Test {
         plUserList.add(userInitialize);        
         
         MDO_BrandPosition__c mdoBPosition=new MDO_BrandPosition__c();
-		mdoBPosition.Name='Lux';
-		mdoBPosition.status__c=ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE;
-		insert mdoBPosition;
-		
-		List<MDO_BrandPosition__c>mdoBrandPosList=[SELECT Name FROM MDO_BrandPosition__c WHERE ID=:mdoBPosition.ID LIMIT 1];
-		system.assertEquals(mdoBrandPosList[0].Name,mdoBPosition.Name,'brand position name is not matched');
-		
-		MDO_Category__c mdoCategory=new MDO_Category__c();
-		mdoCategory.Name='Household Care';
-		insert mdoCategory;
-		
-		List<MDO_Category__c>mdoCategoryList=[SELECT Name FROM MDO_Category__c WHERE ID=:mdoCategory.ID LIMIT 1];
-		system.assertEquals(mdoCategoryList[0].Name,mdoCategory.Name,'mdo category name is not matched');
-		
-		MDO_Category__c mdoCategories=new MDO_Category__c();
-		mdoCategories.Name='House Care';
-		mdoCategories.parent_id__c=mdoCategory.id;
-		insert mdoCategories;
-		
-		List<MDO_Category__c>mdoCategoriesList=[SELECT Name FROM MDO_Category__c WHERE ID=:mdoCategories.ID LIMIT 1];
-		system.assertEquals(mdoCategoriesList[0].Name,mdoCategories.Name,'mdo parent category name is not matched');
-		
-		
-		MDO_BrandPositions__c mdoBrandPositions=new MDO_BrandPositions__c();
-		mdoBrandPositions.status__c=ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE;
-		mdoBrandPositions.brand_position_id__c=mdoBPosition.id;
-		mdoBrandPositions.product_category_id__c=mdoCategories.id;
-		insert mdoBrandPositions;
-		
-		List<MDO_BrandPositions__c>mdoBPositionsList=[SELECT brand_position_id__c FROM MDO_BrandPositions__c WHERE ID=:mdoBrandPositions.ID LIMIT 1];
-		system.assertEquals(mdoBPositionsList[0].brand_position_id__c,mdoBrandPositions.brand_position_id__c,'mdo brand positions id is not matched');
+        mdoBPosition.Name='Lux';
+        mdoBPosition.status__c=ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE;
+        insert mdoBPosition;
+        
+        List<MDO_BrandPosition__c>mdoBrandPosList=[SELECT Name FROM MDO_BrandPosition__c WHERE ID=:mdoBPosition.ID LIMIT 1];
+        system.assertEquals(mdoBrandPosList[0].Name,mdoBPosition.Name,'brand position name is not matched');
+        
+        MDO_Category__c mdoCategory=new MDO_Category__c();
+        mdoCategory.Name=CATEGORY;
+        insert mdoCategory;
+        
+        List<MDO_Category__c>mdoCategoryList=[SELECT Name FROM MDO_Category__c WHERE ID=:mdoCategory.ID LIMIT 1];
+        system.assertEquals(mdoCategoryList[0].Name,mdoCategory.Name,'mdo category name is not matched');
+        
+        MDO_Category__c mdoCategories=new MDO_Category__c();
+        mdoCategories.Name='House Care';
+        mdoCategories.parent_id__c=mdoCategory.id;
+        insert mdoCategories;
+        
+        List<MDO_Category__c>mdoCategoriesList=[SELECT Name FROM MDO_Category__c WHERE ID=:mdoCategories.ID LIMIT 1];
+        system.assertEquals(mdoCategoriesList[0].Name,mdoCategories.Name,'mdo parent category name is not matched');
+        
+        
+        MDO_BrandPositions__c mdoBrandPositions=new MDO_BrandPositions__c();
+        mdoBrandPositions.status__c=ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE;
+        mdoBrandPositions.brand_position_id__c=mdoBPosition.id;
+        mdoBrandPositions.product_category_id__c=mdoCategories.id;
+        insert mdoBrandPositions;
+        
+        List<MDO_BrandPositions__c>mdoBPositionsList=[SELECT brand_position_id__c FROM MDO_BrandPositions__c WHERE ID=:mdoBrandPositions.ID LIMIT 1];
+        system.assertEquals(mdoBPositionsList[0].brand_position_id__c,mdoBrandPositions.brand_position_id__c,'mdo brand positions id is not matched');
     
-	//Insert Custom Setting of Project Metadata
-     	IPM_TestFactory_Helper.createIPMProjectMetadata();
         //insert custom setting of IPM_Market_Cluster_Short_Names__c
         IPM_TestFactory_Helper.createMarketshortName(true);
         
@@ -84,10 +84,18 @@ private class IPM_ProjectSetUpController_Test {
         ProjectWithOutBoss.IPM_Project_Type__c='Original';
         ProjectWithOutBoss.IPM_Project_Leader__c=userInitialize.id;
         ProjectWithOutBoss.IPM_Company_Card__c=globalCompanyCard.id;
-        ProjectWithOutBoss.IPM_Category_Text__c='Household Care';
+        ProjectWithOutBoss.IPM_CompanyCardText__c='Global Company Card';
+        ProjectWithOutBoss.IPM_Category_Text__c=CATEGORY;
+        ProjectWithOutBoss.IPM_Category_Picklist__c = IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
+        ProjectWithOutBoss.IPM_Category_Platform__c = 'Revitalisation';   
+        ProjectWithOutBoss.IPM_ProjectSubType__c='GCLT & RCLT';
         insert projectWithOutBoss;
-        List<IPM_Project__c> BDProjectList = [ SELECT Id,Name FROM IPM_Project__c WHERE Name=:ProjectWithOutBoss.Name LIMIT 1];
+        List<IPM_Project__c> BDProjectList = [ SELECT Id,Name,IPM_Company_Card__c,IPM_CompanyCardText__c,IPM_Category_Text__c,IPM_ProjectSubType__c,IPM_ProjectGKM__c FROM IPM_Project__c WHERE Name=:ProjectWithOutBoss.Name LIMIT 1];
         system.assertEquals(BDProjectList[0].Name,ProjectWithOutBoss.Name,'Project name is :'+BDProjectList[0].Name);
+        List<IPM_Project_Metadata__mdt> mdtList = IPM_TestFactory_Helper.createIPMProjectMetadata();
+        
+        ProjectWithOutBoss.IPM_ProjectGKM__c = mdtList[0].MasterLabel;
+        update projectWithOutBoss; 
         
         List<IPM_Project__Share>projectShareList=IPM_TestFactory_Helper.shareIPMProject(BDProjectList,plUserList);
         insert projectShareList;
@@ -104,9 +112,7 @@ private class IPM_ProjectSetUpController_Test {
         
         List<IPM_Milestone__c> milestones = [Select IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: projectWithOutBoss.id and IPM_Active__c = true and IPM_Name__c =: IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE limit 1];
         system.assertEquals(milestones[0].IPM_Due_Date__c,system.today().addMonths(12),'milestone date is not matching');
-        
-        
-        
+                
         //Insert MDO Brand Positions
         IPM_TestFactory_Helper.createMDOBrandPositions(true);
         //Initialize BET data
@@ -125,10 +131,16 @@ private class IPM_ProjectSetUpController_Test {
         //insert User profile
         Id loggedInUser = userinfo.getuserid();
         userProfileList = IPM_TestFactory_Helper.createUserProfileList(new List<Id>{loggedInUser},companyCardList,false);  
+        userProfileList[0].IPM_User_Category__c = companyCardList[0].IPM_Managed_category__c;
         insert userProfileList;
         
         List<IPM_User_Profile__c> usrProfileList=[SELECT IPM_User__c FROM IPM_User_Profile__c WHERE IPM_User__c=:loggedInUser LIMIT 1];
         system.assertEquals(usrProfileList[0].IPM_User__c,loggedInUser,'user profile user id is:'+usrProfileList[0].IPM_User__c);
+    	IPM_Project_Document__c prDoc =  IPM_TestFactory_Helper.createIPMProjectDocument(false);
+        prDoc.IPM_Project__c = ProjectWithOutBoss.id;
+        insert prDoc;
+        projectTypeList = Test.loadData(IPM_Project_Type__c.sObjectType, 'IPM_ProjectType');
+        System.assertNotEquals(projectTypeList.size(),0,'Test data not loaded');
     }
     /**********************************************************************
     *@Description : get all initialised values from @testSetup method
@@ -183,13 +195,28 @@ private class IPM_ProjectSetUpController_Test {
             sic.saveIPMApproach();
             system.assertEquals(sic.project.IPM_PM_Approach__c,IPM_ConstantUtils.IPM_APPROACH_INTERNAL,'IPM approach is not internal');
             
-            sic.project.IPM_Category_Text__c='Household Care';
+            sic.project.IPM_Category_Text__c=CATEGORY;
             sic.project.IPM_Region_Shr__c='Global';
             sic.project.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_GLOBAL;
             sic.project.IPM_Brand_Positioning__c='Lux';
             sic.getBrandPos();
-                
             
+            projectList[0].IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+            projectList[0].IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+            projectList[0].IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
+            update projectList[0];
+            getPagerefences();
+
+            sic.project.IPM_Category_Text__c=CATEGORY;
+            sic.project.IPM_Region_Shr__c='Australia;New Zealand;';
+            sic.project.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_REGIONAL;
+            sic.project.IPM_Brand_Positioning__c='Lux';
+            
+            projectList[0].IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+            projectList[0].IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+            projectList[0].IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
+            update projectList[0];
+            sic.getBrandPos();
         }
         Test.stopTest(); 
     }
@@ -201,10 +228,11 @@ private class IPM_ProjectSetUpController_Test {
         getPagerefences();
         
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>();
-        IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
-        companyCardList.add(localCompanyCard);      
         IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
-        companyCardList.add(regionalCompanyCard);       
+        companyCardList.add(regionalCompanyCard); 
+	IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+        companyCardList.add(localCompanyCard);   
+	    
         insert companyCardList;     
         for(IPM_Company_Card__c companyCard : companyCardList )
         {
@@ -212,6 +240,10 @@ private class IPM_ProjectSetUpController_Test {
         }       
         Id loggedInUser = userinfo.getuserid();
         List<IPM_User_Profile__c> tempUserProfileList = IPM_TestFactory_Helper.createUserProfileList(new List<Id>{loggedInUser},companyCardList,false);     
+         for(Integer counter=0;counter < tempUserProfileList.size();counter++)
+        {
+            tempUserProfileList[counter].IPM_User_Category__c = companyCardList[0].IPM_Managed_category__c;
+        }
         insert tempUserProfileList;
         userProfileList.addAll(tempUserProfileList);    
         
@@ -234,7 +266,7 @@ private class IPM_ProjectSetUpController_Test {
         // Set the same project Name
         sic.project.IPM_Project_Name__c ='TESTPROJECT';
         sic.saveProceed();
-        System.assertEquals(sic.project.IPM_IsSaved__c,false,'Project is not saved');
+        System.assertEquals(sic.project.IPM_IsSaved__c,true,'Project is not saved');
         
         // Set the same project Name
         sic.project.IPM_Project_Name__c ='TESTPROJECTNEW';
@@ -242,13 +274,16 @@ private class IPM_ProjectSetUpController_Test {
         sic.saveIPMApproach();
         system.assertEquals(sic.project.IPM_PM_Approach__c,IPM_ConstantUtils.IPM_APPROACH_EXTERNAL,'IPM approach is not external');
         sic.saveComplexityType();
-        sic.ComplexityType='';
+        sic.ComplexityType=IPM_ConstantUtils.BLANK;
         sic.saveComplexityType();
         sic.removeProjectLogo();
         sic.none();
-        System.assertEquals(sic.project.IPM_Project_Logo_Id__c,'','Project logo id is Empty');
-        Test.stopTest();
-        sic.projectMetadata.IPM_MultipleBrandPosApplicable__c=true;
+        sic.project.IPM_Category_Text__c = CATEGORY;
+        sic.project.IPM_ProjectSubType__c = 'Operational';
+        System.assertEquals(sic.project.IPM_Project_Logo_Id__c,IPM_ConstantUtils.BLANK,'Project logo id is Empty');
+        
+        sic.associateProjectMetadata();
+        
         sic.project.IPM_Brand_Positioning__c='val1,val2,val3,val4,val5,val6,val7,val8,val9,val10,val11,val12,val13,val14,val15,val16,val17,val18,val19,val20,val21,val22,val23,val24';
         sic.saveProceed();
         System.assertEquals(sic.isMaxBrandPosition,true,'User has selected more than 20 brand positions');
@@ -257,24 +292,72 @@ private class IPM_ProjectSetUpController_Test {
         
         List<IPM_Project__c> projectList = [Select Id,Name,IPM_Project_Name__c from IPM_Project__c where IPM_Project_Name__c='TESTPROJECTNEW' LIMIT 1];
         System.assertEquals(projectList.size(),1,'project got saved with updated project name as:'+projectList[0].IPM_Project_Name__c);
+         
         system.runAs(userInitialize){
             sic.project.Name='Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name ';
             sic.processProjectSave();
             sic.project.IPM_Project_Job_Status__c= IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+            sic.saveProject();
+            Test.stopTest();
             sic.initialise();
             sic.removeProjectLogo();
-            sic.projectMetadata.IPM_FastTrackApplicable__c=false;
-            sic.projectMetadata.IPM_WhiteSpaceApplicable__c=false;
             System.assertEquals(sic.project.IPM_White_Space_Project__c,false,'User marked project as without white space');    
             System.assertEquals(sic.project.IPM_Fast_Track_Project__c,false,'User marked project as without fast track');   
-            if(sic.project.IPM_GateKeepingModel__c.equals(IPM_Utils.GATE_KEEPING_MODEL_1) || sic.project.IPM_GateKeepingModel__c.equals(IPM_Utils.GATE_KEEPING_MODEL_2))
-            {
-                System.assertEquals(sic.project.IPM_Approver_of_Charter__c, sic.projectMetadata.IPM_DefaultCharterQuestionAnswer__c);
-            }  
-            sic.processProjectSave();
-            List<IPM_Project__c> updatedProjectList = [ SELECT Id,IPM_White_Space_Project__c FROM IPM_Project__c WHERE Id=:ProjectWithOutBoss.id LIMIT 1];
-            system.assertEquals(updatedProjectList[0].IPM_White_Space_Project__c,false,'Project white space is :'+updatedProjectList[0].IPM_White_Space_Project__c);
+           
             
+        }
+        
+    }
+    private static testmethod void processMultipleCompanyCards2()
+    {
+        getPagerefences();
+        
+        List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>();
+        IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+        companyCardList.add(regionalCompanyCard);
+        IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+        companyCardList.add(localCompanyCard);  
+        insert companyCardList;     
+        for(IPM_Company_Card__c companyCard : companyCardList )
+        {
+            companyCardMap.put(companyCard.Id,companyCard);
+        }       
+        Id loggedInUser = userinfo.getuserid();
+        List<IPM_User_Profile__c> tempUserProfileList = IPM_TestFactory_Helper.createUserProfileList(new List<Id>{loggedInUser},companyCardList,false);     
+         for(Integer counter=0;counter < tempUserProfileList.size();counter++)
+        {
+            tempUserProfileList[counter].IPM_User_Category__c = companyCardList[0].IPM_Managed_category__c;
+        }
+        insert tempUserProfileList;
+        userProfileList.addAll(tempUserProfileList);    
+        
+        Test.startTest();
+        initiateProjectCreation();
+        
+        // Set the same project Name
+        sic.project.IPM_Project_Name__c ='TESTPROJECTNEW';
+        sic.saveProceed();
+        sic.saveIPMApproach();
+        system.assertEquals(sic.project.IPM_PM_Approach__c,IPM_ConstantUtils.IPM_APPROACH_EXTERNAL,'IPM approach is not external');
+        IPM_ProjectSetupController.savetabname('testtab',string.valueOf(sic.project.id));
+        
+        List<IPM_Project__c> projectList = [Select Id,Name,IPMProject_Span__c,IPM_Project_Type__c,IPM_Project_Name__c from IPM_Project__c where IPM_Project_Name__c='TESTPROJECTNEW' LIMIT 1];
+        System.assertEquals(projectList.size(),1,'project got saved with updated project name as:'+projectList[0].IPM_Project_Name__c);
+        //system.assert(FALSE, projectList[0].IPMProject_Span__c+','+projectList[0].IPM_Project_Type__c);
+        system.runAs(userInitialize){
+            sic.project.IPM_Project_Job_Status__c= IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+            sic.initialise();
+            
+            sic.removeProjectLogo();
+            System.assertEquals(sic.project.IPM_White_Space_Project__c,false,'User marked project as without white space');    
+            System.assertEquals(sic.project.IPM_Fast_Track_Project__c,false,'User marked project as without fast track');   
+            
+            sic.processProjectSave();
+			List<IPM_Project__c> updatedProjectList = [ SELECT Id,IPM_CompanyCardText__c,IPM_ProjectGKM__c,IPM_Phase__c,IPMProject_Span__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPM_White_Space_Project__c FROM IPM_Project__c WHERE Id=:ProjectWithOutBoss.id LIMIT 1];
+            system.assertEquals(updatedProjectList[0].IPM_White_Space_Project__c,false,'Project white space is :'+updatedProjectList[0].IPM_White_Space_Project__c);
+            Test.stopTest();
+			sic.regionShortName();
+			sic.saveProject();
             
         }
         
@@ -285,8 +368,7 @@ private class IPM_ProjectSetUpController_Test {
     *@Description :executes the core logic and asserts for project initiation.
     ***************************************************************/
     private static void initiateProjectCreation()
-    {       
-        
+    {  
         List<SelectOption> companyCardSelect = sic.getAllcompanycard();     
         if(companyCardSelect.size() > 2)
         {
@@ -322,11 +404,12 @@ private class IPM_ProjectSetUpController_Test {
                 if(brandPosOptionList.size() > 1){
                     sic.project.IPM_Brand_Positioning__c = brandPosOptionList[1].getValue();  
                 }
-                sic.project.IPM_Brand_Positioning__c='Dove';
+                else{
+                    sic.project.IPM_Brand_Positioning__c='Dove';
+                }
                 
-                sic.getBrandPos();
                 // Error Scenario
-                sic.getGateKeepingModels();
+                sic.getGKMQuestions();
                 System.assertEquals(sic.isBusinessError,true,GOT_ERROR_STRING);              
                 List<SelectOption> selectProjectType = sic.getProjectSubTypes();                
                 // Error Scenario
@@ -336,29 +419,31 @@ private class IPM_ProjectSetUpController_Test {
                 {
                     sic.project.IPM_ProjectSubType__c = subProjectType.getValue();
                     sic.getHelpTextProjectSubType();                
-                    sic.populateProjectInformation();
                     
-                    System.assertEquals(sic.project.IPM_Project_Type__c,sic.projectMetadata.IPM_Project_Type__c,'Project type is:'+sic.projectMetadata.IPM_Project_Type__c);
-                    System.assertEquals(sic.project.IPMProject_Span__c,sic.projectMetadata.IPM_Project_Span__c,'Project sapn is:'+sic.projectMetadata.IPM_Project_Span__c);
-                    System.assertEquals(sic.project.IPM_Phase__c,sic.projectMetadata.IPM_DefaultPhase__c,'Project default pahse is:'+sic.projectMetadata.IPM_DefaultPhase__c);
+                    
+                    System.assertEquals(sic.project.IPM_Project_Type__c,sic.projectMetadata.IPM_ProjectType__c,'Project type is:'+sic.projectMetadata.IPM_ProjectType__c);
+                    System.assertEquals(sic.project.IPMProject_Span__c,sic.projectMetadata.IPM_DefaultProjectSpan__c,'Project span is:'+sic.projectMetadata.IPM_DefaultProjectSpan__c);
+                    System.assertEquals(sic.project.IPM_Phase__c,sic.projectMetadata.IPM_DefaultPhase__c,'Project default phase is:'+sic.projectMetadata.IPM_DefaultPhase__c);
                     System.assertEquals(sic.project.IPM_Complexity__c,sic.projectMetadata.IPM_DefaultComplexity__c,'Project default complexity is:'+sic.projectMetadata.IPM_DefaultComplexity__c);
                     sic.getCharterApprovers();
-                    List<SelectOption> gateKeepingSelect = sic.getGateKeepingModels();
-                    if(sic.projectMetadata.IPM_GatekeepingModelsApplicable__c)
+                    
+                    List<SelectOption> gateKeepingSelect = sic.getGKMQuestions();
+                   
+                    if(sic.projectMetadata.IPM_GKMQuestionsApplicable__c)
                     {
-                        sic.getHelpTextCharterQuestions();
-                        sic.getHelpTextGateKeeping();
-                        for(SelectOption GKModel : gateKeepingSelect)
-                        {
-                            sic.project.IPM_GateKeeping_Model__c =GKModel.getValue();
-                            System.assert(sic.projectMetadata.IPM_ApplicableGateKeepingModels__c.contains(GKModel.getValue()),'project gate keeping model is:'+GKModel.getValue());
+                      sic.getHelpTextGKMQuestions();
+                      sic.getGMKQuestionsLabel();
+                      
+                      if(sic.project.IPM_CompanyCardText__c == IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL){
+                        System.assert(sic.projectMetadata.IPM_GMKQuestionDefaultAns__c.contains(sic.project.IPM_Approver_of_Charter__c),'project gate keeping model is:'+sic.project.IPM_Approver_of_Charter__c);
+                      }
+                        else if(sic.project.IPM_CompanyCardText__c == IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL){
+                          System.assert(sic.projectMetadata.IPM_GMKQuestionDefaultAns__c.contains(sic.project.IPM_GateKeeping_Model__c),'project gate keeping model is:'+sic.project.IPM_GateKeeping_Model__c);
                         }
                     }
-                    else
-                    {
+                    else{
                         System.assertEquals(gateKeepingSelect.size(),0,'gatekeeping list size should be zero when it is not applicable');
                     }
-                    
                 }
             }
         }
@@ -417,8 +502,8 @@ private class IPM_ProjectSetUpController_Test {
         sic.isImage=false;
         sic.isBDuser=false;
         sic.isvisible =false;
-        sic.functionRole='';
-        sic.projbetlink='';
+        sic.functionRole=IPM_ConstantUtils.BLANK;
+        sic.projbetlink=IPM_ConstantUtils.BLANK;
         sic.project.BET_Link_Requested__c='Test';
         
         sic.ImageId=ApexPages.currentPage().getParameters().get('image');   
@@ -453,12 +538,16 @@ private class IPM_ProjectSetUpController_Test {
         shareProjectLst.add(projectWithOutBoss);
         List<IPM_Project__Share>projectShareList=IPM_TestFactory_Helper.shareIPMProject(shareProjectLst,userShareList);
         insert projectShareList;
-        
+        projectWithOutBoss.IPM_Project_Leader__c = u4.Id;
+        projectWithOutBoss.Deputy_Project_Leader__c= u5.Id;
+        IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION =True;
+        update projectWithOutBoss;
+        IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION =False;
         system.runAs(u4){ 
             sic.getProjectResource();//get project resource record
             sic.getMilesTaskIpmuserType();//get current logged in user access
             sic.getIpmuserType();//get current logged in user access
-            system.assert(!sic.isEditable, IPM_ConstantUtils.MSG_ISEDITABLE_SHOULD_NOT_NULL);//positive test
+            system.assert(sic.isEditable, IPM_ConstantUtils.MSG_ISEDITABLE_SHOULD_NOT_NULL);//positive test
             sic.project.Is_Archieved__c=null;
             sic.getMilesTaskIpmuserType();
         }
@@ -466,14 +555,14 @@ private class IPM_ProjectSetUpController_Test {
             sic.getProjectResource();//get project resource record
             sic.getMilesTaskIpmuserType();//get current logged in user access
             sic.getIpmuserType();//get current logged in user access
-            system.assert(!sic.isEditable, IPM_ConstantUtils.MSG_ISEDITABLE_SHOULD_NOT_NULL);//positive test
+            system.assert(sic.isEditable, IPM_ConstantUtils.MSG_ISEDITABLE_SHOULD_NOT_NULL);//positive test
         }
         
         system.runAs(u5){
             sic.getProjectResource();//get project resource record
             sic.getMilesTaskIpmuserType();//get current logged in user access
             sic.getIpmuserType();//get current logged in user access
-            system.assert(!sic.isEditable, IPM_ConstantUtils.MSG_ISEDITABLE_SHOULD_NOT_NULL);//positive test
+            system.assert(sic.isEditable, IPM_ConstantUtils.MSG_ISEDITABLE_SHOULD_NOT_NULL);//positive test
         }
         Test.stopTest();   
     }

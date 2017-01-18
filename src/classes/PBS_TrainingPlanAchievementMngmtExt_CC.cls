@@ -64,7 +64,7 @@ public with sharing class PBS_TrainingPlanAchievementMngmtExt_CC{
             tpbo.Additional_Information__c = null;
             insert tpbo;
 
-            Id batchInstanceId = Database.executeBatch(new PBS_TPlanAchievementAsgmtsUpdateBatch_CC(trainingPlanId,tpbo.Id),20);
+            Database.executeBatch(new PBS_TPlanAchievementAsgmtsUpdateBatch_CC(trainingPlanId,tpbo.Id),20);
             PBS_LMSUtils_CC.addSuccessMessage(System.Label.ALMS_Batch_Updated_Queued_Success);
 
         }catch(Exception e){

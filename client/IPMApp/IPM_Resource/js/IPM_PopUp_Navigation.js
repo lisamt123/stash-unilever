@@ -23,6 +23,7 @@ checkForModifications001: function() {
 var flag = false;
 this.each(function() {
   var el = $(this);
+  if(typeof el.data("initialValue") !== "undefined"){
   if(el.is(":text") || el.is("textarea") || el.is(":file")){
     flag = (el.data("initialValue") !== el.val());
   }
@@ -35,6 +36,7 @@ this.each(function() {
   if(flag) 
   {  
     return false;
+  }
   }
 })
 return flag;

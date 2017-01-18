@@ -21,7 +21,7 @@
             </div>
             
             <div class="ipmContent">
-                <div class="heading2 ipmHeading blue">
+                <div class="ipmHeading blue">
                     <div class="row">
                     
                     <!-- To place the help symbol in the top right hand corner of page -->
@@ -29,42 +29,65 @@
                         <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
                     </apex:outputPanel>
                     
-                        <div class="col-sm-6">
-                            {!$Label.IPM_MilestoneToDos}
+                        <div class="col-sm-12">
+                       <div class="ipmMilestoneTabList" id="ipmMilestoneTabList">
+                            <ul class="ipmMilestonetodosTabs">
+                                <li class="selectList tabOdd"><span>{!$Label.IPM_Project_Full_Lite}</span></li>
+                                <li class="newMstone tabEven"><span>{!$Label.IPM_MILESTONE}</span></li>
+                                 <li class="todolistcontent tabOdd"><span>{!$Label.IPM_Home_Todo}</span></li>
+                            </ul>
+                            <div class="ipmMilestonetodosContent" id="selectList">
+                                 <div class="heading2 ipmHeading blue">
+                                    {!$Label.IPM_Project_Full_Lite}
+                                 </div>
+                                <div class="row">
+                                    <div class="col-sm-12 transBox boxPadTop noPadleft">
+                                        <apex:actionStatus startText="" id="loader" startStyleClass="proInit"/>
+                                        <span class="mStonequest">{!$Label.IPM_ProjectComplexityMessage} </span>
+                                        <span class="mStonequest">{!$Label.IPM_MilestoneTodoMessage}</span>
+                                        <div class="ipmRadioButton mstonebWidth proRoute">
+                                            <input id="lite" type="radio" name="mstone" ischecked="{!project.IPM_Complexity__c}" value="Lite" onChange="SaveComplexity()" styleClass="{!If(AND(projectType.IPM_Gate_Document__c!=null,projectType.IPM_Gate_Document__c!='',updateApproach=true,updateComplexity=true) ,'','disable')}"  isDisabled="{! If( AND(projectType.IPM_Gate_Document__c!=null,projectType.IPM_Gate_Document__c!='',AND(updateApproach=true,updateComplexity=true) ),'false','true')}" />
+                                            <label for="lite"></label>
+                                            <span class="raLabel">{!$Label.IPM_Lite}</span>
+                                        </div>
+                                        <div class="ipmRadioButton mstonebWidth proRoute">
+                                            <input id="full" type="radio" name="mstone" value="Full" ischecked="{!project.IPM_Complexity__c}" onChange="SaveComplexity1()" styleClass="{!If(AND(projectType.IPM_Gate_Document__c!=null,projectType.IPM_Gate_Document__c!='',updateApproach=true,updateComplexity=true) ,'','disable')}"  isDisabled="{! If( AND(projectType.IPM_Gate_Document__c!=null,projectType.IPM_Gate_Document__c!='',AND(updateApproach=true,updateComplexity=true) ),'false','true')}" />
+                                            <label for="full"></label>
+                                            <span class="raLabel">{!$Label.IPM_Full}</span>  
+                                        </div>
+                                        <div class="radioTooltipipmLite toolTipMsg routeTip" id="Lite">
+                                            <span>{!$Label.IPM_SELECTING_IPM_LITE}</span>
+                                        </div>
+                                        <div class="radioTooltipipmFull toolTipMsg routeTip" id="Full">
+                                            <span>{!$Label.IPM_SELECTING_IPM_FULL}</span>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="ipmMilestonetodosContent displaynone" id="newMstone">
+                                <div class="heading2 ipmHeading blue">
+                                    {!$Label.IPM_MILESTONE}
+                                 </div>                          
+                                   <apex:outputPanel id="mainRender">
+                                        <c:IPM_List_Milestones pId="{!IPM_Project__c.Id}" Editmilestone="{!isMilestoneEditable}" isBD="{!isBDuser}" IsDateEditable="{!isupdateDates}" />
+                                    </apex:outputPanel>
+                             </div>
+                             <div class="ipmMilestonetodosContent displaynone" id="todolistcontent"> 
+                                <div class="heading2 ipmHeading blue">
+                                    {!$Label.IPM_Home_Todo}
+                                 </div>
+                                   <apex:outputPanel rendered="{!if(AND(isvisible,isTaskVisible),TRUE,FALSE)}" id="outerTaskPanel">
+                                        <c:IPM_List_Tasks updateIPMApproach="{!updateApproach}" createTask="{!isCreateTask}" pId="{!IPM_Project__c.Id}" Edittask="{!isTaskeditable}" EditAlltask="{!isAllTask}" functionrole="{!FunctionRole}" projectapproach="{!pmApproachMessage}" />
+                                   </apex:outputPanel>
+                             </div>
+                    
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                <div class="col-sm-12 transBox boxPadTop noPadleft">
-                <apex:actionStatus startText="" id="loader" startStyleClass="proInit"/>
-                <span class="mStonequest">{!$Label.IPM_ProjectComplexityMessage} </span>
-                <span class="mStonequest">{!$Label.IPM_MilestoneTodoMessage}</span>
-                    <div class="ipmRadioButton mstonebWidth proRoute">
-                        <input id="lite" type="radio" name="mstone" ischecked="{!project.IPM_Complexity__c}" value="Lite" onChange="SaveComplexity()" styleClass="{!If(AND(projectType.IPM_Gate_Document__c!=null,projectType.IPM_Gate_Document__c!='',updateApproach=true,updateComplexity=true) ,'','disable')}"  isDisabled="{! If( AND(projectType.IPM_Gate_Document__c!=null,projectType.IPM_Gate_Document__c!='',AND(updateApproach=true,updateComplexity=true) ),'false','true')}" />
-                        <label for="lite"></label>
-                        <span class="raLabel">{!$Label.IPM_Lite}</span>
-                    </div>
-                    <div class="ipmRadioButton mstonebWidth proRoute">
-                        <input id="full" type="radio" name="mstone" value="Full" ischecked="{!project.IPM_Complexity__c}" onChange="SaveComplexity1()" styleClass="{!If(AND(projectType.IPM_Gate_Document__c!=null,projectType.IPM_Gate_Document__c!='',updateApproach=true,updateComplexity=true) ,'','disable')}"  isDisabled="{! If( AND(projectType.IPM_Gate_Document__c!=null,projectType.IPM_Gate_Document__c!='',AND(updateApproach=true,updateComplexity=true) ),'false','true')}" />
-                        <label for="full"></label>
-                        <span class="raLabel">{!$Label.IPM_Full}</span>  
-                    </div>
-                    <div class="radioTooltipipmLite toolTipMsg routeTip" id="Lite">
-                        <span>{!$Label.IPM_SELECTING_IPM_LITE}</span>
-                    </div>
-                    <div class="radioTooltipipmFull toolTipMsg routeTip" id="Full">
-                        <span>{!$Label.IPM_SELECTING_IPM_FULL}</span>
-                   </div>
-                </div>
-                </div>
-                <apex:outputPanel id="mainRender">
-                    <c:IPM_List_Milestones pId="{!IPM_Project__c.Id}" Editmilestone="{!isMilestoneEditable}" isBD="{!isBDuser}" IsDateEditable="{!isupdateDates}" />
-                </apex:outputPanel>
-                
-                <apex:outputPanel rendered="{!isvisible}" id="outerTaskPanel">
-                    <c:IPM_List_Tasks updateIPMApproach="{!updateApproach}" createTask="{!isCreateTask}" pId="{!IPM_Project__c.Id}" Edittask="{!isTaskeditable}" EditAlltask="{!isAllTask}" functionrole="{!FunctionRole}" projectapproach="{!pmApproachMessage}" />
-               </apex:outputPanel>
             </div>
+  
+        </div>
+            
              
             <div id="ipmModalDiv" class="edittaskModal">
                 <c:IPM_ModalHeaderDiv />

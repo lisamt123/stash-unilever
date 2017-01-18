@@ -1,0 +1,17 @@
+<apex:page standardController="Event" showChat="false">
+    <apex:stylesheet value="{!$Resource.ICB_CheckInCheckOut_CSS}"/>
+    
+    <apex:includeLightning />
+    <div id="lightning" />
+    
+    <script>
+        $Lightning.use("c:ICB_CheckInCheckOut_APP", function() {
+            console.debug(new Date());
+            $Lightning.createComponent("c:ICB_CheckInCheckOut",
+            { recordId : '{!Event.Id}'},
+            "lightning",
+            function(cmp) {});
+        });
+    </script>
+
+</apex:page>

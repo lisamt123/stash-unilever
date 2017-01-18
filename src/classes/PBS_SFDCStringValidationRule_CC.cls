@@ -103,8 +103,8 @@ global with sharing class PBS_SFDCStringValidationRule_CC extends PBS_SFDCBaseVa
     public void assertValid(String input ) {
 
         if ( PBS_SFDCStringUtils_CC.isEmpty(input) ) {
-            if (isAllowNull())
-                return;
+            if (isAllowNull()){
+                return;}
             throw new PBS_SFDCValidator_CC.SFDCValidationException('SFDCStringValidationRule - Input required');
         }
 

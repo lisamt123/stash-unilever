@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveDashboard xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <content xsi:nil="true"/>
+    <application>UL_Reports</application>
+    <description>Report 8
+
+Projects with BET links
+
+• Original Projects only with a link to a BET
+• Original projects only without a link to a BET</description>
+    <masterLabel>IPM Report 8-PROJECT WITH BET LINKS</masterLabel>
+</WaveDashboard>

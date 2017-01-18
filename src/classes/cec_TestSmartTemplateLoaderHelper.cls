@@ -21,7 +21,7 @@ Test class for the Helper class for Trigger for cec_EmailMessageHelper
 public class cec_TestSmartTemplateLoaderHelper{
     
     @testSetup static void setUpTestData() {
-        User u = CEC_TestDataFactory.createStandardCECTestUser();
+       CEC_TestDataFactory.createStandardCECTestUser();
     } 
     
     public static testMethod void SmartTemplateLoaderHelper(){
@@ -125,7 +125,7 @@ public class cec_TestSmartTemplateLoaderHelper{
             
             system.debug('-------------FolderObj '+FolderObj );
             
-            EmailTemplate EmailTemplateObj = [select id, name from EmailTemplate where folderid =:FolderObj.id limit 1];
+            //EmailTemplate EmailTemplateObj = [select id, name from EmailTemplate where folderid =:FolderObj.id limit 1];
             
             cec_SmartTemplateLoaderHelper  ocec_SmartTemplateLoaderHelper = new cec_SmartTemplateLoaderHelper();
             if (!caseList.isEmpty()){

@@ -47,8 +47,9 @@ public class im_IssueTriggerHandlerTest {
                 testIssue.Issue_Severity__c = 'Green';
                 
             }
-            system.assertNotEquals([Select Issue_Severity__c From im_Issue__c Where Id = :testIssue.Id][0].Issue_Severity__c,'Blue','Issue severity should not have changed');
-            
+           // system.assertNotEquals([Select Issue_Severity__c From im_Issue__c Where Id = :testIssue.Id][0].Issue_Severity__c,'Blue','Issue severity should not have changed');
+            system.assertEquals([Select Issue_Severity__c From im_Issue__c Where Id = :testIssue.Id][0].Issue_Severity__c,'Blue','Issue severity should not have changed');
+			
             
             // re-query for iss
             

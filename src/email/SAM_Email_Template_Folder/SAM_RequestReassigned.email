@@ -1,0 +1,9 @@
+Hi {!SAM_Request__c.lkp_Assign_To__c},
+
+Service Request number {!SAM_Request__c.Name}  has been assigned to you. 
+
+You can access your Service Request via the link below;
+{!SAM_Request__c.Link} 
+
+Thanks,
+SAM Demand Management

@@ -1,6 +1,7 @@
 <aura:component >
-    <aura:attribute name="workplaceGroupDetail" type="CollaborationGroup" />  
-    <div class="itemPanel" onclick="{!c.navigateToGroupDetailPage}">
+     <aura:attribute name="workplaceGroupDetail" type="CollaborationGroup" /> 
+   <div class="itemPanel" onclick="{!c.navigateToGroupDetailPage}">
+        
         <table width="100%" >
             <tr>
                 <td class="groupIcon">
@@ -24,5 +25,6 @@
             <span class="title">{!v.workplaceGroupDetail.Name} </span><br/>
             <span class="subTitle">{!v.workplaceGroupDetail.MemberCount}</span>
         </div>-->
+       
     </div>     
 </aura:component>

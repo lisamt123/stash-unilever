@@ -48,7 +48,8 @@ public with sharing class PBS_TrainingPlanSectionAsgmtsDelExt_CC{
                 PBS_LMS_ESAPI_CC.isAuthorizedToDelete(objectTypesToDelete);
             //END Access Check
 
-            Id batchInstanceId = Database.executeBatch(new PBS_TrainingPlanSecAssigmtsDelBat_CC(trainingPlanSectionId),20);
+           // Id batchInstanceId = 
+            Database.executeBatch(new PBS_TrainingPlanSecAssigmtsDelBat_CC(trainingPlanSectionId),20);
             PBS_LMSUtils_CC.addSuccessMessage(System.Label.ALMS_Batch_Delete_Queued_Success);
         }catch(Exception e){
             ApexPages.addMessages(e);

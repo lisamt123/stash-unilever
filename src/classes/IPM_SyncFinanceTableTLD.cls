@@ -1,3 +1,4 @@
+
 /*************************************************************************************************************
 * @author:Cognizant
 * @date: 19/01/2016
@@ -27,12 +28,14 @@ public with sharing class IPM_SyncFinanceTableTLD {
             IPM_Project_Rollout__c projectRollout = updatedRollouts.get(rolloutId);
             // Collec only local rollouts. Non-local rollouts will be handled via local rollouts
             if(projectRollout.RecordTypeId==LOCAL_ROLLOUT_RECORDTYPE) {
-            	if(projectRollout.KeyMCO__c) {
-                	// collect KEY Rollouts
-                	localKeyRollouts.put(rolloutId,projectRollout);
-                } else {
-                	// collect NONKEY tollouts
-                	localNonkeyRollouts.put(rolloutId,projectRollout);
+                if(!projectRollout.KeyMCO__c) {
+                     //collect NONKEY Rollouts at ideas
+                    localNonkeyRollouts.put(rolloutId,projectRollout);
+                   
+                }
+                if(projectRollout.KeyMCO__c || projectRollout.Local_Rollout_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS) {
+                    // collectNKEY tollouts
+                     localKeyRollouts.put(rolloutId,projectRollout);
                 }
 				consolidationTLDList.add(projectRollout);
             }
@@ -62,7 +65,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
         Map<ID, IPM_Project__c> operationalProjects = new Map<ID,IPM_Project__c>();
     	Map<ID, IPM_Project__c> localProjects = new Map<ID,IPM_Project__c>();
     	Map<ID, IPM_Project__c> projects = new Map<ID, IPM_Project__c>(	
-    																	[ Select ID, Name, IPM_Project_Type__c, IPMProject_Span__c, IPM_Target_Launch_Dates__c, IPM_Parent_Project__c,
+                                                                        [ Select ID, Name, Source_Rollout_External_Id__c, IPM_Project_Type__c, IPMProject_Span__c, IPM_Target_Launch_Dates__c, IPM_Parent_Project__c,IPM_Project_Rollout__c,IPM_Project_Rollout__r.Target_Launch_Date__c,
     																		 ( Select Name, Financial_External_ID__c 
     																		   From IPM_Financials_Consolidated__r where isActive__c=true ),
     																		 ( Select Name, Financial_External_ID__c 
@@ -107,6 +110,18 @@ public with sharing class IPM_SyncFinanceTableTLD {
 		}
 		
 		if(!localProjects.isEmpty()) {
+	    		setMapLocalFin(localProjects);
+		}
+    	updateFinancialTables();
+    }
+    
+    /*******************************************************************************************************
+    * @description  	This method retrieves local financials and financial year records from updated project.
+    					retrieved the financial's Target Launch Date and financial year's name & external id fields will be updated with project's Target Lanuch Date.
+    * @param        NONE
+    * @return       NONE
+    *********************************************************************************************************/
+    private void setMapLocalFin(Map<ID, IPM_Project__c> localProjects){
 	    	Set<ID> projectIdsContainsFinancials = new Set<ID>();
 	    	Set<ID> projectIdsNotContainsFinancials = new Set<ID>();
 	    	Set<ID> parentProjectIds = new Set<ID>();
@@ -126,8 +141,8 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	    			IPM_Project__c project = localProjects.get(projId);
 	    			// Update Local projects's financials with projects' TLD
          			for(IPM_Financial__c ipmFinancial:project.IPM_Financials_Local__r) {
-	    				if(ipmFinancial.Financial_External_ID__c==project.name) {
-	    					ipmFinancial.Target_Launch_Date__c = project.IPM_Target_Launch_Dates__c;
+	    				if(ipmFinancial.Financial_External_ID__c==project.Source_Rollout_External_Id__c) {
+                            ipmFinancial.Target_Launch_Date__c = project.IPM_Project_Rollout__r.Target_Launch_Date__c;
 					        financialsMap.put(ipmFinancial.id, ipmFinancial);
 	    				}
 	    			}
@@ -137,7 +152,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	    		
 	        // filter local projects 
 	    		Map<ID, IPM_Project__c> parentProjects = new Map<ID, IPM_Project__c>(	
-			    																	[ Select ID, Name,
+			    																	[ Select ID, Name,Source_Rollout_External_Id__c,
 			    																		( Select Name, IPM_Target_Launch_Dates__c 
 			    																		  From IPM_Projects__r ),
 			    																		( Select Name, Financial_External_ID__c 
@@ -147,7 +162,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	    		
 	    		for(IPM_Project__c parentProj: parentProjects.values()){
 	    			for(IPM_Financial__c ipmFinancial:parentProj.IPM_Financials_Regional__r) {
-	    				if( ipmFinancial.Financial_External_ID__c==(parentProj.name+'_NONKEY') ) {
+	    				if( ipmFinancial.Financial_External_ID__c==(parentProj.Source_Rollout_External_Id__c+'_NONKEY') ) {
 	    					// Update Local projects's NONKEY financials with projects' TLD
 	    					for(IPM_Project__c proj:parentProj.IPM_Projects__r) {
 	    						if(projectIdsNotContainsFinancials.contains(proj.id)) {
@@ -160,8 +175,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	    		}
 	    	}
 		}
-    	updateFinancialTables();
-    }
+    
     /*
     	This method retrieves local and regional financials and financial year records from updated NONKEY MCO rollouts & regional projects.
     	Once retrieved the financial's Target Launch Date and financial year's name & external id fields will be updated with NONKEY MCO rollouts' Target Lanuch Date. 
@@ -190,11 +204,11 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	        regionalRolloutsMap = new Map<ID, IPM_Project_Rollout__c>(  [ Select name, id, External_Id__c, IPM_Project__r.IPM_Phase__c, 
 	                                                                                                        ( Select Target_Launch_Date__c 
 	                                                                                                          From Local_Rollouts__r
-	                                                                                                          where KeyMCO__c !=true AND  isActive__c=true
+	                                                                                                          where KeyMCO__c = false AND  isActive__c=true
 	                                                                                                          ORDER BY Target_Launch_Date__c ASC NULLS LAST ), 
 	                                                                                                        ( Select Financial_External_ID__c 
 	                                                                                                          From IPM_Financials__r 
-	                                                                                                          where isActive__c=true AND (Financial_External_ID__c like '%NONKEY') ) 
+	                                                                                                          where isActive__c=true AND Financial_External_ID_Check_If_NONKEY__c = :IPM_ConstantUtils.IPM_true ) 
 	                                                                                                     From IPM_Project_Rollout__c  
 	                                                                                                     where id in : regionalRolloutIDs AND isActive__c=true]);
 	        if(!regionalRolloutsMap.isEmpty()) {
@@ -229,12 +243,25 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	        List<IPM_Project__c> regionalProjList = [ SELECT ID, Name,IPM_Project_Type__c,IPMProject_Span__c,
 	        											( Select Name, Target_Launch_Date__c,Local_Project_Target_Launch_Date__c, Local_Project__c 
 	        											  From Regional_Project_Rollout__r 
-	        											  where KeyMCO__c !=true  AND isActive__c=true 
+	        											  where KeyMCO__c = false  AND isActive__c=true 
 	        											  ORDER BY Target_Launch_Date__c ASC NULLS LAST ),  
 	        											( Select id, Financial_External_ID__c, Target_Launch_Date__c 
 	        											  From IPM_Financials_Regional__r  where isActive__c=true)   
 	        										  FROM IPM_Project__c 
 	        										  WHERE id in : regionalProjectIDs];
+	        setMapRegionalFin(regionalProjList); 
+	        
+        }
+    }
+    
+    /*******************************************************************************************************
+    * @description  This method retrievesregional financials and financial year records from updated NONKEY MCO rollouts & regional projects.
+    				Once retrieved the financial's Target Launch Date and financial year's name & external id fields will be updated with NONKEY MCO rollouts' Target Lanuch Date. 
+    * @param        NONE
+    * @return       NONE
+    *********************************************************************************************************/
+    
+    private void setMapRegionalFin(List<IPM_Project__c> regionalProjList){
 	        for(IPM_Project__c regionalProject: regionalProjList) {
 	        	if(!regionalProject.Regional_Project_Rollout__r.isEmpty()) {
 		            	IPM_Project_Rollout__c earliestlocalRollout = regionalProject.Regional_Project_Rollout__r[0];
@@ -264,7 +291,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	        	}
 	        }	
         }
-    }
+    
     /*
     	This method retrieves local and regional financials and financial year records from updated KEY MCO rollouts & regional projects.
     	Once retrieved the financial's Target Launch Date and financial year's name & external id fields will be updated with NONKEY MCO rollouts' Target Lanuch Date. 
@@ -290,9 +317,9 @@ public with sharing class IPM_SyncFinanceTableTLD {
         // Get the local rollouts of the regional rollouts. The rocords are order by Target_Launch_Date__c, so the first record in the list is latest TLD
         // Get the key finalcial records of regionla rollout as well
         regionalRolloutsMap = new Map<ID, IPM_Project_Rollout__c>(  [ Select id, External_Id__c, 
-                                                                        ( Select Target_Launch_Date__c, Name 
+                                                                        ( Select Target_Launch_Date__c, Name , IPM_Rollout_Project__c
                                                                           From Local_Rollouts__r
-                                                                          where KeyMCO__c =true AND isActive__c=true), 
+                                                                          where isActive__c=true), 
                                                                         ( Select Financial_External_ID__c 
                                                                           From IPM_Financials__r 
                                                                           where isActive__c=true AND ( NOT (Financial_External_ID__c like '%NONKEY' or Financial_External_ID__c like '%CONSOLIDATED') ) ) 
@@ -303,13 +330,13 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	         
 	        for(ID rolloutId: regionalRolloutsMap.keySet()) {
 	            IPM_Project_Rollout__c regionalRollout = regionalRolloutsMap.get(rolloutId);
-	            String rolloutName;
+	            String rolloutExtId;
 	            Date targetLaunchDate;
 	            for(IPM_Project_Rollout__c rollout: regionalRollout.Local_Rollouts__r) {
-	                rolloutName = rollout.name;
+	                rolloutExtId = rollout.IPM_Rollout_Project__c;
 	                targetLaunchDate = rollout.Target_Launch_Date__c;
 	                for(IPM_Financial__c ipmFinancial: regionalRollout.IPM_Financials__r) {
-	                    if(ipmFinancial.Financial_External_ID__c==rolloutName) {
+	                    if(ipmFinancial.Financial_External_ID__c==rolloutExtId) {
 	                        // update financial table's Target_Launch_Date__c
 	                        ipmFinancial.Target_Launch_Date__c = targetLaunchDate;
 				        	financialsMap.put(ipmFinancial.id, ipmFinancial);
@@ -327,35 +354,33 @@ public with sharing class IPM_SyncFinanceTableTLD {
             	regionalProjectIDs.add(projRollout.Regional_Project__c);
             }
         }
-    	if(!regionalProjectIDs.isEmpty()) {
-	        List<IPM_Project__c> regionalProjList = [ SELECT ID, Name,IPM_Project_Type__c,IPMProject_Span__c,
-	        											( Select Name, Target_Launch_Date__c, Local_Project__c 
-	        											  From Regional_Project_Rollout__r 
-	        											  where KeyMCO__c =true AND isActive__c=true),  
-	        											( Select id, Financial_External_ID__c, Target_Launch_Date__c 
-	        											  From IPM_Financials_Regional__r
-	        											  where  isActive__c=true AND (NOT (Financial_External_ID__c like '%NONKEY' or Financial_External_ID__c like '%CONSOLIDATED')) )   
-	        										  FROM IPM_Project__c 
-	        										  WHERE id in : regionalProjectIDs];
+        if(!regionalProjectIDs.isEmpty()) {
+            List<IPM_Project__c> regionalProjList = [ SELECT ID, Name,IPM_Project_Type__c,IPMProject_Span__c,
+                                                        ( Select Name, Target_Launch_Date__c, Local_Project__c,IPM_Rollout_Project__c 
+                                                          From Regional_Project_Rollout__r 
+                                                          where isActive__c=true),  
+                                                        ( Select id, Financial_External_ID__c, Target_Launch_Date__c 
+                                                          From IPM_Financials_Regional__r
+                                                          where  isActive__c=true AND (NOT (Financial_External_ID__c like '%NONKEY' or Financial_External_ID__c like '%CONSOLIDATED')) )   
+                                                      FROM IPM_Project__c 
+                                                      WHERE id in : regionalProjectIDs];
         
 		   	for(IPM_Project__c regionalProject: regionalProjList) {
         		// handle regional original project
-	        	String rolloutName;
+	        	String rolloutExtId;
 	            Date targetLaunchDate;
 	            for(IPM_Project_Rollout__c rollout: regionalProject.Regional_Project_Rollout__r) {
-    				if((rollout.Local_Project__c==null) || (regionalProject.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && regionalProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)) {
-		                rolloutName = rollout.name;
+		                rolloutExtId = rollout.IPM_Rollout_Project__c;
 		                targetLaunchDate = rollout.Target_Launch_Date__c;
 		                for(IPM_Financial__c ipmFinancial: regionalProject.IPM_Financials_Regional__r) {
-		                    if(ipmFinancial.Financial_External_ID__c==rolloutName) {
+		                    if(ipmFinancial.Financial_External_ID__c==rolloutExtId) {
 		                        // update financial table's Target_Launch_Date__c
 		                        ipmFinancial.Target_Launch_Date__c = targetLaunchDate;
 					        	financialsMap.put(ipmFinancial.id, ipmFinancial);
 		                        break;
 		                    }
 		                }
-	            	}
-        		}
+	              }
 	        }
     	
     	}
@@ -365,26 +390,38 @@ public with sharing class IPM_SyncFinanceTableTLD {
     	
     	Set<ID> globalPrjIDs = new Set<ID>();
     	Set<ID> regionalRolloutIDs = new Set<ID>();
+    	Set<ID> regionalOriginalProjId = new Set<ID>();
     	
     	for(IPM_Project_Rollout__c  rollout : consolidationTLDList){
     		
     		if(!String.isEmpty(rollout.IPM_Project__c)){
     		   globalPrjIDs.add(rollout.IPM_Project__c);
     		}
+            else if(String.isEmpty(rollout.IPM_Project__c) && !String.isEmpty(rollout.Regional_Project__c))
+            {
+            	regionalOriginalProjId.add(rollout.Regional_Project__c);
+            }
     		
     		if(!String.isEmpty(rollout.Regional_Rollout__c)){
     		   regionalRolloutIDs.add(rollout.Regional_Rollout__c);
     		}
     	
     	 }
-    	
-    	List<IPM_Project_Rollout__c> regionalRolloutList =  [ Select Id, Target_Launch_Date__c,
+    	getConsolidatedFinancialsFromRollout(regionalRolloutIDs);
+	    getConsolidatedFinancialsFromProject(globalPrjIDs);
+	    //Regional Original Projects
+	    getConsolidatedFinancialsFromRegionalProject(regionalRolloutIDs);
+	}
+	
+	private void getConsolidatedFinancialsFromRollout(Set<Id> regionalRolloutIDsFin)
+	{
+		List<IPM_Project_Rollout__c> regionalRolloutList =  [ Select Id, Target_Launch_Date__c,
 	                                                           ( Select Target_Launch_Date__c  From Local_Rollouts__r 
 	                                                              where  isActive__c=true ORDER BY Target_Launch_Date__c ASC NULLS LAST ), 
 	                                                           ( Select Target_Launch_Date__c, Financial_External_ID__c 
 	                                                              From IPM_Financials__r   where isActive__c=true
 	                                                              AND (recordtypeId =:Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get('Consolidated').getRecordTypeId()) ) 
-	                                                         From IPM_Project_Rollout__c  where Id IN : regionalRolloutIDs AND isActive__c=true];
+	                                                         From IPM_Project_Rollout__c  where Id IN : regionalRolloutIDsFin AND isActive__c=true];
 	  
 	    if(!regionalRolloutList.isEmpty()) {    
 	      
@@ -404,19 +441,22 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	      }
 	      
 	    }
-	      
-	    List<IPM_Project__c> globalPrjRLoutList = [ Select Id,
+	}
+	
+	private void getConsolidatedFinancialsFromProject(Set<Id> globalPrjIDsFin)
+	{
+		List<IPM_Project__c> globalPrjRLoutList = [ Select Id,
 	                                                ( Select Target_Launch_Date__c From IPM_Project_Rollout__r
 	                                                  where  isActive__c=true ORDER BY Target_Launch_Date__c ASC NULLS LAST ), 
 	                                                ( Select Target_Launch_Date__c, Financial_External_ID__c From IPM_Financials_Consolidated__r 
 	                                                  where isActive__c=true AND IPM_Project_Rollout__c=null AND (recordtypeId =:Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get('Consolidated').getRecordTypeId()) ) 
-	                                                 From IPM_Project__c  where Id in : globalPrjIDs AND Is_Archieved__c=false] ;
+	                                                 From IPM_Project__c  where Id in : globalPrjIDsFin AND Is_Archieved__c=false] ;
 	   
 	   
 	    if(!globalPrjRLoutList.isEmpty()) {    
 	      
 	      for(IPM_Project__c prj: globalPrjRLoutList) {
-	      	
+	      		      	
 	      	Date earliestTLd = prj.IPM_Project_Rollout__r[0].Target_Launch_Date__c;
 	      	for(IPM_Financial__c conFin :prj.IPM_Financials_Consolidated__r) {
 	      	   conFin.Target_Launch_Date__c=earliestTLd;
@@ -425,7 +465,28 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	      
 	      }
 	      
-	    }
+	    }	
+	}
+	
+	private void getConsolidatedFinancialsFromRegionalProject(Set<Id> regionalRolloutIDsFin)
+	{
+		//Regional Original Projects
+	    list<IPM_Project__c> regionalOriginalList=[Select Id,(
+	    										Select Target_Launch_Date__c From Regional_Project_Rollout__r  where  isActive__c=true ORDER BY Target_Launch_Date__c ASC NULLS LAST),
+	    										(Select Target_Launch_Date__c, Financial_External_ID__c From IPM_Financials_Regional__r 
+	                                                  where isActive__c=true AND IPM_Project_Rollout__c=null AND (recordtypeId =:Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get('Consolidated').getRecordTypeId()) )
+	                                                   From IPM_Project__c  where Id in : regionalRolloutIDsFin AND Is_Archieved__c=false];
+	    if(!regionalOriginalList.isEmpty()){
+	    	for(IPM_Project__c prj: regionalOriginalList) {
+	      		      	
+	      	Date earliestTLd = prj.Regional_Project_Rollout__r[0].Target_Launch_Date__c;
+	      	for(IPM_Financial__c conFin :prj.IPM_Financials_Regional__r) {
+	      	   conFin.Target_Launch_Date__c=earliestTLd;
+	      	   financialsMap.put(conFin.id, conFin);
+	      	} 
+	      
+	   	 }
+	   }
 	}
 	
 	private void updateFinancialTables() {

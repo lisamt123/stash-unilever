@@ -14,63 +14,95 @@ VERSION  AUTHOR            DATE              DETAIL                 Description
 ***********************************************************************/
 
 public without sharing class FAU_Utilities {
-	/*******************************************************************
-	   Purpose:  	Commit saves to the database                                                      
-	********************************************************************/
-  	public static void saveDatabase (String sAction, SObject[] sObjectstoSave, Boolean bDMLOption){
-    	System.debug('Entering FAU_Utilities.saveDatabase Size:' + sObjectstoSave.size());
-    	Database.SaveResult[] srObjectstoSaves = new Database.SaveResult[]{};
+    /*******************************************************************
+       Purpose:     Commit saves to the database                                                      
 
-    	if (sObjectstoSave.size() > 0 ){
-    		System.debug('#### Object Type: ' + sObjectstoSave[0].getSObjectType()  +' : ' + sObjectstoSave.size() + 'Records to ' + sAction);
-	    	System.debug('#### sObjectstoSave: ' + sObjectstoSave);
-	    	if (sAction == 'insert'){
-	    		srObjectstoSaves = Database.insert(sObjectstoSave,bDMLOption);
-	    	}else if(sAction == 'update'){
-	    		srObjectstoSaves = Database.update(sObjectstoSave,bDMLOption);
-	    	}
+       ********************************************************************/
+    public static void saveDatabase (String sAction, SObject[] sObjectstoSave, Boolean bDMLOption){
+        System.debug('Entering FAU_Utilities.saveDatabase Size:' + sObjectstoSave.size());
+        Database.SaveResult[] srObjectstoSaves = new Database.SaveResult[]{};
 
-			for (Database.SaveResult srObject : srObjectstoSaves){
-				if(srObject.isSuccess() == false){
-					for(Database.Error err : srObject.getErrors()) {	        	 
-			        		System.debug('The following error has occurred.');                    
-			        		System.debug(err.getStatusCode() + ': ' + err.getMessage());
-			       			System.debug('Particpant Share fields that affected this error: ' + err.getFields());
-			    			sObjectstoSave[0].addError(err.getStatusCode() + ': ' + err.getMessage());
-			       	}
-				}
-			}
-		}else{
-			System.debug('#### No Records to insert/update.');
-		}
+        if (sObjectstoSave.size() > 0 ){
+            System.debug('#### Object Type: ' + sObjectstoSave[0].getSObjectType()  +' : ' + sObjectstoSave.size() + 'Records to ' + sAction);
+            System.debug('#### sObjectstoSave: ' + sObjectstoSave);
+            if (sAction == 'insert'){
+                srObjectstoSaves = Database.insert(sObjectstoSave,bDMLOption);
+            }else if(sAction == 'update'){
+                srObjectstoSaves = Database.update(sObjectstoSave,bDMLOption);
+            }
 
-		System.debug('Exiting FAU_Utilities.saveDatabase');
+            for (Database.SaveResult srObject : srObjectstoSaves){
+                if(!srObject.isSuccess()){
+                    for(Database.Error err : srObject.getErrors()) {                 
+                            System.debug('The following error has occurred.');                    
+                            System.debug(err.getStatusCode() + ': ' + err.getMessage());
+                            System.debug('Particpant Share fields that affected this error: ' + err.getFields());
+                            sObjectstoSave[0].addError(err.getStatusCode() + ': ' + err.getMessage());
+                    }
+                }
+            }
 
-  	}
 
-	/*******************************************************************
-	   Purpose:  	Commit deletes to the database                                                      
-	********************************************************************/ 
-    public static void deleteDatabase (SObject[] sObjectstoDelete, Boolean bDMLOption){
-		System.debug('Entering FAU_Utilities.deleteDatabase Size:' + sObjectstoDelete.size());
-    	
-    	if (sObjectstoDelete.size() > 0 ){
 
-	    	Database.DeleteResult[] drObjectstoDeletes= Database.delete(sObjectstoDelete, bDMLOption);
-			
-			for (Database.DeleteResult drObjectstoDelete : drObjectstoDeletes){
-				if(drObjectstoDelete.isSuccess() == false){
-					for(Database.Error err : drObjectstoDelete.getErrors()) {	        	 
-			        		System.debug('The following error has occurred.');                    
-			        		System.debug(err.getStatusCode() + ': ' + err.getMessage());
-			       			System.debug('Particpant Share fields that affected this error: ' + err.getFields());
-			    			sObjectstoDelete[0].addError(err.getStatusCode() + ': ' + err.getMessage());
-			       	}
-				}
-			}
-		}else{
-			System.debug('#### No Records to delete.');
-		}
-		System.debug('Exiting FAU_Utilities.deleteDatabase' );
+
+            }else{
+            System.debug('#### No Records to insert/update.');
+        }
+
+        System.debug('Exiting FAU_Utilities.saveDatabase');
+
     }
+
+
+
+    /*******************************************************************
+       Purpose:     Commit deletes to the database                                                      
+    ********************************************************************/ 
+    public static void deleteDatabase (SObject[] sObjectstoDelete, Boolean bDMLOption){
+        System.debug('Entering FAU_Utilities.deleteDatabase Size:' + sObjectstoDelete.size());
+
+        
+        if (sObjectstoDelete.size() > 0 ){
+
+            Database.DeleteResult[] drObjectstoDeletes= Database.delete(sObjectstoDelete, bDMLOption);
+
+            
+            for (Database.DeleteResult drObjectstoDelete : drObjectstoDeletes){
+                if(!drObjectstoDelete.isSuccess()){
+                    for(Database.Error err : drObjectstoDelete.getErrors()) {                
+                            System.debug('The following error has occurred.');                    
+                            System.debug(err.getStatusCode() + ': ' + err.getMessage());
+                            System.debug('Particpant Share fields that affected this error: ' + err.getFields());
+                            sObjectstoDelete[0].addError(err.getStatusCode() + ': ' + err.getMessage());
+                    }
+                }
+            }
+
+
+
+            }else{
+            System.debug('#### No Records to delete.');
+        }
+
+        System.debug('Exiting FAU_Utilities.deleteDatabase' );
+    }
+    
+    /*******************************************************************
+       Purpose:     Return the check of recordtype UL2020                                     
+    ********************************************************************/
+    public static boolean isRectypeUL2020 (FAU_Participant__c participant)
+    {
+    List <FAU_Program__c> programs =  [SELECT recordtype.name FROM FAU_Program__c WHERE Id = :participant.FAU_Program_Wave__c LIMIT 1];
+    if(programs.size() > 0){
+    if(programs[0].recordtype.name == 'UL2020'){
+        return true;
+        }
+        else{
+        return false;
+        }       
+     }
+     else{
+        return false;
+        }
+   }
 }

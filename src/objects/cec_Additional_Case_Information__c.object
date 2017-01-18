@@ -2321,6 +2321,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Record_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>RecordType.DeveloperName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Record Type Developer Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>URL__c</fullName>
         <externalId>false</externalId>
         <label>URL</label>

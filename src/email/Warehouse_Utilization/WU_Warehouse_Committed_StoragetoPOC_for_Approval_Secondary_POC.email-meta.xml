@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Warehouse Committed Utilization Change and approved By Proc Manager</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Warehouse_Committed_StoragetoPOC_for_Approval_Secondary_POC</name>
+    <style>none</style>
+    <subject>Committed Pallet Utilization Changed for Warehouse  : {!WU_Master_Warehouse__c.WU_LocationName__c} - APPROVED by Procurement Manager.</subject>
+    <type>text</type>
+</EmailTemplate>

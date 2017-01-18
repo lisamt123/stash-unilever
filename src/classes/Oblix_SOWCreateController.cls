@@ -12,7 +12,7 @@
 ******************************************************************************************/
 public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentController{
 
-	private static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
+    private static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
     private static final String OBJECT_SOW_TO_QUERY = 'marketing_sow__c';
 
     public Attachment pageAttachment {get; set;}
@@ -36,23 +36,25 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
     * @date         2016-02-26
     * @description  constructor initializes the page mode to edit/create
     ********************************************************************************/
-	public Oblix_SOWCreateController() {
-		pageAttachment = new Attachment();
+    public Oblix_SOWCreateController() {
+        pageAttachment = new Attachment();
 
-		String sow_id = ApexPAges.currentPage().getParameters().get('sowId');
-		if(String.isEmpty(sow_id)){
-			selected_sow = new Marketing_SOW__c();
-            liso_attachments = new List<Attachment>();
+        String sow_id = ApexPAges.currentPage().getParameters().get('sowId');
+        if(String.isEmpty(sow_id)){
+            selected_sow = new Marketing_SOW__c();
+            // S.M. 2016-06-06 NO LONGER USED IN THIS PAGE - MOVED TO SOW MAIN DETAIL PAGE
+            //liso_attachments = new List<Attachment>();
             isEdit = false;
-		} else {
-			isEdit = true;
-			selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
-            liso_attachments = getSOWAttachments(selected_sow.Id);
-		}
+        } else {
+            isEdit = true;
+            selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
+            // S.M. 2016-06-06 NO LONGER USED IN THIS PAGE - MOVED TO SOW MAIN DETAIL PAGE
+            //liso_attachments = getSOWAttachments(selected_sow.Id);
+        }
 
-	}
+    }
 
-	/*******************************************************************************
+    /*******************************************************************************
     * @author       Slavko Skular
     * @date         2016-02-26
     * @description  overrides parent class' checkUserHasPermissionToSOW method to 
@@ -61,13 +63,15 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
     ********************************************************************************/
     public override PageReference checkUserHasPermissionToSOW(){
 
-		if(isEdit){
-			return super.checkUserHasPermissionToSOW();
-		} else {
-			return null;
-		}
+        if(!Oblix_PermissionHandler.hasEditAccess(selected_sow)){
+            return super.checkUserHasPermissionToSOW();
+        } else if(isEdit){
+            return super.checkUserHasPermissionToSOW();
+        } else {
+            return null;
+        }
 
-	}
+    }
 
     /*******************************************************************************
     * @author       Slavko Skular
@@ -75,39 +79,40 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
     * @description  attaches a file to an existing SOW. If the page is in create mode,
     *               inserts a SOW first (on cancel it will be deleted)
     ********************************************************************************/
-	public void uploadAttachment(){
+    // S.M. 2016-06-06 THIS METHOD IS NO LONGER USED IN THIS PAGE - MOVED TO SOW MAIN DETAIL PAGE
+    //public void uploadAttachment(){
 
-        if(pageAttachment.body == null){
+ //       if(pageAttachment.body == null){
 
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'No file selected. Select a file you would like to attach to this SOW.'));
+ //           ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'No file selected. Select a file you would like to attach to this SOW.'));
 
-        } else {
+ //       } else {
 
-    		if(!isEdit){
-    			saveSOW();
-    		}
+ //         if(!isEdit){
+ //             saveSOW();
+ //         }
 
-    		pageAttachment.OwnerId = UserInfo.getUserId();
-            pageAttachment.ParentId = selected_sow.id;
-            //IR - Comented out as far of DE330 defect fix
-            //pageAttachment.IsPrivate = true;
+ //         pageAttachment.OwnerId = UserInfo.getUserId();
+ //           pageAttachment.ParentId = selected_sow.id;
+ //           //IR - Comented out as far of DE330 defect fix
+ //           //pageAttachment.IsPrivate = true;
 
-            try{
+ //           try{
 
-            	insert pageAttachment;
-            	ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO, 'Attachment uploaded successfully'));
-            	// clear blob data from viewstate
-            	pageAttachment.body = null;
-            	liso_attachments.add(pageAttachment);
-            	// create new attachemnt instance for page upload
-            	pageAttachment = new Attachment();
+ //             insert pageAttachment;
+ //             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO, 'Attachment uploaded successfully'));
+ //             // clear blob data from viewstate
+ //             pageAttachment.body = null;
+ //             liso_attachments.add(pageAttachment);
+ //             // create new attachemnt instance for page upload
+ //             pageAttachment = new Attachment();
 
-            } catch(DmlException e){
-            	ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'Error uploading attachment:' + e.getMessage()));
-            }
-        }
+ //           } catch(DmlException e){
+ //             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'Error uploading attachment:' + e.getMessage()));
+ //           }
+ //       }
 
-	}
+    //}
 
     /*******************************************************************************
     * @author       Slavko Skular
@@ -120,13 +125,29 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
 
         Boolean didSave = false;
 
+        // S.M. 2016-06-10 
+        // make sure this is not a duplicate SOW by checking the prefis
+        Map<Id, marketing_sow__c> existingSOWWithSameName = new Map<Id, marketing_sow__c>([SELECT Id FROM marketing_sow__c WHERE Name_Prefix__c =: selected_sow.Name_Prefix__c]);
+        
+        // changes made to fix SWOP rename ticket
+        if (isEdit && existingSOWWithSameName.size() > 0 
+                && isEdit && (existingSOWWithSameName.size() != 1 || existingSOWWithSameName.size() == 1 && !existingSOWWithSameName.containsKey(selected_sow.Id))){
+
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Duplicate SOW Name detected! Please give SOW a unique name'));
+            return didSave;
+        }
+        
         try{
             upsert selected_sow;
             didSave = true;
             //isEdit = true;
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO, 'SOW saved successfully'));
         } catch (DmlException e){
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Error saving SOW: ' + e.getMessage()));
+            if (e.getMessage().contains('DUPLICATES_DETECTED') || e.getMessage().contains('DUPLICATE_VALUE')) {
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Duplicate found. Please enter a unique SOW name'));
+            } else{
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Error saving SOW: ' + e.getMessage()));
+            }
         }
 
         return didSave;
@@ -160,11 +181,11 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
     *               uploaded. possible change (if user will accept) is to change user
     *               journey to force save of SOW efore attachment upload.
     ********************************************************************************/
-	public PageReference cancelAction(){
+    public PageReference cancelAction(){
 
         Pagereference returnPage;
 
-		if(!isEdit && selected_sow != null && selected_sow.Id != null){
+        if(!isEdit && selected_sow != null && selected_sow.Id != null){
             delete selected_sow;
             returnPage = Page.Oblix_SOWMain;
         } else {
@@ -174,7 +195,7 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
         returnPage.setRedirect(True);
         return returnPage;
 
-	}
+    }
 
     /*******************************************************************************
     * @author       Slavko Skular
@@ -182,11 +203,11 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
     * @description  auto-populates small and big category fields when user selects
     *               a brand
     ********************************************************************************/
-	public void getCategoryBrand(){
+    public void getCategoryBrand(){
 
-		List<MDO_CategoryBrands__c> categoryBrandList = [SELECT Id, product_Category_Id__r.Id, product_Category_Id__r.Name, 
-															product_Category_Id__r.parent_L2__r.Id, product_Category_Id__r.parent_L2__r.Name 
-            											FROM MDO_CategoryBrands__c WHERE brand_id__c =:selected_sow.OblixBrand__c];
+        List<MDO_CategoryBrands__c> categoryBrandList = [SELECT Id, product_Category_Id__r.Id, product_Category_Id__r.Name, 
+                                                            product_Category_Id__r.parent_L2__r.Id, product_Category_Id__r.parent_L2__r.Name 
+                                                        FROM MDO_CategoryBrands__c WHERE brand_id__c =:selected_sow.OblixBrand__c];
         
         System.debug('numberOfCategoryBrands: ' + categoryBrandList.size());
         
@@ -209,7 +230,7 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
             
         }
 
-	}
+    }
 
     /*******************************************************************************
     * @author       Slavko Skular
@@ -217,7 +238,7 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
     * @description  manually create select options from field metadata. Required in
     *               order to replace the '--None--' with 'Financial Year' placeholder
     ********************************************************************************/
-	public List<SelectOption> getFYSelectOptions() {
+    public List<SelectOption> getFYSelectOptions() {
         List<SelectOption> options = new List<SelectOption>();
         
         options.add(new SelectOption('', 'Financial Year'));

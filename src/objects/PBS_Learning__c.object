@@ -294,5 +294,38 @@ TEXT(FLOOR((Duration__c)/60))&amp;&quot; hr(s) &quot;&amp;TEXT(FLOOR(MOD((Durati
         <fullName>PBS_LMS_Sharing__c</fullName>
         <label>PBS_LMS Sharing</label>
     </sharingReasons>
-   
+      <webLinks>
+        <fullName>Delete_Shared_Assignments</fullName>
+        <availability>online</availability>
+        <description>Button used for deleting unused sharind assignments for a Learning</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Delete Shared Assignments</masterLabel>
+        <openType>noSidebar</openType>
+        <page>PBS_LearningDeleteSharedAssignments</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Preview</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Preview</masterLabel>
+        <openType>replace</openType>
+        <page>PBS_Learning_Preview</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Publish</fullName>
+        <availability>online</availability>
+        <description>Button used for launching the learning publish VF page</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Publish</masterLabel>
+        <openType>noSidebar</openType>
+        <page>PBS_Learning_Publish</page>
+        <protected>false</protected>
+    </webLinks>
 </CustomObject>

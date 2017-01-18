@@ -10,7 +10,7 @@ Purpose: Provides required constants for all classes developed for Contracting A
 History
 -------
 VERSION     AUTHOR           DATE            DETAIL Description
-1.0         Dinesh Girase    29/01/2016     INITIAL DEVELOPMENT CSR:
+1.0         Dineshsing Girase    29/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 public class CPA_ConstantsForContractingAppClasses{
 
@@ -210,7 +210,8 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String EXPTGOLIVEDATENOTPASTDATE='Expected go-live date canot be past date';
     public static final String CPASMT='CPA_SMT';
     public static final String CPAADM='CPA_ADM';
-    public static final String CPAULPM='CPA_ULPM'; 
+    public static final String CPAULPM='CPA_ULPM';
+    public static final String CPAULPMSF='CPA_ULPM_SL'; 
     public static final String WhyProjectInvasiveInNature='Why Project Invasive in nature?';
     public static final String MANDATORYIFPRJISINVASIVEINNATURTE='Mandatory, If Project is Invasive in nature';
     public static final String MANDATORYIFPRJROLESYSADMIN='Mandatory, if the project has Role or System Authorization';
@@ -286,5 +287,16 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String ESTOFF = 'Est_Off';
     public static final String ESTON = 'Est_On'; 
     public static final String EXP = 'Expense_perc';
+     //Swathi added below code on 26/09/2016, to fix new UAT issue
+    public static final String ACCESSTOUNILPERDATA = 'Access to Unilever personal data';
+    public static final String LINKEDPROJECT= 'Linked Project';
+    public static final String LINKEDPWOS= 'Linked PWOs';
+    public static final String LINKEDPWOSMANDATORY = 'Mandatory when  Linked Project is YES';
+    public static final String LARGEPROJECTDISCOUNT = 'Large Project Discount';
+    public static final String LARGEPROJECTDISCOUNTDETAILS= 'Large Project discount details';
+    public static final String LARGEPROJECTDISCOUNTDETAILSMANDATORY = 'Mandatory when  Large Project Discount is YES';
+    
+    
+    
 
 }

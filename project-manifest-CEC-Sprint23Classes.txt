@@ -1,0 +1,16 @@
+src
+src/classes
+src/customPermissions
+src/objects
+src/classes/CEC_CaseTriggerHelperExtension.cls
+src/classes/CEC_CaseTriggerHelperExtension.cls-meta.xml
+src/classes/CEC_CaseTriggerHelperExtTest.cls
+src/classes/CEC_CaseTriggerHelperExtTest.cls-meta.xml
+src/classes/CEC_CaseTriggerHelperTest.cls
+src/classes/CEC_CaseTriggerHelperTest.cls-meta.xml
+src/classes/CEC_Util.cls
+src/classes/CEC_Util.cls-meta.xml
+src/classes/CEC_Constants.cls
+src/classes/CEC_Constants.cls-meta.xml
+src/customPermissions/CEC_Disable_Case_Trigger.customPermission
+src/objects/User.object

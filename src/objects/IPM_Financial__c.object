@@ -55,6 +55,416 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fieldSets>
+        <fullName>IPM_CurrentFinancial</fullName>
+        <description>IPM_FinancialController</description>
+        <displayedFields>
+            <field>Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IsFinancialInvalidRegional__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IsFinancialInvalidLocal__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IsFinancialInvalidGlobal__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IsFinancialInvalid__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Display_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Financial_External_ID__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Misaligned__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Gate_Keeping_Model__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Local_Project__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>NPV_Regional__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>NPV_MR__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>NPV_MD__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>NPV_Local__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>NPV_Global__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>NPV_Difference__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>NPV_Contract__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>NPV_Charter__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IRR_MR__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IRR_MD__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IRR_Local__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IRR_Global__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IRR_Difference__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IRR_Contract__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IRR_Charter__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IRR_Regional__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CAPEX_Regional__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CAPEX_MR__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CAPEX_MD__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CAPEX_Local__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CAPEX_Global__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CAPEX_Difference__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CAPEX_Contract__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CAPEX_Charter__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Payback_Regional__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Payback_MR__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Payback_MD__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Payback_Local__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Payback_Global__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Payback_Difference__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Payback_Contract__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Payback_Charter__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BIC_Regional__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BIC_MR__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BIC_MD__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BIC_Local__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BIC_Global__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BIC_Difference__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BIC_Contract__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BIC_Charter__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>GM_Y1_bps_vs_DNDS_Regional__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>GM_Y1_bps_vs_DNDS_MR__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>GM_Y1_bps_vs_DNDS_MD__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>GM_Y1_bps_vs_DNDS_Local__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>GM_Y1_bps_vs_DNDS_Global__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>GM_Y1_bps_vs_DNDS_Difference__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>GM_Y1_bps_vs_DNDS_Contract__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>GM_Y1_bps_vs_DNDS_Charter__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>PBO_Y1_bps_vs_DNDS_Regional__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>PBO_Y1_bps_vs_DNDS_MR__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>PBO_Y1_bps_vs_DNDS_MD__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>PBO_Y1_bps_vs_DNDS_Local__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>PBO_Y1_bps_vs_DNDS_Global__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>PBO_Y1_bps_vs_DNDS_Difference__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>PBO_Y1_bps_vs_DNDS_Contract__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>PBO_Y1_bps_vs_DNDS_Charter__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Volume_Unit_Regional__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Volume_Unit_MR__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Volume_Unit_MD__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Volume_Unit_Local__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Volume_Unit_Global__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Volume_Unit_Difference__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Volume_Unit_Contract__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Volume_Unit_Charter__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Volume_Unit__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Copy_Regional_to_Local__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Copy_Local_to_Regional__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Copy_Local_to_Global__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Copy_Global_to_Regional__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Copy_Global_to_Local__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Regional_Project__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>IPM_CurrentFinancial</label>
+    </fieldSets>
+    <fieldSets>
         <fullName>IPM_Financial_FS</fullName>
         <description>IPMFinancialYearTriggerHandler Class</description>
         <displayedFields>
@@ -143,12 +553,22 @@
         <fullName>BIC_Difference__c</fullName>
         <description>This field is the difference between BIC regional and BIC local.</description>
         <externalId>false</externalId>
-        <formula>IF(BIC_Regional__c &lt;&gt; 0, 
-	IF((ABS(BIC_Regional__c - BIC_Local__c)/BIC_Regional__c) &gt; 0.05, 
-		ABS(BIC_Regional__c - BIC_Local__c), 
-		0
-	), 
-	ABS(BIC_Regional__c - BIC_Local__c)
+        <formula>
+
+
+IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
+    IF(BIC_Global__c &lt;&gt;0,
+        IF((ABS((BIC_Global__c-BIC_Local__c)/BIC_Global__c))&gt;0.1,
+             ABS(BIC_Global__c - BIC_Local__c),0),
+             ABS(BIC_Global__c - BIC_Local__c)
+       ),
+       IF(BIC_Regional__c &lt;&gt;0,
+           IF((ABS((BIC_Regional__c- BIC_Local__c)/BIC_Regional__c)) &gt; 0.05,
+               ABS(BIC_Regional__c - BIC_Local__c),
+               0
+              ),
+               ABS(BIC_Regional__c - BIC_Local__c)
+         )
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>BIC Difference</label>
@@ -331,12 +751,21 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <fullName>CAPEX_Difference__c</fullName>
         <description>This captures difference between Regional and local CAPEX field.</description>
         <externalId>false</externalId>
-        <formula>IF(CAPEX_Regional__c &lt;&gt; 0, 
-	IF((ABS(CAPEX_Regional__c - CAPEX_Local__c)/CAPEX_Regional__c) &gt; 0.05, 
-		ABS(CAPEX_Regional__c - CAPEX_Local__c), 
-		0
-	), 
-	ABS(CAPEX_Regional__c - CAPEX_Local__c)
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
+   IF(CAPEX_Global__c&lt;&gt; 0, 
+      IF((ABS((CAPEX_Global__c - CAPEX_Local__c)/CAPEX_Global__c)) &gt; 0.1, 
+        ABS(CAPEX_Global__c - CAPEX_Local__c), 
+        0
+      ), 
+      ABS(CAPEX_Global__c- CAPEX_Local__c)
+    ),
+    IF(CAPEX_Regional__c &lt;&gt; 0, 
+      IF((ABS((CAPEX_Regional__c - CAPEX_Local__c)/CAPEX_Regional__c)) &gt; 0.05, 
+        ABS(CAPEX_Regional__c - CAPEX_Local__c), 
+        0
+      ), 
+      ABS(CAPEX_Regional__c - CAPEX_Local__c)
+    )
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>CAPEX Difference</label>
@@ -484,6 +913,17 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Copy_Local_to_Global__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox is used to copy Local fields to Global fields with help of a workflow.</description>
+        <externalId>false</externalId>
+        <label>Copy Local to Global</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Copy_Local_to_Regional__c</fullName>
         <defaultValue>false</defaultValue>
         <description>This checkbox is used to copy local fields to Regional fields with help of a workflow.</description>
@@ -513,7 +953,9 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
     SUBSTITUTE(Financial_External_ID__c, &apos;_CONSOLIDATED&apos;, &apos; (Consolidated)&apos;), 
     IF(CONTAINS(Financial_External_ID__c , &apos;NONKEY&apos;), 
         SUBSTITUTE(Financial_External_ID__c, &apos;_NONKEY&apos;, &apos; (Non Key)&apos;), 
-        Financial_External_ID__c
+		IF(CONTAINS(Gate_Keeping_Model__c, &apos;GKM3&apos;), 
+SUBSTITUTE(Financial_External_ID__c, Regional_External_Id__c, Global_External_Id__c), 
+        Financial_External_ID__c)
     )
 )</formula>
         <label>Display Name</label>
@@ -535,6 +977,20 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Financial_External_ID_Check_If_NONKEY__c</fullName>
+        <description>This field return true if Financial External ID has NONKEY</description>
+        <externalId>false</externalId>
+        <formula>IF( CONTAINS( Financial_External_ID__c , &apos;NONKEY&apos;) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field return true if Financial External ID has NONKEY</inlineHelpText>
+        <label>Financial_External_ID_Check_If_NONKEY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Financial_External_ID__c</fullName>
@@ -585,7 +1041,7 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <description>GM Y1 bps vs DNDS Difference</description>
         <externalId>false</externalId>
         <formula>IF(GM_Y1_bps_vs_DNDS_Regional__c &lt;&gt; 0, 
-	IF((ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c)/GM_Y1_bps_vs_DNDS_Regional__c) &gt; 0.05, 
+	IF((ABS((GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c)/GM_Y1_bps_vs_DNDS_Regional__c)) &gt; 0.05, 
 		ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c), 
 		0
 	), 
@@ -689,6 +1145,18 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Gate_Keeping_Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Gate Keeping Model</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Global_External_Id__c</fullName>
         <description>This field is used to store the Global project external id.</description>
         <externalId>false</externalId>
@@ -705,7 +1173,7 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <fullName>Global_Project_Id__c</fullName>
         <description>Associated Global Project Id.</description>
         <externalId>false</externalId>
-        <formula>IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.Id, IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.Id,IF(NOT(ISBLANK(Local_Project__c)),Local_Project__r.Id,IPM_Project_Rollout__r.IPM_Project__c)))</formula>
+        <formula>IF(NOT(ISBLANK(IPM_Project_Rollout__c)), IPM_Project_Rollout__r.IPM_Project__c,IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.Id, IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.Id,IF(NOT(ISBLANK(Local_Project__c)),Local_Project__r.Id,IPM_Project_Rollout__r.IPM_Project__c))))</formula>
         <label>Global Project Id</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1050,7 +1518,7 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
 
  IF(OR(Year_1_iTO_Local__c/1000&gt;=10, Year_1_iTO_Local__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005))
 , &quot;Gold&quot;,  
-IF(OR(Year_1_iTO_Local__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), Year_1_iTO_Local__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005)), &quot;Silver&quot;,  IF(Year_1_iTO_Local__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Bronze&quot;, &quot;NA&quot;) ) ) 
+IF(AND(Year_1_iTO_Local__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), Year_1_iTO_Local__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005)), &quot;Silver&quot;,  IF(Year_1_iTO_Local__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Bronze&quot;, &quot;NA&quot;) ) ) 
   ,  IF((Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000) &lt;200, 
  IF(Year_1_iTO_Local__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Silver&quot;, &quot;Bronze&quot;) , &quot;NA&quot;) )</formula>
         <inlineHelpText>Capture Local Projects CPP value based on the BB numbers</inlineHelpText>
@@ -1069,7 +1537,7 @@ IF(OR(Year_1_iTO_Local__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Tot
 
  IF(OR( Year_1_iTO_Regional__c /1000&gt;=10, Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005))
 , &quot;Gold&quot;,  
-IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), Year_1_iTO_Regional__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005)), &quot;Silver&quot;,  IF(Year_1_iTO_Regional__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Bronze&quot;, &quot;NA&quot;) ) ) 
+IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), Year_1_iTO_Regional__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.005)), &quot;Silver&quot;,  IF(Year_1_iTO_Regional__c/1000&lt;(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Bronze&quot;, &quot;NA&quot;) ) ) 
   ,  IF((Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000) &lt;200, 
  IF(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c/1000*0.001), &quot;Silver&quot;, &quot;Bronze&quot;) , &quot;NA&quot;) )</formula>
         <label>IPM CPP Regional</label>
@@ -1154,6 +1622,18 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_Parent_Company_Card__c</fullName>
+        <description>BD BB Report addnonkey field company card .</description>
+        <externalId>false</externalId>
+        <formula>IPM_Project_Rollout__r.IPM_Project__r.IPM_Company_Card__r.Name</formula>
+        <label>IPM Parent Company Card</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Project_Rollout__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Regional Rollout associated to financial.</description>
@@ -1176,6 +1656,51 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM Project Type</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_ShowAtGlobal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox To display stopped projects</description>
+        <externalId>false</externalId>
+        <label>Show At Global</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_ShowAtLocal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox To display stopped projects</description>
+        <externalId>false</externalId>
+        <label>Show At Local</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_ShowAtRegional__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox To display stopped projects</description>
+        <externalId>false</externalId>
+        <label>Show At Regional</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_StoppedByProject__c</fullName>
+        <externalId>false</externalId>
+        <label>Stopped By Project</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1213,12 +1738,22 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <fullName>IRR_Difference__c</fullName>
         <description>This field holds IRR  difference between value of IRR regional and local fields.</description>
         <externalId>false</externalId>
-        <formula>IF(IRR_Regional__c &lt;&gt; 0, 
-	IF((ABS(IRR_Regional__c - IRR_Local__c)/IRR_Regional__c) &gt; 0.05, 
-		ABS(IRR_Regional__c - IRR_Local__c), 
-		0
-	), 
-	ABS(IRR_Regional__c - IRR_Local__c)
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
+    IF(IRR_Global__c &lt;&gt; 0, 
+      IF((ABS((IRR_Global__c - IRR_Local__c)/IRR_Global__c)) &gt; 0.1, 
+        ABS(IRR_Global__c - IRR_Local__c), 
+        0
+      ), 
+      ABS(IRR_Global__c - IRR_Local__c)
+    ),
+    IF(IRR_Regional__c &lt;&gt; 0, 
+      IF((ABS((IRR_Regional__c - IRR_Local__c)/IRR_Regional__c)) &gt; 0.05, 
+        ABS(IRR_Regional__c - IRR_Local__c), 
+        0
+      ), 
+      ABS(IRR_Regional__c - IRR_Local__c)
+    )
+    
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IRR Difference</label>
@@ -1542,6 +2077,38 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>IsFinancialInvalidGlobal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checked if the global financial is Invalid</description>
+        <externalId>false</externalId>
+        <label>IsFinancialInvalidGlobal</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsFinancialInvalidLocal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>checked if the local financial is invalid</description>
+        <externalId>false</externalId>
+        <label>IsFinancialInvalidLocal</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsFinancialInvalidRegional__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>IsFinancialInvalidRegional</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IsFinancialInvalid__c</fullName>
         <defaultValue>false</defaultValue>
         <description>use this field for the hard validation from the gate document.</description>
@@ -1553,11 +2120,33 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IsKeyFinancialAtCapability__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This Field is used to check that if the financial is key at capability phase</description>
+        <externalId>false</externalId>
+        <label>IsKeyFinancialAtCapability</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Is_BC_Confirmed_Capability__c</fullName>
         <defaultValue>false</defaultValue>
         <description>To capture the Business Case Confirmation at Capability Phase</description>
         <externalId>false</externalId>
         <label>Is BC Confirmed Capability</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Nonkey_Business_Case_Changed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To indicate if the non key business case has been modified</description>
+        <externalId>false</externalId>
+        <label>Is Nonkey Business Case Changed</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1659,6 +2248,20 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+	<fields>
+        <fullName>Local_Project_isNull__c</fullName>
+        <description>This field will advice whether Local_Project__c is Null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( Local_Project__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice whether Local_Project__c is Null or not</inlineHelpText>
+        <label>Local_Project_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>MD_Approved__c</fullName>
         <defaultValue>false</defaultValue>
@@ -1718,14 +2321,9 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <fullName>Misaligned__c</fullName>
         <description>This shows the misalignment between regional and local business case.</description>
         <externalId>false</externalId>
-        <formula>IF(
-( Volume_Unit_Difference__c +  
- NPV_Difference__c +
- IRR_Difference__c +
- Payback_Difference__c +
- CAPEX_Difference__c +
- BIC_Difference__c +
- Total_FY_Difference__c ) &gt; 0, TRUE, FALSE)</formula>
+        <formula>
+ 
+ IF(MisalignmentManual__c, TRUE, FALSE)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Misaligned</label>
         <trackHistory>false</trackHistory>
@@ -1742,6 +2340,17 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>MisalignmentManual__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>For Business case misalignment</description>
+        <externalId>false</externalId>
+        <label>MisalignmentManual</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>NPV_Charter__c</fullName>
@@ -1775,12 +2384,23 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <fullName>NPV_Difference__c</fullName>
         <description>Difference between NPV regional and local NPV&apos;s.</description>
         <externalId>false</externalId>
-        <formula>IF(NPV_Regional__c &lt;&gt; 0, 
-	IF((ABS(NPV_Regional__c - NPV_Local__c)/NPV_Regional__c) &gt; 0.05, 
-		ABS(NPV_Regional__c - NPV_Local__c), 
-		0
-	), 
-	ABS(NPV_Regional__c - NPV_Local__c)
+        <formula>
+
+IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
+    IF(NPV_Global__c&lt;&gt; 0, 
+      IF((ABS((NPV_Global__c- NPV_Local__c)/NPV_Global__c)) &gt; 0.1, 
+        ABS(NPV_Global__c- NPV_Local__c), 
+        0
+      ), 
+      ABS(NPV_Global__c- NPV_Local__c)
+    ),
+    IF(NPV_Regional__c &lt;&gt; 0, 
+      IF((ABS((NPV_Regional__c - NPV_Local__c)/NPV_Regional__c)) &gt; 0.05, 
+        ABS(NPV_Regional__c - NPV_Local__c), 
+        0
+      ), 
+      ABS(NPV_Regional__c - NPV_Local__c)
+    )
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>NPV Difference</label>
@@ -1925,7 +2545,7 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <description>PBO Y1 bps vs DNDS Difference</description>
         <externalId>false</externalId>
         <formula>IF(PBO_Y1_bps_vs_DNDS_Regional__c &lt;&gt; 0, 
-	IF((ABS(PBO_Y1_bps_vs_DNDS_Regional__c - PBO_Y1_bps_vs_DNDS_Local__c)/PBO_Y1_bps_vs_DNDS_Regional__c) &gt; 0.05, 
+	IF((ABS((PBO_Y1_bps_vs_DNDS_Regional__c - PBO_Y1_bps_vs_DNDS_Local__c)/PBO_Y1_bps_vs_DNDS_Regional__c)) &gt; 0.05, 
 		ABS(PBO_Y1_bps_vs_DNDS_Regional__c - PBO_Y1_bps_vs_DNDS_Local__c), 
 		0
 	), 
@@ -2077,12 +2697,24 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <fullName>Payback_Difference__c</fullName>
         <description>Payback_Regional - payback_Local = payback_Difference.</description>
         <externalId>false</externalId>
-        <formula>IF(Payback_Regional__c &lt;&gt; 0, 
-	IF((ABS(Payback_Regional__c - Payback_Local__c)/Payback_Regional__c) &gt; 0.05, 
-		ABS(Payback_Regional__c - Payback_Local__c), 
-		0
-	), 
-	ABS(Payback_Regional__c - Payback_Local__c)
+        <formula>
+
+
+IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
+    IF(Payback_Global__c&lt;&gt; 0, 
+      IF((ABS((Payback_Global__c- Payback_Local__c)/Payback_Global__c)) &gt; 0.1, 
+        ABS(Payback_Global__c- Payback_Local__c), 
+        0
+      ), 
+      ABS(Payback_Global__c- Payback_Local__c)
+    ),
+    IF(Payback_Regional__c &lt;&gt; 0, 
+      IF((ABS((Payback_Regional__c - Payback_Local__c)/Payback_Regional__c)) &gt; 0.05, 
+        ABS(Payback_Regional__c - Payback_Local__c), 
+        0
+      ), 
+      ABS(Payback_Regional__c - Payback_Local__c)
+    )
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Payback Difference</label>
@@ -2184,6 +2816,51 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Red_Validation_Cells_Global__c</fullName>
+        <externalId>false</externalId>
+        <label>Red Validation Cells Global</label>
+        <length>131072</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Red_Validation_Cells_Local__c</fullName>
+        <externalId>false</externalId>
+        <label>Red Validation Cells Local</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Red_Validation_Cells_Regional__c</fullName>
+        <externalId>false</externalId>
+        <label>Red Validation Cells Regional</label>
+        <length>131072</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Red_Validation_Cells__c</fullName>
+        <description>To store all the cells on the consolidated financials where the red validations are because of red validations on the rollup financials</description>
+        <externalId>false</externalId>
+        <label>Red Validation Cells</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Regional_External_Id__c</fullName>
         <description>Regional Project External Id associated with the financial.</description>
         <externalId>false</externalId>
@@ -2236,6 +2913,30 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Source_Project__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
+   IF(NOT(ISBLANK(Parent_Project__c)),
+       Parent_Project__r.Id,
+     IF(NOT(ISBLANK(Regional_Project__c)),
+          Regional_Project__r.IPM_Parent_Project__r.Id,
+      IPM_Project_Rollout__r.IPM_Project__r.Id
+     )
+     ),
+   IF(NOT(ISBLANK(Regional_Project__c)),
+      Regional_Project__r.Id,
+    &apos;&apos;
+  )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Source Project</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -2374,6 +3075,17 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Target_Project__c</fullName>
+        <externalId>false</externalId>
+        <formula>Local_Project__r.Id</formula>
+        <label>Target Project</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Threshold_Status_Global__c</fullName>
         <description>Copies Global Project threshold.</description>
         <externalId>false</externalId>
@@ -2508,7 +3220,17 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <fullName>Volume_Unit_Difference__c</fullName>
         <description>Regional-local difference of Volume unit.</description>
         <externalId>false</externalId>
-        <formula>IF(TEXT(Volume_Unit_Regional__c) == TEXT(Volume_Unit_Local__c), 0, 1)</formula>
+        <formula>
+IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
+  IF(TEXT(Volume_Unit_Global__c)==TEXT(Volume_Unit_Local__c),
+      0,
+      1
+   ),
+   IF(TEXT(Volume_Unit_Regional__c)==TEXT(Volume_Unit_Local__c),
+      0,
+      1
+   )
+)</formula>
         <label>Volume Unit Difference</label>
         <precision>18</precision>
         <required>false</required>
@@ -2855,6 +3577,51 @@ IF(OR(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM_
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Yellow_Validation_Cells_Global__c</fullName>
+        <externalId>false</externalId>
+        <label>Yellow Validation Cells Global</label>
+        <length>131072</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Yellow_Validation_Cells_Local__c</fullName>
+        <externalId>false</externalId>
+        <label>Yellow Validation Cells Local</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Yellow_Validation_Cells_Regional__c</fullName>
+        <externalId>false</externalId>
+        <label>Yellow Validation Cells Regional</label>
+        <length>131072</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Yellow_Validation_Cells__c</fullName>
+        <description>To store cells on consolidated financials where the rollup financials have yellow validations</description>
+        <externalId>false</externalId>
+        <label>Yellow Validation Cells</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>isActive__c</fullName>

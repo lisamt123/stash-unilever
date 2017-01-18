@@ -14,6 +14,9 @@ public class AF_BonusMatrixOverrideController_Test
     static user userforBonusMatrixOverride;
     private static string CHPARENTID='CHParentId';
     private static string ID='id';
+    public static AF_ViewAllController viewCtrl1;
+    public static AF_ViewAllController viewCtrl2;
+    public static AF_ViewAllController viewCtrl3;
     /***********************************************************************************
 *  @Description: this method will the test data
 *  @name : AF_bonusMatrixOverrideController
@@ -71,7 +74,7 @@ public class AF_BonusMatrixOverrideController_Test
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
@@ -122,11 +125,11 @@ public class AF_BonusMatrixOverrideController_Test
             AF_BonusMatrixOverrideController bonMatCtrl=new AF_BonusMatrixOverrideController();
             bonMatCtrl.Save();  
             ApexPages.currentPage().getParameters().put(CHPARENTID,AgencyEsitmate[0].id);
-            AF_ViewAllController viewCtrl1=new AF_ViewAllController();
+            viewCtrl1=new AF_ViewAllController();
             ApexPages.currentPage().getParameters().put(CHPARENTID,OOPSEstimateList[0].id);
-            AF_ViewAllController viewCtrl2=new AF_ViewAllController();
+            viewCtrl2=new AF_ViewAllController();
             ApexPages.currentPage().getParameters().put(CHPARENTID,AFBonusMat[0].id);
-            AF_ViewAllController viewCtrl3=new AF_ViewAllController();
+            viewCtrl3=new AF_ViewAllController();
             Test.stopTest();
         }
     }
@@ -141,6 +144,8 @@ public class AF_BonusMatrixOverrideController_Test
         Test.startTest();
         userforBonusMatrixOverride=AF_TestFactory_Helper.createUserAdmin(true);
         User u=[SELECT id,Email FROM user WHERE id=:userforBonusMatrixOverride.id LIMIT 1];
+        u.AF_Agency_Fees_User_Type__c = AF_Constants.UT_CMCP_SUPERUSER;
+        update u;
         System.runAs(u)
         { 
             //Insert Account
@@ -187,7 +192,7 @@ public class AF_BonusMatrixOverrideController_Test
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
@@ -246,11 +251,11 @@ public class AF_BonusMatrixOverrideController_Test
             bonMatCtrl.SavePo();
             bonMatCtrl.CalculateLocalC();
             ApexPages.currentPage().getParameters().put(CHPARENTID,AgencyEsitmate[0].id);
-            AF_ViewAllController viewCtrl1=new AF_ViewAllController();
+            viewCtrl1=new AF_ViewAllController();
             ApexPages.currentPage().getParameters().put(CHPARENTID,OOPSEstimateList[0].id);
-            AF_ViewAllController viewCtrl2=new AF_ViewAllController();
+            viewCtrl2=new AF_ViewAllController();
             ApexPages.currentPage().getParameters().put(CHPARENTID,AFBonusMat[0].id);
-            AF_ViewAllController viewCtrl3=new AF_ViewAllController();
+            viewCtrl3=new AF_ViewAllController();
             Test.stopTest();
         }
     }

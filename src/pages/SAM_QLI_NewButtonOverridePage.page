@@ -1,0 +1,3 @@
+<apex:page standardController="SAM_Quote_Line_Item__c" extensions="SAM_QLINewButtonOverrideController" action="{!redirectToPageNewItem}">
+
+</apex:page>

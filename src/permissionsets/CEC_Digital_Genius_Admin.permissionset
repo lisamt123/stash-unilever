@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>dgai__DG_AgentsListController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>User.dgai__active_user_settings__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<description>Access to the DG Agents List admin page to provide users access to the Digital Genius capability</description>
+    <label>CEC - Digital Genius Admin</label>
+    <pageAccesses>
+        <apexPage>dgai__AgentsList</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <tabSettings>
+        <tab>CEC_Agents_List</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+</PermissionSet>

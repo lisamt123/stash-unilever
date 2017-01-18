@@ -1,0 +1,13 @@
+.THIS.novadiv {background:rgba(0,0,0,0.4);width:100%;height:100%;left:0;top:10%;position:absolute;display:none;}
+.THIS.novadivs {background:rgba(0,0,0,0.4);width:100%;height:100%;left:0;top:10%;position:absolute;}
+.THIS .btCheck{width:48%;}
+.THIS .gmin{
+    		background-color:#009DDC;
+    		position:relative;
+    		border-radius:5px;
+    		margin-top:1%;
+    		margin-bottom:1%; 
+    		max-width:80%;
+		}
+.THIS .inner{display: inherit;}
+.THIS .img-map{margin-top:5px;}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPM_Notification_Letterhead</letterhead>
+    <name>IPM Due Date in past For PLE</name>
+    <style>freeForm</style>
+    <subject>The due date for {!IPM_Milestone__c.IPM_Type_of_gate__c} of {!IPM_Milestone__c.IPM_Project_Name__c} has been passed without Gate Approval. Please update your due date.</subject>
+    <textOnly>Dear {!IPM_Milestone__c.IPM_Project_Leader_Name__c} &amp; {!IPM_Milestone__c.IPM_Deputy_Project_Leader_Name__c} &amp; {!IPM_Milestone__c.IPM_Gatekeeper_Name__c}
+
+This is a reminder that your expected {!IPM_Milestone__c.IPM_Name__c} date for {!IPM_Milestone__c.IPM_Project_Name__c} has passed with no action for {!IPM_Milestone__c.IPM_Name__c} taken in IPM Navigator.
+Please press the &quot;launch&quot; button in Inoplan if {!IPM_Milestone__c.IPM_Project_Name__c} has shipped to trade or correct the Target Launch Date.
+You will receive weekly reminders until you have taken appropriate action in IPM Navigator</textOnly>
+    <type>html</type>
+</EmailTemplate>

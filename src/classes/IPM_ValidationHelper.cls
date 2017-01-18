@@ -5,7 +5,7 @@
 */
 public with sharing class IPM_ValidationHelper {
     
-  	private static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
+  	private static final String DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
     
     /*
     	This method validates the following and returns projects which meet the validation 
@@ -66,7 +66,7 @@ public with sharing class IPM_ValidationHelper {
                                                 From 
                                                 	IPM_Financial__c 
                                                 where 
-                                                	RecordTypeId != :CONSOLIDATED_FINANCIAL_RECORDTYPE and
+                                                	RecordTypeId = :DEFAULT_FINANCIAL_RECORDTYPE and
                                                 	isActive__c=true and 
                                                 	IPM_Project_Rollout__c in 
                                                     (   Select  
@@ -115,9 +115,9 @@ public with sharing class IPM_ValidationHelper {
                                                 From 
                                                 	IPM_Financial__c 
                                                 where 
-                                                	RecordTypeId != :CONSOLIDATED_FINANCIAL_RECORDTYPE and
+                                                	RecordTypeId = :DEFAULT_FINANCIAL_RECORDTYPE and
                                                 	isActive__c=true and 
-                                                	IPM_Key_Financial__c!=true and
+                                                	IPM_Key_Financial__c = false and
 													Parent_Project__c  in :globalProjects.keySet() limit 10000]) {
             // if the 'project id' is present in 'invalidProjMap' dont process financial record again
             if(invalidProjMap.isEmpty() ||  !invalidProjMap.keySet().contains(ipmFin.Parent_Project__c)) {
@@ -158,8 +158,8 @@ public with sharing class IPM_ValidationHelper {
                                                 From 
                                                 	IPM_Financial__c 
                                                 where 
-                                                	RecordTypeId != :CONSOLIDATED_FINANCIAL_RECORDTYPE and
-                                                	isActive__c=true and 
+                                                	RecordTypeId = :DEFAULT_FINANCIAL_RECORDTYPE and
+                                                	isActive__c = true and 
                                                 	(Regional_Project__c  in :regionalOrLocalProjects.keySet() or Local_Project__c  in :regionalOrLocalProjects.keySet()) limit 10000]) {
             // handle local projects first
             if(ipmFin.Local_Project__c!=null) {

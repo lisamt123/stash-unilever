@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Rejected email alert action for TPR Opportunity</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>FS TPR Opportunity Rejection Action Email Template</name>
+    <style>none</style>
+    <subject>{!Opportunity.Name}  Rejected Notification</subject>
+    <type>text</type>
+</EmailTemplate>

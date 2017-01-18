@@ -26,6 +26,18 @@ jq(document).ready(function() {
   jq('.teamSearch1 input').clearSearch();
   jq('.teamSearch2 input').clearSearch();
   jq('.teamSearch3 input').clearSearch();
+  jq( ".ldrProbutton" ).each(function() {
+      if(jq(this).hasClass('checked'))
+      {
+          jq(this).addClass('rchecked');
+          jq('.rchecked').prop('checked','yes');
+      }
+    else
+      {
+         jq(this).removeClass('rchecked');
+         jq('.rchecked').prop('checked','no')
+      }
+  });
 });
 /* Below function performs the search functionality. Based on the type of condition, if it is true it calls a function. */
 function callsearch(){
@@ -62,42 +74,14 @@ function submitOnClickRole(objSubmitBtn) {
 function closepopup(){
     window.top.location.href=IPMApp.teamurl+'?id='+IPMApp.projectID+'&TeamMemid=teammembers&showedit=true';
 }
-
-var unsaved = false;
-var jq = jQuery.noConflict();
-jq(function(){       
-jq(":input").change(function() {
-if(jq(this).attr('class') !== "teamSearchInput"){
-  unsaved = true;
-  }
-       });
-     var frame = parent.document.getElementById("ipmAddMemberModal");
-      jq(frame).find('.close').click(function(){
-          if(unsaved){
-              jq(this).removeAttr( "data-dismiss" );
-              unloadIframe();
-          }
-          else{
-              jq(this).attr("data-dismiss","modal");
-          }
-      });
-       
-  });   
-  
-  function unloadIframe(){
-    window.parent.location.href=IPMApp.teamurl+'?id='+IPMApp.projectID;
-  }
-  
-   function unloadPage()
- { 
-     if(unsaved){
-         return IPMApp.wmessage;
-     }
- } 
-
- window.onbeforeunload = unloadPage;
- 
- /* Below code is to skip the unsaved changes*/
  function skipValidation() {
      unsaved = false;
  }
+function callSearchPerCare(){
+          if (document.getElementById('myMCO').checked) { 
+            searchTeamMem();  
+           }
+          if (document.getElementById('myCat').checked) {
+            searchallTeamMem();
+           } 
+        } 

@@ -1,0 +1,278 @@
+<apex:page standardStylesheets="false" docType="html-5.0" sidebar="false" showHeader="false" controller="PQNUpdateFreezePeriodCtrl">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Home</title>
+    
+   <!-- Bootstrap Core CSS -->
+    <link href="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/css/bootstrap.min.css')}" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link href="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/css/sb-admin.css')}" rel="stylesheet"/>
+
+    <!-- Morris Charts CSS -->
+    <link href="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/css/plugins/morris.css')}" rel="stylesheet"/>
+
+    <!-- Custom Fonts -->
+    <link href="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/font-awesome/css/font-awesome.min.css')}" rel="stylesheet" type="text/css"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+
+    <style>
+        
+        body.modal-open .datepicker {
+        z-index: 1050 !important;
+    }
+    body.modal-open .bootstrap-timepicker-widget {
+        z-index: 1050 !important;
+    }
+        
+        hr.star-light{
+            border-top: solid 3px!important;
+        }
+        body{
+            background-color: white;
+        }
+        body .pbBody table.list tr.dataRow td {
+        text-align: center;
+}
+body .pbBody table.list tr.dataRow td:first-child {
+    text-align: left;
+}
+       
+        .footer {
+            //position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: #007dbb;
+            text-align: center;
+            color:white;
+            padding: 15px 0;
+            margin: 0px 0;
+        }
+        
+        .navbar-inverse {
+            background-color: #007dbb;
+            border-color: #004976;
+        }
+        
+        
+        .top-nav>li>a:hover, .top-nav>li>a:focus, .top-nav>.open>a, .top-nav>.open>a:hover, .top-nav>.open>a:focus {
+            color: #fff;
+            background-color: #004976;
+        }
+        .top-nav>li>a {
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+
+<body id="page-top" class="index">
+    <apex:form id="formId">
+    <script type="text/javascript">
+        function displayFreezePage(){
+            window.open("apex/PQN_Update_Freeze_Period", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=300,width=600,height=400");
+        }
+    </script>
+    <apex:pageMessages ></apex:pageMessages>
+
+                    <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-certificate"></i> Training <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-download"></i> Download</a>
+                        </li>
+                        
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {!$user.FirstName} {!$user.LastName} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="./_ui/core/userprofile/UserProfilePage"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="./ui/setup/Setup"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="./secur/logout.jsp"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            
+        </nav>
+        
+
+        <apex:outputPanel id="optPanel" rendered="{!($Profile.Name == 'System Administrator' || $Profile.Name == 'Unilever - Force MultiApp Marketing')}">       
+                    <button type="button" style="float: left;background-color:darkorange;" onClick="displayFreezePage();">
+                         Set Freeze Period
+                    </button>
+
+        </apex:outputPanel>
+        <apex:outputLabel > <marquee direction="right">Freeze Period for Current Month : {!currentMonthFreezePeriod[0].Freeze_Date__c} </marquee> </apex:outputLabel>
+        <div align="left">
+        <apex:outputLabel style="horizontal-align:right">Days Left Before Freeze Date is : {!daysLeft} </apex:outputLabel>
+        </div>
+
+           
+        
+        <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <img class="img-responsive center-block" src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/Unilever.png')}" height="220" width="220" alt="Unilever"/>
+                    <div class="intro-text">
+                        <span class="name"><h3 style="margin-top:0px">Pallet Quality Non-Conformance</h3></span>
+                        <hr class="star-primary"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 portfolio-item">
+                    <a href="./PQN_SingleEntryScreen_VF" >
+                       <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/sform.png')}" class="img-responsive" alt="Single Entry"/>
+                    </a>
+                    <div class="text-center">
+                        <span class="name">Single Entry</span>
+                    </div>
+                </div>
+                <div class="col-sm-2 portfolio-item">
+                    <a href="./PQN_MultiEditScreen_Clone">
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/mform.png')}" class="img-responsive" alt="Multiple Entry"/>
+                    </a>
+                    <div class="text-center">
+                        <span class="name">Multiple Entry</span>
+                    </div>
+                </div>
+                <div class="col-sm-2 portfolio-item">
+                    <a href="./PQN_TargetEntryScreen_VF">
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/starget.png')}" class="img-responsive" alt="Target"/>
+                    </a>
+                    <div class="text-center">
+                        <span class="name">Target</span>
+                    </div>
+                </div>
+                
+                <!--<div class="col-sm-2 portfolio-item">
+                    <a href="./PQN_MultiTargets_VF">
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/target.png')}" class="img-responsive" alt="Multi Target"/>
+                    </a>
+                    <div class="text-center">
+                        <span class="name">Multi Target</span>
+                    </div>
+                </div>-->
+                
+                <div class="col-sm-2 portfolio-item">
+                    <a href="./PQN_DC_Volumes_Edit_VF">
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/dcvolume.png')}" class="img-responsive" alt="DC Volumes"/>
+                    </a>
+                    <div class="text-center">
+                        <span class="name">DC Volumes</span>
+                    </div>
+                </div>
+                <div class="col-sm-2 portfolio-item">
+                    <a href="./PQN_List_View">
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/Archive.png')}" class="img-responsive" alt="Archive"/>
+                    </a>
+                    <div class="text-center">
+                        <span class="name">Archive</span>
+                    </div>
+                </div>
+                <div class="col-sm-2 portfolio-item">
+                    <a href="./PQN_PalletLossTreeData">
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/lossTree.png')}" class="img-responsive" alt="Loss Tree Data"/>
+                    </a>
+                    <div class="text-center">
+                        <span class="name">Loss Tree Data</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 30px;margin-bottom: 30px;">
+
+                 <div class="col-sm-2 portfolio-item">
+                    <a href="./PQN_Global_Overview">
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/reports.png')}" class="img-responsive" alt="Overview Report"/>
+                    </a>
+                    <div class="text-center">
+                        <span class="name">Reports and Dashboards</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- About Section -->
+    <!--<section class="success" id="training">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3>Training</h3>
+                    <hr class="star-light"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Whether you are a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+                </div>
+              
+            </div>
+        </div>
+    </section>-->
+
+    <!-- Footer 
+    
+-->
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/js/jquery.js')}"></script>
+   
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/js/bootstrap.min.js')}"></script>
+    <link href="{!URLFOR($Resource.PQN_Bootstrapdatepicker,'datepicker/css/datepicker.css')}" rel="stylesheet"/>
+    <script src="{!URLFOR($Resource.PQN_Bootstrapdatepicker,'datepicker/js/bootstrap-datepicker.js')}" />
+    <footer class="footer">
+      <div class="container">
+        <div class=""> 
+            <p>This website is best viewed on internet explorer 8 and above</p> 
+        </div>
+        <p>© Unilever 2016</p>
+      </div>
+    </footer>
+    </apex:form>
+    <script>
+$(document).ready(function () {
+    $ = jQuery.noConflict();
+    
+    $('.datepicker').datepicker({ format: 'dd/mm/yyyy' });
+    
+        
+    });
+    </script>
+</body>
+
+</apex:page>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CEC_Unilever_GB</letterhead>
+    <name>AA_Report_Rejected</name>
+    <style>freeForm</style>
+    <subject>Sorry, we were unable to publish your competitor report: {!aa_Agent_Report__c.Name}</subject>
+    <textOnly>Dear {!aa_Agent_Report__c.CreatedBy},
+ 
+Thank you for your competitor report.
+However we were unable to publish your report because {!aa_Agent_Report__c.Comments__c}
+ 
+PS: This is an auto generated mail, please do not reply. If you have any questions, please refer back to your regional Competitor Intelligence manager
+ 
+Thanks,
+The Agent</textOnly>
+    <type>html</type>
+</EmailTemplate>

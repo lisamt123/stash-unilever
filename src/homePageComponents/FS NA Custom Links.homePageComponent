@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HomePageComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <links>FS_Canada_HUB</links>
+    <links>FS_US_HUB</links>
+    <links>FS_Unilever_Food_Solutions_Canada</links>
+    <links>FS_Unilever_Food_Solutions_US</links>
+    <links>Power_BI_Daily_Sales_Report</links>
+    <links>Sample_Ordering_Dot_Foods</links>
+    <links>CANADA_Sample_Orders</links>
+    <links>Village_Press</links>
+    <links>Element_Fleet</links>
+    <links>CD_Ops_Finance_Sharepoint</links>
+    <links>Technomic</links>
+    <pageComponentType>links</pageComponentType>
+</HomePageComponent>

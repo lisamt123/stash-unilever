@@ -371,6 +371,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -472,6 +473,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -504,6 +506,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -552,6 +555,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -730,6 +734,33 @@
             <group>CAP_SMT_Group</group>
             <group>CAP_ULFT_Group</group>
             <group>CAP_ULPT_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_CPA_LOI</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_LOI</fullName>
+        <filterScope>Queue</filterScope>
+        <label>VDM</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_LOI</fullName>
+        <filterScope>Queue</filterScope>
+        <label>SMT</label>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -1401,7 +1432,7 @@ var p = new sforce.SObject(&apos;CPA_LOI__c&apos;);
 p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c }&quot;; 
 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;;
 var result = sforce.connection.query(soql);
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name;
@@ -1426,7 +1457,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	
 	
 } 
-else if( permissionSetName == &quot;CPA_ULPM&quot;){
+else if( permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_ULPM_SL&quot;){
 	alert(&quot;You are not authorized to cancel LOI. Please raise a query for cancellation.&quot;); 
 }
 else if(permissionSetName == &quot;CPA_ADM&quot;){
@@ -1451,7 +1482,7 @@ alert(&quot;You are not authorized to perform this action.&quot;);
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -1504,7 +1535,7 @@ p.id = &quot;{!CPA_LOI__c.Id}&quot;;
 p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c }&quot;;
 p.isValidated__c = &quot;{!CPA_LOI__c.isValidated__c }&quot;;
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;;
 var result = sforce.connection.query(soql);
 var records1 = result.getArray(&apos;records&apos;);
 var permissionSetName = records1[0].PermissionSet.Name;
@@ -1551,7 +1582,7 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 		alert(&quot;LOI cant be submitted, as required fields are missing&quot;);
 	}
 }
-else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_SMT&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; )){
+else if( (permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_ULPM_SL&quot; || permissionSetName == &quot;CPA_SMT&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; )){
 	alert(&quot;LOI is currently pending with UL supplier  management team for approval.&quot;); 
 }
 else{ alert(&quot;You are not authorized to perform this action.&quot;); }</url>
@@ -1572,7 +1603,7 @@ p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c }&quot;;
 
 
 try { 
-	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;; 
 	var result = sforce.connection.query(soql); 
 	var records1 = result.getArray(&apos;records&apos;); 
 	var permissionSetName = records1[0].PermissionSet.Name; 
@@ -1592,10 +1623,10 @@ try {
 			alert(&quot;The LOI should be sent for Signature before returning from DocuSign.&quot;); 
 		}
 	}
-	else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c !=&quot;Saved&quot; &amp;&amp; p.pkl_Status__c != &quot;Returned&quot; )){
+	else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ULPM_SL&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c !=&quot;Saved&quot; &amp;&amp; p.pkl_Status__c != &quot;Returned&quot; )){
 		alert(&quot;LOI is currently pending with UL supplier  management team for approval.&quot;); 
 	}
-	else if((permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Saved&quot; || p.pkl_Status__c == &quot;Returned&quot; )) {
+	else if((permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ULPM_SL&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Saved&quot; || p.pkl_Status__c == &quot;Returned&quot; )) {
 		alert(&quot;The LOI should be sent for Signature before returning from Docusign.&quot;); 
 	} 
 
@@ -1617,7 +1648,7 @@ var p = new sforce.SObject(&apos;CPA_LOI__c&apos;);
 p.id = &quot;{!CPA_LOI__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c}&quot;; 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -1637,7 +1668,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	} 
 }
 
-else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; )){
+else if( (permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_ULPM_SL&quot; || permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; )){
 	alert(&quot;LOI is currently pending with UL supplier  management team for approval.&quot;); 
 }
 else{ 
@@ -1659,7 +1690,7 @@ p.id = &quot;{!CPA_LOI__c.Id}&quot;;
 p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c}&quot;;
 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;;
 var result = sforce.connection.query(soql);
 var records1 = result.getArray(&apos;records&apos;);
 var permissionSetName = records1[0].PermissionSet.Name;
@@ -1675,7 +1706,7 @@ if(permissionSetName == &quot;CPA_SMT&quot;){
 		alert(&quot;LOI cant be Signed, as it is not Sent for Signature&quot;);
 	}
 }
-else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; )){
+else if( (permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_ULPM_SL&quot; || permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; )){
 	alert(&quot;LOI is currently pending with UL supplier  management team for approval.&quot;); 
 }
 else{

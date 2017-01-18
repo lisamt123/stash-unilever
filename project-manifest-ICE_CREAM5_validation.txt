@@ -1,0 +1,5 @@
+src/objects
+src/objects/Contact.object
+src/objects/Product2.object
+src/objectTranslations
+src/objectTranslations/Contact-pt_BR.objectTranslation

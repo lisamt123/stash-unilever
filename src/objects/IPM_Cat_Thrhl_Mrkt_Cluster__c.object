@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This specifies for which category Mrkt cluster is to be considered for Category threshold value .Data set name should be category+project span</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>IPM_Category__c</fullName>
+        <description>IPM Category</description>
+        <externalId>false</externalId>
+        <label>IPM Category</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Is_market_cluster_applicable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>specifies if market cluster is  applicable  for category threshold value</description>
+        <externalId>false</externalId>
+        <label>IPM Is market cluster applicable</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_span__c</fullName>
+        <description>IPM Project Span</description>
+        <externalId>false</externalId>
+        <label>IPM Project span</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>IPM Category threshold For Mrkt cluster</label>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -23,7 +23,7 @@ private class Oblix_SOWCreateController_Test {
     private static final String BRAND_CIFF = 'Ciff';
     private static final String SMALL_CAT_PC = 'Personal Care';
     private static final String SMALL_CAT_OF = 'Other Food';
-
+    public static Pagereference permission_denied_page;
 
 
     @testSetup static void initCommonData() {
@@ -44,11 +44,11 @@ private class Oblix_SOWCreateController_Test {
         //ul3 = testUsers.get('UL3');
         //superuser = testUsers.get('superuser');
     }
-	
-	@isTest static void testCheckUserHasPermissionToSOW() {
+    
+    @isTest static void testCheckUserHasPermissionToSOW() {
         initTestUsers();
 
-		MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+        MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
         Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
 
@@ -65,7 +65,7 @@ private class Oblix_SOWCreateController_Test {
         System.runAs(ul1) {
             checkUserHasPermissionToSOW = controller.checkUserHasPermissionToSOW();
 
-            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
+            permission_denied_page = Page.Oblix_PermissionDenied;
             System.assertEquals(null, checkUserHasPermissionToSOW);
         }
 
@@ -75,7 +75,7 @@ private class Oblix_SOWCreateController_Test {
 
         Test.stopTest();
           
-	}
+    }
 
 
     @isTest static void testEditSOW() {
@@ -91,23 +91,25 @@ private class Oblix_SOWCreateController_Test {
 
         Test.startTest();
 
-        controller.pageAttachment.Name='Unit Test Attachment';
-        controller.pageAttachment.Body=Blob.valueOf('Unit Test Attachment Body');
-        controller.uploadAttachment();
+        // S.S. 2016-06-06 ATTACHMENT UPLOAD IS NO LONGER USED IN THIS PAGE - MOVED TO SOW MAIN DETAIL PAGE
+        //controller.pageAttachment.Name='Unit Test Attachment';
+        //controller.pageAttachment.Body=Blob.valueOf('Unit Test Attachment Body');
+        //controller.uploadAttachment();
 
-        List<Attachment> attachments = [SELECT Id FROM Attachment WHERE Parent.Id =: mSow.Id];
-        System.assertEquals(1, attachments.size());
+        //List<Attachment> attachments = [SELECT Id FROM Attachment WHERE Parent.Id =: mSow.Id];
+        //System.assertEquals(1, attachments.size());
 
 
-        controller.deleteAttachmentId = attachments[0].Id;
-        controller.deleteAttachment();
+        //controller.deleteAttachmentId = attachments[0].Id;
+        //controller.deleteAttachment();
 
-        attachments = [SELECT Id FROM Attachment WHERE Parent.Id =: mSow.Id];
-        System.assertEquals(0, attachments.size());
+        //attachments = [SELECT Id FROM Attachment WHERE Parent.Id =: mSow.Id];
+        //System.assertEquals(0, attachments.size());
 
 
         PageReference saveAndClose = controller.saveAndClose();
         PageReference sowDetailPage = new PageReference('/apex/Oblix_SOWMainDetail?sowId='+ mSow.Id);
+        System.assertNotEquals(null, saveAndClose);
         System.assertEquals(sowDetailPage.getUrl(), saveAndClose.getUrl());
 
         controller.cancelAction();
@@ -172,6 +174,6 @@ private class Oblix_SOWCreateController_Test {
         Test.stopTest();
           
     }
-	
-	
+    
+    
 }

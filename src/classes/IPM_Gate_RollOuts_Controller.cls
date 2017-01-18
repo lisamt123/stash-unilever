@@ -8,23 +8,40 @@
 */
 public with sharing class IPM_Gate_RollOuts_Controller
 {
-    
-    public String[] headers {get;set;} //Containd table headers
+
+    public Id proId{ // to get-set the project id from the component attribute.
+        get{
+            if(proId == null && Apexpages.currentpage().getparameters().get('projId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('projId')) ;
+            }
+            else { return proId; }
+        }
+        set;
+    } 
+    public String span{// to get-set the project document section id from the component attribute.
+        get{
+            if(span == null && Apexpages.currentpage().getparameters().get('span') != null) {
+                return  Apexpages.currentpage().getparameters().get('span');
+            }
+            else { return span; }
+        }
+        set;
+    }
+    public String[] headers {get;set;} //Containd table headers 
     public transient List<RegionalRollOutWrapper> regionalRollOutWrapperList {get;set;} 
     public static  ID regionalRecordTypeId =  Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).RecordTypeId;//used for displaying Regional To Local To Country Mapping ;  
     public static  ID localRecordTypeId = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).RecordTypeId;//used for displaying Regional To Local To Country Mapping;
-    public Id proId
-    {
-        get 
-        { 
-            return proId; // to get the project document section ID from the component used from Gate document page
-        }
-        set 
-        {
-            proId= value;// setting the value of project document section
-            prepareIPMLocalToCountryWrapper();
-        }
+    public String showEntity{get;set;}
+    
+    
+    /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForComponent() {
+        prepareIPMLocalToCountryWrapper();
+        return 'Required methods are invoked for component';
     }
+    
     /************************************************************************************************************************
     *  Description Constructor Getting Project Id From Page URL Parameter
     *  @name IPM_GatekeeperChecklist
@@ -32,7 +49,12 @@ public with sharing class IPM_Gate_RollOuts_Controller
     public IPM_Gate_RollOuts_Controller(){
        
         IPM_IECompatible.ieFix();//For IE Compatibility
-      
+        showEntity = IPM_ConstantUtils.BLANK;
+        
+        if(test.isRunningTest()) {
+            getInvokeMethodsForComponent();
+        }
+        
     }
     
     /************************************************************************************************************************
@@ -47,41 +69,53 @@ public with sharing class IPM_Gate_RollOuts_Controller
     {
         try
         {
+        	Boolean bIsGKM3Project = false;
             regionalRollOutWrapperList= new List<RegionalRollOutWrapper>();
            
-            headers = new List<String> {Label.IPM_RegionalRollout,Label.IPM_Geography,Label.IPM_Status,Label.IPM_TARGET_LAUNCH_DATE,Label.IPM_LocalProjectName};
+            headers = new List<String> {Label.IPM_RegionalRollout,Label.IPM_Geography,Label.IPM_Status,Label.IPM_TARGET_LAUNCH_DATE,Label.IPM_LocalProjectName,Label.IPM_Local_Brand};
          
-            List<IPM_Project__c> projectList  = [SELECT Id,Name,IPMProject_Span__c FROM IPM_Project__c WHERE Id =:proId LIMIT 1];
+            List<IPM_Project__c> projectList  = [SELECT Id,Name,IPMProject_Span__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE Id =:proId LIMIT 1];
                                                  
             if(projectList != null && !projectList.isEmpty()){
                 
                 IPM_Project__c projectInContext =  projectList[0];
                 
+                bIsGKM3Project= IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(projectInContext.IPM_GateKeeping_Model__c);
+                if(bIsGKM3Project) {
+                	headers[0] = Label.IPM_Region;
+                }
+                
+                showEntity = String.format(Label.IPM_ShowEntity,new String[]{projectInContext.IPMProject_Span__c});
                 Map<String,List<IPM_Project_Rollout__c>> regionalToLocalRolloutList = new Map<String,List<IPM_Project_Rollout__c>>();
                 
                 Map<Id,IPM_Project_Rollout__c> completeLocalRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
                 
-                Map<String, List<IPM_Project_Rollout__c>> regProjToLocalRolloutsMap = new Map<String, List<IPM_Project_Rollout__c>>(); // Map to store Regional Project and its related local rollouts
-                Set<Id> localRolloutIds = new Set<Id>();
-                
+                String queryString = '';                
                 // Get the List of Regional Rollouts based on the Project.
                 // Based on The Project Span, if it is Global we need to refer IPM Project else if it is regional, Regional project needs to be used in wher clause.
                 if(projectInContext.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
                 {
                     // Get the List of Regional Rollouts based on passed global project Id.
-                    for(IPM_Project_Rollout__c regRollout : [SELECT Id,Name,IPM_Rollout_Project__c,(SELECT Id,Name,IPM_Rollout_Project__c,Target_Launch_Date__c,IPM_Status__c,IPM_Regional_Rollout_Status__c  FROM Local_Rollouts__r 
-                        WHERE recordTypeId =: localRecordTypeId) FROM IPM_Project_Rollout__c WHERE IPM_Project__c = :proId AND recordTypeId =:regionalRecordTypeId AND isActive__c = true LIMIT 10000])
-                    {
+                    queryString = 'SELECT Id,Name,IPM_Rollout_Project__c,Market_Cluster_Name__c,(SELECT Id,IPM_Brand__c,Name,IPM_Rollout_Project__c,Target_Launch_Date__c,IPM_Status__c,IPM_Regional_Rollout_Status__c  FROM Local_Rollouts__r WHERE recordTypeId =: localRecordTypeId) FROM IPM_Project_Rollout__c WHERE IPM_Project__c = :proId AND recordTypeId =:regionalRecordTypeId AND  ( isActive__c = true OR '+ showEntity +' = true ) LIMIT 10000';
+                    list<IPM_Project_Rollout__c> listRollouts = Database.Query(queryString); 
+                    for(IPM_Project_Rollout__c regRollout : listRollouts)
+                    { 
                         if(!regRollout.Local_Rollouts__r.isEmpty())
                         {
-                            regionalToLocalRolloutList.put(regRollout.IPM_Rollout_Project__c,regRollout.Local_Rollouts__r);
+                            if(bIsGKM3Project) {
+                                regionalToLocalRolloutList.put(regRollout.Market_Cluster_Name__c,regRollout.Local_Rollouts__r);
+                            }
+                            else {
+                                regionalToLocalRolloutList.put(regRollout.IPM_Rollout_Project__c,regRollout.Local_Rollouts__r);
+                            }                            
                             completeLocalRolloutMap.putAll(new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>)regRollout.Local_Rollouts__r));
                         }      
                     }
                     
                     // Get the list of Regional Project based on passed global project Id.
-                    for(IPM_Project__c regProject : [SELECT Id,Name,IPM_Project_Name__c,(SELECT Id,Name,Target_Launch_Date__c,IPM_Rollout_Project__c,IPM_Status__c,IPM_Regional_Rollout_Status__c FROM Regional_Project_Rollout__r 
-                        WHERE recordTypeId =: localRecordTypeId) FROM IPM_Project__c WHERE IPM_Parent_Project__c = :proId AND Is_Archieved__c = FALSE LIMIT 10000])
+                    queryString = 'SELECT Id,Name,IPM_Project_Name__c,(SELECT Id,Name,IPM_Brand__c,Target_Launch_Date__c,IPM_Rollout_Project__c,IPM_Status__c,IPM_Regional_Rollout_Status__c FROM Regional_Project_Rollout__r WHERE recordTypeId =: localRecordTypeId AND ( isActive__c = true OR '+ showEntity +' = true )) FROM IPM_Project__c WHERE IPM_Parent_Project__c = :proId LIMIT 10000';
+                    list<IPM_Project__c> projectRollouts = Database.Query(queryString);  
+                    for(IPM_Project__c regProject : projectRollouts)
                     {
                         if(!regProject.Regional_Project_Rollout__r.isEmpty())
                         {
@@ -94,8 +128,9 @@ public with sharing class IPM_Gate_RollOuts_Controller
                 else if(projectInContext.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
                 {
                      // Get the list of Regional Project based on passed global project Id.
-                    for(IPM_Project__c regProject : [SELECT Id,Name,IPM_Project_Name__c,(SELECT Id,Name,IPM_Rollout_Project__c,Target_Launch_Date__c,IPM_Status__c,IPM_Regional_Rollout_Status__c FROM Regional_Project_Rollout__r 
-                        WHERE recordTypeId =: localRecordTypeId) FROM IPM_Project__c WHERE Id = :proId AND Is_Archieved__c = FALSE LIMIT 10000])
+                    queryString = 'SELECT Id,Name,IPM_Project_Name__c,(SELECT Id,IPM_Brand__c,Name,IPM_Rollout_Project__c,Target_Launch_Date__c,IPM_Status__c,IPM_Regional_Rollout_Status__c FROM Regional_Project_Rollout__r  WHERE recordTypeId =: localRecordTypeId AND ( isActive__c = true OR '+ showEntity +' = true )) FROM IPM_Project__c WHERE Id = :proId LIMIT 10000';
+                    list<IPM_Project__c> projectRollouts = Database.Query(queryString); 
+                    for(IPM_Project__c regProject : projectRollouts)
                     {
                         if(!regProject.Regional_Project_Rollout__r.isEmpty())
                         {
@@ -103,11 +138,12 @@ public with sharing class IPM_Gate_RollOuts_Controller
                             completeLocalRolloutMap.putAll(new Map<Id,IPM_Project_Rollout__c>((List<IPM_Project_Rollout__c>) regProject.Regional_Project_Rollout__r));
                         }
                     }   
+                    
                 }
                 
-                Map<Id,IPM_Project_Rollout__c> localRolloutToCountryMap = new Map<Id,IPM_Project_Rollout__c>([SELECT Id,Name,Target_Launch_Date__c,IPM_Status__c,IPM_Regional_Rollout_Status__c,
-                                                                            (SELECT Id,Country_Name__c,Local_Rollout__c from IPM_Countries_Local__r where isActive__c = true )
-                                                                            FROM IPM_Project_Rollout__c where Id in :completeLocalRolloutMap.values() AND isActive__c = true]);
+                List<IPM_Project_Rollout__c> listProjectRollout = completeLocalRolloutMap.values();
+                queryString = 'SELECT Id,Name,IPM_Brand__c,Target_Launch_Date__c,IPM_Status__c,IPM_Regional_Rollout_Status__c,(SELECT Id,Country_Name__c,Local_Rollout__c from IPM_Countries_Local__r where isActive__c = true OR '+ showEntity +' = true ) FROM IPM_Project_Rollout__c where Id in : listProjectRollout AND ( isActive__c = true OR '+ showEntity +' = true ) ';
+                Map<Id,IPM_Project_Rollout__c> localRolloutToCountryMap = new Map<Id,IPM_Project_Rollout__c>((List<IPM_Project_Rollout__c>)Database.Query(queryString));
                 
                 
                 for(String regional : regionalToLocalRolloutList.KeySet())

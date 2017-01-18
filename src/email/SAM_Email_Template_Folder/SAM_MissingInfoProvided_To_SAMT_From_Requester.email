@@ -1,0 +1,11 @@
+Hi {!SAM_Request__c.CreatedBy},
+
+Missing information for the the Service request number {!SAM_Request__c.Name} has been submitted by you. The status of the request is "In Progress".
+
+Your request will be answered shortly. 
+
+You can access your Service Request via the link below; 
+{!SAM_Request__c.Link}
+
+Thanks,
+{!SAM_Request__c.lkp_Assign_To__c}

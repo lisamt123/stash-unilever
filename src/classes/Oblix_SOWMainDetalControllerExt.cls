@@ -1,6 +1,6 @@
 public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_SWOPparentController {
 
-	// controller attribute to ease passing of comment text from vf page to controller
+    // controller attribute to ease passing of comment text from vf page to controller
     public String sowSubmitComments {get; set;}
     public String sowApproveComments {get; set;}
     public String sowRejectComments {get; set;}
@@ -11,8 +11,8 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Oblix_DashboardsHandler scoresFYFeeDashboard {get; set;}
     public Oblix_DashboardsHandler scoresFullFeeDashboard {get; set;}
     public DateTime pageLastRefreshed {get;set;}
-
-	public static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
+    public static Approval.ProcessResult result;
+    public static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
     public static final String OBJECT_SOW_TO_QUERY = 'marketing_sow__c';
 
     public List<CampaignNonCampaignItems> li_campaign_and_non_campaign_items {get; set;}
@@ -20,9 +20,9 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Id campaignIDSync { get; set; }
 
     public Boolean isAdmin {
-    	get{
-    		return Oblix_PermissionHandler.isSystemAdmin() || Oblix_PermissionHandler.hasSuperUserpermissionSet();
-    	}
+        get{
+            return Oblix_PermissionHandler.isSystemAdmin() || Oblix_PermissionHandler.hasSuperUserpermissionSet();
+        }
     }
 
     public Boolean can_delete_sow{
@@ -218,7 +218,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Boolean can_see_rollover_initiated_message_on_original_sow{
         get {
             return is_initial_rollover_sync_requested
-                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 
@@ -226,7 +226,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Boolean can_see_sync_completed_on_original_sow{
         get {
             return is_initial_sync_completed
-                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 
@@ -234,7 +234,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Boolean can_see_sync_in_progress{
         get {
             return is_rollover_in_progress && !is_sync_complete
-                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 
@@ -242,14 +242,14 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Boolean can_see_sync_requested_on_bfwd_sow{
         get {
             return is_sync_requested && !is_rollover_in_progress && !is_sync_complete
-                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 
     public Boolean can_see_sync_completed_on_bfwd_sow_staying_on_the_page{
         get {
             return is_sync_complete && selected_sow.SOW_PFY__r.LastmodifiedDate > pageLastRefreshed
-                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 
@@ -257,14 +257,14 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Boolean can_see_link_to_cloned_record{
         get {
             return is_approved_original_record
-                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 
     //Only UL users can see warning about SOW going through a rollover if SOW has at least 1 B/Fwd Campaign
     public Boolean can_see_rollover_warning {
         get {
-            return is_going_through_rollover && (selected_sow.B_Fwd_Campaign_count__c > 0) && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+            return is_going_through_rollover && (selected_sow.B_Fwd_Campaign_count__c > 0) && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasUL3permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 
@@ -272,11 +272,11 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
 
 
 
-	public Oblix_SOWMainDetalControllerExt() {
-		
-	}
+    public Oblix_SOWMainDetalControllerExt() {
+        
+    }
 
-	/*******************************************************************
+    /*******************************************************************
         Purpose: Inner Class Used to have list of Campaign and non Campaign in the same list
         Parameters: none
         Returns: none
@@ -319,7 +319,6 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     * @description  submit SOW for approval
     ********************************************************************************/
     public PageReference submitForApproval(){
-
         Id submitterId = UserInfo.getUserId();
 
         Savepoint sp;
@@ -378,7 +377,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
             //req1.setSkipEntryCriteria(true);
 
             // Submit the approval request for the account
-            Approval.ProcessResult result = Approval.process(req1);
+            result = Approval.process(req1);
 
             // Verify the result
             //System.assert(result.isSuccess());
@@ -458,7 +457,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
                 pwr.setComments(sowApproveComments);
                 pwr.setAction('Approve');
                 pwr.setWorkitemId(wi.Id);
-                Approval.ProcessResult result =  Approval.process(pwr);
+                result =  Approval.process(pwr);
 
                 System.debug('Approval successfull');
 

@@ -108,7 +108,7 @@ public with sharing class TriggerFactory
      *
      * Returns:     ITrigger - A trigger handler if one exists or null.
      */
-    private static ITrigger getHandler(Schema.sObjectType soType)
+    @TestVisible private static ITrigger getHandler(Schema.sObjectType soType)
     {
         if (soType == FAU_Participant__c.sObjectType)
         {
@@ -198,6 +198,9 @@ public with sharing class TriggerFactory
 		if (soType == IPM_Project_Document_Section__c.sObjectType){
             return new IPM_ProjectDocumentSectionHandler();
         }
+        if (soType == IPM_SourcingUnit__c.sObjectType){
+            return new IPM_SourcingUnitHandler();
+        }
 		if (soType == Core_Approval_Details__c.sObjectType){
             return new Core_CA_LineItem_Handler();
         }
@@ -240,6 +243,12 @@ public with sharing class TriggerFactory
         {
             return new AF_SubResultHandler();
         }
+        // For AFO release enhancement bonus matrix approval
+        if (soType == AF_Bonus_Summary__c.sObjectType)
+        {
+            return new AF_Bonus_SummaryHandler();
+        }
+
         if (soType == AF_Bonus_Matrix__c.sObjectType)
         {
             return new AF_Bonus_MatrixHandler();
@@ -248,6 +257,11 @@ public with sharing class TriggerFactory
         {
             return new AF_PO_ReportHandler();
         }
+        
+        
+        // Agencies Trigger Handlers ends
+        
+       
         return null;
     }
 

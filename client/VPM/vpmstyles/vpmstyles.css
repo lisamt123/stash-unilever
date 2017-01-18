@@ -1,0 +1,128 @@
+	/* To add spaces between fields as previously all input text fields were stuck to one another | START */
+	
+	.detailList .dataCol{
+        padding: 3px 0 3px 0 !important;
+    }
+
+    .detailList>tr:nth-child(3)>td:nth-child(2){
+        width:100%
+    }
+    
+    body .bPageBlock .pbBody .labelCol{
+        padding-top: 6px !important;
+    }
+    .pbSubsection>table>tr:nth-child(6)>td:nth-child(2)>input{
+        margin-top:9px;
+    }
+	
+	/* To add spaces between fields as previously all input text fields were stuck to one another | END */
+	
+	/*.individualPalette>.Custom17Block .pbSubsection .interviewDisplayTextRow>td{
+		text-align:center;
+	}
+	span#j_id0\3a j_id3\3a i\3a f\3a pb\3a d\3a VPM_FinishInstr:parent{
+		
+		text-align:center;
+	}
+	/*.interviewDisplayTextRow>td{
+		text-align:center;
+	}
+	[id="j_id0:j_id3:i:f:pb:d:VPM_FinishInstr"]{
+		background:blue;
+	}
+	td:has([id="j_id0:j_id3:i:f:pb:d:VPM_FinishInstr"]){
+		text-align:center;
+	}*/
+	
+	/* To align error message below a particular field | START */
+	.detailList tr:nth-child(3)>td:nth-child(2){
+		/*display:block;
+		width:100% !important;*/
+	}
+	.detailList span.errorMsg{
+	    padding-left: 20px !important;
+		clear: both;
+		float: left;
+	}
+	.interviewFormQuestionHelp{
+		margin-left: 5px;
+		
+	}	
+	/* To align error message below a particular field | END */
+	
+	/* To align fields to left and buttons to the center of the page | START */
+	.bPageBlock .pbTitle{
+		width:0.01px !important;
+	}
+	
+	.apexp .bPageBlock .pbHeader td, .apexp .bPageBlock.apexDefaultPageBlock .pbBottomButtons .pbButtonb{
+		    text-align: center !important;
+			text-indent: -24px;
+	}
+	.bPageBlock .detailList .labelCol{
+		width:14% !important;
+	}
+	/* To align fields to left and buttons to the center of the page | END */
+	
+	[id="j_id0:j_id3:i:f:pb:d:VPM_MaintainExtendInstr"]>div>font>i{
+		font-style:normal !important;
+		font-weight:bold !important;
+	}
+
+  /*body .bPageBlock label {
+            line-height: 1em !important;
+            font-size: 13px !important;
+         	display: inline;
+    		padding-left: 5px;
+        }
+        body .bPageBlock input[type="text"]{
+        	border-radius: 5px;
+    		border-style: ridge;
+    		height: 2em;
+        	width:70%;
+        }
+        .bPageBlock button{
+        	font-family: sans-serif;
+    		font-size: 11px;
+        }*/
+
+/* General page styles | START */
+        input, button, select, textarea {
+            line-height: 1em !important;
+        }
+        body{
+            font-size: 0.8rem !important;
+            line-height: 1 !important;
+        }
+        h2{
+        	font-size: 0.9rem !important;
+        }
+        .zen .zen-tabMenu a {
+            font-size: 1em !important; 
+        }
+/* General page styles | END */
+
+/* Styles for table on Pop Up | START */
+        .table ul>li,.table ol>li{
+    		margin-left: -2em !important;
+    	}
+    	.table>tbody>tr:nth-child(1) td{
+    		font-weight:bold;
+    		color:crimson;
+    	}
+         .table-bordered td,.table-bordered th {
+            border: 1px solid #000 !important;
+        }
+         .table thead th {
+            border-bottom: 2px solid #000 !important;
+        }
+/* Styles for table on Pop Up | END */
+/* for table fields alignment
+tr:nth-child(n%2){
+  display: block;
+    height: 23em;
+    overflow-y: scroll;
+    border: 1px gray;
+    border-style: dotted;
+    padding: 5px;
+}*/

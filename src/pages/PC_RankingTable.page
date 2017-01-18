@@ -1,0 +1,375 @@
+<apex:page readOnly="true" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false" cache="false" >
+
+    <!-- styles related to ranking table -->
+    <style type="text/css">
+        *{border:0;margin:0;padding:0;font-family:Helvetica; cursor: default;}
+        body {
+            margin: 1px;
+        }
+        table {
+            border: 0px;
+            border-spacing: 0px;
+        }
+        tr.separator {
+            height: 1px;
+            background: transparent;
+        }
+        #mainContainer {
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            color: #fff;
+            visibility: hidden;
+        }
+        #headerContainer {
+            width: 100%;
+            height: 45px;
+            margin-bottom: 1px;
+        }
+
+        #competitionIconContainer {
+            width: 45px;
+            height: 100%;
+            float: left;
+        }
+        #competitionIcon {
+            with: 30px;
+            height: 30px;
+            margin-top: 7px;
+            margin-left: 7px;
+        }
+        #competitionNameText {
+            font-size: 9px;
+            left: 5px;
+            padding-right: 8px;
+        }
+        #rankContainer {
+            width: 100%;
+        }
+        .rankLine {
+            width: 100%;
+        }
+        .rankCell {
+            width: 45px;
+            height: 21px;
+            font-size: 9px;
+        }
+        .rankText {
+            padding: 4px;
+            margin-left: 4px;
+        }
+        .nameCell {
+            height: 21px;
+            font-size: 9px;
+            padding-left: 5px;
+        }
+        .nameText {
+            left: 5px;
+            font-weight: bold;
+        }
+        .scoreCell {
+            width: 45px;
+            height: 21px;
+            font-size: 9px;
+            color: #00476d;
+            font-weight: bold;
+            text-align: right;
+        }
+        .scoreText {
+            padding: 4px;
+            margin-right: 2px;
+        }
+        #summaryContainer {
+            clear: both;
+            width: 100%;
+            height: 40px;
+            background-color: rgba(0,0,0,0.10);
+            color: #000000;
+            font-size: 10px;
+        }
+        #summaryText {
+            color: #00476d;
+            font-weight: bold;
+        }
+        #countdownContainer {
+            clear: both;
+            width: 100%;
+            height: 39px;
+            background-color: rgba(0,0,0,0.26);
+            color: #000000;
+            font-size: 10px;
+            margin-bottom: 2px;
+        }
+        #remainingTimeContainer {
+            clear: both;
+            width: 100%;
+            height: 106px;
+            background-color: rgba(0,0,0,0.26);
+            color: #000000;
+            font-size: 10px;
+        }
+        #winningScoreContainer {
+            clear: both;
+            width: 100%;
+            height: 39px;
+            background-color: rgba(0,0,0,0.10);
+            color: #000000;
+            font-size: 10px;
+        }
+        #winningScoreText {
+            color: #00476d;
+            font-weight: bold;
+        }
+        .padding-5 {
+            padding: 8px;
+            padding-top: 3px;
+        }
+        .float-left {
+            float: left;
+        }
+        #smallCountdownContainer {
+            //margin-left: 13px;
+            padding-top: 3px;
+        }
+        #smallCountdownCenter {
+            text-align: center;
+            width: 170px;
+            margin: auto;
+        }
+        .smallCounter {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .smallCounterLabel {
+            color: #ffffff;
+            font-size: 8px;
+            font-weight: 300;
+        }
+        .smallDateLine {
+            //margin-left: 50px;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 300;
+        }
+        .gardientSmall {
+            margin-left: 1px;
+            margin-right: 1px;
+            //background: -webkit-linear-gradient(red,blue);
+            //background: -o-linear-gradient(red, blue);
+            //background: -moz-linear-gradient(red, blue);
+            background: linear-gradient(rgb(189, 189, 189), white, rgb(189, 189, 189));
+        }
+        #largeCountdownContainer {
+            margin-left: 15px;
+        }
+        .largeCounter {
+            color: #ffffff;
+            font-size: 27px;
+            font-weight: 600;
+        }
+        .largeCounterLabel {
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 300;
+        }
+        .monsterCounter {
+            color: #ffffff;
+            font-size: 45px;
+            font-weight: 600;
+        }
+        .monsterCounterLabel {
+            color: #ffffff;
+            font-size: 18px;
+            text-transform: uppercase;
+            font-weight: 300;
+            padding-top: 6px;
+            margin-left: 2px;
+        }
+        #largeDateLine {
+            position: absolute;
+            top: 129px;
+            margin-left: 21px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 300;
+        }
+        #largeTimeLine {
+            position: absolute;
+            top: 95px;
+        }
+        .gardientLarge {
+            margin-left: 3px;
+            margin-right: 3px;
+            //background: -webkit-linear-gradient(red,blue);
+            //background: -o-linear-gradient(red, blue);
+            //background: -moz-linear-gradient(red, blue);
+            background: linear-gradient(rgb(189, 189, 189), white, rgb(189, 189, 189));
+        }
+        #startedTextContainer {
+            clear: both;
+            width: 100%;
+            height: 106px;
+            background-color: rgba(0,0,0,0.26);
+            color: #ffffff;
+            text-align:center;
+            font-weight: bold;
+            font-size: 36px;
+        }
+        #startedDateLine {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 300;
+        }
+        #finishedTextContainer {
+            clear: both;
+            width: 100%;
+            height: 39px;
+            background-color: rgba(0,0,0,0.26);
+            color: #ffffff;
+            text-align:center;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        /* firefox specific  */
+        @-moz-document url-prefix() {
+            .monsterCounter {
+                padding-top: 6px;
+            }
+
+            .monsterCounterLabel {
+                padding-top: 9px;
+            }
+        }
+    </style>
+
+    <div id="mainContainer" style="visibility: visible;">
+        <div id="headerContainer" style="background-color: rgba(73, 149, 209, 0.8);">
+            <div id="competitionIconContainer" style="background-color: rgb(73, 149, 209);">
+                <img id="competitionIcon" src="https://www.sumo-graphics.com/gallery/icons/team.png" />
+            </div>
+            <div id="competitionName">
+                <div id="competitionNameText" style="font-size: 18px; position: relative; top: 12px;">PlanCraft Compettion</div>
+            </div>
+        </div>
+
+        <table id="rankContainer">
+            <tbody>
+
+        <tr class="rankLine" title="Lawrence Ratcliffe (OV) 92 Competition Experience 1st position" style="background-color: rgba(0, 129, 175, 0.247059);">
+                <td class="rankCell" style="background-color: rgb(0, 129, 175);">
+                    <span class="rankText" style="font-size: 14px;"><b>1</b><sup style="font-weight: 100;">st</sup></span>
+                </td>
+                <td class="nameCell" style="color: rgb(0, 129, 175);">
+                    <span class="nameText" style="font-size: 12px;">Lawrence Ratcliffe (OV)</span>
+                </td>
+                <td class="scoreCell">
+                    <span class="scoreText" style="font-size: 13px;">92</span>
+                </td>
+            </tr><tr class="separator">
+            </tr><tr class="rankLine" title="Ken Walsh 31 Competition Experience 61 behind me 2nd position" style="background-color: rgba(0, 129, 175, 0.247059);">
+                <td class="rankCell" style="background-color: rgb(0, 129, 175);">
+                    <span class="rankText" style="font-size: 14px;"><b>2</b><sup style="font-weight: 100;">nd</sup></span>
+                </td>
+                <td class="nameCell" style="color: rgb(0, 129, 175);">
+                    <span class="nameText" style="font-size: 12px;">Ken Walsh</span>
+                </td>
+                <td class="scoreCell">
+                    <span class="scoreText" style="font-size: 13px;">31</span>
+                </td>
+            </tr><tr class="separator">
+            </tr><tr class="rankLine" title="Rich Hind 23 Competition Experience 69 behind me 3rd position" style="background-color: rgba(0, 129, 175, 0.247059);">
+                <td class="rankCell" style="background-color: rgb(0, 129, 175);">
+                    <span class="rankText" style="font-size: 14px;"><b>3</b><sup style="font-weight: 100;">rd</sup></span>
+                </td>
+                <td class="nameCell" style="color: rgb(0, 129, 175);">
+                    <span class="nameText" style="font-size: 12px;">Rich Hind</span>
+                </td>
+                <td class="scoreCell">
+                    <span class="scoreText" style="font-size: 13px;">23</span>
+                </td>
+            </tr><tr class="separator">
+            </tr></tbody></table>
+
+        <div id="summaryContainer">
+            <div class="padding-5">
+                <div id="summaryText" style="font-size: 13px; position: relative; top: 0;">Ranked 1 of 9 in the PlanCraft Compettion Group Competition</div>
+            </div>
+        </div>
+
+        <div id="countdownContainer" style="display: none;">
+            <div class="float-left">
+                <!-- <img src="/resource/1446545142000/success__SuMoSalesAssets/component_assets/finish_line.png"> -->
+            </div>
+
+            <div id="smallCountdownCenter">
+                <div id="smallCountdownContainer">
+                    <span class="dayCount smallCounter"></span>
+                    <span class="dayLabel smallCounterLabel" style="text-transform: uppercase;">D</span>
+                    <!-- <img class="gardientSmall" height="17" src="/resource/1446545142000/success__SuMoSalesAssets/component_assets/transparent.gif" width="3"> -->
+
+                    <span class="hourCount smallCounter"></span>
+                    <span class="hourLabel smallCounterLabel">H</span>
+                    <!-- <img class="gardientSmall" height="17" src="/resource/1446545142000/success__SuMoSalesAssets/component_assets/transparent.gif" width="3"> -->
+
+                    <span class="minuteCount smallCounter"></span>
+                    <span class="minuteLabel smallCounterLabel">M</span>
+                    <!-- <img class="gardientSmall" height="17" src="/resource/1446545142000/success__SuMoSalesAssets/component_assets/transparent.gif" width="3"> -->
+
+                    <span class="secondCount smallCounter"></span>
+                    <span class="secondLabel smallCounterLabel">S</span>
+                </div>
+
+                <div class="dateLine smallDateLine">
+                </div>
+            </div>
+        </div>
+
+        <div id="remainingTimeContainer" style="display: none;">
+            <div class="float-left" style="width: 6px; height: 100%; background: #00DE00;">
+            </div>
+
+            <div id="largeCountdownContainer">
+                <div>
+                    <div class="dayCount monsterCounter float-left"></div>
+                    <div class="dayLabel monsterCounterLabel float-left">Days</div>
+                </div>
+
+                <div id="largeTimeLine">
+                    <span class="hourCount largeCounter"></span>
+                    <span class="hourLabel largeCounterLabel">H</span>
+                    <!-- <img class="gardientLarge" height="22" src="/resource/1446545142000/success__SuMoSalesAssets/component_assets/transparent.gif" width="3"> -->
+
+                    <span class="minuteCount largeCounter"></span>
+                    <span class="minuteLabel largeCounterLabel">M</span>
+                    <!-- <img class="gardientLarge" height="22" src="/resource/1446545142000/success__SuMoSalesAssets/component_assets/transparent.gif" width="3"> -->
+
+                    <span class="secondCount largeCounter"></span>
+                    <span class="secondLabel largeCounterLabel">S</span>
+                </div>
+
+                <div class="dateLine" id="largeDateLine">
+                </div>
+            </div>
+        </div>
+
+        <div id="winningScoreContainer" style="display: none;">
+            <div class="padding-5" id="winningScoreText" style="font-size: 13px; position: relative; top: 15.5px;">This is a perpetual competition, scores will continue to accumulate until such time as they are reset</div>
+        </div>
+
+        <div id="startedTextContainer" style="display: none;">
+            <div style="padding-top: 24px;">
+                Started
+            </div>
+            <div id="startedDateLine"></div>
+        </div>
+
+        <div id="finishedTextContainer" style="display: none;">
+            <div id="finishedStatusText" style="padding-top: 7px;">
+                Finished
+            </div>
+        </div>
+
+    </div>
+</apex:page>

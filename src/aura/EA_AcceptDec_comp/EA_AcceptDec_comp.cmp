@@ -5,14 +5,21 @@
     <aura:attribute name="Bronze_badge" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="Silver_badge" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="Gold_badge" type="boolean" default="false"></aura:attribute>
+    <aura:attribute name="Gold_bagetuserimagedge" type="boolean" default="false"></aura:attribute>
     
     
     
-    
-    
+    <aura:attribute name="userDetail" type="String"/>
     <aura:attribute name="teamid" type="String"/>
     <aura:attribute name="activityId" type="String"/>
     <aura:attribute name="check_image" type="Boolean" default="false"/>
+    <aura:attribute name="showgold" type="Boolean" default="false"/>
+    <aura:attribute name="showsilver2" type="Boolean" default="false"/>
+    <aura:attribute name="showsilver1" type="Boolean" default="false"/>
+    <aura:attribute name="showbronz2" type="Boolean" default="false"/>
+     <aura:attribute name="shownewbee1" type="Boolean" default="false"/>
+     <aura:attribute name="showbronz1" type="Boolean" default="false"/>
+    <aura:attribute name="shownewbee2" type="Boolean" default="false"/>
     <aura:attribute name="activity" type="Everyday_Activity__c"/>
     <aura:attribute name="themecolor" type="String"/>
     <aura:handler name="init" value="{!this}" action="{!c.getactivities2}"/>  

@@ -20,6 +20,7 @@ public with sharing class IPM_ProjectSectionContentHelper
     * @param3 projectMap : Trigger.New projects Map
     */
     public static Boolean SKIP_TRIGGER_EXECUTION = false;
+    private static Boolean referParentContent = false;
     public static void createOTIFStatus(Map<Id,List<IPM_Project_Document_Section__c>> projectDocToSectionMap,Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap, Map<Id,IPM_Project__c> projectMap)
     {
         List<IPM_Project_Document_Section_Content__c> insertOTIFStatus = new List<IPM_Project_Document_Section_Content__c>();//list of proj doc section content
@@ -74,6 +75,8 @@ public with sharing class IPM_ProjectSectionContentHelper
                                            projectDocSecContent.IPM_OTIF_HelpText_NA__c = os.OTIF_Help_Text__c;
                                            projectDocSecContent.IPM_OTIF_Sequence__c = os.OTIF_Sequence_Number__c; //sequence number for OTIF
                                            projectDocSecContent.Section_Content_Ext_Id__c=os.IPM_External_Id__c;
+                                           projectDocSecContent.DependentFieldAPIName__c = os.Dependent_Field__c;
+                                           projectDocSecContent.IPM_OTIF_Question_Help_Text__c = os.OTIF_Question_Readonly_Help_Text__c;
                                            
                                            if(sectionInformation.get(os.IPM_External_Id__c)!=null){
                                                projectDocSecContent.IPM_Section_Id__c = sectionInformation.get(os.IPM_External_Id__c).Id;
@@ -181,162 +184,7 @@ public with sharing class IPM_ProjectSectionContentHelper
         
         for(IPM_Project__c project : projectMap.values())
         {
-            IPM_Project__c currentProject = null;
-            List<IPM_Gate_CMI__c> currentProjectCMIGates = null;
-    
-            IPM_Project_Document__c targetProjectDocument = null;
-            IPM_Project_Document_Section__c targetProjectDocumentSection = null;
-            Boolean CMIGateSectionAlreadyExists = false;
-            
-            if(IPM_ProjectHelper.projectMasterMap.containsKey(project.Id) && IPM_ProjectHelper.projectMasterMap.get(project.Id) !=null)
-            {
-                currentProject = IPM_ProjectHelper.projectMasterMap.get(project.Id);
-                if(IPM_ProjectHelper.DBprojectSpecificCMIGateMap.containsKey(project.Id) && IPM_ProjectHelper.DBprojectSpecificCMIGateMap.get(project.Id)!=null)
-                {
-                    currentProjectCMIGates = IPM_ProjectHelper.DBprojectSpecificCMIGateMap.get(project.Id);
-                }
-            }
-            
-            // Get Target Section to which CMI Section Content needs to be appended.           
-            if(currentProject != null)
-            {
-                IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(project);
-                String projectGate = null;
-                
-                // Retrieve the current Gate and find the corresponding project Document and Project document Sections. 
-                if(associatedProjectType!=null)
-                {
-                    projectGate = associatedProjectType.IPM_Gate_Document__c;
-                    
-                    if(projectGate!=null && !String.isBlank(projectGate) && projectToDocumentMap.containsKey(project.Id) && projectToDocumentMap.get(project.Id)!= null)
-                    {
-                        Map<String,IPM_Project_Document__c> gateToDocMap  = projectToDocumentMap.get(project.Id);
-                        if(gateToDocMap.containsKey(projectGate) && gateToDocMap.get(projectGate)!=null)
-                        {
-                            targetProjectDocument =  gateToDocMap.get(projectGate);
-                            if(projectDocToSectionMap.containsKey(targetProjectDocument.Id) && projectDocToSectionMap.get(targetProjectDocument.Id)!=null)
-                            {
-                                List<IPM_Project_Document_Section__c> associatedSectionList = projectDocToSectionMap.get(targetProjectDocument.Id);
-                                for(IPM_Project_Document_Section__c projectSection : associatedSectionList)
-                                {
-                                    if(projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.CMI_SECTION )
-                                    {
-                                          targetProjectDocumentSection = projectSection; 
-                                          break;
-                                    }
-                                }
-                            }
-                        }
-                        
-                        if(targetProjectDocument!=null && targetProjectDocumentSection!=null)
-                        {
-                           // Check if the Section and Content already existed. If yes skip Execution.
-                           if(IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(targetProjectDocumentSection.Id) && 
-                                IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(targetProjectDocumentSection.Id)!=null )
-                           {
-                                List<IPM_Project_Document_Section_Content__c> existingContentList = IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(targetProjectDocumentSection.Id);
-                                for(IPM_Project_Document_Section_Content__c existingContent : existingContentList)
-                                {
-                                    if(existingContent.IPM_Content_Type__c == IPM_ConstantUtils.CMIGATE_CONTENT_TYPE)
-                                    {
-                                        CMIGateSectionAlreadyExists = true;        
-                                    }
-                                }
-                           } 
-                        }
-                    }
-                    
-                    if(!CMIGateSectionAlreadyExists && targetProjectDocument!=null && targetProjectDocumentSection!=null )
-                    {
-                        IPM_Project_Type__c previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);
-                                     
-                        // If project already has CMI Gate Records associated, it means it is a phase shift.
-                        //In that case we need to copy over Section Content from one phase to another.
-            
-                        if(previousProjectType!=null && previousProjectType.IPM_Gate_Document__c!=null && currentProjectCMIGates !=null && !currentProjectCMIGates.isEmpty())
-                        {
-                            String previousGate = previousProjectType.IPM_Gate_Document__c;
-
-                            // Check if there is already Content Available under Previous Gate Sections.
-                            IPM_Project_Document__c sourceProjectDocument = null;
-                            IPM_Project_Document_Section__c sourceProjectDocSection = null;
-                            
-                            List<IPM_Project_Document_Section_Content__c> sourceSectionContentList = new List<IPM_Project_Document_Section_Content__c>(); 
-                            
-                            // Previous Phase Project document and Sections
-                            if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(currentProject.Id) && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id)!=null)
-                            {
-                                List<IPM_Project_Document__c> existingProjectDocuments = IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id);
-                                for(IPM_Project_Document__c existingProjectDocs : existingProjectDocuments)
-                                {
-                                    if(existingProjectDocs.IPM_GateDocuments__c == previousGate)
-                                    {
-                                        sourceProjectDocument = existingProjectDocs;
-                                        if(IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
-                                            IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null)
-                                        {
-                                            for(IPM_Project_Document_Section__c previousGateSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
-                                            {
-                                                if(previousGateSection.IPM_Master_Section_External_Id__c ==  'Mix_Qualification_Plan_and_Action_Standards')
-                                                {
-                                                   sourceProjectDocSection =  previousGateSection;
-                                                   if(IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(sourceProjectDocSection.Id) && IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id)!=null )
-                                                   {
-                                                       List<IPM_Project_Document_Section_Content__c> previousPhaseContentList = IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id);
-                                                       for(IPM_Project_Document_Section_Content__c prevPhaseContent : previousPhaseContentList)
-                                                       {
-                                                           if(prevPhaseContent.IPM_Content_Type__c == IPM_ConstantUtils.CMIGATE_CONTENT_TYPE)
-                                                           {
-                                                                sourceSectionContentList.add(prevPhaseContent);      
-                                                           }
-                                                       }  
-                                                   }  
-                                                   break;
-                                                }
-                                            }                       
-                                        }
-                                        break;
-                                    }
-                                }
-                            }
-                            // Populate the Data from Previous Phase's Project content 
-                           
-                            for(IPM_Project_Document_Section_Content__c sourceSectionContent : sourceSectionContentList)
-                            {
-                                IPM_Project_Document_Section_Content__c projDocSecCon = new IPM_Project_Document_Section_Content__c();
-                                projDocSecCon.IPM_CMI_Country__c= sourceSectionContent.IPM_CMI_Country__c;
-                                projDocSecCon.IPM_CMI_Input__c= sourceSectionContent.IPM_CMI_Input__c;
-                                projDocSecCon.IPM_CMI_Color_Score_Value__c= sourceSectionContent.IPM_CMI_Color_Score_Value__c;
-                                projDocSecCon.IPM_CMI_Comments__c= sourceSectionContent.IPM_CMI_Comments__c;
-                                projDocSecCon.IPM_CMI_Result__c= sourceSectionContent.IPM_CMI_Result__c;
-                                projDocSecCon.IPM_CMI_Results_Acheived__c= sourceSectionContent.IPM_CMI_Results_Acheived__c;
-                                projDocSecCon.IPM_Gate_CMI__c= sourceSectionContent.IPM_Gate_CMI__c;
-                                projDocSecCon.IPM_Project_Document_Section__c = targetProjectDocumentSection.Id;
-                                projDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.CMIGATE_CONTENT_TYPE;
-                                projDocSecCon.IPM_CMI_Free_Text__c=sourceSectionContent.IPM_CMI_Free_Text__c;
-                                projDocSecCon.IPM_CMI_Overall_Score__c=sourceSectionContent.IPM_CMI_Overall_Score__c;
-                                projDocSecCon.IPM_CMI_Overall_Score_Achieved__c=sourceSectionContent.IPM_CMI_Overall_Score_Achieved__c;
-                                projDocSecCon.IPM_CMI_Overall_Score_Label__c=sourceSectionContent.IPM_CMI_Overall_Score_Label__c;
-                                projDocSecCon.IPM_CMI_Is_Free_Text__c=sourceSectionContent.IPM_CMI_Is_Free_Text__c;
-                                projDocSecCon.IPM_CMI_Outcome_Color__c=sourceSectionContent.IPM_CMI_Outcome_Color__c;
-                                projDocSecCon.IPM_CMI_Outcome_Color_Achieved__c=sourceSectionContent.IPM_CMI_Outcome_Color_Achieved__c;
-                                projDocSecCon.IPM_CMI_Overall_Colour__c=sourceSectionContent.IPM_CMI_Overall_Colour__c;
-                                projDocSecCon.IPM_CMI_Overall_Color_Score_Achieved__c=sourceSectionContent.IPM_CMI_Overall_Color_Score_Achieved__c;
-                                projDocSecCon.IPM_CMI_Overall_Colour_Coding_Method__c=sourceSectionContent.IPM_CMI_Overall_Colour_Coding_Method__c;
-                                projDocSecCon.IPM_CMI_Result_Timing__c=sourceSectionContent.IPM_CMI_Result_Timing__c;
-                                projDocSecCon.IPM_CMI_Overall_Colour_Achieved__c=sourceSectionContent.IPM_CMI_Overall_Colour_Achieved__c;
-                                projDocSecCon.IPM_CMI_Color_Score_Value_Achieved__c=sourceSectionContent.IPM_CMI_Color_Score_Value_Achieved__c;
-                                projDocSecCon.IPM_CMI_Overall_Comments__c=sourceSectionContent.IPM_CMI_Overall_Comments__c;
-                                insertprojDocSecConList.add(projDocSecCon);
-                            }                
-                        }
-                        else
-                        {
-                            projectWithoutCMIGates.add(project.Id);
-                        }
-                    }
-                }
-            }
+            setCMIGateSecExists(project, projectDocToSectionMap, projectToDocumentMap, projectWithoutCMIGates, insertprojDocSecConList);
         }
         
         List<IPM_Gate_CMI__c> insertedCMIGateList = new List<IPM_Gate_CMI__c>();
@@ -347,93 +195,13 @@ public with sharing class IPM_ProjectSectionContentHelper
            for(Id projectID : projectWithoutCMIGates)
            {
                 IPM_Project__c currentProject = projectMap.get(projectID);
-                IPM_Project__c parentProject = null;
-                List<IPM_Gate_CMI__c> parentProjectCMIGates = new List<IPM_Gate_CMI__c>();
-                
-                IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(currentProject);
-                
-                List<IPM_Project_Type__c> previousPhasesList = IPM_Utils.getPreviousPhases(currentProjectType,true);
-               /* Set<String> previousGates = new Set<String>();
-                
-                for(IPM_Project_Type__c projectType : previousPhasesList)
-                {
-                    previousGates.add(projectType.IPM_Gate_Document__c);
-                }*/
-                
-                List<IPM_Gate_CMI__c> targetCMIRecords = new List<IPM_Gate_CMI__c>();
-                
                 Map<String,IPM_Country__c> associatedCountriesMap = new Map<String,IPM_Country__c>();
                 
                 if(IPM_ProjectHelper.projectToCountryMap!=null && IPM_ProjectHelper.projectToCountryMap.containsKey(projectID)) 
                 {
                     associatedCountriesMap = IPM_ProjectHelper.projectToCountryMap.get(projectID);
                 }  
-                    
-                if(currentProject!=null && currentProject.IPM_Parent_Project__c !=null && 
-                    IPM_ProjectHelper.projectMasterMap.containsKey(currentProject.IPM_Parent_Project__c) &&  
-                        IPM_ProjectHelper.projectMasterMap.get(currentProject.IPM_Parent_Project__c) !=null)
-                {
-                    parentProject = IPM_ProjectHelper.projectMasterMap.get(currentProject.IPM_Parent_Project__c);
-                    
-                    if(parentProject!=null && IPM_ProjectHelper.DBprojectSpecificCMIGateMap.containsKey(parentProject.Id) && 
-                        IPM_ProjectHelper.DBprojectSpecificCMIGateMap.get(parentProject.Id) !=null)
-                    {
-                        parentProjectCMIGates = IPM_ProjectHelper.DBprojectSpecificCMIGateMap.get(parentProject.Id);
-                        
-                        for(IPM_Gate_CMI__c cmiGate : parentProjectCMIGates)
-                        {
-                           // if(!previousGates.contains(cmiGate.Gate__c))
-                            //{
-                              targetCMIRecords.add(cmiGate);  
-                            //}
-                        }
-                            
-                        if(targetCMIRecords!=null && !targetCMIRecords.isEmpty())
-                        {
-                           for(IPM_Gate_CMI__c sourceCMIGate : targetCMIRecords)
-                           {
-                               String countryArrayString = sourceCMIGate.Country__c;
-                               String regionalCountryList = '';
-                               if(countryArrayString != null && !String.isEmpty(countryArrayString))
-                               {
-                                   String[] countryArray = countryArrayString.split(IPM_ConstantUtils.SEMICOLON);
-                                   for(String country : countryArray)
-                                   {
-                                       if(associatedCountriesMap.containsKey(country) && associatedCountriesMap.get(country)!=null)
-                                       {
-                                           if(String.isBlank(regionalCountryList))  
-                                           {
-                                               regionalCountryList = country;
-                                           }
-                                           else
-                                           {
-                                               regionalCountryList = regionalCountryList +IPM_ConstantUtils.SEMICOLON+country;
-                                           }                                 
-                                       }        
-                                   }    
-                               }
-                               
-                               if(regionalCountryList !=null && !String.isBlank(regionalCountryList))
-                               {
-                                   IPM_Gate_CMI__c gateCMI = new IPM_Gate_CMI__c();
-                                   gateCMI.IPM_Project__c = projectID;
-                                   gateCMI.Gate__c = sourceCMIGate.Gate__c; 
-                                   gateCMI.Element__c = sourceCMIGate.Element__c; 
-                                   gateCMI.Test__c = sourceCMIGate.Test__c;
-                                   gateCMI.KPI__c = sourceCMIGate.KPI__c;
-                                   gateCMI.Input__c = sourceCMIGate.Input__c;
-                                   gateCMI.Results__c = sourceCMIGate.Results__c;
-                                   gateCMI.IPM_CMI_Overall_Colour_Score_Method__c=sourceCMIGate.IPM_CMI_Overall_Colour_Score_Method__c;
-                                   gateCMI.IPM_Skip_Test__c=sourceCMIGate.IPM_Skip_Test__c;
-                                   gateCMI.IPM_Skip_Test_Reason__c=sourceCMIGate.IPM_Skip_Test_Reason__c;
-                                   gateCMI.Country__c = regionalCountryList;
-                                   gateCMI.IPM_CMI_Added_At__c=sourceCMIGate.IPM_CMI_Added_At__c;
-                                   insertedCMIGateList.add(gateCMI);
-                               }
-                           }     
-                        }              
-                     }
-                }    
+                getCMIGateList(projectID, currentProject, associatedCountriesMap, insertedCMIGateList);    
            }
              
            if(!insertedCMIGateList.isEmpty())
@@ -443,20 +211,9 @@ public with sharing class IPM_ProjectSectionContentHelper
         }
         
         for(IPM_Gate_CMI__c cmiObj : insertedCMIGateList)
-        {
-            Boolean CMIGateSectionAlreadyExists = false;
-            ID projectId = cmiObj.IPM_Project__c;
-            
+        {            
+            ID projectId = cmiObj.IPM_Project__c;            
             IPM_Project__c currentProject = null;
-            IPM_Project__c parentProject = null;
-            
-            
-            IPM_Project_Document__c targetProjectDocument = null;
-            IPM_Project_Document_Section__c targetProjectDocumentSection = null;
-            
-            IPM_Project_Document__c sourceProjectDocument = null;
-            IPM_Project_Document_Section__c sourceProjectDocSection = null;
-            List<IPM_Project_Document_Section_Content__c> sourceSectionContentList = new List<IPM_Project_Document_Section_Content__c>();
             
             if(projectMap.containsKey(projectId) && projectMap.get(projectId)!=null )
             {
@@ -464,145 +221,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                 
                 if(currentProject != null)
                 {
-                    IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(currentProject);
-                    String projectGate = null;
-                    
-                    // Retrieve the current Gate and find the corresponding project Document and Project document Sections. 
-                    if(associatedProjectType!=null)
-                    {
-                        projectGate = associatedProjectType.IPM_Gate_Document__c;
-                        
-                        if(projectGate!=null && !String.isBlank(projectGate) && projectToDocumentMap.containsKey(projectId) && projectToDocumentMap.get(projectId)!= null)
-                        {
-                            Map<String,IPM_Project_Document__c> gateToDocMap  = projectToDocumentMap.get(projectId);
-                            if(gateToDocMap.containsKey(projectGate) && gateToDocMap.get(projectGate)!=null)
-                            {
-                                targetProjectDocument =  gateToDocMap.get(projectGate);
-                                if(projectDocToSectionMap.containsKey(targetProjectDocument.Id) && projectDocToSectionMap.get(targetProjectDocument.Id)!=null)
-                                {
-                                    List<IPM_Project_Document_Section__c> associatedSectionList = projectDocToSectionMap.get(targetProjectDocument.Id);
-                                    for(IPM_Project_Document_Section__c projectSection : associatedSectionList)
-                                    {
-                                        if(projectSection.IPM_Master_Section_External_Id__c ==  'Mix_Qualification_Plan_and_Action_Standards' )
-                                        {
-                                            targetProjectDocumentSection = projectSection; 
-                                            // Check if the Section and Content already existed. If yes skip Execution.
-                                            if(IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(targetProjectDocumentSection.Id) && 
-                                                IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(targetProjectDocumentSection.Id)!=null )
-                                            {
-                                                List<IPM_Project_Document_Section_Content__c> existingContentList = IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(targetProjectDocumentSection.Id);
-                                                for(IPM_Project_Document_Section_Content__c existingContent : existingContentList)
-                                                {
-                                                    if(existingContent.IPM_Content_Type__c == IPM_ConstantUtils.CMIGATE_CONTENT_TYPE)
-                                                    {
-                                                        CMIGateSectionAlreadyExists = true;        
-                                                    }
-                                                }
-                                            } 
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        IPM_Project_Type__c previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);
-                    
-                        if(previousProjectType!=null && !CMIGateSectionAlreadyExists && currentProject.IPM_Parent_Project__c !=null && 
-                            IPM_ProjectHelper.projectMasterMap.containsKey(currentProject.IPM_Parent_Project__c) && 
-                            IPM_ProjectHelper.projectMasterMap.get(currentProject.IPM_Parent_Project__c)!=null ) 
-                        {
-                            
-                            String previousGate = previousProjectType.IPM_Gate_Document__c;
-                    
-                            parentProject = IPM_ProjectHelper.projectMasterMap.get(currentProject.IPM_Parent_Project__c);
-                            
-                            if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(parentProject.Id) && 
-                                IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id)!=null )
-                            {
-                                List<IPM_Project_Document__c> parentProjectDocuments = IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id);
-                                
-                                for(IPM_Project_Document__c parentProjectDoc : parentProjectDocuments)
-                                {
-                                    if(parentProjectDoc.IPM_GateDocuments__c == previousGate)
-                                    {
-                                        sourceProjectDocument = parentProjectDoc;
-                                        if(sourceProjectDocument!=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
-                                            IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
-                                        {
-                                            for(IPM_Project_Document_Section__c parentGateSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
-                                            {
-                                                if(parentGateSection.IPM_Master_Section_External_Id__c ==  'Mix_Qualification_Plan_and_Action_Standards')
-                                                {
-                                                   sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(parentGateSection.Id);
-                                                   if(IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(sourceProjectDocSection.Id) && 
-                                                        IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id)!=null)
-                                                   {
-                                                       List<IPM_Project_Document_Section_Content__c> parentContentList = IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id);
-                                                       for(IPM_Project_Document_Section_Content__c parentContent : parentContentList)
-                                                       {
-                                                           if(parentContent.IPM_Content_Type__c == IPM_ConstantUtils.CMIGATE_CONTENT_TYPE)
-                                                           {
-                                                                sourceSectionContentList.add(parentContent);      
-                                                           }
-                                                       }   
-                                                   }
-                                                   break;
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    }
-                                }
-                            }
-                             
-                            
-                            if(sourceSectionContentList!=null && !sourceSectionContentList.isEmpty())
-                            {
-                                String countryArrayString = cmiObj.Country__c;
-                                if(countryArrayString != null && !String.isEmpty(countryArrayString))
-                                {
-                                    String[] countryArray = countryArrayString.split(IPM_ConstantUtils.SEMICOLON);
-                                    
-                                    for(String country : countryArray)
-                                    {
-                                    
-                                        for(IPM_Project_Document_Section_Content__c docSectionContent : sourceSectionContentList)
-                                        {
-                                            if(cmiObj.Test__c == docSectionContent.IPM_CMI_Gate_Test__c && docSectionContent.IPM_CMI_Country__c == country)
-                                            {
-                                                
-                                                IPM_Project_Document_Section_Content__c projDocSecCon = new IPM_Project_Document_Section_Content__c();
-                                                projDocSecCon.IPM_CMI_Country__c= country;
-                                                projDocSecCon.IPM_CMI_Input__c= docSectionContent.IPM_CMI_Input__c;
-                                                projDocSecCon.IPM_CMI_Color_Score_Value__c= docSectionContent.IPM_CMI_Color_Score_Value__c;
-                                                projDocSecCon.IPM_CMI_Comments__c= docSectionContent.IPM_CMI_Comments__c;
-                                                projDocSecCon.IPM_CMI_Result__c= docSectionContent.IPM_CMI_Result__c;
-                                                projDocSecCon.IPM_CMI_Results_Acheived__c= docSectionContent.IPM_CMI_Results_Acheived__c;
-                                                projDocSecCon.IPM_Gate_CMI__c= cmiObj.Id;
-                                                projDocSecCon.IPM_Project_Document_Section__c = targetProjectDocumentSection.Id;
-                                                projDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.CMIGATE_CONTENT_TYPE;
-                                                projDocSecCon.IPM_CMI_Free_Text__c=docSectionContent.IPM_CMI_Free_Text__c;
-                                                projDocSecCon.IPM_CMI_Overall_Score__c=docSectionContent.IPM_CMI_Overall_Score__c;
-                                                projDocSecCon.IPM_CMI_Overall_Score_Achieved__c=docSectionContent.IPM_CMI_Overall_Score_Achieved__c;
-                                                projDocSecCon.IPM_CMI_Overall_Score_Label__c=docSectionContent.IPM_CMI_Overall_Score_Label__c;
-                                                projDocSecCon.IPM_CMI_Is_Free_Text__c=docSectionContent.IPM_CMI_Is_Free_Text__c;
-                                                projDocSecCon.IPM_CMI_Outcome_Color__c=docSectionContent.IPM_CMI_Outcome_Color__c;
-                                                projDocSecCon.IPM_CMI_Outcome_Color_Achieved__c=docSectionContent.IPM_CMI_Outcome_Color_Achieved__c;
-                                                projDocSecCon.IPM_CMI_Overall_Colour__c=docSectionContent.IPM_CMI_Overall_Colour__c;
-                                                projDocSecCon.IPM_CMI_Overall_Color_Score_Achieved__c=docSectionContent.IPM_CMI_Overall_Color_Score_Achieved__c;
-                                                projDocSecCon.IPM_CMI_Overall_Colour_Coding_Method__c=docSectionContent.IPM_CMI_Overall_Colour_Coding_Method__c;
-                                                projDocSecCon.IPM_CMI_Result_Timing__c=docSectionContent.IPM_CMI_Result_Timing__c;
-                                                projDocSecCon.IPM_CMI_Overall_Colour_Achieved__c=docSectionContent.IPM_CMI_Overall_Colour_Achieved__c;
-                                                projDocSecCon.IPM_CMI_Color_Score_Value_Achieved__c=docSectionContent.IPM_CMI_Color_Score_Value_Achieved__c;
-                                                projDocSecCon.IPM_CMI_Overall_Comments__c=docSectionContent.IPM_CMI_Overall_Comments__c;
-                                                insertprojDocSecConList.add(projDocSecCon);    
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }   
-                    }
+                    getsourceSecContList(cmiObj, projectId, insertprojDocSecConList, currentProject, projectDocToSectionMap, projectToDocumentMap);
                 }
             }
         }
@@ -611,6 +230,436 @@ public with sharing class IPM_ProjectSectionContentHelper
         {
             insert insertprojDocSecConList;
         }
+    }
+    
+     /**************************************************************
+    * @description: Used for setting CMI Sections on Project Creation and Change.
+    * @param1 project: Current project 
+    * @param2 projectDocToSectionMap : newly Created project Document To Section Map
+    * @param3 projectToDocumentMap : project to Project Document Map 
+    * @param4 projectWithoutCMIGates : Project without CMI Gate  
+    * @param5 insertprojDocSecConList : List of inserted project document section           
+    */
+    private static void setCMIGateSecExists(IPM_Project__c project, Map<Id,List<IPM_Project_Document_Section__c>> projectDocToSectionMap, Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap, Set<Id> projectWithoutCMIGates, List<IPM_Project_Document_Section_Content__c> insertprojDocSecConList){
+        IPM_Project__c currentProject = null;
+        List<IPM_Gate_CMI__c> currentProjectCMIGates = null;
+
+        IPM_Project_Document__c targetProjectDocument = null;
+        IPM_Project_Document_Section__c targetProjectDocumentSection = null;
+        Boolean CMIGateSectionAlreadyExists = false;
+        
+        
+        if(IPM_ProjectHelper.projectMasterMap.containsKey(project.Id) && IPM_ProjectHelper.projectMasterMap.get(project.Id) !=null)
+        {
+            currentProject = IPM_ProjectHelper.projectMasterMap.get(project.Id);
+            if(IPM_ProjectHelper.DBprojectSpecificCMIGateMap.containsKey(project.Id) && IPM_ProjectHelper.DBprojectSpecificCMIGateMap.get(project.Id)!=null)
+            {
+                currentProjectCMIGates = IPM_ProjectHelper.DBprojectSpecificCMIGateMap.get(project.Id);
+            }
+        }
+        
+        // Get Target Section to which CMI Section Content needs to be appended.           
+        if(currentProject != null)
+        {
+            IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(project);
+            String projectGate = null;
+            
+            // Retrieve the current Gate and find the corresponding project Document and Project document Sections. 
+            if(associatedProjectType!=null)
+            {
+                projectGate = associatedProjectType.IPM_Gate_Document__c;
+                
+                if(projectGate!=null && !String.isBlank(projectGate) && projectToDocumentMap.containsKey(project.Id) && projectToDocumentMap.get(project.Id)!= null)
+                {
+                    Map<String,IPM_Project_Document__c> gateToDocMap  = projectToDocumentMap.get(project.Id);
+                    if(gateToDocMap.containsKey(projectGate) && gateToDocMap.get(projectGate)!=null)
+                    {
+                        targetProjectDocument =  gateToDocMap.get(projectGate);
+                        if(projectDocToSectionMap.containsKey(targetProjectDocument.Id) && projectDocToSectionMap.get(targetProjectDocument.Id)!=null)
+                        {
+                            List<IPM_Project_Document_Section__c> associatedSectionList = projectDocToSectionMap.get(targetProjectDocument.Id);
+                            for(IPM_Project_Document_Section__c projectSection : associatedSectionList)
+                            {
+                                if(projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.CMI_SECTION )
+                                {
+                                      targetProjectDocumentSection = projectSection; 
+                                      break;
+                                }
+                            }
+                        }
+                    }
+                    
+                    if(targetProjectDocument!=null && targetProjectDocumentSection!=null)
+                    {
+                       // Check if the Section and Content already existed. If yes skip Execution.
+                       if(IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(targetProjectDocumentSection.Id) && 
+                            IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(targetProjectDocumentSection.Id)!=null )
+                       {
+                            List<IPM_Project_Document_Section_Content__c> existingContentList = IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(targetProjectDocumentSection.Id);
+                            for(IPM_Project_Document_Section_Content__c existingContent : existingContentList)
+                            {
+                                if(existingContent.IPM_Content_Type__c == IPM_ConstantUtils.CMIGATE_CONTENT_TYPE)
+                                {
+                                    CMIGateSectionAlreadyExists = true;        
+                                }
+                            }
+                       } 
+                    }
+                }
+                getInsProjDocSecConList(project, currentProjectCMIGates, CMIGateSectionAlreadyExists, currentProject, associatedProjectType, targetProjectDocument, targetProjectDocumentSection,  projectWithoutCMIGates, insertprojDocSecConList);
+                
+            }
+        }
+    }
+      /**************************************************************
+    * @description: Used for adding CMI Gate content to CMI Gate list.
+    * @param1 project : Project Id of current project
+    * @param2 currentProjectCMIGates : Current project CMI Gate 
+    * @param3 CMIGateSectionAlreadyExists : to check CMI gate section exist or not   
+    * @param4 currentProject : list of CMI Gate section content
+    * @param5 associatedProjectType : Associated project type
+    * @param6 targetProjectDocument : Targate Project document
+    * @param7 targetProjectDocumentSection : Target project document section 
+    * @param8 insertprojDocSecConList : Project document section list
+    
+    **************************************************************************/
+    private static void getInsProjDocSecConList(IPM_Project__c project, List<IPM_Gate_CMI__c> currentProjectCMIGates, Boolean CMIGateSectionAlreadyExists, IPM_Project__c currentProject, IPM_Project_Type__c associatedProjectType, IPM_Project_Document__c targetProjectDocument, IPM_Project_Document_Section__c targetProjectDocumentSection,  Set<Id> projectWithoutCMIGates, List<IPM_Project_Document_Section_Content__c> insertprojDocSecConList){
+        if(!CMIGateSectionAlreadyExists && targetProjectDocument!=null && targetProjectDocumentSection!=null )
+        {
+            IPM_Project_Type__c previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);
+                         
+            // If project already has CMI Gate Records associated, it means it is a phase shift.
+            //In that case we need to copy over Section Content from one phase to another.
+    
+            if(previousProjectType!=null && previousProjectType.IPM_Gate_Document__c!=null && currentProjectCMIGates !=null && !currentProjectCMIGates.isEmpty())
+            {
+                String previousGate = previousProjectType.IPM_Gate_Document__c;
+    
+                // Check if there is already Content Available under Previous Gate Sections.
+                IPM_Project_Document__c sourceProjectDocument = null;
+                IPM_Project_Document_Section__c sourceProjectDocSection = null;
+                
+                List<IPM_Project_Document_Section_Content__c> sourceSectionContentList = new List<IPM_Project_Document_Section_Content__c>(); 
+                
+                // Previous Phase Project document and Sections
+                if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(currentProject.Id) && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id)!=null)
+                {
+                    List<IPM_Project_Document__c> existingProjectDocuments = IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id);
+                    for(IPM_Project_Document__c existingProjectDocs : existingProjectDocuments)
+                    {
+                        if(existingProjectDocs.IPM_GateDocuments__c == previousGate)
+                        {
+                            sourceProjectDocument = existingProjectDocs;
+                            if(IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
+                                IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null)
+                            {
+                                for(IPM_Project_Document_Section__c previousGateSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
+                                {
+                                    if(previousGateSection.IPM_Master_Section_External_Id__c ==  'Mix_Qualification_Plan_and_Action_Standards')
+                                    {
+                                       sourceProjectDocSection =  previousGateSection;
+                                       if(IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(sourceProjectDocSection.Id) && IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id)!=null )
+                                       {
+                                           List<IPM_Project_Document_Section_Content__c> previousPhaseContentList = IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id);
+                                           for(IPM_Project_Document_Section_Content__c prevPhaseContent : previousPhaseContentList)
+                                           {
+                                               if(prevPhaseContent.IPM_Content_Type__c == IPM_ConstantUtils.CMIGATE_CONTENT_TYPE)
+                                               {
+                                                    sourceSectionContentList.add(prevPhaseContent);      
+                                               }
+                                           }  
+                                       }  
+                                       break;
+                                    }
+                                }                       
+                            }
+                            break;
+                        }
+                    }
+                }
+                // Populate the Data from Previous Phase's Project content 
+               
+                for(IPM_Project_Document_Section_Content__c sourceSectionContent : sourceSectionContentList)
+                {
+                    IPM_Project_Document_Section_Content__c projDocSecCon = new IPM_Project_Document_Section_Content__c();
+                    projDocSecCon.IPM_CMI_Country__c= sourceSectionContent.IPM_CMI_Country__c;
+                    projDocSecCon.IPM_CMI_Input__c= sourceSectionContent.IPM_CMI_Input__c;
+                    projDocSecCon.IPM_CMI_Color_Score_Value__c= sourceSectionContent.IPM_CMI_Color_Score_Value__c;
+                    projDocSecCon.IPM_CMI_Comments__c= sourceSectionContent.IPM_CMI_Comments__c;
+                    projDocSecCon.IPM_CMI_Result__c= sourceSectionContent.IPM_CMI_Result__c;
+                    projDocSecCon.IPM_CMI_Results_Acheived__c= sourceSectionContent.IPM_CMI_Results_Acheived__c;
+                    projDocSecCon.IPM_Gate_CMI__c= sourceSectionContent.IPM_Gate_CMI__c;
+                    projDocSecCon.IPM_Project_Document_Section__c = targetProjectDocumentSection.Id;
+                    projDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.CMIGATE_CONTENT_TYPE;
+                    projDocSecCon.IPM_CMI_Free_Text__c=sourceSectionContent.IPM_CMI_Free_Text__c;
+                    projDocSecCon.IPM_CMI_Overall_Score__c=sourceSectionContent.IPM_CMI_Overall_Score__c;
+                    projDocSecCon.IPM_CMI_Overall_Score_Achieved__c=sourceSectionContent.IPM_CMI_Overall_Score_Achieved__c;
+                    projDocSecCon.IPM_CMI_Overall_Score_Label__c=sourceSectionContent.IPM_CMI_Overall_Score_Label__c;
+                    projDocSecCon.IPM_CMI_Is_Free_Text__c=sourceSectionContent.IPM_CMI_Is_Free_Text__c;
+                    projDocSecCon.IPM_CMI_Outcome_Color__c=sourceSectionContent.IPM_CMI_Outcome_Color__c;
+                    projDocSecCon.IPM_CMI_Outcome_Color_Achieved__c=sourceSectionContent.IPM_CMI_Outcome_Color_Achieved__c;
+                    projDocSecCon.IPM_CMI_Overall_Colour__c=sourceSectionContent.IPM_CMI_Overall_Colour__c;
+                    projDocSecCon.IPM_CMI_Overall_Color_Score_Achieved__c=sourceSectionContent.IPM_CMI_Overall_Color_Score_Achieved__c;
+                    projDocSecCon.IPM_CMI_Overall_Colour_Coding_Method__c=sourceSectionContent.IPM_CMI_Overall_Colour_Coding_Method__c;
+                    projDocSecCon.IPM_CMI_Result_Timing__c=sourceSectionContent.IPM_CMI_Result_Timing__c;
+                    projDocSecCon.IPM_CMI_Overall_Colour_Achieved__c=sourceSectionContent.IPM_CMI_Overall_Colour_Achieved__c;
+                    projDocSecCon.IPM_CMI_Color_Score_Value_Achieved__c=sourceSectionContent.IPM_CMI_Color_Score_Value_Achieved__c;
+                    projDocSecCon.IPM_CMI_Overall_Comments__c=sourceSectionContent.IPM_CMI_Overall_Comments__c;
+                    insertprojDocSecConList.add(projDocSecCon);
+                }                
+            }
+            else
+            {
+                projectWithoutCMIGates.add(project.Id);
+            }
+        }
+    
+    }
+    /**************************************************************
+    * @description: Used for adding CMI Gate content to CMI Gate list.
+    * @param1 projectId : Project Id of current project
+    * @param2 currentProject : Current project from parent method 
+    * @param3 associatedCountriesMap : Associated Country Map 
+    * @param4 insertedCMIGateList : list of CMI Gate section content
+    
+    **************************************************************************/
+    private static void getCMIGateList(Id projectID, IPM_Project__c currentProject, Map<String,IPM_Country__c> associatedCountriesMap, List<IPM_Gate_CMI__c> insertedCMIGateList){
+        IPM_Project__c parentProject = null;
+        List<IPM_Gate_CMI__c> parentProjectCMIGates = new List<IPM_Gate_CMI__c>();
+        List<IPM_Gate_CMI__c> targetCMIRecords = new List<IPM_Gate_CMI__c>();
+        if(currentProject!=null && currentProject.IPM_Parent_Project__c !=null && 
+            IPM_ProjectHelper.projectMasterMap.containsKey(currentProject.IPM_Parent_Project__c) &&  
+                IPM_ProjectHelper.projectMasterMap.get(currentProject.IPM_Parent_Project__c) !=null)
+        {
+            parentProject = IPM_ProjectHelper.projectMasterMap.get(currentProject.IPM_Parent_Project__c);
+            
+            if(parentProject!=null && IPM_ProjectHelper.DBprojectSpecificCMIGateMap.containsKey(parentProject.Id) && 
+                IPM_ProjectHelper.DBprojectSpecificCMIGateMap.get(parentProject.Id) !=null)
+            {
+                parentProjectCMIGates = IPM_ProjectHelper.DBprojectSpecificCMIGateMap.get(parentProject.Id);
+                
+                for(IPM_Gate_CMI__c cmiGate : parentProjectCMIGates)
+                {
+                   // if(!previousGates.contains(cmiGate.Gate__c))
+                    //{
+                      targetCMIRecords.add(cmiGate);  
+                    //}
+                }
+                    
+                if(targetCMIRecords!=null && !targetCMIRecords.isEmpty())
+                {
+                   for(IPM_Gate_CMI__c sourceCMIGate : targetCMIRecords)
+                   {
+                       String countryArrayString = sourceCMIGate.Country__c;
+                       String regionalCountryList = '';
+                       if(countryArrayString != null && !String.isEmpty(countryArrayString))
+                       {
+                           String[] countryArray = countryArrayString.split(IPM_ConstantUtils.SEMICOLON);
+                           for(String country : countryArray)
+                           {
+                               if(associatedCountriesMap.containsKey(country) && associatedCountriesMap.get(country)!=null)
+                               {
+                                   if(String.isBlank(regionalCountryList))  
+                                   {
+                                       regionalCountryList = country;
+                                   }
+                                   else
+                                   {
+                                       regionalCountryList = regionalCountryList +IPM_ConstantUtils.SEMICOLON+country;
+                                   }                                 
+                               }        
+                           }    
+                       }
+                       
+                       if(regionalCountryList !=null && !String.isBlank(regionalCountryList))
+                       {
+                           IPM_Gate_CMI__c gateCMI = new IPM_Gate_CMI__c();
+                           gateCMI.IPM_Project__c = projectID;
+                           gateCMI.Gate__c = sourceCMIGate.Gate__c; 
+                           gateCMI.Element__c = sourceCMIGate.Element__c; 
+                           gateCMI.Test__c = sourceCMIGate.Test__c;
+                           gateCMI.KPI__c = sourceCMIGate.KPI__c;
+                           gateCMI.Input__c = sourceCMIGate.Input__c;
+                           gateCMI.Results__c = sourceCMIGate.Results__c;
+                           gateCMI.IPM_CMI_Overall_Colour_Score_Method__c=sourceCMIGate.IPM_CMI_Overall_Colour_Score_Method__c;
+                           gateCMI.IPM_Skip_Test__c=sourceCMIGate.IPM_Skip_Test__c;
+                           gateCMI.IPM_Skip_Test_Reason__c=sourceCMIGate.IPM_Skip_Test_Reason__c;
+                           gateCMI.Country__c = regionalCountryList;
+                           gateCMI.IPM_CMI_Added_At__c=sourceCMIGate.IPM_CMI_Added_At__c;
+                           insertedCMIGateList.add(gateCMI);
+                       }
+                   }     
+                }              
+             }
+        }
+    }
+    
+     /**************************************************************
+    * @description: Used for adding parent content to source section content list.
+    * @param1 cmiObj : Getting Gate CMI object from parent method
+    * @param2 insertprojDocSecConList : List of inserted document section 
+    * @param3 projectDocToSectionMap : Target project document section 
+    * @param4 projectToDocumentMap : list of sorce project section content
+    * @param5 projectId : Project Id of current project
+    */
+    private static void getsourceSecContList(IPM_Gate_CMI__c cmiObj, ID projectId, List<IPM_Project_Document_Section_Content__c> insertprojDocSecConList, IPM_Project__c currentProject, Map<Id,List<IPM_Project_Document_Section__c>> projectDocToSectionMap, Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap){
+        Boolean CMIGateSectionAlreadyExists = false;
+        IPM_Project__c parentProject = null;
+        IPM_Project_Document__c targetProjectDocument = null;
+        IPM_Project_Document_Section__c targetProjectDocumentSection = null;
+        
+        IPM_Project_Document__c sourceProjectDocument = null;
+        IPM_Project_Document_Section__c sourceProjectDocSection = null;
+        List<IPM_Project_Document_Section_Content__c> sourceSectionContentList = new List<IPM_Project_Document_Section_Content__c>();
+        IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(currentProject);
+        String projectGate = null;
+        
+        // Retrieve the current Gate and find the corresponding project Document and Project document Sections. 
+        if(associatedProjectType!=null)
+        {
+            projectGate = associatedProjectType.IPM_Gate_Document__c;
+            
+            if(projectGate!=null && !String.isBlank(projectGate) && projectToDocumentMap.containsKey(projectId) && projectToDocumentMap.get(projectId)!= null)
+            {
+                Map<String,IPM_Project_Document__c> gateToDocMap  = projectToDocumentMap.get(projectId);
+                if(gateToDocMap.containsKey(projectGate) && gateToDocMap.get(projectGate)!=null)
+                {
+                    targetProjectDocument =  gateToDocMap.get(projectGate);
+                    if(projectDocToSectionMap.containsKey(targetProjectDocument.Id) && projectDocToSectionMap.get(targetProjectDocument.Id)!=null)
+                    {
+                        List<IPM_Project_Document_Section__c> associatedSectionList = projectDocToSectionMap.get(targetProjectDocument.Id);
+                        for(IPM_Project_Document_Section__c projectSection : associatedSectionList)
+                        {
+                            if(projectSection.IPM_Master_Section_External_Id__c ==  'Mix_Qualification_Plan_and_Action_Standards' )
+                            {
+                                targetProjectDocumentSection = projectSection; 
+                                // Check if the Section and Content already existed. If yes skip Execution.
+                                if(IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(targetProjectDocumentSection.Id) && 
+                                    IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(targetProjectDocumentSection.Id)!=null )
+                                {
+                                    List<IPM_Project_Document_Section_Content__c> existingContentList = IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(targetProjectDocumentSection.Id);
+                                    for(IPM_Project_Document_Section_Content__c existingContent : existingContentList)
+                                    {
+                                        if(existingContent.IPM_Content_Type__c == IPM_ConstantUtils.CMIGATE_CONTENT_TYPE)
+                                        {
+                                            CMIGateSectionAlreadyExists = true;        
+                                        }
+                                    }
+                                } 
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            IPM_Project_Type__c previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);
+        
+            if(previousProjectType!=null && !CMIGateSectionAlreadyExists && currentProject.IPM_Parent_Project__c !=null && 
+                IPM_ProjectHelper.projectMasterMap.containsKey(currentProject.IPM_Parent_Project__c) && 
+                IPM_ProjectHelper.projectMasterMap.get(currentProject.IPM_Parent_Project__c)!=null ) 
+            {
+                
+                String previousGate = previousProjectType.IPM_Gate_Document__c;
+        
+                parentProject = IPM_ProjectHelper.projectMasterMap.get(currentProject.IPM_Parent_Project__c);
+                
+                if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(parentProject.Id) && 
+                    IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id)!=null )
+                {
+                    List<IPM_Project_Document__c> parentProjectDocuments = IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id);
+                    
+                    for(IPM_Project_Document__c parentProjectDoc : parentProjectDocuments)
+                    {
+                        if(parentProjectDoc.IPM_GateDocuments__c == previousGate)
+                        {
+                            sourceProjectDocument = parentProjectDoc;
+                            if(sourceProjectDocument!=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
+                                IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
+                            {
+                                for(IPM_Project_Document_Section__c parentGateSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
+                                {
+                                    if(parentGateSection.IPM_Master_Section_External_Id__c ==  'Mix_Qualification_Plan_and_Action_Standards')
+                                    {
+                                       sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(parentGateSection.Id);
+                                       if(IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(sourceProjectDocSection.Id) && 
+                                            IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id)!=null)
+                                       {
+                                           List<IPM_Project_Document_Section_Content__c> parentContentList = IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id);
+                                           for(IPM_Project_Document_Section_Content__c parentContent : parentContentList)
+                                           {
+                                               if(parentContent.IPM_Content_Type__c == IPM_ConstantUtils.CMIGATE_CONTENT_TYPE)
+                                               {
+                                                    sourceSectionContentList.add(parentContent);      
+                                               }
+                                           }   
+                                       }
+                                       break;
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+                //Getting Inserted project document section list 
+                getProjDocSecConList(cmiObj, insertprojDocSecConList, targetProjectDocumentSection, sourceSectionContentList); 
+            }   
+        }
+    }
+     /**************************************************************
+    * @description: Used for adding project document section content to project document section list.
+    * @param1 cmiObj : Getting Gate CMI object from parent method
+    * @param2 insertprojDocSecConList : List of inserted document section 
+    * @param3 targetProjectDocumentSection : Target project document section 
+    * @param4 sourceSectionContentList : list of sorce project section content
+    */
+    private static void getProjDocSecConList(IPM_Gate_CMI__c cmiObj, List<IPM_Project_Document_Section_Content__c> insertprojDocSecConList, IPM_Project_Document_Section__c targetProjectDocumentSection, List<IPM_Project_Document_Section_Content__c> sourceSectionContentList){
+        if(sourceSectionContentList!=null && !sourceSectionContentList.isEmpty())
+        {
+            String countryArrayString = cmiObj.Country__c;
+            if(countryArrayString != null && !String.isEmpty(countryArrayString))
+            {
+                String[] countryArray = countryArrayString.split(IPM_ConstantUtils.SEMICOLON);
+                
+                for(String country : countryArray)
+                {
+                
+                    for(IPM_Project_Document_Section_Content__c docSectionContent : sourceSectionContentList)
+                    {
+                        if(cmiObj.Test__c == docSectionContent.IPM_CMI_Gate_Test__c && docSectionContent.IPM_CMI_Country__c == country)
+                        {
+                            
+                            IPM_Project_Document_Section_Content__c projDocSecCon = new IPM_Project_Document_Section_Content__c();
+                            projDocSecCon.IPM_CMI_Country__c= country;
+                            projDocSecCon.IPM_CMI_Input__c= docSectionContent.IPM_CMI_Input__c;
+                            projDocSecCon.IPM_CMI_Color_Score_Value__c= docSectionContent.IPM_CMI_Color_Score_Value__c;
+                            projDocSecCon.IPM_CMI_Comments__c= docSectionContent.IPM_CMI_Comments__c;
+                            projDocSecCon.IPM_CMI_Result__c= docSectionContent.IPM_CMI_Result__c;
+                            projDocSecCon.IPM_CMI_Results_Acheived__c= docSectionContent.IPM_CMI_Results_Acheived__c;
+                            projDocSecCon.IPM_Gate_CMI__c= cmiObj.Id;
+                            projDocSecCon.IPM_Project_Document_Section__c = targetProjectDocumentSection.Id;
+                            projDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.CMIGATE_CONTENT_TYPE;
+                            projDocSecCon.IPM_CMI_Free_Text__c=docSectionContent.IPM_CMI_Free_Text__c;
+                            projDocSecCon.IPM_CMI_Overall_Score__c=docSectionContent.IPM_CMI_Overall_Score__c;
+                            projDocSecCon.IPM_CMI_Overall_Score_Achieved__c=docSectionContent.IPM_CMI_Overall_Score_Achieved__c;
+                            projDocSecCon.IPM_CMI_Overall_Score_Label__c=docSectionContent.IPM_CMI_Overall_Score_Label__c;
+                            projDocSecCon.IPM_CMI_Is_Free_Text__c=docSectionContent.IPM_CMI_Is_Free_Text__c;
+                            projDocSecCon.IPM_CMI_Outcome_Color__c=docSectionContent.IPM_CMI_Outcome_Color__c;
+                            projDocSecCon.IPM_CMI_Outcome_Color_Achieved__c=docSectionContent.IPM_CMI_Outcome_Color_Achieved__c;
+                            projDocSecCon.IPM_CMI_Overall_Colour__c=docSectionContent.IPM_CMI_Overall_Colour__c;
+                            projDocSecCon.IPM_CMI_Overall_Color_Score_Achieved__c=docSectionContent.IPM_CMI_Overall_Color_Score_Achieved__c;
+                            projDocSecCon.IPM_CMI_Overall_Colour_Coding_Method__c=docSectionContent.IPM_CMI_Overall_Colour_Coding_Method__c;
+                            projDocSecCon.IPM_CMI_Result_Timing__c=docSectionContent.IPM_CMI_Result_Timing__c;
+                            projDocSecCon.IPM_CMI_Overall_Colour_Achieved__c=docSectionContent.IPM_CMI_Overall_Colour_Achieved__c;
+                            projDocSecCon.IPM_CMI_Color_Score_Value_Achieved__c=docSectionContent.IPM_CMI_Color_Score_Value_Achieved__c;
+                            projDocSecCon.IPM_CMI_Overall_Comments__c=docSectionContent.IPM_CMI_Overall_Comments__c;
+                            insertprojDocSecConList.add(projDocSecCon);    
+                        }
+                    }
+                }
+            }
+        }
+
     }
     
      /**************************************************************
@@ -634,7 +683,7 @@ public with sharing class IPM_ProjectSectionContentHelper
             { 
                 IPM_Project__c currentProject = projectMap.get(project.Id);
                 IPM_Project__c parentProject = null;
-                Boolean referParentContent = false;
+                referParentContent = false;
                 if(project.IPM_Parent_Project__c !=null)
                 {
                     if(IPM_ProjectHelper.projectMasterMap.containsKey(project.IPM_Parent_Project__c) && 
@@ -646,23 +695,15 @@ public with sharing class IPM_ProjectSectionContentHelper
                     
                 IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(currentProject);
                 IPM_Project_Type__c previousProjectType = null;
-                
-                if(associatedProjectType !=null)
-                {
-                    previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);
-                }
-                
                 String projectcurrentGate = null; 
-                IPM_Project_Document__c targetProjectDocument = null;
                 IPM_Project_Document_Section__c targetProjectDocumentSection = null; 
-                
                 String sourceProjectGate = null;
-                IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
                     
                 
                 if(associatedProjectType!=null)
                 {
+                    previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);
                     projectcurrentGate = associatedProjectType.IPM_Gate_Document__c;
                 }
                 
@@ -674,161 +715,20 @@ public with sharing class IPM_ProjectSectionContentHelper
                 if(projectcurrentGate!=null)
                 {
                     // Get the Target Project document and Corresponding Project Section to which Concepts needs to be copied Over.
-                    for(IPM_Project_Document__c projectDoc : projectDocumentList)
-                    {
-                        if(projectDoc.IPM_GateDocuments__c == projectcurrentGate && projectDoc.IPM_Project__c == project.Id)
-                        {
-                            targetProjectDocument =  projectDoc;
-                            for(IPM_Project_Document_Section__c projectSection : projectSectionList)
-                            {
-                                if(projectSection.IPM_Project_Document__c == targetProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.CONSUMER_EVIDENCE_CONCEPT )
-                                {
-                                      targetProjectDocumentSection = projectSection; 
-                                      break;
-                                }
-                            }
-                            break;               
-                        }           
-                    }
-                    
-                    if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(currentProject.Id) && 
-                        IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id)!=null)
-                    {
-                        // Get the source document Section content and validate based on that.
-                        for(IPM_Project_Document__c tempProjectDocument : IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id))
-                        {
-                            // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
-                            if(tempProjectDocument.IPM_GateDocuments__c == sourceProjectGate) 
-                            {
-                                if(IPM_ProjectHelper.projectDocumentMap.containsKey(tempProjectDocument.Id) && 
-                                    IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id)!=null)
-                                {
-                                    sourceProjectDocument = IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id);
-                                    // Get the Sections Now.
-                                    if(sourceProjectDocument !=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
-                                        IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
-                                    {
-                                        for(IPM_Project_Document_Section__c projectSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
-                                        {
-                                            if(projectSection.IPM_Project_Document__c == sourceProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.CONSUMER_EVIDENCE_CONCEPT )
-                                            {
-                                                  if(IPM_ProjectHelper.projectSectionMap.containsKey(projectSection.Id) && 
-                                                    IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
-                                                  {
-                                                    sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                  }  
-                                                  break;
-                                            }
-                                        }
-                                    }
-                                }
-                                break;                    
-                            }
-                        }
-                    }            
-                    
-                     // Check if there is a parent.If yes use that as a reference.
-                    if( (sourceProjectDocument ==null || sourceProjectDocument == null) && (parentProject!=null && 
-                        IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(parentProject.Id)
-                        && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id)!=null ) )
-                    {
-                        for(IPM_Project_Document__c tempProjectDocument : IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id))
-                        {
-                            // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
-                            if(tempProjectDocument.IPM_GateDocuments__c == sourceProjectGate) 
-                            {
-                                if(IPM_ProjectHelper.projectDocumentMap.containsKey(tempProjectDocument.Id) && 
-                                    IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id)!=null)
-                                {
-                                    sourceProjectDocument = IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id);
-                                    // Get the Sections Now.
-                                    if(sourceProjectDocument !=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
-                                        IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
-                                    {
-                                        for(IPM_Project_Document_Section__c projectSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
-                                        {
-                                            if(projectSection.IPM_Project_Document__c == sourceProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.CONSUMER_EVIDENCE_CONCEPT )
-                                            {
-                                                  if(IPM_ProjectHelper.projectSectionMap.containsKey(projectSection.Id) && 
-                                                    IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
-                                                  {
-                                                    sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                    referParentContent = true;
-                                                  }  
-                                                  break;
-                                            }
-                                        }
-                                    }
-                                }
-                                break;                    
-                            }
-                        }            
-                    }
+                    targetProjectDocumentSection = getTargetProDocSec(project, projectcurrentGate, projectDocumentList, projectSectionList, IPM_ConstantUtils.CONSUMER_EVIDENCE_CONCEPT);
+                    sourceProjectDocSection = getSourceProDocSec(project, parentProject, currentProject, sourceProjectGate, IPM_ConstantUtils.CONSUMER_EVIDENCE_CONCEPT);
                 }
                 
                 // Get the Project Document Section Content and start the copy over logic.
                 if(sourceProjectDocSection!=null && IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(sourceProjectDocSection.Id) && 
                     IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id)!=null )
                 {
-                    Map<String,IPM_Country__c> associatedCountriesMap = new Map<String,IPM_Country__c>();
-                    // Get the list of Countries the project Might be associated with.
-                    if(IPM_ProjectHelper.projectToCountryMap!=null && IPM_ProjectHelper.projectToCountryMap.containsKey(project.Id) && 
-                        IPM_ProjectHelper.projectToCountryMap.get(project.Id)!=null && !IPM_ProjectHelper.projectToCountryMap.get(project.Id).isEmpty())
-                    {
-                        associatedCountriesMap = IPM_ProjectHelper.projectToCountryMap.get(project.Id);
-                    }
-                    
-                    List<IPM_Project_Document_Section_Content__c> targetSectionContentList = new List<IPM_Project_Document_Section_Content__c>();
-                    
-                    for(IPM_Project_Document_Section_Content__c sectionContent : IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id))
-                    {
-                        if(targetProjectDocumentSection!=null && sectionContent.IPM_Content_Type__c == IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE)
-                        {
-                            // If Refer from Parent is true, it means we need to only get records which are applicable for that child. In case it is false, it is a phase change.
-                            if(!referParentContent)
-                            {
-                                IPM_Project_Document_Section_Content__c newSectionContent = new IPM_Project_Document_Section_Content__c();
-                                newSectionContent.IPM_Consumer_Evidence_Image__c = sectionContent.IPM_Consumer_Evidence_Image__c;
-                                newSectionContent.IPM_Consumer_Evidence_Comments__c = sectionContent.IPM_Consumer_Evidence_Comments__c;   
-                                newSectionContent.IPM_Consumer_Evidence_Concept_Name__c = sectionContent.IPM_Consumer_Evidence_Concept_Name__c;
-                                newSectionContent.IPM_Consumer_Evidence_Priority__c = sectionContent.IPM_Consumer_Evidence_Priority__c;
-                                newSectionContent.IPM_Consumer_Evidence_Country__c = sectionContent.IPM_Consumer_Evidence_Country__c;
-                                newSectionContent.IPM_Consumer_Evidence_Logo_Id__c = sectionContent.IPM_Consumer_Evidence_Logo_Id__c;
-                                newSectionContent.IPM_Project_Document_Section__c = targetProjectDocumentSection.Id;
-                                newSectionContent.IPM_Consumer_Evidence_Country__c =   sectionContent.IPM_Consumer_Evidence_Country__c;
-                                newSectionContent.IPM_Content_Type__c = IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE;
-                                newSectionContent.IPM_Consumer_Evidence_Gate__c= sectionContent.IPM_Consumer_Evidence_Gate__c;
-                                insertedSectionContent.add(newSectionContent);   
-                            }
-                            else 
-                            {
-                                if(sectionContent.IPM_Consumer_Evidence_Country__c !=null && associatedCountriesMap.containsKey(sectionContent.IPM_Consumer_Evidence_Country__c))
-                                {
-                                   IPM_Project_Document_Section_Content__c newSectionContent = new IPM_Project_Document_Section_Content__c();
-                                   newSectionContent.IPM_Consumer_Evidence_Image__c = sectionContent.IPM_Consumer_Evidence_Image__c;
-                                   newSectionContent.IPM_Consumer_Evidence_Comments__c = sectionContent.IPM_Consumer_Evidence_Comments__c;   
-                                   newSectionContent.IPM_Consumer_Evidence_Concept_Name__c = sectionContent.IPM_Consumer_Evidence_Concept_Name__c;
-                                   newSectionContent.IPM_Consumer_Evidence_Priority__c = sectionContent.IPM_Consumer_Evidence_Priority__c;
-                                   newSectionContent.IPM_Consumer_Evidence_Country__c = sectionContent.IPM_Consumer_Evidence_Country__c;
-                                   newSectionContent.IPM_Consumer_Evidence_Logo_Id__c = sectionContent.IPM_Consumer_Evidence_Logo_Id__c;
-                                   newSectionContent.IPM_Project_Document_Section__c = targetProjectDocumentSection.Id;
-                                   newSectionContent.IPM_Consumer_Evidence_Country__c =   sectionContent.IPM_Consumer_Evidence_Country__c;
-                                   newSectionContent.IPM_Content_Type__c = IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE;
-                                   newSectionContent.IPM_Consumer_Evidence_Gate__c= sectionContent.IPM_Consumer_Evidence_Gate__c;
-                                   insertedSectionContent.add(newSectionContent);
-                               }
-                            }
-                        }    
-                    }
-                    
+                    addInsertedSectionContent(project, targetProjectDocumentSection, insertedSectionContent, sourceProjectDocSection);                    
                 }
             }
         }
-        
-        if(insertedSectionContent!=null && !insertedSectionContent.isEmpty())
-        {
-            insert insertedSectionContent;
-        }           
+        //Inserting Section content
+        insertSecCon(insertedSectionContent);
     }
     
      /**************************************************************
@@ -853,7 +753,6 @@ public with sharing class IPM_ProjectSectionContentHelper
             { 
                 IPM_Project__c currentProject = projectMap.get(project.Id);
                 IPM_Project__c parentProject = null;
-                Boolean referParentContent = false;
                 if(project.IPM_Parent_Project__c !=null)
                 {
                     if(IPM_ProjectHelper.projectMasterMap.containsKey(project.IPM_Parent_Project__c) && IPM_ProjectHelper.projectMasterMap.get(project.IPM_Parent_Project__c)!=null)
@@ -864,23 +763,16 @@ public with sharing class IPM_ProjectSectionContentHelper
                     
                 IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(currentProject);
                 IPM_Project_Type__c previousProjectType = null;
-                
-                if(associatedProjectType!=null)
-                {
-                    previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);   
-                }
-                
                 String projectcurrentGate = null; 
-                IPM_Project_Document__c targetProjectDocument = null;
                 IPM_Project_Document_Section__c targetProjectDocumentSection = null;
                 
                 String sourceProjectGate = null;
-                IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
                     
                 
                 if(associatedProjectType!=null)
                 {
+                    previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);
                     projectcurrentGate = associatedProjectType.IPM_Gate_Document__c;
                 }
                 
@@ -891,102 +783,15 @@ public with sharing class IPM_ProjectSectionContentHelper
                 
                 if(projectcurrentGate!=null)
                 {
-                    // Get the Target Project document and Corresponding Project Section to which Concepts needs to be copied Over.
-                    for(IPM_Project_Document__c projectDoc : projectDocumentList)
-                    {
-                        if(projectDoc.IPM_GateDocuments__c == projectcurrentGate && projectDoc.IPM_Project__c == project.Id)
-                        {
-                            targetProjectDocument =  projectDoc;
-                            for(IPM_Project_Document_Section__c projectSection : projectSectionList)
-                            {
-                                if(projectSection.IPM_Project_Document__c == targetProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.CUSTOMER_CHANNEL )
-                                {
-                                      targetProjectDocumentSection = projectSection; 
-                                      break;
-                                }
-                            }
-                            break;               
-                        }           
-                    }
-                    if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(currentProject.Id) && 
-                        IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id)!=null)
-                    {
-                        // Get the source document Section content and validate based on that.
-                        for(IPM_Project_Document__c tempProjectDocument : IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id))
-                        {
-                            // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
-                            if(tempProjectDocument.IPM_GateDocuments__c == sourceProjectGate) 
-                            {
-                                if(IPM_ProjectHelper.projectDocumentMap.containsKey(tempProjectDocument.Id) && 
-                                    IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id)!=null)
-                                {
-                                    sourceProjectDocument = IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id);
-                                    // Get the Sections Now.
-                                    if(sourceProjectDocument !=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
-                                        IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
-                                    {
-                                        for(IPM_Project_Document_Section__c projectSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
-                                        {
-                                            if(projectSection.IPM_Project_Document__c == sourceProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.CUSTOMER_CHANNEL )
-                                            {
-                                                  if(IPM_ProjectHelper.projectSectionMap.containsKey(projectSection.Id) && IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
-                                                  {
-                                                    sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                  }  
-                                                  break;
-                                            }
-                                        }
-                                    }
-                                }
-                                break;                    
-                            }
-                        }
-                    }            
-                    
-                     // Check if there is a parent.If yes use that as a reference.
-                    if( (sourceProjectDocument ==null || sourceProjectDocument == null) && (parentProject!=null && 
-                        IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(parentProject.Id)
-                        && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id)!=null ) )
-                    {
-                        for(IPM_Project_Document__c tempProjectDocument : IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id))
-                        {
-                            // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
-                            if(tempProjectDocument.IPM_GateDocuments__c == sourceProjectGate) 
-                            {
-                                if(IPM_ProjectHelper.projectDocumentMap.containsKey(tempProjectDocument.Id) && 
-                                    IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id)!=null)
-                                {
-                                    sourceProjectDocument = IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id);
-                                    // Get the Sections Now.
-                                    if(sourceProjectDocument !=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
-                                        IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
-                                    {
-                                        for(IPM_Project_Document_Section__c projectSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
-                                        {
-                                            if(projectSection.IPM_Project_Document__c == sourceProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.CUSTOMER_CHANNEL )
-                                            {
-                                                  if(IPM_ProjectHelper.projectSectionMap.containsKey(projectSection.Id) && 
-                                                    IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
-                                                  {
-                                                    sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                    referParentContent = true;
-                                                  }  
-                                                  break;
-                                            }
-                                        }
-                                    }
-                                }
-                                break;                    
-                            }
-                        }            
-                    }
+                    targetProjectDocumentSection = getTargetProDocSec(project, projectcurrentGate, projectDocumentList, projectSectionList, IPM_ConstantUtils.CUSTOMER_CHANNEL);
+                    sourceProjectDocSection = getSourceProDocSec(project, parentProject, currentProject, sourceProjectGate, IPM_ConstantUtils.CUSTOMER_CHANNEL);
                 }
                 
                 // Get the Project Document Section Content and start the copy over logic.
                 if(sourceProjectDocSection!=null && IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(sourceProjectDocSection.Id) && 
                     IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id)!=null )
                 {
-                    List<IPM_Project_Document_Section_Content__c> targetSectionContentList = new List<IPM_Project_Document_Section_Content__c>();
+                    
                     for(IPM_Project_Document_Section_Content__c sectionContent : IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id))
                     {
                         if(sectionContent.IPM_Content_Type__c == IPM_ConstantUtils.CUSTOMER_CHANNEL_SECTION)
@@ -1023,10 +828,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                 }
             }
         }
-        
-        if(insertedSectionContent!=null && !insertedSectionContent.isEmpty()){
-            insert insertedSectionContent;
-        }           
+        insertSecCon(insertedSectionContent);
     }
     
      /**************************************************************
@@ -1052,7 +854,6 @@ public with sharing class IPM_ProjectSectionContentHelper
             { 
                 IPM_Project__c currentProject = projectMap.get(project.Id);
                 IPM_Project__c parentProject = null;
-                Boolean referParentContent = false;
                 if(project.IPM_Parent_Project__c !=null)
                 {
                     if(IPM_ProjectHelper.projectMasterMap.containsKey(project.IPM_Parent_Project__c) && IPM_ProjectHelper.projectMasterMap.get(project.IPM_Parent_Project__c)!=null)
@@ -1063,23 +864,15 @@ public with sharing class IPM_ProjectSectionContentHelper
                     
                 IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(currentProject);
                 IPM_Project_Type__c previousProjectType = null;
-                
-                if(associatedProjectType!=null)
-                {
-                    previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);   
-                }
-                
                 String projectcurrentGate = null; 
-                IPM_Project_Document__c targetProjectDocument = null;
                 IPM_Project_Document_Section__c targetProjectDocumentSection = null;
-                
                 String sourceProjectGate = null;
-                IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
                     
                 
                 if(associatedProjectType!=null)
                 {
+                    previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);  
                     projectcurrentGate = associatedProjectType.IPM_Gate_Document__c;
                 }
                 
@@ -1091,102 +884,15 @@ public with sharing class IPM_ProjectSectionContentHelper
                 if(projectcurrentGate!=null)
                 {
                     // Get the Target Project document and Corresponding Project Section to which Concepts needs to be copied Over.
-                    for(IPM_Project_Document__c projectDoc : projectDocumentList)
-                    {
-                        if(projectDoc.IPM_GateDocuments__c == projectcurrentGate && projectDoc.IPM_Project__c == project.Id)
-                        {
-                            targetProjectDocument =  projectDoc;
-                            for(IPM_Project_Document_Section__c projectSection : projectSectionList)
-                            {
-                                if(projectSection.IPM_Project_Document__c == targetProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD )
-                                {
-                                      targetProjectDocumentSection = projectSection; 
-                                      break;
-                                }
-                            }
-                            break;               
-                        }           
-                    }
-                    
-                    if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(currentProject.Id) && 
-                        IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id)!=null)
-                    {
-                        // Get the source document Section content and validate based on that.
-                        for(IPM_Project_Document__c tempProjectDocument : IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id))
-                        {
-                            // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
-                            if(tempProjectDocument.IPM_GateDocuments__c == sourceProjectGate) 
-                            {
-                                if(IPM_ProjectHelper.projectDocumentMap.containsKey(tempProjectDocument.Id) && 
-                                    IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id)!=null)
-                                {
-                                    sourceProjectDocument = IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id);
-                                    // Get the Sections Now.
-                                    if(sourceProjectDocument !=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
-                                        IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
-                                    {
-                                        for(IPM_Project_Document_Section__c projectSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
-                                        {
-                                            if(projectSection.IPM_Project_Document__c == sourceProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD )
-                                            {
-                                                  if(IPM_ProjectHelper.projectSectionMap.containsKey(projectSection.Id) && IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
-                                                  {
-                                                    sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                  }  
-                                                  break;
-                                            }
-                                        }
-                                    }
-                                }
-                                break;                    
-                            }
-                        }
-                    }            
-                    
-                     // Check if there is a parent.If yes use that as a reference.
-                    if( (sourceProjectDocument ==null || sourceProjectDocument == null) && (parentProject!=null && 
-                        IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(parentProject.Id)
-                        && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id)!=null ) )
-                    {
-                        for(IPM_Project_Document__c tempProjectDocument : IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id))
-                        {
-                            // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
-                            if(tempProjectDocument.IPM_GateDocuments__c == sourceProjectGate) 
-                            {
-                                if(IPM_ProjectHelper.projectDocumentMap.containsKey(tempProjectDocument.Id) && 
-                                    IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id)!=null)
-                                {
-                                    sourceProjectDocument = IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id);
-                                    // Get the Sections Now.
-                                    if(sourceProjectDocument !=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
-                                        IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
-                                    {
-                                        for(IPM_Project_Document_Section__c projectSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
-                                        {
-                                            if(projectSection.IPM_Project_Document__c == sourceProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD )
-                                            {
-                                                  if(IPM_ProjectHelper.projectSectionMap.containsKey(projectSection.Id) && 
-                                                    IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
-                                                  {
-                                                    sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                    referParentContent = true;
-                                                  }  
-                                                  break;
-                                            }
-                                        }
-                                    }
-                                }
-                                break;                    
-                            }
-                        }            
-                    }
+                    targetProjectDocumentSection = getTargetProDocSec(project, projectcurrentGate, projectDocumentList, projectSectionList, IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD);
+                    sourceProjectDocSection = getSourceProDocSec(project, parentProject, currentProject, sourceProjectGate, IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD);            
                 }
                 
                 // Get the Project Document Section Content and start the copy over logic.
                 if(sourceProjectDocSection!=null && IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(sourceProjectDocSection.Id) && 
                     IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id)!=null )
                 {
-                    List<IPM_Project_Document_Section_Content__c> targetSectionContentList = new List<IPM_Project_Document_Section_Content__c>();
+                    
                     for(IPM_Project_Document_Section_Content__c sectionContent : IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id))
                     {
                         if(sectionContent.IPM_Content_Type__c == IPM_ConstantUtils.FINANCIAL_ACTION_STANDARDS)
@@ -1218,10 +924,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                 }
             }
         }
-        
-        if(insertedSectionContent!=null && !insertedSectionContent.isEmpty()){
-            insert insertedSectionContent;
-        }           
+        insertSecCon(insertedSectionContent);
     }
     
      /**************************************************************
@@ -1246,7 +949,7 @@ public with sharing class IPM_ProjectSectionContentHelper
             { 
                 IPM_Project__c currentProject = projectMap.get(project.Id);
                 IPM_Project__c parentProject = null;
-                Boolean referParentContent = false;
+                
                 if(project.IPM_Parent_Project__c !=null)
                 {
                     if(IPM_ProjectHelper.projectMasterMap.containsKey(project.IPM_Parent_Project__c) && IPM_ProjectHelper.projectMasterMap.get(project.IPM_Parent_Project__c)!=null)
@@ -1257,22 +960,14 @@ public with sharing class IPM_ProjectSectionContentHelper
                     
                 IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(currentProject);
                 IPM_Project_Type__c previousProjectType = null;
-                
-                if(associatedProjectType!=null)
-                {
-                    previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);   
-                }
-                
                 String projectcurrentGate = null; 
-                IPM_Project_Document__c targetProjectDocument = null;
                 IPM_Project_Document_Section__c targetProjectDocumentSection = null;
-                
                 String sourceProjectGate = null;
-                IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
                 
                 if(associatedProjectType!=null)
                 {
+                    previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);
                     projectcurrentGate = associatedProjectType.IPM_Gate_Document__c;
                 }
                 
@@ -1284,102 +979,15 @@ public with sharing class IPM_ProjectSectionContentHelper
                 if(projectcurrentGate!=null && projectcurrentGate==IPM_ConstantUtils.MARKET_READY_GATE)
                 {
                     // Get the Target Project document and Corresponding Project Section to which Concepts needs to be copied Over.
-                    for(IPM_Project_Document__c projectDoc : projectDocumentList)
-                    {
-                        if(projectDoc.IPM_GateDocuments__c == projectcurrentGate && projectDoc.IPM_Project__c == project.Id)
-                        {
-                            targetProjectDocument =  projectDoc;
-                            for(IPM_Project_Document_Section__c projectSection : projectSectionList)
-                            {
-                                if(projectSection.IPM_Project_Document__c == targetProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.IPM_CU_COMPLEXITY)
-                                {
-                                      targetProjectDocumentSection = projectSection; 
-                                      break;
-                                }
-                            }
-                            break;               
-                        }           
-                    }
-                    
-                    if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(currentProject.Id) && 
-                        IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id)!=null)
-                    {
-                        // Get the source document Section content and validate based on that.
-                        for(IPM_Project_Document__c tempProjectDocument : IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id))
-                        {
-                            // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
-                            if(tempProjectDocument.IPM_GateDocuments__c == sourceProjectGate) 
-                            {
-                                if(IPM_ProjectHelper.projectDocumentMap.containsKey(tempProjectDocument.Id) && 
-                                    IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id)!=null)
-                                {
-                                    sourceProjectDocument = IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id);
-                                    // Get the Sections Now.
-                                    if(sourceProjectDocument !=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
-                                        IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
-                                    {
-                                        for(IPM_Project_Document_Section__c projectSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
-                                        {
-                                            if(projectSection.IPM_Project_Document__c == sourceProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.IPM_CU_COMPLEXITY)
-                                            {
-                                                  if(IPM_ProjectHelper.projectSectionMap.containsKey(projectSection.Id) && IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
-                                                  {
-                                                    sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                  }  
-                                                  break;
-                                            }
-                                        }
-                                    }
-                                }
-                                break;                    
-                            }
-                        }
-                    }            
-                    
-                     // Check if there is a parent.If yes use that as a reference.
-                    if( (sourceProjectDocument ==null || sourceProjectDocument == null) && (parentProject!=null && 
-                        IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(parentProject.Id)
-                        && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id)!=null ) )
-                    {
-                        for(IPM_Project_Document__c tempProjectDocument : IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id))
-                        {
-                            // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
-                            if(tempProjectDocument.IPM_GateDocuments__c == sourceProjectGate) 
-                            {
-                                if(IPM_ProjectHelper.projectDocumentMap.containsKey(tempProjectDocument.Id) && 
-                                    IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id)!=null)
-                                {
-                                    sourceProjectDocument = IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id);
-                                    // Get the Sections Now.
-                                    if(sourceProjectDocument !=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
-                                        IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
-                                    {
-                                        for(IPM_Project_Document_Section__c projectSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
-                                        {
-                                            if(projectSection.IPM_Project_Document__c == sourceProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.IPM_CU_COMPLEXITY)
-                                            {
-                                                  if(IPM_ProjectHelper.projectSectionMap.containsKey(projectSection.Id) && 
-                                                    IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
-                                                  {
-                                                    sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                    referParentContent = true;
-                                                  }  
-                                                  break;
-                                            }
-                                        }
-                                    }
-                                }
-                                break;                    
-                            }
-                        }            
-                    }
+                    targetProjectDocumentSection = getTargetProDocSec(project, projectcurrentGate, projectDocumentList, projectSectionList, IPM_ConstantUtils.IPM_CU_COMPLEXITY);
+                    sourceProjectDocSection = getSourceProDocSec(project, parentProject, currentProject, sourceProjectGate, IPM_ConstantUtils.IPM_CU_COMPLEXITY);                    
                 }
                 
                 // Get the Project Document Section Content and start the copy over logic.
                 if(sourceProjectDocSection!=null && IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(sourceProjectDocSection.Id) && 
                     IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id)!=null )
                 {
-                    List<IPM_Project_Document_Section_Content__c> targetSectionContentList = new List<IPM_Project_Document_Section_Content__c>();
+                    
                     for(IPM_Project_Document_Section_Content__c sectionContent : IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id))
                     {
                         if(sectionContent.IPM_Content_Type__c == IPM_ConstantUtils.CUCOMPLEXITY_CONTENT_TYPE )
@@ -1398,10 +1006,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                 }
             }
         }
-        
-        if(insertedSectionContent!=null && !insertedSectionContent.isEmpty()){
-            insert insertedSectionContent;
-        }           
+        insertSecCon(insertedSectionContent);
     }
     
      /**************************************************************
@@ -1426,7 +1031,6 @@ public with sharing class IPM_ProjectSectionContentHelper
             { 
                 IPM_Project__c currentProject = projectMap.get(project.Id);
                 IPM_Project__c parentProject = null;
-                Boolean referParentContent = false;
                 if(project.IPM_Parent_Project__c !=null)
                 {
                     if(IPM_ProjectHelper.projectMasterMap.containsKey(project.IPM_Parent_Project__c) && IPM_ProjectHelper.projectMasterMap.get(project.IPM_Parent_Project__c)!=null)
@@ -1437,23 +1041,15 @@ public with sharing class IPM_ProjectSectionContentHelper
                     
                 IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(currentProject);
                 IPM_Project_Type__c previousProjectType = null;
-                
-                if(associatedProjectType!=null)
-                {
-                    previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);   
-                }
-                
                 String projectcurrentGate = null; 
-                IPM_Project_Document__c targetProjectDocument = null;
                 IPM_Project_Document_Section__c targetProjectDocumentSection = null;
-                
                 String sourceProjectGate = null;
-                IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
                     
                 
                 if(associatedProjectType!=null)
                 {
+                    previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);
                     projectcurrentGate = associatedProjectType.IPM_Gate_Document__c;
                 }
                 
@@ -1465,102 +1061,15 @@ public with sharing class IPM_ProjectSectionContentHelper
                 if(projectcurrentGate!=null && projectcurrentGate==IPM_ConstantUtils.MARKET_READY_GATE)
                 {
                     // Get the Target Project document and Corresponding Project Section to which Concepts needs to be copied Over.
-                    for(IPM_Project_Document__c projectDoc : projectDocumentList)
-                    {
-                        if(projectDoc.IPM_GateDocuments__c == projectcurrentGate && projectDoc.IPM_Project__c == project.Id)
-                        {
-                            targetProjectDocument =  projectDoc;
-                            for(IPM_Project_Document_Section__c projectSection : projectSectionList)
-                            {
-                                if(projectSection.IPM_Project_Document__c == targetProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.ASSUMPTIONS)
-                                {
-                                      targetProjectDocumentSection = projectSection; 
-                                      break;
-                                }
-                            }
-                            break;               
-                        }           
-                    }
-                    
-                    if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(currentProject.Id) && 
-                        IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id)!=null)
-                    {
-                        // Get the source document Section content and validate based on that.
-                        for(IPM_Project_Document__c tempProjectDocument : IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id))
-                        {
-                            // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
-                            if(tempProjectDocument.IPM_GateDocuments__c == sourceProjectGate) 
-                            {
-                                if(IPM_ProjectHelper.projectDocumentMap.containsKey(tempProjectDocument.Id) && 
-                                    IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id)!=null)
-                                {
-                                    sourceProjectDocument = IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id);
-                                    // Get the Sections Now.
-                                    if(sourceProjectDocument !=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
-                                        IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
-                                    {
-                                        for(IPM_Project_Document_Section__c projectSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
-                                        {
-                                            if(projectSection.IPM_Project_Document__c == sourceProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.ASSUMPTIONS)
-                                            {
-                                                  if(IPM_ProjectHelper.projectSectionMap.containsKey(projectSection.Id) && IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
-                                                  {
-                                                    sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                  }  
-                                                  break;
-                                            }
-                                        }
-                                    }
-                                }
-                                break;                    
-                            }
-                        }
-                    }            
-                    
-                     // Check if there is a parent.If yes use that as a reference.
-                    if( (sourceProjectDocument ==null || sourceProjectDocument == null) && (parentProject!=null && 
-                        IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(parentProject.Id)
-                        && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id)!=null ) )
-                    {
-                        for(IPM_Project_Document__c tempProjectDocument : IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id))
-                        {
-                            // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
-                            if(tempProjectDocument.IPM_GateDocuments__c == sourceProjectGate) 
-                            {
-                                if(IPM_ProjectHelper.projectDocumentMap.containsKey(tempProjectDocument.Id) && 
-                                    IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id)!=null)
-                                {
-                                    sourceProjectDocument = IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id);
-                                    // Get the Sections Now.
-                                    if(sourceProjectDocument !=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
-                                        IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
-                                    {
-                                        for(IPM_Project_Document_Section__c projectSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
-                                        {
-                                            if(projectSection.IPM_Project_Document__c == sourceProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.ASSUMPTIONS)
-                                            {
-                                                  if(IPM_ProjectHelper.projectSectionMap.containsKey(projectSection.Id) && 
-                                                    IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
-                                                  {
-                                                    sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                    referParentContent = true;
-                                                  }  
-                                                  break;
-                                            }
-                                        }
-                                    }
-                                }
-                                break;                    
-                            }
-                        }            
-                    }
+                    targetProjectDocumentSection = getTargetProDocSec(project, projectcurrentGate, projectDocumentList, projectSectionList, IPM_ConstantUtils.ASSUMPTIONS);
+                    sourceProjectDocSection = getSourceProDocSec(project, parentProject, currentProject, sourceProjectGate, IPM_ConstantUtils.ASSUMPTIONS);
                 }
                 
                 // Get the Project Document Section Content and start the copy over logic.
                 if(sourceProjectDocSection!=null && IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(sourceProjectDocSection.Id) && 
                     IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id)!=null )
                 {
-                    List<IPM_Project_Document_Section_Content__c> targetSectionContentList = new List<IPM_Project_Document_Section_Content__c>();
+                    //setting inserted section list
                     for(IPM_Project_Document_Section_Content__c sectionContent : IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id))
                     {
                         if(sectionContent.IPM_Content_Type__c == IPM_ConstantUtils.Assumptions )
@@ -1587,7 +1096,130 @@ public with sharing class IPM_ProjectSectionContentHelper
                 }
             }
         }
+        insertSecCon(insertedSectionContent);                 
+    }
+    
+    
+      /************************************************************************************************
+    * @description: Uesd to set the sorce project document section of project.
+    * @param1 project : current project from parent method 
+    * @param2 parentProject : parentProject project from parent method
+    * @param3 currentProject : currentProject project from parent method
+    * @param4 sourceProjectGate : Sorce project gate of project   
+    * @param4 Master_Sec_ExId : Master section id of current document           
+    */
+    private static IPM_Project_Document_Section__c getTargetProDocSec(IPM_Project__c project, String projectcurrentGate, List<IPM_Project_Document__c> projectDocumentList, List<IPM_Project_Document_Section__c> projectSectionList, String Master_Sec_ExId){
+        IPM_Project_Document_Section__c targetProjectDocumentSection = null;
+        IPM_Project_Document__c targetProjectDocument = null;            
+        // Get the Target Project document and Corresponding Project Section to which Concepts needs to be copied Over.
+        for(IPM_Project_Document__c projectDoc : projectDocumentList)
+        {
+            if(projectDoc.IPM_GateDocuments__c == projectcurrentGate && projectDoc.IPM_Project__c == project.Id)
+            {
+                targetProjectDocument =  projectDoc;
+                for(IPM_Project_Document_Section__c projectSection : projectSectionList)
+                {
+                    if(projectSection.IPM_Project_Document__c == targetProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  Master_Sec_ExId )
+                    {
+                          targetProjectDocumentSection = projectSection; 
+                          break;
+                    }
+                }
+                break;               
+            }           
+        }
+        return targetProjectDocumentSection;
+    }
+     /************************************************************************************************
+    * @description: Uesd to set the sorce project document section of project.
+    * @param1 project : current project from parent method 
+    * @param2 parentProject : parentProject project from parent method
+    * @param3 currentProject : currentProject project from parent method
+    * @param4 sourceProjectGate : Sorce project gate of project   
+    * @param4 Master_Sec_ExId : Master section id of current document           
+    */
+    private static IPM_Project_Document_Section__c getSourceProDocSec(IPM_Project__c project, IPM_Project__c parentProject, IPM_Project__c currentProject, String sourceProjectGate, String Master_Sec_ExId){
+        IPM_Project_Document_Section__c sourceProjectDocSection = null;
+        IPM_Project_Document__c sourceProjectDocument = null;
+        if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(currentProject.Id) && 
+            IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id)!=null)
+        {
+            // Get the source document Section content and validate based on that.
+            for(IPM_Project_Document__c tempProjectDocument : IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id))
+            {
+                // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
+                if(tempProjectDocument.IPM_GateDocuments__c == sourceProjectGate) 
+                {
+                    if(IPM_ProjectHelper.projectDocumentMap.containsKey(tempProjectDocument.Id) && 
+                        IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id)!=null)
+                    {
+                        sourceProjectDocument = IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id);
+                        // Get the Sections Now.
+                        if(sourceProjectDocument !=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
+                            IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
+                        {
+                            for(IPM_Project_Document_Section__c projectSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
+                            {
+                                if(projectSection.IPM_Project_Document__c == sourceProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  Master_Sec_ExId )
+                                {
+                                      if(IPM_ProjectHelper.projectSectionMap.containsKey(projectSection.Id) && IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
+                                      {
+                                        sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
+                                        referParentContent = true;
+                                      }  
+                                      break;
+                                }
+                            }
+                        }
+                    }
+                    break;                    
+                }
+            }
+        }            
         
+         // Check if there is a parent.If yes use that as a reference.
+        if( (sourceProjectDocument ==null || sourceProjectDocument == null) && (parentProject!=null && 
+            IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(parentProject.Id)
+            && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id)!=null ) )
+        {
+            for(IPM_Project_Document__c tempProjectDocument : IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(parentProject.Id))
+            {
+                // If Gate Document Type matches, it means there is already a Gate Document with different Complexity.
+                if(tempProjectDocument.IPM_GateDocuments__c == sourceProjectGate) 
+                {
+                    if(IPM_ProjectHelper.projectDocumentMap.containsKey(tempProjectDocument.Id) && 
+                        IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id)!=null)
+                    {
+                        sourceProjectDocument = IPM_ProjectHelper.projectDocumentMap.get(tempProjectDocument.Id);
+                        // Get the Sections Now.
+                        if(sourceProjectDocument !=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(sourceProjectDocument.Id) && 
+                            IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id)!=null )
+                        {
+                            for(IPM_Project_Document_Section__c projectSection : IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.get(sourceProjectDocument.Id))
+                            {
+                                if(projectSection.IPM_Project_Document__c == sourceProjectDocument.Id && projectSection.IPM_Master_Section_External_Id__c ==  Master_Sec_ExId )
+                                {
+                                      if(IPM_ProjectHelper.projectSectionMap.containsKey(projectSection.Id) && 
+                                        IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
+                                      {
+                                        sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
+                                      }  
+                                      break;
+                                }
+                            }
+                        }
+                    }
+                    break;                    
+                }
+            }            
+        }
+        return sourceProjectDocSection;
+    }
+     /**************************************************************
+    * @description: Used for inserting section content in various method.
+    * @param1 insertedSectionContent : getting inserted content data from various mehtods and inserting 
+    */
+    private static void insertSecCon(List<IPM_Project_Document_Section_Content__c> insertedSectionContent){
         if(insertedSectionContent!=null && !insertedSectionContent.isEmpty()){
             insert insertedSectionContent;
         }           
@@ -1707,5 +1339,68 @@ public with sharing class IPM_ProjectSectionContentHelper
         if(updateProjDocSecConList!=null && !updateProjDocSecConList.isEmpty()){
             update updateProjDocSecConList;
         }
-    }  
+    } 
+    /**************************************************************
+    * @description: Used for adding section content of document section.
+    * @param1 project : projects from its parent method
+    * @param2 targetProjectDocumentSection : section of target doument 
+    * @param3 insertedSectionContent : Inserted content list from parent mehtod
+    * @param4 sourceProjectDocSection : Source project documehnt section from the parent method
+        It is basically used to fill the content of document section
+    */
+   private static void addInsertedSectionContent(IPM_Project__c project,IPM_Project_Document_Section__c targetProjectDocumentSection, List<IPM_Project_Document_Section_Content__c> insertedSectionContent, IPM_Project_Document_Section__c sourceProjectDocSection)
+    {
+     Map<String,IPM_Country__c> associatedCountriesMap = new Map<String,IPM_Country__c>();
+        // Get the list of Countries the project Might be associated with.
+        if(IPM_ProjectHelper.projectToCountryMap!=null && IPM_ProjectHelper.projectToCountryMap.containsKey(project.Id) && 
+            IPM_ProjectHelper.projectToCountryMap.get(project.Id)!=null && !IPM_ProjectHelper.projectToCountryMap.get(project.Id).isEmpty())
+        {
+            associatedCountriesMap = IPM_ProjectHelper.projectToCountryMap.get(project.Id);
+        }
+        
+        for(IPM_Project_Document_Section_Content__c sectionContent : IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id))
+        {
+       
+        
+            if(targetProjectDocumentSection!=null && sectionContent.IPM_Content_Type__c == IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE)
+            {
+                // If Refer from Parent is true, it means we need to only get records which are applicable for that child. In case it is false, it is a phase change.
+                if(!referParentContent)
+                {
+                    IPM_Project_Document_Section_Content__c newSectionContent = new IPM_Project_Document_Section_Content__c();
+                    newSectionContent.IPM_Consumer_Evidence_Image__c = sectionContent.IPM_Consumer_Evidence_Image__c;
+                    newSectionContent.IPM_Consumer_Evidence_Comments__c = sectionContent.IPM_Consumer_Evidence_Comments__c;   
+                    newSectionContent.IPM_Consumer_Evidence_Concept_Name__c = sectionContent.IPM_Consumer_Evidence_Concept_Name__c;
+                    newSectionContent.IPM_Consumer_Evidence_Priority__c = sectionContent.IPM_Consumer_Evidence_Priority__c;
+                    newSectionContent.IPM_Consumer_Evidence_Country__c = sectionContent.IPM_Consumer_Evidence_Country__c;
+                    newSectionContent.IPM_Consumer_Evidence_Logo_Id__c = sectionContent.IPM_Consumer_Evidence_Logo_Id__c;
+                    newSectionContent.IPM_Project_Document_Section__c = targetProjectDocumentSection.Id;
+                    newSectionContent.IPM_Consumer_Evidence_Country__c =   sectionContent.IPM_Consumer_Evidence_Country__c;
+                    newSectionContent.IPM_Content_Type__c = IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE;
+                    newSectionContent.IPM_Consumer_Evidence_Gate__c= sectionContent.IPM_Consumer_Evidence_Gate__c;
+                    insertedSectionContent.add(newSectionContent);   
+                }
+                else 
+                {
+                    if(sectionContent.IPM_Consumer_Evidence_Country__c !=null && associatedCountriesMap.containsKey(sectionContent.IPM_Consumer_Evidence_Country__c))
+                    {
+                       IPM_Project_Document_Section_Content__c newSectionContent = new IPM_Project_Document_Section_Content__c();
+                       newSectionContent.IPM_Consumer_Evidence_Image__c = sectionContent.IPM_Consumer_Evidence_Image__c;
+                       newSectionContent.IPM_Consumer_Evidence_Comments__c = sectionContent.IPM_Consumer_Evidence_Comments__c;   
+                       newSectionContent.IPM_Consumer_Evidence_Concept_Name__c = sectionContent.IPM_Consumer_Evidence_Concept_Name__c;
+                       newSectionContent.IPM_Consumer_Evidence_Priority__c = sectionContent.IPM_Consumer_Evidence_Priority__c;
+                       newSectionContent.IPM_Consumer_Evidence_Country__c = sectionContent.IPM_Consumer_Evidence_Country__c;
+                       newSectionContent.IPM_Consumer_Evidence_Logo_Id__c = sectionContent.IPM_Consumer_Evidence_Logo_Id__c;
+                       newSectionContent.IPM_Project_Document_Section__c = targetProjectDocumentSection.Id;
+                       newSectionContent.IPM_Consumer_Evidence_Country__c =   sectionContent.IPM_Consumer_Evidence_Country__c;
+                       newSectionContent.IPM_Content_Type__c = IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE;
+                       newSectionContent.IPM_Consumer_Evidence_Gate__c= sectionContent.IPM_Consumer_Evidence_Gate__c;
+                       insertedSectionContent.add(newSectionContent);
+                   }
+                }
+            } 
+        }
+                                          
+    }
+
 }

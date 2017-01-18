@@ -33,6 +33,11 @@ jq(document).ready(function() {
         var ptype = IPMProAppCP.prosubtype;
         if (currentIndex === 1 && ptype === IPMProAppCP.oprtnLabel) {
             jq('#myCarousel').carousel(2);
+            jq(".hlPointer").remove();
+            jq("#helpTextDiv2 .helpContent").append("<div class='hlPointer'></div>");
+            setTimeout(function() {
+                setSlider(3);
+            }, 500);
         }
         if (currentIndex === 1 && ptype === IPMProAppCP.blgLabel) {
             jq('#myCarousel').carousel(1);
@@ -40,7 +45,7 @@ jq(document).ready(function() {
         if (currentIndex === 2 && ptype === IPMProAppCP.blgLabel) {
             jq('#myCarousel').carousel(3);
         }
-        if (currentIndex === 1) {
+        if (currentIndex === 1 && ptype !== IPMProAppCP.oprtnLabel) {
             jq(".hlPointer").remove();
             jq("#helpTextDiv2 .helpContent").append("<div class='hlPointer'></div>");
             setTimeout(function() {
@@ -58,9 +63,7 @@ jq(document).ready(function() {
     });
 /* Below script works on click event. It is to set the slider while navigating from About project tab to Core parameter */
     jq(".coreparameters").click(function() {
-        setTimeout(function() {
-            setSlider(1);
-        }, 500);
+        window.top.location.href = '' + IPMProAppCP.setupurl + '?Pid=' + IPMProAppCP.projectName + '&coreId=coreparameters';
     });
     
 /* Below script works on click event. It is to set the pointer while navigating to the previous question. */

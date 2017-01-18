@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Stores the many financial soft validations to be made and their criteria</description>
+    <fields>
+        <fullName>IPM_Market_Place_Activity__c</fullName>
+        <description>List of allowed MPA values</description>
+        <externalId>false</externalId>
+        <label>IPM Market Place Activity</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Phase__c</fullName>
+        <description>List of project phases</description>
+        <externalId>false</externalId>
+        <label>IPM Project Phase</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Sub_Type__c</fullName>
+        <description>Stores the subType of the project</description>
+        <externalId>false</externalId>
+        <label>IPM Project Sub Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Innovation/Renovation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Operational</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand Led Growth(BLG)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Threshold_Status__c</fullName>
+        <description>Stores the threshold status of the project</description>
+        <externalId>false</externalId>
+        <label>IPM Threshold Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Exempt</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Above Threshold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Below Threshold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>checkBMIYellow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>checkBMIYellow</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>checkGrossProfitYellow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>checkGrossProfitYellow</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>checkPBOYellow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>checkPBOYellow</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>checkValidCAPEXYellow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>checkValidCAPEXYellow</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>checkValidGTOAndITORed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>flag to indicate that red validation (red and yellow ) are to be done</description>
+        <externalId>false</externalId>
+        <label>checkValidGTOAndITORed</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>checkValidIRRYellow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>checkValidIRRYellow</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>checkValidITOYellow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>checkValidITOYellow</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>checkValidNPVYellow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>checkValidNPVYellow</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>checkValidPaybackYellow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>checkValidPaybackYellow</label>
+        <type>Checkbox</type>
+    </fields>
+    <label>IPM Red Yellow Soft Validation Setting</label>
+    <pluralLabel>IPM Red Yellow Soft Validation Settings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

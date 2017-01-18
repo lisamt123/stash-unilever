@@ -3,5 +3,4 @@
     <defaultLandingTab>standard-home</defaultLandingTab>
     <label>Win With Planning</label>
     <tab>Loss_Tree</tab>
-    
 </CustomApplication>

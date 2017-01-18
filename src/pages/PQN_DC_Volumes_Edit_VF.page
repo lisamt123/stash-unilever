@@ -1,0 +1,51 @@
+<apex:page standardController="PQN_DC_Volumes__c" extensions="PQN_DC_Voulmes" showheader="false" tabStyle="PQN_DC_Volumes__c">
+<head>
+    <style>
+    input[type="text"],select,textarea {
+        //display: block;
+        width: 80%;
+        height: 30px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    textarea {
+        height: auto;
+    }
+    </style>
+</head>
+    <body>
+        <div id="wrapper">
+            <c:PQN_Navigation navigationName="dc_volumes"/>
+            <div id="page-wrapper">
+            <div class="container-fluid">
+                <apex:form id="frm">   
+                    <apex:pageMessages id="renderErrorMsg"/>         
+                    <apex:pageBlock title="DC Volumes Edit" mode="edit" id="PBId1">
+                        <apex:pageblockbuttons >
+                        <apex:commandButton value="Save" action="{!saveDCV}"/> 
+                        <apex:commandButton value="Cancel" action="{!cancelDCV}" immediate="true"/>  
+                        </apex:pageblockbuttons>                        
+                        <apex:pageBlockSection title="Reporting Distribution Centre" columns="2" collapsible="false" >
+                            <apex:inputField value="{!dcv.Month__c}" required="true" />   
+                            <apex:selectList id="chooseYear" value="{! dcv.Year__c}" size="1" rendered="true" >
+                                <apex:selectOptions value="{!yearOptions}" />
+                            </apex:selectList>
+                            <apex:inputField value="{!dcv.Total_Pallets_received_by_DC__c}" required="true"/>
+                            <apex:inputField value="{!dcv.Total_Pallets_Checked_By_DC__c}" required="true"/>                                          
+                            <apex:inputField value="{!dcv.Reporting_DC__c}" required="true" /> 
+                        </apex:pageBlockSection>        
+                    </apex:pageBlock>
+                </apex:form>
+            </div>       
+            </div>
+        <!-- /#page-wrapper -->
+        </div>
+    </body>
+</apex:page>

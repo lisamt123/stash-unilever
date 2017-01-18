@@ -35,6 +35,26 @@
 {
   height:102%;
 }
+form.dzdRowCurrencyNameCell.bonusValueOutputBox1{
+    display: inline-block;
+    margin-top: 5px;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    background-color: rgb(127, 140, 141);
+    width: 144px;
+    height: 30px;
+    padding-top: 5px;
+    line-height: 1.2;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-image: initial;
+    border-radius: 5px;
+}
+
+
  </style>    
        <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"></script>
      <!--   Bootstrap_Js File start -->
@@ -100,14 +120,15 @@
                       <div class="alertMesg" id="regTitle"></div>
               </td>
     </tr>
-       <tr class="dzdRow">
+    
+    <tr class="dzdRow">
                <td class="emptyCell3">
                 <apex:outputText >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </apex:outputText>
                </td>
       <td class="dzdRowCurrencyNameCell">
       <span class="marginL-5P"><apex:outputText styleClass="dzdRowCurrencyNameOutputTxt">
-            {!BonusMatrixObj.AF_Rate_Currency__c}
+            {!BonusMatrixObj.AF_MatrixCodeTemp__c}
       </apex:outputText></span>
       </td>
      <td class="esLocalCell">
@@ -116,16 +137,70 @@
                  <apex:param value="{!EsLocal}"/>
                </apex:outputText>  
           </span>
-              </td>
+     </td>
+     
+     <!-- Added By Saranya for Sprint 2 enhancements -->
+     
+     <td >
+        <span class="overrideBonusValueCell">Ex Rate </span>
+     </td>
+     <td>&nbsp;&nbsp;</td>
+     <td class="marginL-5P">  
+         <span class="bonusValueOutputBox">  
+              <apex:outputText value="{0,number,###,###,###.######}" >
+                  <apex:param value="{!BonusMatrixObj.AF_Agency_ExchangeRateTemp__c}"/>
+              </apex:outputText>
+         </span>  
+     </td>
      </tr>  
+     
+     <apex:outputPanel rendered="{!Final_approved}">
+     <tr class="dzdRow">
+        <td class="emptyCell3">
+        <apex:outputText >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </apex:outputText>
+        </td>
+        
+        <td class="dzdRowCurrencyNameCell">
+          <span class="marginL-5P"><apex:outputText styleClass="dzdRowCurrencyNameOutputTxt" id="status_Bonus">
+                {!BonusMatrixObj.AF_Bonus_Currency__c}
+          </apex:outputText>
+          </span>
+        </td>
+     
+        <td class="esLocalCell">
+          <span>         
+            <apex:outputText value="{0,number,###,###,###.##}" id="TotalUSD" >
+                 <apex:param value="{!BonusMatrixObj.AF_Bonus_Value_USD__c}"/>
+               </apex:outputText>  
+          </span>
+        </td>
+        <td class="EXrate" >
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <span class="bonusValueEuro">Ex Rate</span>
+         &nbsp;
+              <span class="bonusValueOutputBox">
+       <apex:outputText value="{0,number,###,###,###.######}">
+        <apex:param value="{!BonusMatrixObj.AF_Exchange_Rate__c}"/>
+       </apex:outputText>
+       </span>
+       </td>
+       </tr>
+       </apex:outputPanel>
+     <!-- Added By Saranya for Sprint 2 enhancements -- End -->
+     
+     
+    
      <tr class="currentAverageUnileverRateRow">
        <td class="currentAverageUnileverRateCell">
-       <apex:outputPanel rendered="{!!IsReadyforPO}">
-        <apex:outputText styleClass="marginT10P">Current Average Unilever Exchange Rate {!BonusMatrixObj.AF_Agency_Exchange_Rate__c}</apex:outputText>
+       <apex:outputPanel rendered="{!IsReadyforPO}">
+        <!--<apex:outputText styleClass="marginT10P">Current Average Unilever Exchange Rate {!BonusMatrixObj.AF_Agency_Exchange_Rate__c}</apex:outputText>-->
         </apex:outputPanel>
        </td>
-       </tr>    
-          <tr>
+     </tr>  
+     
+     
+     <tr>
      <td>
        <apex:commandButton value="Add Comment" onClick="commentsToggleOpen('commentAddTable');return false;" styleClass="submit_btn_addcomment"  html-data-toggle="tooltip" title="{!$Label.AF_BFMX_General_feedback}"/>
        <apex:commandButton value="Save" action="{!Save}" StyleClass="submit_btn_screen1_bonus" reRender="frm,pm1"  rendered="{!IF(AND(isBonusEstimateEdit,NOT(IsReadyforPO)),'true','false')}" status="status"/>      

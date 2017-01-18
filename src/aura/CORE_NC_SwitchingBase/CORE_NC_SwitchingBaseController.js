@@ -1,9 +1,9 @@
 ({
     //Redirecting to new detail page
 	getNewsDetailInfo:function(component, event, helper) {
-        //alert(11);
+       
         //alert(event.getParam("selectedNewsDetail"));   
-        helper.scrollToLocation(component, "top");     
+        helper.scrollToLocation(component);     
         
         component.set("v.NewsDetailComponent", false);
         var selected = event.getParam("selectedNewsDetail");
@@ -15,9 +15,7 @@
         component.set("v.ChatterShareComponent", false);
         component.set("v.FilterComponent", false);
         component.set("v.ShareComponent", false);
-        /*$(function () {
-        	$('html, body').animate({ scrollTop: 0 }, 0);
-        });*/
+       
     },
     //Go back to previous page
     backButton:function(component, event, helper) {
@@ -28,7 +26,7 @@
     },
     //Redirecting to Share page
     shareButton:function(component, event, helper) {   
-        helper.scrollToLocation(component, "top");  
+        helper.scrollToLocation(component);  
         var selected = event.getParam("NewsDetail");
         var NewsType = event.getParam("NewsType");
         component.set("v.NewsDetail",selected);
@@ -42,7 +40,7 @@
     },
     //Redirecting to new detail page
     shareCancelButton:function(component, event, helper) {   
-        helper.scrollToLocation(component, "top");  
+        helper.scrollToLocation(component);  
         component.set("v.BaseComponent", false);
         component.set("v.NewsDetailComponent", true);
         component.set("v.FilterComponent", false);
@@ -55,7 +53,7 @@
     },
     //Redirecteding to filter page/Home Page based on the condition
     displayFilter:function(component, event, helper) {   
-        helper.scrollToLocation(component, "top");  
+       helper.scrollToLocation(component);  
         console.log('------------main---------------'+event.getParam("selectedFilter"));        
         console.log('------------main---------------'+event.getParam("displayFilterPage"));
         var selectedFilter = event.getParam("selectedFilter");
@@ -74,7 +72,7 @@
     },
     //Redirecting to Chatter share page
     chatterShare:function(component, event, helper) {   
-        helper.scrollToLocation(component, "top");  
+        helper.scrollToLocation(component);  
         var selected = event.getParam("NewsDetail");
         var NewsType = event.getParam("NewsType");
         component.set("v.NewsDetail",selected);

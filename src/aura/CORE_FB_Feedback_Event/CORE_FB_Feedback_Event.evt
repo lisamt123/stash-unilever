@@ -1,0 +1,7 @@
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="appName" type="string"></aura:attribute>
+    <aura:attribute name="Pagename" type="string"></aura:attribute>
+    <aura:attribute name="showTranslation" type="boolean"></aura:attribute>
+    <aura:attribute name="eventName" type="string"></aura:attribute>
+    <aura:attribute name="selectedMonth" type="string"></aura:attribute>
+</aura:event>

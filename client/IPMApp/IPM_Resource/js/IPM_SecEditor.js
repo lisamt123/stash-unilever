@@ -152,7 +152,7 @@ function modalWin(){
         var url = $this.attr('value');
         var id = $this.attr('id');
         var title = $this.attr('title');
-        ipmModal("#" + id, title, '35%', '30%', '10%');
+        ipmModal("#" + id, title, '400px', '30%', '10%');
 
     });
 }
@@ -316,12 +316,17 @@ function isNumber(e,ele) {
 var editorunsaved = false;
 var ckedited = false;
 var inputchanged = false;
+var rld = false;
 
 jq(function(){
     editorunsaved = false;
-    jq('.ipmSectionEditor :input').change(function(){
-        editorunsaved = true;
-        inputchanged = true;
+    jq('.listContainer :input').change(function(){
+        editorunsaved = false;
+        inputchanged = false;
+    });
+    jq('.compcustchannelContainer :input').change(function(){
+        editorunsaved = false;
+        inputchanged = false;
     });
     
     jq('.secEditorNavList :input').change(function(){
@@ -351,6 +356,9 @@ function unloadPageseceditor()
 if((ckedited === true || inputchanged === true) && editorunsaved === true)
 {
         return IPMAppSE.wmessage;            
+}else if(rld)
+{
+     return IPMAppSE.wmessage;  
 }
 } 
 
@@ -376,4 +384,53 @@ jq('#ipmModal').on('show.bs.modal', function (e) {
             e.stopPropagation();
         }
     }
-})
+});
+function setFocusOnLoad() {}
+  
+/* Below code is to global claim for addclaim section*/
+function deletionHandling(projectClaimId) 
+{ 
+     jq('#removeClaim .deleteclaimbtn').on("click",function(){deleteClaim(projectClaimId);}); 
+    jq("#removeClaim").modal('show'); 
+}
+
+jq(document).on('click', '.pdlCheckbox input[type="checkbox"]:not(:disabled)', function() {
+        var chkInput = jq(this);
+        if (chkInput.is(':checked')) {
+            chkInput.next('label').addClass('selected');
+        } else {
+            chkInput.next('label').removeClass('selected');
+        }
+    });
+    jq(document).on("click", ".deleteClaim", function(e) {
+        e.preventDefault ? e.preventDefault() : e.returnValue = false;
+        jq("#removeClaim .modal-dialog").width("600px");
+        jq("#removeClaim .modal-dialog").height("180px");
+        jq("#removeClaim .modal-dialog").css({
+            "margin-top": "10%",
+            "z-index": "999"
+        })
+    });
+     jq(document).on('click', '.claimList input[type="checkbox"], .claimList ul li', function(e) {
+        e.stopPropagation();
+    });
+     jq(document).on('show.bs.dropdown', '.clickClaimDrpdown', function(){
+         jq(".claimList").hide(); 
+        jq(this).find('.claimList').show(); 
+    });
+    jq(document).click(function(e) {
+        if(e.target.id !== 'claimListUL') {
+            jq(".claimList").hide();    
+        }  
+    });
+	
+	jq(document).on('click', '.ipmDropresetcc', function(e){
+        e.stopPropagation();
+        jq(".pdlCheckbox input:checkbox").each(function() {
+             jq(this).prop('checked', false);
+           jq(this).next('label').removeClass('selected');
+        });
+        e.stopPropagation();
+    }); 
+	
+	

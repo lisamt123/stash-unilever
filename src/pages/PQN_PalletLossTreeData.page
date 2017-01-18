@@ -1,0 +1,26 @@
+<apex:page standardController="PQN_Pallet_Loss_Tree__c"  recordSetVar="CSObj" showHeader="false" sidebar="false"> 
+
+
+<head>
+    <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/js/jquery-1.11.1.min.js')}"></script>
+    
+    </head>
+    <body>
+<div id="wrapper">
+<c:PQN_Navigation navigationName="Pallet_Losstree"/>
+
+<!--<apex:commandButton action="{!showpanel}" value="show loss data"/>
+<apex:outputPanel rendered="{!show}"> -->
+  <apex:pageBlock >
+   <apex:pageBlockTable value="{!CSObj}" var="a">
+    <apex:column value="{!a.Loss_Code__c}"/>
+    <apex:column value="{!a.Loss_L1__c}"/>
+    <apex:column value="{!a.Loss_L2__c}"/>
+    <apex:column value="{!a.Loss_L3__c}"/>
+    <apex:column value="{!a.Loss_L4__c}"/>
+    <apex:column value="{!a.Explanations__c}"/>
+     </apex:pageBlockTable>
+      </apex:pageBlock> 
+     </div>
+</body>
+</apex:page>

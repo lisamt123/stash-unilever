@@ -36,43 +36,64 @@ public class FAU_GenrateAndAttachPDFControllerTest{
                 LocaleSidKey='en_US', EmailEncodingKey='ISO-8859-1', LanguageLocaleKey='en_US');
         insert u1;
             
+
+
             
+
         System.runAs(u1){
-	        FAU_Program__c programobj = new FAU_Program__c();
-	        programobj.name = 'TestName';
-	        programobj.FAU_Primary_Location__c = 'TestLocation';
-	        programobj.FAU_Invitation_ResponseDeadline__c = system.Today();
-	        programobj.FAU_Status__c='Draft';
-	        programobj.recordTypeId =  Schema.SObjectType.FAU_Program__c.getRecordTypeInfosByName().get('Core').getRecordTypeId();
-	        
-	        insert programobj;
-	        
-	        FAU_Webinar__c webinarobj = new FAU_Webinar__c();
-	        webinarobj.FAU_Title__c='TestTitle';
-	        webinarobj.FAU_Program_Wave__c = programobj.id;
-	        webinarobj.FAU_Start_Time__c = system.now();
-	        webinarobj.FAU_End_Time__c = system.now();
-	        webinarobj.FAU_URL__c = 'www.google.com';
-	        webinarobj.FAU_Description__c = 'description';
-	        
-	        insert webinarobj;
-	        
-	        programobj.FAU_Status__c='Active';
-	        update programobj;
-	        
-	        FAU_Participant__c participantobj= new FAU_Participant__c();
-	        participantobj.FAU_Program_Wave__c =programobj.id;
-	        participantobj.FAU_User__c = u.id;
-	        participantobj.FAU_Invite_State__c='Accepted';
-	        
-	        insert participantobj;
-	        Test.startTest();
-	        PageReference pf = new PageReference('/apex/FAU_GenrateAndAttachPDF?Id='+programobj.id);
-	        test.setCurrentPage(pf);
-	        ApexPages.StandardController controller = new ApexPages.StandardController(programobj);
-	        FAU_GenrateAndAttachPDFController  testctrl = new FAU_GenrateAndAttachPDFController(controller );
-	        testctrl.attach();
-	        Test.stopTest();
+            FAU_Program__c programobj = new FAU_Program__c();
+            programobj.name = 'TestName';
+            programobj.FAU_Primary_Location__c = 'TestLocation';
+            programobj.FAU_Invitation_ResponseDeadline__c = system.Today();
+            programobj.FAU_Status__c='Draft';
+            programobj.recordTypeId =  Schema.SObjectType.FAU_Program__c.getRecordTypeInfosByName().get('Core').getRecordTypeId();
+            
+
+
+            insert programobj;
+            
+
+
+
+
+
+            FAU_Webinar__c webinarobj = new FAU_Webinar__c();
+            webinarobj.FAU_Title__c='TestTitle';
+            webinarobj.FAU_Program_Wave__c = programobj.id;
+            webinarobj.FAU_Start_Time__c = system.now();
+            webinarobj.FAU_End_Time__c = system.now();
+            webinarobj.FAU_URL__c = 'www.google.com';
+            webinarobj.FAU_Description__c = 'description';
+            
+
+
+            insert webinarobj;
+            
+
+
+            programobj.FAU_Status__c='Active';
+            update programobj;
+            
+
+
+
+
+
+            FAU_Participant__c participantobj= new FAU_Participant__c();
+            participantobj.FAU_Program_Wave__c =programobj.id;
+            participantobj.FAU_User__c = u.id;
+            participantobj.FAU_Invite_State__c='Accepted';
+            
+
+
+            insert participantobj;
+            Test.startTest();
+            PageReference pf = new PageReference('/apex/FAU_GenrateAndAttachPDF?Id='+programobj.id);
+            test.setCurrentPage(pf);
+            ApexPages.StandardController controller = new ApexPages.StandardController(programobj);
+            FAU_GenrateAndAttachPDFController  testctrl = new FAU_GenrateAndAttachPDFController(controller );
+            testctrl.attach();
+            Test.stopTest();
         }
     }
 }

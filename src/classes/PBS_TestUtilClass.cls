@@ -108,18 +108,18 @@ public static Date getRandomFutureDate(){
         Integer option = getRandomInteger(1, 5);
         String sResult;
 
-        if(option == 1)
-            sResult = 'Text';
-        else if(option == 2)
-            sResult = 'Number';
-        else if(option == 3)
-            sResult = 'SelectOneQuestion';
-        else if(option == 4)
-            sResult = 'SelectMultipleQuestion';
-        else if(option == 5)
-            sResult = 'Boolean';
-        else
-            sResult = 'Text';
+        if(option == 1){
+            sResult = 'Text';}
+        else if(option == 2){
+            sResult = 'Number';}
+        else if(option == 3){
+            sResult = 'SelectOneQuestion';}
+        else if(option == 4){
+            sResult = 'SelectMultipleQuestion';}
+        else if(option == 5){
+            sResult = 'Boolean';}
+        else{
+            sResult = 'Text';}
 
         return sResult;
     }

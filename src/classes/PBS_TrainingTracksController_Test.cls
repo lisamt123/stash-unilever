@@ -26,7 +26,7 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISE
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
-@isTest
+@istest
 private class PBS_TrainingTracksController_Test{
 
     private static testMethod void testWithoutSharedTracks(){
@@ -47,7 +47,7 @@ private class PBS_TrainingTracksController_Test{
         params.add(new PBS_Params_Test.TrainingTrackParam());
         params.add(new PBS_Params_Test.TrainingTrackParam());
 
-        List<PBS_Training_Track__c> tracks = PBS_TrainingTrackData_Test.createTrainingTracks(params);
+        PBS_TrainingTrackData_Test.createTrainingTracks(params);
 
         Test.startTest();
 
@@ -59,7 +59,6 @@ private class PBS_TrainingTracksController_Test{
         Test.stopTest();
 
     }
-
     private static testMethod void testWithSharedTracks(){
 
         //Create admin users
@@ -81,13 +80,21 @@ private class PBS_TrainingTracksController_Test{
         List<PBS_Training_Track__c> tracks = PBS_TrainingTrackData_Test.createTrainingTracks(params);
         List<PBS_Training_Track__Share> shares = new List<PBS_Training_Track__Share>();
 
+        PBS_Standard_Job_Profile__c psp= new PBS_Standard_Job_Profile__c();
+        psp.name='Guest';
+        insert psp;
+            
         for(PBS_Training_Track__c t : tracks){
+            t.Work_Level__c = 'Guest';
+            t.PBS_Standard_Job_Profile__c = psp.id;
+            t.Geography__c ='Guest';        
             PBS_Training_Track__Share tShr  = new PBS_Training_Track__Share();
             tShr.ParentId = t.Id;
             tShr.UserOrGroupId = lmsUsers.get(0).Id;
             tShr.AccessLevel = 'Read';
             shares.add(tShr);
         }
+        update tracks;
 
         insert shares;
 

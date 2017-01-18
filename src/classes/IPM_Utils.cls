@@ -46,6 +46,7 @@ public without sharing class IPM_Utils {
     public static String Rollout = 'Rollout';
     public static String Local = 'Local';
     public static String CONSOLIDATED = '_CONSOLIDATED';
+    public static String NONKEY = '_NONKEY';
     public static String Innovation = 'Innovation';
     public static String Gross = 'Gross';
     public static String Regional = 'Regional';
@@ -115,7 +116,7 @@ public without sharing class IPM_Utils {
     public static String DueDatecannotbelessthanMarketReadyGateApproval='Due Date cannot be less than Market Ready Gate Approval';
     public static String DueDatecannotbeafterContractGate='Due Date cannot be after Contract Gate';
     public static String PostLaunchEvaluation='Post Launch Evaluation';
-    public static String TargetLaunchDateShiptoTrade='Target Launch Date(Ship to Trade)';
+    public static String TargetLaunchDateShiptoTrade='Target Launch Date (Ship to Trade)';
     public static String DueDatecannotbelessthanShiptotrade='Due Date cannot be less than Ship to trade';
     public static String DueDatecannotbelessthanMarketDeploymentGateApproval='Due Date cannot be less than Market Deployment Gate Approval';
     public static String Duedate='Due date';
@@ -156,7 +157,7 @@ public without sharing class IPM_Utils {
     public static String Internal = 'Internal';
     public static List<String> lstphaseValue = new List<String>{Ideas,Feasibility,Capability,MarketReady};
     public static String notapplicable = 'n/a';
-    
+    public static String duplicateTaskError ='Task already exists.';
     //batch finish email subject and body strings
     public static String emailSubject = 'Apex Sharing Recalculation ';
     public static String emailBody1 = 'The batch Apex job processed ';
@@ -179,9 +180,12 @@ public without sharing class IPM_Utils {
     public static final String LIMIT_STRING = ' LIMIT 50000 ';
     public static String GATE_KEEPING_MODEL_1 = 'GKM1';
     public static String GATE_KEEPING_MODEL_2 = 'GKM2';
-	public static final String CLASS_NAME = IPM_Utils.Class.getName(); //Class Name for Exception Logging
+    public static String GATE_KEEPING_MODEL_3 = 'GKM3';
+    public static String GATE_KEEPING_MODEL_4 = 'GKM4';
+    public static final String CLASS_NAME = IPM_Utils.Class.getName(); //Class Name for Exception Logging
     public static final String UPDATE_FINANCIAL_YEAR_STR='updateFinancialYear';
     
+    public static List<IPM_Project_Type__c> projectTypeSetting = null;
     /*******************************************************************************************************
     * @description: Convert Javascript array sent to apex in the form of string to apex array
     * @param1 : String input for the conversion
@@ -306,10 +310,17 @@ public without sharing class IPM_Utils {
        
        String strToReturn = '';
        try {
-           IPM_User_Profile__c usrObj = [SELECT IPM_User_Role__c FROM IPM_User_Profile__c WHERE IPM_User__c=:UserInfo.getUserId() limit 1];
-           strToReturn = usrObj.IPM_User_Role__c;
-           if(strToReturn == 'Supply Chain') {
-                strToReturn = 'SC';
+           List<IPM_User_Profile__c> UPL = [SELECT IPM_User_Role__c FROM IPM_User_Profile__c WHERE IPM_User__c=:UserInfo.getUserId() limit 1];
+           List<IPM_Company_Card__c> CCL = [SELECT ID FROM IPM_Company_Card__c WHERE IPM_Business_Partner__c=:UserInfo.getUserId() LIMIT 1];
+           If(UPL.isEmpty() && CCL.isEmpty()) {
+               ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage));
+           }
+           Else If (!UPL.isEmpty()) {
+               IPM_User_Profile__c usrObj = UPL[0];
+               strToReturn = usrObj.IPM_User_Role__c;
+               if(strToReturn == 'Supply Chain') {
+                   strToReturn = 'SC';
+               }
            }
        }catch(exception ex) { 
             ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
@@ -477,7 +488,7 @@ public without sharing class IPM_Utils {
     public static Set<String> getMasterBrandData(){
         
         set<String> lstToReturn = new set<String>();
-        MDO_BrandPositions__c[] brandPositions = [SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c LIMIT 9999];
+        MDO_BrandPositions__c[] brandPositions = [SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c ORDER BY brand_position_id__r.Name LIMIT 999];
         for(MDO_BrandPositions__c eachbrandPos : brandPositions) {
             lstToReturn.add(eachbrandPos.brand_position_id__r.Name);
         }
@@ -521,11 +532,8 @@ public without sharing class IPM_Utils {
     
     public static String prepareSOQLQuery(String SObjectName ,Boolean addChild,Set<String> includededChildObjects, Boolean includeSystemFields) 
     { 
-        Set<String> mandatoryStandardFieldSet = new Set<String>{'id','name','recordtypeid'};
+        Set<String> mandatoryStandardFieldSet = new Set<String>{'id','recordtypeid'};
         
-        Set<String> skippedChildObject = new Set<String>{'IPM_Project__c'};
-        Map<String,Map<String,String>> orderByMap = new Map<String,Map<String,String>>{};
-       
         String queryStr = ' Select ';
 
         Schema.DescribeSObjectResult sObjectDescribe = Schema.getGlobalDescribe().get(SObjectName).getDescribe();
@@ -535,16 +543,16 @@ public without sharing class IPM_Utils {
         Set<String> excludedFieldSet = new Set<String>();
         if(!fieldSetMap.isEmpty() && fieldSetMap.containsKey('IPM_Exclude_Fields')) 
         {
-        	for(Schema.FieldSetMember fieldSetMem : fieldSetMap.get('IPM_Exclude_Fields').getFields()) 
-        	{ 
-        		excludedFieldSet.add(fieldSetMem.getFieldPath());
-        	}
+            for(Schema.FieldSetMember fieldSetMem : fieldSetMap.get('IPM_Exclude_Fields').getFields()) 
+            { 
+                excludedFieldSet.add(fieldSetMem.getFieldPath());
+            }
         }
         
         for(String fieldAPIName :  sobjectFieldMap.keySet())
         {   
             Schema.DescribeFieldResult fieldDescribe = sobjectFieldMap.get(fieldAPIName).getDescribe(); 
-            if(!mandatoryStandardFieldSet.contains(fieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() ) && !excludedFieldSet.contains(fieldAPIName))
+            if(!mandatoryStandardFieldSet.contains(fieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() || fieldDescribe.isNameField()) && !excludedFieldSet.contains(fieldAPIName))
             {
                 queryStr += ' '+fieldAPIName+',';
             }
@@ -552,14 +560,7 @@ public without sharing class IPM_Utils {
         
         if(addChild)
         {
-                
-                 
             queryStr += getChildRelationshipFields(SObjectName,includededChildObjects,includeSystemFields);    
-                
-                    
-                    
-                    
-                    
         }
         
         if(!sObjectDescribe.getRecordTypeInfos().isEmpty())
@@ -570,20 +571,20 @@ public without sharing class IPM_Utils {
                 {
                     queryStr += 'recordTypeId,';
                     break;
-                }
+                } 
             }
-        }
+        } 
                     
-        queryStr += 'Id,Name from '+SObjectName+' ';
+        queryStr += 'Id from '+SObjectName+' ';
 
         return queryStr;
     } 
     
     public static String getChildRelationshipFields(String SObjectName,Set<String> includededChildObjects,Boolean includeSystemFields)
     {
-    	String queryStr = '';
-    	Set<String> mandatoryStandardFieldSet = new Set<String>{'id','name','recordtypeid'};
-    	// Get Child Relationships
+        String queryStr = '';
+        Set<String> mandatoryStandardFieldSet = new Set<String>{'id','recordtypeid'};
+        // Get Child Relationships
         for(Schema.ChildRelationship cr : Schema.getGlobalDescribe().get(SObjectName).getDescribe().getChildRelationships())
         {
             // Get Child Relationship Name
@@ -599,11 +600,11 @@ public without sharing class IPM_Utils {
                 for(String childFieldAPIName : childFieldTypeMap.keySet())
                 {
                     Schema.DescribeFieldResult fieldDescribe = childFieldTypeMap.get(childFieldAPIName).getDescribe();
-                    if(!mandatoryStandardFieldSet.contains(childFieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() ) )
+                    if(!mandatoryStandardFieldSet.contains(childFieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() || fieldDescribe.isNameField()) )
                     {
                         queryStr += ' '+childFieldAPIName+',';
                     }
-                } 
+                }  
                 if(!childObjectDescibe.getRecordTypeInfos().isEmpty())
                 { 
                     for(Schema.RecordTypeInfo recordInfo : childObjectDescibe.getRecordTypeInfos())
@@ -611,11 +612,11 @@ public without sharing class IPM_Utils {
                         if(!recordInfo.isMaster())
                         {
                             queryStr += 'recordTypeId,';
-                            break;
-                        }
-                    }
+                            break; 
+                        } 
+                    } 
                 }
-                queryStr += 'Id,Name from '+childRelationshipName;
+                queryStr += 'Id from '+childRelationshipName;
                 queryStr = queryStr.removeEnd(IPM_ConstantUtils.COMMA);
                 queryStr += '  ),'; 
             }
@@ -628,31 +629,61 @@ public without sharing class IPM_Utils {
         Used for Project back Ground Process.
       @param1 project : Project Object.
     */
+    
+    public static void  populateProjectType()
+    {
+        if(projectTypeSetting == null || projectTypeSetting.isEmpty())
+        {
+            projectTypeSetting = IPM_Project_Type__c.getAll().values();          
+        }
+    }
+    
+    
+    
     public static IPM_Project_Type__c retrieveProjectType(IPM_Project__c project)
     {
         IPM_Project_Type__c targetProjectType = null;
         // Get incoming Project Type 
         String projectType = project.IPM_Project_Type__c;
-        // Get project GateKeeping Model
-        String projectGKModel = project.IPM_GateKeeping_Model__c;
+        // Get project GateKeeping Question
+        String projectGKMQuestion = project.IPM_GateKeeping_Model__c;
         // Get Project Span 
         String projectSpan = project.IPMProject_Span__c;
         // Get project current Phase
         String projectPhase = project.IPM_Phase__c; 
+        // Get GMK Model 
+        String projectGKModel = project.IPM_ProjectGKM__c;
         // Get Source Company Card
         String projectSourceCC = project.IPM_CompanyCardText__c;  
         
-        for(IPM_Project_Type__c projectTypeObj : IPM_Project_Type__c.getAll().values())
-        {
-             if(projectTypeObj.IPM_Project_Type__c == projectType && projectTypeObj.IPM_GateKeeping_Model__c == projectGKModel && 
-                projectTypeObj.IPM_Project_Span__c == projectSpan && projectTypeObj.IPM_Phase__c == projectPhase && 
-                projectTypeObj.IPM_Source_Company_Card__c == projectSourceCC )
-             {
-                 targetProjectType = projectTypeObj;
-                 break;
-             }               
-        } 
+        populateProjectType();
         
+        if(projectGKModel != null)
+        {
+            for(IPM_Project_Type__c projectTypeObj : projectTypeSetting)
+            {
+                if(projectTypeObj.IPM_Project_Type__c == projectType && projectTypeObj.GKM_Model__c == projectGKModel && 
+                    projectTypeObj.IPM_Project_Span__c == projectSpan && projectTypeObj.IPM_Phase__c == projectPhase && 
+                    projectTypeObj.IPM_Source_Company_Card__c == projectSourceCC)
+                {
+                   targetProjectType = projectTypeObj;  
+                }   
+            }
+        }
+
+        if(targetProjectType == null) 
+        {
+            for(IPM_Project_Type__c projectTypeObj : projectTypeSetting )
+            {
+                 if(projectTypeObj.IPM_Project_Type__c == projectType && projectTypeObj.IPM_GateKeeping_Model__c == projectGKMQuestion && 
+                    projectTypeObj.IPM_Project_Span__c == projectSpan && projectTypeObj.IPM_Phase__c == projectPhase && 
+                    projectTypeObj.IPM_Source_Company_Card__c == projectSourceCC )
+                 {
+                     targetProjectType = projectTypeObj;
+                     break;
+                 }               
+            }   
+        }
         
         return  targetProjectType;     
     }
@@ -713,14 +744,14 @@ public without sharing class IPM_Utils {
     public static IPM_Project_Type__c getNextPhase(IPM_Project_Type__c currentProjectType,Boolean withGate)
     {
         IPM_Project_Type__c nextProjectPhase = new IPM_Project_Type__c();
-        decimal projectPhaseSequence =0;
       
         if(currentProjectType!=null)
         {
-            for(IPM_Project_Type__c projectTypeObj : IPM_Project_Type__c.getAll().values())
+        	populateProjectType();
+            for(IPM_Project_Type__c projectTypeObj :projectTypeSetting )
             {
                 if(projectTypeObj.IPM_Project_Type__c == currentProjectType.IPM_Project_Type__c && 
-                    projectTypeObj.IPM_GateKeeping_Model__c == currentProjectType.IPM_GateKeeping_Model__c && 
+                    projectTypeObj.GKM_Model__c == currentProjectType.GKM_Model__c && 
                     projectTypeObj.IPM_Project_Span__c == currentProjectType.IPM_Project_Span__c && 
                     projectTypeObj.IPM_Source_Company_Card__c == currentProjectType.IPM_Source_Company_Card__c   
                    )
@@ -756,14 +787,14 @@ public without sharing class IPM_Utils {
     public static List<IPM_Project_Type__c> getNextPhases(IPM_Project_Type__c currentProjectType,Boolean withGate)
     {
         List<IPM_Project_Type__c> nextProjectPhase = new List<IPM_Project_Type__c>();
-        decimal projectPhaseSequence =0;
       
         if(currentProjectType!=null)
         {
-            for(IPM_Project_Type__c projectTypeObj : IPM_Project_Type__c.getAll().values())
+        	populateProjectType();
+            for(IPM_Project_Type__c projectTypeObj : projectTypeSetting )
             {
                 if(projectTypeObj.IPM_Project_Type__c == currentProjectType.IPM_Project_Type__c && 
-                    projectTypeObj.IPM_GateKeeping_Model__c == currentProjectType.IPM_GateKeeping_Model__c && 
+                    projectTypeObj.GKM_Model__c == currentProjectType.GKM_Model__c && 
                     projectTypeObj.IPM_Project_Span__c == currentProjectType.IPM_Project_Span__c && 
                     projectTypeObj.IPM_Source_Company_Card__c == currentProjectType.IPM_Source_Company_Card__c
                    )
@@ -823,14 +854,29 @@ public without sharing class IPM_Utils {
     {
     	List<IPM_Project_Type__c> filteredProjectTypeList = new List<IPM_Project_Type__c>();
     	
-    	System.debug('project-->>'+project);
     	
     	if(project!=null && project.IPM_SourceProjectType__c !=null && project.IPM_CompanyCardText__c !=null && project.IPM_GateKeeping_Model__c != null )
         {  
-            // Get Previous Phase for intiation. 
-            List<IPM_Project_Type__c> projectTypeList = IPM_Project_Type__c.getAll().values();
+        	populateProjectType();
             
-            for(IPM_Project_Type__c projectType : projectTypeList)
+        	if(project.IPM_ProjectGKM__c !=null)
+        	{
+	            for(IPM_Project_Type__c projectType : projectTypeSetting)
+	            {
+	                if( String.isNotBlank(projectType.IPM_Gate_Document__c) &&  
+	                    projectType.IPM_Gate_Document__c == gateDocument && 
+	                    projectType.Source_Project_Type__c == project.IPM_SourceProjectType__c &&  
+	                    projectType.GKM_Model__c == project.IPM_ProjectGKM__c && 
+	                    projectType.IPM_Source_Company_Card__c == project.IPM_CompanyCardText__c &&
+	                    projectType.IPM_Phase__c == project.IPM_Phase__c )
+	                    {
+	                        filteredProjectTypeList.add(projectType);    
+	                    }
+	            }
+        	}
+        	else
+        	{
+        		for(IPM_Project_Type__c projectType : projectTypeSetting)
             {
             	if( String.isNotBlank(projectType.IPM_Gate_Document__c) &&  
             		projectType.IPM_Gate_Document__c == gateDocument && 
@@ -843,8 +889,8 @@ public without sharing class IPM_Utils {
                     }
             } 
         }
+        }
         
-        System.debug('filteredProjectTypeList-->>'+filteredProjectTypeList);
         return filteredProjectTypeList;
         
     }
@@ -906,48 +952,13 @@ public without sharing class IPM_Utils {
     * @param1 project : Project Object containing Company Card information
     */
     
-    public static List<IPM_ProjectMetadata__c> getProjectTypeMetadata(List<IPM_Project__c> projectList)
+    public static List<IPM_Project_Metadata__mdt> getProjectTypeMetadata(List<IPM_Project__c> projectList)
     {
-        List<IPM_ProjectMetadata__c> projectTypeMetadataList = new List<IPM_ProjectMetadata__c>();
+        List<IPM_Project_Metadata__mdt> projectTypeMetadataList = new List<IPM_Project_Metadata__mdt>();
         
-        // Projects which have valid company card Lookup information.
-        Set<Id> companyCardSet = new Set<Id>();
-        
-        for(IPM_Project__c project: projectList)
-        {
-            if(project.IPM_CompanyCardText__c == null &&  project.IPM_Company_Card__c !=null)
-            {
-                companyCardSet.add(project.IPM_Company_Card__c);  
-            }
-            
-        }
-
-        if(!companyCardSet.isEmpty())
-        {
-            Map<Id,IPM_Company_Card__c> companyCardMap = new Map<Id,IPM_Company_Card__c>([Select Id,Name,RecordTypeId,RecordType.Name FROM IPM_Company_Card__c 
-                                                                                            WHERE Id in :companyCardSet limit 50000]);  
-            
-            for(IPM_Project__c project : projectList)
-            {
-                if(project.IPM_CompanyCardText__c == null &&  project.IPM_Company_Card__c !=null && 
-                    companyCardMap.containsKey(project.IPM_Company_Card__c) && companyCardMap.get(project.IPM_Company_Card__c) !=null)
-                {
-                    project.IPM_CompanyCardText__c = companyCardMap.get(project.IPM_Company_Card__c).RecordType.Name;
-                }       
-            }
-        }
-         
         for(IPM_Project__c project : projectList)
-        {
-            if(project.IPM_CompanyCardText__c != null && !String.isBlank(project.IPM_CompanyCardText__c) )
-            {
-                // Invoke Project Metadata Util to get information
-                projectTypeMetadataList.add(retrieveProjectMetadata(project));
-            }
-            else
-            {
-                projectTypeMetadataList.add(new IPM_ProjectMetadata__c() ); 
-            }
+        { 
+            projectTypeMetadataList.add(retrieveProjectMetadata(project));  
         }
         
         return  projectTypeMetadataList;
@@ -959,32 +970,38 @@ public without sharing class IPM_Utils {
     * @param1 project : Project Object containing Company Card information
     */
     
-    public static IPM_ProjectMetadata__c retrieveProjectMetadata(IPM_Project__c project)
+    public static IPM_Project_Metadata__mdt retrieveProjectMetadata(IPM_Project__c project)
     {
-        IPM_ProjectMetadata__c selectedProjectMetadata = null;
+        IPM_Project_Metadata__mdt selectedProjectMetadata = null;
+        List<IPM_Project_Metadata__mdt> selectedProjectMetadataList = new List<IPM_Project_Metadata__mdt>();
         
-        if(project.IPM_SourceProjectType__c !=null && project.IPM_CompanyCardText__c !=null)
+        String projectMetadataQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Metadata__mdt',false,null,true); 
+        List<IPM_Project_Metadata__mdt> projectMetadataList = (List<IPM_Project_Metadata__mdt>)database.Query(projectMetadataQuery);
+        // Do the First Level of filtering based on Mandatory fields.
+        if(project.IPM_Company_Card__c !=null  && String.isNotBlank(project.IPM_CompanyCardText__c) !=null && String.isNotBlank(project.IPM_Category_Text__c) && String.isNotBlank(project.IPM_ProjectSubType__c) )
         {
-            
-            for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
+            for(IPM_Project_Metadata__mdt projectMetadata : projectMetadataList)
             {
-                if(projectMetadata.IPM_Project_Type__c == project.IPM_SourceProjectType__c && projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c)
+
+                if( projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c &&  
+                    projectMetadata.IPM_ApplicableCategories__c.containsIgnoreCase(project.IPM_Category_Text__c) && 
+                    (projectMetadata.IPM_ProjectSubType__c.containsIgnoreCase(project.IPM_ProjectSubType__c) ) )
                 {
-                    selectedProjectMetadata = projectMetadata;
-                    
-                    break;
+                    selectedProjectMetadataList.add(projectMetadata); 
                 } 
             }
         }
         
-        if(selectedProjectMetadata == null && project.IPM_ProjectSubType__c !=null && project.IPM_CompanyCardText__c !=null)
+        // Check if GateKeeping Questions are applicable. If yes then it is the fourth parameter on which filtering should happen.
+        for(IPM_Project_Metadata__mdt shortListedMetadata : selectedProjectMetadataList)            
         {
-           
-            for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
+            if(shortListedMetadata.IPM_GKMQuestionsApplicable__c && String.isNotBlank(shortListedMetadata.IPM_GMKQuesiton__c))
             {
-                if(projectMetadata.IPM_ProjectSubType__c.contains(project.IPM_ProjectSubType__c) && projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c)
+                String gateKeepingFieldAPI = shortListedMetadata.IPM_GMKQuesiton__c; 
+                String projectGKMAnswer = (String)project.get(gateKeepingFieldAPI);
+                if(String.isNotBlank(projectGKMAnswer) &&  projectGKMAnswer.equalsIgnoreCase(shortListedMetadata.IPM_GMKQuestionAns__c))
                 {
-                    selectedProjectMetadata = projectMetadata;
+                    selectedProjectMetadata = shortListedMetadata;
                     break;
                 } 
             }
@@ -992,7 +1009,14 @@ public without sharing class IPM_Utils {
 
         if(selectedProjectMetadata == null)
         {
-            selectedProjectMetadata = new IPM_ProjectMetadata__c(); 
+            if(!selectedProjectMetadataList.isEmpty())
+            {
+                selectedProjectMetadata = selectedProjectMetadataList.get(0);                 
+            }
+            else
+            {
+                selectedProjectMetadata = new IPM_Project_Metadata__mdt();         
+            }
         }
         return selectedProjectMetadata;
     }
@@ -1002,15 +1026,18 @@ public without sharing class IPM_Utils {
     * @param1 project : Project Object containing Company Card information
     */
     
-    public static List<IPM_ProjectMetadata__c> getProjectTypesBasedOnCompanyCard(IPM_Project__c project)
+    public static List<IPM_Project_Metadata__mdt> getProjectTypesBasedOnCompanyCard(IPM_Project__c project)
     {
-        List<IPM_ProjectMetadata__c> projectMetadataList = new List<IPM_ProjectMetadata__c>();
+        List<IPM_Project_Metadata__mdt> projectMetadataList = new List<IPM_Project_Metadata__mdt>();
        
-        if(project.IPM_Company_Card__c !=null && project.IPM_CompanyCardText__c!=null && !String.isBlank(project.IPM_CompanyCardText__c))
+        String projectMetadataQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Metadata__mdt',false,null,true); 
+        // As per the new logic, add Category and Sub Project Type to the filtering to get Project Metadata.
+        if(project.IPM_Company_Card__c !=null && !String.isBlank(project.IPM_CompanyCardText__c) && !String.isBlank(project.IPM_Category_Text__c) )
         {
-            for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
+            for(IPM_Project_Metadata__mdt projectMetadata : (List<IPM_Project_Metadata__mdt>)database.Query(projectMetadataQuery) ) 
             {
-                if(projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c)
+                if(projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c && 
+                    projectMetadata.IPM_ApplicableCategories__c.containsIgnoreCase(project.IPM_Category_Text__c)) 
                 {
                     projectMetadataList.add(projectMetadata); 
                 } 
@@ -1026,28 +1053,30 @@ public without sharing class IPM_Utils {
         
         Decimal iTOValue = 0.00;
         Map<Id,Decimal> projIdiTOMap =  new Map<Id,Decimal>();
+        string consolidatedRecordTypeId = getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
+        string defaultRecordTypeId = getFinancialRecordType(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT);
         
         //query financial year and financial deatils
         IPM_Financial_Year__c[] finYearDetails = [SELECT Turnover_Global__c, Turnover_Regional__c,Turnover_Local__c ,IPM_Financial__r.Parent_Project__c,IPM_Financial__r.Regional_Project__c,IPM_Financial__r.Regional_Project__r.IPM_Project_Type__c,IPM_Financial__r.Local_Project__c,IPM_Financial__r.IPM_Project_Rollout__c,
-                                                        IPM_Financial__r.RecordTypeId,IPM_Financial__r.Business_Impact_Global__c,IPM_Financial__r.name,IPM_Financial__r.Local_Project__r.IPM_Project_Type__c,IPM_Financial__r.Parent_Project__r.IPM_Phase__c, IPM_Financial__r.Parent_Project__r.IPM_Project_Type__c //SS change
+                                                        IPM_Financial__r.RecordTypeId,IPM_Financial__r.Business_Impact_Global__c,IPM_Financial__r.name,IPM_Financial__r.Local_Project__r.IPM_Project_Type__c,IPM_Financial__r.Parent_Project__r.IPM_Phase__c,IPM_Financial__r.Parent_Project__r.IPM_ProjectGKM__c, IPM_Financial__r.Parent_Project__r.IPM_Project_Type__c //SS change
                                                   FROM IPM_Financial_Year__c
                                                   WHERE Year__c = '3' AND Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_INCREMENTAL    
                                                   LIMIT 50000];
         if(!finYearDetails.isEmpty()){
             for(IPM_Financial_Year__c finYr :finYearDetails){
-                
+                                
                 //additional condition - Global Project and not Ideas phase then Y3iTO should be from Market Cluster and not from Top Down
-                if(finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT) 
+                if(finYr.IPM_Financial__r.RecordTypeId ==  consolidatedRecordTypeId
                     && finYr.IPM_Financial__r.IPM_Project_Rollout__c == null && finYr.IPM_Financial__r.Regional_Project__c == null && finYr.IPM_Financial__r.Local_Project__c == null
                     && finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null ) 
                 {
-                    iTOValue = finYr.IPM_Financial__r.Parent_Project__r.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS ? (finYr.Turnover_Global__c)/1000 : (finYr.Turnover_Regional__c)/1000; 
+                    iTOValue = ( finYr.IPM_Financial__r.Parent_Project__r.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS  ||  finYr.IPM_Financial__r.Parent_Project__r.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3  )  ? (finYr.Turnover_Global__c)/1000 : (finYr.Turnover_Regional__c)/1000; 
 
                     projIdiTOMap.put(finYr.IPM_Financial__r.Parent_Project__c,iTOValue);
                 }
                 
                 //Regional Financial : RT = CONSOLIDATED + Regional Project != null + Local Project = null
-                else if(finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT)
+                else if(finYr.IPM_Financial__r.RecordTypeId == consolidatedRecordTypeId
                          && finYr.IPM_Financial__r.Regional_Project__c != null && finYr.IPM_Financial__r.Local_Project__c == null
                          && finYr.Turnover_Regional__c != null)
                 {
@@ -1056,7 +1085,7 @@ public without sharing class IPM_Utils {
                     
                 }
                 //Local Financial : RT = Default +  Local Project != null
-                else if(finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT)
+                else if(finYr.IPM_Financial__r.RecordTypeId == defaultRecordTypeId
                         && finYr.IPM_Financial__r.Local_Project__c != null && finYr.Turnover_Local__c != null)
                 { 
                     iTOValue = (finYr.Turnover_Local__c)/1000;
@@ -1066,14 +1095,14 @@ public without sharing class IPM_Utils {
                 
                 //Global Operational
                 else if(finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null 
-                            && finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT) 
+                            && finYr.IPM_Financial__r.RecordTypeId == defaultRecordTypeId 
                             && finYr.IPM_Financial__r.Parent_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
                     iTOValue = (finYr.Turnover_Global__c)/1000;
                     projIdiTOMap.put(finYr.IPM_Financial__r.Parent_Project__c,iTOValue);
                 }
                  //Regional Operational
                 else if(finYr.Turnover_Regional__c != null && finYr.IPM_Financial__r.Regional_Project__c != null 
-                            && finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT) 
+                            && finYr.IPM_Financial__r.RecordTypeId == defaultRecordTypeId 
                             && finYr.IPM_Financial__r.Regional_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
                     iTOValue = (finYr.Turnover_Regional__c)/1000;
                     projIdiTOMap.put(finYr.IPM_Financial__r.Regional_Project__c,iTOValue);
@@ -1083,6 +1112,212 @@ public without sharing class IPM_Utils {
         }
         return projIdiTOMap;
     }
+        
+
+/*************************************************************************************************************************************
+    * @description          Method to create project-iTo Map : key-projectId ,value-ITO value
+    * @param                Project Ids
+    */
+     public  static Map<Id, Decimal> createProjectSpecificITOValueMap(List<Id> projList) {    
+        Decimal iTOValue = 0.00;
+         Map<Id,Decimal> projIdiTOMap =  new Map<Id,Decimal>();
+         string consolidatedRecordTypeId = getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
+         string defaultRecordTypeId = getFinancialRecordType(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT);
+        
+        //query financial year and financial deatils
+        IPM_Financial_Year__c[] finYearDetails = [SELECT Turnover_Global__c, Turnover_Regional__c,Turnover_Local__c ,IPM_Financial__r.Parent_Project__c,IPM_Financial__r.Regional_Project__c,IPM_Financial__r.Regional_Project__r.IPM_Project_Type__c,IPM_Financial__r.Local_Project__c,IPM_Financial__r.IPM_Project_Rollout__c,
+                                                        IPM_Financial__r.RecordTypeId,IPM_Financial__r.Business_Impact_Global__c,IPM_Financial__r.name,IPM_Financial__r.Local_Project__r.IPM_Project_Type__c,IPM_Financial__r.Parent_Project__r.IPM_Phase__c, IPM_Financial__r.Parent_Project__r.IPM_Project_Type__c, IPM_Financial__r.Parent_Project__r.IPM_ProjectGKM__c   //SS change
+                                                  FROM IPM_Financial_Year__c
+                                                  WHERE (IPM_Financial__r.Parent_Project__c IN : projList OR IPM_Financial__r.Regional_Project__c IN : projList OR IPM_Financial__r.Local_Project__c IN : projList)AND Year__c = '3' AND Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_INCREMENTAL    
+                                                  LIMIT 50000];
+        if(!finYearDetails.isEmpty()){
+            for(IPM_Financial_Year__c finYr :finYearDetails){
+                
+                //additional condition - Global Project and not Ideas phase then Y3iTO should be from Market Cluster and not from Top Down
+                if(finYr.IPM_Financial__r.RecordTypeId == consolidatedRecordTypeId 
+                    && finYr.IPM_Financial__r.IPM_Project_Rollout__c == null && finYr.IPM_Financial__r.Regional_Project__c == null && finYr.IPM_Financial__r.Local_Project__c == null
+                    && finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null ) 
+                {
+					iTOValue = (finYr.IPM_Financial__r.Parent_Project__r.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS || finYr.IPM_Financial__r.Parent_Project__r.IPM_ProjectGKM__c==IPM_ConstantUtils.GKM_3 )? (finYr.Turnover_Global__c)/1000 : (finYr.Turnover_Regional__c)/1000; 
+                    projIdiTOMap.put(finYr.IPM_Financial__r.Parent_Project__c,iTOValue);
+                }
+                
+                //Regional Financial : RT = CONSOLIDATED + Regional Project != null + Local Project = null
+                else if(finYr.IPM_Financial__r.RecordTypeId == consolidatedRecordTypeId
+                         && finYr.IPM_Financial__r.Regional_Project__c != null && finYr.IPM_Financial__r.Local_Project__c == null
+                         && finYr.Turnover_Regional__c != null)
+                {
+                    iTOValue = (finYr.Turnover_Regional__c)/1000;
+                    projIdiTOMap.put(finYr.IPM_Financial__r.Regional_Project__c,iTOValue);
+                    
+                }
+                //Local Financial : RT = Default +  Local Project != null
+                else if(finYr.IPM_Financial__r.RecordTypeId == defaultRecordTypeId
+                        && finYr.IPM_Financial__r.Local_Project__c != null && finYr.Turnover_Local__c != null)
+                { 
+                    iTOValue = (finYr.Turnover_Local__c)/1000;
+                    projIdiTOMap.put(finYr.IPM_Financial__r.Local_Project__c,iTOValue);
+                    
+                }
+                
+                //Global Operational
+                else if(finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null 
+                            && finYr.IPM_Financial__r.RecordTypeId == defaultRecordTypeId 
+                            && finYr.IPM_Financial__r.Parent_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
+                    iTOValue = (finYr.Turnover_Global__c)/1000;
+                    projIdiTOMap.put(finYr.IPM_Financial__r.Parent_Project__c,iTOValue);
+                }
+                 //Regional Operational
+                else if(finYr.Turnover_Regional__c != null && finYr.IPM_Financial__r.Regional_Project__c != null 
+                            && finYr.IPM_Financial__r.RecordTypeId == defaultRecordTypeId 
+                            && finYr.IPM_Financial__r.Regional_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
+                    iTOValue = (finYr.Turnover_Regional__c)/1000;
+                    projIdiTOMap.put(finYr.IPM_Financial__r.Regional_Project__c,iTOValue);
+                }
+                
+            }
+        }
+     
+     return projIdiTOMap; 
+}
+
+/*********************************************************************************************************************
+    * @description          Method to  update Y3iTo's of project 
+    * @param                Project Ids
+    */
+public static void updateProjectY3ITOValue(List<Id> projListForY3ITOUpdate) { 
+    
+     Map<Id,Decimal> projIdiTOMap =  IPM_Utils.createProjectSpecificITOValueMap(projListForY3ITOUpdate);
+     Set<Id> clusterIDsforY3iToUpdate = new Set<Id>();
+     List<IPM_Project__c> y3iTOUpdateProjList = new List<IPM_Project__c>();
+     
+     if(projIdiTOMap!=null && !projIdiTOMap.isEmpty()){
+        
+        for(Id projId :projIdiTOMap.keyset()){
+            
+            IPM_Project__c projForY3ITOUpdate = new IPM_Project__c(Id=projId , IPM_Project_Y3iTO__c=projIdiTOMap.get(projId)) ;
+            
+            y3iTOUpdateProjList.add(projForY3ITOUpdate);
+        
+        }
+        
+        if(y3iTOUpdateProjList!=Null && !y3iTOUpdateProjList.isEmpty()){
+        	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+            	update y3iTOUpdateProjList;
+            	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
+        }
+        
+        updateProjectBIValue(projListForY3ITOUpdate);
+        
+     	for(IPM_Project__c proj : [Select id,IPM_Cluster__c From IPM_Project__c where id IN: projListForY3ITOUpdate]){
+     		if(proj.IPM_Cluster__c!=Null)
+            	{
+                	clusterIDsforY3iToUpdate.add(proj.IPM_Cluster__c);
+            	}
+     	}
+     	if(!clusterIDsforY3iToUpdate.isEmpty())
+        {
+     		IPM_Utils.updateclusterSumY3iTOValue(clusterIDsforY3iToUpdate);
+        }
+     }
+
+} 
+
+/*********************************************************************************************************************
+    * @description          Method to  update Y3iTo's of project 
+    * @param                Project Ids
+    */
+public static void updateProjectBIValue(List<Id> projListForY3ITOUpdate) { 
+    
+     Map<Id,String> projIdBIMap= IPM_Utils.createProjectSpecificBusinessImpactMap(projListForY3ITOUpdate);
+     List<IPM_Project__c> biTOUpdateProjList = new List<IPM_Project__c>();
+     
+     if(projIdBIMap!=null && !projIdBIMap.isEmpty()){
+        
+        for(Id projId :projIdBIMap.keyset()){
+            
+            IPM_Project__c projForBITOUpdate = new IPM_Project__c(Id=projId,BI__c=projIdBIMap.get(projId)) ;
+            
+            biTOUpdateProjList.add(projForBITOUpdate);
+        
+        }
+        
+        if(biTOUpdateProjList!=Null && !biTOUpdateProjList.isEmpty()){
+        
+            update biTOUpdateProjList;
+        
+        }
+     
+     
+     }
+
+} 
+
+
+/*************************************************************************************************************************************
+    * @description          Method to create project-iTo Map : key-projectId ,value-ITO value
+    * @param                Project Ids
+    */
+     public  static Map<Id, String> createProjectSpecificBusinessImpactMap(List<Id> projList) {    
+        string biValue = '';
+         Map<Id,String> projIdBIMap =  new Map<Id,String>();
+         string consolidatedRecordTypeId = getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
+       
+        //query financial year and financial deatils
+        IPM_Financial__c[] finDetails = [SELECT Business_Impact_Global__c, Business_Impact_Regional__c,RecordTypeId,IPM_Project_Rollout__c,Regional_Project__c,Local_Project__c,Parent_Project__r.IPM_Phase__c,Parent_Project__r.IPM_ProjectGKM__c,
+                                                Regional_Project__r.IPM_Phase__c,Regional_Project__r.IPM_Project_Type__c
+                                                  FROM IPM_Financial__c
+                                                  WHERE (Parent_Project__c IN : projList OR Regional_Project__c IN : projList OR Local_Project__c IN : projList)
+                                                  LIMIT 50000];
+        if(!finDetails.isEmpty()){
+            for(IPM_Financial__c fin :finDetails){
+                
+                //additional condition - Global Project and not Ideas phase then Y3iTO should be from Market Cluster and not from Top Down
+                if(fin.RecordTypeId == consolidatedRecordTypeId 
+                    && fin.IPM_Project_Rollout__c == null && fin.Regional_Project__c == null && fin.Local_Project__c == null
+                    && fin.Business_Impact_Global__c != null && fin.Parent_Project__c != null ) 
+                {
+                    biValue = ( fin.Parent_Project__r.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS || fin.Parent_Project__r.IPM_ProjectGKM__c==IPM_ConstantUtils.GKM_3 ) ? (fin.Business_Impact_Global__c):(fin.Business_Impact_Regional__c); 
+                    projIdBIMap.put(fin.Parent_Project__c,biValue);
+                }
+                
+                //Regional Financial : RT = CONSOLIDATED + Regional Project != null + Local Project = null
+                else if(fin.RecordTypeId == consolidatedRecordTypeId
+                         && fin.Regional_Project__c != null && fin.Local_Project__c == null
+                         && fin.Regional_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+                {
+                    biValue = fin.Business_Impact_Regional__c;
+                    projIdBIMap.put(fin.Regional_Project__c,biValue);
+                    
+                }
+               
+            }
+        }
+     
+     return projIdBIMap; 
+}
+
+/*******************************************************************************************************************************
+    * @description          Method to  update IPM_Sum_Y3iTO__c of project cluster as sum of Y3iTo's pf projects under the cluster
+    * @param                cluster Ids
+    */
+public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){   
+    
+    List<IPM_Clusters__c> clusterListForY3iTOUpdate = new List<IPM_Clusters__c>();   
+    
+    for( AggregateResult aggrResult : [SELECT IPM_Cluster__c  , SUM(IPM_Project_Y3iTO__c) FROM IPM_Project__c where IPM_Project_Type__c=:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL AND Is_Archieved__c = false  AND IPM_Cluster__c IN :clusterIDsForY3iTOUpdate GROUP BY IPM_Cluster__c ]){
+        
+        clusterListForY3iTOUpdate.add(new IPM_Clusters__c(Id=(Id)aggrResult.get('IPM_Cluster__c'),IPM_Sum_Y3iTO__c=(Decimal)aggrResult.get('expr0'))); 
+     
+    }  
+    
+    if(!clusterListForY3iTOUpdate.isEmpty()){ 
+    
+        update clusterListForY3iTOUpdate; 
+        
+    }
+
+} 
     
     /**************************************************************
     * @description: Recursive invocation to provide the List of Parents for a specific Project
@@ -1119,12 +1354,17 @@ public without sharing class IPM_Utils {
     * @description: Recursive invocation to provide the List of Children against specific project
     * @param1 incomingProjectIds : List of Project Ids.
     */ 
-    public static Map<Id,IPM_Project__c> populateChildProjectDetails(Set<Id> incomingProjectIds)
+    public static Map<Id,IPM_Project__c> populateChildProjectDetails(Set<Id> incomingProjectIds, Boolean includeArchievedPrjcts)
     {
         Set<Id> projectIds = new Set<Id>();
 
         String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery(IPM_Project,false,null,true);
         String ProjectDetailWhereClause = 'IPM_Parent_Project__c in :incomingProjectIds';
+        
+        if(!includeArchievedPrjcts)
+        {
+            ProjectDetailWhereClause = ProjectDetailWhereClause + ' and Is_Archieved__c = false ';
+        }
         
         ProjectDetailSelectQuery = ProjectDetailSelectQuery  + ' WHERE ' + ProjectDetailWhereClause + LIMIT_STRING ;
         
@@ -1137,7 +1377,7 @@ public without sharing class IPM_Utils {
         
         if(!projectIds.isEmpty())
         {
-            projectDetailedMap.putAll(populateChildProjectDetails(projectIds));
+            projectDetailedMap.putAll(populateChildProjectDetails(projectIds,includeArchievedPrjcts));
         }
         return projectDetailedMap;
     }
@@ -1297,7 +1537,7 @@ public without sharing class IPM_Utils {
     * @param1 proj : project record
     */
     public static Boolean isProjectToBeSyncedToEcoDesign(IPM_Project__c proj){
-        if( retrieveProjectType(proj).IPM_Dont_Sync_Proj_To_EcoDesign__c || proj.IPM_ProjectSubType__c == IPM_ConstantUtils.IPM_BLG
+        if(retrieveProjectType(proj).IPM_Dont_Sync_Proj_To_EcoDesign__c || proj.IPM_ProjectSubType__c == IPM_ConstantUtils.IPM_BLG || proj.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL
         ){
             return false;
         }
@@ -1354,7 +1594,8 @@ public without sharing class IPM_Utils {
         }
         else
         { 
-            if(projectRollout.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS)
+            if(projectRollout.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS || 
+               (projectRollout.IPM_Project_GKM__c == 'GKM3' && projectRollout.Added_At_Stage__c != IPM_ConstantUtils.PHASE_MARKET_READY && projectRollout.Added_At_Stage__c != IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT && projectRollout.Added_At_Stage__c != IPM_ConstantUtils.PHASE_PLE))
             {
                 return projectRollout.Regional_Rollout_External_Id__c + IPM_ConstantUtils.FINANCIAL_NONKEY;
             }
@@ -1461,4 +1702,151 @@ public without sharing class IPM_Utils {
                     UPDATE_FINANCIAL_YEAR_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
     	}            
     }    	
+    /************************************************************************************************************************
+    * @description          Method to  return Map of IPM_Category_Thresholds__mdt with key as concatenation of various fields
+    * @param                No param 
+    */ 
+    public static Map<String ,IPM_Category_Thresholds__mdt> getCategorythresholdMap()
+    {
+        Map<String ,IPM_Category_Thresholds__mdt> masterCategoryThrshMap = new Map<String ,IPM_Category_Thresholds__mdt>();
+        String categoryThresholdQuery = IPM_Utils.prepareSOQLQuery('IPM_Category_Thresholds__mdt',false,null,true); 
+        for(IPM_Category_Thresholds__mdt Cat_mdt : (List<IPM_Category_Thresholds__mdt>)database.Query(categoryThresholdQuery) )
+        {
+              String thrMapKey = Cat_mdt.IPM_Category__c+Cat_mdt.IPM_Category_Group__c+Cat_mdt.IPM_Project_Span__c ;
+              
+              if(String.isNotBlank(Cat_mdt.IPM_Market_Cluster__c)) 
+              {
+              	thrMapKey = thrMapKey + Cat_mdt.IPM_Market_Cluster__c;
+              }
+               
+              masterCategoryThrshMap.put(thrMapKey ,Cat_mdt);
+        }
+        return masterCategoryThrshMap;
+    }         	
+    public static Map<Id,Set<Id>> getImmediateChildProjects(Set<Id> incrementalProjectSetId)
+    {
+        Set<Id> tempProjectSetIds = new Set<Id>(incrementalProjectSetId);
+        incrementalProjectSetId.clear(); 
+        Map<Id,Set<Id>> parentToChildProjectMap = new Map<Id,Set<Id>>();
+         //query project to get its parent and child project ids                      
+        for(IPM_Project__c project : [SELECT Id,(SELECT Id from IPM_Projects__r) FROM IPM_Project__c WHERE Id IN : tempProjectSetIds])
+        {   
+            if(!project.IPM_Projects__r.isEmpty()) 
+            {
+                Map<Id,IPM_Project__c> childProjectMap = new Map<Id,IPM_Project__c>(project.IPM_Projects__r);
+                parentToChildProjectMap.put(project.Id,childProjectMap.keySet());
+                incrementalProjectSetId.addAll(childProjectMap.keySet()); 
+            }
+            else
+            {
+                parentToChildProjectMap.put(project.Id,new Set<Id>());
+            }
+        }
+        return parentToChildProjectMap;
+    }
+    public static void getAllChildProjects(Id sourceProjectId, Id childProjectId,Map<Id,Set<Id>> immediateProjectChildMap,Set<Id> allChildProject)
+    {
+        for(Id tempChildProjectId : immediateProjectChildMap.get(childProjectId))  
+        {
+            getAllChildProjects(sourceProjectId,tempChildProjectId,immediateProjectChildMap,allChildProject);    
+            if(sourceProjectId != tempChildProjectId )
+            {
+                allChildProject.add(tempChildProjectId);    
+            }
+        }
+        if(sourceProjectId != childProjectId)
+        {
+            allChildProject.add(childProjectId);    
+        }
+    }
+	/**********
+	Business partner can reactivate the Stopped(Archieved) projects, Below changes have been added only for Archieved project 
+	********/ 
+    public static Boolean overrideAccessForBusinessPartner(IPM_Project__c project, Boolean isEditable){
+    	Boolean isEditAccess = isEditable; 
+    	if(project.Is_Archieved__c && !isEditAccess )
+    	{ 
+            List<IPM_Company_Card__c> checkBpOfCc = [SELECT IPM_Business_Partner__c FROM IPM_Company_Card__c WHERE Name = :project.IPM_Company_Card__r.Name LIMIT 1];
+            IPM_CustomPermission custPermission = new IPM_CustomPermission();
+            if(!checkBpOfCc.isEmpty() && (checkBpOfCc[0].IPM_Business_Partner__c == UserInfo.getUserId() && 
+                                          custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION))) 
+            {
+                isEditAccess = true;
+    	}
+            else {
+                isEditAccess = false;
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage));
+            }
+        }
+    	return isEditAccess;
+	}
+    /************************************************************************************************
+    Method to Get full project data
+	**********************************/
+    public static IPM_Project__c projectFullInfoVar{get;set;}
+    public static IPM_Project__c getProjectFullInfo(Id projectId) {
+        If(projectFullInfoVar != NULL && projectFullInfoVar.Id ==  projectId) {
+            return projectFullInfoVar;
+        }
+        else {
+            Set<String> systemFields = new set<String>{'lastmodifiedbyid','isdeleted','createdbyid', 'lastmodifieddate', 'createddate','isdeleted'};
+                Set<String> userFields = new Set<String>{'Id','name','email','username'};
+                    String queryStr = ' SELECT ';
+            Map<String,Schema.SObjectField> fieldTypeMap = Schema.SObjectType.IPM_Project__c.fields.getMap();
+            Map<String,Schema.SObjectField> userFieldTypeMap = Schema.SObjectType.User.fields.getMap();
+            Set<String> userCustomfieldSet = new Set<String>();
+            /* Get User Custom Field Information */
+            for(String userfieldAPIName : userFieldTypeMap.keySet())
+            {
+                Schema.DescribeFieldResult userfieldDescribe = userFieldTypeMap.get(userfieldAPIName).getDescribe();
+                if(userfieldDescribe.isCustom())
+                {
+                    userCustomfieldSet.add(userfieldAPIName);
+                }
+            } 
+            /* Get Project Specific Field information */
+            for(String fieldAPIName : fieldTypeMap.keySet())
+            {
+                Schema.DescribeFieldResult fieldDescribe = fieldTypeMap.get(fieldAPIName).getDescribe();
+                if(!fieldDescribe.isNamePointing() &&  !fieldAPIName.equalsIgnoreCase('Id') && !systemFields.contains(fieldAPIName))
+                {
+                    queryStr += ' '+fieldAPIName+',';
+                }
+                /* Check if it is a Reference field, If yes, get asociated Data */
+                if(fieldDescribe.getType() == Schema.DisplayType.Reference && fieldDescribe.isCustom())
+                {
+                    List <Schema.sObjectType> relatedObjectList = fieldDescribe.getReferenceTo();
+                    String relationshipName = fieldDescribe.getRelationshipName();
+                    if(relatedObjectList!=null && !relatedObjectList.isEmpty() && relationshipName!=null)
+                    {
+                        Schema.DescribesObjectResult relatedObjDescribe =  relatedObjectList[0].getDescribe();
+                        String relatedObjectAPI = relatedObjDescribe.getName();
+                        Map<String,Schema.SObjectField> relatedfieldTypeMap = relatedObjDescribe.fields.getMap();     
+                        for(String relatedfieldAPIName : relatedfieldTypeMap.keySet())
+                        {
+                            Schema.DescribeFieldResult relatedFieldDescibe = relatedfieldTypeMap.get(relatedfieldAPIName).getDescribe();
+                            if(!relatedFieldDescibe.isNamePointing()  && !systemFields.contains(relatedfieldAPIName) )
+                            {
+                                if(relatedObjectAPI == 'User' && (userCustomfieldSet.contains(relatedfieldAPIName) || userFields.contains(relatedfieldAPIName) ))
+                                {
+                                    queryStr += ' ' + relationshipName+'.'+relatedfieldAPIName+',';
+                                }
+                                else
+                                {
+                                    queryStr += ' ' + relationshipName+'.'+relatedfieldAPIName+',';
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            queryStr += 'Id from IPM_Project__c where Id= :projectId';
+            List<IPM_Project__c> projectList = Database.query(queryStr);
+            if(projectList != null && !projectList.isEmpty())
+            {
+                projectFullInfoVar = projectList[0]; 
+            }
+            return projectFullInfoVar;
+        }
+    }
 }

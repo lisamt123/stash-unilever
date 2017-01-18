@@ -1,0 +1,12 @@
+src
+src/permissionsets
+src/permissionsets/AdManager.permissionset
+src/permissionsets/CAP.permissionset
+src/permissionsets/RAP.permissionset
+src/reports
+src/reports/AdManager_RAP_Stats_Reports/RAP_Stats_Global_Report_Savings_Only.report
+src/workflows
+src/workflows/Amr_Job_Details__c.workflow
+src/pages
+src/pages/Amr_AdManager.page
+src/pages/Amr_AdManager.page-meta.xml

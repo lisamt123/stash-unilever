@@ -50,7 +50,8 @@ public with sharing class PBS_TriggerFactory
      */
     private static void execute(PBS_Trigger handler)
     {
-        String operationType = Trigger.IsInsert ? PBS_TriggerFactory.OP_INSERT : Trigger.isUpdate ? PBS_TriggerFactory.OP_UPDATE : Trigger.isDelete ? PBS_TriggerFactory.OP_DELETE : PBS_TriggerFactory.OP_UNDELETE;
+        //Commented for sonar issue
+        //String operationType = Trigger.IsInsert ? PBS_TriggerFactory.OP_INSERT : Trigger.isUpdate ? PBS_TriggerFactory.OP_UPDATE : Trigger.isDelete ? PBS_TriggerFactory.OP_DELETE : PBS_TriggerFactory.OP_UNDELETE;
 
         // Before Trigger
         if (Trigger.isBefore)

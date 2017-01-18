@@ -186,7 +186,7 @@
                                                                                     </div>
                                                                                 </apex:outputPanel>
                                                                                  <!-- Condition for checking editable and not charter gate -->
-                                                                                <apex:outputPanel layout="block" rendered="{!OR(!isEditable,!OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}}" styleClass="col-xs-5 noPadleft">
+                                                                                <apex:outputPanel layout="block" rendered="{!OR(!isEditable,!OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}" styleClass="col-xs-5 noPadleft">
                                                                                     <apex:outputField value="{!res.IPM_CMI_Result_Timing__c}" styleClass="dateInputBox calendar" />
                                                                                 </apex:outputPanel>
                                                                             </apex:outputPanel> 
@@ -222,7 +222,7 @@
                                                                                                  <!-- Condition for checking input free text or not -->
                                                                                                 <apex:inputField id="inputSelectList" styleClass="cmiSelectBox" html-disabled="disabled" value="{!sec.IPM_CMI_Input__c}"  rendered="{!AND(!sec.IPM_CMI_Is_Free_Text__c,OR(AND(gateType='Contract',types.value='Contract'),AND(OR(gateType='Market Ready',gateType='Contract'),types.value='Market Ready')))}"/>
                                                                                                   <!-- Condition for checking input free text -->
-                                                                                                <apex:inputField value="{!sec.IPM_CMI_Free_Text__c}" rendered="{!AND(sec.IPM_CMI_Is_Free_Text__c,OR(AND(gateType='Market Ready',types.value='Market Ready'),AND(gateType='Contract',types.value='Contract')))}" onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false,'{!cmi.id}','{!types.value}');"/>
+                                                                                                <apex:inputField value="{!sec.IPM_CMI_Free_Text__c}" rendered="{!AND(sec.IPM_CMI_Is_Free_Text__c,OR(AND(gateType='Market Ready',types.value='Market Ready'),AND(gateType='Contract',types.value='Contract')))}" onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false,true,'{!cmi.id}','{!types.value}');"/>
                                                                                             </apex:outputPanel>   
                                                                                              <!-- Condition for checking read only -->
                                                                                             <apex:outputPanel rendered="{!OR(!isEditable,types.value='Charter',AND(gateType='Market Ready',types.value='Contract'))}">

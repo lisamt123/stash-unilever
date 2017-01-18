@@ -7,22 +7,43 @@
    @Reference: IPM_Consumer_Evidence Component
 */
 public with sharing class IPM_Consumer_Evidence_Controller{
+
     public Id projDocSecId {// to get-set the project document section id from the component attribute.
         get{
-            return projDocSecId;// to get the project document section id from the component attribute.
+            if(projDocSecId == null && Apexpages.currentpage().getparameters().get('getSecid') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('getSecid')) ;
+            }
+            else { return projDocSecId; }
         }
-        set{
-            projDocSecId= value;// to set the project document section id from the component attribute.
-            showCountryList();//calling the method to show countries in picklist
-        }
+        set;
     }
-    public Id projectId{// to get-set the project id from the component attribute.
+    public Id projectId{ // to get-set the project id from the component attribute.
         get{
-            return projectId;
+            if(projectId == null && Apexpages.currentpage().getparameters().get('getProjectId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('getProjectId')) ;
+            }
+            else { return projectId; }
         }
-        set{
-            projectId= value;
+        set;
+    } 
+    public Boolean isEditable{
+        get {
+            if(isEditable == null) {
+                if(Apexpages.currentpage().getparameters().get('CCEdit') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEditable; }
         }
+        set;
+    }// boolean to check if editable
+    public string gateType{
+        get{
+            if(gateType == null && Apexpages.currentpage().getparameters().get('gate') != null) {
+                return  Apexpages.currentpage().getparameters().get('gate');
+            }
+            else { return gateType; }
+        }
+        set;
     }
     public IPM_Project_Document_Section__c projDocSec{get;set;} //object of project document section
     public transient List<IPM_Country__c> countryList{get; set;}//list of the active country
@@ -34,12 +55,29 @@ public with sharing class IPM_Consumer_Evidence_Controller{
     public string projDocSecConId{get; set;}//For Getting Project Document Section Content Id
     public string deleteCountry{get; set;}//For Deleting Country
     public string addCountryConcept{get; set;}//For adding concept to country
-    public Boolean isEditable{get;set;}//for security
-    public string gateType{get; set;} //For cureent project gate
     public Integer priorityNumber{get; set;} //For getting deleted concept priority number
     public map<String,String> mapCountryNameWithCode {get;set;} //To map country code with name
     public string urlCountry{get; set;} //For getting country from url
     private static string IPM_CONSUMER_EVIDENCE_CONTROLLER_STR=IPM_Consumer_Evidence_Controller.class.getName();
+    
+     /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForComponent() {
+        showCountryList();
+        return 'Required methods are invoked for component';
+    }
+    
+    /************************************************************************************************************************
+    * @Description: CONSTRUCTOR
+    */
+    public IPM_Consumer_Evidence_Controller() {
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
+    }   
+    
+    
     /************************************************************************************************************************
     *  Description For showing the countries in picklist
     *  @name showCountryList
@@ -55,7 +93,6 @@ public with sharing class IPM_Consumer_Evidence_Controller{
             couyName=new List<String>();
             countryList=new List<IPM_Country__c>();
             cList=new List<IPM_Country__c>();
-            String selCountryName=IPM_Constantutils.BLANK;
             urlCountry = apexpages.currentpage().getparameters().get('country');
             if(!String.isBlank(projDocSecId)){
                 projDocSec=[SELECT Id,IPM_Section_Sequence__c,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project__c,IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__c,IPM_Selected_Consumer_Evidence_Countries__c 

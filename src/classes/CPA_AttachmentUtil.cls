@@ -108,7 +108,7 @@ public with sharing class CPA_AttachmentUtil {
         // Variable declaration section 
         map<id,string> mapAttachmentType = findAttachmentType(lstAttachment);
         map<Id,list<Attachment>> mapAttachmentIDPWOID = new map<Id,list<Attachment>>();
-        set<CPA_CR__c> lstUpdateCR = new set<CPA_CR__c>();
+       // set<CPA_CR__c> lstUpdateCR = new set<CPA_CR__c>();
         map<Id,CPA_CR__c> mapCR = new map<Id,CPA_CR__c>();
         // Variable declaration section 
         
@@ -150,7 +150,7 @@ public with sharing class CPA_AttachmentUtil {
         // Variable declaration section 
         map<id,string> mapAttachmentType = findAttachmentType(lstAttachment);
         map<Id,list<Attachment>> mapAttachmentIDPWOID = new map<Id,list<Attachment>>();
-        set<CPA_project_work_order__c> lstUpdatePWO = new set<CPA_project_work_order__c>();
+        //set<CPA_project_work_order__c> lstUpdatePWO = new set<CPA_project_work_order__c>();
         map<Id,CPA_project_work_order__c> mapPwo = new map<Id,CPA_project_work_order__c>();
         // Variable declaration section 
         
@@ -193,8 +193,8 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
     List<CPA_Commercial_Details__c >listComDetail = new List<CPA_Commercial_Details__c>();
     set<Id> setPWOID = new set<Id>();
     set<Id> setCRID = new set<Id>();
-    set<Id> setPWOID_NO_Delete = new set<Id>();
-    set<Id> setCRID_NO_Delete = new set<Id>();
+    //set<Id> setPWOID_NO_Delete = new set<Id>();
+    //set<Id> setCRID_NO_Delete = new set<Id>();
     map<ID,Attachment> mapPWOAttch = new map<ID,Attachment> ();
     map<ID,Attachment> mapCRAttch = new map<ID,Attachment> ();
     
@@ -256,7 +256,7 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
     Throws [Exceptions]: 
     ********************************************************************/
      public static void deleteContract(List<Attachment> lstatt)    {
-        List<CPA_Commercial_Details__c >listComDetail = new List<CPA_Commercial_Details__c>();
+        //List<CPA_Commercial_Details__c> listComDetail= new List<CPA_Commercial_Details__c>();
         set<Id> setPWOID = new set<Id>();
         set<Id> setCRID = new set<Id>();
         List<CPA_project_work_order__c>  lstTemp = new List<CPA_project_work_order__c>();
@@ -280,9 +280,8 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
         List<CPA_CR__c> lstCR = [Select pkl_Status__c,Id,Name,chk_Contract_Attached__c,chk_Contract_Excel_Attached__c from CPA_CR__c where ID IN:  setCRID];
         /*Changes done by Shreyas For Radar : 222 221 220 219 217 : 16th April 2016 */
         for(CPA_CR__c objCR : lstCR){
-            if(objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  objCR.pkl_Status__c == '' || objCR.pkl_Status__c == null){
+            if(objCR!=null && objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  objCR.pkl_Status__c == '' || objCR.pkl_Status__c == null){
                 objCR.chk_Contract_Attached__c = false;
-                system.debug('objCR-->'+objCR.id + '  '+'objCR-->'+objCR.pkl_Status__c);
                 lstTempCR.add(objCR);
             }
             else{
@@ -294,7 +293,7 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
             }            
         }
         for(CPA_project_work_order__c objPWO :lstPWO ){
-            if(objPWO.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || objPWO.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  objPWO.pkl_Status__c == '' || objPWO.pkl_Status__c == null){
+            if(objPWO!= null && objPWO.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || objPWO.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  objPWO.pkl_Status__c == '' || objPWO.pkl_Status__c == null){
                objPWO.chk_PDF_Attached__c = false;
                lstTemp.add(objPWO);
             }else {
@@ -306,9 +305,8 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
         }
           /*Changes done by Shreyas For Radar : 222 221 220 219 217 : 16th April 2016 */     
         if(lstTemp!=null && lstTemp.size()>0){
-        system.debug('lstCR-->'+lstTemp+ '  '+'lstCR-->');
             update lstTemp;
-        }
+        } 
         if(lstTemp !=null && lstTemp.size()>0){
             update lstTemp;
         }
@@ -347,13 +345,14 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
                         }else {
                             a.num_Entity_Type__c = 0;
                         }
-                        
+                         /*Changes done by chandru For Commercial file Decimal values: 355 370 378 : 26th September 2016 */   
                         a.txt_Entity_Name__c = inputvalues[1];       
                         a.txt_Role__c = inputvalues[2];
                         a.txt_Location__c = inputvalues[3];
                         a.txt_Level__c = inputvalues[4];
                         if(inputvalues[5].trim() !=null &inputvalues[5].trim() !=''){
-                            a.num_Rate__c =  Integer.valueof(inputvalues[5].trim());
+                            //a.num_Rate__c =  Integer.valueof(inputvalues[5].trim());
+                            a.num_Rate__c = Decimal.valueOf(inputvalues[5].trim());
                         }else{
                             a.num_Rate__c =0;
                         }
@@ -367,13 +366,17 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
                         
                         a.txt_month__c = inputvalues[8].trim();
                         if(inputvalues[9].trim() != NULL & inputvalues[9].trim()!= ''){
-                            a.num_Efforts__c = Integer.valueof(inputvalues[9].trim());
+                           // a.num_Efforts__c = Integer.valueof(inputvalues[9].trim());
+                              a.num_Efforts__c = Decimal.valueof(inputvalues[9].trim());
+
                         }else {
                             a.num_Efforts__c = 0;
                         }
                         
                         if(inputvalues[10].trim() !=null & inputvalues[10].trim()!= ''){
-                            a.num_Value__c = Integer.valueof(inputvalues[10].trim());  
+                            //a.num_Value__c = Integer.valueof(inputvalues[10].trim());
+                            a.num_Value__c = Decimal.valueof(inputvalues[10].trim());
+                       
                         }else{
                             a.num_Value__c =0;
                         }
@@ -447,7 +450,6 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
             
             for(CPA_project_work_order__c objPWO : lstPWO){
                 Decimal  intTotalmandays = 0;
-                //Decimal  intEstimatedValue = 0;
                 Decimal  intIndicativeExpenses  = 0;
                 Decimal  intNonPayroll   = 0;
                 Decimal  intPMOTax = 0;
@@ -458,10 +460,10 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
                 Decimal  intRMS = 0;
                 Decimal  intOther = 0;
                 Decimal  intCostResource = 0;
-                //Decimal  intTotalcost = 0;
                 Decimal  intoffshower = 0;
                 Decimal  intOnshower = 0;
                 Decimal  intNoOfResources = 0;
+
                 for(CPA_Commercial_Details__c objCOm : mapPWOComDetai.get(objPWO.id)){
                     if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.RESOURCE || objCOm.num_Entity_Type__c ==1 ){
                         intTotalmandays = intTotalmandays + objCOm.num_Efforts__c;
@@ -496,7 +498,8 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
                         intAuthorisationman = intAuthorisationman + objCOm.num_Efforts__c;
                     }
                     if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.RMS || objCOm.num_Entity_Type__c ==9){
-                        intRMS = intRMS+objCOm.num_Value__c;
+                        intRMS = intRMS + objCOm.num_Value__c;
+                        
                     }
                     if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.OTHERS || objCOm.num_Entity_Type__c ==7){
                         intOther = intOther +  objCOm.num_Value__c;
@@ -561,7 +564,6 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
             }
             for(CPA_CR__c objCR : lstCR){
                 Decimal  intTotalmandays = 0;
-                //Decimal  intEstimatedValue = 0;
                 Decimal  intIndicativeExpenses  = 0;
                 Decimal  intNonPayroll   = 0;
                 Decimal  intPMOTax = 0;
@@ -572,7 +574,6 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
                 Decimal  intRMS = 0;
                 Decimal  intOther = 0;
                 Decimal  intCostResource = 0;
-                //Decimal  intTotalcost = 0;
                 Decimal  intoffshower = 0;
                 Decimal  intOnshower = 0;
                 Decimal  intNoOfResources = 0;
@@ -613,7 +614,8 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
                         intAuthorisationman = intAuthorisationman + objCOm.num_Efforts__c;
                     }
                     if(objCOm.txt_Entity_Name__c==CPA_ConstantsForContractingAppClasses.RMS || objCOm.num_Entity_Type__c ==9){
-                        intRMS = intRMS+objCOm.num_Value__c;
+                       // intRMS = intRMS+objCOm.num_Value__c;
+                        intRMS =intRMS+objCOm.num_Value__c;
                     }
                     if(objCOm.txt_Entity_Name__c==CPA_ConstantsForContractingAppClasses.OTHERS || objCOm.num_Entity_Type__c ==7){
                         intOther = intOther +  objCOm.num_Value__c;
