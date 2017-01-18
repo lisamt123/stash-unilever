@@ -1,9 +1,0 @@
-<apex:page controller="BFM_SESSummaryScreen_CC" sidebar="false" title="CT-e" standardStylesheets="false">
-        <apex:chart animate="true" height="200" width="100%" data="{!pieData}">
-            <apex:legend position="right" font="10px arial, sans-serif" spacing="-8" padding="8"/>
-            	<apex:pieSeries dataField="data" labelField="name" highlight="false" tips="true" showInLegend="true">
-            	<apex:chartLabel field="name" font="bold 10px arial, sans-serif" display="middle" orientation="vertical" rendererFn=""/>
-                <apex:chartTips trackMouse="true" width="200" labelField="name" valueField="data"/>
-            </apex:pieSeries>
-        </apex:chart>
-</apex:page>

@@ -1,7 +1,0 @@
-<apex:page standardController="BFM_Shipment__c" extensions="BFM_ShipmentCtesController">
-    <apex:pageBlock >
-        <apex:pageBlockTable value="{!ctes}" var="cte">
-            <apex:column value="{!cte.Name}"/>
-        </apex:pageBlockTable>
-    </apex:pageBlock>
-</apex:page>

@@ -1,9 +1,0 @@
-<apex:page standardController="Account" extensions="BFM_ShipmentUpdate_CC">
-    <apex:form >
-        <apex:pageBlock >
-    		<apex:pageBlockSection >
-        		
-        	</apex:pageBlockSection>
-        </apex:pageBlock>
-    </apex:form>
-</apex:page>

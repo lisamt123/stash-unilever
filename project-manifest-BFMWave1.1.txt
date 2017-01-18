@@ -13,6 +13,8 @@ src/classes/BFM_BulkShipmentQuery.cls
 src/classes/BFM_BulkShipmentQuery.cls-meta.xml
 src/classes/BFM_CommunitiesSelfRegController_CC.cls
 src/classes/BFM_CommunitiesSelfRegController_CC.cls-meta.xml
+src/classes/BFM_CommunitiesSelfRegController_CC_Test.cls
+src/classes/BFM_CommunitiesSelfRegController_CC_Test.cls-meta.xml
 src/classes/BFM_CPFValidator.cls
 src/classes/BFM_CPFValidator.cls-meta.xml
 src/classes/BFM_CreateAccessRequest.cls
@@ -23,6 +25,8 @@ src/classes/BFM_CreateContactFromEmailInformation.cls
 src/classes/BFM_CreateContactFromEmailInformation.cls-meta.xml
 src/classes/BFM_CreateUserQueueable.cls
 src/classes/BFM_CreateUserQueueable.cls-meta.xml
+src/classes/BFM_FileConnector.cls
+src/classes/BFM_FileConnector.cls-meta.xml
 src/classes/BFM_GeneralServiceCalls.cls
 src/classes/BFM_GeneralServiceCalls.cls-meta.xml
 src/classes/BFM_LoginuserPermissions_Test.cls
@@ -55,6 +59,8 @@ src/classes/BFM_SearchOccurrenceController_CC.cls
 src/classes/BFM_SearchOccurrenceController_CC.cls-meta.xml
 src/classes/BFM_SearchShipmentCTeController_CC.cls
 src/classes/BFM_SearchShipmentCTeController_CC.cls-meta.xml
+src/classes/BFM_SearchShipmentController_CCTest.cls
+src/classes/BFM_SearchShipmentController_CCTest.cls-meta.xml
 src/classes/BFM_SendEmailToCarrierApprover.cls
 src/classes/BFM_SendEmailToCarrierApprover.cls-meta.xml
 src/classes/BFM_ShipmentHandler.cls
@@ -152,8 +158,6 @@ src/pages/BFM_SearchOccurrences_VF.page-meta.xml
 src/pages/BFM_SearchShipmentCTe_VF.page
 src/pages/BFM_SearchShipmentCTe_VF.page-meta.xml
 src/pages/BFM_ShipmentDocumentGeneration.page
-src/pages/BFM_WithholdTaxDebitNote.page
-src/pages/BFM_WithholdTaxDebitNote.page-meta.xml
 src/pages/BFM_ShipmentDocumentGeneration.page-meta.xml
 src/permissionsets
 src/permissionsets/BFM_API_Permissions.permissionset
