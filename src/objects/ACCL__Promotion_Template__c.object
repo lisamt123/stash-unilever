@@ -184,6 +184,15 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>UL_Consider_IIBB_Tax__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>In case the setting is ticked by creation of Promotion it IIBB tax from anchor or hierarchy above will be prepopulated to the promotion field.</description>
+        <externalId>false</externalId>
+        <label>Consider IIBB Tax</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>	
     <fields>
         <fullName>ACCL__Creation_Platform__c</fullName>
         <deprecated>false</deprecated>
@@ -522,33 +531,43 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>UL_Allow_past_Promotions__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Allow past Promotions</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>UL_Approval_Process_Identifier__c</fullName>
         <description>Approval Process Identifier</description>
         <externalId>false</externalId>
         <label>Approval Process Identifier</label>
         <picklist>
             <picklistValues>
-                <fullName>AccountSpecificWorkflow</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ParentBandedPackWorkflow</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ParentWorkflow</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ChildWorkflow</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ParentPastDatedUrgentWorkflow</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>SoCo - LTA Workflow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SoCo - Account Specific Workflow</fullName>
+
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SoCo - Parent Banded Pack Workflow</fullName>
+
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SoCo - Parent Workflow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SoCo - Child Workflow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SoCo - Parent Past-Dated/Urgent Workflow</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -677,6 +696,15 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+
+
+
+
+
+
+
+
+
     <label>Promotion Template</label>
     <listViews>
         <fullName>ACCL__All</fullName>
@@ -914,15 +942,16 @@
         <picklistValues>
             <picklist>UL_Approval_Process_Identifier__c</picklist>
             <values>
-                <fullName>AccountSpecificWorkflow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ParentBandedPackWorkflow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ParentWorkflow</fullName>
+                <fullName>SoCo - LTA Workflow</fullName>
+
+
+
+
+
+
+
+
+
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1160,27 +1189,30 @@
         <picklistValues>
             <picklist>UL_Approval_Process_Identifier__c</picklist>
             <values>
-                <fullName>AccountSpecificWorkflow</fullName>
+                <fullName>SoCo - Account Specific Workflow</fullName>
+
                 <default>false</default>
             </values>
             <values>
-                <fullName>ChildWorkflow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ParentBandedPackWorkflow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ParentPastDatedUrgentWorkflow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ParentWorkflow</fullName>
+                <fullName>SoCo - Child Workflow</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>SoCo - LTA Workflow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SoCo - Parent Banded Pack Workflow</fullName>
+
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SoCo - Parent Past-Dated%2FUrgent Workflow</fullName>
+
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SoCo - Parent Workflow</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
