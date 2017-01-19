@@ -950,5 +950,20 @@
 		<shortDescription>UL_Multiple_Brands</shortDescription>		
         <value>Multiple Brands</value>
     </labels>
+	 <labels>
+        <fullName>UL_Off_Shelf</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Off_Shelf</shortDescription>
+        <value>Off-Shelf</value>
+    </labels>
+	 <labels>
+        <fullName>Select_one_record</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select one record</shortDescription>
+        <value>Please select at least one record.</value>
+    </labels>
 	 
 

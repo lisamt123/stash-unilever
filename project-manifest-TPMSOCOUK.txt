@@ -439,6 +439,8 @@ src/classes/MyMetaDataRemoteActionExtension.cls
 src/classes/MyMetaDataRemoteActionExtension.cls-meta.xml
 src/classes/MyPromotionRemoteActionExtension2.cls
 src/classes/MyPromotionRemoteActionExtension2.cls-meta.xml
+src/classes/UL_GlobalTriggerMonitor_Class.cls
+src/classes/UL_GlobalTriggerMonitor_Class.cls-meta.xml
 src/pages
 src/pages/MyPromotionPlanning.page
 src/pages/MyPromotionPlanning.page-meta.xml
