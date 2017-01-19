@@ -29,15 +29,11 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BFM_CCeHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>BFM_CPFValidator</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BFM_CTeSearch_CC</apexClass>
+        <apexClass>BFM_CPFValidator_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -45,11 +41,23 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BFM_CommunitiesSelfRegController_CC_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BFM_CreateAccessRequest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BFM_CreateAccessRequest_test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BFM_CreateCarrierUser</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BFM_CreateCarrierUser_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -69,6 +77,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BFM_GeneralServiceCalls_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BFM_LoginuserPermissions</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -78,14 +90,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_NFEHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_NFSManualLink_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_NFSwithholdTaxController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -141,6 +145,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BFM_SearchShipmentController_CCTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BFM_SendEmailToCarrierApprover</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -185,6 +193,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BFM_UpdateFreightData_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BFM_UpdateUserRequestQueueable</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -204,28 +216,6 @@
         <apexClass>BFM_UserCreationRequestHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_ValidateCNPJ</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_WithholdTaxController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_WithholdTaxDebitNoteController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_AccountAccessRequest__c.Carrier_CNPJ__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_AccountAccessRequest__c.City__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Bank_Information__c.Account_Number__c</field>
@@ -269,6 +259,106 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Bank_Information__c.External_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.CC_e_Duplicate_Record_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.CC_e_Key__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.CC_e_Link_Check_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.CC_e_Sefaz_Check_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.CC_e_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.CC_e_Valid_CNPJ_Check__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.CC_e_Valid_CNPJ_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.CC_e_emission_date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.CNPJ_Issuer__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.CNPJ_Service_Taker__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.CTe__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.Carrier__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.Event__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.External_File_Path__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.NF_e_DF__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.Reference_Object_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.Related_CT_e_NF_e_DF_Key__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.Sequence__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.Service_Taker__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CC_e__c.Uploaded_File_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -338,7 +428,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_CT_e__c.CT_e_6_Months__c</field>
+        <field>BFM_CT_e__c.CT_e_Auto_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -353,12 +443,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BFM_CT_e__c.CT_e_Duplicate_Record_Check__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CT_e__c.CT_e_Duplicate_Record_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BFM_CT_e__c.CT_e_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_CT_e__c.CT_e_Request_for_Cancel__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CT_e__c.CT_e_Sefaz_Check_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -373,6 +478,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BFM_CT_e__c.CT_e_Valid_CNPJ_Check__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CT_e__c.CT_e_Valid_CNPJ_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BFM_CT_e__c.CT_e__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -383,32 +498,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BFM_CT_e__c.CT_e_older_than_6_months__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BFM_CT_e__c.CT_e_version__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_CT_e__c.Cancellation_Reason__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Cargo_Dispatcher_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.CheckForMiro__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_CT_e__c.City_Cargo_Dispatcher__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.City_Code_Cargo_Dispatcher__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -428,37 +528,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_CT_e__c.City_Code_Recipient__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.City_Code_Service_Taker__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.City_Destination__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.City_Goods_Sender__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.City_Issuer__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_CT_e__c.City_Recipient__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_CT_e__c.City_Service_Taker__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_CT_e__c.Company_Code_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -513,12 +593,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_CT_e__c.Destination_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Document_Status__c</field>
+        <field>BFM_CT_e__c.Date_check_status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -553,11 +628,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_CT_e__c.Goods_Sender_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_CT_e__c.ICMS_Base_Value__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -583,56 +653,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_CT_e__c.Is_CNPJ_Valid__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Is_Company_Code_Ok__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Is_Emission_Date_Ok__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Is_Not_Duplicated__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Is_POD_Reception_Ok__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Is_Plant_Code_Matching_Ses__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Is_Vendor_Code_Matching_Ses__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Is_Vendor_Code_Ok__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Last_Tax_Classification_Update__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Last_User_To_Update_Tax__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_CT_e__c.Link_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -644,11 +664,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_CT_e__c.MDF_e__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Manual_Sefaz_Date_Check__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -693,7 +708,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_CT_e__c.Recipient_Name__c</field>
+        <field>BFM_CT_e__c.Related_CT_e_NF_e_DF_key__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -703,27 +718,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_CT_e__c.Sefaz_Check_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Sefaz_Request_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Sefaz_Return_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_CT_e__c.Service_Rendering_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Shipment__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -754,16 +749,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_CT_e__c.Tax_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Total_FRS_Net_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_CT_e__c.Total_FRS_Value__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -813,12 +798,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_CT_e__c.User_Manually_Check_Sefaz__c</field>
+        <field>BFM_CT_e__c.Vehicle_Plate__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_CT_e__c.Vehicle_Plate__c</field>
+        <field>BFM_CT_e__c.Vendor_Code_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -888,6 +873,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BFM_Debit_Note__c.DN_duplicate_check_status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BFM_Debit_Note__c.DN_total_value__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -909,16 +899,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Debit_Note__c.Free_Freight__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_Debit_Note__c.Is_CNPJ_Invalid__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_Debit_Note__c.Is_Duplicated__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -988,17 +968,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_Delivery__c.Shipment__c</field>
+        <field>BFM_Delivery__c.Number_of_Volumes__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_Delivery__c.Stage_Number__c</field>
+        <field>BFM_Delivery__c.Place_of_Departure__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_Delivery__c.Stage__c</field>
+        <field>BFM_Delivery__c.Total_weight__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1128,31 +1108,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_File__c.Body_Blob__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_File__c.Content_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_File__c.File_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_File__c.File_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_File__c.Size__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_Fiscal_Documents__c.Fiscal_Document_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1163,107 +1118,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MDF_e__c.CT_e_Access_Key__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.Carrier__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.Company_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.Emission_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.External_File_Path__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.Is_CNPJ_Invalid__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.Is_Duplicated__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.Issuer_CNPJ__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.MDFE_Access_Key__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.MDF_e_Link_Check_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.MDF_e_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.MDF_e_Sefaz_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.MDF_e_Status_Reason__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.MDF_e_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.Quantity_Related_CT_es__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.Taker_CNPJ__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.Unilever_Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MDF_e__c.Uploaded_File_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_MIRO_Header__c.Access_Key__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Annulment_Access_Key__c</field>
+        <field>BFM_MIRO_Header__c.Account_Number_of_Vendor_or_Creditor__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Annulment_Cancellation_Date__c</field>
+        <field>BFM_MIRO_Header__c.Annullment_NF_e__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1288,22 +1153,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Annulment_Pdf_Reference__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_MIRO_Header__c.Annulment_Reason__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Annulment_Status_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Annulment_Xml_Reference__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1313,7 +1163,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.COFINS_Amount__c</field>
+        <field>BFM_MIRO_Header__c.COFINS_Law__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1353,11 +1203,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Cte_Random_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_MIRO_Header__c.Debit_Note__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1378,12 +1223,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.ICMS_Amount__c</field>
+        <field>BFM_MIRO_Header__c.ICMS_Law__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.ICMS_Base_Value__c</field>
+        <field>BFM_MIRO_Header__c.IPI_Law__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1408,22 +1253,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Invoice_Serie_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_MIRO_Header__c.MIRO_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Miro_Requested_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Miro_Resend_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1438,16 +1268,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.NF_Writer_Acc_Doc_Posting_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Header__c.NF_Writer_Acc_Document__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_MIRO_Header__c.NF_Writer_Document_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1458,17 +1278,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BFM_MIRO_Header__c.NF_e_DF__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BFM_MIRO_Header__c.NF_e_Issuing_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Net_Due_Date__c</field>
+        <field>BFM_MIRO_Header__c.NF_e_Random_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Net_Value__c</field>
+        <field>BFM_MIRO_Header__c.Net_Due_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1488,7 +1313,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.PIS_Amount__c</field>
+        <field>BFM_MIRO_Header__c.PIS_Law__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1499,11 +1324,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_MIRO_Header__c.Payment_Block__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Payment_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1538,16 +1358,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Reference_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Request_for_Resend__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_MIRO_Header__c.Tax_Document_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1558,187 +1368,42 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Total_FRS_Net_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Total_FRS_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_MIRO_Header__c.Transaction__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.User_Req_Resend_Miro__c</field>
+        <field>BFM_MIRO_Header__c.Value_Net__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Header__c.Vendor_Code__c</field>
+        <field>BFM_MIRO_Header__c.W_tax_Apply_Flag__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Item__c.Access_Key__c</field>
+        <field>BFM_MIRO_Header__c.W_tax_base_amount_in_LC2__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Item__c.CFOP__c</field>
+        <field>BFM_MIRO_Header__c.W_tax_base_amount_in_LC__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Item__c.COFINS_Aliquot__c</field>
+        <field>BFM_MIRO_Header__c.Withholding_Tax_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_MIRO_Item__c.CofinsLaw__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.Document_Issue_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.FRS__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.Gross_Value_net_tax__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.ICMS_Law__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.ICMS_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.IPI_Law__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.IssLaw__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.Miro_Item_External_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.PIS_Aliquot__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.Payment_document_Amount__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.PisLaw__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.Reference_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.SES_ICMS_Base_Miro__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.SES_ICMS_Miro__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.SES_Net_Value_Miro__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.SES_Net_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.SES_Total_Value_Miro__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Item__c.Tax_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Withhold_Tax__c.Apply__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Withhold_Tax__c.Base_Amount__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Withhold_Tax__c.MIRO_Header__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Withhold_Tax__c.Withhold_Tax__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Withhold_Tax__c.Withholding_Tax_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Withhold_Tax__c.Withholding_Tax_Text__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_MIRO_Withhold_Tax__c.Withholding_Tax_Type__c</field>
+        <field>BFM_MIRO_Header__c.Withholding_tax_type__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_NFS__c.Base_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NFS__c.Carrier_City__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NFS__c.Company_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1778,22 +1443,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NFS__c.Is_CNPJ_Invalid__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NFS__c.Is_Duplicated__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_NFS__c.Mandatory_fields_required__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_NFS__c.NFS_Auto_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_NFS__c.NFS_CNPJ_Check_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1809,6 +1469,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_NFS__c.NFS_Definitive__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_NFS__c.NFS_Duplicate_Check_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1873,22 +1538,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NFS__c.Occurrence__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_NFS__c.Ordinary_fields_required__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_NFS__c.Other_Info__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NFS__c.Plant_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1988,27 +1643,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NFS__c.Unilever_Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_NFS__c.Uploaded_File_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NFS__c.Vendor_Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_NFS__c.Vendor_Address__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NFS__c.Vendor_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2033,32 +1673,42 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.Address_Number_Cargo_Dispatcher__c</field>
+        <field>BFM_NFS__c.Vendor_s_City_of_Register_Unique_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.Address_Number_Destination__c</field>
+        <field>BFM_NF_e__c.Address_destination__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.Address_Number_Goods_Sender__c</field>
+        <field>BFM_NF_e__c.Annulment_Access_Key__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.Address_Number_Issuer__c</field>
+        <field>BFM_NF_e__c.Annulment_Fiscal_Doc_No__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.Address_Number_Recipient__c</field>
+        <field>BFM_NF_e__c.Annulment_Fiscal_Posting_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.Address_Number_Taker__c</field>
+        <field>BFM_NF_e__c.Annulment_NF_e_Cancellation_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_NF_e__c.Annulment_Pdf_Reference__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_NF_e__c.Annulment_Xml_Reference__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2068,27 +1718,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.CNPJ_Cargo_Dispatcher__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.CNPJ_Goods_Sender__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.CNPJ_Recipient__c</field>
+        <field>BFM_NF_e__c.CNPJ_Destination_Account__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_NF_e__c.CNPJ_destination__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.CNPJ_issuer__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2099,66 +1734,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_NF_e__c.CT_e__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.City_Cargo_Dispatcher__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.City_Code_Cargo_Dispatcher__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.City_Code_Destination__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.City_Code_Goods_Sender__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.City_Code_Issuer__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.City_Code_Recipient__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.City_Code_Taker__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.City_Destination__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.City_Goods_Sender__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.City_Issuer__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.City_Recipient_c__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.City_Taker__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2188,36 +1763,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.Destination_Address_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.District_Cargo_Dispatcher__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.District_Goods_Sender__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.District_Issuer__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.District_Recipient__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.District_Taker__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_NF_e__c.District_destination__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2238,12 +1783,42 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BFM_NF_e__c.Municipal_Name_Destination__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_NF_e__c.Municipal_code_destination__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BFM_NF_e__c.NF55_Created__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_NF_e__c.NFS__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_NF_e__c.NF_Writer_Acc_Doc_Posting_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_NF_e__c.NF_Writer_Acc_Document__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_NF_e__c.NF_Writer_Document__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_NF_e__c.NF_Writer_Posting_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2278,26 +1853,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.Name_Cargo_Dispatcher__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.Name_Goods_Sender__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.Name_Issuer__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.Name_Recipient__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_NF_e__c.Name_destination__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2308,37 +1863,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.Occurrence__c</field>
+        <field>BFM_NF_e__c.Number_destination__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_NF_e__c.Occurrence_SES__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_NF_e__c.Phone_destination__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.Postal_Code_Cargo_Dispatcher__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.Postal_Code_Issuer__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.Postal_Code_Recipient__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.Postal_Code_Taker__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.Postal_Goods_Sender__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2349,11 +1884,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_NF_e__c.Predominant_product__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.SES_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2378,62 +1908,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.State_Cargo_Dispatcher__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.State_Goods_Sender__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.State_Issuer__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.State_Recipient__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.State_Taker__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_NF_e__c.State_destination__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.Street_Cargo_Dispatcher__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.Street_Destination__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.Street_Goods_Sender__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.Street_Issuer__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.Street_Recipient__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_NF_e__c.Street_Taker__c</field>
+        <field>BFM_NF_e__c.Status_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2444,6 +1924,256 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_NF_e__c.Taker_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Accouting_Account__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Acctount_Assingment_Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.CFOP__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.COFINS_Aliquot__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.COFINS_Calculation_Base__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.COFINS_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.COFINS_law__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.CT_e__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Cost_Center__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Cost_Document_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Creation_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Display__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Document_Upload_Date_Time__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Gross_Value_net_tax__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.ICMS_Aliquot__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.ICMS_Calculation_Base__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.ICMS_Exempt__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.ICMS_Law__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.ICMS_Presumed_Credit__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.ICMS_Reduzed_base_percentage__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.ICMS_ST__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.ICMS_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.IPI_law__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.ISS_Aliquot__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.ISS_Calculation_base__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.ISS_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Internal_Order__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Modification_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.NFS__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Net_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Occurrence_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.PIS_Aliquot__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.PIS_Calculation_Base__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.PIS_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.PIS_law__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.PO_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.PO_Umbrella_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Register_Creation_Responsible_User__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.SES_Currency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.SES_Line_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.SES_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.SES_Plant_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Shipment_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Shipment__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Simple_Option__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Stage__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Tax_Code_Picklist__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Tax_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Unilever_company_code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence_SES__c.Vendor_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2478,7 +2208,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BFM_Occurrence__c.Carrier_2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BFM_Occurrence__c.Carrier_Vendor_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Occurrence__c.Carrier__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2498,16 +2238,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_Occurrence__c.Delivery_System_Description__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_Occurrence__c.Delivery_System__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_Occurrence__c.Equip_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2519,11 +2249,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Occurrence__c.Fiscal_Documents__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_Occurrence__c.Is_Deleted_in_SAP__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2663,6 +2388,171 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BFM_POD__c.Amazon_File_Link__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Billing_Document__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Carrier_Account__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Carrier__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Data__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Destination_Address__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Destination_CNPJ__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Destination_Company_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Destination_UF__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Destination_city__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.NF_e_Access_Key__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.NF_e_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.NF_e_Series__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.NF_e__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.OCR_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.OCR_Task_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Original_File_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Outbound_Delivery__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.POD_CNPJ_Check_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.POD_Date_Check_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.POD_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.POD_Definitive__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.POD_Duplicate_Check_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.POD_ERRORS__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.POD_Link_Check_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.POD_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.POD_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.POD_as_Receipt__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Physical_Reception_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Physical_Reception_User__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Template_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Upload_User__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_POD__c.Upload_date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BFM_SES__c.Accouting_Account__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2703,16 +2593,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_SES__c.Cancelled__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_SES__c.Company_Code_del__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_SES__c.Cost_Center__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2739,11 +2619,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_SES__c.Document_Upload_Date_Time__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_SES__c.Free_Freight__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2814,16 +2689,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_SES__c.Internal_Order__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_SES__c.IssLaw__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_SES__c.Minimum_number_of_customers__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2908,11 +2773,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_SES__c.Shipment_Doc_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_SES__c.Shipment_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2959,7 +2819,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Shipment__c.ANTT__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Shipment__c.Action_Code__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -2974,12 +2839,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Shipment__c.Created_Date__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Shipment__c.Display__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -2993,23 +2858,23 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_Shipment__c.Plant_Code__c</field>
+        <field>BFM_Shipment__c.Origin_Plant_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Shipment__c.Pricing_Calculation_Date__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Shipment__c.Shipment_Number__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Shipment__c.Shipment_Start__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -3019,27 +2884,42 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Shipment__c.Shipment_Type__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Shipment__c.Shipping_Process__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Shipment__c.Shipping_type__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Shipment__c.Unilever_Company__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Shipment__c.Vehicle_Plate__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_Shipment__c.X6th_flag_Updated_Date__c</field>
+        <field>BFM_Shipment__c.Warehouse__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Shipment__c.X6th_flag__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BFM_Shipment__c.X6th_flag_updated_date__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -3163,6 +3043,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BFM_Stage__c.Unilever_Account__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BFM_Stage__c.Warehouse__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -3241,46 +3126,6 @@
         <field>BFM_User_Creation_Request_Error__c.Error_Message__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_Withhold_Tax__c.Carrier_Vendor_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_Withhold_Tax__c.Company_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_Withhold_Tax__c.External_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_Withhold_Tax__c.Unilever_Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_Withhold_Tax__c.Withholding_Tax_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_Withhold_Tax__c.Withholding_Tax_Flag__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_Withhold_Tax__c.Withholding_Tax_Text__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_Withhold_Tax__c.Withholding_Tax_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
     <label>BFM Finance Unilever</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -3288,15 +3133,56 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>BFM_Shipment__c</object>
+        <object>BFM_CC_e__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>BFM_Debit_Note__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>BFM_Error_Log__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>BFM_MIRO_Header__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>BFM_POD__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>BFM_SES__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
         <apexPage>BFM_AccountMoreDetails</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>BFM_CTeSearch_VF</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -3319,30 +3205,14 @@
         <apexPage>BFM_ShipmentDocumentGeneration</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>BFM_WithholdTax</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>BFM_WithholdTaxDebitNote</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>BFM_WithholdTaxNFS</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
     <recordTypeVisibilities>
-        <recordType>BFM_CT_e__c.CTe</recordType>
+        <recordType>BFM_POD__c.POD</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>BFM_CT_e__c.NFeDF</recordType>
+        <recordType>BFM_POD__c.POD_Receipt</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
-    <tabSettings>
-        <tab>BFM_AccountAccessRequest__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
     <tabSettings>
         <tab>BFM_Bank_Information__c</tab>
         <visibility>None</visibility>
@@ -3353,42 +3223,30 @@
     </tabSettings>
     <tabSettings>
         <tab>BFM_NF_e__c</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>BFM_Occurrence__c</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>BFM_SES__c</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>BFM_Shipment__c</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>BFM_Stage__c</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>BFM_UserCreationRequest__c</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>CT_e</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>NFS</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>Search_Occurrence</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Search_Shipment_Cte</tab>
         <visibility>None</visibility>
     </tabSettings>
 </PermissionSet>
