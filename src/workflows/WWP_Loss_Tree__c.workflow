@@ -128,6 +128,43 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <outboundMessages>
+        <fullName>Test_Mule</fullName>
+        <apiVersion>37.0</apiVersion>
+        <endpointUrl>https://sample-salesforce-connectivity-api.eu.cloudhub.io/sample</endpointUrl>
+        <fields>Actual_Dispatch__c</fields>
+        <fields>Actual_Production__c</fields>
+        <fields>Actual_Receipt__c</fields>
+        <fields>CreatedById</fields>
+        <fields>CreatedDate</fields>
+        <fields>DC_Loss_Value__c</fields>
+        <fields>DC__c</fields>
+        <fields>Id</fields>
+        <fields>IsDeleted</fields>
+        <fields>LastActivityDate</fields>
+        <fields>LastModifiedById</fields>
+        <fields>LastModifiedDate</fields>
+        <fields>LastReferencedDate</fields>
+        <fields>LastViewedDate</fields>
+        <fields>Loss_Description__c</fields>
+        <fields>Loss_Name__c</fields>
+        <fields>Loss_Recorded_Date__c</fields>
+        <fields>Loss_Sub_Family__c</fields>
+        <fields>Loss_Type__c</fields>
+        <fields>Loss_Updated_in_SCDG__c</fields>
+        <fields>Loss_Updated_in_Salesforce__c</fields>
+        <fields>MRP_Loss_Value__c</fields>
+        <fields>Name</fields>
+        <fields>OR_Loss_Value__c</fields>
+        <fields>OR__c</fields>
+        <fields>OwnerId</fields>
+        <fields>PO__c</fields>
+        <includeSessionId>true</includeSessionId>
+        <integrationUser>sridhar.valiveti@capgemini.com</integrationUser>
+        <name>Test Mule</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
     <rules>
         <fullName>TestAPI</fullName>
         <actions>
