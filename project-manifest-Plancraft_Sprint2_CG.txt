@@ -70,3 +70,7 @@ src/classes/PBS_ReportGenerator_CC.cls
 src/classes/PBS_ReportGenerator_CC.cls-meta.xml
 src/classes/PBS_ReportGenerator_Test.cls
 src/classes/PBS_ReportGenerator_Test.cls-meta.xml
+src/pages/PBS_TrainingTrackDetail.page
+src/pages/PBS_TrainingTrackDetail.page-meta.xml
+src/pages/PBS_TrainingCatalogDetail.page
+src/pages/PBS_TrainingCatalogDetail.page-meta.xml
