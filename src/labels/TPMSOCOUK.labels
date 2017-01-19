@@ -2047,3 +2047,10 @@ there is a different Currency on lower level customer(s)</value>
         <shortDescription>Weekly Split</shortDescription>
         <value>Weekly Split</value>
     </labels>
+	<labels>
+        <fullName>UL_Duplicate_Record_Found</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Duplicate_Record_Found</shortDescription>
+        <value>Dates are overlapping with existing records for same deliver profile.</value>
+    </labels>

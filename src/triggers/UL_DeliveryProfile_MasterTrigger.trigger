@@ -26,7 +26,7 @@ trigger UL_DeliveryProfile_MasterTrigger on UL_Delivery_Profile__c (
                 }
                 if(Trigger.isUpdate){
                     handleDeliveryProfileEvents = new UL_DeliveryProfile_TriggerHandler(Trigger.new, Trigger.old, Trigger.newMap, Trigger.oldMap);
-                    handleDeliveryProfileEvents.handleBeforeUpdate();
+                    
                 }
                 if(Trigger.isDelete){
                     
@@ -36,15 +36,15 @@ trigger UL_DeliveryProfile_MasterTrigger on UL_Delivery_Profile__c (
                 UL_GlobalTriggerMonitor_Class.executedTriggers.add(STRING_UL_DELIVERYPROFILE_MASTERTRIGGER_AFTER);
                 if(Trigger.isInsert){
                     handleDeliveryProfileEvents = new UL_DeliveryProfile_TriggerHandler(Trigger.New, NULL, Trigger.NewMap, NULL);
-                    handleDeliveryProfileEvents.handleAfterInsert();
+                     
                 }
                 if(Trigger.isUpdate){
                     handleDeliveryProfileEvents = new UL_DeliveryProfile_TriggerHandler(Trigger.new, Trigger.old, Trigger.newMap, Trigger.oldMap);
-                    handleDeliveryProfileEvents.handleAfterUpdate();
+                    
                 }
                 if(Trigger.isDelete){
                     handleDeliveryProfileEvents = new UL_DeliveryProfile_TriggerHandler(NULL, Trigger.old, NULL, Trigger.oldMap);
-                    handleDeliveryProfileEvents.handleAfterDelete();
+                     
                 }
             }
         }        
