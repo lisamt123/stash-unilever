@@ -756,6 +756,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>PQN_Sourcing_Unit__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>PQN_Supplier_Details__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
