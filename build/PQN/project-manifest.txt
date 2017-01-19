@@ -78,8 +78,6 @@ src/classes/PQN_TestLibraryUtil_Test.cls-meta.xml
 src/classes/PQN_TestLibraryUtil.cls-meta.xml
 src/classes/PQN_UploadNCData_Clone.cls
 src/classes/PQN_UploadNCData_Clone.cls-meta.xml
-src/classes/PQN_SendEmailtoDC_ClusterSchedulerTest.cls
-src/classes/PQN_SendEmailtoDC_ClusterSchedulerTest.cls-meta.xml
 src/classes/PQN_updateSUP.cls
 src/classes/PQN_updateSUP.cls-meta.xml
 src/classes/PQN_updateSUP_Test.cls
@@ -96,8 +94,6 @@ src/classes/PQN_UserCreationPostProcessing_Test.cls
 src/classes/PQN_UserCreationPostProcessing_Test.cls-meta.xml
 src/classes/PQNBatchDeleteRecords.cls
 src/classes/PQNBatchDeleteRecords.cls-meta.xml
-src/classes/PQNLossTreeData.cls
-src/classes/PQNLossTreeData.cls-meta.xml
 src/classes/PQNScheduleDeteleOfRecords.cls
 src/classes/PQNScheduleDeteleOfRecords.cls-meta.xml
 src/classes/PQNScheduleDeteleOfRecordsTest.cls
@@ -206,3 +202,8 @@ src/email/PQN_Templates/PQN_User_Creation_Template.email
 src/email/PQN_Templates/PQN_User_Creation_Template.email-meta.xml
 src/email/PQN_Templates-meta.xml
 src/networks/PQN Customer Community.network
+src/approvalProcesses/PQN_User_Creation_Request__c.PQN_User_Creation_Approval_Request.approvalProcess
+src/components/PQN_Navigation.component
+src/components/PQN_Navigation.component-meta.xml
+src/flows/PQN_User_Creation_Request-2.flow
+src/workflows/PQN_Pallet_Quality_Non_Conformance__c.workflow
