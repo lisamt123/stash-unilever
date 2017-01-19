@@ -254,6 +254,17 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>AF_Qual_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>AF_Qual_Value</label>
+        <summarizedField>AF_Sub_Result__c.AF_Qual_Bonus_Value__c</summarizedField>
+        <summaryForeignKey>AF_Sub_Result__c.AF_Bonus_Threshold__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>AF_Stretching__c</fullName>
         <description>AgencyFee#GLOBAL#To store the Stretching values related to Bonus Threshold</description>
         <externalId>false</externalId>
@@ -287,6 +298,17 @@
             <operation>equals</operation>
             <value></value>
         </summaryFilterItems>
+        <summaryForeignKey>AF_Sub_Result__c.AF_Bonus_Threshold__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>AF_Total_Bonus__c</fullName>
+        <externalId>false</externalId>
+        <label>AF_Total_Bonus</label>
+        <summarizedField>AF_Sub_Result__c.AF_Total_Bonus_Value__c</summarizedField>
         <summaryForeignKey>AF_Sub_Result__c.AF_Bonus_Threshold__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
