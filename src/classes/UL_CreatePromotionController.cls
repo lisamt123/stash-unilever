@@ -15,6 +15,7 @@ public with sharing class UL_CreatePromotionController{
 
      private final Static String CREATION_PLATFORM = 'Mobility';
      private final Static String PROMOTION_TYPE= 'SellablePromotion';
+     private final static String PROMOTION_REDIRECT_PAGE_KEY = 'UKI after Promotion creation redirect';
 
      public string customerset{set;get;}
      public String defaultsoldto{set;get;}
@@ -54,6 +55,7 @@ public with sharing class UL_CreatePromotionController{
     private Map<Id,String> promotionTemplateWithSalesOrg = new Map<Id,String>();
     private Map<Id,String> promotionTemplateNames = new Map<Id,String>();
     private Map<Id,UL_Delivery_Profile__c> listOfDeliveryProfile = new Map<Id,UL_Delivery_Profile__c>();
+    private Id allCustomers{set;get;}
     /*******************************************************************
     Purpose: Default constructor fetch promotions
     Version: 1.0
@@ -180,20 +182,26 @@ public with sharing class UL_CreatePromotionController{
             //Prepare Customer list from Customer Planning level object.
             planningLevelMap = new Map<Id,UL_Planning_Level__c>();
             unplannedSoldToCustomerMap  = new Map<Id, List<Account>>();
-            for(UL_Planning_Level__c planningLevel : [SELECT UL_Customer__c,UL_Customer__r.Name,UL_Account__c,UL_Account__r.Name FROM UL_Planning_Level__c WHERE UL_Sales_Organisation__c=:promotionTemplateSalesOrg AND UL_Planning_Level_Start_Date__c <= :instoreDate AND UL_Planning_Level_End_Date__c >=:instoreDate Order By UL_Customer__r.Name]){
-                SelectOption planningLevelOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
-                planningLevelOption.setValue(planningLevel.UL_Customer__c);
-                planningLevelOption.setLabel(planningLevel.UL_Customer__r.Name);
-                Customers.add(planningLevelOption);
-                //Customers.add(new SelectOption(planningLevel.UL_Customer__c,planningLevel.UL_Customer__r.Name));
-
-                planningLevelMap.put(planningLevel.UL_Customer__c, planningLevel);
-                if(selectedCustomer  != null && selectedCustomer.equals(planningLevel.UL_Customer__c)){
-                   planingLevelCustomers = selectedCustomer;
-                }
-
-                //Prepare 'Sold To' list for unplanned customers
-                unplannedSoldToCustomerMap.put(planningLevel.UL_Customer__c, UL_CustomerUtility.getCustomerTradeOrgHierarchy(planningLevel.UL_Customer__c, UL_Utility.LEVEL8,instoreDate,instoreDate,false));
+            for(UL_Planning_Level__c planningLevel : [SELECT UL_Customer__r.UL_Generic_Customer__c,UL_Customer__c,UL_Customer__r.Name,UL_Account__c,UL_Account__r.Name FROM UL_Planning_Level__c WHERE UL_Sales_Organisation__c=:promotionTemplateSalesOrg AND UL_Planning_Level_Start_Date__c <= :instoreDate AND UL_Planning_Level_End_Date__c >=:instoreDate Order By UL_Customer__r.Name]){
+               if(!planningLevel.UL_Customer__r.UL_Generic_Customer__c){
+                        SelectOption planningLevelOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
+                        planningLevelOption.setValue(planningLevel.UL_Customer__c);
+                        planningLevelOption.setLabel(planningLevel.UL_Customer__r.Name);
+                        Customers.add(planningLevelOption);
+                        //Customers.add(new SelectOption(planningLevel.UL_Customer__c,planningLevel.UL_Customer__r.Name));
+        
+                        planningLevelMap.put(planningLevel.UL_Customer__c, planningLevel);
+                        if(selectedCustomer  != null && selectedCustomer.equals(planningLevel.UL_Customer__c)){
+                           planingLevelCustomers = selectedCustomer;
+                        }
+        
+                        //Prepare 'Sold To' list for unplanned customers
+                        unplannedSoldToCustomerMap.put(planningLevel.UL_Customer__c, UL_CustomerUtility.getCustomerTradeOrgHierarchy(planningLevel.UL_Customer__c, UL_Utility.LEVEL8,instoreDate,instoreDate,false));
+            
+               } 
+               else{
+               allCustomers = planningLevel.UL_Customer__c;
+               }
             }
 
             //Set current selected customer from the customer list
@@ -235,8 +243,13 @@ public with sharing class UL_CreatePromotionController{
                     params.put('retURL', ctr.view().getURL());
                 }
                 else{
-                    pref = Page.MyPromotionPlanning;
-                    pref.getParameters().put(Schema.SObjectType.ACCL__Promotion__c.fields.Id.getName(),promotionId);
+                    Map<String, UL_Utility__c> utilitySetting = UL_Utility__c.getAll();
+                    if(utilitySetting != null && utilitySetting.get(PROMOTION_REDIRECT_PAGE_KEY) != null){
+                        UL_Utility__c pageApiName = utilitySetting.get(PROMOTION_REDIRECT_PAGE_KEY);
+                        String pageRef = '/apex/'+pageApiName.UL_Value__c+'?id='+promotionId;        
+                        pref = new pageReference(pageRef);
+                    }                    
+                   // pref.getParameters().put(Schema.SObjectType.ACCL__Promotion__c.fields.Id.getName(),promotionId);
                     pref.setRedirect(true);
                 }
             }
@@ -263,7 +276,8 @@ public with sharing class UL_CreatePromotionController{
 
 
     /*******************************************************************
-    Purpose: This method is used to load deafult sold to records
+    Purpose: This method is used to 
+     deafult sold to records
     Version: 1.0
     Parameters: N/A
     Returns: NA
@@ -319,6 +333,7 @@ public with sharing class UL_CreatePromotionController{
 
             if(isRedirect){
                   ref = Page.UL_CreatePromotionSoCo;
+                 //ref = Page.ACCL__CreatePromotion;
                   ref.setRedirect(true);
             }
             else{
@@ -410,7 +425,7 @@ public with sharing class UL_CreatePromotionController{
         try{
             deliveryProfiles.clear();
             if(instoreDate != null && planingLevelCustomers != null){
-                for(UL_Delivery_Profile__c uDeliveryProfile:[SELECT Id, UL_Delivery_Profile_Name__c, Name, UL_Shipment_Start_days__c, UL_Shipment_End_days__c, UL_Instore_End_days__c FROM UL_Delivery_Profile__c where UL_Valid_From__c<=:instoreDate AND UL_Valid_Thru__c>=:instoreDate AND UL_Sales_Organisation__c=:salesOrg AND (UL_Account__c =:planingLevelCustomers OR UL_Account__c = null) Limit:LIMITS.getLimitQueryRows()-LIMITS.getQueryRows()]){
+                for(UL_Delivery_Profile__c uDeliveryProfile:[SELECT Id, UL_Delivery_Profile_Name__c, Name, UL_Shipment_Start_days__c, UL_Shipment_End_days__c, UL_Instore_End_days__c FROM UL_Delivery_Profile__c where UL_Valid_From__c<=:instoreDate AND UL_Valid_Thru__c>=:instoreDate AND UL_Sales_Organisation__c=:salesOrg AND (UL_Account__c =:planingLevelCustomers OR UL_Account__c =:allCustomers ) Order By UL_Delivery_Profile_Name__c Limit:LIMITS.getLimitQueryRows()-LIMITS.getQueryRows()]){
 
                      SelectOption profileOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
                      profileOption.setValue(uDeliveryProfile.Id);
@@ -478,7 +493,7 @@ public with sharing class UL_CreatePromotionController{
              relatedRecord.ACCL__Delivery_Date_Thru__c = dateThru;
              relatedRecord.ACCL__Placement_Date_Thru__c = dateThru;
          }
-
+         relatedRecord.ACCL__Commit_Date__c= relatedRecord.ACCL__Placement_Date_From__c;
          relatedRecord.ACCL__Anchor_Account__c = defaultsoldto;
          relatedRecord.UL_Account__c = planingLevelCustomers;
          relatedRecord.ACCL__Anchor_Account_Set__c = customerset;

@@ -28,6 +28,9 @@ public with sharing class UL_CannibalisationRateTriggerHandler{
             Set<String> featureSet = new Set<String>();
             Map<String, Set<UL_Cannibalisation_Rate__c>> cannibalisationRateMap = new Map<String, Set<UL_Cannibalisation_Rate__c>>();
             String errorMessage = System.Label.UL_Cannibalisation_Error;
+            //Sprint 5
+            ACCL__Product__c allProducts = [SELECT Id, Name FROM ACCL__Product__c WHERE Name = 'All Products' AND ACCL__Product_Level__c = 'Commodity' LIMIT 1];
+            UL_Planning_Level__c allAccounts = [SELECT Id, Name, UL_Customer__c FROM UL_Planning_Level__c WHERE UL_Customer__r.Name = 'All Customers' LIMIT 1];
             
             //Searching smallest start date and largest thru date to limit number of existing records queried
             for(UL_Cannibalisation_Rate__c rate : cannibalisationRateList){
@@ -51,12 +54,14 @@ public with sharing class UL_CannibalisationRateTriggerHandler{
                 else if(largestThruDate < rate.UL_Valid_Thru__c){
                     largestThruDate = rate.UL_Valid_Thru__c;
                 }
-                if(rate.UL_Customer__c!=UL_Utility.NULL_ID){
-                    customerIdSet.add(rate.UL_Customer__c);
+                if(rate.UL_Customer__c==UL_Utility.NULL_ID){
+                   rate.UL_Customer__c = allAccounts.UL_Customer__c; 
                 }
-                if(rate.UL_Product__c!=UL_Utility.NULL_ID){
-                    productIdSet.add(rate.UL_Product__c);
+                customerIdSet.add(rate.UL_Customer__c);
+                if(rate.UL_Product__c==UL_Utility.NULL_ID){
+                    rate.UL_Product__c = allProducts.Id;
                 }
+                productIdSet.add(rate.UL_Product__c);
                 if(rate.UL_Feature__c!=UL_Utility.NULL_VALUE){
                     featureSet.add(rate.UL_Feature__c);
                 }

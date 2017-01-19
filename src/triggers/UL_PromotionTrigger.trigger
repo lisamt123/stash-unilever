@@ -13,11 +13,13 @@ trigger UL_PromotionTrigger on ACCL__Promotion__c (before update, before delete,
          UL_PromotionInstoreDates.deletePromotion(trigger.old);
      }
   }
+
   if(trigger.isBefore){
      if(trigger.isInsert){
         UL_PromotionSetIIBBTaxHandler.updateIIBBTax(trigger.new,null);
      }
   }
+
     if(trigger.isAfter){
         if(trigger.isUpdate){
             

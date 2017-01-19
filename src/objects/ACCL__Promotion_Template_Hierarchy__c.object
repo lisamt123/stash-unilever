@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Object for the creation of promotion hierarchies.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>ACCL__Child_Promotion_Template__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Lookup to a promotion template.</description>
+        <externalId>false</externalId>
+        <label>Child Promotion Template</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>ACCL__Promotion_Template__c.ACCL__Active__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ACCL__Promotion_Template__c</referenceTo>
+        <relationshipLabel>Parent Promotion Templates</relationshipLabel>
+        <relationshipName>Parent_Promotion_Templates</relationshipName>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ACCL__Copied_Components__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Copied Components</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Products</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tactics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Notes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ACCL__Parent_Promotion_Template__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Master-Detail relation to a promotion template.</description>
+        <externalId>false</externalId>
+        <label>Parent Promotion Template</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>ACCL__Promotion_Template__c.ACCL__Active__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ACCL__Promotion_Template__c</referenceTo>
+        <relationshipLabel>Child Promotion Templates</relationshipLabel>
+        <relationshipName>Child_Promotion_Templates</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>ACCL__Record_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; &amp;Id, $Label.ACCL__RECORD_LINK, &quot;_top&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Record Link</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Usage__c</fullName>
+        <externalId>false</externalId>
+        <label>Usage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Push</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Derive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>Promotion Template Hierarchy</label>
+    <nameField>
+        <displayFormat>PTH-{00000}</displayFormat>
+        <label>Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Promotion Template Hierarchies</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>ACCL__Sales_Org_Mismatch</fullName>
+        <active>true</active>
+        <description>To validate that parent and child Promotion templates have same sales org</description>
+        <errorConditionFormula>TEXT(ACCL__Child_Promotion_Template__r.ACCL__Sales_Org__c) &lt;&gt; TEXT(ACCL__Parent_Promotion_Template__r.ACCL__Sales_Org__c)</errorConditionFormula>
+        <errorMessage>Sales org of parent and child Promotion Templates should be same.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ACCL__Sales_Org_Mismatch1</fullName>
+        <active>true</active>
+        <description>To validate that parent and child Promotion templates have same sales org</description>
+        <errorConditionFormula>TEXT(ACCL__Child_Promotion_Template__r.ACCL__Sales_Org__c) &lt;&gt; TEXT(ACCL__Parent_Promotion_Template__r.ACCL__Sales_Org__c)</errorConditionFormula>
+        <errorMessage>Sales org of parent and child Promotion Templates should be same.</errorMessage>
+    </validationRules>
+</CustomObject>
