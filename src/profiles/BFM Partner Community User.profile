@@ -1092,11 +1092,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_SES__c.CT_E__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_SES__c.Cancelled__c</field>
         <readable>false</readable>
     </fieldPermissions>

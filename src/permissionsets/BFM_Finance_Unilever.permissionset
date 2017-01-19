@@ -323,11 +323,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_Error_Log__c.BFM_POD__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_Error_Log__c.BFM_Shipment__c</field>
         <readable>false</readable>
     </fieldPermissions>
