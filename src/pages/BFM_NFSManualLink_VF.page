@@ -1,0 +1,72 @@
+<apex:page StandardController="BFM_NFS__c" extensions="BFM_NFSManualLink_CC" tabStyle="Account">
+<script>
+         
+         $ = jQuery.noConflict();
+
+         </script>
+         
+         
+         
+         <script>
+                     $(document).ready(function()
+                     {
+                         /*
+                         When page get load then below script will run
+                         and collapse all the section which are under .firstSectionClass( Element Class).
+                         */
+                         var element= $('.styleships .hideListButton');
+                         for(var i = 0;i<element.length;i++)
+                             twistSection(element[i]);
+                         
+                         /*
+                         Below script it bind with arrow icon (Icon which are being used for collapse) which are displaying on section.
+                         When Icon are clicked then below script will run.
+                         */
+                         $('.styleships .showListButton').bind('click',function(event){
+                             event.preventDefault();
+                             var el= $('.styleships .hideListButton');
+                             for(var i = 0;i<el.length;i++)
+                             twistSection(el[i]);
+                             if(el.length!=0)
+                             twistSection(this);
+                             
+                             //this --> represent currently pressed section img element. You can write any script for this element fi you want to do something on section.
+                         });
+                     });
+ </script>
+  <apex:sectionHeader title="{!$Label.BFM_NFS}" subtitle="{!$Label.BFM_Manual_Link}"/>
+  <apex:form >
+  <apex:pageBlock >
+  <apex:pageBlockButtons >
+      <apex:commandButton action="{!linkNFS_SES}" value="{!$Label.BFM_Update}"/>
+  </apex:pageBlockButtons>
+<apex:pageblocksection title="{!$Label.BFM_NFS}" showheader="true" collapsible="true" columns="1">
+
+    <apex:pageBlockTable value="{!nfs_list }" var="n" StyleClass="styleships" >
+        <apex:column headerValue="{!$Label.BFM_NFS_Record}">
+            <a href="/{!n.nfs.id}" target="_blank">{!n.nfs.name}</a>         
+        </apex:column>
+        <apex:column value="{!n.nfs.Shipment__c}"/>
+        <apex:column value="{!n.nfs.NFS_Emission_Date_Time__c}"/>
+       <!-- <apex:column breakBefore="true" colspan="2">-->
+       <apex:column >
+           <apex:pageblocksection rendered="{!n.ses_list.size==0}"  title="SES has an existign NFS">  </apex:pageblocksection>
+            <apex:pageblocksection rendered="{!n.ses_list.size!=0}" title="{!$Label.BFM_SES_Information}" showheader="true" collapsible="true" columns="1">
+                 
+                <apex:pageBlockTable value="{!n.ses_list}" var="s">
+                
+                <apex:column > <apex:inputcheckbox value="{!s.isselected}"/></apex:column>
+                    <apex:column headerValue="{!$Label.BFM_SES_Record}">
+                        <a href="/{!s.ses.Id}" target="_blank">{!s.ses.name}</a>         
+                    </apex:column>                    
+                    <apex:column value="{!s.ses.SES_Number__c}"/>
+                    <apex:column value="{!s.ses.SES_Plant_Code__c}"/>
+                </apex:pageBlockTable>
+            </apex:pageblockSection>
+        </apex:column>
+    </apex:pageBlockTable>
+
+</apex:pageblockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

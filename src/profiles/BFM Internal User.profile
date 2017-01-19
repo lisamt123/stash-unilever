@@ -46,6 +46,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BFM_CCeHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BFM_CCeHandler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BFM_CPFValidator</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3318,6 +3326,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>BFM_CommunitiesSelfReg_VF</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>BFM_NFSManualLink_VF</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
