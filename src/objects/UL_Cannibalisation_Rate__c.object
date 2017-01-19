@@ -132,7 +132,7 @@
     <fields>
         <fullName>UL_IsAllCustomers__c</fullName>
         <externalId>false</externalId>
-        <formula>UL_Customer__r.Name  = &apos;All Customers&apos;</formula>
+        <formula>UL_Customer__r.UL_Generic_Customer__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IsAllCustomers</label>
         <trackTrending>false</trackTrending>
@@ -141,7 +141,7 @@
     <fields>
         <fullName>UL_IsAllProducts__c</fullName>
         <externalId>false</externalId>
-        <formula>UL_Product__r.Name = &apos;All Products&apos;</formula>
+        <formula>UL_Product__r.UL_Generic_Product__c</formula>
         <label>IsAllProducts</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
