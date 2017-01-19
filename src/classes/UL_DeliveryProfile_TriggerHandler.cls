@@ -52,35 +52,17 @@ public without sharing class UL_DeliveryProfile_TriggerHandler {
                 
                 delivery_profile_names.add(newDeliveryProfile.UL_Delivery_Profile_Name__c);
             }
-            
-            
-            system.debug('lowestDate ::: '+lowestDate);
-            system.debug('highestDate ::: '+highestDate);         
+                  
             
         }
-        system.debug('delivery_profile_names ::: '+delivery_profile_names);
+         
         if(delivery_profile_names.size() > 0){
             deliveryProfileNameValidation(delivery_profile_names, lowestDate, highestDate);
         }
         
     }
     
-    public void handleBeforeUpdate(){
-        
-    }
-    
-    public void handleAfterInsert(){
-        
-    }
-    
-    public void handleAfterUpdate(){
-        
-    }
-    
-    public void handleAfterDelete(){
-        
-    }
-    
+     
 /*********************************************************************************************************************************************************
 @ Method:      deliveryProfileNameValidation
 @ Version:     1.0
@@ -94,10 +76,6 @@ public without sharing class UL_DeliveryProfile_TriggerHandler {
 **********************************************************************************************************************************************************/ 
     public void deliveryProfileNameValidation(Set<String> delivery_profile_names, Date lowestDate, Date highestDate){
         Map<String, UL_Delivery_Profile__c> checkNames = new Map<String, UL_Delivery_Profile__c>();
-        system.debug('lowestDate *** '+lowestDate);
-        system.debug('highestDate *** '+highestDate);
-        system.debug('******'+[SELECT Id, UL_Delivery_Profile_Name__c, UL_Valid_From__c, UL_Valid_Thru__c FROM UL_Delivery_Profile__c WHERE UL_Delivery_Profile_Name__c IN :delivery_profile_names AND UL_Valid_From__c >= :Date.valueOf(lowestDate) AND UL_Valid_Thru__c <= :Date.valueOf(highestDate)]);
-
         for(UL_Delivery_Profile__c dp : [SELECT Id, UL_Delivery_Profile_Name__c, UL_Valid_From__c, UL_Valid_Thru__c FROM UL_Delivery_Profile__c WHERE UL_Delivery_Profile_Name__c IN :delivery_profile_names AND (UL_Valid_From__c >= :Date.valueOf(lowestDate) OR UL_Valid_Thru__c <= :Date.valueOf(highestDate)) ORDER BY UL_Valid_Thru__c DESC, UL_Valid_From__c DESC]){
             if(checkNames.containsKey(dp.UL_Delivery_Profile_Name__c)){
                 if(dp.UL_Valid_From__c > checkNames.get(dp.UL_Delivery_Profile_Name__c).UL_Valid_From__c){
@@ -107,12 +85,12 @@ public without sharing class UL_DeliveryProfile_TriggerHandler {
                 checkNames.put(dp.UL_Delivery_Profile_Name__c, dp);
             }            
         }
-        system.debug('checkNames ::: '+checkNames);
+         
         for(UL_Delivery_Profile__c newDeliveryProfile : new_DeliveryProfile_List){
             if(checkNames.containsKey(newDeliveryProfile.UL_Delivery_Profile_Name__c)){
                 if(newDeliveryProfile.UL_Valid_From__c < checkNames.get(newDeliveryProfile.UL_Delivery_Profile_Name__c).UL_Valid_Thru__c 
                    || newDeliveryProfile.UL_Valid_Thru__c < checkNames.get(newDeliveryProfile.UL_Delivery_Profile_Name__c).UL_Valid_Thru__c){                        
-                     newDeliveryProfile.addError('Validation Failed');
+                     newDeliveryProfile.addError(Label.UL_Duplicate_Record_Found);
                 }
             }
         }        

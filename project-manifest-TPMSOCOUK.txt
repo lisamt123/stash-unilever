@@ -78,6 +78,7 @@ src/objects/Promotion_Attachment__c.object
 src/objects/Promotion_Attachment_Link__c.object
 src/objects/UL_Comparator__c.object
 src/objects/UL_Condition_Codes__c.object
+src/objects/UL_Utility__c.object
 src/objectTranslations
 src/objectTranslations/ACCL__Account_Bill_To__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Account_Call_Setting__c-en_US.objectTranslation
@@ -488,5 +489,4 @@ src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Parent_Workflow.approvalProces
 src/profiles
 src/profiles/UnileverACTPMSOCO.profile
 src/profiles/UnileverACTPMUKI.profile
-src/sharingRules
-src/sharingRules/ACCL__Promotion_Template__c.sharingRules
+

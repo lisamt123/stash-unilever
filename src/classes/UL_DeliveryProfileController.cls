@@ -138,8 +138,10 @@ public with sharing class UL_DeliveryProfileController{
                     pref.setRedirect(true); 
                 }                                   
              }             
-         catch(Exception ex){        
-               ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,  UL_UtilityController.errorMessage(ex.getMessage())));               
+         catch(Exception ex){               
+               if(!ex.getMessage().contains(Label.UL_Duplicate_Record_Found)){
+                   ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,  UL_UtilityController.errorMessage(ex.getMessage())));
+               }               
                UL_Utility.logError(Ex, UserInfo.getUserId());
               
           }

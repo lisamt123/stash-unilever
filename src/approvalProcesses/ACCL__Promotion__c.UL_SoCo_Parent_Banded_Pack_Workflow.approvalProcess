@@ -26,10 +26,6 @@
         <label>Finance Check</label>
         <name>UL_Finance_Check</name>
         <rejectionActions>
-            <!--<action>
-                <name>UL_PromotionStepRejected</name>
-                <type>Alert</type>
-            </action>-->
             <action>
                 <name>UL_CurrentStatus_Planning</name>
                 <type>FieldUpdate</type>
@@ -42,6 +38,10 @@
             <action>
                 <name>UL_CurrentStatus_BandedPackApproved</name>
                 <type>FieldUpdate</type>
+            </action>
+            <action>
+                <name>UL_SoCo_Workflow_Approved</name>
+                <type>Alert</type>
             </action>
         </approvalActions>
         <assignedApprover>
@@ -56,10 +56,6 @@
             <type>RejectRequest</type>
         </rejectBehavior>
         <rejectionActions>
-            <!--<action>
-                <name>UL_PromotionStepRejected</name>
-                <type>Alert</type>
-            </action>-->
             <action>
                 <name>UL_CurrentStatus_Planning</name>
                 <type>FieldUpdate</type>
@@ -88,10 +84,6 @@
             <type>RejectRequest</type>
         </rejectBehavior>
         <rejectionActions>
-            <!--<action>
-                <name>UL_PromotionStepRejected</name>
-                <type>Alert</type>
-            </action>-->
             <action>
                 <name>UL_CurrentStatus_Planning</name>
                 <type>FieldUpdate</type>
@@ -113,19 +105,18 @@
         <rejectBehavior>
             <type>RejectRequest</type>
         </rejectBehavior>
+        <rejectionActions>
+            <action>
+                <name>UL_CurrentStatus_Planning</name>
+                <type>FieldUpdate</type>
+            </action>
+        </rejectionActions>
     </approvalStep>
     <description>SoCo - Parent Workflow</description>
-    <!--<emailTemplate>unfiled$public/UL_Promotion_Approval</emailTemplate>-->
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <formula>ACCL__Active__c == true &amp;&amp; TEXT(  UL_Current_Status__c)==&apos;Planning&apos;</formula>
     </entryCriteria>
-    <!--<finalApprovalActions>
-        <action>
-            <name>UL_PromotionApproved</name>
-            <type>Alert</type>
-        </action>
-    </finalApprovalActions>-->
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
