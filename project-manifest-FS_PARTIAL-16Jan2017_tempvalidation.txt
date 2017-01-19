@@ -49,3 +49,4 @@ src/roles/National_Chains_Manager.role
 src/workflows/Account.workflow
 src/flows/FS_AccountOperatorSegmentRussia-2.flow
 src/flows/FS_UpdateRegionandZonebasedoncityforRussia-15.flow
+src/layouts/Account-Feed Based Operator.layout
