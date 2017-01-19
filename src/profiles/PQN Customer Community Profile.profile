@@ -142,14 +142,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PQN_UpdateFreezeDateOnPQN</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>PQN_UpdateFreezeDateOnPQNTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PQN_UploadNCData_Clone</apexClass>
         <enabled>false</enabled>
     </classAccesses>

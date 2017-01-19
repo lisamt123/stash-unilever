@@ -141,14 +141,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PQN_UpdateFreezeDateOnPQN</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>PQN_UpdateFreezeDateOnPQNTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PQN_UploadNCData_Clone</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -761,10 +753,6 @@
     </tabSettings>
     <tabSettings>
         <tab>PQN_Pallet_Quality_Non_Conformance__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>PQN_Sourcing_Unit__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
