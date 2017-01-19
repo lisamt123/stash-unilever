@@ -536,27 +536,27 @@
         <label>Approval Process Identifier</label>
         <picklist>
             <picklistValues>
-                <fullName>AccountSpecificWorkflow</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ParentBandedPackWorkflow</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ParentWorkflow</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ChildWorkflow</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ParentPastDatedUrgentWorkflow</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>SoCo - LTA Workflow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SoCo - Account Specific Workflow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SoCo - Parent Banded Pack Workflow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SoCo - Parent Workflow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SoCo - Child Workflow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SoCo - Parent Past-Dated/Urgent Workflow</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -922,15 +922,7 @@
         <picklistValues>
             <picklist>UL_Approval_Process_Identifier__c</picklist>
             <values>
-                <fullName>AccountSpecificWorkflow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ParentBandedPackWorkflow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ParentWorkflow</fullName>
+                <fullName>SoCo - LTA Workflow</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1168,27 +1160,27 @@
         <picklistValues>
             <picklist>UL_Approval_Process_Identifier__c</picklist>
             <values>
-                <fullName>AccountSpecificWorkflow</fullName>
+                <fullName>SoCo - Account Specific Workflow</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>ChildWorkflow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ParentBandedPackWorkflow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ParentPastDatedUrgentWorkflow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ParentWorkflow</fullName>
+                <fullName>SoCo - Child Workflow</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>SoCo - LTA Workflow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SoCo - Parent Banded Pack Workflow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SoCo - Parent Past-Dated%2FUrgent Workflow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SoCo - Parent Workflow</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
