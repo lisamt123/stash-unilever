@@ -22,7 +22,7 @@ extensions="UL_DeliveryProfileController"
              <apex:pageBlockSection id="theSection" title="{!$Label.UL_Delivery_Profile_section}"   showHeader="true" collapsible="false" columns="1">
                     <apex:outputField id="deliverprofilename" value="{!releatedRecord.UL_Delivery_Profile_Name__c}" />
                     <apex:outputField id="salesOrg" value="{!releatedRecord.UL_Sales_Organisation__c}" />
-                    <apex:outputField id="pl" value="{!releatedRecord.UL_Planning_Level__c}" />
+                    <apex:outputField id="pl" value="{!releatedRecord.UL_Account__c}" />
                     <apex:outputField id="prod" value="{!releatedRecord.UL_Product__c}" />                    
                     <apex:outputField id="store_end_date" value="{!releatedRecord.UL_Instore_End_days__c}"/>
                     <apex:outputField id="ship_start_date" value="{!releatedRecord.UL_Shipment_Start_days__c}"/>                     

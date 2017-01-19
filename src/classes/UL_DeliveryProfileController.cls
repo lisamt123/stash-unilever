@@ -186,6 +186,7 @@ Throws: N/A
          }
          else{
              releatedRecord.UL_Planning_Level__c = allAccounts.Id;
+             releatedRecord.UL_Account__c = allAccounts.Id;
          }
          if(releatedRecord.UL_Product__c == null ){
              releatedRecord.UL_Product__c = allProducts.Id;
