@@ -5082,11 +5082,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>User.agf__External_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>User.agf__GUS_User_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
