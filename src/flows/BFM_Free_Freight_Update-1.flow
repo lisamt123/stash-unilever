@@ -148,7 +148,6 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputAssignments>
-        <object>BFM_CT_e__c</object>
     </recordUpdates>
     <startElementReference>myVariable_waitStartTimeAssignment</startElementReference>
     <variables>

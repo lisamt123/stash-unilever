@@ -180,11 +180,7 @@
     <listViews>
         <fullName>Error_Log_View</fullName>
         <columns>NAME</columns>
-        <columns>BFM_CC_e__c</columns>
-        <columns>BFM_CT_e__c</columns>
-        <columns>BFM_MDF_e__c</columns>
         <columns>BFM_NF_e__c</columns>
-        <columns>BFM_NFS__c</columns>
         <columns>BFM_SES__c</columns>
         <columns>BFM_Shipment__c</columns>
         <columns>Reason__c</columns>

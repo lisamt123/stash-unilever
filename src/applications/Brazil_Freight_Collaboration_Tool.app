@@ -6,7 +6,6 @@
     <tab>standard-Account</tab>
     <tab>BFM_NF_e__c</tab>
     <tab>Search_Occurrence</tab>
-    <tab>BFM_Error_Log__c</tab>
     <tab>BFM_UserCreationRequest__c</tab>
     <tab>File_Upload</tab>
     <tab>BFM_AccountAccessRequest__c</tab>

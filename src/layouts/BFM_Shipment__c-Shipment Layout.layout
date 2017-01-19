@@ -238,11 +238,6 @@
         <relatedList>BFM_SES__c.Shipment__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <relatedList>BFM_NFS__c.Shipment__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>NAME</fields>
         <fields>CT_e_Number__c</fields>
         <fields>CT_e_Serie__c</fields>
