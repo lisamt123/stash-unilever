@@ -235,7 +235,7 @@ public with sharing class UL_CreatePromotionController{
                     params.put('retURL', ctr.view().getURL());
                 }
                 else{
-                    pref = Page.MyPromotionPlanning;
+                    pref = Page.MyPromotionPlanning2;
                     pref.getParameters().put(Schema.SObjectType.ACCL__Promotion__c.fields.Id.getName(),promotionId);
                     pref.setRedirect(true);
                 }
