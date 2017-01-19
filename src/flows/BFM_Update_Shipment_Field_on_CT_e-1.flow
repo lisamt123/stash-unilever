@@ -56,7 +56,6 @@
                         <stringValue>GlobalConstant</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.CT_E__c</leftValueReference>
                 <operator>NotEqualTo</operator>
             </conditions>
             <connector>

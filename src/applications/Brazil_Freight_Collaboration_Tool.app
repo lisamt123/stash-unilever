@@ -9,5 +9,4 @@
     <tab>BFM_UserCreationRequest__c</tab>
     <tab>BFM_AccountAccessRequest__c</tab>
     <tab>standard-report</tab>
-    <tab>Search_SES</tab>
 </CustomApplication>

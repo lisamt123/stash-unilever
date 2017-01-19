@@ -1,5 +1,6 @@
 src
 src/applications/Brazil_Freight_Collaboration_Tool.app
+src/approvalProcesses/BFM_UserCreationRequest__c.BFM_Carrier_User_Request_Approval.approvalProcess
 src/classes/BFM_AccountDAO.cls
 src/classes/BFM_AccountDAO.cls-meta.xml
 src/classes/BFM_AccountDAO_Test.cls
@@ -243,11 +244,3 @@ src/workflows/BFM_Shipment__c.workflow
 src/workflows/BFM_Stage__c.workflow
 src/workflows/BFM_User_Creation_Request_Error__c.workflow
 src/workflows/BFM_UserCreationRequest__c.workflow
-src/approvalProcesses/BFM_UserCreationRequest__c.BFM_Carrier_User_Request_Approval.approvalProcess
-src/webLinks
-src/webLinks/Tax_Classification.webLinks
-src/globalPicklist
-src/globalPicklist/Tax_Code_Picklist__c.globalPicklist
-src/listviews
-src/listviews/BFM_User_Creation_Request_Approvers_BFM_UserCreationRequest.listviews
-src/listviews/BFM_CT_e_Cancellation_Request_Approvers_BFM_MIRO_Header.listviews
