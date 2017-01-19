@@ -235,7 +235,6 @@ src/staticresources/BFM_White.resource
 src/staticresources/BFM_White.resource-meta.xml
 src/staticresources/BFMUnileverLogo.resource
 src/staticresources/BFMUnileverLogo.resource-meta.xml
-src/sharingRules/Account.sharingRules
 src/settings/Account.settings
 src/tabs/BFM_AccountAccessRequest__c.tab
 src/tabs/BFM_Bank_Information__c.tab

@@ -363,11 +363,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.Annulment_Access_Key__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_NF_e__c.Annulment_Fiscal_Doc_No__c</field>
         <readable>false</readable>
     </fieldPermissions>
