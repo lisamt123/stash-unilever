@@ -131,6 +131,11 @@ global without sharing class PQN_UploadNCData_Clone{
             else{
                 errorDesc +='Loss Code not found in system. </br>';
             }
+            
+            xP.Number_of_Pallets_Per_SKU_Non_Compliant__c=(xP.Number_of_Pallets_Per_SKU_Non_Compliant__c==null) ? 0 : xP.Number_of_Pallets_Per_SKU_Non_Compliant__c;
+            
+            
+            
             if(errorDesc.length()>0){
                 xP.Error_Description__c=errorDesc;
                 xP.Is_Error__c=true;

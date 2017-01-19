@@ -19,7 +19,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
     
     
      private void callCatStackChart(){
-            List<AggregateResult> listAgg =new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c label, Product_Group__c key from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!='' AND Product_Group__c!='' group By Loss_Level_2__c, Product_Group__c Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]);
+            List<AggregateResult> listAgg =new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c label, Product_Group__c key from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!='' AND Product_Group__c!='' AND Year__c=:string.valueof(system.Today().year()) group By Loss_Level_2__c, Product_Group__c Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc limit 50000]);
             xMapCAT = new Map<String,Integer>();
             xLOSS = new Set<String>();
             xCAT= new Set<String>();
@@ -39,7 +39,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
     private List<String> getFieldsLabel2(){
         chartCatLabelmap= new Map<String,String>();
         String query ='';
-        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c), Loss_Level_2__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' group By Loss_Level_2__c';
+        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c), Loss_Level_2__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' AND Year__c=\''+string.valueof(system.Today().year())+'\' group By Loss_Level_2__c';
         List<String> fields =new List<String>();
         String Key='';
         String label='';
@@ -83,7 +83,7 @@ public without sharing class PQN_Global_Overview_Category_Report{
         Set<String> setDiag = new Set<String>();
         List<String> keyString = mapStr.split(',');
         String query ='';
-        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c key, Product_Group__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' AND Product_Group__c !=\'\' group By Loss_Level_2__c, Product_Group__c Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc limit 50000';
+        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c key, Product_Group__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' AND Product_Group__c !=\'\' AND Year__c=\''+string.valueof(system.Today().year())+'\' group By Loss_Level_2__c, Product_Group__c Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc limit 50000';
         Decimal totalcount = 0;
         list<AggregateResult> result = Database.query(query);
         

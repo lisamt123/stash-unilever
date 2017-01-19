@@ -81,9 +81,8 @@
                     <a class="btn" id ="exportError" style="display:none" target="_blank" role="button">Export Error File</a>
                     <a class="btn" id ="exportSuccess" style="display:none" target="_blank" role="button">Export Success File</a>
                 </div>
-                <button onclick="ErrorList('1484659682');" type="button">Call ErrorList</button>
-                <button id="insertErrorId" style="display:none;" type="button"></button>
-                
+                <!--<button onclick="ErrorList('1484659682');" type="button">Call ErrorList</button>-->
+                <button id="insertErrorId" style="display:none;" type="button"></button>                
                 <div id="showImportDataDiv" style="overflow-y: scroll; height: 500px;">
                     <table id="showImportData" class="table table-striped table-bordered">
                     </table>
@@ -427,7 +426,7 @@
                                 rowtr.append($("<th>Supplier Alias</th>"));
                                 rowtr.append($("<th>Loss Code</th>"));
                                 rowtr.append($("<th>No. Of pallets per SKU NC</th>"));
-                                rowtr.append($("<th>Date Pallet Recieved</th>"));
+                                //rowtr.append($("<th>Date Pallet Recieved</th>"));
                                 rowtr.append($("<th>Comments</th>"));
                                 
                                 $.each(result, function(x, y) {
@@ -448,8 +447,8 @@
                                    row.append($('<td><input type="text" class="Supplier__c'+x+'" value="'+y.Supplier__c+'"/></td>'));
                                    row.append($('<td><input type="text" class="Non_compliance_reason_code__c'+x+'" value="'+y.Non_compliance_reason_code__c+'"/></td>'));
                                    row.append($('<td><input type="text" class="Number_of_Pallets_Per_SKU_Non_Compliant__c'+x+'" value="'+y.Number_of_Pallets_Per_SKU_Non_Compliant__c+'"/></td>'));
-                                   y.Date_Pallet_Received__c= typeof y.Date_Pallet_Received__c=== "undefined" ? '' : y.Date_Pallet_Received__c;
-                                   row.append($('<td><input type="date" class="Date_Pallet_Received__c'+x+'" value="'+y.Date_Pallet_Received__c+'"/></td>'));
+                                   //y.Date_Pallet_Received__c= typeof y.Date_Pallet_Received__c=== "undefined" ? '' : y.Date_Pallet_Received__c;
+                                   //row.append($('<td><input type="date" class="Date_Pallet_Received__c'+x+'" value="'+y.Date_Pallet_Received__c+'"/></td>'));
                                    y.Comments__c = typeof y.Comments__c === "undefined" ? '' : y.Comments__c;
                                    row.append($('<td><input type="Text" class="Comments__c'+x+'" value="'+y.Comments__c+'"/></td>'));
                                    
