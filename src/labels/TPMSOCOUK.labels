@@ -965,5 +965,35 @@
         <shortDescription>Select one record</shortDescription>
         <value>Please select at least one record.</value>
     </labels>
-	 
+	<labels>
+        <fullName>UL_Shelf</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Shelf</shortDescription>
+        <value>Shelf</value>
+    </labels>
+	     <labels>
+        <fullName>Close_Promotion_Initiated</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close Promotion Initiated</shortDescription>
+        <value>The closing of the promotions is initiated.</value>
+    </labels>
+    <labels>
+        <fullName>Close_Promotion_Missing_Sharing</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close Promotion Missing Sharing</shortDescription>
+        <value>You can not close the following promotions due to missing sharing access.</value>
+    </labels>
+    <labels>
+        <fullName>Close_Promotions_Confirmation</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close Promotions Confirmation</shortDescription>
+        <value>Are you sure you want to close the selected promotions?</value>
+    </labels>
 
