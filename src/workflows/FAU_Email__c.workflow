@@ -22,13 +22,14 @@
         <fullName>FAU UL2020_Send Email</fullName>
         <active>true</active>
         <description>EMAIL: Send E-mail to participant</description>
-        <formula>FAU_Email_Start_Date__c  =  TODAY()</formula>
+        <formula>FAU_Email_Start_Date__c &gt; TODAY()</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
                 <name>FAU_Update_Send_Email</name>
                 <type>FieldUpdate</type>
             </actions>
+            <offsetFromField>FAU_Email__c.FAU_Email_Start_Date__c</offsetFromField>
             <timeLength>0</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>

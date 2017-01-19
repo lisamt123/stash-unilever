@@ -28,6 +28,10 @@
                 <field>AF_Traditional__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_Adaptation__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>key__c</field>
             </layoutItems>
@@ -70,6 +74,18 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>AF_Total_Bonus_Value__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_UnileverCountry__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_Bonus_Target__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Brand_Agency_Uq_Combination__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
