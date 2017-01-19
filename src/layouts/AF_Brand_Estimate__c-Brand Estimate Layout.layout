@@ -238,6 +238,34 @@
                 <behavior>Readonly</behavior>
                 <field>AF_Threshold_Key__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_iscountrymode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_Disable_Globalcheckbox__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_Disable_Contrycheckbox__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_Disable_Exceptionaltargets__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_Globalcheck_Disable__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_Is_Global_Bonus_Threshold_Checked__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_ExceptionalCountry__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -542,14 +570,14 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>AF_Fiscal_Year__c</fields>
+        <fields>AF_Status__c</fields>
+        <fields>AF_Category_Finance_Flag__c</fields>
         <fields>AF_Agency_Entity__c</fields>
         <fields>AF_Unilever_Entity__c</fields>
         <fields>AF_Total_Local__c</fields>
         <fields>AF_Total__c</fields>
         <fields>AF_Traditional__c</fields>
         <fields>AF_Digital__c</fields>
-        <fields>AF_IsCrossBorderImage__c</fields>
         <fields>AF_IsCrossborder__c</fields>
         <relatedList>AF_Agency_Estimate__c.AF_Brand_Estimate__c</relatedList>
     </relatedLists>
