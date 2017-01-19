@@ -59,6 +59,8 @@ src/classes/BFM_LoginuserPermissions.cls
 src/classes/BFM_LoginuserPermissions.cls-meta.xml
 src/classes/BFM_NFEHandler.cls
 src/classes/BFM_NFEHandler.cls-meta.xml
+src/classes/BFM_NFSManualLink_CC.cls
+src/classes/BFM_NFSManualLink_CC.cls-meta.xml
 src/classes/BFM_OccurrenceHandler.cls
 src/classes/BFM_OccurrenceHandler.cls-meta.xml
 src/classes/BFM_QueryFreights.cls
@@ -152,7 +154,9 @@ src/flows/BFM_Free_Freight_Update-1.flow
 src/flows/BFM_Update_Shipment_Field_on_CT_e-1.flow
 src/flows/BFM_Update_Shipment_in_CTe-1.flow
 src/homePageLayouts/BFM Home Page.homePageLayout
+src/labels
 src/labels/BFM.labels
+src/labels/CustomLabels.labels
 src/layouts/BFM_AccountAccessRequest__c-BFM Account Access Request Layout.layout
 src/layouts/BFM_Bank_Information__c-BFM Bank Information Layout.layout
 src/layouts/BFM_Company_Code__c-Company Code Layout.layout
@@ -268,10 +272,12 @@ src/workflows/BFM_User_Creation_Request_Error__c.workflow
 src/workflows/BFM_UserCreationRequest__c.workflow
 src/approvalProcesses/BFM_UserCreationRequest__c.BFM_Carrier_User_Request_Approval.approvalProcess
 src/applications/Brazil_Freight_Collaboration_Tool.app
-src/buttons
-src/buttons/Tax_Classification.buttons
-src/globalPicklists
-src/globalPicklists/Tax_Code_Picklist__c.globalPicklist
+src/webLinks
+src/webLinks/Tax_Classification.webLinks
+src/webLinks/Tax_Classification.webLinks
+src/webLinks/Tax_Classification.webLinks
+src/globalPicklist
+src/globalPicklist/Tax_Code_Picklist__c.globalPicklist
 src/listviews
 src/listviews/BFM_User_Creation_Request_Approvers_BFM_UserCreationRequest.listviews
 src/listviews/BFM_CT_e_Cancellation_Request_Approvers_BFM_MIRO_Header.listviews

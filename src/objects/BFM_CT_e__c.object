@@ -1826,7 +1826,7 @@
     <validationRules>
         <fullName>BFM_CTE_Definitive_with_Validation_Error</fullName>
         <active>false</active>
-        <errorConditionFormula>DEFINITIVE__c = true &amp;&amp;   UPPER(CT_e_Compatible__c) != &apos;COMPATIBLE&apos;</errorConditionFormula>
+        <errorConditionFormula>DEFINITIVE__c = true &amp;&amp;   UPPER(Link_Status__c) != &apos;COMPATIBLE&apos;</errorConditionFormula>
         <errorDisplayField>Annulment_Reason__c</errorDisplayField>
         <errorMessage>CT-e cannot be Definitive without passing Validations</errorMessage>
     </validationRules>
