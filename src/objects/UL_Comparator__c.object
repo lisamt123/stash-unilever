@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -55,6 +51,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>UL_Compare_Value__c</fullName>
         <externalId>false</externalId>
@@ -71,29 +68,31 @@
         <fullName>UL_Comparison_Type__c</fullName>
         <externalId>false</externalId>
         <label>Comparison Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>&lt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&gt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>=</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&lt;&gt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>&lt;</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>&gt;</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>=</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>&lt;&gt;</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>UL_Threshold_Description__c</fullName>
@@ -111,29 +110,31 @@
         <fullName>UL_Threshold_KPI__c</fullName>
         <externalId>false</externalId>
         <label>Threshold KPI</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Gross Margin</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ROI</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Invoice Type</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Invstement Cost</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Gross Margin</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>ROI</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Invoice Type</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Invstement Cost</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>UL_Threshold_Parameter__c</fullName>
@@ -152,25 +153,23 @@
         <fullName>UL_User_Role__c</fullName>
         <externalId>false</externalId>
         <label>User Role</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Category Planner</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TPM Argentina AR01 Finance Manager</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TPM Argentina AR01 Finance Analyst</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>TPM Argentina AR01 Finance Manager</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>TPM Argentina AR01 Finance Analyst</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>UL_Workflow_Threshold_Template__c</fullName>
