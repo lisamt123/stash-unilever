@@ -264,7 +264,6 @@
         <fields>NAME</fields>
         <fields>NF_e_number__c</fields>
         <fields>NF_e_serie__c</fields>
-        <fields>CT_e__c</fields>
         <fields>CNPJ_destination__c</fields>
         <fields>Street_Destination__c</fields>
         <fields>Shipment__c</fields>

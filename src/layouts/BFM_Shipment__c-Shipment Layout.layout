@@ -223,7 +223,6 @@
         <fields>CNPJ_destination__c</fields>
         <fields>NF_e_access_key__c</fields>
         <fields>NF_e_creation_date__c</fields>
-        <fields>CT_e__c</fields>
         <relatedList>BFM_NF_e__c.Shipment__c</relatedList>
         <sortField>NF_e_number__c</sortField>
         <sortOrder>Asc</sortOrder>
@@ -231,7 +230,6 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Stage__c</fields>
-        <fields>CT_E__c</fields>
         <fields>Unilever_company_code__c</fields>
         <fields>Tax_Code__c</fields>
         <fields>Gross_Value_net_tax__c</fields>

@@ -104,10 +104,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Debit_Note__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>ISS_Aliquot__c</field>
             </layoutItems>
             <layoutItems>
