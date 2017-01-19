@@ -129,6 +129,20 @@
         <protected>false</protected>
     </fieldUpdates>
     <rules>
+        <fullName>TestAPI</fullName>
+        <actions>
+            <name>Test_Mule</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>WWP_Loss_Tree__c.Loss_Updated_in_Salesforce__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>Update SF Primary Key</fullName>
         <actions>
             <name>primary_key_update</name>
@@ -415,6 +429,16 @@
             <field>WWP_Loss_Tree__c.Last_modified_planner_email__c</field>
             <operation>equals</operation>
         </criteriaItems>
-		<triggerType>onAllChanges</triggerType>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>lossupdate for OTIF true</fullName>
+        <actions>
+            <name>WWP_Lossupdate_in_sfdc_true</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISPICKVAL( Loss_Type__c , &apos;Supplier OTIF&apos;)&amp;&amp; ( CreatedDate+6 &lt; NOW() ) &amp;&amp;  NOT(ISBLANK( TEXT( Loss_Name__c ) ))&amp;&amp;  NOT(ISBLANK( TEXT(  Loss_Sub_Family__c ) ))&amp;&amp; NOT(ISBLANK( TEXT(  Loss_Description__c ) ))</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>
