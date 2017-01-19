@@ -50,6 +50,13 @@
         <value>Select the Quarter(s) you wish to adjust and press continue</value>
     </labels>
     <labels>
+        <fullName>AF_AgencyChatter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_AgencyChatter</shortDescription>
+        <value>https://unilever.my.salesforce.com/0F9E00000009IuP?fromEmail=1</value>
+    </labels>
+    <labels>
         <fullName>AF_AgencyEstimateSuccess</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7565,6 +7572,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>CT-e Search</value>
     </labels>
     <labels>
+        <fullName>BFM_CT_e_doesn_t_have_SES</fullName>
+        <categories>BFM, CT-e, error, link, SES</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM CT-e doesn&apos;t have SES</shortDescription>
+        <value>Error: CT-e {0} doesn\&apos;t have a SES linked</value>
+    </labels>
+    <labels>
         <fullName>BFM_CTe</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7760,6 +7775,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>BFM_Gross value</shortDescription>
         <value>Gross value</value>
+    </labels>
+    <labels>
+        <fullName>BFM_ICMS_isnt_same_accross_SES</fullName>
+        <categories>BFM, Tax Validation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM ICMS isnt same accross SES</shortDescription>
+        <value>The ICMS value isn&apos;t the same across all SESs.</value>
     </labels>
     <labels>
         <fullName>BFM_IVA_Information</fullName>
@@ -8015,7 +8038,7 @@ Response message: {2}</value>
     </labels>
     <labels>
         <fullName>BFM_Origin_Plant</fullName>
-        <language>pt_BR</language>
+        <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BFM Origin Plant</shortDescription>
         <value>Origin Plant</value>
@@ -14290,6 +14313,13 @@ If approved your project will be linked after your Charter gate has been approve
         <value>EcoDesign Section</value>
     </labels>
     <labels>
+        <fullName>IPM_EcoDesign_Average</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_EcoDesign_Average</shortDescription>
+        <value>Average</value>
+    </labels>
+    <labels>
         <fullName>IPM_EcoDesign_Change_vs</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -14341,6 +14371,13 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>IPM EcoDesign Country Deleted</shortDescription>
         <value>The following country was deleted from the project:</value>
+    </labels>
+    <labels>
+        <fullName>IPM_EcoDesign_Directional_View</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_EcoDesign_Directional_View</shortDescription>
+        <value>Directional View:</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_EI_Countries</fullName>
@@ -14407,11 +14444,25 @@ If approved your project will be linked after your Charter gate has been approve
         <value>New SKU</value>
     </labels>
     <labels>
+        <fullName>IPM_EcoDesign_New_SKU_Impact</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_EcoDesign_New_SKU_Impact</shortDescription>
+        <value>New SKU Impact</value>
+    </labels>
+    <labels>
         <fullName>IPM_EcoDesign_Non_EI_Countries</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_EcoDesign_Non_EI Countries</shortDescription>
         <value>Non-EI Countries</value>
+    </labels>
+    <labels>
+        <fullName>IPM_EcoDesign_On_Category</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_EcoDesign_On_Category</shortDescription>
+        <value>on Category</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_Section_Text</fullName>
@@ -23297,6 +23348,13 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <protected>false</protected>
         <shortDescription>VEP Visitor Email Id</shortDescription>
         <value>00NE0000006DMIz</value>
+    </labels>
+    <labels>
+        <fullName>Validation_OK</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Validation OK</shortDescription>
+        <value>Validation OK.</value>
     </labels>
     <labels>
         <fullName>WINatPOS_Empty_Param</fullName>
