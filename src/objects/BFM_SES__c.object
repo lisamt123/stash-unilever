@@ -136,6 +136,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>CT_E__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CT-e</label>
+        <referenceTo>BFM_CT_e__c</referenceTo>
+        <relationshipLabel>SESs</relationshipLabel>
+        <relationshipName>SESs</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Cancelled__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Inform if SES is Cancelled on SAP</description>
@@ -186,6 +199,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Debit_Note__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Debit Note</label>
+        <referenceTo>BFM_Debit_Note__c</referenceTo>
+        <relationshipLabel>SESs</relationshipLabel>
+        <relationshipName>SESs</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Display__c</fullName>
@@ -435,6 +461,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>NFS__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>NFS</label>
+        <referenceTo>BFM_NFS__c</referenceTo>
+        <relationshipLabel>SESs</relationshipLabel>
+        <relationshipName>SESNFSs</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Net_Value__c</fullName>

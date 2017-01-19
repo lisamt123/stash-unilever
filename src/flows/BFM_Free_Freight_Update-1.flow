@@ -95,12 +95,6 @@
                 <booleanValue>true</booleanValue>
             </value>
         </processMetadataValues>
-        <processMetadataValues>
-            <name>reference</name>
-            <value>
-                <stringValue>[BFM_Stage__c].Shipment.CT_es__r</stringValue>
-            </value>
-        </processMetadataValues>
         <name>myRule_1_A1</name>
         <label>Update Shipment Free Freight</label>
         <locationX>100</locationX>

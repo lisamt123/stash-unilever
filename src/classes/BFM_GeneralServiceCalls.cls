@@ -350,19 +350,31 @@ public class BFM_GeneralServiceCalls {
         return response;
     }
     
-    public static HttpResponse publishXMLforValidation(String xmlBody, String accessKey){
+     /**
+     * Method name : publishXMLforValidation 
+     * Method : https://fiscal-doc-mgmt-qa-v1.eu.cloudhub.io/api/acknowledgement/
+     * URL : https://fiscal-doc-mgmt-qa-v1.eu.cloudhub.io/api/acknowledgement/
+     * @param  List<BFM_CT_e__c> cte records new list
+     */
+    public static HttpResponse publishXMLforValidation(String xmlBody, String accessKey) {
+        System.debug('xmlBody : ' + xmlBody);      
+        System.debug('accessKey : ' + accessKey);     
+        
         HttpRequest req = new HttpRequest();
         
         BFM_Mulesoft_Endpoint__mdt endpointMetadata = [SELECT Endpoint_URL__c FROM BFM_Mulesoft_Endpoint__mdt 
                                                        WHERE QualifiedAPIName = 'Publish_XML_CTE_CCE_NFE' LIMIT 1];
-        String endpoint = endpointMetadata.Endpoint_URL__c+ accessKey;
+        
+        String endpoint = endpointMetadata.Endpoint_URL__c + accessKey;
         req.setEndpoint(endpoint);
         req.setHeader('client_id', 'client_id');
         req.setHeader('client_secret', 'client_secret');
         req.setHeader('Content-Type', 'application/xml');
         req.setBody(xmlBody);
         req.setMethod('PUT');
-        System.debug('request body ' +req.getBody());
+        
+        System.debug('publishXMLforValidation request body ' + req.getBody());
+        
         Http h = new Http();
         HttpResponse response = h.send(req);
         system.debug('response body '+response.getBody());        

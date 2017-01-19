@@ -200,6 +200,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>CT_e__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CT-e</label>
+        <referenceTo>BFM_CT_e__c</referenceTo>
+        <relationshipName>BFM_NF_es</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>City_Cargo_Dispatcher__c</fullName>
         <externalId>false</externalId>
         <label>City Cargo Dispatcher</label>
@@ -507,6 +519,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>NFS__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>NFS</label>
+        <referenceTo>BFM_NFS__c</referenceTo>
+        <relationshipLabel>NF-es</relationshipLabel>
+        <relationshipName>NF_es</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>NF_e_Total_Value__c</fullName>
@@ -977,6 +1002,15 @@
         </filters>
         <label>All</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>BFM_NFS_Cancellation_users_BFM_NF_e</fullName>
+        <filterScope>Queue</filterScope>
+        <label>BFM NFS Cancellation users</label>
+        <queue>BFM_NFS_Cancellation_users</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <nameField>
         <displayFormat>NF-e{000000}</displayFormat>

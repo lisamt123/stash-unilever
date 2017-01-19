@@ -46,14 +46,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BFM_CCeHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_CCeHandler_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>BFM_CPFValidator</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3353,10 +3345,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>BFM_NFSManualLink_VF</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>BFM_SearchOccurrences_VF</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -3368,21 +3356,6 @@
         <apexPage>BFM_ShipmentDocumentGeneration</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <recordTypeVisibilities>
-        <default>true</default>
-        <recordType>BFM_CT_e__c.CTe</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>BFM_POD__c.POD</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>BFM_POD__c.POD_Receipt</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
     <tabVisibilities>
         <tab>BFM_AccountAccessRequest__c</tab>
         <visibility>DefaultOn</visibility>

@@ -218,6 +218,15 @@
         <language>en_US</language>
     </listViews>
     <listViews>
+        <fullName>BFM_User_Creation_Request_Approvers_BFM_UserCreationRequest</fullName>
+        <filterScope>Queue</filterScope>
+        <label>BFM User Creation Request Approvers</label>
+        <queue>BFM_User_Creation_Request_Approvers</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Solicitacoes_desta_Semana</fullName>
         <columns>NAME</columns>
         <columns>CNPJ__c</columns>

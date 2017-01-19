@@ -470,11 +470,6 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>POD_Status__c</fields>
-        <relatedList>BFM_POD__c.NF_e__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>BFM_Error_Log__c.BFM_NF_e__c</relatedList>
     </relatedLists>
     <relatedLists>

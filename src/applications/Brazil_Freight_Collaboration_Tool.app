@@ -7,7 +7,6 @@
     <tab>BFM_NF_e__c</tab>
     <tab>Search_Occurrence</tab>
     <tab>BFM_UserCreationRequest__c</tab>
-    <tab>File_Upload</tab>
     <tab>BFM_AccountAccessRequest__c</tab>
     <tab>standard-report</tab>
     <tab>Search_SES</tab>
