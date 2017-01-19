@@ -2,6 +2,10 @@ src
 src/classes
 src/classes/AF_AdjustQuater_Homepage_lightbox_Test.cls
 src/classes/AF_AdjustQuater_Homepage_lightbox_Test.cls-meta.xml
+src/classes/AF_AnnualBonus.cls
+src/classes/AF_AnnualBonus.cls-meta.xml
+src/classes/AF_Constants.cls
+src/classes/AF_Constants.cls-meta.xml
 src/classes/AF_BonusRecordManager_Test.cls
 src/classes/AF_BonusRecordManager_Test.cls-meta.xml
 src/classes/AF_BrandEstimateController2.cls
