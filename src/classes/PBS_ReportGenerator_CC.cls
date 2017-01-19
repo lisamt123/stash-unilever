@@ -31,8 +31,8 @@ Public With Sharing class PBS_ReportGenerator_CC{
     public id reportId_PBSCrsStus {get;set;}
     public id reportId_PBSCrsStusByUNm {get;set;}
     public id reportId_PBSCrsStusInDtls {get;set;}
-        
-    public PBS_ReportGenerator_CC(){
+    public id reportId_PBSLerjurneystatus {get;set;}   
+        public PBS_ReportGenerator_CC(){
         init();
     }
     
@@ -52,7 +52,13 @@ Public With Sharing class PBS_ReportGenerator_CC{
          reports = [SELECT id,Name FROM Report where Name='PBS Course Status In Detail' limit 1]; 
         for(Report rep : reports){
             reportID = rep.id;
-        }
-        reportId_PBSCrsStusInDtls = reportID;
+        }    
+        reportId_PBSCrsStusInDtls = reportID;    
+           
+            reports = [SELECT id,Name FROM Report where Name='PBS Learning Journey Status' limit 1]; 
+            for(Report rep : reports){
+            reportID = rep.id;
+        } 
+         reportId_PBSLerjurneystatus = reportID;    
     }
 }

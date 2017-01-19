@@ -19,7 +19,7 @@ Program fee: {!FAU_Participant__c.FAU_Program_Fee__c}
 
 Immediate Action Required:
 
-Please confirm participation on the programme by filling up {!FAU_Participant__c.FAU_Invitation_Link__c} on or before {!FAU_Participant__c.FAU_Program_Start_Date__c}.
+Please confirm participation on the programme by filling up {!FAU_Participant__c.FAU_Invitation_Link__c} on or before {!FAU_Participant__c.FAU_RSVP_Deadline__c}.
 
 Congratulations again on your nomination and we look forward to hearing from you.
 

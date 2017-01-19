@@ -1,2 +1,3 @@
 src
-src/permissionsets/FS_Wave_Analytics.permissionset
+src/profiles/Unilever Food Solution - NA.profile
+src/profiles/Unilever Food Solution - Russia.profile
