@@ -152,6 +152,7 @@ src/flows/BFM_Update_Shipment_in_CTe-1.flow
 src/homePageLayouts/BFM Home Page.homePageLayout
 src/labels
 src/labels/BFM.labels
+src/labels/CustomLabels.labels
 src/layouts/BFM_AccountAccessRequest__c-BFM Account Access Request Layout.layout
 src/layouts/BFM_Bank_Information__c-BFM Bank Information Layout.layout
 src/layouts/BFM_Company_Code__c-Company Code Layout.layout
