@@ -3756,7 +3756,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>contains</operation>
-            <value>New,In Progress,On Hold,Escalated,Awaiting Factory Response,Awaiting Knowle</value>
+            <value>New,In Progress,On Hold,Escalated,Pending with Courier,Awaiting Factory Res</value>
         </filters>
         <filters>
             <field>Case_ISO_Country_Code__c</field>
@@ -4790,6 +4790,32 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Florent</value>
         </filters>
         <label>CEC France : Florent</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_Jordan</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New,In Progress,Review Needed,On Hold,Reopened</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.FIRST_NAME</field>
+            <operation>equals</operation>
+            <value>Belougne</value>
+        </filters>
+        <label>CEC France : Jordan</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_User_France</role>
@@ -7857,7 +7883,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>CEC Southern Cone Queue,CEC Southern Cone Escalation Queue,acous,mlore,aport</value>
         </filters>
-        <label>◄Casos en progreso►</label>
+        <label>Casos en progreso</label>
         <language>es_MX</language>
     </listViews>
     <listViews>
