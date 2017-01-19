@@ -6,7 +6,5 @@
     <tab>BEN_Category_Details__c</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
-    <tab>BEN_Category_User_Permission__c</tab>
     <tab>BEN_Category_CUC_Codes__c</tab>
-    <tab>Matrix_Report</tab>
 </CustomApplication>
