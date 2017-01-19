@@ -228,18 +228,6 @@
         <errorMessage>Please enter the project start date</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>SAFE_RA_Risk_Score_Percent</fullName>
-        <active>false</active>
-        <errorConditionFormula>ISNULL( SAFE_Risk_Score_X__c )</errorConditionFormula>
-        <errorMessage>Please enter the risk score percentage</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>SAFE_RA_Risk_Status</fullName>
-        <active>false</active>
-        <errorConditionFormula>ISPICKVAL( SAFE_Risk_Status__c , &quot;&quot;)</errorConditionFormula>
-        <errorMessage>Please enter the risk status</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>SAFE_Risk_Assessment_Link</fullName>
         <active>true</active>
         <errorConditionFormula>ISBLANK( SAFE_Risk_Assessment_Link__c )</errorConditionFormula>

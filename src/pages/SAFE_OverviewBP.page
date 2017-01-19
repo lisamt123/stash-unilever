@@ -48,8 +48,9 @@
                <!--li><a href="#tab-4" id="sol">Solution</a></li-->
             </ul>
             <apex:include pageName="SAFE_OverviewTabBP"/>
-            <apex:include pageName="SAFE_QuestionnaireTabBPSteffi"/>
-            <!--apex:include pageName="SAFE_SolutionTab"/-->
+            <!--<apex:include pageName="SAFE_QuestionnaireTabBPSteffi"/> -->
+            <apex:include pageName="SAFE_QuestionnaireTabBP"/>
+            
            
          </div>
       </body>

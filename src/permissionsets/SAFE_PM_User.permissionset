@@ -5,11 +5,23 @@
         <visible>false</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>SAFE_Overview_CC</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SAFE_Overview_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>SAFE_Questionnaire_StatusUpdate_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SAFE_Questions_AnswerCreation_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SAFE_RiskAssessQuestionnaireView_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -21,7 +33,27 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>SAFE_RiskAssessmentQuestionnaireView_CC</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SAFE_SolutionArchivedTabBPSec_CC</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SAFE_SolutionArchivedTabBPSec_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>SAFE_SolutionTabTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SAFE_SolutionsTabBPSec_CC</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SAFE_SolutionsTabBPSec_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -31,6 +63,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SAFE_Answers__c.SAFE_Comments__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAFE_Answers__c.SAFE_Impact_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAFE_Answers__c.SAFE_Likelihood_Value__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -62,6 +104,16 @@
         <editable>true</editable>
         <field>SAFE_Questions__c.SAFE_Help_Text__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAFE_Questions__c.SAFE_Impact_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAFE_Questions__c.SAFE_Likelihood_Value__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -120,23 +172,13 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SAFE_Risk_Assessment__c.SAFE_Risk_Score__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>SAFE_Risk_Assessment__c.SAFE_Risk_Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>SAFE_Risk_Assessment__c.SAFE_Solution_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>SAFE_Risk_Assessment__c.SAFE_Status__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAFE_Risk_Assessment__c.SAFE_version__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -271,24 +313,48 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
-        <apexPage>SAFESolutionPDF</apexPage>
+        <apexPage>SAFE_Overview</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SAFE_OverviewBP</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>SAFE_Overview</apexPage>
-        <enabled>true</enabled>
+        <apexPage>SAFE_OverviewBPSec</apexPage>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>SAFE_OverviewTab</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>SAFE_OverviewTabBP</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SAFE_OverviewTabBPSec</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>SAFE_QuestionaireTab</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>SAFE_QuestionnaireTabBP</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SAFE_SolutionArchiveTabBPSec</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>SAFE_SolutionTab</apexPage>
         <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SAFE_SolutionTabBPSec</apexPage>
+        <enabled>false</enabled>
     </pageAccesses>
     <tabSettings>
         <tab>SAFE</tab>

@@ -23,10 +23,6 @@
                 <field>SAFE_Status__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SAFE_Solution_Name__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>SAFE_Risk_Assessment_Link__c</field>
             </layoutItems>
@@ -39,8 +35,8 @@
                 <field>SAFE_Project_End_Date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>SAFE_Risk_Score_X__c</field>
+                <behavior>Edit</behavior>
+                <field>SAFE_version__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -55,14 +51,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SAFE_IPM_Project__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>SAFE_Risk_Score__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SAFE_Risk_Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -141,6 +129,10 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>SAFE_Case_Study__c.SAFE_Risk_Assessment__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>SAFE_Risk_Scores__c.SAFE_Risk_Assessment__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

@@ -54,7 +54,7 @@ public with sharing class SAFE_RiskAssessQuestionnaireView_Test {
         p.showPopup_deleteQuestion();
         p.closePopup_deleteQuestion();
         
-        SAFE_Questions__c newquestion=new SAFE_Questions__c(SAFE_Answering_Method__c='Checkbox Objective Answering',SAFE_Answers__c='a;b;c',SAFE_Help_Text__c='dfd',SAFE_Questionnaire__c=questionnaireId1,SAFE_Question_Status__c='Activated',SAFE_Question__c='Test',SAFE_Scores__c='1;2;3',SAFE_Impact_Value__c='1;2;3',SAFE_Likelihood_Value__c='1;2;3',SAFE_Weightage__c=12);
+        SAFE_Questions__c newquestion=new SAFE_Questions__c(SAFE_Answering_Method__c='Checkbox Objective Answering',SAFE_Answers__c='a;b;c',SAFE_Help_Text__c='dfd',SAFE_Questionnaire__c=questionnaireId1,SAFE_Question_Status__c='Activated',SAFE_Question__c='Test',SAFE_Scores__c='1;2;3',SAFE_Weightage__c=12);
         insert newquestion;
         
         SAFE_Risk_Assessment_Questionnaire__c QuestionnaireDetails = [SELECT Id,Name,OwnerId,SAFE_Description__c,SAFE_Status__c FROM SAFE_Risk_Assessment_Questionnaire__c WHERE Id =: questionnaireId1];        

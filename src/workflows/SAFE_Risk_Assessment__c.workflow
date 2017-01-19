@@ -52,7 +52,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>AND(ISPICKVAL( SAFE_Status__c , &apos;Completed&apos;), ISBLANK(  SAFE_Solution_Name__c ) )</formula>
+        <formula>ISPICKVAL( SAFE_Status__c , &apos;Completed&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

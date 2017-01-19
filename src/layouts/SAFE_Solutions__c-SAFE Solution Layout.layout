@@ -157,15 +157,11 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>SAFE_Status__c</fields>
-        <fields>SAFE_Risk_Assessment_Link__c</fields>
-        <fields>CREATED_DATE</fields>
-        <fields>LAST_UPDATE</fields>
-        <relatedList>SAFE_Risk_Assessment__c.SAFE_Solution_Name__c</relatedList>
+        <relatedList>SAFE_Case_Study__c.SAFE_Solutions__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>SAFE_Case_Study__c.SAFE_Solutions__c</relatedList>
+        <relatedList>SAFE_Risk_Scores__c.SAFE_Solution_Name__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

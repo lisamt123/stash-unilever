@@ -34,7 +34,7 @@
                <li><a href="#tab-4" id="sol">Solution</a></li>
             </ul>
             <apex:include pageName="SAFE_OverviewTab"/>
-            <apex:include pageName="SAFE_QuestionairreTabSharon"/>
+            <apex:include pageName="SAFE_QuestionaireTab"/>
             <apex:include pageName="SAFE_SolutionTab"/>
            
          </div>
