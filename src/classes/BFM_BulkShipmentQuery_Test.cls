@@ -1,13 +1,16 @@
 @isTest
 public class BFM_BulkShipmentQuery_Test {
 	private static testMethod void BFM_BulkShipmentQueryTestMethod(){
+        Account acc = new Account();
+        acc.Name = 'TestAccount';
+        insert acc;
         Set<String> shipIds = new Set<String>();
         BFM_Shipment__c ship = new BFM_Shipment__c();
         ship.Shipment_Number__c = '12345678';
         ship.CreatedDate = datetime.now();
         ship.LastModifiedDate = datetime.now();
         ship.Last_Shipment_Update__c = datetime.now();
-        ship.Carrier_Account__c = '0018A000008GbLg';
+        ship.Carrier_Account__c = acc.id;
 		insert ship;
         shipIds.add(ship.Id);
         List<BFM_Shipment__c> bfmship = new List<BFM_Shipment__c>();

@@ -6082,6 +6082,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Plant_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Plant Code</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Vimeo_Link__c</fullName>
         <externalId>false</externalId>

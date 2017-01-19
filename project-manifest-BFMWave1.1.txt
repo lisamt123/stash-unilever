@@ -25,6 +25,10 @@ src/classes/BFM_CommunitiesSelfRegController_CC_Test.cls
 src/classes/BFM_CommunitiesSelfRegController_CC_Test.cls-meta.xml
 src/classes/BFM_CPFValidator.cls
 src/classes/BFM_CPFValidator.cls-meta.xml
+src/classes/BFM_CCeHandler.cls
+src/classes/BFM_CCeHandler.cls-meta.xml
+src/classes/BFM_CCeHandler_Test.cls
+src/classes/BFM_CCeHandler_Test.cls-meta.xml
 src/classes/BFM_CPFValidator_Test.cls
 src/classes/BFM_CPFValidator_Test.cls-meta.xml
 src/classes/BFM_CreateAccessRequest.cls
@@ -47,6 +51,8 @@ src/classes/BFM_FileConnector.cls
 src/classes/BFM_FileConnector.cls-meta.xml
 src/classes/BFM_GeneralServiceCalls.cls
 src/classes/BFM_GeneralServiceCalls.cls-meta.xml
+src/classes/BFM_GeneralServiceCalls_Test.cls
+src/classes/BFM_GeneralServiceCalls_Test.cls-meta.xml
 src/classes/BFM_LoginuserPermissions_Test.cls
 src/classes/BFM_LoginuserPermissions_Test.cls-meta.xml
 src/classes/BFM_LoginuserPermissions.cls
@@ -157,6 +163,7 @@ src/objects/BFM_Debit_Note__c.object
 src/objects/BFM_File__c.object
 src/objects/BFM_Email_Information__c.object
 src/objects/BFM_Error_Log__c.object
+src/objects/BFM_Mulesoft_Endpoint__mdt.object
 src/objects/BFM_NFS__c.object
 src/objects/BFM_POD__c.object
 src/objects/BFM_NF_e__c.object
@@ -165,6 +172,8 @@ src/objects/BFM_Fiscal_Documents__c.object
 src/objects/BFM_SES__c.object
 src/objects/BFM_Shipment__c.object
 src/objects/BFM_Stage__c.object
+src/objects/Tax_Code__c.object
+src/objects/BFM_MIRO_Header__c.object
 src/objects/Account.object
 src/objects/Contact.object
 src/objects/BFM_User_Creation_Request_Error__c.object
@@ -216,6 +225,7 @@ src/tabs/BFM_Shipment__c.tab
 src/tabs/Search_Shipment_Cte.tab
 src/tabs/Search_Occurrence.tab
 src/tabs/BFM_Stage__c.tab
+src/tabs/CT_e.tab
 src/tabs/BFM_UserCreationRequest__c.tab
 src/triggers/BFM_Occurrence.trigger
 src/triggers/BFM_Occurrence.trigger-meta.xml
@@ -233,6 +243,5 @@ src/workflows/BFM_Shipment__c.workflow
 src/workflows/BFM_Stage__c.workflow
 src/workflows/BFM_User_Creation_Request_Error__c.workflow
 src/workflows/BFM_UserCreationRequest__c.workflow
-src/workflows/BFM_Mulesoft_Endpoint__mdt.workflow
 src/approvalProcesses/BFM_UserCreationRequest__c.BFM_Carrier_User_Request_Approval.approvalProcess
 src/applications/Brazil_Freight_Collaboration_Tool.app

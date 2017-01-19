@@ -2,7 +2,10 @@
 public class BFM_ShipmentDocumentGeneration_Test {
     	
 	private static testMethod void BFM_shipmentDocumentGenerationTestMethod(){
-        BFM_Shipment__c bfmship = new BFM_Shipment__c(Shipment_Number__c='12345678',Carrier_Account__c='0018A000008GbLg');
+        Account acc = new Account();
+        acc.Name = 'TestAccount';
+        insert acc;
+        BFM_Shipment__c bfmship = new BFM_Shipment__c(Shipment_Number__c='12345678',Carrier_Account__c=acc.Id);
         insert bfmship;
         Id shipmentId;
         shipmentId = bfmship.Id;

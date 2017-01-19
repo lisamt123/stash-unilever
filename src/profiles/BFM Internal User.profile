@@ -102,6 +102,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BFM_GeneralServiceCalls_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BFM_LoginuserPermissions</apexClass>
         <enabled>false</enabled>
     </classAccesses>
