@@ -11,6 +11,15 @@
         <template>unfiled$public/UL_SoCo_Promotion_Approved</template>
     </alerts>
     <fieldUpdates>
+        <fullName>Field_Update</fullName>
+        <field>UL_Current_Status__c</field>
+        <literalValue>Planning</literalValue>
+        <name>Field Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Org_Update</fullName>
         <field>UL_Sales_Organization__c</field>
         <formula>ACCL__Sales_Org__c</formula>
@@ -158,7 +167,7 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-      <fieldUpdates>
+    <fieldUpdates>
         <fullName>UL_Update_Slogan</fullName>
         <field>ACCL__Slogan_Language_1__c</field>
         <formula>IF(  ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c,&apos;LTA&apos; ) ,UL_Account__r.Name+&apos;-&apos;+  UL_Category__c +&apos;-&apos;+   UL_Brand__c +&apos;-&apos;+TEXT(UL_Feature__c) +&apos;-&apos;+ TEXT(DAY(ACCL__Date_From__c )) +&apos;/&apos;+ TEXT(MONTH(ACCL__Date_From__c ))+&apos;/&apos;+ TEXT(YEAR(ACCL__Date_From__c ))  +&apos;-&apos;+ 

@@ -92,6 +92,7 @@
                  //}
             }catch(Exception ex){
                  UL_Utility.logError(ex, UserInfo.getUserId());
+                 throw ex;
             } 
     }
     
@@ -190,6 +191,7 @@
                 }
             }
         }catch(Exception ex){
+            throw ex;
             UL_Utility.logError(ex, UserInfo.getUserId());
         }        
         return workItemId;
@@ -243,13 +245,30 @@
                 }
             }
             
+            List<ProcessInstanceWorkitem> processInstanceWorkItemLst = new List<ProcessInstanceWorkitem>() ;
+            processInstanceWorkItemLst = [SELECT CreatedById,CreatedDate,ElapsedTimeInDays,ElapsedTimeInHours,ElapsedTimeInMinutes,Id,IsDeleted,OriginalActorId,ProcessInstanceId,
+                                            ActorId,SystemModstamp FROM ProcessInstanceWorkitem WHERE processinstance.targetobjectid =: promoId LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())];
+            if(processInstanceWorkItemLst.size() > 0 && !emailResponse){
+                if(promotionLst[0].UL_Finance_Check_Approvers__c!=null && promotionLst[0].UL_Current_Status__c !=null && promotionLst[0].UL_Current_Status__c.containsIgnoreCase(UL_Utility.STATUS_FINANCE_CHECK.toLowerCase()) && !promotionLst[0].UL_Finance_Check_Approvers__c.contains(userinfo.getuserid())){
+                   throw new ul_customexception(Label.UL_PROMOTION_ASSIGNE_VALIDATION);
+                }
+                else if(promotionLst[0].UL_Manager_Check_Approvers__c!=null && promotionLst[0].UL_Current_Status__c !=null && promotionLst[0].UL_Current_Status__c.containsIgnoreCase(UL_Utility.STATUS_MANAGER_CHECK.toLowerCase()) && !promotionLst[0].UL_Manager_Check_Approvers__c.contains(userinfo.getuserid())){
+                   throw new ul_customexception(Label.UL_PROMOTION_ASSIGNE_VALIDATION);
+                }
+                else if(!promotionLst[0].CreatedById.equals(userinfo.getuserid())){
+                    throw new ul_customexception(Label.UL_PROMOTION_ASSIGNE_VALIDATION);
+                }
+            }
+            
             if(workItemId != null){            
                 req.setWorkitemId(workItemId);
                 // Submit the request for approval
                 Approval.ProcessResult result =  Approval.process(req);
                 sendEmail(promoId, promotionLst[0].CreatedById, STATUS_REJECT) ;
             }
-        }catch(Exception ex){
+        }
+        catch(Exception ex){
+            throw ex;
             UL_Utility.logError(ex, UserInfo.getUserId());
         }
     }
