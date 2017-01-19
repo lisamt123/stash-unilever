@@ -502,11 +502,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.CT_e__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_NF_e__c.City_Cargo_Dispatcher__c</field>
         <readable>false</readable>
     </fieldPermissions>

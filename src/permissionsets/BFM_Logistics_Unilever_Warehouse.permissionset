@@ -1073,11 +1073,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_Error_Log__c.BFM_POD__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_Error_Log__c.BFM_SES__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2426,15 +2421,6 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>BFM_POD__c</object>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
         <object>BFM_SES__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
@@ -2480,14 +2466,6 @@
         <apexPage>BFM_ShipmentDocumentGeneration</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <recordTypeVisibilities>
-        <recordType>BFM_POD__c.POD</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>BFM_POD__c.POD_Receipt</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
     <tabSettings>
         <tab>BFM_Bank_Information__c</tab>
         <visibility>None</visibility>

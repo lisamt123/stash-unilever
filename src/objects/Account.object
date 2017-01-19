@@ -6050,7 +6050,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
 	<fields>
-        <fullName>Region1__c</fullName>
+        <fullName>Carrier_Region__c</fullName>
         <externalId>false</externalId>
         <label>Region1</label>
         <length>3</length>
