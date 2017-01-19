@@ -22,6 +22,8 @@ public with sharing class UL_DeliveryProfileController{
     public Integer weekLimit{set;get;}      
     public UL_Delivery_Profile__c releatedRecord{set;get;}
     
+    private UL_Planning_Level__c allAccounts{set;get;}
+    private ACCL__Product__c allProducts{set;get;}
     /*******************************************************************
     Purpose: Default constructor fetch delivery profile
     Version: 1.0
@@ -37,6 +39,14 @@ public with sharing class UL_DeliveryProfileController{
                 releatedRecord.UL_Valid_From__c = System.today();
                 releatedRecord.UL_Valid_Thru__c =  Date.newInstance(2099, 12, 31);
         }
+          try{
+             allProducts = UL_Utility.returnGenericProduct();
+             allAccounts = UL_Utility.returnGenericCustomer();
+            
+            this.releatedRecord.UL_Planning_Level__c = allAccounts.Id;
+            this.releatedRecord.UL_Product__c = allProducts.Id;
+        }
+        catch(Exception e){}
         
     }
     /*******************************************************************
@@ -170,10 +180,15 @@ Returns: Page Reference
 Throws: N/A
 ********************************************************************/ 
     private void mappingCustomer(){
-        if(releatedRecord.UL_Planning_Level__c != null){
-         List<UL_Planning_Level__c> planningRec = [Select id, UL_Customer__c from  UL_Planning_Level__c where id=:releatedRecord.UL_Planning_Level__c limit 1];
-         releatedRecord.UL_Account__c= planningRec[0].UL_Customer__c ;
+        if(releatedRecord.UL_Planning_Level__c == null){
+             releatedRecord.UL_Planning_Level__c = allAccounts.Id;             
          }
+          if(releatedRecord.UL_Product__c == null ){
+             releatedRecord.UL_Product__c = allProducts.Id;
+         }
+         List<UL_Planning_Level__c> planningRec = [Select id, UL_Customer__c from  UL_Planning_Level__c where id=:releatedRecord.UL_Planning_Level__c limit 1];
+             releatedRecord.UL_Account__c= planningRec[0].UL_Customer__c ;
+        
     }
     /*******************************************************************
     Purpose: This method displays weeks dynamically 

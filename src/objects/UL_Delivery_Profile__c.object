@@ -120,17 +120,23 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <fields>
+  <fields>
         <fullName>UL_Product__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Product</label>
         <lookupFilter>
             <active>true</active>
+            <booleanFilter>1 OR 2</booleanFilter>
             <filterItems>
                 <field>ACCL__Product__c.ACCL__Product_Level__c</field>
                 <operation>equals</operation>
                 <value>Category</value>
+            </filterItems>
+            <filterItems>
+                <field>ACCL__Product__c.UL_Generic_Product__c</field>
+                <operation>equals</operation>
+                <value>True</value>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>
