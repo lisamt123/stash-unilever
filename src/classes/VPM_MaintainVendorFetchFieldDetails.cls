@@ -225,6 +225,9 @@ public with sharing class VPM_MaintainVendorFetchFieldDetails {
     mainJsonObject =mainJsonObject+ '}'; 
     string addEscapeCharacter =  mainJsonObject.replace('\\','\\\\');
      addEscapeCharacter = addEscapeCharacter.replace('"','\\"');
+     addEscapeCharacter = addEscapeCharacter.replace('\n','\\r\\n');
+     addEscapeCharacter = addEscapeCharacter.replace('\r','\\r\\n');
+     addEscapeCharacter = addEscapeCharacter.replace('\r\n','\\r\\n');
      addEscapeCharacter = addEscapeCharacter.replace('////#','"');
     system.debug('hello='+mainJsonObject); 
     return addEscapeCharacter;

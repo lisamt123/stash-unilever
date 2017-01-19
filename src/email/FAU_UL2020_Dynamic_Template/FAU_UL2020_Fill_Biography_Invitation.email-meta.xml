@@ -6,7 +6,7 @@
     <letterhead>FAU_Letterhead</letterhead>
     <name>FAU UL2020 Fill Biography Invitation</name>
     <style>freeForm</style>
-    <subject>RESPONSE REQUIRED: Please fill your Bio for {!FAU_Participant__c.FAU_Program_Wave__c}</subject>
+    <subject>REMINDER: Please fill your Bio for {!FAU_Participant__c.FAU_Program_Wave__c}</subject>
     <textOnly>Dear {!FAU_Participant__c.FAU_First_Name__c},
 
 
@@ -33,6 +33,7 @@ To see your progress, check out your: {!FAU_Participant__c.FAU_Participants_Work
 
 UL2020 Chatter group: {!FAU_Participant__c.FAU_Chatter_Group__c}
 PII Class Chatter group: {!FAU_Participant__c.PII_Chatter_Group_Link__c}
+
 PII Chatter group: {!FAU_Participant__c.PII_Table_Chatter_Group_Link__c}
 
 Kind regards,
