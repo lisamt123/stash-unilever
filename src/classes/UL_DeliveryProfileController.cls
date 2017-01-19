@@ -180,17 +180,15 @@ Returns: Page Reference
 Throws: N/A
 ********************************************************************/ 
     private void mappingCustomer(){
-        if(releatedRecord.UL_Planning_Level__c != null){
-             List<UL_Planning_Level__c> planningRec = [Select id, UL_Customer__c from  UL_Planning_Level__c where id=:releatedRecord.UL_Planning_Level__c limit 1];
-             releatedRecord.UL_Account__c= planningRec[0].UL_Customer__c ;
+        if(releatedRecord.UL_Planning_Level__c == null){
+             releatedRecord.UL_Planning_Level__c = allAccounts.Id;             
          }
-         else{
-             releatedRecord.UL_Planning_Level__c = allAccounts.Id;
-             releatedRecord.UL_Account__c = allAccounts.Id;
-         }
-         if(releatedRecord.UL_Product__c == null ){
+          if(releatedRecord.UL_Product__c == null ){
              releatedRecord.UL_Product__c = allProducts.Id;
          }
+         List<UL_Planning_Level__c> planningRec = [Select id, UL_Customer__c from  UL_Planning_Level__c where id=:releatedRecord.UL_Planning_Level__c limit 1];
+             releatedRecord.UL_Account__c= planningRec[0].UL_Customer__c ;
+        
     }
     /*******************************************************************
     Purpose: This method displays weeks dynamically 
