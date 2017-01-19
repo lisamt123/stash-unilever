@@ -99,6 +99,7 @@
 		<members>VPM_PurchasingRequests__c.VPM_MDMOpsVietnam_VPM_PurchasingRequests</members>
 		<members>VPM_PurchasingRequests__c.VPM_MDMOpsZambia_VPM_PurchasingRequests</members>
 		<members>VPM_PurchasingRequests__c.VPM_MDMOpsZimbabwe_VPM_PurchasingRequests</members>
+		<members>VPM_PurchasingRequests__c.VPM_MDMOpBermuda_VPM_PurchasingRequests</members>
 		<name>ListView</name>
 				   
     </types>
