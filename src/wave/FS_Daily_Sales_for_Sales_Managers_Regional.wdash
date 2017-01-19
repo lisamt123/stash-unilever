@@ -1,463 +1,4484 @@
-{  
-   "gridLayouts":[  
-      {  
-         "name":"Default",
-         "pages":[  
-            {  
-               "widgets":[  
-                  {  
-                     "colspan":4,
-                     "column":2,
-                     "name":"text_1",
-                     "row":0,
-                     "rowspan":2,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderEdges":[  
-
+{
+    "label": "FS Daily Sales for Sales Managers (Regional)",
+    "description": "New Daily Sales for Sales Managers (Regional)",
+    "state": {
+        "dataSourceLinks": [],
+        "gridLayouts": [
+            {
+                "name": "Default",
+                "numColumns": 12,
+                "pages": [
+                    {
+                        "widgets": [
+                            {
+                                "colspan": 4,
+                                "column": 2,
+                                "name": "text_1",
+                                "row": 0,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_1",
+                                "row": 20,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "container_3",
+                                "row": 20,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 6,
+                                "name": "listselector_1",
+                                "row": 11,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 3,
+                                "name": "listselector_2",
+                                "row": 11,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_3",
+                                "row": 20,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "bottom"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 6,
+                                "name": "text_4",
+                                "row": 20,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "bottom"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_2",
+                                "row": 6,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": [
+                                        "all"
+                                    ]
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "image_1",
+                                "row": 0,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_5",
+                                "row": 5,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_6",
+                                "row": 2,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_7",
+                                "row": 8,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 9,
+                                "name": "listselector_3",
+                                "row": 11,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 9,
+                                "name": "globalfilters_1",
+                                "row": 44,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 0,
+                                "name": "listselector_4",
+                                "row": 11,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 5,
+                                "name": "pillbox_1",
+                                "row": 5,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#F2F6FA",
+                                    "borderColor": "#FFFFFF",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_5",
+                                "row": 28,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "container_7",
+                                "row": 28,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 6,
+                                "name": "text_2",
+                                "row": 28,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_8",
+                                "row": 28,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 8,
+                                "name": "container_10",
+                                "row": 2,
+                                "rowspan": 9,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 12,
+                                "column": 0,
+                                "name": "container_11",
+                                "row": 11,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_5",
+                                "row": 3,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_9",
+                                "row": 9,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 8,
+                                "column": 0,
+                                "name": "container_12",
+                                "row": 2,
+                                "rowspan": 9,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 2,
+                                "name": "number_1",
+                                "row": 3,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": [
+                                        "all"
+                                    ]
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 4,
+                                "name": "number_3",
+                                "row": 3,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 6,
+                                "name": "number_4",
+                                "row": 3,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 2,
+                                "name": "number_6",
+                                "row": 6,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 4,
+                                "name": "number_8",
+                                "row": 6,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 2,
+                                "name": "number_10",
+                                "row": 9,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 4,
+                                "name": "number_11",
+                                "row": 9,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 6,
+                                "name": "number_12",
+                                "row": 9,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 6,
+                                "name": "number_13",
+                                "row": 6,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 6,
+                                "name": "number_14",
+                                "row": 0,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 10,
+                                "name": "listselector_7",
+                                "row": 0,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "container_2",
+                                "row": 12,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_4",
+                                "row": 12,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_9",
+                                "row": 12,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "bottom"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 6,
+                                "name": "text_10",
+                                "row": 12,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "bottom"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_8",
+                                "row": 36,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "container_9",
+                                "row": 36,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_11",
+                                "row": 36,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 6,
+                                "name": "text_12",
+                                "row": 36,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 5,
+                                "name": "pillbox_3",
+                                "row": 2,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#F2F6FA",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 8,
+                                "name": "chart_6",
+                                "row": 2,
+                                "rowspan": 3,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 10,
+                                "name": "chart_7",
+                                "row": 2,
+                                "rowspan": 3,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 8,
+                                "name": "chart_8",
+                                "row": 5,
+                                "rowspan": 3,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 10,
+                                "name": "chart_9",
+                                "row": 5,
+                                "rowspan": 3,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 10,
+                                "name": "chart_10",
+                                "row": 9,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 8,
+                                "name": "chart_11",
+                                "row": 9,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 8,
+                                "name": "pillbox_4",
+                                "row": 0,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 6,
+                                "name": "container_6",
+                                "row": 0,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "chart_1",
+                                "row": 21,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "table_1",
+                                "row": 21,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "chart_3",
+                                "row": 29,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "table_2",
+                                "row": 29,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "chart_5",
+                                "row": 13,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "table_3",
+                                "row": 13,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "chart_13",
+                                "row": 37,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "table_4",
+                                "row": 37,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            }
                         ]
-                     }
-                  },
-                  {  
-                     "colspan":6,
-                     "column":0,
-                     "name":"container_1",
-                     "row":20,
-                     "rowspan":8,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-
-                        ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":6,
-                     "column":6,
-                     "name":"container_3",
-                     "row":20,
-                     "rowspan":8,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-
-                        ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":3,
-                     "column":6,
-                     "name":"listselector_1",
-                     "row":11,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderEdges":[  
-
+                    }
+                ],
+                "rowHeight": "normal",
+                "selectors": [],
+                "style": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "backgroundColor": "#F2F6FA",
+                    "cellSpacingX": 8,
+                    "cellSpacingY": 8,
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "version": 1
+            },
+            {
+                "name": "Mobile",
+                "numColumns": 2,
+                "pages": [
+                    {
+                        "widgets": [
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "image_1",
+                                "row": 0,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "text_1",
+                                "row": 1,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "text_6",
+                                "row": 3,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "pillbox_2",
+                                "row": 4,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#F2F6FA",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_5",
+                                "row": 5,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_1",
+                                "row": 7,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "text_5",
+                                "row": 9,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "pillbox_1",
+                                "row": 10,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#F2F6FA",
+                                    "borderColor": "#FFFFFF",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_2",
+                                "row": 11,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": [
+                                        "all"
+                                    ]
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "text_7",
+                                "row": 13,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_9",
+                                "row": 14,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "container_12",
+                                "row": 3,
+                                "rowspan": 13,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "container_10",
+                                "row": 16,
+                                "rowspan": 6,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "listselector_4",
+                                "row": 24,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "listselector_2",
+                                "row": 25,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "listselector_1",
+                                "row": 26,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "listselector_3",
+                                "row": 27,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "container_11",
+                                "row": 24,
+                                "rowspan": 4,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "text_3",
+                                "row": 28,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "bottom"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "container_1",
+                                "row": 28,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "text_4",
+                                "row": 29,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "bottom"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "container_3",
+                                "row": 29,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "text_8",
+                                "row": 30,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "container_5",
+                                "row": 30,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "text_2",
+                                "row": 31,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "container_7",
+                                "row": 31,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "globalfilters_1",
+                                "row": 32,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            }
                         ]
-                     }
-                  },
-                  {  
-                     "colspan":3,
-                     "column":3,
-                     "name":"listselector_2",
-                     "row":11,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderEdges":[  
-
+                    }
+                ],
+                "rowHeight": "normal",
+                "selectors": [
+                    "maxWidth(599)"
+                ],
+                "style": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "backgroundColor": "#F2F6FA",
+                    "cellSpacingX": 8,
+                    "cellSpacingY": 8,
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "version": 1
+            },
+            {
+                "name": "iPad",
+                "numColumns": 6,
+                "pages": [
+                    {
+                        "widgets": [
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "image_1",
+                                "row": 0,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 2,
+                                "name": "text_1",
+                                "row": 0,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_14",
+                                "row": 2,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 2,
+                                "name": "pillbox_4",
+                                "row": 2,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "container_6",
+                                "row": 2,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 4,
+                                "name": "listselector_7",
+                                "row": 2,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_6",
+                                "row": 4,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 0,
+                                "name": "pillbox_3",
+                                "row": 5,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#F2F6FA",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_5",
+                                "row": 6,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 2,
+                                "name": "number_1",
+                                "row": 6,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": [
+                                        "all"
+                                    ]
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 4,
+                                "name": "number_3",
+                                "row": 5,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_4",
+                                "row": 8,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_5",
+                                "row": 10,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 0,
+                                "name": "pillbox_1",
+                                "row": 11,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#F2F6FA",
+                                    "borderColor": "#FFFFFF",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_2",
+                                "row": 12,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": [
+                                        "all"
+                                    ]
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 2,
+                                "name": "number_6",
+                                "row": 8,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 4,
+                                "name": "number_8",
+                                "row": 8,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_13",
+                                "row": 14,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_7",
+                                "row": 16,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_9",
+                                "row": 17,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 2,
+                                "name": "number_10",
+                                "row": 12,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 4,
+                                "name": "number_11",
+                                "row": 11,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_12",
+                                "row": 19,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_12",
+                                "row": 4,
+                                "rowspan": 17,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "chart_6",
+                                "row": 21,
+                                "rowspan": 3,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 2,
+                                "name": "chart_7",
+                                "row": 21,
+                                "rowspan": 3,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "chart_8",
+                                "row": 24,
+                                "rowspan": 3,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 2,
+                                "name": "chart_9",
+                                "row": 24,
+                                "rowspan": 3,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "chart_11",
+                                "row": 28,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 2,
+                                "name": "chart_10",
+                                "row": 28,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "container_10",
+                                "row": 21,
+                                "rowspan": 9,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 0,
+                                "name": "listselector_4",
+                                "row": 30,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 3,
+                                "name": "listselector_2",
+                                "row": 30,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 0,
+                                "name": "listselector_1",
+                                "row": 31,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 3,
+                                "name": "listselector_3",
+                                "row": 31,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_11",
+                                "row": 30,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_9",
+                                "row": 32,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "bottom"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "chart_5",
+                                "row": 33,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_4",
+                                "row": 32,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_10",
+                                "row": 40,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "bottom"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "table_3",
+                                "row": 41,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_2",
+                                "row": 40,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_3",
+                                "row": 48,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "bottom"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "chart_1",
+                                "row": 49,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_1",
+                                "row": 48,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_4",
+                                "row": 56,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "bottom"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "table_1",
+                                "row": 57,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_3",
+                                "row": 56,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_8",
+                                "row": 64,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "chart_3",
+                                "row": 65,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_5",
+                                "row": 64,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_2",
+                                "row": 72,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "table_2",
+                                "row": 73,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_7",
+                                "row": 72,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_11",
+                                "row": 80,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "chart_13",
+                                "row": 81,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_8",
+                                "row": 80,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_12",
+                                "row": 88,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "table_4",
+                                "row": 89,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_9",
+                                "row": 88,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 0,
+                                "name": "globalfilters_1",
+                                "row": 96,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            }
                         ]
-                     }
-                  },
-                  {  
-                     "colspan":4,
-                     "column":0,
-                     "name":"text_3",
-                     "row":20,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "backgroundColor":"rgba(255, 255, 255, 0)",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-                           "bottom"
-                        ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":4,
-                     "column":6,
-                     "name":"text_4",
-                     "row":20,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "backgroundColor":"rgba(255, 255, 255, 0)",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-                           "bottom"
-                        ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":2,
-                     "column":0,
-                     "name":"number_2",
-                     "row":6,
-                     "rowspan":2,
-                     "widgetStyle":{  
-                        "borderEdges":[  
-                           "all"
+                    }
+                ],
+                "rowHeight": "normal",
+                "selectors": [
+                    "minWidth(600)",
+                    "maxWidth(999)"
+                ],
+                "style": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "backgroundColor": "#F2F6FA",
+                    "cellSpacingX": 8,
+                    "cellSpacingY": 8,
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "version": 1
+            }
+        ],
+        "layouts": [],
+        "steps": {
+            "NSV_PY_MTD_1": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": true,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PY_MTD"
                         ]
-                     }
-                  },
-                  {  
-                     "colspan":2,
-                     "column":0,
-                     "name":"image_1",
-                     "row":0,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "borderEdges":[  
-
+                    ],
+                    "filters": [
+                        [
+                            "Account.Region__c",
+                            [
+                                "{{cell(Account_Region__c_3.result, 0, \"Account.Region__c\").asObject()}}"
+                            ]
                         ]
-                     }
-                  },
-                  {  
-                     "colspan":4,
-                     "column":0,
-                     "name":"text_5",
-                     "row":5,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderEdges":[  
-
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "NSV_PY_MTD_2": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PY_MTD"
                         ]
-                     }
-                  },
-                  {  
-                     "colspan":4,
-                     "column":0,
-                     "name":"text_6",
-                     "row":2,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderEdges":[  
-
+                    ],
+                    "filters": [
+                        [
+                            "View",
+                            [
+                                "Today"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Country",
+                            [
+                                "NA"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Direct_Indirect",
+                            [
+                                "DIRECT"
+                            ],
+                            "in"
                         ]
-                     }
-                  },
-                  {  
-                     "colspan":4,
-                     "column":0,
-                     "name":"text_7",
-                     "row":8,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderEdges":[  
-
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "PickupNSV_MTD_3": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "PickupNSV_MTD"
                         ]
-                     }
-                  },
-                  {  
-                     "colspan":3,
-                     "column":9,
-                     "name":"listselector_3",
-                     "row":11,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-
+                    ],
+                    "filters": [
+                        [
+                            "View",
+                            [
+                                "Today"
+                            ],
+                            "in"
                         ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":3,
-                     "column":9,
-                     "name":"globalfilters_1",
-                     "row":44,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "borderEdges":[  
-
+                        [
+                            "Country",
+                            [
+                                "NA"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Direct_Indirect",
+                            [
+                                "DIRECT"
+                            ],
+                            "in"
                         ]
-                     }
-                  },
-                  {  
-                     "colspan":3,
-                     "column":0,
-                     "name":"listselector_4",
-                     "row":11,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-
-                        ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":3,
-                     "column":5,
-                     "name":"pillbox_1",
-                     "row":5,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "backgroundColor":"#F2F6FA",
-                        "borderColor":"#FFFFFF",
-                        "borderEdges":[  
-
-                        ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":6,
-                     "column":0,
-                     "name":"container_5",
-                     "row":28,
-                     "rowspan":8,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-
-                        ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":6,
-                     "column":6,
-                     "name":"container_7",
-                     "row":28,
-                     "rowspan":8,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-
-                        ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":4,
-                     "column":6,
-                     "name":"text_2",
-                     "row":28,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "borderEdges":[  
-
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "NSV_PY_MTD_3": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PY_MTD"
                         ]
-                     }
-                  },
-                  {  
-                     "colspan":4,
-                     "column":0,
-                     "name":"text_8",
-                     "row":28,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "borderEdges":[  
-
+                    ],
+                    "filters": [
+                        [
+                            "Account.Zone__c",
+                            [
+                                "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                            ]
                         ]
-                     }
-                  },
-                  {  
-                     "colspan":4,
-                     "column":8,
-                     "name":"container_10",
-                     "row":2,
-                     "rowspan":9,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-
-                        ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":12,
-                     "column":0,
-                     "name":"container_11",
-                     "row":11,
-                     "rowspan":1,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-
-                        ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":2,
-                     "column":0,
-                     "name":"number_5",
-                     "row":3,
-                     "rowspan":2,
-                     "widgetStyle":{  
-                        "backgroundColor":"rgba(255, 255, 255, 0)",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-                           "all"
-                        ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":2,
-                     "column":0,
-                     "name":"number_9",
-                     "row":9,
-                     "rowspan":2,
-                     "widgetStyle":{  
-                        "backgroundColor":"rgba(255, 255, 255, 0)",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-                           "all"
-                        ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":8,
-                     "column":0,
-                     "name":"container_12",
-                     "row":2,
-                     "rowspan":9,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-                           "all"
-                        ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":2,
-                     "column":2,
-                     "name":"number_1",
-                     "row":3,
-                     "rowspan":2,
-                     "widgetStyle":{  
-                        "borderEdges":[  
-                           "all"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "PickupNSV_MTD_2": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": true,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "PickupNSV_MTD"
                         ]
-                     }
-                  },
-                  {  
-                     "colspan":2,
-                     "column":4,
-                     "name":"number_3",
-                     "row":3,
-                     "rowspan":2,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-                           "all"
+                    ],
+                    "filters": [
+                        [
+                            "Account.Region__c",
+                            [
+                                "{{cell(Account_Region__c_3.result, 0, \"Account.Region__c\").asObject()}}"
+                            ]
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Account_Name_Type_100": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
                         ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":2,
-                     "column":6,
-                     "name":"number_4",
-                     "row":3,
-                     "rowspan":2,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-                           "all"
+                        [
+                            "sum",
+                            "NSV_PY_MTD"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Name",
+                        "Type"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "stackhbar",
+                    "options": {}
+                }
+            },
+            "Account_Region__c_100": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD",
+                            "C",
+                            {
+                                "display": "PROGRESS VS TARGET",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_CY_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Region__c"
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Region__c"
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Region__c"
+                                ],
+                                "formula": "A / B"
+                            },
+                            "format": "percentage",
+                            "header": "PROGRESS VS TARGET"
+                        }
+                    ],
+                    "groups": [
+                        "Account.Region__c"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
+                    "options": {}
+                }
+            },
+            "PickupNSV_MTD_1": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": true,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "PickupNSV_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Account.Zone__c",
+                            [
+                                "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                            ]
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Account_Region__c_Ty_1": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
                         ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":2,
-                     "column":2,
-                     "name":"number_6",
-                     "row":6,
-                     "rowspan":2,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-                           "all"
+                        [
+                            "sum",
+                            "NSV_PY_MTD"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Region__c",
+                        "Type"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "stackhbar",
+                    "options": {}
+                }
+            },
+            "Product_SubSector__c_1": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product.SubSector__c"
+                    ]
+                },
+                "selectMode": "multi",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            },
+            "Account_Zone__c_100": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD",
+                            "C",
+                            {
+                                "display": "PROGRESS VS TARGET",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_CY_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Zone__c"
+                                ],
+                                "filters": [
+                                    [
+                                        "Account.Zone__c",
+                                        [
+                                            "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                                        ]
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Zone__c"
+                                ],
+                                "filters": [
+                                    [
+                                        "Account.Zone__c",
+                                        [
+                                            "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                                        ]
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Zone__c"
+                                ],
+                                "formula": "A / B"
+                            },
+                            "format": "percentage",
+                            "header": "PROGRESS VS TARGET"
+                        }
+                    ],
+                    "groups": [
+                        "Account.Zone__c"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
+                    "options": {}
+                }
+            },
+            "Product_ProductCateg_200": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
                         ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":2,
-                     "column":4,
-                     "name":"number_8",
-                     "row":6,
-                     "rowspan":2,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-                           "all"
+                        [
+                            "sum",
+                            "NSV_PY_MTD"
+                        ]
+                    ],
+                    "groups": [
+                        "Product.ProductCategory__c",
+                        "Type"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "stackhbar",
+                    "options": {}
+                }
+            },
+            "Account_Region__c_200": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD",
+                            "C",
+                            {
+                                "display": "PROGRESS VS PY",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_CY_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Region__c"
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PY_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Region__c"
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Region__c"
+                                ],
+                                "formula": "A / B"
+                            },
+                            "format": "percentage",
+                            "header": "PROGRESS VS PY"
+                        }
+                    ],
+                    "groups": [
+                        "Account.Region__c"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
+                    "options": {}
+                }
+            },
+            "ORDER_DAYS_ELAPSED_1": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "ORDER_DAYS_ELAPSED"
+                        ]
+                    ],
+                    "filters": []
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Owner_Name_Type_1": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
                         ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "colspan":2,
-                     "column":2,
-                     "name":"number_10",
-                     "row":9,
-                     "rowspan":2,
-                     "widgetStyle":{  
-                        "backgroundColor":"#FFFFFF",
-                        "borderColor":"#E6ECF2",
-                        "borderEdges":[  
-                           "all"
+                        [
+                            "sum",
+                            "NSV_PY_MTD"
+                        ]
+                    ],
+                    "groups": [
+                        "Owner.Name",
+                        "Type"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "stackhbar",
+                    "options": {}
+                }
+            },
+            "Account_Zone__c_300": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD",
+                            "C",
+                            {
+                                "display": "PROGRESS VS PY",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_CY_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Zone__c"
+                                ],
+                                "filters": [
+                                    [
+                                        "Account.Zone__c",
+                                        [
+                                            "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                                        ]
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PY_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Zone__c"
+                                ],
+                                "filters": [
+                                    [
+                                        "Account.Zone__c",
+                                        [
+                                            "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                                        ]
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Zone__c"
+                                ],
+                                "formula": "A / B"
+                            },
+                            "format": "percentage",
+                            "header": "PROGRESS VS PY"
+                        }
+                    ],
+                    "groups": [
+                        "Account.Zone__c"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
+                    "options": {}
+                }
+            },
+            "all_3": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": true,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "View",
+                            [
+                                "Today"
+                            ],
+                            "in"
                         ],
-                        "borderRadius":0,
-                        "borderWidth":1
-                     }
-                  },
-                  {  
-                     "                     col
+                        [
+                            "Direct_Indirect",
+                            [
+                                "INDIRECT"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Country",
+                            [
+                                "NA"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "NSV_PLANNED_MTD_700": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD",
+                            "C",
+                            {
+                                "display": "PROGRESS VS PY",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_CY_MTD"
+                                    ]
+                                ],
+                                "filters": [
+                                    [
+                                        "Direct_Indirect",
+                                        [
+                                            "DIRECT"
+                                        ],
+                                        "in"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PY_MTD"
+                                    ]
+                                ],
+                                "filters": [
+                                    [
+                                        "Direct_Indirect",
+                                        [
+                                            "DIRECT"
+                                        ],
+                                        "in"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "formula": "A / B"
+                            },
+                            "format": "percentage",
+                            "header": "PROGRESS VS PY"
+                        }
+                    ],
+                    "filters": []
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
+                    "options": {}
+                }
+            },
+            "NSV_PLANNED_MTD_1": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": true,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Account.Region__c",
+                            [
+                                "{{cell(Account_Region__c_3.result, 0, \"Account.Region__c\").asObject()}}"
+                            ]
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "NSV_PLANNED_MTD_2": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "View",
+                            [
+                                "Today"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Country",
+                            [
+                                "NA"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Direct_Indirect",
+                            [
+                                "DIRECT"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Account_Name_1": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Name"
+                    ]
+                },
+                "selectMode": "multi",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            },
+            "Account_Region__c_1": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Region__c"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "NSV_CY_MTD_2": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Account.Zone__c",
+                            [
+                                "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                            ]
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Parent_Name_1": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Parent.Name"
+                    ]
+                },
+                "selectMode": "multi",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            },
+            "NSV_PLANNED_MTD_600": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD",
+                            "C",
+                            {
+                                "display": "PROGRESS VS TARGET",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_CY_MTD"
+                                    ]
+                                ],
+                                "filters": [
+                                    [
+                                        "Direct_Indirect",
+                                        [
+                                            "DIRECT"
+                                        ],
+                                        "in"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "filters": [
+                                    [
+                                        "Direct_Indirect",
+                                        [
+                                            "DIRECT"
+                                        ],
+                                        "in"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "formula": "A / B"
+                            },
+                            "format": "percentage",
+                            "header": "PROGRESS VS TARGET"
+                        }
+                    ],
+                    "filters": []
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
+                    "options": {}
+                }
+            },
+            "NSV_CY_MTD_1": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": true,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Account.Region__c",
+                            [
+                                "{{cell(Account_Region__c_3.result, 0, \"Account.Region__c\").asObject()}}"
+                            ]
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "NSV_CY_MTD_3": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "View",
+                            [
+                                "Today"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Country",
+                            [
+                                "NA"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Direct_Indirect",
+                            [
+                                "DIRECT"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "NSV_PLANNED_MTD_3": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Account.Zone__c",
+                            [
+                                "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                            ]
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "RegMgr_Name_1": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Region__c"
+                    ]
+                },
+                "selectMode": "singlerequired",
+                "start": [
+                    "10200 Retail FS"
+                ],
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            },
+            "Account_Region__c_3": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Region__c"
+                    ]
+                },
+                "selectMode": "multi",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            },
+            "Account_Region__c_2": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Region__c"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "CurrentDay_Year_Curr_100": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        [
+                            "CurrentDay_Year",
+                            "CurrentDay_Month",
+                            "CurrentDay_Day"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Account_Zone__c_2": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Zone__c"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            },
+            "Product_ProductCateg_3": {
+                "datasets": [
+                    {
+                        "id": "0FbV0000000AxtUKAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product.ProductCategory__c"
+                    ]
+                },
+                "selectMode": "multi",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            }
+        },
+        "widgetStyle": {
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#E6ECF2",
+            "borderEdges": [],
+            "borderRadius": 0,
+            "borderWidth": 1
+        },
+        "widgets": {
+            "number_12": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_PY_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_PY_MTD_2",
+                    "textAlignment": "center",
+                    "title": "NSV PY MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_11": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_PLANNED_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_PLANNED_MTD_2",
+                    "textAlignment": "center",
+                    "title": "NSV Planned MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_10": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_CY_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_CY_MTD_3",
+                    "textAlignment": "center",
+                    "title": "NSV CY MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "text_10": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV Detail by Direct Reports",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "number_14": {
+                "parameters": {
+                    "compact": false,
+                    "exploreLink": true,
+                    "measureField": "avg_ORDER_DAYS_ELAPSED",
+                    "numberColor": "#335779",
+                    "numberSize": 24,
+                    "step": "ORDER_DAYS_ELAPSED_1",
+                    "textAlignment": "center",
+                    "title": "% Days Elapsed",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "text_12": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV Detail by Region",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "number_13": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_PY_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_PY_MTD_3",
+                    "textAlignment": "center",
+                    "title": "NSV PY MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "text_11": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV by Region",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "container_1": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "container_2": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "container_3": {
+                "parameters": {
+                    "alignmentX": "center",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "chart_9": {
+                "parameters": {
+                    "max": 1,
+                    "legend": {
+                        "showHeader": true,
+                        "show": false,
+                        "position": "right-top",
+                        "inside": false
+                    },
+                    "visualizationType": "flatgauge",
+                    "exploreLink": true,
+                    "medium": 0.5,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": ""
+                    },
+                    "trellis": {
+                        "enable": true,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "colors": {
+                        "mediumColor2": "#F29946",
+                        "mediumColor1": "#FED444",
+                        "lowColor1": "#F71979",
+                        "lowColor2": "#CC203D",
+                        "highColor1": "#7BDE4E",
+                        "highColor2": "#169913"
+                    },
+                    "high": 0.8,
+                    "min": 0,
+                    "valueType": "compactNumber",
+                    "step": "Account_Zone__c_300",
+                    "theme": "wave",
+                    "referenceLine": null
+                },
+                "type": "chart"
+            },
+            "container_4": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "container_5": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "text_3": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV by Account",
+                    "textAlignment": "center",
+                    "textColor": "#000000"
+                },
+                "type": "text"
+            },
+            "chart_6": {
+                "parameters": {
+                    "max": 1,
+                    "legend": {
+                        "showHeader": true,
+                        "show": false,
+                        "position": "right-top",
+                        "inside": false
+                    },
+                    "visualizationType": "flatgauge",
+                    "exploreLink": true,
+                    "medium": 0.5,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": "Progress vs Target"
+                    },
+                    "trellis": {
+                        "enable": true,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "colors": {
+                        "mediumColor2": "#F29946",
+                        "mediumColor1": "#FED444",
+                        "lowColor1": "#F71979",
+                        "lowColor2": "#CC203D",
+                        "highColor1": "#7BDE4E",
+                        "highColor2": "#169913"
+                    },
+                    "high": 0.8,
+                    "min": 0,
+                    "valueType": "compactNumber",
+                    "step": "Account_Region__c_100",
+                    "theme": "wave",
+                    "referenceLine": null
+                },
+                "type": "chart"
+            },
+            "container_6": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "container_7": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "text_2": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV Detail by Product Category",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "chart_5": {
+                "parameters": {
+                    "autoFitMode": "fit",
+                    "showValues": true,
+                    "legend": {
+                        "showHeader": true,
+                        "show": true,
+                        "customSize": "auto",
+                        "position": "bottom-center",
+                        "inside": true
+                    },
+                    "axisMode": "dual",
+                    "visualizationType": "stackhbar",
+                    "exploreLink": true,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": ""
+                    },
+                    "trellis": {
+                        "enable": false,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "NSV CY MTD, NSV PY MTD",
+                        "referenceLine": null
+                    },
+                    "normalize": false,
+                    "step": "Owner_Name_Type_1",
+                    "theme": "wave",
+                    "dimensionAxis": {
+                        "showTitle": false,
+                        "customSize": "auto",
+                        "showAxis": true,
+                        "title": ""
+                    }
+                },
+                "type": "chart"
+            },
+            "text_5": {
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "Zone (Indirect)",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "container_8": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "chart_8": {
+                "parameters": {
+                    "max": 1,
+                    "legend": {
+                        "showHeader": true,
+                        "show": false,
+                        "position": "right-top",
+                        "inside": false
+                    },
+                    "visualizationType": "flatgauge",
+                    "exploreLink": true,
+                    "medium": 0.5,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": ""
+                    },
+                    "trellis": {
+                        "enable": true,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "colors": {
+                        "mediumColor2": "#F29946",
+                        "mediumColor1": "#FED444",
+                        "lowColor1": "#F71979",
+                        "lowColor2": "#CC203D",
+                        "highColor1": "#7BDE4E",
+                        "highColor2": "#169913"
+                    },
+                    "high": 0.8,
+                    "min": 0,
+                    "valueType": "compactNumber",
+                    "step": "Account_Zone__c_100",
+                    "theme": "wave",
+                    "referenceLine": null
+                },
+                "type": "chart"
+            },
+            "text_4": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV Detail by Account",
+                    "textAlignment": "center",
+                    "textColor": "#000000"
+                },
+                "type": "text"
+            },
+            "container_9": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "chart_7": {
+                "parameters": {
+                    "max": 1,
+                    "legend": {
+                        "showHeader": true,
+                        "show": false,
+                        "position": "right-top",
+                        "inside": false
+                    },
+                    "visualizationType": "flatgauge",
+                    "exploreLink": true,
+                    "medium": 0.5,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": "Progress vs PY"
+                    },
+                    "trellis": {
+                        "enable": true,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "colors": {
+                        "mediumColor2": "#F29946",
+                        "mediumColor1": "#FED444",
+                        "lowColor1": "#F71979",
+                        "lowColor2": "#CC203D",
+                        "highColor1": "#7BDE4E",
+                        "highColor2": "#169913"
+                    },
+                    "high": 0.8,
+                    "min": 0,
+                    "valueType": "compactNumber",
+                    "step": "Account_Region__c_200",
+                    "theme": "wave",
+                    "referenceLine": null
+                },
+                "type": "chart"
+            },
+            "text_7": {
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "North America (Direct)",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "text_6": {
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "Region (Indirect)",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "chart_1": {
+                "parameters": {
+                    "autoFitMode": "keepLabels",
+                    "showValues": true,
+                    "legend": {
+                        "showHeader": true,
+                        "show": true,
+                        "customSize": "auto",
+                        "position": "bottom-center",
+                        "inside": false
+                    },
+                    "axisMode": "sync",
+                    "visualizationType": "stackhbar",
+                    "exploreLink": true,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": ""
+                    },
+                    "trellis": {
+                        "enable": false,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "normalize": false,
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "NSV CY MTD, NSV PY MTD",
+                        "referenceLine": null
+                    },
+                    "step": "Account_Name_Type_100",
+                    "theme": "wave",
+                    "dimensionAxis": {
+                        "showTitle": false,
+                        "customSize": "auto",
+                        "showAxis": true,
+                        "title": ""
+                    }
+                },
+                "type": "chart"
+            },
+            "text_9": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV by Direct Reports",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "text_8": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV by Product Category",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "chart_3": {
+                "parameters": {
+                    "autoFitMode": "fit",
+                    "showValues": true,
+                    "legend": {
+                        "showHeader": true,
+                        "show": true,
+                        "customSize": "auto",
+                        "position": "bottom-center",
+                        "inside": false
+                    },
+                    "axisMode": "sync",
+                    "visualizationType": "stackhbar",
+                    "exploreLink": true,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": ""
+                    },
+                    "trellis": {
+                        "enable": false,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "normalize": false,
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "NSV CY MTD, NSV PY MTD",
+                        "referenceLine": null
+                    },
+                    "step": "Product_ProductCateg_200",
+                    "theme": "wave",
+                    "dimensionAxis": {
+                        "showTitle": false,
+                        "customSize": "auto",
+                        "showAxis": true,
+                        "title": ""
+                    }
+                },
+                "type": "chart"
+            },
+            "text_1": {
+                "parameters": {
+                    "fontSize": 24,
+                    "text": "Daily Sales for Sales Managers (Regional)",
+                    "textAlignment": "center",
+                    "textColor": "#335779"
+                },
+                "type": "text"
+            },
+            "number_5": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_PickupNSV_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "PickupNSV_MTD_2",
+                    "textAlignment": "center",
+                    "title": "Pickup NSV",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_4": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_PY_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_PY_MTD_1",
+                    "textAlignment": "center",
+                    "title": "NSV PY MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_3": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_PLANNED_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_PLANNED_MTD_1",
+                    "textAlignment": "center",
+                    "title": "NSV Planned MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_2": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": false,
+                    "measureField": "sum_PickupNSV_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "PickupNSV_MTD_1",
+                    "textAlignment": "center",
+                    "title": "Pickup NSV",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_1": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_CY_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_CY_MTD_1",
+                    "textAlignment": "center",
+                    "title": "NSV CY MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "image_1": {
+                "parameters": {
+                    "alignmentX": "center",
+                    "alignmentY": "top",
+                    "documentId": "015V0000000CTMx",
+                    "fit": "fitheight"
+                },
+                "type": "image"
+            },
+            "container_12": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "container_11": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "container_10": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "chart_13": {
+                "parameters": {
+                    "autoFitMode": "fit",
+                    "showValues": true,
+                    "legend": {
+                        "showHeader": true,
+                        "show": true,
+                        "customSize": "auto",
+                        "position": "bottom-center",
+                        "inside": false
+                    },
+                    "axisMode": "sync",
+                    "visualizationType": "stackhbar",
+                    "exploreLink": true,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": ""
+                    },
+                    "trellis": {
+                        "enable": false,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "normalize": false,
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "NSV CY MTD, NSV PY MTD",
+                        "referenceLine": null
+                    },
+                    "step": "Account_Region__c_Ty_1",
+                    "theme": "wave",
+                    "dimensionAxis": {
+                        "showTitle": false,
+                        "customSize": "auto",
+                        "showAxis": true,
+                        "title": ""
+                    }
+                },
+                "type": "chart"
+            },
+            "chart_11": {
+                "parameters": {
+                    "max": 1,
+                    "legend": {
+                        "showHeader": true,
+                        "show": false,
+                        "position": "right-top",
+                        "inside": false
+                    },
+                    "visualizationType": "flatgauge",
+                    "exploreLink": true,
+                    "medium": 0.5,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": ""
+                    },
+                    "trellis": {
+                        "enable": false,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "colors": {
+                        "mediumColor2": "#F29946",
+                        "mediumColor1": "#FED444",
+                        "lowColor1": "#F71979",
+                        "lowColor2": "#CC203D",
+                        "highColor1": "#7BDE4E",
+                        "highColor2": "#169913"
+                    },
+                    "high": 0.8,
+                    "min": 0,
+                    "valueType": "compactNumber",
+                    "step": "NSV_PLANNED_MTD_600",
+                    "theme": "wave",
+                    "referenceLine": null
+                },
+                "type": "chart"
+            },
+            "chart_10": {
+                "parameters": {
+                    "max": 1,
+                    "legend": {
+                        "showHeader": true,
+                        "show": false,
+                        "position": "right-top",
+                        "inside": false
+                    },
+                    "visualizationType": "flatgauge",
+                    "exploreLink": true,
+                    "medium": 0.5,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": ""
+                    },
+                    "trellis": {
+                        "enable": false,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "colors": {
+                        "mediumColor2": "#F29946",
+                        "mediumColor1": "#FED444",
+                        "lowColor1": "#F71979",
+                        "lowColor2": "#CC203D",
+                        "highColor1": "#7BDE4E",
+                        "highColor2": "#169913"
+                    },
+                    "high": 0.8,
+                    "min": 0,
+                    "valueType": "compactNumber",
+                    "step": "NSV_PLANNED_MTD_700",
+                    "theme": "wave",
+                    "referenceLine": null
+                },
+                "type": "chart"
+            },
+            "number_9": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": false,
+                    "measureField": "sum_PickupNSV_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "PickupNSV_MTD_3",
+                    "textAlignment": "center",
+                    "title": "Pickup NSV",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_8": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_PLANNED_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_PLANNED_MTD_3",
+                    "textAlignment": "center",
+                    "title": "NSV Planned MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_6": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_CY_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_CY_MTD_2",
+                    "textAlignment": "center",
+                    "title": "NSV CY MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "listselector_7": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": false,
+                    "measureField": "none",
+                    "step": "RegMgr_Name_1",
+                    "title": "Region Name"
+                },
+                "type": "listselector"
+            },
+            "listselector_3": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": false,
+                    "measureField": "none",
+                    "step": "Account_Name_1",
+                    "title": "Account.Name"
+                },
+                "type": "listselector"
+            },
+            "listselector_2": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": false,
+                    "measureField": "none",
+                    "step": "Product_SubSector__c_1",
+                    "title": "Product Sub Sector"
+                },
+                "type": "listselector"
+            },
+            "listselector_4": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": false,
+                    "measureField": "none",
+                    "step": "Product_ProductCateg_3",
+                    "title": "Product Sector"
+                },
+                "type": "listselector"
+            },
+            "globalfilters_1": {
+                "parameters": {
+                    "step": "all_3"
+                },
+                "type": "globalfilters"
+            },
+            "table_1": {
+                "parameters": {
+                    "customBulkActions": [],
+                    "exploreLink": true,
+                    "step": "Account_Name_Type_100"
+                },
+                "type": "table"
+            },
+            "table_2": {
+                "parameters": {
+                    "customBulkActions": [],
+                    "exploreLink": true,
+                    "step": "Product_ProductCateg_200"
+                },
+                "type": "table"
+            },
+            "table_3": {
+                "parameters": {
+                    "customBulkActions": [],
+                    "exploreLink": true,
+                    "step": "Owner_Name_Type_1"
+                },
+                "type": "table"
+            },
+            "table_4": {
+                "parameters": {
+                    "customBulkActions": [],
+                    "exploreLink": true,
+                    "step": "Account_Region__c_Ty_1"
+                },
+                "type": "table"
+            },
+            "pillbox_2": {
+                "parameters": {
+                    "compact": false,
+                    "exploreLink": false,
+                    "measureField": "none",
+                    "step": "Account_Region__c_3"
+                },
+                "type": "pillbox"
+            },
+            "pillbox_1": {
+                "parameters": {
+                    "compact": false,
+                    "exploreLink": false,
+                    "measureField": "none",
+                    "step": "Account_Zone__c_2"
+                },
+                "type": "pillbox"
+            },
+            "pillbox_4": {
+                "parameters": {
+                    "compact": false,
+                    "exploreLink": false,
+                    "measureField": "none",
+                    "step": "CurrentDay_Year_Curr_100"
+                },
+                "type": "pillbox"
+            },
+            "pillbox_3": {
+                "parameters": {
+                    "compact": false,
+                    "exploreLink": false,
+                    "measureField": "count",
+                    "step": "Account_Region__c_3"
+                },
+                "type": "pillbox"
+            },
+            "listselector_1": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": false,
+                    "measureField": "none",
+                    "step": "Parent_Name_1",
+                    "title": "Parent Name"
+                },
+                "type": "listselector"
+            }
+        }
+    },
+    "datasets": [
+        {
+            "id": "0FbV0000000AxtUKAS",
+            "label": "FS_DailySales_NA",
+            "name": "FS_DailySales_NA",
+            "url": "/services/data/v39.0/wave/datasets/0FbV0000000AxtUKAS"
+        }
+    ]
+}
