@@ -273,11 +273,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_Delivery__c.Total_weight__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_Email_Information__c.Address_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>

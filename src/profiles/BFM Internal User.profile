@@ -647,11 +647,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_NF_e__c.NFS__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_NF_e__c.NF_e_Total_Value__c</field>
         <readable>false</readable>
     </fieldPermissions>
