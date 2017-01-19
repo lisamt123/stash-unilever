@@ -19,7 +19,7 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
     static User testUser;
     static BEN_Matrix_VF_controller controller;
     static BEN_Category_Master__c CategoryMaster;
-    static BEN_Category_User_Permission__c  cupSet;
+    static List<BEN_Category_Details__c> insertedCatDetails;
     
     static {
         controller = new BEN_Matrix_VF_controller();
@@ -52,18 +52,40 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
             CategoryMaster = catMaster.get(0);
         System.debug('Test BEN_Category_Master__c  : '+ CategoryMaster);
         
+        Group testGroup = new Group(Name='BEN_Beverages123', Type='Queue');
+        insert testGroup;
         
-        List< BEN_Category_User_Permission__c> userPer =  [select name from BEN_Category_User_Permission__c where name='testMahesh1'];
-        if(checkEmpty(userPer)){
-            cupSet=new BEN_Category_User_Permission__c (Name='testMahesh1',
-                                                        pkl_Category_Access__c= BEN_ConstantsForBenchmarkingAppClasses.APPROVER,
-                                                        Category_Master__c=CategoryMaster.Id,
-                                                        pkl_User_Type__c=BEN_ConstantsForBenchmarkingAppClasses.MULTI_CATEGORY_RESTRICTED_ACCESS,
-                                                        BEN_Category_User__c=testUser.Id );
-            insert cupSet;
-        }else
-            cupSet = userPer.get(0);
-        System.debug('Test BEN_Category_User_Permission__c  : '+ [select name from BEN_Category_User_Permission__c where name='testMahesh1'].get(0));
+        System.runAs(new User(Id=UserInfo.getUserId())){
+            QueuesObject testQueue = new QueueSObject(QueueID = testGroup.id, SObjectType = 'Case');
+            insert testQueue;
+            GroupMember GM = new GroupMember();
+            GM.GroupId = testGroup.Id;
+            GM.UserOrGroupId = UserInfo.getUserId();
+            insert gm;
+        }
+        
+        BEN_CategoryDetails__c bcd = new BEN_CategoryDetails__c();
+        bcd.Name = 'Beverages123';
+        bcd.QueueId__c = testGroup.Id;
+        insert bcd;
+        
+                
+         Group testGroup2 = new Group(Name='BEN_GPL', Type='Queue');
+        insert testGroup2;
+        
+        System.runAs(new User(Id=UserInfo.getUserId())){
+            QueuesObject testQueue2 = new QueueSObject(QueueID = testGroup2.id, SObjectType = 'Case');
+            insert testQueue2;
+            GroupMember GM = new GroupMember();
+            GM.GroupId = testGroup2.Id;
+            GM.UserOrGroupId = UserInfo.getUserId();
+            insert gm;
+        }
+        
+        BEN_CategoryDetails__c bcd2 = new BEN_CategoryDetails__c();
+        bcd2.Name = 'Beveragesabcd';
+        bcd2.QueueId__c = testGroup.Id;
+        insert bcd2;
         
         init();
     }
@@ -84,6 +106,11 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         ccc.Name = 'Test';
         insert ccc;
         
+        
+        
+        insertedCatDetails = new List<BEN_Category_Details__c>();
+        for(Integer i = 0; i< 10 ; i++){
+            
         BEN_Category_Details__c categorydetails = new BEN_Category_Details__c();
         categorydetails.Product_Category__c = CategoryMaster.Id;
         categorydetails.pkl_Region__c='Europe' ;
@@ -106,8 +133,64 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         categorydetails.txt_Unilever_Formula__c = 'testing';
         categorydetails.txt_Agency_Name__c = 'samsung';
         categorydetails.txt_Agency_Job_Number__c = '12345';  
+        insertedCatDetails.add(categorydetails);
+        }
         
-        Database.SaveResult sr = Database.insert(categorydetails);
+         for(Integer i = 0; i< 10 ; i++){
+            
+        BEN_Category_Details__c categorydetails = new BEN_Category_Details__c();
+        categorydetails.Product_Category__c = CategoryMaster.Id;
+        categorydetails.pkl_Region__c='North America' ;
+        categorydetails.pkl_Brand__c='Lipton Yellow Label' ;
+        categorydetails.txt_Title__c='Test200' ;
+        categorydetails.pkl_Year__c='2017' ;
+        categorydetails.pkl_Quarter__c='Q1' ;
+        categorydetails.pkl_Logic__c='WIN on OO & KA' ;
+        categorydetails.pkl_Key_Attributes__c='Loss' ;
+        //categorydetails.pkl_OVERALL_SCORE__c='Parity' ;
+        categorydetails.lkp_CUC_Codes__c=ccc.Id;
+        categorydetails.pkl_Product_Format__c='Flavoured & Speciality' ;
+        categorydetails.pkl_Product__c='Beceda' ;
+        categorydetails.pkl_Country__c='USA' ;
+        categorydetails.pkl_Status__c='Approved' ;
+        categorydetails.pkl_Key_Attribute_1_Appraisal__c = 'Loss';
+        categorydetails.pkl_Key_Attribute_2_Consumer_Test__c = 'Loss';
+        categorydetails.pkl_Benchmark__c = 'Barrys Gold';
+        categorydetails.pkl_Blind_OO__c = 'Loss';
+        categorydetails.txt_Unilever_Formula__c = 'testing';
+        categorydetails.txt_Agency_Name__c = 'samsung';
+        categorydetails.txt_Agency_Job_Number__c = '12345';  
+        insertedCatDetails.add(categorydetails);
+        }
+        
+         for(Integer i = 0; i< 10 ; i++){
+            
+        BEN_Category_Details__c categorydetails = new BEN_Category_Details__c();
+        categorydetails.Product_Category__c = CategoryMaster.Id;
+        categorydetails.pkl_Region__c='South Asia' ;
+        categorydetails.pkl_Brand__c='Lipton Yellow Label' ;
+        categorydetails.txt_Title__c='Test300' ;
+        categorydetails.pkl_Year__c='2017' ;
+        categorydetails.pkl_Quarter__c='Q2' ;
+        categorydetails.pkl_Logic__c='WIN on OO & KA' ;
+        categorydetails.pkl_Key_Attributes__c='Win' ;
+        //categorydetails.pkl_OVERALL_SCORE__c='Parity' ;
+        categorydetails.lkp_CUC_Codes__c=ccc.Id;
+        categorydetails.pkl_Product_Format__c='Flavoured & Speciality' ;
+        categorydetails.pkl_Product__c='Beceda' ;
+        categorydetails.pkl_Country__c='India' ;
+        categorydetails.pkl_Status__c='Approved' ;
+        categorydetails.pkl_Key_Attribute_1_Appraisal__c = 'Win';
+        categorydetails.pkl_Key_Attribute_2_Consumer_Test__c = 'Win';
+        categorydetails.pkl_Benchmark__c = 'Barrys Gold';
+        categorydetails.pkl_Blind_OO__c = 'Win';
+        categorydetails.txt_Unilever_Formula__c = 'testing';
+        categorydetails.txt_Agency_Name__c = 'samsung';
+        categorydetails.txt_Agency_Job_Number__c = '12345';  
+        insertedCatDetails.add(categorydetails);
+        }
+        List<Database.SaveResult> srs = Database.insert(insertedCatDetails);
+        for(Database.SaveResult sr: srs){
         if (sr.isSuccess()) {
             System.debug('Successfully inserted account. record ID: ' + sr.getId());
         }
@@ -118,7 +201,11 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
                 System.debug('Account fields that affected this error: ' + err.getFields());
             }
             
+         }
+            
         }
+        List<BEN_Category_Details__c> totalInsertedRecords = [Select ID, pkl_Status__c  from BEN_Category_Details__c];
+        System.debug(' Total inserted records  : '+ totalInsertedRecords.size() + ' recods are   : ' + totalInsertedRecords);
     } 
     
     static testmethod void testYearValues(){
@@ -195,6 +282,54 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         
         Test.startTest();
         controller = new BEN_Matrix_VF_controller();
+        
+        List<BEN_Category_Details__c> listToUpdate = new List<BEN_Category_Details__c>();
+        for(Integer j=0 ; j<10 ; j++){
+            BEN_Category_Details__c cd = insertedCatDetails.get(j);
+        cd.In_Approval__c=true;
+        cd.pkl_Status__c= 'Approved';
+        cd.bln_Flag_for_Retest__c=true;  
+            listToUpdate.add(cd);
+        }
+        
+        Database.update(listToUpdate, true);
+        
+        
+        System.debug(' Total inserted records After Update records  : '+ listToUpdate.size() + ' recods are   : ' + listToUpdate);
+        System.debug(' Total inserted records After Update records  Quried : '+ [Select Id, pkl_Status__c from BEN_Category_Details__c Where Id IN :listToUpdate]);
+        
+        Approval.ProcessWorkitemRequest[] prWkItems = New Approval.ProcessWorkItemRequest[]{};
+            //Reject the record
+            ProcessInstance[] pi = [Select ID, Status, TargetObject.Name, 
+                (SELECT Id, ActorId, ProcessInstanceId FROM Workitems),
+                (SELECT Id, StepStatus, Comments FROM Steps) From ProcessInstance 
+                Where TargetObjectID IN :listToUpdate AND Status = 'Pending'];
+               
+            System.debug('TOtal ProcessInstance  with Status = pending  : '+ pi.size()+ ' records ' +  pi);
+                   
+            for(ProcessInstance instance : pi){
+      
+                for(ProcessInstanceWorkItem workItem : instance.WorkItems){
+                  
+                    Approval.ProcessWorkitemRequest prWkItem = new Approval.ProcessWorkitemRequest();
+                    
+                    prWkItem.setWorkItemID(workItem.id);
+                    prWkItem.setComments('Request Canceled by User: ' + userInfo.getName());
+                    prWkItem.setAction('Approve');
+                    prWkItems.add(prWkItem);
+                  
+                }
+            }          
+            
+            if(!prWkItems.isEmpty()){
+                
+                Approval.ProcessResult[] appResult = Approval.process(prWkItems);
+                
+                System.debug('TOtal Approved records  : '+ appResult.size()+ ' records ' +  appResult);
+            }
+        
+        
+        
         //pageRef = Page.BEN_Matrix3cross3_Report;    
         //Test.setCurrentPage(pageRef);
         controller.fromYearVal = '2009';
@@ -205,7 +340,7 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         
         controller.getReport();
         System.debug('controller.output values  : ' + controller.parityParity_11 + controller.winLoss_00 + controller.winParity_01 +controller.winWin_02 +controller.parityLoss_10 +controller.parityWin_12 +controller.lossLoss_20 +controller.lossParity_21 + controller.lossWin_22);
-        System.assert(controller.parityParity_11 == 0);
+        System.assert(controller.parityParity_11 == '100.0%');
         Test.stopTest();
     }
     
@@ -224,7 +359,7 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
             
             controller.getReport();
             System.debug(' testMatrixReportApproverUser : controller.output values  : ' + controller.parityParity_11 + controller.winLoss_00 + controller.winParity_01 +controller.winWin_02 +controller.parityLoss_10 +controller.parityWin_12 +controller.lossLoss_20 +controller.lossParity_21 + controller.lossWin_22);
-            System.assert(controller.parityParity_11 == 0);
+            System.assert(controller.parityParity_11 == '0.0%');
         }
         Test.stopTest();
     }
@@ -241,7 +376,7 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         controller.productCat = '[Beverages]';
         controller.getReport();
         System.debug('controller.parityParity_11  : ' + controller.parityParity_11);
-        System.assert(controller.parityParity_11 == 0);
+        System.assert(controller.parityParity_11 == '0.0%');
         PageReference pr = controller.redirectToPDF();
         String pdfUrl = pr.getUrl();
         System.debug('URL  : '+pdfUrl);
@@ -302,7 +437,7 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         controller.toQuarterVal = 'Q1';
         controller.productCat = '[Beverages]';
         controller.getReport();
-        System.assert(controller.parityParity_11 == 0);
+        System.assert(controller.parityParity_11 == '0.0%');
         Test.stopTest();
     }
     
@@ -318,7 +453,7 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         controller.toQuarterVal = 'Q1';
         controller.productCat = '[Beverages]';
         controller.getReport();
-        System.assert(controller.parityParity_11 == 0);
+        System.assert(controller.parityParity_11 == '0.0%');
         Test.stopTest();
     }
     

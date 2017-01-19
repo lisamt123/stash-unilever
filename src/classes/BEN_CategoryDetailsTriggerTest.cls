@@ -24,8 +24,6 @@ private class BEN_CategoryDetailsTriggerTest {
         
         update  categorydetails;
         
-        
-        
         categorydetails.pkl_Status__c= 'Saved';
         categorydetails.bln_Mark_for_Deletion__c=true;
         update  categorydetails;
@@ -59,6 +57,49 @@ private class BEN_CategoryDetailsTriggerTest {
         
         
     }
+    
+    static testMethod void testRejectRecordResubmition(){
+        
+        BEN_Category_Details__c  categorydetailsecondstep= createCategoryDetails();
+        categorydetailsecondstep.In_Approval__c=true;
+        categorydetailsecondstep.pkl_Status__c= 'Rejected';
+        categorydetailsecondstep.Approval_Status__c='In Second Step';
+        categorydetailsecondstep.bln_Flag_for_Retest__c=true; 
+        update  categorydetailsecondstep;
+        system.debug('categorydetailsecondstep status after update (Rejected) : '+ [Select ID, pkl_Status__c from BEN_Category_Details__c where ID = :categorydetailsecondstep.Id ]);
+        
+        BEN_Category_Details__c  cd2 = new  BEN_Category_Details__c();
+        cd2 = categorydetailsecondstep;
+        cd2.pkl_Status__c = 'Approved';
+        cd2.In_Approval__c=true;
+        cd2.bln_Mark_for_Deletion__c = false;
+        update cd2;
+        
+         system.debug('cd2 status after update(Approved)  : '+ [Select ID, pkl_Status__c from BEN_Category_Details__c where ID = :categorydetailsecondstep.Id ]);  
+             
+        List<BEN_Category_Details__c> trigNewList = new List<BEN_Category_Details__c>();
+        Map<ID, BEN_Category_Details__c> trigNewMap = new Map<ID, BEN_Category_Details__c>();
+        Map<ID, BEN_Category_Details__c> trigOldMap = new Map<ID, BEN_Category_Details__c>();
+        trigNewList.add(cd2);
+        trigNewMap.put(cd2.Id, cd2);
+        trigOldMap.put(categorydetailsecondstep.id, categorydetailsecondstep);
+        
+        BEN_CategoryDetailsTriggerHandler.rejectedRecord = true;
+        BEN_CategoryDetailsTriggerHandler.SendRecordForApproval(trigNewList, trigOldMap, trigNewMap);
+        List<String> usrList = new List<String>();
+        usrList.add(UserInfo.getUserId());
+        
+        Map<Id,BEN_Category_Details__c> categoryMap = new Map<Id,BEN_Category_Details__c>([select Id,In_Approval__c,
+                                                                                               Product_Category__c,
+                                                                                               Product_Category__r.Name,txt_Reason_for_Deletion__c,
+                                                                                               CreatedBy.Name,LastModifiedBy.Name
+                                                                                               from BEN_Category_Details__c
+                                                                                               where Id In :trigNewList]);
+        
+        BEN_CategoryDetailsTriggerHandler.sendEmail(categorydetailsecondstep, usrList, categoryMap);
+        
+    }
+    
     
     static testMethod void testCategory_ValidationSecondStep() {
         
