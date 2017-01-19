@@ -744,10 +744,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>PQN_Supplier_Details__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>PQN_Supplier__c</tab>
         <visibility>None</visibility>
     </tabSettings>
