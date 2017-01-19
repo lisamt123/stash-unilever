@@ -1103,6 +1103,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <picklistValues>
                 <fullName>Argentina</fullName>
                 <default>false</default>
+                <controllingFieldValues>LatAm</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Australia</fullName>
@@ -1122,10 +1123,12 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <picklistValues>
                 <fullName>Brazil</fullName>
                 <default>false</default>
+                <controllingFieldValues>LatAm</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Canada</fullName>
                 <default>false</default>
+                <controllingFieldValues>North America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Chile</fullName>
@@ -1210,6 +1213,16 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <picklistValues>
                 <fullName>Other</fullName>
                 <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>LatAm</controllingFieldValues>
+                <controllingFieldValues>NAMET RUB</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>North Asia</controllingFieldValues>
+                <controllingFieldValues>Other</controllingFieldValues>
+                <controllingFieldValues>SEAA</controllingFieldValues>
+                <controllingFieldValues>South Asia</controllingFieldValues>
+                <controllingFieldValues>South East Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Pakistan</fullName>
@@ -2513,6 +2526,9 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <columns>pkl_Status__c</columns>
         <columns>pkl_Product__c</columns>
         <columns>CREATED_DATE</columns>
+        <columns>pkl_Year__c</columns>
+        <columns>pkl_Quarter__c</columns>
+        <columns>fml_Year_Quarter__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Product_Category__c</field>
@@ -2788,6 +2804,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <language>en_US</language>
         <sharedTo>
             <group>BEN_GPL_User</group>
+            <group>BEN_Skin_Cleansing_Cat_Approver_Editor</group>
             <group>BEN_Skin_Cleansing_Category_Viewer</group>
         </sharedTo>
     </listViews>
@@ -11548,6 +11565,54 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <errorDisplayField>pkl_Launch_Not_Launched_information__c</errorDisplayField>
         <errorMessage>Kindly provide the current market status. If undecided, you can add &quot;Undecided at this time&quot; and update later.</errorMessage>
     </validationRules>
+    <validationRules>
+        <fullName>MarginMandatry_If_LaunchStatus_wilLaunch</fullName>
+        <active>true</active>
+        <description>Margin is mandatory to select if &apos;&apos;Launched Status&quot; is &apos;will launch&apos;.</description>
+        <errorConditionFormula>TEXT(pkl_Launch_Not_Launched_information__c) == &apos;Will launch&apos; &amp;&amp;  ((ISPICKVAL ( pkl_Margin__c , &quot;&quot;)) || (ISPICKVAL(pkl_Margin__c , &quot;NONE&quot;)))</errorConditionFormula>
+        <errorDisplayField>pkl_Margin__c</errorDisplayField>
+        <errorMessage>Margin is mandatory as &apos;Launched Status&apos; is &apos;will launch&apos;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>OtherBrandFieldMandatory</fullName>
+        <active>true</active>
+        <description>When the filed &apos;Brand&apos; is Null then &apos;Other Country&apos; field is mandatory.</description>
+        <errorConditionFormula>TEXT(pkl_Brand__c) == &apos;Other&apos; &amp;&amp;  (ISNULL(txt_Other_Brand__c) || txt_Other_Brand__c==&apos;&apos;)</errorConditionFormula>
+        <errorDisplayField>txt_Other_Brand__c</errorDisplayField>
+        <errorMessage>Brand selected as Other, please specify brand</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>OtherCountryFieldMandatory</fullName>
+        <active>true</active>
+        <description>When the filed &apos;Country&apos; is null then &apos;Other Country&apos; field is mandatory.</description>
+        <errorConditionFormula>TEXT(pkl_Country__c) == &apos;Other&apos; &amp;&amp;  (ISNULL(txt_Other_Country__c) || txt_Other_Country__c ==&apos;&apos;)</errorConditionFormula>
+        <errorDisplayField>txt_Other_Country__c</errorDisplayField>
+        <errorMessage>Country selected as Other, please specify country</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>OtherProductFormatFieldMandatory</fullName>
+        <active>true</active>
+        <description>When the filed &apos;Product Format&apos; is null then &apos;Other Country&apos;field is mandatory.</description>
+        <errorConditionFormula>TEXT( pkl_Product_Format__c ) == &apos;Other&apos; &amp;&amp;  (ISNULL( txt_Other_Product_Format__c ) || txt_Other_Product_Format__c ==&apos;&apos;)</errorConditionFormula>
+        <errorDisplayField>txt_Other_Product_Format__c</errorDisplayField>
+        <errorMessage>Product Format selected as Other, please specify Other Product Format</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>USLPMandatory_If_LaunchStatus_willLaunch</fullName>
+        <active>true</active>
+        <description>USLP is mandatory to select if &apos;&apos;Launched Status&quot; is &apos;will launch&apos;.</description>
+        <errorConditionFormula>TEXT(pkl_Launch_Not_Launched_information__c) == &apos;Will launch&apos; &amp;&amp;  ((ISPICKVAL ( pkl_USLP__c , &quot;&quot;)) || (ISPICKVAL(pkl_USLP__c , &quot;NONE&quot;)))</errorConditionFormula>
+        <errorDisplayField>pkl_USLP__c</errorDisplayField>
+        <errorMessage>USLP is mandatory as &apos;Launched Status&apos; is &apos;will launch&apos;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>launchstatusMandatry_If_Currentlaunchval</fullName>
+        <active>true</active>
+        <description>Launched status  is mandatory to select if  &apos;&apos;Current Market Status&quot; is not null.</description>
+        <errorConditionFormula>NOT(ISPICKVAL(Current_Market_Status__c, &quot;&quot;))  &amp;&amp;  ((ISPICKVAL ( pkl_Launch_Not_Launched_information__c, &quot;&quot;)) || (ISPICKVAL(pkl_Launch_Not_Launched_information__c, &quot;NONE&quot;)))</errorConditionFormula>
+        <errorDisplayField>pkl_Launch_Not_Launched_information__c</errorDisplayField>
+        <errorMessage>Kindly provide the current market status. If undecided, you can add &quot;Undecided at this time&quot; and update later.</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>Submit_for_Approval</fullName>
         <availability>online</availability>
@@ -11557,10 +11622,23 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)}
+
+sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;;
+var user = sforce.connection.getUserInfo();
+
+var ApproverUser = sforce.apex.execute(&quot;BEN_AprovalProcess_WebService_helper&quot;,&quot;userIsApprover&quot;,{userId:user.userId});
+
 var recType = sforce.connection.query(&quot;SELECT Name,Id from RecordType where DeveloperName = &apos;BEN_Category_Details_Submitted&apos;&quot;);
 var records = recType.getArray(&quot;records&quot;);
 var p = new sforce.SObject(&apos;BEN_Category_Details__c&apos;);
 p.id = &quot;{!BEN_Category_Details__c.Id}&quot;;
+p.bln_Mark_for_Deletion__c = &quot;{!BEN_Category_Details__c.bln_Mark_for_Deletion__c}&quot;
+
+
+if(ApproverUser == &quot;true&quot; &amp;&amp; p.bln_Mark_for_Deletion__c == 0 ){
+throw new Error(&quot;Approver not Allowed to submit, except mark of deletion approval&quot;);
+}
 p.In_Approval__c = &quot;true&quot;;
 p.RecordTypeId =records[0].Id;
 p.pkl_Status__c = &quot;Submitted&quot;;

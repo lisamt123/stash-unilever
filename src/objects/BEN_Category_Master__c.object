@@ -137,6 +137,27 @@
         <type>Email</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>pkl_Super_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Super Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Personal care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
     <label>Category Master</label>
     <listViews>
         <fullName>All</fullName>
@@ -167,6 +188,7 @@
             <group>BEN_Savoury_Category_Viewer</group>
             <group>BEN_Skin_Care_Category_Approver_Editor</group>
             <group>BEN_Skin_Care_Category_Viewer</group>
+            <group>BEN_Skin_Cleansing_Cat_Approver_Editor</group>
             <group>BEN_Skin_Cleansing_Category_Viewer</group>
             <group>BEN_Spreads_Category_Approver_Editor</group>
             <group>BEN_Spreads_Category_Viewer</group>
