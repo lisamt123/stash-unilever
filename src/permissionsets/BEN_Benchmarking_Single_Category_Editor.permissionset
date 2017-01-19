@@ -5,7 +5,11 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>BEN_CatUserPermTrigger_Test</apexClass>
+        <apexClass>BEN_ApprovalProcess_Helper_test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BEN_AprovalProcess_WebService_helper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -17,7 +21,15 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BEN_CategoryUserPermissionHandler</apexClass>
+        <apexClass>BEN_ConstantsForBenchmarkingAppClasses</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BEN_EmailRemainderSchedular</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BEN_EmailRemainderSchedularTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -33,6 +45,71 @@
         <enabled>false</enabled>
     </classAccesses>
     <description>This Permission set is for Single Category Editor</description>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_Category_CUC_Codes__c.Pkl_Market_Cluster__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_Category_CUC_Codes__c.dt_Month__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_Category_CUC_Codes__c.lkp_Product_Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_Category_CUC_Codes__c.pkl_Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_Category_CUC_Codes__c.pkl_MCO__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_Category_CUC_Codes__c.pkl_Super_Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_Category_CUC_Codes__c.txt_Attached_Spec_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_Category_CUC_Codes__c.txt_Brand__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_Category_CUC_Codes__c.txt_CPG_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_Category_CUC_Codes__c.txt_MRDR_Code_ECC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_Category_CUC_Codes__c.txta_CPG_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_Category_CUC_Codes__c.txta_MRDR_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_Category_CUC_Codes__c.txta_Spec_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>BEN_Category_Details__c.Approval_Comment_Check__c</field>
@@ -305,17 +382,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_User_Permission__c.BEN_Category_User__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BEN_Category_User_Permission__c.pkl_Category_Access__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BEN_Category_User_Permission__c.pkl_User_Type__c</field>
+        <field>BEN_Category_Master__c.pkl_Super_Category__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <label>Benchmarking Single Category - Editor</label>
@@ -387,7 +454,7 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>BEN_Category_User_Permission__c</tab>
+        <tab>BEN_Matrix_Report</tab>
         <visibility>None</visibility>
     </tabSettings>
 </PermissionSet>
