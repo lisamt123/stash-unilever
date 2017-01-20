@@ -46,6 +46,12 @@ public class IPM_ConstantUtils {
     public static String PROJECTNAME_PARAMETER = 'ProjectName';
     public static String PROJECTGATEDOCUMENT_PARAMETER = 'ProjectGateDocument';
     
+    //snapshot variables
+    public static String BCC_CONFIRMED = 'Confirmed';
+    public static String BCC_UNCONFIRMED = 'Confirmed';
+    public static String ALIGNED = 'Aligned';
+    public static String MISALIGNED = 'Misaligned';
+    
     //used across classes to get the gate document type
     public static final String CHARTER_GATE='Charter';
     public static final String CONTRACT_GATE='Contract';

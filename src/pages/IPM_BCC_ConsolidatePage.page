@@ -14,7 +14,9 @@
                 <c:IPM_BCC_Consolidate gateType="{!$CurrentPage.parameters.gateType}" 
                 projSpan="{!$CurrentPage.parameters.projSpan}" 
                 projectId="{!$CurrentPage.parameters.projectId}" 
-                showBccTab="{!$CurrentPage.parameters.showBccTab}" >
+                showBccTab="{!$CurrentPage.parameters.showBccTab}"
+                docId="{!$CurrentPage.parameters.docId}"
+                docStatus="{!$CurrentPage.parameters.docStatus}">
                 </c:IPM_BCC_Consolidate>
                                                                 
             </apex:form>
