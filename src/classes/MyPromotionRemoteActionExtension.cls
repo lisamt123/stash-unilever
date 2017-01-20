@@ -129,6 +129,7 @@ Throws : N/A
                 }
                 //To get products(including Manual products from Heroku -- Chandrababu
                 herokuProducts = UL_TacticUtility.readLOExtProduct(txId,content);
+                System.Debug ('Ashish Test Heroku Product' + herokuProducts);
                 
                 if(herokuProducts.size()>0){
                     productIdSet = new Set<Id>(); 
@@ -239,6 +240,12 @@ Throws : N/A
             THViolate = promoLst[0].UL_ThresholdViolated__c ;
             
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.toUpperCase())){
+                
+                //Before submitting promotion for approval, check if each tactic has a fund associated
+                if(!hasTacticAssignedFund(promoId)){
+                    throw new UL_CustomException(Label.UL_TACTIC_FUND_ASSOCIATION);
+                }
+                
                 //if(!THViolate){
                 UL_PromotionWorkflowService.submitForApproval(promoId,promoLst,promoLst[0].createdby.UL_Finance_Manager__c,false) ;
                     if(!THViolate && promoLst[0].UL_Threshold_Window_Result__c != null){
@@ -257,7 +264,9 @@ Throws : N/A
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_REJECT.toUpperCase())){
                 UL_PromotionWorkflowService.rejectWorkflow(promoId,promoLst,false);
             }       
-        }catch(Exception ex){
+        }
+        catch(Exception ex){
+            throw ex ;
           UL_Utility.logError(ex, UserInfo.getUserId());
         }
         return result;
@@ -281,6 +290,47 @@ VERSION     AUTHOR        DATE           DETAIL                 Description
         public boolean Editable;
         public boolean Visible;
     }
+
+/*******************************************************************
+Purpose:   
+Version 1.0
+Parameters: Transaction Id, Promotion Id
+Returns: List of EARUI custom object
+Throws : N/A 
+********************************************************************/ 
+
+global static EARUI getEARightsBOPromotion_SoCo(String txId, String objectId){
+        List<EARUI> earBOPromotion = new List<EARUI>();
+        
+        Map<String, Object> unTypedMap = (Map<String, Object>)JSON.deserializeUntyped(objectId);
+        Id promoId = (Id)unTypedMap.get(UtilityEnum.Id.Name()); 
+        String objectName =  String.valueOf(((Id)promoId).getSObjectType());
+        List<ACCL__Promotion__c> PromoList = new List<ACCL__Promotion__c>();
+        promoList = [SELECT Id, Name,UL_PromotionTemplateType__c, UL_Current_Status__c,UL_Parent_Push_Id__c, ACCL__Sales_Org__c,UL_EnableChild__c,ACCL__Promotion_Template__c FROM ACCL__Promotion__c WHERE Id =:promoId];
+        
+        //for hiding lift field from promotion page when Promotion template is LTA
+                System.debug('UL_PromotionTemplateType__c '+promoList[0].UL_PromotionTemplateType__c);
+                EARUI promoObject = new EARUI();
+                promoObject.Name = 'UL_Lift__c';
+                promoObject.Type = 'Attribute';
+                promoObject.visible = false;
+                earBOPromotion.add(promoObject); 
+
+            //Added to control the visibility of the Lift% on the Tactic Panel . 
+                //Ashish - Added - 18/01/2017
+               /* String TacticLift ='TacticLift'; //= 'ACCL__Lift__c' ;
+                EARUI DrillDown_Lift_Field = new EARUI();
+                DrillDown_Lift_Field.Name = TacticLift;
+                DrillDown_Lift_Field.Type = 'Attribute';
+                DrillDown_Lift_Field.visible = false;  
+                earBOPromotion.add(DrillDown_Lift_Field);
+                //Ashish - End- 18/01/2017*/
+            
+       return promoObject;     
+        
+}
+    
+    
     
     /*******************************************************************
 Purpose:   
@@ -293,22 +343,26 @@ Throws : N/A
     global static List<EARUI> getEARightsBOPromotion(String txId, String objectId){
         
         List<EARUI> earBOPromotion = new List<EARUI>();
+        //getEARightsBOPromotion_SoCo(txId,objectId);
+        //
         try{
             
             Map<String, Object> unTypedMap = (Map<String, Object>)JSON.deserializeUntyped(objectId);
             Id promoId = (Id)unTypedMap.get(UtilityEnum.Id.Name()); 
             String objectName =  String.valueOf(((Id)promoId).getSObjectType());
             List<ACCL__Promotion__c> PromoList = new List<ACCL__Promotion__c>();
-            promoList = [SELECT Id, Name, UL_Current_Status__c,UL_Parent_Push_Id__c, ACCL__Sales_Org__c,UL_EnableChild__c,ACCL__Promotion_Template__c FROM ACCL__Promotion__c WHERE Id =:promoId];
+            promoList = [SELECT Id, Name, UL_Current_Status__c,UL_Parent_Push_Id__c, UL_PromotionTemplateType__c, ACCL__Sales_Org__c,UL_EnableChild__c,ACCL__Promotion_Template__c FROM ACCL__Promotion__c WHERE Id =:promoId];
             //for hiding lift field from promotion page when Promotion template is LTA
-            if(promoList[0].UL_PromotionTemplate_Type__c == 'LTA - Long Term Agreement - AR01'){
-                for(List<ACCL__Promotion__c> promList : [SELECT Id, ACCL__Promotion_Template__r.Name FROM ACCL__Promotion__c WHERE ACCL__Promotion_Template__r.Name = 'LTA - Long Term Agreement AR01']){
+            System.debug('promoList[0].UL_PromotionTemplateType__c::::::::::'+promoList[0].UL_PromotionTemplateType__c);
+            
+            if(promoList[0].UL_PromotionTemplateType__c == 'LTA'){
+                //for(List<ACCL__Promotion__c> promList : [SELECT Id, ACCL__Promotion_Template__r.Name FROM ACCL__Promotion__c WHERE ACCL__Promotion_Template__r.Name = 'LTA - Long Term Agreement AR01']){
                     EARUI promoObject = new EARUI();
                     promoObject.Name = 'UL_Lift__c';
-                    promoObject.Type = 'Attribute';
+                    promoObject.Type = UtilityEnum.Attribute.Name();
                     promoObject.visible = false;
                     earBOPromotion.add(promoObject); 
-                }
+                //}
                 
             }
             String status = promoList[0].UL_Current_Status__c;
@@ -318,20 +372,53 @@ Throws : N/A
             
             
             
-            if((settings != null) &&((promoList[0].ACCL__Sales_Org__c == UL_Utility.SalesOrg.AR01.Name()) ||(promoList[0].ACCL__Sales_Org__c == UL_Utility.SalesOrg.CL01.Name()) ||(promoList[0].ACCL__Sales_Org__c ==UL_Utility.SalesOrg.CL03.Name()))){
-                Schema.FieldSet fldSet = Schema.SObjectType.ACCL__Promotion__c.fieldSets.getMap().get(settings.UL_Fieldset_Name__c);
-                for(Schema.FieldSetMember fld: fldSet.getFields()){ 
-                    
-                    //Ketan - added the following condition since 'Promotion Name' must always be readonly even Promotion is not in approval process.
-                    if(fld.getFieldPath().equalsIgnorecase(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Slogan__c.getName())){
-                        continue;
+            if(((promoList[0].ACCL__Sales_Org__c == UL_Utility.SalesOrg.AR01.Name()) ||(promoList[0].ACCL__Sales_Org__c == UL_Utility.SalesOrg.CL01.Name()) ||(promoList[0].ACCL__Sales_Org__c ==UL_Utility.SalesOrg.CL03.Name()))){
+                
+                if(settings != null){
+                    Schema.FieldSet fldSet = Schema.SObjectType.ACCL__Promotion__c.fieldSets.getMap().get(settings.UL_Fieldset_Name__c);
+                    for(Schema.FieldSetMember fld: fldSet.getFields()){ 
+                        
+                        //Ketan - added the following condition since 'Promotion Name' must always be readonly even Promotion is not in approval process.
+                        /*if(fld.getFieldPath().equalsIgnorecase(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Slogan__c.getName())){
+                            continue;
+                        }*/
+                        EARUI promoObject = new EARUI();
+                        promoObject.Name = fld.getFieldPath();
+                        promoObject.Type = UtilityEnum.Attribute.Name();
+                        promoObject.editable = false;  
+                        earBOPromotion.add(promoObject);
                     }
+                }
+                
+                //-------------Hiding UKI specific fields for SoCo------------------------
+                Schema.FieldSet hidhngFields = Schema.SObjectType.ACCL__Promotion__c.fieldSets.getMap().get('UL_SoCo_Hidden_Fields');
+                for(Schema.FieldSetMember fld: hidhngFields.getFields()){ 
+                    
                     EARUI promoObject = new EARUI();
                     promoObject.Name = fld.getFieldPath();
                     promoObject.Type = UtilityEnum.Attribute.Name();
-                    promoObject.editable = false;  
+                    promoObject.Visible = false;  
                     earBOPromotion.add(promoObject);
                 }
+                
+                //------------------Disabling Buttons for SoCo when Status is not Planning------------------------
+                System.debug('Hiding Promotion Buttons:::'+status);
+                if(status!='Planning'){
+                    EARUI promObject= new EARUI();
+                    promObject.Name = 'TOOLBAR_BTN_ADDTACTIC';
+                    promObject.Type = UtilityEnum.UIElement.Name();
+                    promObject.Visible= false;  
+                    earBOPromotion.add(promObject);
+                }
+                
+                //Ketan - added the following code since 'Promotion Name' should always be readonly even Promotion is not in approval process.
+                EARUI promoObject = new EARUI();
+                promoObject.Name = Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Slogan__c.getName();
+                promoObject.Type = UtilityEnum.Attribute.Name();
+                promoObject.editable = false;  
+                earBOPromotion.add(promoObject);
+                
+                
             }
             
             //Added by Abhishek for the visibility control of buttons for UKI
@@ -389,12 +476,7 @@ Throws : N/A
                     }
                 }
             
-            //Ketan - added the following code since 'Promotion Name' should always be readonly even Promotion is not in approval process.
-            EARUI promoObject = new EARUI();
-            promoObject.Name = Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Slogan__c.getName();
-            promoObject.Type = UtilityEnum.Attribute.Name();
-            promoObject.editable = false;  
-            earBOPromotion.add(promoObject);
+            
             
         }catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
@@ -431,54 +513,135 @@ Throws : N/A
     global static List<EARUI> getEARightsLOTactic(String txId, String objectId){
         List<EARUI> earBOTactic = new List<EARUI>();
         ACCL__Promotion__c promo = new ACCL__Promotion__c();
+        
         try{
             Map<String, Object> unTypedMap = (Map<String, Object>)JSON.deserializeUntyped(objectId);
-            Id tacticId = (Id)unTypedMap.get(UtilityEnum.parentId.Name()); 
-            List<ACCL__tactic__c> taclst = new List<ACCL__tactic__c>();
+            Id tacticParentId = (Id)unTypedMap.get(UtilityEnum.parentId.Name());
+            /*if(promo.ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c == 'LTA'){
+                Map<String, Schema.FieldSetMember> fldMap = new Map<String, Schema.FieldSetMember>();
+                String fieldSetName = 'UL_UKI_LTA_Rate_Per_Case';
+                system.debug('fieldSetName ::: '+fieldSetName);
+                for(Schema.FieldSetMember fld : SObjectType.ACCL__Tactic__c.FieldSets.getMap().get(fieldSetName).getFields()){
+                    fldMap.put(fld.getFieldPath().toLowerCase(), fld);
+                }
+                system.debug('fldMap ::: '+fldMap);
+                system.debug(':::: '+[Select Id from ACCL__tactic__c where ACCL__Promotion__c =:tacticParentId LIMIT 1]);
+
+                Map<String, Schema.SObjectField> fldObjTacticMap = schema.SObjectType.ACCL__Tactic__c.fields.getMap();
+                system.debug('fldObjTacticMap ::: '+fldObjTacticMap);
+                for(String fieldPathName : fldObjTacticMap.keySet()){
+                    if(fldMap.containsKey(fieldPathName)){
+                        EARUI tacticObject = new EARUI();
+                        tacticObject.Name = fldObjTacticMap.get(fieldPathName).getDescribe().getName();
+                        tacticObject.Type = 'Attribute';
+                        tacticObject.visible = True;  
+                        earBOTactic.add(tacticObject);
+                    } else {
+                        EARUI tacticObject = new EARUI();
+                        tacticObject.Name = fldObjTacticMap.get(fieldPathName).getDescribe().getName();
+                        tacticObject.Type = 'Attribute';
+                        tacticObject.visible = False;  
+                        earBOTactic.add(tacticObject);
+                    }
+                }
+            }*/
+
             
+            promo=[Select Id,UL_EnableChild__c, UL_Current_Status__c, UL_Parent_Push_Id__c, UL_PromotionTemplateType__c from ACCL__Promotion__c where ID =:tacticParentId LIMIT 1];
+            List<ACCL__tactic__c> taclst = new List<ACCL__tactic__c>();
+            //System.debug('promo.UL_PromotionTemplateType__c::::::::::'+promo.UL_PromotionTemplateType__c);
             //for hiding lift field from Tactic page if tactic template is Long Term Agreement
-            if(promo.UL_PromotionTemplate_Type__c == 'LTA - Long Term Agreement - AR01'){
-                for(List<ACCL__tactic__c> tactList : [SELECT Id, ACCL__Tactic_Template__r.Name,ACCL__Promotion__c FROM ACCL__tactic__c WHERE ACCL__Tactic_Template__r.Name = 'Long Term Agreement AR']){
+            if(promo.UL_PromotionTemplateType__c == 'LTA'){
+                //for(List<ACCL__tactic__c> tactList : [SELECT Id, ACCL__Tactic_Template__r.Name,ACCL__Promotion__c FROM ACCL__tactic__c WHERE ACCL__Tactic_Template__r.Name = 'Long Term Agreement AR']){
                     EARUI tacticObject = new EARUI();
-                    tacticObject.Name = 'ACCL__Lift__c';
-                    tacticObject.Type = 'Attribute';
+                    tacticObject.Name = 'Lift__c';
+                    tacticObject.Type = UtilityEnum.Attribute.Name();
                     tacticObject.visible = false; 
                     System.debug('tacticObject.visible'); 
                     earBOTactic.add(tacticObject);
-                }   
+                //}   
             }
-            promo=[Select Id,UL_EnableChild__c,UL_Parent_Push_Id__c from ACCL__Promotion__c where ID =:tacticId LIMIT 1];
-            taclst = [Select Id from ACCL__tactic__c where ACCL__Promotion__c =:tacticId LIMIT 1];
+            
+            //Hiding Tactic Buttons
+            System.debug('Hiding Tacting Buttons:::'+promo.UL_Current_Status__c);
+            if(promo.UL_Current_Status__c!='Planning'){
+                EARUI tacticObject= new EARUI();
+                tacticObject.Name = 'TACTIC_BTN_MANAGE_PRODS';
+                tacticObject.Type = UtilityEnum.UIElement.Name();
+                tacticObject.Visible= false;  
+                earBOTactic.add(tacticObject);
+                
+                EARUI tacticObject1= new EARUI();
+                tacticObject1.Name = 'TACTIC_BTN_MANAGE_FUNDS';
+                tacticObject1.Type = UtilityEnum.UIElement.Name();
+                tacticObject1.Visible= false;  
+                earBOTactic.add(tacticObject1);
+                
+                EARUI tacticObject2= new EARUI();
+                tacticObject2.Name = 'TACTIC_BTN_MANAGE_TIERS';
+                tacticObject2.Type = UtilityEnum.UIElement.Name();
+                tacticObject2.Visible= false;  
+                earBOTactic.add(tacticObject2);
+                
+                EARUI tacticObject3= new EARUI();
+                tacticObject3.Name = 'TACTIC_FUNDS_CHECKBOX';
+                tacticObject3.Type = UtilityEnum.UIElement.Name();
+                tacticObject3.Visible= false;  
+                earBOTactic.add(tacticObject3);
+            }
+            
+            taclst = [Select Id, ACCL__Tactic_Template__r.UL_Redemption_Required__c from ACCL__tactic__c where ACCL__Promotion__c =:tacticParentId LIMIT 1];
+            
+            System.debug('taclst::::'+taclst);
             if(taclst.size() > 0){
-                tacticId = taclst[0].Id;
-                String objectName =  String.valueOf(((Id)tacticId).getSObjectType());
-                List<ACCL__Tactic__c> tacticList = new List<ACCL__Tactic__c>();
-                tacticList = [SELECT Id, Name, ACCL__Promotion__r.UL_Current_Status__c FROM ACCL__Tactic__c WHERE Id =:tacticId];
-                String status = tacticList[0].ACCL__Promotion__r.UL_Current_Status__c;
-                objectName = objectName.replace(UL_Utility.MANAGEDPACKAGE_NAMESPACE, UL_Utility.EMPTY_STRING);
-                objectName = objectName.replace(CUSTOM_OBJECT_POSTFIX,UL_Utility.EMPTY_STRING);
-                UL_SmartUIEditability__c settings = UL_SmartUIEditability__c.getValues(objectName+UL_Utility.UNDERSCORE+status);
-                if(settings != null){
-                    Schema.FieldSet fldSet = Schema.SObjectType.ACCL__Tactic__c.fieldSets.getMap().get(settings.UL_Fieldset_Name__c);
-                    for(Schema.FieldSetMember fld: fldSet.getFields()){ 
+                for(ACCL__tactic__c tactic : taclst){
+                    Id tacticId = tactic.Id;
+                    String objectName =  String.valueOf(((Id)tacticId).getSObjectType());
+                    List<ACCL__Tactic__c> tacticList = new List<ACCL__Tactic__c>();
+                    tacticList = [SELECT Id, Name, ACCL__Promotion__r.UL_Current_Status__c FROM ACCL__Tactic__c WHERE Id =:tacticId];
+                    String status = tacticList[0].ACCL__Promotion__r.UL_Current_Status__c;
+                    objectName = objectName.replace(UL_Utility.MANAGEDPACKAGE_NAMESPACE, UL_Utility.EMPTY_STRING);
+                    objectName = objectName.replace(CUSTOM_OBJECT_POSTFIX,UL_Utility.EMPTY_STRING);
+                    UL_SmartUIEditability__c settings = UL_SmartUIEditability__c.getValues(objectName+UL_Utility.UNDERSCORE+status);
+                    if(settings != null){
+                        Schema.FieldSet fldSet = Schema.SObjectType.ACCL__Tactic__c.fieldSets.getMap().get(settings.UL_Fieldset_Name__c);
+                        for(Schema.FieldSetMember fld: fldSet.getFields()){ 
+                            
+                            EARUI tacticObject = new EARUI();
+                            tacticObject.Name = fld.getFieldPath();
+                            tacticObject.Type = UtilityEnum.Attribute.Name();
+                            tacticObject.editable = false;  
+                            earBOTactic.add(tacticObject);
+                        }
                         
-                        EARUI tacticObject = new EARUI();
-                        tacticObject.Name = fld.getFieldPath();
-                        tacticObject.Type = UtilityEnum.Attribute.Name();
-                        tacticObject.editable = false;  
-                        earBOTactic.add(tacticObject);
+                        //Soumyodeep
+                        EARUI buttonOnTactic = new EARUI();
+                        buttonOnTactic.Name = UtilityEnum.PP_BTN_MANAGE_PRODS.Name();
+                        //buttonOnTactic.Name = 'Manage Products';
+                        buttonOnTactic.Type = UtilityEnum.UIElement.Name();
+                        buttonOnTactic.editable = false;
+                        buttonOnTactic.Visible = false;
+                        earBOTactic.add(buttonOnTactic);
+                        //Soumyodeep
                     }
                     
-                    //Soumyodeep
-                    EARUI buttonOnTactic = new EARUI();
-                    buttonOnTactic.Name = UtilityEnum.PP_BTN_MANAGE_PRODS.Name();
-                    //buttonOnTactic.Name = 'Manage Products';
-                    buttonOnTactic.Type = UtilityEnum.UIElement.Name();
-                    buttonOnTactic.editable = false;
-                    buttonOnTactic.Visible = false;
-                    earBOTactic.add(buttonOnTactic);
-                    //Soumyodeep
-                } 
+                    //-----------Redemption - TPM 1775 - Omkar---------------
+                    System.debug('tactic.ACCL__Tactic_Template__r.UL_Redemption_Required__c::::::'+tactic.ACCL__Tactic_Template__r.UL_Redemption_Required__c);
+                    if(!tactic.ACCL__Tactic_Template__r.UL_Redemption_Required__c){
+                        EARUI tacticObject = new EARUI();
+                        tacticObject.Name = 'UL_Redemption__c';
+                        tacticObject.Type = UtilityEnum.Attribute.Name();
+                        tacticObject.Visible = false;                  
+                        earBOTactic.add(tacticObject);
+                    }
+                }
+            }
+            else{
+                EARUI tacticObject = new EARUI();
+                tacticObject.Name = 'UL_Redemption__c';
+                tacticObject.Type = UtilityEnum.Attribute.Name();
+                tacticObject.Visible = false;                  
+                earBOTactic.add(tacticObject);
             }
             if(promo.UL_EnableChild__c == true){
                 system.debug('UL_EnableChild__c IS TRUE');
@@ -1634,6 +1797,39 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         return result;    
     }
     
+    private static Boolean hasTacticAssignedFund(Id promotionId){
+        Boolean result = UL_Utility.BOOLEAN_FALSE;
+        
+        if(promotionId != null){        
+            //Get promotion sales org
+            ACCL__Promotion__c promotion = [SELECT ACCL__Sales_Org__c, (SELECT id FROM ACCL__Tactics__r) FROM ACCL__Promotion__c WHERE id=:promotionId];
+            
+            //Get parent sales org. E.g for AR01, parent sales org is SoCo
+            String parentSalesOrg = UL_Utility.getParentSalesOrg(promotion.ACCL__Sales_Org__c);
+            
+            //Validate only for SoCo org
+            if(String.isNotEmpty(promotion.ACCL__Sales_Org__c) && UL_Utility.SalesOrg.SoCo.Name().equalsIgnoreCase(parentSalesOrg)){    
+                Set<id> tacticIdSet = null;
+                if(promotion.ACCL__Tactics__r != null){
+                    tacticIdSet = new Set<id>();
+                    for(ACCL__Tactic__c tactic: promotion.ACCL__Tactics__r){
+                        tacticIdSet.add(tactic.id);
+                    }
+                }
+                
+                if(tacticIdSet != null && tacticIdSet.size() > 0){
+                    for(ACCL__Tactic_Fund__c tacticFund : [SELECT ACCL__Tactic__c FROM ACCL__Tactic_Fund__c WHERE ACCL__Tactic__c IN :tacticIdSet]){
+                        tacticIdSet.remove(tacticFund.ACCL__Tactic__c);
+                    }
+                
+                    if(tacticIdSet.size() == 0){
+                        result = UL_Utility.BOOLEAN_TRUE;
+                    }
+                }
+            }
+        }
+        return result;    
+    }
     
     private class updateException extends Exception{}
 }
