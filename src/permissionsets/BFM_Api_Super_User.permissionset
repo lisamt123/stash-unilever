@@ -8,8 +8,16 @@
         <apexClass>BFM_AccountDAO</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_AccountDAO_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_AccountMoreDetailsController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_AccountMoreDetailsController_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -22,34 +30,58 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_BulkOccurrenceQuery</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_BulkOccurrenceQuery_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_BulkShipmentQuery</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_BulkShipmentQuery_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_CCeHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_CCeHandler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_CPFValidator</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_CTeSearch_CC</apexClass>
+	<classAccesses>
+        <apexClass>BFM_CPFValidator_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_CommunitiesSelfRegController_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_CommunitiesSelfRegController_CC_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_CreateAccessRequest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_CreateAccessRequest_test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_CreateCarrierUser</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_CreateCarrierUser_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -60,12 +92,20 @@
         <apexClass>BFM_CreateUserQueueable</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_CreateUserQueueable_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_FileConnector</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_GeneralServiceCalls</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_GeneralServiceCalls_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -82,6 +122,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_OccurrenceHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_OccurrenceHandler_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
