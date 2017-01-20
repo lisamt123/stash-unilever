@@ -126,6 +126,13 @@
         <shortDescription>Shipment_Instore_validation</shortDescription>
         <value>Shipment Start Date should be on or before In-Store Start Date!</value>
     </labels>
+	<labels>
+        <fullName>UL_Duplicate_Record_Found</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Duplicate_Record_Found</shortDescription>
+        <value>Dates are overlapping with existing records for same deliver profile.</value>
+    </labels>
     <labels>
         <fullName>UL_ADD_CUSTOMER_TO</fullName>
         <categories>Add Customer Page</categories>
