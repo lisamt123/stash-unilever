@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<cfsavecontent variable="local.body"><?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
 <labels>
 <fullName>BFM_Invalid_CPF_Format</fullName>
@@ -57,3 +57,4 @@
 <value>No email was found for the requested carriers. An internal workflow has been fired, please contact &email for further informati</value>
 </labels>    
 </CustomLabels>
+</cfsavecontent>

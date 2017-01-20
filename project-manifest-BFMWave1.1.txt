@@ -153,6 +153,9 @@ src/homePageLayouts/BFM Home Page.homePageLayout
 src/labels
 src/labels/BFM.labels
 src/labels/CustomLabels.labels
+src/translations
+src/translations/en_US.translation
+src/translations/pt_BR.translation
 src/layouts/BFM_AccountAccessRequest__c-BFM Account Access Request Layout.layout
 src/layouts/BFM_Bank_Information__c-BFM Bank Information Layout.layout
 src/layouts/BFM_Company_Code__c-Company Code Layout.layout

@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customApplications>
-        <label>Canal Móvel</label>
-        <name>ICB_Mobile_Channel</name>
-    </customApplications>
+    <customLabels>
+        <label><!-- Agent Report Success --></label>
+        <name>AA_Agent_Report_Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Action --></label>
+        <name>AF_Action</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Adapation --></label>
+        <name>AF_Adapation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Adaptation_Value --></label>
+        <name>AF_Adaptation_Value</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Add_Comment --></label>
+        <name>AF_Add_Comment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Adjust_BonusableFees --></label>
+        <name>AF_Adjust_BonusableFees</name>
+    </customLabels>
     <customLabels>
         <label><!-- AF Adjust Quarters --></label>
         <name>AF_Adjust_Quarters</name>
@@ -25,12 +45,56 @@
         <name>AF_AgencyUrlLink</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_Agency_Base_Fee --></label>
+        <name>AF_Agency_Base_Fee</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Agency_Base_Fees --></label>
+        <name>AF_Agency_Base_Fees</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_Agency Bonus Access --></label>
         <name>AF_Agency_Bonus_Access</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_Agency_Brand_Created --></label>
+        <name>AF_Agency_Brand_Created</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Agency_Brand_Exists --></label>
+        <name>AF_Agency_Brand_Exists</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Agency_Entities --></label>
+        <name>AF_Agency_Entities</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Agency_Entity --></label>
+        <name>AF_Agency_Entity</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_AnnualBonus_Qual --></label>
         <name>AF_AnnualBonus_Qual</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Annual_Bonus --></label>
+        <name>AF_Annual_Bonus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Bonusable_Fees --></label>
+        <name>AF_Annual_Bonus_Fees</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Approval_Process --></label>
+        <name>AF_Approval_Process</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Approve_record --></label>
+        <name>AF_Approve_record</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Attach_File --></label>
+        <name>AF_Attach_File</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_BFML-Label_4k7g --></label>
@@ -45,6 +109,30 @@
         <name>AF_BNMXLB_Override</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_Base_Fee --></label>
+        <name>AF_Base_Fee</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Base_Fee_Matrix --></label>
+        <name>AF_Base_Fee_Matrix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Base_Fee_Name --></label>
+        <name>AF_Base_Fee_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Base_Fee_Quarter --></label>
+        <name>AF_Base_Fee_Quarter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Base_Fee_Updated --></label>
+        <name>AF_Base_Fee_Updated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Base_Fees --></label>
+        <name>AF_Base_Fees</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_BonusMatrixHelp --></label>
         <name>AF_BonusMatrixHelp</name>
     </customLabels>
@@ -57,8 +145,32 @@
         <name>AF_BonusSummaryId</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_BonusThershold_Mismatch --></label>
+        <name>AF_BonusThershold_Mismatch</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Bonus_Matrix --></label>
+        <name>AF_Bonus_Matrix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Bonus_Quarterly --></label>
+        <name>AF_Bonus_Quarterly</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Bonus_Value --></label>
+        <name>AF_Bonus_Value</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Bonus threshold error message --></label>
         <name>AF_Bonus_threshold_error_message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Bonusable_Fees --></label>
+        <name>AF_Bonusable_Fee</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Bonusable_Fees --></label>
+        <name>AF_Bonusable_Fees</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_BrandEstimateDisplayText --></label>
@@ -73,8 +185,20 @@
         <name>AF_BrandEstimate_TriggerDate</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_Brand_Remuneration --></label>
+        <name>AF_Brand_Remuneration</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_Brandestimate --></label>
         <name>AF_Brandestimate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Brandestimate_Archived --></label>
+        <name>AF_Brandestimate_Archived</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Brandestimate_Status --></label>
+        <name>AF_Brandestimate_Status</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_CMCO_Rights --></label>
@@ -93,6 +217,18 @@
         <name>AF_Central_Billing_Hub</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_Check_Base_Fees --></label>
+        <name>AF_Check_Base_Fees</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Comment --></label>
+        <name>AF_Comment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Comments --></label>
+        <name>AF_Comments</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_CommunityLink --></label>
         <name>AF_CommunityLink</name>
     </customLabels>
@@ -101,12 +237,48 @@
         <name>AF_ControllerReview</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_Country_Breakdown --></label>
+        <name>AF_Country_Breakdown</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Country breakdown percentage --></label>
         <name>AF_Country_breakdown_percentage</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_Country_selected --></label>
+        <name>AF_Country_selected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Cross_Border_Po --></label>
+        <name>AF_Cross_Border_Po</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Currency --></label>
+        <name>AF_Currency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Current_Base_Fee --></label>
+        <name>AF_Current_Base_Fee</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Delete --></label>
+        <name>AF_Delete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Digital --></label>
+        <name>AF_Digital</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Digital_Value --></label>
+        <name>AF_Digital_Value</name>
+    </customLabels>
+    <customLabels>
         <label><!-- To store the document id for the help page for Agency Fee Application --></label>
         <name>AF_DocumentId</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Document_Saved --></label>
+        <name>AF_Document_Saved</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_DummyUserID --></label>
@@ -117,12 +289,32 @@
         <name>AF_Dummy_User</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_EX_Rate --></label>
+        <name>AF_EX_Rate</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Email To CatFinance --></label>
         <name>AF_Email_To_CatFinance</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_Enter_Qual --></label>
+        <name>AF_Enter_Qual</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_EntityException --></label>
         <name>AF_EntityException</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Financial_Year --></label>
+        <name>AF_Financial_Year</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Flag_Record --></label>
+        <name>AF_Flag_Record</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Insert --></label>
+        <name>AF_Insert</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_LP-2nyf --></label>
@@ -169,6 +361,10 @@
         <name>AF_LP_y81a</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_Local_value --></label>
+        <name>AF_Local_value</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Lock Records --></label>
         <name>AF_Lock</name>
     </customLabels>
@@ -177,8 +373,28 @@
         <name>AF_Mandatory_Fields</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_Missing_Quarters --></label>
+        <name>AF_Missing_Quarters</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_NoBonus --></label>
+        <name>AF_NoBonus</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF No Bonus --></label>
         <name>AF_No_Bonus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_No_Records_To_Notify --></label>
+        <name>AF_No_Records_To_Notify</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Note --></label>
+        <name>AF_Note</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPS --></label>
+        <name>AF_OOPS</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_OOPSMX-General_feedback --></label>
@@ -197,8 +413,24 @@
         <name>AF_OOPS_Approval</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_OOPS_Donot_Exist --></label>
+        <name>AF_OOPS_Donot_Exist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPS_Estimate --></label>
+        <name>AF_OOPS_Estimate</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_OOPS_Help --></label>
         <name>AF_OOPS_Help</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPS_Matrix --></label>
+        <name>AF_OOPS_Matrix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPS_Override --></label>
+        <name>AF_OOPS_Override</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_OOPS_Reject --></label>
@@ -217,12 +449,32 @@
         <name>AF_OopsPercentage</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_OverAll_Bonus --></label>
+        <name>AF_OverAll_Bonus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Override_Bonus --></label>
+        <name>AF_Override_Bonus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Override_Bonus --></label>
+        <name>AF_Override_Bonus_Value</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_PONumberTab_Header --></label>
         <name>AF_PONumberTab_Header</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_POOveride_Warning --></label>
         <name>AF_POOveride_Warning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_PO_Number --></label>
+        <name>AF_PO_Number</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_PO_Override --></label>
+        <name>AF_PO_Override</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_PO_OverrideHelp --></label>
@@ -233,24 +485,212 @@
         <name>AF_PiliotError_message</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_Pilot_Model --></label>
+        <name>AF_Pilot_Model</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Pilot_Model_Bonus --></label>
+        <name>AF_Pilot_Model_Bonus</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Pilot Model Instructions --></label>
         <name>AF_Pilot_Model_Instructions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Pooveride --></label>
+        <name>AF_Pooveride</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Process --></label>
+        <name>AF_Process</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Qualitative_Bonus --></label>
+        <name>AF_Qualitative_Bonus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Quant --></label>
+        <name>AF_Quant</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Quant_Fields --></label>
+        <name>AF_Quant_Fields</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Quantative_Bonus --></label>
+        <name>AF_Quantative_Bonus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Quantitative_Bonus --></label>
+        <name>AF_Quantitative_Bonus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Quantitative_Result --></label>
+        <name>AF_Quantitative_Result</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Quantitative_Results --></label>
+        <name>AF_Quantitative_Results</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Quarter_Below --></label>
+        <name>AF_Quarter_Below</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_QuarterlyBonus --></label>
         <name>AF_QuarterlyBonus</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_QueryFailed --></label>
+        <name>AF_QueryFailed</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_RaiseNewPOConfirmMsg --></label>
         <name>AF_RaiseNewPOConfirmMsg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_RaiseNewPO_ValidRecords --></label>
+        <name>AF_RaiseNewPO_ValidRecords</name>
     </customLabels>
     <customLabels>
         <label><!-- AF Raise New PO --></label>
         <name>AF_Raise_New_PO</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_Reconcile --></label>
+        <name>AF_Reconcile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Record_Locked --></label>
+        <name>AF_Record_Locked</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Record_Save --></label>
+        <name>AF_Record_Save</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Record_Submitted --></label>
+        <name>AF_Record_Submitted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Record_Success --></label>
+        <name>AF_Record_Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Record_Unsaved --></label>
+        <name>AF_Record_Unsaved</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Record_saved --></label>
+        <name>AF_Record_saved</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Records_Processing --></label>
+        <name>AF_Records_Processing</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Records_saved --></label>
+        <name>AF_Records_saved</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Refreshed --></label>
+        <name>AF_Refreshed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Required_Result --></label>
+        <name>AF_Required_Result</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Review_Completed --></label>
+        <name>AF_Review_Completed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Reviews --></label>
+        <name>AF_Reviews</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Select_Agency --></label>
+        <name>AF_Select_Agency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Select_Brand --></label>
+        <name>AF_Select_Brand</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Select_Country --></label>
+        <name>AF_Select_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Select_Current_BaseFee --></label>
+        <name>AF_Select_Current_BaseFee</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Select_Quarter --></label>
+        <name>AF_Select_Quarter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Select_Trad_Digital --></label>
+        <name>AF_Select_Trad_Digital</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Select_Type --></label>
+        <name>AF_Select_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Sent_Email --></label>
+        <name>AF_Sent_Email</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Status --></label>
+        <name>AF_Status</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Submitted --></label>
+        <name>AF_Submitted</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_Success --></label>
         <name>AF_Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_System_Admin --></label>
+        <name>AF_System_Admin</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Thershold_Entity --></label>
+        <name>AF_Thershold_Entity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Thershold_Failing --></label>
+        <name>AF_Thershold_Failing</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Thershold_Fields --></label>
+        <name>AF_Thershold_Fields</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Thershold_Mismatch --></label>
+        <name>AF_Thershold_Mismatch</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Thershold_Setting --></label>
+        <name>AF_Thershold_Setting</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Thershold_Used --></label>
+        <name>AF_Thershold_Used</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Total --></label>
+        <name>AF_Total</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Traditional --></label>
+        <name>AF_Traditional</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Traditional_Value --></label>
+        <name>AF_Traditional_Value</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_TriggerDate --></label>
@@ -265,8 +705,48 @@
         <name>AF_UBFLB_Type_of_Fees</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_Uncheck_pilot --></label>
+        <name>AF_Uncheck_pilot</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Unilever_Base_Fees --></label>
+        <name>AF_Unilever_Base_Fees</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Unilever_Entity --></label>
+        <name>AF_Unilever_Entity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Unilever_Estimate --></label>
+        <name>AF_Unilever_Estimate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Unilever_Targets --></label>
+        <name>AF_Unilever_Targets</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Update --></label>
+        <name>AF_Update</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Updated_successfully --></label>
+        <name>AF_Updated_successfully</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Upsert --></label>
+        <name>AF_Upsert</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_UrlLink --></label>
         <name>AF_UrlLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_User_Access --></label>
+        <name>AF_User_Access</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Users_Brand --></label>
+        <name>AF_Users_Brand</name>
     </customLabels>
     <customLabels>
         <label><!-- ViewAllHistory_AgencyEstimates --></label>
@@ -279,6 +759,10 @@
     <customLabels>
         <label><!-- ViewAllHistory_oopEstimate --></label>
         <name>AF_ViewAllHistory_oopEstimate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_YTG --></label>
+        <name>AF_YTG</name>
     </customLabels>
     <customLabels>
         <label><!-- AF Yes Bonus --></label>
@@ -297,16 +781,1004 @@
         <name>AF_oopsActualId</name>
     </customLabels>
     <customLabels>
-        <label><!-- ALMS_My_Training --></label>
+        <label><!-- Back to achievement link --></label>
+        <name>ALMS_Achievement_Back</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Achievement In Review --></label>
+        <name>ALMS_Achievement_In_Review</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Achievements --></label>
+        <name>ALMS_Achievements</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Action --></label>
+        <name>ALMS_Action</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Activities --></label>
+        <name>ALMS_Activities</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add Answer Sequence Item Button --></label>
+        <name>ALMS_Add_Answer_Sequence_Item</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Additional Information --></label>
+        <name>ALMS_Additional_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Additional Options --></label>
+        <name>ALMS_Additional_Options</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Additional Report Options title --></label>
+        <name>ALMS_Additional_Report_Options</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Additional Report Options message --></label>
+        <name>ALMS_Additional_Report_Options_Msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Approve --></label>
+        <name>ALMS_Approve</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Unauthorized approver error message --></label>
+        <name>ALMS_Approver_Not_Authorized</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Approver Notes Field --></label>
+        <name>ALMS_Approver_Notes_Field</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Approver Notes Message --></label>
+        <name>ALMS_Approver_Notes_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assign --></label>
+        <name>ALMS_Assign</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Learning Assignment approve message --></label>
+        <name>ALMS_Assignment_Approve_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignments Batch Operations --></label>
+        <name>ALMS_Assignments_Batch_Operations</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignment delete success message --></label>
+        <name>ALMS_Assignments_Deleted_Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignment No External Results Message --></label>
+        <name>ALMS_Assignments_No_External_Results_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignment No Results Message --></label>
+        <name>ALMS_Assignments_No_Results_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignment Results --></label>
+        <name>ALMS_Assignments_Results</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignment update success message --></label>
+        <name>ALMS_Assignments_Updated_Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Return to Salesforce link --></label>
+        <name>ALMS_Back_SF</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Back to previous page --></label>
+        <name>ALMS_Back_To_Previous_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Badge Information section --></label>
+        <name>ALMS_Badge_Info</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Badge Selection section --></label>
+        <name>ALMS_Badge_Selection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Success message for batch deletion --></label>
+        <name>ALMS_Batch_Delete_Queued_Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Batch update process queued successfully --></label>
+        <name>ALMS_Batch_Updated_Queued_Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Boolean false value --></label>
+        <name>ALMS_Boolean_False</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Boolean Question --></label>
+        <name>ALMS_Boolean_Question</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Boolean true value --></label>
+        <name>ALMS_Boolean_True</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD/FLS Create --></label>
+        <name>ALMS_CRUD_FLS_Create</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD/FLS Delete --></label>
+        <name>ALMS_CRUD_FLS_Delete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD/FLS Update --></label>
+        <name>ALMS_CRUD_FLS_Update</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD/FLS View --></label>
+        <name>ALMS_CRUD_FLS_View</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Cancel --></label>
+        <name>ALMS_Cancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ALMOND_Category --></label>
+        <name>ALMS_Category</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignment chatter notification greeting --></label>
+        <name>ALMS_Chatter_Notification_Greeting</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Chatter assignment notification message part 1 --></label>
+        <name>ALMS_Chatter_Notification_Message_1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Chatter assignment notification message part 2 --></label>
+        <name>ALMS_Chatter_Notification_Message_2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Click --></label>
+        <name>ALMS_Click</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Close --></label>
+        <name>ALMS_Close</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Community Id --></label>
+        <name>ALMS_Community_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Complete Previous --></label>
+        <name>ALMS_Complete_Previous</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Complete Success --></label>
+        <name>ALMS_Complete_Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ALMOND_Completed --></label>
+        <name>ALMS_Completed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation Alert --></label>
+        <name>ALMS_Confirm_Alert</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Content Preview --></label>
+        <name>ALMS_Content_Previewed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Continue --></label>
+        <name>ALMS_Continue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Continue Old Version --></label>
+        <name>ALMS_Continue_Old_Version</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Create Assignments --></label>
+        <name>ALMS_Create_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Default chatter message for acquired achievements --></label>
+        <name>ALMS_Default_Achievement_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error message for inserting badge records --></label>
+        <name>ALMS_Default_Error_Inserting_Badge</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error message for inserting feed item --></label>
+        <name>ALMS_Default_Error_Inserting_Feed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error message for inserting thanks records --></label>
+        <name>ALMS_Default_Error_Inserting_Thanks</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Update --></label>
+        <name>ALMS_Delete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete all Assignments --></label>
+        <name>ALMS_Delete_All_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Detail --></label>
+        <name>ALMS_Detail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Duration --></label>
+        <name>ALMS_Duration</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignment Page Email --></label>
+        <name>ALMS_Email</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Export Training Plan --></label>
+        <name>ALMS_Export_Training_Plan</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Export Training Track --></label>
+        <name>ALMS_Export_Training_Track</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Feedback --></label>
+        <name>ALMS_Feedback</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Feedback Comments --></label>
+        <name>ALMS_Feedback_Comments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Feedback with existing rating error message --></label>
+        <name>ALMS_Feedback_Existing_Rating</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Missing feedback comments error message --></label>
+        <name>ALMS_Feedback_Missing_Comments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Feedback with no comments or rating --></label>
+        <name>ALMS_Feedback_No_Data</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Feedback Rating --></label>
+        <name>ALMS_Feedback_Rating</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Feedback Submit --></label>
+        <name>ALMS_Feedback_Submit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Feedback submitted message --></label>
+        <name>ALMS_Feedback_Submitted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Checkbox for filtering existing assignments --></label>
+        <name>ALMS_Filter_Existing_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Filters --></label>
+        <name>ALMS_Filters</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignment Page First Name --></label>
+        <name>ALMS_First_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Generic Error message --></label>
+        <name>ALMS_Generic_Error_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Hours Abbreviation --></label>
+        <name>ALMS_Hours_Abbreviation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Import Assignments --></label>
+        <name>ALMS_Import_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Import Assignments from Report Button --></label>
+        <name>ALMS_Import_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Import from Report --></label>
+        <name>ALMS_Import_From_Report</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Import Assignments from Report Message --></label>
+        <name>ALMS_Import_Report_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ALMOND_InProgress --></label>
+        <name>ALMS_InProgress</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Insufficient CRUD/FLS permissions --></label>
+        <name>ALMS_Insufficient_CRUD_FLS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Intro Video --></label>
+        <name>ALMS_Intro_Video</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error message for invalid assignment id --></label>
+        <name>ALMS_Invalid_Assignment_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error message for invalid category id --></label>
+        <name>ALMS_Invalid_Category_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Invalid Import Data --></label>
+        <name>ALMS_Invalid_Import_Data</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Invalid Parameters error message --></label>
+        <name>ALMS_Invalid_Parameters_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Invalid user for single assignment --></label>
+        <name>ALMS_Invalid_Single_User</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete TPlan Section Item Assignments Warning --></label>
+        <name>ALMS_Item_Assignments_Delete_Warning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Section Item Delete Assignments Button --></label>
+        <name>ALMS_Item_Delete_Assignments_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignment Page Last Name --></label>
+        <name>ALMS_Last_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Launch --></label>
+        <name>ALMS_Launch</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Launch New Version --></label>
+        <name>ALMS_Launch_New_Version</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Learning --></label>
+        <name>ALMS_Learning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Learning Assignment --></label>
+        <name>ALMS_Learning_Assignment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Back to learning assignment link --></label>
+        <name>ALMS_Learning_Assignment_Back</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Back to learning link --></label>
+        <name>ALMS_Learning_Back</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Learning Home --></label>
+        <name>ALMS_Learning_Home</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Linked Work.com badge message --></label>
+        <name>ALMS_Linked_Work_Badge_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Load JSON --></label>
+        <name>ALMS_Load_JSON</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage Achievements --></label>
+        <name>ALMS_Manage_Achievements</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage Assignments --></label>
+        <name>ALMS_Manage_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignment Page Manager --></label>
+        <name>ALMS_Manager</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Max chars reached for approver notes message --></label>
+        <name>ALMS_Max_Approver_Notes_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Update Achievements Assignments Message --></label>
+        <name>ALMS_Message_Achievements_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Minutes abbreviation --></label>
+        <name>ALMS_Minutes_Abbreviation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Missing folder selection error message --></label>
+        <name>ALMS_Missing_Report_Folder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Missing report selection error message --></label>
+        <name>ALMS_Missing_Report_Item</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Missing Work.com badge message --></label>
+        <name>ALMS_Missing_Work_Badge_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ALMOND_MyProfile --></label>
+        <name>ALMS_MyProfile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- My Training --></label>
         <name>ALMS_My_Training</name>
     </customLabels>
     <customLabels>
-        <label><!-- ALMS_PublicCatalog --></label>
+        <label><!-- New Question --></label>
+        <name>ALMS_New_Question</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- New training plan ribbon --></label>
+        <name>ALMS_New_Training_Plan</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- New Version available --></label>
+        <name>ALMS_New_Version_available</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Next --></label>
+        <name>ALMS_Next</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No remaining question lines found error message --></label>
+        <name>ALMS_No_Remaining_Question_Lines</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No reports found message --></label>
+        <name>ALMS_No_Reports_Found</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ALMOND_NotStarted --></label>
+        <name>ALMS_NotStarted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task note from approver --></label>
+        <name>ALMS_Note_From_Approver</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Nothing to see --></label>
+        <name>ALMS_Nothing_to_see</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Number Question --></label>
+        <name>ALMS_Number_Question</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Open New Window --></label>
+        <name>ALMS_Open_New_Window</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error message for opt section with required items --></label>
+        <name>ALMS_Optional_Section_Error_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Feedback Overall Rating --></label>
+        <name>ALMS_Overall_Rating</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Preview --></label>
+        <name>ALMS_Preview</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Preview learning version error message --></label>
+        <name>ALMS_Preview_Version_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Previous --></label>
+        <name>ALMS_Previous</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignment Page Profile --></label>
+        <name>ALMS_Profile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ALMOND_PublicCatalog --></label>
         <name>ALMS_PublicCatalog</name>
     </customLabels>
     <customLabels>
-        <label><!-- ALMS_TrainingTracks --></label>
+        <label><!-- Error message for public training plan assignment --></label>
+        <name>ALMS_Public_Plan_Assignment_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Request submitted for training plan message --></label>
+        <name>ALMS_Public_Plan_Request_Submitted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Publish --></label>
+        <name>ALMS_Publish</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Publish new version --></label>
+        <name>ALMS_Publish_New_Learning_Version</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Question --></label>
+        <name>ALMS_Question</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Question (Additional Information) --></label>
+        <name>ALMS_Question_Additional</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Question Line --></label>
+        <name>ALMS_Question_Line</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Question Order --></label>
+        <name>ALMS_Question_Order</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Question Type --></label>
+        <name>ALMS_Question_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quiz Back --></label>
+        <name>ALMS_Quiz_Back</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quiz Back Warning --></label>
+        <name>ALMS_Quiz_Back_Warning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quiz Back Message --></label>
+        <name>ALMS_Quiz_Back_Warning_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quiz Cancel --></label>
+        <name>ALMS_Quiz_Cancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quiz Failed --></label>
+        <name>ALMS_Quiz_Failed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Max num of attempts reached --></label>
+        <name>ALMS_Quiz_Max_Attempts_Reached</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error message for missing answers in quiz --></label>
+        <name>ALMS_Quiz_Missing_Answers</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quiz Next --></label>
+        <name>ALMS_Quiz_Next</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quiz Passed --></label>
+        <name>ALMS_Quiz_Passed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quiz Reset --></label>
+        <name>ALMS_Quiz_Reset</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quiz Reset Warning --></label>
+        <name>ALMS_Quiz_Reset_Warning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quiz Results --></label>
+        <name>ALMS_Quiz_Results</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quiz Results Evaluation Message --></label>
+        <name>ALMS_Quiz_Results_Eval_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quiz Score --></label>
+        <name>ALMS_Quiz_Score</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quiz Submit --></label>
+        <name>ALMS_Quiz_Submit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Positive message for quiz success result --></label>
+        <name>ALMS_Quiz_Success_Pre_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recalculate all Assignments --></label>
+        <name>ALMS_Recalculate_All_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Register Button --></label>
+        <name>ALMS_Register_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Report Label --></label>
+        <name>ALMS_Report</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Report custom column index --></label>
+        <name>ALMS_Report_Custom_Column_Index</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Report Folder --></label>
+        <name>ALMS_Report_Folder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Report Information --></label>
+        <name>ALMS_Report_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Report with no records error message --></label>
+        <name>ALMS_Report_No_Records_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Plan detail required label --></label>
+        <name>ALMS_Required</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Resource Redirect --></label>
+        <name>ALMS_Resource_Redirect</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Resource Redirect Title --></label>
+        <name>ALMS_Resource_Redirect_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignment Page Role --></label>
+        <name>ALMS_Role</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Sample Data Created Error message --></label>
+        <name>ALMS_Sample_Data_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Sample Data Created Success message --></label>
+        <name>ALMS_Sample_Data_Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save --></label>
+        <name>ALMS_Save</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save &amp; New --></label>
+        <name>ALMS_Save_And_New</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search --></label>
+        <name>ALMS_Search</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search Button --></label>
+        <name>ALMS_Search_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search Catalog --></label>
+        <name>ALMS_Search_Catalog</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assignment Search Field Name --></label>
+        <name>ALMS_Search_Field_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search minimum characters error message --></label>
+        <name>ALMS_Search_Minimum_Characters</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search No Results --></label>
+        <name>ALMS_Search_No_Results</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search No Results --></label>
+        <name>ALMS_Search_No_Results_Found</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search page --></label>
+        <name>ALMS_Search_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search page separator --></label>
+        <name>ALMS_Search_Page_Separator</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search Users --></label>
+        <name>ALMS_Search_Users</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete TPlan Section Assignments Warning --></label>
+        <name>ALMS_Section_Assignments_Delete_Warning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Section Delete Assignments Button --></label>
+        <name>ALMS_Section_Delete_Assignments_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Select All --></label>
+        <name>ALMS_Select_All</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task Viewer Select Image --></label>
+        <name>ALMS_Select_Image</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Select published content --></label>
+        <name>ALMS_Select_Published_Content</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Default option for report selection --></label>
+        <name>ALMS_Select_Report_Default_Option</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Missing badge selection error message --></label>
+        <name>ALMS_Select_Work_Badge</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Badge Selection error --></label>
+        <name>ALMS_Selection_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete Unused Shared Assignments Button --></label>
+        <name>ALMS_Shared_Assignments_Delete_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete Unused Shared Assignments --></label>
+        <name>ALMS_Shared_Assignments_Delete_Unused</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete Unused Shared Assignments Warning --></label>
+        <name>ALMS_Shared_Assignments_Delete_Warning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Create Single Assignments --></label>
+        <name>ALMS_Single_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Single Assignments Info Message --></label>
+        <name>ALMS_Single_Assignments_Info_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- User has been successfully assigned to the training plan --></label>
+        <name>ALMS_Single_User_Assignment_Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Standard User Profile --></label>
+        <name>ALMS_Standard_User_Profile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Start Here Sample Data Message --></label>
+        <name>ALMS_Start_Here_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Start Here title --></label>
+        <name>ALMS_Start_Here_SubTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Start Here title --></label>
+        <name>ALMS_Start_Here_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Start Here Sample Data Button --></label>
+        <name>ALMS_Start_Sample_Data_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Start Here Sample Data Section --></label>
+        <name>ALMS_Start_Sample_Data_Section</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- System Administrator Profile --></label>
+        <name>ALMS_Sys_Admin_Profile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Section Item Delete Assignments --></label>
+        <name>ALMS_TPlanItem_Delete_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Section Delete Assignments --></label>
+        <name>ALMS_TPlanSection_Delete_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Access Request Status --></label>
+        <name>ALMS_TPlan_Access_Request_Status</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Archived Training Plan Label --></label>
+        <name>ALMS_TPlan_Archived</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Expired Training Plan Label --></label>
+        <name>ALMS_TPlan_Expired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Not Registered --></label>
+        <name>ALMS_TPlan_Not_Registered</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Request Access Button --></label>
+        <name>ALMS_TPlan_Request_Access_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Access Comments --></label>
+        <name>ALMS_TPlan_Request_Comments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Access request submitted message --></label>
+        <name>ALMS_TPlan_Request_Submitted_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Requires Assignment --></label>
+        <name>ALMS_TPlan_Requires_Assignment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Take New Version --></label>
+        <name>ALMS_Take_New_Version</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task back button --></label>
+        <name>ALMS_Task_Back_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task Comments --></label>
+        <name>ALMS_Task_Comments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task Comments Max Length Message --></label>
+        <name>ALMS_Task_Comments_Max_Length</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task Done button --></label>
+        <name>ALMS_Task_Done_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task In Review message --></label>
+        <name>ALMS_Task_In_Review_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Missing image on task error message --></label>
+        <name>ALMS_Task_Missing_Image</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task Undo button --></label>
+        <name>ALMS_Task_Undo_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task Undo error message --></label>
+        <name>ALMS_Task_Undo_Error_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task Working on it --></label>
+        <name>ALMS_Task_Working_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Total Acquired Achievements --></label>
+        <name>ALMS_Total_Acquired_Achievements</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Total Plan Items --></label>
+        <name>ALMS_Total_Plans</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ALMOND_TrainingTracks --></label>
         <name>ALMS_TrainingTracks</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Catalog --></label>
+        <name>ALMS_Training_Catalog</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Assignment Status --></label>
+        <name>ALMS_Training_Plan_Assignment_Status</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Back to training plan link --></label>
+        <name>ALMS_Training_Plan_Back</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Back to training plan section link --></label>
+        <name>ALMS_Training_Plan_Back_Section</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Back to training plan section item link --></label>
+        <name>ALMS_Training_Plan_Back_Section_Item</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Completed Date --></label>
+        <name>ALMS_Training_Plan_Completed_Date</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Plan Available Until --></label>
+        <name>ALMS_Training_Plan_Due</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Missing training plan access error message --></label>
+        <name>ALMS_Training_Plan_No_Access_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Completed Status picklist value --></label>
+        <name>ALMS_Training_Status_Completed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- In Progress Status picklist value --></label>
+        <name>ALMS_Training_Status_In_Progress</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Not Started Status picklist value --></label>
+        <name>ALMS_Training_Status_Not_Started</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Back to training track link --></label>
+        <name>ALMS_Training_Track_Back</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Missing access for training track error message --></label>
+        <name>ALMS_Training_Track_No_Access</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Training Tracks --></label>
+        <name>ALMS_Training_Tracks</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Unable to retrieve assignment info error message --></label>
+        <name>ALMS_Unable_Retrieve_Assignment_Info</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Unselect All --></label>
+        <name>ALMS_Unselect_All</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Update --></label>
+        <name>ALMS_Update</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Update Achievements --></label>
+        <name>ALMS_Update_Achievements</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Update Achievements Assignments button --></label>
+        <name>ALMS_Update_Achievements_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Update all Assignments --></label>
+        <name>ALMS_Update_All_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Update all Assignments message --></label>
+        <name>ALMS_Update_All_Assignments_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Update Assignments --></label>
+        <name>ALMS_Update_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Update/Delete Assignments --></label>
+        <name>ALMS_Update_Delete_Assignments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task Viewer Upload Image Title --></label>
+        <name>ALMS_Upload_Image</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Missing LMS Perm set error --></label>
+        <name>ALMS_User_Missing_Perms</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Report id specified by the user --></label>
+        <name>ALMS_User_Report_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Work.com Badges --></label>
+        <name>ALMS_Work_Badges</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- here --></label>
+        <name>ALMS_here</name>
     </customLabels>
     <customLabels>
         <label><!-- AR StepEight --></label>
@@ -365,6 +1837,10 @@
         <name>Accept_from_Regional</name>
     </customLabels>
     <customLabels>
+        <label><!-- Adicionar valores de pesquisa --></label>
+        <name>Add_Search_Values</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Agency Email Alerts --></label>
         <name>Agency_Email_Alerts</name>
     </customLabels>
@@ -375,6 +1851,1650 @@
     <customLabels>
         <label><!-- Agree and Proceed --></label>
         <name>Agree_and_Proceed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_AD ID --></label>
+        <name>Amr_AD_ID</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Acc. Final Cost - Value of props and wardrobe (paid for) --></label>
+        <name>Amr_Acc_Final_Cost_Value_of_props_and_wardrobe_paid_for</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted --></label>
+        <name>Amr_Accepted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted_And_Email_Sent --></label>
+        <name>Amr_Accepted_And_Email_Sent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Final Cost - CA only (Currency) --></label>
+        <name>Amr_Accepted_Final_Cost_CA_only_Currency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Final Cost - CA only (Euro Amount) --></label>
+        <name>Amr_Accepted_Final_Cost_CA_only_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Final Cost - CA only (Local Amount) --></label>
+        <name>Amr_Accepted_Final_Cost_CA_only_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Final Cost - Editors name --></label>
+        <name>Amr_Accepted_Final_Cost_Editors_name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Final Cost - PC only (Currency) --></label>
+        <name>Amr_Accepted_Final_Cost_PC_only_Currency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Final Cost - PC only (Euro Amount) --></label>
+        <name>Amr_Accepted_Final_Cost_PC_only_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Final Cost - PC only (Local Amount) --></label>
+        <name>Amr_Accepted_Final_Cost_PC_only_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Final Cost - PPC only (Currency) --></label>
+        <name>Amr_Accepted_Final_Cost_PPC_only_Currency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Final Cost - PPC only (Euro Amount) --></label>
+        <name>Amr_Accepted_Final_Cost_PPC_only_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ Accepted Final Cost - PPC only (Local Amount) --></label>
+        <name>Amr_Accepted_Final_Cost_PPC_only_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Final Cost - Sound Studio Name --></label>
+        <name>Amr_Accepted_Final_Cost_Sound_Studio_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Final Cost - Total Sound Studio costs --></label>
+        <name>Amr_Accepted_Final_Cost_Total_Sound_Studio_costs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Final Cost - Total editing cost --></label>
+        <name>Amr_Accepted_Final_Cost_Total_editing_cost</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Final Cost - Travel Costs --></label>
+        <name>Amr_Accepted_Final_Cost_Travel_Costs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ Accepted Final Costs --></label>
+        <name>Amr_Accepted_Final_Costs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ Accepted Quote (Opening and Closing Quote 1) --></label>
+        <name>Amr_Accepted_Quote_Opening_and_Closing_Quote_1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Accepted Quotes And Documents --></label>
+        <name>Amr_Accepted_Quotes_And_Documents</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Action --></label>
+        <name>Amr_Action</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_AdManager --></label>
+        <name>Amr_AdManager</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AdManager No --></label>
+        <name>Amr_AdManager_No</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ AdManager Number --></label>
+        <name>Amr_AdManager_Number</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr AddiSuppNewMaterial:atleast oneoptionofMedium must be selected corr to Dig --></label>
+        <name>Amr_AddiSuppNewMaterial_atleast_oneoptionofMedium_must_be_selected_corr_to_Dig</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr AdditSuppNewMaterial at least one optionofMedium mustbeselect cor toinstore --></label>
+        <name>Amr_AdditSuppNewMaterial_at_least_one_optionofMedium_mustbeselect_cor_toinstore</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr AdditiSuppNewMaterial:atleast one optionofMedium mustbe selected corr toou --></label>
+        <name>Amr_AdditiSuppNewMaterial_atleast_one_optionofMedium_mustbe_selected_corr_toou</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr AdditionalSupplNewMaterial:atleast oneoptionof MedChannel mustbe sel --></label>
+        <name>Amr_AdditionalSupplNewMaterial_atleast_oneoptionof_MedChannel_mustbe_sel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ Additional Quotes And Documents --></label>
+        <name>Amr_Additional_Quotes_And_Documents</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Additional Supplementary New Material --></label>
+        <name>Amr_Additional_Supplementary_New_Material</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Advanced Search --></label>
+        <name>Amr_Advanced_Search</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Agency Information --></label>
+        <name>Amr_Agency_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Agency contact or account director email --></label>
+        <name>Amr_Agency_contact_or_account_director_email</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Alert --></label>
+        <name>Amr_Alert</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Alert Message --></label>
+        <name>Amr_Alert_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Alert date must be greater than or equal to today\&apos;s date --></label>
+        <name>Amr_Alert_date_must_be_greater_than_or_equal_to_today_s_date</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Alert message should be less than 150 characters --></label>
+        <name>Amr_Alert_message_should_be_less_than_150_characters</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Allocated budget(euro) --></label>
+        <name>Amr_Allocated_budget_euro</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Any other agencies involved? --></label>
+        <name>Amr_Any_other_agencies_involved</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Appraisal --></label>
+        <name>Amr_Appraisal</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Attachment_Animatics_Executive --></label>
+        <name>Amr_Attachment_Animatics_Executive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Attachment_Executive_Summary --></label>
+        <name>Amr_Attachment_Executive_Summary</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Attachment_Music_Executive --></label>
+        <name>Amr_Attachment_Music_Executive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Attachment_Talent_Executive --></label>
+        <name>Amr_Attachment_Talent_Executive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Audio Only --></label>
+        <name>Amr_Audio_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Average of all total opening quotes --></label>
+        <name>Amr_Average_of_all_total_opening_quotes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Before you start --></label>
+        <name>Amr_Before_you_start</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Brand Name --></label>
+        <name>Amr_Brand_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Brand Position Name --></label>
+        <name>Amr_Brand_Position_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Broadcast market --></label>
+        <name>Amr_Broadcast_market</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Budget Responsibility --></label>
+        <name>Amr_Budget_Responsibility</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Budget allocated for this activity (enter full amount) --></label>
+        <name>Amr_Budget_allocated_for_this_activity_enter_full_amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Budget responsibility (BD, BB, Other) --></label>
+        <name>Amr_Budget_responsibility_BD_BB_Other</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr BuyTalent atleastoneoption of Medium mustbe selected corr to Digital --></label>
+        <name>Amr_BuyTalent_atleastoneoption_of_Medium_mustbe_selected_corr_to_Digital</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr BuyoutMusic at least one option of Medium mustbe selected corre to OutOfHome --></label>
+        <name>Amr_BuyoutMusic_at_least_one_option_of_Medium_mustbe_selected_corre_to_OutOfHome</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr BuyoutsTalent at least oneoptionofMedium mustbe selected corre to Instore --></label>
+        <name>Amr_BuyoutsTalent_at_least_oneoptionofMedium_mustbe_selected_corre_to_Instore</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Buyouts - Music --></label>
+        <name>Amr_Buyouts_Music</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Buyouts Music at least one option of Medium must be selected corre to Digita --></label>
+        <name>Amr_Buyouts_Music_at_least_one_option_of_Medium_must_be_selected_corre_to_Digita</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Buyouts Music at least one option of Medium mustbe selected corr to Instore --></label>
+        <name>Amr_Buyouts_Music_at_least_one_option_of_Medium_mustbe_selected_corr_to_Instore</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Buyouts - Talent --></label>
+        <name>Amr_Buyouts_Talent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Buyouts Talent : at least one option of Media Channel must be selected --></label>
+        <name>Amr_Buyouts_Talent_at_least_one_option_of_Media_Channel_must_be_selected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Buyouts Talent:atleast one optionofMedium mustbe selected corr to OOH --></label>
+        <name>Amr_Buyouts_Talent_atleast_one_optionofMedium_mustbe_selected_corr_to_OOH</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_CAP --></label>
+        <name>Amr_CAP</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr CAP_Jobs_Portfolio__tab --></label>
+        <name>Amr_CAP_Jobs_Portfolio_tab</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CA/Additional agency Name --></label>
+        <name>Amr_CA_Additional_agency_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_CA Appraisal --></label>
+        <name>Amr_CA_Appraisal</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_CA_Cost_Local_Amount --></label>
+        <name>Amr_CA_Cost_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CA Costs Only (Euro Amount) --></label>
+        <name>Amr_CA_Costs_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CA Costs Only (Local Currency) --></label>
+        <name>Amr_CA_Costs_Local_Currency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CA Costs Only (Local Amount) --></label>
+        <name>Amr_CA_Costs_Only_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CA Location --></label>
+        <name>Amr_CA_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_CA only (Currency) --></label>
+        <name>Amr_CA_only_Currency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AMR_CA only (Euro Amount) --></label>
+        <name>Amr_CA_only_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_CA only (Local Amount) --></label>
+        <name>Amr_CA_only_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_CApJobPortFolio --></label>
+        <name>Amr_CApJobPortFolio</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Campaign_Name --></label>
+        <name>Amr_Campaign_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Campaign_Name_Example --></label>
+        <name>Amr_Campaign_Name_Example</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Campaign name (e.g. Nothing beats an astronaut) if known --></label>
+        <name>Amr_Campaign_name_e_g_Nothing_beats_an_astronaut_if_known</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ Cancelled Jobs List --></label>
+        <name>Amr_Cancelled_Jobs_List</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Category --></label>
+        <name>Amr_Category</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Category Brand Positioning Brand --></label>
+        <name>Amr_Category_Brand_Positioning_Brand</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Cinema --></label>
+        <name>Amr_Cinema</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Cost Management --></label>
+        <name>Amr_Cost_Management</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Cost Per Master --></label>
+        <name>Amr_Cost_Per_Master</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Cost per master per shoot day --></label>
+        <name>Amr_Cost_per_master_per_shoot_day</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Country --></label>
+        <name>Amr_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Current stage of your production activity --></label>
+        <name>Amr_Current_stage_of_your_production_activity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Dashboard --></label>
+        <name>Amr_Dashboard</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_DashboardSpace --></label>
+        <name>Amr_DashboardSpace</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Date --></label>
+        <name>Amr_Date</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Date logged --></label>
+        <name>Amr_Date_logged</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete --></label>
+        <name>Amr_Delete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Digital --></label>
+        <name>Amr_Digital</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Digital agency name (if applicable) --></label>
+        <name>Amr_Digital_agency_name_if_applicable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Do you anticipate that your production will require Celebrity Talent --></label>
+        <name>Amr_Do_you_anticipate_that_your_production_will_require_Celebrity_Talent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Do you anticipate that your production will require Music --></label>
+        <name>Amr_Do_you_anticipate_that_your_production_will_require_Music</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Dormant --></label>
+        <name>Amr_Dormant</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Duration Of Additional Films --></label>
+        <name>Amr_Duration_Of_Additional_Films</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Duration Of Master Example --></label>
+        <name>Amr_Duration_Of_Master_Example</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Duration of Masters --></label>
+        <name>Amr_Duration_of_Masters</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Edit --></label>
+        <name>Amr_Edit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Editorial --></label>
+        <name>Amr_Editorial</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Editors Name --></label>
+        <name>Amr_Editors_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Email_AgencyNotification --></label>
+        <name>Amr_Email_AgencyNotification</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Email_ThresholdNotification --></label>
+        <name>Amr_Email_ThresholdNotification</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Email_UserNotification --></label>
+        <name>Amr_Email_UserNotification</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_End_Date --></label>
+        <name>Amr_End_Date</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Enter Quote --></label>
+        <name>Amr_Enter_Quote</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Error_FileUpload --></label>
+        <name>Amr_Error_FileUpload</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Error_JobAlreadyAccepted --></label>
+        <name>Amr_Error_JobAlreadyAccepted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Error_JobAlreadyAllocated --></label>
+        <name>Amr_Error_JobAlreadyAllocated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Error_JobAlreadyCancelled --></label>
+        <name>Amr_Error_JobAlreadyCancelled</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Error_JobIdNotFound --></label>
+        <name>Amr_Error_JobIdNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Error_JobIsCancelled --></label>
+        <name>Amr_Error_JobIsCancelled</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Error_NoJobFound --></label>
+        <name>Amr_Error_NoJobFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Error_SelectValue --></label>
+        <name>Amr_Error_SelectValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Euro  Saving - Accepted Quote --></label>
+        <name>Amr_Euro_Saving_Accepted_Quote</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Execution_Name_Example --></label>
+        <name>Amr_Execution_Name_Example</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Execution name (e.g. Lifeguard or Fireman) if known --></label>
+        <name>Amr_Execution_name_e_g_Lifeguard_or_Fireman_if_known</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- File --></label>
+        <name>Amr_File</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Filter --></label>
+        <name>Amr_Filter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Final approver of material email --></label>
+        <name>Amr_Final_approver_of_material_email</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Folder_Name --></label>
+        <name>Amr_Folder_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr For Buyouts Music : at least one option of Media Channel must be selected --></label>
+        <name>Amr_For_Buyouts_Music_at_least_one_option_of_Media_Channel_must_be_selected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr For New Original Masterat least one option of Media Channel must be selected --></label>
+        <name>Amr_For_New_Original_Masterat_least_one_option_of_Media_Channel_must_be_selected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Have you checked with CMI --></label>
+        <name>Amr_Have_you_checked_with_CMI</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr In Store --></label>
+        <name>Amr_In_Store</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Internal Video --></label>
+        <name>Amr_Internal_Video</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Invalid Job Id --></label>
+        <name>Amr_Invalid_Job_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Invalid User --></label>
+        <name>Amr_Invalid_User</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Is PC part of the Roster ? --></label>
+        <name>Amr_Is_PC_part_of_the_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Is_PPC_Part_Of_Roster --></label>
+        <name>Amr_Is_PPC_Part_Of_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Is PPC part of the Roster? --></label>
+        <name>Amr_Is_PPC_part_of_the_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_JobAccepted --></label>
+        <name>Amr_JobAccepted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_JobSheet --></label>
+        <name>Amr_JobSheet</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Job_Accepted --></label>
+        <name>Amr_Job_Accepted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Job_Allocated --></label>
+        <name>Amr_Job_Allocated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Job_Cancelled --></label>
+        <name>Amr_Job_Cancelled</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Job Information --></label>
+        <name>Amr_Job_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Job List --></label>
+        <name>Amr_Job_List</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Job Reported --></label>
+        <name>Amr_Job_Reported</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Job Savings --></label>
+        <name>Amr_Job_Savings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ Job Shared --></label>
+        <name>Amr_Job_Shared</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Job Started --></label>
+        <name>Amr_Job_Started</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Job Status --></label>
+        <name>Amr_Job_Status</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Job already Shared with --></label>
+        <name>Amr_Job_already_Shared_with</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Job shared successfully with --></label>
+        <name>Amr_Job_shared_successfully_with</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Jobsheet Id --></label>
+        <name>Amr_Jobsheet_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr LangAdaptMaster:atleast one option of Medium mustbe selected correTo OutO --></label>
+        <name>Amr_LangAdaptMaster_atleast_one_option_of_Medium_mustbe_selected_correTo_OutO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr LangAdaptMaster:atleast oneoption of Medium mustbe selectedcorres in st --></label>
+        <name>Amr_LangAdaptMaster_atleast_oneoption_of_Medium_mustbe_selectedcorres_in_st</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr LanguageAdaptionMaster:least one optionofMedium mustbe selected corr to Digi --></label>
+        <name>Amr_LanguageAdaptionMaster_least_one_optionofMedium_mustbe_selected_corr_to_Digi</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Language Adaptation of Master --></label>
+        <name>Amr_Language_Adaptation_of_Master</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Language Adaption Master : at least one option of Medium must be selected --></label>
+        <name>Amr_Language_Adaption_Master_at_least_one_option_of_Medium_must_be_selected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Lead agency location --></label>
+        <name>Amr_Lead_agency_location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Lead agency name --></label>
+        <name>Amr_Lead_agency_name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr LimitValue --></label>
+        <name>Amr_LimitValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_List_Of_Alerts --></label>
+        <name>Amr_List_Of_Alerts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Live --></label>
+        <name>Amr_Live</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Local Amount Of PC --></label>
+        <name>Amr_Local_Amount_Of_PC</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PC Costs Only (Local Amount) --></label>
+        <name>Amr_Local_Amount_PC_Costs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Local Amount of CA --></label>
+        <name>Amr_Local_Amount_of_CA</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ Local Amount of PPC --></label>
+        <name>Amr_Local_Amount_of_PPC</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Local Currency Of PC Cost --></label>
+        <name>Amr_Local_Currency_Of_PC_Cost</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Local Currency of CA Costs --></label>
+        <name>Amr_Local_Currency_of_CA_Costs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ Local Currency of PPC Costs --></label>
+        <name>Amr_Local_Currency_of_PPC_Costs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PC Costs Only (Local Currency) --></label>
+        <name>Amr_Local_PC_Costs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Location --></label>
+        <name>Amr_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Location of Unilever project leader --></label>
+        <name>Amr_Location_of_Unilever_project_leader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Logout --></label>
+        <name>Amr_Logout</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Media Channel --></label>
+        <name>Amr_Media_Channel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Medium --></label>
+        <name>Amr_Medium</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Moving Image --></label>
+        <name>Amr_Moving_Image</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr NewOrigiMastat least one option of Medium mustbe selected corresto instore --></label>
+        <name>Amr_NewOrigiMastat_least_one_option_of_Medium_mustbe_selected_corresto_instore</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr NewOrigiMaster:at least one optionofMedium mustbe selected corres inStore --></label>
+        <name>Amr_NewOrigiMaster_at_least_one_optionofMedium_mustbe_selected_corres_inStore</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr NewOriginMaster at least one option of Medium must be selected corres to Out --></label>
+        <name>Amr_NewOriginMaster_at_least_one_option_of_Medium_must_be_selected_corres_to_Out</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr NewOriginMaster:at least one option of Medium mustbeselected corre todigital --></label>
+        <name>Amr_NewOriginMaster_at_least_one_option_of_Medium_mustbeselected_corre_todigital</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr NewOriginMaster at leastoneoption ofMedium mustbe selected corres to outOfHo --></label>
+        <name>Amr_NewOriginMaster_at_leastoneoption_ofMedium_mustbe_selected_corres_to_outOfHo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr New Original Master --></label>
+        <name>Amr_New_Original_Master</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr No Job Allocation Record For LoggedIn User --></label>
+        <name>Amr_No_Job_Allocation_Record_For_LoggedIn_User</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No Of Masters --></label>
+        <name>Amr_No_Of_Masters</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No of Additional Films --></label>
+        <name>Amr_No_of_Additional_Films</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_No of Quotes --></label>
+        <name>Amr_No_of_Quotes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No of Shoot Days --></label>
+        <name>Amr_No_of_Shoot_Days</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_None --></label>
+        <name>Amr_None</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr  OR --></label>
+        <name>Amr_OR</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Other --></label>
+        <name>Amr_Other</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Out of Home --></label>
+        <name>Amr_Out_of_Home</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Output Quality --></label>
+        <name>Amr_Output_Quality</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Overview of Project --></label>
+        <name>Amr_Overview_of_Project</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_PC Appraisal --></label>
+        <name>Amr_PC_Appraisal</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_PC Costs (Euro Amount) --></label>
+        <name>Amr_PC_Cost_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PC Costs Only (Euro Amount) --></label>
+        <name>Amr_PC_Costs_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_PC Country --></label>
+        <name>Amr_PC_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PC Country Location --></label>
+        <name>Amr_PC_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PC Name --></label>
+        <name>Amr_PC_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Is PC Part Of The Roster? --></label>
+        <name>Amr_PC_Part_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_PC only (Currency) --></label>
+        <name>Amr_PC_only_Currency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_PC only (Euro Amount) --></label>
+        <name>Amr_PC_only_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_PC only (Local Amount) --></label>
+        <name>Amr_PC_only_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_PPC Appraisal --></label>
+        <name>Amr_PPC_Appraisal</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_PPC_Cost_Only_Euro_Amount --></label>
+        <name>Amr_PPC_Cost_Only_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_PPC_Cost_Only_Local_Amount --></label>
+        <name>Amr_PPC_Cost_Only_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ PPC Costs(Euro Amount) --></label>
+        <name>Amr_PPC_Costs_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PPC Costs Only (Local Amount) --></label>
+        <name>Amr_PPC_Costs_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PPC Costs Only (Local Currency) --></label>
+        <name>Amr_PPC_Costs_Local_Currency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PPC Costs Only (euro) --></label>
+        <name>Amr_PPC_Costs_euro</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ PPC Country --></label>
+        <name>Amr_PPC_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PPC Country Location --></label>
+        <name>Amr_PPC_Country_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PPC Name --></label>
+        <name>Amr_PPC_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_PPC only (Currency) --></label>
+        <name>Amr_PPC_only_Currency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_PPC only (Euro Amount) --></label>
+        <name>Amr_PPC_only_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_PPC only (Local Amount) --></label>
+        <name>Amr_PPC_only_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Is the PPC part of the Roster? --></label>
+        <name>Amr_PPC_part_of_the_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Pending --></label>
+        <name>Amr_Pending</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Percentage  Saving - Accepted Quote --></label>
+        <name>Amr_Percentage_Saving_Accepted_Quote</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Percentage Saving - Average of Quotes --></label>
+        <name>Amr_Percentage_Saving_Average_of_Quotes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Please Select Any Value --></label>
+        <name>Amr_Please_Select_Any_Value</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Please Select Document --></label>
+        <name>Amr_Please_Select_Document</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Please enter both alert date and alert message --></label>
+        <name>Amr_Please_enter_both_alert_date_and_alert_message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Please fill in missing information --></label>
+        <name>Amr_Please_fill_in_missing_information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Print --></label>
+        <name>Amr_Print</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Priority --></label>
+        <name>Amr_Priority</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Process Management --></label>
+        <name>Amr_Process_Management</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Production Activity --></label>
+        <name>Amr_Production_Activity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Production Activity Detail --></label>
+        <name>Amr_Production_Activity_Detail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Production Support --></label>
+        <name>Amr_Production_Support</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Production Type --></label>
+        <name>Amr_Production_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Production activity type --></label>
+        <name>Amr_Production_activity_type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Production activity types at least one option must be selected --></label>
+        <name>Amr_Production_activity_types_at_least_one_option_must_be_selected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Project_Name_Example --></label>
+        <name>Amr_Project_Name_Example</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Project description --></label>
+        <name>Amr_Project_description</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Project leader email --></label>
+        <name>Amr_Project_leader_email</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Project_name_e_g_Apollo --></label>
+        <name>Amr_Project_name_e_g_Apollo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_Additional_Agency_Name --></label>
+        <name>Amr_Q1_Additional_Agency_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_CA_Cost_Only --></label>
+        <name>Amr_Q1_CA_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_CA_Local_Amount --></label>
+        <name>Amr_Q1_CA_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_CA_Location --></label>
+        <name>Amr_Q1_CA_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_Cost_Euro_Amount --></label>
+        <name>Amr_Q1_Cost_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_PC_Cost_Euro_Amount --></label>
+        <name>Amr_Q1_PC_Cost_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_PC_Cost_Local_Amount --></label>
+        <name>Amr_Q1_PC_Cost_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_PC_Cost_Only --></label>
+        <name>Amr_Q1_PC_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_PC_Country_Location --></label>
+        <name>Amr_Q1_PC_Country_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_PC_Name --></label>
+        <name>Amr_Q1_PC_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_PC_Part_Of_Roster --></label>
+        <name>Amr_Q1_PC_Part_Of_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_PPC_Cost_Only --></label>
+        <name>Amr_Q1_PPC_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_PPC_Country --></label>
+        <name>Amr_Q1_PPC_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_PPC_Name --></label>
+        <name>Amr_Q1_PPC_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_PPC_Part_Of_Roster --></label>
+        <name>Amr_Q1_PPC_Part_Of_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_Service_company_Name --></label>
+        <name>Amr_Q1_Service_company_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q1_Total_Cost --></label>
+        <name>Amr_Q1_Total_Cost</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_Additional_Agency_Name --></label>
+        <name>Amr_Q2_Additional_Agency_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_CA_Cost_Euro_Amount --></label>
+        <name>Amr_Q2_CA_Cost_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_CA_Cost_Local_Amount --></label>
+        <name>Amr_Q2_CA_Cost_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_CA_Cost_Only --></label>
+        <name>Amr_Q2_CA_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_CA_Location --></label>
+        <name>Amr_Q2_CA_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_PC_Cost_Euro_Amount --></label>
+        <name>Amr_Q2_PC_Cost_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_PC_Cost_Local_Amount --></label>
+        <name>Amr_Q2_PC_Cost_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_PC_Cost_Only --></label>
+        <name>Amr_Q2_PC_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_PC_Country_Location --></label>
+        <name>Amr_Q2_PC_Country_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_PC_Name --></label>
+        <name>Amr_Q2_PC_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_PPC_Cost_Euro_Amount --></label>
+        <name>Amr_Q2_PPC_Cost_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_PPC_Cost_Local_Amount --></label>
+        <name>Amr_Q2_PPC_Cost_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_PPC_Cost_Only --></label>
+        <name>Amr_Q2_PPC_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_PPC_Country --></label>
+        <name>Amr_Q2_PPC_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_PPC_Name --></label>
+        <name>Amr_Q2_PPC_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_Part_Of_Roster --></label>
+        <name>Amr_Q2_Part_Of_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_Service_Company_ Name --></label>
+        <name>Amr_Q2_Service_Company_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q2_Total_Cost --></label>
+        <name>Amr_Q2_Total_Cost</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_Additional_Agency_Name --></label>
+        <name>Amr_Q3_Additional_Agency_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_CA_Location --></label>
+        <name>Amr_Q3_CA_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_Cost_Only --></label>
+        <name>Amr_Q3_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_Is_PC_Part_Of_Roster --></label>
+        <name>Amr_Q3_Is_PC_Part_Of_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_Is_PPC_Part_Of_Roster --></label>
+        <name>Amr_Q3_Is_PPC_Part_Of_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_PC_Cost_Euro_Amount --></label>
+        <name>Amr_Q3_PC_Cost_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_PC_Cost_Local_Amount --></label>
+        <name>Amr_Q3_PC_Cost_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_PC_Cost_Only --></label>
+        <name>Amr_Q3_PC_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_PC_Country_Location --></label>
+        <name>Amr_Q3_PC_Country_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_PC_Name --></label>
+        <name>Amr_Q3_PC_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_PPC_Cost_Euro_Amount --></label>
+        <name>Amr_Q3_PPC_Cost_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_PPC_Cost_Local_Amount --></label>
+        <name>Amr_Q3_PPC_Cost_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_PPC_Cost_Only --></label>
+        <name>Amr_Q3_PPC_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_PPC_Country --></label>
+        <name>Amr_Q3_PPC_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_PPC_Name --></label>
+        <name>Amr_Q3_PPC_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_Service_Company_name --></label>
+        <name>Amr_Q3_Service_Company_name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_Total_Cost --></label>
+        <name>Amr_Q3_Total_Cost</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_Additional_Agency_Name --></label>
+        <name>Amr_Q4_Additional_Agency_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_CA_Cost_Euro_Amount --></label>
+        <name>Amr_Q4_CA_Cost_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_CA_Cost_Local_Amount --></label>
+        <name>Amr_Q4_CA_Cost_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_CA_Cost_Only --></label>
+        <name>Amr_Q4_CA_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_CA_Location --></label>
+        <name>Amr_Q4_CA_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_Cost_Local_Amount --></label>
+        <name>Amr_Q4_Cost_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_Is_PC_Part_Of_Roster --></label>
+        <name>Amr_Q4_Is_PC_Part_Of_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_Is_PPC_Part_Of_Roster --></label>
+        <name>Amr_Q4_Is_PPC_Part_Of_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_PC_Cost_Only --></label>
+        <name>Amr_Q4_PC_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_PC_Country_Location --></label>
+        <name>Amr_Q4_PC_Country_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_PC_Euro_amount --></label>
+        <name>Amr_Q4_PC_Euro_amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_PC_Name --></label>
+        <name>Amr_Q4_PC_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_PPC_Cost_Euro_Amount --></label>
+        <name>Amr_Q4_PPC_Cost_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_PPC_Cost_Local_Amount --></label>
+        <name>Amr_Q4_PPC_Cost_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_PPC_Cost_Only --></label>
+        <name>Amr_Q4_PPC_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_PPC_Country --></label>
+        <name>Amr_Q4_PPC_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_PPC_Name --></label>
+        <name>Amr_Q4_PPC_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_Service_Company_Name --></label>
+        <name>Amr_Q4_Service_Company_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q4_Total_Cost --></label>
+        <name>Amr_Q4_Total_Cost</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_Additional_Agency_name --></label>
+        <name>Amr_Q5_Additional_Agency_name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_CA_Cost_Local_Amount --></label>
+        <name>Amr_Q5_CA_Cost_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_CA_Cost_Only --></label>
+        <name>Amr_Q5_CA_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_CA_Euro_Amount --></label>
+        <name>Amr_Q5_CA_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_CA_Location --></label>
+        <name>Amr_Q5_CA_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_Is_PC_Part_Of_Roster --></label>
+        <name>Amr_Q5_Is_PC_Part_Of_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_Is_PPC_Part_Of_Roster --></label>
+        <name>Amr_Q5_Is_PPC_Part_Of_Roster</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_PC_Cost_Euro_Amount --></label>
+        <name>Amr_Q5_PC_Cost_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_PC_Cost_Local_Amount --></label>
+        <name>Amr_Q5_PC_Cost_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_PC_Cost_Only --></label>
+        <name>Amr_Q5_PC_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_PC_Country_Name --></label>
+        <name>Amr_Q5_PC_Country_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_PC_Name --></label>
+        <name>Amr_Q5_PC_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_PPC_Cost_Euro_Amount --></label>
+        <name>Amr_Q5_PPC_Cost_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_PPC_Cost_Local_Amount --></label>
+        <name>Amr_Q5_PPC_Cost_Local_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_PPC_Cost_Only --></label>
+        <name>Amr_Q5_PPC_Cost_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_PPC_Country --></label>
+        <name>Amr_Q5_PPC_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_PPC_Name --></label>
+        <name>Amr_Q5_PPC_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_Service_Company_Name --></label>
+        <name>Amr_Q5_Service_Company_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q5_Total_Cost --></label>
+        <name>Amr_Q5_Total_Cost</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Query_BrandName --></label>
+        <name>Amr_Query_BrandName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Query_BrandPosition --></label>
+        <name>Amr_Query_BrandPosition</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Query_Category --></label>
+        <name>Amr_Query_Category</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Query_Project_Detail --></label>
+        <name>Amr_Query_Project_Detail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Query_User --></label>
+        <name>Amr_Query_User</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quote --></label>
+        <name>Amr_Quote</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Quote: --></label>
+        <name>Amr_Quote_Col</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Quote Files --></label>
+        <name>Amr_Quote_Files</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_RAP --></label>
+        <name>Amr_RAP</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_RAPJobPortFolio --></label>
+        <name>Amr_RAPJobPortFolio</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_RAPSharedJob --></label>
+        <name>Amr_RAPSharedJob</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_RAP_Allocated --></label>
+        <name>Amr_RAP_Allocated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_RAP Name --></label>
+        <name>Amr_RAP_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Radio --></label>
+        <name>Amr_Radio</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ReBreif_Scope --></label>
+        <name>Amr_ReBreif_Scope</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Region --></label>
+        <name>Amr_Region</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Remove --></label>
+        <name>Amr_Remove</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr RewExistMaterial atleastone option of Medium must be selected corr to Digi --></label>
+        <name>Amr_RewExistMaterial_atleastone_option_of_Medium_must_be_selected_corr_to_Digi</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr RewExistingMat at least one optionofMedium mustbe selected corr to OOH --></label>
+        <name>Amr_RewExistingMat_at_least_one_optionofMedium_mustbe_selected_corr_to_OOH</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr ReworkExistMat atleast oneoption of Media Channel mustbe selected --></label>
+        <name>Amr_ReworkExistMat_atleast_oneoption_of_Media_Channel_mustbe_selected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr ReworkExistMater atleast oneoption of Medium mustbeselected corr to inStor --></label>
+        <name>Amr_ReworkExistMater_atleast_oneoption_of_Medium_mustbeselected_corr_to_inStor</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Rework Exisiting Material --></label>
+        <name>Amr_Rework_Exisiting_Material</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save --></label>
+        <name>Amr_Save</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_SavingSummary --></label>
+        <name>Amr_SavingSummary</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Saving_Accepted_Of_Quotes --></label>
+        <name>Amr_Saving_Accepted_Of_Quotes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_€ Saving - Average of Quotes --></label>
+        <name>Amr_Saving_Average_of_Quotes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Script Title --></label>
+        <name>Amr_Script_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Search --></label>
+        <name>Amr_Search</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Select atleast one document --></label>
+        <name>Amr_Select_atleast_one_document</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Service Company Name --></label>
+        <name>Amr_Service_Company_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Shoot Location --></label>
+        <name>Amr_Shoot_Location</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Sound Studio name (if applicable) --></label>
+        <name>Amr_Sound_Studio_name_if_applicable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Stage RAP engaged --></label>
+        <name>Amr_Stage_RAP_engaged</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Stage of production activity --></label>
+        <name>Amr_Stage_of_production_activity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Start_Date --></label>
+        <name>Amr_Start_Date</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Status_Dormant --></label>
+        <name>Amr_Status_Dormant</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Status_Live --></label>
+        <name>Amr_Status_Live</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Status_Pending --></label>
+        <name>Amr_Status_Pending</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Status_Priority --></label>
+        <name>Amr_Status_Priority</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Still Image Only --></label>
+        <name>Amr_Still_Image_Only</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Submitted Saving Page Id --></label>
+        <name>Amr_Submitted_Saving_Page_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Success_AdManager --></label>
+        <name>Amr_Success_AdManager</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Success_JobAllocated --></label>
+        <name>Amr_Success_JobAllocated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Success_JobShared --></label>
+        <name>Amr_Success_JobShared</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Success_ReportSaved --></label>
+        <name>Amr_Success_ReportSaved</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Success_StatusChanged --></label>
+        <name>Amr_Success_StatusChanged</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Successfully updated --></label>
+        <name>Amr_Successfully_updated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr TV --></label>
+        <name>Amr_TV</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Target air date (i.e. when will material be released) --></label>
+        <name>Amr_Target_air_date_i_e_when_will_material_be_released</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ There is no data to display --></label>
+        <name>Amr_There_is_no_data_to_display</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr This job has already been cancelled --></label>
+        <name>Amr_This_job_has_already_been_cancelled</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Time Management --></label>
+        <name>Amr_Time_Management</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Total Acc. Final Cost (CA/PC/PPC) Euro Amount --></label>
+        <name>Amr_Total_Acc_Final_Cost_CA_PC_PPC_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Total_Accepted_Final_Cost --></label>
+        <name>Amr_Total_Accepted_Final_Cost</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Total_Accepted_Final_Cost_PC_PPC_CA --></label>
+        <name>Amr_Total_Accepted_Final_Cost_PC_PPC_CA</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Total Cost --></label>
+        <name>Amr_Total_Cost</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Total Jobs --></label>
+        <name>Amr_Total_Jobs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Total No of Films --></label>
+        <name>Amr_Total_No_of_Films</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Total Sound Studio costs --></label>
+        <name>Amr_Total_Sound_Studio_costs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Total editing costs (exc. Post production) --></label>
+        <name>Amr_Total_editing_costs_exc_Post_production</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Travel Costs --></label>
+        <name>Amr_Travel_Costs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Type_Of_Saving --></label>
+        <name>Amr_Type_Of_Saving</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Uncancel_Error --></label>
+        <name>Amr_Uncancel_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Unilever Information --></label>
+        <name>Amr_Unilever_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Unilever finance member email --></label>
+        <name>Amr_Unilever_finance_member_email</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Unilever project leader email (if different) --></label>
+        <name>Amr_Unilever_project_leader_email_if_different</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Value of Props and Wardrobe (paid for) --></label>
+        <name>Amr_Value_of_Props_and_Wardrobe_paid_for</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_ What type of Savings is this? --></label>
+        <name>Amr_What_type_of_Savings_is_this</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr What type of activity will this production support? --></label>
+        <name>Amr_What_type_of_activity_will_this_production_support</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Which function are you part of (BD/BB/Other) --></label>
+        <name>Amr_Which_function_are_you_part_of_BD_BB_Other</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr Your email address --></label>
+        <name>Amr_Your_email_address</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Your saving review --></label>
+        <name>Amr_Your_saving_review</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr can select either New Original Master or multiple others --></label>
+        <name>Amr_can_select_either_New_Original_Master_or_multiple_others</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr can select multiple --></label>
+        <name>Amr_can_select_multiple</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr can select multiple but some are default --></label>
+        <name>Amr_can_select_multiple_but_some_are_default</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr celebrity) --></label>
+        <name>Amr_celebrity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr create additional material eg tag-on, pack, modify message --></label>
+        <name>Amr_create_additional_material_eg_tag_on_pack_modify_message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr create different length/size version or simple re-edit --></label>
+        <name>Amr_create_different_length_size_version_or_simple_re_edit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr incl. multiple executions/cutdowns within project --></label>
+        <name>Amr_incl_multiple_executions_cutdowns_within_project</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr includes key talent --></label>
+        <name>Amr_includes_key_talent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr internal comms videos and guides --></label>
+        <name>Amr_internal_comms_videos_and_guides</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr job-details --></label>
+        <name>Amr_job_details</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr message --></label>
+        <name>Amr_message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr non-UniAdapt Model --></label>
+        <name>Amr_non_UniAdapt_Model</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr_Q3_Cost_Euro_Amount --></label>
+        <name>Amr_q3_Cost_Euro_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Has there been a scope re-brief? --></label>
+        <name>Amr_scope_rebrief</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Amr tab --></label>
+        <name>Amr_tab</name>
     </customLabels>
     <customLabels>
         <label><!-- BETManagerRole --></label>
@@ -917,6 +4037,590 @@
         <name>BET_Uploading</name>
     </customLabels>
     <customLabels>
+        <label><!-- BFM_5 years records --></label>
+        <name>BFM_5_years_records</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Aplly --></label>
+        <name>BFM_Aplly</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Approval No Attachment Found --></label>
+        <name>BFM_Approval_No_Attachment_Found</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM At Least one Permission --></label>
+        <name>BFM_At_Least_one_Permission</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Back --></label>
+        <name>BFM_Back</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Base Calc --></label>
+        <name>BFM_Base_Calc</name>
+    </customLabels>
+    <customLabels>
+        <label>CNPJ Matriz deve conter somente números e deve ter exatamente 8 dígitos</label>
+        <name>BFM_CNPJ_Length_Error_Message</name>
+    </customLabels>
+    <customLabels>
+        <label>CPF já cadastrado</label>
+        <name>BFM_CPF_Already_in_Use</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM CTE Information --></label>
+        <name>BFM_CTE_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_CT_e_Carrier_Assignment_Erro --></label>
+        <name>BFM_CT_e_Carrier_Assignment_Erro</name>
+    </customLabels>
+    <customLabels>
+        <label>Detalhes do CT-e</label>
+        <name>BFM_CT_e_Details</name>
+    </customLabels>
+    <customLabels>
+        <label>Buscar CT-e</label>
+        <name>BFM_CT_e_Search</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM CT-e doesn&apos;t have SES --></label>
+        <name>BFM_CT_e_doesn_t_have_SES</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_CTe --></label>
+        <name>BFM_CTe</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_CTestatus --></label>
+        <name>BFM_CTestatus</name>
+    </customLabels>
+    <customLabels>
+        <label>Cancelar</label>
+        <name>BFM_Cancel</name>
+    </customLabels>
+    <customLabels>
+        <label>Empregado da transportadora está requisitando acesso, mas email de aprovação não foi encontrado. Por favor revise e contate-o em:</label>
+        <name>BFM_Carrier_Email_Task_Description</name>
+    </customLabels>
+    <customLabels>
+        <label>CNPJ da Transportadora</label>
+        <name>BFM_Choose_CNPJ</name>
+    </customLabels>
+    <customLabels>
+        <label>Limpar</label>
+        <name>BFM_Clear</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Close --></label>
+        <name>BFM_Close</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Dateadjust --></label>
+        <name>BFM_Dateadjust</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Debit Note --></label>
+        <name>BFM_Debit_Note</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Delete --></label>
+        <name>BFM_Delete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Destination --></label>
+        <name>BFM_Destination</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Different Aliquot Information --></label>
+        <name>BFM_Different_Aliquot_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_DuplicateRecord --></label>
+        <name>BFM_DuplicateRecord</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Error Creating Access Request --></label>
+        <name>BFM_Error_Creating_Access_Request</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM FRS Tax Code --></label>
+        <name>BFM_FRS_Tax_Code</name>
+    </customLabels>
+    <customLabels>
+        <label>Arquivo</label>
+        <name>BFM_File</name>
+    </customLabels>
+    <customLabels>
+        <label>Formato de arquivo deve corresponder ao tipo de arquivo selecionado</label>
+        <name>BFM_FileFormatMatchFileType</name>
+    </customLabels>
+    <customLabels>
+        <label>O tamanho do arquivo deve ser menor que 10MB</label>
+        <name>BFM_FileSizeLess10MB</name>
+    </customLabels>
+    <customLabels>
+        <label>Selecionar Tipo de Arquivo</label>
+        <name>BFM_File_Type</name>
+    </customLabels>
+    <customLabels>
+        <label>Arquivo(s) enviado(s) com sucesso</label>
+        <name>BFM_Files_Uploaded_Successfully</name>
+    </customLabels>
+    <customLabels>
+        <label>Tipo de Arquivo</label>
+        <name>BFM_Filetype</name>
+    </customLabels>
+    <customLabels>
+        <label>Carga de Documento</label>
+        <name>BFM_Filleupload</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_First --></label>
+        <name>BFM_First</name>
+    </customLabels>
+    <customLabels>
+        <label>Primeira página</label>
+        <name>BFM_First_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Fiscal Document ICMS Aliquot --></label>
+        <name>BFM_Fiscal_Document_ICMS_Aliquot</name>
+    </customLabels>
+    <customLabels>
+        <label>Documento de Transporte atualizado</label>
+        <name>BFM_Freight_Ok</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_GNRE Upload --></label>
+        <name>BFM_GNRE_Upload</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Gross value --></label>
+        <name>BFM_Gross_value</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM ICMS isnt same accross SES --></label>
+        <name>BFM_ICMS_isnt_same_accross_SES</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM IVA Information --></label>
+        <name>BFM_IVA_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Integration Failure --></label>
+        <name>BFM_Integration_Failure</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_InvalidCNPJ --></label>
+        <name>BFM_InvalidCNPJ</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_InvalidIssuerCNPJ --></label>
+        <name>BFM_InvalidIssuerCNPJ</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_InvalidServiceTakerCNPJ --></label>
+        <name>BFM_InvalidServiceTakerCNPJ</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Self Service Invalid CNPJ --></label>
+        <name>BFM_Invalid_CNPJ</name>
+    </customLabels>
+    <customLabels>
+        <label>CPF deve conter somente números e deve ter exatamente 11 dígitos</label>
+        <name>BFM_Invalid_CPF_Format</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Invalid Withhold Tax --></label>
+        <name>BFM_Invalid_Withhold_Tax</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Iva Notes --></label>
+        <name>BFM_Iva_Notes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Last --></label>
+        <name>BFM_Last</name>
+    </customLabels>
+    <customLabels>
+        <label>Última página</label>
+        <name>BFM_Last_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Link --></label>
+        <name>BFM_Link</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Load --></label>
+        <name>BFM_Load</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Loading --></label>
+        <name>BFM_Loading</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Manual Link --></label>
+        <name>BFM_Manual_Link</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM NFS --></label>
+        <name>BFM_NFS</name>
+    </customLabels>
+    <customLabels>
+        <label>Detalhes da NFS</label>
+        <name>BFM_NFS_Details</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_NFS Name --></label>
+        <name>BFM_NFS_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM NFS Record --></label>
+        <name>BFM_NFS_Record</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_NF-e --></label>
+        <name>BFM_NF_e</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_NF-e Information --></label>
+        <name>BFM_NF_e_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_NFe Create Date --></label>
+        <name>BFM_NFe_Create_Date</name>
+    </customLabels>
+    <customLabels>
+        <label>Apelido Comunidade</label>
+        <name>BFM_Name</name>
+    </customLabels>
+    <customLabels>
+        <label>Próxima página</label>
+        <name>BFM_Next</name>
+    </customLabels>
+    <customLabels>
+        <label>Buscar NFS</label>
+        <name>BFM_Nfs_Search</name>
+    </customLabels>
+    <customLabels>
+        <label>Nenhum Registro Encontrado</label>
+        <name>BFM_No_Records</name>
+    </customLabels>
+    <customLabels>
+        <label>Não foram encontradas retenções para o código de fornecedor {0} e código de companhia Unilever {1}</label>
+        <name>BFM_No_Withhold_Tax</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Norecords --></label>
+        <name>BFM_Norecords</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Occname --></label>
+        <name>BFM_Occname</name>
+    </customLabels>
+    <customLabels>
+        <label>Atualizar Ocorrência</label>
+        <name>BFM_Occurrence</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Occurrence OK --></label>
+        <name>BFM_Occurrence_OK</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Old Pod Date --></label>
+        <name>BFM_Old_Pod_Date</name>
+    </customLabels>
+    <customLabels>
+        <label>A operação falhou</label>
+        <name>BFM_Operation_Failed</name>
+    </customLabels>
+    <customLabels>
+        <label>Operação concluída com sucesso</label>
+        <name>BFM_Operation_Successful</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Origin --></label>
+        <name>BFM_Origin</name>
+    </customLabels>
+    <customLabels>
+        <label>Planta Origem</label>
+        <name>BFM_Origin_Plant</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Payment --></label>
+        <name>BFM_Payment</name>
+    </customLabels>
+    <customLabels>
+        <label>Selecionar</label>
+        <name>BFM_Picklist_Select</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM-Pod --></label>
+        <name>BFM_Pod</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Podname --></label>
+        <name>BFM_Podname</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Pricing Calculation Date --></label>
+        <name>BFM_Pricing_Calculation_Date</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Purge --></label>
+        <name>BFM_Purge</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Purge_days --></label>
+        <name>BFM_Purge_days</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Records --></label>
+        <name>BFM_Records</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Recs del --></label>
+        <name>BFM_Recs_del</name>
+    </customLabels>
+    <customLabels>
+        <label>Limpar</label>
+        <name>BFM_Reset</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Result --></label>
+        <name>BFM_Result</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Retention Code --></label>
+        <name>BFM_Retention_Code</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Retention Description --></label>
+        <name>BFM_Retention_Description</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Retention Type --></label>
+        <name>BFM_Retention_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_SES --></label>
+        <name>BFM_SES</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM SES Information --></label>
+        <name>BFM_SES_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM SES Record --></label>
+        <name>BFM_SES_Record</name>
+    </customLabels>
+    <customLabels>
+        <label>Salvar</label>
+        <name>BFM_Save</name>
+    </customLabels>
+    <customLabels>
+        <label>Buscar</label>
+        <name>BFM_Search</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Search Occ --></label>
+        <name>BFM_Search_Occ</name>
+    </customLabels>
+    <customLabels>
+        <label>Resultado da Busca</label>
+        <name>BFM_Search_Result</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Search SES --></label>
+        <name>BFM_Search_SES</name>
+    </customLabels>
+    <customLabels>
+        <label>Buscar DT</label>
+        <name>BFM_Search_Shipment</name>
+    </customLabels>
+    <customLabels>
+        <label>Selecione o número de registros:</label>
+        <name>BFM_Select_Records</name>
+    </customLabels>
+    <customLabels>
+        <label>Não há CNPJ compatível, por favor informe um CNPJ existente ou contacte-nos para suporte através do link no formulário.</label>
+        <name>BFM_Self_Service_CNPJ_Not_Found</name>
+    </customLabels>
+    <customLabels>
+        <label>Este e-mail já está em uso.</label>
+        <name>BFM_Self_Service_Duplicated_Email</name>
+    </customLabels>
+    <customLabels>
+        <label>Este e-mail não é valido, por favor insira um e-mail no formato &quot;algo@provedor.com&quot;</label>
+        <name>BFM_Self_Service_Invalid_Email</name>
+    </customLabels>
+    <customLabels>
+        <label>Este apelido já está em uso nesta comunidade.</label>
+        <name>BFM_Self_Service_Nickname_already_used</name>
+    </customLabels>
+    <customLabels>
+        <label>Nenhum e-mail de aprovação foi encontrado para as transportadoras requisitadas. Um fluxo de trabalho interno foi disparado, por favor contate &amp;email para mais informações.</label>
+        <name>BFM_Self_Service_No_Carrier_Email</name>
+    </customLabels>
+    <customLabels>
+        <label>Requisição de Acesso criada com sucesso. Um e-mail para aprovação foi enviado para:</label>
+        <name>BFM_Self_Service_Request_Created</name>
+    </customLabels>
+    <customLabels>
+        <label>Busque por CNPJ (Só primeiros 8 dígitos)</label>
+        <name>BFM_Self_Service_Search_CNPJ</name>
+    </customLabels>
+    <customLabels>
+        <label>Buscar Filiais</label>
+        <name>BFM_Self_Service_Search_Carrier_Branches</name>
+    </customLabels>
+    <customLabels>
+        <label>Por favor, selecione uma das empresas abaixo para requisitar acesso.</label>
+        <name>BFM_Self_Service_Select_Company</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Ses Do Not Exist --></label>
+        <name>BFM_Ses_Do_Not_Exist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Ses Icms Aliquot --></label>
+        <name>BFM_Ses_Icms_Aliquot</name>
+    </customLabels>
+    <customLabels>
+        <label>Filtros de busca do documento de transporte</label>
+        <name>BFM_Shipment_Filters</name>
+    </customLabels>
+    <customLabels>
+        <label>Remessa de</label>
+        <name>BFM_Shipment_From</name>
+    </customLabels>
+    <customLabels>
+        <label>Envio para</label>
+        <name>BFM_Shipment_To</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Support Email --></label>
+        <name>BFM_Support_Email</name>
+    </customLabels>
+    <customLabels>
+        <label>Código do Imposto</label>
+        <name>BFM_Tax_Code</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Tax Description --></label>
+        <name>BFM_Tax_Description</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Tax Rate MIRO --></label>
+        <name>BFM_Tax_Rate_MIRO</name>
+    </customLabels>
+    <customLabels>
+        <label>Tipo do Imposto</label>
+        <name>BFM_Tax_Type</name>
+    </customLabels>
+    <customLabels>
+        <label>Validação de Imposto</label>
+        <name>BFM_Tax_Validation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Taxcode --></label>
+        <name>BFM_Taxcode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Total Aliquot --></label>
+        <name>BFM_Total_Aliquot</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Total Base Excluded --></label>
+        <name>BFM_Total_Base_Excluded</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Total Base Value --></label>
+        <name>BFM_Total_Base_Value</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Total Other Bases --></label>
+        <name>BFM_Total_Other_Bases</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Total Tax Rate --></label>
+        <name>BFM_Total_Tax_Rate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Totalrecords --></label>
+        <name>BFM_Totalrecords</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Totalrecs --></label>
+        <name>BFM_Totalrecs</name>
+    </customLabels>
+    <customLabels>
+        <label>CNPJ da Conta Unilever</label>
+        <name>BFM_Unilever_Account_CNPJ</name>
+    </customLabels>
+    <customLabels>
+        <label>Conta Unilever</label>
+        <name>BFM_Unilever_Account_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Update --></label>
+        <name>BFM_Update</name>
+    </customLabels>
+    <customLabels>
+        <label>Carregar</label>
+        <name>BFM_Upload</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Upload File --></label>
+        <name>BFM_Upload_File</name>
+    </customLabels>
+    <customLabels>
+        <label>Carregar Arquivo(s)</label>
+        <name>BFM_Upload_Files</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Valid CNPJ --></label>
+        <name>BFM_Valid_CNPJ</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Validation --></label>
+        <name>BFM_Validation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Validation Error --></label>
+        <name>BFM_Validation_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM Validation OK --></label>
+        <name>BFM_Validation_OK</name>
+    </customLabels>
+    <customLabels>
+        <label>CNPJ da Transportadora</label>
+        <name>BFM_Vendor_CNPJ</name>
+    </customLabels>
+    <customLabels>
+        <label>Transportadora</label>
+        <name>BFM_Vendor_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_Wait --></label>
+        <name>BFM_Wait</name>
+    </customLabels>
+    <customLabels>
+        <label>Retenção de Imposto</label>
+        <name>BFM_Withhold</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BFM_supportEmail --></label>
+        <name>BFM_supportEmail</name>
+    </customLabels>
+    <customLabels>
+        <label>Página anterior</label>
+        <name>BFm_Previous</name>
+    </customLabels>
+    <customLabels>
         <label><!-- BetMemberRequestInvailidProjectIDError --></label>
         <name>BetMemberRequestInvailidProjectIDError</name>
     </customLabels>
@@ -943,6 +4647,10 @@
     <customLabels>
         <label><!-- Business Case Update Needed Value --></label>
         <name>Business_Case_Update_Needed_Value</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_AccountName --></label>
+        <name>CEC_AccountName</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC_Account_Site --></label>
@@ -985,6 +4693,10 @@
         <name>CEC_CaseAccountMissing</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_CaseAccountMissing_retrieval --></label>
+        <name>CEC_CaseAccountMissing_retrieval</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_CaseAccountPersonAddressMissing --></label>
         <name>CEC_CaseAccountPersonAddressMissing</name>
     </customLabels>
@@ -1019,6 +4731,10 @@
     <customLabels>
         <label><!-- CEC_Category --></label>
         <name>CEC_Category</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ChatSurveySchedulerName --></label>
+        <name>CEC_ChatSurveySchedulerName</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC_ChequeBook_ChequeNo_Already_Added --></label>
@@ -1097,6 +4813,18 @@
         <name>CEC_Consumer_Record_Update</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_ContactEmail --></label>
+        <name>CEC_ContactEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ContactName --></label>
+        <name>CEC_ContactName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ContactPhone --></label>
+        <name>CEC_ContactPhone</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_Country --></label>
         <name>CEC_Country</name>
     </customLabels>
@@ -1127,6 +4855,10 @@
     <customLabels>
         <label><!-- CEC_DebitCardDetails_No_Active_DebitCard_For_Country --></label>
         <name>CEC_DebitCardDetails_No_Active_DebitCard_For_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC Delisted Product --></label>
+        <name>CEC_Delisted_Product</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC_Detail_Request_Info --></label>
@@ -1163,6 +4895,14 @@
     <customLabels>
         <label><!-- CEC_Email_Label --></label>
         <name>CEC_Email_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC Email Subject --></label>
+        <name>CEC_Email_Subject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_EnterMktMappingMsg --></label>
+        <name>CEC_EnterMktMappingMsg</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC_EvoucherDetails_No_Active_EVoucher_For_Country --></label>
@@ -1249,6 +4989,10 @@
         <name>CEC_Missing_Information</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_Multilanguage_Birth --></label>
+        <name>CEC_Multilanguage_Birth</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_Name --></label>
         <name>CEC_Name</name>
     </customLabels>
@@ -1265,8 +5009,16 @@
         <name>CEC_NewCaseError_BeforeAddNewConsumer</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_NoAccessForChequeProcess --></label>
+        <name>CEC_NoAccessForChequeProcess</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_NoAccessForRetrievalProcess --></label>
         <name>CEC_NoAccessForRetrievalProcess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_NoResultFoundMsg --></label>
+        <name>CEC_NoResultFoundMsg</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC No Cases are available based on the skill --></label>
@@ -1325,6 +5077,10 @@
         <name>CEC_Product_Hierarchy</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC Product Last Manufactured Date --></label>
+        <name>CEC_Product_Last_Manufactured_Date</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC Product Quantity --></label>
         <name>CEC_Product_Quantity</name>
     </customLabels>
@@ -1377,12 +5133,32 @@
         <name>CEC_Retrieval_Process_rebook_error</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_Role --></label>
+        <name>CEC_Role</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- label for search box. --></label>
+        <name>CEC_SearchCountry</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_SearchMarketButtonName --></label>
+        <name>CEC_SearchMarketButtonName</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_SearchValidationError --></label>
         <name>CEC_SearchValidationError</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_SearchWarningMsg --></label>
+        <name>CEC_SearchWarningMsg</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_Search_Button --></label>
         <name>CEC_Search_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_SelectMktMappingMsg --></label>
+        <name>CEC_SelectMktMappingMsg</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC_Specify Details in Missing Info --></label>
@@ -1413,8 +5189,20 @@
         <name>CEC_SurveyResults</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_Task_Description --></label>
+        <name>CEC_Task_Description</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Task_Subject --></label>
+        <name>CEC_Task_Subject</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_Title --></label>
         <name>CEC_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Unilever_Opt_In --></label>
+        <name>CEC_Unilever_Opt_In</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC_ValidChatterTemplate --></label>
@@ -1439,6 +5227,78 @@
     <customLabels>
         <label><!-- CEC_isVariantKnown --></label>
         <name>CEC_isVariantKnown</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CORE_FB_App_Name --></label>
+        <name>CORE_FB_App_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CORE_FB_Cancel --></label>
+        <name>CORE_FB_Cancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CORE_FB_Comment --></label>
+        <name>CORE_FB_Comment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CORE_FB_Comment_Box --></label>
+        <name>CORE_FB_Comment_Box</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CORE_FB_Error --></label>
+        <name>CORE_FB_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CORE_FB_Error_Alert --></label>
+        <name>CORE_FB_Error_Alert</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CORE_FB_Message --></label>
+        <name>CORE_FB_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CORE_FB_Rate_App --></label>
+        <name>CORE_FB_Rate_App</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CORE_FB_Rate_Later --></label>
+        <name>CORE_FB_Rate_Later</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CORE_FB_Submit --></label>
+        <name>CORE_FB_Submit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CORE_FB_Thanks --></label>
+        <name>CORE_FB_Thanks</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EmailBodyForCampaigns --></label>
+        <name>CORE_IC_CampaignBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EmailBodyForCampaigns --></label>
+        <name>CORE_IC_CampaignSubBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EmailSubjectForCampaigns --></label>
+        <name>CORE_IC_CampaignSubject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CORE_IC_FAQ --></label>
+        <name>CORE_IC_FAQ</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EmailBodyForIdeas --></label>
+        <name>CORE_IC_IdeaBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EmailBodyForIdeas --></label>
+        <name>CORE_IC_IdeaSubBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EmailSubjectForIdeas --></label>
+        <name>CORE_IC_IdeaSubject</name>
     </customLabels>
     <customLabels>
         <label><!-- CPA BPE Recordtype --></label>
@@ -2473,6 +6333,10 @@
         <name>EA_Feedback_Reminder</name>
     </customLabels>
     <customLabels>
+        <label><!-- EA_Invite --></label>
+        <name>EA_Invite</name>
+    </customLabels>
+    <customLabels>
         <label><!-- EA_Invite_Message --></label>
         <name>EA_Invite_Message</name>
     </customLabels>
@@ -2781,139 +6645,59 @@
         <name>HideTermsOfUseLabel</name>
     </customLabels>
     <customLabels>
-        <label>Alerta! Check-In fora do endereço do cliente! Deseja Continuar?</label>
+        <label><!-- ICB ALERT CHECKIN OUT CUSTOMER --></label>
         <name>ICB_ALERT_CHECKIN_OUT_CUSTOMER</name>
     </customLabels>
     <customLabels>
-        <label>Alerta! Check-Out fora do endereço do cliente! Deseja Continuar?</label>
+        <label><!-- ICB ALERT CHECKOUT OUT CUSTOMER --></label>
         <name>ICB_ALERT_CHECKOUT_OUT_CUSTOMER</name>
     </customLabels>
     <customLabels>
-        <label>Disponível</label>
-        <name>ICB_AVAILABLE</name>
-    </customLabels>
-    <customLabels>
-        <label>Saldo(Cx.)</label>
-        <name>ICB_BALANCE</name>
-    </customLabels>
-    <customLabels>
-        <label>Saldo(Unid.)</label>
-        <name>ICB_BALANCE_UNIT</name>
-    </customLabels>
-    <customLabels>
-        <label>Voltar</label>
-        <name>ICB_BUTTON_BACK</name>
-    </customLabels>
-    <customLabels>
-        <label>Cancelar</label>
+        <label><!-- ICB BUTTON CANCEL --></label>
         <name>ICB_BUTTON_CANCEL</name>
     </customLabels>
     <customLabels>
-        <label>Check-In</label>
+        <label><!-- ICB BUTTON CHECK IN --></label>
         <name>ICB_BUTTON_CHECK_IN</name>
     </customLabels>
     <customLabels>
-        <label>Check-Out</label>
+        <label><!-- ICB BUTTON CHECK OUT --></label>
         <name>ICB_BUTTON_CHECK_OUT</name>
     </customLabels>
     <customLabels>
-        <label>Fechar</label>
+        <label><!-- ICB BUTTON CLOSE --></label>
         <name>ICB_BUTTON_CLOSE</name>
     </customLabels>
     <customLabels>
-        <label>Confirmar</label>
+        <label><!-- ICB BUTTON CONFIRM --></label>
         <name>ICB_BUTTON_CONFIRM</name>
     </customLabels>
     <customLabels>
-        <label>MINUTO DE OURO</label>
+        <label><!-- ICB BUTTON GOLDEN MINUTE --></label>
         <name>ICB_BUTTON_GOLDEN_MINUTE</name>
     </customLabels>
     <customLabels>
-        <label>Abrir</label>
+        <label><!-- ICB BUTTON OPEN --></label>
         <name>ICB_BUTTON_OPEN</name>
     </customLabels>
     <customLabels>
-        <label>Calculado</label>
-        <name>ICB_CALCULATED</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- ICB CHECK HASHTAG --></label>
-        <name>ICB_CHECK_HASHTAG</name>
-    </customLabels>
-    <customLabels>
-        <label>Concluído</label>
+        <label><!-- ICB CONCLUDED VISIT STATUS --></label>
         <name>ICB_CONCLUDED_VISIT_STATUS</name>
-    </customLabels>
-    <customLabels>
-        <label>Solicitação de Kits</label>
-        <name>ICB_CockPitHeader</name>
     </customLabels>
     <customLabels>
         <label><!-- ICB_Distance_Limit --></label>
         <name>ICB_Distance_Limit</name>
     </customLabels>
     <customLabels>
-        <label>Entrada(Unid.)</label>
-        <name>ICB_ENTRY</name>
-    </customLabels>
-    <customLabels>
-        <label>Erro! Realize Check-In antes do Check-Out!</label>
+        <label><!-- ICB ERROR CHECKIN BEFORE CHECKOUT --></label>
         <name>ICB_ERROR_CHECKIN_BEFORE_CHECKOUT</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- ICB_ERROR_MESSAGE --></label>
-        <name>ICB_ERROR_MESSAGE</name>
-    </customLabels>
-    <customLabels>
-        <label>E-mail Duplicado</label>
-        <name>ICB_Email_Duplicated</name>
-    </customLabels>
-	 <customLabels>
-        <label>Inativo</label>
-        <name>ICB_Status_Inactive</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Product Impulse Family --></label>
-        <name>ICB_FAMILY_IMPULSE</name>
-    </customLabels>
-    <customLabels>
-        <label>Batimento de vendas</label>
-        <name>ICB_HeaderCloseSale</name>
-    </customLabels>
-    <customLabels>
-        <label>Sorvetes</label>
-        <name>ICB_ICE_CREAMS</name>
-    </customLabels>
-    <customLabels>
-        <label>Estoque</label>
-        <name>ICB_INVENTORY_HEADER</name>
-    </customLabels>
-    <customLabels>
-        <label>Produtos em utilização</label>
-        <name>ICB_INVENTORY_HEADER_SUB_TITLE</name>
-    </customLabels>
-    <customLabels>
-        <label>Produtos em estoque</label>
-        <name>ICB_INVENTORY_HEADER_SUB_TITLES</name>
-    </customLabels>
-    <customLabels>
-        <label>NOME</label>
-        <name>ICB_INVENTORY_NAME</name>
-    </customLabels>
-    <customLabels>
-        <label>Nenhuma Visita Agendada</label>
-        <name>ICB_NO_VISIT_SCH</name>
     </customLabels>
     <customLabels>
         <label><!-- ICB OUT OF ROUTE VISIT --></label>
         <name>ICB_OUT_OF_ROUTE_VISIT</name>
     </customLabels>
     <customLabels>
-        <label>Pendente</label>
-        <name>ICB_PENDING</name>
-    </customLabels>
-    <customLabels>
-        <label>Planejado</label>
+        <label><!-- ICB PLANNED VISIT --></label>
         <name>ICB_PLANNED_VISIT</name>
     </customLabels>
     <customLabels>
@@ -2921,76 +6705,16 @@
         <name>ICB_PREFIX_SOBJECT_EVENT</name>
     </customLabels>
     <customLabels>
-        <label>Produto</label>
-        <name>ICB_PRICELIST_HEADER_SUB_TITLE</name>
-    </customLabels>
-    <customLabels>
-        <label>Produtos em utilização</label>
-        <name>ICB_PRICELIST_HEADER_SUB_TITLES</name>
-    </customLabels>
-    <customLabels>
-        <label>Descrição</label>
-        <name>ICB_PROD_DESCRIPTION</name>
-    </customLabels>
-    <customLabels>
-        <label>Valor de Compra</label>
-        <name>ICB_PROD_PURCHASE_VALUE</name>
-    </customLabels>
-    <customLabels>
-        <label>Valor do Sorveteiro</label>
-        <name>ICB_PROD_SALESMAN_VALUE</name>
-    </customLabels>
-    <customLabels>
-        <label>Valor de Venda</label>
-        <name>ICB_PROD_SALE_VALUE</name>
-    </customLabels>
-    <customLabels>
-        <label>Tabela de preço para o operador</label>
-        <name>ICB_Price_Book_Description</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- ICB Price Book RecordTypeId --></label>
-        <name>ICB_Price_Book_RecordTypeId</name>
-    </customLabels>
-    <customLabels>
-        <label>Receber Sorveteiro (R$)</label>
-        <name>ICB_RECEIVE_ICE_CREAM</name>
-    </customLabels>
-    <customLabels>
         <label><!-- ICB REC TYPE ICE CREAM VISIT --></label>
         <name>ICB_REC_TYPE_ICE_CREAM_VISIT</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- ICB REC TYPE STANDARD CONTACT --></label>
-        <name>ICB_REC_TYPE_STANDARD_CONTACT</name>
-    </customLabels>
-    <customLabels>
-        <label>Solicitar</label>
-        <name>ICB_REQUEST</name>
     </customLabels>
     <customLabels>
         <label><!-- ICB ROADNET CREATED BY NAME --></label>
         <name>ICB_ROADNET_CREATED_BY_NAME</name>
     </customLabels>
     <customLabels>
-        <label>Total de Vendas</label>
-        <name>ICB_SALES_TOTAL</name>
-    </customLabels>
-    <customLabels>
-        <label>mseries://?cdStore=</label>
+        <label><!-- ICB SCHEMA MSERIES --></label>
         <name>ICB_SCHEMA_MSERIES</name>
-    </customLabels>
-    <customLabels>
-        <label>Visita Agendada</label>
-        <name>ICB_SCH_VISIT</name>
-    </customLabels>
-    <customLabels>
-        <label>Visitas Agendadas</label>
-        <name>ICB_SCH_VISITS</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- ICB SOBJECT CONTACT --></label>
-        <name>ICB_SOBJECT_CONTACT</name>
     </customLabels>
     <customLabels>
         <label><!-- ICB SOBJECT EVENT --></label>
@@ -3001,96 +6725,88 @@
         <name>ICB_STATE_RESPONSE_SUCCESS</name>
     </customLabels>
     <customLabels>
-        <label>Geolocalizando...</label>
+        <label><!-- ICB STATUS GEOLOCATING --></label>
         <name>ICB_STATUS_GEOLOCATING</name>
     </customLabels>
     <customLabels>
-        <label>O Minuto de Ouro ainda não foi atualizado!</label>
+        <label><!-- ICB STATUS GOLDEN MINUTE NOT UPDATE --></label>
         <name>ICB_STATUS_GOLDEN_MINUTE_NOT_UPDATE</name>
     </customLabels>
     <customLabels>
-        <label>O Minuto de Ouro não foi carregado!</label>
+        <label><!-- ICB STATUS GOLDEN MINUTE NOT UPLOADED --></label>
         <name>ICB_STATUS_GOLDEN_MINUTE_NOT_UPLOADED</name>
     </customLabels>
     <customLabels>
-        <label>FINALIZADO...</label>
+        <label><!-- ICB STATUS VIEW DONE --></label>
         <name>ICB_STATUS_VIEW_DONE</name>
     </customLabels>
     <customLabels>
-        <label>Obtendo Geolocalização...</label>
+        <label><!-- ICB STATUS VIEW GETTING GEO --></label>
         <name>ICB_STATUS_VIEW_GETTING_GEO</name>
     </customLabels>
     <customLabels>
-        <label>Sucesso! Check-In realizado com sucesso!</label>
+        <label><!-- ICB SUCCESS CHECKIN SUCCESSFULLY --></label>
         <name>ICB_SUCCESS_CHECKIN_SUCCESSFULLY</name>
     </customLabels>
     <customLabels>
-        <label>Sucesso! Check-Out realizado com sucesso!</label>
+        <label><!-- ICB SUCCESS CHECKOUT SUCCESSFULLY --></label>
         <name>ICB_SUCCESS_CHECKOUT_SUCCESSFULLY</name>
     </customLabels>
     <customLabels>
-        <label>Alerta!</label>
+        <label><!-- ICB TEXT ALERT --></label>
         <name>ICB_TEXT_ALERT</name>
     </customLabels>
     <customLabels>
-        <label>Check-In</label>
+        <label><!-- ICB TEXT CHECK IN --></label>
         <name>ICB_TEXT_CHECK_IN</name>
     </customLabels>
     <customLabels>
-        <label>Erro!</label>
+        <label><!-- ICB TEXT ERROR --></label>
         <name>ICB_TEXT_ERROR</name>
     </customLabels>
     <customLabels>
-        <label>Info</label>
+        <label><!-- ICB TEXT INFO --></label>
         <name>ICB_TEXT_INFO</name>
     </customLabels>
     <customLabels>
-        <label>Sucesso</label>
+        <label><!-- ICB TEXT SUCCESS --></label>
         <name>ICB_TEXT_SUCCESS</name>
     </customLabels>
     <customLabels>
-        <label>Sucesso!</label>
+        <label><!-- ICB TEXT SUCCESS 2 --></label>
         <name>ICB_TEXT_SUCCESS2</name>
     </customLabels>
     <customLabels>
-        <label>Atenção!</label>
+        <label><!-- ICB TEXT WARNING --></label>
         <name>ICB_TEXT_WARNING</name>
     </customLabels>
     <customLabels>
-        <label>Produto</label>
-        <name>ICB_TITLE_PRODUCT</name>
-    </customLabels>
-    <customLabels>
-        <label>Não planejado</label>
+        <label><!-- ICB UNPLANNED VISIT --></label>
         <name>ICB_UNPLANNED_VISIT</name>
-    </customLabels>
-    <customLabels>
-        <label>Atualizar</label>
-        <name>ICB_UPDATE_INVENTORY</name>
     </customLabels>
     <customLabels>
         <label><!-- ICB URL GOOGLE MAP --></label>
         <name>ICB_URL_GOOGLE_MAP</name>
     </customLabels>
     <customLabels>
-        <label>Atenção! Não foi possível de retornar a localização</label>
+        <label><!-- ICB WARNING CANT POSSIBLE RETURN GEO --></label>
         <name>ICB_WARNING_CANT_POSSIBLE_RETURN_GEO</name>
     </customLabels>
     <customLabels>
-        <label>Atenção! Check-In já foi realizado!</label>
+        <label><!-- ICB WARNING CHECKIN SUCCESSFULLY --></label>
         <name>ICB_WARNING_CHECKIN_SUCCESSFULLY</name>
     </customLabels>
     <customLabels>
-        <label>Atenção! Check-Out já foi realizado!</label>
+        <label><!-- ICB_WARNING_CHECKOUT_SUCCESSFULLY --></label>
         <name>ICB_WARNING_CHECKOUT_SUCCESSFULLY</name>
-    </customLabels>
-    <customLabels>
-        <label>Operador</label>
-        <name>ICE_Type_Operator</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_€ &apos;000 --></label>
         <name>IPM_000</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM 6.5 Performance Table Fields Can not be greater than 100% --></label>
+        <name>IPM_6_5_Performance_Table_Fields_Can_not_be_greater_than_100</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_ABOUT_IN_PROGRESS_STATE --></label>
@@ -4341,6 +8057,10 @@
         <name>IPM_Calendar</name>
     </customLabels>
     <customLabels>
+        <label><!-- Can not be greater --></label>
+        <name>IPM_Can_not_be_greater</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Cancel and Revert --></label>
         <name>IPM_CancelCountryRemoval</name>
     </customLabels>
@@ -4549,6 +8269,10 @@
         <name>IPM_Create_Assotment_Strategy</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM Create New BET Message --></label>
+        <name>IPM_Create_New_BET_Message</name>
+    </customLabels>
+    <customLabels>
         <label><!-- used wherever we want to show error message for creating regional rollouts --></label>
         <name>IPM_Create_Regional_Rollouts</name>
     </customLabels>
@@ -4607,6 +8331,10 @@
     <customLabels>
         <label><!-- IPM_DATE_PERIOD --></label>
         <name>IPM_DATE_PERIOD</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_DATE_PERIOD_COLON --></label>
+        <name>IPM_DATE_PERIOD_COLON</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_DAY --></label>
@@ -4969,6 +8697,10 @@
         <name>IPM_EcoDesign_Fill</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_EcoDesign_Global_Category_Average --></label>
+        <name>IPM_EcoDesign_Global_Category_Average</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_EcoDesign_Greenhouse_Gases --></label>
         <name>IPM_EcoDesign_Greenhouse_Gases</name>
     </customLabels>
@@ -5059,6 +8791,10 @@
     <customLabels>
         <label><!-- Environmental_Impact --></label>
         <name>IPM_Environmental_Impact</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Error --></label>
+        <name>IPM_Error</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_ErrorRetrievingCategories --></label>
@@ -5357,6 +9093,10 @@
         <name>IPM_Financial_KeyCountry</name>
     </customLabels>
     <customLabels>
+        <label><!-- Financial Target Months --></label>
+        <name>IPM_Financial_Target_Months</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_FirstFullYear --></label>
         <name>IPM_FirstFullYear</name>
     </customLabels>
@@ -5415,6 +9155,10 @@
     <customLabels>
         <label><!-- IPM_GCLT_AND_RCLT_APPROVAL --></label>
         <name>IPM_GCLT_AND_RCLT_APPROVAL</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_GCLT_APPROVAL --></label>
+        <name>IPM_GCLT_APPROVAL</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_GD_APPENDIX_MSG --></label>
@@ -5585,6 +9329,10 @@
         <name>IPM_GrossProfitCP</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM Gross Turnover Can Not Be Zero Or Negative --></label>
+        <name>IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Guest --></label>
         <name>IPM_Guest</name>
     </customLabels>
@@ -5673,6 +9421,10 @@
         <name>IPM_IN_THOUSAND_POUNDS</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM IRR % --></label>
+        <name>IPM_IRR</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_IS_COMPLETED_BY --></label>
         <name>IPM_IS_COMPLETED_BY</name>
     </customLabels>
@@ -5711,6 +9463,10 @@
     <customLabels>
         <label><!-- IPM ITO GTO Validation Common message --></label>
         <name>IPM_ITO_GTO_Validation_Common_message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM ITO should not be greater than GTO --></label>
+        <name>IPM_ITO_should_not_be_greater_than_GTO</name>
     </customLabels>
     <customLabels>
         <label><!-- Ideas --></label>
@@ -6007,6 +9763,10 @@
     <customLabels>
         <label><!-- Market --></label>
         <name>IPM_Market</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Market Performance --></label>
+        <name>IPM_Market_Performance</name>
     </customLabels>
     <customLabels>
         <label><!-- Market Place Activity --></label>
@@ -6311,6 +10071,10 @@
     <customLabels>
         <label><!-- IPM_NonFastTrack --></label>
         <name>IPM_NonFastTrack</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_NonMCO_TLD_Misaligned --></label>
+        <name>IPM_NonMCO_TLD_Misaligned</name>
     </customLabels>
     <customLabels>
         <label><!-- Non-Negotiable --></label>
@@ -6713,6 +10477,10 @@
         <name>IPM_Parameters</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM Payback Years --></label>
+        <name>IPM_Payback_Years</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Percent --></label>
         <name>IPM_Percent</name>
     </customLabels>
@@ -6749,6 +10517,10 @@
         <name>IPM_Phase_Change</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_Phase_Gate --></label>
+        <name>IPM_Phase_Gate</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM Phase Label --></label>
         <name>IPM_Phase_Label</name>
     </customLabels>
@@ -6769,8 +10541,24 @@
         <name>IPM_Please_complete_the_Risk_mitigation_plan_before_proposing_gate_document</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM Please fill --></label>
+        <name>IPM_Please_fill_financial</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Please select country --></label>
+        <name>IPM_Please_select_country</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_PojectSetupUrl --></label>
         <name>IPM_PojectSetupUrl</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Possible Error Will Not Block Progress --></label>
+        <name>IPM_Possible_Error_Will_Not_Block_Progress</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_PostponeDate_Required --></label>
+        <name>IPM_PostponeDate_Required</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_PostponeDate_Validation --></label>
@@ -6947,6 +10735,10 @@
     <customLabels>
         <label><!-- IPM_QUIT_PROJECT_SETUP --></label>
         <name>IPM_QUIT_PROJECT_SETUP</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_RCLT_APPROVAL --></label>
+        <name>IPM_RCLT_APPROVAL</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_READY_TO_MOVE_TO --></label>
@@ -7131,6 +10923,10 @@
     <customLabels>
         <label><!-- Remove --></label>
         <name>IPM_Remove</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_RemoveAllCountriesMsg --></label>
+        <name>IPM_RemoveAllCountriesMsg</name>
     </customLabels>
     <customLabels>
         <label><!-- Remove Country From MCO --></label>
@@ -7885,7 +11681,7 @@
         <name>IPM_TaskNameErrorMsg</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM Task Assign Text1 --></label>
+        <label><!-- IPM Task Assign Text --></label>
         <name>IPM_Task_Assign_Text1</name>
     </customLabels>
     <customLabels>
@@ -7953,6 +11749,10 @@
         <name>IPM_Top_5_Customer_Channels</name>
     </customLabels>
     <customLabels>
+        <label><!-- Total add up periods --></label>
+        <name>IPM_Total_add_up_periods</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_TurnOverCP --></label>
         <name>IPM_TurnOverCP</name>
     </customLabels>
@@ -7999,6 +11799,10 @@
     <customLabels>
         <label><!-- IPM_UPLOAD_WILL_START_AS_SOON_AS_FILE_IS_SELECTED --></label>
         <name>IPM_UPLOAD_WILL_START_AS_SOON_AS_FILE_IS_SELECTED</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_Unsaved_Alert --></label>
+        <name>IPM_Unsaved_Alert</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_Upcoming --></label>
@@ -8093,6 +11897,10 @@
         <name>IPM_WEIGHTAGE</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_WEIGHTED --></label>
+        <name>IPM_WEIGHTED</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_WELCOME_TO_IDEA_PHASE --></label>
         <name>IPM_WELCOME_TO_IDEA_PHASE</name>
     </customLabels>
@@ -8111,6 +11919,10 @@
     <customLabels>
         <label><!-- IPM_WH_QUESTIONS --></label>
         <name>IPM_WH_QUESTIONS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Warning --></label>
+        <name>IPM_Warning</name>
     </customLabels>
     <customLabels>
         <label><!-- WhiteSpace HelpText --></label>
@@ -8159,6 +11971,10 @@
     <customLabels>
         <label><!-- IPM Year3iTO --></label>
         <name>IPM_Year_3_iTO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM and Confirm --></label>
+        <name>IPM_and_Confirm</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM backto intermediate --></label>
@@ -9601,16 +13417,20 @@
         <name>Oblix_lbl_UIUX_update_to_project</name>
     </customLabels>
     <customLabels>
-        <label><!-- Chatter is like a collaboration application that helps you connect with people a --></label>
+        <label><!-- PBS_CHATTER --></label>
         <name>PBS_CHATTER</name>
     </customLabels>
     <customLabels>
-        <label><!-- The calendar displays all events that you own in Salesforce, including event whi --></label>
+        <label><!-- PBS_Calendar --></label>
         <name>PBS_Calendar</name>
     </customLabels>
     <customLabels>
-        <label><!-- On the Libraries tab, access your private library, create new libraries, and cho --></label>
+        <label><!-- PBS_Library --></label>
         <name>PBS_Library</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PBS_soqllimit --></label>
+        <name>PBS_soqllimit</name>
     </customLabels>
     <customLabels>
         <label><!-- PD_OBJ_NAME --></label>
@@ -9631,6 +13451,14 @@
     <customLabels>
         <label><!-- Rollout No Records Msg --></label>
         <name>Rollout_No_Records_Msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Sefaz Status Bad Request --></label>
+        <name>Sefaz_Status_Bad_Request</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Sefaz Status Requested --></label>
+        <name>Sefaz_Status_Requested</name>
     </customLabels>
     <customLabels>
         <label><!-- tooltip text for an unassigned checklist item --></label>
@@ -9759,6 +13587,14 @@
     <customLabels>
         <label><!-- label for singular project --></label>
         <name>TASKRAY__TaskRaySF1_ProjectSingular</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Calendar View Agenda button text --></label>
+        <name>TASKRAY__TaskRay_CalendarView_Agenda</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Calendar View Print button text --></label>
+        <name>TASKRAY__TaskRay_CalendarView_Print</name>
     </customLabels>
     <customLabels>
         <label><!-- Friday Abbreviation for Date Picker --></label>
@@ -9925,12 +13761,32 @@
         <name>TASKRAY__TaskRay_CloneModal_TemplateInput</name>
     </customLabels>
     <customLabels>
+        <label><!-- Clone modal template input Recent Header --></label>
+        <name>TASKRAY__TaskRay_CloneModal_TemplateInput_RecentsHeader</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Clone modal template input placeholder --></label>
         <name>TASKRAY__TaskRay_CloneModal_TemplateInput_placeholder</name>
     </customLabels>
     <customLabels>
         <label><!-- text for daily planner email best practices link in footer --></label>
         <name>TASKRAY__TaskRay_Daily_Planner_Best_Practices_Link</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- by label for daily planner email chatter section --></label>
+        <name>TASKRAY__TaskRay_Daily_Planner_By</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- comment by label for daily planner email chatter section --></label>
+        <name>TASKRAY__TaskRay_Daily_Planner_Comment_By</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- comments label for daily planner email chatter section --></label>
+        <name>TASKRAY__TaskRay_Daily_Planner_Comments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- label for daily planner email chatter project conversation statement --></label>
+        <name>TASKRAY__TaskRay_Daily_Planner_Conversation</name>
     </customLabels>
     <customLabels>
         <label><!-- empty label for daily planner email --></label>
@@ -9953,8 +13809,32 @@
         <name>TASKRAY__TaskRay_Daily_Planner_Header</name>
     </customLabels>
     <customLabels>
+        <label><!-- new label for daily planner email chatter section --></label>
+        <name>TASKRAY__TaskRay_Daily_Planner_New</name>
+    </customLabels>
+    <customLabels>
         <label><!-- text for daily planner email overdue section --></label>
         <name>TASKRAY__TaskRay_Daily_Planner_Overdue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- post by label for daily planner email chatter section --></label>
+        <name>TASKRAY__TaskRay_Daily_Planner_Post_By</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- posts label for daily planner email chatter section --></label>
+        <name>TASKRAY__TaskRay_Daily_Planner_Posts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- project label for daily planner email chatter section --></label>
+        <name>TASKRAY__TaskRay_Daily_Planner_Project</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- projects label for daily planner email chatter section --></label>
+        <name>TASKRAY__TaskRay_Daily_Planner_Projects</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recent Activity section label for daily planner email --></label>
+        <name>TASKRAY__TaskRay_Daily_Planner_Recent_Activity</name>
     </customLabels>
     <customLabels>
         <label><!-- text for daily planner email due this week section --></label>
@@ -10271,6 +14151,14 @@
     <customLabels>
         <label><!-- Initial Tour Step 0 text --></label>
         <name>TASKRAY__TaskRay_InitialTour_Step0Text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Initial Tour Step 10 text --></label>
+        <name>TASKRAY__TaskRay_InitialTour_Step10Text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Initial Tour Step 11 text --></label>
+        <name>TASKRAY__TaskRay_InitialTour_Step11Text</name>
     </customLabels>
     <customLabels>
         <label><!-- Initial Tour Step 1 text --></label>
@@ -10593,6 +14481,10 @@
         <name>TASKRAY__TaskRay_Navbar_AddFilterProperty_Label</name>
     </customLabels>
     <customLabels>
+        <label><!-- tooltip for calendar header icon --></label>
+        <name>TASKRAY__TaskRay_Navbar_Calendar_Tooltip</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Navbar Column visibility disabled warning plural --></label>
         <name>TASKRAY__TaskRay_Navbar_ColVisLabel_DisabledPlural</name>
     </customLabels>
@@ -10785,6 +14677,10 @@
         <name>TASKRAY__TaskRay_PlanViewPrint_ReportTitleText</name>
     </customLabels>
     <customLabels>
+        <label><!-- Label for header text input in plan view print no ie11 warning --></label>
+        <name>TASKRAY__TaskRay_PlanViewPrint_ReportTitleText_noie11</name>
+    </customLabels>
+    <customLabels>
         <label><!-- SVG Export button label in plan view print --></label>
         <name>TASKRAY__TaskRay_PlanViewPrint_SVGExportButton</name>
     </customLabels>
@@ -10945,6 +14841,14 @@
         <name>TASKRAY__TaskRay_PowerFilterModal_Filter_Logic</name>
     </customLabels>
     <customLabels>
+        <label><!-- First part of the date invalid label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_IsNullValidation_1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- First part of the date invalid label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_IsNullValidation_2</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Name new project filter label in the Power Filter Modal --></label>
         <name>TASKRAY__TaskRay_PowerFilterModal_NameProjectFilter</name>
     </customLabels>
@@ -11099,6 +15003,10 @@
     <customLabels>
         <label><!-- Label for the Favorite Projects filter scope --></label>
         <name>TASKRAY__TaskRay_PowerFilter_ProjectScope_FavoriteProjects</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Detail Label for the Favorite Projects filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_ProjectScope_FavoriteProjects_detail</name>
     </customLabels>
     <customLabels>
         <label><!-- Label for the My Projects filter scope --></label>
@@ -11329,6 +15237,10 @@
         <name>TASKRAY__TaskRay_ProjectModal_AutoFollowTasksText</name>
     </customLabels>
     <customLabels>
+        <label><!-- Project modal contributor tab open Checklist Item Owner label --></label>
+        <name>TASKRAY__TaskRay_ProjectModal_ChecklistItemOwnerLabel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Label for the project modal clone confirmation header --></label>
         <name>TASKRAY__TaskRay_ProjectModal_CloneConfHeader</name>
     </customLabels>
@@ -11535,6 +15447,10 @@
     <customLabels>
         <label><!-- Project modal contributor tab share with all internal users label --></label>
         <name>TASKRAY__TaskRay_ProjectModal_ShareAllInternalLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Project modal contributor tab Task Owner label --></label>
+        <name>TASKRAY__TaskRay_ProjectModal_TaskOwnerLabel</name>
     </customLabels>
     <customLabels>
         <label><!-- Project modal contributor tab Unsaved label for contributor --></label>
@@ -11777,6 +15693,10 @@
         <name>TASKRAY__TaskRay_Setting_Modal_RT_Instructions_Part3</name>
     </customLabels>
     <customLabels>
+        <label><!-- Settings Modal Label for Admin Tab. --></label>
+        <name>TASKRAY__TaskRay_Settings_Modal_AdminLabel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Settings Modal Admin tab label --></label>
         <name>TASKRAY__TaskRay_Settings_Modal_AdminTab</name>
     </customLabels>
@@ -11801,8 +15721,16 @@
         <name>TASKRAY__TaskRay_Settings_Modal_RecordTypes</name>
     </customLabels>
     <customLabels>
+        <label><!-- Settings Modal Label for Record Types Tab. --></label>
+        <name>TASKRAY__TaskRay_Settings_Modal_RecordTypesLabel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Settings Modal Record Types tab label --></label>
         <name>TASKRAY__TaskRay_Settings_Modal_RecordTypesTab</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Settings Modal Label for User Tab. --></label>
+        <name>TASKRAY__TaskRay_Settings_Modal_UserLabel</name>
     </customLabels>
     <customLabels>
         <label><!-- Settings Modal User tab label --></label>
@@ -11875,6 +15803,14 @@
     <customLabels>
         <label><!-- Contributors Narrow Show More link text --></label>
         <name>TASKRAY__TaskRay_SidebarNarrow_ContributorsShowMore</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Sidebar tab label for Assistant --></label>
+        <name>TASKRAY__TaskRay_Sidebar_AssistantLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assistant section header for Tasks with no dates on calendar view --></label>
+        <name>TASKRAY__TaskRay_Sidebar_Assistant_CalendarNoDateTasksHeader</name>
     </customLabels>
     <customLabels>
         <label><!-- Add button text for bulk action modals text --></label>
@@ -12077,6 +16013,22 @@
         <name>TASKRAY__TaskRay_Sidebar_DisplayPersonalTasks_new</name>
     </customLabels>
     <customLabels>
+        <label><!-- Sidebar files tab dropdown option for sort by date --></label>
+        <name>TASKRAY__TaskRay_Sidebar_DropDown_Date</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Sidebar files tab dropdown option for sort by name --></label>
+        <name>TASKRAY__TaskRay_Sidebar_DropDown_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Sidebar files tab current sort option prefix --></label>
+        <name>TASKRAY__TaskRay_Sidebar_DropDown_SortBy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Sidebar files tab dropdown option for sort by type --></label>
+        <name>TASKRAY__TaskRay_Sidebar_DropDown_Type</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Placeholder for Dynamic Project Filter in the Left Sidebar --></label>
         <name>TASKRAY__TaskRay_Sidebar_DynamicProjectFilter</name>
     </customLabels>
@@ -12161,6 +16113,10 @@
         <name>TASKRAY__TaskRay_Sidebar_ProjectArchive</name>
     </customLabels>
     <customLabels>
+        <label><!-- Sidebar project item auto follow tasks --></label>
+        <name>TASKRAY__TaskRay_Sidebar_ProjectAutoFollowTasks</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Sidebar project item Clone label --></label>
         <name>TASKRAY__TaskRay_Sidebar_ProjectCloneLabel</name>
     </customLabels>
@@ -12207,6 +16163,10 @@
     <customLabels>
         <label><!-- Sidebar project item select hierarchy label --></label>
         <name>TASKRAY__TaskRay_Sidebar_ProjectSelectHierarchyLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Sidebar project item stop auto following tasks --></label>
+        <name>TASKRAY__TaskRay_Sidebar_ProjectUnAutoFollowTasks</name>
     </customLabels>
     <customLabels>
         <label><!-- Sidebar project item View in New Tab label --></label>
@@ -12725,6 +16685,10 @@
         <name>TASKRAY__TaskRay_Undo_TaskProjectChanged_Text</name>
     </customLabels>
     <customLabels>
+        <label><!-- Undo text for single start date change --></label>
+        <name>TASKRAY__TaskRay_Undo_TaskStartDateUpdate_Text</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Undo text for multiple tasks archive --></label>
         <name>TASKRAY__TaskRay_Undo_TasksArchived_Text</name>
     </customLabels>
@@ -12751,6 +16715,10 @@
     <customLabels>
         <label><!-- Undo text for multiple project owner change --></label>
         <name>TASKRAY__TaskRay_Undo_TasksProjectChanged_Text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Undo text for multiple deadline change --></label>
+        <name>TASKRAY__TaskRay_Undo_TasksStartDateUpdate_Text</name>
     </customLabels>
     <customLabels>
         <label><!-- User and Queue Search placeholder text --></label>
@@ -12815,6 +16783,10 @@
     <customLabels>
         <label><!-- TermsOfUseTitle --></label>
         <name>TermsOfUseTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Total_Accepted_Final_Cost_PC_PPC_CA --></label>
+        <name>Total_Accepted_Final_Cost_PC_PPC_CA</name>
     </customLabels>
     <customLabels>
         <label><!-- UW_ASSET_IN_TOOLKIT --></label>
@@ -12961,8 +16933,20 @@
         <name>UW_SET_HEADER_CMD</name>
     </customLabels>
     <customLabels>
+        <label>Atualizar DT</label>
+        <name>Update_Shipment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- VEP_Access_Err --></label>
+        <name>VEP_Access_Err</name>
+    </customLabels>
+    <customLabels>
         <label><!-- VEP Approve/Reject Status Error --></label>
         <name>VEP_Approve_Reject_Status_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- VEP_ApproverAccess_Err --></label>
+        <name>VEP_ApproverAccess_Err</name>
     </customLabels>
     <customLabels>
         <label><!-- VEP Factory Name Id --></label>
@@ -12975,6 +16959,10 @@
     <customLabels>
         <label><!-- VEP Quiz Pass Err --></label>
         <name>VEP_Quiz_Pass_Err</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- VEP_SafetyQuiz_Url --></label>
+        <name>VEP_SafetyQuiz_Url</name>
     </customLabels>
     <customLabels>
         <label><!-- VEP_Status_ERR --></label>
@@ -12991,6 +16979,10 @@
     <customLabels>
         <label><!-- VEP Visitor Email Id --></label>
         <name>VEP_Visitor_Email_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Validation OK --></label>
+        <name>Validation_OK</name>
     </customLabels>
     <customLabels>
         <label><!-- WINatPOS Empty Param --></label>
@@ -14628,21 +18620,4 @@
         <label><!-- User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos; --></label>
         <name>uw_Inoplan_error_nullvalue</name>
     </customLabels>
-    <customTabs>
-        <label><!-- Fechamento --></label>
-        <name>ICB_Close_Sales</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Abertura --></label>
-        <name>ICB_Cockpit</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Estoque --></label>
-        <name>ICB_Inventory</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Lista de Preços --></label>
-        <name>ICB_Price_List</name>
-    </customTabs>
-    
 </Translations>
