@@ -1423,11 +1423,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.agf__ADM_Work__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.dgai__Sugestion_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -5406,11 +5401,7 @@
         <field>User.Work_Level__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__External_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+    
     <fieldPermissions>
         <editable>false</editable>
         <field>User.agf__GUS_User_Type__c</field>
