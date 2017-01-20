@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-	<labels>
-		<fullName>BFM_Invalid_CPF_Format</fullName>
-		<language>en_US</language>
-		<protected>false</protected>
-		<shortDescription>The CPF must be exactly 11 numeric characters long.</shortDescription>
-		<value>Forum</value>
-	</labels>
-	<labels>
-		<fullName>BFM_Freight_Ok</fullName>
-		<language>en_US</language>
-		<protected>false</protected>
-		<shortDescription>BFM_Freight Ok</shortDescription>
-		<value>Documento de Transporte atualizado</value>
-	</labels>
-	<labels>
-		<fullName>BFM_NF_e_Information</fullName>
-		<language>en_US</language>
-		<protected>false</protected>
-		<shortDescription>BFM_NF-e Information</shortDescription>
-		<value>NF-e Information</value>
-	</labels>
-	<labels>
-		<fullName>BFM_Cancel</fullName>
-		<language>en_US</language>
-		<protected>false</protected>
-		<shortDescription>BFM_Cancel</shortDescription>
-		<value>Cancel</value>
-	</labels>
-	<labels>
-		<fullName>BFM_NF_e</fullName>
-		<language>en_US</language>
-		<protected>false</protected>
-		<shortDescription>BFM_NF-e</shortDescription>
-		<value>NF-e</value>
-	</labels>
-	<labels>
-		<fullName>BFM_Approval_No_Attachment_Found</fullName>
-		<language>en_US</language>
-		<protected>false</protected>
-		<shortDescription>BFM Approval No Attachment Found</shortDescription>
-		<value>Error approving this record: No attachment was found.</value>
-	</labels>
-	<labels>
-		<fullName>BFM_CPF_Already_in_Use</fullName>
-		<language>en_US</language>
-		<protected>false</protected>
-		<shortDescription>BFM CPF Already in Use</shortDescription>
-		<value>This CPF is already in use.</value>
-	</labels>
-	<labels>
-		<fullName>BFM_Self_Service_No_Carrier_Email</fullName>
-		<language>en_US</language>
-		<protected>false</protected>
-		<shortDescription>BFM Self Service No Carrier Email</shortDescription>
-		<value>No email was found for the requested carriers. An internal workflow has been fired, please contact &email for further information.</value>
-	</labels>
+<labels>
+	<fullName>BFM_Invalid_CPF_Format</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>The CPF must be exactly 11 numeric characters long.</shortDescription>
+	<value>Forum</value>
+</labels>
+<labels>
+	<fullName>BFM_Freight_Ok</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>BFM_Freight Ok</shortDescription>
+	<value>Documento de Transporte atualizado</value>
+</labels>
+<labels>
+	<fullName>BFM_NF_e_Information</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>BFM_NF-e Information</shortDescription>
+	<value>NF-e Information</value>
+</labels>
+<labels>
+	<fullName>BFM_Cancel</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>BFM_Cancel</shortDescription>
+	<value>Cancel</value>
+</labels>
+<labels>
+	<fullName>BFM_NF_e</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>BFM_NF-e</shortDescription>
+	<value>NF-e</value>
+</labels>
+<labels>
+	<fullName>BFM_Approval_No_Attachment_Found</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>BFM Approval No Attachment Found</shortDescription>
+	<value>Error approving this record: No attachment was found.</value>
+</labels>
+<labels>
+	<fullName>BFM_CPF_Already_in_Use</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>BFM CPF Already in Use</shortDescription>
+	<value>This CPF is already in use.</value>
+</labels>
+<labels>
+	<fullName>BFM_Self_Service_No_Carrier_Email</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>BFM Self Service No Carrier Email</shortDescription>
+	<value>No email was found for the requested carriers. An internal workflow has been fired, please contact &email for further information.</value>
+</labels>
 </CustomLabels>
