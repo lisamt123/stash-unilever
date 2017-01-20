@@ -148,6 +148,7 @@ src/classes/BFM_UserCreationRequestHandler.cls-meta.xml
 src/classes/BFM_UserCreationRequestHandler_Test.cls
 src/classes/BFM_UserCreationRequestHandler_Test.cls-meta.xml
 src/customMetadata
+src/customMetadata/BFM_Mulesoft_Endpoint__mdt.mdt
 src/customMetadata/BFM_Mulesoft_Endpoint.Query_Freights.md
 src/customMetadata/BFM_Mulesoft_Endpoint.Query_Occurrence.md
 src/customMetadata/BFM_Mulesoft_Endpoint.Update_Freight_Data.md

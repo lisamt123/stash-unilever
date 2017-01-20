@@ -44,7 +44,7 @@ public class BFM_CPFValidator {
            && Integer.valueOf(cpf.substring(10,11)) == verifyingDigit2){
             return true;
         } else{
-            errorMessage = Label.BFM_Invalid_CPF_Format;
+            errorMessage = 'O CPF deve ter exatamente 11 caracteres numéricos.';
             return false;
         }
     }
