@@ -39,6 +39,7 @@
                     <th>Description</th>
                     <th>Delivery Note Code</th>
                     <th>Reported Rep DC Country</th>
+                    <th>Supplier</th>                    
                     <th>Supplier Type</th>
                     <th>Product Number (SKU)</th>
                     <th>Reporting DC</th>
@@ -56,10 +57,11 @@
                         <td>{!nc.Description__c}</td>
                         <td>{!nc.Delivery_Note_Number__c}</td>
                         <td>{!nc.DC_Country__c}</td>
+                        <td>{!nc.Supplier__c}</td>
                         <td>{!nc.Supplier_type__c}</td>
                         <td>{!nc.SKU__c}</td>
                         <td>{!nc.Reporting_DC__c}</td>
-                        <td>{!nc.Date_Pallet_Received__c}</td>
+                        <td></td>
                     </tr>
                 </apex:repeat>
                 </tbody>

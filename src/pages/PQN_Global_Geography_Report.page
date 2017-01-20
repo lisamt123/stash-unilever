@@ -15,12 +15,12 @@
         <!--<apex:barSeries orientation="vertical" axis="right" xField="chartXAxis" yField="chartdata"/>
     </apex:chart>-->
     </div>
-/*<style>
+<style>
         
-
-        table {
+    table {
             width: 100%!important;
         }
+        
 
         thead, tbody, tr, td, th { display: block; }
 
@@ -37,7 +37,8 @@
         
         tbody td {
             height: 30px!important;
-            //text-align: center;
+            width:50px!important
+            text-align: center;
             
         }
 
@@ -47,7 +48,7 @@
         }
 
         thead {
-            /* fallback */
+            fallback
         }
         tbody td, thead th {
             width: 6%!important;
@@ -57,16 +58,16 @@
         }
 
         tbody td:first-child, thead th:first-child {
-            width: 15%!important;
+            width: 16%!important;
             float: left!important;
         }
         tr.headerRow{
             width:99%!important;
         }
         
-</style>*/
+</style>
 <style>
-
+      
       tbody td, thead th {
            white-space: normal!important; 
             text-align: center;  

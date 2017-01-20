@@ -96,6 +96,7 @@
         }
         .Gray{
             background-color:#7F7F7F!important;
+            
         }
         .row{
             background-color:#DBE5F1!important;

@@ -20,17 +20,18 @@ private class PQN_UploadNCData_CloneTest {
      PQN_Supplier__c  sup=PQN_TestLibraryUtil.createSupplier();
      insert sup;
           
-           PQN_Pallet_Quality_Non_Conformance__c pqn=PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(sup.id,acc.id,dcv.id);
-     pqn.Reporting_DC__c = 'ULDC';
-     pqn.SKU__c ='12345';
-     pqn.Supplier__c='sail';
-     pqn.Non_compliance_reason_code__c=123;
-     pqn.account__c =null;
-     //insert pqn;
+         PQN_Pallet_Quality_Non_Conformance__c pqn=PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(sup.id,acc.id,dcv.id);
+         pqn.Reporting_DC__c = 'ULDC';
+         pqn.SKU__c ='12345';
+         pqn.Supplier__c='sail';
+         pqn.Non_compliance_reason_code__c=123;
+         pqn.account__c =null;
+         //insert pqn;
      
      
      
         test.starttest();
+        
             List<PQN_Pallet_Quality_Non_Conformance__c> xPQN = new List<PQN_Pallet_Quality_Non_Conformance__c>();
             xPQN.add(pqn);
             PQN_UploadNCData_Clone pU = new PQN_UploadNCData_Clone();

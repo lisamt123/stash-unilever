@@ -223,6 +223,10 @@ public without sharing class PQN_Global_Overview_Geography{
                 
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
+            if(mapOftarget.get(xA.Region)!=null){
+                 xA.cuYeartarper = mapOftarget.get(xA.Region);
+                }else{xA.cuYeartarper =0;} 
+                
              if(xA.Region== '' && xA.Cluster == ''){
                xA.cuYeardata =mapOfRegion.get('');
                xA.cuYearPercent=(mapOfRegion.get('')*100)/integer.valueOf(xPSU[0].get('totalshipped'));
@@ -230,20 +234,14 @@ public without sharing class PQN_Global_Overview_Geography{
               }
             else if (xA.Cluster != '') {
             if (mapOfRegion.get(xA.Cluster) != Null){
-              xA.cuYeardata = mapOfRegion.get(xA.Cluster);
-                if(mapOftarget.get(xA.Region)!=null){
-                 xA.cuYeartarper = mapOftarget.get(xA.Region);
-                }else{xA.cuYeartarper =0;}
+                 xA.cuYeardata = mapOfRegion.get(xA.Cluster);
                  temp = Double.valueOf((mapOfRegion.get(xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
-                xA.cuYearPercent= temp.setscale(2);
+                 xA.cuYearPercent= temp.setscale(2);
                 }else{xA.cuYearPercent=0;xA.cuYeardata =0;}
             }
             else if(xA.Region!= ''){
               if (mapOfRegion.get(xA.Region) != Null){
                 xA.cuYeardata = mapOfRegion.get(xA.Region);
-                if(mapOftarget.get(xA.Region)!=null){
-                 xA.cuYeartarper = mapOftarget.get(xA.Region);
-                }else{xA.cuYeartarper =0;}
                 temp = Double.valueOf((mapOfRegion.get(xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                 xA.cuYearPercent= temp.setscale(2);
                 }else{xA.cuYearPercent=0;xA.cuYeardata =0;}

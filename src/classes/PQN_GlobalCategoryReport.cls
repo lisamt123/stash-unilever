@@ -118,13 +118,13 @@ public without sharing class PQN_GlobalCategoryReport{
         
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
-            
-            if (xA.subCluster != '') {
-            if(mapOfRegion.get(xA.Category+'-'+xA.subCluster)!=Null){
-                xA.cuYeardata = mapOfRegion.get(xA.Category+'-'+xA.subCluster);
-                 if(mapOftarget.get(xA.Region)!=null){
+            if(mapOftarget.get(xA.Region)!=null){
                    xA.cuYeartarper=mapOftarget.get(xA.Region);
                  }else{xA.cuYeartarper =0;}
+                 
+            if (xA.subCluster != '') {
+            if(mapOfRegion.get(xA.Category+'-'+xA.subCluster)!=Null){
+                 xA.cuYeardata = mapOfRegion.get(xA.Category+'-'+xA.subCluster);
                  temp= Double.valueOf((mapOfRegion.get(xA.Category+'-'+xA.subCluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
                 }else{ xA.cuYearPercent=0; xA.cuYeardata =0;}
@@ -132,20 +132,14 @@ public without sharing class PQN_GlobalCategoryReport{
             else if (xA.Cluster != '') {
             if((mapOfRegion.get(xA.Category+'-'+xA.Cluster))!=Null){
                 xA.cuYeardata = mapOfRegion.get(xA.Category+'-'+xA.Cluster);
-                if(mapOftarget.get(xA.Region)!=null){
-                 xA.cuYeartarper=mapOftarget.get(xA.Region);
-                }else{xA.cuYeartarper =0;}
                  temp= Double.valueOf((mapOfRegion.get(xA.Category+'-'+xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
                 }else{ xA.cuYearPercent=0;xA.cuYeardata =0;}
             }
             else if(xA.Region != ''){
              if((mapOfRegion.get(xA.Category+'-'+xA.Region))!=Null){
-              xA.cuYeardata = mapOfRegion.get(xA.Category+'-'+xA.Region);
-               if(mapOftarget.get(xA.Region)!=null){
-                xA.cuYeartarper=mapOftarget.get(xA.Region);
-               }else{xA.cuYeartarper =0;}
-                temp= Double.valueOf((mapOfRegion.get(xA.Category+'-'+xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+                 xA.cuYeardata = mapOfRegion.get(xA.Category+'-'+xA.Region);
+                 temp= Double.valueOf((mapOfRegion.get(xA.Category+'-'+xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
                 }else{ xA.cuYearPercent=0;xA.cuYeardata =0;}
             }

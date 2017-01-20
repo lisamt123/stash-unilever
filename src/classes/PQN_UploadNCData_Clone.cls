@@ -133,7 +133,10 @@ global without sharing class PQN_UploadNCData_Clone{
             }
             
             xP.Number_of_Pallets_Per_SKU_Non_Compliant__c=(xP.Number_of_Pallets_Per_SKU_Non_Compliant__c==null) ? 0 : xP.Number_of_Pallets_Per_SKU_Non_Compliant__c;
-            
+            if(xP.Number_of_Pallets_Per_SKU_Non_Compliant__c==0){                
+                errorDesc +='Number of Pallets should not be 0 and empty. </br>';
+            }
+            xP.Date_Pallet_Received__c =system.today();
             
             
             if(errorDesc.length()>0){
