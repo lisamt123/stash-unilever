@@ -148,10 +148,10 @@ src/classes/BFM_UserCreationRequestHandler.cls-meta.xml
 src/classes/BFM_UserCreationRequestHandler_Test.cls
 src/classes/BFM_UserCreationRequestHandler_Test.cls-meta.xml
 src/customMetadata
-src/customMetadata/BFM_Mulesoft_Endpoint__mdt.mdt
 src/customMetadata/BFM_Mulesoft_Endpoint.Query_Freights.md
 src/customMetadata/BFM_Mulesoft_Endpoint.Query_Occurrence.md
 src/customMetadata/BFM_Mulesoft_Endpoint.Update_Freight_Data.md
+src/customMetadatatype/BFM_Mulesoft_Endpoint__mdt.mdt
 src/email/BFM_Email_Templates-meta.xml
 src/email/BFM_Email_Templates/BFM_Rejected_Email.email
 src/email/BFM_Email_Templates/BFM_Rejected_Email.email-meta.xml
@@ -165,8 +165,6 @@ src/flows/BFM_Create_Carrier_User_and_Share_Accounts-1.flow
 src/flows/BFM_Create_Carrier_User_and_Share_Accounts-2.flow
 src/flows/BFM_Create_Carrier_User_and_Share_Accounts-4.flow
 src/flows/BFM_Free_Freight_update_CTE-1.flow
-src/flows/BFM_Free_Freight_Update-1.flow
-src/flows/BFM_Update_Shipment_Field_on_CT_e-1.flow
 src/flows/BFM_Update_Shipment_in_CTe-1.flow
 src/homePageLayouts/BFM Home Page.homePageLayout
 src/layouts/BFM_AccountAccessRequest__c-BFM Account Access Request Layout.layout
