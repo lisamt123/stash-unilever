@@ -208,6 +208,8 @@ src/pages/BFM_SearchOccurrences_VF.page
 src/pages/BFM_SearchOccurrences_VF.page-meta.xml
 src/pages/BFM_SearchShipmentCTe_VF.page
 src/pages/BFM_SearchShipmentCTe_VF.page-meta.xml
+src/pages/BFM_ShipmentUpdate_VF.page
+src/pages/BFM_ShipmentUpdate_VF.page-meta.xml
 src/pages/BFM_ShipmentDocumentGeneration.page
 src/pages/BFM_ShipmentDocumentGeneration.page-meta.xml
 src/permissionsets
