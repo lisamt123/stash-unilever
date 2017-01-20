@@ -5,14 +5,12 @@ src/tabs
 src/tabs/BEN_Category_CUC_Codes__c.tab
 src/tabs/BEN_Category_Details__c.tab
 src/tabs/BEN_Category_Master__c.tab
-src/tabs/BEN_Category_User_Permission__c.tab
 src/tabs/BEN_Matrix_Report.tab
 src/objects
 src/objects/BEN_CategoryDetails__c.object
 src/objects/BEN_Category_CUC_Codes__c.object
 src/objects/BEN_Category_Details__c.object
 src/objects/BEN_Category_Master__c.object
-src/objects/BEN_Category_User_Permission__c.object
 src/classes
 src/classes/BEN_CategoryDetailsTriggerHandler.cls
 src/classes/BEN_CategoryDetailsTriggerHandler.cls-meta.xml
@@ -85,7 +83,6 @@ src/layouts/BEN_Category_Details__c-BEN Category Details Rejected.layout
 src/layouts/BEN_Category_Details__c-BEN Category Details Submitted.layout
 src/layouts/BEN_Category_Details__c-BEN Category Details Deleted.layout
 src/layouts/BEN_Category_Master__c-Category Master Layout.layout
-src/layouts/BEN_Category_User_Permission__c-Category User Permission Layout.layout
 src/layouts/BEN_Category_CUC_Codes__c-CUC Codes Layout.layout
 src/staticresources
 src/staticresources/BEN_styles.resource

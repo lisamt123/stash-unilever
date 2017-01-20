@@ -32,7 +32,7 @@ public with sharing class BEN_EmailRemainderSchedular implements Schedulable{
     //OrgWideEmailAddress Orgid = [Select Id,displayname from OrgWideEmailAddress];
     Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
     //setting toaddress
-    message.setOrgWideEmailAddressId('0D2E00000004Fc3KAE'); 
+    //message.setOrgWideEmailAddressId('0D2E00000004Fc3KAE'); 
     //setting from address
     message.BccAddresses=listofUser;
     message.subject='Reminder to enter test results for this quarter';
