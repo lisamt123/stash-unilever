@@ -384,23 +384,19 @@
                             $("#loaderDiv").hide();
                         }
                         if(event.result.Error>0 && event.result.Error<501){
-                            
                              ErrorList(timeStamp);
                              $("#insertErrorId").text("Insert ErrorList- "+event.result.Error);
                              $("#exportError").show();
                              $("#exportError").text("Export Error Records-"+event.result.Error);
                              $("#loaderDiv").hide();
-                        }else{
-                            
+                        }else{                            
                             $("#exportError").show();
                             $("#exportError").text("Export Error Records-"+event.result.Error);
                             $("#loaderDiv").hide();
-                           
                         }
                      }, 
                      {escape: true, buffer: false,timeout: 120000}
-              );
-           
+              );           
            }
            </script>
            
