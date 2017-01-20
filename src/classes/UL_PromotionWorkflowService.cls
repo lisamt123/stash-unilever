@@ -255,7 +255,9 @@
                 else if(promotionLst[0].UL_Manager_Check_Approvers__c!=null && promotionLst[0].UL_Current_Status__c !=null && promotionLst[0].UL_Current_Status__c.containsIgnoreCase(UL_Utility.STATUS_MANAGER_CHECK.toLowerCase()) && !promotionLst[0].UL_Manager_Check_Approvers__c.contains(userinfo.getuserid())){
                    throw new ul_customexception(Label.UL_PROMOTION_ASSIGNE_VALIDATION);
                 }
-                else if(!promotionLst[0].CreatedById.equals(userinfo.getuserid())){
+                else if(!promotionLst[0].UL_Current_Status__c.containsIgnoreCase(UL_Utility.STATUS_MANAGER_CHECK.toLowerCase())
+				&& !promotionLst[0].UL_Current_Status__c.containsIgnoreCase(UL_Utility.STATUS_FINANCE_CHECK.toLowerCase())	
+				&& !promotionLst[0].CreatedById.equals(userinfo.getuserid())){
                     throw new ul_customexception(Label.UL_PROMOTION_ASSIGNE_VALIDATION);
                 }
             }

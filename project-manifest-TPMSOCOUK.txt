@@ -79,6 +79,7 @@ src/objects/Promotion_Attachment_Link__c.object
 src/objects/UL_Comparator__c.object
 src/objects/UL_Condition_Codes__c.object
 src/objects/UL_Utility__c.object
+src/objects/IIBBTax__c.object
 src/objectTranslations
 src/objectTranslations/ACCL__Account_Bill_To__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Account_Call_Setting__c-en_US.objectTranslation
@@ -206,6 +207,7 @@ src/layouts/User-UKI-Userlayout.layout
 src/layouts/UL_Comparator__c-ComparatorLayout.layout
 src/layouts/UL_Workflow_Threshold__c-WorkflowThresholdLayout.layout
 src/layouts/UL_Workflow_Threshold_Template__c-WorkflowThresholdTemplateLayout.layout
+src/layouts/Account-UL_SoCo_Account_Layout.layout
 src/groups
 src/groups/UL_Account_Manager_AR01.group
 src/groups/UL_AccountManager_AR01.group

@@ -140,8 +140,8 @@
         public enum SalesOrg{
             AR01,
             CL01,
-            CL03
-           
+            CL03,
+            SoCo
         }
         
     /** ------------------------------------------------------------------ Public methods Section  ------------------------------------------------------------------/** 
@@ -206,6 +206,33 @@
             UL_Utility.logError(ex, UserInfo.getUserId());
         }
         return selectOption;
+    }
+   
+   /*****************************
+    Purpose: Generic method to get parent sales org. E.g SoCo is the parent sales org for AR01 or CL01 child sales org etc.
+    Version: 1.0
+    Parameters: String child sales org
+    Returns: String parent sales org
+    Throws: Exception
+   ******************************/ 
+   public static String getParentSalesOrg(String childSalesOrg){
+        String parentSalesOrg = UL_Utility.STRING_NULL;
+        try{
+        if(!String.isEmpty(childSalesOrg)){
+            Map<String, UL_Sales_Org_Mapping__c> salesOrgSettings = UL_Sales_Org_Mapping__c.getAll();
+              Map<String, UL_Sales_Org_Mapping__c> internalMap = new Map<String, UL_Sales_Org_Mapping__c>();
+              for(String key: salesOrgSettings.keyset()){
+                internalMap.put(key.toLowerCase(), salesOrgSettings.get(key));
+              }
+            
+            if(internalMap.containsKey(childSalesOrg.toLowerCase())){
+           parentSalesOrg = internalMap.get(childSalesOrg.toLowerCase()).UL_Sales_Org__c;
+            }
+        }
+        }catch(Exception ex){
+            UL_Utility.logError(ex, userInfo.getUserId());
+        }
+        return parentSalesOrg;
     }
     
     /*****************************

@@ -4040,14 +4040,15 @@ Id=VLOOKUP
         <fullName>UL_LTA_StartDate_Should_Not_Be_PastDate</fullName>
         <active>true</active>
         <description>The start date on LTAs should be greater than or equal to today</description>
-        <errorConditionFormula>AND( OR( ISNEW() , ISCHANGED(ACCL__Date_From__c ) ), ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), ACCL__Date_From__c &lt; TODAY() )</errorConditionFormula>
+        <errorConditionFormula>AND( ISPICKVAL( $User.ACCL__Sales_Org__c , &apos;UK SO&apos;), ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), ACCL__Date_From__c &lt; TODAY() )</errorConditionFormula>
+        <errorDisplayField>ACCL__Active__c</errorDisplayField>
         <errorMessage>The start date on LTAs should be greater than or equal to today</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>UL_LTA_Time_Period_of_Longer_Than_a_Year</fullName>
         <active>true</active>
         <description>(TPM 1759) - If a time period of longer than a year is defined within the date fields then a validation should be returned and the user is warned that a LTA cannot be created which is longer than one year.</description>
-        <errorConditionFormula>AND(ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), YEAR( ACCL__Date_Thru__c ) &lt;&gt; YEAR( ACCL__Date_From__c ), (ACCL__Date_Thru__c - ACCL__Date_From__c) + 1 &gt; 365)</errorConditionFormula>
+        <errorConditionFormula>AND(ISPICKVAL( $User.ACCL__Sales_Org__c , &apos;UK SO&apos;),ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), YEAR( ACCL__Date_Thru__c ) &lt;&gt; YEAR( ACCL__Date_From__c ), (ACCL__Date_Thru__c - ACCL__Date_From__c) + 1 &gt; 365)</errorConditionFormula>
         <errorMessage>A LTA cannot be created which is longer than one year.</errorMessage>
     </validationRules>
     <validationRules>
