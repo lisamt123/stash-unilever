@@ -5964,10 +5964,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Daily_Sales</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>Data_Entry</tab>
         <visibility>None</visibility>
     </tabSettings>
