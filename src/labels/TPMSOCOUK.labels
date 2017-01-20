@@ -126,6 +126,13 @@
         <shortDescription>Shipment_Instore_validation</shortDescription>
         <value>Shipment Start Date should be on or before In-Store Start Date!</value>
     </labels>
+	<labels>
+        <fullName>UL_Duplicate_Record_Found</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Duplicate_Record_Found</shortDescription>
+        <value>Dates are overlapping with existing records for same deliver profile.</value>
+    </labels>
     <labels>
         <fullName>UL_ADD_CUSTOMER_TO</fullName>
         <categories>Add Customer Page</categories>
@@ -2047,10 +2054,16 @@ there is a different Currency on lower level customer(s)</value>
         <shortDescription>Weekly Split</shortDescription>
         <value>Weekly Split</value>
     </labels>
-	<labels>
-        <fullName>UL_Duplicate_Record_Found</fullName>
-        <language>en_GB</language>
+        <fullName>UL_TACTIC_FUND_ASSOCIATION</fullName>
+        <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>UL_Duplicate_Record_Found</shortDescription>
-        <value>Dates are overlapping with existing records for same deliver profile.</value>
+        <shortDescription>Promotion approval validation message</shortDescription>
+        <value>Each tactic must have at least one related fund</value>
+    </labels>
+	<labels>
+        <fullName>UL_TACTIC_FUND_ASSOCIATION</fullName>
+        <language>es</language>
+        <protected>false</protected>
+        <shortDescription>Promotion approval validation message</shortDescription>
+        <value>Cada táctica debe tener al menos un fondo relacionado</value>
     </labels>
