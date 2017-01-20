@@ -87,7 +87,7 @@ public without sharing class BFM_SendEmailToCarrierApprover {
         Integer turn = Math.mod(count, usersGovernanceGroup.size());
         t.OwnerId = usersGovernanceGroup[turn].Id;
         
-        t.Description = Label.BFM_Carrier_Email_Task_Description + carrierUserRequest.email__c;
+        t.Description = 'O funcionário da transportadora solicitou acesso, mas nenhum e-mail foi encontrado. Por favor, revise e entre em contato com:' + carrierUserRequest.email__c;
         t.ActivityDate = System.today().addDays(1);
         insert t;
     }

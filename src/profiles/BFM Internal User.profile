@@ -265,10 +265,6 @@
         <apexClass>BFM_UserCreationRequestHandler_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_ValidateCNPJ</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
     <custom>true</custom>
     <fieldPermissions>
         <editable>false</editable>
@@ -1313,11 +1309,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_SES__c.Stage__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_SES__c.Tax_Code_Picklist__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
