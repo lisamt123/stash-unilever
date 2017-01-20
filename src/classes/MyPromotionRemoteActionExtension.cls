@@ -425,6 +425,7 @@ Throws : N/A
             else if ((promoList[0].ACCL__Sales_Org__c == UL_Utility.UKI_SALESORG_UK) || (promoList[0].ACCL__Sales_Org__c == UL_Utility.UKI_SALESORG_UK)){
                 
                 //List<UL_UKI_StatusButtons__mdt> visibilitySettings =  UL_UKI_FieldsVisibilityManager.getVisibility(status);
+				List<UL_UKI_StatusButtons__mdt> visibilitySettings;
                 if(!visibilitySettings.isEmpty()){
                     for(UL_UKI_StatusButtons__mdt metadata : visibilitySettings){
                         if(metadata.visibility__c){

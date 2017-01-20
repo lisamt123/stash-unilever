@@ -1,10 +1,11 @@
-trigger UL_PromotionTrigger on ACCL__Promotion__c (before update, before delete, after insert, after update) {
+trigger UL_PromotionTrigger on ACCL__Promotion__c (before update, before delete, before insert,after insert, after update) {
 
     public final String STATUS_END_DATE = 'End Date' ;
     
   if(trigger.isBefore){
       if(trigger.isUpdate){
           UL_PromotionInstoreDates.inStoredatesUpdated(trigger.new,trigger.oldMap,trigger.newMap);
+          UL_PromotionSetIIBBTaxHandler.updateIIBBTax(trigger.new,trigger.oldMap);
       }
   }
   if(trigger.isBefore){
@@ -12,6 +13,13 @@ trigger UL_PromotionTrigger on ACCL__Promotion__c (before update, before delete,
          UL_PromotionInstoreDates.deletePromotion(trigger.old);
      }
   }
+
+  if(trigger.isBefore){
+     if(trigger.isInsert){
+        UL_PromotionSetIIBBTaxHandler.updateIIBBTax(trigger.new,null);
+     }
+  }
+
     if(trigger.isAfter){
         if(trigger.isUpdate){
             
