@@ -3,7 +3,7 @@
     <backgroundEndColor>#DDDDDD</backgroundEndColor>
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#CCFFFF</backgroundStartColor>
-    <dashboardType>LoggedInUser</dashboardType>
+    <dashboardType>SpecifiedUser</dashboardType>
     <description>Summary of user survey scores and comments following completed Vendor Requests.</description>
     <isGridLayout>false</isGridLayout>
     <leftSection>
