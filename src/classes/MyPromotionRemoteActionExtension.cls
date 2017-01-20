@@ -827,6 +827,7 @@ Throws : N/A
             }
         }catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
+			throw ex;
         }
         return result;
     }

@@ -996,4 +996,11 @@
         <shortDescription>Close Promotions Confirmation</shortDescription>
         <value>Are you sure you want to close the selected promotions?</value>
     </labels>
+	<labels>
+        <fullName>UL_Duplicate_Record_Found</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Duplicate_Record_Found</shortDescription>
+        <value>Dates are overlapping with existing records for same deliver profile.</value>
+    </labels>
 
