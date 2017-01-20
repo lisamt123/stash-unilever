@@ -130,6 +130,8 @@
         public static final String ROLE_CATEGORY_MANAGER = 'category manager';
         public static final String ROLE_FINANCE_MANAGER = 'finance manager';
         public static final String ROLE_ACCOUNT_MANAGER = 'account manager';
+        public static final String UKI_SALESORG_UK= 'UK SO';
+        public static final String UKI_SALESORG_IRELAND= 'Ireland SO';
 
         //Exception Status Codes
         public static final String FIELD_CUSTOM_VALIDATION_EXCEPTION = 'FIELD_CUSTOM_VALIDATION_EXCEPTION';
@@ -138,7 +140,8 @@
         public enum SalesOrg{
             AR01,
             CL01,
-            CL03
+            CL03,
+            SoCo
         }
         
     /** ------------------------------------------------------------------ Public methods Section  ------------------------------------------------------------------/** 
@@ -204,7 +207,35 @@
         }
         return selectOption;
     }
-	/*****************************
+   
+   /*****************************
+    Purpose: Generic method to get parent sales org. E.g SoCo is the parent sales org for AR01 or CL01 child sales org etc.
+    Version: 1.0
+    Parameters: String child sales org
+    Returns: String parent sales org
+    Throws: Exception
+   ******************************/ 
+   public static String getParentSalesOrg(String childSalesOrg){
+        String parentSalesOrg = UL_Utility.STRING_NULL;
+        try{
+        if(!String.isEmpty(childSalesOrg)){
+            Map<String, UL_Sales_Org_Mapping__c> salesOrgSettings = UL_Sales_Org_Mapping__c.getAll();
+              Map<String, UL_Sales_Org_Mapping__c> internalMap = new Map<String, UL_Sales_Org_Mapping__c>();
+              for(String key: salesOrgSettings.keyset()){
+                internalMap.put(key.toLowerCase(), salesOrgSettings.get(key));
+              }
+            
+            if(internalMap.containsKey(childSalesOrg.toLowerCase())){
+           parentSalesOrg = internalMap.get(childSalesOrg.toLowerCase()).UL_Sales_Org__c;
+            }
+        }
+        }catch(Exception ex){
+            UL_Utility.logError(ex, userInfo.getUserId());
+        }
+        return parentSalesOrg;
+    }
+    
+    /*****************************
     Purpose: Get generic product from system
     Version: 1.0
     Parameters: N/A
