@@ -4534,6 +4534,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.FS_CHD_Lock__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.FS_ChainTargetingModel__c</field>
         <readable>true</readable>
     </fieldPermissions>

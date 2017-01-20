@@ -1339,11 +1339,8 @@ public with sharing class VPM_SearchVendor1{
             //vendorDetails.VPM_PartnerFunctions__c = op.PartnerFunctions;
             vendorDetails.VPM_PartnerName__c = op.PartnerName;
             vendorDetails.VPM_PartnerNumber__c = op.PartnerNumber; 
-            if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.CREATE) || (requestType.equalsIgnoreCase(VPM_RecordTypeHelper.EXTEND) && string.isNotBlank(vendorQuery1.VPM_ExtensionType__c) && vendorQuery1.VPM_ExtensionType__c.equalsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_REQUEST) )) {
-                vendorQuery1.VPM_OrderingEmailAddress__c = null;
-            }else{
-                vendorQuery1.VPM_OrderingEmailAddress__c = op.OrderingEmail;
-            }
+            vendorQuery1.VPM_OrderingEmailAddress__c = op.OrderingEmail;
+            
             system.debug('@@vendorQuery1.VPM_OrderingEmailAddress__c' + vendorQuery1.VPM_OrderingEmailAddress__c);
             vendorDetails.VPM_Plant__c = op.Plant; 
             vendorDetails.VPM_RegStGrp__c = op.RegStGrp; 
@@ -1357,6 +1354,7 @@ public with sharing class VPM_SearchVendor1{
         industryOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.INDUSTRY,industryOptionsDefValue);
         If(extensionType == VPM_RecordTypeHelper.REGIONAL_REQUEST) {
             vendorDetails.VPM_AccountGroup__c = op.AccountGroup;
+            vendorQuery1.VPM_OrderingEmailAddress__c = op.OrderingEmail;
         }
         vendorDetails.VPM_TaxNumAtResponsibleTaxAuthority__c = op.TaxNumberResponsibleAuthority;
         vendorDetails.VPM_CorporateGrp__c = op.CorporateGroup;

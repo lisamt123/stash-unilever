@@ -96,15 +96,16 @@
           }
         } 
         
-        // Redirect on rejection
-        function redirect()
-        {
-            location.reload();   
-        }
+        
         
         </script>
         <apex:outputpanel id="panel1">
             <script>
+               // Redirect on rejection
+               function redirect()
+               {
+                    location.reload();   
+               }
                function redirectSubmit()
                 {
                     if({!isRedirect}){

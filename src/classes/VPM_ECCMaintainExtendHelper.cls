@@ -34,7 +34,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
     final static string STR_CONST_VAT = 'VAT';
     final static string STR_CONST_WtaxType = 'WtaxType';
     final static string STR_CONST_MultiPicklistValueWithUnderScore = 'MultiPicklistValueWithUnderScore';
-    final static string STR_CONST_COLON = '" : "';
+    final static string STR_CONST_COLON = '////# : ////#';
 
     // All below string Represent JSON string
     Map<string,string> objectInJSON = new Map<string,string>{STR_CONST_Dunning =>'',STR_CONST_InternationalVersions =>'',STR_CONST_WtaxType =>'','Address'=>'', 'BankDetails' => '', 'CIN' =>'', STR_CONST_CompanyData => '', STR_CONST_PurchasingData =>'',STR_CONST_MainObject=>'','VAT'=>''};
@@ -43,6 +43,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
     string apiForPurchasingData=',';
     string Dunning=',';
     string valueToMatch ='';
+    Boolean panNumberCheck = false;
     
     VPM_PurchasingRequests__c vendorReuest;
 
@@ -100,21 +101,21 @@ public with sharing class VPM_ECCMaintainExtendHelper {
     
     if(ECC == 'U2K2')
       {
-      objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+'"ECC" :"'+vendorReuest.VPM_ECC__c+'","VendorCode" : "'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c+'"');
+      objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+'////#ECC////# :////#'+vendorReuest.VPM_ECC__c+'////#,////#VendorCode////# : ////#'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c+'////#');
        
       }
    
     else if(ECC == 'Fusion')
     {
-         objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+'"ECC" :"'+vendorReuest.VPM_ECC__c+'","VendorCode" : "'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeFusion__c+'","AccountGroup" :"'+vendorReuest.VPM_AccountGroup__c+'"');
+         objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+'////#ECC////# :////#'+vendorReuest.VPM_ECC__c+'////#,////#VendorCode////# : ////#'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeFusion__c+'////#,////#AccountGroup////# :////#'+vendorReuest.VPM_AccountGroup__c+'////#');
     }
     else if(ECC == 'Sirius')
     {
-         objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+'"ECC" :"'+vendorReuest.VPM_ECC__c+'","VendorCode" : "'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeSirius__c+'","AccountGroup" :"'+vendorReuest.VPM_AccountGroup__c+'"');
+         objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+'////#ECC////# :////#'+vendorReuest.VPM_ECC__c+'////#,////#VendorCode////# : ////#'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeSirius__c+'////#,////#AccountGroup////# :////#'+vendorReuest.VPM_AccountGroup__c+'////#');
     }
     else if(ECC == 'Cordillera')
     {
-         objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+'"ECC" :"'+vendorReuest.VPM_ECC__c+'","VendorCode" : "'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c+'","AccountGroup" :"'+vendorReuest.VPM_AccountGroup__c+'"');
+         objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+'////#ECC////# :////#'+vendorReuest.VPM_ECC__c+'////#,////#VendorCode////# : ////#'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c+'////#,////#AccountGroup////# :////#'+vendorReuest.VPM_AccountGroup__c+'////#');
     } 
     
    for(string objectName : objectInJSON.keySet())
@@ -124,23 +125,31 @@ public with sharing class VPM_ECCMaintainExtendHelper {
         {
             if(objectName == STR_CONST_PurchasingData)
             {
-                objectInJSON.put(STR_CONST_PurchasingData,objectInJSON.get(objectName)+ '"PurchasingOrganisation" : "'+VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_PurchasingOrg__r.Name)+'",');
+                objectInJSON.put(STR_CONST_PurchasingData,objectInJSON.get(objectName)+ '////#PurchasingOrganisation////# : ////#'+VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_PurchasingOrg__r.Name)+'////#,');
             }
             else if(objectName == STR_CONST_CompanyData)
             {
-                 objectInJSON.put(STR_CONST_CompanyData,objectInJSON.get(objectName)+ '"CompanyCode" : "'+VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_CompanyCode__r.VPM_CompanyCode__c)+'", "CheckDoubleInvoices" : '+vendorReuest.VPM_CheckDoubleInvoices__c+',');
+                 objectInJSON.put(STR_CONST_CompanyData,objectInJSON.get(objectName)+ '////#CompanyCode////# : ////#'+VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_CompanyCode__r.VPM_CompanyCode__c)+'////#, ////#CheckDoubleInvoices////# : '+vendorReuest.VPM_CheckDoubleInvoices__c+',');
             }
             else if(objectName == STR_CONST_CIN)
-            {
-                objectInJSON.put(STR_CONST_CIN,objectInJSON.get(objectName)+ '"PANNumber" : "'+VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_PANNumber__c)+'",');
+            {    
+                if(panNumberCheck)
+                {
+                objectInJSON.put(STR_CONST_CIN,objectInJSON.get(objectName));
+                }
+                else
+                {
+                String PanNumberVal = String.valueOf(vendorReuest.VPM_PANNumber__c) ==null?'':vendorReuest.VPM_PANNumber__c;    
+                objectInJSON.put(STR_CONST_CIN,objectInJSON.get(objectName)+ '////#PANNumber////# : ////#'+PanNumberVal+'////#,');
+                }
             }
             if(objectName == STR_CONST_WtaxType)
             {
-                objectInJSON.put(STR_CONST_CompanyData,objectInJSON.get(STR_CONST_CompanyData)+ '"WtaxType" : {'+objectInJSON.get(objectName).removeEnd(',')+'},');
+                objectInJSON.put(STR_CONST_CompanyData,objectInJSON.get(STR_CONST_CompanyData)+ '////#WtaxType////# : {'+objectInJSON.get(objectName).removeEnd(',')+'},');
             }
            else
            {
-            objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject) +',"'+objectName+'" :{ '+objectInJSON.get(objectName).removeEnd(',')+'}');
+            objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject) +',////#'+objectName+'////# :{ '+objectInJSON.get(objectName).removeEnd(',')+'}');
            }
         }
     }
@@ -148,9 +157,14 @@ public with sharing class VPM_ECCMaintainExtendHelper {
     system.debug('Print MainObject-----'+ '{'+objectInJSON.get(STR_CONST_WtaxType)+'}');
     
     system.debug('Print MainObject-----'+ '{'+objectInJSON.get(STR_CONST_MainObject)+'}');
-    
-
-    return '{'+objectInJSON.get(STR_CONST_MainObject)+'}';
+    string addEscapeCharacter = objectInJSON.get(STR_CONST_MainObject);
+    addEscapeCharacter = addEscapeCharacter.replace('\\','\\\\');
+     addEscapeCharacter = addEscapeCharacter.replace('"','\\"');
+     addEscapeCharacter = addEscapeCharacter.replace('\n','\\r\\n');
+     addEscapeCharacter = addEscapeCharacter.replace('\r','\\r\\n');
+      addEscapeCharacter = addEscapeCharacter.replace('\r\n','\\r\\n');
+     addEscapeCharacter = addEscapeCharacter.replace('////#','"');
+    return '{'+addEscapeCharacter+'}';
     }
 
 /* Created By : Ajay Rawat
@@ -190,7 +204,15 @@ public with sharing class VPM_ECCMaintainExtendHelper {
                 objectInJSON.put(STR_CONST_PurchasingData,objectInJSON.get(STR_CONST_PurchasingData)+formatFieldToJSONProperty(field));
                 //PurchasingData = PurchasingData + formatFieldToJSONProperty(field);
             }else if(field.VPM_parentElement__c == STR_CONST_CIN){
+                if(!field.VPM_ApiName__c.equalsignorecase('VPM_PANNumber__c'))
+                {
                 objectInJSON.put('CIN',objectInJSON.get('CIN')+formatFieldToJSONProperty(field));
+                }
+                else
+                {
+                  panNumberCheck=true;
+                  objectInJSON.put('CIN',objectInJSON.get('CIN')+formatFieldToJSONProperty(field));
+                }
             
             }else if(field.VPM_parentElement__c == STR_CONST_WtaxType){
                 objectInJSON.put('WtaxType',objectInJSON.get('WtaxType')+formatFieldToJSONProperty(field));
@@ -212,7 +234,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
         // Ajya Rawat : Condition to check field type and send boolean as a boolean in JSON string.
         if(field.VPM_fieldDatatype__c == STR_CONST_boolean)
         {
-            JSONElement = '"'+field.VPM_JSONFieldName__c+'" : '+vendorReuest.get(field.VPM_ApiName__c)+',';
+            JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : '+vendorReuest.get(field.VPM_ApiName__c)+',';
         }
         // Ajya Rawat : Condition to check field type and send free as a free text in JSON string.
         else if(field.VPM_fieldDatatype__c == STR_CONST_freeText)
@@ -233,20 +255,20 @@ public with sharing class VPM_ECCMaintainExtendHelper {
                     reconcilAcc = '0'+reconcilAcc; 
                   }
                }
-              JSONElement = '"'+field.VPM_JSONFieldName__c+STR_CONST_COLON+reconcilAcc+'",'; 
+              JSONElement = '////#'+field.VPM_JSONFieldName__c+STR_CONST_COLON+reconcilAcc+'////#,'; 
             }
             else
             {
-            JSONElement = '"'+field.VPM_JSONFieldName__c+STR_CONST_COLON+vendorReuest.get(field.VPM_ApiName__c)+'",'; 
+            JSONElement = '////#'+field.VPM_JSONFieldName__c+STR_CONST_COLON+vendorReuest.get(field.VPM_ApiName__c)+'////#,'; 
             }
             }
             else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c))
             {
-             JSONElement = '"'+field.VPM_JSONFieldName__c+'" : "",';
+             JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : ////#////#,';
             }
              else
              {
-              JSONElement = '"'+field.VPM_JSONFieldName__c+'" : null,';
+              JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : null,';
               }
         }
         // Ajya Rawat : Condition to check field type and send any underscore Value after formatting it.
@@ -254,15 +276,15 @@ public with sharing class VPM_ECCMaintainExtendHelper {
         {
             if(string.isNotBlank(String.valueOf(vendorReuest.get(field.VPM_ApiName__c)))){
         string finalStringValue =String.valueOf(vendorReuest.get(field.VPM_ApiName__c)) ==null?'':String.valueOf(vendorReuest.get(field.VPM_ApiName__c));
-            JSONElement = '"'+field.VPM_JSONFieldName__c+STR_CONST_COLON+VPM_HttpUtil.valueBeforeUnderscore(finalStringValue)+'",';   
+            JSONElement = '////#'+field.VPM_JSONFieldName__c+STR_CONST_COLON+VPM_HttpUtil.valueBeforeUnderscore(finalStringValue)+'////#,';   
             }
              else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c))
              {
-                JSONElement = '"'+field.VPM_JSONFieldName__c+'" : "",';
+                JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : ////#////#,';
              }
               else
               {
-              JSONElement = '"'+field.VPM_JSONFieldName__c+'" : null,';
+              JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : null,';
               }
                 
         }
@@ -281,15 +303,15 @@ public with sharing class VPM_ECCMaintainExtendHelper {
                  paymentMeth += VPM_HttpUtil.valueBeforeUnderscore(str);
              }
              
-            JSONElement = '"'+field.VPM_JSONFieldName__c+STR_CONST_COLON+paymentMeth.remove(' ') +'",';    
+            JSONElement = '////#'+field.VPM_JSONFieldName__c+STR_CONST_COLON+paymentMeth.remove(' ') +'////#,';    
             }
              else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c))
              {
-                JSONElement = '"'+field.VPM_JSONFieldName__c+'" : "",';
+                JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : ////#////#,';
             }
              else
              {
-              JSONElement = '"'+field.VPM_JSONFieldName__c+'" : null,';
+              JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : null,';
               }
         }
         // Ajya Rawat : Condition to check field type and send any DateTime Value after formatting it.
@@ -297,15 +319,15 @@ public with sharing class VPM_ECCMaintainExtendHelper {
         {
                if(string.isNotBlank(String.valueOf(vendorReuest.get(field.VPM_ApiName__c))))
                {
-            JSONElement = '"'+field.VPM_JSONFieldName__c+STR_CONST_COLON+formatDate(String.valueOf(vendorReuest.get(field.VPM_ApiName__c)))+'",'; 
+            JSONElement = '////#'+field.VPM_JSONFieldName__c+STR_CONST_COLON+formatDate(String.valueOf(vendorReuest.get(field.VPM_ApiName__c)))+'////#,'; 
                 }
              else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c))
                 {
-                     JSONElement = '"'+field.VPM_JSONFieldName__c+'" : "",';
+                     JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : ////#////#,';
                 }
                 else
                 {
-                 JSONElement = '"'+field.VPM_JSONFieldName__c+'" : null,';
+                 JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : null,';
                 }
         }
         return JSONElement;

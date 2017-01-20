@@ -110,7 +110,9 @@ public class AF_BonusRecordManager_Test
             List<AF_Bonus_Matrix__c> AFBonusMat = AF_TestFactory_Helper.insertBonusMatrix(1,true);
             List<AF_Bonus_Matrix__c> AFBonusMatQuery = [Select AF_Bonus_Results__c from AF_Bonus_Matrix__c where Id IN:AFBonusMat LIMIT 1];
             System.assertEquals(AFBonusMatQuery[0].AF_Bonus_Results__c,AFBonusResQuery[0].id, AF_TestFactory_Helper.BONUSMATRIX_RECORD);
-            AF_BonusRecordManager bonMan=new AF_BonusRecordManager(brandEst[0]);
+            AF_BonusRecordManager bonMane=new AF_BonusRecordManager();
+            AF_BonusRecordManager bonManeg=new AF_BonusRecordManager(brandEst1[0]);
+            AF_BonusRecordManager bonMan=new AF_BonusRecordManager(brandEstSet);
             bonMan.CreateMultiObjectRecords();
             bonMan.BonusSummarySingleFactory(brandEst[0]);
             Test.stopTest();
