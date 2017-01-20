@@ -66,7 +66,7 @@ public without sharing class BFM_SendEmailToCarrierApprover {
         
         System.debug('contactEmail ' + contactEmail);
         if(contactEmail == null){
-            errors = Label.BFM_Self_Service_No_Carrier_Email;           
+            errors ='Nenhum email foi encontrado para as operadoras solicitadas. Um fluxo de trabalho interno foi disparado, entre em contato com o e-mail para obter mais informações.';           
         }
         return contactEmail;
     }

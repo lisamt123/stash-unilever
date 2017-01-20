@@ -2,15 +2,16 @@
 public class BFM_TriggerFactory_Test {
     private static testMethod void bfm_TriggerTestMethod(){
         Test.startTest();
-        BFM_IVA__c iva = new BFM_IVA__c();
+        /*BFM_IVA__c iva = new BFM_IVA__c();
         iva.Tax_Amount__c = 100;
         iva.Tax_Base__c = 200;
-        insert iva;
+        insert iva;*/
         //Schema.sObjectType tokenA = iva.getSObjectType();
         //BFM_TriggerFactory.createHandler(tokenA);
         Account acc = new Account();
         acc.Name ='TestAccount';
         insert acc;
+        
         BFM_Shipment__c ship = new BFM_Shipment__c();
         ship.Carrier_Account__c = acc.Id;
         ship.Shipment_Number__c = '11111';
