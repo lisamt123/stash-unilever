@@ -103,6 +103,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     public Set<Id> projPurgeIdSet = new Set<Id>();
     public Map<String,IPM_Country__c> existingRelatedCountriesMap;
     public Map<String,Set<String>> relatedMCOAndCountry;
+    public String projectCategory{get;set;}
+    public String UFS = 'UFS';
     Set<String> phaseTobeIncluded = new Set<String>{IPM_ConstantUtils.PHASE_IDEAS, IPM_ConstantUtils.PHASE_FEASIBILITY, IPM_ConstantUtils.PHASE_CAPABILITY};
     public Boolean isProjectGKM3{get {
             if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3) {
@@ -171,6 +173,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     {
         searchCountry=null;
         isNoResult=false;
+        projectCategory = project.IPM_Category_Text__c;
         projectId = ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID);
         if (projectId != null)
         {
@@ -209,8 +212,16 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         queryString+= field + ', ';
                     }
                 } // change-3  query changes required following bottom up approach like from country to cluster /country group (parent_L2__r.name) / cluster parent_L2__r.parent_L2__r.name
-                queryString+= SelectQueryString+' WHERE (Name LIKE \'' + String.escapeSingleQuotes(searchCountry) + likePerStr + '\' OR parent_L2__r.name LIKE \'' + String.escapeSingleQuotes(searchCountry) + likePerStr + '\') AND(Name!=null OR parent_L2__r.Name!=null OR parent_L2__r.parent_L2__r.Name!=null)';
-                queryString+= ' AND geography_type__c = \''+IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRY+'\' AND parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRYGROUP+'\' AND Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_UNILEVERCLUSTER+'\' ORDER BY parent_L2__r.parent_L2__r.name,parent_L2__r.name,Name';
+	        queryString+= SelectQueryString+' WHERE (Name LIKE \'' + String.escapeSingleQuotes(searchCountry) + likePerStr + '\' OR parent_L2__r.name LIKE \'' + String.escapeSingleQuotes(searchCountry) + likePerStr + '\') AND(Name!=null OR parent_L2__r.Name!=null OR parent_L2__r.parent_L2__r.Name!=null)';
+                // change for UFS country search
+                if(projectCategory.contains(UFS)){
+		   queryString+= ' AND geography_type__c = \''+IPM_ConstantUtils.IPM_GEOGRAPHY_UFS_COUNTRY+'\' AND parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_UFS_COUNTRYGROUP+'\' AND Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+'  AND parent_L2__r.parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_UFS_UNILEVERCLUSTER+'\' AND Excluded_Apps__c EXCLUDES ( \''+ IPM_ConstantUtils.IPM_Excluded_Apps+'\') ORDER BY parent_L2__r.parent_L2__r.name,parent_L2__r.name,Name';
+                             	
+               }
+                else{
+		      queryString+= ' AND geography_type__c = \''+IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRY+'\' AND parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRYGROUP+'\' AND Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+'  AND parent_L2__r.parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_UNILEVERCLUSTER+'\' AND Excluded_Apps__c EXCLUDES ( \''+ IPM_ConstantUtils.IPM_Excluded_Apps+'\') ORDER BY parent_L2__r.parent_L2__r.name,parent_L2__r.name,Name';
+                	 
+                }
                 queryString+= ' LIMIT 10000';
                 mapUnileverCountries = new Map<String, MDO_Geography__c>(); 
               
@@ -281,7 +292,13 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             }
         }
         queryString+= SelectQueryString; // change-13
-        queryString+= ' WHERE geography_type__c = \''+IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRY+'\' AND parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRYGROUP+'\' AND Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_UNILEVERCLUSTER+'\' ORDER BY parent_L2__r.parent_L2__r.name,parent_L2__r.name,Name';
+        // changes for food solutions
+        if(projectCategory.contains(UFS)){
+	    queryString+= ' WHERE geography_type__c = \''+IPM_ConstantUtils.IPM_GEOGRAPHY_UFS_COUNTRY+'\' AND parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_UFS_COUNTRYGROUP+'\' AND Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_UFS_UNILEVERCLUSTER+'\' AND Excluded_Apps__c EXCLUDES ( \''+ IPM_ConstantUtils.IPM_Excluded_Apps+'\') ORDER BY parent_L2__r.parent_L2__r.name,parent_L2__r.name,Name';
+        }
+        else{
+	     queryString+= ' WHERE geography_type__c = \''+IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRY+'\' AND parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRYGROUP+'\' AND Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+'  AND parent_L2__r.parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_UNILEVERCLUSTER+'\' AND Excluded_Apps__c EXCLUDES ( \''+ IPM_ConstantUtils.IPM_Excluded_Apps+'\') ORDER BY parent_L2__r.parent_L2__r.name,parent_L2__r.name,Name';
+        }
         queryString+= ' LIMIT 10000';
             
         try{

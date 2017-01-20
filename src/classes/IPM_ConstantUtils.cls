@@ -679,6 +679,13 @@ public class IPM_ConstantUtils {
     public static final string IPM_GEOGRAPHY_UNILEVERCLUSTER = 'Unilever Cluster';
     public static final string IPM_GEOGRAPHY_COUNTRYGROUP = 'country group';
     
+    //changes for Food Solutions
+    public static final string IPM_GEOGRAPHY_UFS_COUNTRY = 'UFS Country';
+    public static final string IPM_GEOGRAPHY_UFS_UNILEVERCLUSTER = 'UFS Unilever Cluster';
+    public static final string IPM_GEOGRAPHY_UFS_COUNTRYGROUP = 'UFS Country Group';
+    Public static final string IPM_Excluded_Apps = 'IPM';
+    public static final String IPM_PROJECT_LEGACY = 'Legacy';
+    
     //ipm company card
     //Constant Declaration
     public static final String CC_RECORD_TYPE_GLOBAL='Global';

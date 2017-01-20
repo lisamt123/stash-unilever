@@ -241,6 +241,9 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         If(IPM_Coreparameter!=null && (IPM_Coreparameter.BET_Link_Requested__c!=null || String.isNotBlank(IPM_Coreparameter.BET__c))){
             bLinkBET = false;
         }
+        
+        IPM_Coreparameter.IPM_BET_Toolkit__c = 'No BET';
+        
         resetBEToption = IPM_Coreparameter.IPM_BET_Toolkit__c;
         
         if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c))

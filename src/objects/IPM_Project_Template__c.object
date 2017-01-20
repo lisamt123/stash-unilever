@@ -110,6 +110,26 @@
                 <fullName>Deodorants &amp; Fragrances</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>UFS Dressings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UFS Spreads</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UFS Savoury</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UFS Other Foods</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UFS Tea and Soy &amp; Fruit Beverage</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>

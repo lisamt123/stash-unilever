@@ -527,6 +527,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             if(projectMetadata.IPM_GKMQuestionsApplicable__c){
                 String gateKeepingFieldAPI = projectMetadata.IPM_GMKQuesiton__c;  
                 String defaultGateKeepingModel = projectMetadata.IPM_GMKQuestionDefaultAns__c;
+                String sQuestionHelpText = projectMetadata.IPM_GMKQuestionHelpText__c;
 
                 // Get Unique GateKeeping Models
                 if(String.isNotEmpty(gateKeepingFieldAPI) ){
@@ -535,7 +536,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                     for(Schema.PicklistEntry pickEntry : GKMQuestionPickVal){
                         if(!String.isBlank(pickEntry.getValue()) )
                         {
-                            gateKeepingOptions.add(new SelectOption (pickEntry.getLabel(),pickEntry.getValue() ) );
+                            if(sQuestionHelpText.contains(pickEntry.getValue())){
+                            	gateKeepingOptions.add(new SelectOption (pickEntry.getLabel(),pickEntry.getValue() ) );
+                            }
                         }
                     }
                 }

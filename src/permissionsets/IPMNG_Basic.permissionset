@@ -7674,6 +7674,11 @@
         <field>IPM_Project__c.update_on_change_of_ms_first_release_dat__c</field>
         <readable>true</readable>
     </fieldPermissions>
+		<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.IPM_Project_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Questionnaire__c.DependentFieldAPIName__c</field>
@@ -8735,6 +8740,11 @@
         <field>MDO_Geography__c.parent_mdm_id_tree__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>MDO_Geography__c.Excluded_Apps__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_Manufacturer__c.mdm_id__c</field>
@@ -9272,6 +9282,71 @@
 		<field>IPM_Project_Document__c.Rollup_Technical_OPT__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_CC_Alignment_Snapshot__c.IPM_Advertising_Promotions__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_CC_Alignment_Snapshot__c.IPM_BC_Confirmation_Text__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_CC_Alignment_Snapshot__c.IPM_Financial_Aligned__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_CC_Alignment_Snapshot__c.IPM_Financial_TLD_Aligned__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_CC_Alignment_Snapshot__c.IPM_GM_of_TO_Percentage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_CC_Alignment_Snapshot__c.IPM_Y3GTO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_CC_Alignment_Snapshot__c.IPM_Y3ITO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Rollout_Snapshot__c.IPM_Brand__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Rollout_Snapshot__c.IPM_Local_Rollout_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Rollout_Snapshot__c.IPM_Project_Span__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Rollout_Snapshot__c.IPM_Rollout_Countries__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Rollout_Snapshot__c.IPM_Rollout_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Rollout_Snapshot__c.IPM_Target_Launch_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 	<label>IPMNG Basic</label>
 	<objectPermissions>
         <allowCreate>true</allowCreate>
@@ -9712,6 +9787,24 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>IPM_SourcingUnit__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+	<objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>IPM_Project_CC_Alignment_Snapshot__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+	<objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>IPM_Project_Rollout_Snapshot__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>

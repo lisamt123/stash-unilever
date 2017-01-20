@@ -126,7 +126,8 @@ private class IPM_Gate_RollOuts_Controller_Test{
      {
          
 	         Test.startTest();
-	         List<IPM_Project__c> projectList = [Select Id from IPM_Project__c where Name = 'TestComments1'];
+	         List<IPM_Project__c> projectList = [Select Id,IPMProject_Span__c from IPM_Project__c where Name = 'TestComments1'];
+	         List<IPM_project_Document__c>  projDocumentList = [select IPM_Document_Status__c from IPM_Project_Document__c where IPM_Project__c =:projectList[0].id];
 	         
 	         IPM_Gate_RollOuts_Controller gateController = new IPM_Gate_RollOuts_Controller();
 	         gateController.proId = projectList[0].Id;
@@ -136,7 +137,22 @@ private class IPM_Gate_RollOuts_Controller_Test{
 	         
 	         System.assertEquals(gateController.regionalRollOutWrapperList[0].regionalRollOutName,'TestComments1_AFR', REGIONAL_ROLLOUT_NAME_FAIL);
 	         System.assertEquals(gateController.regionalRollOutWrapperList[1].regionalRollOutName,'TestComments1_LA', REGIONAL_ROLLOUT_NAME_FAIL);
-	         Test.stopTest();
+	   
+	    IPM_Project_Rollout_Snapshot__c  lstProjRollOutSnapShot  = new IPM_Project_Rollout_Snapshot__c();
+			lstProjRollOutSnapShot.Name = 'Test RolloutSnapShot';
+			lstProjRollOutSnapShot.IPM_Brand__c = 'Private Labels';
+			lstProjRollOutSnapShot.IPM_Local_Rollout_Name__c = 'DEF5828SIMPLE_EU_GRCY';
+			lstProjRollOutSnapShot.IPM_Project_Span__c = 'Global';
+			lstProjRollOutSnapShot.IPM_Rollout_Countries__c = 'Austria';
+			lstProjRollOutSnapShot.IPM_Rollout_Status__c = 'Follower';
+			lstProjRollOutSnapShot.IPM_Target_Launch_Date__c = System.today().addMonths(6);
+			lstProjRollOutSnapShot.IPM_Project_Document__c = projDocumentList[0].id;
+			insert lstProjRollOutSnapShot;
+            
+            gateController.docStatus = IPM_ConstantUtils.STATUS_APPROVED;
+            gateController.docId = projDocumentList[0].id;
+            gateController.prepareIPMLocalToCountryWrapper();
+	    Test.stopTest();
       
      } 
      
