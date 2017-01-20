@@ -65,9 +65,10 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-	  <runTest>BEN_CatUserPermTrigger_Test</runTest>
+	  <runTest>BEN_ApprovalProcess_Helper_test</runTest>
 	  <runTest>BEN_CategoryDetailsTriggerTest</runTest>
 	  <runTest>BEN_Matrix_VF_Controller_Test</runTest>
+	  <runTest>BEN_EmailRemainderSchedularTest</runTest>
     </sf:deploy>
   </target>  
 
