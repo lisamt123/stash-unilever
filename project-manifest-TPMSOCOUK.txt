@@ -444,6 +444,8 @@ src/classes/MyPromotionRemoteActionExtension2.cls
 src/classes/MyPromotionRemoteActionExtension2.cls-meta.xml
 src/classes/UL_GlobalTriggerMonitor_Class.cls
 src/classes/UL_GlobalTriggerMonitor_Class.cls-meta.xml
+src/classes/UL_PromotionSetIIBBTaxHandler.cls
+src/classes/UL_PromotionSetIIBBTaxHandler.cls-meta.xml
 src/pages
 src/pages/MyPromotionPlanning.page
 src/pages/MyPromotionPlanning.page-meta.xml
