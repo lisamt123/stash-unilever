@@ -113,6 +113,10 @@ src/classes/BFM_TriggerFactory.cls
 src/classes/BFM_TriggerFactory.cls-meta.xml
 src/classes/BFM_TriggerFactory_Test.cls
 src/classes/BFM_TriggerFactory_Test.cls-meta.xml
+src/classes/BFM_TestUtils.cls
+src/classes/BFM_TestUtils.cls-meta.xml
+src/classes/BFM_MockHttpResponse.cls
+src/classes/BFM_MockHttpResponse.cls-meta.xml
 src/classes/BFM_UpdateFreightData.cls
 src/classes/BFM_UpdateFreightData.cls-meta.xml
 src/classes/BFM_UpdateFreightData_Test.cls

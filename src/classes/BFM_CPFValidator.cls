@@ -19,7 +19,7 @@ public class BFM_CPFValidator {
     public boolean validateCPF(){
         
         if(cpf.length()<11 || !cpf.isnumeric()){
-            errorMessage = Label.BFM_Invalid_CPF_Format;
+            errorMessage = 'O CPF deve ter exatamente 11 caracteres numéricos';
             return false;
         }
         

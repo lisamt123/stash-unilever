@@ -22,7 +22,7 @@ global class BFM_BulkOccurrenceQuery implements Database.Batchable<sObject>, Dat
         }
         BFM_QueryOccurrence queryoccurrences = new BFM_QueryOccurrence(occIds);
         
-        String returnMessage = Label.BFM_Freight_Ok;
+        String returnMessage = 'Documento de Transporte atualizado';
         try{
             queryoccurrences.callQueryOccurrencesIssuing();
           
