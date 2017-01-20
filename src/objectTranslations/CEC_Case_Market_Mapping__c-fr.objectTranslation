@@ -107,6 +107,10 @@
             <translation><!-- Bulgarian --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Chinese</masterLabel>
+            <translation><!-- Chinese --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Croatian</masterLabel>
             <translation><!-- Croatian --></translation>
         </picklistValues>
@@ -159,6 +163,10 @@
             <translation><!-- Japanese --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Korean</masterLabel>
+            <translation><!-- Korean --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Moldavian</masterLabel>
             <translation><!-- Moldavian --></translation>
         </picklistValues>
@@ -193,6 +201,10 @@
         <picklistValues>
             <masterLabel>Swedish</masterLabel>
             <translation><!-- Swedish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkish</masterLabel>
+            <translation><!-- Turkish --></translation>
         </picklistValues>
     </fields>
     <fields>

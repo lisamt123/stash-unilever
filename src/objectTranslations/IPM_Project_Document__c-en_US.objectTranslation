@@ -168,6 +168,106 @@
         <name>IPM_Updated_User_By__c</name>
         <relationshipLabel><!-- IPM Project Documents --></relationshipLabel>
     </fields>
+    <fields>
+        <label><!-- Rollup CD Role --></label>
+        <name>Rollup_CD_Role__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup CMI Role --></label>
+        <name>Rollup_CMI_Role__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Deployment NN --></label>
+        <name>Rollup_Deployment_NN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Deployment OPT --></label>
+        <name>Rollup_Deployment_OPT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Excluded Sections --></label>
+        <name>Rollup_Excluded_Sections__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup External NN --></label>
+        <name>Rollup_External_NN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup External OPT --></label>
+        <name>Rollup_External_OPT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Filled In Sections --></label>
+        <name>Rollup_Filled_In_Sections__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Finance NN --></label>
+        <name>Rollup_Finance_NN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Finance OPT --></label>
+        <name>Rollup_Finance_OPT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Finance Role --></label>
+        <name>Rollup_Finance_Role__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Introduction NN --></label>
+        <name>Rollup_Introduction_NN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Introduction OPT --></label>
+        <name>Rollup_Introduction_OPT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup MKTG DEV Role --></label>
+        <name>Rollup_MKTG_DEV_Role__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup MKTG LOCAL Role --></label>
+        <name>Rollup_MKTG_LOCAL_Role__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Mix NN --></label>
+        <name>Rollup_Mix_NN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Mix OPT --></label>
+        <name>Rollup_Mix_OPT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Not Started Sections --></label>
+        <name>Rollup_Not_Started_Sections__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup PL Role --></label>
+        <name>Rollup_PL_Role__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Project Management NN --></label>
+        <name>Rollup_Project_Management_NN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Project Management OPT --></label>
+        <name>Rollup_Project_Management_OPT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup RD Role --></label>
+        <name>Rollup_RD_Role__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup SC Role --></label>
+        <name>Rollup_SC_Role__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Technical NN --></label>
+        <name>Rollup_Technical_NN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollup Technical OPT --></label>
+        <name>Rollup_Technical_OPT__c</name>
+    </fields>
     <layouts>
         <layout>IPM Project Document Layout</layout>
         <sections>

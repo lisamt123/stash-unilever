@@ -185,6 +185,10 @@
             <translation><!-- Greece --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Hong Kong</masterLabel>
+            <translation><!-- Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Hungary</masterLabel>
             <translation><!-- Hungary --></translation>
         </picklistValues>
@@ -203,6 +207,10 @@
         <picklistValues>
             <masterLabel>Japan</masterLabel>
             <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea</masterLabel>
+            <translation><!-- Korea --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Middle Americas</masterLabel>
@@ -249,8 +257,16 @@
             <translation><!-- Sri Lanka --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Taiwan</masterLabel>
+            <translation><!-- Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Thailand</masterLabel>
             <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>United Kingdom</masterLabel>
@@ -371,6 +387,10 @@
         </sections>
     </layouts>
     <nameFieldLabel><!-- Alert Rule Name --></nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- You are not allowed to select ‘Group By Day Code’ when Threshold is 1 --></errorMessage>
+        <name>GroupByDayCode_Validation</name>
+    </validationRules>
     <validationRules>
         <errorMessage>Proszę zweryfikuj czy kategoria produktowa &apos;Nazwa Działu&apos; nie jest zerowa/pusta</errorMessage>
         <name>L0_Product_Category_Mandatory_Validation</name>

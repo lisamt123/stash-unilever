@@ -17,7 +17,7 @@
         <name>Brand_Centre_Management</name>
     </customApplications>
     <customApplications>
-        <label><!-- CEC Admin --></label>
+        <label>CEC 관리</label>
         <name>CEC_Admin</name>
     </customApplications>
     <customApplications>
@@ -1025,19 +1025,19 @@
         <name>Business_Case_Update_Needed_Value</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Account_Site --></label>
+        <label>계정 사이트</label>
         <name>CEC_Account_Site</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Address --></label>
+        <label>주소</label>
         <name>CEC_Address</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_AlertActionSchedulerName --></label>
+        <label>CEC 경고 액션 한계치</label>
         <name>CEC_AlertActionSchedulerName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Brand --></label>
+        <label>브랜드</label>
         <name>CEC_Brand</name>
     </customLabels>
     <customLabels>
@@ -1049,131 +1049,131 @@
         <name>CEC_CBM_NotificationBodyHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CBM_NotificationSubject --></label>
+        <label>CEC 경고: 케이스 브랜드 매핑 값을 입력 안함</label>
         <name>CEC_CBM_NotificationSubject</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseAccountMissing --></label>
+        <label>케이스에 첨부된 계정 없이는 이행이 작성될 수 없습니다.</label>
         <name>CEC_CaseAccountMissing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseAccountPersonDetailsError --></label>
+        <label>메일 길, 도시, 주, 국가, 우편번호 중 한가지는 이행에 작성되어야 합니다.</label>
         <name>CEC_CaseAccountPersonDetailsError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseCountryVerbitimMessage --></label>
+        <label>이 케이스의 경우 국가와 줄임말은 의무입니다.</label>
         <name>CEC_CaseCountryVerbitimMessage</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseNumber --></label>
+        <label>케이스#</label>
         <name>CEC_CaseNumber</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC CaseRefreshAlertError --></label>
+        <label>변경된 사항을 저장해주시고, 서베이를 위해 \&apos;Case Action\&apos; 을 체크해주세요.</label>
         <name>CEC_CaseRefreshAlertError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Case_Factory_Survey_Reference --></label>
+        <label>공장 조사 서베이</label>
         <name>CEC_Case_Factory_Survey_Reference</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab cannot be opened --></label>
+        <label>에러: 주요 탭을 열 수 없습니다.</label>
         <name>CEC_Case_TabNotOpened</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Category --></label>
+        <label>카테고리</label>
         <name>CEC_Category</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_ChequeNo_Already_Added --></label>
+        <label>수표 번호가 이미 추가 되었습니다.</label>
         <name>CEC_ChequeBook_ChequeNo_Already_Added</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_DetailsMissing --></label>
+        <label>해당 브랜드와 제품 카테고리에는 어떠환 활성화된 수표책 세부사항이 없습니다.</label>
         <name>CEC_ChequeBook_DetailsMissing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_MaxLimt_reached --></label>
+        <label>수표장이 최대치에 도달하였습니다.</label>
         <name>CEC_ChequeBook_MaxLimt_reached</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_Input_Fields_Missing --></label>
+        <label>브랜드, 국가 또는 제품 카테고리 정보가 누락되었습니다.</label>
         <name>CEC_ChequeBook_input_fields_missing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_City --></label>
+        <label>도시</label>
         <name>CEC_City</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ClickHere --></label>
+        <label>여기를 클릭하세요!</label>
         <name>CEC_ClickHere</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab not refresh --></label>
+        <label>새로운 고객을 추가하기 전에 변경 사항을 저장해주세요.</label>
         <name>CEC_Console_Message1</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab cannot be opened --></label>
+        <label>주요 탭을 열 수 없습니다.</label>
         <name>CEC_Console_Message2</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error Occured --></label>
+        <label>에러: 에러가 발생했습니다.</label>
         <name>CEC_Console_Message3</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerCreateContactButtonDisplay --></label>
+        <label>새로운 연락처 등록</label>
         <name>CEC_ConsumerCreateContactButtonDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerInfoDisplay --></label>
+        <label>고객이 이미 해당 케이스를 첨부했습니다.</label>
         <name>CEC_ConsumerInfoDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerNotFoundInfo --></label>
+        <label>찾으려는 고객이 없습니까?</label>
         <name>CEC_ConsumerNotFoundInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsDisplay --></label>
+        <label>결과</label>
         <name>CEC_ConsumerResultsDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsNoMatchTitle --></label>
+        <label>일치되는 것을 찾을 수 없습니다.</label>
         <name>CEC_ConsumerResultsNoMatchTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsTitleDisplay --></label>
+        <label>일치하는 검색 결과</label>
         <name>CEC_ConsumerResultsTitleDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerSearchDisplay --></label>
+        <label>검색</label>
         <name>CEC_ConsumerSearchDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Consumer Duplicate Error --></label>
+        <label>중복 고객이 존재하므로 고객을 등록할 수 없습니다.</label>
         <name>CEC_Consumer_Duplicate_Error</name>
     </customLabels>
     <customLabels>
-        <label><!-- To Display Click Ok to replace the existing Consumer or Cancel to return to the --></label>
+        <label>존재하는 고객을 교체하기 위해서는 OK를 또는 콘솔페이지로 돌아가려면 취소 버튼을 클릭하세요</label>
         <name>CEC_Consumer_Message1</name>
     </customLabels>
     <customLabels>
-        <label><!-- Update action cannot be performed. --></label>
+        <label>업데이트가 실행되지 않습니다. 고객 정보가 이미 케이스 정보와 연결되어 있습니다.</label>
         <name>CEC_Consumer_Record_Update</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Country --></label>
+        <label>국가</label>
         <name>CEC_Country</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Country_region --></label>
+        <label>국가/지역</label>
         <name>CEC_Country_region</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CreateContactDisplay --></label>
+        <label>연락처 등록</label>
         <name>CEC_CreateContactDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- Create_Button --></label>
+        <label>등록</label>
         <name>CEC_Create_Button</name>
     </customLabels>
     <customLabels>
@@ -1193,39 +1193,39 @@
         <name>CEC_DebitCardDetails_No_Active_DebitCard_For_Country</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Detail_Request_Info --></label>
+        <label>알고 있는 세부사항을 구체화하세요</label>
         <name>CEC_Detail_Request_Info</name>
     </customLabels>
     <customLabels>
-        <label><!-- records are being displayed --></label>
+        <label>기록이 지연되고 있습니다.</label>
         <name>CEC_Display_Records</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Distance --></label>
+        <label>거리</label>
         <name>CEC_Distance</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Email required message --></label>
+        <label>이메일: 값을 입력해야만 합니다.</label>
         <name>CEC_Email</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Email_Label --></label>
+        <label>이메일</label>
         <name>CEC_Email_Label</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_FirstName --></label>
+        <label>이름</label>
         <name>CEC_FirstName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Fulfilment_PostOption_Complaints --></label>
+        <label>불만</label>
         <name>CEC_Fulfilment_PostOption_Complaints</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Fulfilment_PostOption_otherwise --></label>
+        <label>그렇지 않으면</label>
         <name>CEC_Fulfilment_PostOption_otherwise</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_InvalidChatterGroupName --></label>
+        <label>인식불가능한 채터 그룹명</label>
         <name>CEC_InvalidChatterGroupName</name>
     </customLabels>
     <customLabels>
@@ -1233,215 +1233,215 @@
         <name>CEC_Label_Action</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Knowledge Articles --></label>
+        <label>지식 기반 기사</label>
         <name>CEC_Label_Knowledge_Articles</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Subject --></label>
+        <label>제목</label>
         <name>CEC_Label_Subject</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Type --></label>
+        <label>유형</label>
         <name>CEC_Label_Type</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Last_Name --></label>
+        <label>성</label>
         <name>CEC_Last_Name</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Last Name required message --></label>
+        <label>성: 고객을 검색하기 위해서는 반드시 성을 입력해야 합니다.</label>
         <name>CEC_Lastname</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Latitude --></label>
+        <label>위도</label>
         <name>CEC_Latitude</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Local Indentifier --></label>
+        <label>로컬 식별자</label>
         <name>CEC_Local_Indentifier</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Longitude --></label>
+        <label>경도</label>
         <name>CEC_Longitude</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Marketing_Opt_in --></label>
+        <label>시장 사전 동의</label>
         <name>CEC_Marketing_Opt_in</name>
     </customLabels>
     <customLabels>
-        <label><!-- Consumer record could not be created --></label>
+        <label>[에러코드002] 고객 기록이 되지 않습니다.</label>
         <name>CEC_MatchingResponse_AccountNotCreated</name>
     </customLabels>
     <customLabels>
-        <label><!-- If Duplicate accounts found display this error message --></label>
+        <label>[에러코드001] 동일한 메일로 다수의 고객 기록이 존재합니다. 매뉴얼 업데이트가 요구됩니다.</label>
         <name>CEC_MatchingResponse_DuplicateAccount</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Missing_Information --></label>
+        <label>누락된 정보</label>
         <name>CEC_Missing_Information</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Name --></label>
+        <label>이름</label>
         <name>CEC_Name</name>
     </customLabels>
     <customLabels>
-        <label><!-- Case Error Message --></label>
+        <label>에러: 새로운 케이스를 작성할 수 없습니다.</label>
         <name>CEC_NewCaseError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC NewCaseError BeforeAddNewArticle --></label>
+        <label>새로운 기사를 추가하기 전에 변경 사항을 저장해주세요.</label>
         <name>CEC_NewCaseError_BeforeAddNewArticle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Save case record before add a new consumer. --></label>
+        <label>보류 변경을 저장한 다음, 케이스와 관련있는 고객을 검색하세요. 만일 새로은 고객 등록을 하고 싶다면, 이 트랜섹션에서 시도됩니다. 이 고객은 검색으로 인해 찾을 수 있습니다.</label>
         <name>CEC_NewCaseError_BeforeAddNewConsumer</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC No Cases are available based on the skill --></label>
+        <label>스킬 기반의 케이스가 없습니다.</label>
         <name>CEC_No_Cases_are_available_based_on_the_skill</name>
     </customLabels>
     <customLabels>
-        <label><!-- No matching consumers --></label>
+        <label>일치하는 고객이 없습니다.</label>
         <name>CEC_No_Matching_Consumer</name>
     </customLabels>
     <customLabels>
-        <label><!-- To displayOrigin as required message --></label>
+        <label>원인: Validation Erro: 값이 요구됩니다.</label>
         <name>CEC_Origin</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_OtherDetailsSection --></label>
+        <label>다른 세부사항</label>
         <name>CEC_OtherDetailsSection</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PageSize --></label>
+        <label>페이지 사이즈</label>
         <name>CEC_PageSize</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ParentCaseNumber --></label>
+        <label>상위 케이스</label>
         <name>CEC_ParentCaseNumber</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Phone --></label>
+        <label>전화</label>
         <name>CEC_Phone</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PhoneSearchValidationError --></label>
+        <label>번호 검색은 6숫자 이상 기입해야 합니다.</label>
         <name>CEC_PhoneSearchValidationError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PostCode --></label>
+        <label>우편번호</label>
         <name>CEC_PostCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Product --></label>
+        <label>제품</label>
         <name>CEC_Product</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ProductCategory --></label>
+        <label>제품 카테고리</label>
         <name>CEC_ProductCategory</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ProductCode --></label>
+        <label>제품 코드</label>
         <name>CEC_ProductCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ProductLocator --></label>
+        <label>제품 위치</label>
         <name>CEC_ProductLocator</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Product_Hierarchy --></label>
+        <label>제품 체계</label>
         <name>CEC_Product_Hierarchy</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Product_Tag --></label>
+        <label>제품 태그</label>
         <name>CEC_Product_Tag</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Quick Code Change Error --></label>
+        <label>퀵 코드를 변경하기 전에 국가 코드를 입력하세요.</label>
         <name>CEC_Quick_Code_Change_Error</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Reason --></label>
+        <label>원인</label>
         <name>CEC_Reason</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ReasonCode --></label>
+        <label>원인 코드</label>
         <name>CEC_ReasonCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Reason_Hierarchy --></label>
+        <label>원인 체계</label>
         <name>CEC_Reason_Hierarchy</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_RecommendedProducts --></label>
+        <label>추천 제품</label>
         <name>CEC_RecommendedProducts</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_RelatedCases --></label>
+        <label>연관된 케이스</label>
         <name>CEC_RelatedCases</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SearchValidationError --></label>
+        <label>무효 에러: 검색창에 적어도 한 개 란은 입력하세요</label>
         <name>CEC_SearchValidationError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Search_Button --></label>
+        <label>검색</label>
         <name>CEC_Search_Button</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Specify Details in Missing Info --></label>
+        <label>알고 있는 세부사항을 구체화하세요</label>
         <name>CEC_Specify_Details_in_Missing_Info</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_State --></label>
+        <label>주</label>
         <name>CEC_State</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Case Status as required message --></label>
+        <label>상태: 무효 에러: 값이 요구됩니다.</label>
         <name>CEC_Status</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Street --></label>
+        <label>길</label>
         <name>CEC_Street</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SurveyLink --></label>
+        <label>서베이 링크</label>
         <name>CEC_SurveyLink</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SurveyName --></label>
+        <label>서베이 명</label>
         <name>CEC_SurveyName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SurveyResults --></label>
+        <label>서베이 결과</label>
         <name>CEC_SurveyResults</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Title --></label>
+        <label>제목</label>
         <name>CEC_Title</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ValidChatterTemplate --></label>
+        <label>인식 불가능한 채터 템플릿명</label>
         <name>CEC_ValidChatterTemplate</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ValidEmailTemplate --></label>
+        <label>유효한 이메일 템플릿 명을 입력하세요</label>
         <name>CEC_ValidEmailTemplate</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ZipCode --></label>
+        <label>우편번호</label>
         <name>CEC_ZipCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isFormKnown --></label>
+        <label>형식을 알고 있습니까?</label>
         <name>CEC_isFormKnown</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isPacksizeKnown --></label>
+        <label>팩사이즈를 알고 있습니까?</label>
         <name>CEC_isPacksizeKnown</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isVariantKnown --></label>
+        <label>종류를 알고 있습니까?</label>
         <name>CEC_isVariantKnown</name>
     </customLabels>
     <customLabels>
@@ -8985,7 +8985,7 @@
         <name>KPI_Notifications</name>
     </customTabs>
     <customTabs>
-        <label>내 승인</label>
+        <label>나의 승인</label>
         <name>My_Approvals_Custom</name>
     </customTabs>
     <customTabs>
@@ -9448,10 +9448,6 @@
                 <name>Finance Member</name>
             </columns>
             <columns>
-                <label><!-- GP 2013 (BD) --></label>
-                <name>GP 2013 (BD)</name>
-            </columns>
-            <columns>
                 <label><!-- GP 2014 (BD) --></label>
                 <name>GP 2014 (BD)</name>
             </columns>
@@ -9484,16 +9480,16 @@
                 <name>GP 2021 (BD)</name>
             </columns>
             <columns>
+                <label><!-- GP 2022 (BD) --></label>
+                <name>GP 2022 (BD)</name>
+            </columns>
+            <columns>
                 <label><!-- Gate Keeping Model --></label>
                 <name>Gate Keeping Model</name>
             </columns>
             <columns>
                 <label><!-- Geography --></label>
                 <name>Geography</name>
-            </columns>
-            <columns>
-                <label><!-- Gross TO 2013 (BD) --></label>
-                <name>Gross TO 2013 (BD)</name>
             </columns>
             <columns>
                 <label><!-- Gross TO 2014 (BD) --></label>
@@ -9526,6 +9522,10 @@
             <columns>
                 <label><!-- Gross TO 2021 (BD) --></label>
                 <name>Gross TO 2021 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Gross TO 2022 (BD) --></label>
+                <name>Gross TO 2022 (BD)</name>
             </columns>
             <columns>
                 <label><!-- IC / NBU --></label>
@@ -9660,10 +9660,6 @@
                 <name>Y5 Gross TO (BD)</name>
             </columns>
             <columns>
-                <label><!-- iGP 2013 (BD) --></label>
-                <name>iGP 2013 (BD)</name>
-            </columns>
-            <columns>
                 <label><!-- iGP 2014 (BD) --></label>
                 <name>iGP 2014 (BD)</name>
             </columns>
@@ -9696,8 +9692,8 @@
                 <name>iGP 2021 (BD)</name>
             </columns>
             <columns>
-                <label><!-- iTO 2013 (BD) --></label>
-                <name>iTO 2013 (BD)</name>
+                <label><!-- iGP 2022 (BD) --></label>
+                <name>iGP 2022 (BD)</name>
             </columns>
             <columns>
                 <label><!-- iTO 2014 (BD) --></label>
@@ -9720,16 +9716,20 @@
                 <name>iTO 2018 (BD)</name>
             </columns>
             <columns>
-                <label><!-- iTO 2019(BD) --></label>
-                <name>iTO 2019(BD)</name>
+                <label><!-- iTO 2019 (BD) --></label>
+                <name>iTO 2019 (BD)</name>
             </columns>
             <columns>
-                <label><!-- iTO 2020 (BD) --></label>
-                <name>iTO 2020 (BD)</name>
+                <label><!-- iTO 2020(BD) --></label>
+                <name>iTO 2020(BD)</name>
             </columns>
             <columns>
                 <label><!-- iTO 2021 (BD) --></label>
                 <name>iTO 2021 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iTO 2022 (BD) --></label>
+                <name>iTO 2022 (BD)</name>
             </columns>
             <label><!-- IPM Analytics --></label>
             <name>IPM Analytics</name>
@@ -10034,7 +10034,7 @@
             <name>Cases</name>
         </sections>
         <sections>
-            <label><!-- Fulfilment --></label>
+            <label>이행</label>
             <name>Fulfilment</name>
         </sections>
     </reportTypes>
@@ -10148,7 +10148,7 @@
         <label><!-- CEC Fulfillment &amp; Enclosure --></label>
         <name>CEC_Fulfillment_Enclosure</name>
         <sections>
-            <label><!-- Fulfilment --></label>
+            <label>이행</label>
             <name>Fulfilment</name>
         </sections>
     </reportTypes>

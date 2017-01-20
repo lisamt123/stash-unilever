@@ -3915,7 +3915,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BB_BD_COPIED_TO_SEC</shortDescription>
-        <value>BD-BB Alignment input below will be automatically copied into the Brand development document section 6.3</value>
+        <value>Country/Category Alignment input below will be automatically copied into the Brand development document section 6.3</value>
     </labels>
     <labels>
         <fullName>IPM_BB_COMMENTS</fullName>

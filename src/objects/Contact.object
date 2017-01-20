@@ -6504,6 +6504,28 @@ TEXT(11 - MOD(((VALUE(MID(CPF__c , 1, 1))*11)+
         <url>http://weather.yahoo.com/search/weather2?p={!Contact_MailingPostalCode}</url>
     </webLinks>
     <webLinks>
+        <fullName>pca__Address_Finder</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Address Finder</masterLabel>
+        <openType>sidebar</openType>
+        <page>pca__ContactAddressFinder</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>pca__Address_Finder_Link</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Address Finder</masterLabel>
+        <openType>sidebar</openType>
+        <page>pca__ContactAddressFinder</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
         <fullName>sf4twitter__Get_Author_Info</fullName>
         <availability>online</availability>
         <displayType>button</displayType>

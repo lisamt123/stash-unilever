@@ -296,6 +296,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Hungary</fullName>
                 <default>false</default>
             </picklistValues>
@@ -313,6 +317,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Korea</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -360,7 +368,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -709,6 +725,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Hong_Kong_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Hong Kong Queue</label>
+        <queue>CEC_Hong_Kong_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Hungary_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Hungary Queue</label>
@@ -749,6 +774,15 @@
         <filterScope>Queue</filterScope>
         <label>CEC Japan Queue</label>
         <queue>CEC_Japan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Korea_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Korea Queue</label>
+        <queue>CEC_Korea_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -866,10 +900,28 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Taiwan_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Taiwan Queue</label>
+        <queue>CEC_Taiwan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Thailand_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Thailand Queue</label>
         <queue>CEC_Thailand_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Turkey_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Turkey Queue</label>
+        <queue>CEC_Turkey_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -1001,6 +1053,13 @@
     <pluralLabel>Alert Rule</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>GroupByDayCode_Validation</fullName>
+        <active>true</active>
+        <description>To restrict business admin from selecting ‘Group By Day Code’ when Threshold is 1</description>
+        <errorConditionFormula>AND(Group_By_Day_Code__c=true, Threshold__c =1)</errorConditionFormula>
+        <errorMessage>You are not allowed to select ‘Group By Day Code’ when Threshold is 1</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>L0_Product_Category_Mandatory_Validation</fullName>
         <active>false</active>

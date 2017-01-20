@@ -502,6 +502,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Hungary</fullName>
                 <default>false</default>
             </picklistValues>
@@ -527,6 +531,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Korea</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -634,7 +642,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1586,6 +1602,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Greece</controllingFieldValues>
                 <controllingFieldValues>Guatemala</controllingFieldValues>
                 <controllingFieldValues>Honduras</controllingFieldValues>
+                <controllingFieldValues>Hong Kong</controllingFieldValues>
                 <controllingFieldValues>Hungary</controllingFieldValues>
                 <controllingFieldValues>Iceland</controllingFieldValues>
                 <controllingFieldValues>India</controllingFieldValues>
@@ -1593,6 +1610,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Ireland</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Japan</controllingFieldValues>
+                <controllingFieldValues>Korea</controllingFieldValues>
                 <controllingFieldValues>Latvia</controllingFieldValues>
                 <controllingFieldValues>Lithuania</controllingFieldValues>
                 <controllingFieldValues>Luxembourg</controllingFieldValues>
@@ -1619,7 +1637,9 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <controllingFieldValues>Sweden</controllingFieldValues>
                 <controllingFieldValues>Switzerland</controllingFieldValues>
+                <controllingFieldValues>Taiwan</controllingFieldValues>
                 <controllingFieldValues>Thailand</controllingFieldValues>
+                <controllingFieldValues>Turkey</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <controllingFieldValues>United States</controllingFieldValues>
                 <controllingFieldValues>Uruguay</controllingFieldValues>
@@ -1989,6 +2009,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Hong_Kong_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Hong Kong Quality Check</label>
+        <queue>CEC_Hong_Kong_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Hong_Kong_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Hong Kong Queue</label>
+        <queue>CEC_Hong_Kong_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Hungary_Quality_Check_cec_Fulfilment</fullName>
         <columns>NAME</columns>
         <columns>isApproved__c</columns>
@@ -2134,6 +2172,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <filterScope>Queue</filterScope>
         <label>CEC Japan Queue</label>
         <queue>CEC_Japan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Korea_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Korea Quality Check</label>
+        <queue>CEC_Korea_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Korea_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Korea Queue</label>
+        <queue>CEC_Korea_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -2419,6 +2475,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Taiwan_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Taiwan Quality Check</label>
+        <queue>CEC_Taiwan_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Taiwan_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Taiwan Queue</label>
+        <queue>CEC_Taiwan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Thailand_Quality_Check_cec_Fulfilment</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Thailand Quality Check</label>
@@ -2432,6 +2506,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <filterScope>Queue</filterScope>
         <label>CEC Thailand Queue</label>
         <queue>CEC_Thailand_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Turkey_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Turkey Quality Check</label>
+        <queue>CEC_Turkey_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Turkey_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Turkey Queue</label>
+        <queue>CEC_Turkey_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

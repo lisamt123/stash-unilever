@@ -318,6 +318,10 @@
             <translation><!-- Honduras --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Hong Kong</masterLabel>
+            <translation><!-- Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Hungary</masterLabel>
             <translation><!-- Hungary --></translation>
         </picklistValues>
@@ -340,6 +344,10 @@
         <picklistValues>
             <masterLabel>Japan</masterLabel>
             <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea</masterLabel>
+            <translation><!-- Korea --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Latvia</masterLabel>
@@ -418,8 +426,16 @@
             <translation><!-- Switzerland --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Taiwan</masterLabel>
+            <translation><!-- Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Thailand</masterLabel>
             <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>United Kingdom</masterLabel>
@@ -703,6 +719,10 @@
     <fields>
         <name>Origin</name>
         <picklistValues>
+            <masterLabel>Agent</masterLabel>
+            <translation><!-- Agent --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Chat</masterLabel>
             <translation><!-- Chat --></translation>
         </picklistValues>
@@ -751,6 +771,10 @@
             <translation><!-- Email Greece --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email Hong Kong</masterLabel>
+            <translation><!-- Email Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Hungary</masterLabel>
             <translation><!-- Email Hungary --></translation>
         </picklistValues>
@@ -769,6 +793,10 @@
         <picklistValues>
             <masterLabel>Email Japan</masterLabel>
             <translation><!-- Email Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email Korea</masterLabel>
+            <translation><!-- Email Korea --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email Middle Americas</masterLabel>
@@ -823,8 +851,16 @@
             <translation><!-- Email TO France --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email Taiwan</masterLabel>
+            <translation><!-- Email Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Thailand</masterLabel>
             <translation><!-- Email Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email Turkey</masterLabel>
+            <translation><!-- Email Turkey --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email UK</masterLabel>
@@ -883,6 +919,10 @@
             <translation><!-- Web North America --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Web Shop</masterLabel>
+            <translation><!-- Web Shop --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>White Mail</masterLabel>
             <translation><!-- White Mail --></translation>
         </picklistValues>
@@ -898,6 +938,10 @@
     <fields>
         <label><!-- Override From Address --></label>
         <name>Override_From_Address__c</name>
+        <picklistValues>
+            <masterLabel>CEC.Korea@unilever.com</masterLabel>
+            <translation><!-- CEC.Korea@unilever.com --></translation>
+        </picklistValues>
         <picklistValues>
             <masterLabel>Careline.bd@unilever.com</masterLabel>
             <translation><!-- Careline.bd@unilever.com --></translation>
@@ -947,6 +991,10 @@
             <translation><!-- bertollioliveoilusa@deoleo.com --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>callcenter.tr@unilever.com</masterLabel>
+            <translation><!-- callcenter.tr@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>carapelliusa@deoleo.com</masterLabel>
             <translation><!-- carapelliusa@deoleo.com --></translation>
         </picklistValues>
@@ -955,8 +1003,16 @@
             <translation><!-- carbonellusa@deoleo.com --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>cec.hk@unilever.com</masterLabel>
+            <translation><!-- cec.hk@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>cec.philippines@unilever.com</masterLabel>
             <translation><!-- cec.philippines@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>cec.taiwan@unilever.com</masterLabel>
+            <translation><!-- cec.taiwan@unilever.com --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>comments@talentigelato.com</masterLabel>
@@ -1274,6 +1330,10 @@
             <translation><!-- Praise --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Sample Request</masterLabel>
+            <translation><!-- Sample Request --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Suggestion</masterLabel>
             <translation><!-- Suggestion --></translation>
         </picklistValues>
@@ -1418,6 +1478,10 @@
     <fields>
         <name>Status</name>
         <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Awaiting Factory Response</masterLabel>
             <translation><!-- Awaiting Factory Response --></translation>
         </picklistValues>
@@ -1458,6 +1522,10 @@
             <translation><!-- Pending with Courier --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Reopened</masterLabel>
             <translation><!-- Reopened --></translation>
         </picklistValues>
@@ -1474,6 +1542,170 @@
         <label>Sklep</label>
         <name>Store__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>TEL_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- House Number --></label>
+        <name>TEL_House_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Job Title --></label>
+        <name>TEL_Job_Title__c</name>
+        <picklistValues>
+            <masterLabel>Catering manager</masterLabel>
+            <translation><!-- Catering manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chef</masterLabel>
+            <translation><!-- Chef --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food &amp; beverage manager</masterLabel>
+            <translation><!-- Food &amp; beverage manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>General manager</masterLabel>
+            <translation><!-- General manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head chef</masterLabel>
+            <translation><!-- Head chef --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Owner</masterLabel>
+            <translation><!-- Owner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Purchasing</masterLabel>
+            <translation><!-- Purchasing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales</masterLabel>
+            <translation><!-- Sales --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Newsletter --></label>
+        <name>TEL_Newsletter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of covers --></label>
+        <name>TEL_Number_of_covers__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal code --></label>
+        <name>TEL_Postal_code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Distributor --></label>
+        <name>TEL_Primary_Distributor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>TEL_Product__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street --></label>
+        <name>TEL_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type of Business --></label>
+        <name>TEL_Type_of_Business__c</name>
+        <picklistValues>
+            <masterLabel>Burger Joint</masterLabel>
+            <translation><!-- Burger Joint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cafeteria / Take away</masterLabel>
+            <translation><!-- Cafeteria / Take away --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cash &amp; Carry</masterLabel>
+            <translation><!-- Cash &amp; Carry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Catering</masterLabel>
+            <translation><!-- Catering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>College &amp; University</masterLabel>
+            <translation><!-- College &amp; University --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Distributor</masterLabel>
+            <translation><!-- Distributor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Elderly Care</masterLabel>
+            <translation><!-- Elderly Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Healthcare</masterLabel>
+            <translation><!-- Healthcare --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Home cook</masterLabel>
+            <translation><!-- Home cook --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hospital</masterLabel>
+            <translation><!-- Hospital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hotel / Pub chain</masterLabel>
+            <translation><!-- Hotel / Pub chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hotel / Resort / Lodging</masterLabel>
+            <translation><!-- Hotel / Resort / Lodging --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Journalist / Marketing</masterLabel>
+            <translation><!-- Journalist / Marketing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Limited Services / Quick service restaurants</masterLabel>
+            <translation><!-- Limited Services / Quick service restaurants --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Potential</masterLabel>
+            <translation><!-- Potential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pub Restaurants</masterLabel>
+            <translation><!-- Pub Restaurants --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>School</masterLabel>
+            <translation><!-- School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Travel / Leisure</masterLabel>
+            <translation><!-- Travel / Leisure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesaler</masterLabel>
+            <translation><!-- Wholesaler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Workplace / Contract caterer</masterLabel>
+            <translation><!-- Workplace / Contract caterer --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Web Surname --></label>
+        <name>TEL_Web_Surname__c</name>
     </fields>
     <fields>
         <label><!-- Tag --></label>
@@ -1770,6 +2002,10 @@
     <recordTypes>
         <label><!-- Spam --></label>
         <name>Spam</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Sample Requests --></label>
+        <name>TEL_Sample_Requests</name>
     </recordTypes>
     <validationRules>
         <errorMessage><!-- Case cannot be closed unless symptoms are resolved --></errorMessage>

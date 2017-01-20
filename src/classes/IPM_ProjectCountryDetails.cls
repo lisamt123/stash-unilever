@@ -117,7 +117,9 @@ public with sharing class IPM_ProjectCountryDetails{
         }
         
         if(!lstUpdateProjects.isEMpty()){
+        	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             Update lstUpdateProjects;
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         }
                  
     }

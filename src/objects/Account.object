@@ -29191,6 +29191,50 @@ Shipping Country</errorMessage>
         <url>http://maps.yahoo.com/py/maps.py?cn={!Account_BillingCountry}&amp;csz={!Account_BillingCity}+{!Account_BillingState}+{!Account_BillingPostalCode}+&amp;addr={!Account_BillingAddress}</url>
     </webLinks>
     <webLinks>
+        <fullName>pca__Address_Finder</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Address Finder</masterLabel>
+        <openType>sidebar</openType>
+        <page>pca__AccountAddressFinder</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>pca__Address_Finder_Link</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Address Finder</masterLabel>
+        <openType>sidebar</openType>
+        <page>pca__AccountAddressFinder</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>pca__Person_Address_Finder</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Address Finder</masterLabel>
+        <openType>sidebar</openType>
+        <page>pca__PersonAccountAddressFinder</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>pca__Person_Address_Finder_Link</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Address Finder</masterLabel>
+        <openType>sidebar</openType>
+        <page>pca__PersonAccountAddressFinder</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
         <fullName>sf4twitter__Get_Author_Info</fullName>
         <availability>online</availability>
         <displayType>button</displayType>

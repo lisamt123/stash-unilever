@@ -519,17 +519,6 @@
         <type>Percent</type>
     </fields>
     <fields>
-        <fullName>FS_UniqueProduct__c</fullName>
-        <caseSensitive>true</caseSensitive>
-        <description>Created to restrict adding same products (adding unique products )to opportunity.</description>
-        <externalId>false</externalId>
-        <label>Unique Product</label>
-        <length>255</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
         <fullName>FS_UnitConversionFactor__c</fullName>
         <description>This Value is updating from Product.</description>
         <externalId>false</externalId>

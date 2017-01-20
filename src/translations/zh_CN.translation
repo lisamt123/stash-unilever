@@ -17,7 +17,7 @@
         <name>Brand_Centre_Management</name>
     </customApplications>
     <customApplications>
-        <label><!-- CEC Admin --></label>
+        <label>CEC管理员</label>
         <name>CEC_Admin</name>
     </customApplications>
     <customApplications>
@@ -1025,19 +1025,19 @@
         <name>Business_Case_Update_Needed_Value</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Account_Site --></label>
+        <label>账户开户行</label>
         <name>CEC_Account_Site</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Address --></label>
+        <label>住址</label>
         <name>CEC_Address</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_AlertActionSchedulerName --></label>
+        <label>CEC警报处理时间表</label>
         <name>CEC_AlertActionSchedulerName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Brand --></label>
+        <label>品牌</label>
         <name>CEC_Brand</name>
     </customLabels>
     <customLabels>
@@ -1049,131 +1049,131 @@
         <name>CEC_CBM_NotificationBodyHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CBM_NotificationSubject --></label>
+        <label>CEC警报：无品牌信息</label>
         <name>CEC_CBM_NotificationSubject</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseAccountMissing --></label>
+        <label>有账号的案例才可以创建发送行动</label>
         <name>CEC_CaseAccountMissing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseAccountPersonDetailsError --></label>
+        <label>如需进行邮寄, 须填写邮寄街道/ 邮寄城市/ 邮寄州份/ 邮寄国家/ 邮政编码中至少一个数据</label>
         <name>CEC_CaseAccountPersonDetailsError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseCountryVerbitimMessage --></label>
+        <label>“国家”和“问题描述”为必填项</label>
         <name>CEC_CaseCountryVerbitimMessage</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseNumber --></label>
+        <label>案例#</label>
         <name>CEC_CaseNumber</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC CaseRefreshAlertError --></label>
+        <label>请保存案例记录的更改，并检查\&apos;案例跟进\&apos;标签，以便于文件调查</label>
         <name>CEC_CaseRefreshAlertError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Case_Factory_Survey_Reference --></label>
+        <label>工厂调查问卷</label>
         <name>CEC_Case_Factory_Survey_Reference</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab cannot be opened --></label>
+        <label>错误: 主页不能打开</label>
         <name>CEC_Case_TabNotOpened</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Category --></label>
+        <label>类别</label>
         <name>CEC_Category</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_ChequeNo_Already_Added --></label>
+        <label>支票已使用</label>
         <name>CEC_ChequeBook_ChequeNo_Already_Added</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_DetailsMissing --></label>
+        <label>此品牌及产品类别并没有可用的支票簿</label>
         <name>CEC_ChequeBook_DetailsMissing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_MaxLimt_reached --></label>
+        <label>支票簿最高限额</label>
         <name>CEC_ChequeBook_MaxLimt_reached</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_Input_Fields_Missing --></label>
+        <label>缺少品牌, 国家及产品类别数据</label>
         <name>CEC_ChequeBook_input_fields_missing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_City --></label>
+        <label>城市</label>
         <name>CEC_City</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ClickHere --></label>
+        <label>请点击!</label>
         <name>CEC_ClickHere</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab not refresh --></label>
+        <label>在增加一位新的消费者信息前, 请保存案例记录的更改</label>
         <name>CEC_Console_Message1</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab cannot be opened --></label>
+        <label>主页不能打开</label>
         <name>CEC_Console_Message2</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error Occured --></label>
+        <label>错误: 产生错误</label>
         <name>CEC_Console_Message3</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerCreateContactButtonDisplay --></label>
+        <label>创建新案例</label>
         <name>CEC_ConsumerCreateContactButtonDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerInfoDisplay --></label>
+        <label>信息：消费者已经关联此案例</label>
         <name>CEC_ConsumerInfoDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerNotFoundInfo --></label>
+        <label>消费者数据不存在?</label>
         <name>CEC_ConsumerNotFoundInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsDisplay --></label>
+        <label>结果</label>
         <name>CEC_ConsumerResultsDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsNoMatchTitle --></label>
+        <label>没有配对</label>
         <name>CEC_ConsumerResultsNoMatchTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsTitleDisplay --></label>
+        <label>你的搜索结果：</label>
         <name>CEC_ConsumerResultsTitleDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerSearchDisplay --></label>
+        <label>搜索</label>
         <name>CEC_ConsumerSearchDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Consumer Duplicate Error --></label>
+        <label>此消费者数据已存在, 不能再次创建</label>
         <name>CEC_Consumer_Duplicate_Error</name>
     </customLabels>
     <customLabels>
-        <label><!-- To Display Click Ok to replace the existing Consumer or Cancel to return to the --></label>
+        <label>点击Ok以取代原有消费者, 或取消以回到控制页面</label>
         <name>CEC_Consumer_Message1</name>
     </customLabels>
     <customLabels>
-        <label><!-- Update action cannot be performed. --></label>
+        <label>消费者记录已与案例记录相关联时不能做行动更新</label>
         <name>CEC_Consumer_Record_Update</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Country --></label>
+        <label>国家</label>
         <name>CEC_Country</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Country_region --></label>
+        <label>国家/ 地区</label>
         <name>CEC_Country_region</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CreateContactDisplay --></label>
+        <label>创建案例</label>
         <name>CEC_CreateContactDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- Create_Button --></label>
+        <label>创建</label>
         <name>CEC_Create_Button</name>
     </customLabels>
     <customLabels>
@@ -1193,75 +1193,75 @@
         <name>CEC_DebitCardDetails_No_Active_DebitCard_For_Country</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Detail_Request_Info --></label>
+        <label>请列明已知详情</label>
         <name>CEC_Detail_Request_Info</name>
     </customLabels>
     <customLabels>
-        <label><!-- records are being displayed --></label>
+        <label>正在显示的记录</label>
         <name>CEC_Display_Records</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Distance --></label>
+        <label>距离</label>
         <name>CEC_Distance</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Email required message --></label>
+        <label>电子邮件：必须输入一个值</label>
         <name>CEC_Email</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Email_Label --></label>
+        <label>电子邮件</label>
         <name>CEC_Email_Label</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_FirstName --></label>
+        <label>名字</label>
         <name>CEC_FirstName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Fulfilment_PostOption_Complaints --></label>
+        <label>投诉</label>
         <name>CEC_Fulfilment_PostOption_Complaints</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Fulfilment_PostOption_otherwise --></label>
+        <label>否则</label>
         <name>CEC_Fulfilment_PostOption_otherwise</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_InvalidChatterGroupName --></label>
+        <label>无效的Chatter组群名</label>
         <name>CEC_InvalidChatterGroupName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Action --></label>
+        <label>处理</label>
         <name>CEC_Label_Action</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Knowledge Articles --></label>
+        <label>数据库文章</label>
         <name>CEC_Label_Knowledge_Articles</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Subject --></label>
+        <label>标题</label>
         <name>CEC_Label_Subject</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Type --></label>
+        <label>品类</label>
         <name>CEC_Label_Type</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Last_Name --></label>
+        <label>姓氏</label>
         <name>CEC_Last_Name</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Last Name required message --></label>
+        <label>姓氏: 必须输入姓氏以搜寻消费者</label>
         <name>CEC_Lastname</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Latitude --></label>
+        <label>纬度</label>
         <name>CEC_Latitude</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Local Indentifier --></label>
+        <label>本地标识符</label>
         <name>CEC_Local_Indentifier</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Longitude --></label>
+        <label>经度</label>
         <name>CEC_Longitude</name>
     </customLabels>
     <customLabels>
@@ -1269,179 +1269,179 @@
         <name>CEC_Marketing_Opt_in</name>
     </customLabels>
     <customLabels>
-        <label><!-- Consumer record could not be created --></label>
+        <label>[ERR002] 消费者记录不能创建</label>
         <name>CEC_MatchingResponse_AccountNotCreated</name>
     </customLabels>
     <customLabels>
-        <label><!-- If Duplicate accounts found display this error message --></label>
+        <label>[ERR001] 已有消费者登记此电邮, 需要手动更新</label>
         <name>CEC_MatchingResponse_DuplicateAccount</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Missing_Information --></label>
+        <label>缺失信息</label>
         <name>CEC_Missing_Information</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Name --></label>
+        <label>名称</label>
         <name>CEC_Name</name>
     </customLabels>
     <customLabels>
-        <label><!-- Case Error Message --></label>
+        <label>错误：不能创建新案例</label>
         <name>CEC_NewCaseError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC NewCaseError BeforeAddNewArticle --></label>
+        <label>在添加新的文章前, 请保存案例记录的更改</label>
         <name>CEC_NewCaseError_BeforeAddNewArticle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Save case record before add a new consumer. --></label>
+        <label>请先保存未完成案例记录，然后搜索消费者名字链接到案例。如果在处理中创建一个新的消费者，那么这个消费者还是可以在搜索中再次被找到。</label>
         <name>CEC_NewCaseError_BeforeAddNewConsumer</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC No Cases are available based on the skill --></label>
+        <label>此技能没有对应的案件</label>
         <name>CEC_No_Cases_are_available_based_on_the_skill</name>
     </customLabels>
     <customLabels>
-        <label><!-- No matching consumers --></label>
+        <label>没有匹配的消费者</label>
         <name>CEC_No_Matching_Consumer</name>
     </customLabels>
     <customLabels>
-        <label><!-- To displayOrigin as required message --></label>
+        <label>来源: 认证错误: 须填写价值</label>
         <name>CEC_Origin</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_OtherDetailsSection --></label>
+        <label>其他详情</label>
         <name>CEC_OtherDetailsSection</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PageSize --></label>
+        <label>页面大小</label>
         <name>CEC_PageSize</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ParentCaseNumber --></label>
+        <label>主案例</label>
         <name>CEC_ParentCaseNumber</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Phone --></label>
+        <label>电话</label>
         <name>CEC_Phone</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PhoneSearchValidationError --></label>
+        <label>电话号码搜索必须为6个数字</label>
         <name>CEC_PhoneSearchValidationError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PostCode --></label>
+        <label>邮区编号</label>
         <name>CEC_PostCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Product --></label>
+        <label>产品</label>
         <name>CEC_Product</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ProductCategory --></label>
+        <label>产品种类</label>
         <name>CEC_ProductCategory</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ProductCode --></label>
+        <label>产品编号</label>
         <name>CEC_ProductCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ProductLocator --></label>
+        <label>产品定位装置</label>
         <name>CEC_ProductLocator</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Product_Hierarchy --></label>
+        <label>产品等级</label>
         <name>CEC_Product_Hierarchy</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Product_Tag --></label>
+        <label>产品标签</label>
         <name>CEC_Product_Tag</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Quick Code Change Error --></label>
+        <label>请在更改快捷代码前输入国家代码</label>
         <name>CEC_Quick_Code_Change_Error</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Reason --></label>
+        <label>原因</label>
         <name>CEC_Reason</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ReasonCode --></label>
+        <label>原因代码</label>
         <name>CEC_ReasonCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Reason_Hierarchy --></label>
+        <label>原因等级</label>
         <name>CEC_Reason_Hierarchy</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_RecommendedProducts --></label>
+        <label>已推荐的产品</label>
         <name>CEC_RecommendedProducts</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_RelatedCases --></label>
+        <label>相关案例</label>
         <name>CEC_RelatedCases</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SearchValidationError --></label>
+        <label>辨认错误: 在搜索表中至少填写一个项目</label>
         <name>CEC_SearchValidationError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Search_Button --></label>
+        <label>搜索</label>
         <name>CEC_Search_Button</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Specify Details in Missing Info --></label>
+        <label>请列明已知详情</label>
         <name>CEC_Specify_Details_in_Missing_Info</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_State --></label>
+        <label>州</label>
         <name>CEC_State</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Case Status as required message --></label>
+        <label>状态: 辨识错误: 需要填写内容</label>
         <name>CEC_Status</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Street --></label>
+        <label>街道</label>
         <name>CEC_Street</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SurveyLink --></label>
+        <label>问卷调查链接</label>
         <name>CEC_SurveyLink</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SurveyName --></label>
+        <label>问卷名称</label>
         <name>CEC_SurveyName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SurveyResults --></label>
+        <label>问卷调查结果</label>
         <name>CEC_SurveyResults</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Title --></label>
+        <label>称呼</label>
         <name>CEC_Title</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ValidChatterTemplate --></label>
+        <label>无效的Chatter模板名称</label>
         <name>CEC_ValidChatterTemplate</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ValidEmailTemplate --></label>
+        <label>请输入一个有效的电子邮件模板名称</label>
         <name>CEC_ValidEmailTemplate</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ZipCode --></label>
+        <label>邮区编号</label>
         <name>CEC_ZipCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isFormKnown --></label>
+        <label>是否产品形态？</label>
         <name>CEC_isFormKnown</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isPacksizeKnown --></label>
+        <label>是否知道包装大小？</label>
         <name>CEC_isPacksizeKnown</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isVariantKnown --></label>
+        <label>是否知道产品系列？</label>
         <name>CEC_isVariantKnown</name>
     </customLabels>
     <customLabels>
@@ -9448,10 +9448,6 @@
                 <name>Finance Member</name>
             </columns>
             <columns>
-                <label><!-- GP 2013 (BD) --></label>
-                <name>GP 2013 (BD)</name>
-            </columns>
-            <columns>
                 <label><!-- GP 2014 (BD) --></label>
                 <name>GP 2014 (BD)</name>
             </columns>
@@ -9484,16 +9480,16 @@
                 <name>GP 2021 (BD)</name>
             </columns>
             <columns>
+                <label><!-- GP 2022 (BD) --></label>
+                <name>GP 2022 (BD)</name>
+            </columns>
+            <columns>
                 <label><!-- Gate Keeping Model --></label>
                 <name>Gate Keeping Model</name>
             </columns>
             <columns>
                 <label><!-- Geography --></label>
                 <name>Geography</name>
-            </columns>
-            <columns>
-                <label><!-- Gross TO 2013 (BD) --></label>
-                <name>Gross TO 2013 (BD)</name>
             </columns>
             <columns>
                 <label><!-- Gross TO 2014 (BD) --></label>
@@ -9526,6 +9522,10 @@
             <columns>
                 <label><!-- Gross TO 2021 (BD) --></label>
                 <name>Gross TO 2021 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Gross TO 2022 (BD) --></label>
+                <name>Gross TO 2022 (BD)</name>
             </columns>
             <columns>
                 <label><!-- IC / NBU --></label>
@@ -9660,10 +9660,6 @@
                 <name>Y5 Gross TO (BD)</name>
             </columns>
             <columns>
-                <label><!-- iGP 2013 (BD) --></label>
-                <name>iGP 2013 (BD)</name>
-            </columns>
-            <columns>
                 <label><!-- iGP 2014 (BD) --></label>
                 <name>iGP 2014 (BD)</name>
             </columns>
@@ -9696,8 +9692,8 @@
                 <name>iGP 2021 (BD)</name>
             </columns>
             <columns>
-                <label><!-- iTO 2013 (BD) --></label>
-                <name>iTO 2013 (BD)</name>
+                <label><!-- iGP 2022 (BD) --></label>
+                <name>iGP 2022 (BD)</name>
             </columns>
             <columns>
                 <label><!-- iTO 2014 (BD) --></label>
@@ -9720,16 +9716,20 @@
                 <name>iTO 2018 (BD)</name>
             </columns>
             <columns>
-                <label><!-- iTO 2019(BD) --></label>
-                <name>iTO 2019(BD)</name>
+                <label><!-- iTO 2019 (BD) --></label>
+                <name>iTO 2019 (BD)</name>
             </columns>
             <columns>
-                <label><!-- iTO 2020 (BD) --></label>
-                <name>iTO 2020 (BD)</name>
+                <label><!-- iTO 2020(BD) --></label>
+                <name>iTO 2020(BD)</name>
             </columns>
             <columns>
                 <label><!-- iTO 2021 (BD) --></label>
                 <name>iTO 2021 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- iTO 2022 (BD) --></label>
+                <name>iTO 2022 (BD)</name>
             </columns>
             <label><!-- IPM Analytics --></label>
             <name>IPM Analytics</name>
@@ -10034,7 +10034,7 @@
             <name>Cases</name>
         </sections>
         <sections>
-            <label><!-- Fulfilment --></label>
+            <label>补偿</label>
             <name>Fulfilment</name>
         </sections>
     </reportTypes>
@@ -10148,7 +10148,7 @@
         <label><!-- CEC Fulfillment &amp; Enclosure --></label>
         <name>CEC_Fulfillment_Enclosure</name>
         <sections>
-            <label><!-- Fulfilment --></label>
+            <label>补偿</label>
             <name>Fulfilment</name>
         </sections>
     </reportTypes>

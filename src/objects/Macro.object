@@ -142,6 +142,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Hong_Kong_Queue_Macro</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Hong Kong Queue</label>
+        <queue>CEC_Hong_Kong_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Hungary_Queue_Macro</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Hungary Queue</label>
@@ -182,6 +191,15 @@
         <filterScope>Queue</filterScope>
         <label>CEC Japan Queue</label>
         <queue>CEC_Japan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Korea_Queue_Macro</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Korea Queue</label>
+        <queue>CEC_Korea_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -259,10 +277,28 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Taiwan_Queue_Macro</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Taiwan Queue</label>
+        <queue>CEC_Taiwan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Thailand_Queue_Macro</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Thailand Queue</label>
         <queue>CEC_Thailand_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Turkey_Queue_Macro</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Turkey Queue</label>
+        <queue>CEC_Turkey_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

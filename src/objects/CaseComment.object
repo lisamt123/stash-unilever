@@ -5,6 +5,10 @@
         <fullName>ParentOrigin</fullName>
         <picklist>
             <picklistValues>
+                <fullName>Agent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Chat</fullName>
                 <default>false</default>
             </picklistValues>
@@ -53,6 +57,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Hungary</fullName>
                 <default>false</default>
             </picklistValues>
@@ -70,6 +78,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Email Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Korea</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -121,11 +133,19 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Thailand</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Email TO France</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -182,6 +202,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Web North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web Shop</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

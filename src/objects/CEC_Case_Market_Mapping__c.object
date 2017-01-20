@@ -288,6 +288,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Chinese</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Croatian</fullName>
                 <default>false</default>
             </picklistValues>
@@ -340,6 +344,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Korean</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Moldavian</fullName>
                 <default>false</default>
             </picklistValues>
@@ -375,7 +383,11 @@
                 <fullName>Swedish</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>false</sorted>
+            <picklistValues>
+                <fullName>Turkish</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
         </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -598,6 +610,15 @@ esle if GMT-9.30 then enter -9.50</inlineHelpText>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Hong_Kong_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Hong Kong Queue</label>
+        <queue>CEC_Hong_Kong_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Hungary_Queue_CEC_Case_Market_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Hungary Queue</label>
@@ -638,6 +659,15 @@ esle if GMT-9.30 then enter -9.50</inlineHelpText>
         <filterScope>Queue</filterScope>
         <label>CEC Japan Queue</label>
         <queue>CEC_Japan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Korea_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Korea Queue</label>
+        <queue>CEC_Korea_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -768,10 +798,28 @@ esle if GMT-9.30 then enter -9.50</inlineHelpText>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Taiwan_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Taiwan Queue</label>
+        <queue>CEC_Taiwan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Thailand_Queue_CEC_Case_Market_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Thailand Queue</label>
         <queue>CEC_Thailand_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Turkey_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Turkey Queue</label>
+        <queue>CEC_Turkey_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
