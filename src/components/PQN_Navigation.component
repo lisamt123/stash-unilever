@@ -214,14 +214,9 @@
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo1" class="" style="{!If(navigationName=='Reports' ,'color: #fff; background-color: #004976;','')}" aria-expanded="true"><i class="fa fa-fw fa-th-list"></i> Reports<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo1" class="collapse in" aria-expanded="true" style="width: 150px;">
-                            <li class="{!If(subNavName=='countryreport' ,'active','')}">
-                                <a href="./PQN_Country_Report">Country</a>
-                            </li>
-                            <li class="{!If(subNavName=='dcreport' ,'active','')}">
-                                <a href="./PQN_Global_DCReport">Global DC</a>
-                            </li>
-                            <li class="{!If(subNavName=='globalsu' ,'active','')}">
-                                <a href="./PQN_GlobalSUReport">Global SU</a>
+                           
+                            <li class="{!If(subNavName=='govgeography' ,'active','')}">
+                                <a href="./PQN_Global_Overview">Global Overview</a>
                             </li>
                             <li class="{!If(subNavName=='geography' ,'active','')}">
                                 <a href="./PQN_Global_Geography_Report">Global Geography</a>
@@ -229,9 +224,16 @@
                             <li class="{!If(subNavName=='gcategory' ,'active','')}">
                                 <a href="./PQN_Global_Category_Report">Global Category</a>
                             </li>
-                            <li class="{!If(subNavName=='govgeography' ,'active','')}">
-                                <a href="./PQN_Global_Overview">Global Overview</a>
+                            <li class="{!If(subNavName=='globalsu' ,'active','')}">
+                                <a href="./PQN_GlobalSUReport">Global SU</a>
                             </li>
+                            <li class="{!If(subNavName=='dcreport' ,'active','')}">
+                                <a href="./PQN_Global_DCReport">Global DC</a>
+                            </li>
+                            <li class="{!If(subNavName=='countryreport' ,'active','')}">
+                                <a href="./PQN_Country_Report">Country</a>
+                            </li>
+                            
                             
                             
                         </ul>
