@@ -78,8 +78,6 @@ src/classes/PQN_TestLibraryUtil_Test.cls-meta.xml
 src/classes/PQN_TestLibraryUtil.cls-meta.xml
 src/classes/PQN_UploadNCData_Clone.cls
 src/classes/PQN_UploadNCData_Clone.cls-meta.xml
-src/classes/PQN_SendEmailtoDC_ClusterSchedulerTest.cls
-src/classes/PQN_SendEmailtoDC_ClusterSchedulerTest.cls-meta.xml
 src/classes/PQN_updateSUP.cls
 src/classes/PQN_updateSUP.cls-meta.xml
 src/classes/PQN_updateSUP_Test.cls
@@ -96,8 +94,6 @@ src/classes/PQN_UserCreationPostProcessing_Test.cls
 src/classes/PQN_UserCreationPostProcessing_Test.cls-meta.xml
 src/classes/PQNBatchDeleteRecords.cls
 src/classes/PQNBatchDeleteRecords.cls-meta.xml
-src/classes/PQNLossTreeData.cls
-src/classes/PQNLossTreeData.cls-meta.xml
 src/classes/PQNScheduleDeteleOfRecords.cls
 src/classes/PQNScheduleDeteleOfRecords.cls-meta.xml
 src/classes/PQNScheduleDeteleOfRecordsTest.cls
@@ -195,10 +191,13 @@ src/tabs/PQN_DC_Volumes__c.tab
 src/tabs/PQN_Pallet_Quality_Non_Conformance__c.tab
 src/tabs/PQN_Targets__c.tab
 src/tabs/Pallet_Quality_Non_Conformance_VF.tab
+src/tabs/PQN_Sourcing_Unit__c.tab
+src/tabs/PQN_Supplier_Details__c.tab
+src/tabs/PQN_User_Creation_Request__c.tab
+src/tabs/PQN_Supplier__c.tab
 src/applications/Pallet_Quality_Non_Conformance.app
 src/triggers/PQN_Supplier_Trigger.trigger
 src/triggers/PQN_Supplier_Trigger.trigger-meta.xml
-src/tabs/PQN_Supplier__c.tab
 src/objects/PQN_Supplier__c.object
 src/email/PQN_Templates/PQN_Freeze_Date_Notification.email
 src/email/PQN_Templates/PQN_Freeze_Date_Notification.email-meta.xml
@@ -206,3 +205,9 @@ src/email/PQN_Templates/PQN_User_Creation_Template.email
 src/email/PQN_Templates/PQN_User_Creation_Template.email-meta.xml
 src/email/PQN_Templates-meta.xml
 src/networks/PQN Customer Community.network
+src/approvalProcesses/PQN_User_Creation_Request__c.PQN_User_Creation_Approval_Request.approvalProcess
+src/components/PQN_Navigation.component
+src/components/PQN_Navigation.component-meta.xml
+src/flows/PQN_User_Creation_Request-2.flow
+src/workflows/PQN_Pallet_Quality_Non_Conformance__c.workflow
+src/workflows/PQN_User_Creation_Request__c.workflow

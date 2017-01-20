@@ -118,43 +118,37 @@ public without sharing class PQN_GlobalCategoryReport{
         
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
-            
-            if (xA.subCluster != '') {
-                xA.cuYeardata = mapOfRegion.get(xA.Category+'-'+xA.subCluster);
-                 if(mapOftarget.get(xA.Region)!=null){
+            if(mapOftarget.get(xA.Region)!=null){
                    xA.cuYeartarper=mapOftarget.get(xA.Region);
                  }else{xA.cuYeartarper =0;}
-                if(mapOfRegion.get(xA.Category+'-'+xA.subCluster)!=Null){
+                 
+            if (xA.subCluster != '') {
+            if(mapOfRegion.get(xA.Category+'-'+xA.subCluster)!=Null){
+                 xA.cuYeardata = mapOfRegion.get(xA.Category+'-'+xA.subCluster);
                  temp= Double.valueOf((mapOfRegion.get(xA.Category+'-'+xA.subCluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
-                }else{ xA.cuYearPercent=0;}
+                }else{ xA.cuYearPercent=0; xA.cuYeardata =0;}
             }
             else if (xA.Cluster != '') {
+            if((mapOfRegion.get(xA.Category+'-'+xA.Cluster))!=Null){
                 xA.cuYeardata = mapOfRegion.get(xA.Category+'-'+xA.Cluster);
-                if(mapOftarget.get(xA.Region)!=null){
-                 xA.cuYeartarper=mapOftarget.get(xA.Region);
-                }else{xA.cuYeartarper =0;}
-                if((mapOfRegion.get(xA.Category+'-'+xA.Cluster))!=Null){
                  temp= Double.valueOf((mapOfRegion.get(xA.Category+'-'+xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
-                }else{ xA.cuYearPercent=0;}
+                }else{ xA.cuYearPercent=0;xA.cuYeardata =0;}
             }
             else if(xA.Region != ''){
-               xA.cuYeardata = mapOfRegion.get(xA.Category+'-'+xA.Region);
-               if(mapOftarget.get(xA.Region)!=null){
-                xA.cuYeartarper=mapOftarget.get(xA.Region);
-               }else{xA.cuYeartarper =0;}
-               if((mapOfRegion.get(xA.Category+'-'+xA.Region))!=Null){
+             if((mapOfRegion.get(xA.Category+'-'+xA.Region))!=Null){
+                 xA.cuYeardata = mapOfRegion.get(xA.Category+'-'+xA.Region);
                  temp= Double.valueOf((mapOfRegion.get(xA.Category+'-'+xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
-                }else{ xA.cuYearPercent=0;}
+                }else{ xA.cuYearPercent=0;xA.cuYeardata =0;}
             }
            else if(xA.category!=''){
+            if(mapOfRegion.get(xA.Category)!=Null){
                 xA.cuYeardata = mapOfRegion.get(xA.Category);
-                if(mapOfRegion.get(xA.Category)!=Null){
-                 temp = Double.valueOf((mapOfRegion.get(xA.Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+                temp = Double.valueOf((mapOfRegion.get(xA.Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                  xA.cuYearPercent= temp.setscale(2);
-                }else{ xA.cuYearPercent=0;}
+                }else{ xA.cuYearPercent=0;xA.cuYeardata =0;}
             }
             
            
@@ -210,33 +204,33 @@ public without sharing class PQN_GlobalCategoryReport{
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
             if (xA.subCluster != '') {
-                xA.preYeardata = mapOfRegionPreYear.get(xA.Category+'-'+xA.subCluster);
-                if (mapOfRegionPreYear.get(xA.Category+'-'+xA.subCluster) != Null){
-                    temp = Double.valueOf((mapOfRegionPreYear.get(xA.Category+'-'+xA.subCluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+             if (mapOfRegionPreYear.get(xA.Category+'-'+xA.subCluster) != Null){
+               xA.preYeardata = mapOfRegionPreYear.get(xA.Category+'-'+xA.subCluster);
+                 temp = Double.valueOf((mapOfRegionPreYear.get(xA.Category+'-'+xA.subCluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.preYearPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.preYearPercent = 0; xA.preYeardata =0; }
             }
             else if (xA.Cluster != '') {
+            if (mapOfRegionPreYear.get(xA.Category+'-'+xA.Cluster) != Null){
                 xA.preYeardata = mapOfRegionPreYear.get(xA.Category+'-'+xA.Cluster);
-                if (mapOfRegionPreYear.get(xA.Category+'-'+xA.Cluster) != Null){
-                    temp = Double.valueOf((mapOfRegionPreYear.get(xA.Category+'-'+xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+                  temp = Double.valueOf((mapOfRegionPreYear.get(xA.Category+'-'+xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.preYearPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.preYearPercent = 0;xA.preYeardata =0; }
             }
             else if(xA.Region!=''){
-                xA.preYeardata = mapOfRegionPreYear.get(xA.Category+'-'+xA.Region);
-                if (mapOfRegionPreYear.get(xA.Category+'-'+xA.Region) != Null){
-                    temp = Double.valueOf((mapOfRegionPreYear.get(xA.Category+'-'+xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+            if (mapOfRegionPreYear.get(xA.Category+'-'+xA.Region) != Null){
+                 xA.preYeardata = mapOfRegionPreYear.get(xA.Category+'-'+xA.Region);
+                   temp = Double.valueOf((mapOfRegionPreYear.get(xA.Category+'-'+xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.preYearPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.preYearPercent = 0;xA.preYeardata =0;  }
                 }
                 
             else if(xA.category!=''){
+            if (mapOfRegionPreYear.get(xA.Category) != Null){
                 xA.preYeardata = mapOfRegionPreYear.get(xA.Category);
-                if (mapOfRegionPreYear.get(xA.Category) != Null){
                   temp = Double.valueOf((mapOfRegionPreYear.get(xA.Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                   xA.preYearPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.preYearPercent = 0;xA.preYeardata =0;  }
             }
           
             
@@ -294,32 +288,32 @@ public without sharing class PQN_GlobalCategoryReport{
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
             if (xA.subCluster != '') {
-                xA.cumnthdata = mapOfRegioncrmnth .get(xA.Category+'-'+xA.subCluster);
-                if (mapOfRegioncrmnth .get(xA.Category+'-'+xA.subCluster) != Null){
-                    temp = Double.valueOf((mapOfRegioncrmnth .get(xA.Category+'-'+xA.subCluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+             if (mapOfRegioncrmnth .get(xA.Category+'-'+xA.subCluster) != Null){
+               xA.cumnthdata = mapOfRegioncrmnth .get(xA.Category+'-'+xA.subCluster);
+                 temp = Double.valueOf((mapOfRegioncrmnth .get(xA.Category+'-'+xA.subCluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.cumnthPercent = temp.setscale(2);
-                } else { xA.cumnthPercent = 0; }
+                } else { xA.cumnthPercent = 0;xA.cumnthdata =0; }
             }
             else if (xA.Cluster != '') {
-                xA.cumnthdata = mapOfRegioncrmnth .get(xA.Category+'-'+xA.Cluster);
-                if (mapOfRegioncrmnth .get(xA.Category+'-'+xA.Cluster) != Null){
-                    temp = Double.valueOf((mapOfRegioncrmnth .get(xA.Category+'-'+xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+             if (mapOfRegioncrmnth .get(xA.Category+'-'+xA.Cluster) != Null){
+               xA.cumnthdata = mapOfRegioncrmnth .get(xA.Category+'-'+xA.Cluster);
+                temp = Double.valueOf((mapOfRegioncrmnth .get(xA.Category+'-'+xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.cumnthPercent = temp.setscale(2);
-                } else { xA.cumnthPercent = 0; }
+                } else { xA.cumnthPercent = 0;xA.cumnthdata =0; }
             }
             else if(xA.Region!=''){
+             if (mapOfRegioncrmnth .get(xA.Category+'-'+xA.Region) != Null){
                 xA.cumnthdata = mapOfRegioncrmnth .get(xA.Category+'-'+xA.Region);
-                if (mapOfRegioncrmnth .get(xA.Category+'-'+xA.Region) != Null){
-                    temp = Double.valueOf((mapOfRegioncrmnth.get(xA.Category+'-'+xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+                   temp = Double.valueOf((mapOfRegioncrmnth.get(xA.Category+'-'+xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.cumnthPercent = temp.setscale(2);
-                } else { xA.cumnthPercent = 0; }
+                } else { xA.cumnthPercent = 0;xA.cumnthdata =0; }
             }
-             else if(xA.category!=''){
+            else if(xA.category!=''){
+              if (mapOfRegioncrmnth .get(xA.Category) != Null){
                 xA.cumnthdata = mapOfRegioncrmnth .get(xA.Category);
-                if (mapOfRegioncrmnth .get(xA.Category) != Null){
                 temp = Double.valueOf((mapOfRegioncrmnth .get(xA.Category)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                 xA.cumnthPercent = temp.setscale(2);
-                } else { xA.cumnthPercent = 0; }
+                } else { xA.cumnthPercent = 0;xA.cumnthdata =0; }
             }
             
          }
@@ -373,18 +367,26 @@ public without sharing class PQN_GlobalCategoryReport{
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
             if (xA.subCluster != '') {
+              if( mapOfRegioncrmnthdc .get(xA.Category+'-'+xA.subCluster)!=null){
                 xA.cumnthdcdata = mapOfRegioncrmnthdc .get(xA.Category+'-'+xA.subCluster);
-                }
+                }else{xA.cumnthdcdata = 0;}
+              }
             else if (xA.Cluster != '') {
-                xA.cumnthdcdata = mapOfRegioncrmnthdc .get(xA.Category+'-'+xA.Cluster);
-                }
+              if( mapOfRegioncrmnthdc .get(xA.Category+'-'+xA.Cluster )!=null){
+                xA.cumnthdcdata = mapOfRegioncrmnthdc .get(xA.Category+'-'+xA.Cluster );
+                }else{xA.cumnthdcdata = 0;}    
+              }
             
             else if(xA.Region!='') {
+                if( mapOfRegioncrmnthdc .get(xA.Category+'-'+xA.Region)!=null){
                 xA.cumnthdcdata = mapOfRegioncrmnthdc .get(xA.Category+'-'+xA.Region);
-                }
+                }else{xA.cumnthdcdata = 0;}
+              }
             else if(xA.category!='') {
-                xA.cumnthdcdata = mapOfRegioncrmnthdc .get(xA.category);
-                }
+                if( mapOfRegioncrmnthdc .get(xA.Category)!=null){
+                xA.cumnthdcdata = mapOfRegioncrmnthdc .get(xA.Category);
+                }else{xA.cumnthdcdata = 0;}
+              }
             
            
        }
@@ -439,18 +441,26 @@ public without sharing class PQN_GlobalCategoryReport{
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
             if (xA.subCluster != '') {
+              if(mapOfRegioncrmnthIE .get(xA.Category+'-'+xA.subCluster)!=null){
                 xA.cumnthIEdata = mapOfRegioncrmnthIE .get(xA.Category+'-'+xA.subCluster);
-                }
+                }else{ xA.cumnthIEdata =0;}
+              }
             else if (xA.Cluster != '') {
-                xA.cumnthIEdata = mapOfRegioncrmnthIE .get(xA.Category+'-'+xA.Cluster);
-                }
+                if(mapOfRegioncrmnthIE .get(xA.Category+'-'+xA.Cluster )!=null){
+                xA.cumnthIEdata = mapOfRegioncrmnthIE .get(xA.Category+'-'+xA.Cluster );
+                }else{ xA.cumnthIEdata =0;}
+              }
             
             else if(xA.Region!= '') {
+                if(mapOfRegioncrmnthIE .get(xA.Category+'-'+xA.Region)!=null){
                 xA.cumnthIEdata = mapOfRegioncrmnthIE .get(xA.Category+'-'+xA.Region);
-                }
+                }else{ xA.cumnthIEdata =0;}
+              }
              else if(xA.category!= '') {
-                xA.cumnthIEdata = mapOfRegioncrmnthIE .get(xA.category);
-                }
+                if(mapOfRegioncrmnthIE .get(xA.Category)!=null){
+                xA.cumnthIEdata = mapOfRegioncrmnthIE .get(xA.Category);
+                }else{ xA.cumnthIEdata =0;}
+              }
             
             
         }
@@ -506,18 +516,26 @@ public without sharing class PQN_GlobalCategoryReport{
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
             if (xA.subCluster != '') {
+              if(mapOfRegioncrmnthtot .get(xA.Category+'-'+xA.subCluster)!=null){
                 xA.cumnthtotdata = mapOfRegioncrmnthtot .get(xA.Category+'-'+xA.subCluster);
-                }
+                }else{xA.cumnthtotdata =0;}
+              }
             else if (xA.Cluster != '') {
-                xA.cumnthtotdata = mapOfRegioncrmnthtot .get(xA.Category+'-'+xA.Cluster);
-                }
+               if(mapOfRegioncrmnthtot .get(xA.Category+'-'+xA.Cluster )!=null){
+                xA.cumnthtotdata = mapOfRegioncrmnthtot .get(xA.Category+'-'+xA.Cluster );
+                }else{xA.cumnthtotdata =0;}
+              }
             
             else if(xA.Region!= '') {
+                if(mapOfRegioncrmnthtot .get(xA.Category+'-'+xA.Region)!=null){
                 xA.cumnthtotdata = mapOfRegioncrmnthtot .get(xA.Category+'-'+xA.Region);
-                }
+                }else{xA.cumnthtotdata =0;}
+              }
             else if(xA.category!= '') {
-                xA.cumnthtotdata = mapOfRegioncrmnthtot .get(xA.category);
-                }
+                if(mapOfRegioncrmnthtot .get(xA.Category)!=null){
+                xA.cumnthtotdata = mapOfRegioncrmnthtot .get(xA.Category);
+                }else{xA.cumnthtotdata =0;}
+              }
             
         }
         
@@ -572,18 +590,26 @@ public without sharing class PQN_GlobalCategoryReport{
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
             if (xA.subCluster != '') {
+              if(mapOfRegionprevyrtot .get(xA.Category+'-'+xA.subCluster)!=null){
                 xA.preYeardatatot = mapOfRegionprevyrtot .get(xA.Category+'-'+xA.subCluster);
-                }
+                }else{xA.preYeardatatot =0;}
+             }
             else if (xA.Cluster != '') {
-                xA.preYeardatatot = mapOfRegionprevyrtot .get(xA.Category+'-'+xA.Cluster);
-                }
+                if(mapOfRegionprevyrtot .get(xA.Category+'-'+xA.Cluster )!=null){
+                xA.preYeardatatot = mapOfRegionprevyrtot .get(xA.Category+'-'+xA.Cluster );
+                }else{xA.preYeardatatot =0;}
+             }
             
             else if (xA.Region!= ''){
+                if(mapOfRegionprevyrtot .get(xA.Category+'-'+xA.Region)!=null){
                 xA.preYeardatatot = mapOfRegionprevyrtot .get(xA.Category+'-'+xA.Region);
-                }
+                }else{xA.preYeardatatot =0;}
+             }
             else if (xA.category!= ''){
-                xA.preYeardatatot = mapOfRegionprevyrtot .get(xA.category);
-                }
+                if(mapOfRegionprevyrtot .get(xA.Category)!=null){
+                xA.preYeardatatot = mapOfRegionprevyrtot .get(xA.Category);
+                }else{xA.preYeardatatot =0;}
+             }
            
         }
         
@@ -638,18 +664,26 @@ public without sharing class PQN_GlobalCategoryReport{
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
             if (xA.subCluster != '') {
+             if( mapOfRegioncryeartot .get(xA.Category+'-'+xA.subCluster)!=null){
                 xA.cuYeardatatot = mapOfRegioncryeartot .get(xA.Category+'-'+xA.subCluster);
-                }
+                }else{xA.cuYeardatatot =0;}
+             }
             else if (xA.Cluster != '') {
-                xA.cuYeardatatot = mapOfRegioncryeartot .get(xA.Category+'-'+xA.Cluster);
-                }
+                if( mapOfRegioncryeartot .get(xA.Category+'-'+xA.Cluster )!=null){
+                xA.cuYeardatatot = mapOfRegioncryeartot .get(xA.Category+'-'+xA.subCluster);
+                }else{xA.cuYeardatatot =0;}
+             }
             
             else if (xA.Region!= ''){
+                if( mapOfRegioncryeartot .get(xA.Category+'-'+xA.Region)!=null){
                 xA.cuYeardatatot = mapOfRegioncryeartot .get(xA.Category+'-'+xA.Region);
-                }
+                }else{xA.cuYeardatatot =0;}
+             }
             else if (xA.category!= ''){
-                xA.cuYeardatatot = mapOfRegioncryeartot .get(xA.category);
-                }
+               if( mapOfRegioncryeartot .get(xA.Category)!=null){
+                xA.cuYeardatatot = mapOfRegioncryeartot .get(xA.Category);
+                }else{xA.cuYeardatatot =0;}
+             }
             
            
        }
@@ -659,7 +693,7 @@ public without sharing class PQN_GlobalCategoryReport{
          
          for(PQN_Global_SUWrap xA: xSUWRAPLIST){
          
-            if(xA.cuYeartarper ==0 || xA.cuYeartarper ==null){
+             if(xA.cuYeartarper ==0 || xA.cuYeartarper ==null){
               if(xA.cuYearPercent!=0 && xA.preYearPercent !=0){
                 xA.Trendper=((xA.cuYearPercent-xA.preYearPercent)*100/xA.preYearPercent).setscale(2);
                 }
@@ -671,7 +705,7 @@ public without sharing class PQN_GlobalCategoryReport{
                 xA.Trendper=((xA.cuYearPercent-xA.cuYeartarper )*100/xA.cuYeartarper).setscale(2) ;}
                  else{xA.Trendper=0;}
               }
-              
+                 
         }
         /**************** For Trend Calculation *****************/
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
@@ -694,15 +728,15 @@ public without sharing class PQN_GlobalCategoryReport{
         public decimal preYearPercent {get;set;}
         public decimal cuYeartarper {get;set;}
         public Integer cuYeardata {get;set;}
-        public Double cuYearPercent {get;set;}
+        public decimal cuYearPercent {get;set;}
         public Integer cumnthdata {get;set;}
-        public Double cumnthPercent {get;set;}
+        public decimal cumnthPercent {get;set;}
         public Integer cumnthdcdata {get;set;}
         public Integer cumnthIEdata {get;set;}
         public Integer cumnthtotdata {get;set;}
         public Integer preYeardatatot {get;set;}
         public Integer cuYeardatatot {get;set;}
-        public Double Trendper{get;set;}
+        public decimal Trendper{get;set;}
         
         public PQN_Global_SUWrap(String category,String Region, String Cluster, String subCluster, Boolean child, Boolean child1,Boolean child2){
             this.category= category;
@@ -722,9 +756,9 @@ public without sharing class PQN_GlobalCategoryReport{
         
         public String chartXAxis{get;set;}
         public Integer chartdata {get;set;}
-        public Double linedata {get;set;}
+        public decimal linedata {get;set;}
                 
-        public PQN_chart( String chartXAxis,integer chartdata, Double linedata){
+        public PQN_chart( String chartXAxis,integer chartdata, decimal linedata){
             this.chartXAxis= chartXAxis;
             this.chartdata= chartdata;
             this.linedata= linedata;
