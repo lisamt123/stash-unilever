@@ -81,7 +81,7 @@
                     <a class="btn" id ="exportError" style="display:none" target="_blank" role="button">Export Error File</a>
                     <a class="btn" id ="exportSuccess" style="display:none" target="_blank" role="button">Export Success File</a>
                 </div>
-                <!--<button onclick="ErrorList('1484659682');" type="button">Call ErrorList</button>-->
+                <!--<button onclick="ErrorList('1484828804');" type="button">Call ErrorList</button>-->
                 <button id="insertErrorId" style="display:none;" type="button"></button>                
                 <div id="showImportDataDiv" style="overflow-y: scroll; height: 500px;">
                     <table id="showImportData" class="table table-striped table-bordered">
@@ -387,6 +387,8 @@
                             
                              ErrorList(timeStamp);
                              $("#insertErrorId").text("Insert ErrorList- "+event.result.Error);
+                             $("#exportError").show();
+                             $("#exportError").text("Export Error Records-"+event.result.Error);
                              $("#loaderDiv").hide();
                         }else{
                             
@@ -401,41 +403,20 @@
            
            }
            </script>
-           <script>
            
+           <script>           
            function ErrorList(timeStamp){
-                    $( "#insertErrorId").show();
-                    $( "#insertErrorId").attr( "onclick", "errorDataforImport('"+timeStamp+"')" );
-                    $("#showImportData").empty();
+                    $( "#insertErrorId").show(); $( "#insertErrorId").attr( "onclick", "errorDataforImport('"+timeStamp+"')" ); $("#showImportData").empty();
                     Visualforce.remoting.Manager.invokeAction(
-                    '{!$RemoteAction.PQN_UploadNCData_Clone.sheetErrors}',
-                     timeStamp,
+                    '{!$RemoteAction.PQN_UploadNCData_Clone.sheetErrors}',timeStamp,
                     function(result, event){
-                           console.log(result);
                            if(result.length>0){                               
-                                var row = $("<thead>");
-                                $("#showImportData").append(row);
-                                var rowtr = $("<tr>");
-                                row.append(rowtr);
-                                //rowtr.append($("<th style=\"display:none;\">Id</th>"));
-                                //rowtr.append($("<th style=\"display:none;\">Account</th>"));
-                                rowtr.append($("<th>Error Detail</th>"));
-                                rowtr.append($("<th>Reporting DC</th>"));
-                                rowtr.append($("<th>SKU</th>"));
-                                rowtr.append($("<th>Supplier Number</th>"));
-                                rowtr.append($("<th>Supplier Alias</th>"));
-                                rowtr.append($("<th>Loss Code</th>"));
-                                rowtr.append($("<th>No. Of pallets per SKU NC</th>"));
-                                //rowtr.append($("<th>Date Pallet Recieved</th>"));
-                                rowtr.append($("<th>Comments</th>"));
-                                
+                                var row = $("<thead>"); $("#showImportData").append(row); var rowtr = $("<tr>"); row.append(rowtr);
+                                rowtr.append($("<th>Error Detail</th>")); rowtr.append($("<th>Reporting DC</th>")); rowtr.append($("<th>SKU</th>")); rowtr.append($("<th>Supplier Number</th>"));
+                                rowtr.append($("<th>Supplier Alias</th>")); rowtr.append($("<th>Loss Code</th>")); rowtr.append($("<th>No. Of pallets per SKU NC</th>")); rowtr.append($("<th>Comments</th>"));
                                 $.each(result, function(x, y) {
-                                    //console.log(x,y);
                                    var row = $("<tr class="+x+">");
                                    $("#showImportData").append(row);
-                                   //row.append($('<td style="display:none;" class="Id'+x+'">'+y.Id+'</td>'));
-                                   //row.append($('<td style="display:none;" class="Account__c'+x+'">'+y.Account__c+'</td>'));
-                                   
                                    row.append($('<td>'+y.Error_Description__c+'</td>'));
                                    y.Reporting_DC__c= typeof y.Reporting_DC__c=== "undefined" ? '' : y.Reporting_DC__c;
                                    row.append($('<td><input type="text" class="Reporting_DC__c'+x+'" value="'+y.Reporting_DC__c+'"/></td>'));
@@ -447,61 +428,40 @@
                                    row.append($('<td><input type="text" class="Supplier__c'+x+'" value="'+y.Supplier__c+'"/></td>'));
                                    row.append($('<td><input type="text" class="Non_compliance_reason_code__c'+x+'" value="'+y.Non_compliance_reason_code__c+'"/></td>'));
                                    row.append($('<td><input type="text" class="Number_of_Pallets_Per_SKU_Non_Compliant__c'+x+'" value="'+y.Number_of_Pallets_Per_SKU_Non_Compliant__c+'"/></td>'));
-                                   //y.Date_Pallet_Received__c= typeof y.Date_Pallet_Received__c=== "undefined" ? '' : y.Date_Pallet_Received__c;
-                                   //row.append($('<td><input type="date" class="Date_Pallet_Received__c'+x+'" value="'+y.Date_Pallet_Received__c+'"/></td>'));
                                    y.Comments__c = typeof y.Comments__c === "undefined" ? '' : y.Comments__c;
-                                   row.append($('<td><input type="Text" class="Comments__c'+x+'" value="'+y.Comments__c+'"/></td>'));
-                                   
-                               });
-                           
-                           }
-                        }, 
-                        {escape: true, buffer: false,timeout: 120000}
-                    
-                    );
-                   
-            }
-           
-               
+                                   row.append($('<td><input type="Text" class="Comments__c'+x+'" value="'+y.Comments__c+'"/></td>'));                                   
+                               });                           
+                           }}, {escape: true, buffer: false,timeout: 120000} );
+               }
            </script>
            <script>
                function errorDataforImport(prevoiusTimeStamp){
                     var timeepoch2 = (new Date).getTime();
                     var timeStamp2 = Math.floor(timeepoch2/ 1000);
-                    
                     var totalrecord = $("#showImportData tbody tr").length;
                     var xPQNListErr= new Array();
                     for(var k=0; k<totalrecord; k++){
-                        //console.log($("#showImportData tbody tr."+k+" td.Id"+k).text());
                         var xP1= new Object();
-                        //xP1.Id= $("#showImportData tbody tr."+k+" td.Id"+k).text();
                         xP1.Account__c = '';
                         xP1.Reporting_DC__c = $("#showImportData tbody tr."+k+" input.Reporting_DC__c"+k).val();
                         xP1.SKU__c = $("#showImportData tbody tr."+k+" input.SKU__c"+k).val();
                         xP1.Supplier__c = $("#showImportData tbody tr."+k+" input.Supplier__c"+k).val();
                         xP1.Supplier_Number__c = $("#showImportData tbody tr."+k+" input.Supplier_Number__c"+k).val();
                         xP1.Non_compliance_reason_code__c = parseInt($("#showImportData tbody tr."+k+" input.Non_compliance_reason_code__c"+k).val());
-                        xP1.Number_of_Pallets_Per_SKU_Non_Compliant__c = $("#showImportData tbody tr."+k+" input.Number_of_Pallets_Per_SKU_Non_Compliant__c"+k).val();
+                        xP1.Number_of_Pallets_Per_SKU_Non_Compliant__c = parseInt($("#showImportData tbody tr."+k+" input.Number_of_Pallets_Per_SKU_Non_Compliant__c"+k).val());
                         //xP1.Date_Pallet_Received__c = $("#showImportData tbody tr."+k+" input.Date_Pallet_Received__c"+k).val();
                         xP1.Comments__c = $("#showImportData tbody tr."+k+" input.Comments__c"+k).val();
                         xP1.Error_Description__c='';
                         xP1.Is_Error__c=false;
                         xP1.Multi_Timestamp__c=timeStamp2.toString();
-                        
                         xPQNListErr.push(xP1);
-                        $("#showImportData tbody tr."+k).remove();
-                    
+                        $("#showImportData tbody tr."+k).remove();                    
                     }
-                    console.log(xPQNListErr);
-                    jsRemotingErrorImport(xPQNListErr,prevoiusTimeStamp,timeStamp2.toString());
-                                  
+                    jsRemotingErrorImport(xPQNListErr,prevoiusTimeStamp,timeStamp2.toString());                                  
                 }
-
-           
            </script>
            <script>
                 function jsRemotingErrorImport(xPQNListErr,prevoiusTimeStamp,timeStamp2){
-                   alert(selectedFileType);
                   $("#insertErrorId").hide();
                   Visualforce.remoting.Manager.invokeAction(
                    '{!$RemoteAction.PQN_UploadNCData_Clone.getSheetData}',
