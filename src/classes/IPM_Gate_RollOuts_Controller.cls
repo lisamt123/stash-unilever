@@ -39,7 +39,7 @@ public with sharing class IPM_Gate_RollOuts_Controller
     */
     public string getInvokeMethodsForComponent() {
         prepareIPMLocalToCountryWrapper();
-        return 'Required methods are invoked for component';
+        return IPM_ConstantUtils.methodInvokedForComponent;
     }
     
     /************************************************************************************************************************

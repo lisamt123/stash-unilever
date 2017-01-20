@@ -17,7 +17,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
     private static List<IPM_Project_Document__c>docStatus;
     private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
     private static User stdUserForChangStatus;
-   private static final string STATUS_NOT_MATCHED_STR='status not matched';// assert statements
+    private static final string STATUS_NOT_MATCHED_STR='status not matched';// assert statements
     private static final string STATUS_NOT_CHANGED_STR='status not changed';// assert statements
     private static User globalUser;
     private static string REGIONAL_STR='Regional';
@@ -101,9 +101,6 @@ private class  IPM_ChangProjectDocStatusController_Test {
             update regionalRolloutList;
             List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
             System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout not created');//positive test
-            
-            
-           
         }
     }
 
@@ -198,7 +195,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             childProj.IPM_Category_Text__c=PROJECT_CATEGORY_STR;
             insert childProj;
             list<IPM_Project__c>lstLocalProj=[SELECT IPM_Category_Text__c FROM IPM_Project__c WHERE ID=:childProj.ID LIMIT 1];
-          System.assertEquals(lstLocalProj[0].IPM_Category_Text__c,PROJECT_CATEGORY_STR,'Project category is'+lstLocalProj[0].IPM_Category_Text__c);
+            system.assertEquals(lstLocalProj[0].IPM_Category_Text__c,PROJECT_CATEGORY_STR,'Project category is'+lstLocalProj[0].IPM_Category_Text__c);
             childProjs=new IPM_Project__c();
             childProjs.IPM_Parent_Project__c=childProj.id;
             childProjs.IPM_Project_Name__c=project.Name+'_Names';
@@ -218,29 +215,28 @@ private class  IPM_ChangProjectDocStatusController_Test {
             childProjs.IPM_Category_Text__c=PROJECT_CATEGORY_STR;
             insert childProjs;
             list<IPM_Project__c>lstLocalProjs=[SELECT IPM_Category_Text__c FROM IPM_Project__c WHERE ID=:childProjs.ID LIMIT 1];
-          System.assertEquals(lstLocalProjs[0].IPM_Category_Text__c,PROJECT_CATEGORY_STR,'Project category is:'+lstLocalProjs[0].IPM_Category_Text__c);
+            System.assertEquals(lstLocalProjs[0].IPM_Category_Text__c,PROJECT_CATEGORY_STR,'Project category is:'+lstLocalProjs[0].IPM_Category_Text__c);
             //create local financial
             Id LOCAL_FIN_RECTYPE = Schema.SObjectType.IPM_Financial__c.RecordTypeInfosByName.get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).RecordTypeId;
-        localFin=new IPM_Financial__c();
-        localFin.Local_Project__c=childProjs.id;
-        localFin.IPM_Business_Case_Confirmed__c=false;
-      localFin.Is_BC_Confirmed_Capability__c=false;
-      localFin.recordTypeId =LOCAL_FIN_RECTYPE;
-        localFin.Target_Launch_Date__c=system.today();
-        localFin.Financial_External_ID__c=project.Name+'Names';
-        localFin.Volume_Unit_Local__c='Total 000 Units';
-        insert localFin;
-        list<IPM_Financial__c>lstLocalFin=[SELECT Local_Project__c FROM IPM_Financial__c WHERE ID=:localFin.ID LIMIT 1];
-          System.assertEquals(lstLocalFin[0].Local_Project__c,childProjs.id,'Financial local project is'+lstLocalFin[0].Local_Project__c);
+            localFin=new IPM_Financial__c();
+            localFin.Local_Project__c=childProjs.id;
+            localFin.IPM_Business_Case_Confirmed__c=false;
+            localFin.Is_BC_Confirmed_Capability__c=false;
+            localFin.recordTypeId =LOCAL_FIN_RECTYPE;
+            localFin.Target_Launch_Date__c=system.today();
+            localFin.Financial_External_ID__c=project.Name+'Names';
+            localFin.Volume_Unit_Local__c='Total 000 Units';
+            insert localFin;
+            list<IPM_Financial__c>lstLocalFin=[SELECT Local_Project__c FROM IPM_Financial__c WHERE ID=:localFin.ID LIMIT 1];
+            System.assertEquals(lstLocalFin[0].Local_Project__c,childProjs.id,'Financial local project is'+lstLocalFin[0].Local_Project__c);
             pRef = Page.IPM_ChangeCurrenDocumentStatus;
             pRef.getParameters().put('id', projectListObj[0].Id);
             pRef.getParameters().put('printDoc',PrintDoc );
             Test.setCurrentPage(pRef);
             chngPro=new IPM_ChangProjectDocumentStatusController();
-            
         }  
-
     }
+    
     /****************************************************************************************
     *@Description:below test method is used to test local rollout functionality.
     * example:if local project BB document is not confirmed and regional PL try to propose gate document
@@ -252,38 +248,38 @@ private class  IPM_ChangProjectDocStatusController_Test {
        test.stopTest();
        
         system.runAs(globalUser){
-              childProj.IPM_Project_Type__c=ROLLOUT_STR;
-              childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
-              update childProjs;
-              list<ipm_project__c>localProjectList=[SELECT IPM_Phase__c FROM ipm_project__c WHERE id=:childProjs.id LIMIT 1];
-              system.assertEquals(localProjectList[0].IPM_Phase__c,IPM_ConstantUtils.PHASE_FEASIBILITY,'regional project phase is not feasibility');
-              chngPro.project=childProj;
-              chngPro.projectId=childProj.id;
-              chngPro.showValidation=true;
-              chngPro.getLocalProjectDetails(); 
-              system.assertEquals(chngPro.showValidation,false,ERRORONPAGE_STR);//positive test
-              
-              childProj.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
-              childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
-              update childProjs;
-             
-              list<ipm_project__c>localProjectsList=[SELECT IPM_Phase__c FROM ipm_project__c WHERE id=:childProjs.id LIMIT 1];
-              system.assertEquals(localProjectsList[0].IPM_Phase__c,IPM_ConstantUtils.PHASE_CAPABILITY,'LOCAL project phase is not capability');
-              chngPro.showValidation=true;
-              chngPro.getLocalProjectDetails();
-              system.assertEquals(chngPro.showValidation,false,ERRORONPAGE_STR);//positive test
-              localFin.IPM_Business_Case_Confirmed__c=true;
-              localFin.Is_BC_Confirmed_Capability__c=true;
-              update localFin;
-              list<ipm_financial__c>localFinList=[SELECT IPM_Business_Case_Confirmed__c FROM ipm_financial__c WHERE id=:localFin.id LIMIT 1];
-              system.assertEquals(localFinList[0].IPM_Business_Case_Confirmed__c,true,'business case is not confirmed');
-              IPM_FinancialController finController=new IPM_FinancialController();
-              finController.project=childProjs;
-              finController.currentFinancial=localFin;
-              finController.isTargetLaunchDateMisaligned=true;
-              finController.localProjectConditions();
-              system.assertEquals(finController.tldAcceptFromValue==null,false,'Tld date text should not be empty');//positive test
-              
+            childProj.IPM_Project_Type__c=ROLLOUT_STR;
+            childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
+            update childProjs;
+            list<ipm_project__c>localProjectList=[SELECT IPM_Phase__c FROM ipm_project__c WHERE id=:childProjs.id LIMIT 1];
+            system.assertEquals(localProjectList[0].IPM_Phase__c,IPM_ConstantUtils.PHASE_FEASIBILITY,'regional project phase is not feasibility');
+            chngPro.project=childProj;
+            chngPro.projectId=childProj.id;
+            chngPro.showValidation=true;
+            chngPro.getLocalProjectDetails(); 
+            system.assertEquals(chngPro.showValidation,false,ERRORONPAGE_STR);//positive test
+            
+            childProj.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
+            childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
+            update childProjs;
+            
+            list<ipm_project__c>localProjectsList=[SELECT IPM_Phase__c FROM ipm_project__c WHERE id=:childProjs.id LIMIT 1];
+            system.assertEquals(localProjectsList[0].IPM_Phase__c,IPM_ConstantUtils.PHASE_CAPABILITY,'LOCAL project phase is not capability');
+            chngPro.showValidation=true;
+            chngPro.getLocalProjectDetails();
+            system.assertEquals(chngPro.showValidation,false,ERRORONPAGE_STR);//positive test
+            localFin.IPM_Business_Case_Confirmed__c=true;
+            localFin.Is_BC_Confirmed_Capability__c=true;
+            update localFin;
+            list<ipm_financial__c>localFinList=[SELECT IPM_Business_Case_Confirmed__c FROM ipm_financial__c WHERE id=:localFin.id LIMIT 1];
+            system.assertEquals(localFinList[0].IPM_Business_Case_Confirmed__c,true,'business case is not confirmed');
+            IPM_FinancialController finController=new IPM_FinancialController();
+            finController.project=childProjs;
+            finController.currentFinancial=localFin;            
+            finController.isTargetLaunchDateMisaligned=true;
+            finController.localProjectConditions();
+            system.assertEquals(finController.tldAcceptFromValue==null,false,'Tld date text should not be empty');//positive test
+
         }
               
     }
@@ -321,11 +317,8 @@ private class  IPM_ChangProjectDocStatusController_Test {
         }
     }
     
-    
-    
-    
     static testMethod void dotestInProgress(){
-    	test.startTest();
+        test.startTest();
         initializeTestMethodData();
         test.stopTest();
         system.runAs(globalUser){
@@ -339,11 +332,8 @@ private class  IPM_ChangProjectDocStatusController_Test {
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where IPM_Project__c=:chngPro.projectId];
             System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS,STATUS_NOT_MATCHED_STR);
-         
-            
         }
     }
-    
     
     static testMethod void dotestStopped(){
         test.startTest();
@@ -402,11 +392,11 @@ private class  IPM_ChangProjectDocStatusController_Test {
     }
     
     static testMethod void dotestPostponed(){
-    	test.startTest();
-    	initializeTestMethodData();
+        test.startTest();
+        initializeTestMethodData();
         
         system.runAs(globalUser){
-	    projDocList[0].IPM_Postponed_Comments__c='abc';
+            projDocList[0].IPM_Postponed_Comments__c='abc';
             projDocList[0].IPM_Postponement_Date__c=system.today();
             update projDocList;
             docList=[select IPM_Postponement_Date__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
@@ -437,7 +427,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
     
     static testMethod void dotestPropose(){
         test.startTest();
-    	initializeTestMethodData();
+        initializeTestMethodData();
         
         system.runAs(globalUser){
             
@@ -466,7 +456,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
     
     static testMethod void dotestPropose1(){
         test.startTest();
-    	initializeTestMethodData();
+        initializeTestMethodData();
         test.stopTest();
         system.runAs(globalUser){
             
@@ -496,8 +486,8 @@ private class  IPM_ChangProjectDocStatusController_Test {
         }
     }
     static testMethod void dotestApprove(){
-    	test.startTest();
-    	initializeTestMethodData();
+        test.startTest();
+        initializeTestMethodData();
         system.runAs(globalUser){
             chngPro.Status=IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED;
             projDocList[0].IPM_Document_Status__c=chngPro.Status;

@@ -128,7 +128,6 @@ public class IPM_FinancialControllerGKM3_Test {
 
             insert localRolloutList;               
             
-            System.debug('getQueries3>>'+Limits.getQueries());
             system.assert(localRolloutList.size()>0, 'project rollout map cannot be created'); //names cannot be asserted as project and rollout map set in helper class
             
             //assert preparation
@@ -194,7 +193,7 @@ public class IPM_FinancialControllerGKM3_Test {
         ipmFinCon.changeSustainabilityPeriod();
          //is there an assert we can add here for sustainability period ?
         system.assertEquals(ipmFinCon.sustainabilityPeriodChanging,true, 'Sustainability period is false');
-        system.debug('ipmFinCon>>'+ipmFinCon);
+        
         ipmFinCon.refreshFinancials();
         
         system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),ERROR_MSG_NOT_CAPTURED);
@@ -567,6 +566,7 @@ public class IPM_FinancialControllerGKM3_Test {
                  List<IPM_Financial_Year__c> listFinYr = [select id from IPM_Financial_Year__c where Financial_External_Id__c =: globFin.Financial_External_Id__c ];
                  delete listFinYr; 
                  
+                 system.assertEquals(globFin.Is_Nonkey_Business_Case_Changed__c ,false,'Non-key Business Not changed');
                  delete globFin; 
               
               Test.stopTest();

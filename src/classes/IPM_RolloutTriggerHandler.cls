@@ -3,6 +3,8 @@
 @Name IPM_RolloutTriggerHandler
 @CreateDate 27/04/2015
 @Description This class is used for managing the trigger methods for IPM_Project_Rollout__c object 
+			 There are no try/Catch blocks in this class for transacation management purposes. We need the transaction to be rollbacked in case of error as 
+             the methods in this class are invoked from trigger.
 @Version 1.0
 @reference IPM_ProjectRolloutHandler class
 */

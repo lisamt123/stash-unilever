@@ -2,6 +2,8 @@
 * @author:Cognizant
 * @date:06/05/2015
 * @description:Trigger Handler for the IPM_Financial__c SObject. This class implements the ITrigger
+               There are no try/Catch blocks in this class for transacation management purposes. We need the transaction to be rollbacked in case of error as 
+*  	       the methods in this class are invoked from trigger.
 * interface to help ensure the trigger code is bulkified and all in one place.
 */
 public with sharing class IPM_FinancialHandler implements ITrigger

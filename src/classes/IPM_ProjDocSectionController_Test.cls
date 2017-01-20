@@ -140,15 +140,19 @@ private class IPM_ProjDocSectionController_Test{
     /**************************************************************************************************************************
 * @Description: For Running the Test Script
 */ 
+  private static PageReference currentPageSetup(){
+    	PageReference pRef = Page.IPM_ProjectDocumentSectionEditor;
+        pRef.getparameters().put('Id', projectListObj[0].ID);
+        pRef.getparameters().put(PROJ_DOC_SEC_ID_STR, sectionList[0].Id);
+        return pRef;
+    }
     public static testMethod void testSave(){ 
         createTestData();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         System.runAs(globalUser)
         {
             Test.startTest();
-            PageReference pRef = Page.IPM_ProjectDocumentSectionEditor;
-            pRef.getparameters().put('Id', projectListObj[0].ID);
-            pRef.getparameters().put(PROJ_DOC_SEC_ID_STR, sectionList[0].Id);
+            PageReference pRef = currentPageSetup();
             Test.setCurrentPage(pRef );
             
             IPM_ProjectDocumentSectionController projDocSecControl=new IPM_ProjectDocumentSectionController();
@@ -159,29 +163,56 @@ private class IPM_ProjDocSectionController_Test{
             projDocSecControl.isChecked = 'true';
             projDocSecControl.IsGateSave = 'Gate';
             projDocSecControl.save();
+            
+            system.assert(projDocSecControl.projDocSec!=null, 'Project Document Section not created');			
+            								 
             projDocSecControl.cancel();
+            PageReference url = projDocSecControl.cancel();
+            String urlStr = url.getURL();
+            system.assert(urlStr.Contains(projectListObj[0].ID),'Url for Cancel not formed properly');
+            system.assert(urlStr.Contains(sectionList[0].Id),'Url for Cancel not formed properly');
+            
             projDocSecControl.TaskDelete();
-            projDocSecControl.delet();
-            projDocSecControl.UpdateTask();
-            projDocSecControl.lstPagination();
-            projDocSecControl.getSecOption();
+            
+            PageReference newSec = projDocSecControl.lstPagination();
+            String newSecStr = newSec.getUrl();
+            system.assert(newSecStr.Contains(projectListObj[0].ID),'Url for Cancel not formed properly');
+            system.assert(newSecStr.Contains(sectionList[0].Id),'Url for Cancel not formed properly');
+            
+            List<SelectOption> options = projDocSecControl.getSecOption();
+            system.assert(options.size()==1, 'There are no options to select');
+           
             projDocSecControl.charcterCount();
-            System.assert(projDocSecControl.projDocSec!=null, 'Project Document Section not created');
-            System.assert(projDocSecControl.projDoc!=null, 'Project Document not created');
+            
+            system.assert(projDocSecControl.projDoc!=null, 'Project Document not created');
+            
             projDocSecControl.status=true;
             projDocSecControl.projDocSec.IPM_FunctionalRole__c=IPM_ConstantUtils.FUNCTIONAL_ROLE_RnD;
             projDocSecControl.IsEditableSumm=true;
             projDocSecControl.projDocSec.IPM_Gate_Document_Summary__c='test with comment.test with comment';
             projDocSecControl.projDocSec.IPM_Negotiable__c=true;
             projDocSecControl.save();
+            
+            IPM_Project_Document_Section__c prjDSection = [select id, IPM_FunctionalRole__c, IPM_Gate_Document_Summary__c, IPM_Negotiable__c from IPM_Project_Document_Section__c where id = :sectionList[0].Id ];
+            system.assert(projDocSecControl.projDocSec.IPM_FunctionalRole__c==IPM_ConstantUtils.FUNCTIONAL_ROLE_RnD,'Functional Role not updated');
+            system.assert(projDocSecControl.projDocSec.IPM_Gate_Document_Summary__c=='test with comment.test with comment','Gate Document summary not saved');
+            system.assert(projDocSecControl.projDocSec.IPM_Negotiable__c==true,'Project Document section is not negotiable');
+            
+            
             projDocSecControl.projDocSec.IPM_Negotiable__c=true;
             projDocSecControl.projDocSec.IPM_Gate_Document_Summary__c='test with comment.test with comment';
             projDocSecControl.projDocSec.IPM_FunctionalRole__c=IPM_ConstantUtils.FUNCTIONAL_ROLE_SC;
             projDocSecControl.save();
+            
+            prjDSection = [select id, IPM_FunctionalRole__c from IPM_Project_Document_Section__c where id = :sectionList[0].Id ];
+            system.assert(projDocSecControl.projDocSec.IPM_FunctionalRole__c==IPM_ConstantUtils.FUNCTIONAL_ROLE_SC,'Functional Role not updated');
+            
             projDocSecControl.projDocSec.IPM_Negotiable__c=false;
             projDocSecControl.projDocSec.IPM_PDP_Document_Summary__c=projDocSecControl.projDocSec.IPM_Gate_Document_Summary__c;
             IPM_ProjectDocumentSectionController.project.name='testwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddata';
             projDocSecControl.save(); 
+            prjDSection = [select id, IPM_Negotiable__c from IPM_Project_Document_Section__c where id = :sectionList[0].Id ];
+            system.assert(projDocSecControl.projDocSec.IPM_Negotiable__c==false,'Document is Negotiable');
             projectListObj = [Select Id, Name, IPM_Phase__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_ProjectGKM__c,IPM_CompanyCardText__c, IPM_Technical_Project_Leader__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r)
             from IPM_Project__c LIMIT 10]; 
             for(Integer i = 0; i< projectListObj.size();i++){
@@ -202,6 +233,11 @@ private class IPM_ProjDocSectionController_Test{
         IPM_Project_Resource__c testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id];  
         testResource.IPM_Role_Type__c = 'BB';
         update testResource; 
+        
+        testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id];
+        system.assert(testResource.IPM_Role_Type__c == 'BB', 'Role not updated');
+        
+        
         IPM_Project_Resource__c projResource = [Select id, IPM_Role_Type__c from IPM_Project_Resource__c where id =: testResource.Id];
         system.assertEquals(projResource.IPM_Role_Type__c, 'BB', PROJ_RESOURCE_NOT_UPDATED);
         
@@ -209,14 +245,15 @@ private class IPM_ProjDocSectionController_Test{
         IPM_Project_Document_Section__c testsection = [Select id, IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where id =: sectionList[0].Id];
         testSection.IPM_Master_Section_External_Id__c = IPM_ConstantUtils.CMI_SECTION;
         update testSection;
+        testsection = [Select id, IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where id =: sectionList[0].Id];
+        system.assert(testSection.IPM_Master_Section_External_Id__c == IPM_ConstantUtils.CMI_SECTION, 'Master Section External ID not updated');
+        
         IPM_Project_Document_Section__c docSection = [Select id, IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where id =: testSection.Id];
         system.assertEquals(docSection.IPM_Master_Section_External_Id__c, IPM_ConstantUtils.CMI_SECTION, SECTION_NOT_UPDATED);
         
         System.runAs(testUser)
         {
-            PageReference pRef = Page.IPM_ProjectDocumentSectionEditor;
-            pRef.getparameters().put('Id', projectListObj[0].ID);
-            pRef.getparameters().put(PROJ_DOC_SEC_ID_STR, testSection.Id);
+            PageReference pRef = currentPageSetup();
             Test.setCurrentPage(pRef );
             projectListObj = [Select Id, Name, IPM_Phase__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_ProjectGKM__c,IPM_CompanyCardText__c, IPM_Technical_Project_Leader__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r)
             from IPM_Project__c LIMIT 100]; 
@@ -228,6 +265,10 @@ private class IPM_ProjDocSectionController_Test{
              docSection.IPM_Gate_Document__c = IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;
              docSection.IPM_Master_Section_External_Id__c = PRODUCT_SECTION;
              update docSection;
+             
+             docSection = [Select id, IPM_Master_Section_External_Id__c,IPM_Gate_Document__c from IPM_Project_Document_Section__c where id =: testSection.Id];
+             system.assert(docSection.IPM_Gate_Document__c == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE , 'Gate Document not updated');
+             system.assert(docSection.IPM_Master_Section_External_Id__c == PRODUCT_SECTION , 'Master Section External id not updated');
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.save();
@@ -256,9 +297,7 @@ private class IPM_ProjDocSectionController_Test{
         
         System.runAs(testUser)
         {
-            PageReference pRef = Page.IPM_ProjectDocumentSectionEditor;
-            pRef.getparameters().put('Id', projectListObj[0].ID);
-            pRef.getparameters().put(PROJ_DOC_SEC_ID_STR, testSection.Id);
+            PageReference pRef = currentPageSetup();
             Test.setCurrentPage(pRef );
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
@@ -286,9 +325,7 @@ private class IPM_ProjDocSectionController_Test{
         
         System.runAs(testUser)
         {
-            PageReference pRef = Page.IPM_ProjectDocumentSectionEditor;
-            pRef.getparameters().put('Id', projectListObj[0].ID);
-            pRef.getparameters().put(PROJ_DOC_SEC_ID_STR, testSection.Id);
+            PageReference pRef = currentPageSetup();
             Test.setCurrentPage(pRef );
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
@@ -315,9 +352,7 @@ private class IPM_ProjDocSectionController_Test{
         system.assertEquals(docSection.IPM_Master_Section_External_Id__c, IPM_ConstantUtils.CMI_SECTION, SECTION_NOT_UPDATED);
         System.runAs(testUser)
         {
-            PageReference pRef = Page.IPM_ProjectDocumentSectionEditor;
-            pRef.getparameters().put('Id', projectListObj[0].ID);
-            pRef.getparameters().put(PROJ_DOC_SEC_ID_STR, testSection.Id);
+            PageReference pRef = currentPageSetup();
             Test.setCurrentPage(pRef );
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
@@ -345,9 +380,7 @@ private class IPM_ProjDocSectionController_Test{
         
         System.runAs(testUser)
         {
-            PageReference pRef = Page.IPM_ProjectDocumentSectionEditor;
-            pRef.getparameters().put('Id', projectListObj[0].ID);
-            pRef.getparameters().put(PROJ_DOC_SEC_ID_STR, testSection.Id);
+            PageReference pRef = currentPageSetup();
             Test.setCurrentPage(pRef );
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
@@ -357,11 +390,12 @@ private class IPM_ProjDocSectionController_Test{
         testResource.IPM_Role_Type__c = 'BB';
         update testResource; 
         
+        testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id]; 
+        system.assert(testResource.IPM_Role_Type__c == 'BB', 'Role not updated');
+        
         System.runAs(testUser)
         {
-            PageReference pRef = Page.IPM_ProjectDocumentSectionEditor;
-            pRef.getparameters().put('Id', projectListObj[0].ID);
-            pRef.getparameters().put(PROJ_DOC_SEC_ID_STR, testSection.Id);
+            PageReference pRef = currentPageSetup();
             Test.setCurrentPage(pRef );
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
@@ -391,9 +425,7 @@ private class IPM_ProjDocSectionController_Test{
         
         System.runAs(globalUser)
         {
-            PageReference pRef = Page.IPM_ProjectDocumentSectionEditor;
-            pRef.getparameters().put('Id', projectListObj[0].ID);
-            pRef.getparameters().put(PROJ_DOC_SEC_ID_STR, testSection.Id);
+           PageReference pRef = currentPageSetup();
             Test.setCurrentPage(pRef );
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();

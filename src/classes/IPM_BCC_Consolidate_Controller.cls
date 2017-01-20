@@ -66,7 +66,7 @@ public with sharing class IPM_BCC_Consolidate_Controller
     */
     public string getInvokeMethodsForComponent() {
         showBCC();
-        return 'Required methods are invoked for component';
+        return IPM_ConstantUtils.methodInvokedForComponent;
     }
     
     /************************************************************************************************************************

@@ -65,7 +65,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
     */
     public string getInvokeMethodsForComponent() {
         showCountryList();
-        return 'Required methods are invoked for component';
+        return IPM_ConstantUtils.methodInvokedForComponent;
     }
     
     /************************************************************************************************************************

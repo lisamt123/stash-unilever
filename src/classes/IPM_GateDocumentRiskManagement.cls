@@ -306,7 +306,6 @@ public with sharing class IPM_GateDocumentRiskManagement{
                                               FROM IPM_Questionnaire__c 
                                               WHERE RecordTypeId =: recTypeIDRQS  AND IPM_Project__c =:projectId  AND IPM_Sequence_Number__c in:activeNumberContract];    
         }
-        //seqActiveNumberCharterContract(activateRqsQuestionsList,activateContractRqsQuestionsList);
         return activateContractRqsQuestionsList1;
     }
     

@@ -55,7 +55,7 @@ public with sharing Class IPM_CMIGateSectionController{
     */
     public string getInvokeMethodsForComponent() {
         showTableData();
-        return 'Required methods are invoked for component';
+        return IPM_ConstantUtils.methodInvokedForComponent;
     }
     
      /************************************************************************************************************************

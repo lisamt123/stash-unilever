@@ -165,22 +165,28 @@ private class IPM_GlobalFinancialActionStandards_Test{
             System.assertEquals(finActionLst[0].IPM_Project_Span__c,IPM_ConstantUtils.IPMGLOBAL,'financial action standard value is not updated');
             
             ipnmGlobFinActionStn.field= 'gTO';
-            ipnmGlobFinActionStn.updateActionStandards();
+            ipnmGlobFinActionStn.updateActionStandards(); // Method is being called for IPM gTO Action Standard Charter
+            System.assertEquals(ipnmGlobFinActionStn.field,'gTO');
             
             ipnmGlobFinActionStn.field= 'iTO';
-            ipnmGlobFinActionStn.updateActionStandards();
+            ipnmGlobFinActionStn.updateActionStandards(); // Method is being called for IPM iTo Action Standard_Charter
+            System.assertEquals(ipnmGlobFinActionStn.field,'iTO');
             
             ipnmGlobFinActionStn.field='GM';
-            ipnmGlobFinActionStn.updateActionStandards();
+            ipnmGlobFinActionStn.updateActionStandards(); // Method is being called for IPM GM Action Standard_Charter
+            System.assertEquals(ipnmGlobFinActionStn.field,'GM');
             
             ipnmGlobFinActionStn.field='NPV';
-            ipnmGlobFinActionStn.updateActionStandards();
+            ipnmGlobFinActionStn.updateActionStandards(); // Method is being called for IPM NPV Action Standard_Charter
+            System.assertEquals(ipnmGlobFinActionStn.field,'NPV');
             
             ipnmGlobFinActionStn.field= 'IRR';
-            ipnmGlobFinActionStn.updateActionStandards();
+            ipnmGlobFinActionStn.updateActionStandards(); // Method is being called for IPM IRR Action Standard_Charter
+            System.assertEquals(ipnmGlobFinActionStn.field,'IRR');
             
             ipnmGlobFinActionStn.field='PayBack';
-            ipnmGlobFinActionStn.updateActionStandards();
+            ipnmGlobFinActionStn.updateActionStandards(); // Method is being called for IPM Payback Action Standard_Charter
+            System.assertEquals(ipnmGlobFinActionStn.field,'PayBack');
             
             finActionLst=[select Id,IPM_Payback_Action_Standard_Charter__c from IPM_Financial_Action_Standards__c WHERE Id=:ipnmGlobFinActionStn.finActionId];
             System.assertEquals(finActionLst[0].IPM_Payback_Action_Standard_Charter__c,ipnmGlobFinActionStn.numvalue,'payback value is not updated');

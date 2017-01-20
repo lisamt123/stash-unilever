@@ -459,6 +459,10 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         }
     }
     //Methods created to reduce N-Path Complexity.
+    
+    /****************************************************************************
+    @Description : reduce N-Path Complexity for coreparameter questions for Innovation/Renovation project
+    *****************************************************************************/
     public void chkInnoRenoQuestions(IPM_CoreParameter_Questions__c coreQ, Integer qOne, Integer qTwo, Integer qThree){
     	if(coreQ.IPM_Innovation_Renovation__c && coreQ.IPM_Question_Number__c==qOne){
             questiononeList.add(coreQ.name);
@@ -471,6 +475,9 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         }
     }
     
+    /****************************************************************************
+    @Description : reduce N-Path Complexity for coreparameter questions for Operational project
+    *****************************************************************************/
     public void chkOperQuestions(IPM_CoreParameter_Questions__c coreQ, Integer qOne, Integer qTwo, Integer qThree){
     	if(coreQ.IPM_Operational__c && coreQ.IPM_Question_Number__c==qOne){
             questiononeList.add(coreQ.name);
@@ -484,6 +491,9 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         isOperational=true;
     }
     
+    /****************************************************************************
+    @Description : reduce N-Path Complexity for coreparameter questions for BLG project
+    *****************************************************************************/
     public void chkBLGQuestions(IPM_CoreParameter_Questions__c coreQ, Integer qOne, Integer qTwo, Integer qThree){
     	if(coreQ.IPM_BLG__c && coreQ.IPM_Question_Number__c==qOne){
             questiononeList.add(coreQ.name);

@@ -66,7 +66,10 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
             }
             projectType = IPM_Utils.retrieveProjectType(project);
                      
-        }catch(Exception eX){ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);ApexPages.addMessage(myMsg); }
+        }catch(Exception eX){
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);ApexPages.addMessage(myMsg); 
+            
+        }
     }
     
     
@@ -108,7 +111,11 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                 } 
             
             
-        }catch(Exception eX){ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage)); ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_TASKVIEW_STR,'getIpmuserType',ex.getMessage(),ex, ERROR_STR, null, null, null,null); }       
+        }catch(Exception eX){
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage)); 
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_TASKVIEW_STR,'getIpmuserType',ex.getMessage(),ex, ERROR_STR, null, null, null,null); 
+            
+        }       
     }    
     
     
@@ -201,6 +208,8 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                 update projectUpdateList;
             }
         }
-        catch(Exception ex) {ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_TASKVIEW_STR,'SaveComplexityType',ex.getMessage(),ex, ERROR_STR, null, null, null,null); }
+        catch(Exception ex) {
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_TASKVIEW_STR,'SaveComplexityType',ex.getMessage(),ex, ERROR_STR, null, null, null,null); 
+        }
     }  
 }

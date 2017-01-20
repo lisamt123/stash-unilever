@@ -3,6 +3,8 @@
 @Created Date: July 2015
 @Author: Cognizant
 @Referenced: IPM_CountryHandler
+@Business Logic:    There are no try/Catch blocks in this class for transacation management purposes. We need the transaction to be rollbacked in case of error as 
+                        the methods in this class are invoked from trigger.
 ****************************************************************************/
 public with sharing class IPM_ProjectCountryDetails{
     

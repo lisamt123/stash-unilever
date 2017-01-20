@@ -2,6 +2,8 @@
 *@Author:Cognizant
 *@Date:October 2014
 *@Description : update project name throughout IPM Project,like child project name, subchild project name.
+*		There are no try/Catch blocks in this class for transacation management purposes. We need the transaction to be rollbacked in case of error as 
+*               the methods in this class are invoked from trigger.
 *
 *********************************************/
 public with sharing class IPM_UpdateGlobalProjectName {

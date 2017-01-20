@@ -42,6 +42,10 @@ public with sharing class IPM_EcoDesignSection {
         }
         set;
     }
+    
+    /*******************************************************************************************************
+    * @description: checking to show/hide Eco Tabs along with Tables
+    */
     public boolean displayOnlyTables{
         get {
             if(displayOnlyTables == null) {
@@ -84,10 +88,12 @@ public with sharing class IPM_EcoDesignSection {
     public IPM_EcoDesignSection() {
         ProjDocumentSecId=Apexpages.currentpage().getparameters().get('projDocSecId');
         projDocName = Apexpages.currentpage().getparameters().get('printDoc');
+        // get Project Document Name & Project Document Section
         if(projDocName == null && ProjDocumentSecId != null){
             projDocSec = [Select id,IPM_Gate_Document__c from IPM_Project_Document_Section__c WHERE Id =:ProjDocumentSecId Limit 1][0];
             projDocName = projDocSec.IPM_Gate_Document__c;
         }
+        // Assign Project Phase according to Gate Document
         if(projDocName != null){
             if(IPM_ConstantUtils.CHARTER_GATE.equalsIgnoreCase(projDocName)){
                 projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_IDEAS;
@@ -113,6 +119,7 @@ public with sharing class IPM_EcoDesignSection {
         firstSyncToEcoDesign = false;
         if(String.isNotBlank(projId)) {
             project = [Select id, IPM_Project_Type__c,IPM_ProjectGKM__c,IPM_GateKeepingModel__c,First_Sync_To_EcoDesign__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,Success_Timestamp_EcoDesign__c,IPM_CompanyCardText__c,IPM_Category_Group__c,IPM_Category_Text__c  From IPM_Project__c Where id =:projId Limit 1];
+            // Get all active country list related to the project
             countriesList = [Select IPM_Project__c, Country_Name__c, IS_EI_Country__c,CreatedDate,
                            IPM_Regional_Proj_Association_Timestamp__c,IPM_Local_Project_Association_Timestamp__c
                            From IPM_Country__c 
@@ -130,7 +137,8 @@ public with sharing class IPM_EcoDesignSection {
         }
         //Get all Water Scarce Countries
         set<string> mapWScountries =  IPM_EI_Water_Scarce_Countries__c.getAll().keyset();
-        
+        // Prepare map for Water Scarces for countries 
+        // Which will decide whether to show/hide Eco Design Water(Litres) table 
         mapWaterScarce = new map<string,boolean>();
         for(IPM_Country__c con : countriesList){
             countryMap.put(con.Country_Name__c,con);
@@ -158,6 +166,7 @@ public with sharing class IPM_EcoDesignSection {
                                                         IPM_Comparison_Rep_GTU_Name__c,IPM_Health_Hygiene__c,IPM_Nutrition__c,IPM_Global_Category_Average_View_HlthHyg__c,IPM_Global_Category_Average_View_Nutri__c,IPM_Project__r.IPMProject_Span__c From IPM_Assessment__c 
                                                         Where IPM_Country__c IN:countriesList and Project_Phase__c =:projPhaseForCurrentDoc 
                                                         Order by IPM_SKU_Type__c asc LIMIT 50000]) {
+                    // get assessment for country when Project span of project of Assessment is other than Local 
                     if(assessmentEle.IPM_Project__r.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
                         countryAssessmentMap.get(assessmentEle.IPM_Country__r.Country_Name__c).add(assessmentEle);
                     }           
@@ -177,6 +186,7 @@ public with sharing class IPM_EcoDesignSection {
                                                     And IPM_Project__c =:projId Order by IPM_SKU_Type__c asc LIMIT 50000]) {
                 countryAssessmentMap.get(assessmentEle.IPM_Country__r.Country_Name__c).add(assessmentEle);                                          
             }
+            // get country name of assessment when project phase of assessment is IDEA and project is in Feasibility phase in Regional Original Project 
             if(project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE && project.IPM_GateKeepingModel__c == GKM4){
                 for(IPM_Assessment__c assessmentEle : [Select Id,IPM_SKU_Type__c,IPM_Country__r.Country_Name__c From IPM_Assessment__c 
                                                        Where IPM_Country__c IN:countriesList and Project_Phase__c =:IPM_ConstantUtils.PHASE_IDEAS Order by IPM_SKU_Type__c asc LIMIT 50000]) {
@@ -196,6 +206,7 @@ public with sharing class IPM_EcoDesignSection {
                     (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && 
                     countryMap.get(countryName).IPM_Local_Project_Association_Timestamp__c < project.Success_Timestamp_EcoDesign__c)
                     ) {
+                    // get Country-wise Assessment Details to show it on page	
                     if(countryMap.get(countryName).IS_EI_Country__c) { 
                         if(countryAssessmentMap.get(countryName).isEmpty()) {
                             countryAssessmentWrapListEICountries.add(new CountryAssessmentWrap(countryName,countryAssessmentMap.get(countryName),true,++noOfEICountries,hasLeadSKU));
@@ -237,12 +248,16 @@ public with sharing class IPM_EcoDesignSection {
             }   
         }        
     }
-    
+    /* @Description: checkTakeMeEcoDesginButtonVisible
+    *  This method sets firstSyncToEcoDesign to true to show visibility of button
+    */
     public void checkTakeMeEcoDesginButtonVisible() {
         if(project.First_Sync_To_EcoDesign__c && !projectType.IPM_Dont_Sync_Proj_To_EcoDesign__c) {
                 firstSyncToEcoDesign = true;    
         }
     }
+    
+    // Wrapper Class to show country with their Assessment details
     public class CountryAssessmentWrap {
         public String country {get;set;}
         public List<IPM_Assessment__c> assessmentList{get;set;}
