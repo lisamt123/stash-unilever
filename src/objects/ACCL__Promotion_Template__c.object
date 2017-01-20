@@ -604,15 +604,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>UL_Consider_IIBB_Tax__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>In case the setting is ticked by creation of Promotion it IIBB tax from anchor or hierarchy above will be prepopulated to the promotion field.</description>
-        <externalId>false</externalId>
-        <label>Consider IIBB Tax</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>UL_Promo_Type_ControlView__c</fullName>
         <description>Attribute to control the visibility to end user</description>
         <externalId>false</externalId>
