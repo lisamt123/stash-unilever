@@ -15282,20 +15282,6 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
 	<value>Click Here</value>
 </labels>
 <labels>
-	<fullName>VPM_ClientId</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Client Id</shortDescription>
-	<value>3485ee8279af458abc58065291e188d4</value>
-</labels>
-<labels>
-	<fullName>VPM_ClientSecret</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM Client Secret</shortDescription>
-	<value>ca16126215ea409498F4296ADB25EAB5</value>
-</labels>
-<labels>
 	<fullName>VPM_Code</fullName>
 	<language>en_US</language>
 	<protected>false</protected>
