@@ -119,7 +119,7 @@ body .pbBody table.list tr.dataRow td:first-child {
         </nav>
         
 
-        <apex:outputPanel id="optPanel" rendered="{!($Profile.Name == 'System Administrator' || $Profile.Name == 'Unilever - Force MultiApp Marketing')}">       
+        <apex:outputPanel id="optPanel" rendered="{!flag}">       
                     <button type="button" style="float: left;background-color:darkorange;" onClick="displayFreezePage();">
                          Set Freeze Period
                     </button>
