@@ -1668,8 +1668,42 @@
         <field>User.UL_User_Validity_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <label>ACSF Business Admin</label>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IIBBTax.Date_From__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IIBBTax.Date_Thru__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IIBBTax.IIBB_Tax__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IIBBTax.Account</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IIBBTax.Currency</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<label>ACSF Business Admin</label>
     <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>IIBBTaxes</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+	<objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
