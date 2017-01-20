@@ -81,6 +81,14 @@
                     <a class="btn" id ="exportError" style="display:none" target="_blank" role="button">Export Error File</a>
                     <a class="btn" id ="exportSuccess" style="display:none" target="_blank" role="button">Export Success File</a>
                 </div>
+                <!--<button onclick="ErrorList('1484828804');" type="button">Call ErrorList</button>-->
+                <button id="insertErrorId" style="display:none;" type="button"></button>                
+                <div id="showImportDataDiv" style="overflow-y: scroll; height: 500px;">
+                    <table id="showImportData" class="table table-striped table-bordered">
+                    </table>
+                </div>
+                        
+                        
                 <div class = "panel panel-info">
                     <div class = "panel-heading" style="display:none;">
                         <h3 class = "panel-title">Output</h3>
@@ -305,15 +313,15 @@
                     for(var k=start; k<end; k++){                    
                         var xP= new Object();
                         if(selectedFileType =="Unilever"){
-                            xP.Delivery_Note_Number__c = returnValidStr(OutputData['Data Collection'][k]['Delivery Note Code']); xP.SKU__c = returnValidStr(OutputData['Data Collection'][k]['Product Number (SKU)']); xP.Supplier__c = returnValidStr(OutputData['Data Collection'][k]['Supplier']); xP.Number_of_Pallets_Per_SKU_Non_Compliant__c = ''; xP.Losses__c = ''; xP.Reporting_DC__c = returnValidStr(OutputData['Data Collection'][k]['Reporting DC']); xP.Non_compliance_reason_code__c = parseInt(returnValidStr(OutputData['Data Collection'][k]['Loss Code #'])); xP.Cluster__c = returnValidStr(OutputData['Data Collection'][k]['Cluster']); xP.Description__c = returnValidStr(OutputData['Data Collection'][k]['Description']); xP.DC_Country__c = returnValidStr(OutputData['Data Collection'][k]['Reported Rep DC Country']); xP.Supplier_type__c = returnValidStr(OutputData['Data Collection'][k]['Supplier Type']);    
+                            xP.Delivery_Note_Number__c = returnValidStr(OutputData['Data Collection'][k]['Delivery Note Code']); xP.SKU__c = returnValidStr(OutputData['Data Collection'][k]['Product Number (SKU)']); xP.Supplier__c = returnValidStr(OutputData['Data Collection'][k]['Supplier']); xP.Number_of_Pallets_Per_SKU_Non_Compliant__c = 0; xP.Losses__c = ''; xP.Reporting_DC__c = returnValidStr(OutputData['Data Collection'][k]['Reporting DC']); xP.Non_compliance_reason_code__c = parseInt(returnValidStr(OutputData['Data Collection'][k]['Loss Code #'])); xP.Cluster__c = returnValidStr(OutputData['Data Collection'][k]['Cluster']); xP.Description__c = returnValidStr(OutputData['Data Collection'][k]['Description']); xP.DC_Country__c = returnValidStr(OutputData['Data Collection'][k]['Reported Rep DC Country']); xP.Supplier_type__c = returnValidStr(OutputData['Data Collection'][k]['Supplier Type']);    
                         }
                         if(selectedFileType =="Cannock" || selectedFileType =="Heilbronn"){
                             if(selectedFileType =="Cannock"){
-                                xP.Delivery_Note_Number__c = ''; xP.SKU__c = returnValidStr(OutputData['Data Collection'][k]['Product Code']); xP.Supplier__c = returnValidStr(OutputData['Data Collection'][k]['Supplier Name']); xP.Number_of_Pallets_Per_SKU_Non_Compliant__c = returnValidStr(OutputData['Data Collection'][k]['Number Pallets Affected']);  xP.Non_compliance_reason_code__c = parseInt(returnValidStr(OutputData['Data Collection'][k]['Reject Code'])); xP.Reporting_DC__c = returnValidStr(OutputData['Data Collection'][k]['Depot']);
+                                xP.Delivery_Note_Number__c = ''; xP.SKU__c = returnValidStr(OutputData['Data Collection'][k]['Product Code']); xP.Supplier__c = returnValidStr(OutputData['Data Collection'][k]['Supplier Name']); xP.Number_of_Pallets_Per_SKU_Non_Compliant__c = parseInt(returnValidStr(OutputData['Data Collection'][k]['Number Pallets Affected']));  xP.Non_compliance_reason_code__c = parseInt(returnValidStr(OutputData['Data Collection'][k]['Reject Code'])); xP.Reporting_DC__c = returnValidStr(OutputData['Data Collection'][k]['Depot']);
                             }
                             if(selectedFileType =="Heilbronn"){
                                 xP.Delivery_Note_Number__c = returnValidStr(OutputData['Data Collection'][k]['DN#']); xP.SKU__c = returnValidStr(OutputData['Data Collection'][k]['Product Number (SKU)']);
-                                xP.Supplier__c = returnValidStr(OutputData['Data Collection'][k]['Source Factory']); xP.Number_of_Pallets_Per_SKU_Non_Compliant__c = returnValidStr(OutputData['Data Collection'][k]['Number Pallets affected']);
+                                xP.Supplier__c = returnValidStr(OutputData['Data Collection'][k]['Source Factory']); xP.Number_of_Pallets_Per_SKU_Non_Compliant__c = parseInt(returnValidStr(OutputData['Data Collection'][k]['Number Pallets affected']));
                                 xP.Non_compliance_reason_code__c= parseInt(returnValidStr(OutputData['Data Collection'][k]['LOSS CODE #'])); xP.Reporting_DC__c = returnValidStr(OutputData['Data Collection'][k]['Reporting DC']);
                             }
                             xP.Losses__c = ''; xP.Cluster__c = ''; xP.Description__c = ''; xP.DC_Country__c = ''; xP.Supplier_type__c = '';
@@ -332,6 +340,7 @@
                     '{!$RemoteAction.PQN_UploadNCData_Clone.getSheetData}',
                     xPQNList,
                     selectedFileType,
+                    timeStamp,
                     function(result, event){
                             //console.log(event,result);
                             loopCount++;
@@ -358,29 +367,123 @@
             <script>
             function callOutputResultcheck(timeStamp){
                 if(loopCount==totalloopCount){
-                    console.log("---->>>>");
-                    Visualforce.remoting.Manager.invokeAction(
+                    callResultCount(timeStamp);
+              
+              }
+           }
+           </script>
+           <script>
+           function callResultCount(timeStamp){
+               Visualforce.remoting.Manager.invokeAction(
                     '{!$RemoteAction.PQN_UploadNCData_Clone.getSheetStatus}',
                     timeStamp,
                     function(result, event){
-                           if(event.result.Success>0){
-                                $("#exportSuccess").show();
-                                $("#exportSuccess").text("Export Success Records- "+event.result.Success);
-                                 $("#loaderDiv").hide();
-                            }
-                            if(event.result.Error>0){
-                                 $("#exportError").show();
-                                 $("#exportError").text("Export Error Records-"+event.result.Error);
-                                  $("#loaderDiv").hide();
-                            }
-                         }, 
-                        {escape: true, buffer: false,timeout: 120000}
-                    
-                    );
-                   
-                }
+                       if(event.result.Success>0){
+                            $("#exportSuccess").show();
+                            $("#exportSuccess").text("Export Success Records- "+event.result.Success);
+                            $("#loaderDiv").hide();
+                        }
+                        if(event.result.Error>0 && event.result.Error<501){
+                             ErrorList(timeStamp);
+                             $("#insertErrorId").text("Insert ErrorList- "+event.result.Error);
+                             $("#exportError").show();
+                             $("#exportError").text("Export Error Records-"+event.result.Error);
+                             $("#loaderDiv").hide();
+                        }else{                            
+                            $("#exportError").show();
+                            $("#exportError").text("Export Error Records-"+event.result.Error);
+                            $("#loaderDiv").hide();
+                        }
+                     }, 
+                     {escape: true, buffer: false,timeout: 120000}
+              );           
            }
            </script>
+           
+           <script>           
+           function ErrorList(timeStamp){
+                    $( "#insertErrorId").show(); $( "#insertErrorId").attr( "onclick", "errorDataforImport('"+timeStamp+"')" ); $("#showImportData").empty();
+                    Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.PQN_UploadNCData_Clone.sheetErrors}',timeStamp,
+                    function(result, event){
+                           if(result.length>0){                               
+                                var row = $("<thead>"); $("#showImportData").append(row); var rowtr = $("<tr>"); row.append(rowtr);
+                                rowtr.append($("<th>Error Detail</th>")); rowtr.append($("<th>Reporting DC</th>")); rowtr.append($("<th>SKU</th>")); rowtr.append($("<th>Supplier Number</th>"));
+                                rowtr.append($("<th>Supplier Alias</th>")); rowtr.append($("<th>Loss Code</th>")); rowtr.append($("<th>No. Of pallets per SKU NC</th>")); rowtr.append($("<th>Comments</th>"));
+                                $.each(result, function(x, y) {
+                                   var row = $("<tr class="+x+">");
+                                   $("#showImportData").append(row);
+                                   row.append($('<td>'+y.Error_Description__c+'</td>'));
+                                   y.Reporting_DC__c= typeof y.Reporting_DC__c=== "undefined" ? '' : y.Reporting_DC__c;
+                                   row.append($('<td><input type="text" class="Reporting_DC__c'+x+'" value="'+y.Reporting_DC__c+'"/></td>'));
+                                   y.SKU__c= typeof y.SKU__c=== "undefined" ? '' : y.SKU__c;
+                                   row.append($('<td><input type="text" class="SKU__c'+x+'" value="'+y.SKU__c+'"/></td>'));
+                                   y.Supplier_Number__c = typeof y.Supplier_Number__c=== "undefined" ? '' : y.Supplier_Number__c;
+                                   row.append($('<td><input type="text" class="Supplier_Number__c'+x+'" value="'+y.Supplier_Number__c+'"/></td>'));
+                                   y.Supplier__c= typeof y.Supplier__c=== "undefined" ? '' : y.Supplier__c;
+                                   row.append($('<td><input type="text" class="Supplier__c'+x+'" value="'+y.Supplier__c+'"/></td>'));
+                                   row.append($('<td><input type="text" class="Non_compliance_reason_code__c'+x+'" value="'+y.Non_compliance_reason_code__c+'"/></td>'));
+                                   row.append($('<td><input type="text" class="Number_of_Pallets_Per_SKU_Non_Compliant__c'+x+'" value="'+y.Number_of_Pallets_Per_SKU_Non_Compliant__c+'"/></td>'));
+                                   y.Comments__c = typeof y.Comments__c === "undefined" ? '' : y.Comments__c;
+                                   row.append($('<td><input type="Text" class="Comments__c'+x+'" value="'+y.Comments__c+'"/></td>'));                                   
+                               });                           
+                           }}, {escape: true, buffer: false,timeout: 120000} );
+               }
+           </script>
+           <script>
+               function errorDataforImport(prevoiusTimeStamp){
+                    var timeepoch2 = (new Date).getTime();
+                    var timeStamp2 = Math.floor(timeepoch2/ 1000);
+                    var totalrecord = $("#showImportData tbody tr").length;
+                    var xPQNListErr= new Array();
+                    for(var k=0; k<totalrecord; k++){
+                        var xP1= new Object();
+                        xP1.Account__c = '';
+                        xP1.Reporting_DC__c = $("#showImportData tbody tr."+k+" input.Reporting_DC__c"+k).val();
+                        xP1.SKU__c = $("#showImportData tbody tr."+k+" input.SKU__c"+k).val();
+                        xP1.Supplier__c = $("#showImportData tbody tr."+k+" input.Supplier__c"+k).val();
+                        xP1.Supplier_Number__c = $("#showImportData tbody tr."+k+" input.Supplier_Number__c"+k).val();
+                        xP1.Non_compliance_reason_code__c = parseInt($("#showImportData tbody tr."+k+" input.Non_compliance_reason_code__c"+k).val());
+                        xP1.Number_of_Pallets_Per_SKU_Non_Compliant__c = parseInt($("#showImportData tbody tr."+k+" input.Number_of_Pallets_Per_SKU_Non_Compliant__c"+k).val());
+                        //xP1.Date_Pallet_Received__c = $("#showImportData tbody tr."+k+" input.Date_Pallet_Received__c"+k).val();
+                        xP1.Comments__c = $("#showImportData tbody tr."+k+" input.Comments__c"+k).val();
+                        xP1.Error_Description__c='';
+                        xP1.Is_Error__c=false;
+                        xP1.Multi_Timestamp__c=timeStamp2.toString();
+                        xPQNListErr.push(xP1);
+                        $("#showImportData tbody tr."+k).remove();                    
+                    }
+                    jsRemotingErrorImport(xPQNListErr,prevoiusTimeStamp,timeStamp2.toString());                                  
+                }
+           </script>
+           <script>
+                function jsRemotingErrorImport(xPQNListErr,prevoiusTimeStamp,timeStamp2){
+                $("#exportSuccess").attr('href','{!$page.PQN_Export_Excel}?filestatus=success&timestamp='+timeStamp2);
+                $("#exportError").attr('href','{!$page.PQN_Export_Excel}?filestatus=error&timestamp='+timeStamp2);
+                  $("#insertErrorId").hide();
+                  Visualforce.remoting.Manager.invokeAction(
+                   '{!$RemoteAction.PQN_UploadNCData_Clone.getSheetData}',
+                    xPQNListErr,
+                    selectedFileType,
+                    prevoiusTimeStamp,
+                    function(result, event){
+                            console.log(result);
+                            callResultCount(timeStamp2);
+                          if (event.status) {
+                               //console.log(event);
+                            } else if (event.type === 'exception') {
+                                //document.getElementById("responseErrors").innerHTML = event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                            } else {
+                                //document.getElementById("responseErrors").innerHTML = event.message;
+                            }
+                            }, 
+                        {timeout: 120000}
+                    
+                    );
+                 }
+                
+            </script>
+           
             <script>
                function fileChange(){
                   $("#exportSuccess").hide();

@@ -11,7 +11,9 @@ global without sharing class PQN_UploadNCData_Clone{
     }
     
     @RemoteAction
-    global static Database.SaveResult[] getSheetData(List<PQN_Pallet_Quality_Non_Conformance__c> xPQN, String selectedFileType) {
+    global static Database.UpsertResult[] getSheetData(List<PQN_Pallet_Quality_Non_Conformance__c> xPQN, String selectedFileType,String timeStamp) {
+        Delete [select id From PQN_Pallet_Quality_Non_Conformance__c where Multi_Timestamp__c=:timeStamp AND Is_Error__c=true];
+        system.debug(xPQN);
         List<PQN_Pallet_Quality_Non_Conformance__c> xPQNLIST= xPQN;
         String errorDesc = '';
         List<Account> xAcc = new List<Account>();
@@ -89,7 +91,7 @@ global without sharing class PQN_UploadNCData_Clone{
             
             
             if(xP.Supplier__c.length()<1){
-                errorDesc +='Supplier__c can not be empty. </br>';
+                errorDesc +='Supplier can not be empty. </br>';
             }else{
                 
                 if(mapSupplier.get(xP.Supplier__c)!=null){
@@ -129,6 +131,14 @@ global without sharing class PQN_UploadNCData_Clone{
             else{
                 errorDesc +='Loss Code not found in system. </br>';
             }
+            
+            xP.Number_of_Pallets_Per_SKU_Non_Compliant__c=(xP.Number_of_Pallets_Per_SKU_Non_Compliant__c==null) ? 0 : xP.Number_of_Pallets_Per_SKU_Non_Compliant__c;
+            if(xP.Number_of_Pallets_Per_SKU_Non_Compliant__c==0){                
+                errorDesc +='Number of Pallets should not be 0 and empty. </br>';
+            }
+            xP.Date_Pallet_Received__c =system.today();
+            
+            
             if(errorDesc.length()>0){
                 xP.Error_Description__c=errorDesc;
                 xP.Is_Error__c=true;
@@ -137,7 +147,7 @@ global without sharing class PQN_UploadNCData_Clone{
         
         }
         system.debug(xPQNLIST);
-        Database.SaveResult[] SR = Database.insert(xPQNLIST, false);
+        Database.UpsertResult[] SR = Database.Upsert(xPQNLIST, false);
         system.debug(SR);
         return SR;
     }
@@ -150,6 +160,11 @@ global without sharing class PQN_UploadNCData_Clone{
         xMapStatus.put('Success',[Select Id from PQN_Pallet_Quality_Non_Conformance__c  where Is_Error__c=false and createdbyid=:userinfo.getuserid() and Multi_Timestamp__c=:timeStamp].size());
        
         return xMapStatus;
+    }
+    
+    @RemoteAction
+    global static List<PQN_Pallet_Quality_Non_Conformance__c> sheetErrors(String timeStamp) {
+      return [select id,Reporting_DC__c,Delivery_Note_Number__c,Description__c,SKU__c,Supplier__c,Supplier_Number__c, Non_compliance_reason_code__c,Number_of_Pallets_Per_SKU_Non_Compliant__c,Date_Pallet_Received__c,Comments__c,Error_Description__c,Account__c  From PQN_Pallet_Quality_Non_Conformance__c where Multi_Timestamp__c=:timeStamp AND Is_Error__c=true];
     }
     
     
