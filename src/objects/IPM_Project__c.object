@@ -3772,6 +3772,23 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>IPM_Project_Status__c</fullName>
+        <description>This field is used for legacy project as requirement of Release 3.3 and also we can use this field in future</description>
+        <externalId>false</externalId>
+        <label>Project Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Legacy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
     <label>IPM Project</label>
     <listViews>
         <fullName>All</fullName>
