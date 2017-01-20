@@ -241,65 +241,7 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
         }  
         set;  
     }  
-    public Map<Id, boolean> hasCte{get;set;}
     
-    public Map<String, List<BFM_NFS__c>> nfsByShipment{
-        get{
-            
-            nfsByShipment = new Map<String, List<BFM_NFS__c>>();
-            List<BFM_SES__c> theSES = [SELECT NFS__c, Stage__r.Shipment__c FROM BFM_SES__c WHERE Stage__r.Shipment__c IN: shipList];
-            Set<Id> idsNFS = new Set<ID>();
-            for(BFM_SES__c ses: theSES){
-                idsNFS.add(ses.NFS__c);
-            }
-            Map<Id, BFM_NFS__c> nfss = new Map<Id, BFM_NFS__c>([SELECT Id, Name FROM BFM_NFS__c WHERE Id IN: idsNFS]);
-            Map<String, List<BFM_NFS__c>> returnMap = new Map<String, List<BFM_NFS__c>>();
-            for(BFM_SES__c ses : theSES){
-                if(!nfsByShipment.containsKey(ses.stage__r.shipment__c)){
-                    nfsByShipment.put(ses.stage__r.shipment__c, new List<BFM_NFS__c>());
-                }
-                BFM_NFS__c relatedNFS = nfss.get(ses.NFS__c);
-                nfsByShipment.get(ses.stage__r.shipment__c).add(relatedNFS);
-            }
-            for(BFM_Shipment__c shipment: this.shipList ){
-                if(!nfsByShipment.containsKey(shipment.Id)){
-                    nfsByShipment.put(shipment.Id,new List<BFM_NFS__c>());
-                }
-            }
-            
-            return nfsByShipment;
-        } 
-        
-        set;
-    }
-    
-    public Map<String, List<BFM_CT_e__c>> ctesByShipment{
-        get{
-            ctesByShipment = new Map<String, List<BFM_CT_e__c>>();
-            List<BFM_SES__c> theSESs = [SELECT CT_e__c, Stage__r.Shipment__c FROM BFM_SES__c WHERE Stage__r.Shipment__c IN: shipList];
-            Set<Id> idsCtes = new Set<Id>();
-            for(BFM_SES__c ses : theSESs){
-                idsCtes.add(ses.CT_e__c);
-            }
-            Map<Id, BFM_CT_e__c> ctes = new Map<Id, BFM_CT_e__c>([SELECT Id, Name FROM BFM_CT_e__c WHERE Id IN: idsCtes]);
-            Map<String, List<BFM_CT_e__c>> returnMap = new Map<String, List<BFM_CT_e__c>>();
-            for(BFM_SES__c ses : theSESs){
-                if(!ctesByShipment.containsKey(ses.stage__r.shipment__c)){
-                    ctesByShipment.put(ses.stage__r.shipment__c, new List<BFM_CT_e__c>());
-                }
-                BFM_CT_e__c relatedCTe = ctes.get(ses.CT_e__c);
-                ctesByShipment.get(ses.stage__r.shipment__c).add(relatedCTe);
-            }
-            for(BFM_Shipment__c shipment: this.shipList ){
-                System.debug('shipment Id on shiplist' + shipment.Id);
-                if(!ctesByShipment.containsKey(shipment.Id)){
-                    ctesByShipment.put(shipment.Id,new List<BFM_CT_e__c>());
-                }
-            }
-            return ctesByShipment;        
-            
-        }set;
-    }
     
     public PageReference getSelected(){
         selectedShipList.clear();

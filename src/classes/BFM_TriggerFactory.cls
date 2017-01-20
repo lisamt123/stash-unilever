@@ -110,29 +110,6 @@ public without sharing class BFM_TriggerFactory
      */
     private static ITrigger getHandler(Schema.sObjectType soType)
     {
-        if (soType == BFM_CC_e__c.sObjectType)
-        {
-            return new BFM_CCeHandler();
-        }
-        
-        if (soType == BFM_MDF_e__c.sObjectType)
-        {
-             return new BFM_MDFeHandler();
-        }
-        if (soType == BFM_CT_e__c.sObjectType){
-            return new BFM_CTeHandler();
-        }
-        if (soType == BFM_NFS__c.sObjectType){
-            return new BFM_NFSHandler();
-        }
-        
-        if (soType == BFM_Debit_Note__c.sObjectType){
-            return new BFM_DebitNoteHandler();
-        }
-        if (soType == BFM_POD__c.sObjectType){
-            return new BFM_PODHandler();
-        }
-        
         if (soType == BFM_UserCreationRequest__c.sObjectType){
             return new BFM_UserCreationRequestHandler();
         }
@@ -145,12 +122,6 @@ public without sharing class BFM_TriggerFactory
         if(soType == BFM_NF_e__c.sObjectType){
             return new BFM_NFEHandler();
         }     
-        if(soType == BFM_MIRO_Header__c.sObjectType){
-            return new BFM_MiroHandler();
-        } 
-        if(soType == BFM_IVA__c.sObjectType){
-            return new BFM_IvaHandler();
-        } 
         return null;
     }
 
