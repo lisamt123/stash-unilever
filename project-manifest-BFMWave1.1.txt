@@ -147,10 +147,6 @@ src/classes/BFM_UserCreationRequestHandler.cls
 src/classes/BFM_UserCreationRequestHandler.cls-meta.xml
 src/classes/BFM_UserCreationRequestHandler_Test.cls
 src/classes/BFM_UserCreationRequestHandler_Test.cls-meta.xml
-src/classes/BFM_ValidateCNPJ.cls
-src/classes/BFM_ValidateCNPJ.cls-meta.xml
-src/classes/BFM_ValidateCNPJ_Test.cls
-src/classes/BFM_ValidateCNPJ_Test.cls-meta.xml
 src/customMetadata
 src/customMetadata/BFM_Mulesoft_Endpoint.Query_Freights.md
 src/customMetadata/BFM_Mulesoft_Endpoint.Query_Occurrence.md

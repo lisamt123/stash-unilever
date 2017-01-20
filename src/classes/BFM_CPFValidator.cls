@@ -32,7 +32,7 @@ public class BFM_CPFValidator {
                                      FROM User 
                                      WHERE isActive = true AND ContactId != null)];
         if(!duplicateContacts.isEmpty()){
-            errorMEssage = Label.BFM_CPF_Already_in_Use;
+            errorMEssage = 'Este CPF já está em uso.';
             return false;
         }
         

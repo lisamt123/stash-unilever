@@ -1312,11 +1312,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BFM_SES__c.Tax_Code_Picklist__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BFM_SES__c.Tax_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>

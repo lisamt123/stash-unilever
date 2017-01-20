@@ -10,7 +10,7 @@ public class BFM_UserCreationRequestAttachmentCheck {
             //if it doesn`t have an attachment and was approved, throw an error
             if(!requestsWithAttachments.contains(idRequestUpdated) && oldMap.get(idRequestUpdated).Request_Approved__c == false
                && newMap.get(idRequestUpdated).Request_Approved__c == true){
-                   newMap.get(idRequestUpdated).addError(Label.BFM_Approval_No_Attachment_Found);
+                   newMap.get(idRequestUpdated).addError('Erro ao aprovar esse registro: Nenhum anexo foi encontrado.');
             }
         }
     }
