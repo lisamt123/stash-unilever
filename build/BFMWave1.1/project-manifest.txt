@@ -187,6 +187,7 @@ src/objects/BFM_Error_Log__c.object
 src/objects/BFM_NF_e__c.object
 src/objects/BFM_Occurrence__c.object
 src/objects/BFM_Fiscal_Documents__c.object
+src/objects/BFM_Mulesoft_Endpoint__mdt.object
 src/objects/BFM_SES__c.object
 src/objects/BFM_Shipment__c.object
 src/objects/BFM_Stage__c.object
