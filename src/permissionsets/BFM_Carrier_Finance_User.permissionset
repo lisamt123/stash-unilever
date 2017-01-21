@@ -149,10 +149,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BFM_SESSummaryScreen_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>BFM_SearchOccurrenceController_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
