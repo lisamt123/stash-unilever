@@ -6,6 +6,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Endpoint URL</label>
+		<length>255</length>
         <type>Text</type>
     </fields>
     
