@@ -57,7 +57,7 @@ global class BFM_QueryFreights {
         BFM_Shipment__c shipment = [SELECT Shipment_Number__c FROM BFM_Shipment__c WHERE Id =:shipmentId LIMIT 1]; 
         BFM_QueryFreights queryFreights = new BFM_QueryFreights(new Set<String>{shipment.Shipment_Number__c});
         
-        String returnMessage = Label.BFM_Freight_Ok;
+        String returnMessage = 'Documento de Transporte atualizado';
         try{
             queryFreights.callQueryFreightsCTeIssuing();
             if(!queryFreights.isSuccess()){

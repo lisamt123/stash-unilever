@@ -45,7 +45,7 @@ global class BFM_QueryOccurrence {
         System.debug('BFM_QueryOccurrence callQueryOccurrenceButton occ : '+occ);
         BFM_QueryOccurrence queryOcc = new BFM_QueryOccurrence(new Set<String> {occ.occurrence_Number__c});
         System.debug('BFM_QueryOccurrence callQueryOccurrenceButton occ ' + queryOcc);
-        String returnMessage = Label.BFM_Occurrence_OK;
+        String returnMessage = 'Ocorrência Atualizada';
         
         try{
             queryOcc.callQueryOccurrencesIssuing();
