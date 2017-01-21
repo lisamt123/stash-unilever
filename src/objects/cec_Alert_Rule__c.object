@@ -954,9 +954,24 @@
         <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>NAME</field>
+            <field>L5_Reason_Code__c</field>
             <operation>contains</operation>
-            <value>B&amp;J</value>
+            <value>Foreign matter</value>
+        </filters>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>United Kingdom</value>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Product_Level__c</field>
+            <operation>equals</operation>
+            <value>0</value>
         </filters>
         <label>GH View</label>
         <language>en_US</language>

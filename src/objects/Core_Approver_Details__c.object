@@ -132,6 +132,10 @@
                 <fullName>PAPP</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -202,7 +206,8 @@ IF(ISPICKVAL( Action__c, &quot;SUBM&quot;), &quot;Submitted&quot;,
 IF(ISPICKVAL( Action__c, &quot;REWO&quot;), &quot;Rework&quot;, 
 IF(ISPICKVAL( Action__c, &quot;QUER&quot;), &quot;Query with Vendor&quot;, 
 IF(ISPICKVAL( Action__c, &quot;PAPP&quot;), &quot;Partial Approver&quot;, 
-NULL))))))))))))</formula>
+IF(((ISPICKVAL(Source_System__c , &quot;CLM&quot;))&amp;&amp;(ISPICKVAL( Action__c, &quot;NA&quot;))),&quot;Not Applicable&quot;,
+NULL)))))))))))))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Action</label>
         <required>false</required>
@@ -809,6 +814,10 @@ NULL))))))))))))</formula>
             </values>
             <values>
                 <fullName>DRFT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
                 <default>false</default>
             </values>
             <values>

@@ -9720,6 +9720,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.FS_CHD_Lock__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.FS_ChainTargetingModel__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -42590,6 +42595,10 @@
         <recordType>Product2.Products</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Product2-Product Layout</layout>
+        <recordType>Product2.TEL_Telesales</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Product_Information_Enhanced__kav-Product Information Enhanced Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -46898,6 +46907,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Product2.Products</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product2.TEL_Telesales</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

@@ -9687,6 +9687,11 @@ Create Libaries and Content</description>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.FS_CHD_Lock__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.FS_ChainTargetingModel__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -43806,6 +43811,10 @@ Create Libaries and Content</description>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Product2.Products</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Product2.TEL_Telesales</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

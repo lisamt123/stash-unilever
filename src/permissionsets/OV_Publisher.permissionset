@@ -9686,6 +9686,11 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.FS_CHD_Lock__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.FS_ChainTargetingModel__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -43805,6 +43810,10 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Product2.Products</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Product2.TEL_Telesales</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
