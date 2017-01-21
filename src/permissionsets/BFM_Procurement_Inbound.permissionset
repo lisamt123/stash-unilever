@@ -161,10 +161,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BFM_ShipmentCtesController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>BFM_ShipmentDocumentGeneration_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>

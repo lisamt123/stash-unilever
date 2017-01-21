@@ -158,10 +158,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BFM_SESSummaryScreen_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>BFM_SearchOccurrenceController_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -175,10 +171,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_SendEmailToCarrierApprover</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_ShipmentCtesController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
