@@ -62,7 +62,7 @@ public class BFM_GeneralServiceCalls {
     }
     
     //Method used for Sefaz Check
-    public static String requestsefazCheck(Id objectId, String fileUrl, string objectName, string sessionid){
+    /*public static String requestsefazCheck(Id objectId, String fileUrl, string objectName, string sessionid){
         HttpRequest request = new HttpRequest();
         system.debug('fffffff');
         String customSettingEndpoint = System.Url.getSalesforceBaseURL().toExternalForm() 
@@ -235,7 +235,7 @@ public class BFM_GeneralServiceCalls {
         HttpResponse response = h.send(request);
         System.debug('Body of the response ' + response.getBody());
         return response;
-    }
+    }*/
     
     public static httpResponse sendShipmentUpdate(BFM_UpdateFreightDataRequest request){
         HttpRequest hRequest = new HttpRequest();
@@ -284,7 +284,7 @@ public class BFM_GeneralServiceCalls {
         return response;
     }
     
-    public static httpResponse requestSavePOD(String deliveryNumber, String shipmentNumber, Date podDate, String podStatus){
+    /*public static httpResponse requestSavePOD(String deliveryNumber, String shipmentNumber, Date podDate, String podStatus){
         BFM_SavePODRequest savePodRequest = new BFM_SavePODRequest(deliveryNumber, shipmentNumber, podDate, podStatus);
         HttpRequest hRequest = new HttpRequest();
         hRequest.setMethod('POST');
@@ -302,7 +302,7 @@ public class BFM_GeneralServiceCalls {
         System.debug('Response body '+response.getBody());
         
         return response;
-    }
+    }*/
      
      /**
      * Method name : validateFiscalDocuments 
@@ -311,7 +311,7 @@ public class BFM_GeneralServiceCalls {
      * @param  String accessKey
      * This request can send more than one accessKey, but we Salesforce is using it manually.
      */
-    public static HttpResponse validateFiscalDocuments(List<String> accessKeys){
+    /*public static HttpResponse validateFiscalDocuments(List<String> accessKeys){
         
         BFM_Mulesoft_Endpoint__mdt endpointMetadata = [SELECT Endpoint_URL__c FROM BFM_Mulesoft_Endpoint__mdt 
                                                        WHERE QualifiedAPIName = 'Validate_Fiscal_Document' LIMIT 1];
@@ -332,7 +332,7 @@ public class BFM_GeneralServiceCalls {
         HttpResponse response = h.send(request);
         System.debug('body of the response ' + response.getBody());
         return response;
-    }
+    }*/
     
      /**
      * Method name : publishXMLforValidation 
@@ -340,7 +340,7 @@ public class BFM_GeneralServiceCalls {
      * URL : https://fiscal-doc-mgmt-qa-v1.eu.cloudhub.io/api/acknowledgement/
      * @param  List<BFM_CT_e__c> cte records new list
      */
-    public static HttpResponse publishXMLforValidation(String xmlBody, String accessKey) {
+    /*public static HttpResponse publishXMLforValidation(String xmlBody, String accessKey) {
         System.debug('xmlBody : ' + xmlBody);      
         System.debug('accessKey : ' + accessKey);     
         
@@ -364,5 +364,5 @@ public class BFM_GeneralServiceCalls {
         System.debug('RESPONSE STATUS: ' + response.getStatus());
         System.debug('STATUS_CODE: ' + response.getStatusCode());
         return response;
-    }
+    }*/
 }
