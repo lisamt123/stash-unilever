@@ -55,8 +55,8 @@
  
             <div align="center">
                 <apex:commandButton value="Procurar ocorrência" action="{!searchoccurs}" status="status" reRender="pgoccurance"/>&nbsp; <!-- todo : Add custom label -->
-                <apex:commandButton action="{!redirectPage}" value="{!$Label.BFM_Clear}"/>
-                <button class="btnSearch" style="padding:4px;">{!$Label.BFM_Occurrence}</button>
+                <apex:commandButton action="{!redirectPage}" value="Limpar"/>
+                <button class="btnSearch" style="padding:4px;">Atualizar Ocorrência</button>
                 <button class="btnRep" style="padding:4px;">Gerar Prévia de Custo</button>
             </div>
         </apex:pageBlock>

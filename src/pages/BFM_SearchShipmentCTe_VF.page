@@ -124,18 +124,18 @@
             </apex:pageBlockSection><br/>
             
             <div align="center">
-                <apex:commandButton value="{!$Label.BFM_Search_Shipment}" id="searchButton" action="{!mySearch}" status="status" rerender="pgShips"/>
-                <apex:commandButton action="{!redirectPage}" value="{!$Label.BFM_Clear}"/>
-                <apex:commandButton id="btnFileUpload" value="{!$Label.BFM_Filleupload}"  onclick="window.open('{!$Site.prefix}/apex/BFM_Fileupload_VF');"/>
-                <button class="btnSearch" style="padding:4px;">{!$Label.Update_Shipment}</button>
+                <apex:commandButton value="Procurar Expedição" id="searchButton" action="{!mySearch}" status="status" rerender="pgShips"/>
+                <apex:commandButton action="{!redirectPage}" value="Limpar"/>
+                <apex:commandButton id="btnFileUpload" value="Upload de arquivo"  onclick="window.open('{!$Site.prefix}/apex/BFM_Fileupload_VF');"/>
+                <button class="btnSearch" style="padding:4px;">Atualizar Envio</button>
                 <button class="btnRep" style="padding:4px;">Gerar prévia de custo</button> <!-- TODO : add custom label -->
             </div>
         </apex:pageBlock>
         
         <!-- going to iterate over Stage instead --> 
-        <apex:pageblock title="{!$Label.BFM_Search_Result}" id="pgShips">
+        <apex:pageblock title="Resultado da pesquisa" id="pgShips">
             <apex:outputPanel rendered="{! IF(shipList!= null && shipList.size ==0,true,false)}" >
-                <h1>{!$Label.BFM_No_Records} </h1>
+                <h1>Nenhum registro foi encontrado</h1>
             </apex:outputPanel>
             <apex:outputPanel id="ships" rendered="{!IF(AND(NOT(ISBLANK(shipList)),shipList.size>0),true,false)}"  >
                 <apex:pageBlockTable value="{!shipList}" var="shp" id="ships1" StyleClass="styleships">
@@ -164,27 +164,27 @@
             <apex:pageBlockButtons location="top">
                 <div style="text-align:right">
                     <!--Total de Registros: {!Con.resultSize} -->    <!-- TODO : ADD CUSTOM LABEL -->
-                    {!$Label.BFM_Select_Records}
+                    Selecione o número de registros:
                     <apex:selectList value="{!recordscount}" multiselect="false" size="1">                
                         <apex:selectOptions value="{!recordsize}"/>
                         <apex:actionSupport event="onchange" action="{!getshipments}" reRender="ships,ships1"/>
                     </apex:selectList>         
                     <!-- TODO : ADD CUSTOM LABEL -->
-                    <apex:commandLink action="{!First}" title="{!$Label.BFM_First_Page}" value="First" rendered="{!Con.HasPrevious}"/>&nbsp;    
+                    <apex:commandLink action="{!First}" title="Nenhum registro encontradoFirst page" value="First" rendered="{!Con.HasPrevious}"/>&nbsp;    
                     <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">Primeira</apex:outputPanel>&nbsp;
                     <!-- TODO : ADD CUSTOM LABEL -->
                     <apex:image url="/img/search_prevarrow_disabled.gif" styleClass="prevArrow" rendered="{!NOT(Con.HasPrevious)}"/> 
-                    <apex:image url="/img/search_prevarrow.gif" title="{!$Label.BFm_Previous}" styleClass="prevArrow" rendered="{!Con.HasPrevious}"/>&nbsp;  
+                    <apex:image url="/img/search_prevarrow.gif" title="Página anterior" styleClass="prevArrow" rendered="{!Con.HasPrevious}"/>&nbsp;  
                     <apex:commandLink action="{!Previous}" value="Previous Page" rendered="{!Con.HasPrevious}"/>&nbsp;    
                     <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">Página anterior</apex:outputPanel>&nbsp;
                     <!-- TODO : ADD CUSTOM LABEL -->
                     <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">Próxima página</apex:outputPanel>          
-                    <apex:commandLink title="{!$Label.BFM_Next}" value="Próxima página" rendered="{!Con.HasNext}" action="{!Next}"/>&nbsp;  
+                    <apex:commandLink title="Próxima página" value="Próxima página" rendered="{!Con.HasNext}" action="{!Next}"/>&nbsp;  
                     <apex:image url="/img/search_nextarrow.gif" styleClass="nextArrow" rendered="{!Con.HasNext}"/>&nbsp; 
                     <apex:image url="/img/search_nextarrow_disabled.gif" rendered="{!NOT(Con.HasNext)}"/> 
                     <!-- TODO : ADD CUSTOM LABEL -->
                     <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">Ultima</apex:outputPanel> 
-                    <apex:commandLink title="{!$Label.BFM_Last_Page}"  value="Ultima" rendered="{!Con.HasNext}" action="{!last}"/>
+                    <apex:commandLink title="Última página"  value="Ultima" rendered="{!Con.HasNext}" action="{!last}"/>
                     
                 </div>
             </apex:pageBlockButtons>    

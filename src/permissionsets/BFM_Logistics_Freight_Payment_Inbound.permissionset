@@ -45,22 +45,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BFM_CCeHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-	<classAccesses>
-        <apexClass>BFM_CCeHandler_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_CPFValidator</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-	<classAccesses>
-        <apexClass>BFM_CPFValidator_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>BFM_CommunitiesSelfRegController_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
