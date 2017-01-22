@@ -227,7 +227,7 @@ Throws : N/A
     Throws : N/A 
     ********************************************************************/     
     @RemoteAction
-    global static String invokeWfBOPromotion(String txId, String objectId, String Mode) {        
+    global static String invokeWfBOPromotion(String txId, String objectId, String Mode, String Content) {        
         String result = 'test';
         
         try{
