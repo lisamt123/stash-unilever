@@ -83,6 +83,16 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>UL_Validate_Dummy_Products__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Validate dummy products per each off-invoice payment method Tacitc</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Validate dummy products per each off-invoice payment method Tacitc</inlineHelpText>
+        <label>Validate Dummy Products</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>ACCL__Description_Language_1__c</fullName>
         <deprecated>false</deprecated>

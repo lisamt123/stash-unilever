@@ -181,7 +181,7 @@ Throws : N/A
                 
             }
             else{
-                result = null;
+                 result = ACCL.PromotionRemoteActionExtension.writeBOPromotion(txId,objectId,content);
             }
         }catch(Exception ex){
             throw ex;
@@ -245,9 +245,12 @@ Throws : N/A
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.toUpperCase())){
                 
                 //Before submitting promotion for approval, check if each tactic has a fund associated
-                if(!hasTacticAssignedFund(promoId)){
+               /* if(!hasTacticAssignedFund(promoId)){
                     throw new UL_CustomException(Label.UL_TACTIC_FUND_ASSOCIATION);
-                }
+                } */
+				
+				 //Validatation-At least one dummy product per each off-invoice payment method Tactic.
+                UL_TacticUtility.validateDummyProdsonTactics(txId,content);
                 
                 //if(!THViolate){
                 UL_PromotionWorkflowService.submitForApproval(promoId,promoLst,promoLst[0].createdby.UL_Finance_Manager__c,false) ;

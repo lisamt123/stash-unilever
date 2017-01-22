@@ -19,7 +19,38 @@ public with sharing class UL_TacticUtility {
     enum StatusCode {STATUS_ZERO,STATUS_ONE,STATUS_TWO,STATUS_THREE,STATUS_FOUR,STATUS_FIVE,STATUS_SIX,STATUS_SEVEN,STATUS_EIGHT,STATUS_NINE,STATUS_TEN}
     private static Map<Id, ACCL__Sales_Organization__c> salesOrganizationById = new Map<Id, ACCL__Sales_Organization__c>();
     private static Map<String, ACCL__Sales_Organization__c> salesOrganizationByName = new Map<String, ACCL__Sales_Organization__c>();
-	/*******************************************************************
+    /*******************************************************************
+Purpose: Generic enum to provide values  
+Version 1.0
+Parameters: N/A
+Returns: N/A
+Throws : N/A 
+********************************************************************/    
+    private enum UtilityEnum{
+        Salesforce,
+            save,
+            BOPromotion,
+            fail,
+            Tactics,
+            MATCH,
+            INCLUDED,
+            productid,
+            Attribute,
+            parentId,
+            UIElement,
+            Push,
+            EnableChild,
+            Account,
+            CustomerSet,
+            Result,
+            manualproducts,
+            productfilter,
+            target,
+            Id,
+            LOTactic,
+            PP_BTN_MANAGE_PRODS
+            }   
+    /*******************************************************************
     Purpose: Validate Tactics overlap and products
     Version: 1.0
     Parameters: Transaction id and BOPromotion Content from controller-MyPromotionRemoteActionExtension
@@ -64,14 +95,14 @@ public with sharing class UL_TacticUtility {
                     ltactic=(ACCL__Tactic__c)checkFieldTypeAndParsetheJson(txId,setfields,loTactic,'ACCL__Tactic__c');
                     LOTactics.add(ltactic);
                 }
-                else
+              /*  else
                 {
                     ACCL__Tactic__c existtactic = new ACCL__Tactic__c();
                     existtactic=(ACCL__Tactic__c)checkFieldTypeAndParsetheJson(txId,setfields,loTactic,'ACCL__Tactic__c');
                     if(existtactic!=null){
                         existTactics.add(existtactic);
                     }
-                }
+                } */
             }
         }
         //Add products for new tactics
@@ -103,8 +134,8 @@ public with sharing class UL_TacticUtility {
             list<ACCL__Tactic_Template__c> tacticTemp = [select UL_TacticOverlap__c,UL_Product_Mandate__c from ACCL__Tactic_Template__c where id=:LOTactics[0].ACCL__Tactic_Template__c limit 1];
             TacticsOverlap =tacticTemp[0].UL_TacticOverlap__c;
             productsEnable = tacticTemp[0].UL_Product_Mandate__c;
-            
-            }
+            existTactics = [select id,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Tactic_Template__c from ACCL__Tactic__c where ACCL__Tactic_Template__c=:LOTactics[0].ACCL__Tactic_Template__c and id!=:LOTactics[0].id ];
+                 }
         
         if(productsMandate && productsEnable){
             throw new CustomException(label.UL_ProductsMandatory);  
@@ -943,5 +974,78 @@ public with sharing class UL_TacticUtility {
         
         cacheSalesOrganizationRecord(salesOrganizationRecord);
     }
+     /*******************************************************************
+    Purpose: Validate dummy products per each Tactic
+    Version: 1.0
+    Parameters: Transaction id and BOPromotion Content from controller-MyPromotionRemoteActionExtension
+    Returns: Void
+    Throws N/A
+    ********************************************************************/
+    public static void validateDummyProdsonTactics(string txid,string Content){
+     boolean containsDummyProd = false;
+     boolean isTacticOffinvoice = false;
+     final string offinvoice = 'Off-Invoice';
+     final string materialType = 'ZFIN';
+     Map<id,ACCL__Tactic__c> tacticMap = new Map<id,ACCL__Tactic__c>();
+     Map<id,ACCL__Product__c> productMap = new Map<id,ACCL__Product__c>();
+     Map<string,string> tacticidProdId = new Map<string,string>();
+      List<Map<String, Object> > herokuProducts = new List<Map<String, Object>>();
+     Map<id,id> prodIdTacticID = new Map<id,id>(); 
+       Set<String> tacticSet;
+        Set<Id> productIdSet;
+        Map<string,set<string>> prodIdTacticSet;
+ 
+ //To get products(including Manual products from Heroku -- Chandrababu
+                herokuProducts = UL_TacticUtility.readLOExtProduct(txId,content);
+                
+                if(herokuProducts.size()>0){
+                    productIdSet = new Set<Id>(); 
+                    prodIdTacticSet = new Map<string,set<string>>();
+                    
+                    for(Map<String,Object> prods : herokuProducts){
+                        productIdSet.add((Id)prods.get(UtilityEnum.productid.Name()));
+                        list<UL_TacticUtility.TacticWrapper> tacwrap = (list<UL_TacticUtility.TacticWrapper>)prods.get(UtilityEnum.Tactics.Name());
+                        tacticSet = new Set<String>();
+                        for(UL_TacticUtility.TacticWrapper eachTactic : tacwrap){
+                            if(UtilityEnum.MATCH.Name().equalsIgnoreCase(eachTactic.Included)  || UtilityEnum.INCLUDED.Name().equalsIgnoreCase(eachTactic.Included) || eachTactic.Included == String.valueOf(UL_Utility.BOOLEAN_TRUE).toLowerCase()){
+                                tacticSet.add((string)eachTactic.tacticId);
+                                tacticidProdId.put((string)eachTactic.tacticId,(string)prods.get(UtilityEnum.productid.Name()));
+                            }
+                        }
+                        prodIdTacticSet.put((string)prods.get(UtilityEnum.productid.Name()),tacticSet);
+                        //prodIdTacticID.put();
+                    }
+                    }
+                   if(prodIdTacticSet!=null && prodIdTacticSet.keyset().size()>0){ 
+                    for(ACCL__Tactic__c tacticObj : [select id,ACCL__Payment_Method__c from ACCL__Tactic__c where id in:tacticSet]){
+                     tacticMap.put(tacticObj.id,tacticObj);
+                     if(tacticObj.ACCL__Payment_Method__c!=null && tacticObj.ACCL__Payment_Method__c==offinvoice){
+                       isTacticOffinvoice  = true;
+                     }
+                     
+                    }
+                    for(ACCL__Product__c prodObj : [select id,UL_Material_Type__c from ACCL__Product__c where id in: prodIdTacticSet.keyset()]){
+                      containsDummyProd = false;
+                     if(prodObj.UL_Material_Type__c!=null && prodIdTacticSet.containskey(prodObj.id)){
+                        for(string tacticid : prodIdTacticSet.get(prodObj.id)){
+                          if(tacticMap.get(tacticid).ACCL__Payment_Method__c==offinvoice && prodObj.UL_Material_Type__c==materialType){
+                            containsDummyProd = true;
+                            break;
+                          }
+                        }
+                     }
+                     
+                    }
+                    }
+                    if(prodIdTacticSet==null && isTacticOffinvoice) {
+                      throw new CustomException(label.UL_DummyProdonTactic);
+                    }
+                    if(prodIdTacticSet!=null && prodIdTacticSet.keyset().size()>0 && !containsDummyProd) {
+                      throw new CustomException(label.UL_DummyProdonTactic);
+                    }
+                    
+    
+    }
+     
      
 }

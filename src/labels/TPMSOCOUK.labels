@@ -2060,3 +2060,10 @@ there is a different Currency on lower level customer(s)</value>
         <shortDescription>Promotion approval validation message</shortDescription>
         <value>Each tactic must have at least one related fund</value>
     </labels>
+	<labels>
+        <fullName>UL_DummyProdonTactic</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Check atleast one dummy product on each tactic</shortDescription>
+        <value>All Off-Invoice tactics must contain a dummy product</value>
+    </labels>

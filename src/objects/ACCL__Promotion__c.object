@@ -45,8 +45,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
+        <content>MyPromotionPlanning2</content>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Standard</type>
+        <type>Visualforce</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -4077,12 +4078,11 @@ Id=VLOOKUP
     </validationRules>
     <validationRules>
         <fullName>UL_PastDated_Urgent_Promotion_Validation</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Past Dated validation rule</description>
-        <errorConditionFormula>IF(ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Past Dated/Urgent&apos;),
-	IF(ACCL__Date_From__c  &gt;=  TODAY() || ACCL__Date_Thru__c  &lt;  TODAY(),TRUE,FALSE ),
-	ACCL__Date_From__c  &lt;  TODAY())</errorConditionFormula>
-        <errorMessage>Past\Urgent promotion template should be used to create past promotions only</errorMessage>
+        <errorConditionFormula>IF(ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Past Dated/Urgent&apos;)&amp;&amp;(ACCL__Date_From__c &gt;= TODAY() || ACCL__Date_Thru__c &lt;= TODAY()),TRUE,FALSE )</errorConditionFormula>
+        <errorDisplayField>ACCL__Active__c</errorDisplayField>
+        <errorMessage>From date must be in the past, Thru date must be in the future for Past Dated/Urgent Promotion</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>in_store_date_from_validation</fullName>

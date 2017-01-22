@@ -311,11 +311,6 @@
         <fullName>UL_SoCo_Planning</fullName>
         <description>This is used for Tactic</description>
         <displayedFields>
-            <field>ACCL__Date_From__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
             <field>ACCL__Filter_Criteria__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1066,6 +1061,13 @@
     </recordTypes>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+	 <validationRules>
+        <fullName>Paste_Dated_OffInvoice_Allowed</fullName>
+        <active>true</active>
+        <description>Payment method- On Invoice and A&amp;P should not be allowed for the promotion templates- Account Specific Past dated Promotion and Parent Past Dated Promotion</description>
+        <errorConditionFormula>IF( (CONTAINS(ACCL__Promotion__r.ACCL__Promotion_Template__r.Name,&apos;Account Specific - Past Dated / Urgent&apos;)||CONTAINS(ACCL__Promotion__r.ACCL__Promotion_Template__r.Name,&apos;Parent Past Dated / Urgent&apos;))&amp;&amp;(ISPICKVAL(ACCL__Payment_Method__c,&apos;OnInvoice&apos;)||ISPICKVAL(ACCL__Payment_Method__c,&apos;A&amp;P&apos;)), true, false)</errorConditionFormula>
+        <errorMessage>Payment methods of On Invoice,A&amp;P should not be allowed for the promotion templates- Account Specific Past dated Promotion and Parent Past Dated Promotion</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>ACCL__I_date_from_less_or_equal_i_date_thru</fullName>
         <active>true</active>

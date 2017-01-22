@@ -126,7 +126,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Invstement Cost</fullName>
+                <fullName>Investement Cost</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
