@@ -1,0 +1,122 @@
+.slds .chart-tile {
+    .main-value {
+        font-size: 26px;
+        text-align: center;
+        margin-top: -7px;
+    }
+
+    .sub-value {
+        color: @up-color;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    &.negative .sub-value {
+        color: @down-color;
+    }
+
+    &.negative .horizontal-chart .back-chart {
+        background-color: @down-color;
+    }
+
+    .horizontal-chart {
+        padding: 5px;
+        position: relative;
+    }
+
+    .horizontal-chart .back-chart {
+        height: 50px;
+        width: 100%;
+        background-color: @up-color;
+    }
+
+    .horizontal-chart .front-chart {
+        height: 50px;
+        width: 60%;
+        transition: width 0.5s ease-in-out;
+        /*To be calculated*/
+        background-color: @botticelli;
+        border-right: 2px solid #000;
+        position: absolute;
+        top: 5px;
+    }
+
+    .legend {
+        margin-top: 3px;
+        text-align:left;
+    }
+
+    .legend .val {
+        font-size: 12px;
+        font-weight: 300;
+    }
+    .legend .val.initial {
+        left: 0;
+        /*To be calculated*/
+    }
+    .legend .val.final {
+        position: absolute;
+        left: 50%;
+        /*To be calculated*/
+    }
+}
+
+.slds .ct-series-a .ct-point,
+.ct-series-a .ct-line,
+.ct-series-a .ct-bar,
+.ct-series-a .ct-slice-donut,
+.legendItem .ct-series-a {
+    stroke: @kashmir-blue;
+    background-color: @kashmir-blue;
+}
+
+.slds .ct-series-b .ct-point,
+.ct-series-b .ct-line,
+.ct-series-b .ct-bar,
+.ct-series-b .ct-slice-donut,
+.legendItem .ct-series-b {
+    stroke: @casper;
+    background-color: @casper;
+}
+
+.slds .ct-series-c .ct-point,
+.ct-series-c .ct-line,
+.ct-series-c .ct-bar,
+.ct-series-c .ct-slice-donut,
+.legendItem .ct-series-c {
+    stroke: @botticelli;
+    background-color: @botticelli;
+}
+
+.slds ct-series-d .ct-point,
+.ct-series-d .ct-line,
+.ct-series-d .ct-bar,
+.ct-series-d .ct-slice-donut,
+.legendItem .ct-series-d {
+    stroke: @catskill-white;
+    background-color: @catskill-white;
+}
+
+.slds .stackedchart .ct-bar {
+    stroke-width: 65px;
+}
+
+.slds .stackedchart,
+.linechart {
+    margin-top: 15px;
+}
+
+.slds .legendItem {
+    display: inline-block;
+    margin-left: 3em;
+    font-size: 11px;
+}
+
+.slds .legendItem .legend-box {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px gray;
+    display: inline-block;
+    margin-right: 1em;
+}

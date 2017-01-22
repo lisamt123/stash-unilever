@@ -1,0 +1,227 @@
+.filter-category {
+    height: 200px;
+}
+
+.product-filter {
+    justify-content: space-between;
+
+    .slds-col--filter {
+
+        & + .slds-col--filter {
+            margin-left: 1%;
+        }
+
+        @media @to-desktop {
+            min-width: 25%;
+        }
+    }
+}
+
+.tactic-tile,
+.kpi-tile {
+    max-height: 318px;
+}
+
+.tactic-tile .title {
+    margin-bottom: @medium-space;
+}
+
+.kpi-tile .title {
+    margin-bottom: 1em;
+}
+
+.tactic-tile .subtile {
+    padding: 1em 1.5em 2em 1em;
+    flex: 1 1;
+}
+
+.tactic-tile .subtile.funds {
+    border-right: 2px solid #fff;
+    padding-left: 0.5em;
+}
+
+.tactic-tile .subtile.payments {
+    border-left: 2px solid #fff;
+}
+
+.funds-props {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: @small-space;
+    border-bottom: 1px solid @border-color;
+}
+
+.tactic-item {
+    display: inline;
+    line-height: 15px;
+    width: 15%;
+    margin-top: @small-space;
+
+    & + .tactic-item {
+        margin-left: 12px;
+    }
+
+    &.tactic-checkbox {
+        width: auto;
+        min-width: inherit;
+        align-self: center;
+        margin-top: @medium-space;
+    }
+
+    @media @to-desktop {
+        min-width: 25%;
+        & + .tactic-item {
+            margin-left: 3%;
+        }
+    }
+
+    label {
+        font-size: 12px;
+        color: @kashmir-blue;
+        width: 100%;
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        line-height: 14px;
+
+    }
+
+    span {
+        font-size: 12px;
+        color: @biscay;
+    }
+}
+
+.funds-grid {
+    max-height: 268px;
+}
+
+.funds-link {
+    margin-left: 15px;
+    font-size: 13px;
+}
+
+.kpi-tile {
+    padding: 1em;
+    flex-direction: column;
+}
+
+.kpi-tile table {
+    width: 100%;
+}
+
+.kpi-tile thead tr {
+    background: transparent !important;
+}
+
+.kpi-tile thead tr.header > td {
+    font-weight: bold;
+    text-align: right;
+}
+
+.kpi-tile tr:nth-child(odd) {
+    background: #FFF
+}
+
+.kpi-tile tbody td.mainTitle {
+    text-align: left;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.kpi-tile tbody td {
+    text-align: end;
+    padding-right: 0.5em;
+    font-size: 0.7em;
+}
+
+.table-wrapper {
+    position: relative;
+}
+
+.table--fixed-header {
+    height: 390px;
+    overflow: hidden;
+    position: relative;
+    padding-top: 35px;
+    width: 100%;
+}
+
+.table--fixed-header section {
+    border-top: 1px solid #d8dde6;
+    height: 355px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    &::-webkit-scrollbar:window-inactive {
+        opacity: 0;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #e0e5ee;
+        border-radius: 0.5rem;
+        box-shadow: #a8b7c7 0 0 0 1px inset;
+    }
+    &::-webkit-scrollbar-track {
+        background: #a8b7c7;
+    }
+}
+
+.table--fixed-header table {
+    border-spacing: 0;
+}
+
+.table--fixed-header table td,
+.table--fixed-header table th {
+    padding: 0.5rem;
+}
+
+.table--fixed-header table td {
+    vertical-align: middle !important;
+}
+
+.table--fixed-header table:not(.slds-no-row-hover) tbody tr:hover > td,
+.table--fixed-header table:not(.slds-no-row-hover) tbody tr:hover > th {
+    background-color: #f4f6f9;
+}
+
+.table--fixed-header table tbody tr.slds-is-selected > td,
+.table--fixed-header table tbody tr.slds-is-selected > th,
+.table--fixed-header table:not(.slds-no-row-hover) tr.slds-is-selected:hover > td,
+.table--fixed-header table:not(.slds-no-row-hover) tr.slds-is-selected:hover > th {
+    background-color: #f0f8fc;
+}
+
+.table--fixed-header table td.slds-is-selected,
+.table--fixed-header table td.slds-is-selected:hover,
+.table--fixed-header table th.slds-is-selected,
+.table--fixed-header table th.slds-is-selected:hover {
+    box-shadow: #0070d2 0 0 0 1px inset;
+}
+
+.table--fixed-header table th {
+    font-weight: 400;
+    height: 0;
+    line-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    color: transparent;
+    border: none;
+    white-space: nowrap;
+}
+
+.table--fixed-header table th div {
+    position: absolute;
+    background: transparent;
+    color: #16325c;
+    padding: 9px 25px;
+    top: 0;
+    margin-left: -25px;
+    line-height: normal;
+    vertical-align: middle;
+}
