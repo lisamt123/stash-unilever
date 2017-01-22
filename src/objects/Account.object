@@ -24562,7 +24562,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     </validationRules>
     <validationRules>
         <fullName>UL_PlanEndDateShouldGreaterthanStartDate</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Planning end date should be greater than or equal to planning start date</description>
         <errorConditionFormula>UL_Customer_Role_Valid_From__c &gt; UL_Customer_Role_Valid_Thru__c</errorConditionFormula>
         <errorMessage>Planning end date should be greater than planning start date</errorMessage>
