@@ -360,14 +360,6 @@
                 <fullName>% Per Case</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Percentage</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Weekly Lump Sum</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
