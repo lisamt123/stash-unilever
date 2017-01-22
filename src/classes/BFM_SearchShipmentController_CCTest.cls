@@ -28,7 +28,7 @@ private static testMethod void testsearchshipment(){
         search.recordscount='50';
         search.recordscount='100';
         String Ships;
-        PageReference pageRef = page.BFM_SearchShipment_VF;
+        PageReference pageRef = page.BFM_SearchShipmentCTe_VF;
         Test.setCurrentPage(pageRef);
         search.mySearch();
     	search.setPaginationSettings();
