@@ -19,7 +19,7 @@ public class BFM_CPFValidator {
     public boolean validateCPF(){
         
         if(cpf.length()<11 || !cpf.isnumeric()){
-            errorMessage = Label.BFM_Invalid_CPF_Format;
+            errorMessage = 'O CPF deve ter exatamente 11 caracteres numéricos.';
             return false;
         }
         
@@ -32,7 +32,7 @@ public class BFM_CPFValidator {
                                      FROM User 
                                      WHERE isActive = true AND ContactId != null)];
         if(!duplicateContacts.isEmpty()){
-            errorMEssage = Label.BFM_CPF_Already_in_Use;
+            errorMEssage = 'Este CPF já está em uso.';
             return false;
         }
         
@@ -44,7 +44,7 @@ public class BFM_CPFValidator {
            && Integer.valueOf(cpf.substring(10,11)) == verifyingDigit2){
             return true;
         } else{
-            errorMessage = Label.BFM_Invalid_CPF_Format;
+            errorMessage = 'O CPF deve ter exatamente 11 caracteres numéricos.';
             return false;
         }
     }
