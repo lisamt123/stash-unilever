@@ -45,6 +45,8 @@ src/classes/BFM_CreateUserQueueable.cls
 src/classes/BFM_CreateUserQueueable.cls-meta.xml
 src/classes/BFM_CreateUserQueueable_Test.cls
 src/classes/BFM_CreateUserQueueable_Test.cls-meta.xml
+src/classes/BFM_FileConnector.cls
+src/classes/BFM_FileConnector.cls-meta.xml
 src/classes/BFM_GeneralServiceCalls_Test.cls
 src/classes/BFM_GeneralServiceCalls_Test.cls-meta.xml
 src/classes/BFM_GeneralServiceCalls.cls

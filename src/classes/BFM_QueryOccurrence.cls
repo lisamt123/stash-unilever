@@ -84,7 +84,7 @@ global class BFM_QueryOccurrence {
         }
         return updatedOccurs;
     }
-    
+    @TestVisible
     private List<BFM_Occurrence__c> parseResponse(String JSONbody){
         System.debug(JSONbody);
         
@@ -138,7 +138,7 @@ global class BFM_QueryOccurrence {
         callUpserts();
         return upsertOccurrences;
     }
-    
+    @TestVisible
     private void processOccurUpserts(Database.upsertResult[] results){
         for(Integer i = 0; i< results.size(); i++){
             if(!results[i].isSuccess()){
@@ -152,7 +152,7 @@ global class BFM_QueryOccurrence {
             }
         }
     }
-    
+    @TestVisible
     private void processSesUpserts(Database.upsertResult[] results){
         for(Integer i = 0; i< results.size(); i++){
             if(!results[i].isSuccess()){
@@ -167,7 +167,7 @@ global class BFM_QueryOccurrence {
             }
         }
     }
-    
+    @TestVisible
     private void processNfeUpserts(Database.upsertResult[] results){
         for(Integer i = 0; i< results.size(); i++){
             if(!results[i].isSuccess()){
@@ -182,7 +182,7 @@ global class BFM_QueryOccurrence {
             }
         }
     } 
-    
+    @TestVisible
     private void processFiscalDocument(Database.upsertResult[] results){
         for(Integer i = 0; i< results.size(); i++){
             if(!results[i].isSuccess()){
@@ -197,7 +197,7 @@ global class BFM_QueryOccurrence {
             }
         }
     }       
-    
+    @TestVisible
     private void callUpserts(){
         if(upsertOccurrences!=null) {
             Database.upsertResult[] resultsOccurnce = database.upsert(upsertOccurrences,Schema.getGlobalDescribe().get('BFM_Occurrence__c')
@@ -241,7 +241,7 @@ global class BFM_QueryOccurrence {
             database.insert(generatedErrors, false);
         }
     }
-    
+    @TestVisible
     private void treatValueException(Exception ex){
         System.debug('treatValueException' + ex.getStackTraceString());
         BFM_Error_Log__c newError = new BFM_Error_Log__c();
@@ -250,7 +250,7 @@ global class BFM_QueryOccurrence {
         newError.Reason__c = 'Type Error';
         this.generatedErrors.add(newError);
     }
-    
+    @TestVisible
     private void createErrorLogs(List<String> occurrenceNumbers, String errorMessage, String errorType) {
         System.debug('createErrorLogs');
         List<BFM_Error_Log__c> errorlogsCreated = new List<BFM_Error_Log__c>();
@@ -266,7 +266,7 @@ global class BFM_QueryOccurrence {
             insert errorLogsCreated;
         }
     } 
-    
+    @TestVisible
     private void createUpsertErrorLog(String occurNumber, String errorMessage){
         System.debug('createUpsertErrorLog');
         BFM_Error_Log__c newError = new BFM_Error_Log__c();
@@ -275,7 +275,7 @@ global class BFM_QueryOccurrence {
         newError.Reason__c = 'Upsert error';
         this.generatedErrors.add(newError);
     }
-    
+    @TestVisible
     private BFM_Occurrence__c processOccurrenceFields(BFM_QueryOccurrencesResponse.Occurrences currentOcc){
         BFM_Occurrence__c newOcc = new BFM_Occurrence__c();
         newOcc.Status__c = currentOcc.status;
@@ -371,7 +371,7 @@ global class BFM_QueryOccurrence {
 
         return newOcc;
     }
-    
+    @TestVisible
     private BFM_SES__c processSESFields(BFM_QueryOccurrencesResponse.Ses currentSes, String occurrenceNumber) {
         BFM_SES__c newSes = new BFM_SES__c();
         newSES.Occurrence__r = new BFM_Occurrence__c(occurrence_Number__c = occurrenceNumber); 
@@ -424,7 +424,7 @@ global class BFM_QueryOccurrence {
         newSes.ISS_Value__c = currentSes.issValue;
         return newSes;
     }
-    
+    @TestVisible
     private BFM_NF_e__c processNFeFields(BFM_QueryOccurrencesResponse.NFe currentNFe, String sesnumber, String occurrenceNumber){
         BFM_NF_e__c newNfe = new BFM_NF_e__c(NF_e_access_key__c = currentNfe.nfeAccessKey);
         
@@ -464,7 +464,7 @@ global class BFM_QueryOccurrence {
         
         return newNfe;
     }
-    
+    @TestVisible
     private Decimal convertNumber(String textValue){
         try{
             return Decimal.valueOf(textValue);

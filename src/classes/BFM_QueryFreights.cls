@@ -94,7 +94,7 @@ global class BFM_QueryFreights {
         }
         return updatedShipments;
     }
-    
+    @TestVisible
     private List<BFM_Shipment__c> getQueryFreightsObjectsCreated(String JSONbody){
         System.debug(jsonBody);
         jsonBody = jsonBody.removeStart('"');
@@ -151,7 +151,7 @@ global class BFM_QueryFreights {
         callUpserts();
         return shipments;
     }
-    
+    @TestVisible
     private void processShipmentUpserts(Database.upsertResult[] results){
         for(Integer i = 0; i< results.size(); i++){
             if(!results[i].isSuccess()){
@@ -165,7 +165,7 @@ global class BFM_QueryFreights {
             }
         }
     }
-    
+    @TestVisible
     private void processStageUpserts(Database.upsertResult[] results){
         for(Integer i = 0; i< results.size(); i++){
             if(!results[i].isSuccess()){
@@ -180,7 +180,7 @@ global class BFM_QueryFreights {
             }
         }
     }
-    
+    @TestVisible
     private void processSesUpserts(Database.upsertResult[] results){
         for(Integer i = 0; i< results.size(); i++){
             if(!results[i].isSuccess()){
@@ -195,7 +195,7 @@ global class BFM_QueryFreights {
             }
         }
     }
-    
+    @TestVisible
     private void processDeliveryUpserts(Database.upsertResult[] results){
         for(Integer i = 0; i< results.size(); i++){
             if(!results[i].isSuccess()){
@@ -210,7 +210,7 @@ global class BFM_QueryFreights {
             }
         }
     }
-
+	@TestVisible
     private void processNfeUpserts(Database.upsertResult[] results){
         for(Integer i = 0; i< results.size(); i++){
             if(!results[i].isSuccess()){
@@ -225,7 +225,7 @@ global class BFM_QueryFreights {
             }
         }
     }    
-    
+    @TestVisible
     private void callUpserts(){
         if(shipments != null) {
             Database.upsertResult[] resultsShipment = database.upsert(shipments,Schema.getGlobalDescribe().get('BFM_Shipment__c')
@@ -283,6 +283,7 @@ global class BFM_QueryFreights {
     /*
     * Creates an error log related to the shipment being currently processed
     * */
+	@TestVisible
     private void treatTypeException(System.TypeException ex){
         System.debug('treatTypeException getStackTraceString: ' + ex.getStackTraceString());
         BFM_Error_Log__c newError = new BFM_Error_Log__c();
@@ -291,7 +292,7 @@ global class BFM_QueryFreights {
         newError.Reason__c = 'Type Error';
         this.generatedErrors.add(newError);
     }
-    
+    @TestVisible
     private void createUpsertErrorLog(String shipmentNumber, String errorMessage){
         BFM_Error_Log__c newError = new BFM_Error_Log__c();
         newError.BFM_Shipment__r = new BFM_Shipment__c(Shipment_Number__c = shipmentNumber);
@@ -299,7 +300,7 @@ global class BFM_QueryFreights {
         newError.Reason__c = 'Upsert error';
         this.generatedErrors.add(newError);
     }
-    
+    @TestVisible
     private void createErrorLogs(Set<String> shipmentNumbers, String errorMessage, String errorType){
         for(String shipNumber :shipmentNumbers) {
             BFM_Error_Log__c newError = new BFM_Error_Log__c();
@@ -309,7 +310,7 @@ global class BFM_QueryFreights {
             this.generatedErrors.add(newError);
         }
     }
-    
+    @TestVisible
     private BFM_Shipment__c parseShipment(BFM_QueryFreightsResponse.Shipment ship ){
         BFM_Shipment__c newShipment = new BFM_Shipment__c(Shipment_Number__c = ship.shipmentNumber);
         newShipment.Shipment_Type__c = ship.shipmentType;
@@ -332,7 +333,7 @@ global class BFM_QueryFreights {
         
         return newShipment;
     }
-    
+    @TestVisible
     private BFM_Stage__c parseStage(BFM_QueryFreightsResponse.Stage stage, String shipmentNumber){
         BFM_Shipment__c shipment = new BFM_Shipment__c(Shipment_Number__c = shipmentNumber);
         BFM_Stage__c newStage = new BFM_Stage__c();
@@ -362,7 +363,7 @@ global class BFM_QueryFreights {
         newStage.Stage_Number_Only__c = String.valueOf(stage.stageNumber);
         return newStage;
     }    
-    
+    @TestVisible
     private BFM_SES__c parseSes(BFM_QueryFreightsResponse.Ses ses, String stageNumber, String shipmentNumber){
         BFM_SES__c newSes = new BFM_SES__c();
         newSes.stage__r = new BFM_Stage__c(stage_number__c = stageNumber);
@@ -418,7 +419,7 @@ global class BFM_QueryFreights {
         newSes.ISS_Value__c = ses.issValue;
         return newSes;
     }
-    
+    @TestVisible
     private BFM_Delivery__c createDelivery(String deliveryNumber, String stageNumber, String shipmentNumber) {
         BFM_Delivery__c delivery = new BFM_Delivery__c();
         delivery.Delivery_Number__c = deliveryNumber;
@@ -426,7 +427,7 @@ global class BFM_QueryFreights {
         delivery.Shipment__r = new BFM_Shipment__c (Shipment_Number__c = shipmentNumber);
         return delivery;
     }
-    
+    @TestVisible
     private BFM_NF_e__c parseNFe(BFM_QueryFreightsResponse.Nfe nfe, String sesnumber, String shipmentNumber){
         BFM_Delivery__c delivery = new BFM_Delivery__c(Delivery_Number__c = nfe.deliveryNumber);
         BFM_NF_e__c newNfe = new BFM_NF_e__c();
