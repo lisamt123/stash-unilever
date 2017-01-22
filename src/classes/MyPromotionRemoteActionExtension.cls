@@ -68,7 +68,7 @@ Throws : N/A
     global static String writeBOPromotion(String txId, String objectId, String content) {
         List<Map<String, Object> > herokuProducts = new List<Map<String, Object>>();
         String result = UL_Utility.STRING_NULL;
-        Map<string,set<string>> prodIdTacticSet;
+        Map<string,set<string>> prodIdTacticSet = new Map<string,set<string>>();
         Set<String> tacticSet;
         Set<Id> productIdSet; 
         try{
@@ -982,7 +982,7 @@ Returns: N/A
 Throws : N/A 
 ********************************************************************/     
     @RemoteAction
-    global static String invokePromotionThresholdCheckBOPromotion(String txId, String objectId, String Mode){
+    global static String invokePromotionThresholdCheckBOPromotion(String txId, String objectId){
         String result=UL_Utility.EMPTY_STRING;
         try{
             UL_ThresholdEngine.getThresholdKPI(txId,id.valueof(objectId),UtilityEnum.save.Name());
@@ -1800,6 +1800,38 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         } 
     }
     
+    @RemoteAction
+   global static List<Map<String,Object>> readLOFilteredFunds(String txId, String promotionContent) {
+        List<Map<String,Object>> result =  ACCL.PromotionRemoteActionExtension.readLOFilteredFunds('txId',promotionContent);
+        system.debug(result);
+        return result;
+    }
+        @RemoteAction
+    global static List<Map<String,Object>> readLOFund(String txt,String param){
+
+        List<Map<String,Object>> result =ACCL.PromotionRemoteActionExtension.readLOFund('txId',param);
+        Map<String,ACCL__Tactic_Fund__c> tactFundList = readLoTacticFund(param);
+        if(!tactFundList.isEmpty()){
+        system.debug('tactFundList----'+tactFundList);
+        For(Map<String,Object> fu :result){
+            String fundId = String.valueof(fu.get('Id'));
+            List<Object> tactList =(List<Object>) fu.get('Tactics');
+                for(Object o :tactList){
+                    Map<String,Object> temp = (Map<String,Object>) o;
+                    String tacticId = String.valueOf(temp.get('tacticId'));
+                    ACCL__Tactic_Fund__c temptactFunf = tactFundList.get(''+fundId+tacticId);
+                    temp.put('UL_Allocation__c',String.valueOf(temptactFunf.UL_Allocation__c));
+                    temp.put('UL_Amount_Allocated__c',String.valueOf(temptactFunf.UL_Amount_Allocated__c));
+                    system.debug(temp);
+                }
+                system.debug(fu);
+        }
+        }
+        
+        system.debug(JSON.SERIALIZE(result));
+        return result;
+    }
+    
     global static List<ACCL__Tactic_Fund__c> readLoTacticFund(String txId, String promoParams){
         
         List<ACCL__Tactic_Fund__c> result = new List<ACCL__Tactic_Fund__c>();
@@ -1808,6 +1840,31 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         String promoid = String.valueOf(boPromotion.get('Id'));
         result =[SELECT id,ACCL__Fund__c,UL_Allocation__c,UL_Amount_Allocated__c,ACCL__Fund__r.ACCL__Description__c FROM ACCL__Tactic_Fund__c WHERE ACCL__Tactic__r.ACCL__Promotion__c =: promoid ];
         return result;    
+    }
+    
+    private static Map<String,ACCL__Tactic_Fund__c> readLoTacticFund(String promoParams){
+        Map<String,ACCL__Tactic_Fund__c> result2= new Map<String,ACCL__Tactic_Fund__c>();
+        List<ACCL__Tactic_Fund__c> result = new List<ACCL__Tactic_Fund__c>();
+         Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(promoParams);//deserializing the JSON from UI        
+         Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');//Get the promotion in Map format  
+            String promoid = String.valueOf(boPromotion.get('Id'));
+            List<Object> tactList = (List<Object>) boPromotion.get('LOTactic');
+            List<String> tactlistId = new List<String>();
+            if(!tactList.isEmpty()){
+            For(Object o:tactList){
+                Map<String,Object> temp = (Map<String,Object>)o;
+                tactlistId.add(String.valueOf(temp.get('Id')));
+            }
+            system.debug('tactlistId'+tactlistId);
+            result =[SELECT id,ACCL__Fund__c,UL_Allocation__c,UL_Amount_Allocated__c,ACCL__Tactic__c FROM ACCL__Tactic_Fund__c WHERE ACCL__Tactic__c IN:  tactlistId ];
+            system.debug('result'+result);
+            if(!result.isEmpty()){
+            for(ACCL__Tactic_Fund__c acc: result){
+                result2.put(''+acc.ACCL__Fund__c+acc.ACCL__Tactic__c,acc);
+            }
+            }
+            }
+        return result2;    
     }
     
     private static Boolean hasTacticAssignedFund(Id promotionId){
