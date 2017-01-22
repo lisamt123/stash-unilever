@@ -24560,13 +24560,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <errorDisplayField>UL_NCF_Flag__c</errorDisplayField>
         <errorMessage>NCF Flag can only to be set for Sold To(Level 8) record</errorMessage>
     </validationRules>
-    <validationRules>
-        <fullName>UL_PlanEndDateShouldGreaterthanStartDate</fullName>
-        <active>true</active>
-        <description>Planning end date should be greater than or equal to planning start date</description>
-        <errorConditionFormula>UL_Customer_Role_Valid_From__c &gt; UL_Customer_Role_Valid_Thru__c</errorConditionFormula>
-        <errorMessage>Planning end date should be greater than planning start date</errorMessage>
-    </validationRules>
+  
 	 <validationRules>
         <fullName>UL_AccNameCantEditExceptAdmin</fullName>
         <active>true</active>
