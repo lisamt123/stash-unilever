@@ -8,7 +8,7 @@ global class BFM_BulkOccurrenceQuery implements Database.Batchable<sObject>, Dat
     }
 
     global Database.QueryLocator start(Database.BatchableContext BC) {
-        String query = 'SELECT Occurrence_Number__c ,LastModifiedDate FROM BFM_Occurrence__c WHERE Id IN :occurrenceIds';
+      String query = 'SELECT Occurrence_Number__c ,Last_Occurrence_Update__c,LastModifiedDate FROM BFM_Occurrence__c WHERE Id IN :occurrenceIds';
         return Database.getQueryLocator(query);
     }
 
@@ -22,9 +22,9 @@ global class BFM_BulkOccurrenceQuery implements Database.Batchable<sObject>, Dat
         }
         BFM_QueryOccurrence queryoccurrences = new BFM_QueryOccurrence(occIds);
         
-        String returnMessage = 'Documento de Transporte atualizado';
+        String returnMessage = Label.BFM_Freight_Ok;
         try{
-            queryoccurrences.callQueryOccurrencesCTeIssuing();
+            queryoccurrences.callQueryOccurrencesIssuing();
           
         } catch(Exception ex){
       }

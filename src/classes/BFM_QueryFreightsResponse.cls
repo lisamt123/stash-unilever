@@ -5,7 +5,7 @@
 
 public class BFM_QueryFreightsResponse {
     
-    Public class ses {
+    public class ses {
         public String sesNumber {get;set;}
         public String poUmbrellaNumber {get;set;}
         public String poType {get;set;}
@@ -43,9 +43,9 @@ public class BFM_QueryFreightsResponse {
         public List<Nfe> nfe{get;set;}
     }
     
-    Public QueryFreightResponse QueryFreightResponse;
+    public QueryFreightResponse QueryFreightResponse;
     
-    Public class Stage {
+    public class Stage {
         public Integer stageNumber{get;set;}
         public String originCity{get;set;}
         public String originPostalCode{get;set;}
@@ -73,18 +73,20 @@ public class BFM_QueryFreightsResponse {
         public List<ses> ses{get;set;}
     }
     
-    Public class Shipment {
+    public class Shipment {
         public String antt;
         public String pricingCalculationDate;
         public String shipmentNumber;
         public String shipmentType;
         public String shipmentStart;
         public String warehouse;
+        public string vehicleplt;
         public List<Stage> stage;
     }
     
-    Public class QueryFreightResponse {
+    public class QueryFreightResponse {
         public List<Shipment> Shipment;
+        public String message;
         public String shippingProcess;
         public String stageNumber;
         public decimal tollCostPreview;
@@ -92,7 +94,7 @@ public class BFM_QueryFreightsResponse {
         //public List<Stage> stage;
     }
     
-    Public class Nfe {
+    public class Nfe {
         public decimal nfeTotalValue;
         public String deliveryNumber;
         public String nfeNumber;
@@ -126,8 +128,8 @@ public class BFM_QueryFreightsResponse {
     }
     
     
-    Public static BFM_QueryFreightsResponse parse(String json) {
-        // return (BFM_QueryFreightsResponse) System.JSON.deserializeStrict(json, BFM_QueryFreightsResponse.class);
+    public static BFM_QueryFreightsResponse parse(String json) {
+        //return (BFM_QueryFreightsResponse) System.JSON.deserializeStrict(json, BFM_QueryFreightsResponse.class);
         return (BFM_QueryFreightsResponse) System.JSON.deserialize(json, BFM_QueryFreightsResponse.class);
     }
 }
