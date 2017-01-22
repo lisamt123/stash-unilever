@@ -105,6 +105,7 @@ Throws : N/A
             content = content.replace('ACCL__UL_Threshold_Window_Result__c','UL_Threshold_Window_Result__c');
             content = content.replace('ACCL__UL_Threshold_Result__c','UL_Threshold_Result__c');
             content = content.replace('ACCL__UL_WorkflowState__c','UL_WorkflowState__c');
+            content = content.replace('ACCL__UL_Promotion_Content__c','UL_Promotion_Content__c');
             
             Map<String, Object> tacticDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(content);
             string contentTarget = (string) tacticDeserializedMap.get(UtilityEnum.target.Name());
@@ -151,11 +152,13 @@ Throws : N/A
                         UL_PromotionUtility.updatePromotionProduct(objectId, productIdSet);
                     }
                 }
+                //Validatation-At least one dummy product per each off-invoice payment method Tactic.
+                UL_TacticUtility.validateDummyProdsonTactics(txId,content);
                 
                 //Validate Products at Tactics level and vaidate Tactics Overlap
                 UL_TacticUtility.validateTacticsProducts(txId,content,prodIdTacticSet);
                 
-                content = populateCannibalisationRate(content);
+                content = populateCannibalisationRate(content, prodIdTacticSet.keySet());
                 //add new promo_acc_rel__c 
                 writePromoAccRel(txId,content);
                 result = ACCL.PromotionRemoteActionExtension.writeBOPromotion(txId,objectId,content);
@@ -403,7 +406,7 @@ Throws : N/A
                 
                 //------------------Disabling Buttons for SoCo when Status is not Planning------------------------
                 System.debug('Hiding Promotion Buttons:::'+status);
-                if(status!='Planning'){
+                if(status!='Planning' && status!='Banded Pack Approved'){
                     EARUI promObject= new EARUI();
                     promObject.Name = 'TOOLBAR_BTN_ADDTACTIC';
                     promObject.Type = UtilityEnum.UIElement.Name();
@@ -564,7 +567,7 @@ Throws : N/A
             
             //Hiding Tactic Buttons
             System.debug('Hiding Tacting Buttons:::'+promo.UL_Current_Status__c);
-            if(promo.UL_Current_Status__c!='Planning'){
+            if(promo.UL_Current_Status__c!='Planning'  && promo.UL_Current_Status__c!='Banded Pack Approved'){
                 EARUI tacticObject= new EARUI();
                 tacticObject.Name = 'TACTIC_BTN_MANAGE_PRODS';
                 tacticObject.Type = UtilityEnum.UIElement.Name();
@@ -1002,7 +1005,7 @@ Parameters: Promotion Id
 Returns: N/A
 Throws : N/A 
 ********************************************************************/    
-    public static String populateCannibalisationRate(String content){
+    public static String populateCannibalisationRate(String content, Set<String> productIdSet){
         try{
             Map<String, Object> tacticDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(content);
             List<String> productIdList = new List<String>();
@@ -1018,8 +1021,9 @@ Throws : N/A
                     productIdList.add((String)((Map<String, Object>)productObj).get(UtilityEnum.productid.Name()));
                 }
             }
-            if(!productIdList.isEmpty()){
-                Map<Id, ACCL__Product__c> productMap = new Map<Id, ACCL__Product__c>([SELECT Id, ACCL__Product_Level__c, ACCL__Criterion_2_Product__c, ACCL__Criterion_2_Product__r.Name, ACCL__Criterion_1_Product__r.Name, ACCL__Criterion_3_Product__r.Name FROM ACCL__Product__c WHERE Id IN:productIdList]);
+            System.debug('productIdSet::::::'+productIdSet);
+            if(!productIdSet.isEmpty()){
+                Map<Id, ACCL__Product__c> productMap = new Map<Id, ACCL__Product__c>([SELECT Id, ACCL__Product_Level__c, ACCL__Criterion_2_Product__c, ACCL__Criterion_2_Product__r.Name, ACCL__Criterion_1_Product__r.Name, ACCL__Criterion_3_Product__r.Name FROM ACCL__Product__c WHERE Id IN:productIdSet]);
                 
                 if(!productMap.isEmpty()){
                     Set<Id> marketLevelIds = new Set<Id>();
@@ -1040,12 +1044,19 @@ Throws : N/A
                     String category;
                     String brand;
                     for(ACCL__Product__c product : productMap.values()){
+                        System.debug('product.ACCL__Criterion_2_Product__c:::'+product.ACCL__Criterion_2_Product__c);
                         if(product.ACCL__Criterion_2_Product__c != null){
                             marketLevelIds.add(product.ACCL__Criterion_2_Product__c);
-                            brandLevelSet.add(product.ACCL__Criterion_3_Product__c);
-                            categorytLevelSet.add(product.ACCL__Criterion_1_Product__c);
                             marketId = String.valueOf(product.ACCL__Criterion_2_Product__c);
                             childProductId = product.Id;
+                        }
+                        System.debug('product.ACCL__Criterion_3_Product__c::::'+product.ACCL__Criterion_3_Product__c);
+                        if(product.ACCL__Criterion_3_Product__c!=null){
+                            brandLevelSet.add(product.ACCL__Criterion_3_Product__c);
+                        }
+                        System.debug('product.ACCL__Criterion_1_Product__c::::'+product.ACCL__Criterion_1_Product__c);
+                        if(product.ACCL__Criterion_1_Product__c!=null){
+                            categorytLevelSet.add(product.ACCL__Criterion_1_Product__c);
                         }
                     }
                     
@@ -1064,7 +1075,7 @@ Throws : N/A
                     if(categorytLevelSet.size()==1){
                         category = productMap.get(childProductId).ACCL__Criterion_1_Product__r.Name;
                     }
-                    else if(marketLevelIds.size()>1){
+                    else if(categorytLevelSet.size()>1){
                         category = System.Label.UL_Multiple_Categories;
                     }
                     else{
@@ -1075,7 +1086,7 @@ Throws : N/A
                     if(brandLevelSet.size()==1){
                         brand = productMap.get(childProductId).ACCL__Criterion_3_Product__r.Name;
                     }
-                    else if(marketLevelIds.size()>1){
+                    else if(brandLevelSet.size()>1){
                         brand = System.Label.UL_Multiple_Brands;
                     }
                     else{
@@ -1086,7 +1097,7 @@ Throws : N/A
                     boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Category__c.getName(), category);
                     boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Brand__c.getName(), brand);
                     
-                    if(salesOrg!=null && (salesOrg =='US SO' || salesOrg == 'Ireland SO')){
+                    if(salesOrg!=null && (salesOrg =='UK SO' || salesOrg == 'Ireland SO')){
                         String fromStringDate = (String)(UL_Utility.EMPTY_STRING+boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_From__c.getName()));
                         String thruStringDate = (String)(UL_Utility.EMPTY_STRING+boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_Thru__c.getName()));
                         Datetime fromDate = fromStringDate.contains(UL_Utility.HYPHEN) ? null : Datetime.newInstance((Long)boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Placement_Date_From__c.getName()));
@@ -1114,6 +1125,7 @@ Throws : N/A
                             //#1
                             //For Customer/Market/Fearure combination
                             String key = tempCustomerId + tempMarketId + tempFeature;
+                            System.debug('Promotion Key :::'+key);
                             if(cannibRateMap.containsKey(key)){
                                 cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
                                 boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
@@ -1122,7 +1134,7 @@ Throws : N/A
                             if(!foundCannRate){
                                 //#2
                                 //For Customer/Market/NULL Fearure combination
-                                tempFeature = null;
+                                tempFeature = System.Label.UL_Off_Shelf;
                                 key = tempCustomerId + tempMarketId + tempFeature;
                                 if(cannibRateMap.containsKey(key)){
                                     cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
@@ -1147,7 +1159,7 @@ Throws : N/A
                         if(!foundCannRate){
                             //#4
                             //For Customer/Null Market/ NULL Fearure combination
-                            tempFeature = null;
+                            tempFeature = System.Label.UL_Off_Shelf;
                             tempMarketId = null;
                             String key = tempCustomerId + tempMarketId + tempFeature;
                             if(cannibRateMap.containsKey(key)){
@@ -1173,7 +1185,7 @@ Throws : N/A
                             
                             //#6
                             //Null Customer/Market/Null Feature
-                            tempFeature = null;
+                            tempFeature = System.Label.UL_Off_Shelf;
                             tempMarketId = marketId;
                             tempCustomerId = null;
                             key = tempCustomerId + tempMarketId + tempFeature;
@@ -1203,7 +1215,7 @@ Throws : N/A
                         if(!foundCannRate){
                             //#8
                             //For NULL Customer/Null Market/ NULL Fearure combination
-                            tempFeature = null;
+                            tempFeature = System.Label.UL_Off_Shelf;
                             tempMarketId = null;
                             tempCustomerId = null;
                             String key = tempCustomerId + tempMarketId + tempFeature;
