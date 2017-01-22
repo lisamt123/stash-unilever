@@ -7,7 +7,6 @@ public class BFM_OccurrenceHandler_Test {
         BFM_Occurrence__c occ=new BFM_Occurrence__c();
         occ.Occurrence_Number__c='212312';
         occ.Carrier_Account__c = acc.id;
-        occ.Carrier__c = 'carrier';
         insert occ;
         BFM_OccurrenceHandler occhandler=new BFM_OccurrenceHandler();
         occhandler.beforeInsert(occ);

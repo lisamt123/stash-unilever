@@ -440,7 +440,7 @@ global class BFM_QueryFreights {
         newNfe.Taker_CNPJ__c = nfe.cnpjTaker;
         newNfe.CNPJ_destination__c = nfe.cnpjDestination;
         newNfe.CPF_destination__c = nfe.cpfDestination;
-        newNfe.State_registration_destination__c = nfe.stageRegistrationDestination;
+        newNfe.State_Registration_Destination__c = nfe.stageRegistrationDestination;
         newNfe.Name_destination__c = nfe.nameDestination;
         newNfe.Phone_destination__c = nfe.phoneDestination;
         newNfe.SUFRAMA_registration__c = nfe.inscricaoSUFRAMA;

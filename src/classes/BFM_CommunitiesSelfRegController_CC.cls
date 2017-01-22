@@ -24,7 +24,7 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         firstName = '';
         lastName = '';
         readOnlyForm = false;
-        supportEmail = system.'luciana.hama@unilever.com';
+        supportEmail = 'luciana.hama@unilever.com';
         sendEmail = 'mailto:'+supportEmail ;
     }
     
