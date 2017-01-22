@@ -1,20 +1,24 @@
 /**
-* Queueable class to isolate User creation from other DML, since it will give an error if ran synchronously. 
-* After user creation, this class enqueues the Account Sharing creation for the needed Accounts
-* 
-* @author Zanquini, Vinicius
-* @date 2016/08/02
-* */
+ * Queueable class to isolate User creation from other DML, since it will give an error if ran synchronously. 
+ * After user creation, this class enqueues the Account Sharing creation for the needed Accounts
+ * 
+ * @author Zanquini, Vinicius
+ * @date 2016/08/02
+ * */
 
 public without sharing class BFM_CreateUserQueueable implements Queueable {
     Id userRequestId;
     public BFM_CreateUserQueueable(Id userRequestId){
         this.userRequestId = userRequestId;    
+        system.debug('sssssssssss');
     }
     public void execute(QueueableContext SC){
+    system.debug('sssssssssss1111');
         BFM_UserCreationRequest__c userRequest = [SELECT userName__c, email__c,firstName__c,cnpj__c,Operational_User__c,
-                                                  lastName__c, communityNickname__c, (SELECT Account__c,Account__r.parentid FROM BFM_Access_Requests__r)
-                                                  FROM BFM_UserCreationRequest__c WHERE Id = :userRequestId];
+                                                   lastName__c, communityNickname__c, (SELECT Account__c,Account__r.parentid FROM BFM_Access_Requests__r)
+                                                   FROM BFM_UserCreationRequest__c WHERE Id = :userRequestId];
+       
+        
         
         User usr = createUser(userRequest);
         //Creates the user as a Portal User for the first Carrier Account he requested access to
@@ -26,39 +30,54 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
                 if(usr.id!=null){
                     BFM_LoginuserPermissions.assignPermissionset(usr.id, userRequestId);
                 }
+             /*   string psName ='';
+                if(userRequest.Operational_User__c == true){
+                    psName = 'BFM_Carrier_Operational_User';
+                }
+                 PermissionSet ps = new PermissionSet();
+                 if(psName!=''){
+                     ps = [select id from PermissionSet where name=: psName limit 1];
+                 }
+                 if(ps!=null && usr!=null){
+                     PermissionSetAssignment psa = new PermissionSetAssignment();
+                     psa.AssigneeId = usr.id;
+                     psa.PermissionSetId = ps.id;
+                     insert psa;
+                 }*/
             } 
-            
+           
             catch(DMLException e){
                 errorMessage = e.getDmlMessage(0);
                 if(usr.contactId != null){
                     Contact contactToDelete = new Contact(Id = usr.ContactId);
                     delete contactToDelete;
                 }
-                
+                System.debug('eeee'+errorMessage);
                 insert new BFM_User_Creation_Request_Error__c(BFM_User_Creation_Request__c = userRequest.Id, 
-                                                              Error_Message__c = errorMessage );
+                                                       Error_Message__c = errorMessage );
             }
-
+            
+            
             // Enqueues the sharing of accounts. This has to be enqueued because Site.createPortalUser is already performing DML on User, 
             // therefore we can't perform AccountShare DML on this transaction anymore
             if(usr.Id != null){
                 Set<Id> accountsIds = new Set<Id>();
                 for(BFM_AccountAccessRequest__c accessRequest : [SELECT Account__c
-                                                                 FROM BFM_AccountAccessRequest__c 
-                                                                 WHERE UserCreationRequest__c =:userRequestId]){
-                                                                     accountsIds.add(accessRequest.Account__c);                                                
-                                                                 }
+                                                                    FROM BFM_AccountAccessRequest__c 
+                                                                    WHERE UserCreationRequest__c =:userRequestId]){
+                    accountsIds.add(accessRequest.Account__c);                                                
+                }
                 if(!Test.isRunningTest()){
                     System.enqueueJob(new BFM_UserCreationPostProcessing(usr.Id, userRequestId, accountsIds));
                 }
             } 
         }
     }
-    
+        
     /**
-    * Private instance method that creates one User based on a userRequest. 
-    * Doesn't commit the user to the database yet
-    * */
+     * Private instance method that creates one User based on a userRequest. 
+     * Doesn't commit the user to the database yet
+     * */
     private User createUser(BFM_UserCreationRequest__c userRequest){
         
         Profile carrierProfile = [SELECT Id FROM Profile WHERE Name ='BFM Partner Community User' LIMIT 1];
@@ -71,15 +90,16 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
             } 
             acc.id = ar.account__c;     
         }
-        //  if(userRequest.cnpj__c!=null){
-        //      acc = [select id,cnpj__c,parentid from account where cnpj__c Like: userRequest.cnpj__c+'%' limit 1];      
-        //  }
+      //  if(userRequest.cnpj__c!=null){
+      //      acc = [select id,cnpj__c,parentid from account where cnpj__c Like: userRequest.cnpj__c+'%' limit 1];      
+      //  }
         if(acc.id!=null){
             con.lastname = userRequest.lastName__c;
             con.FirstName = userRequest.firstName__c;
-            if(acc.parentid!=null) {
+            if(acc.parentid!=null){
                 con.accountid = acc.parentid;
-            } else {
+            }
+            else{
                 con.accountid = acc.id;
             }
             insert con;
@@ -95,7 +115,6 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
         u.ProfileId = carrierProfile.Id;
         u.alias = u.username.left(4);
         u.LocaleSidKey = 'pt_BR';
-        u.CurrencyIsoCode = 'BRL';
         u.LanguageLocaleKey = 'pt_BR';
         u.TimeZoneSidKey = 'America/Sao_Paulo';
         u.EmailEncodingKey = 'ISO-8859-1';
@@ -105,5 +124,5 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
         
         return u;
     }
-    
+
 }

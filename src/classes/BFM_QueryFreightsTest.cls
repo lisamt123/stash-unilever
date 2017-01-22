@@ -19,16 +19,16 @@ static testMethod void testBFM_QueryFreights(){
         Test.startTest();
         system.assertEquals('1234', ship1.Shipment_Number__c);
         Test.setMock(HttpCalloutMock.class, new BFM_MockHttpResponse());
-      BFM_QueryFreightsResponse queryresp = new BFM_QueryFreightsResponse();
+    	BFM_QueryFreightsResponse queryresp = new BFM_QueryFreightsResponse();
         BFM_QueryFreights queryfrieght = new BFM_QueryFreights(shipnum);
         BFM_QueryFreights.callQueryFreightsButton(ship1.id);
         queryfrieght.callQueryFreightsCTeIssuing();
-      try{
-        //queryfrieght.getQueryFreightsObjectsCreated(JSONbody);
+    	try{
+        queryfrieght.getQueryFreightsObjectsCreated(JSONbody);
         }catch(Exception e){}
-      //queryfrieght.callUpserts();
-      //queryfrieght.createUpsertErrorLog('shipmentNumber','errorMessage');
-      //queryfrieght.createErrorLogs(shipnum,'shipmentNumber','errorMessage');
+    	queryfrieght.callUpserts();
+    	queryfrieght.createUpsertErrorLog('shipmentNumber','errorMessage');
+    	queryfrieght.createErrorLogs(shipnum,'shipmentNumber','errorMessage');
         Test.stopTest();
-  }
+	}
 }

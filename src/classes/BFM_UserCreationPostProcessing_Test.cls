@@ -34,4 +34,5 @@ public class BFM_UserCreationPostProcessing_Test {
         userhandler.afterDelete(bfmuser);
         delete bfmuser;
         Test.stopTest();
-    
+    }
+}

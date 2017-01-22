@@ -129,6 +129,13 @@ public class BFM_QueryOccurrencesResponse_Test {
 		'  }'+
 		'}';
 		BFM_QueryOccurrencesResponse obj = BFM_QueryOccurrencesResponse.parse(json);
-		System.assert(obj != null);
-	}
+        System.assert(obj != null);
+        BFM_QueryOccurrencesResponse.Stage stg = new BFM_QueryOccurrencesResponse.Stage();
+        stg.distance = 10.5;
+        stg.otmShipment = 'Test';
+        stg.shippingType = 'S';
+        stg.stageNumber = '1234';
+        stg.warehouse = 'w12';
+		
+    }
 }

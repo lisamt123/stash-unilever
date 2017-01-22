@@ -92,7 +92,7 @@ public with sharing class BFM_SearchOccurrenceController_CC{
         }
         system.debug('===>'+occurStart);
         if(occurStart!=null){
-            searchClauses += ' Created_date__c >=:occurStart AND Created_date__c <=:occurTo AND ';            
+			searchClauses += ' Created_date__c >:occurStart AND Created_date__c <:occurTo AND ';            
         }
         
         searchClauses = searchClauses.trim().removeEndIgnoreCase('AND');
@@ -112,7 +112,7 @@ public with sharing class BFM_SearchOccurrenceController_CC{
             OccurenceString += '  AND ' + conditions[i];
         }
         OccurenceString += ' ORDER BY CreatedDate';
-        */
+		*/
         try{
             system.debug('occ string is '+OccurenceString);
        // OccList = Database.Query(OccurenceString);
@@ -121,9 +121,7 @@ public with sharing class BFM_SearchOccurrenceController_CC{
         }catch(QueryException ex){
             String errorMessage = ex.getMessage() + ' ' + ex.getStackTraceString()+' /n \n'+OccurenceString;
             ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, errorMessage));
-            system.debug(errorMessage);
-            } 
-        
+            }         
         con.setPageSize(10);
         }
     public pageReference redirectPage(){

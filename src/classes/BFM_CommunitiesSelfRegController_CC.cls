@@ -24,7 +24,7 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         firstName = '';
         lastName = '';
         readOnlyForm = false;
-        supportEmail = 'luciana.hama@unilever.com';
+        supportEmail = system.label.BFM_Support_Email;
         sendEmail = 'mailto:'+supportEmail ;
     }
     
@@ -53,11 +53,10 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         newCarrierUserRequest.cpf__c = cpf;
         newCarrierUserRequest.Operational_User__c = operationalUser;
         newCarrierUserRequest.Tax_User__c = taxUser;
-        newCarrierUserRequest.CurrencyIsoCode = 'BRL';
         if(validateCarrierRequest(newCarrierUserRequest) && newCarrierUserRequest.cnpj__c.length()==8){
             List<Account> branches = BFM_AccountDAO.getAccountsWithCNPJPrefix(cnpj);
             if(branches.isEmpty()){
-                ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR,'Nenhum CNPJ correspondente, por favor informe um CNPJ existente ou entre em contato conosco para suporte através do link no formulário.');
+                ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, Label.BFM_Self_Service_CNPJ_Not_Found);
                 ApexPages.addMessage(msg);
             } else{
                 if(requestLines == null || requestLines.isEmpty()){
@@ -75,7 +74,7 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         }
         else{
             //Added by Abhinav: Capture the errror if CNPJ length is less than 8 digit.
-            ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR,'');
+            ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, Label.BFM_CNPJ_Length_Error_Message);
             ApexPages.addMessage(msg);
         }
     }
@@ -88,7 +87,7 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
                 List<Account> desiredCarriers = getDesiredCarriers();
                 if(desiredCarriers.isEmpty()){
                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,
-                                                               'Selecione uma das empresas abaixo para que o acesso seja concedido.'));
+                                                               Label.BFM_Self_Service_Select_Company));
                 } else{
                     // sends an email to the carrier approver
                     BFM_SendEmailToCarrierApprover emailSender = new BFM_SendEmailToCarrierApprover(newCarrierUserRequest,desiredCarriers);
@@ -103,7 +102,7 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
                         system.debug('---->'+newCarrierUserRequest);
                         // Creates the accessRequests
                         new BFM_CreateAccessRequest(newCarrierUserRequest, desiredCarriers).createAccessRequests();
-                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,'Criou uma nova solicitação de acesso de usuário. Um e-mail para aprovação foi despedido para:' 
+                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, Label.BFM_Self_Service_Request_Created 
                                                                    + ' ' +carrierEmail)) ;
                         allDone = true;
                         readOnlyForm = false;
@@ -115,13 +114,15 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
                     
                     
                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                                                               'Ocorreu um erro ao criar a solicitação de acesso de usuário:' + ' '+
+                                                               Label.BFM_Error_Creating_Access_Request + ' '+
                                                                'Duplicated value on field e-mail'));
                 } 
             }
-            catch(Exception e){             
+            catch(Exception e){
+                
+                System.debug(Label.BFM_Error_Creating_Access_Request + ' ' + e.getMessage() +' ' +e.getStackTraceString());
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                                                           'Ocorreu um erro ao criar a solicitação de acesso de usuário:' + ' ' + e.getMessage() +' ' +e.getStackTraceString() +e.getTypeName()));
+                  Label.BFM_Error_Creating_Access_Request + ' ' + e.getMessage() +' ' +e.getStackTraceString() +e.getTypeName()));
             }
         }
         
@@ -131,7 +132,7 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         boolean isValid = true;
         if(taxUser == false && operationalUser == false){
             isValid = false;
-            ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR,'Escolha pelo menos uma das permissões para o usuário.');
+            ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, Label.BFM_At_Least_one_Permission);
             ApexPages.addMessage(msg);
             return isValid;
         }
@@ -147,7 +148,7 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
                                           LIMIT 1];
         if(!duplicatedNicknames.isEmpty()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                                                       'Este apelido já está em uso nesta organização'));
+                                                       Label.BFM_Self_Service_Nickname_Already_Used ));
             isValid = false;
         }
         
@@ -159,13 +160,13 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         
         if(!duplicateUsernames.isEmpty() || !duplicatedUsernamesOnUsers.isEmpty()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                                                       'Esse email já está em uso'));
+                                                       Label.BFM_Self_Service_Duplicated_Email ));
             isValid = false;
         }
         // validates email format
         if(!validateEmail(newCarrierUserRequest.Email__c)){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                                                       'Este email não é válido, por favor insira um email no formato "something@somethingelse.com"'));
+                                                       Label.BFM_Self_Service_Invalid_Email));
             isValid = false;
         }
         return isValid;

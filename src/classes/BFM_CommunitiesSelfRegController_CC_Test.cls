@@ -1,5 +1,18 @@
 @isTest
 private class BFM_CommunitiesSelfRegController_CC_Test {   
+    /*private static testMethod void testControllerWithNoMatchingAccount(){
+       
+        BFM_CommunitiesSelfRegController_CC controller = new BFM_CommunitiesSelfRegController_CC();
+        
+        Test.startTest();
+       // controller.fetchBranches();
+        controller.cnpj = '03189042000100';
+        
+        
+        Test.stopTest();
+    }*/
+    //Meghaa..............
+    
   private static testMethod void testControllerWithMatchingAccount(){
         Test.startTest();
         Account acc = new Account();

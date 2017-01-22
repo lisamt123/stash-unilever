@@ -21,7 +21,7 @@ global class BFM_BulkShipmentQuery implements Database.Batchable<sObject>, Datab
         
         BFM_QueryFreights queryFreights = new BFM_QueryFreights(shipIds);
         
-        String returnMessage = 'Documento de Transporte atualizado';
+        String returnMessage = Label.BFM_Freight_Ok;
         try {
             queryFreights.callQueryFreightsCTeIssuing();
             if(!queryFreights.isSuccess()){

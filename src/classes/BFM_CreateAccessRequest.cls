@@ -19,8 +19,8 @@ public without sharing class BFM_CreateAccessRequest {
         
         for(Account carrierBranch: accounts){
             BFM_AccountAccessRequest__c newAccessRequest = new BFM_AccountAccessRequest__c(
-                						Account__c = carrierBranch.Id,
-            							UserCreationRequest__c = newUserRequest.Id);
+                                        Account__c = carrierBranch.Id,
+                                        UserCreationRequest__c = newUserRequest.Id);
             accessRequests.add(newAccessRequest);
         }
         insert accessRequests;

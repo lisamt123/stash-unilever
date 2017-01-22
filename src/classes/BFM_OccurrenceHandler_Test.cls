@@ -1,6 +1,6 @@
 @isTest
 public class BFM_OccurrenceHandler_Test {
-  private static testMethod void BFM_OccurrenceHandler_TestMethod(){
+	private static testMethod void BFM_OccurrenceHandler_TestMethod(){
         Account acc = new Account();
         acc.Name = 'TestAccount';
         insert acc;

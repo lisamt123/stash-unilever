@@ -74,6 +74,7 @@ public without sharing class BFM_SendEmailToCarrierApprover {
     /**
      * Sends a task for a governance user in case no email is found for the carrier.
      * */
+    @TestVisible
     private void sendTaskToGovernanceTeamNoEmail(){
         Task t = new Task();
         t.whatId = desiredCarriers[0].Id;
@@ -96,6 +97,7 @@ public without sharing class BFM_SendEmailToCarrierApprover {
      * Helper method to retrieve Users from the Governance group.
      * CAREFUL: If there are too many nesting levels inside of the Governance group this will reach governor limits.
      * */
+    @TestVisible
     private static Set<id> GetUserIdsFromGroup(Id groupId){
         // store the results in a set so we don't get duplicates
         Set<Id> result=new Set<Id>();

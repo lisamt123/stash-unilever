@@ -11,7 +11,7 @@ public class BFM_UserCreationRequestHandler implements ITrigger{
     {   
         Map<Id, BFM_UserCreationRequest__c> oldMap = (Map<Id, BFM_UserCreationRequest__c>)trigger.oldMap;
         Map<Id, BFM_UserCreationRequest__c> newMap = (Map<Id, BFM_UserCreationRequest__c>)trigger.newMap;
-    	BFM_UserCreationRequestAttachmentCheck.checkAttachments(oldMap, newMap);
+      BFM_UserCreationRequestAttachmentCheck.checkAttachments(oldMap, newMap);
     }
     
     public void bulkAfter()

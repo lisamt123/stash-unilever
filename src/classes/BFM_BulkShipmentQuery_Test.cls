@@ -22,3 +22,4 @@ public class BFM_BulkShipmentQuery_Test {
         c.execute(bc, bfmship);
         Test.stopTest();
     }
+}

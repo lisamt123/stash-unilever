@@ -1,7 +1,7 @@
 @isTest
 private class BFM_UpdateFreightData_Test {
     static testMethod void Updatefreight(){
-  Account acc= new Account();
+	Account acc= new Account();
     acc.name = 'testname';
     insert acc;
     system.assertEquals('testname', acc.name);

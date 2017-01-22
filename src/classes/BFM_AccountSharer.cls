@@ -5,7 +5,7 @@
  * Author: Zanquini, Vinicius
  * 
  **/
-public without sharing class BFM_AccountSharer {
+public with sharing class BFM_AccountSharer {
     
     /*
      * Shares the Account records on the AccountsIds list with the user in the userId parameter for read-only acces.
@@ -20,7 +20,7 @@ public without sharing class BFM_AccountSharer {
             AccountTeamMember atm = new AccountTeamMember();
             atm.accountId = accountId;
             atm.UserId = userId;
-            atm.accountAccessLevel = 'Edit';
+            atm.accountAccessLevel = 'Read';
             atm.OpportunityAccessLevel = 'None';
             atm.CaseAccessLevel = 'None';
             accountTeamMembers.add(atm);
@@ -33,7 +33,7 @@ public without sharing class BFM_AccountSharer {
             accShare.UserOrGroupId = userId;
 
             accShares.add(accShare);
-			*/
+            */
         }
         insert accountTeamMembers;
     }

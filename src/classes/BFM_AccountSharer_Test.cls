@@ -64,6 +64,6 @@ private static testMethod void passwordresettest(){
         BFM_AccountSharer accshare  = new BFM_AccountSharer();
         accshare.shareAccountsReadOnly(user1.Id, new Set<Id>{portalAccount1.Id});
         }
-		
-	}
+    
+  }
 }

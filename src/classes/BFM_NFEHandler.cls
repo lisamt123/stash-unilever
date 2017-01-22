@@ -46,6 +46,8 @@ public with sharing class BFM_NFEHandler implements ITrigger {
     
     public void bulkAfter() {
         List<BFM_NF_e__c> nfeList = (List<BFM_NF_e__c>) Trigger.New;
+       
+        //List<BFM_NF_e__c> nfeList = (List<BFM_NF_e__c>) Trigger.New;
         Set<Id> deliveriesIds = new Set<Id>();
         
         for(BFM_NF_e__c child : nfeList) {

@@ -24,4 +24,6 @@ private class BFM_CreateCarrierUser_Test {
         BFM_CreateCarrierUser.createUserShareAccounts(new List<BFM_UserCreationRequest__c>{userCreationRequest});
         BFM_CreateCarrierUser.createUserShareAccounts(new List<BFM_UserCreationRequest__c>{userCreationRequestDuplicatedNickname});
         
-        Tes
+        Test.stopTest();
+    }
+}

@@ -4,7 +4,9 @@ public without sharing class BFM_ShipmentDocumentGeneration_CC {
     private Id shipmentId;
     public BFM_ShipmentDocumentGeneration_CC(ApexPages.StandardController stdCtr){
         shipmentId = stdCtr.getId();
+        try{
         List<BFM_Stage__c> theStages = [SELECT Id, (SELECt Id FROM Stages__r) FROM BFM_Shipment__c WHERE id =: shipmentId ].stages__r;
+        }catch(exception e){}
         sesByStageId = new Map<Id, List<BFM_SES__c>>();
         stageIds = '';
         List<BFM_SES__c> SESs = [SELECT Id, Name, SES_Number__c, Stage__c, Stage__r.Shipment__c FROM BFM_SES__C WHERE Stage__r.Shipment__c = : shipmentId];
