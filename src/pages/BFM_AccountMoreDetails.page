@@ -3,7 +3,7 @@
     <apex:form >
         <apex:pageBlock rendered="{!hasInformation}">
             <apex:pageBlockButtons >
-                <apex:commandButton value="{!$Label.BFM_Cancel}" action="{!cancel}"/> 
+                <apex:commandButton value="Cancelar" action="{!cancel}"/> 
             </apex:pageBlockButtons>
             
             <apex:pageBlockSection title="Informações adicionais da conta" collapsible="false" >
