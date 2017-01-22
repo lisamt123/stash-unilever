@@ -30,7 +30,7 @@
     <outboundMessages>
         <fullName>Core_CA_IP_CLM_OutboundMessage</fullName>
         <apiVersion>38.0</apiVersion>
-        <endpointUrl>http://52.213.239.243:8081/ClmMobilityResponseService</endpointUrl>
+        <endpointUrl>https://clmchatterapproval.unileverservices.com:8082/ClmMobilityResponseService</endpointUrl>
         <fields>Ariba_Role__c</fields>
         <fields>Comments__c</fields>
         <fields>CurrentDateTime__c</fields>
