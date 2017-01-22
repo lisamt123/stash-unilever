@@ -22,6 +22,7 @@ public class BFM_QueryFreightsResponse_Test{
          BFM_Occurrence__c occur = new BFM_Occurrence__c();
          //occur.name='testname';
          occur.Shipment__c = shipmentty.id;
+         occur.Carrier_Account__c = acc.id;
          insert occur;
                           
          BFM_SES__c ses = new BFM_SES__c();

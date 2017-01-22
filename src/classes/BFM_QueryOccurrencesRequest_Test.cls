@@ -4,22 +4,21 @@
 
 @IsTest
 public class BFM_QueryOccurrencesRequest_Test {
-    
-    static testMethod void testParse() {
-    List<String> occurrenceNumbers;
-    String queryType;
-        String json = '{'+
-        '   \"QueryOccurrences\": {'+
-        '        \"occurrenceNumbers\": [\"1234567890\",'+
-        '          \"0123456789\"'+
-        '        ],'+
-        '        \"queryType\": \"CT-e Issuing\"'+
-        '    }    '+
-        '}';
-        BFM_QueryOccurrencesRequest obj = BFM_QueryOccurrencesRequest.parse(json);
-        BFM_QueryOccurrencesRequest.QueryOccurrences qa = new BFM_QueryOccurrencesRequest.QueryOccurrences(); 
-        BFM_QueryOccurrencesRequest occ = new BFM_QueryOccurrencesRequest(occurrenceNumbers,queryType);
-        System.assert(obj != null);
-        
-    }
+  
+  static testMethod void testParse() {
+    String json = '{'+
+    '  \"QueryOccurrences\": {'+
+    '        \"occurrenceNumbers\": [\"1234567890\",'+
+    '          \"0123456789\"'+
+    '        ],'+
+    '        \"queryType\": \"CT-e Issuing\"'+
+    '    }    '+
+    '}';
+        List<String> occurrenceNumbers = new List<String>();
+        occurrenceNumbers.add('1234567890');
+        String queryType = 'ALL';
+        BFM_QueryOccurrencesRequest occreq = new BFM_QueryOccurrencesRequest(occurrenceNumbers, queryType);
+    BFM_QueryOccurrencesRequest obj = BFM_QueryOccurrencesRequest.parse(json);
+    System.assert(obj != null);
+  }
 }

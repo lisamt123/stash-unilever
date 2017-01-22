@@ -1,6 +1,6 @@
 @isTest
 public class BFM_UpdateUserRequestQueueable_Test {
-	private static testMethod void BFM_UpdateUserRequestQueueable_TestMethod(){
+  private static testMethod void BFM_UpdateUserRequestQueueable_TestMethod(){
         BFM_UserCreationRequest__c bfmuser = new BFM_UserCreationRequest__c();
         bfmuser.userName__c = 'TestUsername';
         bfmuser.email__c = 'Testuseremail@test.com';

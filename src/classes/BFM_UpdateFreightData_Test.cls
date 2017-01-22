@@ -1,16 +1,29 @@
 @isTest
-public class BFM_UpdateFreightData_Test {
-    private static testMethod void bfm_updateFreightDataTestMethod(){
-    Account acc = new Account();
-    acc.Name = 'TestAccount';
+private class BFM_UpdateFreightData_Test {
+    static testMethod void Updatefreight(){
+  Account acc= new Account();
+    acc.name = 'testname';
     insert acc;
-   	BFM_Shipment__c ship = new BFM_Shipment__c();
-    ship.Carrier_Account__c = acc.id;
-    ship.Shipment_Number__c = '4567543554';
-    insert ship;
-	Test.StartTest();
-    BFM_UpdateFreightData updatefreight = new BFM_UpdateFreightData(ship.Id);
-    BFM_UpdateFreightData.send6thFlagUpdate(ship.Id);
-	Test.StopTest();
-    }
+    system.assertEquals('testname', acc.name);
+    
+    BFM_Shipment__c shipmentRec = new BFM_Shipment__c();
+    shipmentRec.Shipment_Number__c='65624565';
+    shipmentRec.Carrier_Account__c = acc.id;      
+    insert shipmentRec;
+    
+    BFM_Occurrence__c occ = new BFM_Occurrence__c();
+    occ.Carrier_Account__c = acc.id;
+    occ.Shipment__c = shipmentRec.id;
+    occ.Plate_Number__c = '3453';
+    insert occ;
+        
+    BFM_UpdateFreightData freight = new BFM_UpdateFreightData(shipmentRec.Id);
+    BFM_UpdateFreightData occfreight = new BFM_UpdateFreightData(occ.Id);
+    Test.startTest();
+    Test.setMock(HttpCalloutMock.class, new BFM_MockHttpResponse());
+    BFM_UpdateFreightData.sendUpdateShipmentRequestFuture(shipmentRec.Id);
+    BFM_UpdateFreightData.send6thFlagUpdate(shipmentRec.Id);
+    freight.send6thFlagUpdateRequest();
+    Test.stopTest();
+    }   
 }

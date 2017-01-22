@@ -20,6 +20,7 @@ public class BFM_GeneralServiceCalls_Test {
     BFM_GeneralServiceCalls.requestQueryFreights(shipnum,'querytype');
     
     BFM_QueryOccurrencesRequest queryoccur = new BFM_QueryOccurrencesRequest(occrnum,'querytype');
+    BFM_UpdateFreightDataRequest freightupdate = new BFM_UpdateFreightDataRequest();
     BFM_GeneralServiceCalls.requestQueryOccurrence(occrnum,'querytype');
     
     //BFM_GeneralServiceCalls.requestsefazCheck(shipmentRec.id,'fileUrl','objname','session');
@@ -33,7 +34,8 @@ public class BFM_GeneralServiceCalls_Test {
     
     //BFM_GeneralServiceCalls.queryTax('reqbody');
     //BFM_GeneralServiceCalls.queryPayments(occrnum);
-    BFM_GeneralServiceCalls.sendShipmentOccurrenceUpdate('plateNumber','shipno','occno');
+     //BFM_GeneralServiceCalls.sendShipmentUpdate(freightupdate);
+     BFM_GeneralServiceCalls.sendShipmentOccurrenceUpdate('plateNumber','shipno','occno');
     //BFM_GeneralServiceCalls.requestSavePOD('plateNumber','shipno',Date.Today(),'occno');
     //BFM_GeneralServiceCalls.validateFiscalDocuments(occrnum);
     

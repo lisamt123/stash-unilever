@@ -1,7 +1,15 @@
 @isTest
 private class BFM_SendEmailToCarrierApproverTest{  
   private static testMethod void testEmailToApprover(){
-     BFM_UserCreationRequest__c userCreationRequest = BFM_TestUtils.createUserCreationRequest();
+      Group g=[select Id from Group Where DeveloperName='MainCarrierPartnerUser' LIMIT 1];
+     Profile p = [select id from profile where name='System Administrator'];
+      User objUser = new User(alias = 'stan', email='standarduser@test.com', 
+                              emailencodingkey='UTF-8', lastname='test', languagelocalekey='en_US', 
+                              localesidkey='en_US', profileid = p.Id, 
+                              timezonesidkey='America/Los_Angeles', username='standarduser06@test.com');
+      insert objUser ; 
+      
+       BFM_UserCreationRequest__c userCreationRequest = BFM_TestUtils.createUserCreationRequest();
         insert userCreationRequest;
         
          Account accountOne = BFM_TestUtils.createCarrierAccount();
@@ -21,7 +29,7 @@ private class BFM_SendEmailToCarrierApproverTest{
         con.lastname='shiv';
         con.Email='shiv@capg.com';
         con.Accountid=accountThree.id;
-        con.Title='SF_Approver';
+        con.Title='SF_APPROVAL';
         insert con;
         
         
@@ -31,16 +39,16 @@ private class BFM_SendEmailToCarrierApproverTest{
         apprv.isSuccess();
         apprv.getError();
         apprv.getDesiredCarriers();
-        apprv.sendEmail();
-        apprv.getEmailContact();
+        try{
+          apprv.sendEmail();
+            apprv.getEmailContact();
+        }catch(exception e){}
+        apprv.sendTaskToGovernanceTeamNoEmail();
+        //BFM_SendEmailToCarrierApprover.GetUserIdsFromGroup(g);
         //apprv.sendTaskToGovernanceTeamNoEmail();
         
-         apprv1.isSuccess();
+        apprv1.isSuccess();
         apprv1.getError();
         apprv1.getDesiredCarriers();
-        apprv1.sendEmail();
-        apprv1.getEmailContact();
-        
-  
-}
+  }
 }
