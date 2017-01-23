@@ -9,6 +9,10 @@ Public class BFM_LoginuserPermissions{
         if(userRequest.Operational_User__c == true){
             psName = 'BFM_Carrier_Operational_User';
         }
+        else
+        {
+            psName = 'BFM_Carrier_Tax_User';
+        }
          PermissionSet ps = new PermissionSet();
          if(psName!=''){
              ps = [select id from PermissionSet where name=: psName limit 1];
