@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>categorydetailApproved</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TO_Letter_Head</letterhead>
+    <name>BEN RecordApprovedEmail</name>
+    <style>freeForm</style>
+    <subject>{!BEN_Category_Details__c.Name}Test Result is Approved</subject>
+    <textOnly>Hi {!BEN_Category_Details__c.CreatedBy},
+
+Test result &apos;{!BEN_Category_Details__c.Name} &apos;  Title : &apos;{!BEN_Category_Details__c.txt_Title__c}&apos; is Approved by
+Category Approved for{!User.Name}: {!BEN_Category_Details__c.Product_Category__c}
+Submitted by : {!BEN_Category_Details__c.CreatedBy}
+Approved by : {!User.Name}
+Date of Submission : {!BEN_Category_Details__c.dt_Date_of_Submission__c}
+Date of approval : {!BEN_Category_Details__c.LastModifiedDate}
+
+You can access the result via the link below;
+https://unilever--benchmrkng.cs52.my.salesforce.com/{!BEN_Category_Details__c.Id}
+
+This is an automatically generated email, please do not reply
+
+Thanks,
+{!User.Name}</textOnly>
+    <type>html</type>
+</EmailTemplate>
