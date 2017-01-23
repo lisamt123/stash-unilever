@@ -2,4 +2,5 @@
 <Group xmlns="http://soap.sforce.com/2006/04/metadata">
     <doesIncludeBosses>true</doesIncludeBosses>
     <name>BFM Governance</name>
+	<DeveloperName>BFM_Governance</DeveloperName>
 </Group>
