@@ -224,6 +224,10 @@
                 <fullName>Refreshments</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Food Solutions</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -1050,6 +1054,10 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
                 <default>false</default>
             </values>
             <values>
+                <fullName>Food Solutions</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Home Care</fullName>
                 <default>false</default>
             </values>
@@ -1170,6 +1178,10 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
                 <default>false</default>
             </values>
             <values>
+                <fullName>Food Solutions</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Home Care</fullName>
                 <default>false</default>
             </values>
@@ -1286,6 +1298,10 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
             <picklist>IPM_Category__c</picklist>
             <values>
                 <fullName>Food</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food Solutions</fullName>
                 <default>false</default>
             </values>
             <values>
