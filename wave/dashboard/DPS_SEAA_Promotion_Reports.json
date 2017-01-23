@@ -1,6 +1,7 @@
 {
     "label": "SEAA Promotion Reports",
     "state": {
+        "dataSourceLinks": [],
         "gridLayouts": [
             {
                 "name": "desktop",
@@ -1454,6 +1455,7 @@
                         ]
                     }
                 ],
+                "rowHeight": "normal",
                 "selectors": [],
                 "style": {
                     "alignmentX": "left",
@@ -2883,6 +2885,7 @@
                         ]
                     }
                 ],
+                "rowHeight": "normal",
                 "selectors": [
                     "minWidth(320)",
                     "maxWidth(599)",
@@ -2908,7 +2911,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -2939,7 +2942,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -3022,7 +3025,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -3053,7 +3056,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -3136,7 +3139,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": true,
@@ -3245,7 +3248,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": true,
@@ -3354,7 +3357,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": false,
@@ -3384,7 +3387,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -3415,7 +3418,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": true,
@@ -3523,7 +3526,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": false,
@@ -3666,7 +3669,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": false,
@@ -3687,7 +3690,8 @@
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                }
+                },
+                "selectMode": "single"
             },
             "Channel_27": {
                 "datasets": [
@@ -3695,7 +3699,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -3778,7 +3782,7 @@
                         "id": "0Fb2C000000GmykSAC",
                         "label": "PS_OVERALL_COMPLIANCE_LV",
                         "name": "PS_OVERALL_COMPLIANCE_LV",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmykSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmykSAC"
                     }
                 ],
                 "isFacet": false,
@@ -3806,7 +3810,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": true,
@@ -3915,7 +3919,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -3946,7 +3950,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -3977,7 +3981,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": true,
@@ -4355,7 +4359,8 @@
                 "visualizationParameters": {
                     "visualizationType": "comparisontable",
                     "options": {}
-                }
+                },
+                "selectMode": "single"
             },
             "Product_category_SKU_3": {
                 "datasets": [
@@ -4363,7 +4368,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": true,
@@ -4525,7 +4530,8 @@
                 "visualizationParameters": {
                     "visualizationType": "comparisontable",
                     "options": {}
-                }
+                },
+                "selectMode": "single"
             },
             "Country_90": {
                 "datasets": [
@@ -4533,7 +4539,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": true,
@@ -4692,7 +4698,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": true,
@@ -4851,7 +4857,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -4882,7 +4888,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": false,
@@ -4912,7 +4918,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": false,
@@ -4933,7 +4939,8 @@
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                }
+                },
+                "selectMode": "single"
             },
             "Customer_96": {
                 "datasets": [
@@ -4941,7 +4948,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": true,
@@ -5120,7 +5127,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -5151,7 +5158,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -5182,7 +5189,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -5213,7 +5220,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": true,
@@ -5372,7 +5379,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": true,
@@ -5531,7 +5538,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -5562,7 +5569,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -5593,7 +5600,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -5624,7 +5631,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -5655,7 +5662,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -5686,7 +5693,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": true,
@@ -5845,7 +5852,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": false,
@@ -6040,7 +6047,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -6071,7 +6078,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -6154,7 +6161,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -6237,7 +6244,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -6268,7 +6275,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -6299,7 +6306,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -6330,7 +6337,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -6361,7 +6368,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -6464,7 +6471,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -6524,7 +6531,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -6555,7 +6562,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": false,
@@ -6598,7 +6605,7 @@
                         "id": "0Fb2C000000GmzTSAS",
                         "label": "PROMO_SCORE",
                         "name": "PROMO_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
                     }
                 ],
                 "isFacet": true,
@@ -6753,7 +6760,7 @@
                         "id": "0Fb2C000000GmzJSAS",
                         "label": "PROMO_COMPLIANCE",
                         "name": "PROMO_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
                     }
                 ],
                 "isFacet": true,
@@ -6805,7 +6812,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "X4P_5P_6P_80",
                     "title": "Perfect Store Standard"
                 },
@@ -6818,7 +6824,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_division_15",
                     "title": "Product Division"
                 },
@@ -6831,7 +6836,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Top_Customer_49",
                     "title": "Top Customer"
                 },
@@ -6867,7 +6871,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -6885,19 +6890,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Product_category_26",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -6919,7 +6950,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -6937,19 +6969,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "X4P_5P_6P_66",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -6971,7 +7029,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -6989,19 +7048,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Country_21",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7023,7 +7108,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7041,19 +7127,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Channel_27",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7075,7 +7187,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "vbar",
@@ -7093,19 +7206,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Region_85",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7195,7 +7334,8 @@
                     "min": 0,
                     "valueType": "compactNumber",
                     "theme": "wave",
-                    "step": "all_89"
+                    "step": "all_89",
+                    "referenceLine": null
                 },
                 "type": "chart"
             },
@@ -7225,13 +7365,15 @@
                         "showHeader": true,
                         "show": true,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "measureAxis1": {
-                        "showZero": true,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "visualizationType": "time",
                     "missingValue": "connect",
@@ -7240,7 +7382,8 @@
                     "timeAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "predictiveLine": null
                     },
                     "exploreLink": true,
                     "title": {
@@ -7252,6 +7395,15 @@
                         "enable": false,
                         "type": "x",
                         "chartsPerLine": 4
+                    },
+                    "showZero": true,
+                    "axisMode": "multi",
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showAxis": true,
+                        "showTitle": true,
+                        "title": "",
+                        "referenceLine": null
                     }
                 },
                 "type": "chart"
@@ -7273,13 +7425,15 @@
                         "showHeader": true,
                         "show": true,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "measureAxis1": {
-                        "showZero": true,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "visualizationType": "time",
                     "missingValue": "connect",
@@ -7288,7 +7442,8 @@
                     "timeAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "predictiveLine": null
                     },
                     "exploreLink": true,
                     "title": {
@@ -7300,6 +7455,15 @@
                         "enable": false,
                         "type": "x",
                         "chartsPerLine": 4
+                    },
+                    "showZero": true,
+                    "axisMode": "multi",
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showAxis": true,
+                        "showTitle": true,
+                        "title": "",
+                        "referenceLine": null
                     }
                 },
                 "type": "chart"
@@ -7339,13 +7503,15 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "measureAxis1": {
-                        "showZero": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "visualizationType": "time",
                     "missingValue": "connect",
@@ -7354,7 +7520,8 @@
                     "timeAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "predictiveLine": null
                     },
                     "exploreLink": true,
                     "title": {
@@ -7366,6 +7533,15 @@
                         "enable": false,
                         "type": "x",
                         "chartsPerLine": 4
+                    },
+                    "showZero": false,
+                    "axisMode": "multi",
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showAxis": true,
+                        "showTitle": true,
+                        "title": "",
+                        "referenceLine": null
                     }
                 },
                 "type": "chart"
@@ -7416,7 +7592,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7434,19 +7611,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Promotion Compliance (%)"
+                        "title": "Promotion Compliance (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Customer_31",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7459,13 +7662,15 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "measureAxis1": {
-                        "showZero": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Promotion Compliance (%)"
+                        "title": "Promotion Compliance (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "visualizationType": "time",
                     "missingValue": "connect",
@@ -7474,7 +7679,8 @@
                     "timeAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "predictiveLine": null
                     },
                     "exploreLink": true,
                     "title": {
@@ -7486,6 +7692,15 @@
                         "enable": false,
                         "type": "x",
                         "chartsPerLine": 4
+                    },
+                    "showZero": false,
+                    "axisMode": "multi",
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showAxis": true,
+                        "showTitle": true,
+                        "title": "",
+                        "referenceLine": null
                     }
                 },
                 "type": "chart"
@@ -7546,6 +7761,7 @@
             },
             "comparetable_mobilePromo": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "compare_mobilePromo"
                 },
@@ -7567,7 +7783,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Sales_territory_7",
                     "title": "Sales Territory"
                 },
@@ -7607,7 +7822,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Sales_area_6",
                     "title": "Sales Area"
                 },
@@ -7738,7 +7952,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7756,19 +7971,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Priority Promo Score (%)"
+                        "title": "Priority Promo Score (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Customer_96",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7780,7 +8021,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Store_Operations_Manager_54",
                     "title": "Store Operations Manager"
                 },
@@ -7842,7 +8082,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Trade_Format_8",
                     "title": "Trade format"
                 },
@@ -7856,7 +8095,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7874,19 +8114,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Promotion Compliance (%)"
+                        "title": "Promotion Compliance (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Channel_27",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7917,7 +8183,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "vbar",
@@ -7935,19 +8202,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Promotion Compliance (%)"
+                        "title": "Promotion Compliance (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "X4P_5P_6P_66",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7960,7 +8253,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7978,19 +8272,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Priority Promo Score (%)"
+                        "title": "Priority Promo Score (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Product_category_95",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -8036,7 +8356,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "vbar",
@@ -8054,19 +8375,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Promotion Compliance (%)"
+                        "title": "Promotion Compliance (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Region_85",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -8123,7 +8470,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Customer_type_11",
                     "title": "Key Customer Type"
                 },
@@ -8145,7 +8491,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Sales_region_44",
                     "title": "Sales Region"
                 },
@@ -8158,7 +8503,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Field_Sales_Manager_55",
                     "title": "Field Sales Manager"
                 },
@@ -8172,7 +8516,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "vbar",
@@ -8190,19 +8535,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Priority Promo Score (%)"
+                        "title": "Priority Promo Score (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Region_93",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -8286,7 +8657,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_category_16",
                     "title": "Product Category"
                 },
@@ -8399,7 +8769,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "vbar",
@@ -8417,19 +8788,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Priority Promo Score (%)"
+                        "title": "Priority Promo Score (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "X4P_5P_6P_92",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -8600,7 +8997,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Country_2",
                     "title": "Country"
                 },
@@ -8655,7 +9051,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_sector_58",
                     "title": "Product Sector"
                 },
@@ -8686,7 +9081,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Local_Outlet_Name_49",
                     "title": "Branch/Outlet Name"
                 },
@@ -8718,7 +9112,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -8736,19 +9131,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Promotion Compliance (%)"
+                        "title": "Promotion Compliance (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Country_21",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -8761,7 +9182,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -8779,19 +9201,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Priority Promo Score (%)"
+                        "title": "Priority Promo Score (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Country_90",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -8833,6 +9281,7 @@
             },
             "table_2": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Product_category_SKU_3"
                 },
@@ -8840,6 +9289,7 @@
             },
             "table_3": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Product_category_SKU_4"
                 },
@@ -8856,7 +9306,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Field_Execution_Manager_53",
                     "title": "Field Execution Manager"
                 },
@@ -8884,7 +9333,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_market_56",
                     "title": "Product Market"
                 },
@@ -8894,7 +9342,11 @@
                 "parameters": {
                     "instant": false,
                     "step": "Date_of_audit_Year_Date_of_audit_Month_52",
-                    "title": "Audit Date"
+                    "title": "Audit Date",
+                    "defaultAbsoluteMode": true,
+                    "defaultFiscalMode": false,
+                    "modeSwitchingAllowed": true,
+                    "calendarTypeSwitchingAllowed": false
                 },
                 "type": "dateselector"
             },
@@ -8905,7 +9357,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_brand_57",
                     "title": "Product Brand"
                 },
@@ -8928,7 +9379,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -8946,19 +9398,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Promotion Compliance (%)"
+                        "title": "Promotion Compliance (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Product_category_26",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -9033,7 +9511,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Customer_48",
                     "title": "Customer Name"
                 },
@@ -9055,7 +9532,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Channel_9",
                     "title": "Channel"
                 },
@@ -9164,7 +9640,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Subchannel_10",
                     "title": "Subchannel"
                 },
@@ -9201,7 +9676,11 @@
                 "parameters": {
                     "instant": false,
                     "step": "Date_of_audit_Year_Date_of_audit_Month_52",
-                    "title": "Audit Date"
+                    "title": "Audit Date",
+                    "defaultAbsoluteMode": true,
+                    "defaultFiscalMode": false,
+                    "modeSwitchingAllowed": true,
+                    "calendarTypeSwitchingAllowed": false
                 },
                 "type": "dateselector"
             },
@@ -9330,7 +9809,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -9348,19 +9828,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Customer_96",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -9372,7 +9878,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "City_5",
                     "title": "City"
                 },
@@ -9395,7 +9900,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -9413,19 +9919,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Product_category_95",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -9447,7 +9979,8 @@
                         "showHeader": true,
                         "show": true,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -9465,19 +9998,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Channel_94",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -9490,7 +10049,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "vbar",
@@ -9508,19 +10068,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Region_93",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -9533,7 +10119,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "sync",
                     "visualizationType": "vbar",
@@ -9551,19 +10138,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "X4P_5P_6P_92",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -9576,7 +10189,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -9594,19 +10208,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Country_90",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -9619,7 +10259,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -9637,19 +10278,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Customer_31",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -9769,7 +10436,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Commune_42",
                     "title": "Community"
                 },
@@ -9791,7 +10457,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "SKU_84",
                     "title": "SKU (Material Descrption)"
                 },
@@ -9805,7 +10470,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -9823,19 +10489,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Priority Promo Score (%)"
+                        "title": "Priority Promo Score (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Channel_94",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -9994,7 +10686,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Store_type_46",
                     "title": "Store type"
                 },
@@ -10047,19 +10738,19 @@
             "id": "0Fb2C000000GmykSAC",
             "label": "PS_OVERALL_COMPLIANCE_LV",
             "name": "PS_OVERALL_COMPLIANCE_LV",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmykSAC"
+            "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmykSAC"
         },
         {
             "id": "0Fb2C000000GmzJSAS",
             "label": "PROMO_COMPLIANCE",
             "name": "PROMO_COMPLIANCE",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzJSAS"
+            "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzJSAS"
         },
         {
             "id": "0Fb2C000000GmzTSAS",
             "label": "PROMO_SCORE",
             "name": "PROMO_SCORE",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzTSAS"
+            "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzTSAS"
         }
     ]
 }
