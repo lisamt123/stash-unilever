@@ -1794,10 +1794,7 @@ public with sharing class IPM_ProjectHelper
            if(bosscardList!=null && !bosscardList.isEmpty()){
                delete bosscardList;
             }
-            List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectIdSetToBeDeleted OR Local_Project__c in:projectIdSetToBeDeleted OR Regional_Project__c in:projectIdSetToBeDeleted OR IPM_Project_Rollout__c in:associatedRolloutIds  Limit 5000];
-            if(projFinList != null && !projFinList.isEmpty()){
-                delete projFinList;
-            }
+
             deleteProjectWithIds(projectIdSetToBeDeleted);
         } 
     }
@@ -1814,6 +1811,10 @@ public with sharing class IPM_ProjectHelper
             if(projRolloutList != null && !projRolloutList.isEmpty()){
                 delete projRolloutList;
             }    
+        List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectIdSetToBeDeleted OR Local_Project__c in:projectIdSetToBeDeleted OR Regional_Project__c in:projectIdSetToBeDeleted Limit 5000];
+            if(projFinList != null && !projFinList.isEmpty()){
+                delete projFinList;
+        }
             List<IPM_Country__c>countryList=[SELECT ID FROM IPM_Country__c WHERE (IPM_Project__c IN:projectIdSetToBeDeleted or IPM_Local_Project__c IN:projectIdSetToBeDeleted or IPM_Regional_Project__c IN:projectIdSetToBeDeleted) LIMIT 5000];
             if(countryList!=null && !countryList.isEmpty()){
                             delete countryList;
