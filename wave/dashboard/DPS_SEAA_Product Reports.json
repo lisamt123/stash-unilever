@@ -1,6 +1,7 @@
 {
     "label": "SEAA Product Reports",
     "state": {
+        "dataSourceLinks": [],
         "gridLayouts": [
             {
                 "name": "desktop",
@@ -1587,6 +1588,7 @@
                         ]
                     }
                 ],
+                "rowHeight": "normal",
                 "selectors": [],
                 "style": {
                     "alignmentX": "left",
@@ -3016,6 +3018,7 @@
                         ]
                     }
                 ],
+                "rowHeight": "normal",
                 "selectors": [
                     "minWidth(320)",
                     "maxWidth(599)"
@@ -3040,7 +3043,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3071,7 +3074,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3102,7 +3105,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3182,7 +3185,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3213,7 +3216,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -3326,7 +3329,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3357,7 +3360,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3437,7 +3440,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3468,7 +3471,7 @@
                         "id": "0Fb2C000000GmzxSAC",
                         "label": "SUMMARY_OUTLET_VIEW",
                         "name": "SUMMARY_OUTLET_VIEW",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzxSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzxSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3500,7 +3503,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -3640,7 +3643,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -3670,7 +3673,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3742,7 +3745,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -3955,6 +3958,7 @@
                         "SKU"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
@@ -3968,7 +3972,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -4411,6 +4415,7 @@
                         "SKU"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
@@ -4424,7 +4429,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -4561,7 +4566,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -4577,13 +4582,13 @@
                         "Date_of_audit_Month"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                },
-                "selectMode": "single"
+                }
             },
             "Date_of_audit_Month_3": {
                 "datasets": [
@@ -4591,7 +4596,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -4621,7 +4626,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -4637,13 +4642,13 @@
                         "Date_of_audit_Month"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                },
-                "selectMode": "single"
+                }
             },
             "Channel_28": {
                 "datasets": [
@@ -4651,7 +4656,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -4682,7 +4687,7 @@
                         "id": "0Fb2C000000GmykSAC",
                         "label": "PS_OVERALL_COMPLIANCE_LV",
                         "name": "PS_OVERALL_COMPLIANCE_LV",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmykSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmykSAC"
                     }
                 ],
                 "isFacet": false,
@@ -4710,7 +4715,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -4862,7 +4867,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -4893,7 +4898,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -4989,7 +4994,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -5137,7 +5142,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -5349,6 +5354,7 @@
                         "SKU"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
@@ -5362,7 +5368,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -5582,6 +5588,7 @@
                         "SKU"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregate",
                 "useGlobal": true,
                 "visualizationParameters": {
@@ -5595,7 +5602,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -5780,6 +5787,7 @@
                         "SKU"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
@@ -5793,7 +5801,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -5906,7 +5914,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -6283,6 +6291,7 @@
                         "SKU"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
@@ -6296,7 +6305,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -6433,7 +6442,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -6472,7 +6481,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": false,
@@ -6671,7 +6680,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -6725,7 +6734,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -6838,7 +6847,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -6868,7 +6877,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -6884,13 +6893,13 @@
                         "Date_of_audit_Year"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                },
-                "selectMode": "single"
+                }
             },
             "Date_of_audit_Year_3": {
                 "datasets": [
@@ -6898,7 +6907,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -6928,7 +6937,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -6944,13 +6953,13 @@
                         "Date_of_audit_Year"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                },
-                "selectMode": "single"
+                }
             },
             "Country_2": {
                 "datasets": [
@@ -6958,7 +6967,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7038,7 +7047,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -7176,50 +7185,13 @@
                     "options": {}
                 }
             },
-            "lens_3": {
-                "datasets": [
-                    {
-                        "id": "0Fb2C000000GmzxSAC",
-                        "label": "SUMMARY_OUTLET_VIEW",
-                        "name": "SUMMARY_OUTLET_VIEW",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzxSAC"
-                    }
-                ],
-                "isFacet": true,
-                "isGlobal": false,
-                "query": {
-                    "values": [
-                        "Customer_Name",
-                        "Country_Id",
-                        "Month_Year_Number",
-                        "Redline_Perfect_Indicator",
-                        "Promo_Perfect_Indicator",
-                        "Business_Mandate_Perfect_Indicator",
-                        "Ever_Billed_Perfect_Indicator",
-                        "Product_Perfect_Store_Indicator",
-                        "Core_Of_Core_sku_Indicator",
-                        "New_Prod_Dev_Perfect_Indicator",
-                        "Pack_Perfect_Indicator",
-                        "Perfect_Store_Indicator",
-                        "Price_Perfect_Indicator",
-                        "Priority_Promo_Perfect_Indicator",
-                        "Width_Pack_Perfect_Indicator"
-                    ]
-                },
-                "type": "grain",
-                "useGlobal": true,
-                "visualizationParameters": {
-                    "visualizationType": "valuestable",
-                    "options": {}
-                }
-            },
             "OSA_Compliance_68": {
                 "datasets": [
                     {
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7250,7 +7222,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -7394,7 +7366,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7425,7 +7397,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7456,7 +7428,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7487,7 +7459,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7518,7 +7490,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7598,7 +7570,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7629,7 +7601,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -7759,6 +7731,7 @@
                         ]
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
@@ -7772,7 +7745,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7803,7 +7776,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -7848,7 +7821,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7873,13 +7846,134 @@
                     "options": {}
                 }
             },
+            "Country_Outlet_ID_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb2C000000GmzxSAC",
+                        "label": "SUMMARY_OUTLET_VIEW",
+                        "name": "SUMMARY_OUTLET_VIEW",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzxSAC"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Perfect_Store_Indicator",
+                            "A",
+                            {
+                                "display": "Perfect Store Indicator"
+                            }
+                        ],
+                        [
+                            "avg",
+                            "Redline_Perfect_Indicator",
+                            "B",
+                            {
+                                "display": "Redline Perfect Indicator"
+                            }
+                        ],
+                        [
+                            "avg",
+                            "Ever_Billed_Perfect_Indicator",
+                            "C",
+                            {
+                                "display": "Ever Billed Perfect Indicator"
+                            }
+                        ],
+                        [
+                            "avg",
+                            "Width_Pack_Perfect_Indicator",
+                            "D",
+                            {
+                                "display": "Width Pack Perfect Indicator"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "Perfect_Store_Indicator"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Country",
+                                    "Outlet_ID"
+                                ]
+                            },
+                            "header": "Perfect Store Indicator"
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "Redline_Perfect_Indicator"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Country",
+                                    "Outlet_ID"
+                                ]
+                            },
+                            "header": "Redline Perfect Indicator"
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "Ever_Billed_Perfect_Indicator"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Country",
+                                    "Outlet_ID"
+                                ]
+                            },
+                            "header": "Ever Billed Perfect Indicator"
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "Width_Pack_Perfect_Indicator"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Country",
+                                    "Outlet_ID"
+                                ]
+                            },
+                            "header": "Width Pack Perfect Indicator"
+                        }
+                    ],
+                    "groups": [
+                        "Country",
+                        "Outlet_ID"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
+                    "options": {}
+                }
+            },
             "CustomerMobile_7": {
                 "datasets": [
                     {
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7923,7 +8017,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -8036,7 +8130,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -8067,7 +8161,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -8098,7 +8192,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -8129,7 +8223,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -8160,7 +8254,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -8239,7 +8333,7 @@
                         "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -8369,6 +8463,7 @@
                         ]
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
@@ -8382,7 +8477,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -8413,7 +8508,7 @@
                         "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -8465,7 +8560,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "X4P_5P_6P_63",
                     "title": "Perfect Store Standard"
                 },
@@ -8478,7 +8572,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_division_53",
                     "title": "Product Division"
                 },
@@ -8491,7 +8584,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Top_Customer_55",
                     "title": "Top Customer"
                 },
@@ -8523,9 +8615,30 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -8542,20 +8655,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Country_2",
                     "dimensionAxis": {
                         "showTitle": false,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -8566,9 +8685,30 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": false,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -8585,20 +8725,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": false,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Product Compliance (%)"
+                        "title": "Product Compliance (%)",
+                        "referenceLine": null
                     },
                     "step": "Product_category_1",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -8621,6 +8767,7 @@
                     "legend": {
                         "showHeader": false,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -8638,20 +8785,25 @@
                         "chartsPerLine": 4
                     },
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "KPI Type"
+                        "title": "KPI Type",
+                        "referenceLine": null
                     },
                     "normalize": false,
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": false,
-                        "title": "Product Score (%)"
+                        "title": "Product Score (%)",
+                        "referenceLine": null
                     },
                     "step": "KPI_Type_X4P_5P_6P_1",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": "Perfect Store Standard"
                     }
@@ -8674,6 +8826,7 @@
                     "legend": {
                         "showHeader": false,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -8691,20 +8844,25 @@
                         "chartsPerLine": 4
                     },
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "normalize": false,
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Product Score (%)"
+                        "title": "Product Score (%)",
+                        "referenceLine": null
                     },
                     "step": "Customer_KPI_Type_1",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -8727,6 +8885,7 @@
                     "legend": {
                         "showHeader": false,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -8744,20 +8903,25 @@
                         "chartsPerLine": 4
                     },
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": false,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "normalize": false,
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": false,
-                        "title": "Product Score (%)"
+                        "title": "Product Score (%)",
+                        "referenceLine": null
                     },
                     "step": "Product_category_KPI_1",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -8780,6 +8944,7 @@
                     "legend": {
                         "showHeader": false,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -8797,20 +8962,25 @@
                         "chartsPerLine": 4
                     },
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": false,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "normalize": false,
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Product Score (%)"
+                        "title": "Product Score (%)",
+                        "referenceLine": null
                     },
                     "step": "Sales_region_KPI_Type_2",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": "Sales Region"
                     }
@@ -8828,28 +8998,22 @@
             },
             "chart_1": {
                 "parameters": {
-                    "fillArea": true,
                     "showPoints": true,
                     "legend": {
                         "showHeader": false,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
-                    "measureAxis1": {
-                        "showZero": false,
-                        "showTitle": true,
-                        "showAxis": true,
-                        "title": "Product Score (%)"
-                    },
+                    "axisMode": "multi",
                     "visualizationType": "time",
                     "missingValue": "connect",
-                    "step": "Date_of_audit_Year_D_1",
-                    "theme": "wave",
                     "timeAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Date of audit (Month-Year)"
+                        "title": "Date of audit (Month-Year)",
+                        "predictiveLine": null
                     },
                     "exploreLink": true,
                     "title": {
@@ -8861,7 +9025,25 @@
                         "enable": false,
                         "type": "x",
                         "chartsPerLine": 4
-                    }
+                    },
+                    "fillArea": true,
+                    "showZero": false,
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "Product Score (%)",
+                        "referenceLine": null
+                    },
+                    "step": "Date_of_audit_Year_D_1",
+                    "theme": "wave"
                 },
                 "type": "chart"
             },
@@ -8881,6 +9063,7 @@
                     "legend": {
                         "showHeader": false,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -8898,20 +9081,25 @@
                         "chartsPerLine": 4
                     },
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": false,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "normalize": false,
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": false,
-                        "title": "Product Score (%)"
+                        "title": "Product Score (%)",
+                        "referenceLine": null
                     },
                     "step": "Channel_KPI_Type_1",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -8944,6 +9132,7 @@
                     "legend": {
                         "showHeader": false,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -8961,11 +9150,14 @@
                         "chartsPerLine": 4
                     },
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "referenceLine": {
                             "color": "rgb(0, 161, 224)",
@@ -8979,6 +9171,7 @@
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -9117,9 +9310,30 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": false,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -9136,20 +9350,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Product Compliance (%)"
+                        "title": "Product Compliance (%)",
+                        "referenceLine": null
                     },
                     "step": "Customer_7",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -9185,28 +9405,22 @@
             },
             "chart_comTrend": {
                 "parameters": {
-                    "fillArea": true,
                     "showPoints": true,
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
-                    "measureAxis1": {
-                        "showZero": false,
-                        "showTitle": true,
-                        "showAxis": true,
-                        "title": "Product Compliance (%)"
-                    },
+                    "axisMode": "multi",
                     "visualizationType": "time",
                     "missingValue": "connect",
-                    "step": "Date_of_audit_Year_Date_of_audit_Month_4",
-                    "theme": "wave",
                     "timeAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "predictiveLine": null
                     },
                     "exploreLink": true,
                     "title": {
@@ -9218,7 +9432,25 @@
                         "enable": false,
                         "type": "x",
                         "chartsPerLine": 4
-                    }
+                    },
+                    "fillArea": true,
+                    "showZero": false,
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "Product Compliance (%)",
+                        "referenceLine": null
+                    },
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_4",
+                    "theme": "wave"
                 },
                 "type": "chart"
             },
@@ -9328,7 +9560,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Sales_territory_26",
                     "title": "Sales Territory"
                 },
@@ -9374,7 +9605,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Sales_area_25",
                     "title": "Sales Area"
                 },
@@ -9490,6 +9720,7 @@
             },
             "table_10": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Product_category_SKU_6"
                 },
@@ -9502,7 +9733,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Store_Operations_Manager_58",
                     "title": "Store Operations Manager"
                 },
@@ -9645,7 +9875,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Trade_Format_27",
                     "title": "Trade Format"
                 },
@@ -9703,9 +9932,30 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -9722,20 +9972,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Product Compliance (%)"
+                        "title": "Product Compliance (%)",
+                        "referenceLine": null
                     },
                     "step": "Channel_6",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -9776,9 +10032,30 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -9795,20 +10072,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Product Compliance (%)"
+                        "title": "Product Compliance (%)",
+                        "referenceLine": null
                     },
                     "step": "X4P_5P_6P_64",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -9852,9 +10135,30 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -9871,20 +10175,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Product Compliance (%)"
+                        "title": "Product Compliance (%)",
+                        "referenceLine": null
                     },
                     "step": "Region_72",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -10033,7 +10343,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Customer_type_30",
                     "title": "Key Customer Type"
                 },
@@ -10046,7 +10355,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Sales_region_47",
                     "title": "Sales Region"
                 },
@@ -10059,7 +10367,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Field_Sales_Manager_57",
                     "title": "Field Sales Manager"
                 },
@@ -10162,7 +10469,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_category_54",
                     "title": "Product Category"
                 },
@@ -10350,6 +10656,7 @@
             },
             "comparetable_mobileMHSKU": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "compare_mobileMHSKU"
                 },
@@ -10433,7 +10740,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Country_21",
                     "title": "Country"
                 },
@@ -10488,7 +10794,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_sector_68",
                     "title": "Product Sector"
                 },
@@ -10507,9 +10812,30 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -10526,20 +10852,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "step": "CustomerMobile_7",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -10562,7 +10894,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Local_Outlet_Name_51",
                     "title": "Branch/Outlet Name"
                 },
@@ -10581,9 +10912,30 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -10600,20 +10952,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Product Compliance (%)"
+                        "title": "Product Compliance (%)",
+                        "referenceLine": null
                     },
                     "step": "Country_2",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -10682,18 +11040,20 @@
                     "fontSize": 12,
                     "includeState": false,
                     "text": "Proposition",
-                    "textColor": "#091A3E",
-                    "destination": null
+                    "textColor": "#091A3E"
                 },
                 "type": "link"
             },
             "link_4": {
                 "parameters": {
-                    "destination": "lens_3",
+                    "destinationLink": {
+                        "name": "Country_Outlet_ID_1"
+                    },
                     "destinationType": "explore",
                     "fontSize": 12,
                     "includeState": true,
                     "text": "🔎 4P Report",
+                    "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
                 "type": "link"
@@ -10704,8 +11064,7 @@
                     "fontSize": 12,
                     "includeState": false,
                     "text": "PS Overall",
-                    "textColor": "#091A3E",
-                    "destination": null
+                    "textColor": "#091A3E"
                 },
                 "type": "link"
             },
@@ -10715,13 +11074,13 @@
                     "fontSize": 12,
                     "includeState": false,
                     "text": "Price",
-                    "textColor": "#091A3E",
-                    "destination": null
+                    "textColor": "#091A3E"
                 },
                 "type": "link"
             },
             "table_1": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Product_category_SKU_1"
                 },
@@ -10729,6 +11088,7 @@
             },
             "table_2": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Product_category_SKU_3"
                 },
@@ -10736,6 +11096,7 @@
             },
             "table_3": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Product_category_SKU_5"
                 },
@@ -10743,6 +11104,7 @@
             },
             "table_4": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Product_category_SKU_5"
                 },
@@ -10769,13 +11131,13 @@
                     "fontSize": 12,
                     "includeState": false,
                     "text": "Pack",
-                    "textColor": "#091A3E",
-                    "destination": null
+                    "textColor": "#091A3E"
                 },
                 "type": "link"
             },
             "table_5": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Country_KPI_Type_1"
                 },
@@ -10787,13 +11149,13 @@
                     "fontSize": 12,
                     "includeState": false,
                     "text": "Place",
-                    "textColor": "#091A3E",
-                    "destination": null
+                    "textColor": "#091A3E"
                 },
                 "type": "link"
             },
             "table_6": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Product_category_SKU_3"
                 },
@@ -10805,13 +11167,13 @@
                     "fontSize": 12,
                     "includeState": false,
                     "text": "Product",
-                    "textColor": "#091A3E",
-                    "destination": null
+                    "textColor": "#091A3E"
                 },
                 "type": "link"
             },
             "table_7": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Product_category_SKU_1"
                 },
@@ -10823,13 +11185,13 @@
                     "fontSize": 12,
                     "includeState": false,
                     "text": "Promo",
-                    "textColor": "#091A3E",
-                    "destination": null
+                    "textColor": "#091A3E"
                 },
                 "type": "link"
             },
             "table_8": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Product_category_SKU_2"
                 },
@@ -10837,6 +11199,7 @@
             },
             "table_9": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Product_category_SKU_4"
                 },
@@ -10849,7 +11212,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Field_Execution_Manager_56",
                     "title": "Field Execution Manager"
                 },
@@ -10886,7 +11248,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_market_67",
                     "title": "Product Market"
                 },
@@ -10894,7 +11255,11 @@
             },
             "datefilter_date": {
                 "parameters": {
+                    "calendarTypeSwitchingAllowed": false,
+                    "defaultAbsoluteMode": true,
+                    "defaultFiscalMode": false,
                     "instant": false,
+                    "modeSwitchingAllowed": true,
                     "step": "Date_Year_Date_Month_14",
                     "title": "Audit Date"
                 },
@@ -10907,7 +11272,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_brand_69",
                     "title": "Product Brand"
                 },
@@ -11001,7 +11365,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Customer_32",
                     "title": "Customer Name"
                 },
@@ -11032,7 +11395,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Channel_28",
                     "title": "Channel"
                 },
@@ -11117,7 +11479,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Subchannel_29",
                     "title": "Subchannel"
                 },
@@ -11145,9 +11506,30 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -11164,20 +11546,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Customer_7",
                     "dimensionAxis": {
                         "showTitle": false,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -11186,7 +11574,11 @@
             },
             "dateselector_1": {
                 "parameters": {
+                    "calendarTypeSwitchingAllowed": false,
+                    "defaultAbsoluteMode": true,
+                    "defaultFiscalMode": false,
                     "instant": false,
+                    "modeSwitchingAllowed": true,
                     "step": "Date_Year_Date_Month_14",
                     "title": "Audit Date"
                 },
@@ -11304,9 +11696,30 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -11323,20 +11736,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Product_category_1",
                     "dimensionAxis": {
                         "showTitle": false,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -11356,9 +11775,30 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -11375,20 +11815,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Channel_6",
                     "dimensionAxis": {
                         "showTitle": false,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -11411,6 +11857,7 @@
                     "legend": {
                         "showHeader": true,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -11428,20 +11875,25 @@
                         "chartsPerLine": 4
                     },
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "normalize": false,
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Channel_KPI_Type_1",
                     "dimensionAxis": {
                         "showTitle": false,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -11455,7 +11907,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "City_24",
                     "title": "City"
                 },
@@ -11465,9 +11916,30 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -11484,20 +11956,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Region_72",
                     "dimensionAxis": {
                         "showTitle": false,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -11508,9 +11986,30 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -11527,20 +12026,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "X4P_5P_6P_64",
                     "dimensionAxis": {
                         "showTitle": false,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -11551,9 +12056,30 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -11570,20 +12096,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "KPI_Type_53",
                     "dimensionAxis": {
                         "showTitle": false,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -11596,6 +12128,7 @@
                     "legend": {
                         "showHeader": true,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -11620,28 +12153,22 @@
             },
             "chart_11": {
                 "parameters": {
-                    "fillArea": true,
                     "showPoints": true,
                     "legend": {
                         "showHeader": true,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
-                    "measureAxis1": {
-                        "showZero": true,
-                        "showTitle": false,
-                        "showAxis": true,
-                        "title": ""
-                    },
+                    "axisMode": "multi",
                     "visualizationType": "time",
                     "missingValue": "connect",
-                    "theme": "wave",
-                    "step": "Date_of_audit_Year_D_1",
                     "timeAxis": {
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "predictiveLine": null
                     },
                     "exploreLink": true,
                     "title": {
@@ -11653,34 +12180,46 @@
                         "enable": false,
                         "type": "x",
                         "chartsPerLine": 4
-                    }
+                    },
+                    "fillArea": true,
+                    "showZero": true,
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": false,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "theme": "wave",
+                    "step": "Date_of_audit_Year_D_1"
                 },
                 "type": "chart"
             },
             "chart_10": {
                 "parameters": {
-                    "fillArea": true,
                     "showPoints": true,
                     "legend": {
                         "showHeader": true,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
-                    "measureAxis1": {
-                        "showZero": true,
-                        "showTitle": false,
-                        "showAxis": true,
-                        "title": ""
-                    },
+                    "axisMode": "multi",
                     "visualizationType": "time",
                     "missingValue": "connect",
-                    "theme": "wave",
-                    "step": "Date_of_audit_Year_Date_of_audit_Month_4",
                     "timeAxis": {
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "predictiveLine": null
                     },
                     "exploreLink": true,
                     "title": {
@@ -11692,7 +12231,25 @@
                         "enable": false,
                         "type": "x",
                         "chartsPerLine": 4
-                    }
+                    },
+                    "fillArea": true,
+                    "showZero": true,
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": false,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "theme": "wave",
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_4"
                 },
                 "type": "chart"
             },
@@ -11829,7 +12386,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Commune_45",
                     "title": "Community"
                 },
@@ -11850,6 +12406,7 @@
                     "legend": {
                         "showHeader": true,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -11867,20 +12424,25 @@
                         "chartsPerLine": 4
                     },
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "normalize": false,
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Customer_KPI_Type_1",
                     "dimensionAxis": {
                         "showTitle": false,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -11894,6 +12456,7 @@
                     "legend": {
                         "showHeader": true,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -11911,20 +12474,25 @@
                         "chartsPerLine": 4
                     },
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "normalize": false,
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Product_category_KPI_1",
                     "dimensionAxis": {
                         "showTitle": false,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -11938,6 +12506,7 @@
                     "legend": {
                         "showHeader": true,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -11955,20 +12524,25 @@
                         "chartsPerLine": 4
                     },
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "normalize": false,
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Channel_KPI_Type_1",
                     "dimensionAxis": {
                         "showTitle": false,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -11991,6 +12565,7 @@
                     "legend": {
                         "showHeader": true,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -12008,20 +12583,25 @@
                         "chartsPerLine": 4
                     },
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "normalize": false,
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Sales_region_KPI_Type_2",
                     "dimensionAxis": {
                         "showTitle": false,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -12035,6 +12615,7 @@
                     "legend": {
                         "showHeader": true,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -12052,20 +12633,25 @@
                         "chartsPerLine": 4
                     },
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "normalize": false,
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": false,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "KPI_Type_X4P_5P_6P_1",
                     "dimensionAxis": {
                         "showTitle": false,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -12079,7 +12665,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "SKU_70",
                     "title": "SKU (Material Description)"
                 },
@@ -12191,9 +12776,30 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -12210,20 +12816,26 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Leverage KPI (%)"
+                        "title": "Leverage KPI (%)",
+                        "referenceLine": null
                     },
                     "step": "KPI_Type_53",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -12348,7 +12960,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Store_type_49",
                     "title": "Store Type"
                 },
@@ -12361,6 +12972,7 @@
                     "legend": {
                         "showHeader": true,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
                         "inside": false
                     },
@@ -12378,20 +12990,25 @@
                         "chartsPerLine": 4
                     },
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "normalize": true,
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "referenceLine": null
                     },
                     "step": "CustomerMobile_KPI_Type_84",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
                         "title": ""
                     }
@@ -12418,6 +13035,7 @@
             },
             "comparetable_scoreCountry": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "mobile_scoreCountry"
                 },
@@ -12446,6 +13064,7 @@
             },
             "comparetable_mobileCOTC": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "compare_mobileCOTC"
                 },
@@ -12467,25 +13086,25 @@
             "id": "0Fb2C000000GmykSAC",
             "label": "PS_OVERALL_COMPLIANCE_LV",
             "name": "PS_OVERALL_COMPLIANCE_LV",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmykSAC"
+            "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmykSAC"
         },
         {
             "id": "0Fb2C000000Gmz9SAC",
             "label": "PRODUCT_SCORE",
             "name": "PRODUCT_SCORE",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+            "url": "/services/data/v39.0/wave/datasets/0Fb2C000000Gmz9SAC"
         },
         {
             "id": "0Fb2C000000GmzESAS",
             "label": "PRODUCT_COMPLIANCE",
             "name": "PRODUCT_COMPLIANCE",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+            "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzESAS"
         },
         {
             "id": "0Fb2C000000GmzxSAC",
             "label": "SUMMARY_OUTLET_VIEW",
             "name": "SUMMARY_OUTLET_VIEW",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzxSAC"
+            "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmzxSAC"
         }
     ]
 }
