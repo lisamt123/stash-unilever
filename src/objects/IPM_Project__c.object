@@ -1415,6 +1415,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
                 <fullName>Premium</fullName>
                 <default>false</default>
                 <controllingFieldValues>Oral Care</controllingFieldValues>
+				<controllingFieldValues>UFS Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Super Premium</fullName>
@@ -1489,6 +1490,93 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
                 <fullName>Other</fullName>
                 <default>false</default>
                 <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Chains</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Dressings</controllingFieldValues>
+				<controllingFieldValues>UFS Savoury</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Expand Salad Dressings</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Dressings</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Trusted Core</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Dressings</controllingFieldValues>
+				<controllingFieldValues>UFS Spreads</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Win with Condiments FOH</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Dressings</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Accelerate the Core</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Savoury</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Exploit World Cuisine</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Savoury</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Get close to scratch cooking</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Savoury</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Penetrate Asian top dishes</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Savoury</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Dairy Free</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Spreads</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Like Dairy</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Spreads</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Core Double Chamber</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Core Pyramid</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Fresh Brew Iced Tea</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>New Tea Experiences</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Desserts - Create</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Other Foods</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Desserts - Finish</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Other Foods</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Desserts - Make</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Other Foods</controllingFieldValues>
             </picklistValues>
             <restrictedPicklist>false</restrictedPicklist>
             <sorted>false</sorted>
@@ -4740,6 +4828,74 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
                 <fullName>Win with strong brands</fullName>
                 <default>false</default>
             </values>
+			<values>
+                <fullName>Chains</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Expand Salad Dressings</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Trusted Core</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Win with Condiments FOH</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Accelerate the Core</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Exploit World Cuisine</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Get close to scratch cooking</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Penetrate Asian top dishes</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Dairy Free</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Like Dairy</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Core Double Chamber</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Core Pyramid</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Fresh Brew Iced Tea</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>New Tea Experiences</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Desserts - Create</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Desserts - Finish</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Desserts - Make</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -5550,6 +5706,74 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
             </values>
             <values>
                 <fullName>Win with strong brands</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Chains</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Expand Salad Dressings</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Trusted Core</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Win with Condiments FOH</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Accelerate the Core</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Exploit World Cuisine</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Get close to scratch cooking</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Penetrate Asian top dishes</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Dairy Free</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Like Dairy</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Core Double Chamber</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Core Pyramid</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Fresh Brew Iced Tea</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>New Tea Experiences</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Desserts - Create</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Desserts - Finish</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Desserts - Make</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
