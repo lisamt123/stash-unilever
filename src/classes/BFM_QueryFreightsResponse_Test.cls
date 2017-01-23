@@ -96,7 +96,6 @@ public class BFM_QueryFreightsResponse_Test{
          wrapse1.shippingType='szdd';
          wrapse1.warehouse='xrew';
          wrapse1.otmShipment='pqn';
-         //wrapse1.distance=123;
-        
+         //wrapse1.distance=123;        
     }
 }
