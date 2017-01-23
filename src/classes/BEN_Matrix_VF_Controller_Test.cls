@@ -27,7 +27,8 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         List<User> user = [Select Name, email, username from User where username = 'firstuserdb@test.com'];
         
         if(checkEmpty(user)){
-            testUser = new User(username='firstuserdb100@test.com',
+            
+           testUser = new User(username='firstuserdb100@test.com',
                                 alias = 'fu',
                                 email ='firstuser100@test.com',
                                 emailencodingkey = 'UTF-8',
@@ -51,41 +52,36 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         }else
             CategoryMaster = catMaster.get(0);
         System.debug('Test BEN_Category_Master__c  : '+ CategoryMaster);
+        List<Group> beverageGrpMap = [SELECT Id,DeveloperName,(SELECT Id, UserOrGroupId FROM GroupMembers) FROM Group Where Type='Queue' and Name like 'BEN_%Beverages%'];
+        List<Group> GPLgrpMap = [SELECT Id,DeveloperName,(SELECT Id, UserOrGroupId FROM GroupMembers) FROM Group Where Type='Queue' and Name like 'BEN_%GPL%'];
         
-        Group testGroup = new Group(Name='BEN_Beverages123', Type='Queue');
-        insert testGroup;
+        System.debug('beverageGrpMap & GPLgrpMap  : ' +beverageGrpMap +GPLgrpMap );
+        Group beveragesGroup = beverageGrpMap.get(0);
+        Group GPLGroup = GPLgrpMap.get(0);
         
-        System.runAs(new User(Id=UserInfo.getUserId())){
-            QueuesObject testQueue = new QueueSObject(QueueID = testGroup.id, SObjectType = 'Case');
-            insert testQueue;
-            GroupMember GM = new GroupMember();
-            GM.GroupId = testGroup.Id;
-            GM.UserOrGroupId = UserInfo.getUserId();
-            insert gm;
-        }
+         System.runAs(new User(Id=UserInfo.getUserId())){
+         GroupMember beveragesGM = new GroupMember();
+         beveragesGM.GroupId = beveragesGroup.Id;
+         beveragesGM.UserOrGroupId = testUser.Id;
+        insert beveragesGM;
         
-        BEN_CategoryDetails__c bcd = new BEN_CategoryDetails__c();
-        bcd.Name = 'Beverages123';
-        bcd.QueueId__c = testGroup.Id;
-        insert bcd;
-        
-                
-         Group testGroup2 = new Group(Name='BEN_GPL', Type='Queue');
-        insert testGroup2;
-        
-        System.runAs(new User(Id=UserInfo.getUserId())){
-            QueuesObject testQueue2 = new QueueSObject(QueueID = testGroup2.id, SObjectType = 'Case');
-            insert testQueue2;
-            GroupMember GM = new GroupMember();
-            GM.GroupId = testGroup2.Id;
-            GM.UserOrGroupId = UserInfo.getUserId();
-            insert gm;
+        GroupMember GPLGM = new GroupMember();
+         GPLGM.GroupId = GPLGroup.Id;
+         GPLGM.UserOrGroupId = UserInfo.getUserId();
+        insert GPLGM;
         }
         
         BEN_CategoryDetails__c bcd2 = new BEN_CategoryDetails__c();
-        bcd2.Name = 'Beveragesabcd';
-        bcd2.QueueId__c = testGroup.Id;
+        bcd2.Name = 'Beverages';
+        bcd2.QueueId__c = beveragesGroup.Id;
         insert bcd2;
+        
+        System.debug('Beverages User ID : '+testUser.id);
+        System.debug('Admin USerID  : '+UserInfo.getUserId());
+        
+        
+        System.debug('Query to find Beveragesuser aadded to Queue  : '+[SELECT Id, UserOrGroupId FROM GroupMember Where GroupID = :beveragesGroup.ID]);
+        System.debug('Query to find GPLuser aadded to Queue  : '+[SELECT Id, UserOrGroupId FROM GroupMember Where GroupID = :GPLGroup.Id]);
         
         init();
     }
@@ -283,53 +279,27 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         Test.startTest();
         controller = new BEN_Matrix_VF_controller();
         
+        /*
         List<BEN_Category_Details__c> listToUpdate = new List<BEN_Category_Details__c>();
         for(Integer j=0 ; j<10 ; j++){
             BEN_Category_Details__c cd = insertedCatDetails.get(j);
         cd.In_Approval__c=true;
         cd.pkl_Status__c= 'Approved';
-        cd.bln_Flag_for_Retest__c=true;  
+        //cd.bln_Flag_for_Retest__c=true;  
             listToUpdate.add(cd);
         }
         
         Database.update(listToUpdate, true);
+        */
         
+        BEN_Category_Details__c cd = insertedCatDetails.get(0);
+         cd.In_Approval__c=true;
+        cd.pkl_Status__c= 'Approved';
+        Database.update(cd, true);
         
-        System.debug(' Total inserted records After Update records  : '+ listToUpdate.size() + ' recods are   : ' + listToUpdate);
-        System.debug(' Total inserted records After Update records  Quried : '+ [Select Id, pkl_Status__c from BEN_Category_Details__c Where Id IN :listToUpdate]);
-        
-        Approval.ProcessWorkitemRequest[] prWkItems = New Approval.ProcessWorkItemRequest[]{};
-            //Reject the record
-            ProcessInstance[] pi = [Select ID, Status, TargetObject.Name, 
-                (SELECT Id, ActorId, ProcessInstanceId FROM Workitems),
-                (SELECT Id, StepStatus, Comments FROM Steps) From ProcessInstance 
-                Where TargetObjectID IN :listToUpdate AND Status = 'Pending'];
-               
-            System.debug('TOtal ProcessInstance  with Status = pending  : '+ pi.size()+ ' records ' +  pi);
-                   
-            for(ProcessInstance instance : pi){
-      
-                for(ProcessInstanceWorkItem workItem : instance.WorkItems){
-                  
-                    Approval.ProcessWorkitemRequest prWkItem = new Approval.ProcessWorkitemRequest();
-                    
-                    prWkItem.setWorkItemID(workItem.id);
-                    prWkItem.setComments('Request Canceled by User: ' + userInfo.getName());
-                    prWkItem.setAction('Approve');
-                    prWkItems.add(prWkItem);
-                  
-                }
-            }          
-            
-            if(!prWkItems.isEmpty()){
-                
-                Approval.ProcessResult[] appResult = Approval.process(prWkItems);
-                
-                System.debug('TOtal Approved records  : '+ appResult.size()+ ' records ' +  appResult);
-            }
-        
-        
-        
+        //System.debug(' Total inserted records After Update records  : '+ listToUpdate.size() + ' recods are   : ' + listToUpdate);
+        //System.debug(' Total inserted records After Update records  Quried : '+ [Select Id, pkl_Status__c from BEN_Category_Details__c Where Id IN :listToUpdate]);
+       
         //pageRef = Page.BEN_Matrix3cross3_Report;    
         //Test.setCurrentPage(pageRef);
         controller.fromYearVal = '2009';
