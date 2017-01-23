@@ -74,38 +74,7 @@ Throws : N/A
         try{
             /*Remove namespace from the custom fields.*/ 
             //content=content.replace('ACCL__UL_','UL_');
-            
-            content=content.replace('ACCL__UL_Brand__c','UL_Brand__c');
-            content=content.replace('ACCL__UL_Cannibalisation_Override__c','UL_Cannibalisation_Override__c');  
-            content=content.replace('ACCL__UL_Category__c','UL_Category__c');      
-            content=content.replace('ACCL__UL_Account__c','UL_Account__c');
-            content=content.replace('ACCL__Account__c','Account__c')  ;  
-            content=content.replace('ACCL__UL_Current_Status__c','UL_Current_Status__c');    
-            content=content.replace('ACCL__UL_Delivery_Profile__c','UL_Delivery_Profile__c');   
-            content=content.replace('ACCL__UL_Feature__c','UL_Feature__c');    
-            content=content.replace('ACCL__UL_Free_Text__c','UL_Free_Text__c');
-            content=content.replace('ACCL__UL_Front_Margin__c','UL_Front_Margin__c');
-            content=content.replace('ACCL__UL_IIBB_Tax__c','UL_IIBB_Tax__c');
-            content=content.replace('ACCL__UL_Lift__c','UL_Lift__c');
-            content=content.replace('ACCL__UL_Mechanic__c','UL_Mechanic__c');
-            content=content.replace('ACCL__UL_Next_Status__c','UL_Next_Status__c');
-            content=content.replace('ACCL__UL_Post_Dip_End_Date__c','UL_Post_Dip_End_Date__c');
-            content=content.replace('ACCL__UL_Pre_Evaluation_Comment__c','UL_Pre_Evaluation_Comment__c');
-            content=content.replace('ACCL__UL_Primary_Objective__c','UL_Primary_Objective__c');
-            content=content.replace('ACCL__UL_Promotion_Name__c','UL_Promotion_Name__c');
-            content=content.replace('ACCL__UL_Promotion_Type__c','UL_Promotion_Type__c');
-            content=content.replace('ACCL__UL_Sales_Organization__c','UL_Sales_Organization__c');
-            content=content.replace('ACCL__UL_Secondary_Objective__c','UL_Secondary_Objective__c');
-            content=content.replace('ACCL__UL_Sharing_Type_Form__c','UL_Sharing_Type_Form__c');
-            content=content.replace('ACCL__UL_Sharing_Type_Txt__c','UL_Sharing_Type_Txt__c');
-            content=content.replace('ACCL__UL_Sub_Mechanic__c','UL_Sub_Mechanic__c');
-            content=content.replace('ACCL__UL_Volume_Type__c','UL_Volume_Type__c');
-            content=content.replace('ACCL__UL_Cannibalisation_Rate__c','UL_Cannibalisation_Rate__c');
-            content=content.replace('ACCL__UL_ThresholdViolated__c','UL_ThresholdViolated__c');
-            content = content.replace('ACCL__UL_Threshold_Window_Result__c','UL_Threshold_Window_Result__c');
-            content = content.replace('ACCL__UL_Threshold_Result__c','UL_Threshold_Result__c');
-            content = content.replace('ACCL__UL_WorkflowState__c','UL_WorkflowState__c');
-            content = content.replace('ACCL__UL_Promotion_Content__c','UL_Promotion_Content__c');
+             
             
             Map<String, Object> tacticDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(content);
             string contentTarget = (string) tacticDeserializedMap.get(UtilityEnum.target.Name());
@@ -254,7 +223,7 @@ Throws : N/A
                 
                 if(!THViolate){
                 UL_PromotionWorkflowService.submitForApproval(promoId,promoLst,promoLst[0].createdby.UL_Finance_Manager__c,false) ;
-                    if(!THViolate && promoLst[0].UL_Threshold_Window_Result__c != null){
+                    if(!THViolate){
                         do{ 
                             apprFuncRet = UL_PromotionWorkflowService.approveWorkflow(promoId,promoLst,null,false) ;
                             promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name,CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c,  ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;        
