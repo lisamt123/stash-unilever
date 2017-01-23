@@ -71,7 +71,39 @@
 	    <runTest>BFM_QueryOccurrencesRequest_Test</runTest>
 		<runTest>BFM_QueryOccurrencesResponse_Test</runTest>
 		<runTest>BFM_UpdateFreightDataRequest_Test</runTest>
+		<runTest>BFM_AccountDAO_Test</runTest>
+		<runTest>BFM_AccountMoreDetailsController_Test</runTest>
+		<runTest>BFM_AccountSharer_Test</runTest>
+		<runTest>BFM_BulkOccurrenceQuery_Test</runTest>
+		<runTest>BFM_CommunitiesSelfRegController_CC_Test</runTest>
+		<runTest>BFM_CPFValidator_Test</runTest>
+		<runTest>BFM_CreateAccessRequest_test</runTest>
+		<runTest>BFM_CreateCarrierUser_Test</runTest>
+		<runTest>BFM_CreateContactFromEmail_Test</runTest>
+		<runTest>BFM_CreateUserQueueable_Test</runTest>
+		<runTest>BFM_GeneralServiceCalls_Test</runTest>
+		<runTest>BFM_LoginuserPermissions_Test</runTest>
+		<runTest>BFM_NFEHandler_Test</runTest>
+		<runTest>BFM_OccurrenceHandler_Test</runTest>
+		<runTest>BFM_QueryFreightsTest</runTest>
+		<runTest>BFM_QueryFreightsResponse_Test</runTest>
+		<runTest>BFM_QueryOccurrenceTest</runTest>
+		<runTest>BFM_SearchOccurrenceController_CC_Test</runTest>
+		<runTest>BFM_SearchShipmentController_CCTest</runTest>
+		<runTest>BFM_SendEmailToCarrierApproverTest</runTest>
+		<runTest>BFM_ShipmentHandlerTest</runTest>
+		<runTest>BFM_ShipmentUpdate_CCTest</runTest>
+		<runTest>BFM_ShipmentDocumentGeneration_Test</runTest>
+		<runTest>BFM_TriggerFactory_Test</runTest>
+		<runTest>BFM_TestUtils</runTest>
+		<runTest>BFM_MockHttpResponse</runTest>
+		<runTest>BFM_UpdateFreightData_Test</runTest>
 		<runTest>BFM_UpdateFreightDataResponse_Test</runTest>
+		<runTest>BFM_UpdateUserRequestQueueable_Test</runTest>
+		<runTest>BFM_UserCreationAssignPermissions_Test</runTest>
+		<runTest>BFM_UserCreationPostProcessing_Test</runTest>
+		<runTest>BFM_UserCreationRequestAttachment_Test</runTest>
+		<runTest>BFM_UserCreationRequestHandler_Test</runTest>
     </sf:deploy>
   </target>  
 

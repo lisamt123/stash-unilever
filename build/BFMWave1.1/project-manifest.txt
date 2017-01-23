@@ -143,6 +143,8 @@ src/classes/BFM_UserCreationPostProcessing_Test.cls
 src/classes/BFM_UserCreationPostProcessing_Test.cls-meta.xml
 src/classes/BFM_UserCreationRequestAttachmentCheck.cls
 src/classes/BFM_UserCreationRequestAttachmentCheck.cls-meta.xml
+src/classes/BFM_UserCreationRequestAttachment_Test.cls
+src/classes/BFM_UserCreationRequestAttachment_Test.cls-meta.xml
 src/classes/BFM_UserCreationRequestHandler.cls
 src/classes/BFM_UserCreationRequestHandler.cls-meta.xml
 src/classes/BFM_UserCreationRequestHandler_Test.cls
