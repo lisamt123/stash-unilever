@@ -30,11 +30,11 @@ public class WWP_LossTree_CC21_Test {
         insert pcuser;
         */
         
-        List<WWP_LossTree__c> ltreesetting = new List<WWP_LossTree__c>();
-        WWP_LossTree__c setting1 = new WWP_LossTree__c();
-        WWP_LossTree__c setting2 = new WWP_LossTree__c();
-        WWP_LossTree__c setting3 = new WWP_LossTree__c();
-        WWP_LossTree__c setting4 = new WWP_LossTree__c();
+        List<WWP_LossTree_Suppliers__c> ltreesetting = new List<WWP_LossTree_Suppliers__c>();
+        WWP_LossTree_Suppliers__c setting1 = new WWP_LossTree_Suppliers__c();
+        WWP_LossTree_Suppliers__c setting2 = new WWP_LossTree_Suppliers__c();
+        WWP_LossTree_Suppliers__c setting3 = new WWP_LossTree_Suppliers__c();
+        WWP_LossTree_Suppliers__c setting4 = new WWP_LossTree_Suppliers__c();
         setting1.name='OR1';
         setting1.Loss_Type__c=oRString ;
         setting1.Loss_Name__c=ORName1;
@@ -84,7 +84,7 @@ public class WWP_LossTree_CC21_Test {
         WWP_LossTree_CC21 wwp = new WWP_LossTree_CC21();
         
         wwp.lossTree.Loss_Type__c = 'Supplier OTIF';
-        wwp.lossTree.Ultimate_Supplier_code__c = B;
+       wwp.lossTree.Ultimate_Supplier_code__c = B;
         wwp.listSAPcodedesc ='hhhh';
         wwp.selectedplantdescription = 'gg';
         wwp.selectedcountrydescription = 'jj';
@@ -135,7 +135,7 @@ public class WWP_LossTree_CC21_Test {
         
         
        
-        //wwp.copyline();
+        wwp.copyline();
         
         
         

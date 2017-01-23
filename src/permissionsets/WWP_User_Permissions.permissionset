@@ -296,6 +296,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Updated_field_otif__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>WWP_Loss_Tree__c.Week__c</field>
         <readable>true</readable>
@@ -345,5 +350,9 @@
     <tabSettings>
         <tab>LossTree_Supplier</tab>
         <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Loss_Tree</tab>
+        <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>

@@ -123,12 +123,11 @@
         <fullName>GR_Date__c</fullName>
         <externalId>false</externalId>
         <label>GR Date</label>
-        <precision>18</precision>
+        <length>255</length>
         <required>false</required>
-        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -874,10 +873,12 @@
         <fullName>PO_Delivery_Date_as_per_Current_PO__c</fullName>
         <externalId>false</externalId>
         <label>PO Delivery Date as per Current PO</label>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Date</type>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PO_Line_Item_Number__c</fullName>
@@ -1149,17 +1150,21 @@
         <fullName>Ultimate_Supplier_code__c</fullName>
         <externalId>false</externalId>
         <label>Ultimate Supplier code</label>
-        <picklist>
-            <picklistValues>
-                <fullName>hhhh</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Updated_field_otif__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Updated field_otif</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Week__c</fullName>

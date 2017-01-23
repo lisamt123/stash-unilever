@@ -219,7 +219,7 @@
     </rules>
     <rules>
         <fullName>WWP update Loss updated in sfdc for OTIF</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>WWP_Loss_Tree__c.Loss_Level1_Code__c</field>
             <operation>notEqual</operation>
@@ -261,6 +261,11 @@
         <criteriaItems>
             <field>WWP_Loss_Tree__c.Loss_Description__c</field>
             <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WWP_Loss_Tree__c.Loss_Type__c</field>
+            <operation>notEqual</operation>
+            <value>Supplier OTIF</value>
         </criteriaItems>
         <triggerType>onAllChanges</triggerType>
     </rules>
@@ -377,20 +382,6 @@
             <value>0</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>WWP_lostree_remarkfield_validate</fullName>
-        <actions>
-            <name>WWP_Lossupdate_in_sfdc_true</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>WWP_Loss_Tree__c.Remarks__c</field>
-            <operation>equals</operation>
-            <value>above target</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>WWP_populate Lasmodified planner email</fullName>
