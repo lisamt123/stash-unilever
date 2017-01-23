@@ -4080,7 +4080,6 @@ Id=VLOOKUP
         <fullName>UL_PastDated_Urgent_Promotion_Validation</fullName>
         <active>true</active>
         <description>Past Dated validation rule</description>
-        <errorConditionFormula>IF(ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Past Dated/Urgent&apos;)&amp;&amp;(ACCL__Date_From__c &gt;= TODAY() || ACCL__Date_Thru__c &lt;= TODAY()),TRUE,FALSE )</errorConditionFormula>
         <errorConditionFormula>IF( NOT(ISPICKVAL( $User.ACCL__Sales_Org__c , &apos;UK SO&apos;)) &amp;&amp; ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Past Dated/Urgent&apos;)&amp;&amp;(ACCL__Date_From__c &gt;= TODAY() || ACCL__Date_Thru__c &lt;= TODAY()),TRUE,FALSE )</errorConditionFormula>
         <errorDisplayField>ACCL__Active__c</errorDisplayField>
         <errorMessage>From date must be in the past, Thru date must be in the future for Past Dated/Urgent Promotion</errorMessage>
