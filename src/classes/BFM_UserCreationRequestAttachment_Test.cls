@@ -37,7 +37,7 @@ public class BFM_UserCreationRequestAttachment_Test {
         for(Id idRequestUpdated: newMap.keySet()){
       if(!requestsWithAttachments.contains(idRequestUpdated) && oldMap.get(idRequestUpdated).Request_Approved__c == false
                && newMap.get(idRequestUpdated).Request_Approved__c == true){
-                   newMap.get(idRequestUpdated).addError(Label.BFM_Approval_No_Attachment_Found);
+                   newMap.get(idRequestUpdated).addError('Attachment for approve');
             }
         }
     }
