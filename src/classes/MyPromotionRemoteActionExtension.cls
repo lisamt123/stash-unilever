@@ -364,7 +364,7 @@ Throws : N/A
             if(promoList[0].UL_PromotionTemplateType__c == 'LTA'){
                 //for(List<ACCL__Promotion__c> promList : [SELECT Id, ACCL__Promotion_Template__r.Name FROM ACCL__Promotion__c WHERE ACCL__Promotion_Template__r.Name = 'LTA - Long Term Agreement AR01']){
                     EARUI promoObject = new EARUI();
-                    promoObject.Name = 'UL_Lift__c';
+                    promoObject.Name = 'Lift__c';
                     promoObject.Type = UtilityEnum.Attribute.Name();
                     promoObject.visible = false;
                     earBOPromotion.add(promoObject);
