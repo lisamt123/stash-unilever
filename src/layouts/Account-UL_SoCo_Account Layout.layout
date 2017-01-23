@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -30,23 +31,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Industry</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>AnnualRevenue</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>ACCL__Account_Number__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ACCL__ExternalId__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>UL_Planning_Level_Rollup__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -64,23 +53,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Ownership</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NumberOfEmployees</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Sic</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Type</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>RecordTypeId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Global_Unique_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UL_Direct_Indirect_Flag__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Active__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -253,15 +238,17 @@
         <relatedList>RelatedAccountSalesTeam</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>UL_Planning_Level_Start_Date__c</fields>
-        <fields>UL_Planning_Level_End_Date__c</fields>
-        <fields>UL_Account__c</fields>
-        <relatedList>UL_Planning_Level__c.UL_Customer__c</relatedList>
+        <fields>ACCL__User__c</fields>
+        <fields>ACCL__Main__c</fields>
+        <fields>ACCL__Valid_From__c</fields>
+        <fields>ACCL__Valid_Thru__c</fields>
+        <relatedList>ACCL__Account_Manager__c.ACCL__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>ACCL__Account_Manager__c.ACCL__Account__c</relatedList>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__Promotion_Valid_From__c</fields>
+        <fields>ACCL__Promotion_Valid_Thru__c</fields>
+        <relatedList>ACCL__Account_Extension__c.ACCL__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -291,40 +278,6 @@
         <relatedList>ACCL__Account_Trade_Org_Hierarchy__c.ACCL__Child_Account__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>ACCL__Record_Link__c</fields>
-        <fields>ACCL__Promotion_Valid_From__c</fields>
-        <fields>ACCL__Promotion_Valid_Thru__c</fields>
-        <relatedList>ACCL__Account_Extension__c.ACCL__Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>ACCL__Account_Bill_To__c.ACCL__Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>TASK.SUBJECT</fields>
-        <fields>TASK.WHO_NAME</fields>
-        <fields>TASK.WHAT_NAME</fields>
-        <fields>ACTIVITY.TASK</fields>
-        <fields>TASK.DUE_DATE</fields>
-        <fields>TASK.STATUS</fields>
-        <fields>TASK.PRIORITY</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <relatedList>RelatedActivityList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>TASK.SUBJECT</fields>
-        <fields>TASK.WHO_NAME</fields>
-        <fields>TASK.WHAT_NAME</fields>
-        <fields>ACTIVITY.TASK</fields>
-        <fields>TASK.DUE_DATE</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <fields>TASK.LAST_UPDATE</fields>
-        <relatedList>RelatedHistoryList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedNoteList</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>NAME</fields>
         <fields>ACCL__Description__c</fields>
         <fields>ACCL__Fund_Template__c</fields>
@@ -350,32 +303,8 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>UL_Sales_Organization__c</fields>
-        <fields>UL_Product__c</fields>
-        <fields>UL_Cannibalisation_Rate__c</fields>
-        <fields>UL_Valid_From__c</fields>
-        <fields>UL_Valid_Thru__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>UL_Cannibalisation_Rate__c.UL_Customer__c</relatedList>
+        <relatedList>IIBBTax__c.Account__c</relatedList>
     </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>UL_Delivery_Profile_Name__c</fields>
-        <fields>UL_Product__c</fields>
-        <fields>UL_Valid_From__c</fields>
-        <fields>UL_Valid_Thru__c</fields>
-        <fields>UL_Sales_Organisation__c</fields>
-        <fields>CREATEDBY_USER</fields>
-        <relatedList>UL_Delivery_Profile__c.UL_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>UL_Workflow_Threshold__c.UL_Customer__c</relatedList>
-    </relatedLists>
-    <!--  <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>UL_IIBB_Tax__c.UL_Account__c</relatedList>
-    </relatedLists> -->
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
@@ -383,7 +312,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h58000001pUba</masterLabel>
+        <masterLabel>00h4C000000ZIGl</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
