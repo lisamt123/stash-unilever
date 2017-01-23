@@ -1,0 +1,318 @@
+.slds .flexContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.slds .calc-grid {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.slds .tpm-calc-grid {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .month-table {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+        width: 100%;
+        height: 26px;
+        max-height: 26px;
+        overflow: hidden;
+        border-bottom: 1px solid @border-color;
+        color: #333333;
+
+        .row {
+            display: inline-flex;
+            min-width: 100%;
+
+            .label-cell {
+                font-size: 1.2rem;
+                position: relative;
+                width: 20em;
+            }
+        }
+    }
+
+    .grid-table {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        .grid-header {
+            width: 100%;
+            padding-top: @medium-space;
+            padding-bottom: @medium-space;
+            font-size: 1.2rem;
+            font-weight: bold;
+
+            .grid-header-row {
+                display: inline-flex;
+                min-width: 100%;
+
+                .grid-header-label-cell {
+                    width: 230px;
+                }
+
+                .grid-header-cell {
+                    flex: 1 1;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    min-width: 100px;
+                    padding-left: 6px;
+                    padding-right: 6px;
+                    color: #54698d;
+                }
+            }
+        }
+
+        .grid-body {
+            width: 100%;
+            overflow: auto;
+            flex: 1 1 0;
+            flex-basis: 100%;
+
+            > :nth-child(odd) {
+                > div.level1-row {
+                    background-color: #f0f2f7;
+                }
+
+                .padder:nth-child(1) {
+                    background-color: #f0f2f7;
+                }
+
+                .padder:nth-child(2) {
+                    background-color: #EEF1F6;
+                    left: 15px;
+                }
+
+                .padder:nth-child(3) {
+                    background-color: #fff;
+                    left: 30px;
+                }
+
+                > :nth-child(2n+2) {
+                    > div.level2-row {
+                        background-color: #e1e3e8;
+                    }
+
+                    .padder:nth-child(2) {
+                        background-color: #e1e3e8;
+                        left: 15px;
+                    }
+                }
+
+                > :nth-child(2n+3) {
+                    > div.level2-row {
+                        background-color: #e9ebf0;
+                    }
+
+                    .padder:nth-child(2) {
+                        background-color: #e9ebf0;
+                        left: 15px;
+                    }
+                }
+            }
+
+            > :nth-child(even) {
+                > div.level1-row {
+                    background-color: #f7faff;
+                }
+
+                .padder:nth-child(1) {
+                    background-color: #f7faff;
+                }
+
+                .padder:nth-child(3) {
+                    background-color: #fff;
+                    left: 30px;
+                }
+
+                > :nth-child(2n+2) {
+                    > div.level2-row {
+                        background-color: #e1e3e8;
+                    }
+
+                    .padder:nth-child(2) {
+                        background-color: #e1e3e8;
+                        left: 15px;
+                    }
+                }
+
+                > :nth-child(2n+3) {
+                    > div.level2-row {
+                        background-color: #e9ebf0;
+                    }
+
+                    .padder:nth-child(2) {
+                        background-color: #e9ebf0;
+                        left: 15px;
+                    }
+                }
+            }
+        }
+
+        .row {
+            display: inline-flex;
+            min-width: 100%;
+            height: 38px;
+
+            .sub-row {
+                display: flex;
+            }
+
+            .padder {
+                width: @medium-space;
+                height: 38px;
+            }
+
+            .label-cell {
+                display: flex;
+                align-items: center;
+                padding-left: @small-space;
+                font-size: 14px;
+                position: relative;
+                color: #333333;
+
+                .handler {
+                    width: 14px;
+                    height: 14px;
+                    cursor: pointer;
+                    margin-right: @small-space;
+                }
+            }
+
+            .data-cell {
+                flex: 1 1;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                min-width: 100px;
+                font-size: 12px;
+                color: #333333;
+                padding-left: @small-space;
+                padding-right: @small-space;
+
+                .cellValue {
+                    float: right;
+                }
+
+                .editableValue {
+                    border-bottom: 1px dotted gray;
+                    font-style: normal;
+                }
+
+                .HighlightedCell {
+                    background-color: #ccc;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .kpi-row, .level1-row {
+        .label-cell {
+            width: 230px;
+        }
+
+        ~ statelesswrapper {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .tactic-row, .level2-row {
+        background-color: #EEF1F6;
+
+        .label-cell {
+            width: 218px;
+        }
+
+        ~ statelesswrapper {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .category-row, .level3-row {
+        background-color: #fff;
+
+        .label-cell {
+            width: 206px;
+            border-bottom: 1px solid @border-color;
+        }
+
+        ~ statelesswrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .data-cell {
+            border-bottom: 1px solid @border-color;
+        }
+    }
+
+    .product-row, .level4-row {
+        background-color: #fff;
+
+        .label-cell {
+            width: 194px;
+            border-bottom: 1px solid @border-color;
+        }
+
+        .data-cell {
+            border-bottom: 1px solid @border-color;
+        }
+    }
+}
+
+.slds .monthTracker {
+    height: 3px;
+    background-color: lightblue;
+
+}
+
+.slds .monthTrackerShown {
+    height: 3px;
+    background-color: @science-blue;
+    transition: left 0.15s ease-in-out;
+}
+
+.slds .HighlightedCell {
+    animation: target-fade 3s;
+    -webkit-animation: target-fade 3s;
+    -moz-animation: target-fade 3s;
+}
+
+@keyframes target-fade {
+    0% {
+        background-color: #0070d2;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+@-webkit-keyframes target-fade {
+    0% {
+        background-color: #0070d2;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+@-moz-keyframes target-fade {
+    0% {
+        background-color: #0070d2;
+    }
+    100% {
+        background-color: transparent;
+    }
+}

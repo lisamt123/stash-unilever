@@ -1,0 +1,11 @@
+[
+    {
+        "Name": "TestLabel",
+        "Value": "LabelContent"
+    },
+    {
+        "Name": "TestLabel2",
+        "Value": "Another Content"
+    }
+]
+

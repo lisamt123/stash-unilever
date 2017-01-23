@@ -1,0 +1,15 @@
+{
+	"PromotionPlanning":{
+		"PromotionPlanningPromotionEdit":{
+			"Label_Slogan":"Eslogan",
+			"Label_Promotion_Type":"Tipo de Promoción"
+		}
+	},
+	"PromotionPlanning":{
+		"PromotionOverview":{
+			"MarginChart":{
+				"Title":"Margen de la Promoción (USD)"
+			}
+		}
+	}
+}

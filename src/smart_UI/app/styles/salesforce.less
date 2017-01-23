@@ -1,0 +1,36 @@
+#contentWrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .bodyDiv {
+        flex: 1;
+        position: relative;
+
+        & > table.outer {
+            position: absolute;
+            height: 100%;
+
+            td.oRight {
+                display: -ms-flexbox;
+                height: 100%;
+                padding: 0;
+                position: relative;
+            }
+        }
+    }
+
+    .bPageFooter {
+        display: none;
+    }
+}
+
+.slds-dropdown:not(.slds-datepicker) {
+    width: 100%;
+    max-width: none;
+}
+
+.slds-dropdown--menu {
+    overflow: auto;
+    max-height: 9rem;
+}

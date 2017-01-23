@@ -1,0 +1,9 @@
+{
+  "locale": "en-EN",
+  "mode": "dev",
+  "sfuser": "sascha.stier@accenture.com.devorg007",
+  "sfloginurl": "",
+  "unsed": "https://login.salesforce.com",
+  "sfpwd": "Accenture2017!",
+  "metadataMock": false
+}
