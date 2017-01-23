@@ -1,0 +1,105 @@
+// Attachment Modal
+.slds-modal__header {
+
+    .slds-text-heading--medium {
+        color: @text-color-grey;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .slds-modal__close {
+        color: @white;
+    }
+}
+
+.ui-modal-carousel {
+    // Attachment Modal Main Picture
+    .ui-modal-carousel__container {
+        
+        overflow: visible;
+        
+        .ui-modal-carousel__picture {
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            height: 325px;
+        }
+
+        // Attachment Modal Thumbnails list 
+        .ui-modal-carousel__content {
+            background-color: @midnight-blue;
+            width: 100%;
+            height: auto;
+            padding: 3px 6px;
+
+            .ui-modal-carousel__list {
+                display: flex;
+                flex-direction: row;
+
+                .ui-modal-carousel__listItem {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 3px 0;
+                    text-align: center;
+
+                    & + .ui-modal-carousel__listItem {
+                        margin-left: 6px !important;
+                    }
+                    
+                    &:last-child {
+                        margin-right: 6px;
+                    }
+
+                    .ui-modal-carousel__thumbnail {
+                        width: 80px;
+                        height: 60px;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: center center;
+                        text-align: center;
+                        cursor: pointer;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        &.is-Selected {
+                            outline: 2px solid @azure-radiance;
+                            outline-offset: -2px;
+                        }
+
+                        &:hover {
+                            opacity: .8;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Attachment Modal Main Images Description 
+    .ui-modal-carousel__info {
+
+        .ui-modal-carousel__infoLabel {
+            font-size: 10px;
+            display: block;
+        }
+        
+        .ui-modal-carousel__infoInput {
+            margin-top: 6px;
+            padding: 0 .75rem .2rem;
+            font-size: 11px;
+            font-weight: normal;
+            border-bottom: 1px solid @border-color;
+        }
+    }
+}
+
+.slds-modal__footer--white {
+    background: @white;
+    padding: 12px 12px 24px 12px;
+    overflow-y: hidden;
+    text-align: left;
+}

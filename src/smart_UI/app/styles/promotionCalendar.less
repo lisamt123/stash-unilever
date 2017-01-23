@@ -1,0 +1,367 @@
+@label-column-width: 154px;
+
+.promotionCalendar {
+    height: 100%;
+
+    .header-buttons {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .new-button {
+            font-size: 14px;
+            align-items: center;
+        }
+    }
+
+    .calendarGrid {
+        position: relative;
+        flex: 1;
+        flex-direction: column;
+        display: flex;
+        background-color: white;
+
+        & > div {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .loading-container {
+            flex: 1 0 0;
+            padding-top: 12em;
+
+            .loading-content {
+                font-size: 2em;
+                margin-left: 1em;
+            }
+        }
+
+        .calendarGrid-months {
+            height: 36px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid @botticelli;
+
+            .calendar-months {
+                display: flex;
+                flex: 1;
+
+                & > div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 36px;
+                    font-size: 13px;
+                    font-weight: normal;
+                    text-transform: uppercase;
+                    color: @biscay;
+                    overflow:hidden;
+                    word-wrap: break-word;
+                    white-space: nowrap;
+                    &.month-current {
+                        color: @science-blue;
+                        font-weight: normal;
+                    }
+
+                    &.overflowMonth{
+                        justify-content: flex-start;
+                    }
+                }
+            }
+        }
+
+        .calendarGrid-container {
+            position: relative;
+            flex: 1 1 100%;
+
+            .calendarGrid-columns {
+                flex: 1;
+            }
+
+            .calendarGrid-content {
+                position: absolute;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                padding-bottom: 22px;
+            }
+        }
+
+        .label-column {
+            padding-left: 10px;
+            padding-right: 10px;
+            display: flex;
+            align-items: center;
+            width: @label-column-width;
+            font-size: 12px;
+            line-height: 14px;
+            color: @kashmir-blue;
+            font-weight: normal;
+            height: 100%;
+
+            .slogan-text {
+                width: 100%;
+            }
+        }
+
+        .slogan-tooltip {
+            background-color: @midnight-blue;
+            border-color: @midnight-blue;
+            border-radius: 2px;
+            color: #ffffff;
+            padding: @small-space;
+            padding-left: @medium-space;
+            word-wrap: break-word;
+
+            &::before {
+                background-color: @midnight-blue;
+            }
+        }
+
+        .promotion-row {
+            height: 38px;
+            width: 100%;
+            border-bottom: 1px solid @botticelli;
+
+            .label-column {
+                border-right: 1px solid @botticelli;
+            }
+        }
+        .promotion-bar {
+            position: relative;
+            height: 16px;
+            align-self: center;
+
+            .slds-popover {
+                width: 25rem;
+            }
+
+            .promotion-detail {
+                background-color: #f4f6f9;
+
+                &::before {
+                    background-color: #f4f6f9;
+                    z-index: 9;
+                }
+            }
+        }
+
+        .past-time {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: @label-column-width;
+            border-right: 2px dotted @science-blue;
+            background-color: rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+
+        .year-line {
+            position: absolute;
+            top: 0;
+            border-right: 2px solid @casper;
+        }
+
+        .calendar-legend {
+            height: 28px;
+            border-bottom: 1px solid @botticelli;
+            border-top: 1px solid @botticelli;
+
+            .scroll-left,
+            .scroll-right {
+                display: none;
+
+                .slds-button,
+                .slds-button {
+                    height: 100%;
+                    line-height: 1.5;
+                    margin: 0;
+                }
+            }
+
+            .calendar-legend-content {
+                display: block;
+                flex: 1;
+                overflow: hidden;
+                width: 100%;
+
+                .calendar-legend-text {
+                    align-items: center;
+                    color: @kashmir-blue;
+                    display: inline-block;
+                    font-size: 10px;
+                    font-weight: normal;
+                    line-height: 28px;
+                    margin: 0 8px;
+                }
+                .calendar-legend-circle {
+                    border-radius: 2px;
+                    display: inline-block;
+                    height: 10px;
+                    margin-right: 8px;
+                    width: 10px;
+                }
+            }
+        }
+
+        .calendar-weeks {
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: normal;
+            color: @kashmir-blue;
+            border-bottom: 1px solid @botticelli;
+
+            .label-column {
+                height: 22px;
+                border-right: 1px solid @botticelli;
+            }
+        }
+
+        .col-even {
+            background-color: white;
+        }
+
+        .col-odd {
+            background-color: rgba(238, 241, 246, 0.5); //Catskill White with 50% opacity
+        }
+
+        .month-week {
+            border-left: 1px solid @botticelli;
+        }
+
+        .prev-period {
+            position: absolute;
+            margin-left:-2em;
+
+        }
+        .next-period {
+            position: absolute;
+            right: 0;
+            background: white;
+            top: 0px;
+            height: 30px!important;
+        }
+    }
+
+    .side-panel {
+        min-width: 326px;
+        max-width: 326px;
+
+        .side-panel-header {
+            height: 60px;
+            font-weight: 300;
+            font-size: 16px;
+            color: @biscay;
+            display: flex;
+            align-items: center;
+
+            .back-arrow {
+                margin-left: auto;
+            }
+
+            .slds-button + .slds-button {
+                margin-left: auto;
+            }
+        }
+
+        .side-panel-body {
+            padding-top: 0;
+        }
+
+        .close-button {
+            color: @kashmir-blue;
+        }
+
+        .filter-title {
+            margin-top: 20px;
+            margin-bottom: @medium-space;
+            font-size: 13px;
+            font-weight: normal;
+            color: @kashmir-blue;
+            line-height: 13px;
+        }
+
+        .filter-popover {
+          .multiselection {
+            .slds-button {
+              font-size: .8125rem;
+              &:hover {
+                color: @endeavour;
+              }
+            }
+          }
+        }
+        .pill-panel {
+            .close-button {
+                .slds-button__icon {
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+        }
+
+        .add-filter {
+            margin-top: @small-space;
+            margin-left: 0;
+            font-size: 11px;
+            line-height: 12px;
+            color: @science-blue;
+            /*
+            display: flex;
+            align-items: center;
+            */
+
+            .slds-button__icon {
+                width: 6px;
+                height: 6px;
+                margin-right: @small-space;
+            }
+        }
+    }
+
+    .calendar-filter {
+        .filter-label {
+            font-size: 12px;
+            font-weight: normal;
+            color: @kashmir-blue;
+        }
+
+        .filter-value {
+            font-size: 13px;
+            font-weight: normal;
+            color: @biscay;
+            line-height: 15.6px;
+            min-height: 15.6px;
+        }
+
+        .close-button {
+            color: @kashmir-blue;
+        }
+    }
+}
+
+.new-promotion {
+    .slds-m-right--medium {
+        flex: 0 0 14%;
+    }
+
+    .new-promotion-label {
+        display: inline-block;
+        color: #54698d;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-right: 0.75rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .new-promotion-duration-input{
+        padding: 0;
+        text-align: center;
+    }
+}
+

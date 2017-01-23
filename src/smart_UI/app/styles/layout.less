@@ -1,0 +1,172 @@
+.vertical-flex {
+    flex-direction: column;
+    display: flex;
+    flex: 1
+}
+
+.graphSection {
+    display: flex;
+    height: 100%;
+    padding: 5px;
+    overflow-y: auto;
+}
+
+.master {
+    width: 30%;
+    padding: 1em;
+    flex: 1;
+}
+
+.detail {
+    flex: 3;
+    padding: 1em;
+}
+
+.tile-area {
+    padding: @medium-space;
+
+    .slds-col--padded-top {
+        padding-top: @small-space;
+    }
+
+    & > div:last-child {
+        margin-bottom: 12px;
+    }
+}
+
+.tile {
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: @medium-space;
+    border: 1px solid @border-color;
+    overflow-y: visible;
+    flex: 1 1 0;
+    position: relative;
+    height: 100%;
+}
+
+.tile.invalid .mask {
+    position: absolute;
+    width: 96%;
+    height: 85%;
+    z-index: 2;
+    text-align: center;
+    background-color: #ffffff;
+    opacity: 0.85;
+}
+
+.tile.invalid .slds-icon {
+    fill: @science-blue;
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    top: 45%;
+    left: 45%;
+}
+
+.tile .title {
+    font-weight: 400;
+    font-size: 18px;
+    color: @biscay;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.slds-col--padded {
+    padding-left: @medium-space;
+    padding-right: @medium-space;
+}
+
+.slds-col--padded-left {
+    padding-left: @medium-space;
+}
+
+.slds-col--padded-right {
+    padding-right: @medium-space;
+}
+
+.slds-col--padded-top {
+    padding-top: @medium-space;
+}
+
+.slds-m-top--small {
+    margin-top: @small-space !important;
+}
+
+.slds-m-top--medium {
+    margin-top: @medium-space !important;
+}
+
+.slds-m-top--large {
+    margin-top: @large-space !important;
+}
+
+.slds-m-bottom--small {
+    margin-bottom: @small-space !important;
+}
+
+.slds-m-bottom--medium {
+    margin-bottom: @medium-space !important;
+}
+
+.slds-m-bottom--large {
+    margin-bottom: @large-space !important;
+}
+
+.slds-p-around--medium {
+    padding: @medium-space !important;
+}
+
+.margin-large.slds-button {
+    margin-left: @large-space;
+}
+
+.margin-medium.slds-button {
+    margin-left: @medium-space;
+}
+
+.margin-small.slds-button {
+    margin-left: @small-space;
+}
+
+.margin-large > .slds-button {
+    margin-left: @large-space;
+}
+
+.margin-medium > .slds-button {
+    margin-left: @medium-space;
+}
+
+.margin-small > .slds-button {
+    margin-left: @small-space;
+}
+
+.margin-large > .slds-dropdown {
+    margin-left: 12px;
+}
+
+.margin-medium > .slds-dropdown {
+    margin-left: 6px;
+}
+
+.margin-small > .slds-dropdown {
+    margin-left: 3px;
+}
+
+.overflow-visible {
+    overflow: visible;
+}
+
+.flex-grow {
+    flex: 1;
+}
+
+.slds-text--caps {
+    text-transform: uppercase;
+}
+
+.slds-button-noSpace-left {
+  margin-left: 0;
+}

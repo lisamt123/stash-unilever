@@ -63,7 +63,7 @@
     Returns: String
     Throws N/A
     ********************************************************************/
-    public static String getThresholdKPI(String txid, id promId, String mode){
+    public static void getThresholdKPI(String txid, id promId, String mode){
         
         List<KpiValueDescriptor> result = new List<KpiValueDescriptor>();
         Map<String,Object> postParameters = new Map<String,Object>();
@@ -101,7 +101,7 @@
             UL_Utility.logError(e, UserInfo.getUserId());
         }
         
-        return calculateThresholdViolate(result,promid,mode);
+        calculateThresholdViolate(result,promid,mode);
     }
     /*******************************************************************
     Purpose: Validates promotion KPIs
@@ -110,7 +110,7 @@
     Returns: String
     Throws N/A
     ********************************************************************/
-    public static string calculateThresholdViolate(List<KpiValueDescriptor> herokuPromKPI, id promId, String mode){
+    public static void calculateThresholdViolate(List<KpiValueDescriptor> herokuPromKPI, id promId, String mode){
         id nextApprover = null;
         id queueId;
         list<ACCL__Account_Manager__c> promotionCust = new list<ACCL__Account_Manager__c>();
@@ -126,7 +126,7 @@
         String approvalProcess=UL_Utility.EMPTY_STRING;
         Map<String, Double> promoKPIValueMap = new Map<String, Double>();
         MAX_ROWS = LIMITS.getLimitQueryRows()-LIMITS.getQueryRows();
-        list<ACCL__Promotion__c> promotionList = [select id,UL_Account__c,ACCL__Promotion_Template__c from ACCL__Promotion__c where id=:promId LIMIT :MAX_ROWS];
+        list<ACCL__Promotion__c> promotionList = [select id,UL_Account__c,ACCL__Promotion_Template__c,UL_Threshold_Window_Result__c, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c from ACCL__Promotion__c where id=:promId LIMIT :MAX_ROWS];
         set<id> workflowThreIds = new set<id>();
         
         MAX_ROWS = LIMITS.getLimitQueryRows()-LIMITS.getQueryRows();
@@ -194,7 +194,15 @@
                     break;
                 }
             }
-            if(mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.tolowerCase())){
+            for(ThresholdCheckResult res : thresholdcheck){
+                if(res.result==RESULT.fail.Name()){
+                   roleUser= res.userRole;
+                   thresholdviolate = true;
+                    
+                    break;
+                }
+            }
+          /*  if(mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.tolowerCase())){
                 ACCL__Promotion__c promobj = new ACCL__Promotion__c();
                 promobj.id = promId;
                 promobj.UL_Threshold_Result__c = thresholdRes;
@@ -207,19 +215,19 @@
                   throw new UL_CustomException('Error while promotion save-'+ex.getmessage());
                   UL_Utility.logError(ex, UserInfo.getUserId());
                 } 
-            }
+            } Commented as its not required */ 
         }
         if(thresholdviolate && !workflowThreIds.isEmpty() && !promoKPIValueMap.keySet().isempty() && mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.toUpperCase())){
         //call for only submittion
         listNextapprover = UL_PromotionWorkflowService.getApproverIds(promId,roleUser); 
         if(listNextapprover !=null && listNextapprover.isempty()){
-          throw new UL_CustomException('Finance analyst/managers not setup properly');
+          throw new UL_CustomException(label.UL_UserNotSetup);
         }
         queueId = UL_PromotionWorkflowService.addApproverstoQueue(promId,listNextapprover,'finance');
          UL_PromotionWorkflowService.submitForApproval(promId,promotionList,queueId,false);
-            thresholdStatus = UL_Utility.STATUS_SUBMITED.toLowerCase();
+            //thresholdStatus = UL_Utility.STATUS_SUBMITED.toLowerCase();
         }
-       return thresholdStatus; 
+       //return thresholdStatus; 
     }
     /***************************************************************
     Name: ThresholdCheckResult

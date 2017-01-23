@@ -1017,3 +1017,10 @@
         <shortDescription>Check atleast one dummy product on each tactic</shortDescription>
         <value>All Off-Invoice tactics must contain a dummy product</value>
     </labels>
+  <labels>
+        <fullName>UL_UserNotSetup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Users data not setup properly</shortDescription>
+        <value>Finance analyst/Finance managers not setup properly</value>
+    </labels>
