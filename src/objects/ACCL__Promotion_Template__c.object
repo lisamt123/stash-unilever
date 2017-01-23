@@ -685,6 +685,18 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>LTA_Days_Counter__c</fullName>
+        <defaultValue>TEXT(0)</defaultValue>
+        <description>Stores the max no of days to be considered between From and Thru Dates for LTA...</description>
+        <externalId>false</externalId>
+        <label>LTA Max Duration</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>Promotion Template</label>
     <listViews>
         <fullName>ACCL__All</fullName>
