@@ -4049,8 +4049,6 @@ Id=VLOOKUP
         <fullName>UL_LTA_Time_Period_of_Longer_Than_a_Year</fullName>
         <active>true</active>
         <description>(TPM 1759) - If a time period of longer than a year is defined within the date fields then a validation should be returned and the user is warned that a LTA cannot be created which is longer than one year.</description>
-        <errorConditionFormula>AND(ISPICKVAL( $User.ACCL__Sales_Org__c , &apos;UK SO&apos;),ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), YEAR( ACCL__Date_Thru__c ) &lt;&gt; YEAR( ACCL__Date_From__c ), (ACCL__Date_Thru__c - ACCL__Date_From__c) + 1 &gt; 365)</errorConditionFormula>
-        <errorMessage>A LTA cannot be created which is longer than one year.</errorMessage>
         <errorConditionFormula>AND(VALUE(ACCL__Promotion_Template__r.LTA_Days_Counter__c)  &lt;&gt; 0, ISPICKVAL( $User.ACCL__Sales_Org__c , &apos;UK SO&apos;),ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), (ACCL__Date_Thru__c - ACCL__Date_From__c) + 1 &gt; VALUE(ACCL__Promotion_Template__r.LTA_Days_Counter__c))</errorConditionFormula>
         <errorMessage>LTA duration is exceeding maximum permissible value</errorMessage>
     </validationRules>
