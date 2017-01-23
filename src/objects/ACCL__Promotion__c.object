@@ -382,11 +382,6 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Slogan__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
             <field>ACCL__Active__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -537,12 +532,17 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Slogan__c</field>
+            <field>ACCL__Active__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Active__c</field>
+            <field>UL_ThresholdViolated__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Parent_Promotion__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -692,11 +692,6 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Slogan__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
             <field>ACCL__Phase__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -723,6 +718,16 @@
         </displayedFields>
         <displayedFields>
             <field>ACCL__Delivery_Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Parent_Promotion__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_ThresholdViolated__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -847,17 +852,17 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Slogan__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
             <field>ACCL__Promotion_Template__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
             <field>ACCL__Phase__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Parent_Promotion__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -878,6 +883,11 @@
         </displayedFields>
         <displayedFields>
             <field>UL_Post_Dip_End_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_ThresholdViolated__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -1002,11 +1012,6 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Slogan__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
             <field>ACCL__Phase__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1027,12 +1032,22 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>ACCL__Parent_Promotion__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>UL_Front_Margin__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
             <field>UL_Post_Dip_End_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_ThresholdViolated__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -1154,6 +1169,36 @@
         <label>SoCo_Finance_Check</label>
     </fieldSets>
     <fieldSets>
+        <fullName>UL_SoCo_Hidden_Fields</fullName>
+        <description>To Hide UKI Specific fields for SoCo</description>
+        <displayedFields>
+            <field>UL_Cannibalisation_Rate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Cannibalisation_Override__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Market__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Brand__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Category__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>UL_SoCo_Hidden_Fields</label>
+    </fieldSets>
+    <fieldSets>
         <fullName>UL_SoCo_Manager_Check</fullName>
         <description>In promotion planning workflow when the promotion is in the Manager check status</description>
         <displayedFields>
@@ -1172,7 +1217,12 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Slogan__c</field>
+            <field>UL_ThresholdViolated__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Parent_Promotion__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -1327,11 +1377,6 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Slogan__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
             <field>ACCL__Active__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1357,12 +1402,22 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>UL_ThresholdViolated__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>ACCL__Order_Date_From__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
             <field>ACCL__Order_Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Parent_Promotion__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -1955,6 +2010,17 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Closed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>determines if the promotion is closed</description>
+        <externalId>false</externalId>
+        <inlineHelpText>determines if the promotion is closed</inlineHelpText>
+        <label>Closed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>UL_Current_Status__c</fullName>
@@ -3929,7 +3995,7 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <customTabListAdditionalFields>UL_Category__c</customTabListAdditionalFields>
         <listViewButtons>ACCL__Derive</listViewButtons>
         <listViewButtons>Copy</listViewButtons>
-        <listViewButtons>Close_Promotion</listViewButtons>
+        <listViewButtons>UL_Close_Promotion</listViewButtons>
         <lookupDialogsAdditionalFields>ACCL__Slogan__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCL__Promotion_Template__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCL__Date_From__c</lookupDialogsAdditionalFields>
@@ -4077,6 +4143,18 @@ Id=VLOOKUP
         <errorMessage>A Marketing Event can only be associated with a Customer at All Customers (top) level</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>UL_PastDated_Urgent_Promotion_Creation</fullName>
+        <active>true</active>
+        <description>Past Dated promotion creation validation rule</description>
+        <errorConditionFormula>IF(NOT(ISPICKVAL($User.ACCL__Sales_Org__c , &apos;UK SO&apos;)) 
+&amp;&amp; ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Past Dated/Urgent&apos;)
+&amp;&amp; NOT(CONTAINS(CreatedBy.UserRole.DeveloperName, &apos;Account_Manager&apos;))
+&amp;&amp; NOT(CONTAINS(CreatedBy.UserRole.DeveloperName, &apos;Finance_Admin&apos;))
+,TRUE,FALSE)</errorConditionFormula>
+        <errorDisplayField>ACCL__Active__c</errorDisplayField>
+        <errorMessage>Past Dated promotions can only be created by Account Manager and Finance Manager.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>UL_PastDated_Urgent_Promotion_Validation</fullName>
         <active>true</active>
         <description>Past Dated validation rule</description>
@@ -4121,31 +4199,6 @@ Id=VLOOKUP
         <requireRowSelection>true</requireRowSelection>
     </webLinks>
     <webLinks>
-        <fullName>Close_Promotion</fullName>
-        <availability>online</availability>
-        <displayType>massActionButton</displayType>
-        <linkType>javascript</linkType>
-        <masterLabel>Close</masterLabel>
-        <openType>onClickJavaScript</openType>
-        <protected>false</protected>
-        <requireRowSelection>true</requireRowSelection>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/21.0/connection.js&quot;)} 
-{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/apex.js&quot;)} 
-
-//Below ObjectType can be replaced by anyObject. I have used &quot;Test Name&quot;
-var records = {!GETRECORDIDS($ObjectType.ACCL__Promotion__c)};
-if (records[0] == null) { 
-   alert(&quot;{!$Label.Select_one_record}&quot;);
-} else { 
-   var opt = confirm(&quot;{!$Label.Close_Promotions_Confirmation}&quot;); 
-   if (opt == true) { 
-      var result = sforce.apex.execute(&quot;Promotions_SetClosed_Webservice&quot;,&quot;setPromotionsToClosed&quot;,{promotionIds:records}); 
-      alert(result); 
-      window.location.reload();
-   }
-}</url>
-    </webLinks>
-    <webLinks>
         <fullName>Copy</fullName>
         <availability>online</availability>
         <description>This is related to copy Promotions</description>
@@ -4174,6 +4227,31 @@ else {
 }
 else{
 alert(&quot;Access Denied&quot;);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>UL_Close_Promotion</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Close</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/21.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/apex.js&quot;)} 
+
+//Below ObjectType can be replaced by anyObject. I have used &quot;Test Name&quot;
+var records = {!GETRECORDIDS($ObjectType.ACCL__Promotion__c)};
+if (records[0] == null) { 
+   alert(&quot;{!$Label.Select_one_record}&quot;);
+} else { 
+   var opt = confirm(&quot;{!$Label.Close_Promotions_Confirmation}&quot;); 
+   if (opt == true) { 
+      var result = sforce.apex.execute(&quot;UL_PromotionClosure&quot;,&quot;closePromotionsWebservice&quot;,{promotionIds:records}); 
+      alert(result); 
+      //window.location.reload();
+   }
 }</url>
     </webLinks>
 </CustomObject>
