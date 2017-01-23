@@ -1,6 +1,7 @@
 {
     "label": "SEAA Pack Reports",
     "state": {
+        "dataSourceLinks": [],
         "gridLayouts": [
             {
                 "name": "desktop",
@@ -1447,6 +1448,7 @@
                         ]
                     }
                 ],
+                "rowHeight": "normal",
                 "selectors": [],
                 "style": {
                     "alignmentX": "left",
@@ -2536,6 +2538,7 @@
                         ]
                     }
                 ],
+                "rowHeight": "normal",
                 "selectors": [
                     "minWidth(320)",
                     "maxWidth(599)"
@@ -2560,7 +2563,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": true,
@@ -2673,7 +2676,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -2753,7 +2756,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -2925,7 +2928,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3073,7 +3076,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3104,7 +3107,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3135,7 +3138,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3295,7 +3298,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3326,7 +3329,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3357,7 +3360,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3437,7 +3440,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3517,7 +3520,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3597,7 +3600,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3745,7 +3748,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3913,7 +3916,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3944,7 +3947,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3975,7 +3978,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": true,
@@ -4088,7 +4091,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -4188,7 +4191,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": false,
@@ -4204,7 +4207,8 @@
                         [
                             "Date_of_audit_Year"
                         ]
-                    ]
+                    ],
+                    "filters": []
                 },
                 "selectMode": "single",
                 "start": [
@@ -4232,7 +4236,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": false,
@@ -4248,13 +4252,13 @@
                         "Date_of_audit_Month"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                },
-                "selectMode": "single"
+                }
             },
             "Product_category_SKU_1": {
                 "datasets": [
@@ -4262,7 +4266,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": true,
@@ -4876,7 +4880,8 @@
                 "visualizationParameters": {
                     "visualizationType": "comparisontable",
                     "options": {}
-                }
+                },
+                "selectMode": "single"
             },
             "Product_category_31": {
                 "datasets": [
@@ -4884,7 +4889,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -4915,7 +4920,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5063,7 +5068,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5094,7 +5099,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": false,
@@ -5115,7 +5120,8 @@
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                }
+                },
+                "selectMode": "single"
             },
             "Sales_region_63": {
                 "datasets": [
@@ -5123,7 +5129,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5154,7 +5160,7 @@
                         "id": "0Fb2C000000GmykSAC",
                         "label": "PS_OVERALL_COMPLIANCE_LV",
                         "name": "PS_OVERALL_COMPLIANCE_LV",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmykSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmykSAC"
                     }
                 ],
                 "isFacet": false,
@@ -5186,7 +5192,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5217,7 +5223,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5248,7 +5254,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5396,7 +5402,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5427,7 +5433,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5458,7 +5464,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5571,7 +5577,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5602,7 +5608,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5633,7 +5639,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5664,7 +5670,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5777,7 +5783,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5808,7 +5814,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": false,
@@ -5824,13 +5830,13 @@
                         "Date_of_audit_Year"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                },
-                "selectMode": "single"
+                }
             },
             "all_60": {
                 "datasets": [
@@ -5838,7 +5844,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5902,7 +5908,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": false,
@@ -5923,7 +5929,8 @@
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                }
+                },
+                "selectMode": "single"
             },
             "Field_Sales_Manager_73": {
                 "datasets": [
@@ -5931,7 +5938,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -5962,7 +5969,7 @@
                         "id": "0Fb2C000000GmyzSAC",
                         "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
                     }
                 ],
                 "isFacet": true,
@@ -6110,7 +6117,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -6141,7 +6148,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -6221,7 +6228,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -6252,7 +6259,7 @@
                         "id": "0Fb2C000000GmyuSAC",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+                        "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
                     }
                 ],
                 "isFacet": true,
@@ -6304,7 +6311,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "X4P_5P_6P_47",
                     "title": "Perfect Store Standard"
                 },
@@ -6362,7 +6368,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_category_31",
                     "title": "Product Category"
                 },
@@ -6402,7 +6407,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_division_30",
                     "title": "Product Division"
                 },
@@ -6416,7 +6420,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "vbar",
@@ -6434,19 +6439,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "NPD Score (%)"
+                        "title": "NPD Score (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "X4P_5P_6P_48",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -6458,7 +6489,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Top_Customer_70",
                     "title": "Top Customer"
                 },
@@ -6580,7 +6610,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Country_18",
                     "title": "Country"
                 },
@@ -6630,13 +6659,15 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "measureAxis1": {
-                        "showZero": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "visualizationType": "time",
                     "missingValue": "connect",
@@ -6645,7 +6676,8 @@
                     "timeAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "predictiveLine": null
                     },
                     "exploreLink": true,
                     "title": {
@@ -6657,6 +6689,15 @@
                         "enable": false,
                         "type": "xy",
                         "chartsPerLine": 4
+                    },
+                    "showZero": false,
+                    "axisMode": "multi",
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showAxis": true,
+                        "showTitle": true,
+                        "title": "",
+                        "referenceLine": null
                     }
                 },
                 "type": "chart"
@@ -6677,7 +6718,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_sector_53",
                     "title": "Product Sector"
                 },
@@ -6720,7 +6760,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -6738,19 +6779,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Pack Compliance (%)"
+                        "title": "Pack Compliance (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Customer_14",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -6771,7 +6838,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Local_Outlet_Name_67",
                     "title": "Outlet Name"
                 },
@@ -6803,13 +6869,15 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "measureAxis1": {
-                        "showZero": false,
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "visualizationType": "time",
                     "missingValue": "connect",
@@ -6818,7 +6886,8 @@
                     "timeAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "predictiveLine": null
                     },
                     "exploreLink": true,
                     "title": {
@@ -6830,6 +6899,15 @@
                         "enable": false,
                         "type": "x",
                         "chartsPerLine": 4
+                    },
+                    "showZero": false,
+                    "axisMode": "multi",
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showAxis": true,
+                        "showTitle": true,
+                        "title": "",
+                        "referenceLine": null
                     }
                 },
                 "type": "chart"
@@ -6860,7 +6938,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -6878,19 +6957,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Pack Compliance (%)"
+                        "title": "Pack Compliance (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Country_3",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -6903,7 +7008,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -6921,19 +7027,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "NPD Score (%)"
+                        "title": "NPD Score (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Country_39",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -6945,7 +7077,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Sales_territory_22",
                     "title": "Sales Territory"
                 },
@@ -6969,7 +7100,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Sales_area_23",
                     "title": "Sales Area"
                 },
@@ -6977,6 +7107,7 @@
             },
             "table_1": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Product_category_SKU_1"
                 },
@@ -6993,6 +7124,7 @@
             },
             "table_2": {
                 "parameters": {
+                    "customBulkActions": [],
                     "exploreLink": true,
                     "step": "Product_category_SKU_1"
                 },
@@ -7014,7 +7146,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Field_Execution_Manager_71",
                     "title": "Field Execution Manager"
                 },
@@ -7051,7 +7182,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_market_52",
                     "title": "Product Market"
                 },
@@ -7070,7 +7200,11 @@
                 "parameters": {
                     "instant": false,
                     "step": "Date_Year_Date_Month_14",
-                    "title": "Audit Date"
+                    "title": "Audit Date",
+                    "defaultAbsoluteMode": true,
+                    "defaultFiscalMode": false,
+                    "modeSwitchingAllowed": true,
+                    "calendarTypeSwitchingAllowed": false
                 },
                 "type": "dateselector"
             },
@@ -7081,7 +7215,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Product_brand_54",
                     "title": "Product Brand"
                 },
@@ -7095,7 +7228,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7113,19 +7247,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Pack Compliance (%)"
+                        "title": "Pack Compliance (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Product_category_10",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7147,7 +7307,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7165,19 +7326,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "NPD Score (%)"
+                        "title": "NPD Score (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Customer_13",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7189,7 +7376,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Customer_29",
                     "title": "Customer Name"
                 },
@@ -7202,7 +7388,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Channel_25",
                     "title": "Channel"
                 },
@@ -7233,7 +7418,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Store_Operations_Manager_72",
                     "title": "Store Operations Manager"
                 },
@@ -7302,7 +7486,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Subchannel_26",
                     "title": "Subchannel"
                 },
@@ -7407,7 +7590,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "City_21",
                     "title": "City"
                 },
@@ -7420,7 +7602,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Trade_Format_24",
                     "title": "Trade Format"
                 },
@@ -7434,7 +7615,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7452,19 +7634,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Pack Compliance (%)"
+                        "title": "Pack Compliance (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Channel_11",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7513,7 +7721,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "vbar",
@@ -7531,19 +7740,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Pack Compliance (%)"
+                        "title": "Pack Compliance (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "X4P_5P_6P_46",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7556,7 +7791,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7574,19 +7810,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "NPD Score (%)"
+                        "title": "NPD Score (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Product_category_9",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7641,7 +7903,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "vbar",
@@ -7659,19 +7922,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Pack Compliance (%)"
+                        "title": "Pack Compliance (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Region_50",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7692,7 +7981,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Commune_62",
                     "title": "Community"
                 },
@@ -7723,7 +8011,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "SKU_68",
                     "title": "SKU (Material Description)"
                 },
@@ -7746,7 +8033,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7764,19 +8052,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "NPD Score (%)"
+                        "title": "NPD Score (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Channel_12",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -7842,7 +8156,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Customer_type_27",
                     "title": "Key Customer Type"
                 },
@@ -7873,7 +8186,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Store_type_65",
                     "title": "Store Type"
                 },
@@ -7886,7 +8198,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Sales_region_63",
                     "title": "Sales Region"
                 },
@@ -7908,7 +8219,6 @@
                     "exploreLink": false,
                     "instant": false,
                     "measureField": "count",
-                    "selectModeOverride": "multi",
                     "step": "Field_Sales_Manager_73",
                     "title": "Field Sales Manager"
                 },
@@ -7931,7 +8241,8 @@
                         "showHeader": true,
                         "show": false,
                         "position": "right-top",
-                        "inside": false
+                        "inside": false,
+                        "customSize": "auto"
                     },
                     "axisMode": "multi",
                     "visualizationType": "vbar",
@@ -7949,19 +8260,45 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "NPD Score (%)"
+                        "title": "NPD Score (%)",
+                        "sqrtScale": false,
+                        "referenceLine": null
                     },
                     "step": "Region_51",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": ""
+                        "title": "",
+                        "customSize": "auto"
+                    },
+                    "binValues": false,
+                    "bins": {
+                        "breakpoints": {
+                            "low": 0,
+                            "high": 100
+                        },
+                        "bands": {
+                            "low": {
+                                "label": "",
+                                "color": "#B22222"
+                            },
+                            "medium": {
+                                "label": "",
+                                "color": "#ffa500"
+                            },
+                            "high": {
+                                "label": "",
+                                "color": "#008000"
+                            }
+                        }
                     }
                 },
                 "type": "chart"
@@ -8003,19 +8340,19 @@
             "id": "0Fb2C000000GmykSAC",
             "label": "PS_OVERALL_COMPLIANCE_LV",
             "name": "PS_OVERALL_COMPLIANCE_LV",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmykSAC"
+            "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmykSAC"
         },
         {
             "id": "0Fb2C000000GmyuSAC",
             "label": "PACK_COMPLIANCE",
             "name": "PACK_COMPLIANCE",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyuSAC"
+            "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyuSAC"
         },
         {
             "id": "0Fb2C000000GmyzSAC",
             "label": "PACK_SCORE",
             "name": "PACK_SCORE",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmyzSAC"
+            "url": "/services/data/v39.0/wave/datasets/0Fb2C000000GmyzSAC"
         }
     ]
 }
