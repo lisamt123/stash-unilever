@@ -1,8 +1,7 @@
 @isTest
 public class BFM_TriggerFactory_Test {
     private static testMethod void bfm_TriggerTestMethod(){
-        Test.startTest();
-        
+        Test.startTest();       
         Account acc = new Account();
         acc.Name ='TestAccount';
         insert acc;
@@ -13,8 +12,7 @@ public class BFM_TriggerFactory_Test {
         insert ship;
         ship.Company_Code__c = '333';
         update ship;
-        
-        
+
         BFM_Occurrence__c occ = new BFM_Occurrence__c();
         occ.Carrier_Account__c = acc.Id;
         insert occ;
@@ -30,8 +28,7 @@ public class BFM_TriggerFactory_Test {
         nfe.NF_e_access_key__c = '3322234';
         insert nfe;
         nfe.NF_e_access_key__c = '3343';
-        update nfe;
-        
+        update nfe;        
         Test.stopTest();
     }
 }
