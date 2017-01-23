@@ -75,11 +75,11 @@
                         // Submit the record to specific process and skip the criteria evaluation
                         req1.setProcessDefinitionNameOrId(apprProcId);                                        
                                                 
-                        listNextapprover = UL_PromotionWorkflowService.getApproverIds(promoId,'Finance User');
+                      /*  listNextapprover = UL_PromotionWorkflowService.getApproverIds(promoId,'Finance User');
                         if(listNextapprover !=null && listNextapprover.isempty()){
                           throw new UL_CustomException('Finance analyst/managers not setup properly');
                         }
-                        queueId = UL_PromotionWorkflowService.addApproverstoQueue(promoId,listNextapprover,'finance');
+                        queueId = UL_PromotionWorkflowService.addApproverstoQueue(promoId,listNextapprover,'finance'); */
                         req1.setNextApproverIds(new list<id> {queueid});
                         // Submit the approval request for the account
                         Approval.ProcessResult result = Approval.process(req1);
@@ -256,8 +256,8 @@
                    throw new ul_customexception(Label.UL_PROMOTION_ASSIGNE_VALIDATION);
                 }
                 else if(!promotionLst[0].UL_Current_Status__c.containsIgnoreCase(UL_Utility.STATUS_MANAGER_CHECK.toLowerCase())
-				&& !promotionLst[0].UL_Current_Status__c.containsIgnoreCase(UL_Utility.STATUS_FINANCE_CHECK.toLowerCase())	
-				&& !promotionLst[0].CreatedById.equals(userinfo.getuserid())){
+                && !promotionLst[0].UL_Current_Status__c.containsIgnoreCase(UL_Utility.STATUS_FINANCE_CHECK.toLowerCase())  
+                && !promotionLst[0].CreatedById.equals(userinfo.getuserid())){
                     throw new ul_customexception(Label.UL_PROMOTION_ASSIGNE_VALIDATION);
                 }
             }

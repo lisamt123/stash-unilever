@@ -100,7 +100,7 @@
         public static boolean bypassUserCustomerPromFundShareTriggerTrigger = false;
         
         //Heroku webservice setup
-        public static final String END_POINT= 'callout: ACSF_Service_Url/ACSF/GetPromotionKPIs';
+        public static final String END_POINT= 'callout:ACSF_Service_Url/ACSF/GetPromotionKPIs';
         public static final Integer SERVICE_TIMEOUT = 12000;
         public static final String REQUEST_TYPE = 'POST';
         public static final String CONTENT_TYPE = 'application/json';
