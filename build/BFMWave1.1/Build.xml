@@ -75,6 +75,7 @@
 		<runTest>BFM_AccountMoreDetailsController_Test</runTest>
 		<runTest>BFM_AccountSharer_Test</runTest>
 		<runTest>BFM_BulkOccurrenceQuery_Test</runTest>
+		<runTest>BFM_BulkShipmentQuery_Test</runTest>
 		<runTest>BFM_CommunitiesSelfRegController_CC_Test</runTest>
 		<runTest>BFM_CPFValidator_Test</runTest>
 		<runTest>BFM_CreateAccessRequest_test</runTest>

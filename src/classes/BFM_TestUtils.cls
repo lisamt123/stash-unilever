@@ -5,8 +5,8 @@
 
 @isTest
 public class BFM_TestUtils {
-    private static Id carrierRecordTypeID = [SELECT Id FROM RecordType WHERE DeveloperName = 'BFM_Carrier' AND sObjectType = 'Account'].Id;
-    private static Id carrierOperationalProfileId = [SELECt Id FROM Profile WHERE name = 'BFM Partner Community User' LIMIT 1].Id;
+    @TestVisible private static Id carrierRecordTypeID = [SELECT Id FROM RecordType WHERE DeveloperName = 'BFM_Carrier' AND sObjectType = 'Account'].Id;
+    @TestVisible private static Id carrierOperationalProfileId = [SELECt Id FROM Profile WHERE name = 'BFM Partner Community User' LIMIT 1].Id;
     
     public static BFM_UserCreationRequest__c createUserCreationRequest(){
         BFM_UserCreationRequest__c userCreationRequest = new BFM_UserCreationRequest__c();

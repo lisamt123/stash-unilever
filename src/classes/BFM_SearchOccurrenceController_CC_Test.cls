@@ -9,6 +9,7 @@ public class BFM_SearchOccurrenceController_CC_Test{
         system.assertEquals('carrier',acc.name);
       
         BFM_Occurrence__c occ = new BFM_Occurrence__c();
+        occ.Carrier__c = 'carrier';
         occ.Carrier_Account__c = acc.id;
         occ.Company_Code__c = '3123';
         insert occ;

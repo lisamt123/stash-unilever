@@ -22,6 +22,8 @@ public class BFM_NFEHandler_Test {
         insert nfe;
         nfe.NF_e_access_key__c = '23456';
         update nfe;
-        delete nfe;
+        BFM_NFEHandler nfehandler = new BFM_NFEHandler();
+        nfehandler.beforeDelete(nfe);
+        nfehandler.afterDelete(nfe);
     }
 }

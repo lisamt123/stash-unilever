@@ -14,6 +14,7 @@ private class BFM_SendEmailToCarrierApproverTest{
         
          Account accountOne = BFM_TestUtils.createCarrierAccount();
         accountOne.name = 'Carrier 1';
+        accountOne.CNPJ__c = '94657755000107';
         Account accountTwo = BFM_TestUtils.createCarrierAccount();
         accountTwo.Name = 'Carrier 2';
         List<Account> accountsList = new List<Account>{accountOne, accountTwo};
@@ -25,6 +26,13 @@ private class BFM_SendEmailToCarrierApproverTest{
          List<Account> accountsList1 = new List<Account>{accountThree};
          insert accountsList1 ; 
         
+        contact con1=new contact();
+        con1.lastname='shiv1';
+        con1.Email='shiv1@capg.com';
+        con1.Accountid=accountOne.id;
+        con1.Title='SF_APPROVAL';
+        insert con1;
+      
         contact con=new contact();
         con.lastname='shiv';
         con.Email='shiv@capg.com';
