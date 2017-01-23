@@ -1,0 +1,15 @@
+src
+src/classes
+src/classes/CORE_CA_Delete_Fullyapproved_Batch.cls
+src/classes/CORE_CA_Delete_Fullyapproved_Batch.cls-meta.xml
+src/aura
+src/aura/EverydayAction_Filter_Component/EverydayAction_Filter_Component.cmp
+src/aura/EverydayAction_Filter_Component/EverydayAction_Filter_Component.cmp-meta.xml
+src/aura/EverydayAction_Filter_Component/EverydayAction_Filter_Component.css
+src/aura/EverydayAction_Filter_Component/EverydayAction_Filter_ComponentController.js
+src/aura/EverydayAction_Filter_Component/EverydayAction_Filter_ComponentHelper.js
+src/aura/Core_NC_NewsDetail/Core_NC_NewsDetail.cmp
+src/aura/Core_NC_NewsDetail/Core_NC_NewsDetail.cmp-meta.xml
+src/aura/Core_NC_NewsDetail/Core_NC_NewsDetail.css
+src/aura/Core_NC_NewsDetail/Core_NC_NewsDetailController.js
+src/aura/Core_NC_NewsDetail/Core_NC_NewsDetailHelper.js
