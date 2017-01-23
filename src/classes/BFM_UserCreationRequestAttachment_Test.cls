@@ -1,6 +1,6 @@
 @isTest
 public class BFM_UserCreationRequestAttachment_Test {
-	private static testMethod void BFM_UserCreationRequestAttachment_Test(){
+  private static testMethod void BFM_UserCreationRequestAttachment_Test(){
         BFM_UserCreationRequest__c bfmuser = new BFM_UserCreationRequest__c();
         bfmuser.userName__c = 'TestUsername';
         bfmuser.email__c = 'Testuseremail@test.com';
@@ -17,10 +17,10 @@ public class BFM_UserCreationRequestAttachment_Test {
         Map<Id, BFM_UserCreationRequest__c> oldMap = new Map<Id, BFM_UserCreationRequest__c>();
         oldMap.put(bfmuser.Id,bfmuser);
         
-        Attachment attach=new Attachment();   	
-    	attach.Name='Unit Test Attachment';
-    	Blob bodyBlob=Blob.valueOf('Unit Test Attachment Body');
-    	attach.body=bodyBlob;
+        Attachment attach=new Attachment();     
+      attach.Name='Unit Test Attachment';
+      Blob bodyBlob=Blob.valueOf('Unit Test Attachment Body');
+      attach.body=bodyBlob;
         attach.parentId=bfmuser.id;
         insert attach;
         
@@ -35,9 +35,9 @@ public class BFM_UserCreationRequestAttachment_Test {
             requestsWithAttachments.add(att.parentId);
         }
         for(Id idRequestUpdated: newMap.keySet()){
-			if(!requestsWithAttachments.contains(idRequestUpdated) && oldMap.get(idRequestUpdated).Request_Approved__c == false
+      if(!requestsWithAttachments.contains(idRequestUpdated) && oldMap.get(idRequestUpdated).Request_Approved__c == false
                && newMap.get(idRequestUpdated).Request_Approved__c == true){
-			   newMap.get(idRequestUpdated).addError(Label.BFM_Approval_No_Attachment_Found);
+                   newMap.get(idRequestUpdated).addError(Label.BFM_Approval_No_Attachment_Found);
             }
         }
     }

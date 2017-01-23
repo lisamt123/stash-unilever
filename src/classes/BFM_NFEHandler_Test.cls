@@ -1,6 +1,6 @@
 @isTest
 public class BFM_NFEHandler_Test {
-	private static testMethod void BFM_NFEHandler_TestMethod(){
+  private static testMethod void BFM_NFEHandler_TestMethod(){
         Account acc = new Account();
         acc.Name = 'TestAccountName';
         insert acc;

@@ -4,12 +4,12 @@
 
 @IsTest
 public class BFM_UpdateFreightDataResponse_Test {
-	
-	static testMethod void testParse() {
-		String json = '{\"UpdateFreightResponse\":'+
-		'  {\"errorMessage\":\"errorMessageBeingReturned\",'+
-		'   \"errorCode\":\"str\"}}';
-		BFM_UpdateFreightDataResponse obj = BFM_UpdateFreightDataResponse.parse(json);
-		System.assert(obj != null);
-	}
+  
+  static testMethod void testParse() {
+    String json = '{\"UpdateFreightResponse\":'+
+    '  {\"errorMessage\":\"errorMessageBeingReturned\",'+
+    '   \"errorCode\":\"str\"}}';
+    BFM_UpdateFreightDataResponse obj = BFM_UpdateFreightDataResponse.parse(json);
+    System.assert(obj != null);
+  }
 }

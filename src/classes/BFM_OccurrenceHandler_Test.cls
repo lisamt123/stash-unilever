@@ -1,6 +1,6 @@
 @isTest
 public class BFM_OccurrenceHandler_Test {
-	private static testMethod void BFM_OccurrenceHandler_TestMethod(){
+    private static testMethod void BFM_OccurrenceHandler_TestMethod(){
         Account acc = new Account();
         acc.Name = 'TestAccount';
         insert acc;
@@ -8,6 +8,8 @@ public class BFM_OccurrenceHandler_Test {
         occ.Occurrence_Number__c='212312';
         occ.Carrier_Account__c = acc.id;
         insert occ;
+        occ.Occurrence_Number__c='212312';
+        update occ;
         BFM_OccurrenceHandler occhandler=new BFM_OccurrenceHandler();
         occhandler.beforeInsert(occ);
         occhandler.beforeUpdate(occ, occ);

@@ -10,7 +10,7 @@ public class BFM_BulkOccurrenceQuery_Test {
         occ.Last_Occurrence_Update__c= datetime.now();
         occ.LastModifiedDate = datetime.now();
         occ.Carrier_Account__c = acc.id;
-    	insert occ;
+      insert occ;
         Set<Id> occurrenceIds = new Set<Id>();
         occurrenceIds.add(occ.Id);
         Test.startTest();
