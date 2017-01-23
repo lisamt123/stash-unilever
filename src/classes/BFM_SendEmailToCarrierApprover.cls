@@ -85,9 +85,11 @@ public without sharing class BFM_SendEmailToCarrierApprover {
         List<User> usersGovernanceGroup = [SELECT Id FROM User WHERE Id IN: idsUsersGovernanceGroup ORDER BY username];
         AggregateResult res = [select count(id) from BFM_UserCreationRequest__c];
 		Integer count = integer.valueof(res.get('expr0'));
+		if(usersGovernanceGroup.size()>0)
+        {
         Integer turn = Math.mod(count, usersGovernanceGroup.size());
         t.OwnerId = usersGovernanceGroup[turn].Id;
-        
+        }
         t.Description = 'O funcionário da transportadora solicitou acesso, mas nenhum e-mail foi encontrado. Por favor, revise e entre em contato com:' + carrierUserRequest.email__c;
         t.ActivityDate = System.today().addDays(1);
         insert t;
