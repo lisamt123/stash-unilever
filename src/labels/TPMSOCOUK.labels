@@ -2061,9 +2061,9 @@ there is a different Currency on lower level customer(s)</value>
         <value>Each tactic must have at least one related fund</value>
     </labels>
 	<labels>
-        <fullName>UL_TACTIC_FUND_ASSOCIATION</fullName>
-        <language>es</language>
+        <fullName>UL_DummyProdonTactic</fullName>
+        <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Promotion approval validation message</shortDescription>
-        <value>Cada táctica debe tener al menos un fondo relacionado</value>
+        <shortDescription>Check atleast one dummy product on each tactic</shortDescription>
+        <value>All Off-Invoice tactics must contain a dummy product</value>
     </labels>

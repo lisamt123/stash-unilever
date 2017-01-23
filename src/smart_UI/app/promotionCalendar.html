@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" style="">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CAS - TPM</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="assets/styles/salesforce-lightning-design-system.css">
+    <link rel="stylesheet" href="assets/styles/salesforce-container.css">
+    <link rel="stylesheet" href="dist/vendor.css">
+    <link rel="stylesheet" href="dist/ui.css">
+</head>
+
+<body>
+<div id="contentWrapper">
+    <div class="bPageHeader" id="AppBodyHeader">
+        <img src='assets/images/local/header-classic.png'/>
+    </div>
+    <div class="bodyDiv brdPalette brandPrimaryBrd">
+        <table id="bodyTable" class="outer">
+            <tbody>
+            <tr>
+                <td class="sidebarCell sidebarCollapsible" id="sidebarCell">
+                    <img src='assets/images/local/menu-classic.png'/>
+                </td>
+                <td id="bodyCell" class="oRight">
+                    <div id="root" class="slds"></div>
+                    <div id="modal"></div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="bPageFooter noTableFooter"></div>
+</div>
+
+<script src="dist/vendor.js"></script>
+<script src="dist/services.js"></script>
+<script src="dist/arch.js"></script>
+<script src="dist/contracts.js"></script>
+<script src="dist/ui.js"></script>
+
+<script>
+  
+    var boExtPromotionCalendar = {};
+    var ACSFNamespace = 'ACCL';
+    var customImageURL = '/assets/images/';
+
+  UI_EVENT_BUS.subscribe(EVENTS.APP_READY, function () {
+        var promise;
+
+        if(window.localVF) promise = localVF.initFromConfig();
+        else if(window.MetaDataService) promise = MetaDataService.connect();
+        else promise = when.resolve();
+
+        promise.then(function () {
+
+            // Step 1: load artifacts
+
+            return when.all([
+                AppManager.initApex(),
+                AppManager.load(['BOExtPromotionCalendar'])
+            ]);
+
+        }).then(function () {
+
+            // Step 2: load metadata
+
+            BOFactory.instantiate('BOExtPromotionCalendar').then(bo => boExtPromotionCalendar = bo);
+            return AppManager.init();
+
+        }).then(function (res) {
+
+            // Step 3: render
+
+            var uiStartTime = new Date();
+            ReactDOM.render(React.createElement(PromotionCalendar), document.getElementById('root'));
+            console.log('Render of UI took', (new Date() - uiStartTime), 'ms');
+
+        });
+    });
+</script>
+</body>
+</html>

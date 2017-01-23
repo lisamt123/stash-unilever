@@ -301,19 +301,19 @@
         <name>ACCL__Product_Level__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
-            <translation>Category</translation>
+            <translation>Category Group</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>2</masterLabel>
-            <translation>Sub Category</translation>
+            <translation>Category</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>3</masterLabel>
-            <translation>Brand</translation>
+            <translation>Market</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>4</masterLabel>
-            <translation>Fill</translation>
+            <translation>Brand</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>5</masterLabel>
@@ -329,19 +329,19 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>8</masterLabel>
-            <translation>TU GTIN</translation>
+            <translation><!-- 8 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Category</masterLabel>
-            <translation>Category</translation>
+            <translation><!-- Category --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Commodity</masterLabel>
-            <translation>Sub category</translation>
+            <translation><!-- Commodity --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Group Brand</masterLabel>
-            <translation>Brand</translation>
+            <translation><!-- Group Brand --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>OPCO</masterLabel>
@@ -349,19 +349,19 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Product</masterLabel>
-            <translation>Pack Size Fill</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Product Group</masterLabel>
-            <translation>Brand Form</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>SKU</masterLabel>
             <translation>TU GTIN</translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Product Group</masterLabel>
+            <translation><!-- Product Group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SKU</masterLabel>
+            <translation><!-- SKU --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Size</masterLabel>
-            <translation>SPF</translation>
+            <translation><!-- Size --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Variant</masterLabel>
