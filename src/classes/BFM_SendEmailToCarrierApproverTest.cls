@@ -1,7 +1,7 @@
 @isTest
 private class BFM_SendEmailToCarrierApproverTest{  
   private static testMethod void testEmailToApprover(){
-      //Group g=[select Id from Group Where DeveloperName='MainCarrierPartnerUser' LIMIT 1];
+     //Group g=[select Id from Group Where DeveloperName='MainCarrierPartnerUser' LIMIT 1];
      Profile p = [select id from profile where name='System Administrator'];
       User objUser = new User(alias = 'stan', email='standarduser@test.com', 
                               emailencodingkey='UTF-8', lastname='test', languagelocalekey='en_US', 

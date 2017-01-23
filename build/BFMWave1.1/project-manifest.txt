@@ -167,6 +167,7 @@ src/flows/BFM_Create_Carrier_User_and_Share_Accounts-2.flow
 src/flows/BFM_Create_Carrier_User_and_Share_Accounts-4.flow
 src/flows/BFM_Free_Freight_update_CTE-1.flow
 src/flows/BFM_Update_Shipment_in_CTe-1.flow
+src/groups/BFM_Governance.group
 src/homePageLayouts/BFM Home Page.homePageLayout
 src/layouts/BFM_AccountAccessRequest__c-BFM Account Access Request Layout.layout
 src/layouts/BFM_Bank_Information__c-BFM Bank Information Layout.layout
