@@ -195,48 +195,21 @@
     <script type="text/javascript">
         function selectAllCheckboxes(obj,receivedInputID){
             var inputCheckBox = document.getElementsByTagName("input");                  
-            for(var i=0; i<inputCheckBox.length; i++){          
-                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                     
-                    inputCheckBox[i].checked = obj.checked;
-                }
-            }
+            for(var i=0; i<inputCheckBox.length; i++){if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){inputCheckBox[i].checked = obj.checked;}}
         }
-        
         $('.btnSearch').click(function() {
             var str = '';
-            $("input[type=checkbox]:checked").each(function() {
-                if ($(this).val() != '0' && $(this).val() != null) {
-                    str += $(this).val() + ',';
-                }
-            });
+            $("input[type=checkbox]:checked").each(function() {if ($(this).val() != '0' && $(this).val() != null) {str += $(this).val() + ',';}});
             str = str.slice(0, -1);
-            //alert(str);
-            Visualforce.remoting.Manager.invokeAction(
-                '{!$RemoteAction.BFM_SearchShipmentCTeController_CC.updateShipments}',
-                str,
-                function(result, event) {
-                    //alert('result '+result);
-                }, {
-                    escape: true
-                }
-            );
+            Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.BFM_SearchShipmentCTeController_CC.updateShipments}',str,function(result, event) {}, {escape: true});
         });
-        
         $('.btnRep').click(function() {
             var str = '';
-            $("input[type=checkbox]:checked").each(function() {
-                if ($(this).val() != '0' && $(this).val() != null) {
-                    str += $(this).val().substring(0, 15) + ',';
-                }
-            });
+            $("input[type=checkbox]:checked").each(function() {if ($(this).val() != '0' && $(this).val() != null) {str += $(this).val().substring(0, 15) + ',';}});
             str = str.slice(0, -1);
             var profileName = '{!profile}';
-            //alert(profileName);
-            if(profileName == 'BFM Partner Community User') {
-                window.open("/BrazilFreightCollaborationTool/{!cteIssuingReport.Id}?pv0=" + str, "_blank"); 
-            } else {
-                window.open("/{!cteIssuingReport.Id}?pv0=" + str, "_blank");
-            }
+            if(profileName == 'BFM Partner Community User') {window.open("/BrazilFreightCollaborationTool/{!cteIssuingReport.Id}?pv0=" + str, "_blank"); } 
+			else {window.open("/{!cteIssuingReport.Id}?pv0=" + str, "_blank");}
         }); 
-    </script>
+    </script> 
 </apex:page>

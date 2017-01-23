@@ -45,8 +45,6 @@ src/classes/BFM_CreateUserQueueable.cls
 src/classes/BFM_CreateUserQueueable.cls-meta.xml
 src/classes/BFM_CreateUserQueueable_Test.cls
 src/classes/BFM_CreateUserQueueable_Test.cls-meta.xml
-src/classes/BFM_FileConnector.cls
-src/classes/BFM_FileConnector.cls-meta.xml
 src/classes/BFM_GeneralServiceCalls_Test.cls
 src/classes/BFM_GeneralServiceCalls_Test.cls-meta.xml
 src/classes/BFM_GeneralServiceCalls.cls
@@ -57,6 +55,8 @@ src/classes/BFM_LoginuserPermissions.cls
 src/classes/BFM_LoginuserPermissions.cls-meta.xml
 src/classes/BFM_NFEHandler.cls
 src/classes/BFM_NFEHandler.cls-meta.xml
+src/classes/BFM_NFEHandler_Test.cls
+src/classes/BFM_NFEHandler_Test.cls-meta.xml
 src/classes/BFM_OccurrenceHandler.cls
 src/classes/BFM_OccurrenceHandler.cls-meta.xml
 src/classes/BFM_OccurrenceHandler_Test.cls
