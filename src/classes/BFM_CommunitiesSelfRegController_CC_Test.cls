@@ -1,18 +1,5 @@
 @isTest
 private class BFM_CommunitiesSelfRegController_CC_Test {   
-    /*private static testMethod void testControllerWithNoMatchingAccount(){
-       
-        BFM_CommunitiesSelfRegController_CC controller = new BFM_CommunitiesSelfRegController_CC();
-        
-        Test.startTest();
-       // controller.fetchBranches();
-        controller.cnpj = '03189042000100';
-        
-        
-        Test.stopTest();
-    }*/
-    //Meghaa..............
-    
   private static testMethod void testControllerWithMatchingAccount(){
         Test.startTest();
         Account acc = new Account();
@@ -20,28 +7,17 @@ private class BFM_CommunitiesSelfRegController_CC_Test {
         acc.cnpj__c = '03189042000100';
         insert acc;
         string testname = 'testname';
-        
 
         list<BFM_UserCreationRequest__c> userlist=new list<BFM_UserCreationRequest__c>();
         list<user> usr=new list<user>();
         BFM_UserCreationRequest__c userreq = new BFM_UserCreationRequest__c();
         userreq.FirstName__c =testname;
-        userreq.CPF__c='12345678909';
+        userreq.CPF__c='24671829673';
         userreq.Email__c='test@capg.com';
         userreq.CommunityNickname__c='test879';
-        userreq.CNPJ__c='12345678';        
-        //insert userreq;
-        
-        BFM_UserCreationRequest__c userreq1 = new BFM_UserCreationRequest__c();
-        userreq1.FirstName__c =testname;
-        userreq1.CPF__c='12345678909';
-        userreq1.Email__c='test@capg.com';
-        userreq1.CommunityNickname__c='test879';
-        userreq1.CNPJ__c='12345678';
+        userreq.CNPJ__c='03189042000100';        
         
         userlist.add(userreq );
-        
-        userlist.add(userreq1);
         insert userlist;
          system.assertEquals(testname, userreq.FirstName__c );
         try{
@@ -61,13 +37,11 @@ private class BFM_CommunitiesSelfRegController_CC_Test {
         BFM_CommunitiesSelfRegController_CC controller = new BFM_CommunitiesSelfRegController_CC();
         BFM_CommunitiesSelfRegController_CC controller1 = new BFM_CommunitiesSelfRegController_CC();
         
-        
-        
         // controller.requestLines.get(acc.Id).isSelected =true;
         controller.firstName='xyz';
         controller.lastName='G';
         controller.cnpj = '03189042';
-        controller.cpf='12345678909';
+        controller.cpf='24671829673';
         controller.communityNickname='xyz';
         controller.email='xyz@unilever.com';
         
@@ -85,25 +59,37 @@ private class BFM_CommunitiesSelfRegController_CC_Test {
         controller1.clearBranchSelection();
         controller1.getDesiredCarriers();
         controller1.resetVF();
-         controller1.validateEmail('email');
+        controller1.validateEmail('email');
         
          BFM_CommunitiesSelfRegController_CC.RequestLine wrapreq = new BFM_CommunitiesSelfRegController_CC.RequestLine(true,acc);
-         wrapreq.isSelected=true;
-      
-        BFM_CPFValidator cpfvalidcon = new BFM_CPFValidator('cpf');
+         wrapreq.isSelected = true;
+      	 wrapreq.branch = acc;
+      	
+        BFM_CPFValidator cpfvalidcon = new BFM_CPFValidator('24671829673');
         cpfvalidcon.validateCPF();
-      
-        
-        
-        BFM_AccountDAO.getAccountsWithCNPJPrefix('03189042');
+              
+        BFM_AccountDAO.getAccountsWithCNPJPrefix('03189042000100');
         controller.fetchBranches();
         controller.validateCarrierRequest(userreq);
         controller.submitNewUserRequest();
         controller.clearBranchSelection();
         controller.getDesiredCarriers();
         controller.resetVF();
-        
         controller.validateEmail('email');
         Test.stopTest();
+    }
+    static testMethod void testvalidateCarrier(){
+     	BFM_UserCreationRequest__c userreq1 = new BFM_UserCreationRequest__c();
+        userreq1.FirstName__c ='testname1';
+        userreq1.CPF__c='24671829673';
+        userreq1.Email__c='test@capg.com';
+        userreq1.CommunityNickname__c='test879';
+        userreq1.CNPJ__c='03189042000100'; 
+        insert userreq1;
+        
+        BFM_CommunitiesSelfRegController_CC commself = new BFM_CommunitiesSelfRegController_CC();
+        commself.taxUser = false;
+        commself.operationalUser = false;
+        commself.validateCarrierRequest(userreq1);        
     }
 }
