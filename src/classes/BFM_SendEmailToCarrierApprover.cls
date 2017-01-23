@@ -80,7 +80,7 @@ public without sharing class BFM_SendEmailToCarrierApprover {
         t.whatId = desiredCarriers[0].Id;
         t.subject = 'Review carrier email';
         t.status = 'Open';
-        Id groupId = [SELECT Id FROM Group WHerE DeveloperName = 'BFM_Governance' LIMIT 1].Id;
+        Id groupId = [SELECT Id FROM Group WHERE Name = 'BFM Governance' LIMIT 1].Id;
         Set<Id> idsUsersGovernanceGroup = GetUserIdsFromGroup(groupId);
         List<User> usersGovernanceGroup = [SELECT Id FROM User WHERE Id IN: idsUsersGovernanceGroup ORDER BY username];
         AggregateResult res = [select count(id) from BFM_UserCreationRequest__c];
