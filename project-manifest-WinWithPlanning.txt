@@ -38,7 +38,7 @@ src/classes/WWP_Losstree_Copy_Component_Ctrl.cls-meta.xml
 src/classes/WWP_LossTree_CC21.cls
 src/classes/WWP_LossTree_CC21.cls-meta.xml
 src/classes/WWP_LossTree_CC21_Test.cls
-src/classes/WWP_LossTree_CC21_Test-meta.xml
+src/classes/WWP_LossTree_CC21_Test.cls-meta.xml
 src/components/WWP_Losstree_Copy_Component.component
 src/components/WWP_Losstree_Copy_Component.component-meta.xml
 src/labels/WWP.labels
