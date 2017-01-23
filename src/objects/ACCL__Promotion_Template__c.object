@@ -1299,22 +1299,12 @@
         <fullName>ACCL__Update_Product_Filter_Cache</fullName>
         <availability>online</availability>
         <displayType>massActionButton</displayType>
-        <linkType>javascript</linkType>
+        <height>600</height>
+        <linkType>page</linkType>
         <masterLabel>Update Product Filter Cache</masterLabel>
-        <openType>onClickJavaScript</openType>
+        <openType>sidebar</openType>
+        <page>ACCL__RefreshBackendCache</page>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/37.0/connection.js&quot;)}
-      {!REQUIRESCRIPT(&quot;/soap/ajax/37.0/apex.js&quot;)}
-      sforce.connection.query(&apos;SELECT NamespacePrefix FROM ApexClass WHERE Name = \&apos;HerokuCacheRefresh\&apos;&apos;, {
-      onSuccess: function(data) {
-      var prefix = data.records.NamespacePrefix? data.records.NamespacePrefix+&apos;.&apos;: &apos;&apos;;
-      var result = &apos;&apos;+sforce.apex.execute(prefix+&apos;HerokuCacheRefresh&apos;, &apos;cacheFlushStatus&apos;, {});
-      window.alert(result);
-      },
-      onFailure: function(err) {
-      window.alert(err);
-      }
-      });</url>
     </webLinks>
 </CustomObject>
