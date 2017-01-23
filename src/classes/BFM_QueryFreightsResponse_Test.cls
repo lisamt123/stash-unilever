@@ -72,7 +72,6 @@ public class BFM_QueryFreightsResponse_Test{
          wrapse.sesPlantCode = 'sesplant';
          wrapse.accoutingAccount = 'accc';
          wrapse.internalOrder = 'iorder';
-         //wrapse.nfe = 'option';
          BFM_QueryFreightsResponse.Stage wrapse1 = new BFM_QueryFreightsResponse.Stage();
          wrapse1.stageNumber=123345;
          wrapse1.originCity='bangalore';
@@ -92,10 +91,8 @@ public class BFM_QueryFreightsResponse_Test{
          wrapse1.palletCount=1.2;
          wrapse1.grossValueCostPreview=10.3;
          wrapse1.tollCostPreview=50.3;
-         //wrapse1.freeFreight=21.1;
          wrapse1.shippingType='szdd';
          wrapse1.warehouse='xrew';
-         wrapse1.otmShipment='pqn';
-         //wrapse1.distance=123;        
+         wrapse1.otmShipment='pqn';        
     }
 }
