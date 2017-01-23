@@ -34,6 +34,8 @@ public with sharing class BEN_EmailRemainderSchedular implements Schedulable{
     //setting toaddress
     //message.setOrgWideEmailAddressId('0D2E00000004Fc3KAE'); 
     //setting from address
+    message.setToAddresses(new String[]{});
+    message.setCcAddresses(new String[]{});
     message.BccAddresses=listofUser;
     message.subject='Reminder to enter test results for this quarter';
     String body1='Hi CTI Category Directors,';
