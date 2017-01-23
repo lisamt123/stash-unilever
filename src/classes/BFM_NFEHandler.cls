@@ -13,65 +13,31 @@ public with sharing class BFM_NFEHandler implements ITrigger {
      * any data required into maps prior execution of the trigger.
      */
     public void bulkBefore(){
-        /*this.nfeList = (List<BFM_NF_e__c>) Trigger.New;
-        if(trigger.isUpdate) {
-            List<BFM_Ct_e__c> cteListToUpdate = new List<BFM_Ct_e__c>();
-            
-            Set<String> setCteKeys = new Set<String>();
-            String nfeKey = '';
-            String cnpj = '';
-            for(BFM_NF_e__c nfe : nfeList) {
-                if(nfe.CT_e__c != null) {
-                    setCteKeys.add(nfe.CT_e__c);
-                }
-                if(nfe.NF_e_access_key__c!=null)
-                {
-                    nfeKey = nfe.NF_e_access_key__c;
-                }
-            }
-            
-            if(setCteKeys.size() > 0){
-                List<BFM_Ct_e__c> cteList = [SELECT id, CT_e_key__c, Shipment__c FROM  BFM_Ct_e__c where id =: setCteKeys];
-                
-                for(BFM_Ct_e__c cte : cteList) {
-                    System.debug('cte : ' + cte);
-                    cte.Shipment__c = nfeList.get(0).Shipment__c;
-                    cteListToUpdate.add(cte);
-                }
-                
-                if(cteListToUpdate.size() > 0){Database.update(cteListToUpdate);}
-            }
-        }*/
+
     }
     
     public void bulkAfter() {
         List<BFM_NF_e__c> nfeList = (List<BFM_NF_e__c>) Trigger.New;
-       
-        //List<BFM_NF_e__c> nfeList = (List<BFM_NF_e__c>) Trigger.New;
+
         Set<Id> deliveriesIds = new Set<Id>();
         
         for(BFM_NF_e__c child : nfeList) {
             deliveriesIds.add(child.Delivery__c);
         }
-        system.debug('delids===>'+deliveriesIds);
         
         Map<Id,BFM_Delivery__c> mapDelivery = new Map<Id,BFM_Delivery__c>([Select Stage__c from BFM_Delivery__c where id in :deliveriesIds]);
-        System.debug('bulkAfter mapDelivery-->' + mapDelivery);      
+      
         
         Set<Id> stageIds = new Set<Id>();
         for(BFM_Delivery__c parentRecord : mapDelivery.values()){
             stageIds.add(parentRecord.Stage__c);                        
         }
-        system.debug('stgids--->'+stageIds);
+
         
         Map<Id,BFM_Stage__c> mapStages = new Map<Id,BFM_Stage__c>([Select id,Total_Gross_Weight__c, Name from BFM_Stage__c WHERE ID in : stageIds]);        
-        System.debug('bulkAfter mapStages-->' + mapStages);
         
         List<BFM_NF_e__c> nfesList = [Select id, Gross_weight__c, Delivery__c,Delivery__r.Stage__c from BFM_NF_e__c where Delivery__c IN: mapDelivery.values()];
-        System.debug('bulkAfter nfesList-->' + nfesList);
-        
-        // ***********************  (modified by chaitanya)
-        
+
         for(BFM_NF_e__c nfe1 : nfesList) {
             
             if(mapDelivery.containsKey(nfe1.Delivery__c) && mapStages.containsKey(mapDelivery.get(nfe1.Delivery__c).Stage__c)) {
@@ -79,23 +45,18 @@ public with sharing class BFM_NFEHandler implements ITrigger {
                 mapStages.get(mapDelivery.get(nfe1.Delivery__c).Stage__c).Total_Gross_Weight__c = 0.0; 
             }    
         }
-        
-        //*************************
+
         Double grossWeight = 0.0;
         for(BFM_NF_e__c nfe : nfesList) {
             
             if(mapDelivery.containsKey(nfe.Delivery__c) && mapStages.containsKey(mapDelivery.get(nfe.Delivery__c).Stage__c)) {
-                System.debug('nfe.Gross_weight__c' + nfe.Gross_weight__c);
-                //  grossWeight += nfe.Gross_weight__c;  (modified by chaitanya)
-                
-                system.debug('grsweight--->'+grossWeight);
+
                 if(nfe.Delivery__r.Stage__c==mapDelivery.get(nfe.Delivery__c).Stage__c && nfe.Gross_weight__c!=null)
                 {
                     mapStages.get(mapDelivery.get(nfe.Delivery__c).Stage__c).Total_Gross_Weight__c += nfe.Gross_weight__c; // (modified by chaitanya)
                 }
             }
         }
-        system.debug('grsweight--->'+grossWeight);
         Database.Update(mapStages.values());        
     }
     
@@ -118,5 +79,4 @@ public with sharing class BFM_NFEHandler implements ITrigger {
      * method to accomplish any final operations such as creation or updates of other records.
      */
     public void andFinally(){}
-
 }

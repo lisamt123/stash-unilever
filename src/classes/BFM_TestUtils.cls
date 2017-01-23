@@ -5,7 +5,8 @@
 
 @isTest
 public class BFM_TestUtils {
-    @TestVisible private static Id carrierRecordTypeID = [SELECT Id FROM RecordType WHERE DeveloperName = 'BFM_Carrier' AND sObjectType = 'Account'].Id;
+    //@TestVisible private static Id carrierRecordTypeID = [SELECT Id FROM RecordType WHERE DeveloperName = 'BFM_Carrier' AND sObjectType = 'Account'].Id;
+    @TestVisible private static Id carrierRecordTypeID = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Carrier').getRecordTypeId();
     @TestVisible private static Id carrierOperationalProfileId = [SELECt Id FROM Profile WHERE name = 'BFM Partner Community User' LIMIT 1].Id;
     
     public static BFM_UserCreationRequest__c createUserCreationRequest(){
@@ -44,7 +45,5 @@ public class BFM_TestUtils {
         u.TimeZoneSidKey = 'America/Sao_Paulo';
         u.EmailEncodingKey = 'ISO-8859-1';
         return u;
-    }
-    
-   
+    }  
 }
