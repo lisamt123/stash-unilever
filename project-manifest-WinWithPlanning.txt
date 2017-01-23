@@ -17,7 +17,7 @@ src/objects/WWP_Master_Table__c.object
 src/objects/WWP_PlantCode_User_Mapping__c.object
 src/objects/WWP_losslevel_code_maping__c.object
 src/objects/WWP_Last_job_run_record__c.object
-src/objects/WWP_SNPVendor_code_mapping__c.object
+src/objects/WWP_Uvendor_code_mapping__c.object
 WWP_LossTree_Suppliers__c.object
 src/objects/Account.object
 src/objects/Contact.object
