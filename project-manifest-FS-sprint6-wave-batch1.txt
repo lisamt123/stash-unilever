@@ -3,7 +3,7 @@ src/wave/FS_Daily_Sales_Leaderships.wapp
 src/wave/FS_Daily_Sales_NA_Sales_Rep.wapp
 src/wave/FS_Daily_Sales_RU_Leaderships.wapp
 src/groups/FS_DailySales_Admin.group
-src/groups/FS_DailySales_Sales_Manager_Group
-src/groups/FS_DailySales_Sales_Rep_Group
-src/groups/FS_DailySales_Sales_Manager_RU
+src/groups/FS_DailySales_Sales_Manager_Group.group
+src/groups/FS_DailySales_Sales_Rep_Group.group
+src/groups/FS_DailySales_Sales_Manager_RU.group
 src/permissionsets/Analytics_Cloud_User_Export_Data.permissionset
