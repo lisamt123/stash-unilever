@@ -1,13 +1,18 @@
-public with sharing class WWP_LossTree_CC{
+public with sharing class WWP_LossTree_CC21{
     public boolean showMassFeature{get; set; }
     public boolean checkdissable{get;set;}
     public Boolean nonedit { get; set; }
     public WWP_Loss_Tree__c lossTree{get; set;}
     public string message{get; set;}
+    public string message1{get; set;}
     public string successmessage{get; set;}
     public string selectedWeek{get;set;}
+    public string selectedplantdescription{get;set;}
+    public string listSAPcodedesc{get;set;}
+    public string selectedcountrydescription{get;set;}
     public Boolean isdisabled {get;set;}
     public boolean showpickVal{get;set;}
+    public boolean shwmsg{get;set;}
     public List<WWP_Loss_Tree__c> listLossTree{get; set;}
     public List<LossTreeWrapper> listLossTreeW{get; set;}
     Map<string, set<string>> mapbox12 = new Map<string, set<string>>();
@@ -27,62 +32,112 @@ public with sharing class WWP_LossTree_CC{
     public string selectedbox2{get;set;}
     public string selectedbox3{get;set;}
     public List<SelectOption> listPlantCodes{get; set;}
+    public List<SelectOption> listUvendorcode{get; set;}
     public List<SelectOption> listWeekCodes{get; set;}
+    public List<SelectOption> listPlantdescription{get; set;}
+    public List<SelectOption> listcountrydescription{get; set;}
+    public List<SelectOption> listSnpvendorcode{get; set;}
     public boolean dispalyAll{get; set;}
     public boolean selectallcheckbox{get; set;}
     String valueNone = 'None';
     String valueNull = '';
-    public WWP_LossTree_CC(){
+    public WWP_LossTree_CC21(){
          try{
          Id profileId=userinfo.getProfileId();
         String profileName=[Select Id,Name from Profile where Id=:profileId].Name;
         lossTree = new WWP_Loss_Tree__c();
         system.debug('profile'+profileName);
-        if(profileName == 'WWP Supplier Profile')
-        {
         lossTree.Loss_Type__c = 'Supplier OTIF';
-        }
         // lossTree = new WWP_Loss_Tree__c(); 
-         listPlantCodes = new List<SelectOption>(); 
-         listWeekCodes = new List<SelectOption>(); 
+         //listPlantCodes = new List<SelectOption>();
+         listUvendorcode = new List<SelectOption>(); 
+         listWeekCodes = new List<SelectOption>();
+         listPlantdescription = new List<SelectOption>();
+         listcountrydescription = new List<SelectOption>();
+         listSnpvendorcode= new List<SelectOption>();
+         List<WWP_Uvendor_code_mapping__c > listUvendorcodeuser= new List<WWP_Uvendor_code_mapping__c >(); 
          List<WWP_PlantCode_User_Mapping__c> plantcodeusers= new List<WWP_PlantCode_User_Mapping__c>();
-         plantcodeusers = [Select name,user__c,Plant_code__c from WWP_PlantCode_User_Mapping__c where user__c =: userinfo.getuseremail() limit 50000];
-         listPlantCodes.add(new SelectOption(valueNull,'--None--'));
+         //List<WWP_SNPVendor_code_mapping__c> listSnpvendorcodeUsers= new List<WWP_SNPVendor_code_mapping__c>();
+         //plantcodeusers = [Select name,user__c,Plant_code__c from WWP_PlantCode_User_Mapping__c where user__c =: userinfo.getuseremail() limit 50000];
+         listUvendorcodeuser = [Select name,user__c,U_Vendor_code__c from WWP_Uvendor_code_mapping__c where user__c =: userinfo.getuseremail() limit 50000];
+         //listSnpvendorcodeUsers = [Select name,user__c,SNP_Vendor_code__c from WWP_SNPVendor_code_mapping__c where user__c =: userinfo.getuseremail() limit 50000];
+        // listPlantCodes.add(new SelectOption(valueNull,'--None--'));
          listWeekCodes.add(new SelectOption(valueNull,'--None--'));
+         listUvendorcode.add(new SelectOption(valueNull,'--None--'));
+         listSnpvendorcode.add(new SelectOption(valueNull,'--None--'));
+         listPlantdescription.add(new SelectOption(valueNull,'--None--'));
+         listcountrydescription.add(new SelectOption(valueNull,'--None--'));
          showpickVal = false;
+         shwmsg = false;
          selectbox1all = new List<selectOption>();
          selectbox2all = new List<selectOption>();
          selectbox3all = new List<selectOption>();
          Set<string> uniqueCodes = new Set<String>();
-         if(!plantcodeusers.isEmpty()){             
-             for(WWP_PlantCode_User_Mapping__c ps: plantcodeusers){
-                 uniqueCodes.add(ps.Plant_code__c);
+         Set<string> uniqueUvendorCodes = new Set<String>();
+       
+         if(!listUvendorcodeuser.isEmpty()){             
+             for(WWP_Uvendor_code_mapping__c ps: listUvendorcodeuser){
+                 uniqueUvendorCodes.add(ps.U_Vendor_code__c);
+                 lossTree.Ultimate_Supplier_code__c = listUvendorcodeuser[0].U_Vendor_code__c; 
+                 
                  //listPlantCodes.add(new SelectOption(ps.name,ps.name));
              }
-             if(!uniqueCodes.isEmpty()){
-                 for(string plantCode: uniqueCodes){                
-                 listPlantCodes.add(new SelectOption(plantCode,plantCode));
-                 }    
-             }             
+                 
+                         
          }else{
-             message = label.WWP_NocodeAssigned_Err;
+          shwmsg = true;
+             message1 = label.WWP_Ultimate_vendor_err;
          }
-           List<WWP_Loss_Tree__c>   weeklistLossTree = [select id,name,Week__c from WWP_Loss_Tree__c where plant_code__c IN :uniqueCodes order by createddate Limit 50000 ];
-           system.debug('dddddddddddddddd'+weeklistLossTree.size());
+         //List<WWP_Loss_Tree__c>   weeklistLossTree = [select id,name,Week__c from WWP_Loss_Tree__c where plant_code__c IN :uniqueCodes order by createddate Limit 50000 ];
+        List<WWP_Loss_Tree__c>   DesclistLossTree = [select id,name,plant_description__c,Plant_Country__c,SAP_vendor_code__c from WWP_Loss_Tree__c where Ultimate_Supplier_code__c IN :uniqueUvendorCodes order by createddate Limit 50000 ];
+           //system.debug('dddddddddddddddd'+weeklistLossTree.size());
            Map<String,String> weekMap = new Map<String,String>();
-           for(WWP_Loss_Tree__c weekV:weeklistLossTree){
+           Map<String,String> descMap= new Map<String,String>();
+           Map<String,String> countryMap= new Map<String,String>();
+           Map<String,String> SAPvMap= new Map<String,String>();
+           
+           
+           for(WWP_Loss_Tree__c snpV:DesclistLossTree ){
+                 SAPvMap.put(snpV.SAP_vendor_code__c,snpV.name);
+           }             
+             for(String snpvc:SAPvMap.Keyset()){
+               if(snpvc!=null){
+                   listSnpvendorcode.add(new SelectOption(snpvc,snpvc));
+               }
+             }
+           
+           
+          /* for(WWP_Loss_Tree__c weekV:weeklistLossTree){
                  weekMap.put(weekV.Week__C,weekv.name);
            }             
              for(String week:weekMap.Keyset()){
                if(week!=null){
                    listWeekCodes.add(new SelectOption(week,week));
                }
+             }*/
+          for(WWP_Loss_Tree__c descriptions:DesclistLossTree ){
+                 descMap.put(descriptions.plant_description__c ,descriptions.name);
+           }             
+             for(String desce:descMap.Keyset()){
+               if(desce!=null){
+                   listPlantdescription.add(new SelectOption(desce,desce));
+               }
              }
-         system.debug('week'+listWeekCodes);         
+              for(WWP_Loss_Tree__c descriptions:DesclistLossTree ){
+                 countryMap.put(descriptions.Plant_Country__c ,descriptions.name);
+           }             
+             for(String countr:countryMap.Keyset()){
+               if(countr!=null){
+                   listcountrydescription.add(new SelectOption(countr,countr));
+               }
+             }
+        system.debug('week'+listPlantdescription);        
          }
          catch(Exception e){
              ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info,e.getmessage()));
          }
+     
+     
      }
      public void fetchLossTree(){
         listLossTree = new List<WWP_Loss_Tree__c>();
@@ -108,55 +163,109 @@ public with sharing class WWP_LossTree_CC{
         system.debug('profilename'+profileName);
         date myDate = date.today();
         date weekStart = myDate.toStartofWeek();
-        if(lossTree.Loss_Type__c!=null && lossTree.Plant_Code__c!=null && selectedWeek !=null ){
-           if(lossTree.Loss_Type__c != 'Supplier OTIF'){
-         if(dispalyAll){
-            system.debug(lossTree.Loss_Type__c +'>>> '+selectedWeek +'>>>>>'+lossTree.Plant_Code__c );
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,Resource_Line__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where   Week__c=:selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c=:losstree.loss_type__c   LIMIT 1000];
-             }
-            else{
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,Resource_Line__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c and Week__c=:selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null and Loss_Updated_in_Salesforce__c = false order by CreatedDate ASC LIMIT 1000];
-            }
-            }
-            else{
-            /* if(profileName == 'WWP Supplier Profile'){
-            if(dispalyAll){
-                    system.debug(lossTree.Loss_Type__c +'>>> '+selectedWeek +'>>>>>'+lossTree.Plant_Code__c );
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,Resource_Line__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_Delivery_Date_as_per_Current_PO__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
-SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where   Week__c=:selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c=:losstree.loss_type__c  and createddate >= :weekStart  LIMIT 1000];
+        
+        
+    system.debug('******'+lossTree.Loss_Type__c);
+        system.debug('&&&&&&&'+lossTree.Ultimate_Supplier_code__c);
+        system.debug('+++++++'+listSAPcodedesc);
+        system.debug('@@@@@@@'+listSAPcodedesc);
+        if(lossTree.Loss_Type__c!=null && lossTree.Ultimate_Supplier_code__c!=null && listSAPcodedesc != null && selectedplantdescription != null && selectedcountrydescription != null){
+            
+             if(dispalyAll){
+                   
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,SAP_vendor_code__c,Ultimate_Supplier_code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,Resource_Line__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
+SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where   Ultimate_Supplier_code__c=:lossTree.Ultimate_Supplier_code__c and SAP_vendor_code__c=:listSAPcodedesc and Loss_Type__c=:losstree.loss_type__c and plant_description__c=:selectedplantdescription and Plant_Country__c =:selectedcountrydescription   and createddate >= :weekStart  LIMIT 1000];
             }
                 else{
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Resource_Line__c,Loss_Sub_Family__c,createddate,Remarks__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_Delivery_Date_as_per_Current_PO__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
-SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c and Week__c=:selectedWeek and createddate>=:weekStart and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null and OTIF_supplier_update__c = false order by CreatedDate ASC LIMIT 1000];
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,SAP_vendor_code__c,Ultimate_Supplier_code__c,Loss_Name__c,Resource_Line__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
+SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c and Ultimate_Supplier_code__c=:lossTree.Ultimate_Supplier_code__c and SAP_vendor_code__c=:listSAPcodedesc and plant_description__c=:selectedplantdescription and Plant_Country__c =:selectedcountrydescription  and createddate>=:weekStart  and Loss_Type__c!=null and OTIF_supplier_update__c = false order by CreatedDate ASC LIMIT 1000];
             }
-            }
-            else{*/
+            
+            shwmsg = false;
+            
+        }
+        else if(lossTree.Loss_Type__c!=null && lossTree.Ultimate_Supplier_code__c!=null && listSAPcodedesc == null && selectedplantdescription== null && selectedcountrydescription == null){
+       
+        system.debug('enetred here@@@@@@@@@@@@@@@@@@'+lossTree.Ultimate_Supplier_code__c);
             if(dispalyAll){
-                    system.debug(lossTree.Loss_Type__c +'>>> '+selectedWeek +'>>>>>'+lossTree.Plant_Code__c );
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,Ultimate_Supplier_code__c,SAP_vendor_code__c,
+                    
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,SAP_vendor_code__c,Ultimate_Supplier_code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,
                              Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,Resource_Line__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
-SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where   Week__c=:selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and createddate<:weekStart and Loss_Type__c=:losstree.loss_type__c   LIMIT 1000];
+SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where   Ultimate_Supplier_code__c=:lossTree.Ultimate_Supplier_code__c and Loss_Type__c=:losstree.loss_type__c   and createddate >= :weekStart  LIMIT 1000];
             }
                 else{
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,Ultimate_Supplier_code__c,SAP_vendor_code__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,Resource_Line__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
-SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c and createddate<:weekStart and Week__c=:selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null and Loss_Updated_in_Salesforce__c = false order by CreatedDate ASC LIMIT 1000];
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,SAP_vendor_code__c,Loss_Name__c,Ultimate_Supplier_code__c,Resource_Line__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
+SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c and Ultimate_Supplier_code__c=:lossTree.Ultimate_Supplier_code__c  and createddate>=:weekStart  and Loss_Type__c!=null and OTIF_supplier_update__c = false order by CreatedDate ASC LIMIT 1000];
             }
-            //}
-            }          
-          if(listLossTree.isEmpty()){
-              message = label.WWP_Norecords_Err;
+        shwmsg = false;
+        }
+         else if(lossTree.Loss_Type__c!=null && lossTree.Ultimate_Supplier_code__c!=null && listSAPcodedesc != null && selectedplantdescription== null && selectedcountrydescription == null){
+        
+        system.debug('enetred here@@@@@@@@@@@@@@@@@@');
+            if(dispalyAll){
+                    
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,SAP_vendor_code__c,Loss_Name__c,Ultimate_Supplier_code__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,Resource_Line__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
+SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where   Ultimate_Supplier_code__c=:lossTree.Ultimate_Supplier_code__c and Loss_Type__c=:losstree.loss_type__c and SAP_vendor_code__c =:listSAPcodedesc  and createddate >= :weekStart  LIMIT 1000];
+            }
+                else{
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,SAP_vendor_code__c,Loss_Name__c,Ultimate_Supplier_code__c,Resource_Line__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
+SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c and Ultimate_Supplier_code__c=:lossTree.Ultimate_Supplier_code__c and SAP_vendor_code__c =:listSAPcodedesc  and createddate>=:weekStart  and Loss_Type__c!=null and OTIF_supplier_update__c = false order by CreatedDate ASC LIMIT 1000];
+            }
+        shwmsg = false;
+        }
+         else if(lossTree.Loss_Type__c!=null && lossTree.Ultimate_Supplier_code__c!=null && listSAPcodedesc != null && selectedplantdescription != null && selectedcountrydescription == null){
+        
+        system.debug('enetred here@@@@@@@@@@@@@@@@@@');
+            if(dispalyAll){
+                    
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,SAP_vendor_code__c,Loss_Name__c,Ultimate_Supplier_code__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,Resource_Line__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
+SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where   Ultimate_Supplier_code__c=:lossTree.Ultimate_Supplier_code__c and Loss_Type__c=:losstree.loss_type__c and SAP_vendor_code__c =:listSAPcodedesc and plant_description__c=:selectedplantdescription  and createddate >= :weekStart  LIMIT 1000];
+            }
+                else{
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,SAP_vendor_code__c,Loss_Name__c,Ultimate_Supplier_code__c,Resource_Line__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
+SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c and Ultimate_Supplier_code__c=:lossTree.Ultimate_Supplier_code__c and SAP_vendor_code__c =:listSAPcodedesc and plant_description__c=:selectedplantdescription  and createddate>=:weekStart  and Loss_Type__c!=null and OTIF_supplier_update__c = false order by CreatedDate ASC LIMIT 1000];
+            }
+        shwmsg = false;
+        }
+        else if(lossTree.Loss_Type__c!=null && lossTree.Ultimate_Supplier_code__c!=null && listSAPcodedesc != null && selectedplantdescription == null && selectedcountrydescription != null){
+        
+        system.debug('enetred here@@@@@@@@@@@@@@@@@@');
+            if(dispalyAll){
+                    
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,SAP_vendor_code__c,Loss_Name__c,Ultimate_Supplier_code__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,Resource_Line__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
+SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where   Ultimate_Supplier_code__c=:lossTree.Ultimate_Supplier_code__c and Loss_Type__c=:losstree.loss_type__c and SAP_vendor_code__c =:listSAPcodedesc and Plant_Country__c =:selectedcountrydescription   and createddate >= :weekStart  LIMIT 1000];
+            }
+                else{
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,SAP_vendor_code__c,Loss_Name__c,Ultimate_Supplier_code__c,Resource_Line__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
+SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c and Ultimate_Supplier_code__c=:lossTree.Ultimate_Supplier_code__c and SAP_vendor_code__c =:listSAPcodedesc and Plant_Country__c =:selectedcountrydescription   and createddate>=:weekStart  and Loss_Type__c!=null and OTIF_supplier_update__c = false order by CreatedDate ASC LIMIT 1000];
+            }
+        shwmsg = false;
+        }
+        else{
+        system.debug('%%%%%%%%%%');
+         shwmsg = true;
+         message1 = label.WWP_RequiredFeilds_Err;
+        }
+        
+         if(listLossTree.isEmpty()){
+          shwmsg = true;
+              message1 = label.WWP_Norecords_Err;
           }else{
             message = valueNull;
-            List<WWP_LossTree__c> listCodes = WWP_LossTree__c.getAll().values();
+            List<WWP_LossTree_Suppliers__c> listCodes = WWP_LossTree_Suppliers__c.getAll().values();
             set<string> setbox1all = new set<string>();
             set<string> setbox2all = new set<string>();
             set<string> setbox3all = new set<string>();
-            for(WWP_LossTree__c w: listCodes){
+            for(WWP_LossTree_Suppliers__c w: listCodes){
             if(w.loss_type__c == lossTree.Loss_Type__c){               
                 setbox1all.add(w.loss_name__c);
                 setbox2all.add(w.loss_sub_family__c);
@@ -216,126 +325,10 @@ SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIE
         }
         fetchLossTreeExt(setbox1all, setbox2all, setbox3all);        
          }
-         }         
-         else if(lossTree.Loss_Type__c!=null && lossTree.Plant_Code__c!=null && selectedWeek ==null ){        
-            if(lossTree.Loss_Type__c != 'Supplier OTIF'){
-            if(dispalyAll){
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Resource_Line__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c from WWP_Loss_Tree__c where    Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c=:losstree.loss_type__c   LIMIT 1000];
-             }
-            else{
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Resource_Line__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c  and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null and Loss_Updated_in_Salesforce__c = false order by CreatedDate ASC LIMIT 1000];
-            }}
-            else{
-                
-          /* if(profileName == 'WWP Supplier Profile'){
-            if(dispalyAll){
-                    system.debug(lossTree.Loss_Type__c +'>>> '+selectedWeek +'>>>>>'+lossTree.Plant_Code__c );
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Resource_Line__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_Delivery_Date_as_per_Current_PO__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
-SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where   Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c=:losstree.loss_type__c and createddate>=:weekStart   LIMIT 1000];
-            }
-                else{
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Resource_Line__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_Delivery_Date_as_per_Current_PO__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
-SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c and  createddate>=:weekStart and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null and OTIF_supplier_update__c = false order by CreatedDate ASC LIMIT 1000];
-            }
-            }
-           else{*/
-             if(dispalyAll){
-                    system.debug(lossTree.Loss_Type__c +'>>> '+selectedWeek +'>>>>>'+lossTree.Plant_Code__c );
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Resource_Line__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,Ultimate_Supplier_code__c,SAP_vendor_code__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
-SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where    Plant_Code__c=:lossTree.Plant_Code__c and createddate<:weekStart and Loss_Type__c=:losstree.loss_type__c   LIMIT 1000];
-                             
-            }
-                else{
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Resource_Line__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,PO_Delivery_Date_as_per_Current_PO__c,Ultimate_Supplier_code__c,SAP_vendor_code__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c,Material__c,material_Description__c,Material_Type__c,Material_Group__c,PO_Line_Item_Number__c,PO_Schedule_Line_Item_Number__c,PO_QTY__c,GR_Date__c,GR_QTY__c,
-SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c   and Plant_Code__c=:lossTree.Plant_Code__c and createddate<:weekStart and Loss_Type__c!=null and Loss_Updated_in_Salesforce__c = false order by CreatedDate ASC LIMIT 1000];
-            }
-            //}
-            }
-          if(listLossTree.isEmpty()){
-              message = label.WWP_Norecords_Err;
-          }else{
-            message = valueNull;
-            List<WWP_LossTree__c> listCodes = WWP_LossTree__c.getAll().values();
-            set<string> setbox1all = new set<string>();
-            set<string> setbox2all = new set<string>();
-            set<string> setbox3all = new set<string>();
-            for(WWP_LossTree__c w: listCodes){
-            if(w.loss_type__c == lossTree.Loss_Type__c){               
-                setbox1all.add(w.loss_name__c);
-                setbox2all.add(w.loss_sub_family__c);
-                setbox3all.add(w.Loss_Description__c);                
-                set<string> listbox12 = new set<string>();
-                if(!Mapbox12.containsKey(w.loss_name__c)){                
-                    listbox12.add(w.loss_sub_family__c);
-                    Mapbox12.put(w.loss_name__c,listbox12);
-                }else{
-                    listbox12 = Mapbox12.get(w.loss_name__c);
-                    listbox12.add(w.loss_sub_family__c);
-                    Mapbox12.put(w.loss_name__c,listbox12);
-                }                
-                set<string> listbox13 = new set<string>();
-                if(!Mapbox13.containsKey(w.loss_name__c)){                
-                    listbox13.add(w.Loss_Description__c);
-                    Mapbox13.put(w.loss_name__c,listbox13);
-                }else{                    
-                    listbox13 = Mapbox13.get(w.loss_name__c);
-                    listbox13.add(w.Loss_Description__c);
-                    Mapbox13.put(w.loss_name__c,listbox13);
-                }                
-                set<string> listbox21 = new set<string>();
-                if(!Mapbox21.containsKey(w.loss_sub_family__c)){                
-                    listbox21.add(w.loss_name__c);
-                    Mapbox21.put(w.loss_sub_family__c,listbox21);
-                }else{
-                    listbox21 = Mapbox21.get(w.loss_sub_family__c);
-                    listbox21.add(w.loss_name__c);
-                    Mapbox21.put(w.loss_sub_family__c,listbox21);
-                }                
-                set<string> listbox23 = new set<string>();
-                if(!Mapbox23.containsKey(w.loss_sub_family__c)){                
-                    listbox23.add(w.Loss_Description__c);
-                    Mapbox23.put(w.loss_sub_family__c,listbox23);
-                }else{
-                    listbox23 = Mapbox23.get(w.loss_sub_family__c);
-                    listbox23.add(w.Loss_Description__c);
-                    Mapbox23.put(w.loss_sub_family__c,listbox23);
-                }
-                
-                set<string> listcombine12 = new set<string>();
-                if(!mapcombine12.containsKey(w.loss_name__c+w.loss_sub_family__c)){ 
-                listcombine12.add(w.Loss_Description__c);
-                mapcombine12.put(w.loss_name__c+w.loss_sub_family__c,listcombine12);
-                }else{
-                listcombine12 = mapcombine12.get(w.loss_name__c+w.loss_sub_family__c);
-                listcombine12.add(w.Loss_Description__c);
-                mapcombine12.put(w.loss_name__c+w.loss_sub_family__c,listcombine12);
-                }                
-                set<string> listbox31 = new set<string>();
-                listbox31.add(w.loss_name__c);
-                Mapbox31.put(w.Loss_Description__c,listbox31);
-                set<string> listbox32 = new set<string>();
-                listbox32.add(w.loss_sub_family__c);
-                Mapbox32.put(w.Loss_Description__c,listbox32);                
-            }
-        }
-        fetchLossTreeExt(setbox1all, setbox2all, setbox3all);
-        
-         }
-         }else{         
-             message = label.WWP_RequiredFeilds_Err;
-         }
-         WWP_Losstree_Copy_Component_Ctrl cmp = new WWP_Losstree_Copy_Component_Ctrl();
+         //WWP_Losstree_Copy_Component_Ctrl cmp = new WWP_Losstree_Copy_Component_Ctrl();
          //system.debug('called');
         //cmp.fetchLossTree1();
-        
-
-    }    
+     }    
     public void fetchLossTreeExt(set<string> setbox1all, set<string> setbox2all, set<string> setbox3all){
         listbox1all.add(new SelectOption(valueNone,valueNone));
         listbox2all.add(new SelectOption(valueNone,valueNone));
@@ -386,10 +379,10 @@ SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIE
         public LossTreeWrapper(WWP_Loss_Tree__c lt,List<SelectOption> listbox1all,List<SelectOption> listbox2all,List<SelectOption> listbox3all,integer y){
             checkbox1 = false;
             wlt = lt;
-            remarks = lt.remarks__c;            
-            Map<string,WWP_Master_Table__c> masterTableValues= WWP_Master_Table__c.getAll();
-            orVal = masterTableValues.get(lt.Plant_Code__c).OR_Tolerance__c;
-            plVal = 1-(orVal/100) ;            
+           // remarks = lt.remarks__c;            
+            //Map<string,WWP_Master_Table__c> masterTableValues= WWP_Master_Table__c.getAll();
+           // orVal = masterTableValues.get(lt.Plant_Code__c).OR_Tolerance__c;
+           // plVal = 1-(orVal/100) ;            
            listbox1 = listbox1all; 
            listbox2 = listbox2all;
            listbox3 = listbox3all;
@@ -402,38 +395,6 @@ SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIE
            if(lt.Loss_description__c!=null){
                selectbox3 = lt.Loss_description__c;               
            }
-          // lossdiff = 0;
-           if(lt.loss_type__c == 'Output Reliability' && lt.Planned_Production__c != null && lt.Planned_Production__c != 0){              
-               lossdiff = lt.OR_Loss_Value__c/lt.Planned_Production__c;    
-               //system.debug('lossdiff->' + lossdiff );
-           }
-           if(lt.loss_type__c == 'Output Reliability' && lt.Planned_Production__c == 0){
-               lossdiff = 100;
-           }
-           if(lt.loss_type__c == 'Dispatch Compliance' && lt.Planned_Dispatch__c!= null && lt.Planned_Dispatch__c!= 0){              
-               lossdiffDC = lt.DC_Loss_Value__c/lt.Planned_Dispatch__c;       
-           }
-           if(lt.loss_type__c == 'Dispatch Compliance' && lt.Planned_Dispatch__c== 0){
-               lossdiffDC = 100;
-           }
-          if(lt.loss_type__c == 'Output Reliability' ){
-          if(lossdiff <= plVal){
-           isdisabled =true;
-           checkdissable = true;
-           Remarks = 'above target';
-           }else{
-           isdisabled=false;
-           checkdissable = false;
-           }
-           }else{
-           if(lossdiffDC <= 0.05){           
-           isdisabled =true;
-           checkdissable = true;
-           }else{
-           isdisabled=false;
-           checkdissable = false;           
-           }           
-           }           
             i=y+1;            
         }
     }    
@@ -564,34 +525,11 @@ SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIE
           }        
      }
     //======================================================copy functionality
-     public void copyline(){       
-         string lossname = Apexpages.currentPage().getParameters().get('losssecondParam1');
-         string lossfam = Apexpages.currentPage().getParameters().get('losssecondParam2');
-         string lossdesc = Apexpages.currentPage().getParameters().get('losssecondParam3');
-         integer count=0;
-         integer counter = 0;
-         for(integer i =0 ; i < listLossTreeW.size(); i++){     
-        if(listLossTreeW[i].checkbox1){
-        counter++;
-        if(!listLossTreeW[i].isdisabled ){
-           system.debug('sssss'+listLossTreeW[i].isdisabled);
-                listLossTreeW[i].selectbox1 = lossname ;
-                listLossTreeW[i].selectbox2 = lossfam ;
-                listLossTreeW[i].selectbox3 = lossdesc ;
-                count++;
-           }
-           }
-        }
-        if(counter == 0){
-            message=label.WWP_selectRecord_Err;
-            successmessage =valueNull;
-        }else if(count == 0){
-            message = label.WWp_selectedrecord_disabled;
-            successmessage =valueNull;
-        }
-        else{
-            message =valueNull;                    
-        }
+     public pagereference copyline(){       
+         pagereference pg = page.CommunitiesLogin;
+         pg.setredirect(true);
+         return pg;
+         
     }    
     //=================================================End here    
     public void resetline(){
@@ -655,10 +593,10 @@ SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIE
             }
             if(count == 0){
                     //fetchLossTree();                  
-                    message=label.WWP_selectRecord_Err; 
+                    message1=label.WWP_selectRecord_Err; 
                     successmessage =valueNull;                   
                 }else{
-                    message =valueNull;                    
+                    message1 =valueNull;                    
                 } 
             if(updateLTW!=null && !updateLTW.isEmpty()){
                 update updateLTW;
@@ -666,7 +604,8 @@ SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIE
                // WWP_Losstree_Copy_Component_Ctrl cmp = new WWP_Losstree_Copy_Component_Ctrl();
                // cmp.fetchLossTree1();
                 successmessage=label.WWP_RecordsUpdated_Msg;
-                message =valueNull;
+                message1 =valueNull;
+                shwmsg = true;
             }
         }
         
