@@ -421,12 +421,14 @@ Throws : N/A
                 }
                 
                 //Ketan - added the following code since 'Promotion Name' should always be readonly even Promotion is not in approval process.
-                EARUI promoObject = new EARUI();
+                /*Commenting for TPM-2316
+				EARUI promoObject = new EARUI();
                 promoObject.Name = Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Slogan__c.getName();
                 promoObject.Type = UtilityEnum.Attribute.Name();
                 promoObject.editable = false;  
                 earBOPromotion.add(promoObject);
-                
+                */
+				
                 if(promoList[0].UL_EnableChild__c == true){
                     Map<String, Schema.SObjectField> fldObjMap = schema.SObjectType.ACCL__Promotion__c.fields.getMap();
                     for(String s : fldObjMap.keySet())
