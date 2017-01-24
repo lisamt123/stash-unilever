@@ -255,7 +255,8 @@ Date: 22/01/2017
             for(Account acc : accList){
                 if(String.isBlank(acc.ACCL__ExternalId__c)){
                     System.debug('acc.ACCL__ExternalId__c'+acc.ACCL__ExternalId__c);
-                    acc.ACCL__ExternalId__c = acc.AccountNumber + '-' +acc.ACCL__Sales_Org__c+ '-' +acc.UL_Activity_Sector_Division_Code__c+ '-' +acc.UL_Distribution_Channel_Code__c;
+                    //acc.ACCL__ExternalId__c = acc.AccountNumber + '-' +acc.ACCL__Sales_Org__c+ '-' +acc.UL_Activity_Sector_Division_Code__c+ '-' +acc.UL_Distribution_Channel_Code__c;
+                    acc.ACCL__ExternalId__c = acc.AccountNumber + '-' +acc.ACCL__Sales_Org__c + acc.UL_Distribution_Channel_Code__c + acc.Division__c;
                 }
             }
         }
