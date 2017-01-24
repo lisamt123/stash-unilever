@@ -1968,6 +1968,13 @@ there is a different Currency on lower level customer(s)</value>
         <shortDescription>refer in class-UL_TacticsValidate</shortDescription>
         <value>Products are mandatory at Tactics level</value>
     </labels>
+	<labels>
+        <fullName>Requires_All_Mandatory_Tactic_for_Promotion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Requires_All_Mandatory_Tactic_for_Promotion</shortDescription>
+        <value>All isMandatory Tactic are required for Promotion for Approval</value>
+    </labels>
     <labels>
         <fullName>UL_Promotion_Success</fullName>
         <language>en_US</language>
