@@ -22,8 +22,12 @@ src/classes/IPM_CMIGateSectionController_Test.cls
 src/classes/IPM_CMIGateSectionController_Test.cls-meta.xml
 src/classes/IPM_CU_Complexity_Consolidated.cls
 src/classes/IPM_CU_Complexity_Consolidated.cls-meta.xml
+src/classes/IPM_CU_Complexity_Consolidated_Test.cls
+src/classes/IPM_CU_Complexity_Consolidated_Test.cls-meta.xml
 src/classes/IPM_CU_Complexity_Controller.cls
 src/classes/IPM_CU_Complexity_Controller.cls-meta.xml
+src/classes/IPM_CU_Complexity_Controller_Test.cls
+src/classes/IPM_CU_Complexity_Controller_Test.cls-meta.xml
 src/classes/IPM_ChangProjectDocStatusController_Test.cls
 src/classes/IPM_ChangProjectDocStatusController_Test.cls-meta.xml
 src/classes/IPM_ChangProjectDocumentStatusController.cls
@@ -270,6 +274,8 @@ src/pages/IPM_Country_FeedbackPage.page
 src/pages/IPM_Country_FeedbackPage.page-meta.xml
 src/pages/IPM_Customer_ChannelsPage.page
 src/pages/IPM_Customer_ChannelsPage.page-meta.xml
+src/pages/IPM_Download_Source_Plan.page
+src/pages/IPM_Download_Source_Plan.page-meta.xml
 src/pages/IPM_EcoDesignSectionPage.page
 src/pages/IPM_EcoDesignSectionPage.page-meta.xml
 src/pages/IPM_FinGatePage.page
@@ -304,6 +310,8 @@ src/pages/IPM_OTIFStatusTableViewPage.page
 src/pages/IPM_OTIFStatusTableViewPage.page-meta.xml
 src/pages/IPM_PerformanceBreakdownPage.page
 src/pages/IPM_PerformanceBreakdownPage.page-meta.xml
+src/pages/IPM_Product_and_Sourcing_Plan.page
+src/pages/IPM_Product_and_Sourcing_Plan.page-meta.xml
 src/pages/IPM_ProjectOverview.page
 src/pages/IPM_ProjectOverview.page-meta.xml
 src/pages/IPM_RND_Feasibility_QuestionsViewPage.page
