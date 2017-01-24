@@ -500,7 +500,7 @@ UL_Week_15_Phasing__c</formula>
         <fullName>UL_Vaidate_for_dates</fullName>
         <active>true</active>
         <errorConditionFormula>IF( UL_Valid_From__c &lt;today() || UL_Valid_Thru__c&lt;today(), true, false)</errorConditionFormula>
-        <errorMessage>Valid From/Thru should be greater than Today date</errorMessage>
+        <errorMessage>Valid From/Thru should not be in past</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>UL_Validation_for_date_duration</fullName>
