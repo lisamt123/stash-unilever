@@ -30,7 +30,7 @@ public class BFM_NFEHandler_Test {
         nfehandler.beforeDelete(So);
         nfehandler.afterDelete(So);
         nfehandler.bulkBefore();
-        //nfehandler.bulkAfter();
+        nfehandler.bulkAfter();
         nfehandler.beforeInsert(So);
         nfehandler.afterInsert(So);
         nfehandler.beforeUpdate(oldSo,So);
