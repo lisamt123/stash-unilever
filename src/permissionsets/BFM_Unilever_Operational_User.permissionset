@@ -1362,7 +1362,7 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Search_Occurrence</tab>
+        <tab>BFM_Search_Occurrence</tab>
         <visibility>None</visibility>
     </tabSettings>
     <userLicense>Partner Community</userLicense>

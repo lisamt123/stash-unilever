@@ -3,9 +3,9 @@ private class BFM_ShipmentUpdate_CCTest {
 private static testMethod void testNFSHandler(){
  Test.startTest();
  Account acc = BFM_TestUtils.createCarrierAccount();
-        acc.cnpj__c = '03189042000100';
-        acc.Vendor__c='11';
-        acc.Company_Code__c='12';
+        acc.BFM_CNPJ__c = '03189042000100';
+        acc.BFM_Vendor__c='11';
+        acc.BFM_Company_Code__c='12';
         insert acc;
         system.assertEquals('11',acc.Vendor__c);
         

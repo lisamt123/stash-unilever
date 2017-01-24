@@ -4,7 +4,7 @@ private class BFM_CommunitiesSelfRegController_CC_Test {
         Test.startTest();
         Account acc = new Account();
         acc.name='carrier';
-        acc.cnpj__c = '03189042000100';
+        acc.BFM_CNPJ__c = '03189042000100';
         insert acc;
         string testname = 'testname';
 

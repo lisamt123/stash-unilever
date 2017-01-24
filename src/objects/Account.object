@@ -6028,7 +6028,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
 	<fields>
-        <fullName>Company_Name__c</fullName>
+        <fullName>BFM_Company_Name__c</fullName>
         <externalId>false</externalId>
         <label>Company Name</label>
         <length>255</length>
@@ -6127,17 +6127,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
 	<fields>
-        <fullName>BFM_Plant_Code__c</fullName>
-        <externalId>false</externalId>
-        <label>Plant Code</label>
-        <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
         <fullName>BFM_Vendor_Account_Group__c</fullName>
         <externalId>false</externalId>
         <label>Vendor Account Group</label>
@@ -6169,7 +6158,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Checkbox</type>
     </fields>
 	<fields>
-        <fullName>BFM_Central_Deletion_Flag_for_Master_Record__c</fullName>
+        <fullName>BFM_Central_Del_Flag_Master_Record__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Central Deletion Flag for Master Record</label>

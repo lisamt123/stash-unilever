@@ -5,7 +5,7 @@ private class BFM_CPFValidator_Test{
         string cpf='87912612017';
         contact con1=new contact();
         con1.LastName='Test';
-        con1.CPF__c=cpf;
+        con1.BFM_CPF__c=cpf;
         con.add(con1);
      insert con;
     

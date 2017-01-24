@@ -27,7 +27,7 @@ Dados da Solicitação de novo Usuário:<br/>
 <p>
 <apex:dataTable border="1px"  value="{!relatedTo.BFM_Access_Requests__r}" var="accountRequest">
     <apex:column headerValue="Nome da empresa" value="{!accountRequest.Account__r.Name}"/>
-    <apex:column headerValue="CNPJ da empresa" value="{!accountRequest.Account__r.CNPJ__c}" />
+    <apex:column headerValue="CNPJ da empresa" value="{!accountRequest.Account__r.BFM_CNPJ__c}" />
 </apex:dataTable>
 </p>
 </messaging:htmlEmailBody>

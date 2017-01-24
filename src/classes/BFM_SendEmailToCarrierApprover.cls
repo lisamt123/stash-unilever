@@ -49,7 +49,7 @@ public without sharing class BFM_SendEmailToCarrierApprover {
     
     public Contact getEmailContact(){
         Contact contactEmail;
-        String masterCNPJ = desiredCarriers[0].cnpj__c;
+        String masterCNPJ = desiredCarriers[0].BFM_cnpj__c;
         String cnpjPrefix = '%' + masterCNPJ.substring(0,8) + '%';
         System.debug('cnpjPrefix: ' + cnpjPrefix);
         System.debug('masterCNPJ: ' + masterCNPJ);
