@@ -80,7 +80,7 @@ Date: 22/01/2017
         try{
             for(ACCL__Product__c product: productList){
                 if(String.isBlank(product.ACCL__ExternalId__c)){
-                    product.ACCL__ExternalId__c = product.ACCL__Product_Code__c + '-' + product.ACCL__Sales_Org__c;
+                    product.ACCL__ExternalId__c = product.ACCL__Product_Code__c + '-' + product.ACCL__Sales_Org__c+ '-' +product.UL_Division__c;
                 }
             }
         }
