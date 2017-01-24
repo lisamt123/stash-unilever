@@ -28,7 +28,10 @@ public class BFM_TriggerFactory_Test {
         nfe.NF_e_access_key__c = '3322234';
         insert nfe;
         nfe.NF_e_access_key__c = '3343';
-        update nfe;        
+        update nfe;
+		delete nfe;
+		BFM_TriggerFactory bfmtf = new BFM_TriggerFactory();
+        BFM_TriggerFactory.getHandler(BFM_NF_e__c.sObjectType);
         Test.stopTest();
     }
 }
