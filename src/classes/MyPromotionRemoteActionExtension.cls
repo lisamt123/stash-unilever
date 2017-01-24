@@ -978,7 +978,7 @@ Throws : N/A
             }
             System.debug('productIdSet::::::'+productIdSet);
             if(!productIdSet.isEmpty()){
-                Map<Id, ACCL__Product__c> productMap = new Map<Id, ACCL__Product__c>([SELECT Id, ACCL__Product_Level__c, ACCL__Criterion_2_Product__c, ACCL__Criterion_2_Product__r.Name, ACCL__Criterion_1_Product__r.Name, ACCL__Criterion_3_Product__r.Name FROM ACCL__Product__c WHERE Id IN:productIdSet]);
+                Map<Id, ACCL__Product__c> productMap = new Map<Id, ACCL__Product__c>([SELECT Id, ACCL__Product_Level__c, ACCL__Criterion_2_Product__c, ACCL__Criterion_2_Product__r.Name, ACCL__Criterion_3_Product__r.Name, ACCL__Criterion_4_Product__r.Name FROM ACCL__Product__c WHERE Id IN:productIdSet]);
                 
                 if(!productMap.isEmpty()){
                     Set<Id> marketLevelIds = new Set<Id>();
@@ -1000,24 +1000,25 @@ Throws : N/A
                     String brand;
                     for(ACCL__Product__c product : productMap.values()){
                         System.debug('product.ACCL__Criterion_2_Product__c:::'+product.ACCL__Criterion_2_Product__c);
-                        if(product.ACCL__Criterion_2_Product__c != null){
-                            marketLevelIds.add(product.ACCL__Criterion_2_Product__c);
-                            marketId = String.valueOf(product.ACCL__Criterion_2_Product__c);
+                        if(product.ACCL__Criterion_3_Product__c != null){
+                            marketLevelIds.add(product.ACCL__Criterion_3_Product__c);
+                            marketId = String.valueOf(product.ACCL__Criterion_3_Product__c);
                             childProductId = product.Id;
                         }
-                        System.debug('product.ACCL__Criterion_3_Product__c::::'+product.ACCL__Criterion_3_Product__c);
-                        if(product.ACCL__Criterion_3_Product__c!=null){
-                            brandLevelSet.add(product.ACCL__Criterion_3_Product__c);
+                        System.debug('Market::::'+product.ACCL__Criterion_3_Product__c);
+                        if(product.ACCL__Criterion_4_Product__c!=null){
+                            brandLevelSet.add(product.ACCL__Criterion_4_Product__c);
                         }
-                        System.debug('product.ACCL__Criterion_1_Product__c::::'+product.ACCL__Criterion_1_Product__c);
-                        if(product.ACCL__Criterion_1_Product__c!=null){
-                            categorytLevelSet.add(product.ACCL__Criterion_1_Product__c);
+                        System.debug('Brand::::'+product.ACCL__Criterion_4_Product__c);
+                        if(product.ACCL__Criterion_2_Product__c!=null){
+                            categorytLevelSet.add(product.ACCL__Criterion_2_Product__c);
                         }
+						System.debug('Category::::'+product.ACCL__Criterion_2_Product__c);
                     }
                     
                     //populating Market Field
                     if(marketLevelIds.size()==1){
-                        market = productMap.get(childProductId).ACCL__Criterion_2_Product__r.Name;
+                        market = productMap.get(childProductId).ACCL__Criterion_3_Product__r.Name;
                     }
                     else if(marketLevelIds.size()>1){
                         market = System.Label.UL_Multiple_Markets;
@@ -1028,7 +1029,7 @@ Throws : N/A
                     
                     //populating Category Field
                     if(categorytLevelSet.size()==1){
-                        category = productMap.get(childProductId).ACCL__Criterion_1_Product__r.Name;
+                        category = productMap.get(childProductId).ACCL__Criterion_2_Product__r.Name;
                     }
                     else if(categorytLevelSet.size()>1){
                         category = System.Label.UL_Multiple_Categories;
@@ -1039,7 +1040,7 @@ Throws : N/A
                     
                     //populating Brand Field
                     if(brandLevelSet.size()==1){
-                        brand = productMap.get(childProductId).ACCL__Criterion_3_Product__r.Name;
+                        brand = productMap.get(childProductId).ACCL__Criterion_4_Product__r.Name;
                     }
                     else if(brandLevelSet.size()>1){
                         brand = System.Label.UL_Multiple_Brands;
@@ -1080,7 +1081,6 @@ Throws : N/A
                             //#1
                             //For Customer/Market/Fearure combination
                             String key = tempCustomerId + tempMarketId + tempFeature;
-                            System.debug('Promotion Key :::'+key);
                             if(cannibRateMap.containsKey(key)){
                                 cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
                                 boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
