@@ -4186,6 +4186,12 @@ Id=VLOOKUP
         <errorDisplayField>ACCL__Active__c</errorDisplayField>
         <errorMessage>In store dates range should be more than 1 day or below 91 days</errorMessage>
     </validationRules>
+	    <validationRules>
+        <fullName>UL_Default_Sold_To_Mandatory_Rule</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF(  ACCL__Promotion_Template__r.UL_Calculate_Slogan_Name__c &amp;&amp; ISBLANK( ACCL__Anchor_Account__c) , true, false)</errorConditionFormula>
+        <errorMessage>All promotions must have a sold-to assigned to them. If no sold-to appears in the list for your account, please contact your support team for guidance.</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>ACCL__Derive</fullName>
         <availability>online</availability>

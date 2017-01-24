@@ -2097,3 +2097,10 @@ there is a different Currency on lower level customer(s)</value>
         <shortDescription>Check atleast one dummy product on each tactic</shortDescription>
         <value>All Off-Invoice tactics must contain a dummy product</value>
     </labels>
+	 <labels>
+        <fullName>UL_Duplicate_Record_Found</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Duplicate_Record_Found</shortDescription>
+        <value>Valid From and Valid Through Dates are overlapping with an existing Delivery Profile</value>
+    </labels>

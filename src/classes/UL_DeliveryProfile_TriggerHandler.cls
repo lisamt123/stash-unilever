@@ -76,7 +76,7 @@ public without sharing class UL_DeliveryProfile_TriggerHandler {
 **********************************************************************************************************************************************************/ 
     public void deliveryProfileNameValidation(Set<String> delivery_profile_names, Date lowestDate, Date highestDate){
         Map<String, UL_Delivery_Profile__c> checkNames = new Map<String, UL_Delivery_Profile__c>();
-        for(UL_Delivery_Profile__c dp : [SELECT Id,Name, UL_Delivery_Profile_Name__c, UL_Valid_From__c, UL_Valid_Thru__c FROM UL_Delivery_Profile__c WHERE UL_Delivery_Profile_Name__c IN :delivery_profile_names AND (UL_Valid_From__c >= :Date.valueOf(lowestDate) OR UL_Valid_Thru__c <= :Date.valueOf(highestDate)) ORDER BY UL_Valid_Thru__c DESC, UL_Valid_From__c DESC]){
+        for(UL_Delivery_Profile__c dp : [SELECT Id,Name, UL_Delivery_Profile_Name__c, UL_Valid_From__c, UL_Valid_Thru__c FROM UL_Delivery_Profile__c WHERE UL_Delivery_Profile_Name__c IN :delivery_profile_names AND (UL_Valid_From__c >= :Date.valueOf(lowestDate) OR UL_Valid_Thru__c <= :Date.valueOf(highestDate)) ORDER BY UL_Valid_Thru__c DESC, UL_Valid_From__c ASC]){
             if(checkNames.containsKey(dp.UL_Delivery_Profile_Name__c)){
                 if(dp.UL_Valid_From__c > checkNames.get(dp.UL_Delivery_Profile_Name__c).UL_Valid_From__c){
                     checkNames.put(dp.UL_Delivery_Profile_Name__c, dp);
