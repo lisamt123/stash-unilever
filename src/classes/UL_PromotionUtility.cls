@@ -130,7 +130,7 @@
     Returns: List of UL_PromotionCloneWrapper object
     Throws : N/A 
   ********************************************************************/
-  //@future
+  @future
   public static void updatePromotionProduct(Id promotionId, Set<Id> productIdSet){
       if(promotionId == UL_Utility.NULL_ID){
           return;
@@ -155,6 +155,7 @@
           //In case promotion has stored product category, remove unused and add new one  
           Set<Id> insertProductSet = new Set<Id>();
           if(!storedPromotionProduct.isEmpty()){
+              System.debug('>>>>>>1');
               Set<Id> totlaPromotionProduct = new Set<Id>();
               totlaPromotionProduct.addAll(storedPromotionProduct);
               totlaPromotionProduct.addAll(productIdSet);
@@ -187,11 +188,13 @@
               }
           }else {
               //Adding fresh products
+              System.debug('>>>>>>2');
               insertProductSet.addAll(productIdSet);
           }
           
           //Insert new products to ProductCategory.
           if(!insertProductSet.isEmpty()){
+          System.debug('>>>>>>3');
               List<UL_PromotionCategory__c> insertProductCategoryList = new List<UL_PromotionCategory__c>();
               //Create ProductCategory list to add new products
               for(ACCL__Product__c product : [SELECT id, ACCL__Criterion_2_Product__c FROM ACCL__Product__c WHERE 
@@ -408,7 +411,7 @@
                                                 promoObj.ACCL__Anchor_Account__r.UL_Distribution_Channel_Code__c,promoObj.ACCL__Anchor_Account__r.UL_Activity_Sector_Division_Code__c,
                                                 promoObj.ACCL__Anchor_Account__r.AccountNumber,promoObj.ACCL__Anchor_Account__r.UL_Currency__c) ;
             
-            tacticLst = [SELECT Id,Name,ACCL__Tactic_Template__c,(SELECT ACCL__Product__c,ACCL__Product__r.Name FROM ACCL__Tactic_Products__r) FROM ACCL__Tactic__c WHERE ACCL__Promotion__c =: promoIds];
+            tacticLst = [SELECT Id,Name,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Amount__c,ACCL__Tactic_Template__c,(SELECT ACCL__Product__c,ACCL__Product__r.Name FROM ACCL__Tactic_Products__r) FROM ACCL__Tactic__c WHERE ACCL__Promotion__c =: promoIds];
             
             if(tacticLst.size() > 0){
                 for(ACCL__Tactic__c tactic : tacticLst){
@@ -440,7 +443,7 @@
                         }
                     }
                     
-                    tacWrapObj = new UL_TacticOutboundWrapper(tac.Id,tac.Name,prodWrapLst,CCWrapLst) ;
+                    tacWrapObj = new UL_TacticOutboundWrapper(tac.Id,tac.Name,tac.ACCL__Date_From__c,tac.ACCL__Date_Thru__c,tac.ACCL__Amount__c,prodWrapLst,CCWrapLst) ;
                     tacWrapLst.add(tacWrapObj) ;
                 }  
             }
@@ -511,11 +514,17 @@
     public with sharing class UL_TacticOutboundWrapper{
         Id TId ;
         String TName ;
+        Date FROM_DATE;
+        Date TO_DATE;
+        Decimal AMOUNT;
         List<UL_ProductOutboundWrapper> PRODUCTS = new List<UL_ProductOutboundWrapper>();
         List<UL_ConditionCodeOutboundWrapper> CONDITION_CODES = new List<UL_ConditionCodeOutboundWrapper>();
-        public UL_TacticOutboundWrapper(Id tacticId, String tacticName,List<UL_ProductOutboundWrapper> prodWrapLst,List<UL_ConditionCodeOutboundWrapper> CCWrapLst){
+        public UL_TacticOutboundWrapper(Id tacticId, String tacticName,Date FROMDATE,Date TODATE,Decimal tacAMOUNT,List<UL_ProductOutboundWrapper> prodWrapLst,List<UL_ConditionCodeOutboundWrapper> CCWrapLst){
             this.TId = tacticId ;
             this.TName = tacticName ;
+            this.FROM_DATE= FROMDATE;
+            this.TO_DATE= TODATE;
+            this.AMOUNT= tacAMOUNT;
             this.PRODUCTS = prodWrapLst ;
             this.CONDITION_CODES = CCWrapLst ;
         }

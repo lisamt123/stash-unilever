@@ -84,7 +84,7 @@
             </action>
         </rejectionActions>
     </approvalStep>
-    <description>SoCo Parent Past Dated/Urgent Workflow</description>
+    <description>SoCo - Account Level Past-Dated/Urgent Workflow</description>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <formula>ACCL__Active__c == true &amp;&amp; TEXT(  UL_Current_Status__c)==&apos;Planning&apos;</formula>
@@ -97,7 +97,7 @@
             <type>FieldUpdate</type>
         </action>
     </initialSubmissionActions>
-    <label>SoCo - Parent Past-Dated/Urgent Workflow</label>
+    <label>SoCo - Account Level Past-Dated/Urgent</label>
     <nextAutomatedApprover>
         <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
         <userHierarchyField>Manager</userHierarchyField>
