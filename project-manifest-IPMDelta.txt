@@ -108,7 +108,6 @@ src/pages/IPM_GateDocument.page-meta.xml
 src/pages/IPM_ProjectDocumentSectionEditor.page
 src/pages/IPM_ProjectDocumentSectionEditor.page-meta.xml
 src/permissionsets
-src/permissionsets/Admin_Analytics.permissionset
 src/permissionsets/IPMNG_Basic.permissionset
 src/permissionsets/IPM_ProjectLeader.permissionset
 src/sharingRules
