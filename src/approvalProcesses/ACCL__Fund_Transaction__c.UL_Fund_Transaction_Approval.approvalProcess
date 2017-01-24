@@ -7,17 +7,16 @@
     </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
-        <field>ACCL__Amount__c</field>
-        <field>CreatedBy</field>
-        <field>ACCL__Currency__c</field>
-        <field>ACCL__Date__c</field>
-        <field>LastModifiedBy</field>
-        <field>ACCL__Record_Link__c</field>
-        <field>ACCL__Source_Fund__c</field>
-        <field>ACCL__Target_Fund__c</field>
         <field>ACCL__Fund_Transaction_Template__c</field>
-        <field>ACCL__Fund_Transaction_Template_Description__c</field>
-        <field>ACCL__Transaction_Type__c</field>
+        <field>ACCL__Date__c</field>
+        <field>ACCL__Source_Fund__c</field>
+        <field>UL_Source_Fund_Description__c</field>
+        <field>ACCL__Target_Fund__c</field>
+        <field>UL_Target_Fund_Description__c</field>
+        <field>ACCL__Amount__c</field>
+        <field>UL_Status__c</field>
+        <field>CreatedBy</field>
+        <field>ACCL__Record_Link__c</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>true</allowDelegate>
