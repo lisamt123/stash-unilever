@@ -1673,7 +1673,7 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Search_Shipment_Cte</tab>
+        <tab>BFM_Search_Shipment_Cte</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Partner Community</userLicense>

@@ -10,7 +10,7 @@ private static testMethod void testBFM_QueryOccurrence (){
         acc1.BFM_Vendor__c='18';
         acc1.BFM_Company_Code__c='19';
         insert acc1;
-        system.assertEquals('18',acc1.Vendor__c);
+        system.assertEquals('18',acc1.BFM_Vendor__c);
         BFM_Shipment__c ship1=new BFM_Shipment__c();
         ship1.Carrier_Account__c=acc1.id;
         ship1.Shipment_Number__c='1234';

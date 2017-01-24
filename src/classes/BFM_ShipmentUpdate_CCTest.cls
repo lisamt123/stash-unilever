@@ -7,7 +7,7 @@ private static testMethod void testNFSHandler(){
         acc.BFM_Vendor__c='11';
         acc.BFM_Company_Code__c='12';
         insert acc;
-        system.assertEquals('11',acc.Vendor__c);
+        system.assertEquals('11',acc.BFM_Vendor__c);
         
          ApexPages.StandardController sc = new ApexPages.StandardController(acc);
         BFM_ShipmentUpdate_CC ship= new BFM_ShipmentUpdate_CC(sc);
