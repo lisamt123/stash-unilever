@@ -262,8 +262,8 @@ src/tabs/BFM_NF_e__c.tab
 src/tabs/BFM_Occurrence__c.tab
 src/tabs/BFM_SES__c.tab
 src/tabs/BFM_Shipment__c.tab
-src/tabs/Search_Shipment_Cte.tab
-src/tabs/Search_Occurrence.tab
+src/tabs/BFM_Search_Shipment.tab
+src/tabs/BFM_Search_Occurrence.tab
 src/tabs/BFM_Stage__c.tab
 src/tabs/BFM_UserCreationRequest__c.tab
 src/triggers/BFM_Occurrence.trigger

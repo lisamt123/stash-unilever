@@ -73,7 +73,7 @@
     <fields>
         <fullName>Carrier_CNPJ__c</fullName>
         <externalId>false</externalId>
-        <formula>Account__r.CNPJ__c</formula>
+        <formula>Account__r.BFM_CNPJ__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Carrier CNPJ</label>
         <required>false</required>
@@ -85,7 +85,7 @@
     <fields>
         <fullName>City__c</fullName>
         <externalId>false</externalId>
-        <formula>Account__r.City__c</formula>
+        <formula>Account__r.BFM_City__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>City</label>
         <required>false</required>

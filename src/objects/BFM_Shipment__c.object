@@ -72,7 +72,7 @@
         <fullName>Carrier_Account_Vendor_Code__c</fullName>
         <description>Vendor Code information regarding Carrier Account</description>
         <externalId>false</externalId>
-        <formula>Carrier_Account__r.Vendor__c</formula>
+        <formula>Carrier_Account__r.BFM_Vendor__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Carrier Account	Vendor Code</label>
         <required>false</required>

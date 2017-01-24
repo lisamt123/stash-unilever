@@ -682,7 +682,7 @@
     <fields>
         <fullName>Vendor_Code__c</fullName>
         <externalId>false</externalId>
-        <formula>Stage__r.Shipment__r.Carrier_Account__r.Vendor__c</formula>
+        <formula>Stage__r.Shipment__r.Carrier_Account__r.BFM_Vendor__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Vendor Code</label>
         <required>false</required>
