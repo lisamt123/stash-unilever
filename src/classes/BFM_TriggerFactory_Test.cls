@@ -1,7 +1,8 @@
 @isTest
 public class BFM_TriggerFactory_Test {
     private static testMethod void bfm_TriggerTestMethod(){
-        Test.startTest();       
+        Test.startTest();
+        
         Account acc = new Account();
         acc.Name ='TestAccount';
         insert acc;
@@ -29,9 +30,20 @@ public class BFM_TriggerFactory_Test {
         insert nfe;
         nfe.NF_e_access_key__c = '3343';
         update nfe;
-		delete nfe;
+        delete nfe;
+   
 		BFM_TriggerFactory bfmtf = new BFM_TriggerFactory();
+        BFM_TriggerFactory.getHandler(BFM_UserCreationRequest__c.sObjectType);        
+        BFM_TriggerFactory.getHandler(BFM_Shipment__c.sObjectType);
+        BFM_TriggerFactory.getHandler(BFM_Occurrence__c.sObjectType);
         BFM_TriggerFactory.getHandler(BFM_NF_e__c.sObjectType);
+        ITrigger iTriggerMacro = BFM_TriggerFactory.getHandler(BFM_Company_Code__c.sObjectType);
+        System.assertEquals(null, iTriggerMacro);
+        try {
+            BFM_TriggerFactory.createHandler(BFM_Company_Code__c.sObjectType);
+        } catch (Exception e) {
+            System.assertEquals('No Trigger Handler registered for Object Type: BFM_Company_Code__c',e.getMessage(),'We should not find a trigger handler for the Companycode object');
+        }
         Test.stopTest();
     }
 }
