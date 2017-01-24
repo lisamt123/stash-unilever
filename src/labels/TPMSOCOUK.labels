@@ -1,20 +1,4 @@
-    <labels>
-        <fullName>UL_Fund_Open_Promotion_Error</fullName>
-        <categories>UL TPM Messages</categories>
-        <language>en_GB</language>
-        <protected>false</protected>
-        <shortDescription>Fund Open Promotion Error</shortDescription>
-        <value>This fund is present in a open promotion and cannot be closed</value>
-    </labels>
-    <labels>
-        <fullName>UL_Fund_Open_Transaction_Error</fullName>
-        <categories>UL TPM Messages</categories>
-        <language>en_GB</language>
-        <protected>false</protected>
-        <shortDescription>Fund Open Transaction Error</shortDescription>
-        <value>This fund is present in a transaction which is pending for Approval and cannot be closed</value>
-    </labels>
-    <labels>
+ <labels>
         <fullName>BaselineVolume</fullName>
         <categories>KPI</categories>
         <language>en_US</language>
@@ -37,13 +21,6 @@
         <protected>true</protected>
         <shortDescription>Clear Filter label.</shortDescription>
         <value>Clear Filter</value>
-    </labels>
-	<labels>
-        <fullName>UL_UserNotSetup</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Users data not setup properly</shortDescription>
-        <value>Finance analyst/Finance managers not setup properly</value>
     </labels>
     <labels>
         <fullName>CannotSelfApprove</fullName>
@@ -148,13 +125,6 @@
         <protected>false</protected>
         <shortDescription>Shipment_Instore_validation</shortDescription>
         <value>Shipment Start Date should be on or before In-Store Start Date!</value>
-    </labels>
-	<labels>
-        <fullName>UL_Duplicate_Record_Found</fullName>
-        <language>en_GB</language>
-        <protected>false</protected>
-        <shortDescription>UL_Duplicate_Record_Found</shortDescription>
-        <value>Dates are overlapping with existing records for same deliver profile.</value>
     </labels>
     <labels>
         <fullName>UL_ADD_CUSTOMER_TO</fullName>
@@ -966,7 +936,7 @@
         <shortDescription>Approval Workflow Service</shortDescription>
         <value>You can put Promotion back in Planning only if it is future dated</value>
     </labels>
-   <labels>
+	 <labels>
         <fullName>UL_Multiple_Categories</fullName>
         <language>en_US</language>
         <protected>true</protected>  
@@ -980,1009 +950,79 @@
 		<shortDescription>UL_Multiple_Brands</shortDescription>		
         <value>Multiple Brands</value>
     </labels>
-<labels>
-        <fullName>BaseRevenue</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>BaseRevenue</shortDescription>
-        <value>BaseRevenue</value>
-    </labels>
-    <labels>
-        <fullName>BaselineVolume</fullName>
-        <categories>KPI</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Baseline</shortDescription>
-        <value>Baseline</value>
-    </labels>
-    <labels>
-        <fullName>CLEAR_FILTER</fullName>
-        <categories>Label</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Clear Filter label.</shortDescription>
-        <value>Clear Filter</value>
-    </labels>
-    <labels>
-        <fullName>EffectiveRevenue</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>EffectiveRevenue</shortDescription>
-        <value>EffectiveRevenue</value>
-    </labels>
-    <labels>
-        <fullName>GSV</fullName>
-        <categories>KPI</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>GSV</shortDescription>
-        <value>GSV</value>
-    </labels>
-    <labels>
-        <fullName>INCLUSIVE</fullName>
-        <categories>Label</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Inclusive label</shortDescription>
-        <value>Inclusive</value>
-    </labels>
-    <labels>
-        <fullName>LTACosts</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>LTACosts</shortDescription>
-        <value>LTACosts</value>
-    </labels>
-    <labels>
-        <fullName>NO_SEARCH_CRITERIA</fullName>
-        <categories>UL_AddCustomer</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Provide Search Criteria</shortDescription>
-        <value>Please enter at least one search criteria</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_ADD</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_ADD</shortDescription>
-        <value>sdf</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_ADD2</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_ADD2</shortDescription>
-        <value>myadd</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_APPLY_FILTER</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_APPLY_FILTER</shortDescription>
-        <value>Apply Filter</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_APPLY_TIERS</fullName>
-        <categories>PromotionUI</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_APPLY_TIERS</shortDescription>
-        <value>Apply Tiers</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_APPROVE</fullName>
-        <categories>PromotionUI</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>PP_BTN_APPROVE</shortDescription>
-        <value>Approve</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_CANCEL</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_CANCEL</shortDescription>
-        <value>Cancel</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_DELETE</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_DELETE</shortDescription>
-        <value>Delete</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_DONE</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_DONE</shortDescription>
-        <value>Done</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_DUPLICATE</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_DUPLICATE</shortDescription>
-        <value>Duplicate</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_EDIT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_EDIT</shortDescription>
-        <value>Edit</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_INVOKETHRESHOLD</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_INVOKETHRESHOLD</shortDescription>
-        <value>Invoke Threshold</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_MANAGE_PRODS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_MANAGE_PRODS</shortDescription>
-        <value>Manage Products</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_MANAGE_TIERS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_MANAGE_TIERS</shortDescription>
-        <value>Manage Tiers</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_MENAGE_TIERS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_APPLY_TIERS</shortDescription>
-        <value>Apply Tiers</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_NEW</fullName>
-        <categories>PromotionUI</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_NEW</shortDescription>
-        <value>New</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_OK</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_OK</shortDescription>
-        <value>Ok</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_PUSH</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_PUSH</shortDescription>
-        <value>Push</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_REJECT</fullName>
-        <categories>PromotionUI</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>PP_BTN_REJECT</shortDescription>
-        <value>Reject</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_RELEASE</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_RELEASE</shortDescription>
-        <value>Release</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_SAVE</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_SAVE</shortDescription>
-        <value>Save</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_SAVE_REFRESH</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_SAVE_REFRESH</shortDescription>
-        <value>Save &amp; Refresh</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_SEARCH</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_SEARCH</shortDescription>
-        <value>Search</value>
-    </labels>
-    <labels>
-        <fullName>PP_BTN_SUBMIT</fullName>
-        <categories>PromotionUI</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>#PP_BTN_SUBMIT</shortDescription>
-        <value>Submit Workflow</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_AMOUNT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_AMOUNT</shortDescription>
-        <value>Amount</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_ANCHOR_CUSTOMER</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_ANCHOR_CUSTOMER</shortDescription>
-        <value>Anchor Customer</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_ANCHOR_PRODUCT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_ANCHOR_PRODUCT</shortDescription>
-        <value>Anchor Product</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_CLEAN_PUSH_ERROR</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_CLEAN_PUSH_ERROR</shortDescription>
-        <value>An error occurred while trying to clean the child promotions account</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_CONFIRMATION_DELETE_ATTACHMENT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_CONFIRMATION_DELETE_ATTACHMENT</shortDescription>
-        <value>Do you want to delete selected attachment?</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_CONFIRMATION_DELETE_FUNDS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_CONFIRMATION_DELETE_FUNDS</shortDescription>
-        <value>Do you want to delete selected funds?</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_CONFIRMATION_EXCLUDE_PRODUCT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_CONFIRMATION_EXCLUDE_PRODUCT</shortDescription>
-        <value>Do you want to exclude the product?</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_CONFIRMATION_REMOVE_EXCLUSION_PRODUCT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_CONFIRMATION_REMOVE_EXCLUSION_PRODUCT</shortDescription>
-        <value>Do you want to remove the exclusion for the product?</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_CONFIRMATION_REMOVE_INCLUDED_PRODUCT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_CONFIRMATION_REMOVE_INCLUDED_PRODUCT</shortDescription>
-        <value>Do you want to remove the manually included product?</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_CREATION_DATE_ATTACHMENT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_CREATION_DATE_ATTACHMENT</shortDescription>
-        <value>Creation Date</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_CUSTOMER_UNIQUE</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_CUSTOMER_UNIQUE</shortDescription>
-        <value>Costumer Unique</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_DATES</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_DATES</shortDescription>
-        <value>Dates</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_DESCRIPTION</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_DESCRIPTION</shortDescription>
-        <value>Description</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_DESCRIPTION_ATTACHMENT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_DESCRIPTION_ATTACHMENT</shortDescription>
-        <value>Description</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_DRAG_ATTACHMENTS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_DRAG_ATTACHMENTS</shortDescription>
-        <value>Drag attachments here or</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_DURATION</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_DURATION</shortDescription>
-        <value>Duration</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_EDIT_MODE_ATTACHMENTS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_EDIT_MODE_ATTACHMENTS</shortDescription>
-        <value>Edit Mode</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_FILES_ATTACHMENTS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_FILES_ATTACHMENTS</shortDescription>
-        <value>Files</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_FUND_AMOUNT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_FUND_AMOUNT</shortDescription>
-        <value>Amount</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_FUND_ANCHOR_CUSTOMER</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_FUND_ANCHOR_CUSTOMER</shortDescription>
-        <value>Anchor Customer</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_FUND_ANCHOR_PRODUCT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_FUND_ANCHOR_PRODUCT</shortDescription>
-        <value>Anchor Product</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_FUND_DESCRIPTION</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_FUND_DESCRIPTION</shortDescription>
-        <value>Description</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_FUND_NAME</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_FUND_NAME</shortDescription>
-        <value>Fund Name</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_FUND_TYPE</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_FUND_TYPE</shortDescription>
-        <value>Fund Type</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_IMAGES_ATTACHMENTS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_IMAGES_ATTACHMENTS</shortDescription>
-        <value>Images</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_IMAGE_CREATION_DATE</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_IMAGE_CREATION_DATE</shortDescription>
-        <value>Creation Date</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_IMAGE_DESCRIPTION</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_IMAGE_DESCRIPTION</shortDescription>
-        <value>Description</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_IMAGE_LAST_UPDATE</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_IMAGE_LAST_UPDATE</shortDescription>
-        <value>Last Update</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_INCLUDED</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_INCLUDED</shortDescription>
-        <value>Included</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_INFORMATION_FUNDS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_INFORMATION_FUNDS</shortDescription>
-        <value>There are no funds selected.</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_LAST_UPDATE_DATE_ATTACHMENT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_LAST_UPDATE_DATE_ATTACHMENT</shortDescription>
-        <value>Last Update Date</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_MAIN_INFO</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_MAIN_INFO</shortDescription>
-        <value>Main Information</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_NAME_ATTACHMENT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_NAME_ATTACHMENT</shortDescription>
-        <value>Name</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_NODATA</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_NODATA</shortDescription>
-        <value>No data</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_NO_ATTACHMENTS_UPLOADED_1</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_NO_ATTACHMENTS_UPLOADED_1</shortDescription>
-        <value>No Attachments uploaded, yet. Switch to the</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_NO_ATTACHMENTS_UPLOADED_2</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_NO_ATTACHMENTS_UPLOADED_2</shortDescription>
-        <value>to Upload some Files.</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_NO_FUNDS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_NO_FUNDS</shortDescription>
-        <value>No Funds associated to this tactic</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_NO_TIERS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_NO_TIERS</shortDescription>
-        <value>No Tiers associated to this tactic</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_PLANNED</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_PLANNED</shortDescription>
-        <value>Planned</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_PRODUCTS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_PRODUCTS</shortDescription>
-        <value>Products</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_PRODUCT_GROUPS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_PRODUCT_GROUPS</shortDescription>
-        <value>Product Groups</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_PROMOTIONS_DONE</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_PROMOTIONS_DONE</shortDescription>
-        <value>Promotions done</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_PROMOTION_ID</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_PROMOTION_ID</shortDescription>
-        <value>Promotion Id</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_PUSH_ERROR</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_PUSH_ERROR</shortDescription>
-        <value>An error occurred while trying to push the child promotion account</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_PUSH_FINALIZED</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_PUSH_FINALIZED</shortDescription>
-        <value>Push child promotion accounts finalized</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_PUSH_PROCESS_PROGRESS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_PUSH_PROCESS_PROGRESS</shortDescription>
-        <value>Push process progress.</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_RELEASE_ERROR</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_RELEASE_ERROR</shortDescription>
-        <value>An error occurred while trying to release the child promotions account</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_SELECT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_SELECT</shortDescription>
-        <value>Select</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_SIZE_ATTACHMENT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_SIZE_ATTACHMENT</shortDescription>
-        <value>Size</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_STATUS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_STATUS</shortDescription>
-        <value>Status</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_TACTIC</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_TACTIC</shortDescription>
-        <value>Tactics</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_TACTICS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_TACTICS</shortDescription>
-        <value>Tactics</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_UPLOADING_ATTACHMENTS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_UPLOADING_ATTACHMENTS</shortDescription>
-        <value>Uploading...</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_UPLOAD_ATTACHMENTS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_UPLOAD_ATTACHMENTS</shortDescription>
-        <value>Upload Files</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_UPLOAD_ATTACHMENT_FILENAME_SIZE_ERROR</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_UPLOAD_ATTACHMENT_FILENAME_SIZE_ERROR</shortDescription>
-        <value>The filename is too long (max. 80 chars)</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_UPLOAD_ATTACHMENT_NUMBER_OF_FILES_ERROR</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_UPLOAD_ATTACHMENT_NUMBER_OF_FILES_ERROR</shortDescription>
-        <value>Only one file allowed per upload</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_UPLOAD_ATTACHMENT_SIZE_ERROR</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_UPLOAD_ATTACHMENT_SIZE_ERROR</shortDescription>
-        <value>File incorrect size. The attachment has to be less than 25MB.</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_UPLOAD_ERROR</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_UPLOAD_ERROR</shortDescription>
-        <value>An error occurred while trying to upload the file</value>
-    </labels>
-    <labels>
-        <fullName>PP_LBL_VIDEOS_ATTACHMENTS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_LBL_VIDEOS_ATTACHMENTS</shortDescription>
-        <value>Videos</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_ACCOUNT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_ACCOUNT</shortDescription>
-        <value>Account</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_AMOUNT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_AMOUNT</shortDescription>
-        <value>Amount</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_ATTACHMENTS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_ATTACHMENTS</shortDescription>
-        <value>Attachments</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_CHART_COSTS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_CHART_COSTS</shortDescription>
-        <value>COSTS</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_CHART_INCREMENTAL_COSTS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_CHART_INCREMENTAL_COSTS</shortDescription>
-        <value>Incremental Costs (Tactic)</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_CHART_INCREMENTAL_SALES</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_CHART_INCREMENTAL_SALES</shortDescription>
-        <value>Incremental Sales (Tactic)</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_CHART_ROI</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_CHART_ROI</shortDescription>
-        <value>ROI</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_CHART_VOLUME_VS_BASELINE</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_CHART_VOLUME_VS_BASELINE</shortDescription>
-        <value>Planned Tactic Volume vs. Baseline</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_CHILD_PROMOTION_ACCOUNTS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_CHILD_PROMOTION_ACCOUNTS</shortDescription>
-        <value>Child Promotion Accounts</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_CLEAN_PUSH_ERROR</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_CLEAN_PUSH_ERROR</shortDescription>
-        <value>Error cleaning child promotions</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_CONFIRMATION</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_CONFIRMATION</shortDescription>
-        <value>Confirmation</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_FUNDS</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_FUNDS</shortDescription>
-        <value>Funds</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_FUND_LOOKUP</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_FUND_LOOKUP</shortDescription>
-        <value>Fund Lookup</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_INCLUDE_EXCLUDE_ALL</fullName>
-        <categories>Promotion UI</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_INCLUDE_EXCLUDE_ALL</shortDescription>
-        <value>Include/Exclude All</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_INFORMATION</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_INFORMATION</shortDescription>
-        <value>Information</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_KPI</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_KPI</shortDescription>
-        <value>KPIs</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_MEASURE</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_MEASURE</shortDescription>
-        <value>Measure</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_NOCONTENT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_NOCONTENT</shortDescription>
-        <value>NO CONTENT</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_PROD_LOOKUP</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_PROD_LOOKUP</shortDescription>
-        <value>Product Lookup</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_PROMOTION_SLOGAN</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_PROMOTION_SLOGAN</shortDescription>
-        <value>Promotion slogan</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_PROMO_SUMMARY</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_PROMO_SUMMARY</shortDescription>
-        <value>Promotion Summary</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_PUSH_ERROR</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_PUSH_ERROR</shortDescription>
-        <value>Error pushing child promotion</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_PUSH_PROMOTION</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_PUSH_PROMOTION</shortDescription>
-        <value>Push Promotion</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_RELEASE_ERROR</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_RELEASE_ERROR</shortDescription>
-        <value>Error updating child promotions</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_SELECT</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_SELECT</shortDescription>
-        <value>SELECT</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_TACTIC_INFO</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_TACTIC_INFO</shortDescription>
-        <value>Tactic Information</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_TIERED_INFORMATION</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_TIERED_INFORMATION</shortDescription>
-        <value>Tiered Information</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_UPLOAD_ATTACHMENT_ERROR</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_UPLOAD_ATTACHMENT_ERROR</shortDescription>
-        <value>Upload Error</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_UPLOAD_ERROR</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_UPLOAD_ERROR</shortDescription>
-        <value>Error Uploading</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_VOLUME_MAX</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_VOLUME_MAX</shortDescription>
-        <value>Volume Max</value>
-    </labels>
-    <labels>
-        <fullName>PP_TIT_VOLUME_MIN</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_VOLUME_MIN</shortDescription>
-        <value>Volume Min</value>
-    </labels>
-    <labels>
-        <fullName>PhasedBaseVolume</fullName>
-        <categories>KPI</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PhasedBaseVolume</shortDescription>
-        <value>Phased Base Volume</value>
-    </labels>
-    <labels>
-        <fullName>PlannedCosts</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PlannedCosts</shortDescription>
-        <value>PlannedCosts</value>
-    </labels>
-    <labels>
-        <fullName>PromoRevenue</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PromoRevenue</shortDescription>
-        <value>PromoRevenue</value>
-    </labels>
-    <labels>
-        <fullName>TotalCost</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>TotalCost</shortDescription>
-        <value>TotalCost</value>
-    </labels>
-    <labels>
-        <fullName>TotalVolume</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>TotalVolume</shortDescription>
-        <value>TotalVolume</value>
-    </labels>
-    <labels>
-        <fullName>UL_CANCEL</fullName>
-        <language>en_GB</language>
-        <protected>true</protected>
-        <shortDescription>UL_CANCEL</shortDescription>
-        <value>Cancel</value>
-    </labels>
-    <labels>
-        <fullName>UL_CUSTOMER_GROUP</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Customer Group</shortDescription>
-        <value>Grupo de Cliente</value>
-    </labels>
-    <labels>
-        <fullName>UL_CUSTOMER_NAME</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Customer Name</shortDescription>
-        <value>Cliente</value>
-    </labels>
-    <labels>
-        <fullName>UL_Cross_Category_Error</fullName>
-        <categories>UL TPM Messages</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Cross Category Error</shortDescription>
-        <value>For Cross Category Transfer transaction the product category in funds cannot be same</value>
-    </labels>
-    <labels>
-        <fullName>UL_EDIT</fullName>
+	 <labels>
+        <fullName>UL_Off_Shelf</fullName>
         <language>en_GB</language>
         <protected>false</protected>
-        <shortDescription>UL_EDIT</shortDescription>
-        <value>Edit</value>
+        <shortDescription>UL_Off_Shelf</shortDescription>
+        <value>Off-Shelf</value>
     </labels>
-    <labels>
-        <fullName>UL_EligibleAnchor</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>refere in class-UL_PromotionCopyExtension</shortDescription>
-        <value>You are not manager for the selected Anchor Customer</value>
-    </labels>
-    <labels>
-        <fullName>UL_MARKET</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Market</shortDescription>
-        <value>Mercado</value>
-    </labels>
-    <labels>
-        <fullName>UL_MARKET_CHANNEL</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Market Channel</shortDescription>
-        <value>Canal de Mercado</value>
-    </labels>
-    <labels>
-        <fullName>UL_MaxStoreDate</fullName>
-        <language>en_GB</language>
-        <protected>false</protected>
-        <shortDescription>UL_MaxStoreDate</shortDescription>
-        <value>91</value>
-    </labels>
-    <labels>
-        <fullName>UL_NEW</fullName>
-        <language>en_GB</language>
-        <protected>true</protected>
-        <shortDescription>UL_NEW</shortDescription>
-        <value>New</value>
-    </labels>
-    <labels>
-        <fullName>UL_PROMOTION_DETAILS</fullName>
-        <language>en_GB</language>
-        <protected>true</protected>
-        <shortDescription>UL_PROMOTION_DETAILS</shortDescription>
-        <value>Promotion Details</value>
-    </labels>
-    <labels>
-        <fullName>UL_PlanningLevelAndCurrency</fullName>
-        <categories>UL TPM Messages</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Planning Level And Currency</shortDescription>
-        <value>Planning Level is already set on other level customer with overlapping Validity From/To dates OR 
-there is a different Currency on lower level customer(s)</value>
-    </labels>
-    <labels>
-        <fullName>UL_PlanningLevelBetween3To7</fullName>
-        <categories>UL TPM Messages</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Planning Level Between 3 To 7</shortDescription>
-        <value>Planning Level can only be set between levels 3 to 7</value>
-    </labels>
-    <labels>
-        <fullName>UL_PlanningStartEndDate</fullName>
-        <categories>UL TPM Messages</categories>
+	 <labels>
+        <fullName>Select_one_record</fullName>
+        <categories>Promotions_Closing</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Planning Start And End Date</shortDescription>
-        <value>Please enter Planning Start and End Dates, then set Planning Level</value>
+        <shortDescription>Select one record</shortDescription>
+        <value>Please select at least one record.</value>
+    </labels>
+	<labels>
+        <fullName>UL_Shelf</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Shelf</shortDescription>
+        <value>Shelf</value>
+    </labels>
+	     <labels>
+        <fullName>Close_Promotion_Initiated</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close Promotion Initiated</shortDescription>
+        <value>The closing of the promotions is initiated.</value>
     </labels>
     <labels>
-        <fullName>UL_ProductsMandatory</fullName>
+        <fullName>Close_Promotion_Missing_Sharing</fullName>
+        <categories>Promotions_Closing</categories>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>refer in class-UL_TacticsValidate</shortDescription>
-        <value>Products are mandatory at Tactics level</value>
+        <protected>false</protected>
+        <shortDescription>Close Promotion Missing Sharing</shortDescription>
+        <value>You can not close the following promotions due to missing sharing access.</value>
+    </labels>
+    <labels>
+        <fullName>Close_Promotions_Confirmation</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close Promotions Confirmation</shortDescription>
+        <value>Are you sure you want to close the selected promotions?</value>
+    </labels>
+	<labels>
+        <fullName>UL_Duplicate_Record_Found</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Duplicate_Record_Found</shortDescription>
+        <value>Dates are overlapping with existing records for same deliver profile.</value>
+    </labels>
+	<labels>
+        <fullName>UL_TACTIC_FUND_ASSOCIATION</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Promotion approval validation message</shortDescription>
+        <value>Each tactic must have at least one related fund</value>
+    </labels>
+ <labels>
+        <fullName>UL_DummyProdonTactic</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Check atleast one dummy product on each tactic</shortDescription>
+        <value>All Off-Invoice tactics must contain a dummy product</value>
+    </labels>
+  <labels>
+        <fullName>UL_UserNotSetup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Users data not setup properly</shortDescription>
+        <value>Finance analyst/Finance managers not setup properly</value>
     </labels>
 	<labels>
         <fullName>Requires_All_Mandatory_Tactic_for_Promotion</fullName>
@@ -1991,113 +1031,23 @@ there is a different Currency on lower level customer(s)</value>
         <shortDescription>Requires_All_Mandatory_Tactic_for_Promotion</shortDescription>
         <value>All isMandatory Tactic are required for Promotion for Approval</value>
     </labels>
-    <labels>
-        <fullName>UL_Promotion_Success</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Refer in VF page on promotion created</shortDescription>
-        <value>Promotion Created Successfully</value>
-    </labels>
-    <labels>
-        <fullName>UL_SAVE</fullName>
-        <language>en_GB</language>
-        <protected>true</protected>
-        <shortDescription>UL_SAVE</shortDescription>
-        <value>Save</value>
-    </labels>
-    <labels>
-        <fullName>UL_SELECT_DEFAULT_SOLD</fullName>
-        <language>en_GB</language>
-        <protected>true</protected>
-        <shortDescription>UL_SELECT_DEFAULT_SOLD</shortDescription>
-        <value>Select Default SoldTo Here</value>
-    </labels>
-    <labels>
-        <fullName>UL_SOLD_TO</fullName>
-        <language>en_GB</language>
-        <protected>true</protected>
-        <shortDescription>UL_SOLD_TO</shortDescription>
-        <value>Default SoldTo</value>
-    </labels>
-    <labels>
-        <fullName>UL_TacticsOverlap</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Tactics Overlap in My Promtion Planning page</shortDescription>
-        <value>Dates range overlapped with existing Tactics</value>
-    </labels>
-    <labels>
-        <fullName>UL_Transfer_Error</fullName>
+	<labels>
+        <fullName>UL_Fund_Open_Promotion_Error</fullName>
         <categories>UL TPM Messages</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Transfer Error</shortDescription>
-        <value>For Transfer transaction the product category in funds must be same</value>
-    </labels>
-    <labels>
-        <fullName>UL_UPDATE</fullName>
         <language>en_GB</language>
         <protected>false</protected>
-        <shortDescription>UL_UPDATE</shortDescription>
-        <value>Update</value>
+        <shortDescription>Fund Open Promotion Error</shortDescription>
+        <value>This fund is present in a open promotion and cannot be closed</value>
     </labels>
     <labels>
-        <fullName>Ul_EmptyAccounts</fullName>
-        <language>en_GB</language>
-        <protected>true</protected>
-        <shortDescription>Ul_EmptyAccounts</shortDescription>
-        <value>you do not have valid planning period Accounts!</value>
-    </labels>
-    <labels>
-        <fullName>Ul_MinStoreDate</fullName>
+        <fullName>UL_Fund_Open_Transaction_Error</fullName>
+        <categories>UL TPM Messages</categories>
         <language>en_GB</language>
         <protected>false</protected>
-        <shortDescription>Ul_MinStoreDate</shortDescription>
-        <value>2</value>
-    </labels>
-    <labels>
-        <fullName>UnitsPerCase</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>UnitsPerCase</shortDescription>
-        <value>UnitsPerCase</value>
-    </labels>
-    <labels>
-        <fullName>incrVolume</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>incrVolume</shortDescription>
-        <value>incrVolume</value>
-    </labels>
-    <labels>
-        <fullName>let_me_know_when_you_are_available</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_TIT_TIERED_INFORMATION</shortDescription>
-        <value>Tiered Information</value>
-    </labels>
-    <labels>
-        <fullName>weekShare</fullName>
-        <categories>KPI</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Weekly Split</shortDescription>
-        <value>Weekly Split</value>
-    </labels>
-        <fullName>UL_TACTIC_FUND_ASSOCIATION</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Promotion approval validation message</shortDescription>
-        <value>Each tactic must have at least one related fund</value>
+        <shortDescription>Fund Open Transaction Error</shortDescription>
+        <value>This fund is present in a transaction which is pending for Approval and cannot be closed</value>
     </labels>
 	<labels>
-        <fullName>UL_DummyProdonTactic</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Check atleast one dummy product on each tactic</shortDescription>
-        <value>All Off-Invoice tactics must contain a dummy product</value>
-    </labels>
-	 <labels>
         <fullName>UL_Duplicate_Record_Found</fullName>
         <language>en_GB</language>
         <protected>false</protected>
