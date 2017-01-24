@@ -2,6 +2,7 @@ src
 src/wave/FS_Daily_Sales_Leaderships.wapp
 src/wave/FS_Daily_Sales_NA_Sales_Rep.wapp
 src/wave/FS_Daily_Sales_RU_Leaderships.wapp
+src/wave/FS_Daily_Sales_Stage.wapp
 src/groups/FS_DailySales_Admin.group
 src/groups/FS_DailySales_Sales_Manager_Group.group
 src/groups/FS_DailySales_Sales_Rep_Group.group
