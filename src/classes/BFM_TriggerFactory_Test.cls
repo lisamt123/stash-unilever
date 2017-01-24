@@ -46,4 +46,12 @@ public class BFM_TriggerFactory_Test {
         }
         Test.stopTest();
     }
+	static testMethod void trigdel(){
+        BFM_NF_e__c nfe = new BFM_NF_e__c();
+        nfe.NF_e_access_key__c = '346457658765432421421432543';
+        insert nfe;
+        delete nfe;
+        BFM_TriggerFactory bfmtf1 = new BFM_TriggerFactory();
+        BFM_TriggerFactory.getHandler(BFM_NF_e__c.sObjectType);
+    }
 }
