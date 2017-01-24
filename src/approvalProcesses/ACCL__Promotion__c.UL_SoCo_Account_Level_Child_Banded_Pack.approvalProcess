@@ -13,7 +13,7 @@
         <allowDelegate>false</allowDelegate>
         <approvalActions>
             <action>
-                <name>UL_CurrentStatus_DirectorCheck</name>
+                <name>UL_CurrentStatus_ManagerCheck</name>
                 <type>FieldUpdate</type>
             </action>
         </approvalActions>
@@ -36,7 +36,7 @@
         <allowDelegate>false</allowDelegate>
         <approvalActions>
             <action>
-                <name>UL_CurrentStatus_Approved</name>
+                <name>UL_CurrentStatus_BandedPackApproved</name>
                 <type>FieldUpdate</type>
             </action>
             <action>
@@ -49,9 +49,37 @@
                 <type>adhoc</type>
             </approver>
         </assignedApprover>
-        <description>Director Check</description>
-        <label>Director Check</label>
-        <name>UL_Director_Check</name>
+        <description>Manager Check</description>
+        <label>Manager Check</label>
+        <name>UL_Manager_Check</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+        <rejectionActions>
+            <action>
+                <name>UL_CurrentStatus_Planning</name>
+                <type>FieldUpdate</type>
+            </action>
+        </rejectionActions>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>UL_CurrentStatus_Approved</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>CreatedBy</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Banded Pack Approval</description>
+        <label>Banded Pack Approval</label>
+        <name>UL_Banded_Pack_Approval</name>
         <rejectBehavior>
             <type>RejectRequest</type>
         </rejectBehavior>
@@ -84,7 +112,7 @@
             </action>
         </rejectionActions>
     </approvalStep>
-    <description>SoCo Parent Past Dated/Urgent Workflow</description>
+    <description>SoCo - Account Level / Child Banded Pack Workflow</description>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <formula>ACCL__Active__c == true &amp;&amp; TEXT(  UL_Current_Status__c)==&apos;Planning&apos;</formula>
@@ -97,7 +125,7 @@
             <type>FieldUpdate</type>
         </action>
     </initialSubmissionActions>
-    <label>SoCo - Parent Past-Dated/Urgent Workflow</label>
+    <label>SoCo - Account Level / Child Banded Pack</label>
     <nextAutomatedApprover>
         <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
         <userHierarchyField>Manager</userHierarchyField>

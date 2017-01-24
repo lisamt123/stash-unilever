@@ -1120,42 +1120,10 @@
         <label>Product Level</label>
         <picklist>
             <picklistValues>
-                <fullName>OPCO</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Commodity</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Category</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Product Group</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Group Brand</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Product</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Variant</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Size</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SKU</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
+                        <picklistValues>
                 <fullName>1</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1892,40 +1860,40 @@
         <picklistValues>
             <picklist>ACCL__Product_Level__c</picklist>
             <values>
-                <fullName>Category</fullName>
+                <fullName>1</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Commodity</fullName>
+                <fullName>2</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Group Brand</fullName>
+                <fullName>3</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>OPCO</fullName>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Product</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>Product Group</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SKU</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Size</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Variant</fullName>
-                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -2127,7 +2095,35 @@
         <picklistValues>
             <picklist>ACCL__Product_Level__c</picklist>
             <values>
-                <fullName>Category</fullName>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2322,39 +2318,39 @@
         <picklistValues>
             <picklist>ACCL__Product_Level__c</picklist>
             <values>
-                <fullName>Category</fullName>
+                <fullName>1</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Commodity</fullName>
+                <fullName>2</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Group Brand</fullName>
+                <fullName>3</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>OPCO</fullName>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Product</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Product Group</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SKU</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Size</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Variant</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2564,39 +2560,39 @@
         <picklistValues>
             <picklist>ACCL__Product_Level__c</picklist>
             <values>
-                <fullName>Category</fullName>
+                <fullName>1</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Commodity</fullName>
+                <fullName>2</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Group Brand</fullName>
+                <fullName>3</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>OPCO</fullName>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Product</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Product Group</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SKU</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Size</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Variant</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2811,40 +2807,40 @@
         <picklistValues>
             <picklist>ACCL__Product_Level__c</picklist>
             <values>
-                <fullName>Category</fullName>
+                <fullName>1</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Commodity</fullName>
+                <fullName>2</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Group Brand</fullName>
+                <fullName>3</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>OPCO</fullName>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Product</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>Product Group</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SKU</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Size</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Variant</fullName>
-                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
