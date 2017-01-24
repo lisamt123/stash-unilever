@@ -6746,10 +6746,11 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>WaveTabularDownload</name>
+		 </userPermissions>
      <userPermissions>
         <enabled>true</enabled>
        <name>InsightsAppUser</name>
-    </userPermissions>
+   
 
     </userPermissions>
 </PermissionSet>
