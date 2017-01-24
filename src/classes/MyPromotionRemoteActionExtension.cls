@@ -83,7 +83,7 @@ Throws : N/A
             if(contentTarget!=null && contentTarget==UtilityEnum.Salesforce.Name()){
                 
                 //Update Workflow Threshold on every save to see latest Threshold values --Chandrababu
-                UL_ThresholdEngine.getThresholdKPI(txId,id.valueof(objectId),UtilityEnum.save.Name());
+                UL_ThresholdEngine.getThresholdKPI(txId,id.valueof(objectId),UtilityEnum.target.Name());
                 if(UL_ThresholdEngine.thresholdcheck!=null && UL_ThresholdEngine.thresholdcheck.size()>0){
                     Map<String, Object> contentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(content);
                     Map<String, Object> Promotionobj = (Map<String, Object>) contentDeserializedMap.get(UtilityEnum.BOPromotion.Name());
@@ -255,7 +255,7 @@ Throws : N/A
                 } */
 				
 				 //Validatation-At least one dummy product per each off-invoice payment method Tactic.
-                UL_TacticUtility.validateDummyProdsonTactics(txId,content);
+                //UL_TacticUtility.validateDummyProdsonTactics(txId,content);
                 
                 UL_ThresholdEngine.getThresholdKPI(txId,promoId,Mode);
                 
@@ -1859,6 +1859,30 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         }
         return result;    
     }
-    
+    /** readLOExtProducts method reads Ext product
+     *  @name   :  readLOExtProducts
+     *  @param  :  PromotionId  PromotionId
+     *  @return :  String
+     *  @throws :
+     *  @author :  sumit.chaturvedi@accenture.com
+     */
+    @RemoteAction
+    global static List<Map<String, Object> > readLOExtProduct(String txId,  String promotionContent) {
+      promotionContent = UL_PromotionContentReplace.replaceFieldContent(promotionContent);
+      return ACCL.PromotionRemoteActionExtension.readLOExtProduct(txId,promotionContent);
+    }
+     /**Custom readLOFilteredProducts function to read the Filtered Products
+     *  @name : readLOFilteredProducts
+     *  @param : txId                                           GUI id for each transcation we do from UI
+     *  @param : promotionContent    JSON containing the current promotion info
+     *  @return : List<String>       List of string
+     *  @throws :
+     *  @author :sudharsan.shanmugam@accenture.com
+     */
+    @RemoteAction
+    global static List<ACCL__Product__c> readLOFilteredProducts(String txId,String promotionContent) {
+    promotionContent = UL_PromotionContentReplace.replaceFieldContent(promotionContent);
+    return ACCL.PromotionRemoteActionExtension.readLOFilteredProducts(txId,promotionContent);
+    }
     private class updateException extends Exception{}
 }

@@ -134,7 +134,7 @@
         <fullName>ACCL__Record_Link__c</fullName>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
-        <formula>HYPERLINK(&quot;/&quot; &amp;Id, $Label.ACCL__RECORD_LINK, &quot;_top&quot;)</formula>
+        <formula>HYPERLINK(&quot;/&quot; &amp;Id, $Label.accl__record_link, &quot;_top&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Record Link</label>
         <required>false</required>
