@@ -1,0 +1,19 @@
+	.clearfx {clear:both;}
+    .btn.teal {background:#00B389; color:#fff; border:none; font-family: arial;font-weight: normal;font-size: 12px; padding:7px 15px; border-radius:0; -webkit-border-radius:0; -moz-border-radius:0;}
+    .bPageBlock.brandSecondaryBrd {background:transparent; border:transparent;border-radius:1px;-webkit-border-radius:1px;}
+    .closeBtn{background:url(../images/ipmCoreParamClose.png) no-repeat;text-align: center;font-size:3.5em;color:#003229;cursor:pointer;line-height: 1;padding-left: 10px;}
+    .ipmModalTitle{float:left;padding:25px 0;}
+    .marginTop{margin-top:13%;width:100%;}
+    .infoMsgDiv{padding:0 ;margin-top:10px;float:left;}
+	.infoM3 .msgIcon, .infoMedium,.errorM3 .msgIcon, .errorMedium{display:none;}
+	.uploadField {  float: left;  margin: 0 1px;}
+	.uploadButton {  display: block;  float: right;  margin-right: 0;margin-bottom: 10px;}
+	.errorM3 .messageTable .messageText h4,.errorM3 .messageTable .messageText{color:#C73E36 ;font-weight:normal ;}
+	.errorM3 .messageText::before{content:url('../images/red_i_icon.png');position:absolute; left: 10px;}
+	.errorM3 .messageTable .messageText{margin-left:35px ;} 
+	.infoM3 .messageText::before{content:url('../images/success_icon.png');position:absolute; left: 10px;}
+	.infoM3 .messageTable .messageText{margin-left:35px ;margin-bottom: 6px;margin-top: 6px;} 
+	.infoM3 .messageTable .messageText h4{display:none;}
+	.message .errorM3{background-color: #FFEBEC ;}
+	.errorM6, .errorM4, .errorM3, .errorM2, .errorS1{background-color: #FFEBEC ;border:1px solid #E9C3BA ;}
+	.message{margin:0 ;}

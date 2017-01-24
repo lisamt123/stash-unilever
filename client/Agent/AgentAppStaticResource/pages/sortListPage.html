@@ -1,0 +1,20 @@
+<div class="container">
+	<!-- CANCEL BUTTON -->
+	<div class="row">
+		<div class="col-xs-12 topBackground">
+			<div class="col-xs-6">
+				<button type="button" class="btn btn-default" ng-click="Cancel()">Cancel</button>
+			</div>
+			<div class="col-xs-6 text-right">
+				<button type="button" class="btn btn-default text-right" ng-click="applyFilter()">Apply</button>
+			</div>					
+		</div>
+	</div>
+	<div class="row col-xs-12">
+		<ul class="reportTypes">
+			<li  ng-class="{active : showActiveClass}" ng-click="sortRecentReport()">Show latest first</a></li>
+			<li  ng-class="{active : mostActiveClass}"  ng-click="sortMostLikedReport()">Show most liked first</a></li>
+		
+		</ul>
+	</div>	
+</div>

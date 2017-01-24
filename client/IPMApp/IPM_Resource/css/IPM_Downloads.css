@@ -1,0 +1,96 @@
+.ipmFunnelPanel {
+    bottom: 4px;
+}
+.tabEven.dropdown a {
+    margin-top: 8px;
+}
+.navbar-nav li:last-child a {
+    position: relative;
+}
+.width4 {
+    width: 19%;
+}
+.headingBorder {
+    padding-left: 12px;
+}
+.pagemessageBox {
+    color: #0f81bb;
+    background: #dbefff;
+    margin-top: -20px;
+    border: 1px solid #007DBB;
+    position: relative;
+    border-radius: 3px;
+    padding: 8px;
+}
+.subheader {
+    font-size: 17px;
+    font-weight: bold;
+    color: #0085C9;
+    margin-left: 10px;
+}
+.ipmNavMenuDiv {
+    position: relative;
+    bottom: -7px;
+}
+.mr20 {
+    margin-right: 20px;
+}
+.clusterbg {
+    background-size: 100% 100%;
+    padding: 32px;
+}
+.mcobg {
+    background-size: 100% 100%;
+    padding: 32px;
+}
+div.countriesList li:first-child {
+    background: none ;
+}
+a.noDecoration,
+a.noDecoration:hover {
+    text-decoration: none;
+}
+.ipmPageHeaderDiv {
+    margin-bottom: 15px ;
+}
+.context {
+    color: #666;
+    font-size: 12px;
+}
+.mt20 {
+    margin-top: 20px;
+}
+hr {
+    margin-top: 10px ;
+    margin-bottom: 10px ;
+    border: 0;
+    border-top: 1px solid #b9bdae ;
+}
+mb15 {
+    margin-bottom: 15px;
+}
+.ipmButton {
+    cursor: pointer ;
+    display: inline-block ;
+    min-height: 1em ;
+    outline: none ;
+    background: #fff ;
+    border: 1px solid #8ab3da ;
+    color: #0f81bb;
+    padding: 0.625em ;
+    padding-bottom: 0.55em\9;
+    font-size: 1em ;
+    line-height: 1 ;
+    font-family: 'Arial';
+    font-weight: bold ;
+    font-style: normal ;
+    text-align: center ;
+    vertical-align: middle ;
+    border-radius: 5px ;
+    -webkit-border-radius: 5px ;
+    -moz-border-radius: 5px ;
+    min-width: 62px ;
+}
+.pageTitle {
+    font-size: 1em;
+}

@@ -429,7 +429,7 @@
                             <div class="elements" infinite-scroll='nextPage()' infinite-scroll-disabled='scrollDisabled == true'>
                                 <div class="row data-row" ng-repeat="asset in assets" ng-if="assets.length > 0">
                                     <div class="col-xs-4" ng-hide="selectedAssetTab != 'approved'">
-										<a href="{{asset.assetDownloadLink}}">
+										<a target="_blank" href="{{asset.assetDownloadLink}}">
 											<!--<span class="icon icon-document"></span>-->
 											<img src="{{sfConfig.resourceBasePath}}images/download.png" style="padding-left:8px;"/>
 										</a>
@@ -557,7 +557,7 @@
 	
 	<div class="modal modal-bet fade" id="setExpectedAssets">
         <div class="modal-dialog">
-            <div class="modal-content" style="height:600px;">
+            <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" ng-click="clearExpectedAssetUrl()"><span class="icon icon-close"></span></button>
                     <h4 class="modal-title"><span class="icon icon-settings"></span>Set Expected Assets</h4>
@@ -703,8 +703,11 @@
             var iframe = jQuery('iframe', modalBody);
             if (iframe && iframe.length == 1) {
                 var maxHeight = 400;
-                if (this.id == 'members' || this.id == 'groups' || this.id == 'settings' || this.id == 'uploadAsset' || this.id == 'setExpectedAssets') {
+                if (this.id == 'members' || this.id == 'groups' || this.id == 'settings' || this.id == 'uploadAsset') {
                     maxHeight = 800;
+                }
+				if (this.id == 'setExpectedAssets') {
+                    maxHeight = 600;
                 }
                 iframe.height(countNewHeight(maxHeight, modalBody, modalBody));
             } else if (this.id === 'chatterassets') {

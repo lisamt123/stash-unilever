@@ -1,0 +1,26 @@
+<config>
+	<global>
+		<timeout>3000</timeout>
+		<defaultLanguage>en-US</defaultLanguage>
+	</global>
+	<constantNumb>
+	<recordOffset>0</recordOffset>
+	<resultCountToFetch>12</resultCountToFetch>
+	</constantNumb>
+	<webServiceEndpoints>
+		<agentBrandListGetService>GetAutoPopulatedValues</agentBrandListGetService>
+		<agentReportService>InsertUnileverReport</agentReportService>
+		<competatorGetCatList>getCompetitorSourceRetailerTopicCountry</competatorGetCatList>
+		<competitorGetBrandListService>getCompetitorNameAndCategory</competitorGetBrandListService>
+		<competitorReportService>InsertCompetitorReport</competitorReportService>
+		<reportDispalyService>GetAgentAllReport</reportDispalyService>
+		<businessPrincipleService>IsAcceptedTermsAndCondition</businessPrincipleService>
+		<updateBusinessPrincipleService>updateIsAcceptedTermsAndCondition</updateBusinessPrincipleService>
+		<updateAgentReportLike>UpdateLikeCount</updateAgentReportLike>
+		<updateAgentReportUnLike>UpdateUnlikeCount</updateAgentReportUnLike>
+		<showMostLikeService>RetriveMostLiked</showMostLikeService>
+		<getUserListService>getAutocompleteList</getUserListService>
+		
+	</webServiceEndpoints>
+	
+</config>

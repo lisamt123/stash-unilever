@@ -1,4 +1,5 @@
 var numberOfFilesInUploadQueue = 0;
+var relatedBetStatus = null;
    
       var uploadHelper = function() {
           //workaround for issue with Sarissa on IE (Sarrisa preventd sending blob)
@@ -311,6 +312,7 @@ var numberOfFilesInUploadQueue = 0;
         var parentId = groupId;
         options = {
             errorHandler: function(msg) {
+				jQuery(".uploadStatusCell:eq("+idx +")").html(msg);
                 saveInProgress = false;
             },
             successHandler: function(result) {
@@ -342,7 +344,8 @@ var numberOfFilesInUploadQueue = 0;
                   if (numberOfFilesInUploadQueue==0) {
                     window.top.postMessage(
                       {
-                        action: 'saveAssets'
+                        action: 'saveAssets',
+						msg:relatedBetStatus
                       },
                       document.location.protocol + '//' + document.domain
                       );
@@ -443,8 +446,11 @@ var numberOfFilesInUploadQueue = 0;
 	
 	function labelFileCallback(event,result,index,cb){
       if (event.status) {
-        if(result == null) {
+        if(result == null || result == 'Final release') {
           jQuery(".uploadStatusCell:eq("+index+")").html(uploadOkInfo);
+			if(result == 'Final release'){
+				relatedBetStatus = 'Your BET is now in Final Release'
+			}
             if (cb) {
               cb();
             }

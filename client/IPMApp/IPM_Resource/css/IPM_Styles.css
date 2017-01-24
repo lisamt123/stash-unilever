@@ -1,0 +1,418 @@
+@font-face {
+  font-family: 'UnileverDINOffcPro';    
+  src: url('../fonts/UnileverDINOffcPro.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/UnileverDINOffcPro.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/UnileverDINOffcPro.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/UnileverDINOffcPro.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/UnileverDINOffcPro.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+html{ font-size:100%;}
+body {font-size: 12px;}
+td.noSidebarCell { padding: 0; }
+
+/* Content Container */
+.bodyDiv {
+	background:#fff url(../images/img_header_repeted.png) repeat-x 0 0;
+}
+.ipmContainer{
+	background-color: #fff;
+	background: url(../images/img_header_left.png) no-repeat 0 0;
+	margin-left: 100px ;
+	min-height: 500px;
+    padding: 0 ;
+}
+.ipmContainer:before {
+	content:" ";
+	height:55px;
+	display:block;
+	visibility:hidden;
+}
+
+/* Body */
+.ipmBody{
+	min-height: 400px;
+    margin: 65px 10px 20px 15px;
+}
+.ipmBody *{
+	border-radius: 0 ;
+	color: #797979;
+}
+.ipmBody .row{
+	padding: 10px 0;
+}
+
+.ipmBody .row div[class^='col-'] {
+	padding-right:10px;
+	padding-left:10px;
+}
+
+.ipmBody .row .row:first-child {
+	padding-top: 0 ;
+}
+
+.ipmBody .row .row {
+	padding-right: 5px ;
+}
+
+.ipmBody .row .row .row {
+	margin-left: -10px;
+}
+
+.ipmBody .row.mergedRow {
+	margin:0 -5px;
+}
+
+.ipmBody .row.mergedRow .panel > .panel-body {
+	padding:15px 5px;
+}
+.ipmContainer .panel-group {
+	margin-bottom:10px;
+}
+.basic.panel{
+	background: transparent;
+}
+.basic.panel .panel-body{
+	padding: 0;
+}
+
+.inputField {
+	margin-bottom: 15px;
+}
+
+.inputField.oneCol{
+	margin-bottom: 0;
+}
+
+.inputField .fieldLabel {
+	font-family:Arial;
+	font-size: 1em;
+	font-weight:normal;
+	color: #333;
+	text-transform: uppercase;	
+}
+
+.ipmBody input[type="text"], .ipmBody textarea,.ipmBody select {
+	width: 100%;
+	padding: 0.65em 0.3em;
+	font-size: 1em;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	outline: none;
+	color: rgba(0, 0, 0, 0.7);
+}
+.ipmBody textarea {
+	word-break: normal;
+	word-wrap: break-word;
+	resize: vertical;
+	min-height:100px;
+}
+
+.outputField {
+    margin-bottom: 10px;
+}
+
+.outputField .fieldLabel{
+    font-size: 14px;
+    color: #808080;
+    width: 40%;
+    /*text-transform: uppercase;*/
+    display: inline-block;
+}    
+
+.outputField .fieldValue{
+    color: #808080;
+    font-size: 14px;
+    display: inline-block;
+} 
+
+/* Modal */
+.modal-header {
+	background: #00B389;
+}
+
+.modal-header  .close {	
+	opacity: 1.0;
+	-webkit-opacity: 1.0;
+	-moz-opacity: 1.0;
+	filter:alpha(opacity=100);;
+}
+
+.modal-header  .close span {
+	color:#fff
+}
+
+.modal-title {
+	color: #fff;
+}
+
+/* Footer */
+.ipmFooter{
+}
+
+/* --------------------------------------------------------------------------------------------- */
+/* Modules 																						 */
+/* --------------------------------------------------------------------------------------------- */
+
+.ipmImage{
+	width: 100% ;
+}
+
+/* Panels */
+.panel {
+	margin-bottom: 0 ;
+}
+
+.panel.uploadImg img {
+	width:100%; /* IE9 */
+	max-width:100%;	
+}
+
+.basic.panel {
+	-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.05);
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.leftColumn { /* Used in conjunction with basic panel */
+	padding-left: 0;
+}
+.rightColumn { /* Used in conjunction with basic panel */
+	padding-right: 0;
+}
+
+.panel-heading{
+    font-size: 16px;
+    font-weight: 300;
+    border-bottom: 1px solid #F1F2F7 ;
+}
+
+.panel-heading.terques {
+    color: #00A8B3 ;
+}
+
+.panel-heading.red {
+    color: #FF6C60 ;
+}
+
+.panel-heading.yellow {
+    color: #F8D347 ;
+}
+
+.panel-heading.blue {
+    color: #57C8F2 ;
+}
+
+.panel-heading.pink {
+    color: #DF1995 ;
+}
+
+.panel-heading.green {
+    color: #AEC785 ;
+}
+
+
+/* Bosscard */
+.BosscardAccordion textarea {
+	min-height:200px;
+}
+
+.BosscardAccordion a, .BosscardAccordion a:hover{
+	text-decoration: none;
+	text-transform:uppercase;
+}
+
+.BosscardAccordion .panel-heading{
+	cursor: pointer;
+	font-family:'UnileverDINOffcPro', Arial;	
+}
+
+.BosscardAccordion .panel-heading:hover {
+	background: #00B389;
+}
+
+.BosscardAccordion .panel-heading:hover h4 a {
+	color:#fff;
+}
+
+.BosscardAccordion .panel-heading:hover span {
+	color:#fff;
+}
+
+.BosscardAccordion .panel-heading h4 {
+	font-size:0.85em;
+}
+
+.BosscardAccordion .panel-heading.active a, .BosscardAccordion .panel-heading.active a:hover{
+	color: RGBA(255, 255, 255, 0.9) ;
+}
+
+.BosscardAccordion .panel-heading.terques,.TeamAssignmentCategories .panel-heading.terques{
+	background: #00B389  ;
+}
+.BosscardAccordion .panel-heading.red {
+	background: #FF6C60 ;
+}
+.BosscardAccordion .panel-heading.yellow {
+	background: #F8D347 ;
+}
+.BosscardAccordion .panel-heading.blue {
+	background: #57C8F2 ;
+}
+.BosscardAccordion .panel-heading.pink {
+	background: #DF1995 ;
+}
+.BosscardAccordion .panel-heading.green {
+	background: #AEC785 ;
+}
+
+.BosscardAccordion .panel-default .panel-heading{
+	background: #E7E7E7;	
+}
+
+span.dateInput.dateOnlyInput input{width:85%;}
+.BosscardAccordion textarea{min-height:125px;}
+.BosscardAccordion textarea:first-child{margin-bottom:20px;}
+.TeamAssignmentCategories{padding:0 30px;}
+
+
+.circular.ipmImage {
+	border-radius: 500rem ;
+}
+
+.ipmPanelHeading {
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.blue.ipmPanelHeading,
+.blue.ipmPanelHeading i {
+	color: #209DDA;
+}
+
+.green.ipmPanelHeading,
+.green.ipmPanelHeading i {
+	color: #80B726;
+}
+
+.maroon.ipmPanelHeading,
+.maroon.ipmPanelHeading i {
+	color: #AC0D60;
+}
+
+.orange.ipmPanelHeading,
+.orange.ipmPanelHeading i {
+	color: #FF982F;
+}
+
+.pink.ipmPanelHeading,
+.pink.ipmPanelHeading i {
+	color: #DF1995;
+}
+
+.purple.ipmPanelHeading,
+.purple.ipmPanelHeading i {
+	color: #9641B4;
+}
+
+.red.ipmPanelHeading,
+.red.ipmPanelHeading i {
+	color: #FF2514;
+}
+
+.teal.ipmPanelHeading,
+.teal.ipmPanelHeading i {
+	color: #00B389;
+}
+
+.yellow.ipmPanelHeading,
+.yellow.ipmPanelHeading i {
+	color: #F7CD2F;
+}
+
+.white.fa-plus{color:white;}
+.rolePanel {
+	font-size: 14px;
+	display: block;
+	widh: 100%;
+	padding: 10px;
+	margin: 10px 0;
+}
+
+.rolePanel,
+.rolePanel i {
+	color: #FFFFFF;
+	vertical-align: middle;
+}
+
+.blue.rolePanel {
+	background-color: #209DDA;
+}
+
+.green.rolePanel {
+	background-color: #80B726;
+}
+
+.maroon.rolePanel {
+	background-color: #AC0D60;
+}
+
+.orange.rolePanel {
+	background-color: #FF982F;
+}
+
+.pink.rolePanel {
+	background-color: #DF1995;
+}
+
+.purple.rolePanel {
+	background-color: #9641B4;
+}
+
+.red.rolePanel {
+	background-color: #FF2514;
+}
+
+.teal.rolePanel {
+	background-color: #00B389;
+}
+
+.yellow.rolePanel {
+	background-color: #F7CD2F;
+}
+.ipmProjectDetails .panel-title{ font-weight:bold; color:#fff; font-size:2em; line-height:3em; display:inline-block; position:relative: top:21px; }
+.projectDetails .panel-title{font-family: 'UnileverDINOffcPro', Arial;; font-weight:bold; color:#454545;}
+.BosscardAccordion .panel-heading.terques span{color:white; font-size:0.8em;}
+.BosscardAccordion .panel-heading span{color:#797979; font-size:0.8em;}
+.BosscardAccordion .panel-heading span.arrow{font-size:0.7em;}
+.BosscardAccordion .panel-heading span.fa-chevron-right{color:#00B389; margin-top:5px;}
+.BosscardAccordion .panel-heading span.fa-chevron-down{color:white; margin-top:5px;}
+.ipmForm .inputField span.fa-question-circle{color:#797979; font-size:1.1em;}
+.required:before { content:" *"; color:red}
+.ErrMsg{color:red}
+
+.htmlDetailElementTable img {width: 100%;max-width: 100%;max-height: 76px; border-radius: 50% ;} 
+
+
+/*****************************************************
+******************* IPM NG Revamp ********************
+*****************************************************/
+
+.secUsersHistory {background:url(../images/tlHistory.jpg) repeat-y 32px 0; }
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+background:#fff; color:#fff; margin-top:-3px;}
+.ipmNavMenuDiv  .navbar-nav>li>.dropdown-menu {border-top:#fff;}
+.ipmNavMenuDiv  .navbar-nav>li>.dropdown-menu > li {margin-left:0;}
+.navbar-nav>li>ul li a {color: #333;font-weight: normal;font-size: 0.97em;}
+.ipmNavMenuDiv  .navbar-nav>li>.dropdown-menu > li a span {padding:3px 0 3px 20px;}
+.navbar-default {background:transparent;}
+
+.htmlDetailElementTable img {width:44px;max-width: 100%; height: 44px; border-radius: 50% ;}
+.ipmProjectDetails .panel-title {line-height:2em;}  
+.ipmProjectDetails .col-sm-4 {padding-left:0;margin-left:-12px;}      
+.uploadImg img {border-radius: 50% ;max-width: 44px;} 
+.ipmProjectDetails .panel {background:transparent;}
+.ipmProjectDetails .uploadImg {overflow:hidden;padding:0;margin:0;}
+.ipmProjectDetails .panel-body {padding:8px 15px;}
+.ipmProjectDetails .panel-body .col-sm-3 {padding-left:3px;margin-top: 18px;}   
+.ipmProjectDetails .SecButtonSet {display:inline-block; text-align:right; position:relative;}
+.ipmProjectDetails .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #fff;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}   
+.ipmNavMenuDiv .nav.navbar-nav  li.dropdown a.dropdown-toggle {top:0;left:0;}
