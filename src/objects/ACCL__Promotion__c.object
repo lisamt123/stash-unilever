@@ -847,6 +847,11 @@
         <fullName>UL_SoCo_End_Date</fullName>
         <description>In promotion planning workflow when the promotion is in the Enda Date status</description>
         <displayedFields>
+            <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>UL_Current_Status__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -3022,6 +3027,7 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <columns>ACCL__Placement_Date_From__c</columns>
         <columns>UL_Category__c</columns>
         <columns>UL_Brand__c</columns>
+        <columns>ACCL__Anchor_Account__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>UL_Sales_Organization__c</field>
@@ -4079,8 +4085,14 @@ Id=VLOOKUP
         <errorMessage>Name should not be edited when the Phase is Committed.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>UL_End_Date_Validation</fullName>
+        <fullName>UL_Default_Sold_To_Mandatory_Rule</fullName>
         <active>true</active>
+        <errorConditionFormula>IF(  ACCL__Promotion_Template__r.UL_Calculate_Slogan_Name__c &amp;&amp; ISBLANK( ACCL__Anchor_Account__c) , true, false)</errorConditionFormula>
+        <errorMessage>All promotions must have a sold-to assigned to them. If no sold-to appears in the list for your account, please contact your support team for guidance.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL_End_Date_Validation</fullName>
+        <active>false</active>
         <description>Validates End Date workflow state conditions.</description>
         <errorConditionFormula>IF((ACCL__Sales_Org__c == &apos;AR01&apos; || ACCL__Sales_Org__c == &apos;CL01&apos; || ACCL__Sales_Org__c == &apos;CL03&apos;)
 &amp;&amp; ACCL__Date_From__c &lt;=  TODAY() 
@@ -4089,6 +4101,7 @@ Id=VLOOKUP
 &amp;&amp;  TEXT( UL_Current_Status__c ) != &apos;End Date&apos; 
 ,true
 ,false )</errorConditionFormula>
+        <errorDisplayField>ACCL__Active__c</errorDisplayField>
         <errorMessage>You can set Workflow State to &apos;End Date&apos; only if the Promotion is currently running</errorMessage>
     </validationRules>
     <validationRules>
@@ -4185,12 +4198,6 @@ Id=VLOOKUP
  (ACCL__Date_Thru__c - ACCL__Date_From__c)&lt;0 , true, false),false)</errorConditionFormula>
         <errorDisplayField>ACCL__Active__c</errorDisplayField>
         <errorMessage>In store dates range should be more than 1 day or below 91 days</errorMessage>
-    </validationRules>
-	    <validationRules>
-        <fullName>UL_Default_Sold_To_Mandatory_Rule</fullName>
-        <active>true</active>
-        <errorConditionFormula>IF(  ACCL__Promotion_Template__r.UL_Calculate_Slogan_Name__c &amp;&amp; ISBLANK( ACCL__Anchor_Account__c) , true, false)</errorConditionFormula>
-        <errorMessage>All promotions must have a sold-to assigned to them. If no sold-to appears in the list for your account, please contact your support team for guidance.</errorMessage>
     </validationRules>
     <webLinks>
         <fullName>ACCL__Derive</fullName>
