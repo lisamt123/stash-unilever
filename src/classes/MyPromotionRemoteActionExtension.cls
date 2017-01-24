@@ -429,7 +429,7 @@ Throws : N/A
                 earBOPromotion.add(promoObject);
                 */
                 
-                //------Hiding UKI KPIs----------
+                //------Hiding UKI Main layout----------
                 EARUI UKI_KPI = new EARUI();
                 UKI_KPI.Name = 'TILE_PROMO_MAIN_UKI';
                 UKI_KPI.Type = UtilityEnum.UIElement.Name();
@@ -467,7 +467,7 @@ Throws : N/A
                 
             }
             else if(promoList[0].ACCL__Sales_Org__c == UL_Utility.UK_SO || promoList[0].ACCL__Sales_Org__c == UL_Utility.Ireland_SO){
-                //------Hiding SoCo KPIs----------
+                //------Hiding SoCo Main Layout----------
                 EARUI SoCo_KPI = new EARUI();
                 SoCo_KPI.Name = 'TILE_PROMO_MAIN_SOCO';
                 SoCo_KPI.Type = UtilityEnum.UIElement.Name();
