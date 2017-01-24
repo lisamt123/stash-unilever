@@ -428,7 +428,15 @@ Throws : N/A
                 promoObject.editable = false;  
                 earBOPromotion.add(promoObject);
                 */
-				
+                
+                //------Hiding UKI KPIs----------
+                EARUI UKI_KPI = new EARUI();
+                UKI_KPI.Name = 'TILE_PROMO_MAIN_UKI';
+                UKI_KPI.Type = UtilityEnum.UIElement.Name();
+                UKI_KPI.Visible = false;  
+                earBOPromotion.add(UKI_KPI);
+                
+                
                 if(promoList[0].UL_EnableChild__c == true){
                     Map<String, Schema.SObjectField> fldObjMap = schema.SObjectType.ACCL__Promotion__c.fields.getMap();
                     for(String s : fldObjMap.keySet())
@@ -457,6 +465,14 @@ Throws : N/A
                     }
                 }
                 
+            }
+            else if(promoList[0].ACCL__Sales_Org__c == UL_Utility.UK_SO || promoList[0].ACCL__Sales_Org__c == UL_Utility.Ireland_SO){
+                //------Hiding SoCo KPIs----------
+                EARUI SoCo_KPI = new EARUI();
+                SoCo_KPI.Name = 'TILE_PROMO_MAIN_SOCO';
+                SoCo_KPI.Type = UtilityEnum.UIElement.Name();
+                SoCo_KPI.Visible = false;  
+                earBOPromotion.add(SoCo_KPI);
             }
             //Added by Abhishek for the visibility control of buttons for UKI 
              List<EARUI> btList = new List<EARUI>();
