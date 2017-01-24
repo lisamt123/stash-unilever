@@ -1,7 +1,7 @@
 public with sharing class BFM_NFEHandler implements ITrigger {   
     
-    private Map<Id,BFM_NF_e__c> oldMap;
-    private Map<Id, BFM_NF_e__c> newMap;
+    //private Map<Id,BFM_NF_e__c> oldMap;
+    //private Map<Id, BFM_NF_e__c> newMap;
     private List<BFM_NF_e__c> nfeList;
     
     public BFM_NFEHandler() {}

@@ -27,5 +27,8 @@ private class BFM_NFEHandler_Test {
         BFM_NFEHandler nfehandler = new BFM_NFEHandler();
         nfehandler.beforeDelete(nfe);
         nfehandler.afterDelete(nfe);
+		nfehandler.bulkBefore();
+        nfehandler.beforeInsert(nfe);
+        nfehandler.afterInsert(nfe);
     }
 }
