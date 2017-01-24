@@ -1,6 +1,6 @@
 @isTest
-private class BFM_NFEHandler_Test {
-    private static testMethod void BFM_NFEHandler_TestMethod(){
+public class BFM_NFEHandler_Test {
+    static testMethod void BFM_NFEHandler_TestMethod(){
         Account acc = new Account();
         acc.Name = 'TestAccountName';
         insert acc;
@@ -25,10 +25,17 @@ private class BFM_NFEHandler_Test {
         nfe.NF_e_access_key__c = '23456789876543';
         update nfe;
         BFM_NFEHandler nfehandler = new BFM_NFEHandler();
-        nfehandler.beforeDelete(nfe);
-        nfehandler.afterDelete(nfe);
-		nfehandler.bulkBefore();
-        nfehandler.beforeInsert(nfe);
-        nfehandler.afterInsert(nfe);
+        BFM_NF_e__c oldSo = new BFM_NF_e__c();
+        BFM_NF_e__c So = new BFM_NF_e__c();
+        nfehandler.beforeDelete(So);
+        nfehandler.afterDelete(So);
+        nfehandler.bulkBefore();
+        //nfehandler.bulkAfter();
+        nfehandler.beforeInsert(So);
+        nfehandler.afterInsert(So);
+        nfehandler.beforeUpdate(oldSo,So);
+        nfehandler.afterUpdate(oldSo,So);
+        nfehandler.afterDelete(so);
+        nfehandler.andFinally();
     }
 }
