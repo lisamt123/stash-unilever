@@ -20,6 +20,13 @@
         <value>Global Claims Table</value>
 </labels>
 <labels>
+        <fullName>IPM_GOTO_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_GOTO_URL</shortDescription>
+        <value>https://unilever.sharepoint.com/sites/Marketing/IPM</value>
+    </labels>
+<labels>
         <fullName>IPM_Capability_Confirmed_Help_Text</fullName>
         <categories>EPIC284</categories>
         <language>en_US</language>
