@@ -1202,6 +1202,26 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
                 <fullName>Dressings</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>UFS Dressings</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>UFS Spreads</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>UFS Savoury</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>UFS Other Foods</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>UFS Tea and Soy &amp; Fruit Beverages</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>false</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -4605,6 +4625,26 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
                 <fullName>Tea and Soy %26 Fruit Beverages</fullName>
                 <default>false</default>
             </values>
+			<values>
+                <fullName>UFS Dressings</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Spreads</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Savoury</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Other Foods</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Tea and Soy %26 Fruit Beverages</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Category_Platform__c</picklist>
@@ -5483,6 +5523,26 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
             </values>
             <values>
                 <fullName>Tea and Soy %26 Fruit Beverages</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Dressings</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Spreads</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Savoury</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Other Foods</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Tea and Soy %26 Fruit Beverages</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

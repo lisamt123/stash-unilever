@@ -228,7 +228,7 @@ public class IPM_ConstantUtils {
     public static final string EXCEPTION_REFRESHFROMGLOBAL='refreshFromGlobal';
     public static final string CONSOLIDATED='CONSOLIDATED';
     
-    
+    public static final string methodInvokedForComponent = 'Required methods are invoked for component';
     
     public static String PHASE_IDEAS='Ideas';
     public static String PHASE_FEASIBILITY='Feasibility';
