@@ -121,7 +121,22 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>UL_Payment_Method__c</field>
+            <field>UL_Tier_Definition__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Redemption__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Take_Up_Rate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Volume_Type__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -321,6 +336,51 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <label>UL_SoCo_Planning</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>UL_UKI_LTA_Lump_Sum</fullName>
+        <description>Used to control the visibility in Tactic if template type is Lump Sum</description>
+        <displayedFields>
+            <field>ACCL__Tactic_Template__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Condition_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <label>UL_UKI_LTA_Lump_Sum</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>UL_UKI_LTA_Rate_Per_Case</fullName>
+        <description>Used for to control the fields in Smart UI for Tactic if Promotion is LTA and selected tactic type is Rate Per Case</description>
+        <displayedFields>
+            <field>ACCL__Tactic_Template__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Off_On_Invoice__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Investment_Method__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Condition_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Take_Up_Rate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>UL_UKI_LTA_Rate_Per_Case</label>
     </fieldSets>
     <fields>
         <fullName>ACCL__Amount__c</fullName>
@@ -604,6 +664,46 @@
                 <fullName>EDLP On Invoice</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Z4F0 - On Shelf Availability/Assortment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z4K0 - On CPP Price Marked Pack</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z4M0 - EDLP Discount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z504 - On Shelf Availablity</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z50A - Results Orientated Terms</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z50B - Customer Specific Discount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z50C - Customer Specific Discount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z50D - Price Reduction</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z50E - Annual JBP Agreement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z515 - On Shelf Availability</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -688,6 +788,17 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Promotion_Closed__c</fullName>
+        <description>Indicates if the Promotion related to the tactic is closed or not</description>
+        <externalId>false</externalId>
+        <formula>ACCL__Promotion__r.UL_Closed__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Promotion Closed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>UL_Promotion_Phase__c</fullName>
@@ -1061,13 +1172,6 @@
     </recordTypes>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
-	 <validationRules>
-        <fullName>Paste_Dated_OffInvoice_Allowed</fullName>
-        <active>true</active>
-        <description>Payment method- On Invoice and A&amp;P should not be allowed for the promotion templates- Account Specific Past dated Promotion and Parent Past Dated Promotion</description>
-        <errorConditionFormula>IF( (CONTAINS(ACCL__Promotion__r.ACCL__Promotion_Template__r.Name,&apos;Account Specific - Past Dated / Urgent&apos;)||CONTAINS(ACCL__Promotion__r.ACCL__Promotion_Template__r.Name,&apos;Parent Past Dated / Urgent&apos;))&amp;&amp;(ISPICKVAL(ACCL__Payment_Method__c,&apos;OnInvoice&apos;)||ISPICKVAL(ACCL__Payment_Method__c,&apos;A&amp;P&apos;)), true, false)</errorConditionFormula>
-        <errorMessage>Payment methods of On Invoice,A&amp;P should not be allowed for the promotion templates- Account Specific Past dated Promotion and Parent Past Dated Promotion</errorMessage>
-    </validationRules>
     <validationRules>
         <fullName>ACCL__I_date_from_less_or_equal_i_date_thru</fullName>
         <active>true</active>
@@ -1100,6 +1204,13 @@
         <errorMessage>Date From cannot be later than Date Thru.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Paste_Dated_OffInvoice_Allowed</fullName>
+        <active>true</active>
+        <description>Payment method- On Invoice and A&amp;P should not be allowed for the promotion templates- Account Specific Past dated Promotion and Parent Past Dated Promotion</description>
+        <errorConditionFormula>IF( (CONTAINS(ACCL__Promotion__r.ACCL__Promotion_Template__r.Name,&apos;Account Specific - Past Dated / Urgent&apos;)||CONTAINS(ACCL__Promotion__r.ACCL__Promotion_Template__r.Name,&apos;Parent Past Dated / Urgent&apos;))&amp;&amp;(ISPICKVAL(ACCL__Payment_Method__c,&apos;OnInvoice&apos;)||ISPICKVAL(ACCL__Payment_Method__c,&apos;A&amp;P&apos;)), true, false)</errorConditionFormula>
+        <errorMessage>Payment methods of On Invoice,A&amp;P should not be allowed for the promotion templates- Account Specific Past dated Promotion and Parent Past Dated Promotion</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>UL_CreateInvestmentOnPromotionRule</fullName>
         <active>true</active>
         <errorConditionFormula>if( ISPICKVAL(ACCL__Promotion__r.UL_Promotion_Type__c, &apos;Volume Only&apos;) ,true,false )</errorConditionFormula>
@@ -1112,7 +1223,7 @@
         <errorDisplayField>UL_Order_Date_From__c</errorDisplayField>
         <errorMessage>Order Date From cannot be later than Order Date Thru</errorMessage>
     </validationRules>
-     <validationRules>
+    <validationRules>
         <fullName>Ul_Validate_Promotion_Dates</fullName>
         <active>true</active>
         <description>This is used to validate Tactic dates with in the promotion dates range.</description>

@@ -990,6 +990,7 @@ Throws : N/A
      Map<id,ACCL__Product__c> productMap = new Map<id,ACCL__Product__c>();
      Map<string,string> tacticidProdId = new Map<string,string>();
       List<Map<String, Object> > herokuProducts = new List<Map<String, Object>>();
+      Map<String, Set<String>> tacticidProdSet = new Map<String, Set<String>>();
      Map<id,id> prodIdTacticID = new Map<id,id>(); 
        Set<String> tacticSet;
         Set<Id> productIdSet;
@@ -1016,27 +1017,32 @@ Throws : N/A
                         //prodIdTacticID.put();
                     }
                     }
+                                          for(String prod : prodIdTacticSet.keySet()){
+                                                         for(String tac : prodIdTacticSet.get(prod))
+                                                         {
+                                                                    if(!tacticidProdSet.containskey(tac))
+                                                                    {
+                                                                          tacticidProdSet.put(tac, new Set<String>());
+                                                                     }
+                                                                   tacticidProdSet.get(tac).add(prod);
+                                                            }
+                                                         }
+
                    if(prodIdTacticSet!=null && prodIdTacticSet.keyset().size()>0){ 
                     for(ACCL__Tactic__c tacticObj : [select id,ACCL__Payment_Method__c from ACCL__Tactic__c where id in:tacticSet]){
                      tacticMap.put(tacticObj.id,tacticObj);
-                     if(tacticObj.ACCL__Payment_Method__c!=null && tacticObj.ACCL__Payment_Method__c==offinvoice){
-                       isTacticOffinvoice  = true;
-                     }
                      
                     }
                     for(ACCL__Product__c prodObj : [select id,UL_Material_Type__c from ACCL__Product__c where id in: prodIdTacticSet.keyset()]){
-                      containsDummyProd = false;
-                     if(prodObj.UL_Material_Type__c!=null && prodIdTacticSet.containskey(prodObj.id)){
-                        for(string tacticid : prodIdTacticSet.get(prodObj.id)){
-                          if(tacticMap.get(tacticid).ACCL__Payment_Method__c==offinvoice && prodObj.UL_Material_Type__c==materialType){
-                            containsDummyProd = true;
-                            break;
-                          }
+                      productMap.put(prodObj.id,prodObj);
+                    }
+                    }
+                    for(String tacticID : tacticidProdSet.keyset()){
+                        if(tacticMap.get(tacticID).ACCL__Payment_Method__c!=null && tacticMap.get(tacticID).ACCL__Payment_Method__c==offinvoice){
+                        
                         }
-                     }
-                     
                     }
-                    }
+                    
                     if(prodIdTacticSet==null && isTacticOffinvoice) {
                       throw new CustomException(label.UL_DummyProdonTactic);
                     }

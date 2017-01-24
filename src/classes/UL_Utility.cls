@@ -127,7 +127,8 @@
         public static final String STATUS_PENDING = 'Pending';
         public static final String STATUS_PLANNING = 'Planning';
         public static final String STATUS_FINANCE_CHECK = 'Finance Check';
-        public static final String STATUS_MANAGER_CHECK = 'Manager Check'; 
+        public static final String STATUS_MANAGER_CHECK = 'Manager Check';
+		public static final String STATUS_SUBMITTED_FOR_APPROVAL = 'Submitted for Approval';		
                
         //User Org Role
         public static final String ROLE_CATEGORY_MANAGER = 'category manager';

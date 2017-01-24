@@ -130,7 +130,9 @@
         <fields>ACCL__Fund_Transaction__c.ACCL__Fund_Transaction_Template__c</fields>
         <fields>ACCL__Fund_Transaction__c.UL_Transaction_Description__c</fields>
         <fields>ACCL__Fund_Transaction__c.ACCL__Source_Fund__c</fields>
+        <fields>ACCL__Fund_Transaction__c.UL_Source_Fund_Description__c</fields>
         <fields>ACCL__Fund_Transaction__c.ACCL__Target_Fund__c</fields>
+        <fields>ACCL__Fund_Transaction__c.UL_Target_Fund_Description__c</fields>
         <fields>ACCL__Amount__c</fields>
         <fields>ACCL__Fund_Transaction__c.ACCL__Date__c</fields>
         <fields>UPDATEDBY_USER</fields>

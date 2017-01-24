@@ -58,6 +58,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fieldSets>
         <fullName>ACCL__TransactionFields1</fullName>
         <description>CreateTransaction page</description>
@@ -176,10 +177,36 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>ACCL__Fund_Transaction_Template_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>ACCL__Fund_Transaction_Template__r.ACCL__Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fund Transaction Template Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Fund_Transaction_Template__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Reference to transaction template</description>
+        <externalId>false</externalId>
+        <label>Fund Transaction Template</label>
+        <referenceTo>ACCL__Fund_Transaction_Template__c</referenceTo>
+        <relationshipLabel>Fund Transactions</relationshipLabel>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>ACCL__Record_Link__c</fullName>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
-        <formula>HYPERLINK(&quot;/&quot; &amp;Id, $Label.ACCL__RECORD_LINK, &quot;_top&quot;)</formula>
+        <formula>HYPERLINK(&quot;/&quot; &amp;Id, $Label.accl__record_link, &quot;_top&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Record Link</label>
         <required>false</required>
@@ -215,32 +242,6 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
-        <fullName>ACCL__Fund_Transaction_Template_Description__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <formula>ACCL__Fund_Transaction_Template__r.ACCL__Description__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Fund Transaction Template Description</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>ACCL__Fund_Transaction_Template__c</fullName>
-        <deleteConstraint>Restrict</deleteConstraint>
-        <deprecated>false</deprecated>
-        <description>Reference to transaction template</description>
-        <externalId>false</externalId>
-        <label>Fund Transaction Template</label>
-        <referenceTo>ACCL__Fund_Transaction_Template__c</referenceTo>
-        <relationshipLabel>Fund Transactions</relationshipLabel>
-        <relationshipName>Transactions</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>ACCL__Transaction_Type__c</fullName>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
@@ -273,6 +274,18 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>UL_Source_Fund_Description__c</fullName>
+        <description>Source fund description</description>
+        <externalId>false</externalId>
+        <formula>ACCL__Source_Fund__r.ACCL__Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Source Fund Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>UL_Status__c</fullName>
         <description>Status Field for Cross Category Transaction</description>
         <externalId>false</externalId>
@@ -296,6 +309,18 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Target_Fund_Description__c</fullName>
+        <description>Target Fund Description</description>
+        <externalId>false</externalId>
+        <formula>ACCL__Target_Fund__r.ACCL__Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Fund Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>UL_Transaction_Description__c</fullName>

@@ -81,6 +81,7 @@ src/objects/UL_Condition_Codes__c.object
 src/objects/UL_Utility__c.object
 src/objects/IIBBTax__c.object
 src/objects/UL_Component_Visibility__mdt.object
+src/objects/ACCL__Promotion_Template_Tactic_Template__c.object
 src/customMetadata
 src/customMetadata/UL_Component_Visibility.SoCo_Approved.md
 src/customMetadata/UL_Component_Visibility.SoCo_Banded_Pack_Approved.md
@@ -471,6 +472,8 @@ src/classes/UL_PromotionContentReplace.cls
 src/classes/UL_PromotionContentReplace.cls-meta.xml
 src/classes/UL_ComponentVisibility.cls
 src/classes/UL_ComponentVisibility.cls-meta.xml
+src/classes/UL_fundCloseStatusHandler.cls
+src/classes/UL_fundCloseStatusHandler.cls-meta.xml
 src/pages
 src/pages/MyPromotionPlanning.page
 src/pages/MyPromotionPlanning.page-meta.xml
@@ -515,6 +518,8 @@ src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Parent_Banded_Pack_Workflow.app
 src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Parent_PastDated_Urgent_Workflow.approvalProcess
 src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Parent_Workflow.approvalProcess
 src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Parent_Workflow.approvalProces
+src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Account_Level_Child_Banded_Pack.approvalProcess
+src/approvalProcesses/ACCL__Promotion__c.UL_SoCo_Account_Level_Past_Dated_Urgent.approvalProcess
 src/profiles
 src/profiles/UnileverACTPMSOCO.profile
 src/profiles/UnileverACTPMUKI.profile

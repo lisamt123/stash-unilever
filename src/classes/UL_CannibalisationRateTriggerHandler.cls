@@ -20,7 +20,7 @@ public with sharing class UL_CannibalisationRateTriggerHandler{
     Throws: None
     ********************************************************************/
     public static void beforeInsert(List<UL_Cannibalisation_Rate__c> cannibalisationRateList){
-        try{
+        try{ 
             Date smallestFromDate = UL_Utility.NULL_DATE;
             Date largestThruDate = UL_Utility.NULL_DATE;
             Set<Id> customerIdSet = new Set<Id>();
@@ -29,8 +29,8 @@ public with sharing class UL_CannibalisationRateTriggerHandler{
             Map<String, Set<UL_Cannibalisation_Rate__c>> cannibalisationRateMap = new Map<String, Set<UL_Cannibalisation_Rate__c>>();
             String errorMessage = System.Label.UL_Cannibalisation_Error;
             //Sprint 5
-            ACCL__Product__c allProducts = [SELECT Id, Name FROM ACCL__Product__c WHERE Name = 'All Products' AND ACCL__Product_Level__c = 'Commodity' LIMIT 1];
-            UL_Planning_Level__c allAccounts = [SELECT Id, Name, UL_Customer__c FROM UL_Planning_Level__c WHERE UL_Customer__r.Name = 'All Customers' LIMIT 1];
+            ACCL__Product__c allProducts = UL_Utility.returnGenericProduct();
+            UL_Planning_Level__c allAccounts = UL_Utility.returnGenericCustomer();
             
             //Searching smallest start date and largest thru date to limit number of existing records queried
             for(UL_Cannibalisation_Rate__c rate : cannibalisationRateList){

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Junction Object between Promotion Templates and Tactic Templates</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>ACCL__Promotion_Template__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Link to the Promotion Template</description>
+        <externalId>false</externalId>
+        <label>Promotion Template</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>ACCL__Promotion_Template__c.ACCL__Active__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ACCL__Promotion_Template__c</referenceTo>
+        <relationshipLabel>Tactic Templates</relationshipLabel>
+        <relationshipName>Promotion_Template_Tactic_Templates</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>ACCL__Record_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; &amp;Id, $Label.accl__record_link, &quot;_top&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Record Link</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACCL__Tactic_Template__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Link to the Tactic Template</description>
+        <externalId>false</externalId>
+        <label>Tactic Template</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>ACCL__Tactic_Template__c.ACCL__Active__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ACCL__Tactic_Template__c</referenceTo>
+        <relationshipLabel>Promotion Templates</relationshipLabel>
+        <relationshipName>Promotion_Template_Tactic_Templates</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>isMandatory__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isMandatory</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Promotion Template Tactic Template</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>PTTT-{0000}</displayFormat>
+        <label>Promotion Template Tactic Template Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Promotion Templates Tactic Templates</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>ACCL__Sales_Org_Mismatch</fullName>
+        <active>true</active>
+        <description>To validate that Sales Org of  Promotion Template and Tactic Template are same</description>
+        <errorConditionFormula>TEXT(ACCL__Tactic_Template__r.ACCL__Sales_Org__c) &lt;&gt; TEXT(ACCL__Promotion_Template__r.ACCL__Sales_Org__c)</errorConditionFormula>
+        <errorMessage>The Sales Org of Promotion Template and Tactic Template should be same</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

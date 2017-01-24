@@ -83,7 +83,7 @@ Throws : N/A
             if(contentTarget!=null && contentTarget==UtilityEnum.Salesforce.Name()){
                 
                 //Update Workflow Threshold on every save to see latest Threshold values --Chandrababu
-                UL_ThresholdEngine.getThresholdKPI(txId,id.valueof(objectId),UtilityEnum.save.Name());
+                UL_ThresholdEngine.getThresholdKPI(txId,id.valueof(objectId),UtilityEnum.target.Name());
                 if(UL_ThresholdEngine.thresholdcheck!=null && UL_ThresholdEngine.thresholdcheck.size()>0){
                     Map<String, Object> contentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(content);
                     Map<String, Object> Promotionobj = (Map<String, Object>) contentDeserializedMap.get(UtilityEnum.BOPromotion.Name());
@@ -205,9 +205,47 @@ Throws : N/A
             List<ACCL__Promotion__c> promoLst = new List<ACCL__Promotion__c>() ;
             List<Id> approverIdsLst = new List<Id>() ;
                     
-            promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;
+            promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c, ACCL__Promotion_Template__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;
             approverIdsLst.add(promoLst[0].createdbyid) ;
             THViolate = promoLst[0].UL_ThresholdViolated__c ;
+			
+			
+			
+			/*****TPM 1599 STARTS*****/
+            if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMITTED_FOR_APPROVAL)){
+                Set<String> tacticMandatory = new Set<String>();
+                for(ACCL__Tactic__c tctic : [SELECT ACCL__Tactic_Template__c FROM ACCL__Tactic__c WHERE ACCL__Promotion__c = :promoId]){
+                    tacticMandatory.add(promoLst[0].ACCL__Promotion_Template__c+'-'+tctic.ACCL__Tactic_Template__c);
+                }
+
+                
+                for(ACCL__Promotion_Template_Tactic_Template__c promTactTempJunc : [SELECT ACCL__Promotion_Template__c, ACCL__Tactic_Template__c FROM ACCL__Promotion_Template_Tactic_Template__c WHERE ACCL__Promotion_Template__c = :promoLst[0].ACCL__Promotion_Template__c AND isMandatory__c = True]){
+                    if(!tacticMandatory.contains(promTactTempJunc.ACCL__Promotion_Template__c+'-'+promTactTempJunc.ACCL__Tactic_Template__c)){
+                        throw new UL_CustomException(Label.Requires_All_Mandatory_Tactic_for_Promotion);
+                    }
+                }                
+            }
+            /*****TPM 1599 ENDS*****/
+            
+            
+            // for UKSO or Ireland So
+            if((promoLst[0].ACCL__Sales_Org__c == UL_Utility.UK_SO) || (promoLst[0].ACCL__Sales_Org__c == UL_Utility.Ireland_SO)){
+                
+                
+                if(Mode == 'Submitted for Approval'){                    
+                    promoLst[0].UL_Current_Status__c = 'Finalised';
+                }
+                else{
+                    promoLst[0].UL_Current_Status__c = Mode;
+                    
+                }
+            
+            update promoLst;
+                
+            }
+            if ((promoLst[0].ACCL__Sales_Org__c == UL_Utility.SalesOrg.AR01.Name()) || (promoLst[0].ACCL__Sales_Org__c == UL_Utility.SalesOrg.CL01.Name()) ||
+            (promoLst[0].ACCL__Sales_Org__c == UL_Utility.SalesOrg.CL03.Name())){
+			
             
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.toUpperCase())){
                 
@@ -217,7 +255,7 @@ Throws : N/A
                 } */
 				
 				 //Validatation-At least one dummy product per each off-invoice payment method Tactic.
-                UL_TacticUtility.validateDummyProdsonTactics(txId,content);
+                //UL_TacticUtility.validateDummyProdsonTactics(txId,content);
                 
                 UL_ThresholdEngine.getThresholdKPI(txId,promoId,Mode);
                 
@@ -240,6 +278,7 @@ Throws : N/A
                 UL_PromotionWorkflowService.rejectWorkflow(promoId,promoLst,false);
             }       
         }
+		}
         catch(Exception ex){
             throw ex ;
           UL_Utility.logError(ex, UserInfo.getUserId());
@@ -307,7 +346,7 @@ global static EARUI getEARightsBOPromotion_SoCo(String txId, String objectId){
     
     
     
-    /*******************************************************************
+     /*******************************************************************
 Purpose:   
 Version 1.0
 Parameters: Transaction Id, Promotion Id
@@ -333,17 +372,17 @@ Throws : N/A
             if(promoList[0].UL_PromotionTemplateType__c == 'LTA'){
                 //for(List<ACCL__Promotion__c> promList : [SELECT Id, ACCL__Promotion_Template__r.Name FROM ACCL__Promotion__c WHERE ACCL__Promotion_Template__r.Name = 'LTA - Long Term Agreement AR01']){
                     EARUI promoObject = new EARUI();
-                    promoObject.Name = 'UL_Lift__c';
+                    promoObject.Name = 'Lift__c';
                     promoObject.Type = UtilityEnum.Attribute.Name();
                     promoObject.visible = false;
                     earBOPromotion.add(promoObject);
-                    
                     
                     EARUI DrillDown_Lift_Field = new EARUI();
                     DrillDown_Lift_Field.Name = 'TacticLift';
                     DrillDown_Lift_Field.Type = 'Attribute';
                     DrillDown_Lift_Field.visible = false;  
                     earBOPromotion.add(DrillDown_Lift_Field);
+                    
                 //}
                 
             }
@@ -382,12 +421,14 @@ Throws : N/A
                 }
                 
                 //Ketan - added the following code since 'Promotion Name' should always be readonly even Promotion is not in approval process.
-                EARUI promoObject = new EARUI();
+                /*Commenting for TPM-2316
+				EARUI promoObject = new EARUI();
                 promoObject.Name = Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Slogan__c.getName();
                 promoObject.Type = UtilityEnum.Attribute.Name();
                 promoObject.editable = false;  
                 earBOPromotion.add(promoObject);
-                
+                */
+				
                 if(promoList[0].UL_EnableChild__c == true){
                     Map<String, Schema.SObjectField> fldObjMap = schema.SObjectType.ACCL__Promotion__c.fields.getMap();
                     for(String s : fldObjMap.keySet())
@@ -427,9 +468,10 @@ Throws : N/A
         }catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
         } 
-        
+        system.debug('bansitest..'+earBOPromotion);
         return earBOPromotion; 
     }        
+          
     
     /*@RemoteAction
 global static List<EARUI> getEARightsLOTactic(String txId, String objectId){
@@ -940,7 +982,7 @@ Throws : N/A
             }
             System.debug('productIdSet::::::'+productIdSet);
             if(!productIdSet.isEmpty()){
-                Map<Id, ACCL__Product__c> productMap = new Map<Id, ACCL__Product__c>([SELECT Id, ACCL__Product_Level__c, ACCL__Criterion_2_Product__c, ACCL__Criterion_2_Product__r.Name, ACCL__Criterion_1_Product__r.Name, ACCL__Criterion_3_Product__r.Name FROM ACCL__Product__c WHERE Id IN:productIdSet]);
+                Map<Id, ACCL__Product__c> productMap = new Map<Id, ACCL__Product__c>([SELECT Id, ACCL__Product_Level__c, ACCL__Criterion_2_Product__c, ACCL__Criterion_2_Product__r.Name, ACCL__Criterion_3_Product__r.Name, ACCL__Criterion_4_Product__r.Name FROM ACCL__Product__c WHERE Id IN:productIdSet]);
                 
                 if(!productMap.isEmpty()){
                     Set<Id> marketLevelIds = new Set<Id>();
@@ -962,24 +1004,25 @@ Throws : N/A
                     String brand;
                     for(ACCL__Product__c product : productMap.values()){
                         System.debug('product.ACCL__Criterion_2_Product__c:::'+product.ACCL__Criterion_2_Product__c);
-                        if(product.ACCL__Criterion_2_Product__c != null){
-                            marketLevelIds.add(product.ACCL__Criterion_2_Product__c);
-                            marketId = String.valueOf(product.ACCL__Criterion_2_Product__c);
+                        if(product.ACCL__Criterion_3_Product__c != null){
+                            marketLevelIds.add(product.ACCL__Criterion_3_Product__c);
+                            marketId = String.valueOf(product.ACCL__Criterion_3_Product__c);
                             childProductId = product.Id;
                         }
-                        System.debug('product.ACCL__Criterion_3_Product__c::::'+product.ACCL__Criterion_3_Product__c);
-                        if(product.ACCL__Criterion_3_Product__c!=null){
-                            brandLevelSet.add(product.ACCL__Criterion_3_Product__c);
+                        System.debug('Market::::'+product.ACCL__Criterion_3_Product__c);
+                        if(product.ACCL__Criterion_4_Product__c!=null){
+                            brandLevelSet.add(product.ACCL__Criterion_4_Product__c);
                         }
-                        System.debug('product.ACCL__Criterion_1_Product__c::::'+product.ACCL__Criterion_1_Product__c);
-                        if(product.ACCL__Criterion_1_Product__c!=null){
-                            categorytLevelSet.add(product.ACCL__Criterion_1_Product__c);
+                        System.debug('Brand::::'+product.ACCL__Criterion_4_Product__c);
+                        if(product.ACCL__Criterion_2_Product__c!=null){
+                            categorytLevelSet.add(product.ACCL__Criterion_2_Product__c);
                         }
+						System.debug('Category::::'+product.ACCL__Criterion_2_Product__c);
                     }
                     
                     //populating Market Field
                     if(marketLevelIds.size()==1){
-                        market = productMap.get(childProductId).ACCL__Criterion_2_Product__r.Name;
+                        market = productMap.get(childProductId).ACCL__Criterion_3_Product__r.Name;
                     }
                     else if(marketLevelIds.size()>1){
                         market = System.Label.UL_Multiple_Markets;
@@ -990,7 +1033,7 @@ Throws : N/A
                     
                     //populating Category Field
                     if(categorytLevelSet.size()==1){
-                        category = productMap.get(childProductId).ACCL__Criterion_1_Product__r.Name;
+                        category = productMap.get(childProductId).ACCL__Criterion_2_Product__r.Name;
                     }
                     else if(categorytLevelSet.size()>1){
                         category = System.Label.UL_Multiple_Categories;
@@ -1001,7 +1044,7 @@ Throws : N/A
                     
                     //populating Brand Field
                     if(brandLevelSet.size()==1){
-                        brand = productMap.get(childProductId).ACCL__Criterion_3_Product__r.Name;
+                        brand = productMap.get(childProductId).ACCL__Criterion_4_Product__r.Name;
                     }
                     else if(brandLevelSet.size()>1){
                         brand = System.Label.UL_Multiple_Brands;
@@ -1042,7 +1085,6 @@ Throws : N/A
                             //#1
                             //For Customer/Market/Fearure combination
                             String key = tempCustomerId + tempMarketId + tempFeature;
-                            System.debug('Promotion Key :::'+key);
                             if(cannibRateMap.containsKey(key)){
                                 cannibalisationRate = cannibRateMap.get(key).UL_Cannibalisation_Rate__c;
                                 boPromotion.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_Cannibalisation_Rate__c.getName(), cannibalisationRate);
@@ -1817,6 +1859,30 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         }
         return result;    
     }
-    
+    /** readLOExtProducts method reads Ext product
+     *  @name   :  readLOExtProducts
+     *  @param  :  PromotionId  PromotionId
+     *  @return :  String
+     *  @throws :
+     *  @author :  sumit.chaturvedi@accenture.com
+     */
+    @RemoteAction
+    global static List<Map<String, Object> > readLOExtProduct(String txId,  String promotionContent) {
+      promotionContent = UL_PromotionContentReplace.replaceFieldContent(promotionContent);
+      return ACCL.PromotionRemoteActionExtension.readLOExtProduct(txId,promotionContent);
+    }
+     /**Custom readLOFilteredProducts function to read the Filtered Products
+     *  @name : readLOFilteredProducts
+     *  @param : txId                                           GUI id for each transcation we do from UI
+     *  @param : promotionContent    JSON containing the current promotion info
+     *  @return : List<String>       List of string
+     *  @throws :
+     *  @author :sudharsan.shanmugam@accenture.com
+     */
+    @RemoteAction
+    global static List<ACCL__Product__c> readLOFilteredProducts(String txId,String promotionContent) {
+    promotionContent = UL_PromotionContentReplace.replaceFieldContent(promotionContent);
+    return ACCL.PromotionRemoteActionExtension.readLOFilteredProducts(txId,promotionContent);
+    }
     private class updateException extends Exception{}
 }

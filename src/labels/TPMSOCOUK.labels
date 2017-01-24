@@ -1024,3 +1024,33 @@
         <shortDescription>Users data not setup properly</shortDescription>
         <value>Finance analyst/Finance managers not setup properly</value>
     </labels>
+	<labels>
+        <fullName>Requires_All_Mandatory_Tactic_for_Promotion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Requires_All_Mandatory_Tactic_for_Promotion</shortDescription>
+        <value>All isMandatory Tactic are required for Promotion for Approval</value>
+    </labels>
+	<labels>
+        <fullName>UL_Fund_Open_Promotion_Error</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>Fund Open Promotion Error</shortDescription>
+        <value>This fund is present in a open promotion and cannot be closed</value>
+    </labels>
+    <labels>
+        <fullName>UL_Fund_Open_Transaction_Error</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>Fund Open Transaction Error</shortDescription>
+        <value>This fund is present in a transaction which is pending for Approval and cannot be closed</value>
+    </labels>
+	<labels>
+        <fullName>UL_Duplicate_Record_Found</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Duplicate_Record_Found</shortDescription>
+        <value>Valid From and Valid Through Dates are overlapping with an existing Delivery Profile</value>
+    </labels>

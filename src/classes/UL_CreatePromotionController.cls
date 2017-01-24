@@ -16,6 +16,7 @@ public with sharing class UL_CreatePromotionController{
      private final Static String CREATION_PLATFORM = 'Mobility';
      private final Static String PROMOTION_TYPE= 'SellablePromotion';
      private final static String PROMOTION_REDIRECT_PAGE_KEY = 'UKI after Promotion creation redirect';
+     private final static String DEFAULT_STATUS_FOR_PROMOTION = 'Default_Status_for_Promotion';
 
      public string customerset{set;get;}
      public String defaultsoldto{set;get;}
@@ -28,7 +29,7 @@ public with sharing class UL_CreatePromotionController{
      public Boolean isForPromotion{set;get;}
      public Boolean isForLTA{set;get;}
      public List<SelectOption> deliveryProfiles{set;get;}
-
+     Map<String, UL_Utility__c> utilitySetting = new Map<String, UL_Utility__c>();
      public ACCL__Promotion__c relatedRecord { get; 
         set{
             relatedRecord  = new ACCL__Promotion__c ();
@@ -69,6 +70,7 @@ public with sharing class UL_CreatePromotionController{
         this.relatedRecord = (ACCL__Promotion__c) ctr.getRecord();
         salesOrg = UL_UtilityController.usersSalesOrg();
         isForPromotion  = true;
+        utilitySetting = UL_Utility__c.getAll();
     }
 
     /*******************************************************************
@@ -242,8 +244,7 @@ public with sharing class UL_CreatePromotionController{
                     params.clear();
                     params.put('retURL', ctr.view().getURL());
                 }
-                else{
-                    Map<String, UL_Utility__c> utilitySetting = UL_Utility__c.getAll();
+                else{                    
                     if(utilitySetting != null && utilitySetting.get(PROMOTION_REDIRECT_PAGE_KEY) != null){
                         UL_Utility__c pageApiName = utilitySetting.get(PROMOTION_REDIRECT_PAGE_KEY);
                         String pageRef = '/apex/'+pageApiName.UL_Value__c+'?id='+promotionId;        
@@ -491,13 +492,15 @@ public with sharing class UL_CreatePromotionController{
          else{
              relatedRecord.ACCL__Delivery_Date_From__c = relatedRecord.ACCL__Placement_Date_From__c ;
              relatedRecord.ACCL__Delivery_Date_Thru__c = dateThru;
+             
              relatedRecord.ACCL__Placement_Date_Thru__c = dateThru;
          }
          relatedRecord.ACCL__Commit_Date__c= relatedRecord.ACCL__Placement_Date_From__c;
          relatedRecord.ACCL__Anchor_Account__c = defaultsoldto;
          relatedRecord.UL_Account__c = planingLevelCustomers;
-         relatedRecord.ACCL__Anchor_Account_Set__c = customerset;
-
+         relatedRecord.ACCL__Anchor_Account_Set__c = customerset;        
+         relatedRecord.UL_Current_Status__c = String.valueOf(utilitySetting.get(DEFAULT_STATUS_FOR_PROMOTION).UL_Value__c);
+          
     }
 
     /*******************************************************************
