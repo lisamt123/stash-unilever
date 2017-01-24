@@ -56,6 +56,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
     <fieldSets>
         <fullName>ACCL__Fund_Anchor</fullName>
         <description>Used In EditFund Page</description>
@@ -542,7 +543,9 @@ ISPICKVAL(ACCL__Fund_Template__r.ACCL__Anchor_Type__c ,&apos;Customer Product&ap
         <fullName>UL_Fund_Close_validation</fullName>
         <active>true</active>
         <description>Fund cannot be closed till there a open tactic against it</description>
-        <errorConditionFormula>AND(ISPICKVAL(ACCL__Status__c, &quot;Closed&quot;) ,  UL_Uncommitted__c &gt; 0,  ACCL__Fund_Template__r.UL_Uncommitted_Amount_Validation__c =TRUE )</errorConditionFormula>
+        <errorConditionFormula>AND(
+ISPICKVAL(ACCL__Status__c, &quot;Closed&quot;) , 
+OR(UL_Uncommitted__c &gt; 0, UL_Committed__c &gt; 0),  ACCL__Fund_Template__r.UL_Uncommitted_Amount_Validation__c =TRUE )</errorConditionFormula>
         <errorDisplayField>ACCL__Status__c</errorDisplayField>
         <errorMessage>Fund cannot be closed as it has a open tactic against it</errorMessage>
     </validationRules>
