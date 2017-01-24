@@ -1,0 +1,124 @@
+<apex:page standardController="Design_Challenge__c" extensions="SAJ_SessionNotesCTRL" sidebar="false">
+    <apex:sectionHeader title="Design Challenge {!Design_Challenge__c.Name} - {!Design_Challenge__c.Date__c}" subtitle="{!Design_Challenge__c.Business_Solution__r.Name} {!Design_Challenge__c.Title__c}"/>
+    <apex:form >
+        <div style="width:49%; margin:0.5%; float:left">
+           <apex:actionRegion >
+           <apex:pageBlock title="Notes" id="NotesArea">
+                
+               	<apex:pageBlockButtons >
+               		<apex:commandButton value="Copy Guidance" action="{!copyGuidance2Notes}"/>
+                    <apex:commandButton value="Save Notes" action="{!saveNotes}"/>
+                    
+               </apex:pageBlockButtons>
+               <apex:tabPanel switchType="client" >
+                   
+               		<apex:tab label="Notes" >
+                       
+                            <apex:outputPanel layout="block" >
+                            <apex:inputField value="{!Design_Challenge__c.Notes__c}"/>
+                                </apex:outputPanel>
+                       
+                   </apex:tab>
+                   <apex:tab label="Guidance">
+                       
+                       	
+                   		<apex:outputText escape="false" value="{!guidance}" ></apex:outputText>
+                           
+                   </apex:tab>
+               </apex:tabPanel>
+            	 
+            </apex:pageBlock>
+             </apex:actionRegion>
+        </div>	
+        <div style="width:49%; margin:0.5%; float:left">
+            <apex:pageBlock title="Actions & Tasks" id="tasklist">
+                <apex:actionRegion >
+                    <div style="width:45%; float:left">
+                        <apex:inputText value="{!newTask.Subject}"/>
+                    </div>
+                    <div style="width:40%; float:left">
+                        <apex:inputField value="{!newTask.OwnerId}"/>
+                    </div>
+                    <div style="width:15%; float:right">
+                        <apex:commandButton value="Create" action="{!createTask}" rerender="tasklist"/>
+                    </div>
+                    <apex:pageBlockTable value="{!opentasklist}" var="t" >
+                        <apex:column width="20px">
+                            <apex:inputCheckbox value="{!t.isChecked}" >
+                                <apex:actionSupport event="onclick" action="{!toggleStatus}" reRender="tasklist">
+                                    <apex:param name="taskid" assignTo="{!toggleTask}" value="{!t.task.Id}"></apex:param>
+                                </apex:actionSupport>
+                            </apex:inputCheckbox></apex:column>
+                        <apex:column headerValue="Subject">
+                            <apex:outputLink value="/{!t.task.Id}" target="_blank">{!t.task.Subject}</apex:outputLink>
+                        </apex:column>
+                        <apex:column value="{!t.task.OwnerId}"/>
+                        <apex:column value="{!t.task.ActivityDate}"/>
+                        <apex:column headervalue="Del">
+                            <apex:commandLink action="{!removeTask}" reRender="tasklist">
+                                <apex:param assignTo="{!delTaskId}" name="delTask" value="{!t.task.id}"/>
+                            	<apex:image value="/img/func_icons/remove12.gif"/>
+                            </apex:commandLink>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                    <hr/>
+                    <apex:pageBlockTable value="{!closedtasklist}" var="t" >
+                        <apex:column width="20px">
+                            <apex:inputCheckbox value="{!t.isChecked}" >
+                                <apex:actionSupport event="onclick" action="{!toggleStatus}" reRender="tasklist">
+                                    <apex:param name="taskid" assignTo="{!toggleTask}" value="{!t.task.Id}"></apex:param>
+                                </apex:actionSupport>
+                            </apex:inputCheckbox></apex:column>
+                        
+                        <apex:column headerValue="Subject" style="text-decoration: line-through;">
+                            <apex:outputLink value="/{!t.task.Id}" target="_blank">{!t.task.Subject}</apex:outputLink>
+                        </apex:column>
+                        <apex:column value="{!t.task.OwnerId}" style="text-decoration: line-through;"/>
+                        <apex:column value="{!t.task.ActivityDate}" style="text-decoration: line-through;"/>
+                        <apex:column headervalue="Del">
+                            <apex:commandLink action="{!removeTask}" reRender="tasklist">
+                                <apex:param assignTo="{!delTaskId}" name="delTask" value="{!t.task.id}"/>
+                            	<apex:image value="/img/func_icons/remove12.gif"/>
+                            </apex:commandLink>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:actionRegion>
+            </apex:pageBlock>
+            <apex:pageBlock id="Decisionlog" title="Decisions & Technical Debt">
+                
+                <apex:pageBlockButtons >
+                    <apex:commandButton action="{!AddDecision}" value="Add Item" rerender="Decisionlog"/>
+                    <apex:commandButton action="{!SaveDecisions}" value="Save All" rerender="Decisionlog"/>
+                </apex:pageBlockButtons>
+                <apex:actionRegion >
+                    <apex:pageBlockTable value="{!decisions}" var="d">
+                        <apex:column headerValue="Requirement">
+                            <apex:outputLink value="/{!d.dd.Id}" target="_blank"><apex:outputField value="{!d.dd.name}"/>
+                        	</apex:outputLink>
+                            </apex:column>
+                        <apex:column headerValue="Requirement">
+                            <apex:inputField value="{!d.dd.Requirement__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Options">
+                            <apex:inputField value="{!d.dd.Options__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Decision">
+                            <apex:inputField value="{!d.dd.Decision__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Technical Debt?">
+                            <apex:inputField value="{!d.dd.Is_Technical_Debt__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Del">
+                           
+                            <apex:commandLink action="{!delDesignDecision}" reRender="Decisionlog">
+                                <apex:image value="/img/func_icons/remove12.gif"/>
+                           
+                                <apex:param assignTo="{!designDecisionRowNum}" value="{!d.rownum}" name="ddrow"/>
+                            </apex:commandLink>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:actionRegion>
+            </apex:pageBlock>
+        </div>
+    </apex:form>
+</apex:page>

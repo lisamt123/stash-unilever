@@ -1,0 +1,942 @@
+<apex:page standardStyleSheets="false" showHeader="true" controller="SAJ_OpenAppGridController" sidebar="false">
+
+    <apex:stylesheet value="{!URLFOR($Resource.jQuery, 'jquery/css/redmond/jquery-ui-1.8.14.custom.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jQuery, 'jquery/js/jquery-1.5.1.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jQuery, 'jquery/js/jquery-ui-1.8.14.custom.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.qtip, 'js/jquery.qtip-1.0.0-rc3.min.js')}"/>
+
+    <style type="text/css">
+    
+        .content{
+            font-family: arial, sans-serif; 
+            font-size:16px;
+            margin-left:auto;
+            margin-right:auto;
+            width:1200px;
+        }
+                
+        .titleBar{
+            width:1200px;
+            height:55px;
+            margin-left:50px;
+            margin-top:10px;
+            
+        }
+        
+        .title{
+            float:left;
+            font-size:2.2em; 
+            text-shadow: -1px -1px #F6F3F3, 1px 1px #333;
+            color:#A4A1A1;
+            font-weight:bold;
+            
+        }
+        
+        .select{
+            float:right;
+            margin-top:15px;
+        }
+        
+        .select select{
+            min-width:200px;
+        }
+        
+        .headerContainer{
+            width:1400px;
+            height:40px;
+            margin-left:auto;
+            margin-right:auto;
+            margin-bottom:10px;
+        }
+        
+        .headerBlank{
+            float:left;
+            width:40px;
+            height:100%;
+        }
+        
+        .qtip-content{
+            background-color:#1796C0 !important;
+            background-image: -webkit-gradient(
+                linear,
+                left bottom,
+                left top,
+                color-stop(0, rgb(161,202,215)),
+                color-stop(0.7, rgb(23,150,192))
+            )  !important;
+            background-image: -moz-linear-gradient(
+                center bottom,
+                rgb(161,202,215) 0%,
+                rgb(23,150,192) 70%
+            )  !important;
+            color:#FFFFFF !important;
+            text-shadow: -1px -1px #444;
+            
+            font-weight:normal;
+            border-radius:5px !important;
+            -moz-border-radius:5px !important;
+            border:0px;
+            text-align:center !important;
+            left:-100px !important;
+            padding:0px !importan;
+        }
+        
+        .qtip-content p{
+            font-size:1.0em;
+            padding:0px !important;
+        }
+        .qtip{
+            border-radius:5px !important;
+            -moz-border-radius:5px !important;
+            width:126px !important;
+        }
+        .qtip-contentWrapper{
+            background:none !important;
+            border:0px !important;
+
+        }
+        
+        .qtip-wrapper{
+            box-shadow:0px 0px 4px  #333;
+            -moz-box-shadow:0px 0px 4px  #333;
+            left:-25px;
+            top: -10px;
+            border-radius:5px;
+            -moz-border-radius:5px;
+        }
+        
+        .headerContent{
+            background-color:#1796C0;
+            float:left;
+            width:280px;
+            height:100%;
+            text-align:center;
+            margin-left:10px;
+            background-image: -webkit-gradient(
+                linear,
+                left bottom,
+                left top,
+                color-stop(0, rgb(161,202,215)),
+                color-stop(0.7, rgb(23,150,192))
+            );
+            background-image: -moz-linear-gradient(
+                center bottom,
+                rgb(161,202,215) 0%,
+                rgb(23,150,192) 70%
+            );
+            color:#ffffff;
+            border-radius:5px;
+            -moz-border-radius:5px;
+            font-weight:bold;
+            text-shadow: -1px -1px #444;
+            -moz-box-shadow:2px 2px 4px #CCCCCC;
+            box-shadow:2px 2px 4px #CCCCCC;
+        }
+        
+        .headerContent p{
+            margin-top:10px;
+        }
+        
+        .gridContainer{
+            width:1400px;
+            min-height:195px;
+            overflow:auto;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        
+        .gridHeader{
+            background-color:#1796C0;
+            float:left;
+            width:40px;
+            height:177px;
+            text-align:center;
+            background-image: -webkit-gradient(
+                linear,
+                right top,
+                left top,
+                color-stop(0, rgb(161,202,215)),
+                color-stop(0.7, rgb(23,150,192))
+            );
+            background-image: -moz-linear-gradient(
+                right center,
+                rgb(161,202,215) 0%,
+                rgb(23,150,192) 70%
+            );
+            color:#ffffff;
+            border-radius:5px;
+            -moz-border-radius:5px;
+            font-weight:bold;
+            text-shadow: -1px -1px #444;
+            -moz-box-shadow:2px 2px 4px #CCCCCC;
+            box-shadow:2px 2px 4px #CCCCCC;
+        }
+        
+        .gridContent{
+            background-color:#E1F0F5;
+            float:left;
+            width:280px;
+            min-height:168px;
+            margin-left:10px;
+            border-radius:5px;
+            -moz-border-radius:5px;
+            background-image: -webkit-gradient(
+                linear,
+                left bottom,
+                left top,
+                color-stop(0.05, rgb(235,241,243)),
+                color-stop(0.77, rgb(195,224,234))
+            );
+            background-image: -moz-linear-gradient(
+                center bottom,
+                rgb(235,241,243) 5%,
+                rgb(195,224,234) 77%
+            );
+            -moz-box-shadow:2px 2px 4px #CCCCCC;
+            box-shadow:2px 2px 4px #CCCCCC;
+            margin-bottom:20px;
+            padding-bottom:7px;
+        }
+        
+        .gridContent:hover{
+            background:none !important;
+            background-color:#F4F487 !important;
+            background-image: -webkit-gradient(
+                linear,
+                left bottom,
+                left top,
+                color-stop(0.27, rgb(240,240,120)),
+                color-stop(0.82, rgb(255,255,171))
+            ) !important;
+            background-image: -moz-linear-gradient(
+                center bottom,
+                rgb(240,240,120) 27%,
+                rgb(255,255,171) 82%
+            ) !important;       
+        }
+        
+        .gridHeader p{
+            -webkit-transform:rotate(-90deg);
+            -moz-transform:rotate(-90deg);
+            -o-transform: rotate(-90deg);
+            width:200px;
+            position:relative;
+            top:60px;
+            left:-80px;
+        }
+        
+        .application{
+            width:66px;
+            height:71px;
+            float:left;
+            margin-top:7px;
+            margin-left:7px;
+            padding:3px 5px 3px 5px;
+            font-size:0.7em;
+            border-radius:5px;
+            -moz-border-radius:5px;
+            -moz-box-shadow:2px 2px 4px #CCCCCC;
+            box-shadow:2px 2px 4px #CCCCCC;
+            overflow:hidden;
+            color: #FFFFFF;
+            line-height:1.07;
+            cursor:pointer;
+        }
+        
+        .application:hover{
+        opacity:1;
+        }
+        
+        .application p{
+            margin:0;
+            padding:0;
+            opacity:1.0;
+        }
+        
+        .green{
+            background-color:#199E04;
+            background-image: -webkit-gradient(
+                linear,
+                left bottom,
+                left top,
+                color-stop(0.05, rgb(65,194,33)),
+                color-stop(0.77, rgb(28,117,11))
+            );
+            background-image: -moz-linear-gradient(
+                center bottom,
+                rgb(65,194,33) 5%,
+                rgb(28,117,11) 77%
+            );
+            opacity:0.8;
+        }
+        
+        .red{
+            background-color:#A72020;
+            background-image: -webkit-gradient(
+                linear,
+                left bottom,
+                left top,
+                color-stop(0.05, rgb(204,47,47)),
+                color-stop(0.77, rgb(115,11,11))
+            );
+            background-image: -moz-linear-gradient(
+                center bottom,
+                rgb(204,47,47) 5%,
+                rgb(115,11,11) 77%
+            );      
+            opacity:0.8;
+        }
+        
+        .orange{
+            background-color:#E99403;
+            background-image: -webkit-gradient(
+                linear,
+                left bottom,
+                left top,
+                color-stop(0.05, rgb(250,158,0)),
+                color-stop(0.77, rgb(176,117,16))
+            );
+            background-image: -moz-linear-gradient(
+                center bottom,
+                rgb(250,158,0) 5%,
+                rgb(176,117,16) 77%
+            );
+            opacity:0.8;
+        }
+        
+        .gray{
+            background-color:#666666;
+            background-image: -webkit-gradient(
+                linear,
+                left bottom,
+                left top,
+                color-stop(0.05, rgb(102,102,102)),
+                color-stop(0.77, rgb(92,92,80))
+            );
+            background-image: -moz-linear-gradient(
+                center bottom,
+                rgb(102,102,102) 5%,
+                rgb(92,92,80) 77%
+            );
+            opacity:0.8;
+        }
+        .wideGridContent{
+            background-color:#E1F0F5;
+            float:left;
+            width:1150px;
+            min-height:168px;
+            margin-left:10px;
+            border-radius:5px;
+            -moz-border-radius:5px;
+            background-image: -webkit-gradient(
+                linear,
+                left bottom,
+                left top,
+                color-stop(0.05, rgb(235,241,243)),
+                color-stop(0.77, rgb(195,224,234))
+            );
+            background-image: -moz-linear-gradient(
+                center bottom,
+                rgb(235,241,243) 5%,
+                rgb(195,224,234) 77%
+            );
+            -moz-box-shadow:2px 2px 4px #CCCCCC;
+            box-shadow:2px 2px 4px #CCCCCC;
+            margin-bottom:20px;
+            padding-bottom:7px;
+        }
+        
+        .wideGridContent:hover{
+            background:none !important;
+            background-color:#F4F487 !important;
+            background-image: -webkit-gradient(
+                linear,
+                left bottom,
+                left top,
+                color-stop(0.27, rgb(240,240,120)),
+                color-stop(0.82, rgb(255,255,171))
+            ) !important;
+            background-image: -moz-linear-gradient(
+                center bottom,
+                rgb(240,240,120) 27%,
+                rgb(255,255,171) 82%
+            ) !important;       
+        }
+    </style>
+
+
+    <script>
+
+    </script> 
+
+
+    <div class="content">
+    
+        <div class="titleBar">
+            <div class="title">
+                Open Application Landscape
+            </div>
+            <!-- (this is to allow select a filter - originally the business unit - not currently used here.)
+            <div class="select">
+                <apex:form >
+                    <apex:selectList value="{!selectedBusinessUnit}" size="1">
+                        <apex:selectOptions value="{!BusinessUnits}"/>
+                        <apex:actionSupport event="onchange" action="{!refresh}" />
+                    </apex:selectList>  
+                </apex:form>
+            </div>
+            -->
+        </div>
+    
+        <div class="headerContainer">
+            <div class="headerBlank">
+            </div>
+            <div class="headerContent">
+                <p>High Complexity</p>
+            </div>
+            <div class="headerContent">
+                <p>Medium Complexity</p>
+            </div>
+            <div class="headerContent">
+                <p>Low Complexity</p>
+            </div> 
+            <div class="headerContent">
+                <p>Unknown Complexity</p>
+            </div>           
+        </div>
+        
+        <div class="gridContainer">
+            <div class="gridHeader">
+                <p>High Value</p>
+            </div>
+            <div class="gridContent">
+                <apex:repeat value="{!valueHighComplexHigh}" var="a">
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Yes'}">
+                        <div class="application green" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Other Funding'}">
+                        <div class="application orange" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'No'}">
+                        <div class="application red" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == null}">
+                        <div class="application gray" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <script>
+
+                           $('#appId{!a.id}').qtip(
+                           {
+                                content: '<p><apex:outputText value="{!a.Description__c}"/></p>',
+                                 position: {
+                                  corner: {
+                                     target: 'topLeft',
+                                     tooltip: 'bottomLeft'
+                                  }
+                                 }
+                           });
+                        
+                    </script>
+                </apex:repeat>
+            </div>
+            <div class="gridContent">
+                <apex:repeat value="{!valueHighComplexMed}" var="a">
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Yes'}">
+                        <div class="application green" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Other Funding'}">
+                        <div class="application orange" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>!
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'No'}">
+                        <div class="application red" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == null}">
+                        <div class="application gray" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p> 
+                        </div>
+                    </apex:outputPanel>
+                    <script>
+
+                           $('#appId{!a.id}').qtip(
+                           {
+                                content: '<p><apex:outputText value="{!a.Description__c}"/></p>',
+                                 position: {
+                                  corner: {
+                                     target: 'topLeft',
+                                     tooltip: 'bottomLeft'
+                                  }
+                                 }
+                           });
+                        
+                    </script>
+                </apex:repeat>              
+            </div>
+            <div class="gridContent">
+                <apex:repeat value="{!valueHighComplexLow}" var="a">
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Yes'}">
+                        <div class="application green" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Other Funding'}">
+                        <div class="application orange" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'No'}">
+                        <div class="application red" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == null}">
+                        <div class="application gray" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <script>
+
+                           $('#appId{!a.id}').qtip(
+                           {
+                                content: '<p><apex:outputText value="{!a.Description__c}"/></p>',
+                                 position: {
+                                  corner: {
+                                     target: 'topLeft',
+                                     tooltip: 'bottomLeft'
+                                  }
+                                 }
+                           });
+                        
+                    </script>
+                </apex:repeat>              
+            </div>
+
+
+
+            <div class="gridContent">
+                <apex:repeat value="{!valueHighComplexUnkwn}" var="a">
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Yes'}">
+                        <div class="application green" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Other Funding'}">
+                        <div class="application orange" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>!
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'No'}">
+                        <div class="application red" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == null}">
+                        <div class="application gray" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p> 
+                        </div>
+                    </apex:outputPanel>
+                    <script>
+
+                           $('#appId{!a.id}').qtip(
+                           {
+                                content: '<p><apex:outputText value="{!a.Description__c}"/></p>',
+                                 position: {
+                                  corner: {
+                                     target: 'topLeft',
+                                     tooltip: 'bottomLeft'
+                                  }
+                                 }
+                           });
+                        
+                    </script>
+                </apex:repeat>              
+            </div>
+        </div>
+            
+            
+            
+        
+        <div class="gridContainer">
+            <div class="gridHeader">
+                <p>Medium Value</p>
+            </div>
+            <div class="gridContent">
+                <apex:repeat value="{!valueMedComplexHigh}" var="a">
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Yes'}">
+                        <div class="application green" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Other Funding'}">
+                        <div class="application orange" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'No'}">
+                        <div class="application red" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel><apex:outputPanel rendered="{!a.IPIX_Funded__c == null}">
+                        <div class="application gray" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <script>
+
+                           $('#appId{!a.id}').qtip(
+                           {
+                                content: '<p><apex:outputText value="{!a.Description__c}"/></p>',
+                                 position: {
+                                  corner: {
+                                     target: 'topLeft',
+                                     tooltip: 'bottomLeft'
+                                  }
+                                 }
+                           });
+                        
+                    </script>
+                </apex:repeat>              
+            </div>
+            <div class="gridContent">
+                <apex:repeat value="{!valueMedComplexMed}" var="a">
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Yes'}">
+                        <div class="application green" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Other Funding'}">
+                        <div class="application orange" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'No'}">
+                        <div class="application red" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == null}">
+                        <div class="application gray" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <script>
+
+                           $('#appId{!a.id}').qtip(
+                           {
+                                content: '<p><apex:outputText value="{!a.Description__c}"/></p>',
+                                 position: {
+                                  corner: {
+                                     target: 'topLeft',
+                                     tooltip: 'bottomLeft'
+                                  }
+                                 }
+                           });
+                        
+                    </script>
+                </apex:repeat>              
+            </div>
+            <div class="gridContent">
+                <apex:repeat value="{!valueMedComplexLow}" var="a">
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Yes'}">
+                        <div class="application green" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Other Funding'}">
+                        <div class="application orange" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'No'}">
+                        <div class="application red" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == null}">
+                        <div class="application gray" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <script>
+
+                           $('#appId{!a.id}').qtip(
+                           {
+                                content: '<p><apex:outputText value="{!a.Description__c}"/></p>',
+                                 position: {
+                                  corner: {
+                                     target: 'topLeft',
+                                     tooltip: 'bottomLeft'
+                                  }
+                                 }
+                           });
+                        
+                    </script>
+                </apex:repeat>
+            </div>          
+            <div class="gridContent">
+                <apex:repeat value="{!valueMedComplexUnkwn}" var="a">
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Yes'}">
+                        <div class="application green" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Other Funding'}">
+                        <div class="application orange" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>!
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'No'}">
+                        <div class="application red" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == null}">
+                        <div class="application gray" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p> 
+                        </div>
+                    </apex:outputPanel>
+                    <script>
+
+                           $('#appId{!a.id}').qtip(
+                           {
+                                content: '<p><apex:outputText value="{!a.Description__c}"/></p>',
+                                 position: {
+                                  corner: {
+                                     target: 'topLeft',
+                                     tooltip: 'bottomLeft'
+                                  }
+                                 }
+                           });
+                        
+                    </script>
+                </apex:repeat>              
+            </div>
+        </div>
+     
+        
+        <div class="gridContainer">
+            <div class="gridHeader">
+                <p>Low Value</p>
+            </div>
+            <div class="gridContent">
+                <apex:repeat value="{!valueLowComplexHigh}" var="a">
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Yes'}">
+                        <div class="application green" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Other Funding'}">
+                        <div class="application orange" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'No'}">
+                        <div class="application red" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == null}">
+                        <div class="application gray" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <script>
+
+                           $('#appId{!a.id}').qtip(
+                           {
+                                content: '<p><apex:outputText value="{!a.Description__c}"/></p>',
+                                 position: {
+                                  corner: {
+                                     target: 'topLeft',
+                                     tooltip: 'bottomLeft'
+                                  }
+                                 }
+                           });
+                        
+                    </script>
+                </apex:repeat>              
+            </div>
+            <div class="gridContent">
+                <apex:repeat value="{!valueLowComplexMed}" var="a">
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Yes'}">
+                        <div class="application green" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Other Funding'}">
+                        <div class="application orange" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'No'}">
+                        <div class="application red" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == null}">
+                        <div class="application gray" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <script>
+
+                           $('#appId{!a.id}').qtip(
+                           {
+                                content: '<p><apex:outputText value="{!a.Description__c}"/></p>',
+                                 position: {
+                                  corner: {
+                                     target: 'topLeft',
+                                     tooltip: 'bottomLeft'
+                                  }
+                                 }
+                           });
+                        
+                    </script>
+                </apex:repeat>              
+            </div>
+            <div class="gridContent">
+                <apex:repeat value="{!valueLowComplexLow}" var="a">
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Yes'}">
+                        <div class="application green" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Other Funding'}">
+                        <div class="application orange" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'No'}">
+                        <div class="application red" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == null}">
+                        <div class="application gray" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <script>
+
+                           $('#appId{!a.id}').qtip(
+                           {
+                                content: '<p><apex:outputText value="{!a.Description__c}"/></p>',
+                                 position: {
+                                  corner: {
+                                     target: 'topLeft',
+                                     tooltip: 'bottomLeft'
+                                  }
+                                 }
+                           });
+                        
+                    </script>
+                </apex:repeat>              
+            </div>
+
+            <div class="gridContent">
+                <apex:repeat value="{!valueLowComplexUnkwn}" var="a">
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Yes'}">
+                        <div class="application green" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Other Funding'}">
+                        <div class="application orange" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'No'}">
+                        <div class="application red" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == null}">
+                        <div class="application gray" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <script>
+
+                           $('#appId{!a.id}').qtip(
+                           {
+                                content: '<p><apex:outputText value="{!a.Description__c}"/></p>',
+                                 position: {
+                                  corner: {
+                                     target: 'topLeft',
+                                     tooltip: 'bottomLeft'
+                                  }
+                                 }
+                           });
+                        
+                    </script>
+                </apex:repeat>              
+            </div>
+
+
+
+          </div>
+        
+        
+          <div class="gridContainer">  
+              <div class="gridHeader">
+                    <p>Uncategorised</p>
+              </div>
+              <div class="wideGridContent">
+                
+                <apex:repeat value="{!undefinedBucket}" var="a">
+                     <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Yes'}">
+                        <div class="application green" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'Other Funding'}">
+                        <div class="application orange" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == 'No'}">
+                        <div class="application red" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!a.IPIX_Funded__c == null}">
+                        <div class="application gray" draggable="true" id="appId{!a.id}" onclick="window.open('/{!a.Id}');">
+                            {!a.Name}<p><i>[{!a.Status__c}: {!a.Phase__c}]</i></p>
+                        </div>
+                    </apex:outputPanel>
+                    
+                    <script>
+
+                           $('#appId{!a.id}').qtip(
+                           {
+                                content: '<p><apex:outputText value="{!a.Description__c}"/></p>',
+                                 position: {
+                                  corner: {
+                                     target: 'topLeft',
+                                     tooltip: 'bottomLeft'
+                                  }
+                                 }
+                           });
+                        
+                    </script>
+                </apex:repeat>              
+            </div>
+        </div>
+                      
+    </div>  <!-- content -->
+
+
+</apex:page>
