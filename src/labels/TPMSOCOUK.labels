@@ -1047,10 +1047,3 @@
         <shortDescription>Fund Open Transaction Error</shortDescription>
         <value>This fund is present in a transaction which is pending for Approval and cannot be closed</value>
     </labels>
-	<labels>
-        <fullName>UL_Duplicate_Record_Found</fullName>
-        <language>en_GB</language>
-        <protected>false</protected>
-        <shortDescription>UL_Duplicate_Record_Found</shortDescription>
-        <value>Valid From and Valid Through Dates are overlapping with an existing Delivery Profile</value>
-    </labels>
