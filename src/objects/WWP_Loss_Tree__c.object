@@ -123,12 +123,11 @@
         <fullName>GR_Date__c</fullName>
         <externalId>false</externalId>
         <label>GR Date</label>
-        <precision>18</precision>
+        <length>255</length>
         <required>false</required>
-        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -153,6 +152,15 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Last_job_run_date__c</fullName>
+        <externalId>false</externalId>
+        <label>Last job run date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>Last_modified_planner_email__c</fullName>
@@ -865,10 +873,12 @@
         <fullName>PO_Delivery_Date_as_per_Current_PO__c</fullName>
         <externalId>false</externalId>
         <label>PO Delivery Date as per Current PO</label>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Date</type>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PO_Line_Item_Number__c</fullName>
@@ -983,6 +993,17 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Plant_Country__c</fullName>
+        <externalId>false</externalId>
+        <label>Plant Country</label>
+        <length>150</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>RegionId__c</fullName>
         <externalId>false</externalId>
         <label>RegionId</label>
@@ -1009,6 +1030,17 @@
         <externalId>false</externalId>
         <label>Resource Line</label>
         <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAP_vendor_code__c</fullName>
+        <externalId>false</externalId>
+        <label>SAP vendor code</label>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1095,6 +1127,46 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>Send_to_spp_after_2_wk__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Send to spp after 2 wk</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Source_code__c</fullName>
+        <externalId>false</externalId>
+        <label>Source system code</label>
+        <length>6</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ultimate_Supplier_code__c</fullName>
+        <externalId>false</externalId>
+        <label>Ultimate Supplier code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Updated_field_otif__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Updated field_otif</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Week__c</fullName>
         <externalId>false</externalId>
         <label>Week</label>
@@ -1110,6 +1182,17 @@
         <externalId>false</externalId>
         <label>material Description</label>
         <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>plant_description__c</fullName>
+        <externalId>false</externalId>
+        <label>plant description</label>
+        <length>150</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
