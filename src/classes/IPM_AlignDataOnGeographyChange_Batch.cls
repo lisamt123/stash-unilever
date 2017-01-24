@@ -13,29 +13,20 @@ public without sharing   class IPM_AlignDataOnGeographyChange_Batch implements D
     public Database.QueryLocator start(Database.BatchableContext BC)      
     {
         // returns country and associated data for project records 
-        return Database.getQueryLocator([ Select Id , (Select Id,MCO_Name__c, Local_Rollout__r.IPM_Project__c,Local_Rollout__r.Regional_Rollout__c, Local_Rollout__r.Regional_Project__c, Local_Rollout__c, IPM_Project__c, MDO_Geography__r.mdm_Id__c, MCO_Code__c,Market_Cluster_Code__c, IPM_Project__r.IPM_Project_Name__c, IPM_Regional_Project__r.IPM_ProjectGKM__c, IPM_Regional_Project__c, Local_Rollout__r.MCO__c,  
-        IPM_Rollout_Status__c ,  Local_Rollout__r.KeyMCO__c,IPM_Regional_Project__r.IPM_Target_Launch_Dates__c,IPM_Project__r.IPM_Target_Launch_Dates__c,
-        Local_Rollout__r.Regional_Rollout__r.IPM_Rollout_Project__c , Local_Rollout__r.name, Local_Rollout__r.IPM_Rollout_Project__c, Country_Code__c,Local_Rollout__r.Project_Sustainability_Period__c,Local_Rollout__r.Target_Launch_Date__c,IPM_Regional_Project__r.IPM_Project_Name__c   From IPM_Countries__r  Where  
-        Local_Rollout__c !=Null ) , (Select Id,MCO_Name__c, Local_Rollout__r.IPM_Project__c,Local_Rollout__r.Regional_Rollout__c, Local_Rollout__r.Regional_Project__c, Local_Rollout__c, IPM_Project__c, MDO_Geography__r.mdm_Id__c, MCO_Code__c,Market_Cluster_Code__c, IPM_Project__r.IPM_Project_Name__c, IPM_Regional_Project__r.IPM_ProjectGKM__c, IPM_Regional_Project__c, Local_Rollout__r.MCO__c,
-        IPM_Rollout_Status__c ,  Local_Rollout__r.KeyMCO__c,IPM_Regional_Project__r.IPM_Target_Launch_Dates__c,IPM_Project__r.IPM_Target_Launch_Dates__c,
-        Local_Rollout__r.Regional_Rollout__r.IPM_Rollout_Project__c , Local_Rollout__r.name, Local_Rollout__r.IPM_Rollout_Project__c, Country_Code__c,Local_Rollout__r.Project_Sustainability_Period__c,Local_Rollout__r.Target_Launch_Date__c,IPM_Regional_Project__r.IPM_Project_Name__c   From IPM_Countries1__r  Where  
-        Local_Rollout__c !=Null )
-        from  IPM_Project__c  where IPM_ProjectGKM__c IN :applicableGKMs  limit  50000]) ;
+        return Database.getQueryLocator([ Select Id from  IPM_Project__c  where IPM_ProjectGKM__c IN :applicableGKMs   limit  50000]) ;
     }
 
-    public void execute(Database.BatchableContext BC ,List<IPM_Project__c> geoImpactedProjectList) 
+    public void execute(Database.BatchableContext BC ,List<IPM_Project__c> geoImpactedProjects) 
     {
         
-        //list to hold the country records associated with a project , they will be further operated on to identify the geography  change
-        List<IPM_Country__c> countryList = new  List<IPM_Country__c>();
+        Map<Id,IPM_Project__c> projectMap = new   Map<Id,IPM_Project__c>(geoImpactedProjects);
         
-        //for GKM1,GKM2 IPM_Countries__r will avail the associated countries while for GKM4 IPM_Countries1__r
-        for(IPM_Project__c prj :geoImpactedProjectList)
-        {
-            countryList.addAll(prj.IPM_Countries__r); 
-            countryList.addAll(prj.IPM_Countries1__r);  
-        }
-
+        //list to hold the country records associated with a project , they will be further operated on to identify the geography  change
+        List<IPM_Country__c> countryList = [Select Id,MCO_Name__c, Local_Rollout__r.IPM_CharterApproved__c,Local_Rollout__r.IPM_Project__c,Local_Rollout__r.Regional_Rollout__c, Local_Rollout__r.Regional_Project__c, Local_Rollout__c, IPM_Project__c, MDO_Geography__r.mdm_Id__c, MCO_Code__c,Market_Cluster_Code__c, IPM_Project__r.IPM_Project_Name__c, IPM_Regional_Project__r.IPM_ProjectGKM__c, IPM_Regional_Project__c, Local_Rollout__r.MCO__c,  
+        IPM_Rollout_Status__c ,  Local_Rollout__r.KeyMCO__c,IPM_Regional_Project__r.IPM_Target_Launch_Dates__c,IPM_Project__r.IPM_Target_Launch_Dates__c,
+        Local_Rollout__r.Regional_Rollout__r.IPM_Rollout_Project__c , Local_Rollout__r.name, Local_Rollout__r.IPM_Rollout_Project__c, Country_Code__c,Local_Rollout__r.Project_Sustainability_Period__c,Local_Rollout__r.Target_Launch_Date__c,IPM_Regional_Project__r.IPM_Project_Name__c   From IPM_Country__c  Where    Local_Rollout__c !=Null  AND 
+       (IPM_Project__c IN : projectMap.keySet() OR  IPM_Regional_Project__c IN :   projectMap.keySet() ) ];
+        
         //Map of rollouts whose name need updation
         Map<String,IPM_Project_Rollout__c>  mcoCodeToRolloutMap = new Map<String,IPM_Project_Rollout__c>();
         
@@ -222,7 +213,7 @@ public without sharing   class IPM_AlignDataOnGeographyChange_Batch implements D
                 {
                     if(rollout.IPM_CharterApproved__c)
                     {
-                        rollout.IPM_CharterApproved__c=false;
+                        rollout.isActive__c=false;  
                     
                         toBeUpdatedRollouts.add(rollout);
                     }
