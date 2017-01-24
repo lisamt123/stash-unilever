@@ -21,11 +21,15 @@
                 <behavior>Edit</behavior>
                 <field>Notes__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PQN__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Region_Geography__c</field>
+                <field>Region__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -88,6 +92,17 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Date_Pallet_Received__c</fields>
+        <fields>Reporting_DC__c</fields>
+        <fields>DC_Country__c</fields>
+        <fields>Region__c</fields>
+        <fields>Cluster__c</fields>
+        <fields>Sub_Cluster__c</fields>
+        <fields>MCO__c</fields>
+        <relatedList>PQN_Pallet_Quality_Non_Conformance__c.Targets__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

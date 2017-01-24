@@ -82,7 +82,7 @@
                     
                     <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="Quizup" href="http://play.trivie.com/#/home/" target="_new" >
                         <!--<apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_pbs.svg')}" />-->
-                        <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/RUBIX_CUBE.png')}" />
+                        <apex:image title="Games" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/RUBIX_CUBE.png')}" />
                         
                     </a>
                 </div>
@@ -90,13 +90,13 @@
                     
                     <a disableOnClick="true">
                         <!--<apex:image title="Collaborate!" value="{!URLFOR($Resource.PCResources, 'img/hexacon_collaborate.png')}" />-->
-                        <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/BADGE.png')}" />
+                        <apex:image title="Your Achievements" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/BADGE.png')}" />
                     </a>
                 </div>                               
                 <div class="col-md-4 col-lg-4" style="left: 48px;">
                         <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="Collaborate!" href="{!$Page.PC_Forum_clone}" target="_self">
                         <!--<apex:image title="Trivie" value="{!URLFOR($Resource.PCResources, 'img/hexicons_quizup_new.png')}" />-->
-                        <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/AIRPLANE.png')}" />
+                        <apex:image title="COLLABORATE!" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/AIRPLANE.png')}" />
                     </a>
                 </div>  
                
@@ -107,7 +107,7 @@
                 <div class="col-md-4 col-lg-4" style="text-align: right;text-align: right;right: 30px;">
                 <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PBS_MyProfile}" target="_self">
                    <!--<apex:image title="My Profile" value="{!URLFOR($Resource.PCResources, 'img/hexicons_profile.svg')}" />-->
-                   <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/COURSES.png')}" />
+                   <apex:image title="Your Profile" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/COURSES.png')}" />
                  </a>
                 </div> 
                 
@@ -120,7 +120,7 @@
                 <div class="col-md-4 col-lg-4" style="text-align: center;top: 32px;right: 30px;">
                 <a disableOnClick="true">
                    <!--<apex:image title="My Profile" value="{!URLFOR($Resource.PCResources, 'img/hexicons_profile.svg')}" />-->
-                   <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/TOP_TRUMPS.png')}" />
+                   <apex:image title="Top Students" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/TOP_TRUMPS.png')}" />
                  </a>
                 </div>             
                 <!--<div class="chatterWrapper zen chatterWrapper-new-height1">

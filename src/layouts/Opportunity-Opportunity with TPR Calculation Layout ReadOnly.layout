@@ -3,7 +3,6 @@
     <customButtons>FS_SendMDMEmail</customButtons>
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>
-    <excludeButtons>Delete</excludeButtons>
     <excludeButtons>SendEmail</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -52,6 +51,14 @@
                 <behavior>Edit</behavior>
                 <field>Description</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_TotalQuantityCases__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_TotalQuantityPieces__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -85,10 +92,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>FS_onInvoice__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_TotalNumberOfCases__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -320,6 +323,11 @@
             <actionName>FS_SendMDMEmail</actionName>
             <actionType>CustomButton</actionType>
             <sortOrder>13</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>NewNote</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>14</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedContent>

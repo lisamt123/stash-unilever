@@ -594,7 +594,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
 				if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
 				{
 					fin=[SELECT Business_Impact_Regional__c FROM IPM_Financial__c 
-							  WHERE Regional_Project__c=:project.IPM_Parent_Project__c 
+							  WHERE (Regional_Project__c=:project.IPM_Parent_Project__c OR Parent_Project__r.IPM_ProjectGKM__c =:IPM_ConstantUtils.GKM_3)
 							  AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
 					globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Regional__c != null ? fin[0].Business_Impact_Regional__c :IPM_ConstantUtils.BLANK));
 				}
@@ -1052,11 +1052,11 @@ public with sharing class IPM_ProjectOverviewCtrl {
                             alertMessagePast.put(System.Label.IPM_DUE_DATE_FOR , eachRec.IPM_Type_of_gate__c +SPACE+IPM_Utils.off+SPACE+eachRec.IPM_Project__r.IPM_Project_Name__c);
                             alertscount++;
                     }
-                    if(DateValue==0){
+                    else if(DateValue==0){
                            alertMessageToday.put(eachRec.IPM_Name__c,PLANNED_STR+eachRec.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+GATE_STR);
                            alertscount++;
                      }
-                    if(DateValue<=IPM_ConstantUtils.CONST_21 && DateValue!=0 && DateValue >0){
+                    else if(DateValue<=IPM_ConstantUtils.CONST_21 && DateValue!=0 && DateValue >0){
                            alertMessage.put(eachRec.IPM_Project__r.IPM_Project_Name__c+SPACE+eachRec.IPM_Name__c+SPACE+System.Label.IPM_DUE_IN,DateValue+SPACE+System.Label.IPM_DAY);
                            alertscount++;
                     }
@@ -1072,6 +1072,12 @@ public with sharing class IPM_ProjectOverviewCtrl {
                 }
            }
         }
+        getMilestoneDocuments(); 
+        return mapToReturn;
+    }
+    
+    // Gets the list of document for the given project id. It is called from getMSDetail
+    private void getMilestoneDocuments(){
        for(IPM_Project_Document__c eachDoc:[SELECT IPM_GateDocuments__c,IPM_Document_Status__c,IPM_Project__r.IPM_Project_Name__c FROM IPM_Project_Document__c where IPM_Project__c=: projectId])
        {
             if(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS.equalsIgnoreCase(eachDoc.IPM_Document_Status__c) && (System.Label.IPM_CHARTER.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c) || IPM_ConstantUtils.CONTRACT_GATE.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c)))
@@ -1080,8 +1086,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
                 alertscount++;
             }
         }
-            
-        return mapToReturn;
+        
     }
     /*******************************************************************
     * @description: Get the sobject details of the user basing on the ids

@@ -362,6 +362,11 @@
             <actionType>ProductivityAction</actionType>
             <sortOrder>17</sortOrder>
         </platformActionListItems>
+        <platformActionListItems>
+            <actionName>NewNote</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>18</sortOrder>
+        </platformActionListItems>
     </platformActionList>
     <quickActionList>
         <quickActionListItems>

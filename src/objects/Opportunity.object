@@ -127,7 +127,6 @@
             <default>false</default>
         </values>
     </businessProcesses>
-
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
@@ -135,7 +134,7 @@
     <fields>
         <fullName>AccountId</fullName>
         <lookupFilter>
-            <active>true</active>
+            <active>false</active>
             <filterItems>
                 <field>Account.Type</field>
                 <operation>equals</operation>
@@ -1165,7 +1164,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalGrossProfit__c</fullName>
-        <description>Created To display the sum of GrossProfit	from Opportunity Product.</description>
+        <description>Created To display the sum of GrossProfit  from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total GP</label>
         <summarizedField>OpportunityLineItem.FS_grossProfit__c</summarizedField>
@@ -1205,6 +1204,28 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
         <inlineHelpText>Total quantity count for opportunity.</inlineHelpText>
         <label>Total Quantity</label>
         <summarizedField>OpportunityLineItem.Quantity</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_TotalQuantityCases__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Quantity(Cases)</label>
+        <summarizedField>OpportunityLineItem.FS_QuantityCases__c</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_TotalQuantityPieces__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Quantity(Pieces)</label>
+        <summarizedField>OpportunityLineItem.FS_QuantityPieces__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
@@ -1303,7 +1324,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalproductCost__c</fullName>
-        <description>Created To display the sum of productCost	from Opportunity Product.</description>
+        <description>Created To display the sum of productCost  from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total PC</label>
         <summarizedField>OpportunityLineItem.FS_productCost__c</summarizedField>
@@ -1315,7 +1336,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalsupplyCost__c</fullName>
-        <description>Created To display the sum of supplyCost	from Opportunity Product.</description>
+        <description>Created To display the sum of supplyCost   from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total SC</label>
         <summarizedField>OpportunityLineItem.FS_supplyCost__c</summarizedField>
@@ -1930,7 +1951,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1943,7 +1963,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1957,7 +1976,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -1971,7 +1989,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2011,7 +2028,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2024,7 +2040,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2037,7 +2052,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2052,7 +2066,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2065,7 +2078,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>3b-Lost</controllingFieldValues>
                 <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
@@ -2094,7 +2106,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
-                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Not Pursued</controllingFieldValues>
             </picklistValues>
@@ -2457,6 +2468,24 @@ Enter competitor pricing if available</inlineHelpText>
                 <probability>10</probability>
                 <won>false</won>
             </picklistValues>
+            <picklistValues>
+                <fullName>Pending Call</fullName>
+                <default>false</default>
+                <description>Indicate when the opportunity is created but no contact with the customer was done.</description>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>10</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+                <description>Indicate that during the sales process, the opportunity was canceled for some reason, as lake of interesting, price of product, some restriction during the order generation, etc.</description>
+                <closed>true</closed>
+                <forecastCategory>Omitted</forecastCategory>
+                <probability>0</probability>
+                <won>false</won>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>true</trackFeedHistory>
@@ -2500,6 +2529,22 @@ Enter competitor pricing if available</inlineHelpText>
             </picklistValues>
             <picklistValues>
                 <fullName>Grow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Enrichment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Standard Sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sample Request</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sales Drive</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -4689,6 +4734,7 @@ Enter competitor pricing if available</inlineHelpText>
         <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
+
     <validationRules>
         <fullName>FS_AgreementdateIsRequired</fullName>
         <active>true</active>
@@ -4724,6 +4770,14 @@ Enter competitor pricing if available</inlineHelpText>
         <errorMessage>Start Date TPR should not be on previous date.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>FS_Temporary_Account</fullName>
+        <active>true</active>
+        <description>Food Solution Opportunity cannot be created with a temporary Account</description>
+        <errorConditionFormula>IF(AND($Profile.Name = &apos;Unilever Food Solution - NA&apos;, TEXT(Account.Status__c)=&apos;Temporary&apos;),true,false)</errorConditionFormula>
+        <errorDisplayField>AccountId</errorDisplayField>
+        <errorMessage>The Account is in Temporary status. Opportunity cannot be created with a temporary Account</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Opportunity_For_Reason_Description</fullName>
         <active>true</active>
         <description>when select the Stage = Closed Lost, Closed Won, Not Pursued, Lost Existing Business, Replace Existing Business, It should be required to populate a text box called Reason Description. Populate Reason Description means NOT NULL.</description>
@@ -4737,7 +4791,7 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <active>true</active>
         <description>An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level.</description>
         <errorConditionFormula>(AND( DealApproved__c= true,OR(ISPICKVAL( StageName, &quot;01 - Prospecting&quot;), ISPICKVAL( StageName, &quot;02 - Qualification&quot;),ISPICKVAL( StageName, &quot;03 - Proposal&quot;))))</errorConditionFormula>
-        <errorMessage>An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level.</errorMessage>
+        <errorMessage>An opportunity that has already been approved cannot be changed.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_Notchange_at_Stage5</fullName>

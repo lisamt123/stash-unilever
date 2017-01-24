@@ -55,3 +55,5 @@ src/classes/PBS_UtilClass_Test.cls
 src/classes/PBS_UtilClass_Test.cls-meta.xml
 src/staticresources/PBS_ImagesPage.resource
 src/staticresources/PBS_ImagesPage.resource-meta.xml
+src/permissionsets/PBS_LMS_Admin.permissionset
+src/permissionsets/PBS_LMS_User.permissionset

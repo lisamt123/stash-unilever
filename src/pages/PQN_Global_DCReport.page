@@ -1,0 +1,172 @@
+<apex:page controller="PQN_Global_DCReport" contentType="{!If($CurrentPage.parameters.export=='yes' ,'application/vnd.ms-excel#Global_DCReport.xls','')}" showHeader="false" readOnly="true">
+    <div style="padding-left:200px;">
+    <!--<apex:chart height="400" width="1000" data="{!xChartdata}">
+        <apex:axis type="Numeric" position="left" fields="chartdata" title="PQN Record"/>
+        <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Reporting DC"/>
+        <apex:barSeries orientation="vertical" axis="left" xField="chartXAxis" yField="chartdata"/>
+    </apex:chart>-->
+    </div>
+
+/*<style>
+        
+
+        table {
+            width: 100%!important;
+        }
+        tbody td, thead th {
+           white-space: normal!important;   
+            text-align: center;
+            
+        }
+        thead th {
+           color:white!important; 
+           }
+       
+        body .pbBody table.list tr.dataRow td:first-child {
+          text-align: left;
+          
+        }
+
+        thead, tbody, tr, td, th { display: block; }
+
+        tr:after {
+            content: ' ';
+            display: block!important;
+            visibility: hidden!important;
+            clear: both!important;
+        }
+
+        thead th {
+            height: 30px!important;
+
+            /*text-align: left;*/
+        }
+
+        tbody {
+            height: 500px!important;
+            overflow-y: auto!important;
+        }
+
+        thead {
+            /* fallback */
+        }
+
+
+        tbody td, thead th {
+            width: 16%!important;
+            float: left!important;
+        }
+        
+</style>*/
+<style>
+
+      tbody td, thead th {
+           white-space: normal!important;   
+            text-align: center;
+            
+        }
+        thead th {
+           color:white!important; 
+           }
+        
+       
+        body .pbBody table.list tr.dataRow td:first-child {
+          text-align: left;
+          width:400px;
+          
+        }
+        
+        .RedBack{
+            background-color:#FF0000!important;
+        }
+        .GreenBack{
+            background-color:#00B050!important;
+        }
+        .Amber{
+            background-color:#FFC000!important;
+        }
+        .Cyan{
+            background-color:#00A1DA!important;
+        }
+        .Blue{
+            background-color:#3C44E8!important;
+        }
+        .Pink{
+            background-color:#EA00AD!important;
+        }
+        .Gray{
+            background-color:#7F7F7F!important;
+            
+        }
+        .row{
+            background-color:#DBE5F1!important;
+        }
+        .odd { 
+        background-color: #FCF7F7;
+        }
+        .even {
+        background-color: #E3DCDB;
+        }
+        
+</style>
+
+<body>
+    
+    <div id="wrapper">
+        <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+            <c:PQN_Navigation navigationName="Reports" subNavName="dcreport"/>
+        </apex:outputPanel>
+        
+        <div id="page-wrapper">
+            <div class="container-fluid">
+           
+ <apex:form >
+        <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+            <a class="btn" href="./PQN_Global_DCReport?export=yes" target="_blank" role="button">Export Report</a>
+        </apex:outputPanel>
+     
+      <apex:pageBlock >
+          <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" styleclass="tableclass"  >
+              <apex:column headerClass="Gray" headerValue="Global DCs" >
+                  <apex:outputText value="{!xD.Cluster}" style="font-weight:800" rendered="{!xD.child}" />
+                  <apex:outputText value="{!empt}" rendered="{!xD.child}" />
+                <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                </apex:outputPanel>
+               
+               <apex:outputText value="{!xD.ReportingDC }"  />
+              </apex:column>              
+               <apex:column headerClass="Cyan" headerValue="# SU NC {!preYear}">
+                  <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.preYeardata}"/>
+                  </apex:outputText> 
+              </apex:column> 
+              <apex:column headerClass="Pink" headerValue="{!cuYear} Target # DC NC" value="{!empty}" />
+               <apex:column headerClass="Blue" headerValue="{!cuMonth} {!cuYear} # SU NC">
+                 <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.cumnthdata}"/>
+                  </apex:outputText> 
+              </apex:column>
+              <apex:column headerClass="Blue" headerValue="#SU NC {!cuYear}">
+                <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.cuYeardata}"/>
+                  </apex:outputText> 
+              </apex:column>
+              <apex:column headerClass="Pink" headerValue="Trend %" value="{!empt}"/>
+               
+          </apex:pageblockTable>
+      </apex:pageBlock>
+
+</apex:form>
+</div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+</body>
+    <style>
+        [hidden],template {
+            display: block!important;
+        }
+    </style>
+</apex:page>

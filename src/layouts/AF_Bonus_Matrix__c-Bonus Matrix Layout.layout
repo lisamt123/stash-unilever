@@ -23,6 +23,10 @@
                 <field>AF_Bonus_Results__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AF_Bonus_Local__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>AF_Brand_Estimate__c</field>
             </layoutItems>
@@ -181,6 +185,26 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ReadyforPOExchangeRateTemp__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AF_Bonus_Value_USD__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AF_Exchange_Rate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AF_Bonus_Currency__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AF_Cross_Border__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_overall__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>

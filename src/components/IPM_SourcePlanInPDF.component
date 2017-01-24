@@ -31,7 +31,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col" width="90px"><span>{!$Label.IPM_Sourcing_Units}</span></th>                    
-                                    <th scope="col" width="75px"><span>{!$Label.IPM_Capability_Confirmed}</span></th>
+                                    <th scope="col" width="75px"><div class="{!if(bIsPDLApproved,'approvalTip','capcon approvalTip')}">{!$Label.IPM_Capability_Confirmed}</div></th>
                                     <th scope="col" width="70px"><span>{!$Label.IPM_Sourced_Into}</span></th>
                                 </tr>
                             </thead>
@@ -63,7 +63,7 @@
                                         <apex:repeat value="{!sourceUnitMap[prodPlan.productProsition]}" var="sourcep">
                                             <tr>
                                                 <td width="90px"><span> {!sourcep.sourcingPlan.IPM_SourcingUnit__c}</span></td>
-                                                <td width="75px"><span>{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Yes','Not Yet')}</span></td>
+                                                <td width="75px"><span class="{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'greenBox','redBox')}">{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Yes','Not Yet')}</span></td>
                                                 <td width="63px">
                                                     <span>{!sourcep.sourceCountriesToDisplay}</span>
                                                 </td>

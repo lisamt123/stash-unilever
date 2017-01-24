@@ -15,3 +15,4 @@ src/permissionsets/FS_SCP_And_Corp.permissionset
 src/permissionsets/FS_Sales_Rep.permissionset
 src/profiles/Unilever Food Solution - NA.profile
 src/profiles/Unilever Food Solution - Russia.profile
+src/layouts/Account-Operator Russia Read Only.layout

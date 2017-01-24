@@ -8,24 +8,69 @@
 */
 public with sharing class IPM_Assumptions_Controller {
     //Initializing Variables
+    public boolean isEditable{
+        get {
+            if(isEditable == null) {
+                if(Apexpages.currentpage().getparameters().get('isEditable') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEditable; }
+        }
+        set;
+    }// boolean to check if editable
+    public Id projId{ // to get-set the project id from the component attribute.
+        get{
+            if(projId == null && Apexpages.currentpage().getparameters().get('projId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('projId')) ;
+            }
+            else { return projId; }
+        }
+        set;
+    } 
+    public ID projDocSecId{// to get-set the project document section id from the component attribute.
+        get{
+            if(projDocSecId == null && Apexpages.currentpage().getparameters().get('getSectionId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('getSectionId')) ;
+            }
+            else { return projDocSecId; }
+        }
+        set;
+    }
+    public string gateDocType{// to get-set the project document section id from the component attribute.
+        get{
+            if(gateDocType == null && Apexpages.currentpage().getparameters().get('gateType') != null) {
+                return  Apexpages.currentpage().getparameters().get('gateType');
+            }
+            else { return gateDocType; }
+        }
+        set;
+    }
+    
     public IPM_Project_Document_Section_Content__c assumption{get; set;} //For getting assumption record 
-    public string gateDocType{get;set;}// used in corresponding component
     public string contentName{get; set;} //For saving comments 
     public string comments{get; set;} //For saving comments 
-    public ID projDocSecId{ 
-        get {
-            return projDocSecId; // to get the project document section ID from the component used from Gate document page
-        }
-        set {
-            projDocSecId= value;// setting the value of project document section
-            getAssumptions();
-        }
-    }
     public Integer contentCount;//for updation
     //For try-catch
     public string IPM_ASSUMPTIONS_CONTROLLER_NAME=IPM_Assumptions_Controller.class.getName();
     public static final string GET_ASSUMPTIONS='getAssumptions';
-    public static final string SAVE_ASSUMPTIONS='saveAssumptions';
+    public static final string SAVE_ASSUMPTIONS='saveAssumptions';   
+    
+    /************************************************************************************************************************
+    * @Description: Methods to run when this controller is invoked from component
+    */
+    public string getInvokeMethodsForComponent() {
+        getAssumptions();
+        return 'Required methods are invoked for component';
+    }
+    
+    /************************************************************************************************************************
+    * @Description: CONSTRUCTOR
+    */
+    public IPM_Assumptions_Controller() {
+        if(test.isRunningTest()){
+            getInvokeMethodsForComponent();
+        }
+    }    
     
     /************************************************************************************************************************
     *  Description To Create Assumptions Comments

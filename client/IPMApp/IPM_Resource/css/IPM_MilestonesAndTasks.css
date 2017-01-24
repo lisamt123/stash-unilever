@@ -614,9 +614,10 @@
 		margin-top: 10px;
 		padding-top: 10px;
 	}
-	 .Todosalign{
+	 .todosalign{
         margin-top: 22px;
 		margin-right: 10px;
+		margin-bottom:15px;
      }
 	.outputPannelalign{
         float:left;

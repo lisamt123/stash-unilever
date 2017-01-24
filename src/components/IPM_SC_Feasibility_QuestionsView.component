@@ -9,7 +9,8 @@
 <apex:component controller="IPM_GatekeeperChecklist" allowDML="false">
   <apex:attribute name="RNDEdit" description="This is used for security" type="Boolean" assignTo="{!isEditable}"/>
   <apex:attribute name="gateDocType" description="This is to provide the type of gate" type="String" assignTo="{!gateTypeSCFeas}"/>
-
+  <apex:outputPanel style="display:none;">{!InvokeMethodsForIPM_SC_Feasibility_QuestionsViewComponent}</apex:outputPanel>
+    
   <apex:outputPanel id="ren" styleClass="gkTable">
           <table class="ipmTable table table-bordered otifTable">
           <thead>

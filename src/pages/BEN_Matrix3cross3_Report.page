@@ -1,0 +1,147 @@
+<apex:page controller="BEN_Matrix_VF_controller"  id="matrix_page">                    
+	<apex:form >
+      <style>
+                                 
+                            table.detailList {
+                              width: 60% !important;
+                              text-align: center;
+                                }
+                         	.Matrix tr>td[colspan="4"] {
+                                text-align: center;
+                             }
+                            .Matrix tr>td {
+                              min-width: 80px;
+                             padding: 16px 0;
+                              text-align: center;
+                            }
+                        
+                            .Matrix tr>td[colspan="4"] {
+    						text-align: right;
+    						position: relative;
+    						right: 70px;
+						     }
+                           .Matrix tr>td:first-child,.Matrix tr:nth-child(5)>td,.Matrix tr:nth-child(2)>td:nth-child(2),.Matrix tr:nth-child(3)>td:nth-child(2),.Matrix tr:nth-child(4)>td:nth-child(2) {
+                           font-weight:700;}
+                            .Matrix tr:nth-child(2) td:nth-child(3), .Matrix tr:nth-child(2) td:nth-child(4), .Matrix tr:nth-child(3) td:nth-child(4) {
+                              background: green;
+                            }
+                           .Matrix tr:nth-child(3) td:nth-child(2), .Matrix tr:nth-child(4) td:nth-child(2), .Matrix tr:nth-child(4) td:nth-child(3) {
+                             background: #f00;
+                            }
+                            .Matrix tr:nth-child(2) td:nth-child(2), .Matrix tr:nth-child(3) td:nth-child(3), .Matrix tr:nth-child(4) td:nth-child(4) {
+                             background: yellow;
+                           }
+
+                   </style>
+                     
+           <apex:pageMessages id="errorMsg"/>
+        
+		      <apex:pageBlock title="3*3 Matrix Report">
+                    <apex:pageBlockSection columns="2">
+                        
+                        <!--   changes -->
+                         <apex:pageBlockSectionItem >
+                             <apex:outputPanel >
+                                 <apex:outputLabel value="From Year/Quarter :   " style="font-weight:600"/>
+                        <apex:selectList id="fromYearVal" label="From Year"  value="{!fromYearVal}" size="1" rendered="true" >
+                          <apex:selectOptions value="{!fromYear}"/>
+                        </apex:selectList>
+                                  <apex:selectList id="fromQuarterVal" label="From Quarter" value="{!fromQuarterVal}" size="1" rendered="true">
+                          <apex:selectOptions value="{!fromQuarter}"/>
+                        </apex:selectList>
+                                 </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        
+						<apex:pageBlockSectionItem >
+                            <apex:outputPanel >
+                                <apex:outputLabel value="To Year/Quarter :   "  style="font-weight:600"/>
+                         <apex:selectList id="toYearVal" label="To Year" value="{!toYearVal}" size="1" rendered="true">
+                          <apex:selectOptions value="{!toYear}"/>
+                        </apex:selectList>
+                                 <apex:selectList id="toQuarter" label="To Quarter"  value="{!toQuarterVal}" size="1" rendered="true">
+                          <apex:selectOptions value="{!toQuarter}"/>
+                        </apex:selectList>
+                            </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                                         
+                        <apex:pageBlockSectionItem >
+                            <apex:outputPanel style="padding: 0px 5px 0px 0px;" >
+                             <apex:outputLabel value="Product Category    "  style="padding: 0px 5px 0px 0px; font-weight:600"/>
+                       <apex:selectList label="Product Category"  value="{!productCat}" size="3" multiselect="true" >
+                          <apex:selectOptions value="{!productCategory}"/>
+                        </apex:selectList>
+                        </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                       </apex:pageBlockSection>
+            
+                        <apex:pageblockButtons location="bottom">
+                            <apex:commandButton value="Get Report" action="{!getReport}" reRender="reportPanel,errorMsg" /> 
+                        </apex:pageblockButtons>
+                     </apex:pageBlock>
+         
+             <apex:outputPanel id="reportPanel">
+                 
+                 <apex:pageBlock title="Overall Opinion vs Key Attributes" id="pageBlockProcessed" rendered="{!renderBlock}">
+                                        
+                     <script type="test/javascript">
+                           function printreport(reportPanel){
+                                   var printContent = document.getElementById(reportPanel).innerHTML;
+                            var w = window.open();
+                            w.document.write(printContent);
+                            w.print();
+                            w.close();		
+                             }
+                     </script>
+                     
+                      <apex:pageBlockSection >
+                         <apex:pageBlockSectionItem >
+                             <apex:outputText value="Period:  {!fromQuarterVal}-{!fromYearVal} to {!toQuarterVal}-{!toYearVal} " />
+                            </apex:pageBlockSectionItem>
+                     </apex:pageBlockSection>
+                     
+                     <apex:pageblockButtons location="bottom">
+                            <apex:commandButton value="Download as PDF" action="{!redirectToPDF}" /> 
+                        </apex:pageblockButtons>
+                                        
+                     <div style="max-width: 40px;	float: left; font-weight: 800; margin: 7% 0 0 0;">Overall Opinion</div>
+                     
+                     <div>
+                     <table class="Matrix" id='matrixtable'>
+                      <thead>
+                      </thead>
+                        
+                      <tbody>
+                       <tr><td colspan="5">{!totalRecCount} products Tested</td></tr>
+                      <tr>                       
+                        <td>Superior</td>
+                        <td>{!winLoss_00}</td>
+                        <td>{!winParity_01}</td>
+                        <td>{!winWin_02}</td>
+                        </tr>
+                        <tr>
+                        <td>Parity</td>
+                        <td>{!parityLoss_10}</td>
+                        <td>{!parityParity_11}</td>
+                        <td>{!parityWin_12}</td>
+                        </tr>
+                        <tr>
+                        <td>Inferior</td>
+                        <td>{!lossLoss_20}</td>
+                        <td>{!lossParity_21}</td>
+                        <td>{!lossWin_22}</td>                
+                        </tr>
+                        <tr>                       
+                        <td></td>
+                        <td>Inferior</td>
+                        <td>Parity</td>
+                        <td>Superior</td>
+                        </tr>
+
+                        <tr><td colspan="5" style="font-weight: 800">Key Attributes</td></tr>	
+                        </tbody>
+                    </table>
+                     </div>
+                </apex:pageBlock>
+            </apex:outputPanel>         
+       	</apex:form>
+</apex:page>
