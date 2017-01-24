@@ -41,19 +41,16 @@ public without sharing class UL_DeliveryProfile_TriggerHandler {
         Date lowestDate = System.today();
         Date highestDate = System.today();
         for(UL_Delivery_Profile__c newDeliveryProfile : new_DeliveryProfile_List){
-        system.debug('newDeliveryProfile.UL_Delivery_Profile_Name__c ::: '+newDeliveryProfile.UL_Delivery_Profile_Name__c);            
             if(newDeliveryProfile.UL_Sales_Organisation__c.equals(UL_Utility.UK_SO)){
-                if(newDeliveryProfile.UL_Valid_From__c < lowestDate){
+                if(lowestDate > newDeliveryProfile.UL_Valid_From__c){
                     lowestDate = newDeliveryProfile.UL_Valid_From__c;
-                }                
-                if(newDeliveryProfile.UL_Valid_Thru__c > highestDate){
+                }
+
+                if(highestDate < newDeliveryProfile.UL_Valid_Thru__c){
                     highestDate = newDeliveryProfile.UL_Valid_Thru__c;
                 }
-                
                 delivery_profile_names.add(newDeliveryProfile.UL_Delivery_Profile_Name__c);
-            }
-                  
-            
+            }            
         }
          
         if(delivery_profile_names.size() > 0){
@@ -75,25 +72,34 @@ public without sharing class UL_DeliveryProfile_TriggerHandler {
 @ Change history: 04.01.2017 / M Kalyan Goud / Created the method.
 **********************************************************************************************************************************************************/ 
     public void deliveryProfileNameValidation(Set<String> delivery_profile_names, Date lowestDate, Date highestDate){
-        Map<String, UL_Delivery_Profile__c> checkNames = new Map<String, UL_Delivery_Profile__c>();
-        for(UL_Delivery_Profile__c dp : [SELECT Id,Name, UL_Delivery_Profile_Name__c, UL_Valid_From__c, UL_Valid_Thru__c FROM UL_Delivery_Profile__c WHERE UL_Delivery_Profile_Name__c IN :delivery_profile_names AND (UL_Valid_From__c >= :Date.valueOf(lowestDate) OR UL_Valid_Thru__c <= :Date.valueOf(highestDate)) ORDER BY UL_Valid_Thru__c DESC, UL_Valid_From__c ASC]){
-            if(checkNames.containsKey(dp.UL_Delivery_Profile_Name__c)){
-                if(dp.UL_Valid_From__c > checkNames.get(dp.UL_Delivery_Profile_Name__c).UL_Valid_From__c){
-                    checkNames.put(dp.UL_Delivery_Profile_Name__c, dp);
-                }                
-            } else {
-                checkNames.put(dp.UL_Delivery_Profile_Name__c, dp);
-            }            
-        }
+        Map<String, Set<UL_Delivery_Profile__c>> delivery_profile_map = new Map<String, Set<UL_Delivery_Profile__c>>();
+        for(UL_Delivery_Profile__c deliveryProfile : [SELECT Id, Name, UL_Delivery_Profile_Name__c, UL_Valid_From__c, UL_Valid_Thru__c 
+                                                       FROM UL_Delivery_Profile__c
+                                                       WHERE UL_Delivery_Profile_Name__c IN :delivery_profile_names
+                                                       AND ((UL_Valid_From__c <= :lowestDate AND UL_Valid_Thru__c >= :lowestDate) 
+                                                       OR (UL_Valid_From__c <= :highestDate AND UL_Valid_Thru__c >= :highestDate)) 
+                                                       LIMIT :(Limits.getLimitQueryRows()-Limits.getQueryRows())]){
+                                                           
+            if(!delivery_profile_map.containsKey(deliveryProfile.UL_Delivery_Profile_Name__c)){
+                delivery_profile_map.put(deliveryProfile.UL_Delivery_Profile_Name__c, new Set<UL_Delivery_Profile__c>());
+            }
+            delivery_profile_map.get(deliveryProfile.UL_Delivery_Profile_Name__c).add(deliveryProfile);                                                        
+        }       
+        
          
         for(UL_Delivery_Profile__c newDeliveryProfile : new_DeliveryProfile_List){
-            if(checkNames.containsKey(newDeliveryProfile.UL_Delivery_Profile_Name__c)){
-                if(newDeliveryProfile.UL_Valid_From__c < checkNames.get(newDeliveryProfile.UL_Delivery_Profile_Name__c).UL_Valid_Thru__c 
-                   || newDeliveryProfile.UL_Valid_Thru__c < checkNames.get(newDeliveryProfile.UL_Delivery_Profile_Name__c).UL_Valid_Thru__c){                        
-                    String errMessage =  Label.UL_Duplicate_Record_Found+'--'+checkNames.get(newDeliveryProfile.UL_Delivery_Profile_Name__c).UL_Delivery_Profile_Name__c+':'+checkNames.get(newDeliveryProfile.UL_Delivery_Profile_Name__c).Name;
-                    newDeliveryProfile.addError(errMessage);
+            if(delivery_profile_map.containsKey(newDeliveryProfile.UL_Delivery_Profile_Name__c)){
+                for(UL_Delivery_Profile__c existingRate : delivery_profile_map.get(newDeliveryProfile.UL_Delivery_Profile_Name__c)){
+                    if(existingRate.Id!= newDeliveryProfile.Id && existingRate.UL_Valid_From__c <= newDeliveryProfile.UL_Valid_Thru__c && existingRate.UL_Valid_Thru__c >= newDeliveryProfile.UL_Valid_From__c){
+                        String errMessage = Label.UL_Duplicate_Record_Found+' - '+existingRate.UL_Delivery_Profile_Name__c+' ('+existingRate.Name+')';
+                        newDeliveryProfile.addError(errMessage);
+                    }
                 }
             }
+            else{
+                delivery_profile_map.put(newDeliveryProfile.UL_Delivery_Profile_Name__c, new Set<UL_Delivery_Profile__c>());
+            }
+            delivery_profile_map.get(newDeliveryProfile.UL_Delivery_Profile_Name__c).add(newDeliveryProfile);
         }        
     }  
     
