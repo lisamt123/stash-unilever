@@ -80,7 +80,7 @@ select
                 
                 <!-- Logic Here-->
              
- <body style="margin-top: 8%;" onload="dissablereportType();">                 
+ <body style="margin-top: 8%;" >                 
     <apex:form id="frm1" >
     <!--<apex:actionFunction name="updatetable" action="{!updateLossTree}" rerender="resetor" oncomplete="refreshdata('{!lossTree.Loss_Type__c}')"/>   -->
     <div class="container-fluid">
@@ -112,9 +112,9 @@ select
                          
           </div>
         </div>
-        
+        <apex:outputPanel rendered="{!if( lossTree.Loss_Type__c='Dispatch Compliance' || lossTree.Loss_Type__c='Output Reliability',true,false)}">
         <apex:outputpanel rendered="{!showingPanel}" id="tpan">Tolerance level  for {!code1} = {!plantCode}</apex:outputpanel>
-        
+        </apex:outputPanel>
         
         
         
@@ -268,6 +268,8 @@ select
                             <th><input type="checkbox"  onclick="selectAllCheckboxes(this,'inputId')" value=""/></th> 
                             <th>PLANT CODE</th>  
                             <th>DELIVERY WEEK NUMBER</th> 
+                            <th>Supplier description </th>
+                            <th>SAP vendor Description</th>
                             <th>MATERIAL</th> 
                             <th>MATERIAL DESCRIPTION</th>  
                             <th>MATERIAL TYPE</th>  
@@ -276,12 +278,12 @@ select
                             
                             <th>PO Line Item Number</th>
                             <th>PO Schedule Line Item Number</th>
-                            <th>PO Delivery Date as per Current PO</th>
+                           <th>PO Latest delivery Date</th>
                             <th>PO QTY</th>
-                            <th>GR Date</th>
-                            <th>GR QTY</th>
-                            <th>SUPPLIER OTIF QTY COMPLIANCE</th>
+                            <th>GR Posting Date</th>
+                            <th>GR Posting Quantity</th>
                             <th>SUPPLIER OTIF TIME COMPLIANCE</th>
+                            <th>SUPPLIER OTIF QTY COMPLIANCE</th>
                             <th>OVERALL SUPPLIER OTIF COMPLIANCE</th>
                             
                             <th class="col-md-2">Loss Level 1</th>
@@ -299,20 +301,22 @@ select
                                     <td><apex:inputCheckbox value="{!w.checkbox1}" id="inputId1"/>  </td>
                                     <td>{!w.wlt.Plant_Code__c}</td>
                                     <td>{!w.wlt.Week__c}</td>
+                                    <td>{!w.wlt.Ultimate_Supplier_code__c}</td>
+                                    <td>{!w.wlt.SAP_vendor_code__c}</td>
                                     <td>{!w.wlt.Material__c}</td>
                                     <td>{!w.wlt.material_Description__c}</td>
                                     <td>{!w.wlt.Material_Type__c}</td>
                                     <td>{!w.wlt.Material_Group__c}</td>
-                                    <td>{!w.wlt.Material_Group__c}</td>
-                                    <td>{!w.wlt.PO__c}</td> 
+                                    <td>{!w.wlt.PO__c}</td>
+                                    <td>{!w.wlt.PO_Line_Item_Number__c}</td> 
                                     <td>{!w.wlt.PO_Schedule_Line_Item_Number__c}</td>
-                                    <td>{!w.wlt.PO_Delivery_Date_as_per_Current_PO__c}</td>
+                                   <td>{!w.wlt.PO_Delivery_Date_as_per_Current_PO__c}</td>
                                     <td>{!w.wlt.PO_QTY__c}</td>
-                                    <td>{!w.wlt.GR_Date__c}</td>
+                                   <td>{!w.wlt.GR_Date__c}</td>
                                     <td>{!w.wlt.GR_QTY__c}</td>
-                                    <td>{!w.wlt.SUPPLIER_OTIF_QTY_COMPLIANCE__c}</td>
                                     <td>{!w.wlt.SUPPLIER_OTIF_TIME_COMPLIANCE__c}</td>
-                                     <td>{!w.wlt.OVERALL_SUPPLIER_OTIF_COMPLIANCE__c}</td>
+                                    <td>{!w.wlt.SUPPLIER_OTIF_QTY_COMPLIANCE__c}</td>
+                                    <td>{!w.wlt.OVERALL_SUPPLIER_OTIF_COMPLIANCE__c}</td>
                                    <!-- <td><apex:selectList value="{!w.selectbox1}" size="1" onchange="change12('{!w.i}',this);" id="mrp1"><apex:selectOptions value="{!w.listbox1}"/></apex:selectList></td>
                                     <td><apex:selectList value="{!w.selectbox2}" size="1" onchange="change21('{!w.i}',this);" id="mrp2"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
                                     -->
@@ -429,7 +433,7 @@ select
             <apex:param name="losssecondParam3" value="" />
             </apex:actionfunction>
             
-           <apex:actionFunction action="{!showPanelsDiv1}" rerender="tpan,frm1" name="showpan" oncomplete="dissablereportType();">          
+           <apex:actionFunction action="{!showPanelsDiv1}" rerender="tpan,frm1" name="showpan" >          
            <apex:param name="firstParams1" value="" />           
            </apex:actionFunction>
            
@@ -545,9 +549,9 @@ alert('ssss');
 function callFunCop(){
   
     
-    var lossname = document.getElementById('j_id0:frm1:ccomp:j_id23:v1').value;
-    var subfam = document.getElementById('j_id0:frm1:ccomp:j_id23:v2').value;
-    var lossDesc = document.getElementById('j_id0:frm1:ccomp:j_id23:v3').value;
+    var lossname = document.getElementById('j_id0:frm1:ccomp:j_id24:v1').value;
+    var subfam = document.getElementById('j_id0:frm1:ccomp:j_id24:v2').value;
+    var lossDesc = document.getElementById('j_id0:frm1:ccomp:j_id24:v3').value;
     copyfn(lossname,subfam,lossDesc);
 }
 </script> 
@@ -566,25 +570,12 @@ showpan(ptCode);
 function executeThisOnLoad(){
 
 
-document.getElementById('j_id0:frm1:ccomp:j_id23:check').value = false;
+document.getElementById('j_id0:frm1:ccomp:j_id24:check').value = false;
+
 }
 </script>
    
-   <script>
-    function dissablereportType(){
-        
-            var status = "{!IF(($Profile.Name =='WWP Supplier Profile'), true  , false)}"; 
-            if(status == 'true'){
-            document.getElementById('j_id0:frm1:lossT').value ='Supplier OTIF';
-            document.getElementById('j_id0:frm1:lossT').disabled = true;
-            //fieldList.disabled = true;
-            }
-            else{
-           document.getElementById('j_id0:frm1:lossT').disabled = false;
-            }
-        }
-    
-</script> 
+  
     
 
 

@@ -29,7 +29,7 @@ public without sharing class PQN_Global_Overview_Geography{
     
     private void callStackChart(){
     
-            List<AggregateResult> listAgg =new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c label, Supplier_Cluster__c key from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!='' AND Supplier_Cluster__c !='' group By Loss_Level_2__c, Supplier_Cluster__c  Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc]);
+            List<AggregateResult> listAgg =new List<AggregateResult>([select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c label, Supplier_Cluster__c key from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!='' AND Supplier_Cluster__c !='' AND Year__c=:string.valueof(system.Today().year()) group By Loss_Level_2__c, Supplier_Cluster__c  Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc limit 50000]);
             xMap = new Map<String,Integer>();
             xAxisName = new Set<String>();
             yAxisName = new Set<String>();
@@ -49,7 +49,7 @@ public without sharing class PQN_Global_Overview_Geography{
     private List<String> getFieldsLabel(){
         chartLabelmap = new Map<String,String>();
         String query ='';
-        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c), Loss_Level_2__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' group By Loss_Level_2__c Order by Loss_Level_2__c';
+        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c), Loss_Level_2__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' AND Year__c=\''+string.valueof(system.Today().year())+'\' group By Loss_Level_2__c Order by Loss_Level_2__c';
         List<String> fields =new List<String>();
         String Key='';
         String label='';
@@ -93,7 +93,7 @@ public without sharing class PQN_Global_Overview_Geography{
         Set<String> setDiag = new Set<String>();
         List<String> keyString = mapStr.split(',');
         String query ='';
-        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c key, Supplier_Cluster__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' AND Supplier_Cluster__c !=\'\' group By Loss_Level_2__c, Supplier_Cluster__c Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc limit 50000';
+        query += 'select SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) cnt, Loss_Level_2__c key, Supplier_Cluster__c label from PQN_Pallet_Quality_Non_Conformance__c where Loss_Level_2__c!=\'\' AND Supplier_Cluster__c !=\'\' AND Year__c=\''+string.valueof(system.Today().year())+'\' group By Loss_Level_2__c, Supplier_Cluster__c Order by SUM(Number_of_Pallets_Per_SKU_Non_Compliant__c) desc limit 50000';
         Decimal totalcount = 0;
         list<AggregateResult> result = Database.query(query);
         
@@ -223,30 +223,28 @@ public without sharing class PQN_Global_Overview_Geography{
                 
         for(PQN_Global_SUWrap xA: xSUWRAPLIST){
             decimal temp = 0;
+            if(mapOftarget.get(xA.Region)!=null){
+                 xA.cuYeartarper = mapOftarget.get(xA.Region);
+                }else{xA.cuYeartarper =0;} 
+                
              if(xA.Region== '' && xA.Cluster == ''){
                xA.cuYeardata =mapOfRegion.get('');
                xA.cuYearPercent=(mapOfRegion.get('')*100)/integer.valueOf(xPSU[0].get('totalshipped'));
                xA.cuYeartarper =0;
               }
             else if (xA.Cluster != '') {
-                xA.cuYeardata = mapOfRegion.get(xA.Cluster);
-                if(mapOftarget.get(xA.Region)!=null){
-                 xA.cuYeartarper = mapOftarget.get(xA.Region);
-                }else{xA.cuYeartarper =0;}
-              if (mapOfRegion.get(xA.Cluster) != Null){
-                temp = Double.valueOf((mapOfRegion.get(xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
-                xA.cuYearPercent= temp.setscale(2);
-                }else{xA.cuYearPercent=0;}
+            if (mapOfRegion.get(xA.Cluster) != Null){
+                 xA.cuYeardata = mapOfRegion.get(xA.Cluster);
+                 temp = Double.valueOf((mapOfRegion.get(xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+                 xA.cuYearPercent= temp.setscale(2);
+                }else{xA.cuYearPercent=0;xA.cuYeardata =0;}
             }
             else if(xA.Region!= ''){
+              if (mapOfRegion.get(xA.Region) != Null){
                 xA.cuYeardata = mapOfRegion.get(xA.Region);
-                if(mapOftarget.get(xA.Region)!=null){
-                 xA.cuYeartarper = mapOftarget.get(xA.Region);
-                }else{xA.cuYeartarper =0;}
-                 if (mapOfRegion.get(xA.Region) != Null){
                 temp = Double.valueOf((mapOfRegion.get(xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                 xA.cuYearPercent= temp.setscale(2);
-                }else{xA.cuYearPercent=0;}
+                }else{xA.cuYearPercent=0;xA.cuYeardata =0;}
             }
          
         }          
@@ -287,19 +285,19 @@ public without sharing class PQN_Global_Overview_Geography{
                xA.preYearPercent =(mapOfRegionPreYear.get('')*100)/integer.valueOf(xPSU[0].get('totalshipped'));
               }
           
-             else if (xA.Cluster != '') {
+            else if (xA.Cluster != '') {
+              if (mapOfRegionPreYear.get(xA.Cluster) != Null){
                 xA.preYeardata = mapOfRegionPreYear.get(xA.Cluster);
-                if (mapOfRegionPreYear.get(xA.Cluster) != Null){
-                    temp = Double.valueOf((mapOfRegionPreYear.get(xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+                  temp = Double.valueOf((mapOfRegionPreYear.get(xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.preYearPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.preYearPercent = 0; xA.preYeardata =0;}
             }
             else if(xA.Region!= ''){
-                xA.preYeardata = mapOfRegionPreYear.get(xA.Region);
-                if (mapOfRegionPreYear.get(xA.Region) != Null){
-                    temp = Double.valueOf((mapOfRegionPreYear.get(xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+              if (mapOfRegionPreYear.get(xA.Region) != Null){
+                 xA.preYeardata = mapOfRegionPreYear.get(xA.Region);
+                   temp = Double.valueOf((mapOfRegionPreYear.get(xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.preYearPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.preYearPercent = 0;xA.preYeardata =0; }
             }
             
           
@@ -345,18 +343,18 @@ public without sharing class PQN_Global_Overview_Geography{
               }
           
              else if (xA.Cluster != '') {
+               if (mapOfRegioncrmnth .get(xA.Cluster) != Null){
                 xA.cumnthdata = mapOfRegioncrmnth .get(xA.Cluster);
-                if (mapOfRegioncrmnth .get(xA.Cluster) != Null){
-                    temp = Double.valueOf((mapOfRegioncrmnth .get(xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+                   temp = Double.valueOf((mapOfRegioncrmnth .get(xA.Cluster)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.cumnthPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.preYearPercent = 0; xA.cumnthdata = 0;}
             }
             else if(xA.Region!= ''){
+              if (mapOfRegioncrmnth .get(xA.Region) != Null){
                 xA.cumnthdata = mapOfRegioncrmnth .get(xA.Region);
-                if (mapOfRegioncrmnth .get(xA.Region) != Null){
-                    temp = Double.valueOf((mapOfRegioncrmnth.get(xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
+                  temp = Double.valueOf((mapOfRegioncrmnth.get(xA.Region)*100))/integer.valueOf(xPSU[0].get('totalshipped'));
                     xA.cumnthPercent = temp.setscale(2);
-                } else { xA.preYearPercent = 0; }
+                } else { xA.preYearPercent = 0; xA.cumnthdata = 0;}
             }
             
          }
@@ -397,12 +395,16 @@ public without sharing class PQN_Global_Overview_Geography{
              }
          
             else if (xA.Cluster != '') {
+              if(mapOfRegioncrmnthdc .get(xA.Cluster)!=null){
                 xA.cumnthdcdata = mapOfRegioncrmnthdc .get(xA.Cluster);
-                }
+                }else{xA.cumnthdcdata =0;}
+             }
             
             else if(xA.Region!= ''){
+                if(mapOfRegioncrmnthdc .get(xA.Region)!=null){
                 xA.cumnthdcdata = mapOfRegioncrmnthdc .get(xA.Region);
-                }
+                }else{xA.cumnthdcdata =0;}
+             }
            
         }
         
@@ -443,12 +445,16 @@ public without sharing class PQN_Global_Overview_Geography{
                xA.cumnthIEdata =mapOfRegioncrmnthIE .get('');
              }
              else if (xA.Cluster != '') {
+               if(mapOfRegioncrmnthIE .get(xA.Cluster)!=null){
                 xA.cumnthIEdata = mapOfRegioncrmnthIE .get(xA.Cluster);
-                }
+                }else{xA.cumnthIEdata = 0;}
+              }
             
             else if(xA.Region!= ''){
+                 if(mapOfRegioncrmnthIE .get(xA.Region)!=null){
                 xA.cumnthIEdata = mapOfRegioncrmnthIE .get(xA.Region);
-                }
+                }else{xA.cumnthIEdata = 0;}
+             }
          
         }
         
@@ -489,12 +495,16 @@ public without sharing class PQN_Global_Overview_Geography{
              }
          
             else if (xA.Cluster != '') {
+              if(mapOfRegioncrmnthtot .get(xA.Cluster)!=null){
                 xA.cumnthtotdata = mapOfRegioncrmnthtot .get(xA.Cluster);
-                }
+                }else{xA.cumnthtotdata = 0;}
+             }
             
             else if(xA.Region!= ''){
+                if(mapOfRegioncrmnthtot .get(xA.Region)!=null){
                 xA.cumnthtotdata = mapOfRegioncrmnthtot .get(xA.Region);
-                }
+                }else{xA.cumnthtotdata = 0;}
+             }
            
         }
         
@@ -534,12 +544,16 @@ public without sharing class PQN_Global_Overview_Geography{
              }
          
             else if (xA.Cluster != '') {
+              if(mapOfRegionprevyrtot .get(xA.Cluster)!=null){
                 xA.preYeardatatot = mapOfRegionprevyrtot .get(xA.Cluster);
-                }
+                }else{xA.preYeardatatot =0;}
+             }
             
             else if(xA.Region!= ''){
+                if(mapOfRegionprevyrtot .get(xA.Region)!=null){
                 xA.preYeardatatot = mapOfRegionprevyrtot .get(xA.Region);
-                }
+                }else{xA.preYeardatatot =0;}
+             }
             
           
         }
@@ -581,12 +595,16 @@ public without sharing class PQN_Global_Overview_Geography{
              }
         
             else if (xA.Cluster != '') {
+              if( mapOfRegioncryeartot .get(xA.Cluster)!=null){
                 xA.cuYeardatatot = mapOfRegioncryeartot .get(xA.Cluster);
-                }
+                }else{xA.cuYeardatatot =0;}
+             }
             
             else if(xA.Region!= ''){
+                if( mapOfRegioncryeartot .get(xA.Region)!=null){
                 xA.cuYeardatatot = mapOfRegioncryeartot .get(xA.Region);
-                }
+                }else{xA.cuYeardatatot =0;}
+             }
            
         }
         

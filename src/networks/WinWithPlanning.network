@@ -33,7 +33,7 @@
     <site>WinWithPlanning</site>
     <status>Live</status>
     <tabs>
-        <customTab>Loss_Tree</customTab>
+        <customTab>LossTree_Supplier</customTab>
         <defaultTab>Chatter</defaultTab>
         <standardTab>Chatter</standardTab>
     </tabs>

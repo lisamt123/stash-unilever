@@ -34,13 +34,14 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
     
     // "PQNUpdateFreezePeriodCtrl" constructor
     Public PQNUpdateFreezePeriodCtrl (){
-        flag = true;
+        flag = false;
     
         //Fetch the current month value of the custom setting record and display the value
         currentMonthFreezePeriod = [select Id, Name, Numeric_Value__c, Freeze_Date__c from PQNFreezeDate__c where Numeric_Value__c =: Date.Today().Month() LIMIT 1];
         daysLeft = Date.Today().daysBetween(currentMonthFreezePeriod[0].Freeze_Date__c);
         system.debug('the days left' + daysLeft);
         
+        /*
         //Get the Profile ID of the Logged in User to check wheather logged in User is internal user or not
         Id pId = userinfo.getProfileId();
         List<Profile> pList = [select Id, Name from Profile where Id=: pId LIMIT 1];
@@ -49,6 +50,22 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
         //If profile id "Admin" display the button for the user
         if(pName == 'system Administrator' || pName == 'Unilever - Salesforce MultiApp Standard')
         flag = true;
+        
+        */
+        
+        //Get the permission set Id
+        List<PermissionSet> pSetList = [select Name , Id from PermissionSet where Name = 'PQN_Admin_User' LIMIT 1];
+        
+        //Get the Id's of all the users assigned for "PQN_Admin_User"
+        list<PermissionSetAssignment> pAssignList = [select AssigneeId from PermissionSetAssignment where PermissionSetId =:pSetList[0].Id];
+        
+        //Check whether the logged in user is a member of "PQN Admin User" 
+        for(PermissionSetAssignment p : pAssignList){
+            if(p.AssigneeId == UserInfo.getUserId()){
+                flag = true;
+                break;
+            }
+        }
         
         //Fetch all the custom setting records
         result = [select Id, Name, Numeric_Value__c, Freeze_Date__c from PQNFreezeDate__c ORDER BY Numeric_Value__c];

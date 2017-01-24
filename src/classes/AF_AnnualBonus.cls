@@ -161,6 +161,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
             isAgency = true;
         }
         list<AF_Brand_Estimate__c>Pilot_model=[SELECT ID,AF_AgencyBaseFees__c, AF_Is_Global_Bonus_Threshold_Checked__c ,AF_Pilot_Model__c,AF_No_Bonus__c FROM AF_Brand_Estimate__c WHERE  Brand__c=:Brand_id AND AF_Agency__c=:agency_id AND AF_Fiscal_Year__c=:current_year AND AF_Active__c=True];
+        isglobal = Pilot_model.get(0).AF_Is_Global_Bonus_Threshold_Checked__c;
         if(Pilot_model.size()>0){
         sum_of_total_bonus=Pilot_model.get(0).AF_AgencyBaseFees__c;
             //AF_Pilot_Model= Pilot_model.get(0).AF_Pilot_Model__c;
@@ -169,7 +170,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
             No_Bonus_Check = Pilot_model.get(0).AF_No_Bonus__c;
         }
         if(AF_Pilot_Model || Pilot_model.get(0).AF_Pilot_Model__c){
-           isglobal = Pilot_model.get(0).AF_Is_Global_Bonus_Threshold_Checked__c;
+           //isglobal = Pilot_model.get(0).AF_Is_Global_Bonus_Threshold_Checked__c;
             pilotmode =  Pilot_model.get(0).AF_Pilot_Model__c;
             //new variables
             list<AF_Bonus_Threshold__c> Bonus_Result_list= new list<AF_Bonus_Threshold__c>();
@@ -232,7 +233,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
                     }
                 }
              
-                if(setofnonthreshold_country.size()>0 && !No_Bonus_Check){
+                if(setofnonthreshold_country.size()>0 && !No_Bonus_Check && !isglobal){
                     Apexpages.addmessage(new apexpages.message(apexpages.severity.WARNING, Label.AF_BonusThershold_Mismatch+ ' '+ setofnonthreshold_country ));
                 }
             }
@@ -247,10 +248,12 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
       annualBonusQualQuantPerCalc(Bonus_SubResult_List);
          
         }
+        /*
         if(AF_Pilot_Model)
         {
             //annualBonusPilotModel(agency_id,Brand_id,current_year);
         } 
+        */
     }
  
     /*********************************************************************************
@@ -814,7 +817,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
                       
                            count = countryBMMap.get(countryDigital);
                            for(string s :EntityAmtMap.keyset()){
-                                if(s.contains('::D')){
+                                if(s.contains(AF_Constants.AF_Digital_Delim)){
                                     Amt = Amt+EntityAmtMap.get(s);
                                 }
                            }
@@ -848,7 +851,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
                         count = countryBMMap.get(countryAdap);
                          for(string s :EntityAmtMap.keyset()){
                            System.debug('s...@@@@'+s);
-                                if(s.contains('::A')){
+                                if(s.contains(AF_Constants.AF_Adaption_Delim)){
                                     System.debug('Inside AAAA');
                                     System.debug('Amt...22222'+Amt);
                                      System.debug('Amt...EntityAmtMap.get(s)'+EntityAmtMap.get(s));

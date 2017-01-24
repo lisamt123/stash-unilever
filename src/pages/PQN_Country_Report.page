@@ -1,10 +1,10 @@
-<apex:page controller="PQN_Country_Report" showHeader="false" readOnly="true">
+<apex:page controller="PQN_Country_Report" showHeader="false" contentType="{!If($CurrentPage.parameters.export=='yes' ,'application/vnd.ms-excel#Global_Country_Report.xls','')}" readOnly="true">
 <div style="padding-left:200px;">
-    <apex:chart height="400" width="1000" data="{!xChartdata}">
+   <!-- <apex:chart height="400" width="1000" data="{!xChartdata}">
        <apex:axis type="Numeric" position="left" fields="chartdata" title="Record Count"/>
         <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Region"/>
         <apex:barSeries orientation="vertical" axis="left" xField="chartXAxis" yField="chartdata"/>
-    </apex:chart>
+    </apex:chart>-->
     </div>
 <style>
         
@@ -41,7 +41,7 @@
             /* fallback */
         }
         tbody td, thead th {
-            width: 6%!important;
+            width: 10%!important;
             float: left!important;
             white-space: normal!important;
             
@@ -58,10 +58,15 @@
 
 <body>
     <div id="wrapper">
-        <c:PQN_Navigation navigationName="Reports" subNavName="countryreport"/>
+        <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+            <c:PQN_Navigation navigationName="Reports" subNavName="countryreport"/>
+        </apex:outputPanel>
         <div id="page-wrapper">
             <div class="container-fluid">
  <apex:form >
+    <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+        <a class="btn" href="./PQN_Country_Report?export=yes" target="_blank" role="button">Export Report</a>
+    </apex:outputPanel>
    <apex:pageBlock >
      <apex:pageBlockTable value="{!mapofcountry}" var="cntry">
      <apex:column headerValue="Country" value="{!cntry}"/>
