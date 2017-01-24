@@ -208,6 +208,42 @@ Throws : N/A
             promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;
             approverIdsLst.add(promoLst[0].createdbyid) ;
             THViolate = promoLst[0].UL_ThresholdViolated__c ;
+			
+			
+			
+			if(Mode == 'Submitted for Approval'){
+                Map<String, Boolean> tacticMandatory = new Map<String, Boolean>();
+                for(ACCL__Promotion_Template_Tactic_Template__c promTactTempJunc : [SELECT ACCL__Promotion_Template__c, ACCL__Tactic_Template__c, isMandatory__c FROM ACCL__Promotion_Template_Tactic_Template__c WHERE ACCL__Promotion_Template__c = :promoLst[0].ACCL__Promotion_Template__c LIMIT 1]){
+                    tacticMandatory.put(promTactTempJunc.ACCL__Promotion_Template__c+'-'+promTactTempJunc.ACCL__Tactic_Template__c, promTactTempJunc.isMandatory__c);
+                }
+                
+                for(ACCL__Tactic__c tctic : [SELECT ACCL__Tactic_Template__c FROM ACCL__Tactic__c WHERE ACCL__Promotion__c = :promoId]){
+                    if(tacticMandatory.containsKey(promoLst[0].ACCL__Promotion_Template__c+'-'+tctic.ACCL__Tactic_Template__c) && !tacticMandatory.get(promoLst[0].ACCL__Promotion_Template__c+'-'+tctic.ACCL__Tactic_Template__c)){
+                        system.debug('Throw Error');
+                        throw new UL_CustomException('Promotion with not isMandatory tactic is found');
+                    }
+                }
+            }
+            
+            
+            // for UKSO or Ireland So
+            if((promoLst[0].ACCL__Sales_Org__c == UL_Utility.UK_SO) || (promoLst[0].ACCL__Sales_Org__c == UL_Utility.Ireland_SO)){
+                
+                
+                if(Mode == 'Submitted for Approval'){                    
+                    promoLst[0].UL_Current_Status__c = 'Finalised';
+                }
+                else{
+                    promoLst[0].UL_Current_Status__c = Mode;
+                    
+                }
+            
+            update promoLst;
+                
+            }
+            if ((promoLst[0].ACCL__Sales_Org__c == UL_Utility.SalesOrg.AR01.Name()) || (promoLst[0].ACCL__Sales_Org__c == UL_Utility.SalesOrg.CL01.Name()) ||
+            (promoLst[0].ACCL__Sales_Org__c == UL_Utility.SalesOrg.CL03.Name())){
+			
             
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.toUpperCase())){
                 
@@ -240,6 +276,7 @@ Throws : N/A
                 UL_PromotionWorkflowService.rejectWorkflow(promoId,promoLst,false);
             }       
         }
+		}
         catch(Exception ex){
             throw ex ;
           UL_Utility.logError(ex, UserInfo.getUserId());
@@ -307,7 +344,7 @@ global static EARUI getEARightsBOPromotion_SoCo(String txId, String objectId){
     
     
     
-    /*******************************************************************
+     /*******************************************************************
 Purpose:   
 Version 1.0
 Parameters: Transaction Id, Promotion Id
@@ -338,12 +375,12 @@ Throws : N/A
                     promoObject.visible = false;
                     earBOPromotion.add(promoObject);
                     
-                    
                     EARUI DrillDown_Lift_Field = new EARUI();
                     DrillDown_Lift_Field.Name = 'TacticLift';
                     DrillDown_Lift_Field.Type = 'Attribute';
                     DrillDown_Lift_Field.visible = false;  
                     earBOPromotion.add(DrillDown_Lift_Field);
+                    
                 //}
                 
             }
@@ -427,9 +464,10 @@ Throws : N/A
         }catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
         } 
-        
+        system.debug('bansitest..'+earBOPromotion);
         return earBOPromotion; 
     }        
+          
     
     /*@RemoteAction
 global static List<EARUI> getEARightsLOTactic(String txId, String objectId){
