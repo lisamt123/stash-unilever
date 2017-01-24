@@ -1,0 +1,14 @@
+<apex:page standardController="PQN_DC_Volumes__c" showHeader="false" tabStyle="PQN_DC_Volumes__c">
+<body>
+    <div id="wrapper">
+        <c:PQN_Navigation navigationName="dc_volumes"/>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <apex:detail relatedList="false" inlineEdit="false" />
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+</body>
+</apex:page>

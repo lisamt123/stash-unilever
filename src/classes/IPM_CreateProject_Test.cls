@@ -53,4 +53,29 @@ private class IPM_CreateProject_Test {
         System.assert(projId != null ,'Project have not been created');
         Test.stopTest();   
     }  
+    
+    /***************************************************
+    * @Description: Test invoke catch blocks of the class
+    * **************************************************/
+    static testMethod void testCreateProjectCatchBlock(){
+        Test.startTest();
+        Id bosscardId;
+        // This code runs as the readonly user
+        Profile p = [SELECT Id FROM Profile WHERE Name='Read Only']; 
+        User u = new User(  Alias = 'standt', Email='standarduser@testorg.com',
+                        EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
+                        LocaleSidKey='en_US', ProfileId = p.Id,
+                        TimeZoneSidKey='America/Los_Angeles', UserName='stduser@testorg.com');
+        insert u;
+        List<User>userList=[SELECT id,LastName FROM user WHERE id=:u.id LIMIT 1];
+        System.AssertEquals(userList[0].LastName, u.LastName,'Error in User creation');//positive test
+        System.RunAs(u){
+            new IPM_CreateProject();
+            IPM_CreateProject.CreateProjectId();
+            IPM_CreateProject.createBosscard();
+            bosscardId = IPM_CreateProject.createBosscard(); 
+             System.assert(bosscardId !=null,'Bosscard not inserted');       
+        }     
+        Test.stopTest();   
+    }
 }

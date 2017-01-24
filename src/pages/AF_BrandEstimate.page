@@ -14,7 +14,7 @@
    <!-- Bootstrap_css File End-->
    <SCRIPT language="javascript">
       function bonusThresholdCheck(){
-      	bonusThresholdfunction();
+        bonusThresholdfunction();
       }
    </SCRIPT>
    <!-- Common_Style File Start -->
@@ -36,6 +36,7 @@
             <apex:image url="{!$Resource.header_new}" styleClass="headimg"/>
          </div>
       </div>
+      <apex:outputPanel id="totaltabspanel">
       <apex:tabPanel id="MainPanel" tabClass="activeTab" inactiveTabClass="inactiveTab" selectedTab="BrandEstimate" >
          <apex:tab label="Brand Estimates" name="BrandEstimate" id="BrandEstimate" >
             <apex:PageMessages id="pm2" />
@@ -100,7 +101,7 @@
                      <td>
                         <div class="dispBlock">
                            <span class="marginL-9P">
-                              <apex:commandButton action="{!Save}" value="Save" rendered="{!AND(IsLocked,IsCMCO_Fin_User)}" styleClass="submit_btn" reRender="pm2" status="status"/>
+                              <apex:commandButton action="{!Save}" value="Save" rendered="{!AND(IsLocked,OR(IsCMCO_Fin_User,Issuper_User))}" styleClass="submit_btn" reRender="pm2" status="status"/>
                            </span>
                         </div>
                      </td>
@@ -125,58 +126,161 @@
             </apex:pageBlock>
          </apex:tab>
          <apex:tab label="Bonus Thresholds" name="BonusThresholds" id="Bonus_Thresholds"  oncomplete="bonusThresholdCheck();" title="Please select the box if your brand is part of the pilot remuneration model" rendered="{!!NoBonusCheck}">
-            <apex:PageMessages id="pm3" />
-            <apex:outputPanel id="pilotmainpage" >
-               <div style="" class="lable_message">
-                  <apex:outputtext value="{!$Label.AF_Pilot_Model_Instructions}" id="pageinstructions2"/>
-                  <br/>
-                  <apex:inputcheckbox value="{!ispilotModel}" styleClass="checkbox_pilotmodel">
-                     <apex:actionSupport action="{!checkpilot}" event="onclick" reRender="pm3,pilotmainpage,out1,Remuneration" disabled="{!Not(IsCMCO_Fin_User)}"/>
-                  </apex:inputcheckbox>
-                  <apex:outputLabel styleClass="pilotModelLable">{!$Label.AF_Pilot_Model_Bonus}</apex:outputLabel>
-                  <br/>
-                  <br/>
-                  <apex:outputtext value="{!$Label.AF_UBFLB_Type_of_Fees}" id="pageinstructions3" styleClass="toggle_span pilotModelLabletxt" />
-                  <br/>
-                  <apex:outputPanel id="Remuneration" rendered="{!showpilot}">
-                     <apex:inputCheckbox value="{!R_Traditional}" id="R_Traditional" style="font-size:16px;"/>
-                     <span style="font-size:16px;font-weight:bold;">Traditional</span>
-                     <apex:inputCheckbox value="{!R_Digital}" id="R_Digital" style="font-size:16px;" />
-                     <span style="font-size:16px;font-weight:bold;">Digital</span>
-                     <apex:commandButton action="{!SaveBonusRemeneration}"  styleClass="submit_btn_basefee2" value="Save" reRender="pm3,Remuneration" disabled="{!Not(IsCMCO_Fin_User)}" status="status"/>
-                  </apex:outputPanel>
+             <apex:PageMessages id="pm3" /> <br/>
+            <Apex:outputPanel id="checkboxpanel">
+             <div style="" class="lable_message">
+                <apex:inputcheckbox value="{!ispilotModel}" styleClass="checkbox_pilotmodel" rendered="{!OR(Issuper_User,AND(IsCMCO_Fin_User,BrandEstimateObj.AF_Pilot_Model__c))}" disabled="{!OR(IsCMCO_Fin_User,BrandEstimateObj.AF_Disable_Exceptionaltargets__c)}">
+                    <apex:actionSupport action="{!checkpilot}" event="onclick" reRender="pm3,pilotModel,GlobalCountryModel,checkboxpanel,NoBonusTab,totaltabspanel" />
+                </apex:inputcheckbox>
+                <apex:outputLabel styleClass="pilotModelLable" rendered="{!OR(Issuper_User,AND(IsCMCO_Fin_User,BrandEstimateObj.AF_Pilot_Model__c))}">{!$Label.AF_Pilot_Model_Bonus} &nbsp; &nbsp;</apex:outputLabel>
+                
+                <apex:inputcheckbox value="{!isGlobalModel}" styleClass="checkbox_pilotmodel" rendered="{!!IF(ispilotModel, True,False)}" disabled="{!BrandEstimateObj.AF_Disable_Globalcheckbox__c}">
+                    <apex:actionSupport action="{!checkglobal}" event="onclick" reRender="pm3,pilotModel,GlobalCountryModel,checkboxpanel,totaltabspanel" />
+                </apex:inputcheckbox>
+                <apex:outputLabel styleClass="pilotModelLable" rendered="{!!IF(ispilotModel, True,False)}">Global Targets &nbsp; &nbsp;</apex:outputLabel>
+                
+                <apex:inputcheckbox value="{!isCountryModel}" styleClass="checkbox_pilotmodel" rendered="{!!IF(ispilotModel, True,False)}" disabled="{!BrandEstimateObj.AF_Disable_Contrycheckbox__c}">
+                    <apex:actionSupport action="{!checkcountry}" event="onclick" reRender="pm3,pilotModel,GlobalCountryModel,checkboxpanel,totaltabspanel" />
+                </apex:inputcheckbox>
+                <apex:outputLabel styleClass="pilotModelLable" rendered="{!!IF(ispilotModel, True,False)}">Country Targets</apex:outputLabel>
+                 
+                 
                </div>
-               <apex:outputPanel rendered="{!!ispilotModel}" id="out1">
-                  <apex:pageblock id="pb1">
+                <br/> <br/>
+               <apex:outputtext value="{!$Label.AF_UBFLB_Type_of_Fees}" id="pageinstructions3" styleClass="toggle_span pilotModelLabletxt" rendered="{!ispilotModel}"/>
+                  <br/>
+           </Apex:outputPanel> 
+           
+           
+            
+             <apex:outputPanel id="pilotModel" >
+                 <apex:outputPanel rendered="{!isPilotModel}">
+                 <apex:pageblock id="pb2">
+                     
+                     <apex:pageBlockTable value="{!BonusThresholds}" var="BTPilot" id="pbtPilot" styleClass="tablegrid">
+
+                        <apex:column headerValue="Unilever Entity"  >
+                         
+                           <apex:outputLabel rendered="{!BTPilot.bonusthresholds.Id != Null}" value="{!countryIDMap[BTPilot.bonusthresholds.AF_country__c]}"></apex:outputLabel>
+                      
+                           <apex:selectList id="Countryname" value="{!BTPilot.bonusthresholds.AF_country__c}" styleClass="custom-link label_tooltip" title="{!$Label.AF_UBFLB_Thresholds}"  size="1" rendered="{!BTPilot.bonusthresholds.Id == Null}">
+                              <apex:selectOptions value="{!CountrynamesPilot}"/>
+                           </apex:selectList>
+                         
+                        </apex:Column>
+                        
+                        <apex:column headerValue="Bonus Measure">
+                            <apex:inputText id="bonusmeasure" value="{!BTPilot.bonusthresholds.Bonus_Measure__c}" style="width:190px" rendered="{!BTPilot.bonusthresholds.ID == Null}" />
+                           <apex:outputText id="bonusmeasure1" value="{!BTPilot.bonusthresholds.Bonus_Measure__c}"   rendered="{!BTPilot.bonusthresholds.ID != Null}"/>
+                     
+                         </apex:column>
+                         
+                        <apex:column headerValue="Bonus Target">
+                        <apex:inputText id="bonustarget" value="{!BTPilot.bonusthresholds.AF_Bonus_Target__c}" style="width:190px"  rendered="{!BTPilot.bonusthresholds.ID == Null}"/>
+                          <apex:outputText id="bonustarget1" value="{!BTPilot.bonusthresholds.AF_Bonus_Target__c}"   rendered="{!BTPilot.bonusthresholds.ID != Null}"/>
+                     
+                        </apex:column>
+                        
+                        <apex:column headerValue="Minimum">
+                           <apex:inputText id="minimum" value="{!BTPilot.bonusthresholds.AF_Minimum__c}"  styleClass="two-digits" rendered="{!BTPilot.bonusthresholds.ID == Null}" />
+                             <apex:outputText id="minimum1" value="{!BTPilot.bonusthresholds.AF_Minimum__c}"   rendered="{!BTPilot.bonusthresholds.ID != Null}"/>
+                     
+                        </apex:column>
+                        
+                        <apex:column headerValue="Stretching">
+                           <apex:inputText id="Stretch" value="{!BTPilot.bonusthresholds.AF_Stretching__c}"  styleClass="two-digits"  rendered="{!BTPilot.bonusthresholds.ID == Null}"/>
+                        <apex:outputText id="Stretch1" value="{!BTPilot.bonusthresholds.AF_Stretching__c}"   rendered="{!BTPilot.bonusthresholds.ID != Null}"/>
+                     
+                        </apex:column>
+                        
+                        <apex:column headerValue="Outstanding">
+                           <apex:inputText id="Outstanding" value="{!BTPilot.bonusthresholds.AF_Outstanding__c}"  styleClass="two-digits" rendered="{!BTPilot.bonusthresholds.ID == Null}"/>
+                         <apex:outputText id="Outstanding1" value="{!BTPilot.bonusthresholds.AF_Outstanding__c}"   rendered="{!BTPilot.bonusthresholds.ID != Null}"/>
+                     
+                        </apex:column>
+                        <!--Comment section for pilot model -->
+                        
+                        <apex:column headerValue="Comment" rendered="{!ispilotModel}">
+                          <apex:inputtextarea id="CommentText"  styleClass="bonusinputBox" value="{!BTPilot.bonusthresholds.AF_Comment__c }" rendered="{!BTPilot.bonusthresholds.ID == Null}"/>
+                          <apex:outputText value="{!BTPilot.bonusthresholds.AF_Comment__c }" rendered="{!BTPilot.bonusthresholds.ID != Null}"/>
+                         </apex:column>
+                         <apex:column >
+                           <apex:outputPanel rendered="{!!hideDeleteLink}" >
+                              <apex:commandLink action="{!delCounrtyRecord}" rerender="pb2,Remuneration,pm3" rendered="{!IF(AND(OR(Issuper_User,IsCMCO_Fin_User),BTPilot.bonusthresholds.AF_Bonus_Threshold__r.AF_of_Bonus_Result__c==0),'true','false')}" oncomplete="bonusThresholdCheck();" status="status">
+                                 Delete
+                                 <apex:param name="DelCountry" value="{!BTPilot.bonusthresholds.Id}" assignTo="{!delCountryId}"/>
+                                 <apex:param name="PosDelete" value="{!BTPilot.position}" assignTo="{!posDelete}"/>
+                              </apex:commandLink>
+                           </apex:outputPanel>
+                        </apex:column>
+                     </apex:pageBlockTable>
+                  </apex:pageblock>
+                   <apex:outputPanel styleClass="floatR">
+                     
+                     <apex:commandButton value="Add" action="{!createBonusThreshold}" rendered="{!OR(IsCMCO_Fin_User,Issuper_User)}" styleClass="submit_btn_basefee1 floatL" reRender="pm3,pbt,pilotModel"/>
+                     <apex:commandButton value="Save" rendered="{!OR(IsCMCO_Fin_User,Issuper_User)}" styleClass="submit_btn_basefee2 floatL" reRender="pm3,pbt,pilotModel" action="{!SaveBonusThresholds}" />
+                   </apex:outputPanel> 
+             
+             </apex:outputPanel>
+            </apex:outputPanel> 
+             <apex:outputPanel id="GlobalCountryModel">
+             <apex:outputPanel rendered="{!IF(OR(isGlobalModel,isCountryModel),True,False)}">
+             <apex:pageblock id="pb1">
                      <apex:pageBlockTable value="{!BonusThresholds}" var="BT" id="pbt" styleClass="tablegrid">
-                        <apex:column headerValue="Country" style="" rendered="{!not(ispilotModel)}">
-                           <apex:selectList id="Countryname" value="{!BT.bonusthresholds.AF_country__c}" styleClass="custom-link label_tooltip" title="{!$Label.AF_UBFLB_Thresholds}"  size="1" rendered="{!not(ispilotModel)}">
+                        <apex:column headerValue="Country" style="">
+                        
+                           
+                          <apex:outputLabel rendered="{!OR(BT.bonusthresholds.AF_country__c != Null,isGlobalModel)}" value="{!countryIDMap[BT.bonusthresholds.AF_country__c]}"></apex:outputLabel>
+                      
+                           <apex:selectList id="Countryname" value="{!BT.bonusthresholds.AF_country__c}" styleClass="custom-link label_tooltip" title="{!$Label.AF_UBFLB_Thresholds}"  size="1" rendered="{!AND(BT.bonusthresholds.AF_country__c == Null,NOT(isGlobalModel))}">
                               <apex:selectOptions value="{!Countrynames}"/>
                            </apex:selectList>
+                             
+                           
+                         
                         </apex:Column>
                         <apex:column headerValue="Bonus Measure">
-                           <apex:selectList id="Measure" value="{!BT.bonusthresholds.Bonus_Measure__c}" size="1">
-                              <apex:selectOptions value="{!measure_criteria}"/>
-                           </apex:selectList>
-                        </apex:column>
+                        
+        <apex:outputLabel rendered="{! IF(OR(BT.bonusthresholds.Bonus_Measure__c == 'Brand Attribute',BT.bonusthresholds.Bonus_Measure__c == 'Communication', BT.bonusthresholds.Id != Null),True,False)}">{!BT.bonusthresholds.Bonus_Measure__c}</apex:outputLabel>
+   <apex:outputLabel rendered="{!IF(AND(BT.bonusthresholds.Bonus_Measure__c != 'Brand Attribute', BT.bonusthresholds.Bonus_Measure__c != 'Communication',BT.bonusthresholds.Id == Null),True,False)}" Value="Business Measure" />                    
+     </apex:column>
+      <apex:column headerValue="Bonus Target">
+    
+
+<apex:outputLabel rendered="{!IF(BT.bonusthresholds.Bonus_Measure__c != 'Business Measure',True,False)}">{!BT.bonusthresholds.AF_Bonus_Target__c}</apex:outputLabel>
+
+<apex:outputLabel rendered="{!IF(AND(BT.bonusthresholds.Bonus_Measure__c == 'Business Measure',BT.bonusthresholds.ID !=Null),True,False)}">{!BT.bonusthresholds.AF_Bonus_Target__c}</apex:outputLabel>
+     
+    
+     <apex:selectList id="Target" value="{!BT.bonusthresholds.AF_Bonus_Target__c}" size="1" rendered="{!IF(AND(BT.bonusthresholds.Bonus_Measure__c == 'Business Measure',BT.bonusthresholds.ID ==Null),True,False)}">
+      <apex:selectOptions value="{!Target}"/>
+        </apex:selectList>
+     
+     </apex:column>
                         <apex:column headerValue="Minimum">
-                           <apex:inputText id="minimum" value="{!BT.bonusthresholds.AF_Minimum__c}"  styleClass="two-digits"/>
+                           <apex:inputText id="minimum" value="{!BT.bonusthresholds.AF_Minimum__c}"  styleClass="two-digits" rendered="{!AND(BT.bonusthresholds.ID == Null,BT.bonusthresholds.Bonus_Measure__c != 'Brand Attribute',BT.bonusthresholds.Bonus_Measure__c != 'Communication')}"/>
+                              <apex:outputText id="minimum1" value="{!BT.bonusthresholds.AF_Minimum__c}"  styleClass="two-digits" rendered="{!OR(BT.bonusthresholds.ID != Null,BT.bonusthresholds.Bonus_Measure__c == 'Brand Attribute',BT.bonusthresholds.Bonus_Measure__c == 'Communication')}"/>
+                     
                         </apex:column>
                         <apex:column headerValue="Stretching">
-                           <apex:inputText id="Stretch" value="{!BT.bonusthresholds.AF_Stretching__c}"  styleClass="two-digits"/>
+                           <apex:inputText id="Stretch" value="{!BT.bonusthresholds.AF_Stretching__c}"  styleClass="two-digits" rendered="{!AND(BT.bonusthresholds.ID == Null,BT.bonusthresholds.Bonus_Measure__c != 'Brand Attribute',BT.bonusthresholds.Bonus_Measure__c != 'Communication')}"/>
+                           <apex:outputtext id="Stretch1" value="{!BT.bonusthresholds.AF_Stretching__c}"  styleClass="two-digits" rendered="{!OR(BT.bonusthresholds.ID != Null,BT.bonusthresholds.Bonus_Measure__c == 'Brand Attribute',BT.bonusthresholds.Bonus_Measure__c == 'Communication')}"/>
+  
                         </apex:column>
                         <apex:column headerValue="Outstanding">
-                           <apex:inputText id="Outstanding" value="{!BT.bonusthresholds.AF_Outstanding__c}"  styleClass="two-digits"/>
+                           <apex:inputText id="Outstanding" value="{!BT.bonusthresholds.AF_Outstanding__c}"  styleClass="two-digits" rendered="{!AND(BT.bonusthresholds.ID == Null,BT.bonusthresholds.Bonus_Measure__c != 'Brand Attribute',BT.bonusthresholds.Bonus_Measure__c != 'Communication')}"/>
+                           <apex:outputtext id="Outstanding1" value="{!BT.bonusthresholds.AF_Outstanding__c}"  styleClass="two-digits" rendered="{!OR(BT.bonusthresholds.ID != Null,BT.bonusthresholds.Bonus_Measure__c == 'Brand Attribute',BT.bonusthresholds.Bonus_Measure__c == 'Communication')}"/>
+                     
                         </apex:column>
-                        <apex:column headerValue="Digital">
+                      <!--  <apex:column headerValue="Digital">
                            <apex:inputcheckbox id="Digital" value="{!BT.bonusthresholds.AF_Digital__c}"/>
                         </apex:column>
                         <apex:column headerValue="Traditional">
                            <apex:inputcheckbox id="Traditional" value="{!BT.bonusthresholds.AF_Traditional__c}"/>
-                        </apex:column>
+                        </apex:column> -->
                         <apex:column >
                            <apex:outputPanel rendered="{!!hideDeleteLink}" >
-                              <apex:commandLink action="{!delCounrtyRecord}" rerender="pm3,pbt" rendered="{!IF(AND(IsCMCO_Fin_User,BT.bonusthresholds.AF_Bonus_Threshold__r.AF_of_Bonus_Result__c==0),'true','false')}" oncomplete="bonusThresholdCheck();" status="status">
+                              <apex:commandLink action="{!delCounrtyRecord}" rerender="pm3,pbt" rendered="{!IF(AND(OR(IsCMCO_Fin_User,Issuper_User),BT.bonusthresholds.AF_Bonus_Threshold__r.AF_of_Bonus_Result__c==0,BT.bonusthresholds.Bonus_Measure__c != 'Brand Attribute',BT.bonusthresholds.Bonus_Measure__c != 'Communication'),'true','false')}" oncomplete="bonusThresholdCheck();" status="status">
                                  Delete
                                  <apex:param name="DelCountry" value="{!BT.bonusthresholds.Id}" assignTo="{!delCountryId}"/>
                                  <apex:param name="PosDelete" value="{!BT.position}" assignTo="{!posDelete}"/>
@@ -186,16 +290,22 @@
                      </apex:pageBlockTable>
                   </apex:pageblock>
                   <apex:outputPanel rendered="{!!hideDeleteLink}" styleClass="floatR">
-                     <apex:commandButton value="Add" action="{!createBonusThreshold}" rendered="{!IsCMCO_Fin_User}" styleClass="submit_btn_basefee1 floatL" reRender="pbt"/>
-                     <apex:commandButton value="Save" action="{!SaveBonusThresholds}" rendered="{!IsCMCO_Fin_User}" styleClass="submit_btn_basefee2 floatL" reRender="pm3,pilotmainpage" status="status" />
+                     <apex:commandButton value="Add" action="{!createBonusThreshold}" rendered="{!OR(Issuper_User,IsCMCO_Fin_User)}" styleClass="submit_btn_basefee1 floatL" reRender="pbt,GlobalCountryModel"/>
+                     <apex:commandButton value="Save" action="{!SaveBonusThresholds}" rendered="{!OR(Issuper_User,IsCMCO_Fin_User)}" styleClass="submit_btn_basefee2 floatL" reRender="pm3,pilotmainpage,MainForm,pm4,GlobalCountryModel" status="status" />
                   </apex:outputPanel>
-               </apex:outputPanel>
-            </apex:outputPanel>
+             </apex:outputPanel>
+              </apex:outputPanel>
+
+           
+
          </apex:tab>
-         <apex:tab label="No Bonus" name="NoBonus" id="NoBonusTab" title="Please select this option if this Brand has no Bonus" rendered="{!!ReadyforPO}">
-            <apex:PageMessages id="pm4" />
+
+         <!--<apex:tab label="No Bonus" name="NoBonus" id="NoBonusTab" title="Please select this option if this Brand has no Bonus" rendered="{!!ReadyforPO}">-->
+         <apex:tab label="No Bonus" name="NoBonus" id="NoBonusTab" title="Please select this option if this Brand has no Bonus" rendered="{!AND(!isPilotModel,!isGlobalModel,!isCountryModel)}">
+            <apex:pageMessage summary="{!$Label.AF_NoBonus_Value}" severity="Warning" strength="3" rendered="{!!NoBonusCheck}"/>
+              <apex:PageMessages id="pm4" />
             <apex:outputpanel id="NoBonusMessage">
-               <apex:outputtext value="{!$Label.AF_No_Bonus}" id="NoBonusinstructions" styleClass="no_Bonusinstructions" rendered="{!!NoBonusCheck}" />
+              <!-- <apex:outputtext value="{!$Label.AF_No_Bonus}" id="NoBonusinstructions" styleClass="no_Bonusinstructions" rendered="{!!NoBonusCheck}" /> -->
                <apex:outputtext value="{!$Label.AF_Yes_Bonus}" id="NoBonusinstructions1" styleClass="yes_Bonusinstructions" rendered="{!NoBonusCheck}"/>
             </apex:outputpanel>
             <br/>
@@ -204,7 +314,9 @@
             </apex:inputcheckbox>
             <apex:outputLabel styleClass="noBonusOutlable">{!$Label.AF_NoBonus}</apex:outputLabel>
          </apex:tab>
+
       </apex:tabPanel>
+      </apex:outputPanel>
       <apex:actionFunction name="clearapexmessage" action="{!clearErrorMsg}" rerender="BrandEstimate,Bonus_Thresholds"/>
       <apex:actionFunction name="bonusThresholdfunction" action="{!bonusThresholdValidation}" rerender="pm3,pilotmainpage"> 
       </apex:actionFunction>

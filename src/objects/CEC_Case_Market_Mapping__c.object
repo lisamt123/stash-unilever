@@ -67,6 +67,30 @@
         <type>Checkbox</type>
     </fields>
 	<fields>
+        <fullName>Brand_Ambassador_Brands__c</fullName>
+        <description>CEC Brand Ambassador Brands is used to enter the status for advisor</description>
+        <externalId>false</externalId>
+        <label>Brand Ambassador Brands</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Business_Hours__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>CEC Business Hours: Lookup to Business Hours</description>
+        <externalId>false</externalId>
+        <label>Business Hours</label>
+        <referenceTo>BusinessHours</referenceTo>
+        <relationshipLabel>Case Market Mappings</relationshipLabel>
+        <relationshipName>Case_Market_Mappings</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+	<fields>
         <fullName>Consumer_Phone_Search_Digits__c</fullName>
         <description>CEC: For SMS Cases Search will be performed on the last N digitis</description>
         <externalId>false</externalId>
@@ -248,7 +272,7 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    <fields>
+     <fields>
         <fullName>Language__c</fullName>
         <description>CEC: contains the Language Name which will be used in webtocase scenario by integration team</description>
         <externalId>false</externalId>
@@ -260,6 +284,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Bulgarian</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chinese</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -311,6 +339,14 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Japanese</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Korean</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Moldavian</fullName>
                 <default>false</default>
             </picklistValues>
@@ -346,8 +382,13 @@
                 <fullName>Swedish</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>false</sorted>
+            <picklistValues>
+                <fullName>Turkish</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -414,6 +455,21 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>TimeZone_Difference_GMT__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If time zone is GMT+5.30 then enter 5.50
+else if GMT-7 then enter -7
+else if GMT+13.45 then enter 13.75
+esle if GMT-9.30 then enter -9.50</inlineHelpText>
+        <label>TimeZone Difference GMT</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <label>Case Market Mapping</label>

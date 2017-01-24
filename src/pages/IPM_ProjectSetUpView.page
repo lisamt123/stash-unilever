@@ -3,7 +3,7 @@
 *@Description:This is project initiation page, where user should enter all project details. User will get 5 tabs to complete the wizard.
 *@Author: Cognizant.
 *@Created Date: 22/01/2015 
-*@Copyright Â© 2015  Unilever  
+*@Copyright © 2015  Unilever  
 *************************************************************************************************************************************************************
 -->
 <apex:page standardController="IPM_Project__c" extensions="IPM_ProjectSetUpController,IPM_GetHelpDoc" sidebar="false" standardStylesheets="true" cache="false" docType="html-5.0">    
@@ -115,9 +115,9 @@
                                                     <apex:outputPanel layout="inline" styleClass="newProjinfo" rendered="{!isEditable}" >{!$Label.IPM_ESSENTIAL_INFFORMATION}</apex:outputPanel>
                                                 </div>
                                             </div>
-                                            <apex:outputPanel layout="block" id="Container5">
+                                            <apex:outputPanel layout="block" id="Container5" rendered="{!!OR(ISBLANK(project.Id),project.IPM_IsSaved__c,NOT(isEditable))}" >
                                                 <apex:outputPanel styleClass="oprtnTopAlertContainer" layout="block" >
-                                                    <apex:outputLabel styleClass="oprtnTopAlertLabel" value="{!$Label.IPM_ProjectTypeAndCompany_ReadOnly}"  />
+                                                    <apex:outputText styleClass="oprtnTopAlertLabel" value="{!$Label.IPM_ProjectTypeAndCompany_ReadOnly}" escape="false"/>
                                                 </apex:outputPanel>
                                             </apex:outputPanel>
                                             <apex:outputPanel id="formMessage" styleClass="proSuccessMsg" layout="block" >
@@ -223,7 +223,7 @@
                                                             <div class="row">
                                                                 <div class="col-sm-6 proMarginbottom">
                                                                     <apex:outputPanel id="CompanyCardPanel" styleClass="inputField">
-                                                                        <div class="bsFieldLabel"><apex:outputlabel value="Company" /><span class="mandatorycolor"> *</span></div>
+                                                                        <div class="bsFieldLabel"><apex:outputlabel value="{!$Label.IPM_COMPANY}" /><span class="mandatorycolor"> *</span></div>
                                                                         <label class="ipmSelect">
                                                                             <apex:actionRegion >
                                                                                 <apex:outputPanel >
@@ -237,7 +237,7 @@
                                                                         </label>
                                                                         <apex:outputPanel layout="block" id="CompanyMsg">
                                                                         <!-- To display below outputText when company card is empty while saving project   -->
-                                                                            <apex:outputText value="{!$Label.IPM_Company_Card_Mandatory}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Company_Card__c'))}" styleClass="brandErrMsg"/>
+                                                                            <apex:outputText value="{!$Label.IPM_Company_Card_Mandatory}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Company_Card__c'))}" styleClass="brandErrMsg" escape="false"/>
                                                                         </apex:outputPanel>
                                                                     </apex:outputPanel>      
                                                                 </div>
@@ -416,9 +416,9 @@
                                                                                 <a class="icoButton info smalllinfo" title="{!$Label.IPM_FAST_TRACK_WHITE_SPACE}">i</a>
                                                                             </span>
                                                                                 <apex:outputPanel id="fastTrackPanel" styleClass="fastTrackBox"  >
-                                                                                    <!-- To display below outputPanel when fasttract is applicable    -->
+                                                                                    <!-- To display below outputPanel when fasttrack is applicable    -->
                                                                                     <apex:outputPanel rendered="{!projectMetadata.IPM_FastTrackApplicable__c}">
-                                                                            <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" />
+                                                                                    <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!!$Permission.EditableFastTrack}"/>
                                                                                     <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
                                                                                     <apex:actionSupport event="onchange" reRender="FastTrackHelpTextpanel"  />
                                                                                     </apex:outputPanel>

@@ -57,8 +57,18 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.ICB_Cause__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.ICB_Fail__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.ICB_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
    <fieldPermissions>
@@ -313,10 +323,6 @@
 	<userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
-        <name>CreateCustomizeDashboards</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>CreateCustomizeReports</name>
     </userPermissions>
     <userPermissions>
@@ -371,5 +377,12 @@
         <enabled>true</enabled>
         <name>ViewPublicReports</name>
     </userPermissions>
-    
+	<userPermissions>
+		<enabled>true</enabled>
+		<name>ManageDynamicDashboards</name>
+	</userPermissions>
+	<userPermissions>
+        <enabled>true</enabled>
+        <name>CreateCustomizeDashboards</name>
+    </userPermissions> 
 </PermissionSet>

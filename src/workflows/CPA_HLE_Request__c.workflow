@@ -103,10 +103,6 @@
             <field>eml_VDM_group_email__c</field>
             <type>email</type>
         </recipients>
-        <recipients>
-            <field>lkp_Owner__c</field>
-            <type>userLookup</type>
-        </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_HLE_Request_SLA1</template>
     </alerts>
@@ -140,10 +136,6 @@
         <recipients>
             <field>eml_VDM_group_email__c</field>
             <type>email</type>
-        </recipients>
-        <recipients>
-            <field>lkp_Owner__c</field>
-            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_HLE_Request_SLA2</template>
@@ -344,7 +336,7 @@
     <fieldUpdates>
         <fullName>CPA_HLE_request_SMT_group_email</fullName>
         <field>eml_SMT_group_email__c</field>
-        <formula>&quot;Vivek.Kalidoss@unilever.com&quot;</formula>
+        <formula>&quot;ApplicationSupplier.PM@unilever.com&quot;</formula>
         <name>CPA HLE request SMT group email</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -353,7 +345,7 @@
     <fieldUpdates>
         <fullName>CPA_HLE_request_VDM_group_email</fullName>
         <field>eml_VDM_group_email__c</field>
-        <formula>&quot;Sameer.Vaidya@unilever.com&quot;</formula>
+        <formula>&quot;Demand.Unilever@accenture.com&quot;</formula>
         <name>CPA HLE request VDM group email</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

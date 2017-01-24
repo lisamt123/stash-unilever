@@ -7,7 +7,7 @@ var jq = jQuery.noConflict();
 var unsaved = false;
 jq.browser = {};
 jq(document).ready(function() {
-    changeCurrentStatus(IPMApp.gateStatus);
+    changeCurrentStatus(IPMApp.gateStatus,IPMApp.pdlstatus);
     gkmComplete();
   postponed();
   apprwithedits();
@@ -153,7 +153,7 @@ function navigateToHome()
 function goToParentPage() {
     if (window.location.search.indexOf('ipmProjectOverview') > -1) {
     window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
-    } else {
+    } else if(!isPDL) {
     if (status === IPMApp.Stopped && makeStop === true) {
             window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
         } else if (status === IPMApp.Proposed && makeValid === true) {
@@ -162,12 +162,15 @@ function goToParentPage() {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
         } else if (status === IPMApp.Approved && makeApprove === true && IPMApp.projectPhase === 'Ideas') {
             window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId + '&showMembers=true&createBET=true';
-    } else if (status === IPMApp.Approved && makeApprove === true) {
-      window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
+      } else if (status === IPMApp.Approved && makeApprove === true) {
+            window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
         } else if (status === IPMApp.ApprovedEdit && makeValid === true) {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
         }
-    }
+    } else if(isPDL){
+      window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
+  }
+
 }
 function gkmComplete() {
     /* Below script works on click event. This opens the project panel modal. */
@@ -211,62 +214,53 @@ function gkmComplete() {
 /* Below function performs the slider functionality when changing the status of the gate document. 
 When the user selects a status the slider pointer moves to the selected status. From the front end it appears as a tab functionality. It changes the background color
 of the selected status along with the text color. This happens even on load of the page where the previous selected status will be highlighted. */
-function changeCurrentStatus(changestatus) {
+function changeCurrentStatus(changestatus,pdl) {
     jq("[id$=mlktp]").hide();
     var items = [IPMApp.inProgress, IPMApp.Proposed, IPMApp.Stopped];
+    var itemspdl = [IPMApp.inProgress, IPMApp.Approved]
     var itemsProposed = [IPMApp.Proposed, IPMApp.Approved ,IPMApp.ApprovedEdit,IPMApp.Postponed, IPMApp.Stopped];
     var s = jq("#slider");
     var status = changestatus;
+    var pdl = pdl;
     var PointerT = 100 / (items.length - 1);
+    var PointerP = 100 / (itemspdl.length - 1);
     var PointerF = 100 / (itemsProposed.length - 1);
     if (status === IPMApp.Proposed || status === IPMApp.Postponed) {
+        proposednewfunc(s,itemsProposed,status,PointerF);
+    } else if(status === IPMApp.inProgress && pdl){
         s.slider({
             min: 1,
-            max: itemsProposed.length,
+            max: itemspdl.length,
             animate: 'slow',
             stop: function(event, ui) {
                 var pointer = ui.value - 1;
                 jq('#statusRadioBtn_' + ui.value).prop('checked', true);
-
                 jq("label").css({
                     'color': 'rgb(34, 34, 34)'
                 });
                 jq("label[for=statusRadioBtn_" + pointer + "]").css({
                     'color': '#e98824'
                 });
-                if (status === 'Postponed' && pointer === 0) {
-                    jq('.ui-slider-handle').animate({
-                        'left': '66.66%'
-                    }, 100);
-                    jq("label[for=statusRadioBtn_0").css({
-                        'color': 'rgb(34, 34, 34)'
-                    });
-                    jq("label[for=statusRadioBtn_2").css({
-                        'color': '#e98824'
-                    });
-                    jq("label[for=statusRadioBtn_3").css({
-                        'color': '#e98824'
-                    });
-
-                    changeStatus(itemsProposed[ui.value + 1]);
+                if (status === IPMApp.inProgress){
+                  changeStatus(itemspdl[ui.value - 1]);
                 }
-                if (status === IPMApp.Postponed && itemsProposed[ui.value - 1] !== IPMApp.Proposed) {
-                    changeStatus(itemsProposed[ui.value - 1]);
-                } else if (status === IPMApp.Proposed) {
-                    changeStatus(itemsProposed[ui.value - 1]);
+                else{
+                  changeStatus(itemspdl[ui.value + 1]);
                 }
             }
         });
-        jq("#changeStatus_links").addClass("slider4");
-        jq("#changeStatus").addClass("slider4");
-        jq.each(itemsProposed, function(key, value) {
-            var w = PointerF;
-            if (key === 0 || key === itemsProposed.length - 1){
-                w = PointerF / 2;
+        jq("#changeStatus_links").addClass("slider3");
+        jq("#changeStatus").addClass("slider3");
+        jq.each(itemspdl, function(key, value) {
+            var w = PointerP;
+            if (key === 0 || key === itemspdl.length - 1){
+                w = PointerP / 2;
         }
             jq("#legend .ipmStatusTabs").append("<li><span class='" + value + "'></span><span class='StatusLabel'>" + value + "</span><div class='ipmRadioButton'><label for='statusRadioBtn_" + key + "'></label><input type='radio' name='gateStatus' value='" + value + "' id='statusRadioBtn_" + key + "' /></div></li>");
         });
-    } else {
+    }
+    else
+    {
         s.slider({
             min: 1,
             max: items.length,
@@ -297,6 +291,54 @@ function changeCurrentStatus(changestatus) {
             jq("#legend .ipmStatusTabs").append("<li><span class='" + value + "'></span><span class='StatusLabel'>" + value + "</span><div class='ipmRadioButton'><label for='statusRadioBtn_" + key + "'></label><input type='radio' name='gateStatus' value='" + value + "' id='statusRadioBtn_" + key + "' /></div></li>");
         });
     }
+}
+function proposednewfunc(s,itemsProposed,status,PointerF){
+  s.slider({
+        min: 1,
+        max: itemsProposed.length,
+        animate: 'slow',
+        stop: function(event, ui) {
+            var pointer = ui.value - 1;
+            jq('#statusRadioBtn_' + ui.value).prop('checked', true);
+
+            jq("label").css({
+                'color': 'rgb(34, 34, 34)'
+            });
+            jq("label[for=statusRadioBtn_" + pointer + "]").css({
+                'color': '#e98824'
+            });
+            if (status === 'Postponed' && pointer === 0) {
+                jq('.ui-slider-handle').animate({
+                    'left': '66.66%'
+                }, 100);
+                jq("label[for=statusRadioBtn_0").css({
+                    'color': 'rgb(34, 34, 34)'
+                });
+                jq("label[for=statusRadioBtn_2").css({
+                    'color': '#e98824'
+                });
+                jq("label[for=statusRadioBtn_3").css({
+                    'color': '#e98824'
+                });
+
+                changeStatus(itemsProposed[ui.value + 1]);
+            }
+            if (status === IPMApp.Postponed && itemsProposed[ui.value - 1] !== IPMApp.Proposed) {
+                changeStatus(itemsProposed[ui.value - 1]);
+            } else if (status === IPMApp.Proposed) {
+                changeStatus(itemsProposed[ui.value - 1]);
+            }
+        }
+    });
+    jq("#changeStatus_links").addClass("slider4");
+    jq("#changeStatus").addClass("slider4");
+    jq.each(itemsProposed, function(key, value) {
+        var w = PointerF;
+        if (key === 0 || key === itemsProposed.length - 1){
+            w = PointerF / 2;
+    }
+        jq("#legend .ipmStatusTabs").append("<li><span class='" + value + "'></span><span class='StatusLabel'>" + value + "</span><div class='ipmRadioButton'><label for='statusRadioBtn_" + key + "'></label><input type='radio' name='gateStatus' value='" + value + "' id='statusRadioBtn_" + key + "' /></div></li>");
+    });
 }
 
 function checkChange(elem){

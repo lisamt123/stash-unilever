@@ -86,7 +86,40 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                                                                  from IPM_Project_Resource__c where 
                                                                  IPM_Project__c=:projectId and IPM_User__c=:userinfo.getuserid() and IPM_Project__r.Is_Archieved__c=false  limit 1];
             
-            if(projectResourceList != null && !projectResourceList.isEmpty()){
+             	partialGetIpmuserType(projectResourceList);
+             	loggedInUserAccessDetails(loggedInUser);
+            
+            //security for central team and BP users
+                IPM_CustomPermission cpr = new IPM_CustomPermission();
+                boolean isCentralTeam=false;
+                boolean isBPUser=false;
+                isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
+                isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+                if(isCentralTeam || isBPUser){
+                    isMilestoneEditable=true;
+                    isTaskeditable=true;
+                    updateApproach=true;
+                    updateComplexity = true;
+                    isCreateTask=true;
+                    isAllTask=true;
+                } 
+             if(project.Is_Archieved__c || project.IPM_PrepareForArchival__c){
+             	isTaskeditable = isCreateTask = isAllTask = isMilestoneEditable = isTaskeditable = updateApproach = updateComplexity =  false;
+                } 
+            
+            
+        }catch(Exception eX){ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage)); ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_TASKVIEW_STR,'getIpmuserType',ex.getMessage(),ex, ERROR_STR, null, null, null,null); }       
+    }    
+    
+    
+    /***************************************************************************
+    @Description: This method is created to resolve nPath Complexity issue
+    @Return: String Query
+    ***************************************************************************/
+    
+    public void partialGetIpmuserType(list<IPM_Project_Resource__c> projectResourceList)
+    {
+    	if(projectResourceList != null && !projectResourceList.isEmpty()){
                 IPM_Project_Resource__c projectResource = projectResourceList[0];
               
                 if( projectResource.IPM_Role_Type__c != IPM_Utils.Guest ){
@@ -113,13 +146,23 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                 if(projectResource.IPM_Role_Type__c==IPM_Utils.CMI || projectResource.IPM_Role_Type__c==IPM_Utils.CD || projectResource.IPM_Role_Type__c==IPM_Utils.Finance || projectResource.IPM_Role_Type__c==IPM_Utils.Guest){
                     isupdateDates=false;
                 }
-            } 
-            
-                // To check the Project Leader
+            }
+           	
+    }
+    
+    
+    /***************************************************************************
+    @Description: This method is created to resolve nPath Complexity issue
+    @Return: String Query
+    ***************************************************************************/
+    
+    public void loggedInUserAccessDetails(id loggedInUser)
+    {
+    			// To check the Project Leader
                if( loggedInUser != null && ( loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c ))                            
                 {
                     isMilestoneEditable=true;
-                    
+                    isupdateDates=true;
                 }
               
                if(loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c || loggedInUser == project.IPM_Technical_Project_Leader__c)
@@ -134,28 +177,10 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                             updateComplexity = true;
                         }
                }
-          
-            //security for central team and BP users
-                IPM_CustomPermission cpr = new IPM_CustomPermission();
-                boolean isCentralTeam=false;
-                boolean isBPUser=false;
-                isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
-                isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
-                if(isCentralTeam || isBPUser){
-                    isMilestoneEditable=true;
-                    isTaskeditable=true;
-                    updateApproach=true;
-                    updateComplexity = true;
-                    isCreateTask=true;
-                    isAllTask=true;
-                } 
-             if(project.Is_Archieved__c || project.IPM_PrepareForArchival__c){
-             	isTaskeditable = isCreateTask = isAllTask = isMilestoneEditable = isTaskeditable = updateApproach = updateComplexity =  false;
-                } 
-            
-            
-        }catch(Exception eX){ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage)); ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_TASKVIEW_STR,'getIpmuserType',ex.getMessage(),ex, ERROR_STR, null, null, null,null); }       
-    }    
+    }
+    
+    
+    
     /****************************************************************************
     @Description : save complexity type
     *****************************************************************************/

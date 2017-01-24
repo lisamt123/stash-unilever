@@ -6,16 +6,19 @@
 *************************************************
 -->
 <apex:page controller="IPM_GateDocumentController" sidebar="false" standardStylesheets="false" cache="false" extensions="IPM_GetHelpDoc">
-<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Filter.css')}"/>
-    <apex:composition template="IPM_TemplateRevamp"> 
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Filter.css')}"/>
+    <apex:composition template="IPM_TemplateRevamp">  
         <apex:define name="body">
-        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>            
+            <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>            
+            <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Source_Plan_Editor.css')}"/>       
             <apex:form >
-                <div class='cust-overlay'></div> 
-                <apex:pageMessages />
-                    <div class="gradientbg">  
-                            <c:IPM_ProjectDetails project="{!project}" activeItem="gateDocument" />  
-                    </div>
+                <apex:pageMessages />        
+                <apex:outputPanel id="pageMessagesMainDataPanel"><apex:outputPanel rendered="{!mainDataBool}"> <apex:pageMessages /> </apex:outputPanel></apex:outputPanel>
+                <apex:outputPanel id="pageMessagesAppendixPanel"><apex:outputPanel rendered="{!appendixBool}"> <apex:pageMessages /> </apex:outputPanel></apex:outputPanel>
+                <apex:outputPanel id="pageMessagesUserTypePanel"><apex:outputPanel rendered="{!pageMessagesUserTypeBool}"> <apex:pageMessages /> </apex:outputPanel></apex:outputPanel>
+                <div class="gradientbg">  
+                    <c:IPM_ProjectDetails project="{!project}" activeItem="gateDocument" />  
+                </div>
                 
                 <!-- - Ship to PLE Modal starts here------ -->
                 <div id="shipToPLE" class="modal fade">
@@ -56,86 +59,80 @@
                         <div class="col-sm-12">
                             <div class="panel-group pageHeadToolbar clearfix">
                                 <div class="row">
-                                    <div class="col-sm-6 pull-left noPadright headerLeft">
-                                        <h2 class="pageTitle">
-                                            {!projectDoc.IPM_GateDocuments__c} {!$Label.IPM_Document}
+                                    <div class="col-sm-6 pull-left noPadright headerLeft customwidth">
+                                        <h2 class="pageTitle"> 
+                                            {!projectDoc.IPM_GateDocuments__c} {!if(isPDLDocument=true,'(PDL)','')} {!$Label.IPM_Document}
                                         </h2>
                                         <div class="SecFillProgress">
-                                            <div class="fillProgress"><apex:outputText Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText><span>%</span></div>
+                                            
+                                            <div class="fillProgress"><apex:outputText Value="{!IF(OR(bDocStatusNotStartedOrApproved,isPDLDocument=true),filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText><span>%</span></div>
                                             <div class="fillProgressTxt"> {!$Label.IPM_FILLED_IN}</div>
                                         </div>
                                         <div class="SecFillProgress olderDocLink" modalTitle="Older Gate Documents" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_GateDocAttchList}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_VIEW_OLDER_GATE_DOC}">
                                             {!$Label.IPM_VIEW_OLDER_GATE_DOC}
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 pull-right clearfix noPadleft noPadright headerRight">  
+                                    <div class="col-sm-6 pull-right clearfix noPadleft noPadright headerRight customwidth">  
                                         <div class="SecButtonSet pull-right">
                                                 <a class="icoButton history" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ProjectDocumentSectionHistory}?Id={!project.Id}" data-backdrop="static" data-keyboard="false" title="View Update History" id="showHistory"></a>
                                                 <!-- CR0434 -->
                                                 <a class="icoButton paper-clip clipinfo" title="{!$Label.IPM_AllSummaryAttachDwnldBttn_Hovertext}" 
                                                        onclick="showAllCurrentDocSummaryAttch();" data-toggle="modal" data-target="{!if(showSummaryAttach,'#ipmAttachmentModal','#ipmNoAttachmentModal')}" data-backdrop="static" data-keyboard="false"></a>
                                                 <apex:actionfunction name="showAllCurrentDocSummaryAttch"  rerender="attsec" /> 
-                                                <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download" title="{!$Label.IPM_Download_with_Appendix}" rendered="{!isPDFDownload}">
-                                                    <apex:param name="withAppendix" AssignTo="{!isWithAppendix}" Value="True"/>
-                                                </apex:commandLink>
-                                                <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download-gate" title="{!$Label.IPM_Download_without_Appendix}" rendered="{!isDisplayWithoutAppendix}">
-                                                    <apex:param name="withOutAppendix" AssignTo="{!isWithAppendix}" Value="False"/>
-                                                </apex:commandLink>  
-                                                <!-- CR0434 end here-->   
+                                            
+                        
+                                            <apex:outputPanel rendered="{!!isPDLApproved}">
                                                 
-                                                <!-- To place the help symbol in the top right hand corner of page -->
-                                                <apex:outputPanel styleClass="SecButtonSet delete pull-right" >
-                                                    <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
-                                                </apex:outputPanel>
-                                                
+                                                <apex:outputLink styleClass="icoButton download" title="{!if(isPDLDocument=true,'Download',$Label.IPM_Download_with_Appendix)}" rendered="{!isPDFDownload}" value="{!gateDocPDFWithAppendixURLStr}" ></apex:outputLink>
+                                                <apex:outputLink styleClass="icoButton download-gate" title="{!$Label.IPM_Download_without_Appendix}" rendered="{!isDisplayWithoutAppendix}" value="{!gateDocPDFWithoutAppendixURLStr}" ></apex:outputLink>
+                                                                                
+                                            </apex:outputPanel> 
+                                            
+                                            <apex:outputPanel rendered="{!isPDLApproved}"> 
+                                                <a href="/servlet/servlet.FileDownload?file={!savedAttachmentDoc.Id}" class="icoButton download" download="{!attachmentName}"></a>
+                                            </apex:outputPanel>
+                                            
+                                            <!-- CR0434 end here-->
+                                            
+                                            <!-- To place the help symbol in the top right hand corner of page -->
+                                            <apex:outputPanel styleClass="SecButtonSet delete pull-right" >
+                                                <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
+                                            </apex:outputPanel>
+                                            
                                         </div>
                                         
                                         <!---New Requirement Approve with Edits----->
-                                            <!-- Below panel will get render when job status of project is either "Eligible for processing" or "Processing"  -->                                    
-                                            <apex:outputPanel layout="block" styleClass="SecButtonSet pull-right" rendered="{! OR(project.IPM_Project_Job_Status__c == 'Eligible For Processing',project.IPM_Project_Job_Status__c == 'Processing') }" >
-                                                <div class="SecCurrentStatus pull-right"> 
-                                                    
-                                                    <span class="status">
-                                                        <img alt="Idea"  src="{!URLFOR($Resource.IPM_Resource, 'images/Inprogress.svg')}" />
-                                                        {!$Label.IPM_PHASECHAGE_INPROGRESS}
-                                                    </span>
-                                                </div>
-                                            </apex:outputPanel>
-                                            <!-- Below panel will get render when job status of project is neither "Eligible for processing" nor "Processing"  -->
-                                            <apex:outputPanel layout="block" styleClass="SecButtonSet pull-right" rendered="{! AND(project.IPM_Project_Job_Status__c != 'Eligible For Processing',project.IPM_Project_Job_Status__c != 'Processing') }" >
-                                            
-                                                <apex:outputPanel layout="block" styleClass="SecButtonSet pull-right" rendered="{!projectDoc.IPM_Document_Status__c='Approved with Edits'}">
-                                                    
-                                                    <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
-                                                    <div class="SecStatusUpdate removebutton statusButton pull-right" data-toggle="modal" data-target="#ipmMoveFeasibility"  data-backdrop="static" data-keyboard="false">
-                                                        <span class="ipmButton Primary">{!$Label.IPM_MOVE_TO} {!IF(project.IPM_Phase__c= 'Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}</span>   
-                                                    </div>      
-                                                </apex:outputPanel>
+                                        <!-- Below panel will get render when job status of project is either "Eligible for processing" or "Processing"  -->                                    
+                                        <apex:outputPanel layout="block" styleClass="SecButtonSet pull-right" rendered="{! OR(project.IPM_Project_Job_Status__c == 'Eligible For Processing',project.IPM_Project_Job_Status__c == 'Processing') }" >
+                                            <div class="SecCurrentStatus pull-right"> 
                                                 
-                                                <!---New Requirement Approve with Edits Ends----->
-                                                <!-- Below panel get rendered when project document status is different from "Approved", "Approved with Edits" and "Not Started " -->
+                                                <span class="status">
+                                                    <img alt="Idea"  src="{!URLFOR($Resource.IPM_Resource, 'images/Inprogress.svg')}" />
+                                                    {!$Label.IPM_PHASECHAGE_INPROGRESS}
+                                                </span>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <!-- Below panel will get render when job status of project is neither "Eligible for processing" nor "Processing"  -->
+                                        <apex:outputPanel layout="block" styleClass="SecButtonSet pull-right" rendered="{! AND(project.IPM_Project_Job_Status__c != 'Eligible For Processing',project.IPM_Project_Job_Status__c != 'Processing') }" >
+                                            
+                                            <apex:outputPanel layout="block" styleClass="SecButtonSet pull-right" rendered="{!projectDoc.IPM_Document_Status__c='Approved with Edits'}">
+                                                
+                                                <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
+                                                <div class="SecStatusUpdate removebutton statusButton pull-right" data-toggle="modal" data-target="#ipmMoveFeasibility"  data-backdrop="static" data-keyboard="false">
+                                                    <span class="ipmButton Primary">{!$Label.IPM_MOVE_TO} {!IF(project.IPM_Phase__c= 'Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}</span>   
+                                                </div>      
+                                            </apex:outputPanel>
+                                            
+                                            <!---New Requirement Approve with Edits Ends----->
+                                            <!-- Below panel get rendered when project document status is different from "Approved", "Approved with Edits" and "Not Started " -->
+                                            <apex:outputPanel id="changeStatusPanel">
                                                 <apex:outputPanel rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved' && projectDoc.IPM_Document_Status__c!='Approved with Edits' && projectDoc.IPM_Document_Status__c!='Not Started' && IsUpdateStatus),True,False)}">
-                                                    <div class="SecStatusUpdate statusButton pull-right openModal" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ChangeCurrenDocumentStatus}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_UPDATE_STATUS}">
+                                                    <div class="SecStatusUpdate statusButton pull-right openModal" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ChangeCurrenDocumentStatus}?id={!project.Id}&printDoc={!printDoc}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_UPDATE_STATUS}">
                                                         <input type="button" class="ipmButton" value="Change status"/>
                                                     </div>
                                                 </apex:outputPanel>
-                                            
-                                            
-                                                 <!---Design Idea:GateDocument Refactor Starts Here---->
-                                                <apex:actionFunction name="fetchSection" action="{!getDynamicSection}" reRender="sectionContent" status="refreshCat" oncomplete="resetPanel();">
-                                                    <apex:param name="secId" assignTo="{!parentSectionId}" value=""/>
-                                                    <apex:param name="projDocSecId" assignTo="{!sectionId}" value=""/>
-                                                 </apex:actionFunction>
-                                                 
-                                                 <apex:actionFunction name="fetchSubSection" action="{!getProjectSubSections}" reRender="subSection" status="refreshCat" oncomplete="resetPanelSub()">
-                                                   <apex:param name="psecId" assignTo="{!parentSectionId}" value=""/>
-                                                   <apex:param name="projDocSecId" assignTo="{!sectionId}" value=""/>
-                                                 </apex:actionFunction>
-                                                <apex:actionFunction name="fetchAttachment" action="{!showAttchSection}" reRender="attSection" status="refreshCat" oncomplete="dirApp()">
-                                                        <apex:param name="projDocSecId" assignTo="{!sectionId}" value=""/>
-                                                 </apex:actionFunction> 
-                                             <!---Design Idea:GateDocument Refactor Ends Here---->
-                                                     
+                                            </apex:outputPanel>
+                                                                                        
                                             <!-- below panel renders when one of followings criteria meets -->
                                             <!-- 1. Project Document Status is "Approved", Phase is "Market Deployment" and span is "Local" -->
                                             <!-- 2. Project phase is "Market Ready" and project type is "Operational" -->         
@@ -153,16 +150,18 @@
                                             <apex:outputPanel rendered="{!AND(project.IPM_PrepareForArchival__c, OR(project.IPM_StoppedByProject__c == null,project.IPM_Is_Invoked_From_Rollout__c),(Now() < project.IPM_CancelStoppingProjectTill__c) ) }">
                                                 <div class="SecCurrentStatus pull-right">
                                                     <apex:commandLink styleClass="ipmButton primary statusButtonOrange orange" value="{!$Label.IPM_CancelStoppingProject}" action="{!cancelStoppingProject}" />
-                                                 </div>
+                                                </div>
                                             </apex:outputPanel>
+                                            
                                             <apex:outputPanel rendered="{!reactivateProjectFlag}">
-                                            <div class="">
-                                                <apex:commandLink styleClass="coreparameters custMarginbottom ipmButton primary statusButtonOrange orange" value="{!$Label.IPM_ReactivateProject}" rerender="tskPanel" 
-                                                    action="/apex/IPM_ProjectSetUpView?Pid={!projectId}" > 
-                                                </apex:commandLink>
-                                             </div>
+                                                <div class="">
+                                                    <apex:commandLink styleClass="coreparameters custMarginbottom ipmButton primary statusButtonOrange orange" value="{!$Label.IPM_ReactivateProject}" rerender="tskPanel" 
+                                                                      action="/apex/IPM_ProjectSetUpView?Pid={!projectId}" > 
+                                                    </apex:commandLink>
+                                                </div>
                                             </apex:outputPanel>
-                                       </apex:outputPanel>                                
+                                            
+                                        </apex:outputPanel>                                
                                     </div>
                                 </div>
                             </div>
@@ -175,33 +174,24 @@
                         <div class="col-sm-12">
                             <div class="panel-group pageContent clearfix"> 
                                 
-                              
-                                    <apex:actionStatus id="TypeDocs" startText="" startStyleClass="initFilter"></apex:actionStatus>
-                                    <apex:actionStatus startText="" id="customStatus" startStyleClass="cust-overlay"/> 
                                 
-                                
-                                <div class="col-sm-2 leftFilterBlock pull-left leftSideBar noPadleft">                    
-                                    <div class="panel">
-                                        <h4 class="gateFilterTitle">{!$Label.IPM_FILTERS}</h4>
-                                           
+                                <apex:actionStatus id="TypeDocs" startText="" startStyleClass="initFilter"></apex:actionStatus>
+                                <apex:outputpanel rendered="{!!isPDLDocument}">
+                                    <div class="col-sm-2 leftFilterBlock pull-left leftSideBar noPadleft">                    
+                                        <div class="panel">
+                                            <h4 class="gateFilterTitle">{!$Label.IPM_FILTERS}</h4>
+                                            
                                             <apex:actionFunction name="movePLE" action="{!moveToPLE}" reRender="" oncomplete="shiptrade();"/>
+                                            
                                             <apex:outputPanel layout="block" id="count" styleClass="gdFilterSection">
                                                 <apex:actionStatus startText="{!$Label.IPM_CLICK_ON_APPLY_FILTER}" id="counterStatus" startStyleClass="gdFilter"/>
                                                 <div class="expandTool">
                                                     <span class="filter expandAll">{!$Label.IPM_EXPAND_ALL}</span><span class="filter collapseAll">{!$Label.IPM_COLLAPSE_ALL}</span>
                                                 </div>  
                                                 <div class="ipmButtonGroup">
-                                                    
-                                                    <input type="button" class="ipmButton resetFilterBtn" value="Reset" id="resetFilterBtn" onClick="resetDocFilters();"/>
-                                                    <input type="button" class="ipmButton primary" value="Apply" onClick="applyFilter();" />
+                                                    <input type="button" class="ipmButton resetFilterBtn" value="Reset" id="resetFilterBtn" onClick="resetDocFilters();"/>          
                                                 </div>
-                                                <apex:actionFunction name="setFilterValues" action="{!setFilter}" reRender="MainTable,count,filterBlock" status="customStatus" oncomplete="setFiltersAsPrevious();filterBlock();resetPanelSub();">
-                                                    
-                                                    <apex:param name="type" assignTo="{!typeFilters}" value=""></apex:param>
-                                                    <apex:param name="status" assignTo="{!statusFilters}" value=""></apex:param>
-                                                    <apex:param name="role" assignTo="{!roleFilters}" value=""></apex:param>
-                                                </apex:actionFunction>                                            
-                                                <apex:actionFunction name="Reset"  id="resetFilterBtn" action="{!ResetFilters}" reRender="count" status="counterStatus"/>
+                                                                                          
                                                 <div class="ipmAccordion">
                                                     <span class="pHead h4">
                                                         <span class='expico fa fa-minus'></span>
@@ -289,7 +279,7 @@
                                                                     <div class="checkboxLabel">{!$Label.IPM_ALL}</div>
                                                                 </div>
                                                             </li>
-                                                             <li>
+                                                            <li>
                                                                 <div class="row ipmCheckboxDiv">
                                                                     <div class="ipmCheckbox">
                                                                         <input type="checkbox" value="{!$Label.IPM_PL}" class="checkSub pl" id="FRpl" />
@@ -301,10 +291,10 @@
                                                             <li>
                                                                 <div class="row ipmCheckboxDiv">
                                                                     <div class="ipmCheckbox">
-                                                                        <input type="checkbox" value="{!$Label.IPM_BD}" title="BD" class="checkSub bd" id="FRBd" />
-                                                                        <label for="FRBd"></label>
+                                                                        <input type="checkbox" value="{!$Label.IPM_MKTG_DEV}" title="MKTG DEV" class="checkSub mktgdev" id="FRMktgDev" />
+                                                                        <label for="FRMktgDev"></label>
                                                                     </div>
-                                                                    <div class="checkboxLabel">{!$Label.IPM_BD} <apex:outputPanel styleClass="proNumbers"> ({!BDCount})</apex:outputPanel></div>
+                                                                    <div class="checkboxLabel">{!$Label.IPM_MKTG_DEV} <apex:outputPanel styleClass="proNumbers"> ({!MKTGDEVCount})</apex:outputPanel></div>
                                                                 </div>
                                                             </li>
                                                             <li>
@@ -355,43 +345,49 @@
                                                             <li>
                                                                 <div class="row ipmCheckboxDiv">
                                                                     <div class="ipmCheckbox">
-                                                                        <input type="checkbox" value="{!$Label.IPM_BB}" class="checkSub bb" id="FRbb" />
-                                                                        <label for="FRbb"></label>
+                                                                        <input type="checkbox" value="{!$Label.IPM_MKTG_LOCAL}" class="checkSub mktglocal" id="FRMktgLocal" />
+                                                                        <label for="FRMktgLocal"></label>
                                                                     </div>
-                                                                    <div class="checkboxLabel">{!$Label.IPM_BB} <apex:outputPanel styleClass="proNumbers"> ({!BBCount})</apex:outputPanel></div>
+                                                                    <div class="checkboxLabel">{!$Label.IPM_MKTG_LOCAL} <apex:outputPanel styleClass="proNumbers"> ({!MKTGLOCALCount})</apex:outputPanel></div>
                                                                 </div>
                                                             </li> 
                                                             
-                                                             
+                                                            
                                                             
                                                         </ul>
                                                     </span>
                                                 </div>          
-                                            </apex:outputPanel>                                            
-                                       
+                                            </apex:outputPanel>     
+                                            
+                                            
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-10 rightContentBlock pull-right tempWrapper noPadleft noPadright">                                   
+                                </apex:outputpanel>
+                                <div class="{!if(isPDLDocument=false,'rightContentBlock col-sm-10','col-sm-12')} pull-right tempWrapper noPadleft noPadright">                                   
+                                    
                                     <div class="row secDisMsg clearfix">
-                                        <apex:outputPanel layout="block" rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved',isReadable=false),true,false)}">
-                                            <div class="col-sm-2 pull-left openModal" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddManageSections}?id={!project.Id}&DocType={!projectDoc.IPM_GateDocuments__c}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_Add_Manage_Sections}" modalTitle="{!$Label.IPM_Add_Manage_Sections}">
-                                                <input type="button" class="ipmButton" value="{!$Label.IPM_Add_Manage_Sections}"/>
-                                            </div>
-                                        </apex:outputPanel> 
+                                        <apex:outputPanel id="addManagePanel">
+                                            <apex:outputPanel layout="block" rendered="{!AND(projectDoc.IPM_Document_Status__c!='Approved',isReadable=false,isPDLDocument=false)}">
+                                                <div class="addMngbtn pull-left openModal" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddManageSections}?id={!project.Id}&DocType={!projectDoc.IPM_GateDocuments__c}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_Add_Manage_Sections}" modalTitle="{!$Label.IPM_Add_Manage_Sections}">
+                                                    <input type="button" class="ipmButton" value="{!$Label.IPM_Add_Manage_Sections}" />
+                                                </div>                                            
+                                            </apex:outputPanel>  
+                                        </apex:outputPanel>
                                         <!-- below panel is rendered when project document status is either "Mot Started" or "In Progress" and  dueDate is within 4 days from today --> 
                                         <apex:outputPanel styleClass="messageBox infoMsg" layout="block" rendered="{!if(AND(OR(projectDoc.IPM_Document_Status__c='Not Started',projectDoc.IPM_Document_Status__c='In Progress'),dueDateMsg=true),true,false)}"> 
-                                        <apex:outputPanel layout="block" styleClass="SecButtonSet">                                     
-                                           <a class="icoButton info" title="info"></a><span class="msgTxt">{!gateDocument} {!$Label.IPM_Gate_Due_Date_Is} {!dueDate}</span>
+                                            <apex:outputPanel layout="block" styleClass="SecButtonSet">                                     
+                                                <a class="icoButton info" title="info"></a><span class="msgTxt">{!gateDocument} {!$Label.IPM_Gate_Due_Date_Is} {!dueDate}</span>
                                                 <span class="closeMessage fa fa-times"></span>
-                                        </apex:outputPanel>  
+                                            </apex:outputPanel>  
                                         </apex:outputPanel>            
                                         <!-- below panel is rendered when project document status is either "Postponed" or "Approved" -->           
-                                        <apex:outputPanel layout="block"  rendered="{!If(OR(projectDoc.IPM_Document_Status__c='Postponed',projectDoc.IPM_Document_Status__c='Approved'),True,False)}">
+                                        <apex:outputPanel layout="block" rendered="{!If(OR(projectDoc.IPM_Document_Status__c='Postponed',projectDoc.IPM_Document_Status__c='Approved'),True,False)}">
                                             <div class="col-sm-12">
                                                 <div class="StatusComment">
-                                                    <div class="panel-group">                    
+                                                    <div class="panel-group">          
                                                         <div class="panelTitle">
-                                                            <apex:outputText value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}" />
+                                                            <apex:outputText rendered="{!NOT(isPDLDocument)}" value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}" />
+                                                            <apex:outputText rendered="{!isPDLDocument}" value="{!$Label.IPM_COMMENTS_FOR_PDL_GATE_DOC}" />
                                                         </div>
                                                         <!-- below panel is rendered when project document status is "Approved" and approval date is there -->
                                                         <apex:outputPanel layout="block"  styleClass="clearfix panelRow" rendered="{!If(AND(projectDoc.IPM_Document_Status__c='Approved',projectDoc.IPM_Approval_Date__c!=null),True,False)}">
@@ -452,254 +448,402 @@
                                                                 <div>
                                                                     <apex:outputText value="{!projectDoc.IPM_Postponed_Comments__c}"/>
                                                                 </div>
-                                                            </div> 
-                                                            
+                                                            </div>                                                             
                                                         </apex:outputPanel>                     
                                                     </div>
                                                 </div>
                                             </div>
-                                        </apex:outputPanel>   
-                                        
-                                    </div>
+                                        </apex:outputPanel>                                           
+                                        <apex:outputPanel id="expandCollapsePanel" layout="block" styleClass="col-sm-6 pull-right expandTool gatexpand content" >
+                                            <span class="expandgate expandAll expandiframes" style="visibility:{!if(isPDLDocument,'','hidden')}">Expand All</span>
+                                            <span class="closegate collapseAll" style="visibility:{!if(isPDLDocument,'','hidden')}">Collapse All</span>
+                                        </apex:outputPanel>
+                                    </div>      
+                                    
                                     <!---- Gate Document Main Body----->
-                                    <apex:outputPanel layout="block" styleClass="row">
-                                     <div class="contenWrapper clearfix">
-                                     <apex:actionStatus startText="" id="refreshCat" startStyleClass="gdInit"/>
-                                        <div class="col-sm-12">                                           
+                                    <apex:actionFunction name="getMainDataFunc" action="{!getMainData}" reRender="MainTable,pageMessagesMainDataPanel" status="customStatus" oncomplete="expandCloseShow();resetPanel();resetPanelSub();dirApp();getMainDataCounts();" rendered="{!!isPDLDocument}"/>
+                                    <apex:outputPanel layout="block" styleClass="row fulldatapanel" rendered="{!!isPDLDocument}">
+                                        <apex:actionStatus startText="" id="customStatus" startStyleClass="cust-overlay"/>
+                                        <div class="contenWrapper clearfix proLoader">
+                                            <apex:actionStatus startText="" id="refreshCat" startStyleClass="gdInit"/>
+                                            <div class="col-sm-12">                                           
                                                 <apex:outputPanel layout="block" styleClass="ipmAccordian mainTable" id="MainTable">
-                                                    <apex:repeat value="{!projSectionList}" var="psl"> <!--For Header-->                                 
-                                                        <apex:outputPanel layout="block" styleClass="aHead" rendered="{!psl.IPM_Section__c!=null}" >
-                                                            <span class='expico fa fa-minus' id="{!psl.IPM_Section__c}" onclick="fetchSection('{!psl.IPM_Section__c}','{!psl.Id}');"></span>
-                                                            <apex:outputText value="{!psl.IPM_Section__r.IPM_Section_Sequence__c} {!psl.IPM_Section__r.IPM_Section_Name__c}" rendered="{!if(psl.IPM_Section__r.IPM_Section_Sequence__c!='8',true,false)}"/>
-                                                            <apex:outputText value="{!psl.IPM_Section__r.IPM_Section_Name__c}" rendered="{!if(psl.IPM_Section__r.IPM_Section_Sequence__c=='8',true,false)}"/>
-                                                            <span class="rHead pull-right">  
-                                                                <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='1','true','false')}">
-                                                                    {!IntroNegotiable} {!$Label.IPM_NON_NEGOTIABLE} | 
-                                                                    {!IntroOptional} {!$Label.IPM_OPTIONAL}
-                                                                </apex:outputPanel>
-                                                                <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='2','true','false')}">
-                                                                    {!ExterNegotiable} {!$Label.IPM_NON_NEGOTIABLE} | 
-                                                                    {!ExterOptional} {!$Label.IPM_OPTIONAL}
-                                                                </apex:outputPanel>
-                                                                <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='3','true','false')}">
-                                                                    {!MixNegotiable} {!$Label.IPM_NON_NEGOTIABLE} | 
-                                                                    {!MixOptional} {!$Label.IPM_OPTIONAL}
-                                                                </apex:outputPanel> 
-                                                                <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='4','true','false')}">
-                                                                    {!DeploNegotiable} {!$Label.IPM_NON_NEGOTIABLE} | 
-                                                                    {!DeploOptional} {!$Label.IPM_OPTIONAL}
-                                                                </apex:outputPanel>
-                                                                <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='5','true','false')}">
-                                                                    {!TechNegotiable} {!$Label.IPM_NON_NEGOTIABLE} | 
-                                                                    {!TechOptional} {!$Label.IPM_OPTIONAL}
-                                                                </apex:outputPanel>
-                                                                <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='6','true','false')}">
-                                                                    {!FinNegotiable} {!$Label.IPM_NON_NEGOTIABLE} | 
-                                                                    {!FinOptional} {!$Label.IPM_OPTIONAL}
-                                                                    
-                                                                </apex:outputPanel>
-                                                                <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='7','true','false')}">
-                                                                    {!ProMNegotiable} Non-negotiable | 
-                                                                    {!ProMOptional} Optional
-                                                                </apex:outputPanel>
-                                                            </span>
-                                                        </apex:outputPanel>
-                                                        <apex:outputPanel styleClass="ipmAcrdnExpand" layout="block">
-                                                        <apex:outputPanel id="sectionContent" layout="block">
-                                                            <apex:repeat value="{!projSubSectionList}" var="sub">   
-                                                            	<!-- below panel is rendered when header sections id is same as sub header section id and default section is true --> 
-                                                                <apex:outputPanel layout="block" styleClass="aHead" rendered="{!IF (AND(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,sub.IPM_Default_Section__c=true),True,False)}">    
-                                                                
-                                                                 <span class="expico fa fa-minus {!if(OR(sub.IPM_Section_Status__c=='Filled-in',sub.IPM_Section__r.IPM_Section_Type__c=='Sub Header'),'green','grey')}" id="{!sub.IPM_Section__c}" onclick="fetchSubSection('{!sub.IPM_Section__c}','{!sub.Id}');"> </span>
-                                                                    
-                                                                    <apex:outputPanel rendered="{!IF(sub.IPM_Section__r.IPM_Section_Type__c!='Sub Header',True,False)}">
-                                                                        <apex:outputPanel rendered="{!IF(sub.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c=='Appendix',True,False)}">
-                                                                            <a> {!sub.IPM_Section__r.IPM_Section_Name__c} [{!sub.IPM_FunctionalRole__c}]</a>
-                                                                            
-                                                                        </apex:outputPanel>
-                                                                        <apex:outputPanel rendered="{!IF(sub.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!='Appendix',True,False)}">
-                                                                           <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub.Id}">{!sub.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} [{!sub.IPM_FunctionalRole__c}]</a>  <span class="{!sub.IPM_Section_Status__c}"> {!sub.IPM_Section_Status__c}</span> 
-                                                                        </apex:outputPanel>
-                                                                       <apex:outputPanel styleClass="SecButtonSet pull-right">                                 
-                                                                            <a class="icoButton comments" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_CommentsPage}?id={!sub.Id}" data-backdrop="static" data-keyboard="false" title="{!sub.IPM_Section__r.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} Comments" id="{!sub.Id}"><apex:outputPanel styleClass="count" rendered="{!IF(sub.IPM_Count_of_Comments__c!=null && sub.IPM_Count_of_Comments__c >0 ,True,False)}">{!sub.IPM_Count_of_Comments__c}</apex:outputPanel></a>
-                                                                            <!-- below panel will render when section is not child section of section 8 -->
-                                                                            <apex:outputPanel rendered="{!IF(AND(isEditLinkActive,NOT(contains(sub.IPM_Section__r.IPM_Section_Sequence__c,'8.'))),True,False)}">
-                                                                                <a class="icoButton details" href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub.Id}" title="Details"></a>  
-                                                                            </apex:outputPanel>
-                                                                        </apex:outputPanel> 
+                                                    <apex:repeat rendered="{!mainDataBool}" value="{!projSectionMap}" var="psl"> <!--For Header--> 
+                                                        <span class="headerclass ipmAccordian mainTable">
+                                                            <apex:outputPanel layout="block" styleClass="aHead" rendered="{!psl.IPM_Section__c!=null}" >
+                                                                <span class='expico fa fa-minus headerinsideexpico' id="{!psl.IPM_Section__c}" ></span>
+                                                                <apex:outputText value="{!psl.IPM_Section__r.IPM_Section_Sequence__c} {!psl.IPM_Section__r.IPM_Section_Name__c}"/>
+                                                                <span class="rHead pull-right">  
+                                                                    <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='1','true','false')}">
+                                                                        {!IntroNegotiable} {!$Label.IPM_NON_NEGOTIABLE} | 
+                                                                        {!IntroOptional} {!$Label.IPM_OPTIONAL}
                                                                     </apex:outputPanel>
-                                                                    <apex:outputPanel rendered="{!IF(sub.IPM_Section__r.IPM_Section_Type__c='Sub Header',True,False)}"> 
-                                                                        {!sub.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} <span class="{!sub.IPM_Section_Status__c}"> {!sub.IPM_Section_Status__c} </span>
+                                                                    <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='2','true','false')}">
+                                                                        {!ExterNegotiable} {!$Label.IPM_NON_NEGOTIABLE} | 
+                                                                        {!ExterOptional} {!$Label.IPM_OPTIONAL}
                                                                     </apex:outputPanel>
-                                                                </apex:outputPanel> 
-                                                                <!-- below panel is rendered when header sections id is same as sub header section id and default section is true --> 
-                                                                <apex:outputPanel styleClass="ipmAcrdnExpand" rendered="{!IF(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,True,False)}">                              
-                                                                    <apex:outputPanel id="subSection" layout="block">
-                                                                    <apex:repeat value="{!projSubLevelSectionList}" var="sub1">                                
-                                                                    <!-- below panel renders when sub header section id is same as parent section id of sub sub header  -->                             
-                                                                        <apex:outputPanel layout="block" styleClass="aHead" rendered="{!IF(AND(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,sub1.IPM_Default_Section__c=true),True,False)}">
-                                                                            <span class="expico fa fa-minus {!if(OR(sub1.IPM_Section_Status__c=='Filled-in',sub1.IPM_Section__r.IPM_Section_Type__c=='Sub Header'),'green','grey')}" id="{!sub1.IPM_Section__c}" onclick="fetchAttachment('{!sub1.Id}');"></span> 
-                                                                            <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub1.Id}"> {!sub1.IPM_Section_Sequence__c}  {!sub1.IPM_Section__r.IPM_Section_Name__c} [{!sub1.IPM_FunctionalRole__c}] </a> <span class="{!sub1.IPM_Section_Status__c}"> {!sub1.IPM_Section_Status__c}</span>                                   
-                                                                            
-                                                                            <apex:outputPanel styleClass="SecButtonSet pull-right">                                 
-                                                                                <a class="icoButton comments" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_CommentsPage}?id={!sub1.Id}" data-backdrop="static" data-keyboard="false" title="{!sub1.IPM_Section__r.IPM_Section_Sequence__c} {!sub1.IPM_Section__r.IPM_Section_Name__c} Comments" id="{!sub1.Id}"><apex:outputPanel styleClass="count" rendered="{!IF(sub1.IPM_Count_of_Comments__c!=null && sub1.IPM_Count_of_Comments__c >0 ,True,False)}">{!sub1.IPM_Count_of_Comments__c}</apex:outputPanel></a>
-                                                                                <apex:outputPanel rendered="{!IF(AND(isEditLinkActive),True,False)}">
-                                                                                    <a class="icoButton details" href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub1.Id}" title="Details"></a> 
-                                                                                </apex:outputPanel>
-                                                                            </apex:outputPanel>                  
-                                                                        </apex:outputPanel> 
-                                                                        <apex:outputPanel layout="block" styleClass="ipmAcrdnExpand" rendered="{!IF(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,True,False)}">
-                                                                            <!--Special 2nd Level Section-->
-                                                                             <c:IPM_TradeMark_QuestionsView rendered="{!if(sub1.IPM_Master_Section_External_Id__c=='Trademarks',true,false)}"  gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_TradeMark_QuestionsView>    
-                                                                             <!-- below component will render when child od sub header section master external id is "CUs n Complexity" and project span is "Regional" or "Local" and phase is "Ideas" -->
-                                                                             <c:IPM_CU_Complexity gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!sub1.Id}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}"  isEdit="false" rendered="{!AND(sub1.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas',project.IPM_Project_Type__c='Operational'))}"></c:IPM_CU_Complexity>
-                                                                             <c:IPM_CU_Complexity_Consolidated getGateType="{!projectDoc.IPM_GateDocuments__c}" isGateDoc="true" getProjId="{!project.Id}" rendered="{!AND(project.IPMProject_Span__c='Global',sub1.IPM_Master_Section_External_Id__c='CU_And_Complexity')}" /> 
-                                                                             <!--Special 2nd Level Section End-->
-                                                                            <apex:outputField value="{!sub1.IPM_Gate_Document_Summary__c }" rendered="{!IF(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,True,False)}" />
-                                                                             <!---Attachment For Sections--->
-                                                                             <apex:outputPanel id="attSection">
-                                                                                <apex:outputPanel layout="block" styleClass="appBlock" rendered="{!if(OR(showAttach,sub1.IPM_Has_Appendix__c),true,false)}"> 
-                                                                                  <apex:outputPanel rendered="{!sub1.IPM_Has_Appendix__c}">{!$Label.IPM_GD_APPENDIX_MSG}<span data-dir="{!sub1.IPM_Master_Section_External_Id__c}" class="appText">{!sub1.IPM_Section__r.IPM_Section_Name__c}</span></apex:outputPanel>
-                                                                                   <!-- <apex:outputPanel rendered="{!sub1.IPM_Has_Appendix__c}" html-data-dir="{!sub1.IPM_Master_Section_External_Id__c}" styleClass="appText">{!$Label.IPM_GD_APPENDIX_MSG} {!sub1.IPM_Section__r.IPM_Section_Name__c}</apex:outputPanel>-->
-                                                                                    <apex:outputText rendered="{!showAttach}" value="See Attachments:"></apex:outputText>
-                                                                                     <apex:repeat value="{!attachmentList}" var="attach" rendered="{!showAttach}">
-                                                                                        <apex:outputLink styleClass="fileName" value="/servlet/servlet.FileDownload?file={!attach.Id}" target="_blank">{!attach.Name}</apex:outputLink> 
-                                                                                    </apex:repeat>                                                                                
-                                                                                </apex:outputPanel>
+                                                                    <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='3','true','false')}">
+                                                                        {!MixNegotiable} {!$Label.IPM_NON_NEGOTIABLE} | 
+                                                                        {!MixOptional} {!$Label.IPM_OPTIONAL}
+                                                                    </apex:outputPanel> 
+                                                                    <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='4','true','false')}">
+                                                                        {!DeploNegotiable} {!$Label.IPM_NON_NEGOTIABLE} | 
+                                                                        {!DeploOptional} {!$Label.IPM_OPTIONAL}
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='5','true','false')}">
+                                                                        {!TechNegotiable} {!$Label.IPM_NON_NEGOTIABLE} | 
+                                                                        {!TechOptional} {!$Label.IPM_OPTIONAL}
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='6','true','false')}">
+                                                                        {!FinNegotiable} {!$Label.IPM_NON_NEGOTIABLE} | 
+                                                                        {!FinOptional} {!$Label.IPM_OPTIONAL}
+                                                                        
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='7','true','false')}">
+                                                                        {!ProMNegotiable} Non-negotiable | 
+                                                                        {!ProMOptional} Optional
+                                                                    </apex:outputPanel>
+                                                                </span>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel styleClass="ipmAcrdnExpand" layout="block">
+                                                                <apex:outputPanel id="sectionContent" layout="block">
+                                                                    <apex:repeat value="{!projSectionMap[psl]}" var="sub"> 
+                                                                        <span class="subheaderclass">
+                                                                            <!-- below panel is rendered when header sections id is same as sub header section id and default section is true --> 
+                                                                            <apex:outputPanel layout="block" styleClass="aHead"  >
+                                                                                <span class="{!SUBSTITUTE(SUBSTITUTE(sub.IPM_FunctionalRole__c,'&',''),' ','')}frclass"  >
+                                                                                    <span class="{!SUBSTITUTE(SUBSTITUTE(sub.IPM_Section_Status__c,' ',''),'-','')}statusclass"  >
+                                                                                        <span class="{!if((sub.IPM_Section__r.IPM_Section_Type__c='Sub Header'),'',sub.IPM_Negotiable__c)}negotiableclass"  >
+                                                                                            <span class="expico fa fa-minus {!if(OR(sub.IPM_Section_Status__c=='Filled-in',sub.IPM_Section__r.IPM_Section_Type__c=='Sub Header'),'green','grey')} {!if((sub.IPM_Section__r.IPM_Section_Type__c='Sub Header'),'topicclass','headerinsideexpico')} {!'iframe'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'MainSectionexpico'}" id="{!sub.IPM_Section__c}" 
+                                                                                                  onclick="getAttachments('{!sub.Id}');{!if(OR(sub.IPM_Master_Section_External_Id__c=='Business_Case_Action_Standards',sub.IPM_Master_Section_External_Id__c=='Initial_Estimate_of_Opportunity',sub.IPM_Master_Section_External_Id__c=='Gate_Keeper_Checklist',sub.IPM_Master_Section_External_Id__c=='OTIF_Status',sub.IPM_Master_Section_External_Id__c=='R&D_Initial_Outline_Product_Pack',sub.IPM_Master_Section_External_Id__c=='Supply_Chain_Feasibility',sub.IPM_Master_Section_External_Id__c=='R&D_Feasibility',sub.IPM_Master_Section_External_Id__c=='R&D_Technical_Readiness',sub.IPM_Master_Section_External_Id__c=='Supply_Chain_Technical_Readiness'),'get'+SUBSTITUTE(SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&',''),'_','')+'MainSection();','')}this.onclick=null;" > </span>
+                                                                                            <apex:outputPanel rendered="{!IF(sub.IPM_Section__r.IPM_Section_Type__c!='Sub Header',True,False)}">
+                                                                                                <apex:outputPanel rendered="{!IF(sub.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!='Appendix',True,False)}" >
+                                                                                                    <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub.Id}">{!sub.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} [{!sub.IPM_FunctionalRole__c}]</a>  <span class="{!sub.IPM_Section_Status__c}"> {!sub.IPM_Section_Status__c}</span> 
+                                                                                                </apex:outputPanel>
+                                                                                                <apex:outputPanel rendered="{!IF(sub.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c=='Appendix',True,False)}">
+                                                                                                    <a> {!sub.IPM_Section__r.IPM_Section_Name__c} [{!sub.IPM_FunctionalRole__c}]</a>
+                                                                                                </apex:outputPanel>
+                                                                                                
+                                                                                                <apex:outputPanel styleClass="SecButtonSet pull-right">                                 
+                                                                                                    <a class="icoButton comments" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_CommentsPage}?id={!sub.Id}" data-backdrop="static" data-keyboard="false" title="{!sub.IPM_Section__r.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} Comments" id="{!sub.Id}">
+                                                                                                        <apex:variable value="{!sub}" var="subv" />
+                                                                                                        <span id="count{!subv.id}" class="count" style="display:{!If(subv.IPM_Count_of_Comments__c>0,'','none')}" >
+                                                                                                            {!subv.IPM_Count_of_Comments__c}
+                                                                                                        </span>
+                                                                                                    </a>
+                                                                                                    <!-- below panel will render when section is not child section of section 8 -->
+                                                                                                    <apex:outputPanel rendered="{!isEditLinkActive}">
+                                                                                                        <a class="icoButton details" href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub.Id}" title="Details"></a>  
+                                                                                                    </apex:outputPanel>
+                                                                                                </apex:outputPanel> 
+                                                                                            </apex:outputPanel>
+                                                                                            <apex:outputPanel rendered="{!(sub.IPM_Section__r.IPM_Section_Type__c='Sub Header')}"> 
+                                                                                                {!sub.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} <span class="{!sub.IPM_Section_Status__c}"> {!sub.IPM_Section_Status__c} </span>
+                                                                                            </apex:outputPanel>
+                                                                                            
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </span>
                                                                             </apex:outputPanel>
-                                                                             <!---Attachment For Sections Ends Here--->
-                                                                            
-                                                                            <apex:outputPanel layout="block" styleClass="lastUpdate">
-                                                                                <apex:outputText value="Last Update: {!sub1.IPM_GateHistory__c} on " rendered="{!IF(sub1.IPM_GateHistory__c!=NULL,True,False)}" ></apex:outputText>
-                                                                                <apex:outputField value="{!sub1.IPM_GateHistory_Date__c}" rendered="{!IF(sub1.IPM_GateHistory_Date__c!=NULL,True,False)}" /> 
-                                                                            </apex:outputPanel>
-                                                                        </apex:outputPanel>
+                                                                            <!-- below panel is rendered when header sections id is same as sub header section id and default section is true -->
+                                                                            <apex:outputPanel styleClass="ipmAcrdnExpand">                              
+                                                                                <apex:outputPanel id="subSection" layout="block">                                                                       
+                                                                                    <apex:repeat value="{!projSectionMap[psl][sub]}" var="sub1">                                
+                                                                                        <span class="msubHeaderClass">
+                                                                                            <!-- below panel renders when sub header section id is same as parent section id of sub sub header  -->
+                                                                                            <apex:outputPanel layout="block" styleClass="aHead">
+                                                                                                <span class="{!SUBSTITUTE(SUBSTITUTE(sub1.IPM_FunctionalRole__c,'&',''),' ','')}frclass"  >
+                                                                                                    <span class="{!SUBSTITUTE(SUBSTITUTE(sub1.IPM_Section_Status__c,' ',''),'-','')}statusclass"  >
+                                                                                                        <span class="{!if((sub1.IPM_Section__r.IPM_Section_Type__c='Sub Header'),'',sub1.IPM_Negotiable__c)}negotiableclass"  >
+                                                                                                            <span class="expico fa fa-minus {!if(OR(sub1.IPM_Section_Status__c=='Filled-in',sub1.IPM_Section__r.IPM_Section_Type__c=='Sub Header'),'green','grey')} topicheaderclass topicclass {!'iframe'+SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&','')+'SecondLevelSectionexpico'}" id="{!sub1.IPM_Section__c}" 
+                                                                                                                  onclick="getAttachments('{!sub1.Id}');{!if(OR(sub1.IPM_Master_Section_External_Id__c=='Trademarks',sub1.IPM_Master_Section_External_Id__c=='CU_And_Complexity'),'get'+SUBSTITUTE(SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&',''),'_','')+'SecondLevelSection();','')}this.onclick=null;"></span>                                      
+                                                                                                            <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub1.Id}"> {!sub1.IPM_Section_Sequence__c}  {!sub1.IPM_Section__r.IPM_Section_Name__c} [{!sub1.IPM_FunctionalRole__c}] </a> <span class="{!sub1.IPM_Section_Status__c}"> {!sub1.IPM_Section_Status__c}</span>                                   
+                                                                                                            
+                                                                                                            <apex:outputPanel styleClass="SecButtonSet pull-right">                                 
+                                                                                                                <a class="icoButton comments" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_CommentsPage}?id={!sub1.Id}" data-backdrop="static" data-keyboard="false" title="{!sub1.IPM_Section__r.IPM_Section_Sequence__c} {!sub1.IPM_Section__r.IPM_Section_Name__c} Comments" id="{!sub1.Id}">
+                                                                                                                    <span id="count{!sub1.id}" class="count" style="display:{!If(sub1.IPM_Count_of_Comments__c>0,'','none')}" >
+                                                                                                                        {!sub1.IPM_Count_of_Comments__c}
+                                                                                                                    </span>
+                                                                                                                </a>
+                                                                                                                <apex:outputPanel rendered="{!isEditLinkActive}">
+                                                                                                                    <a class="icoButton details" href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub1.Id}" title="Details"></a> 
+                                                                                                                </apex:outputPanel>
+                                                                                                            </apex:outputPanel> 
+                                                                                                        </span>
+                                                                                                    </span>
+                                                                                                </span>
+                                                                                            </apex:outputPanel>
+                                                                                            <apex:outputPanel layout="block" styleClass="ipmAcrdnExpand">
+                                                                                                <span class="{!SUBSTITUTE(SUBSTITUTE(sub1.IPM_FunctionalRole__c,'&',''),' ','')}frclass">
+                                                                                                    <span class="{!SUBSTITUTE(SUBSTITUTE(sub1.IPM_Section_Status__c,' ',''),'-','')}statusclass"  >
+                                                                                                        <span class="{!if((sub1.IPM_Section__r.IPM_Section_Type__c='Sub Header'),'',sub1.IPM_Negotiable__c)}negotiableclass"  >
+                                                                                                            
+                                                                                                            <!--Special 2nd Level Section-->                                                                                                
+                                                                                                            <apex:outputPanel layout="block">
+                                                                                                                
+                                                                                                                <iframe id="{!'iframe'+SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&','')+'SecondLevelSection'}" height="0" width="100%" marginheight="0" frameborder="0" marginwidth="0" allowtransparency="true" scrolling="no"/>
+                                                                                                                
+                                                                                                                <apex:outputPanel rendered="{!if(sub1.IPM_Master_Section_External_Id__c=='Trademarks',true,false)}">
+                                                                                                                    <div id="{!'id'+SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&','')+'SecondLevelSection'}" value="{!IPM_TradeMark_QuestionsViewPage}?id={!projectId}&printDoc={!printDoc}&gateDocType={!projectDoc.IPM_GateDocuments__c}"></div>
+                                                                                                                </apex:outputPanel>
+                                                                                                                <apex:outputPanel rendered="{!AND(sub1.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas',project.IPM_Project_Type__c='Operational',project.IPM_ProjectGKM__c='GKM3'))}">
+                                                                                                                    <div id="{!'id'+SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&','')+'SecondLevelSection'}" value="{!IPM_CU_ComplexityPage}?id={!projectId}&printDoc={!printDoc}&gateType={!projectDoc.IPM_GateDocuments__c}&getSectionId={!sub1.Id}&proModel={!project.IPM_GateKeeping_Model__c}&ProSpan={!project.IPMProject_Span__c}&phaseName={!project.IPM_Phase__c}&isEdit=false"></div>
+                                                                                                                </apex:outputPanel>
+                                                                                                                <apex:outputPanel rendered="{!AND(project.IPMProject_Span__c='Global',sub1.IPM_Master_Section_External_Id__c='CU_And_Complexity')}">
+                                                                                                                    <iframe id="{!'iframe'+SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&','')+'ConsolidatedSecondLevelSection'}" height="0" width="100%" marginheight="0" frameborder="0" marginwidth="0" allowtransparency="true" scrolling="no"/>
+                                                                                                                    <div id="{!'id'+SUBSTITUTE(sub1.IPM_Master_Section_External_Id__c,'&','')+'ConsolidatedSecondLevelSection'}" value="{!IPM_CU_Complexity_ConsolidatedPage}?id={!projectId}&printDoc={!printDoc}&getGateType={!projectDoc.IPM_GateDocuments__c}&isGateDoc=true&getProjId={!project.Id}"></div>
+                                                                                                                </apex:outputPanel>
+                                                                                                                
+                                                                                                            </apex:outputPanel>
+                                                                                                            
+                                                                                                            <!--Special 2nd Level Section End-->
+                                                                                                            <apex:outputField value="{!sub1.IPM_Gate_Document_Summary__c }" rendered="{!IF(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,True,False)}" />
+                                                                                                            <!---Attachment For Sections--->
+                                                                                                            <apex:outputPanel id="attSection">
+                                                                                                                <apex:outputPanel layout="block" styleClass="appBlock" rendered="{!sub1.IPM_Has_Appendix__c}"> 
+                                                                                                                    <apex:outputPanel rendered="{!sub1.IPM_Has_Appendix__c}">{!$Label.IPM_GD_APPENDIX_MSG}<span data-dir="{!sub1.IPM_Master_Section_External_Id__c}" class="appText">{!sub1.IPM_Section__r.IPM_Section_Name__c}</span></apex:outputPanel>
+                                                                                                                </apex:outputPanel>
+                                                                                                            </apex:outputPanel>
+                                                                                                            <span id="attachments{!sub1.Id}" ></span>
+                                                                                                            <!---Attachment For Sections Ends Here--->
+                                                                                                            
+                                                                                                            <apex:outputPanel layout="block" styleClass="lastUpdate">
+                                                                                                                <apex:outputText value="Last Update: {!sub1.IPM_GateHistory__c} on " rendered="{!IF(sub1.IPM_GateHistory__c!=NULL,True,False)}" ></apex:outputText>
+                                                                                                                <apex:outputField value="{!sub1.IPM_GateHistory_Date__c}" rendered="{!IF(sub1.IPM_GateHistory_Date__c!=NULL,True,False)}" /> 
+                                                                                                            </apex:outputPanel>
+                                                                                                        </span>
+                                                                                                    </span>
+                                                                                                </span>
+                                                                                            </apex:outputPanel>
+                                                                                        </span>
+                                                                                    </apex:repeat> 
+                                                                                    
+                                                                                    <!-- Special 1st Level Sections-->
+                                                                                    
+                                                                                    <span class="{!SUBSTITUTE(SUBSTITUTE(sub.IPM_FunctionalRole__c,'&',''),' ','')}frclass">
+                                                                                        <span class="{!SUBSTITUTE(SUBSTITUTE(sub.IPM_Section_Status__c,' ',''),'-','')}statusclass"  >
+                                                                                            <span class="{!if((sub.IPM_Section__r.IPM_Section_Type__c='Sub Header'),'',sub.IPM_Negotiable__c)}negotiableclass"  >
+                                                                                                <apex:outputPanel layout="block">
+                                                                                                    
+                                                                                                    <iframe id="{!'iframe'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'MainSection'}" height="0" width="100%" marginheight="0" frameborder="0" marginwidth="0" allowtransparency="true" scrolling="no"/>
+                                                                                                    
+                                                                                                    <apex:outputPanel rendered="{!AND(sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Original',OR(project.IPM_Phase__c='Ideas',projectDoc.IPM_GateDocuments__c='Charter'))}">
+                                                                                                        <div id="{!'id'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'MainSection'}" value="{!IPM_GlobalFinancialActionStandardsPage}?id={!projectId}&printDoc={!printDoc}&gate={!projectDoc.IPM_GateDocuments__c}&isEditable=false&projId={!projectId}&secId={!sub.Id}"></div>
+                                                                                                    </apex:outputPanel>
+                                                                                                    <apex:outputPanel rendered="{!AND(sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c!='Market Deployment',OR(project.IPMProject_Span__c='Regional',AND(project.IPMProject_Span__c='Local',project.IPM_Project_Type__c='Operational'),AND(project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Operational'),AND(project.IPMProject_Span__c='Global',projectDoc.IPM_GateDocuments__c!='Charter')))}">
+                                                                                                        <iframe id="{!'iframe'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'SecondMainSection'}" height="0" width="100%" marginheight="0" frameborder="0" marginwidth="0" allowtransparency="true" scrolling="no"/>
+                                                                                                        <div id="{!'id'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'SecondMainSection'}" value="{!IPM_FinancialActionStandardsInversePage}?id={!projectId}&printDoc={!printDoc}&gate={!projectDoc.IPM_GateDocuments__c}&isEditable=false&projId={!projectId}&secId={!sub.Id}"></div>
+                                                                                                    </apex:outputPanel>
+                                                                                                    <apex:outputPanel rendered="{!OR(sub.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',AND(project.IPM_Project_Type__c=='Rollout',project.IPMProject_Span__c=='Local',sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'))}">
+                                                                                                        <apex:outputPanel rendered="{!(sub.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity')}">
+                                                                                                            <div id="{!'id'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'MainSection'}" value="{!IPM_FinGatePage}?id={!projectId}&printDoc={!printDoc}&projId={!projectId}"></div>
+                                                                                                        </apex:outputPanel>
+                                                                                                        <apex:outputPanel rendered="{!(sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards')}">
+                                                                                                            <iframe id="{!'iframe'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'ThirdMainSection'}" height="0" width="100%" marginheight="0" frameborder="0" marginwidth="0" allowtransparency="true" scrolling="no"/>
+                                                                                                            <div id="{!'id'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'ThirdMainSection'}" value="{!IPM_FinGatePage}?id={!projectId}&printDoc={!printDoc}&projId={!projectId}"></div>
+                                                                                                        </apex:outputPanel>
+                                                                                                    </apex:outputPanel>
+                                                                                                    <apex:outputPanel rendered="{!sub.IPM_Master_Section_External_Id__c='Gate_Keeper_Checklist'}">
+                                                                                                        <div id="{!'id'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'MainSection'}" value="{!IPM_GateKeeperListViewPage}?id={!projectId}&printDoc={!printDoc}&setEdit=false&getDocType={!projectDoc.IPM_GateDocuments__c}"></div>
+                                                                                                    </apex:outputPanel>
+                                                                                                    <apex:outputPanel rendered="{!sub.IPM_Master_Section_External_Id__c='OTIF_Status'}">
+                                                                                                        <div id="{!'id'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'MainSection'}" value="{!IPM_OTIFStatusTableViewPage}?id={!projectId}&printDoc={!printDoc}&otfType=Table&getSectionId={!sub.id}"></div>
+                                                                                                    </apex:outputPanel>
+                                                                                                    <apex:outputPanel rendered="{!if(OR(sub.IPM_Master_Section_External_Id__c=='R&D_Initial_Outline_Product_Pack',sub.IPM_Master_Section_External_Id__c=='R&D_Technical_Readiness'),true,false)}">
+                                                                                                        <div id="{!'id'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'MainSection'}" value="{!IPM_RND_QuestionsViewPage}?id={!projectId}&printDoc={!printDoc}&gateDocType={!projectDoc.IPM_GateDocuments__c}&RNDEdit=False"></div>
+                                                                                                    </apex:outputPanel>
+                                                                                                    <apex:outputPanel rendered="{!if(OR(sub.IPM_Master_Section_External_Id__c=='Supply_Chain_Feasibility',sub.IPM_Master_Section_External_Id__c=='Supply_Chain_Technical_Readiness'),true,false)}">
+                                                                                                        <div id="{!'id'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'MainSection'}" value="{!IPM_SC_Feasibility_QuestionsViewPage}?id={!projectId}&printDoc={!printDoc}&gateDocType={!projectDoc.IPM_GateDocuments__c}"></div>
+                                                                                                    </apex:outputPanel>
+                                                                                                    <apex:outputPanel rendered="{!if(sub.IPM_Master_Section_External_Id__c=='R&D_Feasibility',true,false)}">
+                                                                                                        <div id="{!'id'+SUBSTITUTE(sub.IPM_Master_Section_External_Id__c,'&','')+'MainSection'}" value="{!IPM_RND_Feasibility_QuestionsViewPage}?id={!projectId}&printDoc={!printDoc}&RNDEdit=False&gateDocType={!projectDoc.IPM_GateDocuments__c}"></div>
+                                                                                                    </apex:outputPanel>
+                                                                                                    
+                                                                                                </apex:outputPanel>
+                                                                                                
+                                                                                                <apex:outputField value="{!sub.IPM_Gate_Document_Summary__c }" rendered="{!IF(AND(sub.IPM_Section__r.IPM_Section_Type__c!='Header',sub.IPM_Section__r.IPM_Section_Type__c!='Sub Header'),True,False)}"/>
+                                                                                                
+                                                                                                <apex:outputPanel layout="block" styleClass="appBlock" rendered="{!sub.IPM_Has_Appendix__c}"> 
+                                                                                                    <apex:outputPanel rendered="{!sub.IPM_Has_Appendix__c}">{!$Label.IPM_GD_APPENDIX_MSG}<span data-dir="{!sub.IPM_Master_Section_External_Id__c}" class="appText">{!sub.IPM_Section__r.IPM_Section_Name__c}</span></apex:outputPanel>
+                                                                                                </apex:outputPanel>
+                                                                                                <span id="attachments{!sub.Id}" ></span>
+                                                                                                
+                                                                                                <apex:outputPanel layout="block" styleClass="lastUpdate">
+                                                                                                    <apex:outputText value="Last Update: {!sub.IPM_GateHistory__c} on " rendered="{!IF(sub.IPM_GateHistory__c!=NULL,True,False)}" ></apex:outputText>        
+                                                                                                    <apex:outputField value=" {!sub.IPM_GateHistory_Date__c}" rendered="{!IF(sub.IPM_GateHistory_Date__c!=NULL,True,False)}" />
+                                                                                                </apex:outputPanel>
+                                                                                            </span>
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </apex:outputPanel>   
+                                                                            </apex:outputPanel>    
+                                                                        </span>
                                                                     </apex:repeat> 
-                                                                    
-                                                                    <!-- Special 1st Level Sections-->
-                                                                    <c:IPM_GlobalFinancialActionStandards gate="{!projectDoc.IPM_GateDocuments__c}" isEditable="false" projId="{!projectId}" secId="{!sub.Id}" rendered="{!AND(sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Original',OR(project.IPM_Phase__c='Ideas',projectDoc.IPM_GateDocuments__c='Charter'))}"></c:IPM_GlobalFinancialActionStandards>
-                                                                    <c:IPM_Financial_Action_Standards_Inverse gate="{!projectDoc.IPM_GateDocuments__c}" isEditable="false" projId="{!projectId}" secId="{!sub.Id}" rendered="{!AND(sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c!='Market Deployment',OR(project.IPMProject_Span__c='Regional',AND(project.IPMProject_Span__c='Local',project.IPM_Project_Type__c='Operational'),AND(project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Operational'),AND(project.IPMProject_Span__c='Global',projectDoc.IPM_GateDocuments__c!='Charter')))}" > </c:IPM_Financial_Action_Standards_Inverse>
-                                                                    <!-- below component renders while it meet one of the criteria -->
-                                                                    <!-- 1. sub header section master section external id is "Initial_Estimate_of_Opportunity" -->
-                                                                    <!-- 2. sub header section master section external id is "Business_Case_Action_Standards" and project type is "Rollout" and project span is "Local"-->
-                                                                    <c:IPM_FinGate projId="{!projectId}" rendered="{!OR(sub.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',AND(project.IPM_Project_Type__c=='Rollout',project.IPMProject_Span__c=='Local',sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'))}" ></c:IPM_FinGate>
-                                                                    <c:IPM_GateKeeperListView setEdit="false" getDocType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!sub.IPM_Master_Section_External_Id__c='Gate_Keeper_Checklist'}"></c:IPM_GateKeeperListView>
-                                                                    <c:IPM_OTIFStatusTableView otfType="Table" getSectionId="{!sub.Id}" rendered="{!sub.IPM_Master_Section_External_Id__c='OTIF_Status'}"></c:IPM_OTIFStatusTableView>
-                                                                    <c:IPM_RND_QuestionsView rendered="{!if(OR(sub.IPM_Master_Section_External_Id__c=='R&D_Initial_Outline_Product_Pack',sub.IPM_Master_Section_External_Id__c=='R&D_Technical_Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" RNDEdit="False"></c:IPM_RND_QuestionsView>
-                                                                    <c:IPM_SC_Feasibility_QuestionsView rendered="{!if(OR(sub.IPM_Master_Section_External_Id__c=='Supply_Chain_Feasibility',sub.IPM_Master_Section_External_Id__c=='Supply_Chain_Technical_Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}"></c:IPM_SC_Feasibility_QuestionsView>
-                                                                    <c:IPM_RND_Feasibility_QuestionsView rendered="{!if(sub.IPM_Master_Section_External_Id__c=='R&D_Feasibility',true,false)}" RNDEdit="False" gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_RND_Feasibility_QuestionsView>    
-                                                                   
-                                                                    <apex:outputField value="{!sub.IPM_Gate_Document_Summary__c }" rendered="{!IF(AND(sub.IPM_Section__r.IPM_Section_Type__c!='Header',sub.IPM_Section__r.IPM_Section_Type__c!='Sub Header'),True,False)}"/>
-                                                                     
-                                                                      <apex:outputPanel layout="block" styleClass="appBlock" rendered="{!if(OR(showAttach,sub.IPM_Has_Appendix__c),true,false)}"> 
-                                                                          <apex:outputPanel rendered="{!sub.IPM_Has_Appendix__c}">{!$Label.IPM_GD_APPENDIX_MSG}<span data-dir="{!sub.IPM_Master_Section_External_Id__c}" class="appText">{!sub.IPM_Section__r.IPM_Section_Name__c}</span></apex:outputPanel>
-                                                                            <apex:outputText rendered="{!showAttach}" value="See Attachments:"></apex:outputText>
-                                                                            <apex:repeat value="{!attachmentList}" var="atth" rendered="{!showAttach}">
-                                                                               <apex:outputLink styleClass="fileName" value="/servlet/servlet.FileDownload?file={!atth.Id}" target="_blank">{!atth.Name}</apex:outputLink> 
-                                                                             </apex:repeat> 
-                                                                      </apex:outputPanel>
-                                                                      
-                                                                    <apex:outputPanel layout="block" styleClass="lastUpdate">
-                                                                        <apex:outputText value="Last Update: {!sub.IPM_GateHistory__c} on " rendered="{!IF(sub.IPM_GateHistory__c!=NULL,True,False)}" ></apex:outputText>        
-                                                                        <apex:outputField value=" {!sub.IPM_GateHistory_Date__c}" rendered="{!IF(sub.IPM_GateHistory_Date__c!=NULL,True,False)}" />
-                                                                    </apex:outputPanel>
-                                                                    
-                                                                </apex:outputPanel>   
-                                                                </apex:outputPanel>                                                             
-                                                            </apex:repeat> 
-                                                          </apex:outputPanel>
-                                                        </apex:outputPanel>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                        </span>
                                                     </apex:repeat>
                                                 </apex:outputPanel>                                               
-                                        </div>
-                                   
-                                   <!-- Appendix New Logic here -->                                  
-                                        <div class="col-sm-12">                                           
+                                            </div>
+                                            
+                                            <!-- Appendix New Logic here -->  
+                                            <apex:actionFunction name="getAppendixDataFunc" action="{!getAppendixData}" reRender="AppTable,pageMessagesAppendixPanel" status="customStatus" oncomplete="resetPanel();resetPanelSub();dirApp();" rendered="{!!isPDLDocument}"/>
+                                            <div class="col-sm-12 appendixvisibleclass">                                           
                                                 <apex:outputPanel styleClass="ipmAccordian appendix" id="AppTable">
-                                                     <!--For Header-->                                 
-                                                        <apex:outputPanel styleClass="aHead" >
-                                                            <span class='expico fa fa-minus' onclick="fetchAppendixSections();"></span>
-                                                            <apex:outputText value="Appendix"/>
-                                                        </apex:outputPanel>
-                                                        <apex:outputPanel styleClass="ipmAcrdnExpand">
-                                                             <apex:outputPanel layout="block" id="appSections">                         
+                                                    <!--For Header-->                              
+                                                    <apex:outputPanel rendered="{!appendixBool}" styleClass="aHead" >
+                                                        <span class='expico fa fa-minus' ></span>
+                                                        <apex:outputText value="Appendix"/>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!appendixBool}" styleClass="ipmAcrdnExpand appendixExpnd">
+                                                        <apex:outputPanel layout="block" id="appSections">                         
                                                             <apex:repeat value="{!projDocAppdxSectionList}" var="apxSec" >
-                                                            
-                                                                <apex:outputPanel styleClass="aHead" >    
-                                                                
-                                                                 <span class="expico fa fa-minus {!if(apxSec.IPM_Section_Status__c=='Filled-in','green','grey')}"> </span>
-                                                                     <a> {!apxSec.IPM_Section_Name__c} [{!apxSec.IPM_FunctionalRole__c}]</a>
-                                                                                                     
-                                                                </apex:outputPanel>
-                                                                <apex:outputPanel styleClass="ipmAcrdnExpand {!apxSec.IPM_Master_Section_External_Id__c}">
-                                                                
-                                                                <c:IPM_FinInitialEstOfOppCharter projId="{!projectId}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity'}"></c:IPM_FinInitialEstOfOppCharter>
-                                                                <c:IPM_Consumer_Evidence gate="{!projectDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" Editable="false" getSecid="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Consumer_Evidence_Concept'}"></c:IPM_Consumer_Evidence>
-                                                                <c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!apxSec.Id}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Environmental_Impact'}" />
-                                                                <c:IPM_Customer_Channels gdpage="true" getProjectID="{!projectId}" getSecid="{!apxSec.Id}" CCEdit="false" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Customers_Channels'}"></c:IPM_Customer_Channels>
-                                                                <c:IPM_Risk_QuestionnaireView getProjectId="{!if(AND(project.IPMProject_Span__c=='Local',project.IPM_Project_Type__c=='Rollout'),project.IPM_Parent_Project__c,projectId)}" getProjectSectionId="{!apxSec.Id}" editSection="false" gateType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Risk'}"></c:IPM_Risk_QuestionnaireView>
-                                                                <c:IPM_Gate_RollOuts span="{!project.IPMProject_Span__c}" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c='Rollout_Plans',project.IPM_Project_Type__c!='Operational')}"></c:IPM_Gate_RollOuts>
-                                                                <c:IPM_MilestoneList_PDF pId="{!projectId}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" gateDocStatus="{!projectDoc.IPM_Document_Status__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Milestones'}"></c:IPM_MilestoneList_PDF>
-                                                                <c:IPM_Country_Feedback rendered="{!apxSec.IPM_Master_Section_External_Id__c='Country_Feedback_Requirements'}" > </c:IPM_Country_Feedback>
-                                                                <c:IPM_CMIGateSection secId="{!apxSec.Id}" projId="{!projectId}"  gate="{!projectDoc.IPM_GateDocuments__c}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards'}"></c:IPM_CMIGateSection>
-                                                                <c:IPM_Assumptions projId="{!projectId}" gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!apxSec.Id}" rendered="{!if(apxSec.IPM_Master_Section_External_Id__c=='Assumptions',true,false)}" isEditable="false"></c:IPM_Assumptions>
-                                                                <c:IPM_BCC_Consolidate gateType="{!projectDoc.IPM_GateDocuments__c}" projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'}"></c:IPM_BCC_Consolidate>
-                                                                <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy>
-                                                                <c:IPM_MarketPerformance projId="{!projectId}" isEditable="false" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Regional' && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
-                                                                <c:IPM_PerformanceBreakdown isAppendix="true" isEditable="false" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational')}"></c:IPM_PerformanceBreakdown> 
-                                                               </apex:outputPanel>
+                                                                <apex:outputPanel >
+                                                                    <apex:outputPanel styleClass="aHead {!SUBSTITUTE(SUBSTITUTE(apxSec.IPM_FunctionalRole__c,'&',''),' ','')}frclass" >    
+                                                                        
+                                                                        <span class="expico fa fa-minus {!if(apxSec.IPM_Section_Status__c=='Filled-in','green','grey')} {!'iframe'+SUBSTITUTE(SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&',''),'/','')+'Appendixexpico'}" 
+                                                                              onclick="{!if(OR(apxSec.IPM_Master_Section_External_Id__c=='Initial_Estimate_of_Opportunity',apxSec.IPM_Master_Section_External_Id__c=='Consumer_Evidence_Concept',apxSec.IPM_Master_Section_External_Id__c=='Environmental_Impact',apxSec.IPM_Master_Section_External_Id__c=='Milestones',apxSec.IPM_Master_Section_External_Id__c=='Risk',apxSec.IPM_Master_Section_External_Id__c=='Rollout_Plans',apxSec.IPM_Master_Section_External_Id__c=='Country_Feedback_Requirements',apxSec.IPM_Master_Section_External_Id__c=='Mix_Qualification_Plan_and_Action_Standards',apxSec.IPM_Master_Section_External_Id__c=='Assumptions',apxSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment',apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy',apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Master_Section_External_Id__c=='Technical',apxSec.IPM_Master_Section_External_Id__c=='Customers_Channels'),'get'+SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&',''),'_',''),'/','')+'Appendix();','')}"> </span>
+                                                                        <a> {!apxSec.IPM_Section_Name__c} [{!apxSec.IPM_FunctionalRole__c}]</a>
+                                                                        
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel styleClass="ipmAcrdnExpand {!apxSec.IPM_Master_Section_External_Id__c}">
+                                                                        <span class="{!SUBSTITUTE(apxSec.IPM_FunctionalRole__c,'&','')}frclass">
+                                                                            
+                                                                            <apex:outputPanel id="appendixComponents" layout="block" styleClass="incHeightFrame">
+                                                                                
+                                                                                <iframe id="{!'iframe'+SUBSTITUTE(SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&',''),'/','')+'Appendix'}" class="{!'iframe'+SUBSTITUTE(SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&',''),'/','')+'Appendix'}" height="0" width="100%" marginheight="0" frameborder="0" marginwidth="0" allowtransparency="true" scrolling="no"/>
+                                                                                
+                                                                                <apex:outputPanel rendered="{!apxSec.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity'}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'Appendix'}" value="{!IPM_FinInitialEstOfOppCharterPage}?projId={!projectId}&id={!projectId}&printDoc={!printDoc}"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!apxSec.IPM_Master_Section_External_Id__c='Consumer_Evidence_Concept'}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'Appendix'}" value="{!IPM_Consumer_EvidencePage}?id={!projectId}&printDoc={!printDoc}&gate={!projectDoc.IPM_GateDocuments__c}&getProjectId={!projectId}&Editable=false&getSecid={!apxSec.Id}"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Environmental_Impact'}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'Appendix'}" value="{!IPM_EcoDesignSectionPage}?id={!projectId}&printDoc={!printDoc}&displayOnlyTables=true&getSectionId={!apxSec.Id}"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!apxSec.IPM_Master_Section_External_Id__c='Customers_Channels'}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'Appendix'}" value="{!IPM_Customer_ChannelsPage}?id={!projectId}&printDoc={!printDoc}&gdpage=true&getProjectID={!projectId}&getSecid={!apxSec.Id}&CCEdit=false"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!apxSec.IPM_Master_Section_External_Id__c='Milestones'}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'Appendix'}" value="{!IPM_MilestoneList_PDFPage}?id={!projectId}&printDoc={!printDoc}&pId={!projectId}&gateDocType={!projectDoc.IPM_GateDocuments__c}&gateDocStatus={!projectDoc.IPM_Document_Status__c}"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!apxSec.IPM_Master_Section_External_Id__c='Risk'}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'Appendix'}" value="{!IPM_Risk_QuestionnaireViewPage}?id={!projectId}&printDoc={!printDoc}&getProjectId={!if(AND(project.IPMProject_Span__c=='Local',project.IPM_Project_Type__c=='Rollout'),project.IPM_Parent_Project__c,projectId)}&getProjectSectionId={!apxSec.Id}&editSection=false&gateType={!projectDoc.IPM_GateDocuments__c}"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c='Rollout_Plans',project.IPM_Project_Type__c!='Operational')}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'Appendix'}" value="{!IPM_Gate_RollOutsPage}?id={!projectId}&printDoc={!printDoc}&span={!project.IPMProject_Span__c}&projId={!projectId}"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!apxSec.IPM_Master_Section_External_Id__c='Country_Feedback_Requirements'}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'Appendix'}" value="{!IPM_Country_FeedbackPage}?id={!projectId}&printDoc={!printDoc}"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!apxSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards'}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'Appendix'}" value="{!IPM_CMIGateSectionPage}?id={!projectId}&printDoc={!printDoc}&secId={!apxSec.Id}&projId={!projectId}&gate={!projectDoc.IPM_GateDocuments__c}"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!if(apxSec.IPM_Master_Section_External_Id__c=='Assumptions',true,false)}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'Appendix'}" value="{!IPM_AssumptionsPage}?id={!projectId}&printDoc={!printDoc}&projId={!projectId}&gateType={!projectDoc.IPM_GateDocuments__c}&getSectionId={!apxSec.Id}&isEditable=false"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!apxSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&',''),'/','')+'Appendix'}" value="{!IPM_BCC_ConsolidatePage}?id={!projectId}&printDoc={!printDoc}&gateType={!projectDoc.IPM_GateDocuments__c}&projSpan={!project.IPMProject_Span__c}&projectId={!project.Id}&showBccTab={!showBBCtable}"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'Appendix'}" value="{!IPM_ViewAssortmentStrategyPage}?id={!projectId}&printDoc={!printDoc}&ProSecID={!apxSec.Id}"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && apxSec.IPM_Section_Sequence__c =='6.5' && (project.IPMProject_Span__c='Regional' || project.IPM_ProjectGKM__c='GKM3') && project.IPM_Project_Type__c!='Operational')}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'Appendix'}" value="{!IPM_MarketPerformancePage}?id={!projectId}&printDoc={!printDoc}&projId={!projectId}&isEditable=false"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational')}">
+                                                                                    <iframe id="{!'iframe'+apxSec.IPM_Master_Section_External_Id__c+'LocalAppendix'}" height="0" width="100%" marginheight="0" frameborder="0" marginwidth="0" allowtransparency="true" scrolling="no"/>
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'LocalAppendix'}" value="{!IPM_PerformanceBreakdownPage}?id={!projectId}&printDoc={!printDoc}&isAppendix=true&isEditable=false&projId={!projectId}"></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!project.IPMProject_Span__c=='Local' && project.IPM_ProjectGKM__c=='GKM3' && apxSec.IPM_Master_Section_External_Id__c=='Technical'}">
+                                                                                    <div id="{!'id'+SUBSTITUTE(apxSec.IPM_Master_Section_External_Id__c,'&','')+'Appendix'}" value="{!IPM_Local_Sourcing_TablePage}?id={!projectId}&printDoc={!printDoc}&projId={!projectId}"></div>
+                                                                                </apex:outputPanel>
+                                                                                
+                                                                            </apex:outputPanel>
+                                                                        </span>
+                                                                    </apex:outputPanel>
+                                                                </apex:outputPanel>                                                                
                                                             </apex:repeat>
-                                                             </apex:outputPanel>
                                                         </apex:outputPanel>
-                                                    
-                                                    <apex:actionFunction name="getAppSections" action="{!getAppendixSections}" status="refreshCat" reRender="appSections" oncomplete="resetPanel()"></apex:actionFunction>
+                                                    </apex:outputPanel>
                                                 </apex:outputPanel>
+                                            </div>
                                         </div>
-                                    </div>
                                     </apex:outputPanel>
-                                   <!-- Appendic new Logic ends -->                                                     
+                                    <!-- Appendic new Logic ends -->     
+                                    
+                                    <!-- below panel is rendered when header sections id is same as sub header section id and default section is true --> 
+                                    <div class="contenWrapper pdlCollapse clearfix">
+                                        <div class="col-sm-12">                                           
+                                            <apex:outputPanel layout="block" styleClass="ipmAccordian mainTable" rendered="{!isPDLDocument}">
+                                                <apex:repeat value="{!projSectionList}" var="sub">  
+                                                    <apex:outputPanel layout="block" styleClass="aHead" >    
+                                                        <span class="expico fa fa-minus {!if(OR(sub.IPM_Section_Status__c=='Filled-in',sub.IPM_Section__r.IPM_Section_Type__c=='Sub Header'),'green','grey')}" id="{!sub.IPM_Section__c}" > </span>
+                                                        <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub.Id}">{!sub.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} [{!sub.IPM_FunctionalRole__c}]</a>  <span class="{!sub.IPM_Section_Status__c}"> {!sub.IPM_Section_Status__c}</span> 
+                                                        <apex:outputPanel styleClass="SecButtonSet pull-right pdlnoMtop">                                 
+                                                            <a class="icoButton comments" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_CommentsPage}?id={!sub.Id}" data-backdrop="static" data-keyboard="false" title="{!sub.IPM_Section__r.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} Comments" id="{!sub.Id}">
+                                                                <span id="count{!sub.id}" class="count" style="display:{!If(sub.IPM_Count_of_Comments__c>0,'','none')}" >
+                                                                    {!sub.IPM_Count_of_Comments__c}
+                                                                </span>
+                                                            </a>
+                                                            <!-- below panel will render when section is not child section of section 8 -->
+                                                            <apex:outputPanel rendered="{!IF(AND(isEditLinkActive,NOT(contains(sub.IPM_Section__r.IPM_Section_Sequence__c,'8.'))),True,False)}">
+                                                                <a class="icoButton details" href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!project.Id}&projDocSecId={!sub.Id}" title="Details"></a>  
+                                                            </apex:outputPanel>
+                                                        </apex:outputPanel> 
+                                                    </apex:outputPanel>  
+                                                    <apex:outputPanel styleClass="ipmAcrdnExpand" layout="block">
+                                                        <div class="pdlSummary">
+                                                            <apex:outputField value="{!sub.IPM_Gate_Document_Summary__c }"  />
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>   
+                                            </apex:outputPanel>  
+                                        </div>  
+                                    </div>                                        
                                 </div>
                             </div>                    
                         </div> 
                     </div>            
                     <!--/ Page Content -->
-                        
-                        <!--   MOve to Next Phase Modal Pop-up Section starts here --------->
-                        <div id="ipmMoveFeasibility" class="modal fade ipmMoveFeasibility">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <div class="modal-title">{!$Label.IPM_UPDATE_PRO_PHASE_CONFIRMATION}</div>
-                                    </div>
-                                    
-                                    <div class="modal-body">
-                                        <div class="container-fluid">
-                                            <div class="row">    
-                                                <div class="col-sm-12">
-                                                    <span class="skipDesc">{!$Label.IPM_READY_TO_MOVE_TO} {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))} {!$Label.IPM_Gate_Phase1} {!gateDocument} {!$Label.IPM_Gate_Phase2} {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}.</span>
-                                                </div>
-                                                
-                                                <div class="skipButtoncontainer txtAlignright pull-right">
-                                                    <apex:outputPanel id="SkipBossC">
-                                                        <div class="buttonMarginRight noPadright pull-left" >
-                                                            <input type="button" data-dismiss="modal" class="ipmButton" value="Go back" />
-                                                        </div> 
-                                                    </apex:outputPanel>
-                                                    <div class="pull-left noPadright"> 
-                                                        <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}&suggestedMembersButton=true&createBET=true'" styleClass="ipmButton primary" rendered="{!project.IPM_Phase__c='Ideas'}">
-                                                            <apex:param name="approveDocumentStatus" value="Approved" assignTo="{!projectDoc.IPM_Document_Status__c}"/>
-                                                        </apex:commandButton>
-                                                        <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}'" styleClass="ipmButton primary" rendered="{!project.IPM_Phase__c!='Ideas'}">
-                                                            <apex:param name="approveDocumentStatus" value="Approved" assignTo="{!projectDoc.IPM_Document_Status__c}"/>
-                                                        </apex:commandButton>
+                    
+                    <!--   MOve to Next Phase Modal Pop-up Section starts here --------->
+                    <div id="ipmMoveFeasibility" class="modal fade ipmMoveFeasibility">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="modal-title">{!$Label.IPM_UPDATE_PRO_PHASE_CONFIRMATION}</div>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">    
+                                            <div class="col-sm-12">
+                                                <span class="skipDesc">{!$Label.IPM_READY_TO_MOVE_TO} {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))} {!$Label.IPM_Gate_Phase1} {!gateDocument} {!$Label.IPM_Gate_Phase2} {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}.</span>
+                                            </div>
+                                            
+                                            <div class="skipButtoncontainer txtAlignright pull-right">
+                                                <apex:outputPanel id="SkipBossC">
+                                                    <div class="buttonMarginRight noPadright pull-left" >
+                                                        <input type="button" data-dismiss="modal" class="ipmButton" value="Go back" />
                                                     </div> 
-                                                </div>
-                                            </div>  
-                                        </div>          
-                                    </div>
-                                </div>  
-                            </div>
-                        </div>  
+                                                </apex:outputPanel>
+                                                <div class="pull-left noPadright"> 
+                                                    <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}&suggestedMembersButton=true&createBET=true'" styleClass="ipmButton primary" rendered="{!project.IPM_Phase__c='Ideas'}">
+                                                        <apex:param name="approveDocumentStatus" value="Approved" assignTo="{!projectDoc.IPM_Document_Status__c}"/>
+                                                    </apex:commandButton>
+                                                    <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}'" styleClass="ipmButton primary" rendered="{!project.IPM_Phase__c!='Ideas'}">
+                                                        <apex:param name="approveDocumentStatus" value="Approved" assignTo="{!projectDoc.IPM_Document_Status__c}"/>
+                                                    </apex:commandButton>
+                                                </div> 
+                                            </div>
+                                        </div>  
+                                    </div>          
+                                </div>
+                            </div>  
+                        </div>
+                    </div>  
                         <!-- Attachment Modal --->
                         <div id="ipmAttachmentModal" class="modal fade">
                             <div class="modal-dialog">
@@ -751,19 +895,26 @@
                                 </div>     
                             </div>
                         </div>                        
-                        <!--   MOve to Next Phase Modal Pop-up Section ends here --------->
-                        
-                        <div id="ipmModalDiv">
+                    <!--   MOve to Next Phase Modal Pop-up Section ends here --------->
+                    
+                    <div id="ipmModalDiv">
                         <c:IPM_Modal />
                     </div>
                     <apex:outputPanel id="filterBlock">
                         <script>
-                        var IPMApp = {NonNegotiableCount:'{!NonNegotiableCount}', OptionalCount:'{!OptionalCount}', NotstartedCount:'{!NotstartedCount}', FilledinCount:'{!FilledinCount}', BDCount:'{!BDCount}', CMICount:'{!CMICount}', CDCount:'{!CDCount}', RnDCount:'{!RnDCount}', SCCount:'{!SCCount}', FinanceCount:'{!FinanceCount}', BBCount:'{!BBCount}', typeFilters:'{!typeFilters}', statusFilters:'{!statusFilters}', roleFilters:'{!roleFilters}', proDoc:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}', approved:'{!$Label.IPM_GD_APPROVED}', proposed:'{!$Label.IPM_GD_PROPOSED}', GateDocPageRef:'{!$Page.IPM_GateDocument}', printDoc:'{!projectDoc.IPM_GateDocuments__c}', OverviewPageRef: '{!$Page.IPM_ProjectOverview}'};                 
+                        var IPMApp = {projectdocid:'{!ProjectDoc.Id}', ContactAdmin:'{!$Label.IPM_PLEASE_CONTACT_ADMINISTRATOR}', IsPdldoc:'{!isPDLDocument}', NonNegotiableCount:'{!NonNegotiableCount}', OptionalCount:'{!OptionalCount}', NotstartedCount:'{!NotstartedCount}', FilledinCount:'{!FilledinCount}', MKTGDEVCount:'{!MKTGDEVCount}', CMICount:'{!CMICount}', CDCount:'{!CDCount}', RnDCount:'{!RnDCount}', SCCount:'{!SCCount}', FinanceCount:'{!FinanceCount}', MKTGLOCALCount:'{!MKTGLOCALCount}', proDoc:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}', approved:'{!$Label.IPM_GD_APPROVED}', proposed:'{!$Label.IPM_GD_PROPOSED}', GateDocPageRef:'{!$Page.IPM_GateDocument}', printDoc:'{!projectDoc.IPM_GateDocuments__c}', OverviewPageRef: '{!$Page.IPM_ProjectOverview}'};  
                         </script>
-                    </apex:outputPanel> 
+                    </apex:outputPanel>
+                    <apex:actionFunction name="getUserTypeFunc" action="{!getIpmuserType}" reRender="addManagePanel,changeStatusPanel,pageMessagesUserTypePanel" />
                 </div>
+                <script src="{!URLFOR($Resource.IPM_Resource, 'js/iframeResizer.min.js')}" type="text/javascript"></script>
                 <apex:includeScript value="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" loadOnReady="true"/>
-                <apex:includeScript value="{!URLFOR($Resource.IPM_Resource, 'js/IPM_GateDocument.js')}" loadOnReady="true" />
+                <apex:includeScript value="{!URLFOR($Resource.IPM_Resource, 'js/IPM_GateDocument.js')}" loadOnReady="true" />               
+                <script type="text/javascript">
+                    var __sfdcSessionId = '{!GETSESSIONID()}';
+                </script>
+                <script src="../../soap/ajax/38.0/connection.js" type="text/javascript">
+                </script>
             </apex:form>
         </apex:define>        
     </apex:composition>  

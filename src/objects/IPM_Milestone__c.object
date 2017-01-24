@@ -324,6 +324,15 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>IPM_Due_Date_For_Sorting__c</fullName>
+        <externalId>false</externalId>
+        <label>Due Date For Sorting</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>IPM_Due_Date_Idea__c</fullName>
         <description>Snapshot of Idea Due Date</description>
         <externalId>false</externalId>
@@ -585,21 +594,24 @@
         <externalId>false</externalId>
         <formula>IF(text(IPM_Phase__c)=&apos;Ideas&apos;,
 1, 
-IF(text(IPM_Phase__c)=&apos;Feasibility&apos;, 
+IF(AND(text(IPM_Phase__c)=&apos;Feasibility&apos;,IPM_Name__c=&apos;Product Design Lock&apos;), 
 2, 
+IF(AND(text(IPM_Phase__c)=&apos;Feasibility&apos;,IPM_Name__c &lt;&gt; &apos;Product Design Lock&apos;), 
+3,
 IF(text(IPM_Phase__c)=&apos;Capability&apos;, 
-3, 
-IF(text(IPM_Phase__c)=&apos;Market Ready&apos;, 
 4, 
+IF(text(IPM_Phase__c)=&apos;Market Ready&apos;, 
+5, 
 IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
-5,
-IF(text(IPM_Phase__c)=&apos;Post Launch Evaluation&apos;, 
-6, 
--1) 
-) 
-) 
-) 
-) 
+6,
+IF(text(IPM_Phase__c)=&apos;Post Launch Evaluation&apos;,
+7,
+-1)
+)
+)
+)
+)
+)
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM Phase Order</label>
@@ -932,6 +944,15 @@ VALUE(IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developed&apos;, IPM_No
 IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apos;, IPM_No_Of_Days_for_Developing_Emerging__c , &apos;&apos;)))) &lt; 0 ), ISPICKVAL(IPM_Type_of_gate__c, &apos;Market Ready&apos;)), TRUE, FALSE)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Preferred Date Violated?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SystemSetDueDate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>SystemSetDueDate</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>

@@ -123,7 +123,6 @@ private class IPM_TaskCompCtrl_Test{
        //run as PL
        System.runAs(globalUser) 
        {
-        Test.startTest();
         
         initializedData();
         
@@ -145,8 +144,8 @@ private class IPM_TaskCompCtrl_Test{
         
 		ipm.getProjectTasks();//get project specific task
         system.assertEquals(tasklist[0].id, ipm.getTaskId(),'tasks are not same');
-                
-		ipm.toggleDueDate();//sort with due date
+        Test.startTest();        
+	ipm.toggleDueDate();//sort with due date
         ipm.toggleSortTasks();//sort with task name
         ipm.toggleSortSections();//sort with task section
         ipm.toggleSortPhases();//sort with phase

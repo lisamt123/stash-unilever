@@ -165,7 +165,7 @@
         <chartType>VerticalColumnStacked</chartType>
         <enableHoverLabels>true</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>BucketField_80153495</groupingColumn>
+        <groupingColumn>BucketField_51012977</groupingColumn>
         <legendPosition>Right</legendPosition>
         <location>CHART_TOP</location>
         <secondaryGroupingColumn>SAM_Request__c.fml_SAM_demand_manager__c</secondaryGroupingColumn>
@@ -185,6 +185,11 @@
     <format>Matrix</format>
     <groupingsAcross>
         <dateGranularity>Day</dateGranularity>
+        <field>BucketField_51012977</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
         <field>BucketField_80153495</field>
         <sortOrder>Asc</sortOrder>
     </groupingsAcross>
@@ -193,7 +198,7 @@
         <field>SAM_Request__c.fml_SAM_demand_manager__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>SAM Request Details - SAM Demand Manager</name>
+    <name>SAM Demand: Request - Manager Details</name>
     <params>
         <name>co</name>
         <value>1</value>

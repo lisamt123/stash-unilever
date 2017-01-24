@@ -19,6 +19,8 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
 //This method creates required global, regional and local projects and rollouts, also related financials. These records are then accessed across the testmethods.
     @testSetup static void financialSetUp() 
      {
+     	 test.startTest();
+     	 
          userList = IPM_TestFactory_Helper.createUserList();
          system.assertNotEquals(userList[0],null,'User not created');
          //asserts based on Hard coded names from helper can be a risk, if helper changes then assert will fail.
@@ -34,14 +36,18 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             insert globalProjectList;
          }
          
+         IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
+       	 IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
          createRegionalAndLocalRollouts(globalProjectList);
-         
+         IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+         IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
+         test.stopTest();
          
      }
      
      static void createRegionalAndLocalRollouts(List<IPM_Project__c>globalProjectList)  
      {
-         	Test.startTest();
+         	
             System.runAs(userList[0])
             {
                 // Create Regional Rollouts for Created Global project.
@@ -127,7 +133,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             system.assertEquals(localRollout.KeyMCO__c, true,'MCO not updated');
             system.assertEquals(localRollout.IPM_Regional_PL__c, userList[2].Id, 'regional PL not updated');
         }
-        Test.stopTest(); 
+        
      }
 
 
@@ -137,6 +143,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
         System.runAs(userList[0])
         {
             insert regionalProjectList;
+            System.Debug('@@@@@regionalProjectList==>   ' + regionalProjectList);
             /******************************** Create Local Rollouts for Created Regional Original project ****************************************/
             
             projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c from IPM_Project__c where IPMProject_Span__c =: IPM_ConstantUtils.PROJECT_SPAN_REGIONAL];
@@ -182,17 +189,22 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             newProject.IPM_ProjectSubType__c='Innovation/Renovation';
             newProject.Name=LOCALPROJECTNAME;
             newProject.IPM_Project_Name__c=LOCALPROJECTNAME;
+            newProject.IPM_ProjectGKM__c = 'GKM2';
             insert newProject;
             List<IPM_Project__c>checkProjectList=[select IPM_Project_Name__c FROM IPM_Project__c WHERE ID=:newProject.ID LIMIT 1];   
             system.assertEquals(checkProjectList[0].IPM_Project_Name__c,LOCALPROJECTNAME,'project name not matched');     
             IPM_TestFactory_Helper.createIPMCountryList(true,1);
             
             //Finance record for global project which is NON consolidate             
-             IPM_Financial__c localRolloutFin = [SELECT id, Local_Project__c,Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
-             Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='TestRegionalComments1_UMCA'];
+             IPM_Financial__c localRolloutFin = [SELECT id, Local_Project__c,Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, 
+                                                 Regional_External_Id__c, Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c 
+                                                 from IPM_Financial__c where Financial_External_ID__c='TestRegionalComments1_UMCA'];
+             
              system.assert(localRolloutFin!=null, 'Finance record for Local rollout project is not created.');
              localRolloutFin.Local_Project__c=newProject.id;
+             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
              update localRolloutFin;
+             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
              IPM_Financial__c localRolloutFins = [SELECT id, Local_Project__c FROM IPM_Financial__c WHERE id=:localRolloutFin.id];
              system.assertEquals(localRolloutFins.Local_Project__c,newProject.id, 'Finance record for Local rollout project is not UPDATED.');
             
@@ -243,7 +255,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             sic.saveRecords();
             List<IPM_MarketPerformanceBreakdown__c> marketPerforBreakdownList=[SELECT Name FROM IPM_MarketPerformanceBreakdown__c WHERE ID=:sic.marketPerformanceBreakdownList[0].ID LIMIT 1];
             system.assertNotEquals(marketPerforBreakdownList[0].Name,sic.marketPerformanceBreakdownList[0].Name,'Name is saved');//negative test
-            
+            Test.stopTest();
             sic.marketPerformanceBreakdownList[0].Name=sic.marketPerformanceBreakdownList[0].id;
             sic.marketPerformanceBreakdownList[0].InnovationValueShare__c=101;
             sic.marketPerformanceBreakdownList[0].InnovationVolumeShare__c=101;
@@ -254,7 +266,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             List<IPM_MarketPerformanceBreakdown__c> marketPerformanceBkList=[SELECT InnovationValueShare__c,InnovationVolumeShare__c FROM IPM_MarketPerformanceBreakdown__c WHERE ID=:sic.marketPerformanceBreakdownList[0].ID LIMIT 1];
             system.assertNotEquals(marketPerformanceBkList[0].InnovationValueShare__c,101,'innovation value share is saved');//positive test
             system.assertNotEquals(marketPerformanceBkList[0].InnovationVolumeShare__c,101,'innovation volume share is saved');//positive test
-            Test.stopTest();
+            
                
         }
         

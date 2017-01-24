@@ -29,9 +29,10 @@ global class CEC_AnonymiseConsumer_BatchScheduler implements Database.Batchable<
             CEC_AnonymiseConsumer_BatchScheduler anonymiseConsumerData = new CEC_AnonymiseConsumer_BatchScheduler();
             database.executebatch(anonymiseConsumerData);
         } catch(Exception e) {
-            String msgBodyStr = '*** ERROR IN SCHEDULING THE ACCOUNT DATA UPDATION BATCH APEX JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
-            CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Scheduling Apex Job Failed');
-            System.debug(msgBodyStr);
+            //String msgBodyStr = '*** ERROR IN SCHEDULING THE ACCOUNT DATA UPDATION BATCH APEX JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
+            CEC_ExceptionHandling.CreateExceptionLog('Scheduler', 'execute(SchedulableContext sc)', 'CEC_AnonymiseConsumer_BatchScheduler', '', e.getStackTraceString());
+            //CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Scheduling Apex Job Failed');
+            //System.debug(msgBodyStr);
         }
     }
     
@@ -52,9 +53,10 @@ global class CEC_AnonymiseConsumer_BatchScheduler implements Database.Batchable<
             System.debug('****Scope'+scope);
             anonymiseConsumerDataHelper.updateAccountInformation(scope);  
         } catch(Exception e) {
-            String msgBodyStr = '*** ERROR IN PROCESSING THE ACCOUNT RECORDS IN THE BATCH JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
-            CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Batch Job to process Account Information failed');
-            System.debug(msgBodyStr);
+            //String msgBodyStr = '*** ERROR IN PROCESSING THE ACCOUNT RECORDS IN THE BATCH JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
+            CEC_ExceptionHandling.CreateExceptionLog('Scheduler', 'execute(Database.BatchableContext BC, List<Account> scope)', 'CEC_AnonymiseConsumer_BatchScheduler', '', e.getStackTraceString());
+            //CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Batch Job to process Account Information failed');
+            //System.debug(msgBodyStr);
         }        
     }
     

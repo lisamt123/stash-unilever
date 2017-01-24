@@ -218,7 +218,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Boolean can_see_rollover_initiated_message_on_original_sow{
         get {
             return is_initial_rollover_sync_requested
-                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 
@@ -226,7 +226,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Boolean can_see_sync_completed_on_original_sow{
         get {
             return is_initial_sync_completed
-                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 
@@ -234,7 +234,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Boolean can_see_sync_in_progress{
         get {
             return is_rollover_in_progress && !is_sync_complete
-                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 
@@ -242,14 +242,14 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Boolean can_see_sync_requested_on_bfwd_sow{
         get {
             return is_sync_requested && !is_rollover_in_progress && !is_sync_complete
-                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 
     public Boolean can_see_sync_completed_on_bfwd_sow_staying_on_the_page{
         get {
             return is_sync_complete && selected_sow.SOW_PFY__r.LastmodifiedDate > pageLastRefreshed
-                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 
@@ -257,14 +257,14 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Boolean can_see_link_to_cloned_record{
         get {
             return is_approved_original_record
-                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet();
+                && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 
     //Only UL users can see warning about SOW going through a rollover if SOW has at least 1 B/Fwd Campaign
     public Boolean can_see_rollover_warning {
         get {
-            return is_going_through_rollover && (selected_sow.B_Fwd_Campaign_count__c > 0) && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasUL3permissionSet();
+            return is_going_through_rollover && (selected_sow.B_Fwd_Campaign_count__c > 0) && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasUL3permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
         }
     }
 

@@ -38,8 +38,13 @@ jq(s).each(function() {
              score = itemsRnd[pointer];
          },
          slide: function( event, ui ) {
-            jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
-            jq(this).find(".legendSld label").eq(ui.value -1).click();
+            if(jq(this).find(".legendSld input").attr('new') === 'ReadonlySlider')
+            {
+                event.preventDefault();
+            }else{ 
+                jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+                jq(this).find(".legendSld label").eq(ui.value -1).click();
+            }
         }
      });
      
@@ -65,18 +70,21 @@ jq(s).each(function() {
              });
          }
 });
-
 /* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */
 jq(".legendSld label").on("click", function() {
-     var lpos = jq(".legendSld label").offset().left;
-     jq(this).parent().find('label').css({
-         'color': '#222222'
-     });
-     jq(this).css({
-         'color': '#e98824'
-     });
-     jq("toolTipMsg:before").css("left", lpos + "px");
-    });
-    jq("input[type=radio][id^='s']").hide();
-
- }
+    if(jq(this).prev().attr('new') === 'ReadonlySlider')
+    {
+        event.preventDefault();
+    }else{
+        var lpos = jq(".legendSld label").offset().left;
+        jq(this).parent().find('label').css({
+             'color': '#222'
+        });
+        jq(this).css({
+             'color': '#e98824'
+        });
+        jq("toolTipMsg:before").css("left", lpos + "px");
+    }
+});
+jq("input[type=radio][id^='s']").hide();
+}

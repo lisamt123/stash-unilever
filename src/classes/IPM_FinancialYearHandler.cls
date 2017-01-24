@@ -6,8 +6,11 @@
 */
 public with sharing class IPM_FinancialYearHandler implements ITrigger
 {    
-    public static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
+    public static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>(); 
     
+    public static final Set<String> FY_COPYFIELDS = new Set<String>{
+    	'Advertising_Promotions_','Gross_Profit_','Profit_Before_Overheads_','Turnover_','Volume_Unit_','Volume_Tons_','Volume_','Value_Market_Share_'
+	};
     //@description:Constructor
     public IPM_FinancialYearHandler ()
     {
@@ -47,7 +50,6 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     public void bulkAfter()
     {
        
-        Map<String,IPM_Financial_Year__c> upsertconsolidatedFinancialYearMap = new Map<String,IPM_Financial_Year__c>();
 
         //Added for CR0010+CR0127
         if(Trigger.isInsert)
@@ -56,47 +58,65 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         }
         else if(Trigger.isUpdate)
         {
+        	Map<Id,IPM_Financial_Year__c> financialActionStandardMap = new Map<Id,IPM_Financial_Year__c>();
             Map<Id,IPM_Financial_Year__c> oldFinancialMap = (Map<Id,IPM_Financial_Year__c>) Trigger.oldMap;
-            IPM_FinancialYearHelper.updateFinancialActionStandard((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
-            IPM_FinancialYearHelper.updateGlobalFinancialActionStandards((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
-            IPM_FinancialYearHelper.initialiseFYConsolidation((List<IPM_Financial_Year__c>)Trigger.new,oldFinancialMap,null,upsertconsolidatedFinancialYearMap);
+            Map<String,IPM_financial_Year__c> consolidatedFinancialFYMap = IPM_FinancialYearHelper.initialiseFYConsolidation((List<IPM_Financial_Year__c>)Trigger.new,oldFinancialMap,null);
+            if(!consolidatedFinancialFYMap.isEmpty())
+            {
+            	Set<Id> consolidatedFinancialFYIds = new Set<Id>();
+            	for(IPM_financial_Year__c finFY : consolidatedFinancialFYMap.values())
+	            {
+	            	consolidatedFinancialFYIds.add(finFY.Id); 
+	            }
+	            String financialQuery = IPM_Utils.prepareSOQLQuery('IPM_Financial_Year__c',false,null,false);
+	            String financialWhereClause = ' WHERE Id in :consolidatedFinancialFYIds LIMIT 50000';
+	            financialQuery = financialQuery + financialWhereClause;	
+	        	financialActionStandardMap = new Map<Id,IPM_Financial_Year__c>( (List<IPM_Financial_Year__c> )database.Query(financialQuery));
+            }
+            else
+            {
+            	financialActionStandardMap = (Map<Id,IPM_Financial_Year__c>)Trigger.NewMap;
+            }
+            IPM_FinancialYearHelper.updateFinancialActionStandard(financialActionStandardMap);
+            IPM_FinancialYearHelper.updateGlobalFinancialActionStandards(financialActionStandardMap);
+            
         }
         else if(Trigger.isDelete && !deleteFinancialYearMap.isEmpty()) 
-        { 			   			IPM_FinancialYearHelper.initialiseFYConsolidation(deleteFinancialYearMap.values(),null,deleteFinancialYearMap,upsertconsolidatedFinancialYearMap);
-        }
         
-        if(!upsertconsolidatedFinancialYearMap.isEmpty())
         {
-            upsert upsertconsolidatedFinancialYearMap.values() External_Id__c;
+			IPM_FinancialYearHelper.initialiseFYConsolidation(null,null,deleteFinancialYearMap);
         }
 		
         //Financials Hard Validations: Get all Financial External ID
         set<string> setFinExtId = new set<string>();
-        list<IPM_Financial_Year__c> lstFinYr = new list<IPM_Financial_Year__c>();
-        if(Trigger.isInsert){
-            lstFinYr = (list<IPM_Financial_Year__c>)Trigger.New;
-        }
-        else if(Trigger.isUpdate){
+        if(Trigger.isInsert)
+        {
             for(IPM_Financial_Year__c finYr: (list<IPM_Financial_Year__c>)Trigger.New){
+            	setFinExtId.add(finYr.Financial_External_ID__c);	
+        }
+        }
+        else if(Trigger.isUpdate && !IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED)
+        {
+            for(IPM_Financial_Year__c finYr: (list<IPM_Financial_Year__c>)Trigger.New)
+            {
                 if(finYr.Turnover_Global__c!=((IPM_Financial_Year__c) Trigger.Oldmap.get(finYr.id)).Turnover_Global__c || finYr.Turnover_Regional__c != ((IPM_Financial_Year__c) Trigger.Oldmap.get(finYr.id)).Turnover_Regional__c || finYr.Turnover_Local__c!=((IPM_Financial_Year__c)  Trigger.Oldmap.get(finYr.id)).Turnover_Local__c){
-                    lstFinYr.add(finYr);    
+                    setFinExtId.add(finYr.Financial_External_ID__c);  
                 }   
             }   
         }
-        else if(Trigger.isDelete){
-            lstFinYr = (list<IPM_Financial_Year__c>)Trigger.Old;    
-        }
+        else if(Trigger.isDelete)
+        {
+        	for(IPM_Financial_Year__c finYr: (list<IPM_Financial_Year__c>)Trigger.Old)
 		
 		
-        if(!lstFinYr.isEmpty())
 		{
-            for(IPM_Financial_Year__c finYear: lstFinYr){
-                setFinExtId.add(finYear.Financial_External_ID__c);          
+            	setFinExtId.add(finYr.Financial_External_ID__c);
             }
+        }
 			
-			if(!setFinExtId.isEmpty()){
+        if(!setFinExtId.isEmpty())
+		{
             IPM_FinancialYearHelper.validateDefaultFinancial(setFinExtId);
-			}
         }
         
     }
@@ -120,6 +140,23 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     public void beforeUpdate(SObject oldSo, SObject so)
     { 
         //This method has been included as the class implements the ITrigger interface
+        
+        IPM_Financial_Year__c newFinancialYear = (IPM_Financial_Year__c)so;
+        
+        String prefix = 'Regional';
+        IF(newFinancialYear.Gate_Keeping_Model__c=='GKM3')
+        {
+        	prefix = 'Global';
+        }
+        	
+    	if(newFinancialYear.get('Volume_'+prefix+'__c') != 0) 
+    	{
+    		newFinancialYear.Volume_Difference_Value__c = 0;
+    		if( ((Decimal)newFinancialYear.get('Volume_'+prefix+'__c') - (Decimal)newFinancialYear.get('Volume_Local__c') / (Decimal)newFinancialYear.get('Volume_'+prefix+'__c') ).abs() > 0.1)
+    		{
+    			newFinancialYear.Volume_Difference_Value__c = ((Decimal)newFinancialYear.get('Volume_'+prefix+'__c') - (Decimal)newFinancialYear.get('Volume_Local__c')).abs();
+    		}
+    	}
         
     }
     
@@ -152,7 +189,8 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     * @para:new sobject record
     */
     public void afterUpdate(SObject oldSo, SObject so)
-    { 
+    {
+      
         //This method has been included as the class implements the ITrigger interface
     }
     

@@ -12,6 +12,7 @@ public class AF_ApprovalProcessForBrandEstContro_Test
     Static Integer IcurrYear = System.Today().year();
     Static string currYear=string.valueof(IcurrYear);
     static user usrforapprovalProcessForBrandEst;
+    static user usrforapprovalProcessForBrandEst1;
     /***********************************************************************************
 *  @Description: this method will the test data
 *  @name : approvalProcessForBrandEstController
@@ -23,8 +24,7 @@ public class AF_ApprovalProcessForBrandEstContro_Test
         Test.startTest();
         usrforapprovalProcessForBrandEst=AF_TestFactory_Helper.createUserAdmin(true);
         User u=[SELECT id FROM user WHERE id=:usrforapprovalProcessForBrandEst.id LIMIT 1];
-        System.runAs(u)
-        { 
+        
             //Insert Account
             List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,true);
             List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
@@ -42,17 +42,30 @@ public class AF_ApprovalProcessForBrandEstContro_Test
             List<AF_Brand_Estimate__c> BrandEstlist=new List<AF_Brand_Estimate__c>();
             for(AF_Brand_Estimate__c Brand:BrandEst ){
             Brand.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_WITH_AGENCY;
+            Brand.AF_Cat_Finance_Approver_1__c=u.id;
+            Brand.AF_Cat_Finance_Approver_2__c=u.id;
+            Brand.AF_Cat_Finance_Approver_3__c=u.id;
+            Brand.AF_Cat_Finance_Approver_4__c=u.id;
+            Brand.AF_Cat_Finance_Approver_5__c=u.id;
+            Brand.AF_Cat_Finance_Approver_6__c=u.id;
+            Brand.AF_Cat_Finance_Approver_7__c=u.id;
+            Brand.AF_Cat_Finance_Approver_8__c=u.id;
+            Brand.AF_Cat_Finance_Approver_9__c=u.id;
+            Brand.AF_Cat_Finance_Approver_10__c=u.id;
             BrandEstlist.add(Brand);
             }
             insert BrandEstlist;
             List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c where Id IN:BrandEst LIMIT 1]; 
             System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+            
             //Insert Dummyuser Custom settings
-            List<DummyUser__c> duuser = AF_TestFactory_Helper.createDummyUser(true);
+           // List<DummyUser__c> duuser = AF_TestFactory_Helper.createDummyUser(true);
+            //System.Assert(duuser[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
-            List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
             System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
@@ -63,7 +76,7 @@ public class AF_ApprovalProcessForBrandEstContro_Test
             System.Assert(AFCurrencyQuery[0].Id != null, AF_TestFactory_Helper.CURRENCY_RECORD);
             //insert controller review
             List<AF_Controller_Review__c> AFCurrenc = AF_TestFactory_Helper.AfcontrollerReview(1,true);
-            List<AF_Controller_Review__c> AFCurrencyQuer = [SELECT Id FROM AF_Controller_Review__c where Id IN:AFCurrenc LIMIT 1];
+            List<AF_Controller_Review__c> AFCurrencyQuer = [SELECT Id FROM AF_Controller_Review__c where Brand_Estimate__c IN:BrandEstlist LIMIT 1];
             System.Assert(AFCurrencyQuer[0].Id != null, AF_TestFactory_Helper.CURRENCY_RECORD);
             //insert agency estimate
             List<AF_Agency_Estimate__c> AgencyEsitmate = AF_TestFactory_Helper.insertAgencyEstimate(1,false);
@@ -76,20 +89,32 @@ public class AF_ApprovalProcessForBrandEstContro_Test
                 agency.AF_Agency_Exchange_Rate__c=21;
                 agency.AF_Traditional__c=46;
                 agency.AF_Traditional_Local__c=23;
-                agency.AF_Brand_Estimate__c=BrandEst[0].id;
+                agency.AF_Brand_Estimate__c=BrandEstlist[0].id;
+                agency.AF_Category_Finance_Flag__c =true;
                 AgencyEsitmatelist.add(agency);  
             }
             insert AgencyEsitmatelist;
             List<AF_Agency_Estimate__c> AgencyQuery = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmate limit 1];
             System.assertEquals(AgencyQuery[0].AF_Brand_Estimate__c, BrandEst[0].id,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
+            
             //Insert Bonus Threshold
             List<AF_Bonus_Threshold__c> BonusThreshold =  AF_TestFactory_Helper.insertBonusThreshhold(1,true);
             List<AF_Bonus_Threshold__c> BonusThresholdQuery = [Select Agency_Name__c from AF_Bonus_Threshold__c where Id IN:BonusThreshold LIMIT 1];
+            
             System.assertEquals(BonusThresholdQuery[0].Agency_Name__c,acc[0].id, AF_TestFactory_Helper.BONUSTHERSHOLD_RECORD);
             AF_Brand_Estimate__c BrandEstRecord=[select id,AF_Pilot_Model__c,AF_No_Bonus__c,AF_Basefee_Estimate_Initial_Quarter__c,AF_Category_Finance_Flag__c,Brand__c,AF_Fiscal_Year__c,AF_Category_Finance_Approved__c,AF_CMCO_Rejected__c,AF_Status_Base_Fees__c,AF_Agency__c,AF_Controller_Flag__c,ExceptionsComplete__c,AF_No_of_Central_Billing__c from AF_Brand_Estimate__c  where id=:brandEst[0].Id  limit 1 ];
-            ApexPages.currentPage().getParameters().put('id',brandEst[0].id); 
+            ApexPages.currentPage().getParameters().put('id',BrandEstlist[0].id); 
+            
             List<AggregateResult> AgencyEstimateTotalCountByCountry = [SELECT SUM(AF_Total__c) CountryTotal,AF_Unilever_Entity__r.AF_Country__c CountryName FROM AF_Agency_Estimate__c  where AF_Brand_Estimate__c=: brandEst[0].Id GROUP BY AF_Unilever_Entity__r.AF_Country__c];
+            
             List<AF_Bonus_Threshold__c> BonusThresholdCollection = [Select a.Year__c,a.Country_Name__c, a.SystemModstamp, a.OwnerId, a.Name, a.LastViewedDate,  a.Id,a.Brand_Name__c, a.Bonus_Measure__c, a.Agency_Name__c, a.AF_Unique_Thresholds__c, a.AF_Traditional__c, a.AF_Stretching__c, a.AF_Pilot_Model__c, a.AF_Outstanding__c, a.AF_Minimum__c, a.AF_Digital__c, a.AF_Country__c, a.AF_Country_Full_Name__c, a.AF_Category__c, a.AF_Brand_Estimate__c, a.AF_Bonusable_Fee__c From AF_Bonus_Threshold__c a where Agency_Name__c=:brandEst[0].AF_Agency__c and Brand_Name__c=:brandEst[0].Brand__c and Year__c =: brandEst[0].AF_Fiscal_Year__c ];
+            
+            System.assertEquals(AgencyEstimateTotalCountByCountry!=null, BonusThresholdCollection!=null,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
+            
+            
+            
+        System.runAs(u)
+        {
             AF_ApprovalProcessForBrandEstController approvProceBrandEst=new AF_ApprovalProcessForBrandEstController();
             approvProceBrandEst.BrandEstRecord=BrandEstRecord;
             approvProceBrandEst.RejectBrandEstComment();
@@ -123,8 +148,13 @@ public class AF_ApprovalProcessForBrandEstContro_Test
         Test.startTest();
         usrforapprovalProcessForBrandEst=AF_TestFactory_Helper.createUserAdmin2(true);
         User u=[SELECT id FROM user WHERE id=:usrforapprovalProcessForBrandEst.id LIMIT 1];
+        
+        usrforapprovalProcessForBrandEst1=AF_TestFactory_Helper.createUserADMINSTRATOR4(true);
+        User u1=[SELECT id FROM user WHERE id=:usrforapprovalProcessForBrandEst1.id LIMIT 1];
         System.runAs(u)
         { 
+            set<id> Actoridset=new set<id>();
+            Actoridset.add(u.id);
             //Insert Account
             List<Account> acc=AF_TestFactory_Helper.insertAFaccList(1,true);
             List<Account> acctQuery = [SELECT id FROM account LIMIT 1];
@@ -138,13 +168,23 @@ public class AF_ApprovalProcessForBrandEstContro_Test
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE and Id IN:AFCategoryBrand LIMIT 1];
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
             //Insert BrandEstimate
-            List<AF_Brand_Estimate__c> BrandEst = AF_TestFactory_Helper.insertAFBrandEstList(1,true);
+            List<AF_Brand_Estimate__c> BrandEst = AF_TestFactory_Helper.insertAFBrandEstList(1,false);
+            
+            List<AF_Brand_Estimate__c> BrandEstlist=new List<AF_Brand_Estimate__c>();
+            for(AF_Brand_Estimate__c Brand:BrandEst ){
+            Brand.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_WIHTCMCO;
+            Brand.AF_AgencyUsers1__c = 'test@testmail.com';
+            Brand.AF_Cat_Finance_Approver_1__c=u.id;
+            BrandEstlist.add(Brand);
+            }
+            insert BrandEstlist;
             List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c where Id IN:BrandEst LIMIT 1]; 
             System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
-            List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
             System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
@@ -174,7 +214,8 @@ public class AF_ApprovalProcessForBrandEstContro_Test
                 agency.AF_Agency_Exchange_Rate__c=21;
                 agency.AF_Traditional__c=46;
                 agency.AF_Traditional_Local__c=23;
-                agency.AF_Brand_Estimate__c=BrandEst[0].id;
+                agency.AF_Brand_Estimate__c=BrandEstQuery[0].id;
+                agency.AF_Category_Finance_Flag__c =false;
                 AgencyEsitmatelist.add(agency);  
             }
             insert AgencyEsitmatelist;
@@ -184,12 +225,35 @@ public class AF_ApprovalProcessForBrandEstContro_Test
             List<AF_Bonus_Threshold__c> BonusThreshold =  AF_TestFactory_Helper.insertBonusThreshhold(1,true);
             List<AF_Bonus_Threshold__c> BonusThresholdQuery = [Select Agency_Name__c from AF_Bonus_Threshold__c where Id IN:BonusThreshold LIMIT 1];
             System.assertEquals(BonusThresholdQuery[0].Agency_Name__c,acc[0].id, AF_TestFactory_Helper.BONUSTHERSHOLD_RECORD);
-            AF_Brand_Estimate__c BrandEstRecord=[select id,AF_Pilot_Model__c,AF_No_Bonus__c,AF_Basefee_Estimate_Initial_Quarter__c,AF_Category_Finance_Flag__c,Brand__c,AF_Fiscal_Year__c,AF_Category_Finance_Approved__c,AF_CMCO_Rejected__c,AF_Status_Base_Fees__c,AF_Agency__c,AF_Controller_Flag__c,ExceptionsComplete__c,AF_No_of_Central_Billing__c from AF_Brand_Estimate__c  where id=:brandEst[0].Id  limit 1 ];
-            ApexPages.currentPage().getParameters().put('id',brandEst[0].id); 
+            AF_Brand_Estimate__c BrandEstRecord=[select id,AF_Pilot_Model__c,AF_No_Bonus__c,AF_Basefee_Estimate_Initial_Quarter__c,AF_Category_Finance_Flag__c,Brand__c,AF_Fiscal_Year__c,AF_Category_Finance_Approved__c,AF_CMCO_Rejected__c,AF_Status_Base_Fees__c,AF_Agency__c,AF_Controller_Flag__c,ExceptionsComplete__c,AF_No_of_Central_Billing__c from AF_Brand_Estimate__c  where id=:brandEst[0].Id limit 1 ];
+            ApexPages.currentPage().getParameters().put('id',BrandEstQuery[0].id); 
             List<AggregateResult> AgencyEstimateTotalCountByCountry = [SELECT SUM(AF_Total__c) CountryTotal,AF_Unilever_Entity__r.AF_Country__c CountryName FROM AF_Agency_Estimate__c  where AF_Brand_Estimate__c=: brandEst[0].Id GROUP BY AF_Unilever_Entity__r.AF_Country__c];
             List<AF_Bonus_Threshold__c> BonusThresholdCollection = [Select a.Year__c,a.Country_Name__c, a.SystemModstamp, a.OwnerId, a.Name, a.LastViewedDate,  a.Id,a.Brand_Name__c, a.Bonus_Measure__c, a.Agency_Name__c, a.AF_Unique_Thresholds__c, a.AF_Traditional__c, a.AF_Stretching__c, a.AF_Pilot_Model__c, a.AF_Outstanding__c, a.AF_Minimum__c, a.AF_Digital__c, a.AF_Country__c, a.AF_Country_Full_Name__c, a.AF_Category__c, a.AF_Brand_Estimate__c, a.AF_Bonusable_Fee__c From AF_Bonus_Threshold__c a where Agency_Name__c=:brandEst[0].AF_Agency__c and Brand_Name__c=:brandEst[0].Brand__c and Year__c =: brandEst[0].AF_Fiscal_Year__c ];
+            System.assertEquals(AgencyEstimateTotalCountByCountry!=null, BonusThresholdCollection!=null,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
+            AF_Comments__c AfC=new AF_Comments__c();
+            AfC.AF_Brand_Estimate__c=BrandEstQuery[0].id;
+            AfC.AF_Parent_Record_Id__c=BrandEstQuery[0].id;
+            AfC.AF_Public__c=true;
+            List<ProcessInstance> process;
+            string bandestiamteid='BrandEstRecord[0].id';
+            AF_CountryBreakdownCheck  check=new AF_CountryBreakdownCheck();
+            check.CheckCountryBreakdown(bandestiamteid);
+            
+            
+        
             AF_ApprovalProcessForBrandEstController approvProceBrandEst=new AF_ApprovalProcessForBrandEstController();
+            approvProceBrandEst.Actoridset.add(u.id);
+            approvProceBrandEst.hasStep=true;
+            approvProceBrandEst.RejectComment='reject';
             approvProceBrandEst.BrandEstRecord=BrandEstRecord;
+            approvProceBrandEst.ParentRecordType=AF_Constants.BASE_FEES_WIHTCMCO;
+            approvProceBrandEst.Controllerflag=true;
+            approvProceBrandEst.hasProcess=true;    
+            approvProceBrandEst.process=process;
+            approvProceBrandEst.NextActorid=BonusThresholdCollection[0].id;
+            approvProceBrandEst.ApproveComment=AF_Constants.BASE_FEES_WIHTCMCO;
+            approvProceBrandEst.Controllerflag1=true;
+            approvProceBrandEst.SubmitApprovalPopup();
             approvProceBrandEst.RejectBrandEstComment();
             approvProceBrandEst.RejectBrandWithComments();
             approvProceBrandEst.ApproveRecord();
@@ -208,6 +272,16 @@ public class AF_ApprovalProcessForBrandEstContro_Test
             approvProceBrandEst.RejectBrandEst();
             approvProceBrandEst.TrueControllerFlag();
             approvProceBrandEst.changeBrandStatus();
+        }
+        System.runAs(u1)
+        {
+            AF_ApprovalProcessForBrandEstController approvProceBrandEst1=new AF_ApprovalProcessForBrandEstController();
+            approvProceBrandEst1.identifyLoggedUser();
+            approvProceBrandEst1.Submit();
+            approvProceBrandEst1.SubmitApprovalPopup();
+            approvProceBrandEst1.RejectComment='';
+            approvProceBrandEst1.RejectBrandWithComments();
+            
         }
     }
 }

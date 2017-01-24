@@ -1,0 +1,15 @@
+src/layouts
+src/layouts/SAM_Request__c-SAM Non Project Close Layout.layout
+src/layouts/SAM_Request__c-SAM Non_Project RW Req Quote Provided%2FApprove.layout
+src/layouts/SAM_Request__c-SAM Non_Project RW SAM Team On hold.layout
+src/layouts/SAM_Request__c-SAM Non_Project RW SAM Team%2FQuote Rejected.layout
+src/layouts/SAM_Request__c-SAM Project Close1.layout
+src/layouts/SAM_Request__c-SAM Project Finance On Awaiting Charge With Queue.layout
+src/layouts/SAM_Request__c-SAM Project Finance On Awaiting Charge1.layout
+src/layouts/SAM_Request__c-SAM Project Request RW Layout.layout
+src/layouts/SAM_Request__c-SAM Project RW Req Quote Provided1.layout
+src/layouts/SAM_Request__c-SAM Project RW SAM Team On hold.layout
+src/layouts/SAM_Request__c-SAM Project RW SAM Team1.layout
+src/layouts/SAM_Request__c-SAM ReSubmit Non Project Request RW Layout.layout
+src/layouts/SAM_Request__c-SAM ReSubmit Project Request RW Layout.layout
+src/layouts/SAM_Request__c-SAM RW Non Project Request.layout

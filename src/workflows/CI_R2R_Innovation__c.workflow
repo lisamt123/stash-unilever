@@ -3,10 +3,20 @@
     <fieldUpdates>
         <fullName>CI_R2R_Sheetal</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Sheetal Pinjarkar</literalValue>
-        <name>CI_R2R Sheetal</name>
+        <literalValue>Cristina Butu</literalValue>
+        <name>CI_R2R Cristina</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CI_R2R_Update_SME_Area_Read_Only</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>CI_R2R_Innovation_with_SME_Read_Only</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>CI_R2R Update SME Area Read Only</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -48,7 +58,7 @@
     <fieldUpdates>
         <fullName>Update_ProjectLead_Nira</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Niraj Kothari</literalValue>
+        <literalValue>Ashwathi Upalakkal</literalValue>
         <name>Update ProjectLead Nira</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -57,7 +67,7 @@
     <fieldUpdates>
         <fullName>Update_ProjectLead_Niraj</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Niraj Kothari</literalValue>
+        <literalValue>Ashwathi Upalakkal</literalValue>
         <name>Update ProjectLead Niraj</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -66,7 +76,7 @@
     <fieldUpdates>
         <fullName>Update_ProjectLead_Nirj</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Niraj Kothari</literalValue>
+        <literalValue>Nikoletta Pinter</literalValue>
         <name>Update ProjectLead Niraj</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -93,7 +103,7 @@
     <fieldUpdates>
         <fullName>Update_ProjectLead_To_Sankarnarayanan_V</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Sankarnarayanan V</literalValue>
+        <literalValue>Sankaranarayanan V</literalValue>
         <name>Update ProjectLead To Sankarnarayanan V</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -120,7 +130,7 @@
     <fieldUpdates>
         <fullName>Update_ProjectLead_Valeria</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Valeria Gulyas</literalValue>
+        <literalValue>Veerabhadran VK</literalValue>
         <name>Update ProjectLead Valeria</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -129,7 +139,7 @@
     <fieldUpdates>
         <fullName>Update_ProjectLead_sheet</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Sheetal Pinjarkar</literalValue>
+        <literalValue>Cristina Butu</literalValue>
         <name>Update ProjectLead sheet</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -376,6 +386,16 @@
             <value>Tools</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CI_R2R Update CI Page Layout</fullName>
+        <actions>
+            <name>CI_R2R_Update_SME_Area_Read_Only</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>NOT( $Permission.CI_R2R_Admin)</formula>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>CI_R2R Update Project%23 for CI Funnel</fullName>

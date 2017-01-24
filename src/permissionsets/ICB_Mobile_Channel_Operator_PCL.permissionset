@@ -119,6 +119,11 @@
         <field>Contact.ICB_Cause__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.ICB_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.Description</field>
@@ -619,6 +624,10 @@
         <recordType>ICB_Inventory__c.ICB_Inventory</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <recordType>Product2.ICB_MobileChannel</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>ICB_Sales_Locale__c.ICB_Sales_Locale</recordType>
         <visible>true</visible>
@@ -635,7 +644,6 @@
         <recordType>Product2.Products</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-
     <tabSettings>
         <tab>ICB_Close_Sales</tab>
         <visibility>Visible</visibility>

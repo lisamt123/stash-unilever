@@ -41,8 +41,8 @@ private class  IPM_ChangProjectDocStatusController_Test {
     private static string PROJECT_CREATION_STR='Project Creation';
     private static string PROJECT_STATUS_STR='Eligible For Processing';
     private static string PROJECT_CATEGORY_STR='Household Care';
-    private static string CURRENTPHASE_STR='Current Phase is';
     private static string ERRORONPAGE_STR='display error message on page';
+    private static string PrintDoc = 'Contract';
     /*************************************************************************************************************************
     * @description Test Data
     */
@@ -68,6 +68,26 @@ private class  IPM_ChangProjectDocStatusController_Test {
         projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForChangStatus);
         System.runAs(stdUserForChangStatus) {
             insert projectList;
+        //Insert project Documents
+        // Create the project document for project    
+        IPM_Project_Document__c ipmProjDoc = IPM_TestFactory_Helper.createIPMProjectDocument(false);
+        ipmProjDoc.IPM_Project__c = projectList[0].id;
+        ipmProjDoc.IPM_Document_Order__c = 1;
+        insert ipmProjDoc;
+        // Creating the IPM_financials consolidated data for project
+        IPM_Financial__c ipmProjFin = IPM_TestFactory_Helper.createIPMFinancial(false);
+        Id recordTypeId = [SELECT ID FROM recordType WHERE sObjectType ='IPM_Financial__c' AND developerName ='consolidated' LIMIT 1].Id;
+        ipmProjFin.RecordTypeId = recordTypeId;
+        ipmProjFin.Parent_Project__c = projectList[0].id;
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
+        insert ipmProjFin;
+        IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE; 
+            // Create the task Data for current project
+            IPM_Task__c ipmTask = IPM_TestFactory_Helper.createIPMTask(projectList[0].id, FALSE);
+            insert ipmTask;
+            //Create Data for IPM Milestone
+            IPM_Milestone__c ipmMilestone = IPM_TestFactory_Helper.createIPMMilestone(projectList[0].id, FALSE);
+            insert ipmMilestone;
             project=projectList[0];
             
             List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
@@ -151,7 +171,10 @@ private class  IPM_ChangProjectDocStatusController_Test {
             mileListObj[0].IPM_Active__c=true;
             mileListObj[0].IPM_Phase__c='Ideas';
             mileListObj[0].IPM_Due_Date__c=null;
-            update mileListObj[0];
+            for(integer i = 0 ; i<mileListObj.size(); i++ ){
+                mileListObj[i].IPM_Planned_Date__c = system.today().addDays(1);
+            }
+            update mileListObj;
             List<IPM_Milestone__c>mileList1=[select Id,IPM_Active__c,IPM_Due_Date__c from IPM_Milestone__c where Id=:mileListObj[0].Id];
             System.assert(mileList1[0].IPM_Active__c,'milestones not updated');
             
@@ -209,8 +232,9 @@ private class  IPM_ChangProjectDocStatusController_Test {
         insert localFin;
         list<IPM_Financial__c>lstLocalFin=[SELECT Local_Project__c FROM IPM_Financial__c WHERE ID=:localFin.ID LIMIT 1];
           System.assertEquals(lstLocalFin[0].Local_Project__c,childProjs.id,'Financial local project is'+lstLocalFin[0].Local_Project__c);
-            pRef = Page.IPM_ProjectDocumentSectionEditor;
+            pRef = Page.IPM_ChangeCurrenDocumentStatus;
             pRef.getParameters().put('id', projectListObj[0].Id);
+            pRef.getParameters().put('printDoc',PrintDoc );
             Test.setCurrentPage(pRef);
             chngPro=new IPM_ChangProjectDocumentStatusController();
             
@@ -327,6 +351,14 @@ private class  IPM_ChangProjectDocStatusController_Test {
         test.stopTest();
         system.runAs(globalUser){
             chngPro.projectDoc=projDocList[0];
+            chngPro.Status=IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED;
+            projDocList[0].IPM_Document_Status__c=chngPro.Status;
+            update projDocList;
+            chngPro.submit();
+            chngPro.Status = IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED;
+            projDocList[0].IPM_Document_Status__c=chngPro.Status;
+            update projDocList;
+            chngPro.submit();
             chngPro.Status=IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED;
             projDocList[0].IPM_Document_Status__c=chngPro.Status;
             projDocList[0].IPM_Stopped_Comments__c='abc';
@@ -337,12 +369,15 @@ private class  IPM_ChangProjectDocStatusController_Test {
             projDocList[0].IPM_Stopped_Comments__c='';
             update  projDocList;
             chngPro.submit();
+            chngPro.stopProject();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
             System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED,STATUS_NOT_MATCHED_STR);
+            projDocList[0].IPM_Document_Status__c=IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED;
+            update projDocList;
+            chngPro.submit();
             chngPro.project.Name=INVALID_NAME;
             chngPro.projectDoc.IPM_Stopped_Comments__c='testcomments';
-            chngPro.stopProject();
             
         }
     }
@@ -369,7 +404,6 @@ private class  IPM_ChangProjectDocStatusController_Test {
     static testMethod void dotestPostponed(){
     	test.startTest();
     	initializeTestMethodData();
-        test.stopTest();
         
         system.runAs(globalUser){
 	    projDocList[0].IPM_Postponed_Comments__c='abc';
@@ -381,6 +415,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             chngPro.Status=IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED;
             projDocList[0].IPM_Document_Status__c=chngPro.Status;
             update projDocList;
+            test.stopTest();
             docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
             System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,STATUS_NOT_CHANGED_STR);
             projDocList[0].IPM_Postponement_Date__c=system.today().addDays(7); 
@@ -403,7 +438,6 @@ private class  IPM_ChangProjectDocStatusController_Test {
     static testMethod void dotestPropose(){
         test.startTest();
     	initializeTestMethodData();
-        test.stopTest();
         
         system.runAs(globalUser){
             
@@ -419,6 +453,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             
             chngPro.project.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
             chngPro.submit();
+            test.stopTest();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
             System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_NOT_MATCHED_STR);
@@ -463,12 +498,12 @@ private class  IPM_ChangProjectDocStatusController_Test {
     static testMethod void dotestApprove(){
     	test.startTest();
     	initializeTestMethodData();
-        test.stopTest();
         system.runAs(globalUser){
             chngPro.Status=IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED;
             projDocList[0].IPM_Document_Status__c=chngPro.Status;
             secOpt=chngPro.getcomplexities();
             update projDocList;
+            test.stopTest();
             docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
             System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED,STATUS_NOT_CHANGED_STR);
             chngPro.submit();
@@ -477,6 +512,14 @@ private class  IPM_ChangProjectDocStatusController_Test {
             System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED,STATUS_NOT_MATCHED_STR);
             chngPro.project.Name=INVALID_NAME;
             chngPro.approveProject();
+            chngPro.Status = IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS;
+            projDocList[0].IPM_Document_Status__c=chngPro.Status;
+            update projDocList;
+            chngPro.submit();
+            chngPro.Status = IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED;
+            projDocList[0].IPM_Document_Status__c=chngPro.Status;
+            update projDocList;
+            chngPro.submit();
         }
     }
 }

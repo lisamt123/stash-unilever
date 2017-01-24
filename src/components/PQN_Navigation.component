@@ -1,0 +1,279 @@
+<apex:component >
+<apex:attribute name="navigationName" type="String" description="Page Name for active and inactive"  required="true" default="multiple_entry" />
+<apex:attribute name="subNavName" type="String" description="Page Name for active and inactive"  required="false" default="multiple_entry" />
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <!-- Bootstrap Core CSS -->
+    <link href="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/css/bootstrap.min.css')}" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link href="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/css/sb-admin.css')}" rel="stylesheet"/>
+
+    <!-- Morris Charts CSS -->
+    <link href="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/css/plugins/morris.css')}" rel="stylesheet"/>
+
+    <!-- Custom Fonts -->
+    <link href="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/font-awesome/css/font-awesome.min.css')}" rel="stylesheet" type="text/css"/>
+
+    <style>
+    
+        #navbar_toggle {
+                display: none!important;
+                #36a0fe
+        }
+        #wrapper{
+                padding-left:175px;
+        }
+        
+        
+        .side-nav{
+                width:175px;
+                left:210px;
+                background-color: #007dbb;
+        }
+        
+        @media screen and (max-width: 768px) {
+           .side-nav{
+               left:225px!important;
+               width:225px!important;
+           }
+           #wrapper{
+                padding-left:0px!important;
+            }
+        }
+        
+            
+        @media screen and (min-width: 768px) {
+            #navbar_toggle {
+                display: block!important;
+            }
+        }
+        
+        body{
+            background-color: white;
+        }
+        
+        .navbar-inverse {
+            background-color: #007dbb;
+            border-color: #004976;
+        }
+        
+        
+        .top-nav>li>a:hover, .top-nav>li>a:focus, .top-nav>.open>a, .top-nav>.open>a:hover, .top-nav>.open>a:focus {
+            color: #fff;
+            background-color: #004976;
+        }
+        .top-nav>li>a {
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .navbar-inverse .navbar-nav>li>a {
+            color: #fff;
+        }
+        
+        .nav>li>a {
+            //padding: 10px 5px;
+        }
+        
+        .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+           color: #fff;
+           background-color: #004976;
+        }
+        
+        .side-nav li a:hover,.side-nav li a:focus {
+            color: #fff;
+            background-color: #004976!important;
+        }
+        #demo li, #demo li>a{
+            list-style: none;
+            color: #fff;
+        }
+        #demo .active {
+            background-color: #004976!important;
+        }
+        
+        #demo1 li, #demo1 li>a{
+            list-style: none;
+            color: #fff;
+        }
+        #demo1 .active {
+            background-color: #004976!important;
+        }
+        
+        .navbar-inverse .navbar-toggle {
+            border-color: #36a0fe;
+        }
+        #navbar_toggle:focus, #navbar_toggle:hover{
+            background-color: #004976;
+        }
+        
+        
+        .bPageBlock{
+            border-color: lightgray!important;
+        }
+    </style>
+
+</head>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button id="navbar_toggle" class="navbar-toggle false" onclick="toggleSideBar(this.className);" type="button" style="margin-left:50px;">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <!--<li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {!$user.FirstName} {!$user.LastName}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="../_ui/core/userprofile/UserProfilePage"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="../ui/setup/Setup"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="../secur/logout.jsp"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="">
+                        <a href="./PQN_Home"><i class="fa fa-fw fa-home"></i> Home</a>
+                    </li>
+                    <li class="{!If(navigationName=='single_entry' ,'active','')}">
+                        <a href="./PQN_SingleEntryScreen_VF"><i class="fa fa-fw fa-edit"></i> Single Entry</a>
+                    </li>
+               
+                    <li class="{!If(navigationName=='multiple_entry' ,'active','')}">
+                        <a href="./PQN_MultiEditScreen_Clone"><i class="fa fa-fw fa-copy"></i> Multiple Entry</a>
+                    </li>
+                
+                    <li class="{!If(navigationName=='target' ,'active','')}">
+                        <a href="./PQN_TargetEntryScreen_VF"><i class="fa fa-fw fa-bullseye"></i> Target</a>
+                    </li>
+                    <!--<li class="{!If(navigationName=='multiple_target' ,'active','')}">
+                        <a href="./PQN_MultiTargets_VF"><i class="fa fa-fw fa-arrows"></i> Multiple Target</a>
+                    </li>-->
+                    <li class="{!If(navigationName=='dc_volumes' ,'active','')}">
+                        <a href="./PQN_DC_Volumes_Edit_VF"><i class="fa fa-fw fa-flask"></i> DC Volumes</a>
+                    </li>
+                     <li class="{!If(navigationName=='Pallet_Losstree' ,'active','')}">
+                        <a href="./PQN_PalletLossTreeData"><i class="fa fa-fw fa-tree"></i> Pallet Losstree</a>
+                    </li>
+                    
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="" style="{!If(navigationName=='Archive' ,'color: #fff;
+    background-color: #004976;','')}" aria-expanded="true"><i class="fa fa-fw fa-th-list"></i> Archive<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse in" aria-expanded="true">
+                            <li class="{!If(subNavName=='pqnView' ,'active','')}">
+                                <a href="./PQN_List_View">PQN Entries</a>
+                            </li>
+                            <li class="{!If(subNavName=='targetView' ,'active','')}">
+                                <a href="./PQN_Targets_List_View">Targets</a>
+                            </li>
+                            <li class="{!If(subNavName=='dc_volumesView' ,'active','')}">
+                                <a href="./PQN_DCVolumesListView_VF">DC Volumes</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo1" class="" style="{!If(navigationName=='Reports' ,'color: #fff; background-color: #004976;','')}" aria-expanded="true"><i class="fa fa-fw fa-th-list"></i> Reports<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo1" class="collapse in" aria-expanded="true" style="width: 150px;">
+                           
+                            <li class="{!If(subNavName=='govgeography' ,'active','')}">
+                                <a href="./PQN_Global_Overview">Global Overview</a>
+                            </li>
+                            <li class="{!If(subNavName=='geography' ,'active','')}">
+                                <a href="./PQN_Global_Geography_Report">Global Geography</a>
+                            </li>
+                            <li class="{!If(subNavName=='gcategory' ,'active','')}">
+                                <a href="./PQN_Global_Category_Report">Global Category</a>
+                            </li>
+                            <li class="{!If(subNavName=='globalsu' ,'active','')}">
+                                <a href="./PQN_GlobalSUReport">Global SU</a>
+                            </li>
+                            <li class="{!If(subNavName=='dcreport' ,'active','')}">
+                                <a href="./PQN_Global_DCReport">Global DC</a>
+                            </li>
+                            <li class="{!If(subNavName=='countryreport' ,'active','')}">
+                                <a href="./PQN_Country_Report">Country</a>
+                            </li>
+                            
+                            
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    
+                
+                    <!--<li class="{!If(navigationName=='dc_values' ,'active','')}">
+                        <a href=""><i class="fa fa-fw fa-dashboard"></i> DC Values</a>
+                    </li>-->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+ <!-- jQuery -->
+   <script src="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/js/jquery.js')}"></script>
+   
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/js/bootstrap.min.js')}"></script>
+    
+     <script>
+       function toggleSideBar(className){
+          if(className =="navbar-toggle false"){   
+              $("#navbar_toggle").removeClass( "navbar-toggle false" ).addClass("navbar-toggle true");
+              $("#navbar_toggle").css({"transform": "rotate(-90deg)","margin-left": "1px"});
+              $("#wrapper").css({"padding-left": "40px"});
+              $(".side-nav").css({"left": "202px", "width": "73px"});
+              
+          }else{
+              $("#navbar_toggle").removeClass( "navbar-toggle true" ).addClass("navbar-toggle false");
+              $("#navbar_toggle").css({"transform": "rotate(0deg)","margin-left": "65px"});
+              $("#wrapper").css({"padding-left": "175px"});
+              $(".side-nav").css({"left": "210px", "width": "175px"});
+          }
+          
+       } 
+    
+    </script>
+    
+</apex:component>

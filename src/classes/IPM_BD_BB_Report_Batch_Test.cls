@@ -9,12 +9,12 @@
 
 @isTest
 private class IPM_BD_BB_Report_Batch_Test {
-	 
-	 public static final String ASSERT_ERROR_STR = 'Projects not Created Properly.Actual size should be '; 
-	 public static final String BD_BB_REPORT = 'BD BB Report';
-	 public static List<IPM_Project__c> allCreatedProjectList=new List<IPM_Project__c>();
-	 private static final string BLANK_STR='';
-	 
+   
+   public static final String ASSERT_ERROR_STR = 'Projects not Created Properly.Actual size should be '; 
+   public static final String BD_BB_REPORT = 'BD BB Report';
+   public static List<IPM_Project__c> allCreatedProjectList=new List<IPM_Project__c>();
+   private static final string BLANK_STR='';
+   
      @testSetup static void projectDataSetUp(){
         
         // Create an instance of admin user.
@@ -24,7 +24,7 @@ private class IPM_BD_BB_Report_Batch_Test {
         // Create an instances of standard Users for Allocation to Project Leaders.
         System.runAs(adminUser)
         {
-        	globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK_STR);
+          globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK_STR);
             User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK_STR);
             User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK_STR);
             
@@ -56,7 +56,7 @@ private class IPM_BD_BB_Report_Batch_Test {
         // Insert the project as a Global project Leader.
         System.runAs(globalProjectLeader)
         {
-        	List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
+          List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
             insert projectList;
             
             List<IPM_Project__c> dbProjectList =  [Select Id from IPM_Project__c where id in :projectList];
@@ -66,9 +66,9 @@ private class IPM_BD_BB_Report_Batch_Test {
       }   
       
       public static testMethod void createProject(){
-      	
-      	// prepare custom setting data
-	 	Decimal startYear = System.today().year();
+        
+        // prepare custom setting data
+     Decimal startYear = System.today().year();
         //Insert data for Custom setting
         List<IPM_Reporting__c> reportCSList = new List<IPM_Reporting__c>();
         
@@ -87,8 +87,8 @@ private class IPM_BD_BB_Report_Batch_Test {
             }   
         }
         insert reportCSList;
-      	
-      	
+        
+        
         // Get the newly created Projects from Database. 
         Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
         List<Id> globalProjectIdList = new List<Id>();
@@ -177,13 +177,13 @@ private class IPM_BD_BB_Report_Batch_Test {
                 
             }
         }
-     	
-     	     	 
-		System.RunAs(globalProjectLeader){
-             string  query = 'SELECT Id,IPM_Global_ProjectId__c, IPM_Project_Name__c, IPM_LocalProject_Brand__c, IPM_Parent_Project__r.IPM_project_name__c, IPM_Platform_Formula__c, BET__r.Name, BET__r.Owner.Name, BETCurrentStatus__c, Project_External_ID__c,Name,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.Id,IPM_Project_Leader__r.Name,Deputy_Project_Leader__r.Name,IPM_Technical_Project_Leader__r.Name,IPM_Finance_Lead__r.Name,IPM_Rollout_Status__c,IPM_Category_Group__c,IPM_Category_Text__c,IPM_Phase__c,IPM_Brand_Positioning__c,IPMProject_Span__c, IPMProject_Type__c,Project_Countries__c,IPM_No_of_Country_Rollouts__c,IPM_Threshold_Value__c,IPM_Company_Card__r.Name,IPM_Project_Rollout__r.name,IPM_Project_Rollout__r.Id,IPM_Cluster__c,Market_Cluster__c,Market_Cluster_Name__c,IPM_Clustering__c,IPM_Clusters__c,IPM_Answer_of_Q1__c, IPM_Answer_of_Q2__c, Exempt_from_Threshold__c, IPM_Answer_of_Q3__c,IPM_Strategic_Intent__c,IPM_Target_Launch_Year__c,IPM_Target_Launch_Month__c,IPM_Actual_Launch_Date__c, IPM_Actual_Launch_Month__c,IPM_Actual_Launch_Year__c,IPMPlatform__c,IPM_Project_Type__c,IPM_Project_Description__c,IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Immediate_Parent_Project_Name__c,IPM_Parent_Project__r.IPM_Project_Rollout__c,IPM_Project_Rollout__c,IPM_Misalligned__c,CreatedDate,IPM_Project_Start_Date__c,IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c,IPM_CPP__c,IPM_Fast_Track_Project__c,IPM_White_Space_Project__c,Is_Archieved__c,IPM_ProjectGKM__c,IPM_Complexity__c,IPM_Market__c,IPM_Sub_sector__c,IPM_Global_OR_Regional__c,IPM_Project_Rollout__r.Target_Launch_Date__c, IPM_Project_Rollout__r.KeyMCO__c,IPM_SourceProjectType__c,IPM_GateKeeping_Model__c,BI__c, IPM_Parent_Project__r.BI__c,IPM_Parent_BI__c FROM IPM_Project__c WHERE IPM_Project_Name__c != null' ;
-	
-			IPM_BD_BB_Report_Batch  batchs = new IPM_BD_BB_Report_Batch(query); 
-			database.executebatch(batchs,100);
+       
+               
+    System.RunAs(globalProjectLeader){
+        string  query = 'SELECT Id,IPM_Global_ProjectId__c, IPM_Project_Name__c,IPM_Sector__c, IPM_LocalProject_Brand__c, IPM_Parent_Project__r.IPM_project_name__c, IPM_Platform_Formula__c, BET__r.Name, BET__r.Owner.Name, BETCurrentStatus__c, Project_External_ID__c,Name,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.Id,IPM_Project_Leader__r.Name,Deputy_Project_Leader__r.Name,IPM_Technical_Project_Leader__r.Name,IPM_Finance_Lead__r.Name,IPM_Rollout_Status__c,IPM_Category_Group__c,IPM_Category_Text__c,IPM_Phase__c,IPM_Brand_Positioning__c,IPMProject_Span__c, IPMProject_Type__c,Project_Countries__c,IPM_No_of_Country_Rollouts__c,IPM_Threshold_Value__c,IPM_Company_Card__r.Name,IPM_Project_Rollout__r.name,IPM_Project_Rollout__r.Id,IPM_Cluster__c,Market_Cluster__c,Market_Cluster_Name__c,IPM_Clustering__c,IPM_Clusters__c,IPM_Answer_of_Q1__c, IPM_Answer_of_Q2__c, Exempt_from_Threshold__c, IPM_Answer_of_Q3__c,IPM_Strategic_Intent__c,IPM_Target_Launch_Year__c,IPM_Target_Launch_Month__c,IPM_Actual_Launch_Date__c, IPM_Actual_Launch_Month__c,IPM_Actual_Launch_Year__c,IPMPlatform__c,IPM_Project_Type__c,IPM_Project_Description__c,IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Immediate_Parent_Project_Name__c,IPM_Parent_Project__r.IPM_Project_Rollout__c,IPM_Project_Rollout__c,IPM_Misalligned__c,CreatedDate,IPM_Project_Start_Date__c,IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c,IPM_CPP__c,IPM_Fast_Track_Project__c,IPM_White_Space_Project__c,Is_Archieved__c,IPM_ProjectGKM__c,IPM_Complexity__c,IPM_Market__c,IPM_Sub_sector__c,IPM_Global_OR_Regional__c,IPM_Project_Rollout__r.Target_Launch_Date__c, IPM_Project_Rollout__r.KeyMCO__c,IPM_SourceProjectType__c,IPM_GateKeeping_Model__c,BI__c, IPM_Parent_Project__r.BI__c,IPM_Parent_BI__c,IPM_Parent_Project__r.IPM_Sub_sector__c,IPM_Parent_Project__r.IPM_Sector__c,IPM_Parent_Project__r.IPM_Market__c FROM IPM_Project__c WHERE IPM_Project_Name__c != null' ;
+  
+      IPM_BD_BB_Report_Batch  batchs = new IPM_BD_BB_Report_Batch(query); 
+      database.executebatch(batchs,100);
             batchs.calculateCPP(10000, 200000);  
             batchs.calculateCPP(8000, 1000000); 
             batchs.calculateCPP(8000, 2000000);
@@ -191,16 +191,16 @@ private class IPM_BD_BB_Report_Batch_Test {
             batchs.calculateCPP(200, 150000);   
             batchs.calculateCPP(100, 150000); 
             batchs.calculateCPP(100, null);
-		}
-     	
+    }
+       
       }
- 	
- 	
- 	/****************Regional Projects************/
- 	public static testMethod void createRegionalProject(){
-      	
-      	// prepare custom setting data
-	 	Decimal startYear = System.today().year();
+   
+   
+   /****************Regional Projects************/
+   public static testMethod void createRegionalProject(){
+        
+        // prepare custom setting data
+     Decimal startYear = System.today().year();
         //Insert data for Custom setting
         List<IPM_Reporting__c> reportCSList = new List<IPM_Reporting__c>();
         
@@ -219,8 +219,8 @@ private class IPM_BD_BB_Report_Batch_Test {
             }   
         }
         insert reportCSList;
-      	
-      	
+        
+        
         // Get the newly created Projects from Database. 
         Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
         List<Id> globalProjectIdList = new List<Id>();
@@ -310,13 +310,13 @@ private class IPM_BD_BB_Report_Batch_Test {
                 
             }
         }
-     	
-     	     	 
-		System.RunAs(globalProjectLeader){
-             string  query = 'SELECT Id,IPM_Global_ProjectId__c, IPM_Project_Name__c, IPM_LocalProject_Brand__c, IPM_Parent_Project__r.IPM_project_name__c, IPM_Platform_Formula__c, BET__r.Name, BET__r.Owner.Name, BETCurrentStatus__c, Project_External_ID__c,Name,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.Id,IPM_Project_Leader__r.Name,Deputy_Project_Leader__r.Name,IPM_Technical_Project_Leader__r.Name,IPM_Finance_Lead__r.Name,IPM_Rollout_Status__c,IPM_Category_Group__c,IPM_Category_Text__c,IPM_Phase__c,IPM_Brand_Positioning__c,IPMProject_Span__c, IPMProject_Type__c,Project_Countries__c,IPM_No_of_Country_Rollouts__c,IPM_Threshold_Value__c,IPM_Company_Card__r.Name,IPM_Project_Rollout__r.name,IPM_Project_Rollout__r.Id,IPM_Cluster__c,Market_Cluster__c,Market_Cluster_Name__c,IPM_Clustering__c,IPM_Clusters__c,IPM_Answer_of_Q1__c, IPM_Answer_of_Q2__c, Exempt_from_Threshold__c, IPM_Answer_of_Q3__c,IPM_Strategic_Intent__c,IPM_Target_Launch_Year__c,IPM_Target_Launch_Month__c,IPM_Actual_Launch_Date__c, IPM_Actual_Launch_Month__c,IPM_Actual_Launch_Year__c,IPMPlatform__c,IPM_Project_Type__c,IPM_Project_Description__c,IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Immediate_Parent_Project_Name__c,IPM_Parent_Project__r.IPM_Project_Rollout__c,IPM_Project_Rollout__c,IPM_Misalligned__c,CreatedDate,IPM_Project_Start_Date__c,IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c,IPM_CPP__c,IPM_Fast_Track_Project__c,IPM_White_Space_Project__c,Is_Archieved__c,IPM_ProjectGKM__c,IPM_Complexity__c,IPM_Market__c,IPM_Sub_sector__c,IPM_Global_OR_Regional__c,IPM_Project_Rollout__r.Target_Launch_Date__c, IPM_Project_Rollout__r.KeyMCO__c,IPM_SourceProjectType__c,IPM_GateKeeping_Model__c,BI__c, IPM_Parent_Project__r.BI__c,IPM_Parent_BI__c FROM IPM_Project__c WHERE IPM_Project_Name__c != null' ;
-	
-			IPM_BD_BB_Report_Batch  batchs = new IPM_BD_BB_Report_Batch(query); 
-			database.executebatch(batchs,100);
+       
+               
+    System.RunAs(globalProjectLeader){
+             string  query = 'SELECT Id,IPM_Sector__c,IPM_Parent_Project__r.IPM_Market__c,IPM_Parent_Project__r.IPM_Sector__c,IPM_Parent_Project__r.IPM_Sub_sector__c,IPM_Global_ProjectId__c, IPM_Project_Name__c, IPM_LocalProject_Brand__c, IPM_Parent_Project__r.IPM_project_name__c, IPM_Platform_Formula__c, BET__r.Name, BET__r.Owner.Name, BETCurrentStatus__c, Project_External_ID__c,Name,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.Id,IPM_Project_Leader__r.Name,Deputy_Project_Leader__r.Name,IPM_Technical_Project_Leader__r.Name,IPM_Finance_Lead__r.Name,IPM_Rollout_Status__c,IPM_Category_Group__c,IPM_Category_Text__c,IPM_Phase__c,IPM_Brand_Positioning__c,IPMProject_Span__c, IPMProject_Type__c,Project_Countries__c,IPM_No_of_Country_Rollouts__c,IPM_Threshold_Value__c,IPM_Company_Card__r.Name,IPM_Project_Rollout__r.name,IPM_Project_Rollout__r.Id,IPM_Cluster__c,Market_Cluster__c,Market_Cluster_Name__c,IPM_Clustering__c,IPM_Clusters__c,IPM_Answer_of_Q1__c, IPM_Answer_of_Q2__c, Exempt_from_Threshold__c, IPM_Answer_of_Q3__c,IPM_Strategic_Intent__c,IPM_Target_Launch_Year__c,IPM_Target_Launch_Month__c,IPM_Actual_Launch_Date__c, IPM_Actual_Launch_Month__c,IPM_Actual_Launch_Year__c,IPMPlatform__c,IPM_Project_Type__c,IPM_Project_Description__c,IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Immediate_Parent_Project_Name__c,IPM_Parent_Project__r.IPM_Project_Rollout__c,IPM_Project_Rollout__c,IPM_Misalligned__c,CreatedDate,IPM_Project_Start_Date__c,IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c,IPM_CPP__c,IPM_Fast_Track_Project__c,IPM_White_Space_Project__c,Is_Archieved__c,IPM_ProjectGKM__c,IPM_Complexity__c,IPM_Market__c,IPM_Sub_sector__c,IPM_Global_OR_Regional__c,IPM_Project_Rollout__r.Target_Launch_Date__c, IPM_Project_Rollout__r.KeyMCO__c,IPM_SourceProjectType__c,IPM_GateKeeping_Model__c,BI__c, IPM_Parent_Project__r.BI__c,IPM_Parent_BI__c FROM IPM_Project__c WHERE IPM_Project_Name__c != null' ;
+  
+      IPM_BD_BB_Report_Batch  batchs = new IPM_BD_BB_Report_Batch(query); 
+      database.executebatch(batchs,100);
             batchs.calculateCPP(10000, 200000);  
             batchs.calculateCPP(8000, 1000000); 
             batchs.calculateCPP(8000, 2000000);
@@ -324,22 +324,22 @@ private class IPM_BD_BB_Report_Batch_Test {
             batchs.calculateCPP(200, 150000);   
             batchs.calculateCPP(100, 150000); 
             batchs.calculateCPP(100, null);
-		}
-     	
+    }
+       
       }
- 	/*******upto Here********************/
- 	
- 	
- 	
- 	public static void createProjectGlobal(set<String> projectNameSet, List<Id> globalProjectIdList, Map<Id,IPM_Project__c> projectMap,User globalProjectLeader,User regionalProjectLeader){
+   /*******upto Here********************/
+   
+   
+   
+   public static void createProjectGlobal(set<String> projectNameSet, List<Id> globalProjectIdList, Map<Id,IPM_Project__c> projectMap,User globalProjectLeader,User regionalProjectLeader){
          
-         	allCreatedProjectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
+           allCreatedProjectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
                                                     (Select Id from IPM_Financials_Consolidated__r ),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),
                                                     (Select Id,Name from IPM_Milestones__r) from IPM_Project__c where Name in:projectNameSet];
             
             for(IPM_Project__c project : allCreatedProjectList)
             {
-            	project.IPM_Fast_Track_Project__c= true;
+              project.IPM_Fast_Track_Project__c= true;
                 projectMap.put(project.Id,project);
             }
             
@@ -449,5 +449,5 @@ private class IPM_BD_BB_Report_Batch_Test {
             
             update projectListPhaseChange;
           }
- 	     
+        
 }

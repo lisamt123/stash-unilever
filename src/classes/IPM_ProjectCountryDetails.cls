@@ -117,7 +117,9 @@ public with sharing class IPM_ProjectCountryDetails{
         }
         
         if(!lstUpdateProjects.isEMpty()){
+        	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             Update lstUpdateProjects;
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         }
                  
     }
@@ -855,7 +857,7 @@ public with sharing class IPM_ProjectCountryDetails{
     @Params ProjectsToEvaluate:  Set Of Project Ids
     *****************************************************************************/
     public static Map<Id,Boolean> getProjectIdToSyncMap(Set<Id> projectsToEvaluate) {
-        Map<Id,IPM_Project__c> projIdProjectMap =new Map<Id,IPM_Project__c> ([Select Id,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c From IPM_Project__c Where Id IN :projectsToEvaluate LIMIT 50000 ]);
+        Map<Id,IPM_Project__c> projIdProjectMap =new Map<Id,IPM_Project__c> ([Select Id,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c, IPM_ProjectGKM__c From IPM_Project__c Where Id IN :projectsToEvaluate LIMIT 50000 ]);
         Map<Id,Boolean> projectIdToSyncMap =  new Map<Id,Boolean>(); //Map of Project Id and Boolean(Whetehr the project is to be synced or not)
         
         for(IPM_Project__c project: projIdProjectMap.values()){
@@ -1077,7 +1079,7 @@ public with sharing class IPM_ProjectCountryDetails{
 	 public static void assignCompanyCardLocal(Map<id,IPM_Country__c> countyrMap)
 	{
 	  List<IPM_Country__c>countryList=new list<IPM_Country__c>();
-	  countryList=[select Local_Rollout__c,Local_Rollout__r.IPM_Small_C__c,Country_Name__c from IPM_Country__c where 
+         countryList=[select Local_Rollout__c,IPM_Brand_Position__c,Local_Rollout__r.IPM_Small_C__c,Country_Name__c from IPM_Country__c where 
 					id IN:countyrMap.keyset() LIMIT 5000]; 
 	  List<IPM_Company_Card__c>companyCardLst=new List<IPM_Company_Card__c>(); 
 	  companyCardLst=[select Id,IPM_MCO__c,IPM_CompanyCard_Type__c,IPM_Managed_Category__c,RecordType.Name,IPM_TxtGeographical_Scope__c from IPM_Company_Card__c 

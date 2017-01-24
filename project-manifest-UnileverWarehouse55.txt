@@ -1,5 +1,0 @@
-src/permissionsets
-src/permissionsets/WU_Logistics_Leadership_Team.permissionset
-
-src/objects
-src/objects/WU_Master_Warehouse__c.object

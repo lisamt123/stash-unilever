@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
@@ -51,6 +52,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -180,6 +182,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -594,6 +597,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -626,6 +630,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -674,6 +679,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -718,6 +724,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -1036,6 +1043,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1068,6 +1076,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1099,6 +1108,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1130,6 +1140,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1153,6 +1164,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1200,6 +1212,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1227,6 +1240,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1266,6 +1280,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1306,6 +1321,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -1347,6 +1363,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -1396,6 +1413,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1686,6 +1704,33 @@
             <group>CAP_SMT_Group</group>
             <group>CAP_ULFT_Group</group>
             <group>CAP_ULPT_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_CPA_CR</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_CR</fullName>
+        <filterScope>Queue</filterScope>
+        <label>VDM</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_CR</fullName>
+        <filterScope>Queue</filterScope>
+        <label>SMT</label>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -4020,7 +4065,7 @@ alert(&quot;You are not authorized to perform this action.&quot;);
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -4073,7 +4118,7 @@ p.id = &quot;{!CPA_CR__c.Id}&quot;;
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
 p.isValidated__c = &quot;{!CPA_CR__c.isValidated__c }&quot;; 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -4127,7 +4172,7 @@ var p = new sforce.SObject(&apos;CPA_CR__c&apos;);
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -4167,7 +4212,7 @@ p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;;
 
 
 try { 
-	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
+	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;; 
 	var result = sforce.connection.query(soql); 
 	var records1 = result.getArray(&apos;records&apos;); 
 	var permissionSetName = records1[0].PermissionSet.Name; 
@@ -4212,7 +4257,7 @@ var p = new sforce.SObject(&apos;CPA_CR__c&apos;);
 p.id = &quot;{!CPA_CR__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -4251,7 +4296,7 @@ p.id = &quot;{!CPA_CR__c.Id}&quot;;
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 

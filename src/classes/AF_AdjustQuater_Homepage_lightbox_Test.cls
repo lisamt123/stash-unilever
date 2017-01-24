@@ -43,13 +43,14 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE LIMIT 1];
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.CATEGORY_RECORD);
             List<AF_Brand_Estimate__c> BrandEst = AF_TestFactory_Helper.insertAFBrandEstList(1,true);
+            System.assertEquals(BrandEst[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
             List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c LIMIT 2]; 
             System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
             ApexPages.currentPage().getParameters().put(AF_Constants.RT_CATEGORY,AFCategoryBrand[0].id);
             ApexPages.currentPage().getParameters().put(Fyear,currYear);    
             AF_AdjustQuater_Homepage_lightbox adjHome=new AF_AdjustQuater_Homepage_lightbox();
-            adjHome.saveBrandEstimate();
             adjHome.showPopup();
+            adjHome.saveBrandEstimate();
             adjHome.closePopup();
             Test.stopTest();
         }
@@ -86,6 +87,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             System.Assert(categoryQuery[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             //Insert Brand
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
+            System.Assert(AFCategoryBrand[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE LIMIT 1];
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
             // Insert BrandEstimate.
@@ -109,8 +111,10 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             AF_AdjustQuater_Homepage_lightbox.wrapChechbox wr=new AF_AdjustQuater_Homepage_lightbox.wrapChechbox(BrandEstList[0],BrandEstList[0].Name,true,false,false,false);
             wr.Selected=true;
             brandEstimateRecords.add(wr);
-            adjHome.QuarterEstimate=brandEstimateRecords;      
+            adjHome.QuarterEstimate=brandEstimateRecords;  
+            adjHome.showPopup();
             adjHome.saveBrandEstimate();
+            adjHome.displaypopquarter=true;
             Test.stopTest();
         }
     }
@@ -146,6 +150,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             System.Assert(categoryQuery[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             //Insert Brand
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
+            System.Assert(AFCategoryBrand[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE LIMIT 1];
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
             // Insert BrandEstimate.
@@ -205,6 +210,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             System.Assert(categoryQuery[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             //Insert Brand
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
+            System.Assert(AFCategoryBrand[0].Id != null, AF_TestFactory_Helper.CATEGORY_RECORD);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE LIMIT 1];
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
             //insert BrandEstimate.
@@ -215,6 +221,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
                 BrandEst.AF_Pilot_Model__c=false;
                 BrandEst.AF_Status_Base_Fees__c = AF_Constants.CATEGORY_FINANCE;
                 BrandEst.AF_BackupQuarter__c=AF_Constants.QUARTER2;
+                BrandEst.AF_RaiseNewPOQuarters__c=AF_Constants.QUARTER3;
                 BrandEstimateList2.add(BrandEst);
             }
             insert BrandEstimateList2;
@@ -222,7 +229,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRAND_RECORD);
             List<AF_AdjustQuater_Homepage_lightbox.wrapChechbox> brandEstimateRecords=new List<AF_AdjustQuater_Homepage_lightbox.wrapChechbox>();
             ApexPages.currentPage().getParameters().put(AF_Constants.RT_CATEGORY,Cb[0].id);
-            ApexPages.currentPage().getParameters().put(Fyear,currYear);    
+            ApexPages.currentPage().getParameters().put(Fyear,currYear);   
             AF_AdjustQuater_Homepage_lightbox adjHome=new AF_AdjustQuater_Homepage_lightbox();
             AF_AdjustQuater_Homepage_lightbox.wrapChechbox wr = new AF_AdjustQuater_Homepage_lightbox.wrapChechbox(BrandEstList[0],BrandEstList[0].Name,true,true,true,true);
             wr.Selected=true;
@@ -230,6 +237,10 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             brandEstimateRecords.add(wr);
             adjHome.QuarterEstimate=brandEstimateRecords;      
             adjHome.showPopup();
+            adjHome.Quarter1=true;
+            adjHome.Quarter2=true;
+            adjHome.Quarter3=true;
+            adjHome.Quarter4=true;
             adjHome.saveBrandEstimate();
             adjHome.queryBrandEstimate();
             Test.stopTest();

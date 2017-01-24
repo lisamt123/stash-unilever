@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Warehouse Committed StoragetoPOC</name>
     <style>none</style>
-    <subject>Notification : Warehouse Committed Pallet Utilization Changed for Warehouse  : {!WU_Master_Warehouse__c.WU_LocationName__c} - No Action Required</subject>
+    <subject>Notification :  Committed Pallet Utilization Changed for Warehouse  : {!WU_Master_Warehouse__c.WU_LocationName__c} - No Action Required</subject>
     <type>text</type>
 </EmailTemplate>

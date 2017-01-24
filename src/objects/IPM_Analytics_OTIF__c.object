@@ -469,11 +469,33 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_External_ID__c</fullName>
+        <description>To hold the external id/Inoplan project id of the project</description>
+        <externalId>false</externalId>
+        <label>Inoplan Project ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Finance_Member__c</fullName>
         <description>Name of the Finance Member</description>
         <externalId>false</externalId>
         <label>Finance Member</label>
         <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_GKM__c</fullName>
+        <description>To determine Gate Keeping Model of the project/rollout</description>
+        <externalId>false</externalId>
+        <label>IPM Gate Keeping Model</label>
+        <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

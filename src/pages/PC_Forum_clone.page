@@ -1,0 +1,148 @@
+<!--
+Copyright (c) 2014, salesforce.com, Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+    * Neither the name of the salesforce.com, Inc. nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!--<apex:page html-class="noBgImage" controller="PC_ForumController_CC" readOnly="true" docType="html-5.0" sidebar="false" showHeader="true" standardStylesheets="true">-->
+<apex:page readOnly="true" controller="PC_ForumController_CC" docType="html-5.0" sidebar="false" showHeader="true" standardStylesheets="false">
+    <!-- javascript -->
+    <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/jquery-1.12.0.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/bootstrap.min.js')}" />
+    <script>
+        function refreshGroupId(groupId){
+            $( "#groupMenu img" ).removeClass("activeHex");
+            $( "#"+groupId).addClass("activeHex");            
+            refreshGroup(groupId);
+        }
+    </script>
+    
+    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_Container.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_New_UI_Changes.css')}" />
+    
+    <apex:composition template="PBS_Header_Template_clone"/>
+        
+     <apex:form >
+         <apex:actionFunction name="refreshGroup" action="{!refreshGroupId}" reRender="panelId">
+             <apex:param name="groupId" value=""/>
+         </apex:actionFunction>
+     
+     </apex:form>
+        <div class="wrapper wrapper-sub-frame">
+        <div class="row bodyRow">
+            <!--<div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>-->
+           <!--<div class="col-xs-6 home-detail" style="color: #007DBB; font-size:13px; font-weight:bold;">
+                {!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                <!--<a style="color: #007DBB; font-size:13px; font-weight:bold;" href="{!$Page.PBS_EditProfile}" target="_self">EDIT PROFILE</a>-->
+                <div class="col-xs-6 home-detail" style="font-size:13px;cursor:Pointer" >
+            <a style="text-transform: uppercase; color: #007DBB">Welcome Back
+                 {!$User.FirstName} {!$User.LastName} &nbsp;&nbsp;&nbsp;&nbsp; </a>
+            </div>
+        </div>
+        <!-- body -->
+        <div class="row collbrate">
+            <div class="col-md-5 col-lg-5 leftNav">
+                <div class="col-md-offset-2 col-lg-offset-2  col-md-10 col-lg-10">
+                    <apex:image style="width: 240px; margin-top: 10px;"  title="PBS" value="{!URLFOR($Resource.PCResources, 'img/AIRPLANE.png')}" />
+                </div>
+                <!--<apex:form id="formId">
+                <apex:actionFunction name="callDP" action="{!demandPlanningDetails}" rerender="panelId"/>-->
+                <div id="groupMenu" style="top: -90px; position: relative;">
+                <div class="col-md-offset-1 col-lg-offset-1  col-md-5 col-lg-5">
+                    <!--<a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!PBSForumGroupId.Id}" target="_self">-->
+                    <a class="blockLink" onclick="refreshGroupId('{!PBSForumGroupId.Id}');" title="PBS" target="_self">
+                
+                    <!--<a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="#" target="_self">-->
+                        <img class="activeHex" title="PBS" alt="PBS" id="{!PBSForumGroupId.Id}" src="{!URLFOR($Resource.PCResources, 'img/hexicons_pbs.svg')}" />
+                    </a>
+                </div>
+               <!--</apex:form>-->
+                <div class="col-md-5 col-lg-5">
+                    <a class="blockLink" onclick="refreshGroupId('{!DPForumGroupId.Id}');" title="PBS" target="_self">
+                        <!--<a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');callDP();" title="PBS" href="#" target="_self">-->
+                        <img title="Demand Planning" alt="Demand Planning" class="inactiveHex" id="{!DPForumGroupId.Id}" src="{!URLFOR($Resource.PCResources, 'img/hexicons_demandplan.svg')}" />
+                    </a>
+                </div>
+                         
+                <div class="col-md-offset-1 col-lg-offset-1  col-md-5 col-lg-5">
+                    <a class="blockLink" title="PBS" onclick="refreshGroupId('{!SPForumGroupId.Id}');" target="_self">
+                        <img title="Supply Planning" alt="Supply Planning" class="inactiveHex" id="{!SPForumGroupId.Id}" src="{!URLFOR($Resource.PCResources, 'img/hexicons_supplyplan.svg')}" />
+                    </a>
+                </div>                
+                <div class="col-md-5 col-lg-5 ">
+                    <a class="blockLink" title="PBS" onclick="refreshGroupId('{!DisPForumGroupId.Id}');" target="_self">
+                        <img title="Distribution Planning" alt="Distribution Planning" class="inactiveHex" id="{!DisPForumGroupId.Id}" src="{!URLFOR($Resource.PCResources, 'img/hexicons_distribution.svg')}" />
+                    </a>
+                </div>
+              
+                <div class="col-md-offset-1 col-lg-offset-1  col-md-5 col-lg-5">
+                    <a class="blockLink" title="PBS" onclick="refreshGroupId('{!MPForumGroupId.Id}');" target="_self">
+                        <img title="Material Planning" alt="Material Planning" id="{!MPForumGroupId.Id}" class="inactiveHex" src="{!URLFOR($Resource.PCResources, 'img/hexicons_material.svg')}" />
+                    </a>
+                </div>  
+                <div class="col-md-5 col-lg-5">
+                    <a class="blockLink" title="PBS" onclick="refreshGroupId('{!IPForumGroupId.Id}');" target="_self">
+                        <img title="Innovation Planning" alt="Innovation Planning" id="{!IPForumGroupId.Id}" class="inactiveHex" src="{!URLFOR($Resource.PCResources, 'img/hexicons_innovation.svg')}" />
+                    </a>
+                </div>  
+                </div>                
+            </div>
+            <!--<div class="col-md-7 col-lg-7" >-->
+            <apex:outputPanel id="panelId">
+            <div class="col-md-7 col-lg-7 paddingZero">
+                <div class="headerBox noExtraPadding">Feed</div>
+                <div class="chatterWrapper zen">
+                    <chatter:feed entityId="{!groupId}" />               
+                   
+                   <!--<chatter:newsfeed />-->
+               
+                </div>
+            </div>
+            </apex:outputPanel>
+        </div>
+        
+    </div>
+    <!--<div class="row" style="text-align: center;margin-bottom: 15px;">
+        <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/Plancraft_Logo.png')}" />
+    </div>-->
+
+    <script type="text/javascript">
+    
+        $('#categories').carousel({
+            interval: 5000
+        });
+
+        $('#categories').on('slide.bs.carousel', function (event) {
+            var idx = $('#categories .item').index(event.relatedTarget);
+            $('.carouselPager li.active').removeClass('active');
+            if (idx > -1) {
+                $('.carouselPager li').eq(idx).addClass('active');
+            }
+        });
+
+        $('.categories img').popover();
+    </script>
+    
+</apex:page>

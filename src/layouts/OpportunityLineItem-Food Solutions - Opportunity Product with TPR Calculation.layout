@@ -15,12 +15,24 @@
                 <field>Product2Id</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ListPrice</field>
+                <behavior>Edit</behavior>
+                <field>FS_listPriceCasePiece__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Quantity</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_QuantityCases__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_QuantityPieces__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_UnitConversionFactor__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -35,10 +47,6 @@
                 <field>FS_BR3__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ApprovalRequired__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ApprovalGranted__c</field>
             </layoutItems>
@@ -48,15 +56,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Actual_Quantity__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>CreatedById</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ProdDistributor__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_totalListPrice__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -89,12 +97,12 @@
                 <field>FS_Sample__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Discount</field>
+                <behavior>Readonly</behavior>
+                <field>LastModifiedById</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>LastModifiedById</field>
+                <field>FS_casesPiece__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -220,11 +228,8 @@
     <multilineLayoutFields>Product2Id</multilineLayoutFields>
     <multilineLayoutFields>Quantity</multilineLayoutFields>
     <multilineLayoutFields>UnitPrice</multilineLayoutFields>
-    <multilineLayoutFields>Discount</multilineLayoutFields>
+    <multilineLayoutFields>FS_Sample__c</multilineLayoutFields>
     <multilineLayoutFields>OpportunityId</multilineLayoutFields>
-    <relatedLists>
-        <relatedList>RelatedScheduleList</relatedList>
-    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>

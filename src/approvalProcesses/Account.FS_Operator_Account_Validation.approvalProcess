@@ -23,22 +23,8 @@
             </approver>
         </assignedApprover>
         <entryCriteria>
-            <booleanFilter>1 AND (2 OR 3)</booleanFilter>
-            <criteriaItems>
-                <field>Account.Status__c</field>
-                <operation>equals</operation>
-                <value>Temporary</value>
-            </criteriaItems>
-            <criteriaItems>
-                <field>Account.RecordType</field>
-                <operation>equals</operation>
-                <value>Operator</value>
-            </criteriaItems>
-            <criteriaItems>
-                <field>Account.RecordType</field>
-                <operation>equals</operation>
-                <value>Operator Russia</value>
-            </criteriaItems>
+            <formula>AND(OR(RecordType.DeveloperName =&apos;Operators&apos;, 
+RecordType.DeveloperName =&apos;FS_OperatorRussia&apos;),ISPICKVAL( Status__c , &apos;Temporary&apos;))</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Account Process Step 1</label>
@@ -52,6 +38,12 @@
     </approvalStep>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>FS_Status_Update_New</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
         <assignedApprover>
             <approver>
                 <name>chatter.support@unilever.com</name>
@@ -81,6 +73,12 @@
     </approvalStep>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>FS_UpdateAccountStatus</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
         <assignedApprover>
             <approver>
                 <name>chatter.support@unilever.com</name>
@@ -108,35 +106,17 @@
             </action>
         </rejectionActions>
     </approvalStep>
-    <description>Operator Account Validations</description>
+    <description>Operator Account Validations Russia and NA</description>
     <emailTemplate>FS_Email_Templates/NAFS_Operator_Account_approval_request_email_template</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
-        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
-        <criteriaItems>
-            <field>Account.Status__c</field>
-            <operation>equals</operation>
-            <value>Temporary</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Account.RecordType</field>
-            <operation>equals</operation>
-            <value>Operator</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Account.RecordType</field>
-            <operation>equals</operation>
-            <value>Operator Russia</value>
-        </criteriaItems>
+        <formula>AND(OR(RecordType.DeveloperName =&apos;Operators&apos;,
+RecordType.DeveloperName =&apos;FS_OperatorRussia&apos;),ISPICKVAL(  Status__c , &apos;Temporary&apos;))</formula>
     </entryCriteria>
     <finalApprovalActions>
         <action>
             <name>Approval_request_email_template_to_approver_for_Final_Approval</name>
             <type>Alert</type>
-        </action>
-        <action>
-            <name>FS_UpdateAccountStatus</name>
-            <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>

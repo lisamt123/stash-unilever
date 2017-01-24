@@ -1,0 +1,81 @@
+<!--  
+*************************************************************************
+*@Description:This component is used to display a sourcing plan table in the PDL Document PDF
+*@Author: Cognizant
+*@Created Date: 30/09/2016 
+*@Copyright © 2015  Unilever    
+*************************************************************************
+-->
+
+<apex:component allowDML="true" controller="IPM_SourcePlanController" >
+    <apex:attribute name="projId" description="Getting Project Id" type="Id" assignTo="{!projectId}"/>
+    <div class="col-sm-12 noPadleft noPadright teamHeading">
+        <div class="col-sm-6 noPadleft pageTitlefont">
+            Sourcing Plan Table
+        </div>
+    </div>
+    <div class="marketingHeader pull-left">
+        <table border="0" cellpadding="0" cellspacing="0" class="ipmTable table table-bordered">
+            <thead> 
+                <tr>
+                    <th scope="col" width="80px"><span class="proName">{!$Label.IPM_Product_Name}</span></th>
+                    <th scope="col"  width="80px"><span>{!$Label.IPM_Product_Format}</span></th>
+                    <th scope="col"  width="80px"><span>{!$Label.IPM_Product_Formulation}</span></th>
+                    <th scope="col"  width="80px"><span>{!$Label.IPM_Product_Packaging}</span></th>
+                    <th scope="col"  width="60px"><span>{!$Label.IPM_Product_Size}</span></th>
+                    <th scope="col"  width="60px"><span>{!$Label.IPM_Product_of_GTo}</span></th>
+                    <th scope="col" width="60px" ><span>{!$Label.IPM_Product_Golden_Prototype}</span></th>
+                    <th scope="col"  width="100px"><span>{!$Label.IPM_Product_Country_Mapping}</span></th>
+                    <th scope="col" width="300px">
+                        <table width="100%" class="innerTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col" width="90px"><span>{!$Label.IPM_Sourcing_Units}</span></th>                    
+                                    <th scope="col" width="75px"><div class="{!if(bIsPDLApproved,'approvalTip','capcon approvalTip')}">{!$Label.IPM_Capability_Confirmed}</div></th>
+                                    <th scope="col" width="70px"><span>{!$Label.IPM_Sourced_Into}</span></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <apex:variable value="{!0}" var="rowNum"/>
+                <apex:repeat value="{!wrapperKeys}" var="wrKey">
+                    <apex:repeat value="{!sourcePlanMap[wrKey]}" var="prodPlan">
+                        <tr class="{!if(prodPlan.isDuplicateRow,'duplicateRow','')}">
+                            <td width="80px"><span >{!prodPlan.productPlan.IPM_Product_Name__c}</span></td>
+                            <td width="80px"><span >{!prodPlan.productPlan.IPM_Format__c}</span></td>
+                            <td width="80px"><span >{!prodPlan.productPlan.IPM_Formulation__c}</span></td>
+                            <td width="80px"><span >{!prodPlan.productPlan.IPM_Packing__c}</span></td>
+                            <td width="60px"><span >{!prodPlan.productPlan.IPM_ProductSize__c}</span>
+                                            <span >{!prodPlan.productPlan.IPM_ProductSizeMetrics__c}</span></td>
+                            <td width="60px"><span >{!prodPlan.productPlan.IPM_Of_gTO__c}</span></td>
+                            <td width="60px">
+                            	<div class="goldenCheckcontainer">
+                            		<label class="{!if(prodPlan.productPlan.IPM_GoldenPrototype__c,'goldbox','')}">{!if(prodPlan.productPlan.IPM_GoldenPrototype__c,'Golden','')}</label>
+                            	</div>
+                            </td>
+                            <td width="100px" class="custLstCntryWidth"><span >{!prodPlan.countryStrToDisplay}</span></td>
+                            <td width="300px">
+                                <table width="100%">
+                                    <tbody>
+                                        <apex:repeat value="{!sourceUnitMap[prodPlan.productProsition]}" var="sourcep">
+                                            <tr>
+                                                <td width="90px"><span> {!sourcep.sourcingPlan.IPM_SourcingUnit__c}</span></td>
+                                                <td width="75px"><span class="{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'greenBox','redBox')}">{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Yes','Not Yet')}</span></td>
+                                                <td width="63px">
+                                                    <span>{!sourcep.sourceCountriesToDisplay}</span>
+                                                </td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                 </apex:repeat>
+             </tbody>          
+        </table>
+    </div>    
+</apex:component>

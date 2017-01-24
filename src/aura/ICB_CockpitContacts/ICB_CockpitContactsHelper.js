@@ -105,7 +105,6 @@
                 "isClosed" : false
             });
             $A.enqueueAction(action);
-            
         } 
         component.set("v.listContacts",list); 
         //}

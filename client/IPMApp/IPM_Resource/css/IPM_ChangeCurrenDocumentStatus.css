@@ -24,6 +24,7 @@
         
         .postpone .toolTipMsg::before {left: 384px;}
         .approve .toolTipMsg::before {left: 257px;}
+		.pdlapprove .toolTipMsg::before {left: 270px;}
         .slider3 .stop .toolTipMsg::before {left: 410px;}
         .slider4 .stop .toolTipMsg::before {left: 775px;}
         .slider3 .propose .toolTipMsg::before {left: 270px;}
@@ -143,3 +144,5 @@
 			-webkit-border-radius: 50%;
 			-moz-border-radius: 50%;
 		}
+		.clrBoth{clear:both;}
+		.messageBox .SecButtonSet .msgTxt.fullWidth{width:100%;top:0px;}

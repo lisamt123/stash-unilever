@@ -131,22 +131,12 @@
         <picklist>
             <controllingField>FS_VisitwithDSR__c</controllingField>
             <picklistValues>
-                <fullName>East West SPb</fullName>
+                <fullName>3Cafe</fullName>
                 <default>false</default>
                 <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>MARRusia S-Pete</fullName>
-                <default>false</default>
-                <controllingFieldValues>checked</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Uhrenholt S-Pete</fullName>
-                <default>false</default>
-                <controllingFieldValues>checked</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Integrita SPb</fullName>
+                <fullName>Akademiya Edy</fullName>
                 <default>false</default>
                 <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
@@ -156,22 +146,42 @@
                 <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>East West Moscow</fullName>
+                <fullName>Alyans-M</fullName>
                 <default>false</default>
                 <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>MARRusia Moscow</fullName>
+                <fullName>Azbuka food trade</fullName>
                 <default>false</default>
                 <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Uhrenholt Moscow</fullName>
+                <fullName>Bakaleya</fullName>
                 <default>false</default>
                 <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>TD Global Market</fullName>
+                <fullName>Beloe More</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ecoland</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Frostway</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Globalfoods Kazan</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Globalfoods Krym</fullName>
                 <default>false</default>
                 <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
@@ -181,11 +191,221 @@
                 <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>Globalfoods Rostov</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Globalfoods Samara</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Globalfoods Sochi</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Globalfoods Yaroslavl</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Grand Marche</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GurmanM</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Holod</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Integrita Krasnodar</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Integrita Rostov</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Integrita Sochi</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Integrita St.Pete</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IP Bulatova N.N.</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IP Sherbakova T.A.</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ladya</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Lotos</fullName>
                 <default>false</default>
                 <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
-            <sorted>false</sorted>
+            <picklistValues>
+                <fullName>Mariya</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MARRusia Moscow</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MARRusia St.Pete</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mega Trade</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Produktovaya mozaika</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Produktovaya mozaika Tatarstan</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pyataya Armiya</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Restoratsiya</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Samson-Opt</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Snabzhenie i logistika</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SoyuzPischeProm</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Suomi</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sweet Life</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sweet Life Tatarstan</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TD Elite Trade</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TD Global Market</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TD KTK</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Urenholt Moscow</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Urenholt St.Pete</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vershina Vkusa</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Virgo</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vladelita</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vostok-Zapad Ekaterinburg</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vostok-Zapad Krasnodar</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vostok-Zapad Moscow</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vostok-Zapad Novosibirsk</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vostok-Zapad St.Pete</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yurinat</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <sorted>true</sorted>
         </picklist>
         <required>false</required>
         <type>Picklist</type>
@@ -205,7 +425,7 @@
         <fullName>FS_Task_Type__c</fullName>
         <description>It gives values of different task types which can be selected on an activity</description>
         <externalId>false</externalId>
-        <label>Task Type</label>
+        <label>Event Type</label>
         <picklist>
             <picklistValues>
                 <fullName>Locally Led</fullName>

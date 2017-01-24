@@ -241,6 +241,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>FS_Status_Update_New</fullName>
+        <description>This field Update is used to update Status from Temporary to New after LM and Admin aproved</description>
+        <field>Status__c</field>
+        <literalValue>New</literalValue>
+        <name>Status Update New</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>FS_UpdateAccountNumber</fullName>
         <field>AccountNumber</field>
         <formula>FS_Customer_Number__c</formula>
@@ -302,6 +312,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>FS_Update_Sales_Org</fullName>
+        <description>If US, 0002, If CA, 0003</description>
+        <field>Sales_ORG__c</field>
+        <formula>IF(OR(ShippingCountry=&quot;CA&quot;,ShippingCountry = &quot;Canada&quot;),&quot;0003&quot;,&quot;0002&quot;)</formula>
+        <name>FS Update Sales Org</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>NAFS_Account_status_Update_to_Temporary</fullName>
         <description>Account status update to Temporary if type is operator</description>
         <field>Status__c</field>
@@ -356,6 +376,16 @@
         <field>FS_supplyCost__c</field>
         <formula>Parent.FS_supplyCost__c</formula>
         <name>Supply Cost Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Account_Number</fullName>
+        <description>Update the account Number from the External Id.</description>
+        <field>AccountNumber</field>
+        <formula>External_Id__c</formula>
+        <name>Update Account Number</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -496,24 +526,27 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>FS Account Number Distributor</fullName>
+        <actions>
+            <name>Update_Account_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update the account number field from the External Id for Distributor accounts created in Salesforce.com</description>
+        <formula>AND( RecordType.DeveloperName =&quot;Distributor&quot;, $Profile.Name =&quot;Unilever Food Solution - Russia&quot;,  ISPICKVAL(CurrencyIsoCode, &apos;RUB&apos;)  )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
         <fullName>FS Account Status to Temporary</fullName>
         <actions>
             <name>NAFS_Account_status_Update_to_Temporary</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 OR 2</booleanFilter>
-        <criteriaItems>
-            <field>Account.RecordTypeId</field>
-            <operation>contains</operation>
-            <value>Operator</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Account.Type</field>
-            <operation>contains</operation>
-            <value>Operator</value>
-        </criteriaItems>
         <description>Created for set account status value to Temporary when type is equals to Operator.</description>
+        <formula>CONTAINS(RecordType.DeveloperName, &quot;Operator&quot;) &amp;&amp; 
+    CONTAINS(  Text(Type)   , &quot;Operator&quot;) &amp;&amp;
+   $Profile.Name  &lt;&gt;  &quot;Generic API Only&quot;</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -553,18 +586,25 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
+        <fullName>FS Sales Org</fullName>
+        <actions>
+            <name>FS_Update_Sales_Org</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>If Shipping Country = &quot;CA&quot; or &quot;Canada&quot;  then  Sales Org=0003  else Sales Org=0002.</description>
+        <formula>AND( OR(ShippingCountry = &quot;CA&quot;, ShippingCountry = &quot;Canada&quot;,ShippingCountry &lt;&gt; null), RecordType.DeveloperName =&quot;Operators&quot; ,$Profile.Name=&quot;Unilever Food Solution - NA&quot; )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
         <fullName>FS Update Operator Account Number</fullName>
         <actions>
             <name>FS_UpdateAccountNumber</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <criteriaItems>
-            <field>Account.Type</field>
-            <operation>equals</operation>
-            <value>Operator</value>
-        </criteriaItems>
         <description>For distributor unique ID generated by SAP. For operator accounts, unique ID generated by SFDC.</description>
+        <formula>RecordType.DeveloperName =&apos;Operators&apos;</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -576,6 +616,6 @@
         <active>true</active>
         <description>Created to update the distributor type,on invoice,off invoice values from parent account.</description>
         <formula>AND(Owner.Profile.Name  = &apos;Unilever Food Solution - Russia&apos;, RecordType.Name = &apos;Operator&apos;)</formula>
-        <triggerType>onCreateOnly</triggerType>
+        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

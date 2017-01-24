@@ -8,15 +8,50 @@ public with sharing class IPM_EcoDesignSection {
     * @description:checking whether current logged in user has permission to insert or update eco design 
     *               records
     */
-    public boolean isEditable{get;set;}
+    public boolean isEditable{
+        get {
+            if(isEditable == null) {
+                if(Apexpages.currentpage().getparameters().get('Ecoedit') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return isEditable; }
+        }
+        set;
+    }// boolean to check if editable
     /*******************************************************************************************************
     * @description:hold current project id from url parameter
     */
-    public String projId{get;set;}
+    public String projId{// to get-set the project document section id from the component attribute.
+        get{
+            if(projId == null && Apexpages.currentpage().getparameters().get('id') != null) {
+                return  Apexpages.currentpage().getparameters().get('id');
+            }
+            else { return projId; }
+        }
+        set;
+    }
     /*******************************************************************************************************
     * @description:hold section id to insert or update or display eco design record
     */
-    public Id ProdocSecId{get;set;}
+    public Id ProdocSecId{// to get-set the project document section id from the component attribute.
+        get{
+            if(ProdocSecId == null && Apexpages.currentpage().getparameters().get('getSectionId') != null) {
+                return  Id.valueOf(Apexpages.currentpage().getparameters().get('getSectionId')) ;
+            }
+            else { return ProdocSecId; }
+        }
+        set;
+    }
+    public boolean displayOnlyTables{
+        get {
+            if(displayOnlyTables == null) {
+                if(Apexpages.currentpage().getparameters().get('displayOnlyTables') == IPM_ConstantUtils.IPM_true) {return true; }
+                else { return false; }
+            }
+            else { return displayOnlyTables; }
+        }
+        set;
+    }// boolean to check if editable
     public List<IPM_Country__c> countriesList {get; set;} //Contains All Header Countries
     public final IPM_Project__c project;
     public List<CountryAssessmentWrap> countryAssessmentWrapListEICountries {get;set;}
@@ -39,6 +74,7 @@ public with sharing class IPM_EcoDesignSection {
     public String projPhaseForCurrentDoc = '';
     public map<string, boolean>  mapCatMetric {get; set;}
     public map<string, boolean>  mapWaterScarce {get; set;}
+    
     /*******************************************************************************************************
     * @description:initialise variables and get eco design data based on project document section id
     * @param:
@@ -46,7 +82,6 @@ public with sharing class IPM_EcoDesignSection {
     * @return:null
     */ 
     public IPM_EcoDesignSection() {
-        projId=Apexpages.currentpage().getparameters().get('Id');
         ProjDocumentSecId=Apexpages.currentpage().getparameters().get('projDocSecId');
         projDocName = Apexpages.currentpage().getparameters().get('printDoc');
         if(projDocName == null && ProjDocumentSecId != null){
@@ -77,7 +112,7 @@ public with sharing class IPM_EcoDesignSection {
         noRolloutSubmittedYet = false;
         firstSyncToEcoDesign = false;
         if(String.isNotBlank(projId)) {
-            project = [Select id, IPM_Project_Type__c,IPM_GateKeepingModel__c,First_Sync_To_EcoDesign__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,Success_Timestamp_EcoDesign__c,IPM_CompanyCardText__c,IPM_Category_Group__c,IPM_Category_Text__c  From IPM_Project__c Where id =:projId Limit 1];
+            project = [Select id, IPM_Project_Type__c,IPM_ProjectGKM__c,IPM_GateKeepingModel__c,First_Sync_To_EcoDesign__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,Success_Timestamp_EcoDesign__c,IPM_CompanyCardText__c,IPM_Category_Group__c,IPM_Category_Text__c  From IPM_Project__c Where id =:projId Limit 1];
             countriesList = [Select IPM_Project__c, Country_Name__c, IS_EI_Country__c,CreatedDate,
                            IPM_Regional_Proj_Association_Timestamp__c,IPM_Local_Project_Association_Timestamp__c
                            From IPM_Country__c 
@@ -204,15 +239,7 @@ public with sharing class IPM_EcoDesignSection {
     }
     
     public void checkTakeMeEcoDesginButtonVisible() {
-        if(project.First_Sync_To_EcoDesign__c && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL 
-            && project.IPMProject_Span__c == IPM_ConstantUtils.SpanGlobal  && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS &&  
-            (project.IPM_GateKeepingModel__c == GKM1 || project.IPM_GateKeepingModel__c == GKM2)) {
-                firstSyncToEcoDesign = true;    
-        }
-        else if(project.IPM_Project_Type__c == ROLLOUT) {
-            firstSyncToEcoDesign = true;
-        }
-        else if(project.First_Sync_To_EcoDesign__c && project.IPM_GateKeepingModel__c == GKM4) {
+        if(project.First_Sync_To_EcoDesign__c && !projectType.IPM_Dont_Sync_Proj_To_EcoDesign__c) {
                 firstSyncToEcoDesign = true;    
         }
     }

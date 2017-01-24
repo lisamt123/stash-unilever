@@ -1,7 +1,6 @@
 .THIS .image--align{
     float:left;
     margin-left:3%;
-  
 }
 .THIS .text-size-2{
     margin-left:36%;
@@ -75,6 +74,7 @@
     padding: 9px 10px 10px 10px;
     height: 40px;
     text-shadow: none;
+    
     display: initial;
 }
 .THIS .Border{

@@ -1,0 +1,415 @@
+<!-- 
+    @Author:Cognizant
+    @Description:This page will display a product & source plan table.User(GPL/DPL/TPL/BD/SC) can enter product and source plan data.
+    User has various activities to complete. User can create/update/clone/delete product and source plan records.
+    Page will appear for GKM3 global project after ideas phase to till PLE phase. 
+ -->
+<apex:page controller="IPM_SourcePlanController" standardStylesheets="true" docType="HTML-5.0" sidebar="false" title="{!$Label.IPM_Product_Sourcing_Plan}">
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Buttons.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Source_Plan.css')}"/>
+<apex:form >    
+    <!-- all action functions -->
+    <apex:actionfunction action="{!createProjectProduct}" rerender="sourceProductTable,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" name="createNewRow"/>
+    <apex:actionfunction action="{!createProjectProductOnLoad}" rerender="sourceProduct,sourceProductTable,scriptLoad" name="jSortTable" >
+         <apex:param name="sFilter" assignTo="{!sFilterColumn}" value=""/>
+         <apex:param name="sOrder" assignTo="{!sSortOrder}" value=""/>
+    </apex:actionfunction>
+        <apex:actionfunction action="{!removeSourceUnit}" status="loader" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" rerender="sourceProduct,sourceProductTable,scriptLoad" name="deleteSourceUnit" >
+         <apex:param name="productRowNumber" assignTo="{!row_Index}" value=""/>
+         <apex:param name="sUnitIndex" assignTo="{!sourceUnitIndex}" value=""/>
+    </apex:actionfunction>
+    
+    <apex:actionfunction action="{!getSourceUnit}" rerender="srcUnitList,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" name="searchsourceunit">
+        <apex:param name="srchvalue" assignTo="{!searchUnit_STR}" value=""/>
+    </apex:actionFunction>
+    <apex:actionfunction action="{!getSourcedinto}" rerender="sourceProductTable,CAssociations,srcCountrylist,srcedcntrymlist,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" status="loader" name="getsourceinto">
+        <apex:param name="cntrysource" assignTo="{!holdSelectedProCountry}" value=""/>
+    </apex:actionFunction>
+
+    <apex:actionfunction name="saveRow" action="{!saveRow}" reRender="sourceProductTable,sourceProduct,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" status="loader">
+        <apex:param name="saveNewRow" assignTo="{!row_Index}" value=""/>
+    </apex:actionfunction>
+    <apex:actionfunction name="deleteRow" action="{!deleteProduct}" reRender="sourceProductTable,CAssociations,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" status="loader">
+        <apex:param name="deleteNewRow" assignTo="{!row_Index}" value=""/>
+    </apex:actionfunction>
+    <apex:actionfunction name="addNewSourceUnit" action="{!addNewSourcePlanRow}" reRender="sourceProductTable,refreshSourceUnit,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" status="loader">
+     <apex:param name="addsourceRow" assignTo="{!row_Index}" value=""/>
+    </apex:actionfunction>
+    <apex:actionFunction name="updateCapabilityForSourcingUnit" action="{!updateCapabilityForSourcingUnit}" reRender="idCapabilityConfirmed,idCapabilityConfirmedRead" onComplete="firstsrcplan();">
+     </apex:actionFunction>
+    <apex:composition template="IPM_TemplateRevamp">
+        <apex:define name="body">
+            <div class="gradientbg">
+                <c:IPM_ProjectDetails project="{!project}" activeItem="coreParameters" />
+            </div>
+            <div class="col-sm-12 noPadleft noPadright teamHeading">
+                <div class="col-sm-7 noPadleft pageTitlefont">
+                    {!$Label.IPM_Product_Sourcing_Plan_Global_Scope}
+                </div>
+                <div class="custMarginTop SecButtonSet pull-right">
+                    <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download" value="" /> 
+                </div>
+                <div class="mngSrcContainer pull-right">
+                  <apex:commandButton styleClass="ipmButton primary" rendered="{!isCentralTeam}" value="Manage Sourcing Unit Options"  action="{!updateSourcinngUnit}"/>
+                </div>
+            </div>
+            <apex:outputpanel id="sourceProductTable" layout="block">
+			<!-- Changing the Value on DOM ready --->
+            <script type="text/javscript">
+            	jq(document).ready(function() {
+    				jq('[id*="sourcingUnitList"]').val('Select Sourcing Unit');
+				});
+            </script>
+                <apex:outputpanel layout="block" id="CAssociations" styleClass="col-sm-12 countryassociation noPadleft">
+                    <div class="lightblue padzero">
+                        <div class="border_bottom">
+                            <span>{!$Label.IPM_Product_Country_Association}</span>
+                        </div>
+                        <div>
+                            <apex:repeat value="{!notAssoProductCntrySet}" var="ProdC">
+                            <span>{!ProdC};</span>
+                            </apex:repeat>
+                        </div>
+                    </div>
+                    <div class="darkblue padzero">
+                        <div class="border_bottom">
+                          <span>{!$Label.IPM_Sourcing_Unit_Yet}</span>
+                        </div>
+                        <div>
+                            <apex:repeat value="{!notAssignedSourceCountrySet}" var="srcC">
+                            <span>{!srcC};</span>
+                            </apex:repeat>
+                        </div>
+                    </div>
+                
+                </apex:outputpanel>
+            
+                <apex:outputpanel styleClass="ovrAllContainer" layout="block" id="sourceProduct" >
+                    <div class="scrollcontainer">
+                        <div class="col-sm-6 noPadleft mrgnBottom">
+                            <apex:outputpanel rendered="{!isEditable}" styleClass="ipmButtonGroup pull-left" layout="Block">
+                                <a class="ipmButton primary" onclick="createNewRow();"><span class="fa fa-plus greenicn"></span>{!$Label.IPM_Add_Blank_Row}</a>
+                            </apex:outputpanel>
+                            <div class="totalrow">{!$Label.IPM_Total_rows_in_table} {!totalRowsInTable}</div>
+                        </div>
+                        
+                        <apex:outputpanel styleClass="confirmGreyBg mrgnBottom" rendered="{!bIsPDLApproved}">
+                            <span class="confirmCapabilityTitle">Confirm Capability for all Sourcing Units</span> 
+                            <span class="SecButtonSet confirmInfo infoMarTop">
+                                <a class="icoButton info" title="{!$Label.IPM_Confirm_Capability_Help_Text}"></a>
+                            </span>
+                            <apex:outputpanel id="confirmSUnit">
+                                <div class="drpDownContainer">
+                                   
+                                    <apex:selectList id="sourcingUnitList" styleClass="srcingSlectlist" value="{!sSourcingUnit}" size="1" multiselect="false" onchange="displayCapabilitySection(this,event);">
+                                        <apex:selectOptions value="{!SourcingUnits}"></apex:selectOptions>
+                                    </apex:selectList>
+                                </div>
+                                <div id="iddivCapability" class="hdnCheckboxDiv">
+                                   <apex:inputCheckbox id="srcingGreyCheckBox" styleClass="srcingGreyCheck" value="{!capabilityFlag}"/>
+                                    <apex:outputLabel for="srcingGreyCheckBox">Not yet</apex:outputLabel>               
+                                    <input type="button" class="ipmButton primary" value="Confirm" onclick="updateCapabilityForSourcingUnit();" />
+                                </div>
+                            </apex:outputpanel>
+                        </apex:outputpanel>
+                        <div class="srcErrBox">
+                            <apex:pagemessages id="pgmsg"/>
+                        </div>
+                        <apex:actionStatus id="loader" startStyleClass="proInitLoader"></apex:actionStatus>
+                        <div class="leftHeadWidthResp padzero">
+                            <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsource ">
+                                <thead> 
+                                    <tr>
+                                        <th scope="col" width="10%" ><span>{!$Label.IPM_Product_Name}</span><span onclick="jSortTable('IPM_Product_Name__c','{! If (AND(sFilterColumn=='IPM_Product_Name__c',sSortOrder == 'asc'),'desc','asc')}');" class="{! If(sFilterColumn=='IPM_Product_Name__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
+                                        <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Format}</span><span onclick="jSortTable('IPM_Format__c','{! If (AND(sFilterColumn=='IPM_Format__c',sSortOrder == 'asc'),'desc','asc')}');" class="{! If(sFilterColumn=='IPM_Format__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
+                                        <th scope="col"  width="12%"><span>{!$Label.IPM_Product_Formulation}</span><span onclick="jSortTable('IPM_Formulation__c','{! If (AND(sFilterColumn=='IPM_Formulation__c',sSortOrder == 'asc'),'desc','asc')}');" class="{! If(sFilterColumn=='IPM_Formulation__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
+                                        <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Packaging}</span><span onclick="jSortTable('IPM_Packing__c','{! If (AND(sFilterColumn=='IPM_Packing__c',sSortOrder == 'asc'),'desc','asc')}');" class="{! If(sFilterColumn=='IPM_Packing__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
+                                        <th scope="col"  width="18%"><span>{!$Label.IPM_Product_Size}</span></th>
+                                        <th scope="col"  width="10%"><span>{!$Label.IPM_Product_of_GTo}</span></th>
+                                        <th scope="col" width="10%" ><span>{!$Label.IPM_Product_Golden_Prototype}</span><span onclick="jSortTable('IPM_GoldenPrototype__c','{! If (AND(sFilterColumn=='IPM_GoldenPrototype__c',sSortOrder == 'asc'),'desc','asc')}');" class="{! If(sFilterColumn=='IPM_GoldenPrototype__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
+                                        <th scope="col"  width="20%"><span>{!$Label.IPM_Product_Country_Mapping}</span></th>
+                                    </tr>
+                                </thead>               
+                            </table>
+                            
+                            <div class="tobe"><div class="line"><span>{!$Label.IPM_To_be_completed_by_Marketing}</span></div></div>
+                        </div>
+                        <div class="rightHeadWidthResp padzero">
+                            <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsource darkoverlay">
+                                <thead> 
+                                    <tr>
+                                        <th scope="col"  width="40%"><span class="mainsrcUnitTip" title="{!$Label.IPM_Sourcing_Unit_Help_Text}">{!$Label.IPM_Sourcing_Units}</span></th>
+                                        <th scope="col" width="20%"><div class="{!if(bIsPDLApproved,'approvalTip','capcon approvalTip')}" title="{!$Label.IPM_Capability_Confirmed_Help_Text}">{!$Label.IPM_Capability_Confirmed}</div></th>
+                                        <th scope="col" width="40%"><span class="srcedintoTip" title="{!$label.IPM_Sourced_Into_Help_Text}">{!$Label.IPM_Sourced_Into}</span></th>
+                                    </tr>
+                                </thead>               
+                            </table>
+                             
+                             <div class="tobesup"><div class="line dark"><span>{!$Label.IPM_To_be_completed_by_Supply_Chain}</span></div></div>
+                        </div>
+                        <apex:variable value="{!0}" var="rowNum"/>
+                        <apex:repeat value="{!wrapperKeys}" var="wrKey">
+                            <apex:repeat value="{!sourcePlanMap[wrKey]}" var="prodPlan">
+                                <div class="col-sm-12 padzero"> 
+                                  <!--  {!prodPlan.productProsition} -->
+                                    <apex:outputPanel layout="block" styleClass="greyBoxContainer" rendered="{!AND(prodPlan.readModeRow,isEditable)}">
+                                        <div class="col-sm-12 padzero">
+                                            <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsourcegrey">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="62%" class="noPadd custLeftTdwidth">
+                                                            <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsourcegrey noTabborder">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td width="6%" class="custNameWidth"><apex:inputtext value="{!prodPlan.productPlan.IPM_Product_Name__c}"/></td>
+                                                                        <td width="6%"><apex:inputtext value="{!prodPlan.productPlan.IPM_Format__c}"/></td>
+                                                                        <td width="7%" class="formCustWidth"><apex:inputtext value="{!prodPlan.productPlan.IPM_Formulation__c}"/></td>
+                                                                        <td width="6%"><apex:inputtext value="{!prodPlan.productPlan.IPM_Packing__c}"/></td>
+                                                                        <td width="11%" class="custSizeWidth"><apex:inputtext styleClass="sizeNumberbox" value="{!prodPlan.productPlan.IPM_ProductSize__c}"/>
+                                                                            <apex:selectList styleClass="sizeSelect" value="{!prodPlan.productPlan.IPM_ProductSizeMetrics__c}" size="1">
+                                                                            <apex:selectoptions value="{!sizeMeasureList}"/>
+                                                                            </apex:selectList></td>
+                                                                        <td width="6%"><apex:inputtext styleClass="numberBox" value="{!prodPlan.productPlan.IPM_Of_gTO__c}"/></td>
+                                                                        <td width="6%">
+                                                                            <div class="goldenCheckcontainer">
+                                                                                <apex:inputCheckbox id="goldenCheckBox" styleClass="goldenCheck" value="{!prodPlan.productPlan.IPM_GoldenPrototype__c}"/>
+                                                                                <apex:outputLabel for="goldenCheckBox"></apex:outputLabel>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td width="12%" class="custLstCntryWidth">   
+                                                                            <apex:outputPanel layout="block" styleClass="noPadright noPadleft dropdown productcntrylistcontainer ipmDropDown">                                       
+                                                                                <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clickcntryList">
+                                                                                    <div class="ipmDropDownSelect">
+                                                                                        <span class='cntryValues'>{!$Label.IPM_Select_Countries}</span>
+                                                                                        <a class="listArrow"></a>    
+                                                                                    </div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel layout="block" styleClass="dropdown-menu ipmDropDownList cntrymainlist" id="productcntrymlist">
+                                                                                    <apex:inputText value="{!prodPlan.countryStr}" id="cntryHiddenfield" styleClass="hiddencntry"/>
+                                                                                    <!-- To display below outputPanel when current user has edit access on page   -->
+                                                                                    <apex:dataList value="{!allCountryList}"  var="cou" id="cntryullist" styleClass="procntrylist">                                                                
+                                                                                        <div class="col-xs-1 ipmCheckbox">
+                                                                                            <input class="cntrycheck" type="checkbox" value="{!cou.Country_Name__c}" id="{!cou.Country_Name__c}" />
+                                                                                            <label for="{!cou.Country_Name__c}"></label>
+                                                                                        </div>
+                                                                                        <div class="col-xs-8 noPadleft cntrymlabels">{!cou.Country_Name__c}</div>                                                                
+                                                                                    </apex:dataList>
+                                                                                    <!-- To display below outputPanel when current user has edit access on page   -->
+                                                                                    <apex:outputPanel >
+                                                                                        <li class="filterActionscc">
+                                                                                            <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
+                                                                                                <a value="Done" class="ipmDropbuttonscc">{!$Label.IPM_Done}</a>
+                                                                                            </div>
+                                                                                            <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">   
+                                                                                                <a value="Reset" class="ipmDropresetcc">{!$Label.IPM_Reset}</a>
+                                                                                            </div>
+                                                                                        </li>
+                                                                                    </apex:outputPanel>
+                                                                                </apex:outputPanel>      
+                                                                            </apex:outputPanel>     
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                        <td class="noPadd">
+                                                            <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsourcegrey noTabborder">
+                                                                <tbody>
+                                                                    
+                                                                    <apex:variable value="{!0}" var="num"/>
+																	<apex:variable value="{!0}" var="sUnitRow"/>
+                                                                    <apex:repeat value="{!sourceUnitMap[wrKey]}" var="sourcep">
+                                                                        <apex:variable value="{!num+1}" var="num"/>
+                                                                        <tr>                                                                
+                                                                            <td width="13%">
+                                                                                <apex:inputText value="{!sourcep.sourcingPlan.IPM_SourcingUnit__c}" styleClass="srcUnitBox" id="srchMBox" onkeyup="searchsourceunit(this.value)"/>
+                                                                                <apex:outputPanel layout="block" styleClass="srcList">
+                                                                                    <apex:outputPanel layout="block" id="srcUnitList" >
+                                                                                        <apex:repeat value="{!sourceUnitsList}" var="srcUnit">
+                                                                                            <div>{!srcUnit.Source_Unit_Name__c}</div>
+                                                                                        </apex:repeat>
+                                                                                    </apex:outputPanel>
+                                                                                </apex:outputPanel>
+																				<span class="deleteRow fa fa-times" onClick="deleteSourceUnit('{!wrKey}','{!sUnitRow}')"></span>
+                                                                            </td>
+                                                                            <td width="6%" class="custSrcWidth" >
+                                                                             <apex:outputPanel id="idCapabilityConfirmed">
+                                                                               <apex:outputPanel rendered="{!bIsPDLApproved}">
+	                                                                                <div class="approvalCheckcontainer">
+	                                                                                    <apex:inputCheckbox id="approvalCheckBox" styleClass="greenBoxCheck" value="{!sourcep.sourcingPlan.IPM_CapabilityConfirmed__c}" />
+	                                                                                    <apex:outputLabel for="approvalCheckBox"></apex:outputLabel>
+	                                                                                </div>                                                                                
+	                                                                            </apex:outputPanel> 
+	                                                                            <apex:outputPanel rendered="{!NOT(bIsPDLApproved)}">
+	                                                                             	<div class="greyCapabilityConfirm">
+	                                                                            		<apex:outputLabel >Not yet</apex:outputLabel>
+	                                                                            	</div>
+	                                                                            </apex:outputPanel>
+	                                                                            </apex:outputPanel>
+                                                                            </td>
+                                                                            <td width="13%">
+                                                                                <apex:outputPanel layout="block" styleClass="noPadright noPadleft dropdown sourcedcntryContainer ipmDropDown" id="srcCountrylist">                                       
+                                                                                    <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clicksrccntrylist">
+                                                                                        <div class="ipmDropDownSelect">
+                                                                                            <span class='srcedcntryValues'>{!$Label.IPM_Select_Countries}</span>
+                                                                                            <a class="listArrow"></a>    
+                                                                                        </div>
+                                                                                    </apex:outputPanel>
+                                                                                    <apex:outputPanel layout="block" styleClass="dropdown-menu ipmDropDownList srcedcntrymainlist" id="srcedcntrymlist">
+                                                                                        <apex:inputText value="{!sourcep.sourceCountries}" id="srcedcntryHiddenfield" styleClass="srcedhiddencntry"/>
+                                                                                        <!-- To display below outputPanel when current user has edit access on page   -->
+                                                                                        <apex:dataList value="{!prodPlan.sourceIntoList}"  var="scoun" id="srcedcntryullist" styleClass="srcedcntrylist">                                                                
+                                                                                            <div class="col-xs-1 ipmCheckbox">
+                                                                                                <input class="srcedcntrycheck" type="checkbox" value="{!scoun}" id="{!scoun}{!num}" />
+                                                                                                <label for="{!scoun}{!num}"></label>
+                                                                                            </div>
+                                                                                            <div class="col-xs-8 noPadleft srcedcntrymlabels">{!scoun}</div>                                                                
+                                                                                        </apex:dataList>
+                                                                                        <!-- To display below outputPanel when current user has edit access on page   -->
+                                                                                        <apex:outputPanel layout="block" styleClass="getHdnVal">
+                                                                                            <li class="srcedfilterActionscc">
+                                                                                                <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
+                                                                                                    <a value="Done" data-key="{!wrKey}" data-mid="{!sourcep.sourcingPlan.IPM_SourcingUnit__c}" class="ipmDropbuttonscc" onClick="">{!$Label.IPM_Done}</a>
+                                                                                                </div>
+                                                                                                <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">   
+                                                                                                    <a value="Reset" class="ipmDropresetcc">{!$Label.IPM_Reset}</a>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                        </apex:outputPanel>
+                                                                                    </apex:outputPanel>      
+                                                                                </apex:outputPanel> 
+                                                                            </td>
+                                                                        </tr>
+																		<apex:variable value="{!sUnitRow+1}" var="sUnitRow"/>
+                                                                    </apex:repeat>
+                                                                    <tr>
+                                                                        <td class="alignAddicn">
+                                                                            <span class="fa fa-plus addicn hovertip" title="{!$Label.IPM_Add_Sourcing_Unit_Help_Text}" onclick="jAddNewSourceUnit('{!wrKey}',this);"></span>
+                                                                        </td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                  </apex:outputPanel>
+                                  <apex:outputPanel styleClass="custWidthResp1" layout="block" rendered="{!OR(!prodPlan.readModeRow,!isEditable)}"> 
+                                    <div class="col-sm-12 padzero">
+                                        <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsourcegrey">
+                                            <tbody>
+                                                <tr class="{!if(prodPlan.isDuplicateRow,'duplicateRow','')}">
+                                                    <td width="62%" class="noPadd custLeftTdwidth">
+                                                        <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsourcegrey noTabborder">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="6%" class="custNameWidth"><span >{!prodPlan.productPlan.IPM_Product_Name__c}</span></td>
+                                                                    <td width="6%"><span >{!prodPlan.productPlan.IPM_Format__c}</span></td>
+                                                                    <td class="formCustWidth" width="7%"><span >{!prodPlan.productPlan.IPM_Formulation__c}</span></td>
+                                                                    <td width="6%"><span >{!prodPlan.productPlan.IPM_Packing__c}</span></td>
+                                                                    <td width="11%" class="custSizeWidth"><span >{!prodPlan.productPlan.IPM_ProductSize__c}</span>
+                                                                                    <span >{!prodPlan.productPlan.IPM_ProductSizeMetrics__c}</span></td>
+                                                                    <td width="6%"><span >{!prodPlan.productPlan.IPM_Of_gTO__c}</span></td>
+                                                                    
+                                                                    <td width="6%">
+                                                                        <div class="goldenCheckcontainer noPointer">
+                                                                            <label class="{!if(prodPlan.productPlan.IPM_GoldenPrototype__c,'goldbox','')}">{!if(prodPlan.productPlan.IPM_GoldenPrototype__c,'Golden','')}</label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td width="12%" class="custLstCntryWidth"><span >{!prodPlan.countryStrToDisplay}</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td> 
+                                                    <td class="noPadd">
+                                                        <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsourcegrey noTabborder">
+                                                            <tbody>
+                                                                <apex:repeat value="{!sourceUnitMap[prodPlan.productProsition]}" var="sourcep">
+                                                                    <tr>
+                                                                        <td width="13%"><span> {!sourcep.sourcingPlan.IPM_SourcingUnit__c}</span></td>
+                                                                        <td width="6%" class="custSrcWidth">
+                                                                        <apex:outputPanel id="idCapabilityConfirmedRead">
+                                                                            <apex:outputPanel rendered="{!bIsPDLApproved}">
+	                                                                            <div class="approvalCheckcontainer noPointer">
+	                                                                                 <label class="{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'greenBox','')}">{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Yes','Not yet')}</label>
+	                                                                            </div>
+	                                                                        </apex:outputPanel>
+	                                                                        <apex:outputPanel rendered="{!NOT(bIsPDLApproved)}">
+	                                                                             	<div class="greyCapabilityConfirm">
+	                                                                            		<apex:outputLabel >Not yet</apex:outputLabel>
+	                                                                            	</div>
+	                                                                        </apex:outputPanel>
+	                                                                        </apex:outputPanel>
+                                                                        </td>
+                                                                        <td width="13%">
+                                                                            <span>{!sourcep.sourceCountriesToDisplay}</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </apex:repeat>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </apex:outputPanel>
+                                    
+                                    <apex:outputpanel styleClass="srcPlanBtnContainer padzero crud" layout="block" rendered="{!isEditable}">
+                                        <div class="SecButtonSet pull-left">
+                                            <apex:commandButton styleClass="edit icoButton edit1" rendered="{!!prodPlan.readModeRow}" action="{!editModeRow}" reRender="sourceProductTable,scriptLoad" status="loader" onComplete="checkDuplicateRow();firstsrcplan();scndsrcplan();thirdsrcplan();">
+                                                <apex:param name="editModeRow" assignTo="{!row_Index}" value="{!wrKey}"/>
+                                            </apex:commandButton>
+                                        </div>
+                                        <div class="pull-left">
+                                            <apex:commandButton rendered="{!prodPlan.readModeRow}" reRender="sourceProductTable,sourceProduct,scriptLoad" status="loader" styleClass="save ipmButton primary"  action="{!saveRow}" value="{!$Label.IPM_SAVE}" onComplete="checkDuplicateRow();firstsrcplan();scndsrcplan();thirdsrcplan();">
+                                                <apex:param name="saveNewRows" assignTo="{!row_Index}" value="{!wrKey}"/>
+                                            </apex:commandButton>
+                                        </div>
+                                        <div class="SecButtonSet pull-left">
+                                            <apex:commandButton action="{!cloneProjectProduct}" reRender="sourceProductTable,scriptLoad" status="loader" styleClass="icoButton clone" title="{!$Label.IPM_Clone_Message}" onComplete="checkDuplicateRow();firstsrcplan();scndsrcplan();thirdsrcplan();">
+                                                <apex:param name="cloneNewRow" assignTo="{!row_Index}" value="{!wrKey}"/>
+                                            </apex:commandButton>
+                                        </div>
+                                        <div class="SecButtonSet pull-left">
+                                            <a Class="delrow icoButton delete" onclick="deleteRow('{!wrKey}');"></a>
+                                        </div>
+                                     </apex:outputPanel>
+                                 </div>
+                             <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                             </apex:repeat>
+                         </apex:repeat>
+                    </div>     
+                </apex:outputpanel>
+            </apex:outputpanel>
+        </apex:define>
+    </apex:composition> 
+    <div id="duplicateBox" tabindex="-1" data-backdrop-limit="1" class="modal fade">
+        <div class="modal-dialog"> 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">{!$Label.IPM_Identical_Sourcing_Plan_Detected}</div>
+                </div>
+                <div class="modal-body">
+                    <div class="duplicatepopup">
+                        <div class="duplicateText">{!$Label.IPM_Product_Identical_Message}</div>
+                        <div class="buttonMarginRight noPadright pull-right" >
+                            <input type="button" class="ipmButton primary" value="{!$Label.IPM_Close}" data-dismiss="modal"/>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+</apex:form>
+<apex:outputPanel id="scriptLoad">
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Source_Plan.js')}" type="text/javascript"></script>
+    <script>
+     var IPMSRCPLAN = {duplicate :{!isDuplicateRow}};
+    </script> 
+</apex:outputPanel>    
+</apex:page>

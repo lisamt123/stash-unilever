@@ -39,7 +39,7 @@ public class CORE_CA_ReminderAlert_Batch_Test {
        Core_Approver_Details__c  objApprover1 = (Core_Approver_Details__c ) JSON.deserialize(jsonString, Core_Approver_Details__c.class );
        insert objApprover1;
        System.assert(objApprover1 != null);
-       
+      /* 
        //Test Data for Interested party object with source system as 'GTES'. 
        integer intReminderAlertDays = integer.valueOf(CORE_Chatter_Approval__c.getinstance('GTES').ReminderAlertDays__c);
        JSONGenerator generator1 = JSON.createGenerator(true);                 //instantiation of the generator
@@ -54,12 +54,12 @@ public class CORE_CA_ReminderAlert_Batch_Test {
        Core_Approver_Details__c  objApprover2 = (Core_Approver_Details__c ) JSON.deserialize(jsonString1, Core_Approver_Details__c.class );
        insert objApprover2;
        System.assert(objApprover2 != null);
-       
+       */
        // Code coverage for 'CORE_CA_ReminderAlert_Batch'
        Test.StartTest();
        List<Core_Approver_Details__c> scope = new List<Core_Approver_Details__c>(); 
        scope.add(objApprover1);
-       scope.add(objApprover2);
+      // scope.add(objApprover2);
        Database.BatchableContext BC;
        CORE_CA_ReminderAlert_Batch objReminderAlertBatch = new CORE_CA_ReminderAlert_Batch();
        //objReminderAlertBatch.start(bc);

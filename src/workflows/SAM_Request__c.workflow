@@ -1127,7 +1127,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>AND(OR(TEXT( pkl_Status__c )= $Label.SAM_Quote_Approved ,TEXT( pkl_Status__c )= $Label.SAM_Awaiting_CC_details_Pending_with_ULEMP ,TEXT( pkl_Status__c )= $Label.SAM_Awaiting_CC_details_Pending_with_ULSMT ,TEXT( pkl_Status__c )= $Label.SAM_CC_Details_Provided ,TEXT( pkl_Status__c )= $Label.SAM_Charging_Rejected ),OR( ISCHANGED( txt_ICC_GLC_LCC__c ),ISCHANGED( txt_Cost_Center_CC__c ),ISCHANGED( txt_Entity_Code__c ),ISCHANGED( txt_GL_Account__c ),ISCHANGED( txt_Budget_Owner_Name__c ),ISCHANGED( eml_Budget_Owner_Email__c ),ISCHANGED( txt_Invoice_Approver_Name__c ),ISCHANGED( eml_Invoice_Approver_Email__c ) ))</formula>
+        <formula>AND(OR(TEXT( pkl_Status__c )= $Label.SAM_Quote_Approved,TEXT( pkl_Status__c )= $Label.SAM_Awaiting_CC_details_Pending_with_ULEMP ,TEXT( pkl_Status__c )= $Label.SAM_Awaiting_CC_details_Pending_with_ULSMT ,TEXT( pkl_Status__c )= $Label.SAM_CC_Details_Provided ,TEXT( pkl_Status__c )= $Label.SAM_Charging_Rejected ),OR( ISCHANGED( txt_ICC_GLC_LCC__c ),ISCHANGED( txt_Cost_Center_CC__c ),ISCHANGED( txt_Entity_Code__c ),ISCHANGED( txt_GL_Account__c ),ISCHANGED( txt_Budget_Owner_Name__c ),ISCHANGED( eml_Budget_Owner_Email__c ),ISCHANGED( txt_Invoice_Approver_Name__c ),ISCHANGED( eml_Invoice_Approver_Email__c ) ))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

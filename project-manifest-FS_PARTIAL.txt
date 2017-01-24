@@ -1,26 +1,22 @@
 src
-src/objects
-src/objects/FS_Account_Plan__c.object
-src/objects/FS_Defined_Objective__c.object
-src/layouts
-src/layouts/FS_Account_Plan__c-Account Plan Layout.layout
-src/layouts/FS_Account_Plan__c-Distributor Account Plan Feed Based.layout
-src/layouts/FS_Account_Plan__c-Distributor Account Plan Layout.layout
-src/layouts/FS_Account_Plan__c-Operator Account Plan Feed Based.layout
-src/layouts/FS_Account_Plan__c-Operator Account Plan Layout.layout
-src/layouts/FS_Defined_Objective__c-Defined Objective Layout.layout
-src/layouts/FS_Defined_Objective__c-Distributor Objective Feed Based.layout
-src/layouts/FS_Defined_Objective__c-Distributor Objective.layout
-src/layouts/FS_Defined_Objective__c-Operator Objective Feed Based.layout
-src/layouts/FS_Defined_Objective__c-Operator Objective.layout
-src/layouts/FS_Defined_Objective__c-Risk.layout
-src/permissionsets
+src/objects/Account.object
+src/layouts/Account-Operator Russia Read Only.layout
+src/layouts/Account-Operators Russia.layout
+src/layouts/Product2-Food Solutions Product Russia.layout
+src/layouts/Account-Feed Based Distributor Russia.layout
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
+src/permissionsets/FS_RussiaSalesRep.permissionset
+src/permissionsets/FS_Operator_Russia.permissionset
 src/permissionsets/FS_Admin.permissionset
-src/permissionsets/FS_AFM.permissionset
-src/permissionsets/FS_Integration_User.permissionset
-src/permissionsets/FS_Marketing.permissionset
-src/permissionsets/FS_Sales_Rep.permissionset
-src/permissionsets/FS_SCP_And_Corp.permissionset
-src/homePageComponents/FS NA Custom Links.homePageComponent
-src/layouts/Contact-FSUS Contact.layout
-src/profiles/Unilever Food Solution - NA.profile
+src/profiles/Unilever Food Solution - Russia.profile
+src/email/FS_Email_Templates/NAFS_Operator_Account_approval_request_email_template.email
+src/email/FS_Email_Templates/NAFS_Operator_Account_approval_request_email_template.email-meta.xml
+src/workflows/Account.workflow
+src/permissionsets/FS_Admin.permissionset
+src/flows/FS_UpdateRegionandZonebasedoncityforRussia-4.flow
+src/objects/Account.object
+src/objects/Opportunity.object
+src/objects/Activity.object
+src/objects/Task.object
+src/objects/Event.object
+src/objects/Product2.object

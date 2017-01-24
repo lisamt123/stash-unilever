@@ -169,7 +169,7 @@ public with sharing class IPM_AssesmentHandler_Helper {
                         if(assmnt.IPM_Project__c == projectId && projectIdCountryListMap.get(projectId) != null && !projectIdCountryListMap.get(projectId).isEmpty()){
                             //loops over the list of countries
                             for(IPM_Country__c country:projectIdCountryListMap.get(projectId) ){
-                                if(String.isNotBlank(String.valueOf(assmnt.IPM_Country_Name__c))&& String.isNotBlank(String.valueOf(country.Country_Name__c)) && assmnt.IPM_Country_Name__c == country.Country_Name__c){
+                                if(String.isNotBlank(String.valueOf(assmnt.IPM_Country_Code__c))&& String.isNotBlank(String.valueOf(country.Country_Code__c)) && assmnt.IPM_Country_Code__c == country.Country_Code__c){
                                     assmnt.IPM_Country__c = country.Id;
                                 }
                             }
@@ -213,7 +213,7 @@ public with sharing class IPM_AssesmentHandler_Helper {
             
             String queryStr = '';
             queryStr = IPM_Utils.prepareSOQLQuery('IPM_Assessment__c', false, null,true);
-            queryStr += ' Where IPM_Project__c IN:projectIdSet';
+            queryStr += ' Where IPM_Project__c IN:projectIdSet and IPM_Country__r.isActive__c = true';
             
             //find all the assessments which are required to be copied over
             List<IPM_Assessment__c> probableAssesmentsToCopy = Database.Query(queryStr);

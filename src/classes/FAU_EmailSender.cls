@@ -1,7 +1,7 @@
 /********************************************************************
-Name:  FAU_EmailSender()
-Copyright © 2014  Unilever
-======================================================
+ Name:  FAU_EmailSender()
+ Copyright © 2014  Unilever
+ ======================================================
 ======================================================
 Purpose:  This class handles Email rouitnes like mass email and ICS functionality                                                    
 -------                                                             
@@ -13,11 +13,11 @@ VERSION  AUTHOR            DATE              DETAIL                 Description
    1.0   Jack Dermody      18/09/2014        INITIAL DEVELOPMENT           
 ***********************************************************************/
 public without sharing class FAU_EmailSender {
-                //Constructor
+    //Constructor
     public FAU_EmailSender()
-                {
-                                
-                }  
+    {
+        
+    }  
 
     /*******************************************************************
        Purpose:     Send Email to Webparticipants (with Meeting Request)
@@ -64,7 +64,7 @@ public without sharing class FAU_EmailSender {
         }
 
        sendUserEmailwithTemplate(lUserId, lUserEmail, lWhatId, lTemplateId, lDtStart, lDtEnd, lLocation, lSummary, lDescription);
-
+ 
 
     }  
 
@@ -80,6 +80,13 @@ public without sharing class FAU_EmailSender {
                                                         FAU_Is_deferred_To_PA__c,
                                                         FAU_Email_Address__c
                                                         from FAU_Participant__c where Id= :lParticipant];
+                                                        
+          system.debug('lparticipant'+lParticipantsFull);                                              
+        List<FAU_Module_Participant__c> lModuleParticipant = [select id, FAU_Module_Start_Date__c,
+                                                                        FAU_Module_End_Date__c 
+                                                                        from FAU_Module_Participant__c where FAU_Participant__c=:lParticipant ORDER BY FAU_Module_Start_Date__c desc LIMIT 1];     
+        system.debug('lModuleParticipant'+lModuleParticipant);
+                                                                                                                   
         Id[] lUserId =new Id[]{}; 
         Id[] lWhatId =new Id[]{}; 
         String[] lUserEmail = new String[]{};  
@@ -93,7 +100,7 @@ public without sharing class FAU_EmailSender {
         for(FAU_Participant__c oParticipant : lParticipantsFull) 
         {
             lUserId.add(oParticipant.FAU_User__c);
-            lWhatId.add(oParticipant.Id);
+            //lWhatId.add(oParticipant.Id);
             lUserEmail.add(oParticipant.FAU_Email_Address__c);
             lTemplateId.add(idTemplateId);
             lDtStart.add(null);
@@ -102,6 +109,14 @@ public without sharing class FAU_EmailSender {
             lSummary.add(''); 
             lDescription.add('');
 
+        }
+        for (FAU_Module_Participant__c mParticipant : lModuleParticipant)
+        {
+            if(mParticipant.FAU_Module_Start_Date__c>system.today())
+            {
+
+                lWhatId.add(mParticipant.Id);   
+            }             
         }
         if (lParticipantsFull.size() > 0 ){
             sendUserEmailwithTemplate(lUserId, lUserEmail, lWhatId, lTemplateId, lDtStart, lDtEnd, lLocation, lSummary, lDescription);
@@ -115,7 +130,7 @@ public without sharing class FAU_EmailSender {
     ********************************************************************/
     public static Messaging.EmailFileAttachment createIcsAttachment(Datetime dtStart, Datetime dtEnd, String sLocation, String sSummary, String sDescription)
     {
-                Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
+        Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
         attachment.filename = 'meeting.ics';
         attachment.ContentType = 'text/calendar;';
         attachment.inline = true;
@@ -154,7 +169,7 @@ public without sharing class FAU_EmailSender {
         txtInvite += 'DESCRIPTION:' + sDescription +'\n';
         txtInvite += 'END:VEVENT\n';
         txtInvite += 'END:VCALENDAR';
-
+ 
         System.Debug('##### FAU_EmailSender - txtInvite : ' + txtInvite); 
         return Blob.valueOf(txtInvite);
     }

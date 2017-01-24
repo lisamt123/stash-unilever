@@ -1,0 +1,231 @@
+<!--  
+   *************************************************************************
+   *@Description:This page allows Bonus Approver to approve/reject multiple Bonus Matrix records
+   *@Author: Cognizant
+   *@Created Date: 20/10/2016
+   *************************************************************************
+   -->
+<apex:page controller="AF_BonusMatrix_BonusApproverController" showHeader="false" sidebar="false">
+    
+   <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
+   <!-- Bootstrap_css File Start -->
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.css')}" type="text/css"/>
+   <!-- Bootstrap_css File End -->
+   <!-- Common_Style File Start -->
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
+   <!-- Common_Style File End -->
+   <!-- jquery library Start-->
+   <apex:includeScript value="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"/>
+   <!-- jquery library End-->
+   <!-- Bootstrap_Js File start-->
+   <apex:includeScript value="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.js')}"/>
+   <!--Bootstrap Js File End -->
+   <!-- Bootstrap Tooltip methods Start -->
+   <script type="text/javascript">
+      $('document').ready(function(){
+         $('.custom-link').tooltip();
+      });
+   </script>
+   <!-- Bootstrap Tooltip methods End -->
+   <style>
+      #iframe_cont
+      {
+      width:100%;
+      }
+      .modal-body
+      {
+      height: 95%;
+      padding:2px 15px 14px 15px;
+      } 
+      .modal-body #iframe_cont
+      {
+      height:100%;
+      }
+      .modal-dialog
+      {
+      width:92% !important;
+      height:95% !important;
+      margin-top:8px;
+      }
+      .modal-content
+      {
+      height:102%;
+      }
+   </style>
+   
+   <script type = "text/javascript">
+    function checkAllBoxesApprove()
+    {
+        callCheckAllBoxesApprove(); 
+    }
+    function checkAllBoxesReject()
+    {
+        callCheckAllBoxesReject(); 
+    }
+    
+    function confirmApproveReject() 
+    {
+        return confirm('Are you sure you want to proceed?');
+    }
+   </script>
+
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'ChatterLink.js')}"></script>
+   
+  
+       <apex:form id="frm" styleClass="AF_RaisenewPO_Homepage_lightbox">
+       <apex:pageBlock id="pb1">
+        
+                    
+                    <div class="row">
+                        <div class="col-lg-12 charttable1">
+                           <apex:image url="{!$Resource.header_new}" styleClass="headimg" />
+                        </div>
+                    </div>
+                    
+                    <!-- This panel will be loaded in case of Internal Users -->
+                    
+                                      <apex:outputPanel >
+                                      <apex:outputlabel style="font-size:14px;color:red" value="No records found" rendered="{!If(lstBonusMatrixWrapper.size == 0,true,false)}"/>
+                                      <apex:outputlabel style="font-size:14px;color:red" value="{!$Label.AF_BonusApprover}" rendered="{!If(lstBonusMatrixWrapper.size > 0,true,false)}"/>
+                                      </apex:outputPanel>
+                                      <apex:outputPanel rendered="{!If(lstBonusMatrixWrapper.size > 0,true,false)}" layout="block" styleClass="tableCont">
+                                      
+                                      <apex:outputlabel styleClass="titleDescription" value="Please select individual or all brands to approve/reject their annual bonus"/>
+                                      <br/>
+                                      
+                                       
+                                            <apex:pageBlockTable value="{!lstBonusMatrixWrapper}" var="cc" id="pbtable" columns="4" rowClasses="even,odd">
+                                                <apex:column >
+                                                    <apex:facet name="header" >Bonus Matrix
+                                                    </apex:facet>
+                                                       {!cc.objSummary.Name}"
+                                                </apex:column>
+                                                <apex:column >
+                                                    <apex:facet name="header"> <apex:outputPanel layout="none">
+                                                    <div align="center"> <apex:outputLabel value="Approve All"/><br/>
+                                                     <apex:inputCheckbox value="{!checkHeaderA}" onclick="checkAllBoxesApprove(this)" id="theCheckbox"> </apex:inputCheckbox></div>
+                                                    </apex:outputPanel>
+                                                    </apex:facet> 
+                                                 
+                                                    <div align="center"><apex:inputCheckbox value="{!cc.checkedA}" id="subA" /></div>
+                                                   <!-- onchange="if((this.checked) && (!confirm('You are about to approve annual bonus for the brands that you select so purchase order can now be raised to agency.')) ){this.checked=false}" /> -->
+                                                
+                                                </apex:column>
+                                                <apex:column >
+                                                  <apex:facet name="header"> 
+                                                  <apex:outputPanel layout="none">
+                                                   <div align="center"> <apex:outputLabel value="Reject All"/><br/>
+                                                    <apex:inputCheckbox value="{!checkHeaderR}" id="main" >
+                                                         <apex:actionSupport event="onchange" action="{!checkAllReject}" rerender="pbtable"/>
+                                                     </apex:inputCheckbox>  </div>
+                                                    </apex:outputPanel>    
+                                                     <!-- oncomplete="if((this.checked) && (!confirm('confirm?')) ){this.checked=false}" -->
+                                                  </apex:facet>
+                                                   <div align="center"> <apex:inputCheckbox value="{!cc.checkedR}" id="subR" >
+                                                    <apex:actionSupport event="onchange" rerender="pbtable"/>
+                                                    <!-- oncomplete="if((this.checked) && (!confirm('Please Provide Rejection Reason
+                                                    ')) ){this.checked=false}" -->
+                                                    </apex:inputCheckbox></div>
+                                                </apex:column>
+                                                <apex:column >
+                                                <apex:facet name="header">Rejection reason
+                                                    </apex:facet>
+                                                <apex:inputText value="{!cc.RejectReason}" rendered="{!(cc.checkedR == true)}" id="txt"/>
+                                                </apex:column>
+                                            </apex:pageBlockTable>
+                                            
+                                            <apex:actionFunction name="callCheckAllBoxesApprove" action="{!checkAllApprove}" reRender="subA"/>
+                                            <apex:actionFunction name="callCheckAllBoxesReject" action="{!checkAllReject}" reRender="subR,txt"/>
+                                        
+                                    </apex:outputPanel>
+                         <!-- <apex:commandbutton value="Continue" action="{!saveApprovals}" onClick="if (!confirmApproveReject()) return false;" styleClass="continue_btn" reRender="frm,pb1" /> -->
+                          
+                            <apex:commandButton value="Continue" styleClass="continue_btn" rerender="Approvepopup" action="{!SubmitPopup}" 
+                            rendered="{!If(lstBonusMatrixWrapper.size > 0,true,false)}"/>
+                                         
+                                          
+                                          
+                           <apex:outputPanel id="Approvepopup">
+                              
+                              <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!popup}"/>
+                              <apex:outputPanel styleClass="customPopup_SubitforApproval" layout="block" rendered="{!popup}">
+                              <apex:pagemessages id="msg"/> 
+                                 <div class="approval_floatR">
+                                    <apex:commandButton value="X" action="{!closePopup}" rerender="Approvepopup" styleClass="approval_closeButton1"/> 
+                                 </div>
+                                 <div class="approval_margin20PX">
+                                    <h2>
+                                       <apex:outputLabel value="{!$Label.AF_Approve_Reject_BonusMatrix}" styleClass="approval_fontS16PX"/>
+                                    </h2>
+                                    <br/><br/>
+                                    <apex:commandButton style="margin-left: 215px !important;" value="Confirm" action="{!saveApprovals}" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup,frm,pb1,msg" />
+                                 </div>
+                              </apex:outputPanel>
+                            </apex:outputPanel>
+                    <!-- End of code for Internal Users -->
+                   
+                
+                 
+                 
+                 
+                 
+                 <!-- Bootstrap bootstrap modal window Start 
+                 <div class="model_container">
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
+                       <div class="modal-dialog">
+                          <div class="modal-content">
+                             <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                             </div>
+                             <div class="modal-body">
+                                <apex:image url="{!$Resource.Loading}" height="36" width="36" styleClass="loading_img"/>
+                                <div id="loader_cont">
+                                </div>
+                                <iframe frameborder="0" name="remotepage" id="iframe_cont"></iframe>
+                             </div>
+                          </div>
+                         
+                       </div>
+                       
+                    </div>
+                 </div>
+                 Bootstrap bootstrap modal window End--> 
+                 
+               
+          
+          <!--
+          <apex:actionStatus id="statusSaveTrip" stopText="">
+             <apex:facet name="start">
+                <div>
+                   <div class="popupBackground" />
+                      <div class="PopupPanel">
+                         <table border="0" width="100%" height="100%">
+                            <tr>
+                               <td align="center"><b>Please Wait</b></td>
+                            </tr>
+                            <tr>
+                               <td align="center"><img alt="Displays the processing image" src="{!$Resource.Processing}"/></td>
+                            </tr>
+                         </table>
+                      </div>
+                   </div>
+             </apex:facet>
+          </apex:actionStatus>
+          -->
+        </apex:pageBlock>    
+       </apex:form>
+  
+   
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AgencyHomepage.js')}"></script>
+  
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/CanvaschartHomepage.js')}"></script>
+   <!--Chart script -->
+   <script>
+      window.onload = function() {
+          var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
+          var mytradBar = new Chart(document.getElementById("mytradcanvas").getContext("2d")).Doughnut(DoughnutTradData,tradopts);
+          var mydigitBar = new Chart(document.getElementById("mydigitcanvas").getContext("2d")).Doughnut(DoughnutDigtData,digtopts);
+          var myadapBar = new Chart(document.getElementById("myadapcanvas").getContext("2d")).Doughnut(DoughnutAdapData,adapopts);
+      }  
+   </script>
+</apex:page>

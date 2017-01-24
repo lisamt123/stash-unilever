@@ -30,7 +30,7 @@ private class  IPM_Resource_Allocation_Test {
     private static IPM_Company_Card__c globalCompanyCard=new IPM_Company_Card__c();
     private static IPM_Company_Card__c regionalCompanyCard=new IPM_Company_Card__c();
     private static IPM_Company_Card__c localCompanyCard=new IPM_Company_Card__c();
-    private static final string USER_CATE='Household Care';
+    private static final string USER_CATE='Laundry';
     private static final string CATE_LAUNDRY='Laundry';
     private static User readOnlyUser=new User();
     /*************************************************************************
@@ -52,8 +52,8 @@ private class  IPM_Resource_Allocation_Test {
         globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
         regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
         regionalCompanyCard.IPM_TxtGeographical_Scope__c=southAsia;
+        regionalCompanyCard.IPM_Managed_Category__c = CATE_LAUNDRY;
         localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
-        
         List<IPM_Company_Card__c>  companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
         List<IPM_Company_Card__c>comList=[select Id,IPM_TxtGeographical_Scope__c, IPM_Managed_Category__c,IPM_Market_Cluster__c from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
@@ -65,8 +65,8 @@ private class  IPM_Resource_Allocation_Test {
         userProfs.IPM_User_Category__c=CATE_LAUNDRY;
         userProfs.IPM_Company_Card__c=regionalCompanyCard.id;
         insert userProfs;
-		IPM_User_Profile__c userProfile = [SELECT Id FROM IPM_User_Profile__c WHERE Id = : userProfs.id];
-		System.assertEquals(userProfile.id,userProfs.id, 'User Profile insertion fails');
+        IPM_User_Profile__c userProfile = [SELECT Id FROM IPM_User_Profile__c WHERE Id = : userProfs.id];
+        System.assertEquals(userProfile.id,userProfs.id, 'User Profile insertion fails');
         IPM_TestFactory_Helper.getProjectMasterData();
         projectListObj = IPM_TestFactory_Helper.projectSetUp(1,stdUserForResourceAllocation);
         System.runAs(stdUserForResourceAllocation) {
@@ -190,12 +190,12 @@ private class  IPM_Resource_Allocation_Test {
     * @Description To check if the same category has been assigned to GD
     */
     static testMethod  void testGetSameCategory()
-    {
+    {   test.startTest();
         initializeTestMethodData(); 
-       
+        Test.stopTest(); 
         system.RunAs(globalUser)
         {
-            test.startTest();
+            
             userProf.IPM_User_Role__c=IPM_ConstantUtils.IPM_ROLE_RD;
             update userProf;
             List<IPM_User_Profile__c>userProfList=[select Id,IPM_User_Role__c,IPM_Company_Card__c,IPM_Company_Card__r.RecordTypeId from IPM_User_Profile__c where Id=:userProf.Id limit 1];
@@ -242,9 +242,9 @@ private class  IPM_Resource_Allocation_Test {
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.IPM_ROLE_RD,FUNCTION_NOT_CALL_PROPERLY);
             userProf.IPM_User_Role__c=IPM_ConstantUtils.PROJECT_LEADER;
             update userProf;
-			IPM_user_profile__c userProfile = [SELECT Id,IPM_User_Role__c FROM IPM_user_profile__c WHERE Id =:userProf.id]; 
-			System.assertEquals(IPM_ConstantUtils.PROJECT_LEADER,userProfile.IPM_User_Role__c , 'User Role Is updated');
-			
+            IPM_user_profile__c userProfile = [SELECT Id,IPM_User_Role__c FROM IPM_user_profile__c WHERE Id =:userProf.id]; 
+            System.assertEquals(IPM_ConstantUtils.PROJECT_LEADER,userProfile.IPM_User_Role__c , 'User Role Is updated');
+            
             ipmResAlloccation.SearchTeambyCat= IPM_ConstantUtils.TEAM_ALLCATEGORY; 
             ipmResAlloccation.RoleType =IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE;   
             ipmResAlloccation.getSameCategory();  
@@ -253,19 +253,19 @@ private class  IPM_Resource_Allocation_Test {
             system.assertEquals(userProfList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,'user profile updation fail');
             pageMessages = ApexPages.getMessages();  
         }
-        Test.stopTest(); 
+        
     }
     
     /*
     * @Description To check if the same category has been assigned to GD
     */
     static testMethod  void testAddMemberToWrapper()
-    {
+    {   test.startTest();
         initializeTestMethodData();
-        
+        Test.stopTest();
         system.RunAs(globalUser) 
         {
-            test.startTest();
+            
             userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             IPM_Resource_Allocation.wrapperclass wrp=new IPM_Resource_Allocation.wrapperclass(userProList[0]);
             wrp.checkboxuser=true;
@@ -282,19 +282,18 @@ private class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.holdLeader(); 
             
         }
-        Test.stopTest(); 
+         
     }
     
     /*
     * @Description To check if the same category has been assigned to GD
     */
     static testMethod  void testFilterTeamMember()
-    {
+    {   test.startTest();
         initializeTestMethodData();
-        
+        test.stopTest();
         system.RunAs(globalUser)
         {
-            test.startTest();
             
             ipmResAlloccation.SearchTeamMem=DUMMY_MAIL_ID;
             ipmResAlloccation.SearchTeambyCat= IPM_ConstantUtils.TEAM_MYCATEGORY; 
@@ -319,7 +318,7 @@ private class  IPM_Resource_Allocation_Test {
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
             pageMessages = ApexPages.getMessages();
         }
-        Test.stopTest(); 
+        
     }
     
     /*
@@ -327,10 +326,11 @@ private class  IPM_Resource_Allocation_Test {
     */
     static testMethod  void testGetAssignedTeamMember()
     {
+    	test.startTest();
         initializeTestMethodData();
-       
+        Test.stopTest();
         system.RunAs(globalUser){
-            test.startTest();
+            
             ipmResAlloccation.roleType=IPM_ConstantUtils.TEAM_RND;
             ipmResAlloccation.getAssignedTeamMember(); 
             List<IPM_Project_Resource__c>resList1=[SELECT id,IPM_User__c,IPM_User__r.name,IPM_User__r.SmallPhotoUrl,IPM_Project_Role_Owner__c,
@@ -338,19 +338,19 @@ private class  IPM_Resource_Allocation_Test {
             System.assertEquals(resList1[0].IPM_Role_Type__c,IPM_ConstantUtils.TEAM_RND,FUNCTION_NOT_CALL_PROPERLY);  
             pageMessages = ApexPages.getMessages(); 
         }
-        Test.stopTest(); 
+         
     }
     
     /*
     * @Description To check if the same category has been assigned to GD
     */
     static testMethod  void testGetCoreMemberds()
-    {
+    {   test.startTest();
         initializeTestMethodData();
-      
+        Test.stopTest(); 
         system.RunAs(globalUser)
         {
-            test.startTest();
+            
             ipmResAlloccation.coreMembers=IPM_ConstantUtils.TEAM_COREPL;
             ipmResAlloccation.getCoreMemberds();
             userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
@@ -369,19 +369,19 @@ private class  IPM_Resource_Allocation_Test {
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
             pageMessages = ApexPages.getMessages();
         }
-        Test.stopTest(); 
+        
     }
     
     /*
     * @Description To check if the same category has been assigned to GD
     */
     static testMethod  void testFilterCoreMember()
-    {
+    {   test.startTest();
         initializeTestMethodData();
-        
+        Test.stopTest();
         system.RunAs(globalUser)
         {
-            test.startTest();
+            
             ipmResAlloccation.coreMembers=IPM_ConstantUtils.TEAM_COREPL;
             ipmResAlloccation.filterCoreMember(); 
             
@@ -400,7 +400,7 @@ private class  IPM_Resource_Allocation_Test {
             system.assertEquals(ipmResAlloccation.lstUserProfile.isEmpty(),false,'UserProfilelist should not be empty');
             pageMessages = ApexPages.getMessages();
         }
-        Test.stopTest(); 
+         
     }
     
 
@@ -410,12 +410,12 @@ private class  IPM_Resource_Allocation_Test {
     * @Description To check if the same category has been assigned to GD
     */
     static testMethod  void testGetSameCategoryRolloutProfiles()
-    {
+    {   test.startTest();
         initializeTestMethodData();
-       
+        Test.stopTest();
         system.RunAs(globalUser)
         {
-            test.startTest();
+            
             ipmResAlloccation.projectID=null;
             ipmResAlloccation.UpdateCoreMember();
             ipmResAlloccation.projectID=project.Id;
@@ -449,9 +449,9 @@ private class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.getSameCategoryRolloutProfiles();
             userProf.IPM_User_Role__c=IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE;
             update userProf;
-			IPM_user_profile__c userProfile = [SELECT Id,IPM_User_Role__c FROM IPM_user_profile__c WHERE Id =:userProf.id]; 
-			System.assertEquals(IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE,userProfile.IPM_User_Role__c , 'User Role is not  updated');
-			
+            IPM_user_profile__c userProfile = [SELECT Id,IPM_User_Role__c FROM IPM_user_profile__c WHERE Id =:userProf.id]; 
+            System.assertEquals(IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE,userProfile.IPM_User_Role__c , 'User Role is not  updated');
+            
             ipmResAlloccation.isLeaderTypeFL=true;
             ipmResAlloccation.isLeaderTypePL=false;
             ipmResAlloccation.category=USER_CATE;
@@ -462,40 +462,44 @@ private class  IPM_Resource_Allocation_Test {
             system.assertEquals(ipmResAlloccation.leaderUsers.isEmpty(),false,'Userlist should not be empty');
             pageMessages = ApexPages.getMessages();
         }
-        Test.stopTest(); 
+         
     }
     /*
     * @Description To check if the same category has been assigned to GD
     */
     static testMethod  void testFilterLeaderMember()
-    {
+    {   test.startTest();
         initializeTestMethodData();
-        
+        Test.stopTest();
         system.RunAs(globalUser)
         {
-            test.startTest();
+                        
             ipmResAlloccation.Category='fhhg';
             ipmResAlloccation.SearchLeader =globalUser.Name;
+            List<IPM_Project_Rollout__c>  cntxtRLOut = [Select Id,IPM_Rollout_Span__c,Local_Project_Span__c,Name,MCO_Name__c from IPM_Project_Rollout__c where Id=:projRollOut.Id];
+            ipmResAlloccation.cntxtRLOut = cntxtRLOut[0];
+            ipmResAlloccation.getUsersAvailableOnFiltering();
             ipmResAlloccation.filterLeaderMember();
-            ipmResAlloccation.SearchLeader =string.valueOf(globalUser.Id);
+            ipmResAlloccation.SearchLeader =string.valueOf(globalUser.Id);            
             ipmResAlloccation.filterLeaderMember();
             userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
+            ipmResAlloccation.getUsersAvailableOnFiltering();
             pageMessages = ApexPages.getMessages();
         }
-        Test.stopTest(); 
+         
     }
     
     /*
     * @Description To check if the same category has been assigned to GD
     */
     static testMethod  void testAssignLeaderMember()
-    {
+    {   test.startTest();
         initializeTestMethodData();
-       
+        Test.stopTest();
         system.RunAs(globalUser)
         {
-            test.startTest();
+            
             ipmResAlloccation.rolloutId =projRollout.Id;
             ipmResAlloccation.SearchLeader =string.valueOf(globalUser.Id);
             ipmResAlloccation.SelectedLeaderMember =string.valueOf(globalUser.Id);
@@ -509,26 +513,26 @@ private class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.assignLeaderMember();
             projRollout.recordTypeId=Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId(); 
             update projRollout;
-			
-			System.assertEquals(Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId(),projRollout.recordTypeId,'Rollout type is invalid');
+            
+            System.assertEquals(Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId(),projRollout.recordTypeId,'Rollout type is invalid');
             ipmResAlloccation.assignLeaderMember();
             rolloutList1=[select Id,Name,Market_Cluster_Name__c,IPM_Regional_PL__c,Finance_Member__c,RecordTypeId,IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c,(Select Id,Country_Name__c from IPM_Countries_Local__r)  FROM IPM_Project_Rollout__c where Id=:projRollout.Id];
             System.assertEquals(rolloutList1[0].Finance_Member__c ,globalUser.Id,FUNCTION_NOT_CALL_PROPERLY);
             pageMessages = ApexPages.getMessages();
         }
-        Test.stopTest(); 
+         
     }  
     
     /*
     * @Description To check if the same category has been assigned to GD
     */
     static testMethod  void testCreatefinanceMember()
-    {
+    {   test.startTest();
         initializeTestMethodData();
-       
+        Test.stopTest();
         system.RunAs(globalUser)
         {
-            test.startTest();
+            
             Map<id,id> projUserMap = new Map<id,id>();
             projUserMap.put(null,globalUser.Id);
            
@@ -543,6 +547,6 @@ private class  IPM_Resource_Allocation_Test {
             System.assertEquals(resList1.size(),0,FUNCTION_NOT_CALL_PROPERLY);
             pageMessages = ApexPages.getMessages();
         }
-        Test.stopTest(); 
+         
     }
 }

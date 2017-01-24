@@ -186,7 +186,7 @@
         <field>BucketField_80153495</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>SAM Request Details by Status</name>
+    <name>SAM Demand: Request Details by Status</name>
     <params>
         <name>co</name>
         <value>1</value>

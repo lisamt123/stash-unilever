@@ -55,17 +55,31 @@ public with sharing class Amr_JobSheetController_CC{
     public String permissionSetName {get;set;}
     public Amr_Job_Details__c jobList{ get; set; }      
     Transient  String[]  categoryString;
+    Transient  String[]  multiCategoryString;
     public String Name{get;set;}
+    
+    public String categoryName {get;set;}
     public String brandPosName{get;set;}
     public String selectedBrandPosName{get;set;}
+    public String selectedMultiBrandPosName{get;set;}    
     public String brandNameFromPage{get;set;} 
     public List<SelectOption> listOfCategory{get;set;} 
     public List<SelectOption> listOfBrandPosition{get;set;}
     public  List<SelectOption> listOfBrand{get;set;}
     public  List<SelectOption> listOfProjectName {get;set;}
+   
+    public String multicategoryName{get;set;}
+    public String multibrandPosName{get;set;}
+    public String multibrandNameFromPage{get;set;}
+    
+    public List<SelectOption> listOfMultiCategory{get;set;} 
+    public List<SelectOption> listOfMultiBrandPosition{get;set;}
+    public List<SelectOption> listOfMultiBrand{get;set;}
+    
     public String selectedCountry {get;set;}    
-    public String categoryName {get;set;}
+
     public String selectedCategory{get;set;}
+    public String selectedMultiCategory{get;set;}    
     public boolean isPrimaryUser {get;set;}
     public list<string> listOfRAPSelected{get;set;}  
     public Integer sharedListSize {get;set;}
@@ -127,15 +141,24 @@ public with sharing class Amr_JobSheetController_CC{
          Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
           jobSheetHelper = new Amr_JobSheetHelper_CC();
          alertObj = new Amr_Alert__c();
-         categoryString = new list<string>();
-         Set<MDO_Category__c> categorylst = utiltyObj.categoryValues();
          
          listOfUserToDisplay = new List<Amr_Job_Allocation__c>();
          
-            for(MDO_Category__c mdCat : categorylst){
-            categoryString.add(mdCat.name);
-            }
-        
+         //Single category         
+         categoryString = new list<string>();
+         Set<MDO_Category__c> categorylst = utiltyObj.categoryValues();
+         
+        for(MDO_Category__c mdCat : categorylst){
+        categoryString.add(mdCat.name);
+        }
+            
+        //Multi Category
+        multicategoryString = new list<string>();
+        Set<Amr_Multi_Category__c> multiCategorylst = utiltyObj.multiCategoryValues();
+        for(Amr_Multi_Category__c multiCat : multiCategorylst){
+            multicategoryString.add(multiCat.name);
+        }    
+            
         validateSuccess = false;
         selectUsername= new list<selectoption>();
       
@@ -169,6 +192,13 @@ public with sharing class Amr_JobSheetController_CC{
             jobsheetErrorCheck = true;
             ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, message)); 
         }
+        
+        listOfBrandPosition = new List<SelectOption>();
+        listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+        
+        listOfMultiBrandPosition = new List<SelectOption>();
+        listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+        
         helperMethod();
     } 
      
@@ -229,7 +259,7 @@ Returns:
                       
             }
           
-            jobList=[select createdById, AdditionalSupplementaryNewMaterialDigiA__c,ReworkExistingMaterial__c,Buyouts_Music_Digital_ED__c,NewOriginalMaster__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
+            jobList=[select Single_or_multiply_project__c,createdById, AdditionalSupplementaryNewMaterialDigiA__c,ReworkExistingMaterial__c,Buyouts_Music_Digital_ED__c,NewOriginalMaster__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
                     NewOriginalMasterInternalVideo__c,NewOriginalMasterTvMovingImage__c,NewOriginalMasterCinemaMovingImage__c,NewOriginalMasterRadioAudio__c,NewOriginalMasterPrintStillImage__c,NewOriginalMasterOutofHomeMovingImage__c,
                     NewOriginalMasterOutofHomeAudio__c,NewOriginalMasterOutofHomeStillImage__c,NewOriginalMasterInStoreMovingImage__c,NewOriginalMasterInStoreAudio__c,NewOriginalMasterInStoreStillImage__c,NewOriginalMasterDigitalMovingImage__c,
                     NewOriginalMasterDigitalAudio__c,NewOriginalMasterDigitalStillImage__c,NewOriginalMasterInternalVdoMovingImage__c,  New_Original_Master_Digital_ED__c,
@@ -256,7 +286,7 @@ Returns:
                     BuyoutsMusicTvMovingImage__c,BuyoutsMusicCinemaMovingImage__c,BuyoutsMusicRadioAudio__c,BuyoutsMusicPrintStillImage__c,BuyoutsMusicOutofHomeMovingImage__c,BuyoutsMusicOutofHomeAudio__c,
                     BuyoutsMusicOutofHomeStillImage__c,BuyoutsMusicInStoreMovingImage__c,BuyoutsMusicInStoreAudio__c,BuyoutsMusicInStoreStillImage__c   ,BuyoutsMusicDigitalMovingImage__c,
                     BuyoutsMusicDigitalAudio__c,BuyoutsMusicDigitalStillImage__c,Additional_Supplementary_NM_Digital_ED__c,BuyoutsMusicInternalVideoMovingImage__c,                 
-                    createdDate,Project_Details__r.name,id,Job_Notes__c,Currency_Conversion_Country_List__c,Lead_Agency_Name_Other__c,OwnerId,Job_Cancelled__c,Job_Status__c,Tv_Moving_Image__c,AdManagerText__c,Brand_Final__c,Brand_Final__r.name, Cinema_Moving_Image__c, Radio_Audio__c, Print_Still_Image__c, Out_Of_Home_Moving_Image__c, Out_Of_Home_Still_Image__c, Out_Of_Home_Audio__c, In_Store_Moving_Image__c, In_Store_Still_Image__c, In_Store_Audio__c, Digital_Moving_Image__c, Digital_Still_Image__c, Digital_Audio__c, Internal_Video_Moving_Image__c, Tv__c,Cinema__c, Radio__c, Print__c, Out_Of_Home__c, In_Store__c, Digital__c, Internal_Video__c, ProductCategory__c,ProductCategory__r.name,Rework_Exisiting_Material__c,BuyoutsTalent__c,BuyoutsMusic__c,New_Original_Master__c,Create_Additional_Material__c,Language_Adaptation_Of_Master__c,Require_Music__c,Require_Celebrity_Talent__c,Stage_of_Production_Activity__c,Check_With_CMI__c,Production_Activity_Type__c,Project_Description__c,Target_Air_Date__c,Execution_Name__c,Campaign_Name__c,Your_Email_Address__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Unilever_Finance_Member_Email__c,Final_Approver_Of_Material_Email__c,Function_You_Are_Part__c,Budget_Responsibility__c,Budget_Allocated_Input_Value__c,Allocated_Budget_euro__c,Brand_Position__c,Brand_Position__r.name,Lead_Creative_Agency_name__c,Lead_Agency_Location_Cluster__c,Lead_Agency_Location_Country__c,Agency_Contact_Account_Director_Email__c,Digital_Agency_Name__c,Any_other_agencies_involved__c,Project_Name__c,Project_Name_Other__c,Project_Location_Cluster__c,Project_Location_Country__c,Project_Details__c,Brodcast_Market__c from Amr_Job_Details__c where id=: jobId];       
+                    createdDate,Project_Details__r.name,id,Job_Notes__c,Currency_Conversion_Country_List__c,Lead_Agency_Name_Other__c,OwnerId,Job_Cancelled__c,Job_Status__c,Tv_Moving_Image__c,AdManagerText__c,Brand_Final__c,Brand_Final__r.name, Multi_Brand__c,Multi_Brand__r.name, Cinema_Moving_Image__c, Radio_Audio__c, Print_Still_Image__c, Out_Of_Home_Moving_Image__c, Out_Of_Home_Still_Image__c, Out_Of_Home_Audio__c, In_Store_Moving_Image__c, In_Store_Still_Image__c, In_Store_Audio__c, Digital_Moving_Image__c, Digital_Still_Image__c, Digital_Audio__c, Internal_Video_Moving_Image__c, Tv__c,Cinema__c, Radio__c, Print__c, Out_Of_Home__c, In_Store__c, Digital__c, Internal_Video__c, ProductCategory__c,ProductCategory__r.name,Multi_Category__c ,Multi_Category__r.name,Rework_Exisiting_Material__c,BuyoutsTalent__c,BuyoutsMusic__c,New_Original_Master__c,Create_Additional_Material__c,Language_Adaptation_Of_Master__c,Require_Music__c,Require_Celebrity_Talent__c,Stage_of_Production_Activity__c,Check_With_CMI__c,Production_Activity_Type__c,Project_Description__c,Target_Air_Date__c,Execution_Name__c,Campaign_Name__c,Your_Email_Address__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Unilever_Finance_Member_Email__c,Final_Approver_Of_Material_Email__c,Function_You_Are_Part__c,Budget_Responsibility__c,Budget_Allocated_Input_Value__c,Allocated_Budget_euro__c,Brand_Position__c,Brand_Position__r.name,Multi_Brand_Positioning__c ,Multi_Brand_Positioning__r.name,Lead_Creative_Agency_name__c,Lead_Agency_Location_Cluster__c,Lead_Agency_Location_Country__c,Agency_Contact_Account_Director_Email__c,Digital_Agency_Name__c,Any_other_agencies_involved__c,Project_Name__c,Project_Name_Other__c,Project_Location_Cluster__c,Project_Location_Country__c,Project_Details__c,Brodcast_Market__c from Amr_Job_Details__c where id=: jobId];       
             
            if(jobList.Job_Cancelled__c){
                 jobsheetErrorCheck = true;
@@ -266,16 +296,31 @@ Returns:
            }
            
             if(jobList != null){
-
+                
+                if(jobList.Single_or_multiply_project__c == 'single'){
                 projectNameFromPage = jobList.Project_Details__r.name;
                 selectedCategory = jobList.ProductCategory__r.name;
                 selectedBrandPosName = jobList.Brand_Position__r.name;
                 
                 listOfBrandPosition = new List<SelectOption>();
+                listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
                 listOfBrandPosition.add(new selectOption(jobList.Brand_Position__r.name,jobList.Brand_Position__r.name));
                 
                 listOfBrand= new List<SelectOption>();
                 listOfBrand.add(new selectOption(jobList.Brand_Final__r.name,jobList.Brand_Final__r.name));
+                }
+                else{
+                projectNameFromPage = jobList.Project_Details__r.name;
+                selectedMultiCategory = jobList.Multi_Category__r.name;
+                selectedMultiBrandPosName = jobList.Multi_Brand_Positioning__r.name;
+                
+                listOfMultiBrandPosition = new List<SelectOption>();
+                listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+                listOfMultiBrandPosition.add(new selectOption(jobList.Multi_Brand_Positioning__r.name,jobList.Multi_Brand_Positioning__r.name));
+                
+                listOfMultiBrand= new List<SelectOption>();
+                listOfMultiBrand.add(new selectOption(jobList.Multi_Brand__r.name,jobList.Multi_Brand__r.name));                
+                }
                 
             }
             
@@ -311,10 +356,17 @@ Returns:
         }
         
               
-        selectedRAPUser =  jobAlloc.User__c; 
-        categoryName = jobList.ProductCategory__r.name;
-        brandPosName = jobList.Brand_Position__r.name;
-        brandNameFromPage = jobList.Brand_Final__r.name;
+        selectedRAPUser =  jobAlloc.User__c;
+        if(jobList.Single_or_multiply_project__c == 'single'){ 
+            categoryName = jobList.ProductCategory__r.name;
+            brandPosName = jobList.Brand_Position__r.name;
+            brandNameFromPage = jobList.Brand_Final__r.name;
+        }
+        else{
+            multicategoryName = jobList.Multi_Category__r.name;
+            multibrandPosName = jobList.Multi_Brand_Positioning__r.name;
+            multibrandNameFromPage = jobList.Multi_Brand__r.name;
+            }
         selectedCountry = jobList.Currency_Conversion_Country_List__c;
         
        List<Amr_CurrencyConversionRate__c>currencyList=[SELECT Currency_Unit__c,Name,Currency_Unit_To_Euro__c FROM Amr_CurrencyConversionRate__c limit 50000];
@@ -1007,23 +1059,27 @@ Purpose: Method to get all the brand positions on the basis of selected category
 Parameters: 
 Returns: List of select options
 
-************************************************************************************************************************************/   
+************************************************************************************************************************************/ 
+/*  
     public List<SelectOption> getBrandPositioningList(){    
                 
         listOfBrandPosition = new List<SelectOption>();
         listOfBrandPosition.add(new selectOption(jobList.Brand_Position__r.name,jobList.Brand_Position__r.name));
         return listOfBrandPosition;
          
-    }   
+    }
+*/	
     
-    public PageReference  brandPositionListData(){    
+    public PageReference   brandPositionListData(){    
        
         selectedBrandPosName = null;
         brandNameFromPage = null;
+        listOfBrandPosition = new List<SelectOption>();
+        listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+                
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
         Set<MDO_BrandPosition__c> brandPositionlst = utiltyObj.brandPostitionValues(selectedCategory);
-         listOfBrandPosition = new List<SelectOption>();
-        listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+
         Set<String> brnadPosNameSet = new Set<String>();
         for(MDO_BrandPosition__c bps : brandPositionlst){
 
@@ -1032,10 +1088,10 @@ Returns: List of select options
                 brnadPosNameSet.add(bps.name);
             }
         }
-         listOfBrand = new List<SelectOption>();
-         listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+         //listOfBrand = new List<SelectOption>();
+         //listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
     
-         return null;
+         return NULL;
     }
    
  
@@ -1065,6 +1121,94 @@ Returns: List of select options
     }
 
 /***********************************************************************************************************************************
+Multi Start
+***********************************************************************************************************************************/
+ 
+/***********************************************************************************************************************************
+Purpose:  Method to get all the categories.
+Parameters: 
+Returns: JSON String
+
+************************************************************************************************************************************/        
+
+      public String getMultiCategoryList(){ 
+      
+        return JSON.serialize(multiCategoryString);
+    }
+   
+ 
+ 
+/***********************************************************************************************************************************
+Purpose: Method to get all the brand positions on the basis of selected category.
+Parameters: 
+Returns: List of select options
+
+************************************************************************************************************************************/  
+/* 
+    public List<SelectOption> getMultiBrandPositioningList(){    
+                
+        listOfMultiBrandPosition= new List<SelectOption>();
+        listOfMultiBrandPosition.add(new selectOption(jobList.Multi_Brand_Positioning__r.name,jobList.Multi_Brand_Positioning__r.name));
+        return listOfMultiBrandPosition;
+         
+    }  
+*/	
+    
+    public PageReference  multiBrandPositionListData(){    
+       
+        selectedMultiBrandPosName= null;
+        multibrandNameFromPage = null;
+        
+        listOfMultiBrandPosition = new List<SelectOption>();
+        listOfMultiBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE)); 
+               
+        Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+        Set<Amr_Multi_Brand_Positioning__c> brandPositionlst = utiltyObj.multiBrandPostitionValues(selectedMultiCategory);
+
+        Set<String> brnadPosNameSet = new Set<String>();
+        for(Amr_Multi_Brand_Positioning__c bps : brandPositionlst){
+
+            if(!brnadPosNameSet.contains(bps.name)){
+                listOfMultiBrandPosition.add(new selectOption(bps.name,bps.name));
+                brnadPosNameSet.add(bps.name);
+            }
+        }
+         //listOfMultiBrand = new List<SelectOption>();
+         //listOfMultiBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+    
+         return null;
+    }
+   
+ 
+/***********************************************************************************************************************************
+Purpose:Method to get all the brand names on the basis of selected brand position.
+Parameters: 
+Returns: List of select options
+
+************************************************************************************************************************************/     
+       public List<SelectOption> getMultiBrandList(){      
+        listOfMultiBrand = new List<SelectOption>();
+        listOfMultiBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+
+        Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+        Set<Amr_Multi_Brand__C> brandlst = utiltyObj.multiBrandValues(selectedMultiCategory,selectedMultiBrandPosName);
+        Set<String> brnadNameSet = new Set<String>();
+        for(Amr_Multi_Brand__C bps : brandlst){
+
+            if(!brnadNameSet.contains(bps.name)){
+                listOfMultiBrand.add(new selectOption(bps.name,bps.name));
+
+                brnadNameSet.add(bps.name);
+            }
+        }
+        
+        return listOfMultiBrand;
+    }
+
+//Multi End
+
+
+/***********************************************************************************************************************************
 Purpose:Method to update the job.
 Parameters: 
 Returns: PageReference
@@ -1073,35 +1217,76 @@ MDO* obejcts are the Matser live data in UL and this method itertes the whole ca
 ************************************************************************************************************************************/
 
     public Pagereference updateJob(){
-        if(selectedBrandPosName != null){
-                brandPosName = selectedBrandPosName;
+    
+        if(jobList.Single_or_multiply_project__c == 'Single'){
+            if(selectedBrandPosName != null){
+                    brandPosName = selectedBrandPosName;
+            }
+            if(selectedCategory != null){
+                    categoryName = selectedCategory;
+            }
+         }
+         else{
+        
+            if(selectedMultiBrandPosName != null){
+                    multibrandPosName = selectedMultiBrandPosName;
+            }
+            if(selectedMultiCategory != null){
+                    multicategoryName = selectedMultiCategory;
+            }
+          }
+            
+        List<MDO_BrandPositions__c> MDOBrandPositionslst=NULL;
+        List<Amr_Multi_Brand_Positions__c > multiBrandPositionslst=NULL;
+        
+        if(jobList.Single_or_multiply_project__c == 'Single'){
+             MDOBrandPositionslst =[select  brand_position_id__c,product_category_id__c,brand_id__c from MDO_BrandPositions__c where product_category_id__r.name = :categoryName AND brand_position_id__r.name = :brandPosName AND brand_id__r.name = :brandNameFromPage];
         }
-        if(selectedCategory != null){
-                categoryName = selectedCategory;
+        else{
+            multiBrandPositionslst =[select  Multi_Brand_Positioning__c,Multi_Category__c,Multi_Brand__c  from Amr_Multi_Brand_Positions__c where Multi_Category__r.name = :multicategoryName AND Multi_Brand_Positioning__r.name = :multibrandPosName AND Multi_Brand__r.name = :multibrandNameFromPage];        
         }
-        List<MDO_BrandPositions__c> MDOBrandPositionslst =[select  brand_position_id__c,product_category_id__c,brand_id__c from MDO_BrandPositions__c where product_category_id__r.name = :categoryName AND brand_position_id__r.name = :brandPosName AND brand_id__r.name = :brandNameFromPage];
-              
-        if(categoryString == null){
-                categoryString = new list<string>();
-                Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-                Set<MDO_Category__c> categorylst = utiltyObj.categoryValues();
-               
-                for(MDO_Category__c mdCat : categorylst){
-                    categoryString.add(mdCat.name);
+      
+        if(jobList.Single_or_multiply_project__c == 'Single' && MDOBrandPositionslst.size()>0){
+                if(categoryString == null){
+                    categoryString = new list<string>();
+                    Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+                    Set<MDO_Category__c> categorylst = utiltyObj.categoryValues();
+                   
+                    for(MDO_Category__c mdCat : categorylst){
+                        categoryString.add(mdCat.name);
+                    }
+                }       
+                if(categoryName !=Amr_ConstantForAdManager.NONE){       
+                        jobList.ProductCategory__c = MDOBrandPositionslst[0].product_category_id__c ;
+                }
+                if(brandPosName!=Amr_ConstantForAdManager.NONE){
+                    jobList.Brand_Position__c = MDOBrandPositionslst[0].brand_position_id__c ;
+                }
+                if(brandNameFromPage!=Amr_ConstantForAdManager.NONE){
+                    jobList.Brand_Final__c = MDOBrandPositionslst[0].brand_id__c ;
+                    jobSheetHelper.updateAdManagerText(jobList,brandNameFromPage);
                 }
         }
-       
-        if(MDOBrandPositionslst.size()>0){
-                        if(categoryName !=Amr_ConstantForAdManager.NONE){       
-                                jobList.ProductCategory__c = MDOBrandPositionslst[0].product_category_id__c ;
-                        }
-                        if(brandPosName!=Amr_ConstantForAdManager.NONE){
-                            jobList.Brand_Position__c = MDOBrandPositionslst[0].brand_position_id__c ;
-                        }
-                        if(brandNameFromPage!=Amr_ConstantForAdManager.NONE){
-                            jobList.Brand_Final__c = MDOBrandPositionslst[0].brand_id__c ;
-                                jobSheetHelper.updateAdManagerText(jobList,brandNameFromPage);
-                        }
+        else if(multiBrandPositionslst.size()>0){
+                if(multiCategoryString== null){
+                    multiCategoryString = new list<string>();
+                    Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+                    Set<Amr_Multi_Category__c> categorylst = utiltyObj.multiCategoryValues();
+                   
+                    for(Amr_Multi_Category__c mdCat : categorylst){
+                        multiCategoryString.add(mdCat.name);
+                    }
+                }
+                if(multicategoryName !=Amr_ConstantForAdManager.NONE){       
+                        jobList.Multi_Category__c  = multiBrandPositionslst[0].Multi_Category__c  ;
+                }
+                if(multibrandPosName !=Amr_ConstantForAdManager.NONE){
+                    jobList.Multi_Brand_Positioning__c = multiBrandPositionslst[0].Multi_Brand_Positioning__c ;
+                }
+                if(multibrandNameFromPage!=Amr_ConstantForAdManager.NONE){
+                    jobList.Multi_Brand__c   = multiBrandPositionslst[0].Multi_Brand__c  ;
+                    jobSheetHelper.updateAdManagerText(jobList,multibrandNameFromPage);
+                }
         }
         
         if(String.isNotBlank(selectedCountry)){
@@ -1374,14 +1559,28 @@ N-Path:
         if(jobList.Budget_Allocated_Input_Value__c == null){
             budgetAllocatedInputFlag =  true;
          }
-        if( jobList.ProductCategory__c == null || categoryName == Amr_ConstantForAdManager.NONE){
-            categoryNameFlag = true;
-        }
-         if( jobList.Brand_Position__c == null || brandPosName == Amr_ConstantForAdManager.NONE){
-            brandPosNameFlag = true;
-        }
-         if(jobList.Brand_Final__c == null || brandNameFromPage == Amr_ConstantForAdManager.NONE){
-             brandNameFromPageFlag = true;
+         if( jobList.Single_or_multiply_project__c == 'Single' ) {
+            if( jobList.ProductCategory__c == null || categoryName == Amr_ConstantForAdManager.NONE){
+                categoryNameFlag = true;
+            }
+             if( jobList.Brand_Position__c == null || brandPosName == Amr_ConstantForAdManager.NONE){
+                brandPosNameFlag = true;
+            }
+             if(jobList.Brand_Final__c == null || brandNameFromPage == Amr_ConstantForAdManager.NONE){
+                 brandNameFromPageFlag = true;
+             }
+         }
+         else
+         {
+             if( jobList.Multi_Category__c == null || multicategoryName == Amr_ConstantForAdManager.NONE){
+                categoryNameFlag = true;
+            }
+             if( jobList.Multi_Brand_Positioning__c == null || multibrandPosName == Amr_ConstantForAdManager.NONE){
+                brandPosNameFlag = true;
+            }
+             if(jobList.Multi_Brand__c == null || multibrandNameFromPage == Amr_ConstantForAdManager.NONE){
+                 brandNameFromPageFlag = true;
+             }
          }
          if(jobList.Agency_Contact_Account_Director_Email__c == null){
             AgencyDirectorEmailFlag = true;

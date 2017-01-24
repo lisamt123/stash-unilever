@@ -79,9 +79,11 @@
                                         <div class="col-sm-4 countrybg">
                                             <div class="subheader">
                                                 {!$Label.IPM_COUNTRY}
+                                                 
                                                  <span class="SecButtonSet infoMarTop infoFloatR">
-                                                 <a class="icoButton info" title="{!$Label.IPM_KEY_MCO_NEEDS}"></a>
-                                             </span>
+                                                 	<a class="icoButton info" title="{!strMCOKeyHelp}"></a>
+                                             	 </span> 
+                                             	 
                                                 <span class="btext pull-right ieAlign">
                                                     {!$Label.IPM_MARK_THIS_MCO_AS_KEY}
                                                     <div class="btm2 ipmCheckbox">

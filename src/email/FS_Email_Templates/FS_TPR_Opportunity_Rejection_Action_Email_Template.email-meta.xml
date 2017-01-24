@@ -5,6 +5,6 @@
     <encodingKey>UTF-8</encodingKey>
     <name>FS TPR Opportunity Rejection Action Email Template</name>
     <style>none</style>
-    <subject>Opportunity Rejected Notification</subject>
+    <subject>{!Opportunity.Name}  Rejected Notification</subject>
     <type>text</type>
 </EmailTemplate>

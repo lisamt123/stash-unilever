@@ -6,5 +6,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>FS 58 - South Zone Manager</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>North_America</parentRole>
+    <parentRole>ARCHIVE</parentRole>
 </Role>

@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -42,6 +46,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Master Unilever Warehouse capacity utilization data storage</description>
@@ -50,9 +55,61 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Read</externalSharingModel>
+    <fields>
+        <fullName>Current_Utilization__c</fullName>
+        <description>This  will Calculate average utilization</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will calculate the average Utilization</inlineHelpText>
+        <label>Current Utilization</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Operations_ContractType__c</fullName>
+        <externalId>false</externalId>
+        <label>Operations Contract Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ABC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C (Activity)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C (Fixed)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C (Weight)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unilever</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
     <fields>
         <fullName>Submitted_by__c</fullName>
         <externalId>false</externalId>
@@ -63,6 +120,55 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WH_Visibility_Process__c</fullName>
+        <description>reports sent through email, in 3PL system / WMS, in SAP system, etc.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Reports sent through email, in 3PL system / WMS, in SAP system, etc.</inlineHelpText>
+        <label>WH Data Visibility Process</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Automated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ManualSAP&amp;3PL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Manual-SAP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>WU_Active_WH__c</fullName>
+        <description>This field is used to indicate whether Warehouse is active or not.</description>
+        <externalId>false</externalId>
+        <label>Active WH</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>WU_Address__c</fullName>
@@ -247,7 +353,7 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
     <fields>
         <fullName>WU_Building_ContractType__c</fullName>
         <externalId>false</externalId>
-        <label>Building ContractType</label>
+        <label>Building Contract Type</label>
         <picklist>
             <picklistValues>
                 <fullName>C</fullName>
@@ -261,12 +367,21 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <fullName>Unilever</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>WU_Building_Contract_Expiry__c</fullName>
+        <externalId>false</externalId>
+        <label>Building Contract Expiry</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>WU_CityName__c</fullName>
@@ -958,6 +1073,31 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>WU_DC_Interface__c</fullName>
+        <externalId>false</externalId>
+        <label>WH Interface</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>N/A</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>WU_FromDate__c</fullName>
         <externalId>false</externalId>
         <label>Utilization Start Date</label>
@@ -965,42 +1105,6 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>WU_HandlingIn_FG__c</fullName>
-        <externalId>false</externalId>
-        <label>FG</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>WU_HandlingIn_RM_PM_SF_NPI__c</fullName>
-        <externalId>false</externalId>
-        <label>RM/PM/SF/NPI</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>WU_HandlingIn_Total__c</fullName>
-        <externalId>false</externalId>
-        <label>Total</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Is_Submitted__c</fullName>
@@ -1373,40 +1477,13 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>WU_Operations_ContractType__c</fullName>
+        <fullName>WU_Operation_Contract_Expiry__c</fullName>
         <externalId>false</externalId>
-        <label>Operations ContractType</label>
-        <picklist>
-            <picklistValues>
-                <fullName>ABC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>C (Activity)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>C (Fixed)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>C (Weight)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>O</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Unilever</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>true</sorted>
-        </picklist>
+        <label>Operation Contract Expiry</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>WU_Previous_Month__c</fullName>
@@ -1526,42 +1603,6 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>WU_Storage_FG__c</fullName>
-        <externalId>false</externalId>
-        <label>Storage FG</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>WU_Storage_RM_PM_SF_NPI__c</fullName>
-        <externalId>false</externalId>
-        <label>Storage RM/PM/SF/NPI</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>WU_Storage_Total__c</fullName>
-        <externalId>false</externalId>
-        <label>Storage Total</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>WU_ToDate__c</fullName>
         <externalId>false</externalId>
         <label>Utilization End Date</label>
@@ -1674,24 +1715,12 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
     <fields>
         <fullName>WU_WMSType__c</fullName>
         <externalId>false</externalId>
-        <label>WMSType</label>
+        <label>WMS Type</label>
         <length>200</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>WU_WMS_IT_Spend__c</fullName>
-        <externalId>false</externalId>
-        <label>WMS/IT Spend (€k/year)</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>3</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -2021,6 +2050,59 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <description>Used if need to Edit a Warehouse capacity record</description>
         <label>Edit Warehouse Capacity</label>
         <picklistValues>
+            <picklist>Operations_ContractType__c</picklist>
+            <values>
+                <fullName>ABC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C %28Activity%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C %28Fixed%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C %28Weight%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>WH_Visibility_Process__c</picklist>
+            <values>
+                <fullName>Automated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manual-SAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ManualSAP%263PL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>WU_Active_WH__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>WU_Benchmarking__c</picklist>
             <values>
                 <fullName>DC Bench</fullName>
@@ -2497,6 +2579,21 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>WU_DC_Interface__c</picklist>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>WU_Logistics_MainActivity__c</picklist>
             <values>
                 <fullName>Copack</fullName>
@@ -2729,33 +2826,6 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
             <values>
                 <fullName>Overflow</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>WU_Operations_ContractType__c</picklist>
-            <values>
-                <fullName>ABC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C %28Activity%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C %28Fixed%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C %28Weight%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>O</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unilever</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2846,6 +2916,59 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <description>Used if need to create a Warehouse capacity record</description>
         <label>New Warehouse Capacity</label>
         <picklistValues>
+            <picklist>Operations_ContractType__c</picklist>
+            <values>
+                <fullName>ABC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C %28Activity%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C %28Fixed%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C %28Weight%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>WH_Visibility_Process__c</picklist>
+            <values>
+                <fullName>Automated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manual-SAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ManualSAP%263PL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>WU_Active_WH__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>WU_Benchmarking__c</picklist>
             <values>
                 <fullName>DC Bench</fullName>
@@ -3322,6 +3445,21 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>WU_DC_Interface__c</picklist>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>WU_Logistics_MainActivity__c</picklist>
             <values>
                 <fullName>Copack</fullName>
@@ -3554,33 +3692,6 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
             <values>
                 <fullName>Overflow</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>WU_Operations_ContractType__c</picklist>
-            <values>
-                <fullName>ABC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C %28Activity%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C %28Fixed%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C %28Weight%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>O</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unilever</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

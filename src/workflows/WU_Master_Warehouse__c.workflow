@@ -8,8 +8,9 @@
             <field>WU_WarehouseManager_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Warehouse_Utilization/Warehouse_Committed_Capacity</template>
+        <senderAddress>support.global_wh_visibility@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Warehouse_Utilization/WU_Warehouse_Committed_Capacity</template>
     </alerts>
     <alerts>
         <fullName>Approve_Committed_PalletStorage</fullName>
@@ -18,8 +19,9 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Warehouse_Utilization/Warehouse_Committed_Capacity</template>
+        <senderAddress>support.global_wh_visibility@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Warehouse_Utilization/WU_Warehouse_Committed_Capacity</template>
     </alerts>
     <alerts>
         <fullName>WU_ApprovalNotification</fullName>
@@ -29,7 +31,8 @@
             <field>WU_WarehousePOC_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>support.global_wh_visibility@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC</template>
     </alerts>
     <alerts>
@@ -40,8 +43,21 @@
             <field>WU_WarehouseManager_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Warehouse_Utilization/Warehouse_Committed_Capacity</template>
+        <senderAddress>support.global_wh_visibility@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Warehouse_Utilization/WU_Warehouse_Committed_Capacity</template>
+    </alerts>
+    <alerts>
+        <fullName>WU_Approval_Notification</fullName>
+        <description>WU_Approval Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>WU_WarehousePOC_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>support.global_wh_visibility@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC_for_Approval_Primary_POC</template>
     </alerts>
     <alerts>
         <fullName>WU_Notify_WarehousePOC</fullName>
@@ -50,7 +66,8 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>support.global_wh_visibility@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC</template>
     </alerts>
     <alerts>
@@ -61,8 +78,9 @@
             <field>WU_WarehousePOC_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC_Rejection</template>
+        <senderAddress>support.global_wh_visibility@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC_for_Rejection_Primary_POC</template>
     </alerts>
     <alerts>
         <fullName>Warehouse_capacity_below_committed_capacity</fullName>
@@ -71,8 +89,9 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Warehouse_Utilization/Capacity_Verification_Required</template>
+        <senderAddress>support.global_wh_visibility@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Warehouse_Utilization/WU_Capacity_Verification_Required</template>
     </alerts>
     <fieldUpdates>
         <fullName>Approved</fullName>

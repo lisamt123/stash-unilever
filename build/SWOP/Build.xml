@@ -65,7 +65,13 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-	  <runTest>Oblix_VersionControl_Test</runTest>
+      <runTest>Oblix_SOWMainDetalControllerExt_Test</runTest>
+	  <runTest>Oblix_CampaignSummaryController_Test</runTest>
+	  <runTest>Oblix_SOWRollOverLogic_Test</runTest>
+	  <runTest>Oblix_SOWMainDetailController_Test</runTest>
+	  <runTest>Oblix_SowMainController_Test</runTest>
+	  <runTest>Oblix_SOWCreateController_Test</runTest>
+	  <runTest>Oblix_PermissionHandler_Test</runTest>
     </sf:deploy>
   </target>  
 

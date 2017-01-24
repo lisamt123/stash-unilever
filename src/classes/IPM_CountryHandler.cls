@@ -256,7 +256,8 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         
         if(trigger.isDelete)
         {
-            //find the project Ids of all the deleted countries
+            set<id> countryIds = new set<id>();
+			//find the project Ids of all the deleted countries
             for(IPM_Country__c cntry:(List<IPM_Country__c>)Trigger.old)
             {
                 if(cntry.IPM_Project__c != null)
@@ -285,7 +286,9 @@ public with sharing class IPM_CountryHandler implements ITrigger{
             if(projectIdSet != null && !projectIdSet.isEmpty())
             {
                 IPM_ProjectCountryDetails.checkAtLeastOneAssmntPerEICountry(projectIdSet);
-            } 
+            }
+			//delete product plan related records
+            IPM_SourcePlanController_Helper.deleteProductForCountries(countryIds);
         }
         
         // Validate if there are any rollouts which dont have any countries under them, if yes delete those Rollouts.
@@ -309,7 +312,7 @@ public with sharing class IPM_CountryHandler implements ITrigger{
             Map<Id,IPM_Project_Rollout__c> finalDeleteRollout = new Map<Id,IPM_Project_Rollout__c>();
             Map<Id,IPM_Project_Rollout__c> finalUpdateRollout = new Map<Id,IPM_Project_Rollout__c>();
              
-            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id from IPM_Project_Rollout__c where Id in :deleteRolloutMap.keySet() AND isActive__c = true];
+            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id,IPM_CharterApproved__c from IPM_Project_Rollout__c where Id in :deleteRolloutMap.keySet() AND isActive__c = true];
             for(IPM_Project_Rollout__c deleteRollout : deleteRolloutList)
             {
                 if(deleteRollout.IPM_CharterApproved__c)

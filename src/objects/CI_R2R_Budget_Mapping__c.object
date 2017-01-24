@@ -36,7 +36,7 @@
         <fullName>R2R_SME_Area__c</fullName>
         <externalId>false</externalId>
         <label>R2R SME Area</label>
-        <length>20</length>
+        <length>35</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

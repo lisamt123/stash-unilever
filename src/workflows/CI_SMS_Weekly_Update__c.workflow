@@ -80,11 +80,30 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CI_R2R_Update_SME_Area_Read_Only_in_SME</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>CI_R2R_SME_Read_Only</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>CI_R2R Update SME Area Read Only in SME</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CI_R2R_Update_Target_Date_Null</fullName>
         <field>Target_Closure__c</field>
         <name>CI_R2R Update Target Date_Null</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CI_R2R_Update_Unique_Field</fullName>
+        <field>Unique_Id__c</field>
+        <formula>CIR2R_Innovation__c</formula>
+        <name>CI_R2R Update Unique Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -122,6 +141,16 @@
         <active>true</active>
         <formula>CIR2R_Innovation__c &lt;&gt; null</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CI_R2R Restrict to create more than one record</fullName>
+        <actions>
+            <name>CI_R2R_Update_Unique_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>CI_R2R Update RAG Color_A</fullName>
@@ -178,5 +207,15 @@
         <active>true</active>
         <formula>AND(CIR2R_Innovation__c = null, RecordType.DeveloperName = &apos;CI_SME_with_CI&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CI_R2R Update SME Page Layout</fullName>
+        <actions>
+            <name>CI_R2R_Update_SME_Area_Read_Only_in_SME</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(NOT( $Permission.CI_R2R_Admin), RecordType.DeveloperName = &apos;Independent task&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
 </Workflow>

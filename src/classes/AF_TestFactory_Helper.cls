@@ -136,7 +136,7 @@ public with sharing class AF_TestFactory_Helper
         EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id,
         TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true,AF_UserTypeText__c=AF_Constants.UT_CATEGORY_FINANCE, 
-        UserName='testuserbth@test123321.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_CATEGORYNAME);
+        UserName='testuserbthe@test123321.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_CATEGORYNAME);
         if(doInsert){
             insert u1; 
         }return u1;
@@ -230,13 +230,86 @@ public with sharing class AF_TestFactory_Helper
             insert u4; 
         }return u4;
     }
+    
+    
+    public static User createUserAdmin5(Boolean doInsert) 
+    {
+        u3= new User(Alias = 'testuo3', Email='standarduseruo3@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Useruo3', LanguageLocaleKey=AF_Constants.LocaleKey, 
+        LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id,
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+        UserName='testuseruo5@test123321.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_AF_Category);
+        if(doInsert){
+            insert u3; 
+        }return u3;
+    }
+    public static User createUserAdmin6(Boolean doInsert) 
+    {
+        u3= new User(Alias = 'testuo3', Email='standarduseruo3@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Useruo3', LanguageLocaleKey=AF_Constants.LocaleKey, 
+        LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id,
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+        UserName='testuseruo6@test123321.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_AF_Category);
+        if(doInsert){
+            insert u3; 
+        }return u3;
+    }
+    
     public static user createuser(Boolean doInsert)
     {
         usr= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
         EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = Platformprofile.Id, 
         TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='CMCO Super User',isActive=true, 
-        UserName='testuserctc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c='Test Beveragesc');
+        UserName='testuserctc@test123321.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_AF_Category);
+        if(doInsert){
+            insert usr;
+        }
+        return usr;
+    }
+    public static user createuser1(Boolean doInsert)
+    {
+        usr= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = Platformprofile.Id, 
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='CMCO Super User',isActive=true, 
+        UserName='testuserctc1@test123321.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_AF_Category);
+        if(doInsert){
+            insert usr;
+        }
+        return usr;
+    }
+    public static user createuser2(Boolean doInsert)
+    {
+        usr= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = Platformprofile.Id, 
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='CMCO Super User',isActive=true, 
+        UserName='testuserctc2@test123321.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_AF_Category);
+        if(doInsert){
+            insert usr;
+        }
+        return usr;
+    }
+    public static user createuser3(Boolean doInsert)
+    {
+        usr= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = Platformprofile.Id, 
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='CMCO Super User',isActive=true, 
+        UserName='testuserctc3@test123321.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_AF_Category);
+        if(doInsert){
+            insert usr;
+        }
+        return usr;
+    }
+    public static user createuser4(Boolean doInsert)
+    {
+        usr= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = Platformprofile.Id, 
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='CMCO Super User',isActive=true, 
+        UserName='testuserctc4@test123321.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_AF_Category);
         if(doInsert){
             insert usr;
         }
@@ -261,6 +334,18 @@ public with sharing class AF_TestFactory_Helper
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = AgencyPlatformprofile.Id,AF_UserTypeText__c=AF_Constants.UT_CATEGORY_FINANCE,
         TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
         UserName='testusercsd@test12332112.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c='Test Beveragesc');
+        if(doInsert){
+            insert usr;
+        }
+        return usr;
+    }
+    public static user createApprover(Boolean doInsert)
+    {
+        usr= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = Platformprofile.Id,AF_UserTypeText__c=AF_Constants.UT_CATEGORY_FINANCE,
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Approver',isActive=true, 
+        UserName='testusercsd@test12332a.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_AF_Category);
         if(doInsert){
             insert usr;
         }
@@ -303,6 +388,7 @@ public with sharing class AF_TestFactory_Helper
             AF_BrandEstimate_TriggerDate__c be = new AF_BrandEstimate_TriggerDate__c();
             be.AF_Currency_Uploaded__c = true;
             be.AF_Trigger_Date__c = system.today();
+            
             BrandEstimateTriggerDateLst.add(be);
         }
         if(doInsert){
@@ -597,6 +683,7 @@ public with sharing class AF_TestFactory_Helper
             AFBrandEst.Name='Test'+i;
             AFBrandEst.Brand__c=categoryBrandList[i-1].id;
             AFBrandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
+            AFBrandEst.AF_Active__c=true;
             BrandEstimateList.add(AFBrandEst);
         }
         if(doInsert){
@@ -735,6 +822,8 @@ public with sharing class AF_TestFactory_Helper
             agenEst.AF_Brand_Estimate__c=BrandEstimateList[i-1].Id;
             agenEst.AF_Agency_Entity__c=EntityList[i-1].Id;
             agenEst.AF_Unilever_Entity__c=EntityListRec[i-1].Id;
+            agenEst.AF_Traditional__c=30;
+            agenEst.AF_Digital__c=30;
             AgencyEstimateList.add(agenEst);
         } if(doInsert){
             insert AgencyEstimateList;
@@ -763,6 +852,8 @@ public with sharing class AF_TestFactory_Helper
             bonSum.AF_Agency__c=accList[i-1].Id;
             bonSum.AF_Brand__c=categoryBrandList[i-1].Id;
             bonSum.AF_Fiscal_Year__c=currYear;
+            bonSum.AF_Status__c = 'With Approver';
+            bonSum.AF_RejectReason__c = 'rejected';
             BonussummaryList.add(bonSum);
         }
         if(doInsert){

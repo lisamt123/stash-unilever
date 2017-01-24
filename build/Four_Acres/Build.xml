@@ -67,9 +67,10 @@
       <runTest>TriggerFactoryTest</runTest>
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
-      <runTest>UserTrigger_Test</runTest>      
-      <runTest>FA_Test_Trigger_CouFacilitator</runTest>
+      <runTest>UserTrigger_Test</runTest>
   </sf:deploy>
   <!--<antcall target="generatePackage"/>-->
   </target>
-</project>
+
+
+    </project>

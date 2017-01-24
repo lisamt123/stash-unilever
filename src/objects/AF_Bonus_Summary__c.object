@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>It Will represent a Unilever Bonus Fee estimate for a particular brand, fiscal year and agency combination.</description>
@@ -53,10 +52,59 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>AF_AgencyUser1__c</fullName>
+        <externalId>false</externalId>
+        <label>AgencyUser1</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_AgencyUser2__c</fullName>
+        <externalId>false</externalId>
+        <label>AgencyUser2</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_AgencyUser3__c</fullName>
+        <externalId>false</externalId>
+        <label>AgencyUser3</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_AgencyUser4__c</fullName>
+        <externalId>false</externalId>
+        <label>AgencyUser4</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_AgencyUser5__c</fullName>
+        <externalId>false</externalId>
+        <label>AgencyUser5</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>AF_Agency__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -65,6 +113,18 @@
         <label>Agency</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Bonus Summaries</relationshipLabel>
+        <relationshipName>Bonus_Summaries</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Approver1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Approver1</label>
+        <referenceTo>User</referenceTo>
         <relationshipName>Bonus_Summaries</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -111,6 +171,186 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>AF_CMCO1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CMCO1</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_SummariesCMCO1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_CMCO2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CMCO2</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_SummariesCMCO2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_CMCO3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CMCO3</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_SummariesCMCO3</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_CMCO4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CMCO4</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_SummariesCMCO4</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_CMCO5__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CMCO5</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_SummariesCMCO5</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_10__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance 10</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_Summaries10</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance 1</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_Summaries1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance 2</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_Summaries2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance 3</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_Summaries3</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance 4</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_Summaries4</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_5__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance 5</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_Summaries5</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_6__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance 6</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_Summaries6</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_7__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance 7</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_Summaries7</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_8__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance 8</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_Summaries8</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_9__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance 9</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Bonus_Summaries9</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>AF_Category_View__c</fullName>
         <externalId>false</externalId>
         <formula>CONTAINS($User.AF_Categories__c,  AF_Category__c  )</formula>
@@ -126,6 +366,19 @@
         <formula>AF_Brand__r.AF_Category_Brands__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Community_Link__c</fullName>
+        <description>Used for inserting instance URL in email notifications.</description>
+        <externalId>false</externalId>
+        <formula>$Setup.AF_Links__c.AF_Community_Link__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AF Community Link</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -160,6 +413,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_Internal_Link__c</fullName>
+        <description>Used for inserting instance URL in email notifications.</description>
+        <externalId>false</externalId>
+        <formula>$Setup.AF_Links__c.AF_Internal_link__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AF Internal Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Is_Pilot_Model__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Stores whether brand estimate is pilot model or not</description>
@@ -182,6 +448,37 @@
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>AF_RejectReason__c</fullName>
+        <externalId>false</externalId>
+        <label>RejectReason</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>AF_StatusFromApprover__c</fullName>
+        <description>Approval status based on Bonus Approver</description>
+        <externalId>false</externalId>
+        <label>StatusFromApprover</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>AF_Status__c</fullName>
         <description>Tracks status of the Bonus Summary. Used in approval Process</description>
         <externalId>false</externalId>
@@ -195,9 +492,18 @@
                 <fullName>Ready For PO</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>With Approver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>With CMCO</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>

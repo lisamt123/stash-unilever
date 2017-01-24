@@ -8,6 +8,7 @@
 -->
 <apex:page Controller="IPM_ProjectDocumentSectionController" sidebar="false" standardStylesheets="true" id="page"  docType="html-5.0" extensions="IPM_GetHelpDoc">
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_SecEditor.css')}"/>     
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Source_Plan_Editor.css')}"/>  
     <apex:composition template="IPM_TemplateRevamp"> 
         <apex:define name="body" >
             <apex:form id="form">
@@ -193,7 +194,7 @@
                                                                                     </div>
                                                                                 </apex:outputPanel>
                                                                             </apex:repeat>
-                                                                            
+                                                                            </apex:outputPanel>
                                                                             <div class="row">
                                                     <div class="col-sm-12">
                                                         <div class="panel-group mrgbtmnone">
@@ -222,9 +223,9 @@
                                                                 </apex:outputPanel>
                                                                 <apex:outputPanel layout="block" rendered="{!AND(project.IPM_Phase__c!='Ideas',project.IPM_Project_Type__c!='Operational')}">
                                                                   <!-- below component will get render when project document sections master section external id value is containing "Mix_Qualification_Plan_and_Action_Standards"(check if string contains) and Project span is "Regional" -->
-                                                                  <c:IPM_GateCMI_Contract Editable="{!isEditGateCMI}" getProjectId="{!projectId}"  getGate="{!projDoc.IPM_GateDocuments__c}" getSectionId="{!projDocSec.Id}" rendered="{!AND(project.IPMProject_Span__c='Regional',CONTAINS(projDocSec.IPM_Master_Section_External_Id__c,'Mix_Qualification_Plan_and_Action_Standards'))}" />  
+                                                                  <c:IPM_GateCMI_Contract Editable="{!isEditGateCMI}" getProjectId="{!projectId}"  getGate="{!projDoc.IPM_GateDocuments__c}" getSectionId="{!projDocSec.Id}" rendered="{!AND(OR(project.IPMProject_Span__c='Regional',AND(project.IPMProject_Span__c='Global',project.IPM_ProjectGKM__c=='GKM3')),CONTAINS(projDocSec.IPM_Master_Section_External_Id__c,'Mix_Qualification_Plan_and_Action_Standards'))}" />  
                                                                   <!-- below component will get render when project document sections master section external id value is "Mix_Qualification_Plan_and_Action_Standards" and Project span is either "Global" or "Local" -->
-                                                                  <c:IPM_GateCMI_Consolidated getGate="{!projDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" getSectionId="{!projDocSec.Id}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards',OR(project.IPMProject_Span__c='Global',project.IPMProject_Span__c='Local'))}"></c:IPM_GateCMI_Consolidated>
+                                                                  <c:IPM_GateCMI_Consolidated getGate="{!projDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" getSectionId="{!projDocSec.Id}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards',OR(AND(project.IPM_ProjectGKM__c!='GKM3',project.IPMProject_Span__c='Global'),project.IPMProject_Span__c='Local'))}"></c:IPM_GateCMI_Consolidated> 
                                                                 </apex:outputPanel>
                                                                                                                                 
                                                                  <c:IPM_CU_Complexity gateType="{!projDoc.IPM_GateDocuments__c}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}" getSectionId="{!projDocSec.Id}" isEdit="{!IsCRRTEditable}"  rendered="{!isCUandComplexity}">                                   </c:IPM_CU_Complexity>
@@ -251,7 +252,7 @@
                                                             {!$Label.IPM_GENERATE_ROLLOUT_FOR_CONSUMER_EVIDENCE}                       
                                                         </div>
                                                     </div>
-                                                </apex:outputPanel>
+                                             
                                                                             
                                                                         </apex:outputPanel>
                                                                         <apex:actionFunction name="CallAttachId" action="{!delet}" reRender="outptattach">
@@ -540,7 +541,7 @@
                                                                 </div> 
                                                             </div> 
                                                             <!-- below component renders when project phase is "Global" span is "Global" and project document section's master exteranl id is "BD/BB_Alignment" --> 
-                                                            <c:IPM_BCC_Consolidate gateType="{!projDoc.IPM_GateDocuments__c}" projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment',project.IPM_Phase__c!='Ideas',project.IPMProject_Span__c!='Global')}"></c:IPM_BCC_Consolidate>
+                                                            <c:IPM_BCC_Consolidate gateType="{!projDoc.IPM_GateDocuments__c}" projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" showBccTab="{!showBBCtable}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment',project.IPM_Phase__c!='Ideas', showBBCtable)}"></c:IPM_BCC_Consolidate>
                                                             <apex:outputPanel rendered="{!if(OR(projDocSec.IPM_Section_Name__c='OTIF',projDocSec.IPM_Master_Section_External_Id__c='OTIF_Status'),true,false)}">
                                                                 
                                                                 <c:IPM_OTIFStatusTable otfType="Table" getSectionId="{!projDocSec.Id}" IsEdtable="{!IsEditableSumm}"/>
@@ -718,16 +719,22 @@
                         <c:IPM_ConfirmModal />
                     </div>
                 </div>  
-                <div> 
-                <c:IPM_MarketPerformance projId="{!projectId}" isEditable="{!isEditMarketPerformance}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && projDocSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Regional' && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
+                <div>      
+                <c:IPM_MarketPerformance projId="{!projectId}" isEditable="{!isEditMarketPerformance}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && projDocSec.IPM_Section_Sequence__c =='6.5' && (project.IPMProject_Span__c='Regional' || (project.IPMProject_Span__c='Global' && project.IPM_ProjectGKM__c = 'GKM3')) && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
                 <c:IPM_PerformanceBreakdown projId="{!projectId}" isAppendix="false" rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && projDocSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational',true,false)}" isEditable="{!isEditMarketPerformance}"></c:IPM_PerformanceBreakdown> 
                 <c:IPM_Financial_Action_Standards_Inverse gate="{!projDoc.IPM_GateDocuments__c}" isEditable="{!isGlobalActionStandards}"  secId="{!projDocSec.Id}" projId="{!projectId}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projDoc.IPM_GateDocuments__c!='Market Deployment',OR(project.IPMProject_Span__c='Regional',AND(project.IPMProject_Span__c='Local',project.IPM_Project_Type__c='Operational'),AND(project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Operational'),AND(project.IPMProject_Span__c='Global',projDoc.IPM_GateDocuments__c!='Charter')))}"  ></c:IPM_Financial_Action_Standards_Inverse>                                                                                                                                    
                 <c:IPM_GlobalFinancialActionStandards gate="{!projDoc.IPM_GateDocuments__c}" isEditable="{!isGlobalActionStandards}"  secId="{!projDocSec.Id}" projId="{!projectId}" rendered="{!AND(projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Original',OR(project.IPM_Phase__c='Ideas',projDoc.IPM_GateDocuments__c='Charter'))}"  ></c:IPM_GlobalFinancialActionStandards>
+           		<c:IPM_GlobalClaimPDL projId="{!projectId}" isAppendix="false" rendered="{!OR(showGlobalTable,projDocSec.IPM_Master_Section_External_Id__c=='Final_Global_Claims')}"></c:IPM_GlobalClaimPDL>      
+               
                 </div> 
                 <div style="width:50%;float:left;" class="glbSeclist"> 
                     <c:IPM_Section_GateChecklist getDocType="{!projDoc.IPM_GateDocuments__c}" getSecid="{!projDocSecId}" editGateSect="{!IsEditableSumm}" rendered="{!projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'}"></c:IPM_Section_GateChecklist>
                     <c:IPM_OTIFSectionStatus otfType="Section" getSectionId="{!projDocSec.Id}" isEdtable="{!IsEditableOutC}" rendered="{!projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'}"></c:IPM_OTIFSectionStatus>
                 </div>
+                
+                <apex:outputPanel rendered="{!project.IPMProject_Span__c=='Local' && project.IPM_ProjectGKM__c=='GKM3' && projDocSec.IPM_Section_Sequence__c =='5.1'}">
+                	<c:IPM_Local_Sourcing_Table projId="{!projectId}"></c:IPM_Local_Sourcing_Table>
+                </apex:outputPanel>
             </apex:form> 
         </apex:define>
     </apex:composition>

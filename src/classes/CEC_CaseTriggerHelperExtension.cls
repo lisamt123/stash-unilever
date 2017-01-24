@@ -26,9 +26,10 @@ public with sharing class CEC_CaseTriggerHelperExtension {
     List<Account> accntList = new List<Account>();
     Map<String, Account> mobRexNumAccntMap = new Map<String, Account>();
     Set<String> dupMobRexNumSet = new Set<String>();
-    Set<String> smsAccntTransExtIdSet = new Set<String>();
-    Set<String> mobNumSet = new Set<String>();
-    Set<String> rexMobNumSet = new Set<String>();
+    //Set<String> smsAccntTransExtIdSet = new Set<String>();
+    //Set<String> mobNumSet = new Set<String>();
+    Set<String> rexMobNumWithMarketSet = new Set<String>(), rexMobNumWithoutMarketSet = new Set<String>(), mobNumSet = new Set<String>(), smsAccntTransExtIdSet = new Set<String>();
+    //Set<String> rexMobNumWithoutMarketSet = new Set<String>();
     Map<String, String> mobRexMobMap = new Map<String, String>();
 
     
@@ -39,28 +40,30 @@ public with sharing class CEC_CaseTriggerHelperExtension {
         
         mobNumSet = new Set<String>();
         
-        for(Set<String> rexMobNumSet1 : caseMobNumMap.values()){
-            mobNumSet.addAll(rexMobNumSet1);
+        for(Set<String> rexMobNumWithMarketSet1 : caseMobNumMap.values()){
+            mobNumSet.addAll(rexMobNumWithMarketSet1);
         }
         
         System.debug('Before Query'+ mobNumSet);
         
         //Query for Duplicate Account
-        accntList = [Select Id, SMS_Search_Mobile_Number__c, PersonContactId from Account where SMS_Search_Mobile_Number__c LIKE: mobNumSet and RecordTypeId =: recTypeId];
+        accntList = [Select Id, Mobile_Phone_No_Special_Char__c, PersonContactId, Owner.Market__c from Account where Mobile_Phone_No_Special_Char__c LIKE: rexMobNumWithoutMarketSet and RecordTypeId =: recTypeId];
         
         System.debug('$$$$$$$$$$$$$$$'+ accntList);
         
         for(Account accnt: accntList){
             
-            for(string mobRexNum : mobNumSet){
-                if(Pattern.matches(mobRexNum.Replace('%','[0-9]*'), accnt.SMS_Search_Mobile_Number__c)){
-                    if(mobRexNumAccntMap.containsKey(mobRexNum)){
-                        dupMobRexNumSet.add(mobRexNum);
-                        System.debug('I am here2');
-                    }
-                    else{                       
-                        mobRexNumAccntMap.put(mobRexNum,accnt);
-                        System.debug('I am here3');
+            if(accnt.Owner.market__C != null){
+                for(string mobRexNum : mobNumSet){
+                    if(Pattern.matches(mobRexNum.Replace('%','[0-9]*'), accnt.Mobile_Phone_No_Special_Char__c + accnt.Owner.Market__c)){
+                        if(mobRexNumAccntMap.containsKey(mobRexNum)){
+                            dupMobRexNumSet.add(mobRexNum);
+                            System.debug('I am here2');
+                        }
+                        else{                       
+                            mobRexNumAccntMap.put(mobRexNum,accnt);
+                            System.debug('I am here3');
+                        }
                     }
                 }
             }
@@ -72,6 +75,11 @@ public with sharing class CEC_CaseTriggerHelperExtension {
         
     }
     
+    /****************************************************************************************************
+    Method Name: checkSMSCaseDetails
+    Description: Based on the case details constuct Map containing 
+                 [Transient External Id]=> [Set<SMS Mobile Number>] information
+    ****************************************************************************************************/
     
     public void checkSMSCaseDetails(Case caseRec){
 
@@ -101,7 +109,11 @@ public with sharing class CEC_CaseTriggerHelperExtension {
     }
     
 
-
+    /****************************************************************************************************
+    Method Name: checkCBMDetails
+    Description: Query for CBM for matching transient Id. Construct the following maps:
+                 
+    ****************************************************************************************************/
     public void checkCBMDetails(){
         
         try{
@@ -111,6 +123,8 @@ public with sharing class CEC_CaseTriggerHelperExtension {
                 cbmMap = new Map<Id, cec_Case_Brand_Mapping__c>([Select Id, Inbound_Email__c, Country__c, Country__r.OwnerId, Country__r.Consumer_Phone_Search_Digits__c,Country__r.Market__c from cec_Case_Brand_Mapping__c where Inbound_Email__c IN :caseTransExtIdSet]);
                 
                 System.debug('cbm Map    ' + cbmMap);
+
+                rexMobNumWithoutMarketSet = new set<String>();
                 
                 for(cec_Case_Brand_Mapping__c cbmRec: cbmMap.values()){
                     transCBMMap.put(cbmRec.Inbound_Email__c, cbmRec.Id);
@@ -119,21 +133,24 @@ public with sharing class CEC_CaseTriggerHelperExtension {
                     if(smsCaseMobNumMap.containsKey(cbmRec.Inbound_Email__c)){
                         
                         mobNumSet = smsCaseMobNumMap.get(cbmRec.Inbound_Email__c);
-                        rexMobNumSet = new Set<String>();
+                        rexMobNumWithMarketSet = new Set<String>();
                         for(String mobNumber: mobNumSet){
                             mobNumLen = mobNumber.length();
                             if(cbmRec.Country__r.Consumer_Phone_Search_Digits__c != null){
-                                rexMobNum = '%' + mobNumber.Mid(mobNumLen-(integer)cbmRec.Country__r.Consumer_Phone_Search_Digits__c, mobNumLen) + cbmRec.Country__r.Market__c;
+                                rexMobNum = '%' + mobNumber.Mid(mobNumLen-(integer)cbmRec.Country__r.Consumer_Phone_Search_Digits__c, mobNumLen);
+                                rexMobNumWithoutMarketSet.add(rexMobNum);
+                                rexMobNum = rexMobNum + cbmRec.Country__r.Market__c;
                             }
                             else{
                                 rexMobNum = mobNumber + cbmRec.Country__r.Market__c;
+                                rexMobNumWithoutMarketSet.add(mobNumber);
                             }
-                            rexMobNumSet.add(rexMobNum);
+                            rexMobNumWithMarketSet.add(rexMobNum);
                             mobRexMobMap.put(mobNumber,rexMobNum);
                             
                         }
                         
-                        smsCaseMobNumMap.put(cbmRec.Inbound_Email__c, rexMobNumSet);
+                        smsCaseMobNumMap.put(cbmRec.Inbound_Email__c, rexMobNumWithMarketSet);
                         
                         
                     }
@@ -147,8 +164,8 @@ public with sharing class CEC_CaseTriggerHelperExtension {
     }
 
     public void updateCaseDetails(List<Case> newCaseList){
-        try{
 
+        try{
                 if(transCBMMap.size()>0){
                     for(Case caseRec: newCaseList){
                         
@@ -189,10 +206,11 @@ public with sharing class CEC_CaseTriggerHelperExtension {
             System.debug('updateCaseDetails Failure :' + e.getMessage());
         }
     }
-
     
+
     public void updateCaseOwner(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         
+        cec_Org_Settings__c orgSetting = cec_Org_Settings__c.getOrgDefaults();
         try{
             
             System.debug('Inside updateCaseOwner' + newCaseList);
@@ -240,7 +258,7 @@ public with sharing class CEC_CaseTriggerHelperExtension {
             checkCBMDetails();
             
             System.debug('Updated SMS Case Mobile Num Map'+ smsCaseMobNumMap);
-            if(smsCaseMobNumMap.size() > 0){
+            if(smsCaseMobNumMap.size() > 0 && orgSetting.UpdateAccountOnSMSCase__c){
                 
                 checkSMSDupAccount(smsCaseMobNumMap);
                 

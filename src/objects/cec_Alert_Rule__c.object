@@ -254,7 +254,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+  <fields>
         <fullName>Market__c</fullName>
         <externalId>false</externalId>
         <label>Market</label>
@@ -296,6 +296,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Hungary</fullName>
                 <default>false</default>
             </picklistValues>
@@ -313,6 +317,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Korea</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -360,7 +368,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -906,5 +922,12 @@
     )
 )</errorConditionFormula>
         <errorMessage>Please verify the Product Level and its corresponding Product Category value : &apos;Division Name(L0)&apos; or &apos;Sector Name(L4)&apos; is populated and not null for the type &apos;Safety&apos;.</errorMessage>
+    </validationRules>
+	<validationRules>
+        <fullName>GroupByDayCode_Validation</fullName>
+        <active>true</active>
+        <description>To restrict business admin from selecting ‘Group By Day Code’ when Threshold is 1</description>
+        <errorConditionFormula>AND(Group_By_Day_Code__c=true, Threshold__c =1)</errorConditionFormula>
+        <errorMessage>You are not allowed to select ‘Group By Day Code’ when Threshold is 1</errorMessage>
     </validationRules>
 </CustomObject>

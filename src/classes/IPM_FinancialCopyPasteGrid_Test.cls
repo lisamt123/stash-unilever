@@ -25,11 +25,11 @@ public class IPM_FinancialCopyPasteGrid_Test {
     public static final String input4 ='[[7,1,"","Total \'000 Units"],[7,4,"","121.0%"],[7,5,"","1"],[7,6,"","6143.0%"],[7,7,"","9154.0%"],[7,8,"","12165.0%"],[7,9,"","15176.0%"],[7,10,"","18187.0%"],[7,11,"","21198.0%"],[7,12,"","24209.0%"],[7,13,"","27220.0%"],[7,14,"","30231.0%"],[8,4,"","132.0%"],[8,5,"","4143.0%"],[8,6,"","8154.0%"],[8,7,"","12165.0%"],[8,8,"","16176.0%"],[8,9,"","20187.0%"],[8,10,"","24198.0%"],[8,11,"","28209.0%"],[8,12,"","32220.0%"],[8,13,"","36231.0%"],[8,14,"","40242.0%"],[9,4,"","143.0%"],[9,5,"","5154.0%"],[9,6,"","10165.0%"],[9,7,"","15176.0%"],[9,8,"","20187.0%"],[9,9,"","25198.0%"],[9,10,"","30209.0%"],[9,11,"","35220.0%"],[9,12,"","40231.0%"],[9,13,"","45242.0%"],[9,14,"","50253.0%"],[10,4,"","154.0%"],[10,5,"","6165.0%"],[10,6,"","12176.0%"],[10,7,"","18187.0%"],[10,8,"","24198.0%"],[10,9,"","30209.0%"],[10,10,"","36220.0%"],[10,11,"","42231.0%"],[10,12,"","48242.0%"],[10,13,"","54253.0%"],[10,14,"","60264.0%"],[11,4,"","165.0%"],[11,5,"","7176.0%"],[11,6,"","14187.0%"],[11,7,"","21198.0%"],[11,8,"","28209.0%"],[11,9,"","35220.0%"],[11,10,"","42231.0%"],[11,11,"","49242.0%"],[11,12,"","56253.0%"],[11,13,"","63264.0%"],[11,14,"","70275.0%"],[12,4,"","176.0%"],[12,5,"","8187.0%"],[12,6,"","16198.0%"],[12,7,"","24209.0%"],[12,8,"","32220.0%"],[12,9,"","40231.0%"],[12,10,"","48242.0%"],[12,11,"","56253.0%"],[12,12,"","64264.0%"],[12,13,"","72275.0%"],[12,14,"","80286.0%"],[13,4,"","187.0%"],[13,5,"","9198.0%"],[13,6,"","18209.0%"],[13,7,"","27220.0%"],[13,8,"","36231.0%"],[13,9,"","45242.0%"],[13,10,"","54253.0%"],[13,11,"","63264.0%"],[13,12,"","72275.0%"],[13,13,"","81286.0%"],[13,14,"","90297.0%"],[15,4,"",""],[15,5,"",""],[15,6,"",""],[15,7,"",""],[15,8,"",""],[15,9,"",""],[15,10,"",""],[15,11,"",""],[15,12,"","200.0%"],[15,13,"",""],[15,14,"",""],[16,4,"",""],[16,5,"",""],[16,6,"",""],[16,7,"",""],[16,8,"",""],[16,9,"",""],[16,10,"",""],[16,11,"",""],[16,12,"","0.0%"],[16,13,"",""],[16,14,"",""],[17,4,"",""],[17,5,"",""],[17,6,"",""],[17,7,"",""],[17,8,"",""],[17,9,"",""],[17,10,"",""],[17,11,"",""],[17,12,"","200.0%"],[17,13,"",""],[17,14,"",""],[19,5,"",""],[19,8,"",0],[19,10,"",""],[19,11,"",""],[19,12,"",""],[19,13,"",""],[19,14,"",""],[20,5,"",""],[20,8,"",0],[20,10,"",""],[20,11,"",""],[20,12,"",""],[20,13,"",""],[20,14,"",""],[21,5,"",""],[21,10,"",""],[21,11,"",""],[21,12,"",""],[21,13,"",""],[21,14,"",""],[28,4,"",200],[28,5,"",201],[28,6,"",202],[28,7,"",203],[28,8,"",204],[28,9,"",205],[28,10,"",206],[28,11,"",207],[28,12,"",208],[28,13,"",209],[28,14,"",210],[29,4,"",200],[29,5,"",201],[29,6,"",202],[29,7,"",203],[29,8,"",204],[29,9,"",205],[29,10,"",206],[29,11,"",207],[29,12,"",208],[29,13,"",209],[29,14,"",210],[30,4,"",200],[30,5,"",201],[30,6,"",202],[30,7,"",203],[30,8,"",204],[30,9,"",205],[30,10,"",206],[30,11,"",207],[30,12,"",208],[30,13,"",209],[30,14,"",210],[31,1,""," Total Tons "],[31,4,"",200],[31,5,"",201],[31,6,"",202],[31,7,"",203],[31,8,"",204],[31,9,"",205],[31,10,"",206],[31,11,"",207],[31,12,"",208],[31,13,"",209],[31,14,"",210],[32,4,"",200],[32,5,"",201],[32,6,"",202],[32,7,"",203],[32,8,"",204],[32,9,"",205],[32,10,"",206],[32,11,"",207],[32,12,"",208],[32,13,"",209],[32,14,"",210],[33,4,"",200],[33,5,"",201],[33,6,"",202],[33,7,"",203],[33,8,"",204],[33,9,"",205],[33,10,"",206],[33,11,"",207],[33,12,"",208],[33,13,"",209],[33,14,"",210],[34,4,"",200],[34,5,"",201],[34,6,"",202],[34,7,"",203],[34,8,"",204],[34,9,"",205],[34,10,"",206],[34,11,"",207],[34,12,"",208],[34,13,"",209],[34,14,"",210],[35,4,"",200],[35,5,"",201],[35,6,"",202],[35,7,"",203],[35,8,"",204],[35,9,"",205],[35,10,"",206],[35,11,"",207],[35,12,"",208],[35,13,"",209],[35,14,"",210],[36,4,"",200],[36,5,"",201],[36,6,"",202],[36,7,"",203],[36,8,"",204],[36,9,"",205],[36,10,"",206],[36,11,"",207],[36,12,"",208],[36,13,"",209],[36,14,"",210],[37,4,"",200],[37,5,"",201],[37,6,"",202],[37,7,"",203],[37,8,"",204],[37,9,"",205],[37,10,"",206],[37,11,"",207],[37,12,"",208],[37,13,"",209],[37,14,"",210]]';
     public static final String EMPTY_LIST = 'list empty';
     private static final String PROJ_SPAN_LOCAL_MSG = 'Project span should be Local';
-    private static final String PROJ_TEST1 = 'test1';
+    private static final String PROJ_TEST1 = 'Test1';
     private static final String PROJ_TEST1_MSG = 'The project list should contain test1';
-    private static final String PROJ_TEST2 = 'test2';
+    private static final String PROJ_TEST2 = 'Test2';
     private static final String PROJ_TEST2_MSG = 'The project list should contain test2';
-    private static final String PROJ_TEST3 = 'test3';
+    private static final String PROJ_TEST3 = 'Test3';
     private static final String PROJ_TEST3_MSG = 'The project list should contain test3';
     private static final String FIN_GLOBALMCONAME = 'globalMCOName';
     private static final String FIN_GLOBALMCONAME_MSG = 'The Financials list should contain globalMCOName';
@@ -342,7 +342,7 @@ public class IPM_FinancialCopyPasteGrid_Test {
     *************************************************************************/
     
      static testMethod void testEditFinancialsLocal(){
-        projectList = [select ID,name from IPM_Project__c where name like :PROJ_NAME_LIKE];
+        projectList = [select ID,name,IPM_Project_Type__c from IPM_Project__c where name like :PROJ_NAME_LIKE];
         Set<String> projNames = new Set<String>();
         for(IPM_Project__c proj:  projectList) {
             projNames.add(proj.name);
@@ -389,24 +389,9 @@ public class IPM_FinancialCopyPasteGrid_Test {
             IPM_FinancialCopyPasteGrid.getFinancialyear(rowcol,ipmFinConLoc2.ListCountries,Local_STR,projectList[2].IPM_Project_Type__c);
             system.assertNotEquals(IPM_ConstantUtils.STATUS_IN_PROGRESS, lstFinancial[2].status__c , getFinancial_MSG );
              // this is to cover the Volume unit Total total and with complete all the values on the copy and paste page
+            PageReference ROE = ipmFinConLoc2.ResetOnError();
             
-            PageReference pRef4 = Page.IPM_FinancialCopyPasteGrid;
-            pRef4.getParameters().put('id', projectList[2].Id);
-            Test.setCurrentPage(pRef4);
-            IPM_FinancialCopyPasteGrid ipmFinConLoc3 = new IPM_FinancialCopyPasteGrid();
-            ipmFinConLoc3.Sustainability='5';
-            ipmFinConLoc3.Span= Local_STR;
-            system.assertEquals(ipmFinConLoc3.Span, Local_STR,PROJ_SPAN_LOCAL_MSG);
-            selOpts.add(new SelectOption(lstFinancial[2].Id,lstFinancial[2].Id));        
-            system.assertEquals(selOpts.isEmpty() , false, EMPTY_LIST);
-            ipmFinConLoc3.ListCountries = lstFinancial[2].Id;
-            MCOList = ipmFinConLoc3.getCountryValue();
-            system.assertEquals(MCOList.size(), 0, MCO_LST_MSG);
-            ipmFinConLoc3.submit();
-            system.assertEquals(1, ipmFinConLoc2.options.size() , submit_MSG);
-            rowcol = input4;
-            IPM_FinancialCopyPasteGrid.getFinancialyear(rowcol,ipmFinConLoc3.ListCountries,Local_STR,projectList[2].IPM_Project_Type__c);
-            system.assertNotEquals(IPM_ConstantUtils.STATUS_IN_PROGRESS, lstFinancial[2].status__c , getFinancial_MSG );
+            
         }
         Test.stopTest();
         

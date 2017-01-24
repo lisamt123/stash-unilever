@@ -1,4 +1,4 @@
-/**
+	/**
 * @author       Cognizant
 * @date         27/04/2015
 * @description  This class is used for updating the rollout status and dates
@@ -242,19 +242,32 @@ public without sharing class  IPM_ProcessRolloutStatusAndDates
     public static void updatedMilestoneTLD( Set<Id> projectIdSet) 
     {
         List<IPM_Milestone__c> updatedMilestoneList = new List<IPM_Milestone__c> {};
-        for(IPM_Milestone__c ipmMileStone :[Select Id, IPM_Name__c, IPM_Due_Date__c, IPM_Planned_Date__c, IPM_Project__c, IPM_Project__r.IPM_Target_Launch_Dates__c from IPM_Milestone__c where IPM_Project__c =: projectIdSet])
+        Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
+        for(IPM_Milestone__c ipmMileStone :[Select Id, IPM_Name__c, IPM_Due_Date__c, IPM_Planned_Date__c, IPM_Project__c, IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Project__r.IPM_ProjectGKM__c,IPM_Project__r.IPM_Project_Type__c,IPM_Project__r.IPM_Parent_Project__c from IPM_Milestone__c where IPM_Project__c =: projectIdSet])
         {
             ipmMileStone.IPM_Project_Launch_Date__c = ipmMileStone.IPM_Project__r.IPM_Target_Launch_Dates__c;
             
             if(IPM_Utils.TargetLaunchDateShiptoTrade.equals(ipmMileStone.IPM_Name__c) || IPM_ConstantUtils.SHIPTO_TRADE_TLD.equals(ipmMileStone.IPM_Name__c)) 
             {
             	ipmMileStone.IPM_Planned_Date__c = ipmMileStone.IPM_Project__r.IPM_Target_Launch_Dates__c;
+            	ipmMileStone.IPM_Due_Date__c = ipmMileStone.IPM_Project__r.IPM_Target_Launch_Dates__c;
             }
             updatedMilestoneList.add(ipmMileStone);
+        	if(!projectMap.containsKey(ipmMileStone.IPM_Project__c))
+        	{
+        		IPM_Project__c project = new IPM_Project__c();
+        		project.IPM_ProjectGKM__c = ipmMileStone.IPM_Project__r.IPM_ProjectGKM__c;
+        		project.IPM_Project_Type__c = ipmMileStone.IPM_Project__r.IPM_Project_Type__c;
+        		project.IPM_Parent_Project__c = ipmMileStone.IPM_Project__r.IPM_Parent_Project__c;
+        		projectMap.put(ipmMileStone.IPM_Project__c,project);
+        	}
         }
         if(!updatedMilestoneList.isEmpty())
         {
+            IPM_MilestoneHelper.SKIP_TRIGGER_EXECUTION = true; 
             update updatedMilestoneList;
+            IPM_MilestoneHelper.SKIP_TRIGGER_EXECUTION = false;
+            IPM_MilestoneHelper.rollupMilestoneDuedate(projectIdSet,projectMap); 
         }
     }
 }

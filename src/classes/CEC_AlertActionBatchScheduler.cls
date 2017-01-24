@@ -30,9 +30,10 @@ global with sharing class CEC_AlertActionBatchScheduler implements Database.Batc
             CEC_AlertActionBatchScheduler alertActionBatch = new CEC_AlertActionBatchScheduler();
             database.executebatch(alertActionBatch);
         } catch(Exception e) {
-            String msgBodyStr = '*** ERROR IN SCHEDULING THE CEC ALERT ACTION BATCH APEX JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
-            CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Scheduling Apex Job Failed');
-            System.debug(msgBodyStr);
+            //String msgBodyStr = '*** ERROR IN SCHEDULING THE CEC ALERT ACTION BATCH APEX JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
+            CEC_ExceptionHandling.CreateExceptionLog('Scheduler', 'execute', 'CEC_AlertActionBatchScheduler', '', e.getStackTraceString());
+            //CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Scheduling Apex Job Failed');
+            //System.debug(msgBodyStr);
         }
     }
     
@@ -47,9 +48,11 @@ global with sharing class CEC_AlertActionBatchScheduler implements Database.Batc
         try {
             alertActionHelper.executeAction(scope);  
         } catch(Exception e) {
-            String msgBodyStr = '*** ERROR IN PROCESSING THE ALERT EMAILS IN THE BATCH JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
-            CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Batch Job to send Alert Emails failed');
-            System.debug(msgBodyStr);
+            //String msgBodyStr = '*** ERROR IN PROCESSING THE ALERT EMAILS IN THE BATCH JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
+            CEC_ExceptionHandling.CreateExceptionLog('Scheduler', 'execute', 'CEC_AlertActionBatchScheduler', '', e.getStackTraceString());
+           // CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Batch Job to send Alert Emails failed');
+            //System.debug(msgBodyStr);
+            
         }        
     }
     
@@ -77,9 +80,10 @@ global with sharing class CEC_AlertActionBatchScheduler implements Database.Batc
             }
               
         } catch(Exception e) {
-            String msgBodyStr = '*** ERROR IN STARTING THE CEC ALERT ACTION SCHEDULER *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
-            CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Starting the  Apex Job Scheduler Failed');
-            System.debug(msgBodyStr);
+            //String msgBodyStr = '*** ERROR IN STARTING THE CEC ALERT ACTION SCHEDULER *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
+            CEC_ExceptionHandling.CreateExceptionLog('Scheduler', 'startScheduler', 'CEC_AlertActionBatchScheduler', '', e.getStackTraceString());
+            //CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Starting the  Apex Job Scheduler Failed');
+            //System.debug(msgBodyStr);
         }
 
     }
@@ -95,9 +99,10 @@ global with sharing class CEC_AlertActionBatchScheduler implements Database.Batc
                 System.abortJob(ct.Id);
             }  
         } catch(Exception e) {
-            String msgBodyStr = '*** ERROR IN STOPING THE CEC ALERT ACTION SCHEDULER *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
-            CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Stoping the  Apex Job Scheduler Failed');
-            System.debug(msgBodyStr);
+            //String msgBodyStr = '*** ERROR IN STOPING THE CEC ALERT ACTION SCHEDULER *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
+            CEC_ExceptionHandling.CreateExceptionLog('Scheduler', 'stopAllScheduler', 'CEC_AlertActionBatchScheduler', '', e.getStackTraceString());
+            //CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Stoping the  Apex Job Scheduler Failed');
+            //System.debug(msgBodyStr);
         }
 
     }

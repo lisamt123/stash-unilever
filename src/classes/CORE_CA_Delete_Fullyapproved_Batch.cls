@@ -20,7 +20,10 @@ global with sharing class CORE_CA_Delete_Fullyapproved_Batch implements Database
         String strNameClm='\n';
         String strNextLine='\n';
         String strMsg;
+<<<<<<< HEAD
         integer count =0;
+=======
+>>>>>>> develop
         
         strMsg = CORE_Chatter_Approval__c.getInstance('FullyApproved_delete_Msg').Text_Value__c;
         strMsg = strMsg.replace('XXX',string.valueof(System.now()));  
@@ -39,7 +42,10 @@ global with sharing class CORE_CA_Delete_Fullyapproved_Batch implements Database
             //Delete header records      
             if(!lstHeaderAriba.isempty())
             {
+<<<<<<< HEAD
                 count++;
+=======
+>>>>>>> develop
                 Database.delete(lstHeaderAriba); 
                 }
                    
@@ -58,7 +64,10 @@ global with sharing class CORE_CA_Delete_Fullyapproved_Batch implements Database
             //Delete header records      
             if(!lstHeaderGTES.isempty())
             {
+<<<<<<< HEAD
                 count++;
+=======
+>>>>>>> develop
                 Database.delete(lstHeaderGTES); 
                 }
                 
@@ -76,7 +85,10 @@ global with sharing class CORE_CA_Delete_Fullyapproved_Batch implements Database
             //Delete header records      
             if(!lstHeaderCLM.isempty())
             {
+<<<<<<< HEAD
                 count++;
+=======
+>>>>>>> develop
                 Database.delete(lstHeaderCLM);  
                 }
             
@@ -85,7 +97,11 @@ global with sharing class CORE_CA_Delete_Fullyapproved_Batch implements Database
         }
         //Insert the text post with the list of deleted header record
         FeedItem fdItem=new FeedItem(Type='TextPost',Body= strMsg,ParentId=strGroupIds);
+<<<<<<< HEAD
         if((fdItem != null) && (count != 0))
+=======
+        if(fdItem != null)
+>>>>>>> develop
         {
             Database.Insert(fdItem);
             }

@@ -11,11 +11,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     private static final String IPM_PROJECTCONTROLLER_STR = 'IPM_ProjectController';
     private static final Map<String,Boolean> APPENDREGIONMAP = new Map<String,Boolean>{'Regional' => true};
     private static final List<String> DEFAULT_MANDATORY_FIELDS = new List<String>{'IPM_Project_Name__c','IPM_Category_Text__c','IPM_Brand_Positioning__c','IPM_Company_Card__c','IPM_ProjectSubType__c','IPM_Target_Launch_Dates__c'};
-    private static final String DEFAULT_CHARTER_APPROVER = 'RCLT';  
+    private static final String DEFAULT_CHARTER_APPROVER = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;  
     
     //*@Description: TLD restriction in effect
     public  Boolean tldRestriction {get;set;}
-    
     //*@Description: Project Resource list
     list<IPM_Project_Resource__c> lstProuser = new list<IPM_Project_Resource__c>();
     //*@Description: Project Metadata information
@@ -69,7 +68,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public boolean updateApproach{get;set;}// is user update project approach
     public string isFromEditPage{get;set;}// For UI usage
     public boolean isProjectNameBlank{get;set;}//is no duplicate name
-    public boolean isTLDFieldEditable{get;set;}// To make TLD field readonly #REQ02427          
+    public boolean isTLDFieldEditable{get;set;}// To make TLD field readonly #REQ02427
+    public List<Selectoption> brandOptionsList; 
     //*@Description: To show preselected BET in the unlinking modal  
     public String projbetlink {
     get{
@@ -102,16 +102,24 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public Boolean isBrandEditable{get;set;}
     public Boolean isBrandVisible{get;set;}
     public string selectedBrand{get;set;}
+    public Boolean isBusinessPartnerBool{get;set;}
+    public Boolean isCentralTeamBool{get;set;}
+    public String  preSelectCategory{get;set;}//to check if category selection is changed from the UI
     /****************************************************************************
     @Description : Initialization of the constructor
     *****************************************************************************/
     public IPM_ProjectSetUpController(ApexPages.StandardController controller){
         Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=9');
 	reactivateProject = false;
-        if(project!=null)
-        {
+        if(project!=null){
            initialise();
         }
+        
+        if(project.IPM_Bosscard__c!=null)
+        {
+        	populateProjectMetadataAttributes(projectMetadata); 
+        }
+        
     }
     /****************************************************************************
     @Description : To initialize all variables
@@ -140,9 +148,12 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         companyCardToRecordType = new Map<Id,String>();
         projectTypeList = new List<IPM_Project_Metadata__mdt>();
         isRollout =  IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+        IPM_CustomPermission custPermission = new IPM_CustomPermission();
+        isBusinessPartnerBool = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+        isCentralTeamBool = custPermission.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
+        brandOptionsList = new List<Selectoption>();
         
-        if(project!=null)
-        {
+        if(project!=null){
             List<IPM_Project_Metadata__mdt>  projectMetadataList = IPM_Utils.getProjectTypeMetadata(new List<IPM_Project__c>{project});
             if(!projectMetadataList.isEmpty()){
                 projectMetadata = projectMetadataList.get(0);
@@ -150,24 +161,20 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             ComplexityType=project.IPM_Complexity__c;
             ProjectTabName=project .IPM_Quit_Project_Tab__c;
             list<IPM_Task__c >ipmprojectTask=[SELECT id FROM IPM_Task__c WHERE IPM_Project__c=:projectId LIMIT 1];
-            if(!ipmprojectTask.isEmpty())
-            {
+            if(!ipmprojectTask.isEmpty()){
                 isTaskgenerated=true;
             }
         }
-        else
-        {
+        else{
             project = new IPM_Project__c();
         }  
         
-        if(projectMetadata == null)
-        {
+        if(projectMetadata == null){
             projectMetadata = new IPM_Project_Metadata__mdt();
         } 
         isFromEditPage=ApexPages.currentPage().getParameters().get('isEdit'); 
         ImageId=ApexPages.currentPage().getParameters().get('image');
-        if(String.isNotBlank(ImageId))
-        {
+        if(String.isNotBlank(ImageId)){
             isImage=true;
         }
          //remove project name suffix in case of regional project when displaying in UI edit page
@@ -175,23 +182,25 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             project.IPM_Project_Name__c=project.IPM_Project_Name__c.substringBefore(IPM_ConstantUtils.UNDERSCORE);
         }
         getProjectResource();
-        if(project!=null)
-        {
+        if(project!=null){
             getIpmuserType();   
             getMilesTaskIpmuserType();
         }
         getAllcompanycard();
         setIsTLDFieldEditable(); 
-        // Block User from Performing any operation if project is under processing.
+        
+        initialize1();
+    }  
+    
+    public void initialize1(){
+    	// Block User from Performing any operation if project is under processing.
         if(!String.isBlank(project.IPM_Project_Job_Status__c) && 
-           (project.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE || project.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_PROCESSING) )
-        {
-            isEditable=false;
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_BACKGROUNDPROCESS_INPROGRESS));
+           (project.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE || project.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_PROCESSING) ){
+	            isEditable=false;
+	            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_BACKGROUNDPROCESS_INPROGRESS));
         }
         
-        if(isEditable)
-        {
+        if(isEditable){
         	isEditable = !(project.IPM_PrepareForArchival__c || project.Is_Archieved__c);
         	// Access check for Business Partner user while reactivating the project
         	isEditable = IPM_Utils.overrideAccessForBusinessPartner(project, isEditable);
@@ -205,22 +214,18 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
        ***/
        Integer noOfMonths = Integer.valueOf(Label.IPM_NoOfMonths_ForReactivation);
        Date dateToCompare = System.today().addMonths(-noOfMonths); 
-       if(project.IPM_EligibleForReactivation__c && project.IPM_Stopped_Date_Time__c > dateToCompare)
-       {
+       if(project.IPM_EligibleForReactivation__c && project.IPM_Stopped_Date_Time__c > dateToCompare){
    	      //security for central team and BP users
-          IPM_CustomPermission custPermission = new IPM_CustomPermission();
-          reactivateProject = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+          reactivateProject = isBusinessPartnerBool;
        }
-       if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(project.IPM_Project_Type__c))
-        {   
+       
+       if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(project.IPM_Project_Type__c)){   
             isBrandVisible=true;
             Set<String> phaseSet =new Set<String>{IPM_ConstantUtils.PHASE_FEASIBILITY,IPM_ConstantUtils.PHASE_CAPABILITY,IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT,IPM_ConstantUtils.PHASE_PLE};
-            if(phaseSet.contains(project.IPM_Phase__c)) 
-            {
+            if(phaseSet.contains(project.IPM_Phase__c)){
                 isBrandEditable=false;
             }
-            else if(IPM_ConstantUtils.PHASE_MARKET_READY.Equals(project.IPM_Phase__c) && isEditable)
-            {
+            else if(IPM_ConstantUtils.PHASE_MARKET_READY.Equals(project.IPM_Phase__c) && isEditable){
                 availableBrands=IPM_ProjectCountryDetails.getAvailableBrands(project); 
                 isBrandEditable=true;  
             }
@@ -236,12 +241,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     @Description : get all company cards for user
     @Return: List of company cards
     *****************************************************************************/
-    public List<SelectOption> getAllcompanycard()
-    {
+    public List<SelectOption> getAllcompanycard(){
         List<SelectOption> companyCardSelect  = new List<SelectOption>();
         companyCardSelect.add(new selectoption(IPM_ConstantUtils.BLANK,system.label.IPM_SelectCompanyCard));    
-        try
-        {
+        try{
             List<SelectOption> preparedCompanyCardList = new List<SelectOption>();
             Map<Id,String> resultantCompanyCardMap = new Map<Id,String>();
             // Preparing resultant company cards
@@ -256,8 +259,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                                                    WHERE IPM_Business_Partner__c=:userinfo.getuserid()
                                                    ORDER BY Name ASC LIMIT 10000])
             {
-                if(!resultantCompanyCardMap.containsKey(companyCard.Id))
-                {
+                if(!resultantCompanyCardMap.containsKey(companyCard.Id)){
                     resultantCompanyCardMap.put(companyCard.Id,companyCard.Name);
                     companyCardToRecordType.put(companyCard.Id,companyCard.RecordType.Name);
                 }
@@ -282,31 +284,25 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 companyCardSelect.addAll(preparedCompanyCardList);
                 // If company Card List contains Only 1 company Card, 
                 //retrieve Category information based on company card.
-                if(preparedCompanyCardList.size() == 1)
-                {
+                if(preparedCompanyCardList.size() == 1){
                     project.IPM_Company_Card__c =   preparedCompanyCardList.get(0).getValue();
-                    if(companyCardToRecordType.containsKey(project.IPM_Company_Card__c) && project.IPM_CompanyCardText__c==null)
-                    {
+                    if(companyCardToRecordType.containsKey(project.IPM_Company_Card__c) && project.IPM_CompanyCardText__c==null){
                         project.IPM_CompanyCardText__c = companyCardToRecordType.get(project.IPM_Company_Card__c);
                     }
                 }
             }
-            if(project.IPM_Company_Card__c !=null &&  !String.isBlank(project.IPM_CompanyCardText__c))
-            {
+            if(project.IPM_Company_Card__c !=null &&  !String.isBlank(project.IPM_CompanyCardText__c)){
                 getCategory();
                 getProjectSubTypes();
-                  
             }
         }
-        catch(Exception ex)
-        {
+        catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_PROJECTCONTROLLER_STR,'splitSaveProcced',ex.getMessage(),ex,
                                                        IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);  
         }
         return companyCardSelect;
     }
-    public void populateCategory()
-    {   
+    public void populateCategory(){   
         // Update the Project Type with Category specific information to find precise project Type.
         isBusinessError = false;
         //Clean the existing data values
@@ -314,14 +310,12 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         projectMetadata = new IPM_Project_Metadata__mdt();
         project.IPM_Project_Type__c = project.IPM_Category_Text__c = project.IPM_GateKeeping_Model__c = project.IPM_Approver_of_Charter__c = project.IPM_ProjectSubType__c =project.IPMProject_Span__c = project.IPM_Phase__c = project.IPM_Complexity__c = project.IPM_Child_Complexity__c = IPM_ConstantUtils.BLANK;
         
-        if(companyCardToRecordType.containsKey(project.IPM_Company_Card__c))
-        {
+        if(companyCardToRecordType.containsKey(project.IPM_Company_Card__c)){
             //To associate the project span/scope based on the selected company card
             project.IPM_CompanyCardText__c = companyCardToRecordType.get(project.IPM_Company_Card__c);
             getCategory();
         }
-        else
-        {
+        else{
             //To thrown an error in case a selected company card is not associated with a scope
             isBusinessError = true;
             businessErrorField = 'IPM_Company_Card__c';  
@@ -333,16 +327,13 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                     which would invoke getSubProjectType
     @Return:List of category
     *****************************************************************************/  
-    public List<SelectOption> getCategory()
-    {   
+    public List<SelectOption> getCategory(){   
         // Select Options List 
         List<Selectoption> categoryOptionList =new List<Selectoption>();
         categoryOptionList.add(new Selectoption(IPM_ConstantUtils.BLANK,system.label.IPM_SelectCategory));    
-        try
-        { 
+        try{ 
             // Only reach here when project Type is available else error.
-            if(project.IPM_Company_Card__c !=null &&  !String.isBlank(project.IPM_CompanyCardText__c))
-            {
+            if(project.IPM_Company_Card__c !=null &&  !String.isBlank(project.IPM_CompanyCardText__c)){
                 // Using Set to get Unique Categories.
                 Set<String> availableCategoryStringSet = new Set<String>();
                 List<String> availableCategoryStringList = new List<String>();
@@ -366,8 +357,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                     }
                 }
                
-                for(IPM_Company_Card__c asociatedCompanyCard : availableCategoryList)
-                {
+                for(IPM_Company_Card__c asociatedCompanyCard : availableCategoryList){
                     String[] categoryArray = asociatedCompanyCard.IPM_Managed_category__c.split(IPM_ConstantUtils.DELIMITER);
                     for(String categoryString : categoryArray)
                     {   
@@ -403,8 +393,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 }
             }
         }
-        catch(Exception ex)
-        { 
+        catch(Exception ex){ 
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_PROJECTCONTROLLER_STR,'getCategory',ex.getMessage(),ex,
                                                        IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             return null;
@@ -417,23 +406,24 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     @Return: List of brand positioning
     *****************************************************************************/
     //NPath Complexity-Based on the Business Logic all brand positions needs to be fetched for various conditions
-    public List<SelectOption> getBrandPos()
-    {
-    	List<Selectoption> brandOptionsList = new List<Selectoption>();   
-        if(!projectMetadata.IPM_MultiBrandPosApplicable__c)
-        {
-           brandOptionsList.add(new Selectoption(IPM_ConstantUtils.BLANK ,system.label.IPM_SelectBrandPosition));
+    public List<SelectOption> getBrandPos(){
+    	//Size > 1 check as default  "Select Brand Positioning" is always there
+        if( project.IPM_Category_Text__c== preSelectCategory && brandOptionsList!=NULL && !brandOptionsList.isEmpty() && brandOptionsList.size()>1){
+			return brandOptionsList;
+		}
+    	brandOptionsList.clear(); 
+    	if(!projectMetadata.IPM_MultiBrandPosApplicable__c){
+			brandOptionsList.add(new Selectoption(IPM_ConstantUtils.BLANK ,system.label.IPM_SelectBrandPosition));
         }
 
-        try
-        {
+        try{
             if(!String.isBlank(project.IPM_Category_Text__c))
             {
+                preSelectCategory = project.IPM_Category_Text__c;
                 fetchBrandPos(brandOptionsList);
             }
         }
-        catch(Exception ex)
-        {
+        catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));    
         }
         return brandOptionsList;
@@ -441,15 +431,13 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     /***************************************************************************
     Description
     ***************************************************************************/
-    public void fetchBrandPos(List<Selectoption> brandOptionList)
-    {
+    public void fetchBrandPos(List<Selectoption> brandOptionList){
         List<MDO_BrandPositions__c> userBrandPos = new List<MDO_BrandPositions__c>();
     	Set<String> brandPositionSet = new Set<String>();
     	String Query_STR = IPM_ConstantUtils.BLANK;
-		if( project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_GLOBAL))
-        {
-				Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and (product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\' or product_category_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\') ';
-            	Query_STR+=' LIMIT 50000';
+	if( project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_GLOBAL)){
+        	Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and (product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\' or product_category_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\') ';
+            	Query_STR+=' LIMIT 50000';   
             	userBrandPos=database.query(Query_STR);    
         }
         else
@@ -460,13 +448,24 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 	            if(project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_REGIONAL))
 	            {
 	            	Query_STR+=' and geo_id__r.parent_L4__r.name=\''+ string.escapeSingleQuotes(project.IPM_Region_Shr__c) +'\' ';
+	                if(project.IPMProject_Span__c.Equals(IPM_ConstantUtils.PROJECT_SPAN_LOCAL))
+	                {
+	                	Query_STR = IPM_ConstantUtils.BLANK;                        
+	                        Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and (product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\'  or product_category_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\') ';
+	                        String[] regionList = project.IPM_Region_Shr__c.split(IPM_ConstantUtils.SEMICOLON);
+	                        List<String> countryList = new List<String>(); 
+	                        for(String str: regionList){
+	                            countryList.add(str);
 	    		}
+	                        Query_STR+=' and geo_id__r.Name IN: countryList';
+	                }
+                }
 	            else if(project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_LOCAL))
 	            {
 	        		List<String>uniqueCountryList=project.IPM_Region_Shr__c.split(IPM_ConstantUtils.SEMICOLON);
 	        		Query_STR+=' and geo_id__r.Name IN:uniqueCountryList '; 
 	    		}
-	    		Query_STR+=' LIMIT 50000';
+	    		Query_STR+=' LIMIT 50000';	    		
 	    		userBrandPos=database.query(Query_STR);
 	        }
 		} 
@@ -487,10 +486,11 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 		// To retain or Loose user Selection.
         if(!String.isBlank(project.IPM_Brand_Positioning__c))
         {
-			String[] selectedBrandPos = project.IPM_Brand_Positioning__c.split(IPM_ConstantUtils.COMMA);
-		    Set<String> selectedBrandPosSet = new Set<String>(selectedBrandPos);  
-		    Set<String> retainedBrandPos = new Set<String>();
-			for(String brandPos : brandPositionSet)
+	    String[] selectedBrandPos = project.IPM_Brand_Positioning__c.split(IPM_ConstantUtils.COMMA);
+	    Set<String> selectedBrandPosSet = new Set<String>(selectedBrandPos);  
+	    Set<String> retainedBrandPos = new Set<String>();
+	    
+	    for(String brandPos : brandPositionSet)
             {
 	            if(selectedBrandPosSet.contains(brandPos) )
 	            {
@@ -513,32 +513,26 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     @Description : Getting List of Gate Keeping Models
     @Return: List of Gate Keeping Models
     *****************************************************************************/
-    public List<SelectOption> getGKMQuestions() 
-    {
+    public List<SelectOption> getGKMQuestions(){
         // Get Picklist Values from Database and then based on Project Type Filter those values
         Map<String, Schema.SObjectField> projectFieldMap = IPM_Project__c.getSObjectType().getDescribe().fields.getMap();
 
         List<SelectOption> gateKeepingOptions = new List<SelectOption>();
-        if(String.isBlank(projectMetadata.IPM_ProjectType__c))
-        {
+        if(String.isBlank(projectMetadata.IPM_ProjectType__c)){
             isBusinessError = true;
             businessErrorField = 'IPM_ProjectSubType__c';           
         }
         else
         {
-            if(projectMetadata.IPM_GKMQuestionsApplicable__c)
-            {
+            if(projectMetadata.IPM_GKMQuestionsApplicable__c){
                 String gateKeepingFieldAPI = projectMetadata.IPM_GMKQuesiton__c;  
                 String defaultGateKeepingModel = projectMetadata.IPM_GMKQuestionDefaultAns__c;
 
                 // Get Unique GateKeeping Models
-                if(String.isNotEmpty(gateKeepingFieldAPI) )
-                {
+                if(String.isNotEmpty(gateKeepingFieldAPI) ){
                     List<Schema.PicklistEntry> GKMQuestionPickVal = projectFieldMap.get(gateKeepingFieldAPI).getDescribe().getPickListValues();
                     // Prepare the Select Option List from Picklist Metadata and get the Labels as well.
-                    for(Schema.PicklistEntry pickEntry : GKMQuestionPickVal)
-                    {
-
+                    for(Schema.PicklistEntry pickEntry : GKMQuestionPickVal){
                         if(!String.isBlank(pickEntry.getValue()) )
                         {
                             gateKeepingOptions.add(new SelectOption (pickEntry.getLabel(),pickEntry.getValue() ) );
@@ -555,11 +549,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         return gateKeepingOptions;
     }
 
-    public String getGMKQuestionsLabel()
-    {
+    public String getGMKQuestionsLabel(){
         String GKMQuestionLabel = IPM_ConstantUtils.BLANK;
-        if(String.isBlank(projectMetadata.IPM_ProjectType__c))
-        {
+        if(String.isBlank(projectMetadata.IPM_ProjectType__c)){
             isBusinessError = true;
             businessErrorField = 'IPM_ProjectSubType__c';           
         }
@@ -614,20 +606,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 }    
             }
             
-            if(!projectSubTypeSet.isEmpty())
-            {
-                if(projectSubTypeSet.size() == 1)
-                {
-                    List<String> subProjectTypeList = new List<String>(projectSubTypeSet);
-                    project.IPM_ProjectSubType__c = subProjectTypeList.get(0); 
-                }
-                else if(!String.isBlank(defaultSubProjectType) && String.isBlank(project.IPM_ProjectSubType__c))
-                {
-                        project.IPM_ProjectSubType__c = defaultSubProjectType;
-                } 
-            }
-            
-        }
+            getProjSubType(projectSubTypeSet, defaultSubProjectType);
+        } 
         
         // Prepare the Select Option List from Picklist Metadata and get the Labels as well.
         for(Schema.PicklistEntry pickEntry : projectSubTypeVal)
@@ -644,6 +624,21 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         }
         
         return projectSubTypeOptions;
+    }
+    
+    public void getProjSubType(Set<String> projectSubTypeSet, String defaultSubProjectType){
+        if(!projectSubTypeSet.isEmpty())
+        {
+            if(projectSubTypeSet.size() == 1)
+            {
+                List<String> subProjectTypeList = new List<String>(projectSubTypeSet);
+                project.IPM_ProjectSubType__c = subProjectTypeList.get(0); 
+            }
+            else if(!String.isBlank(defaultSubProjectType) && String.isBlank(project.IPM_ProjectSubType__c))
+            {
+                    project.IPM_ProjectSubType__c = defaultSubProjectType;
+            } 
+        }
     }
     
     /****************************************************************************
@@ -721,7 +716,6 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         }
         else
         {
-
                 if(!projectMetadata.IPM_GKMQuestionsApplicable__c)
                 {
                     project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.BLANK; 
@@ -745,10 +739,11 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 project.IPM_Complexity__c =  projectMetadata.IPM_DefaultComplexity__c;
                 project.IPM_Child_Complexity__c = projectMetadata.IPM_DefaultComplexity__c; 
                 project.IPM_ProjectGKM__c =  projectMetadata.MasterLabel;
-                                
+                
+                if(projectMetadata.MasterLabel == IPM_ConstantUtils.GKM_3){
+                	project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GKM_3;
+                }
         }
-        
-           
     }
 
     /****************************************************************************
@@ -777,8 +772,23 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 associateProjectMetadata();
                 populateProjectMetadataAttributes(projectMetadata);
             }
+        	
+        	chkMandatoryFields();
+            chkdisplayError();
+            
+            if(project!=null && IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c) && project.IPM_Target_Launch_Dates__c!=null) {
+     			isTLDBeforeGates = isProjectTLDBeforeMilestoneGates(project.IPM_Target_Launch_Dates__c);
+            }
+        }
         
-            Map<String, Schema.SObjectField> projectFieldDesc = IPM_Project__c.getSObjectType().getDescribe().fields.getMap();
+        if(!isBusinessError && !isContainSpecialChars && !(isTLDLessThnSixMnth && tldRestriction) && !isTLDBeforeGates && !isTLDLessThnToday && !isDupProjectname && !isMaxBrandPosition)
+        {
+            processProjectSave();
+        }
+    } 
+    
+    public void chkMandatoryFields(){
+    	Map<String, Schema.SObjectField> projectFieldDesc = IPM_Project__c.getSObjectType().getDescribe().fields.getMap();
             
             // Set Default Mandaytory Fields for now.If project Type is Present, it would override the default Mandatory Fields.
             List<String> mandatoryFields = DEFAULT_MANDATORY_FIELDS;
@@ -801,17 +811,16 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                     businessErrorField = businessErrorField+IPM_ConstantUtils.COMMA+mandatoryFieldAPI;      
                 }
             }
-            
             if( !isRollout.Equals(project.IPM_Project_Type__c) && !String.isBlank(project.IPM_Project_Name__c) && !Pattern.matches(IPM_ConstantUtils.IPM_PROJECTNAME_PATTERN ,project.IPM_Project_Name__c))
             {
                 isContainSpecialChars=true;
-                
-            }
+        }
+    }
+    
+    public void chkdisplayError(){
             //To display error when more than 20 BrandPosSelected
             if(!String.isBlank(project.IPM_Brand_Positioning__c) && projectMetadata.IPM_MultiBrandPosApplicable__c){
-                
                 String[] maxBrandPosition = project.IPM_Brand_Positioning__c.split(IPM_ConstantUtils.COMMA);
-                
                 if(!maxBrandPosition.isEmpty() && maxBrandPosition .size()>20){    
                     isMaxBrandPosition=true;
                     businessErrorField = 'IPM_Brand_Positioning__c';    
@@ -832,17 +841,6 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             else if(projectMetadata.IPM_TargetLaunchDateDuration__c !=null && project.IPM_Target_Launch_Dates__c < System.today().addDays(Integer.valueOf(projectMetadata.IPM_TargetLaunchDateDuration__c)  ))
             {
                 isTLDLessThnSixMnth = true;
-            }
-            if(project!=null && IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c) && project.IPM_Target_Launch_Dates__c!=null) {
-     			isTLDBeforeGates = isProjectTLDBeforeMilestoneGates(project.IPM_Target_Launch_Dates__c);
-            }
-        }
-        
-        if(!isBusinessError && !isContainSpecialChars && !(isTLDLessThnSixMnth && tldRestriction) && !isTLDBeforeGates && !isTLDLessThnToday && !isDupProjectname && !isMaxBrandPosition)
-        
-        {
-            processProjectSave();
-        
         }
     } 
     /****************************************************************************
@@ -857,29 +855,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     {
         try
         {
-           
-            project.IPM_Project_Navigate__c = true;
-
-            if(!projectMetadata.IPM_FastTrackApplicable__c && !projectMetadata.IPM_WhiteSpaceApplicable__c )
-            {
-                project.IPM_White_Space_Project__c=false;
-                project.IPM_Fast_Track_Project__c=false;
-            }
-            if(project.IPM_Project_Type__c != isRollout && APPENDREGIONMAP.containsKey(project.IPMProject_Span__c))
-            {
-                String shortNameSTR = regionShortName();
-                if(!String.isBlank(shortNameSTR) && !project.IPM_Project_Name__c.contains(shortNameSTR))
-                {
-                    project.IPM_Project_Name__c = project.IPM_Project_Name__c + shortNameSTR;
-                }
-            }  
-           if(project.IPM_Project_Gatekeeper__c==null && project.IPM_Company_Card__c!=null){
-                list<IPM_User_Profile__c>lstGatekeeper=[SELECT IPM_User__c FROM IPM_User_Profile__c WHERE IPM_Company_Card__c=:project.IPM_Company_Card__c AND
-                                                        IPM_User_Function__c=:IPM_ConstantUtils.TEAM_GATEKEEPER LIMIT 1];  
-                if(lstGatekeeper!=null && !lstGatekeeper.isEmpty()){
-                    project.IPM_Project_Gatekeeper__c=lstGatekeeper[0].IPM_User__c; 
-                } 
-            }   
+        	project.IPM_Project_Navigate__c = true;
+			
+			processProjectSave1();
+			
             if(!isSavedDB && !skipValidation && projectMetadata!=null)
             {
                 project.IPM_IsSaved__c = true;
@@ -939,6 +918,30 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             
         }
     }
+    
+   public void processProjectSave1(){
+    	if(!projectMetadata.IPM_FastTrackApplicable__c && !projectMetadata.IPM_WhiteSpaceApplicable__c )
+        {
+            project.IPM_White_Space_Project__c=false;
+            project.IPM_Fast_Track_Project__c=false;
+        }
+        if(project.IPM_Project_Type__c != isRollout && APPENDREGIONMAP.containsKey(project.IPMProject_Span__c))
+        {
+            String shortNameSTR = regionShortName();
+            if(!String.isBlank(shortNameSTR) && !project.IPM_Project_Name__c.contains(shortNameSTR))
+            {
+                project.IPM_Project_Name__c = project.IPM_Project_Name__c + shortNameSTR;
+            }
+        }
+        if(project.IPM_Project_Gatekeeper__c==null && project.IPM_Company_Card__c!=null){
+            list<IPM_User_Profile__c>lstGatekeeper=[SELECT IPM_User__c FROM IPM_User_Profile__c WHERE IPM_Company_Card__c=:project.IPM_Company_Card__c AND
+                                                    IPM_User_Function__c=:IPM_ConstantUtils.TEAM_GATEKEEPER LIMIT 1];  
+            if(lstGatekeeper!=null && !lstGatekeeper.isEmpty()){
+                project.IPM_Project_Gatekeeper__c=lstGatekeeper[0].IPM_User__c; 
+            } 
+        }
+    } 
+    
     /****************************************************************************
     @Description : Append project name with region shot name
     *****************************************************************************/
@@ -1008,11 +1011,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             }
             
             //security for central team and BP users
-            IPM_CustomPermission cpr = new IPM_CustomPermission();
             boolean isCentralTeam=false;
             boolean isBPUser=false;
-            isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
-            isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+            isCentralTeam = isCentralTeamBool;
+            isBPUser=isBusinessPartnerBool;
             if(isCentralTeam || isBPUser){
                 isEditable=true;
             }   
@@ -1040,11 +1042,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             checkUserList(loggedInUser);
             
             //security for central team and BP users
-                IPM_CustomPermission cpr = new IPM_CustomPermission();
                 boolean isCentralTeam=false;
                 boolean isBPUser=false;
-                isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
-                isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+                isCentralTeam = isCentralTeamBool;
+                isBPUser=isBusinessPartnerBool;
                 if(isCentralTeam || isBPUser){
                     isMilestoneEditable=true;
                     isTaskeditable=true;

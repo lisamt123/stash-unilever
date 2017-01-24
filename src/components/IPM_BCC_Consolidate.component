@@ -11,55 +11,15 @@
 <apex:attribute name="projSpan" required="true" type="String" assignTo="{!projectSpan}" description="Getting Project Span" />
 <apex:attribute name="projectId" required="true" type="Id" assignTo="{!projId}" description="Getting Project Id" />
 <apex:attribute name="gateType" type="String" assignTo="{!gateDocType}" description="get the document name"/> 
- 
- <apex:pageBlock rendered="{!if(projectSpan=='Global',true,false)}">
- <table class="ipmTable table table-bordered gateKeeperlist" >
-	<thead>
-		<tr>
-			<th>
-			{!$Label.IPM_ROLLOUTS}
-			</th>
-			<th>
-			 {!$Label.IPM_BUSINESS_CASE_ALIGNMENT}
-			</th>
-			<th>
-			{!$Label.IPM_FinAlignment}
-			</th>
-			<th>
-			{!$Label.IPM_TLD_ALIGNMENT}
-			</th>
-		</tr>
-  
-	</thead>
-	<tbody>
-		<apex:repeat value="{!localFinancialList}" var="finance">
-			<tr>
-				<td>
-				<apex:outputText value="{!finance.Local_Project__r.name}"/>
-				</td>
-				<td>
-				<!-- Render condition for displaying business case confirmation in contract gate document -->
-				 <apex:outputText value="{!IF(AND(finance.IPM_Business_Case_Confirmed__c,gateDocType=='Contract'),'Confirmed','Unconfirmed')}" rendered="{!if(gateDocType=='Contract',true,false)}"></apex:outputText>
-				  <!-- Render condition for displaying business case confirmation in market ready gate document -->
-				  <apex:outputText value="{!IF(AND(finance.Is_BC_Confirmed_Capability__c,gateDocType=='Market Ready'),'Confirmed','Unconfirmed')}" rendered="{!if(gateDocType=='Market Ready',true,false)}"></apex:outputText>
-				 </td>
-				<td>
-				  <apex:outputText value="{!IF(finance.Misaligned__c,'Misaligned','Aligned')}"></apex:outputText>
-				</td>
-				<td>
-				<apex:outputText value="{!IF(finance.Local_Project__r.Rollout_Plan_Target_Launch_Date__c=finance.Local_Project__r.IPM_Target_Launch_Dates__c,'Aligned','Misaligned')}"></apex:outputText>
-				</td>
-			</tr>
-		</apex:repeat>
-	</tbody>
-</table>
- </apex:pageBlock>
-   
- <apex:pageBlock rendered="{!if(projectSpan=='Regional',true,false)}">
+<apex:attribute name="showBccTab"  type="Boolean" assignTo="{!showBccTable}" description="get the visibility of BBC table"/>    
+<apex:outputPanel style="display:none;">{!InvokeMethodsForComponent}</apex:outputPanel>
+
+         
+ <apex:pageBlock >
     <table class="ipmTable table table-bordered gateKeeperlist" >
    <thead>
-		<tr>
-			<th width="15%">
+        <tr>
+            <th width="15%" >
             {!$Label.IPM_ROLLOUTS}
             </th>
             <th width="12%">
@@ -71,66 +31,93 @@
             <th width="15%">
             {!$Label.IPM_TLD_ALIGNMENT}
             </th>
-            <th width="4%">
+    		<apex:outputPanel rendered="{!showBccTable}">  <th width="4%">
             {!$Label.ipmFinTableGDgTO}
-            </th>
-            <th width="4%">
+            </th></apex:outputPanel>
+            <apex:outputPanel rendered="{!showBccTable}"> <th width="4%">
             {!$Label.ipmFinTableGDiTO}
-            </th>
-            <th width="4%">
+            </th> </apex:outputPanel>
+            <apex:outputPanel rendered="{!showBccTable}"> <th width="4%">
             {!$Label.ipmFinTableAdvertisingPromotions}
-            </th>
-            <th width="4%">
+            </th></apex:outputPanel>
+            <apex:outputPanel rendered="{!showBccTable}"> <th width="4%">
             {!$Label.IPM_Assumption_GM}
-            </th>
-		</tr>
-  
-	</thead>
-	<tbody>
-		<apex:repeat value="{!localFinancialList}" var="finance">
-			<tr>
-				<td>
-				<apex:outputText value="{!finance.Local_Project__r.name}"/>
-				</td>
-				<td>
-				<!-- Render condition for displaying business case confirmation in contract gate document -->
-				 <apex:outputText value="{!IF(AND(finance.IPM_Business_Case_Confirmed__c,gateDocType=='Contract'),'Confirmed','Unconfirmed')}" rendered="{!if(gateDocType=='Contract',true,false)}"></apex:outputText>
-				  <!-- Render condition for displaying business case confirmation in market ready gate document -->
-				  <apex:outputText value="{!IF(AND(finance.Is_BC_Confirmed_Capability__c,gateDocType=='Market Ready'),'Confirmed','Unconfirmed')}" rendered="{!if(gateDocType=='Market Ready',true,false)}"></apex:outputText>
-				 </td>
-				<td>
-				  <apex:outputText value="{!IF(finance.Misaligned__c,'Misaligned','Aligned')}"></apex:outputText>
-				</td>
-				<td>
-				<apex:outputText value="{!IF(finance.Local_Project__r.Rollout_Plan_Target_Launch_Date__c=finance.Local_Project__r.IPM_Target_Launch_Dates__c,'Aligned','Misaligned')}"></apex:outputText>
-				</td>
-				<td>
-				<apex:outputText value="{!finance.IPM_Financial_Years__r[0].Turnover_Contract__c}" rendered="{!if(AND(finance.Local_Project__r.IPM_Phase__c!='Feasibility',gateDocType=='Contract'),true,false)}"></apex:outputText>
-				<apex:outputText value="{!finance.IPM_Financial_Years__r[0].Turnover_MR__c}" rendered="{!if(AND(finance.Local_Project__r.IPM_Phase__c!='Capability',gateDocType=='Market Ready'),true,false)}"></apex:outputText>
-				<apex:outputText value="{!finance.IPM_Financial_Years__r[0].Turnover_Regional__c}" rendered="{!if(OR(AND(finance.Local_Project__r.IPM_Phase__c=='Feasibility',gateDocType=='Contract'),
-																											 AND(finance.Local_Project__r.IPM_Phase__c=='Capability',gateDocType=='Market Ready')),true,false)}"></apex:outputText>
-				</td>
-				<td>
-				<apex:outputText value="{!finance.IPM_Financial_Years__r[1].Turnover_Contract__c}" rendered="{!if(AND(finance.Local_Project__r.IPM_Phase__c!='Feasibility',gateDocType=='Contract'),true,false)}"></apex:outputText>
-				<apex:outputText value="{!finance.IPM_Financial_Years__r[1].Turnover_MR__c}" rendered="{!if(AND(finance.Local_Project__r.IPM_Phase__c!='Capability',gateDocType=='Market Ready'),true,false)}"></apex:outputText>
-				<apex:outputText value="{!finance.IPM_Financial_Years__r[1].Turnover_Regional__c}" rendered="{!if(OR(AND(finance.Local_Project__r.IPM_Phase__c=='Feasibility',gateDocType=='Contract'),
-																											 AND(finance.Local_Project__r.IPM_Phase__c=='Capability',gateDocType=='Market Ready')),true,false)}"></apex:outputText>    
-				</td>
-				<td>
-				<apex:outputText value="{!finance.IPM_Financial_Years__r[1].Advertising_Promotions_Contract__c}" rendered="{!if(AND(finance.Local_Project__r.IPM_Phase__c!='Feasibility',gateDocType=='Contract'),true,false)}"></apex:outputText>
-				<apex:outputText value="{!finance.IPM_Financial_Years__r[1].Advertising_Promotions_MR__c}" rendered="{!if(AND(finance.Local_Project__r.IPM_Phase__c!='Capability',gateDocType=='Market Ready'),true,false)}"></apex:outputText>
-				<apex:outputText value="{!finance.IPM_Financial_Years__r[1].Advertising_Promotions_Regional__c}" rendered="{!if(OR(AND(finance.Local_Project__r.IPM_Phase__c=='Feasibility',gateDocType=='Contract'),
-																											 AND(finance.Local_Project__r.IPM_Phase__c=='Capability',gateDocType=='Market Ready')),true,false)}"></apex:outputText> 
-				</td>
-				<td>
-				<apex:outputText value="{!finance.IPM_Financial_Years__r[1].GM_of_TO_Contract__c}" rendered="{!if(AND(finance.Local_Project__r.IPM_Phase__c!='Feasibility',gateDocType=='Contract'),true,false)}"></apex:outputText>
-				<apex:outputText value="{!finance.IPM_Financial_Years__r[1].GM_of_TO_MR__c}" rendered="{!if(AND(finance.Local_Project__r.IPM_Phase__c!='Capability',gateDocType=='Market Ready'),true,false)}"></apex:outputText>
-				<apex:outputText value="{!finance.IPM_Financial_Years__r[1].GM_of_TO_Regional__c}" rendered="{!if(OR(AND(finance.Local_Project__r.IPM_Phase__c=='Feasibility',gateDocType=='Contract'),
-																											 AND(finance.Local_Project__r.IPM_Phase__c=='Capability',gateDocType=='Market Ready')),true,false)}"></apex:outputText>     
-				</td>
-			</tr>
-		</apex:repeat>
-	</tbody>
+            </th></apex:outputPanel>
+        </tr>  
+    </thead>
+    <tbody>
+        <apex:repeat value="{!localFinancialList}" var="finance">
+        <apex:variable var="contractApproved" value="{!if(AND(finance.Contract_Approved__c,gateDocType=='Contract'),true,false)}"   />
+		<apex:variable var="MRApproved" value="{!if(AND(finance.MR_Approved__c,gateDocType=='Market Ready'),true,false)}"   />
+		<apex:variable var="contractOrMRRegional" value="{!if(OR(AND(NOT(finance.Contract_Approved__c),gateDocType=='Contract', projSpan=='Regional'),AND(NOT(finance.MR_Approved__c),gateDocType=='Market Ready',projSpan=='Regional' )),true,false)}"   />
+		<apex:variable var="contractOrMRGlobal" value="{!if(OR(AND(NOT(finance.Contract_Approved__c),gateDocType=='Contract', projSpan=='Global'),AND(NOT(finance.MR_Approved__c),gateDocType=='Market Ready', projSpan=='Global' )),true,false)}"   />
+        
+            	<tr>
+	                <!-- This Will displays the name Of MCO -->
+	                <td>
+	                <apex:outputText value="{!finance.Local_Project__r.name}"/>
+	                </td>
+	                
+	                <!-- Populates the alignment of business case for that rollout that it is confirmed  or Unconfirmed  -->
+	                <td>
+	                <!-- Render condition for displaying business case confirmation in gate document -->
+	                 <apex:outputText value="{!IF(AND(finance.IPM_Business_Case_Confirmed__c,gateDocType=='Contract'),'Confirmed','Unconfirmed')}" rendered="{!if(gateDocType=='Contract',true,false)}"></apex:outputText>
+	                  <!-- Render condition for displaying business case confirmation in market ready gate document -->
+	                  <apex:outputText value="{!IF(AND(finance.Is_BC_Confirmed_Capability__c,gateDocType=='Market Ready'),'Confirmed','Unconfirmed')}" rendered="{!if(gateDocType=='Market Ready',true,false)}"></apex:outputText>
+	                 </td>
+	                
+	                <!-- populate the alignment of Financial for that rollout that it is Aligned or Misaligned -->
+	                <td>
+                    <apex:outputText value="{!IF(finance.Misaligned__c,'Misaligned','Aligned')}"></apex:outputText>
+                    </td>
+	                
+	                <!-- populate the alignment of Target Launch Date for that rollout that it is Aligned or Misaligned -->
+	                <td>
+	                <apex:outputText value="{!IF(finance.Local_Project__r.Rollout_Plan_Target_Launch_Date__c=finance.Local_Project__r.IPM_Target_Launch_Dates__c,'Aligned','Misaligned')}"></apex:outputText>
+	                </td>
+	                
+                <apex:outputPanel rendered="{!showBccTable}">
+                <td>
+                <!-- populate value of GTO from Innovation Years Y3 and PL Type: Gross -->
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[0].Turnover_Contract__c}" rendered="{!contractApproved}"></apex:outputText>
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[0].Turnover_MR__c}" rendered="{!MRApproved}"></apex:outputText>
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[0].Turnover_Regional__c}" rendered="{!contractOrMRRegional}"></apex:outputText>
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[0].Turnover_Global__c}" rendered="{!contractOrMRGlobal}"></apex:outputText>
+                </td>
+                </apex:outputPanel>
+                
+                <apex:outputPanel rendered="{!showBccTable}"> 
+                <td>
+                <!-- populate value of ITO from Innovation Years Y3 and PL Type: Incremental-->
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[1].Turnover_Contract__c}" rendered="{!contractApproved}"></apex:outputText>
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[1].Turnover_MR__c}" rendered="{!MRApproved}"></apex:outputText>
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[1].Turnover_Regional__c}" rendered="{!contractOrMRRegional}"></apex:outputText>  
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[1].Turnover_Global__c}" rendered="{!contractOrMRGlobal}"></apex:outputText>   
+                </td>
+                </apex:outputPanel>
+                
+                <apex:outputPanel rendered="{!showBccTable}">
+                <td>
+                <!-- populate the value of BMI from Years Y3 and PL Type: Incremental-->
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[1].Advertising_Promotions_Contract__c}" rendered="{!contractApproved}"></apex:outputText>
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[1].Advertising_Promotions_MR__c}" rendered="{!MRApproved}"></apex:outputText>
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[1].Advertising_Promotions_Regional__c}" rendered="{!contractOrMRRegional}"></apex:outputText> 
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[1].Advertising_Promotions_Global__c}" rendered="{!contractOrMRGlobal}"></apex:outputText> 
+                </td>
+                </apex:outputPanel>
+                
+                <apex:outputPanel rendered="{!showBccTable}">
+                <td>
+                <!-- populate the value of GM% from Years Y3 and PL Type: Incremental-->
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[1].GM_of_TO_Contract__c}" rendered="{!contractApproved}"></apex:outputText>
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[1].GM_of_TO_MR__c}" rendered="{!MRApproved}"></apex:outputText>
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[1].GM_of_TO_Regional__c}" rendered="{!contractOrMRRegional}"></apex:outputText>   
+                <apex:outputText value="{!finance.IPM_Financial_Years__r[1].GM_of_TO_Global__c}" rendered="{!contractOrMRGlobal}"></apex:outputText>       
+                </td>
+                </apex:outputPanel>
+            </tr>
+        </apex:repeat>
+    </tbody>
 </table>
  </apex:pageBlock>
 </apex:component>

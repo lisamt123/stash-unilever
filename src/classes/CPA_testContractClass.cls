@@ -38,8 +38,10 @@ public with sharing class CPA_testContractClass {
     Throws [Exceptions]: 
     ********************************************************************/
     public static CPA_LOI__c createLOI (CPA_PWORF__c objPWORF){
-        CPA_LOI__c objLOI = new CPA_LOI__c();  
-        User testUSer = createTestUser();
+        CPA_LOI__c objLOI = new CPA_LOI__c();
+       //swathi commented this for sonarQube warning  
+       // User testUSer = createTestUser();
+       //createTestUser();
         
         CPA_Requirements_and_Deliverables__c objRaD = CPA_testPWORFClass_util.createRequirementsDeliverables(objPWORF);
         insert objRaD;
@@ -142,8 +144,9 @@ public with sharing class CPA_testContractClass {
     ********************************************************************/
     public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         CPA_project_work_order__c objPwo = new CPA_project_work_order__c();
-        User testUSer = createTestUser();
-        
+        //swathi commented this for sonarQube warning
+        //User testUSer = createTestUser();
+        createTestUser();
         CPA_Requirements_and_Deliverables__c objRaD = CPA_testPWORFClass_util.createRequirementsDeliverables(objPWORF);
         insert objRaD;
         CPA_Risk_Assessment_and_Mitigation__c objRAM = CPA_testPWORFClass_util.createRiskAssessment(objPWORF);

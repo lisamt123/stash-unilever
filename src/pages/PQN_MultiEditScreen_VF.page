@@ -1,0 +1,505 @@
+<apex:page showHeader="false" sidebar="false" controller="PQN_UploadNCData"  apiVersion="36.0" docType="html-5.0">
+    
+    <apex:form id="frm1">
+    <head>
+        <title>IMPORT EXCEL DATA</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>-->
+        
+        
+        <!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
+        
+        <!--<apex:includescript value="https://code.jquery.com/jquery-1.11.1.min.js" / >
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <apex:includescript value="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" />
+        <apex:includescript value="https://code.jquery.com/jquery-1.11.1.min.js" / >-->
+        <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/js/jquery-1.11.1.min.js')}"></script>
+        <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/js/jquery.dataTables.min.js')}"></script>
+        <!--<apex:stylesheet value="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.css" />
+        <script>
+            j$ = jQuery.noConflict();
+            j$(document).ready( function () {
+                var contactTable = j$('[id$="contacttable"]').DataTable({
+                    
+                });
+            });
+        </script>-->
+        
+    </head>
+<style>
+
+</style>    
+    <body>
+        <div id="wrapper">
+        
+        <c:PQN_Navigation navigationName="multiple_entry"/>
+        <!-- /#page-wrapper -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+
+            <div class ="row">            
+                <div class="col-md-6">
+                <h3>Please Upload Nonconformance Data <br/> <small>You can import up to 1000 records at a time.</small></h3>
+                </div>
+                <div class="col-md-6">
+                    <div class="pull-right">
+
+                    </div>
+                </div>
+            </div>
+             <hr/>
+           
+          <div class="panel panel-default">
+            <div class="panel-heading"><strong>Import Data</strong> <small>Excel file upload</small></div>
+            <div class="panel-body">
+               <h4>Select format to parse the excel </h4>
+              <div class = "pull-right">
+                  <apex:outputPanel id="ipfile">
+                  <apex:selectList value="{!selectedfile}" size="1" styleClass="selectedFile">
+                      <apex:selectOptions value="{!filetype}"/>
+                  </apex:selectList>
+                  </apex:outputPanel>
+                  <!--<select name="format">
+                    <option value="csv"> CSV</option>
+                    <option value="json" selected="selected"> JSON</option>
+                  </select>-->
+              </div>
+              
+              <!-- Standar Form -->
+              <br/> <br/>
+              <h4>Select files from your computer
+                <sup style= "font-size:13px;">
+                    <a href="#" data-toggle="tooltip" title="Choose the file containing the data you want to import. You can import up to 1000 records at a time."> ? </a>
+                </sup>
+            </h4>
+            
+                <div class="form-inline pull-right">
+                  <div class="form-group">
+                    <input type="file" name="xlfile" id="xlf"/>
+                  </div>
+                </div>
+                
+                <br/>
+                <br/>
+                
+                <div id="alert_dangerId" class="alert alert-danger" style="display:none;">
+                    <strong>Danger!</strong> You should .
+                </div>
+                <!-- Drop Zone -->
+         <!--     <h4>Or drag and drop file below <sup ><a href="#" data-toggle="tooltip" title="Choose the file containing the data you want to import. You can import up to 10,000 records at a time."> ? </a></sup></h4>
+
+                <br/>
+                <br/>
+                  <div class="upload-drop-zone" id="drop">
+                    Just drag and drop any excel file here
+                  </div>
+           -->      
+                  <div style="margin:20px;">
+                    <!--<button class="btn1" type="button" onclick="tableToExcel('exportTable', 'MD Patient List View');">Export</button>-->
+                    <!--<apex:commandButton styleClass="btn1" onclick="initiateInsertion();" value="Start Import" reRender="dummypanel" />-->
+                   <!-- <apex:commandButton styleClass="btn1" onclick="initiateInsertion();" value="Start Import" reRender="dummypanel" />-->
+                    <!--<button class="btn1" onclick="initiateInsertion();" >Start Import</button>-->
+                    <input id="importBtnId" class="btn" value="Start Import" type="button" onclick="initiateInsertion();"/>
+
+                    </div>
+                    <apex:actionStatus id="submitbut" startText="Please Wait...."/>
+              <div class = "panel panel-info">
+                   <div class = "panel-heading">
+                      <h3 class = "panel-title">Output</h3>
+                   </div>
+                
+                 
+              
+                    <apex:actionFunction name="passStringToUploadDataTosObject" action="{!parseData}" reRender="output123,NCData" status="submitbut">
+                        <apex:param name="data" value="" assignTo="{!myString}" />
+                    </apex:actionFunction>
+                    
+                    <apex:actionFunction name="saveexceldatainapex" action="{!savedata}" reRender="NCData" status="savewait">
+                        
+                    </apex:actionFunction>
+               <apex:outputPanel id="dummypanel">
+               </apex:outputPanel>
+               <!--   <apex:outputPanel id="output123" rendered="{!status}">
+                    Status : {!IF(status,'true', 'false')}
+                        <div class="alert alert-success fade in">
+                    
+                            <a href="#" class="close" data-dismiss="alert">×</a>
+                    
+                                <strong> Success! </strong>  <span class="label label-inverse"> {!size} </span> Rows inserted successfully.
+                    
+                        </div>
+                  </apex:outputPanel>  -->
+                    
+                 <apex:actionStatus id="savewait" startText="Please Wait...."/>
+                   <div class = "panel-body" >
+                   
+                       <apex:outputPanel id="NCData">
+                       <apex:outputtext value="{!message}" styleclass="color:red"/>
+                       <apex:commandLink value="Show Inserted Data" rendered="{!Showsuccessdata}" action="{!showsucesstable}" reRender="NCData" status="savewait"/>
+                       <apex:commandLink value="Show Error Data" rendered="{!Hidesuccessdata}" action="{!hidesuccesstable}" reRender="NCData" status="savewait"/>
+                       <apex:pageBlock title="" rendered="{!showallsuccessmsg && Showsuccessdata}">
+                         <p style="color:green">  <strong> Success! </strong> All rows inserted successfully. Please click on show inserted data to view the data.</p>
+                       </apex:pageblock>
+                       
+                       <apex:pageBlock title="Uploaded NC data" rendered="{!if(forInsertWrapper.size>0,true,false) && showerrortable}">
+                       
+                       <apex:pageBlockButtons >
+                           <input class="btn" value="Save" type="button" onclick="saveexceldata();"/>
+                          <!-- <apex:commandButton value="Save" action="{!savedata}" rerender="NCData" status="savewait"/>-->
+                           <input class="btn" value="Export" type="button" onclick="tableToExcel('Data Collection');"/>
+                           
+                       </apex:pageBlockButtons>
+                        <apex:outputpanel style="overflow:scroll;height:250px;" layout="block">
+                        <apex:outputPanel rendered="{!if(forinsertErrors.size>0,true,false)}">
+                            <p style="color:red">Error Data</p>
+                        </apex:outputPanel>
+                        
+                        <div id="dvData" style="display:none;">
+                            <table id="exportTable">
+                                <thead>
+                                <tr>
+                                    <th>Error Msg</th>
+                                    <th>Cluster__c</th>
+                                    <th>Non_compliance_reason_code__c</th>
+                                    <th>Description__c</th>
+                                    <th>Delivery_Note_Number__c</th>
+                                    <th>DC_Country__c</th>
+                                    <th>Supplier_type__c</th>
+                                    <th>SKU__c</th>
+                                    <th>Reporting_DC__c</th>
+                                    <th>Date_Pallet_Received__c</th>
+                                    
+                                    
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <apex:repeat value="{!forInsertWrapper}" var="nc">
+                                    <tr>
+                                        <td>{!nc.errorMessage}</td>
+                                        <td>{!nc.pqn.Cluster__c}</td>
+                                        <td>{!nc.pqn.Non_compliance_reason_code__c}</td>
+                                        <td>{!nc.pqn.Description__c}</td>
+                                        <td>{!nc.pqn.Delivery_Note_Number__c}</td>
+                                        <td>{!nc.pqn.DC_Country__c}</td>
+                                        <td>{!nc.pqn.Supplier_type__c}</td>
+                                        <td>{!nc.pqn.SKU__c}</td>
+                                        <td>{!nc.pqn.Reporting_DC__c}</td>
+                                        <td>{!nc.pqn.Date_Pallet_Received__c}</td>
+                                    </tr>
+                                </apex:repeat>
+                                </tbody>
+                          </table>
+                        </div>
+                       
+                       <apex:pageBlockTable value="{!forInsertWrapper}" var="nc">
+                       <apex:column headerValue=""  >
+                           <apex:outputPanel rendered="{!if(nc.errorMessage!=null,true,false)}">
+                            <sup style= "font-size:13px">
+                                <a href="#" data-toggle="tooltip" title="{!nc.errorMessage}" style= "color:red"> X </a>
+                            </sup>
+                            </apex:outputPanel>
+                        </apex:column>
+                        
+                        <apex:column headerValue="Delivery Note Number" >
+                            <apex:inputField value="{!nc.pqn.Delivery_Note_Number__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="SKU" >
+                            <apex:inputField value="{!nc.pqn.SKU__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Supplier" >
+                            <apex:inputField value="{!nc.pqn.Supplier__c}"/>
+                        </apex:column>
+                           <apex:column headerValue="Reason Code" >
+                            <apex:inputField value="{!nc.pqn.Non_compliance_reason_code__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="No. Of pallets per SKU NC" >
+                            <apex:inputField value="{!nc.pqn.Number_of_Pallets_Per_SKU_Non_Compliant__c}"/>
+                        </apex:column>
+                       <!-- <apex:column headerValue="Date Pallet received" >
+                            <apex:inputField value="{!nc.pqn.Date_Pallet_Received__c}"/>
+                        </apex:column>-->
+                       <apex:column headerValue="Region" >
+                            <apex:inputField value="{!nc.pqn.Region__c}"/>
+                        </apex:column>
+                         
+                        <apex:column headerValue="Cluster" >
+                            <apex:inputField value="{!nc.pqn.Cluster__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Sub Cluster" >
+                            <apex:inputField value="{!nc.pqn.Sub_Cluster__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="MCO" >
+                            <apex:inputField value="{!nc.pqn.MCO__c}"/>
+                        </apex:column>  
+                           <apex:column headerValue="Description" >
+                            <apex:inputField value="{!nc.pqn.Description__c}"/>
+                        </apex:column>
+                           
+                        <apex:column headerValue="DC Country" >
+                            <apex:inputField value="{!nc.pqn.DC_Country__c}"/>
+                        </apex:column>
+                           
+                              <apex:column headerValue="Supplier Type" >
+                                        <apex:inputField value="{!nc.pqn.Supplier_type__c}"/>
+                             </apex:column>
+                             
+
+                        </apex:pageBlockTable>
+                                             
+                       </apex:outputpanel>
+                       </apex:pageBlock>
+                       
+                       <apex:pageBlock title="Inserted Data" rendered="{!if(forinsertsuccess.size>0,true,false) && (!showsuccessdata)}">
+                           <apex:pageBlockTable value="{!forinsertsuccess}" var="suc">
+                               <apex:column headerValue="Delivery Note Number" >
+                                    <apex:outputField value="{!suc.Delivery_Note_Number__c}"/>
+                                </apex:column>
+                                <apex:column headerValue="SKU" >
+                                    <apex:outputField value="{!suc.SKU__c}"/>
+                                </apex:column>
+                                <apex:column headerValue="Supplier" >
+                                    <apex:outputField value="{!suc.Supplier__c}"/>
+                                </apex:column>
+                                <apex:column headerValue="Reason Code" >
+                                    <apex:outputField value="{!suc.Non_compliance_reason_code__c}"/>
+                                </apex:column>
+                                <apex:column headerValue="No. Of pallets per SKU NC" >
+                                    <apex:outputField value="{!suc.Number_of_Pallets_Per_SKU_Non_Compliant__c}"/>
+                                </apex:column>
+                                
+                                <apex:column headerValue="MCO" >
+                                    <apex:outputField value="{!suc.MCO__c}"/>
+                                </apex:column>   
+                                <apex:column headerValue="Cluster" >
+                                    <apex:outputField value="{!suc.Cluster__c}"/>
+                                </apex:column>
+                                <apex:column headerValue="Sub Cluster" >
+                                    <apex:outputField value="{!suc.Sub_Cluster__c}"/>
+                                </apex:column>
+                                
+                            </apex:pageblockTable>
+                       </apex:pageBlock>
+                       
+                       
+                       </apex:outputPanel>
+                       <apex:outputPanel id="outjson">
+                      <div style="display:none">
+                      <pre id="out">
+                      </pre>
+                      </div>
+                      </apex:outputPanel>
+                     
+                   </div>
+                    
+                   
+                </div>
+                
+            </div>
+          </div>
+        <div class="footer">
+           <div class="container">
+
+          </div>
+        </div>
+        
+                               
+
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.7/es5-shim.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>-->
+        <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/xls/es5-shim_4.5.7_es5-shim.js')}"></script>
+        <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/xls/xlsx_0.8_jszip.js')}"></script>
+        <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/xls/xlsx_0.8_xlsx.js')}"></script>
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
+        <script>
+            var X = XLSX;
+            var fileName ;
+            function fixdata(data) {
+                var o = "", l = 0, w = 10240;
+                for(l=0; l<data.byteLength/w; ++l) o+=String.fromCharCode.apply(null,new Uint8Array(data.slice(l*w,l*w+w)));
+                o+=String.fromCharCode.apply(null, new Uint8Array(data.slice(l*w)));
+                return o;
+            }
+         </script>    
+          <script>  
+            function to_json(workbook) {
+                var result = {};
+                var sheetName='Data Collection';
+                    if (typeof(workbook.Sheets[sheetName]) == "undefined"){
+                        $("#alert_dangerId").show();
+                        $("#alert_dangerId").html('<strong>Sheet Name</strong> must be Data Collection. Please open your sheet and check sheet name in file.');
+                        
+                    }else{
+                        var a = workbook.Sheets[sheetName]["!ref"];
+                        a=a.split(":");
+                        var b={};
+                        var selectedFile = document.getElementsByClassName('selectedFile')[0].value;
+                        if(selectedFile =="Cannock"){ b['range'] = "B9:"+a[1]; }
+                        if(selectedFile =="Unilever"){ b['range'] = "A1:"+a[1]; }
+                        if(selectedFile =="Heilbronn"){ b['range'] = "B9:"+a[1]; }
+                        var roa = X.utils.sheet_to_row_object_array(workbook.Sheets[sheetName],b);
+                        var roaHeader = X.utils.sheet_Header_json(workbook.Sheets[sheetName],b);
+                        console.log(roaHeader);
+                        checkHeader(roaHeader,selectedFile);
+                        if(roa.length > 0){ result[sheetName] = roa; }
+                    }
+                return result;
+            }
+            </script>
+            <script>
+            function checkHeader(roaHeader,selectedFile){
+                if(roaHeader.length>0){
+                            
+                    if(selectedFile =="Unilever"){
+                       var UnileverHeader= ["Cluster__c", "Non_compliance_reason_code__c", "Description__c", "Delivery_Note_Number__c", "DC_Country__c", "Supplier_type__c", "SKU__c", "Reporting_DC__c", "Date_Pallet_Received__c"];
+                       checkValidFile(UnileverHeader, roaHeader);
+                    }
+                    if(selectedFile =="Cannock"){
+                        var CannockHeader= ["Month", "Supplier Name", "Depot","Product Code","Reject Code","Number Pallets Affected"];
+                        checkValidFile(CannockHeader, roaHeader);
+                    }
+                    if(selectedFile =="Heilbronn"){
+                        var HeilbronnHeader= ["DN#", "Month", "Source Factory", "Source DC (if applicable)", "Reporting DC", "Product Group (Category)", "Product Number (SKU)", "Lot Code", "Product Name", "LOSS CODE #", "Loss Level 1", "Loss Level 2","Loss Level 3","Loss Level 4","Additional Information","Number Pallets affected"];
+                        checkValidFile(HeilbronnHeader, roaHeader);
+                    }
+                    
+                }else{
+                    $("#alert_dangerId").show();
+                    $("#alert_dangerId").html('<strong>Selected file</strong> is not valid. Please refresh page and upload valid file.');
+                }
+            }
+            </script>
+            
+            <script>
+                function checkValidFile(arrayHeader, FirstRecord){
+                    var j=0;
+                    for(var i=0; i<arrayHeader.length; i++){
+                        var valid=false;
+                        for(var k=0; k<FirstRecord.length; k++){
+                            if (typeof(FirstRecord[k]) == "undefined"){
+                                FirstRecord[k]='';
+                            }
+                            if(arrayHeader[i]==FirstRecord[k].trim()){
+                                j++;
+                                break;
+                            }                        
+                        }                                                
+                    }                    
+                    if(arrayHeader.length==j){
+                        $("#alert_dangerId").removeAttr("class");
+                        $("#alert_dangerId").attr("class","alert alert-success");
+                        $("#alert_dangerId").show();
+                        $("#alert_dangerId").html('<strong>Selected file</strong> is valid. Please import file.');
+                        return "valid";
+                        
+                    }                    
+                    $("#alert_dangerId").show();
+                    $("#alert_dangerId").html('<strong>Selected file</strong> is not valid. Please refresh page and upload valid file.');
+                    return "Invalid";
+                }
+            </script>
+            
+            <script>
+            function to_csv(workbook) {
+                var result = [];
+                workbook.SheetNames.forEach(function(sheetName) {
+                    var csv = X.utils.sheet_to_csv(workbook.Sheets[sheetName]);
+                    if(csv.length > 0){
+                        result.push("SHEET: " + sheetName);
+                        result.push("");
+                        result.push(csv);
+                    }
+                });
+                return result.join("\n");
+            }
+            </script>
+            <script>
+            function to_formulae(workbook) {
+                var result = [];
+                workbook.SheetNames.forEach(function(sheetName) {
+                    var formulae = X.utils.get_formulae(workbook.Sheets[sheetName]);
+                    if(formulae.length > 0){
+                        result.push("SHEET: " + sheetName);
+                        result.push("");
+                        result.push(formulae.join("\n"));
+                    }
+                });
+                return result.join("\n");
+            }
+            </script>
+            <script>
+            function process_wb(wb) {
+                var output = "";
+                switch("json") {
+                    case "json":
+                        output = JSON.stringify(to_json(wb), 2, 2);
+                        break;
+                    case "form":
+                        output = to_formulae(wb);
+                        break;
+                    default:
+                    output = to_csv(wb);
+                }                 
+                if(out.innerText === undefined) out.textContent = output;
+                  else out.innerText = output;                
+                if(typeof console !== 'undefined') console.log("output", new Date());
+            }
+            </script>
+            <script>
+            function initiateInsertion(){ passStringToUploadDataTosObject(document.getElementById('out').innerText); }
+            function saveexceldata(){ saveexceldatainapex(); }     
+            var xlf = document.getElementById('xlf');
+            function handleFile(e) {           
+                var files = e.target.files;
+                var f = files[0];
+                var fileExt = f.name.split(/[\s.]+/);
+                if(fileExt[fileExt.length-1] == "xlsx" || fileExt[fileExt.length-1] == "xls"){
+                    var reader = new FileReader();
+                    var name = f.name;
+                    fileName = name
+                    reader.onload = function(e) {
+                        var data = e.target.result;
+                            var arr = fixdata(data);
+                            var wb =  X.read(btoa(arr), {type: 'base64'});
+                            process_wb(wb);
+                    };
+                    reader.readAsArrayBuffer(f);
+                    
+                }else{
+                    $("#alert_dangerId").show();
+                    $("#alert_dangerId").html('<strong>File format</strong> is not valid. Please upload xls or xlsx file.');
+                }
+                return false;
+            }            
+            if(xlf.addEventListener) xlf.addEventListener('change', handleFile, false);    
+            </script>
+            <script>                      
+                function tableToExcel(file_Name){
+                       var a = document.createElement('a');
+                        //getting data from our div that contains the HTML table
+                        var data_type = 'data:application/vnd.ms-excel';
+                        var table_div = document.getElementById('dvData');
+                        var table_html = table_div.outerHTML.replace(/ /g, '%20');
+                        a.href = data_type + ', ' + table_html;
+                        //setting the file name
+                        if(fileName.length>0){
+                            fileName = fileName.substr(0, fileName.lastIndexOf('.'));
+                        }else{
+                            fileName= '';
+                        }
+                        a.download = fileName+'_error.xls';
+                        //triggering the function
+                        a.click();
+                   }                  
+                  </script>
+            </div>
+            </div>
+         </div>
+     </body>
+ </apex:form>
+
+</apex:page>

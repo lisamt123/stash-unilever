@@ -20,19 +20,25 @@ public with sharing class CEC_Util {
     static final string fraction = 'Fraction';
     
     //Method to send email
-    public static void sendNotificationEmail(string msgString, string emailSubject){
-        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        List<CEC_NotificationEmailId__C> listNotifEmail = CEC_NotificationEmailId__C.getall().values();
-        if(listNotifEmail.size()>0){
-            if(listNotifEmail[0].EmailId__C !=''){                
-                String[] toAddresses = new String[]{listNotifEmail[0].EmailId__C};
-                    mail.setToAddresses(toAddresses);
-                mail.setSubject(emailSubject);
-                mail.setHTMLBody(msgString);
-                Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
+   /* public static void sendNotificationEmail(string msgString, string emailSubject){
+        try{
+             Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+            List<CEC_NotificationEmailId__C> listNotifEmail = CEC_NotificationEmailId__C.getall().values();
+            if(listNotifEmail.size()>0){
+                if(listNotifEmail[0].EmailId__C !=''){                
+                    String[] toAddresses = new String[]{listNotifEmail[0].EmailId__C};
+                        mail.setToAddresses(toAddresses);
+                    mail.setSubject(emailSubject);
+                    mail.setHTMLBody(msgString);
+                    Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
+                }
             }
+        }Catch(Exception ex){
+				 CEC_ExceptionHandling.CreateExceptionLog('Controller', 'sendNotificationEmail', 'CEC_Util', '', ex.getStackTraceString());
+
         }
-    } 
+       
+    } */
     
     //Method to remove special characters in the String.
     public static String removeSpecialChar(String inputStr) {

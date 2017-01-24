@@ -3,7 +3,7 @@
     <label>IPM Global Threshold Ice Cream Refresh</label>
     <values>
         <field>IPM_Category_Group__c</field>
-        <value xsi:type="xsd:string">Refreshments</value>
+        <value xsi:type="xsd:string">Refreshment</value>
     </values>
     <values>
         <field>IPM_Category__c</field>

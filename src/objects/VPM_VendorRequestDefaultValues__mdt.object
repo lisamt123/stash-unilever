@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>VPM - Used to store the default values for Vendor Requests to be applied based on Vendor Type, Commodity and Company Code data</description>
+    <fields>
+        <fullName>VPM_CSB__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPm- Used as definition attribute for applying default data on Vendor Requests</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>CSB?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_CashManagementGroup__c</fullName>
+        <description>VPM- Records the default value of &apos;Cash Management Group&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Cash Management Group</label>
+        <picklist>
+            <picklistValues>
+                <fullName>C2000_UL Cust_Group Customers</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C1000_Customer_Customers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C1010_Risk Cust_Risk Customers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V1000_Vendor RM_Vendors: RM &amp; Packaging</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V1010_Vendor FG_Vendors: Finished Goods</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V1020_Vendor SE_Vendors: Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V1030_Employees_Employees</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V1040_Taxes_Taxes &amp; social security due</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V1050_Vendor AS_Vendors: Assets</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V2000_UL vendors_Group vendors</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A1_V-DOMESTIC_VENDOR-DOMESTIC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A2_V-FOREIGN _VENDOR-FOREIGN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A3_V-CONC DOM_VENDOR-CONCERN - DOMESTIC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A4_V-CONC FOR_VENDOR-CONCERN - FOREIGN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A5_V-INSTITUT_VENDOR-INSTITUTIONS (Israel)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A6_V-TAXES_VENDOR-TAXES (Israel)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A7_V-EMPLOYEE_VENDOR-EMPLOYEE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A8_V-STAND OR_VENDOR-STANDING ORDER (Israel)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A9_V-OTHERS_VENDOR-OTHERS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AA_L-SHORT TE_LOANS-SHORT TERM LOANS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AB_L-LONG TER_LOANS-LONG TERM LOANS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AD_DEPOSITS_LOANS-DEPOSITS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AE_V-OIL DOM _VENDOR-OIL (DOMESTIC)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AF_V-OIL IMP _VENDOR-OIL (IMPORT)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AI_V-INTERCOM_VENDOR- INTERCOMP (Israel)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AK_V-TEA DOM_VENDOR-TEA (DOMESTIC)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AL_V-TEA IMP_VENDOR-TEA (IMPORT)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AM_V-MAR MEDI_VENDOR-MARKETING&amp;MEDIA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AT_V-TRANSPOR_VENDOR-TRANSPORTATION</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AV_V-ONE TIME_VENDOR-ONE TIME VENDOR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AX_V-PERS TBI_VENDOR-PERS. T.B. INV (Turkey)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AY_V-CUST TBI_VENDOR-CUST. T.B. INV (Turkey)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E1_C-3rd LOCL_CUSTOMER-3rd PARTY LOCAL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E2_C-3rd EXP_CUSTOMER-3rd PARTY EXPORTS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E3_C-CONC LOC_CUSTOMER-CONC WITHIN THE B.G.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E4_C-CONC FOR_CUSTOMER-CONC OUTSIDE THE B.G.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E5_C-NON-TRAD_CUSTOMER-NON-TRADE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E6_C-DEPOSITS_CUSTOMER-DEPOSITS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E9_C-OTHERS_CUSTOMER-OTHERS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EI_C-INTERCOM_CUSTOMER- INTERCOMP (Israel)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ES_C-SEED OIL_CUSTOMER-SEED OIL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_CompanyCode__c</fullName>
+        <description>VPM- Indicates the Company Code value used as one of the definition attributes for applying default values.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Company Code</label>
+        <length>4</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PaymentMethod1__c</fullName>
+        <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Payment Method 1</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PaymentMethod2__c</fullName>
+        <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Payment Method 2</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PaymentMethod3__c</fullName>
+        <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Payment Method 3</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PaymentMethod4__c</fullName>
+        <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Payment Method 4</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PaymentMethod5__c</fullName>
+        <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Payment Method 5</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PaymentMethod__c</fullName>
+        <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>DELPayment Method</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0_NEFT-National Electr Fund Tran</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1_TRFR-Fund Tran Fr HSBC To HSBC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2_RTGS-Real TimeGross Settlement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3_ACC - HSBC At Par Cheque</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4_CCC - UTI At Par Cheque</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5_IDD -DD Issu by HSBC On Oth Bk</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6_DDP - Demand Draft</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7_RMP - Remote DD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8_ICO - Inter company order</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B_E-Payment-Interbank Tr-ICICI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C_E-Payment - Cheques</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D_E-Payment - Demand draft</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>H_Foreign Currency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>I_E-Payment-Interbank Tr - HDFC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>J_NEFT-S</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>K_TRFR-S</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>L_RTGS-S</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>M_Cheque payments</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>N_Demand draft Payments</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>T_Bank Transfer payments</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>U_NEFT-T National Electr Fund Tr</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V_TRFR-T Fund Tr Fr HSBC To HSBC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>W_RTGS-T Real Time Gr Settlement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X_eTAX- Payment Method for DB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Payment Method 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ReconciliationAccount__c</fullName>
+        <description>VPM- Records the default value of &apos;Reconciliation Account&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Reconciliation Account</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_SortKey__c</fullName>
+        <description>VPM- Records the default value of &apos;Sort Key&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Sort Key</label>
+        <picklist>
+            <picklistValues>
+                <fullName>000_Allocation number</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>001_Posting date</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>002_Doc.no., fiscal year</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>003_Document date</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>004_Branch account</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>005_Loc.currency amount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>006_Doc.currency amount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>007_Bill/exch.due date</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>008_Cost center</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>009_External doc.number</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>010_Purchase order no.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>011_Plant number</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>012_Vendor number</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>014_Purchase order</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>015_Personnel number</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>016_Settlement period</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>017_Settl.per., pers.no.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>018_Asset number</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>021_Segment text</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>022_One-time name / city</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>023_One-time city / name</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>024_Document header text</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>025_CPU date</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>026_Pmnt per.bslne date</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>027_Value date</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>028_Asset number</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>029_Pstng month, vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>031_Customer number</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>032_Pstng yr,month,curr.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>033_Cost center</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>034_Month, cost center</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>035_Contract number</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>036_Order</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>037_Currency key</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>039_Project number</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>055_Fiscal year, month</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>060_Matnr - Menge</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>101_Cash discnt clearing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>090 _Doc.no., Year,Line</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>102 _Document Number</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>103 _CoCod.Fis.Year.DocNo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z01_Trading Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z02_Reference Key 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z09_Sales order</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z10_Sales order+Item N0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z11_Delivery + Material</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z12_Salesorder + Materia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z50_Delivery</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z52_Payment reference</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ToleranceGroup__c</fullName>
+        <description>VPM- Records the default value of &apos;Tolerance Group&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Tolerance Group</label>
+        <length>5</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorSubType__c</fullName>
+        <description>VPM-  Used as a defintion attritbute for applying default data for Vendor Requests.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Vendor Sub Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Domestic</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Foreign</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorType__c</fullName>
+        <description>VPM- The types of Vendors to apply the default data. Part of the definition of default data.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Vendor Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>MBS_Marketing Business Services_G001</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <label>Vendor Request Default Values</label>
+    <pluralLabel>Vendor Request Default Values</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

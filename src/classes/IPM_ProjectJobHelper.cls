@@ -19,6 +19,14 @@ public without sharing class IPM_ProjectJobHelper
     public static Map<Id,IPM_Project__c> processingProjectMap = new Map<Id,IPM_Project__c>();
     
     public static String CLASS_NAME = IPM_ProjectJobHelper.class.getName();
+    public static  Map<Id,IPM_Project__c> projectToParentMapping = new Map<Id,IPM_Project__c>();        
+    public static Map<Id,IPM_Project__c> projectToGrandParentMapping = new Map<Id,IPM_Project__c>();
+    public static Map<Id,Map<Id,IPM_Project__c>> projectToChildMapping = new Map<Id,Map<Id,IPM_Project__c>>();
+    public static Map<Id,Map<Id,IPM_Project__c>> projectToGrandChildMapping = new Map<Id,Map<Id,IPM_Project__c>>();
+    public static Map<String,IPM_Project__c> rolloutProjectsMap = new Map<String,IPM_Project__c>();
+    public static Map<Id,Map<Id,IPM_Project_Rollout__c>> projectSpecificRegionalRolloutMap = new Map<Id,Map<Id,IPM_Project_Rollout__c>>();
+    public static Map<Id,Map<Id,IPM_Project_Rollout__c>> projectSpecificLocalRolloutMap = new Map<Id,Map<Id,IPM_Project_Rollout__c>>();
+    public static Set<String> projectExternalIdSet = new Set<String>(); 
      /**************************************************************
     * @description: Process Project information. Used for Setting Phases of various Projects, which internally invoke Related DMLs.
                     This class handles the core logic for :
@@ -41,18 +49,14 @@ public without sharing class IPM_ProjectJobHelper
         
         Map<Id,IPM_Project__c> masterProjectDetailMap = new Map<Id,IPM_Project__c>();
         
-        Map<Id,IPM_Project__c> projectToParentMapping = new Map<Id,IPM_Project__c>();        
-        Map<Id,IPM_Project__c> projectToGrandParentMapping = new Map<Id,IPM_Project__c>();
                 
-        Map<Id,Map<Id,IPM_Project__c>> projectToChildMapping = new Map<Id,Map<Id,IPM_Project__c>>();
-        Map<Id,Map<Id,IPM_Project__c>> projectToGrandChildMapping = new Map<Id,Map<Id,IPM_Project__c>>();
         
         if(!incomingProjectMap.isEmpty())
         {
             incomingProjectIds = incomingProjectMap.keySet();
             masterProjectDetailMap.putAll(incomingProjectMap); 
             masterProjectDetailMap.putAll(IPM_Utils.populateParentProjectDetails(incomingProjectIds));
-            masterProjectDetailMap.putAll(IPM_Utils.populateChildProjectDetails(incomingProjectIds));
+            masterProjectDetailMap.putAll(IPM_Utils.populateChildProjectDetails(incomingProjectIds,false));
         
             projectToParentMapping = IPM_Utils.prepareProjectToParentMapping(incomingProjectMap,masterProjectDetailMap);
             projectToGrandParentMapping = IPM_Utils.prepareProjectToGrandParentMapping(projectToParentMapping,masterProjectDetailMap);
@@ -113,325 +117,51 @@ public without sharing class IPM_ProjectJobHelper
                 
                 if(currentProjectType!=null) 
                 { 
-                     IPM_Project__c globalProject,regionalProject = null;
                      
-                    /* Local Project Calculation Begins.Used for Updating Phase of related Projects based on gatekeeping Model */
-                    if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-                    {
-                        globalProject = projectToGrandParentMapping.get(projectId);
-                        regionalProject = projectToParentMapping.get(projectId);
                           
-                        if(globalProject !=null && processingProjectMap.containsKey(globalProject.Id))
-                        {
-                           globalProject = processingProjectMap.get(globalProject.Id);
-                        }
                          
-                        if(regionalProject !=null && processingProjectMap.containsKey(regionalProject.Id))
-                        {
-                           regionalProject = processingProjectMap.get(regionalProject.Id);
-                        } 
                         
-                        if(regionalProject!=null)  
-                        {
-                            Boolean phaseChange = false;
-                            // Get Regional Project Phase and validate whether GateSequence is already ahead of Current Project Sequence.If yes no need to Update.
-                            if(currentProjectType.IPM_CopyPhase2Regional__c && regionalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c  && 
-                                IPM_ConstantUtils.phaseSequence.get(regionalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c) )
-                            {
-                                regionalProject.IPM_Temporary_Phase__c = regionalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                phaseChange = true;
-                            }
                             
-                            // If local Project is ahead of Regional Project and Fast Forward is true, upgrade Regional Project to same Phase as local
-                            IPM_Project_Type__c regionalProjectType =  IPM_Utils.retrieveProjectType(regionalProject);
                             
-                            if(regionalProjectType.IPM_Fast_Forward_Phase_Change__c && regionalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
-                                IPM_ConstantUtils.phaseSequence.get(regionalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c))
-                            {
-                                regionalProject.IPM_Temporary_Phase__c = regionalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                phaseChange = true;
-                            } 
                             
-                            if(phaseChange)
-                            {
-                                regionalProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
-                                regionalProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
-                                if(qContext!=null)
-                                {
-                                    regionalProject.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
-                                }     
-                                processingProjectMap.put(regionalProject.Id,regionalProject);
-                            } 
-                        }
+                    processLocalProjects(projectId,currentProjectType,incomingProjectDetail,qContext);
                         
-                        if(globalProject!=null)
-                        {
-                            Boolean phaseChange = false;
-                            // Get Global Project Phase and validate whether GateSequence is already ahead of Current Project Sequence.If yes no need to Update.                            
-                            if(currentProjectType.IPM_CopyPhase2Global__c && globalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
-                                IPM_ConstantUtils.phaseSequence.get(globalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c)  )
-                            {
-                                globalProject.IPM_Temporary_Phase__c = globalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                phaseChange = true;
-                            }
                             
-                            // If local Project is Ahead of Global Project and Fast Forward is true, upgrade Global to same Phase
-                            IPM_Project_Type__c globalProjectType =  IPM_Utils.retrieveProjectType(globalProject);
                             
-                            if(globalProjectType.IPM_Fast_Forward_Phase_Change__c && globalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
-                                IPM_ConstantUtils.phaseSequence.get(globalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c))
-                            {
-                                globalProject.IPM_Temporary_Phase__c = globalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                phaseChange = true; 
-                            }
                             
-                            if(phaseChange)
-                            {
-                                globalProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
-                                globalProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;        
-                                if(qContext!=null)
-                                {
-                                    globalProject.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
-                                }
-                                processingProjectMap.put(globalProject.Id,globalProject);
-                            }  
-                        }
-                    }
-                    /* Local Project Calculation ends */
 					
 					
-                    /* Regional Project Calculation Begins */         
-                    if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL )
-                    {
 
-                        globalProject = projectToParentMapping.get(projectId);
                           
-                        if(globalProject !=null && processingProjectMap.containsKey(globalProject.Id))
-                        {
-                           globalProject = processingProjectMap.get(globalProject.Id);
-                        }
 
-                        if(currentProjectType.IPM_Fast_Forward_Phase_Change__c)
-                        {
-                            Map<Id,IPM_Project__c> childProjectMap = projectToChildMapping.get(projectId);
-                            Integer maxPhaseCounter = Integer.valueOf(currentProjectType.IPM_Gate_Sequence__c);
-                            String maxPhase = incomingProjectDetail.IPM_Phase__c;
-                            for(IPM_Project__c childProject : childProjectMap.values())
-                            {
-                               if(childProject.IPM_Phase__c !=null && nextPhaseSet.contains(childProject.IPM_Phase__c))
-                               {
-                                   IPM_Project_Type__c childCurrentProjectType =  IPM_Utils.retrieveProjectType(childProject);
+                    processRegionalProjects(projectId,currentProjectType,incomingProjectDetail,nextPhaseSet,qContext);
                                    
-                                   Integer childPhaseCounter = Integer.valueOf(childCurrentProjectType.IPM_Gate_Sequence__c);
-                                   if(maxPhaseCounter < childPhaseCounter)
-                                   {
-                                        maxPhaseCounter = childPhaseCounter;
-                                        maxPhase = childCurrentProjectType.IPM_Phase__c;     
-                                   }
-                               }
-                            }
-                            incomingProjectDetail.IPM_Temporary_Phase__c = maxPhase;
-                            incomingProjectDetail.IPM_Phase__c = maxPhase;
                             
-                        }
                         
-                        if(globalProject!=null)
-                        {
-                            Boolean phaseChange = false;
-                            // Get Global Project Phase and validate whether GateSequence is already ahead of Current Project Sequence.If yes no need to Update.
-                            if(currentProjectType.IPM_CopyPhase2Global__c && globalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c &&  
-                                IPM_ConstantUtils.phaseSequence.get(globalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c) )  
-                            {
-                                globalProject.IPM_Temporary_Phase__c = globalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                phaseChange = true;
-                            }
                             
-                             // If regional Project is Ahead of Global Project and Fast Forward is true, upgrade Global to same Phase
-                            IPM_Project_Type__c globalProjectType =  IPM_Utils.retrieveProjectType(globalProject);
                             
-                            if(globalProjectType.IPM_Fast_Forward_Phase_Change__c && globalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
-                                IPM_ConstantUtils.phaseSequence.get(globalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c))
-                            {
-                                globalProject.IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                            } 
                             
-                            if(phaseChange)
-                            {
-                                globalProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
-                                globalProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
-                                if(qContext!=null)
-                                {
-                                    globalProject.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
-                                }
-                                processingProjectMap.put(globalProject.Id,globalProject);
-                            } 
                             
-                        }
                         
                         
                         
-                        if( (currentProjectType.IPM_CreateLocalProjects__c || currentProjectType.IPM_CopyPhase2Local__c) && projectToChildMapping.containsKey(projectId))
-                        {
-                            Map<Id,IPM_Project__c> localProjectMap =  projectToChildMapping.get(projectId);
                             
-                            for(IPM_Project__c localProject : localProjectMap.values())
-                            {
-                                Boolean phaseChanged = false;
-                                if(currentProjectType.IPM_CreateLocalProjects__c)
-                                {
-                                    // If the Phase is Blank - It means it is a newly created Project and Temporary Phase should have the latest Phase.
-                                    if(String.isBlank(localProject.IPM_Phase__c) &&  !String.isBlank(localProject.IPM_Temporary_Phase__c))
-                                    {
-                                        localProject.IPM_Phase__c = localProject.IPM_Temporary_Phase__c;
-                                        localProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION;
-                                        phaseChanged = true;   
-                                    }
-                                }
                                 
-                                if(currentProjectType.IPM_CopyPhase2Local__c)
-                                {
-                                    if(localProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
-                                           IPM_ConstantUtils.phaseSequence.get(localProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c) )
-                                    {
                                         
-                                        localProject.IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                        localProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                        localProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                        localProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
-                                        phaseChanged = true;
-                                    }
-                                }
                                 
-                                if(phaseChanged)
-                                {
-                                    localProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
-                                    if(qContext!=null)
-                                    {
-                                        localProject.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
-                                    }
-                                    processingProjectMap.put(localProject.Id,localProject);
-                                }
-                            }
-                        }
-                    }
-                    /* Regional Project Calculation ends */
                             
                             
-                    /* Global Project Calculation begins */        
-                    if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL )
-                    {
-                        if(currentProjectType.IPM_Fast_Forward_Phase_Change__c && projectToGrandChildMapping.containsKey(projectId))
-                        {
-                            Map<Id,IPM_Project__c> grandChildProjectMap = projectToGrandChildMapping.get(projectId);
-                            // Get current Project Sequence
-                            Integer maxPhaseCounter = Integer.valueOf(currentProjectType.IPM_Gate_Sequence__c);
-                            String maxPhase = incomingProjectDetail.IPM_Phase__c;
-                            for(IPM_Project__c grandChildProject : grandChildProjectMap.values())
-                            {
-                               // Validate if the child project phase is forward than current Project Phase.
-                               if(grandChildProject.IPM_Phase__c !=null && nextPhaseSet.contains(grandChildProject.IPM_Phase__c))
-                               {
-                                   IPM_Project_Type__c grandChildCurrentProjectType =  IPM_Utils.retrieveProjectType(grandChildProject);
                                    
-                                   Integer grandChildPhaseCounter = Integer.valueOf(grandChildCurrentProjectType.IPM_Gate_Sequence__c);
-                                   if(maxPhaseCounter < grandChildPhaseCounter)
-                                   {
-                                        maxPhaseCounter = grandChildPhaseCounter;
-                                        maxPhase = grandChildCurrentProjectType.IPM_Phase__c;     
-                                   }
-                               }
-                            }
-                            // Update the Parent to the child latest Phase.
-                            incomingProjectDetail.IPM_Temporary_Phase__c = maxPhase;
-                            incomingProjectDetail.IPM_Phase__c = maxPhase;
-                        }
                         
                         
-                        if( (currentProjectType.IPM_CreateRegionalProjects__c || currentProjectType.IPM_CopyPhase2Regional__c) && projectToChildMapping.containsKey(projectId))
-                        {
-                            Map<Id,IPM_Project__c> regionalProjectMap =  projectToChildMapping.get(projectId);
-                            for(IPM_Project__c tempRegionalProject : regionalProjectMap.values())
-                            {
-                                Boolean phaseChanged = false;
-                                if(currentProjectType.IPM_CreateRegionalProjects__c)
-                                {
-                                    // If the Phase is Blank - It means it is a newly created Project and Temporary Phase should have the latest Phase.
-                                    if(String.isBlank(tempRegionalProject.IPM_Phase__c) &&  !String.isBlank(tempRegionalProject.IPM_Temporary_Phase__c))
-                                    {
-                                        tempRegionalProject.IPM_Phase__c = tempRegionalProject.IPM_Temporary_Phase__c;
-                                        tempRegionalProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION;
-                                        phaseChanged = true;
-                                    }   
-                                }
                                 
-                                if(currentProjectType.IPM_CopyPhase2Regional__c)
-                                {
-                                    // Get Global Project Phase and validate whether GateSequence is already ahead of Current Project Sequence.If yes no need to Update.
-                                    if( tempRegionalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c &&
-                                        IPM_ConstantUtils.phaseSequence.get(tempRegionalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c) )
-                                    {
-                                       tempRegionalProject.IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                       tempRegionalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                       tempRegionalProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
-                                       phaseChanged = true;  
-                                    }
-                                }
                                 
-                                if(phaseChanged)
-                                {
-                                    tempRegionalProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
-                                    if(qContext!=null)
-                                    {
-                                        tempRegionalProject.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
-                                    }
-                                    processingProjectMap.put(tempRegionalProject.Id,tempRegionalProject);
-                                }
-                            }
-                        }
+                    processGlobalProjects(projectId,currentProjectType,incomingProjectDetail,nextPhaseSet,qContext);   
                         
-                        if( (currentProjectType.IPM_CreateLocalProjects__c || currentProjectType.IPM_CopyPhase2Local__c) && projectToGrandChildMapping.containsKey(projectId))
-                        {
-                            Map<Id,IPM_Project__c> localProjectMap =  projectToGrandChildMapping.get(projectId);
-                            for(IPM_Project__c localProject : localProjectMap.values())
-                            {
-                                Boolean phaseChanged = false;
-                                if(currentProjectType.IPM_CreateLocalProjects__c)
-                                {
-                                    // If the Phase is Blank - It means it is a newly created Project and Temporary Phase should have the latest Phase.
-                                    if(String.isBlank(localProject.IPM_Phase__c) &&  !String.isBlank(localProject.IPM_Temporary_Phase__c))
-                                    {
-                                        localProject.IPM_Phase__c = localProject.IPM_Temporary_Phase__c;
-                                        localProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION;
-                                        phaseChanged = true;
-                                    }   
-                                }
                                
-                                if(currentProjectType.IPM_CopyPhase2Local__c)
-                                {
                                      
                                     
-                                    if( localProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
-                                        IPM_ConstantUtils.phaseSequence.get(localProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c))
-                                    {
-                                        localProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
-                                        localProject.IPM_ProjectJobType__c = IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
-                                        phaseChanged = true;   
-                                    }
-                                }
                                 
-                                if(phaseChanged)
-                                {
-                                    localProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
-                                    if(qContext!=null)
-                                    {
-                                        localProject.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
-                                    }
-                                    processingProjectMap.put(localProject.Id,localProject); 
-                                }
-                            }
-                        }
-                    }
-                    /* Global Project Calculation ends */
                 }
             }
         }
@@ -462,19 +192,15 @@ public without sharing class IPM_ProjectJobHelper
         Set<Id> incomingProjectIds = incomingProjectMap.keySet();
         processingRolloutMap.clear();
         
-        Map<String,IPM_Project__c> rolloutProjectsMap = new Map<String,IPM_Project__c>();
         
-        Map<Id,Map<Id,IPM_Project_Rollout__c>> projectSpecificRegionalRolloutMap = new Map<Id,Map<Id,IPM_Project_Rollout__c>>();
-        Map<Id,Map<Id,IPM_Project_Rollout__c>> projectSpecificLocalRolloutMap = new Map<Id,Map<Id,IPM_Project_Rollout__c>>();
         
         /*Get Rollouts Starts. Need to verify whether Project has 'Change  Project On Status Change','create REgional/Local Projects' enabled. */
         String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
         String eligibleRolloutValue = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
         String rolloutWhereClause = ' WHERE (IPM_Project__c IN: incomingProjectIds OR Regional_Project__c IN: incomingProjectIds ) AND IPM_Project_Job_Status__c =:eligibleRolloutValue'; 
-        
         if(rolloutIdSet!=null && !rolloutIdSet.isEmpty())
         {
-            rolloutWhereClause = rolloutWhereClause + ' AND Id in:rolloutIdSet '; 
+            rolloutWhereClause = rolloutWhereClause + ' AND Id in:rolloutIdSet AND isActive__c= true '; 
         }
          
         rolloutWhereClause = rolloutQuery + rolloutWhereClause + ' limit 50000';
@@ -484,6 +210,113 @@ public without sharing class IPM_ProjectJobHelper
         {
             for(IPM_Project_Rollout__c rollout : rolloutMap.values())
             {
+                checkRolloutMap(rollout);
+            }
+        }             
+        
+                          
+        for(Id projectId : incomingProjectIds)
+        {
+            prepareRolloutMap(incomingProjectMap, projectId,qContext);
+           
+        }
+        
+        if(!processingRolloutMap.isEmpty())
+        {
+        	IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
+            update processingRolloutMap.values();
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+        }
+        
+        if(!rolloutProjectsMap.isEmpty())
+        {
+        	for(IPM_Project__c project : [SELECT Id,IPM_Project_Name__c from IPM_Project__c where IPM_Project_Name__c in : projectExternalIdSet])
+        	{
+        		if(rolloutProjectsMap.containsKey(project.IPM_Project_Name__c))
+        		{
+        			rolloutProjectsMap.remove(project.IPM_Project_Name__c);
+        		}
+        	}
+            upsert rolloutProjectsMap.values() IPM_Project_Name__c;
+        }
+    } 
+    
+    /*************************************************************
+    * This function was created to remove the npath complexities. 
+    * This function is called from processRollouts()
+    * @ description:: prepare regional and local rollout map
+    * @param: project Rollout
+    */
+    
+    private static void prepareRolloutMap(Map<Id,IPM_Project__c> incomingProjectMap, Id projectId,QueueableContext qContext){
+        
+        if(incomingProjectMap.containsKey(projectId) && incomingProjectMap.get(projectId) !=null)
+        {
+            IPM_Project__c incomingProjectDetail =  incomingProjectMap.get(projectId);
+            
+            // Set the Latest Phase
+            if(incomingProjectDetail.IPM_Phase__c != incomingProjectDetail.IPM_Temporary_Phase__c && IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Temporary_Phase__c) )
+            {
+                incomingProjectDetail.IPM_Phase__c = incomingProjectDetail.IPM_Temporary_Phase__c;
+            }
+            
+            IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(incomingProjectDetail);
+       
+            if(currentProjectType!=null && currentProjectType.IPM_CreateRegionalProjects__c && (projectSpecificRegionalRolloutMap.containsKey(projectId) &&  projectSpecificRegionalRolloutMap.get(projectId) !=null))
+            {
+                   
+                Map<Id,IPM_Project_Rollout__c> associatedRegionalRolloutsMap = projectSpecificRegionalRolloutMap.get(projectId);
+                List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedRegionalRolloutsMap.values() );
+                for(IPM_Project__c project : preparedProjectList)
+                {
+                    rolloutProjectsMap.put(project.IPM_Project_Name__c,project);  
+                    projectExternalIdSet.add(project.IPM_Project_Name__c);  
+                } 
+                
+                for(IPM_Project_Rollout__c projectRollout : associatedRegionalRolloutsMap.values())
+                {
+                    projectRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
+                    if(qContext!=null)
+                    {    
+                        projectRollout.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
+                    }
+                    processingRolloutMap.put(projectRollout.Id,projectRollout);
+                }
+            }else if(currentProjectType!=null && currentProjectType.IPM_CreateLocalProjects__c &&(projectSpecificLocalRolloutMap.containsKey(projectId) &&  projectSpecificLocalRolloutMap.get(projectId) !=null))
+            {
+                Map<Id,IPM_Project_Rollout__c> associatedLocalRolloutsMap = projectSpecificLocalRolloutMap.get(projectId);
+                if(!associatedLocalRolloutsMap.isEmpty())
+                {
+                     List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedLocalRolloutsMap.values() );
+                    
+                     for(IPM_Project__c project : preparedProjectList)
+                    {
+                        rolloutProjectsMap.put(project.IPM_Project_Name__c,project);   
+                        projectExternalIdSet.add(project.IPM_Project_Name__c); 
+                    } 
+
+                    for(IPM_Project_Rollout__c projectRollout : associatedLocalRolloutsMap.values())
+                    {
+                        projectRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
+                        if(qContext!=null)
+                        {  
+                            projectRollout.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
+                        }
+                        processingRolloutMap.put(projectRollout.Id,projectRollout);
+                    }
+                }
+            }
+        }
+    }
+    
+    /*************************************************************
+    * This function was created to remove the npath complexities. 
+    * This function is called from processRollouts()
+    * @ description:: Checks regional and local rollout map
+    * @param: project Rollout
+    */
+    
+    private static void checkRolloutMap(IPM_Project_Rollout__c rollout){
                 // Check for Regional Rollouts and Prepare projectToRolloutMap 
                 if(rollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
                 {
@@ -496,7 +329,7 @@ public without sharing class IPM_ProjectJobHelper
                     projectSpecificRegionalRolloutMap.put(rollout.IPM_Project__c,associatedRegionalRolloutsMap);
                 }
                 
-                if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
+                if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE && rollout.IPM_Project_GKM__c != IPM_ConstantUtils.GKM_3)
                 {
                     // Check for Local Rollouts and Prepare projectToRolloutMap
                     Map<Id,IPM_Project_Rollout__c> associatedlocalRolloutsMap = new Map<Id,IPM_Project_Rollout__c>();
@@ -507,89 +340,18 @@ public without sharing class IPM_ProjectJobHelper
                     associatedlocalRolloutsMap.put(rollout.Id,rollout);
                     projectSpecificLocalRolloutMap.put(rollout.Regional_Project__c,associatedlocalRolloutsMap);
                 }
-            }
-        }             
-        
-                          
-        for(Id projectId : incomingProjectIds)
-        {
-            if(incomingProjectMap.containsKey(projectId) && incomingProjectMap.get(projectId) !=null)
-            {
-                IPM_Project__c incomingProjectDetail =  incomingProjectMap.get(projectId);
-                
-                // Set the Latest Phase
-                if(incomingProjectDetail.IPM_Phase__c != incomingProjectDetail.IPM_Temporary_Phase__c && IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Temporary_Phase__c) )
+                //Lakhan's Changes
+                else if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE && rollout.IPM_Project_GKM__c== IPM_ConstantUtils.GKM_3)  
                 {
-                    incomingProjectDetail.IPM_Phase__c = incomingProjectDetail.IPM_Temporary_Phase__c;
-                }
-                
-                IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(incomingProjectDetail);
-                
-                if(currentProjectType!=null)
-                {   
-                    // Check for Rollouts.
-                    if(currentProjectType.IPM_CreateRegionalProjects__c)
+                	// Check for Local Rollouts and Prepare projectToRolloutMap
+                    Map<Id,IPM_Project_Rollout__c> associatedlocalRolloutsMap = new Map<Id,IPM_Project_Rollout__c>();
+                    if(projectSpecificLocalRolloutMap.containsKey(rollout.IPM_Project__c) && projectSpecificLocalRolloutMap.get(rollout.IPM_Project__c) !=null)
                     {
-                           
-                        if(projectSpecificRegionalRolloutMap.containsKey(projectId) &&  projectSpecificRegionalRolloutMap.get(projectId) !=null)
-                        {
-                            Map<Id,IPM_Project_Rollout__c> associatedRegionalRolloutsMap = projectSpecificRegionalRolloutMap.get(projectId);
-                            List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedRegionalRolloutsMap.values() );
-                            for(IPM_Project__c project : preparedProjectList)
-                            {
-                                rolloutProjectsMap.put(project.IPM_Project_Name__c,project);    
-                            } 
-                            
-                            for(IPM_Project_Rollout__c projectRollout : associatedRegionalRolloutsMap.values())
-                            {
-                                projectRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
-                                if(qContext!=null)
-                                {    
-                                    projectRollout.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
-                                }
-                                processingRolloutMap.put(projectRollout.Id,projectRollout);
-                            }
-                        }          
+                        associatedlocalRolloutsMap = projectSpecificLocalRolloutMap.get(rollout.IPM_Project__c);
                     }
-                    
-                    if(currentProjectType.IPM_CreateLocalProjects__c)
-                    {
-                        if(projectSpecificLocalRolloutMap.containsKey(projectId) &&  projectSpecificLocalRolloutMap.get(projectId) !=null)
-                        {
-                            Map<Id,IPM_Project_Rollout__c> associatedLocalRolloutsMap = projectSpecificLocalRolloutMap.get(projectId);
-                            if(!associatedLocalRolloutsMap.isEmpty())
-                            {
-                                 List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedLocalRolloutsMap.values() );
-                                
-                                 for(IPM_Project__c project : preparedProjectList)
-                                {
-                                    rolloutProjectsMap.put(project.IPM_Project_Name__c,project);    
-                                } 
-
-                                for(IPM_Project_Rollout__c projectRollout : associatedLocalRolloutsMap.values())
-                                {
-                                    projectRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
-                                    if(qContext!=null)
-                                    {  
-                                        projectRollout.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
-                                    }
-                                    processingRolloutMap.put(projectRollout.Id,projectRollout);
-                                }
-                            }
-                        }   
-                    }
-                }
-            }
-        }
+                    associatedlocalRolloutsMap.put(rollout.Id,rollout);
+                    projectSpecificLocalRolloutMap.put(rollout.IPM_Project__c,associatedlocalRolloutsMap);
         
-        if(!processingRolloutMap.isEmpty())
-        {
-            update processingRolloutMap.values();
-        }
-        
-        if(!rolloutProjectsMap.isEmpty())
-        {
-            upsert rolloutProjectsMap.values() IPM_Project_Name__c;
         }
     } 
     
@@ -645,13 +407,17 @@ public without sharing class IPM_ProjectJobHelper
         // Udpate Rollout Values with Status as completed.
         if(!successRolloutMap.isEmpty())
         {
+        	IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
             update successRolloutMap.values();
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
         }
         
         // Udpate Project Values with Status as completed.
         if(!successProjectMap.isEmpty())
         {
+        	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             update successProjectMap.values();
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         } 
     }
      
@@ -690,13 +456,17 @@ public without sharing class IPM_ProjectJobHelper
             if(!failedProjectMap.isEmpty())
             {    
                 // Udpate Project Values with Status as failed.
+                IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
                 update failedProjectMap.values();
+                IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
             }
                 
             // Udpate Rollout Values with Status as failed.
             if(failedRolloutMap!=null && !failedRolloutMap.isEmpty())
             {
+                IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
                 update failedRolloutMap.values();
+                IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
             } 
         }
         catch(Exception ex)
@@ -741,6 +511,95 @@ public without sharing class IPM_ProjectJobHelper
         } 
         
         return mapProjectIdWithFilledInPerc;
+    }
+
+    private static void processLocalProjects(Id projectId,IPM_Project_Type__c  currentProjectType,IPM_Project__c incomingProjectDetail,QueueableContext qContext)
+    {
+        IPM_Project__c globalProject,regionalProject = null;
+        /* Local Project Calculation Begins.Used for Updating Phase of related Projects based on gatekeeping Model */
+        if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+        {
+            globalProject = projectToGrandParentMapping.get(projectId);
+            regionalProject = projectToParentMapping.get(projectId);
+            if(globalProject !=null && processingProjectMap.containsKey(globalProject.Id))
+            {
+               globalProject = processingProjectMap.get(globalProject.Id);
+            }
+            if(regionalProject !=null && processingProjectMap.containsKey(regionalProject.Id))
+            {
+               regionalProject = processingProjectMap.get(regionalProject.Id); 
+            } 
+            if(regionalProject!=null)  
+            {    
+                IPM_PhaseChangeHelper.checkRegionalImpactfromLocal(currentProjectType,incomingProjectDetail,regionalProject,qContext);
+            }
+            if(globalProject!=null)
+            {
+                IPM_PhaseChangeHelper.checkGlobalImpactFromLocal(currentProjectType,incomingProjectDetail,globalProject,qContext);
+            }
+        }
+        /* Local Project Calculation ends */
+    }
+    private static void processRegionalProjects(Id projectId,IPM_Project_Type__c  currentProjectType,IPM_Project__c incomingProjectDetail,Set<String> nextPhaseSet ,QueueableContext qContext)
+    {
+        IPM_Project__c globalProject = null;
+        /* Regional Project Calculation Begins */         
+        if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL )
+        {
+            globalProject = projectToParentMapping.get(projectId);
+            if(globalProject !=null && processingProjectMap.containsKey(globalProject.Id))
+            {
+               globalProject = processingProjectMap.get(globalProject.Id);
+            }
+            if(currentProjectType.IPM_Fast_Forward_Phase_Change__c)
+            {
+               IPM_PhaseChangeHelper.checkRegionalFastForward(projectId,currentProjectType,incomingProjectDetail,nextPhaseSet,qContext);
+            }
+            if(globalProject!=null)
+            {
+                IPM_PhaseChangeHelper.checkGlobalImpactFromRegional(currentProjectType,incomingProjectDetail,globalProject,qContext); 
+            }
+            if( (currentProjectType.IPM_CreateLocalProjects__c || currentProjectType.IPM_CopyPhase2Local__c) && projectToChildMapping.containsKey(projectId))
+            {
+                Map<Id,IPM_Project__c> localProjectMap =  projectToChildMapping.get(projectId);
+                
+                IPM_PhaseChangeHelper.checkLocalImpactFromRegional(currentProjectType,incomingProjectDetail,localProjectMap,qContext);
+                
+            }
+        }
+        /* Regional Project Calculation ends */
+    }
+    private static void processGlobalProjects(Id projectId,IPM_Project_Type__c  currentProjectType,IPM_Project__c incomingProjectDetail,Set<String> nextPhaseSet ,QueueableContext qContext)
+    {
+        /* Global Project Calculation begins */    
+        if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL )
+        {    
+            if(currentProjectType.IPM_Fast_Forward_Phase_Change__c && projectToGrandChildMapping.containsKey(projectId))
+            {
+                IPM_PhaseChangeHelper.checkGlobalFastForward(projectId,currentProjectType,incomingProjectDetail,nextPhaseSet,qContext);
+            }
+            if( (currentProjectType.IPM_CreateRegionalProjects__c || currentProjectType.IPM_CopyPhase2Regional__c) && projectToChildMapping.containsKey(projectId))
+            {
+                Map<Id,IPM_Project__c> regionalProjectMap =  projectToChildMapping.get(projectId);
+                IPM_PhaseChangeHelper.checkRegionalImpactFromGlobal(currentProjectType,incomingProjectDetail,regionalProjectMap,qContext);
+            }
+            if((currentProjectType.IPM_CreateLocalProjects__c || currentProjectType.IPM_CopyPhase2Local__c) && (projectToGrandChildMapping.containsKey(projectId) || (projectToChildMapping.containsKey(projectId) && IPM_Utils.GATE_KEEPING_MODEL_3.equals(incomingProjectDetail.IPM_ProjectGKM__c))))
+            {
+                Map<Id,IPM_Project__c> localProjectMap;
+                if(IPM_Utils.GATE_KEEPING_MODEL_3.equals(incomingProjectDetail.IPM_ProjectGKM__c)) 
+                {
+                    localProjectMap =  projectToChildMapping.get(projectId);
+                }
+                else
+                {
+                    localProjectMap =  projectToGrandChildMapping.get(projectId);
+                }
+                
+                IPM_PhaseChangeHelper.checkLocalImpactFromGlobal(currentProjectType,incomingProjectDetail,localProjectMap,qContext);
+                //System.assert(false);
+            }
+        }
+        /* Global Project Calculation ends */
     }
 
 }

@@ -49,7 +49,7 @@
         </assignedApprover>
         <description>AFM approval</description>
         <entryCriteria>
-            <formula>AND(Amount &lt;250000, FSNA_Margin_Market_Target__c &gt;= 0.03, FSNA_Margin_Market_Target__c &lt;0.1)</formula>
+            <formula>AND(Amount &lt; 250000, (FSNA_Margin_Market_Target__c - FSNA_Gross_Margin__c) &gt;= 0.03, (FSNA_Margin_Market_Target__c - FSNA_Gross_Margin__c) &gt;= 1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step2</label>
@@ -70,7 +70,7 @@
         </assignedApprover>
         <description>AFM approval</description>
         <entryCriteria>
-            <formula>AND(Amount &lt; 250000, FSNA_Margin_Market_Target__c  &gt;=  0.1)</formula>
+            <formula>AND(Amount &lt; 250000, (FSNA_Margin_Market_Target__c - FSNA_Gross_Margin__c) &gt;= 0.03)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step3</label>
@@ -90,7 +90,7 @@
         </assignedApprover>
         <description>SD Approval</description>
         <entryCriteria>
-            <formula>AND(Amount &lt; 250000, FSNA_Margin_Market_Target__c  &gt;=  0.1)</formula>
+            <formula>AND(Amount &lt; 250000, (FSNA_Margin_Market_Target__c - FSNA_Gross_Margin__c) &gt;= 0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step4</label>
@@ -111,7 +111,7 @@
         </assignedApprover>
         <description>AFM approval</description>
         <entryCriteria>
-            <formula>AND( Amount  &gt;=  250000, Amount &lt; 500000, FSNA_Margin_Market_Target__c &lt; 0.1)</formula>
+            <formula>AND( Amount &gt;=250000, Amount &lt;500000, (FSNA_Margin_Market_Target__c - FSNA_Gross_Margin__c) &gt;= 1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step5</label>
@@ -132,7 +132,7 @@
         </assignedApprover>
         <description>AFM approval</description>
         <entryCriteria>
-            <formula>AND( Amount  &gt;=  250000, Amount &lt; 500000, FSNA_Margin_Market_Target__c  &gt;=  0.1)</formula>
+            <formula>AND( Amount &gt;=250000, Amount &lt;500000)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step6</label>
@@ -152,7 +152,7 @@
         </assignedApprover>
         <description>SD Approval</description>
         <entryCriteria>
-            <formula>AND( Amount  &gt;=  250000, Amount &lt; 500000, FSNA_Margin_Market_Target__c  &gt;=  0.1)</formula>
+            <formula>AND( Amount &gt;= 250000, Amount &lt; 500000, (FSNA_Margin_Market_Target__c - FSNA_Gross_Margin__c) &gt;= 0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step7</label>
@@ -173,7 +173,7 @@
         </assignedApprover>
         <description>AFM approval</description>
         <entryCriteria>
-            <formula>AND( Amount  &gt;=  500000, Amount &lt; 1000000, FSNA_Margin_Market_Target__c &lt; 0.1)</formula>
+            <formula>AND( Amount &gt;=500000, (FSNA_Margin_Market_Target__c - FSNA_Gross_Margin__c) &gt;= 1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step8</label>
@@ -194,7 +194,7 @@
         </assignedApprover>
         <description>AFM approval</description>
         <entryCriteria>
-            <formula>AND( Amount  &gt;=  500000, Amount &lt; 1000000, FSNA_Margin_Market_Target__c  &gt;=  0.1)</formula>
+            <formula>AND( Amount &gt;=500000, Amount &lt;1000000)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step9</label>
@@ -214,7 +214,7 @@
         </assignedApprover>
         <description>CDFM Approval</description>
         <entryCriteria>
-            <formula>AND( Amount  &gt;=  500000, Amount &lt; 1000000, FSNA_Margin_Market_Target__c  &gt;=  0.1)</formula>
+            <formula>AND( Amount &gt;= 500000, Amount &lt; 1000000, (FSNA_Margin_Market_Target__c - FSNA_Gross_Margin__c) &gt;= 0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step10</label>
@@ -234,7 +234,7 @@
         </assignedApprover>
         <description>SD Approval</description>
         <entryCriteria>
-            <formula>AND( Amount  &gt;=  500000, Amount &lt; 1000000, FSNA_Margin_Market_Target__c  &gt;=  0.1)</formula>
+            <formula>AND( Amount &gt;=500000, Amount &lt;1000000)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step11</label>
@@ -347,7 +347,7 @@
     <emailTemplate>FS_Email_Templates/FS_Opportunity_approval_request_email_template</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
-        <formula>AND( $Setup.FS_User_Territory__c.FS_UserType__c = &apos;1 Step MABE&apos;,  ISPICKVAL(StageName, &apos;03 - Proposal&apos;), RecordType.Name = &apos;NAFS Opportunity MABE&apos;,  Account.RecordType.Name= &quot;Operator&quot;,Account.ShippingCountry= &quot;US&quot;)</formula>
+        <formula>AND( $Setup.FS_User_Territory__c.FS_UserType__c = &apos;1 Step MABE&apos;,  ISPICKVAL(StageName, &apos;03 - Proposal&apos;), RecordType.Name = &apos;NAFS Opportunity MABE&apos;,  Account.RecordType.Name= &quot;Operator&quot;, OR(Account.ShippingCountry= &quot;US&quot;, Account.ShippingCountry= &quot;USA&quot;))</formula>
     </entryCriteria>
     <finalApprovalActions>
         <action>

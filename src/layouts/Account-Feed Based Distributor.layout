@@ -212,11 +212,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Region__c</field>
+                <field>Zone__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Zone__c</field>
+                <field>Region__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -526,10 +526,10 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Primary_Account__c</fields>
-        <fields>External_ID__c</fields>
-        <fields>Type__c</fields>
-        <relatedList>Account_Relationship__c.Secondary_Account__c</relatedList>
+        <fields>FS_MergedAccount__c</fields>
+        <fields>FS_UniqueAccountID__c</fields>
+        <fields>FS_MergedAccountName__c</fields>
+        <relatedList>Account_Relationship__c.FS_MasterAccount__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>CAMPAIGN.NAME</fields>

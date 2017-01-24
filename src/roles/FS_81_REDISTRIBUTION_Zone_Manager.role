@@ -5,5 +5,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>FS 81 - REDISTRIBUTION Zone Manager</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>North_America</parentRole>
+    <parentRole>ARCHIVE</parentRole>
 </Role>

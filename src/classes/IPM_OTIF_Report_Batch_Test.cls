@@ -21,6 +21,8 @@ private class IPM_OTIF_Report_Batch_Test {
      private static List<IPM_Project__c> allCreatedProjectList=new List<IPM_Project__c>();
      private static List<IPM_Project_Rollout__c> localRolloutToList = new List<IPM_Project_Rollout__c>();
      private static final string BLANK_STR='';
+     public static final String EMPTY_STRING=''; 
+     
      @testSetup static void projectDataSetUp(){
         
         // Create an instance of admin user.
@@ -104,37 +106,14 @@ private class IPM_OTIF_Report_Batch_Test {
 
             system.assert(localRolloutList.size()>0, 'project rollout map cannot be created');
          
-      
-           // Create Country specific information.
-            List<IPM_Country__c> countryList= new List<IPM_Country__c>(); 
-            
-            for(IPM_Project_Rollout__c localRollout : localRolloutList)
-            {
-                String geoExternalId = BLANK_STR;
-                if(localRollout.IPM_Rollout_Project__c.contains('AF'))
-                {
-                    geoExternalId = 'AG';
-                }
-                else if(localRollout.IPM_Rollout_Project__c.contains('LA'))
-                {
-                    geoExternalId = 'BR';
-                }
-                
-                IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new mdm_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
-                
-                countryList.add(tempCountry);
-            }
-            
-            insert countryList;
-
-            //assert on counti is sufficient, additional soql can be a risk for SOQL gov limit as this method has loads of queries.
-            system.assert(countryList.size()>0, 'country records not created');
+            //   public static List<IPM_Project_Rollout__c> createLocalRolloutsList(Boolean doInsert,Map<Id,List<IPM_Project_Rollout__c>> projectToRegionalRolloutMap,List<User> projectLeaders)
+           
+           if(localRolloutList.size()>0){
+            	insertCountry(localRolloutList);
+           }
+           
             
             test.stopTest();
-            
-            
-            
         }        
         
       }   
@@ -148,6 +127,7 @@ private class IPM_OTIF_Report_Batch_Test {
         
         IPM_Reporting__c reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting(BD_BB_REPORT, false);
         reportParameter.IPM_Start_Year__c = startYear;
+        reportParameter.IPM_FinancialScope__c = 'Global';
         insert reportParameter;
         
         String strCSName = BLANK_STR;
@@ -157,6 +137,7 @@ private class IPM_OTIF_Report_Batch_Test {
                 strCSName = 'GKM' + String.valueOf(i) + IPM_ConstantUtils.HYPHEN_DELIMITER + strPhase;
                 IPM_Reporting__c reportCS  = IPM_TestFactory_Helper.createIPMReportingCustomSetting(strCSName, false);
                 reportCS.IPM_Start_Year__c = startYear;
+                reportCS.IPM_FinancialScope__c = 'Global';
                 reportCSList.add(reportCS);
             }   
         }
@@ -254,6 +235,22 @@ private class IPM_OTIF_Report_Batch_Test {
         
                  
         System.RunAs(globalProjectLeader){
+        	List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 1000]);
+        
+		     //creating local financials starts
+		     List<IPM_Financial_year__c> finYearLst = new List<IPM_Financial_year__c>();
+		    
+		     for(IPM_Financial_year__c finTemp : [Select id, Charter_Approved__c, Contract_Approved__c, MR_Approved__c, MD_Approved__c From IPM_Financial_year__c Where IPM_Financial__c in: consolidatedFinLst]){
+		     	   finTemp.Charter_Approved__c =true;
+		           finTemp.Contract_Approved__c =true;
+		           finTemp.MR_Approved__c =true;
+		           finTemp.MD_Approved__c =true;
+		           finYearLst.add(finTemp);
+		     } 
+		     upsert finYearLst;
+		      
+		     
+        	
             string query = 'SELECT Id,IPM_Project_Name__c,IPM_Global_ProjectId__c,Project_External_ID__c,Name,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_Parent_Project__r.Id,IPM_Project_Leader__r.Name,Deputy_Project_Leader__r.Name,IPM_Technical_Project_Leader__r.Name,IPM_Finance_Lead__r.Name,IPM_Rollout_Status__c,IPM_Category_Group__c,IPM_ProjectGKM__c,IPM_Parent_Project__r.IPM_ProjectGKM__c,IPM_Category_Text__c,IPM_Phase__c,IPM_Parent_Project__r.IPM_Phase__c,IPM_Brand_Positioning__c,IPMProject_Span__c, IPMProject_Type__c,Project_Countries__c,IPM_No_of_Country_Rollouts__c,IPM_Threshold_Value__c,IPM_Company_Card__r.Name,IPM_Cluster__c,Market_Cluster__c,Market_Cluster_Name__c,IPM_Clustering__c,IPM_Clusters__c,IPM_Answer_of_Q1__c, IPM_Answer_of_Q2__c, Exempt_from_Threshold__c, IPM_Answer_of_Q3__c,IPM_Strategic_Intent__c,IPM_Target_Launch_Year__c,IPM_Target_Launch_Month__c,IPM_Actual_Launch_Date__c, IPM_Actual_Launch_Month__c,IPM_Actual_Launch_Year__c,IPMPlatform__c,IPM_Project_Type__c,IPM_Project_Description__c,IPM_Target_Launch_Dates__c,IPM_Project_Rollout__c,IPM_Misalligned__c,CreatedDate,IPM_Project_Start_Date__c,IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c,IPM_CPP__c,IPM_Fast_Track_Project__c,Is_Archieved__c,IPM_Global_OR_Regional__c,IPM_Project_Rollout__r.Target_Launch_Date__c, IPM_Project_Rollout__r.KeyMCO__c,IPM_SourceProjectType__c,BI__c, IPM_Parent_Project__r.BI__c,IPM_Parent_BI__c FROM IPM_Project__c'; 
 
           
@@ -276,6 +273,7 @@ private class IPM_OTIF_Report_Batch_Test {
         
         IPM_Reporting__c reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting(BD_BB_REPORT, false);
         reportParameter.IPM_Start_Year__c = startYear;
+        reportParameter.IPM_FinancialScope__c = 'Regional';
         insert reportParameter;
         
         String strCSName = BLANK_STR;
@@ -285,6 +283,7 @@ private class IPM_OTIF_Report_Batch_Test {
                 strCSName = 'GKM' + String.valueOf(i) + IPM_ConstantUtils.HYPHEN_DELIMITER + strPhase;
                 IPM_Reporting__c reportCS  = IPM_TestFactory_Helper.createIPMReportingCustomSetting(strCSName, false);
                 reportCS.IPM_Start_Year__c = startYear;
+                reportCS.IPM_FinancialScope__c = 'Regional';
                 reportCSList.add(reportCS);
             }   
         }
@@ -340,7 +339,7 @@ private class IPM_OTIF_Report_Batch_Test {
                regionalProjects.addAll(globalToRegionalMap.get(gbProjectId)); 
             }
             
-            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c, IPMProject_Span__c, (Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(Select ID, Charter_Approved__c, Contract_Approved__c,MR_Approved__c,MD_Approved__c From IPM_Financials_Regional__r) from IPM_Project__c where ID in :regionalProjects];  
+            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c, IPMProject_Span__c, (Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(Select ID, Charter_Approved__c, Contract_Approved__c,MR_Approved__c,MD_Approved__c,IPM_Financial_Postfix__c From IPM_Financials_Regional__r) from IPM_Project__c where ID in :regionalProjects];  
                 
             for(IPM_Project__c regionalProject : DBRegionalProjects) 
             {
@@ -359,17 +358,18 @@ private class IPM_OTIF_Report_Batch_Test {
             
             
               list<IPM_Financial__c> updateFinancialList=new list<IPM_Financial__c>();
-	            for(IPM_Financial__c fin:finObjList)
-	            {
-	                fin.Charter_Approved__c=true;
-	                fin.Contract_Approved__c=true;
-	                fin.MR_Approved__c=true;
-	                fin.MD_Approved__c=true;
-	            	
-	            	updateFinancialList.add(fin);
-	            }
-	            
-	            update updateFinancialList;
+                for(IPM_Financial__c fin:finObjList)
+                {
+                     if(fin.IPM_Financial_Postfix__c != null){
+                        fin.Charter_Approved__c=true;
+                        fin.Contract_Approved__c=true;
+                        fin.MR_Approved__c=true;
+                        fin.MD_Approved__c=true;
+                        updateFinancialList.add(fin);
+                    }
+                }
+                
+                update updateFinancialList;
         }
         
         /******************************** Regional Project Leader View for Regional Projects  ****************************************/
@@ -502,31 +502,11 @@ private class IPM_OTIF_Report_Batch_Test {
            
             List<IPM_Project_Rollout__c> dbRolloutList =  [Select Id from IPM_Project_Rollout__c where id in :localRolloutToList];
             System.assertEquals(dbRolloutList.size(),localRolloutToList.size(),ASSERT_ERROR_STR+localRolloutToList.size());
-            // Create Country specific information.
-            List<IPM_Country__c> countryList= new List<IPM_Country__c>();
             
-            for(IPM_Project_Rollout__c localRollout : localRolloutToList)
-            {
-                String geoExternalId = BLANK_STR;
-                if(localRollout.IPM_Rollout_Project__c.contains('AF'))
-                {
-                    geoExternalId = 'NG';
-                }
-                else if(localRollout.IPM_Rollout_Project__c.contains('LA'))
-                {
-                    geoExternalId = 'AR';
-                }
-                
-                IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);    
-                
-                countryList.add(tempCountry);
-            }
-            
-            insert countryList;
-            List<IPM_Country__c> dbCountryList =  [Select Id from IPM_Country__c where id in :countryList];
-            System.assertEquals(dbCountryList.size(),countryList.size(),ASSERT_ERROR_STR+countryList.size());
-            
+            if(localRolloutToList.size()>0){
+            	// Create Country specific information.
+            	insertCountry(localRolloutToList);
+            }           
            
             
      }
@@ -540,6 +520,7 @@ private class IPM_OTIF_Report_Batch_Test {
             for(IPM_Project__c project : allCreatedProjectList)
             {
                 project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+                project.IPM_ProjectGKM__c = 'GKM2';
                 projectList.add(project);
             }  
             
@@ -770,5 +751,49 @@ private class IPM_OTIF_Report_Batch_Test {
     
     		  	    		 
     } 
+	
+	private static void insertCountry(List<IPM_Project_Rollout__c>  localRolloutList)
+   	{
+   		// Create Country specific information.
+        List<IPM_Country__c> countryList= new List<IPM_Country__c>();
+        
+        List<String> iscodes = new List<String>{'AG','BR'}; 
+        List<MDO_Geography__c> geoList =  new List<MDO_Geography__c>();
+        Map<String,MDO_Geography__c> geoMap = new Map<String,MDO_Geography__c>();
+        for(String isoCode : iscodes)
+        {
+            geoList.add(new MDO_Geography__c(ISO_3166_1_Code__c = isoCode));
+        }
+        insert geoList;
+        
+        System.assert(geoList[0].Id != null,'Geo not Created');
+        for(MDO_Geography__c geoObj : geoList)
+        {
+            geoMap.put(geoObj.ISO_3166_1_Code__c,geoObj);
+        }
+        for(IPM_Project_Rollout__c localRollout : localRolloutList)
+        {
+            String geoExternalId = EMPTY_STRING;
+            if(localRollout.IPM_Rollout_Project__c.contains('AF'))
+            {
+                geoExternalId = 'AG';
+            }
+            else if(localRollout.IPM_Rollout_Project__c.contains('LA'))
+            {
+                geoExternalId = 'BR';
+            }
+            
+            IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = geoMap.get(geoExternalId).Id,IPM_Project__c = localRollout.IPM_Project__c,
+                local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);  
+            
+            countryList.add(tempCountry);
+        }
+        
+        insert countryList;
+        
+        
+        List<IPM_Country__c> dbCountryList =  [Select Id,Country_Code__c from IPM_Country__c where id in :countryList AND MDO_Geography__r.ISO_3166_1_Code__c = 'BR'];
+        System.assert(dbCountryList.size()>0);
+   	}
             
 }

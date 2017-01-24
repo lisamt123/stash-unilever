@@ -1,3 +1,0 @@
-src/classes
-src/classes/WU_SetWarehousePOCHandler.cls
-src/classes/WU_SetWarehousePOCHandler.cls-meta.xml

@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -131,6 +127,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -473,11 +470,10 @@
         <fullName>fml_Total_Applicable_Cross_Charge__c</fullName>
         <externalId>false</externalId>
         <formula>rol_Total_Annual_Maint_in_for_X_type__c +  rol_Total_CAPEX_in_for_X_type__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Applicable Cross Charge (€)</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -487,8 +483,7 @@
         <fullName>fml_Total__c</fullName>
         <externalId>false</externalId>
         <formula>rol_Total_Annual_Maint_in__c +  rol_Total_CAPEX_in__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Total €</label>
+        <label>Total (€)</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -513,7 +508,7 @@
         <fullName>ltxt_Application_S_w_Details__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Is there any application software involved? Please name the software, and number of licenses.</inlineHelpText>
-        <label>Application S/w Details</label>
+        <label>Application S/W Details</label>
         <length>32768</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -524,7 +519,7 @@
         <fullName>ltxt_Application_S_w_Purchase_Details__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Is the software already purchased.  If so when? Please upload contract</inlineHelpText>
-        <label>Application S/w Purchase Details</label>
+        <label>Application S/W Purchase Details</label>
         <length>32768</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -641,8 +636,8 @@ For SAM User: Write/View response for the query</inlineHelpText>
     </fields>
     <fields>
         <fullName>ltxt_SaaS_Comments__c</fullName>
-        <description>If SaaS is selected as Yes, then this is mandatory.</description>
         <externalId>false</externalId>
+        <inlineHelpText>If SaaS is selected as Yes, then this is mandatory.</inlineHelpText>
         <label>SaaS Comments</label>
         <length>32768</length>
         <trackHistory>false</trackHistory>
@@ -682,6 +677,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -1720,6 +1716,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -1762,6 +1759,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -1837,6 +1835,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1861,6 +1860,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1882,6 +1882,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1907,6 +1908,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1963,6 +1965,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2017,6 +2020,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2038,6 +2042,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2140,6 +2145,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2249,6 +2255,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2416,6 +2423,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2437,6 +2445,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2540,6 +2549,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2707,7 +2717,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
         <fullName>rol_Total_CAPEX_in__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Vertical summation of all the line items w.r.t Total CAPEX (€)</inlineHelpText>
-        <label>Total CAPEX in  €</label>
+        <label>Total CAPEX in  (€)</label>
         <summarizedField>SAM_Quote_Line_Item__c.fml_Total_CAPEX__c</summarizedField>
         <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
@@ -39623,7 +39633,7 @@ txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot;)</errorConditionFormula
         <active>true</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Budget_Owner_Name__c ) ) ),(NOT( REGEX( txt_Budget_Owner_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Budget_Owner_Name__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Budget_Owner_Email_UL</fullName>
@@ -40072,7 +40082,7 @@ Quotation_Record_Count__c = rus_Completed_Quotes__c, TEXT(pkl_SAM_team_Status__c
         <active>true</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Financial_Manager_Name__c ) ) ),(NOT( REGEX( txt_Financial_Manager_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Financial_Manager_Name__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Financial_Business_Partner_Email</fullName>
@@ -40181,7 +40191,7 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <active>true</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Infrastructure_Manager_Name__c ) ) ),(NOT( REGEX( txt_Infrastructure_Manager_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Infrastructure_Manager_Name__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Infrastructure_Manager_Email</fullName>
@@ -40221,7 +40231,7 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <active>true</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Invoice_Approver_Name__c ) ) ),(NOT( REGEX( txt_Invoice_Approver_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Invoice_Approver_Name__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Invoice_Approver_Email_Validation</fullName>
@@ -40487,14 +40497,14 @@ OR( txt_Request_Type__c =&quot;SAM_RW_Project_Request&quot;, txt_Request_Type__c
         <active>true</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Portfolio__c ) ) ),(NOT( REGEX( txt_Portfolio__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Portfolio__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Portfolio_Manager_Alpha</fullName>
         <active>true</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Portfolio_Manager_Name__c ) ) ),(NOT( REGEX( txt_Portfolio_Manager_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Portfolio_Manager_Name__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Portfolio_Manager_Email_UL</fullName>
@@ -40547,8 +40557,7 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <active>true</active>
         <description>At least one Product Details record should be present to submit a Request</description>
         <errorConditionFormula>(txt_Request_Type__c  = &quot;SAM_RW_Project_Request&quot;  || txt_Request_Type__c   = &quot;SAM_RW_Non_Project_Request&quot;) &amp;&amp;  (rol_Product_Details_Count__c  &lt; 1) &amp;&amp; 
-(OR(TEXT(pkl_SAM_Requester_Status__c)= $Label.SAM_Information_Provided , TEXT(pkl_SAM_team_Status__c)= $Label.SAM_Information_Provided))</errorConditionFormula>
-        <errorDisplayField>txt_Additional_Go_Live_Details__c</errorDisplayField>
+(OR(TEXT(pkl_SAM_Requester_Status__c)= $Label.SAM_Information_Provided , TEXT(pkl_SAM_team_Status__c)= $Label.SAM_Information_Provided)) &amp;&amp;  NOT(ISPICKVAL( pkl_SAAS_Yes_No__c , &apos;Yes&apos;))</errorConditionFormula>
         <errorMessage>Minimum One Product Details is required to submit a Request</errorMessage>
     </validationRules>
     <validationRules>
@@ -40556,7 +40565,7 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <active>true</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Program_Owner_Name__c ) ) ),(NOT( REGEX( txt_Program_Owner_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Program_Owner_Name__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Program_Owner_Email_UL</fullName>
@@ -40596,7 +40605,7 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <active>true</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Project_Manager_Name__c ) ) ),(NOT( REGEX( txt_Project_Manager_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Project_Manager_Name__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Project_Manager_Email_UL</fullName>
@@ -40634,7 +40643,7 @@ NOT(ISNULL(txt_Request_Type__c )),
         <active>true</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Project_Technical_Architect_Name__c ) ) ),(NOT( REGEX( txt_Project_Technical_Architect_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Project_Technical_Architect_Name__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Project_Technical_Architect_Email</fullName>
@@ -40881,7 +40890,7 @@ txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot;
         <active>false</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Query_Requestor__c ) ) ),(NOT( REGEX( txt_Query_Requestor__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Query_Requestor__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Requester_Email_UL</fullName>
@@ -40926,7 +40935,7 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <active>true</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(   txt_CC_SAM_Demand_Manager__c  ) ) ),(NOT( REGEX( txt_CC_SAM_Demand_Manager__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_CC_SAM_Demand_Manager__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_SA_Clarity_Id_Validation</fullName>

@@ -3,7 +3,7 @@ Name: SAM_TestRequestClass_util()
 Copyright © 2015 Salesforce
 ======================================================
 ======================================================
-Purpose: This is the util class of test of the test classes.
+Purpose: This is the util class of test of the test classes
 -------
 ======================================================
 ======================================================
@@ -81,6 +81,7 @@ public with sharing class SAM_TestRequestClass_util {
         reqRec.eml_Invoice_Approver_Email__c= SAM_Constants.TEST_EMAIL ;
         reqRec.pkl_Software_Purchase_Req__c = SAM_Constants.YES ;
         reqRec.recordtypeid = rt.id;
+        reqRec.pkl_Status__c = 'Saved';
         return reqRec;
     }
 
@@ -159,5 +160,21 @@ public with sharing class SAM_TestRequestClass_util {
     attachment.Body = b;  
       
     insert (attachment); 
-}  
+   } 
+ /*******************************************************************
+    Purpose: This method is used to create attachment
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+   public static void addApproval_EmailsAttachmentToQLI(Id parentId) {  
+    Blob b = Blob.valueOf('Test Data');  
+      
+    Attachment attachment = new Attachment();  
+    attachment.ParentId = parentId;  
+    attachment.Name = 'Quotation';  
+    attachment.Body = b;  
+      
+    insert (attachment); 
+}
 }

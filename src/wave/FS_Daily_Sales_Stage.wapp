@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <folder>FS_Daily_Sales_Stage</folder>
+    <masterLabel>FS Daily Sales Stage</masterLabel>
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>foodsolutions.integration.user@unilever.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+	<shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>pamela.carbonara@accenture.com</sharedTo>
+		<sharedToType>User</sharedToType>
+    </shares>
+</WaveApplication>

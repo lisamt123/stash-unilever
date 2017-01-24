@@ -1,0 +1,301 @@
+<!--  
+*************************************************************************
+*@Description:This component is used to display a financial section in the Gate document
+*@Author: Cognizant
+*@Created Date: 12/03/2015 
+*@Copyright © 2015  Unilever    
+*************************************************************************
+-->
+<apex:component allowDML="true" controller="IPM_GlobalClaimPDLController">
+    <apex:attribute name="projId" description="Getting Project Id" type="Id" assignTo="{!projectId}"/>
+    <apex:attribute name="isAppendix" description="To show the PDF for PDL" type="Boolean"/>
+        
+    <apex:variable var="panelLayout" value="{!IF(readOnlyPDFView,'none','inline')}" />
+    
+    <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay" />
+    <apex:actionFunction name="deleteClaim" action="{!deleteClaim}" reRender="ProjectClaimTableId" status="Loading">
+       <apex:param name="projClaimId" assignTo="{!projClaimId}" value="" />
+    </apex:actionFunction>
+    <apex:outputPanel layout="{!panelLayout}"  rendered="{!AND(OR(readOnlyPDFView,readOnlyLocalView),NOT(isAppendix),showNoClaims)}">        
+        <div class="col-xs-12 yellowAlertPdl">
+            <div class="col-sm-1 pull-left noPadright"><img alt="Alert" class="alertimgpdl" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
+            <apex:outputPanel layout="{!panelLayout}" >                        
+                <div class="col-sm-6 noPadleft pageTitlefont">
+           			<apex:outputLabel styleClass="pdlalrtText" value="{!$Label.IPM_No_Claims_Added}"/>
+           		</div>
+                
+            </apex:outputPanel>
+        </div> 
+    </apex:outputPanel>  
+    <apex:outputPanel layout="{!panelLayout}" rendered="{!readOnlyPDFView}">        
+        <apex:outputPanel layout="{!panelLayout}" rendered="{!NOT(showNoClaims)}">
+        	<apex:outputPanel layout="{!panelLayout}" rendered="{!isAppendix}">               
+           		<div class="col-sm-6 noPadleft pageTitlefont"> 
+           			<apex:outputLabel value="{!$Label.IPM_Global_Claims_Table}"/> 
+           		</div>
+            </apex:outputPanel>  
+        	
+	        <table border="0" cellpadding="0" cellspacing="0" class="glbPLDtableHead table table-bordered">
+	            <thead> 
+	                <tr>
+	                    <th scope="col" class="glbCmnWidth custTdWidth">                    
+	                        <span class="finproject"> Geography</span>
+	                    </th>
+	                    <th scope="col">
+	                     <div class="claimHeader finproject">Claim</div>
+	                 </th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <tr class="fintleblubg">  
+	                    <td  class="pl15 custTdWidth"><div>Global</div></td>
+	                    <td class="pl15 glbCmnWidth">  
+	                        <apex:repeat value="{!projectClaimList}" var="projectClaim">          
+	                            <apex:outputField value="{!projectClaim.IPM_Claim__c}"/>   <br/> 
+	                        </apex:repeat> 
+	                    </td> 
+	                </tr> 
+	            </tbody>
+	        </table>
+	     
+	        <apex:outputPanel layout="{!panelLayout}" styleClass="gatepdlContainer" rendered="{!isAppendix}">
+	            <table border="0" cellpadding="0" cellspacing="0" class="glbPLDtableHead glbNewTable table table-bordered">
+	                <tbody>
+	                    <apex:repeat value="{!rolloutLvlWrapper}" var="rolloutWrap" >  
+	                        <tr class="finproject">
+	                            <td colspan="2" class="pl15 fintlebluebg custBgTr" width="10px">                    
+	                                <apex:outputField value="{!rolloutWrap.localRolloutWp.MCO_Name__c}" styleclass="pldTextbox" />
+	                            </td>
+	                        </tr>     
+	                        <apex:repeat value="{!rolloutWrap.countryListWp}" var="countryObj">
+	                            <tr>                    
+	                                <td class="pl15 custTdWidth">
+	                                    <apex:outputText value="{!countryObj.Country_Name__c}" /> 
+	                                </td>
+	                                <td class="pl15">
+	                                    <apex:repeat value="{!rolloutWrap.countryLevelMapWp[countryObj]}" var="claimWrap">
+	                                        <apex:outputText value="{!claimWrap.countryLvlClaim.IPM_Claim__c}" /> <br/>
+	                                    </apex:repeat>
+	                                </td>
+	                            </tr>
+	                        </apex:repeat>
+	                    </apex:repeat>  
+	                </tbody>                    
+	            </table>
+	        </apex:outputPanel>
+	    </apex:outputPanel>
+	</apex:outputPanel>
+
+    
+    <apex:outputPanel layout="{!panelLayout}" rendered="{!AND(NOT(readOnlyPDFView),NOT(readOnlyLocalView))}">  
+	    <apex:actionFunction name="autoSave" action="{!autoSave}" reRender="ProjectClaimTableId" status="Loading" />		
+	    <div class="gatepdlContainer">
+        
+        <apex:outputPanel layout="{!panelLayout}" id="ProjectClaimTableId" rendered="{!AND(NOT(readOnlyPDFView),NOT(readOnlyLocalView))}" >  
+	        <table border="0" cellpadding="0" cellspacing="0" class="glbPLDtableHead table table-bordered">
+	            <thead>
+	                <tr>
+	                    <th scope="col" class="glbCmnWidth">                    
+	                        <span class="finproject">Geography</span>
+	                    </th>
+	                     <th scope="col">
+	                        <div class="claimHeader">Claim</div>
+                            	<apex:commandLink styleClass="ipmButton buttonMarginRight primary pull-right" value="Add all Global Claims to all countries" action="{!addProjectClaimsToAllCountries}" status="Loading" reRender="ProjectClaimTableId" rendered="{!$ObjectType.IPM_Project_Claim__c.Updateable}"/>
+                             </th>
+	                </tr>
+	            </thead>
+	        </table>
+            <apex:outputPanel layout="{!panelLayout}">
+	            <table border="0" cellpadding="0" cellspacing="0" class="glbPLDtablebody table table-bordered">
+	                <tbody>
+	                    <apex:repeat value="{!projectClaimList}" var="projectClaim">
+	                    <tr class="fintleblubg">
+	                       <td rowspan="0" class="pl15 glbCmnWidth"><div>Global</div></td>
+	                          
+	                        <td class="">
+                                	<apex:inputField value="{!projectClaim.IPM_Claim__c}" html-maxlength="50" styleclass="pldTextbox" onblur="autoSave();"/> 
+	                            
+	                        </td>
+	                        
+	                        <td class="fintlewhitebg" width="10px">
+                                <div class="SecButtonSet deleteClaim pull-left" data-target="#removeClaim" data-keyboard="false" data-backdrop="static">
+                                    <a class="icoButton delete02" onclick="deletionHandling('{!projectClaim.id}');"></a>    
+                                </div>
+	                        </td>  
+	                    </tr>
+	                    </apex:repeat>
+	                    <tr>
+	                        <td class="pl15 glbCmnWidth"></td>
+	                        <td class=""><!-- <a class="ipmButton buttonMarginRight primary">Add Claim</a> -->
+                                	<apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="Add Claim" action="{!addProjectClaims}" status="Loading" reRender="ProjectClaimTableId" rendered="{!$ObjectType.IPM_Project_Claim__c.Updateable}"/>
+                            	</td>
+	                        <td></td>  
+	                    </tr>
+	                </tbody>
+	            </table>
+	        </apex:outputPanel>     
+            <apex:outputPanel layout="{!panelLayout}">
+	        <table border="0" cellpadding="0" cellspacing="0" class="glbPLDtablebody table table-bordered">
+	            <thead>
+	                <tr>
+	                    <th width="200px">MCO</th>
+	                    <th width="200px">Country</th>
+	                    <th></th>
+	                </tr>
+	            </thead>
+	           
+	        </table>
+	        <table border="0" cellpadding="0" cellspacing="0" class="glbPLDdrpdown table table-bordered">
+	            <tbody>
+	                <apex:repeat value="{!rolloutLvlWrapper}" var="mcoName" >
+	                    <tr class="fintleblubg">
+	                        <td colspan="2">{!mcoName.localRolloutWp.MCO_Name__c}</td>
+	                        <td></td>
+	                    </tr>
+	                    <apex:repeat value="{!mcoName.countryListWp}" var="countryName" >
+	                    <tr>
+	                        <td width="200px"></td>
+	                        <td width="200px">{!countryName.Country_Name__c}</td>
+	                        <td>
+	                            <div class="clickClaimDrpdown ipmDropDown dropdown">
+                                        <apex:outputPanel layout="{!panelLayout}" html-data-toggle="dropdown" styleClass="selectClaim" >
+	                                    <div class="ipmDropDownSelect">
+                                            <span class='claimName'>{!mcoName.countryToSelectedClaims[countryName]}</span>
+	                                        <a class="listArrow"></a>    
+	                                    </div>
+	                                </apex:outputPanel>
+                                        <apex:outputPanel layout="{!panelLayout}"  styleClass="dropdown-menu pull-right claimList channelList" id="multipleClaims">
+	                                    <ul id="claimListUL" styleClass="pdlClaimList">
+	                                        <apex:repeat value="{!mcoName.countryLevelMapWp[countryName]}" var="countryWrap">
+	                                            <li>
+	                                                <div class="col-xs-1 pdlCheckbox">
+	                                                    <apex:inputCheckbox value="{!countryWrap.selected}" id="test1" rendered="{!(countryWrap.countryLvlClaim.IPM_Claim__c <> '')}"/> 
+	                                                    <label for="test1"></label>
+	                                                </div>
+	                                                <div class="col-xs-10">{!countryWrap.countryLvlClaim.IPM_Claim__c}</div>
+	                                            </li>
+	                                         </apex:repeat>
+	                                    </ul>
+	                                    <!-- To display below outputPanel when current user has edit access on page   -->
+                                            <apex:outputPanel layout="{!panelLayout}" rendered="{!mcoName.countryListWp.size > 0}">
+	                                        <li class="filterActionscc">
+	                                            <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
+	                                                <apex:commandLink styleClass="ipmDropbuttonscc" value="Done" action="{!doneEventHandling}" status="Loading" reRender="ProjectClaimTableId"/>
+	                                            </div>
+	                                            <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
+	                                                <a value="Reset" class="ipmDropresetcc">Reset</a>
+	                                            </div>
+	                                        </li>
+	                                    </apex:outputPanel>
+	                                </apex:outputPanel>    
+	                            </div>
+	                        </td>
+	                    </tr>
+	                    </apex:repeat> 
+	                 </apex:repeat>
+	            </tbody>
+	        </table>
+            </apex:outputPanel>
+            
+            </apex:outputPanel>
+	    </div>
+	    
+        <div id="removeClaim" html-tabindex="-1" html-data-backdrop-limit="1" class="modal fade removeClaim">
+        <apex:outputPanel layout="{!panelLayout}" >
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <div class="modal-title">{!$Label.IPM_GlobalClaimRemoval}</div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="removeClaimpopup">
+                            <div class="removeClaimText">{!$Label.IPM_ClaimDeletionAlertMessage}</div>
+                            <div class="removeClaimButtonContainer pull-right">  
+                                <div class="pull-left buttonMarginRight noPadright">
+                                    <input type="button" class="ipmButton" data-dismiss="modal" value="{!$Label.IPM_CANCEL}"/>
+                                </div>
+                                <div class="buttonMarginRight noPadright pull-left" >
+                                    <input type="button" class="ipmButton primary deleteclaimbtn" value="{!$Label.IPM_DeleteClaimButtonText}" data-dismiss="modal"/>
+                                </div>
+	                        </div>
+	                    </div>        
+	                </div>
+	            </div>
+	        </div>
+        </apex:outputPanel></div>
+    </apex:outputPanel>
+    
+    <!-- To show Non Key and Key Claims on Local Rollout Projects -->
+    <apex:outputPanel layout="{!panelLayout}"  rendered="{!AND(readOnlyLocalView,rolloutLvlWrapper.size >0)}"> 
+    <div class="paddleft">
+       <div class="globalclaim"> <apex:outputLabel value="{!$Label.IPM_GlobalClaimsFromPDL}"/></div>
+       
+        <div class="noteclaim"> <apex:outputLabel value="{!$Label.IPM_GlobalClaimsOnLocal}"/></div>
+     </div>
+     
+          <div class="gatepdlContainer">
+          <apex:outputPanel layout="{!panelLayout}">
+                <!-- Action Standards -->
+                <table border="0" cellpadding="0" cellspacing="0" class="glbPLDtableHead table table-bordered">
+                    <thead> 
+                        <tr>
+                            <th scope="col" class="glbCmnWidth">                    
+                                <span class="finproject"> Geography</span>
+                            </th>
+                             <th scope="col">
+                                <div class="claimHeader">Claim</div>
+                            </th>
+                        </tr>
+                    </thead>
+                                         
+                    <tbody>
+                        <apex:repeat value="{!rolloutLvlWrapper}" var="rolloutWrap" >
+                        <tr>
+                                <!-- To display the claim Values for non key-->
+                                <apex:outputPanel layout="{!panelLayout}"  rendered="{!AND(NOT(rolloutWrap.localRolloutWp.KeyMCO__c),displayNonKey)}">  
+                                    <td colspan="1" class="fintlebluebg" width="10px">                    
+                                        <apex:outputLabel value="{!$Label.IPM_GLOBAL}" styleclass="pldTextbox" />
+                            </td>
+                                    <td>
+                                        <apex:repeat value="{!projectClaimList}" var="projClaim">
+                                        <!-- <apex:repeat value="{!rolloutWrap.countryLevelMapWp[countryObj]}" var="claimWrap"> --> 
+                                                <apex:outputText value="{!projClaim.IPM_Claim__c}" /> <br/>
+                                            
+                        </apex:repeat>
+                                    </td> 
+                                </apex:outputPanel>
+                                
+                                <!-- To display the claim Values for Key-->
+                                <apex:outputPanel layout="{!panelLayout}" rendered="{!rolloutWrap.localRolloutWp.KeyMCO__c}"> 
+                                    <td colspan="2" class="fintlebluebg" width="10px">                    
+                                        <apex:outputField value="{!rolloutWrap.localRolloutWp.MCO_Name__c}" styleclass="pldTextbox" />
+                                    </td>
+                    	<apex:repeat value="{!rolloutLvlWrapper}" var="rolloutWrap" >
+		                    <apex:repeat value="{!rolloutWrap.countryListWp}" var="countryObj">
+		                    <tr>                    
+		                        <td>
+		                            <apex:outputText value="{!countryObj.Country_Name__c}" /> 
+		                        </td>
+		                        
+		                        <td>
+		                        <apex:repeat value="{!rolloutWrap.countryLevelMapWp[countryObj]}" var="claimWrap">
+		                        	
+		                            <apex:outputText value="{!claimWrap.countryLvlClaim.IPM_Claim__c}" rendered="{!(claimWrap.countryLvlClaim.IPM_Claim__c <> '')}"/> <br/>
+		                        </apex:repeat>
+		                        </td>
+		                    </tr>
+		                    </apex:repeat>
+		               </apex:repeat>     
+                                </apex:outputPanel>
+                            </tr>
+                                            
+                          </apex:repeat>  
+                    </tbody>                    
+                </table>
+            </apex:outputPanel>
+        </div> 
+  
+    </apex:outputPanel>
+
+</apex:component>

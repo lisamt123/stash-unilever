@@ -1,0 +1,111 @@
+/**********************************************************************
+Name:  VPM_CreateVendorFieldDetailsWrapper()
+Copyright ? 2016  Unilever
+======================================================================
+======================================================================
+Purpose:  Used to trigger the Approval process 
+1. Base on the Values trigger the appropriate approval process from process builder 
+======================================================================
+======================================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR       DATE             DETAIL                  Description
+1.0 -    Girish       11/05/2016       INITIAL DEVELOPMENT     Invocable method which is call in PB to trigger the approval process 
+****************************************************************************/
+
+public class VPM_CreateVendorFieldDetailsWrapper {
+    public string RequestorName {get; set;}
+    public Integer RequestID {get; set;}
+    public string RequestorPhone {get; set;}
+    public string RequestorCountry {get; set;}
+    public string RequestorDepartment {get; set;}
+    public string RequestorEmail {get; set;}
+    public string OriginatorEmail {get; set;}
+    public string RequestDate {get; set;}
+    public string VendorType {get; set;}
+    public string CountryRequestingVendor {get; set;}
+    public string GlobalAuthorisationGroup {get; set;}
+    public string TradePartnerType {get; set;}
+    public string AccountGroup {get; set;}
+    public string Name1 {get; set;}
+    public string Name2 {get; set;}
+    public string Name3 {get; set;}
+    public string Name4 {get; set;}
+    public string SearchTerm1 {get; set;}
+    public string Street {get; set;}
+    //public string CityPostCode {get; set;}
+    public string City {get; set;}
+    public string Country {get; set;}    
+    public string AchillesRegistrationCode {get; set;}
+    public string DetailsTypeCheck {get; set;}
+    public boolean DunsHierarchyRequired {get; set;}
+    public string GroupKey {get; set;}
+    public string SmeComment {get; set;}
+    public string VatRegistrationNumber {get; set;}    
+    public string HouseNumber {get; set;}
+    public string Region {get; set;}
+    public boolean IsVendorSME {get; set;}
+    public boolean IsVendorException {get; set;}
+    public string ExceptionType {get; set;}
+    public string TaxNumber1 {get; set;}
+    public string TaxNumber3 {get; set;}
+    public string TaxJurisdictionCode {get; set;}
+    public boolean IsSupplierFinanciallyStabilityCheck {get; set;}
+    public string ReasonNoFinancialCheck {get; set;}
+    public string DetailsOfPlannedActivitiesQual1 {get; set;}
+    public boolean IsSupplierAchillesRegistration {get; set;}
+    public string AchillesExceptionDetails {get; set;}
+    public boolean IsSupplierPositiveAssurance {get; set;}
+    public boolean IsSupplierPositiveAssuranceSour {get; set;}
+    public string SupPosAssExcepDetailsQual {get; set;}
+    //public string SupplierAssessmentQuestionnaireQual {get; set;}
+    public string DetailsOfPlannedActivitiesQual {get; set;}
+    public boolean IsSupplierAudit {get; set;}    
+    public string SupAudDetailsOfPlanneActivities {get; set;}
+    public string SupplierPositiveAssuranceSourcing {get; set;}
+    public string SupPosAssExcepDetailsSour {get; set;}
+    //public string SupplierAssessmentQuestionnaireSour {get; set;}
+    public string DetailsOfPlannedActivitesSour {get; set;}
+    public boolean IsSupplierAuditSourcing {get; set;}
+    public string DetailsOfPlannedActivitiesSour2 {get; set;}
+    //IAPR 426, Missing fields from Create Request to BPM
+    public string CheckDigit {get; set;}
+    public string Comments {get; set;}
+    public string DetailsOfFinancialCheck {get; set;}
+    public string District {get; set;}
+    public string HouseNumberSupplement{get; set;}
+    public boolean IsNaturalPerson {get; set;}
+    public string SupplierAssessmentQuestionnaireQual {get; set;}
+    public string SupplierAssessmentQuestionnaireSour {get; set;}
+    public boolean IsSupplierAssessmentQuestionnaireQual {get; set;}
+    public boolean IsSupplierAssessmentQuestionnaireSour {get; set;}
+    public string PoBox {get; set;}
+    public string PoPostalCode {get; set;}
+    public string PostalCode {get; set;}
+    public string TaxNumber {get; set;}
+    public boolean Cordillera {get; set;}
+    public boolean Sirius {get; set;}
+    public boolean Fusion {get; set;}
+    public boolean U2K2 {get; set;}
+    
+    public string SearchTerm2 {get; set;}
+    public string Street2 {get; set;}
+    public string Street3 {get; set;}
+    public string Street4 {get; set;}
+    public string TaxNumber2 {get; set;}
+    public string TaxNumber4 {get; set;}
+    public string TaxNumberType {get; set;}
+    //public string taxtType{get; set;}
+    public string TaxType{get; set;}
+    //public string VendorName3 {get; set;}
+    //public string VendorName4 {get; set;}
+
+    public string CreditInformationNumber {get; set;}
+    public string TradingPartner {get; set;}
+    public string InternationalLocationNumber1 {get; set;}
+    public string InternationalLocationNumber2 {get; set;}
+    public string ExternalManufacturer {get; set;}
+    
+    public string AttachmentLink {get; set;}
+    
+}

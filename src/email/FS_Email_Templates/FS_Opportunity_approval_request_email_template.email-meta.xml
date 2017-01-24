@@ -5,6 +5,6 @@
     <encodingKey>UTF-8</encodingKey>
     <name>FS Opportunity approval request email template</name>
     <style>none</style>
-    <subject>Opportunity approval required</subject>
+    <subject>{!Opportunity.Name}  approval required</subject>
     <type>text</type>
 </EmailTemplate>

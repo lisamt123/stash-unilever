@@ -7,12 +7,10 @@
 */
 var jq= jQuery.noConflict();
 jq(document).ready(function(){
-	selectDrpdown();
-	jq(".ipmAccordion").find(".pHead:first span.expico-square").removeClass("fa-plus").addClass("fa-minus");
-
+    selectDrpdown();
+    jq(".ipmAccordion").find(".pHead:first span.expico-square").removeClass("fa-plus").addClass("fa-minus");
     var selectedCountries=[];
     var unselectedCountries=[];
-    
 /* Below script works on click event. If the country list check box is checkbox then the id of the element is pushed to a array. 
     Then the array is passed to function which changes the MCO. */
     jq(document).off('click', '.changeMCOTab').on('click','.changeMCOTab', function()
@@ -22,7 +20,6 @@ jq(document).ready(function(){
         var previousMcoCode = IPMRollOutAdd.SelectedMCO;
         var mcoCode = changeMCOTab.attr('id');
         var keyMCO = jq('#keyMCO').is(":checked");
-        
         jq('.countryFilter .countryList input:checkbox').each(function(){
             var cntryInput = jq(this);
             if(cntryInput.is(":checked")){
@@ -41,7 +38,6 @@ jq(document).ready(function(){
         var previousMcoCode = IPMRollOutAdd.SelectedMCO;
         var clusterCode = jq(this).attr('id');
         var keyMCO = jq('#keyMCO').is(":checked");
-        
         jq('.countryFilter .countryList input:checkbox').each(function(){
             var cntryInput = jq(this);
             if(cntryInput.is(":checked")){
@@ -68,8 +64,7 @@ jq(document).ready(function(){
             }
         });
         generateRollouts(selectedCountries.toString(),unselectedCountries.toString(),previousMcoCode,keyMCO);
-        var projectId = "{!projectId}";
-                            
+        var projectId = "{!projectId}";                 
     });
     
 /* Below script works on click. If the select all checkbox is checked then all the other checkboxes will be checked. */
@@ -85,12 +80,11 @@ jq(document).ready(function(){
             findInput.prop("checked", false);
             findLabel.removeClass("selected");
         }
-    });  
+    });
 });
 
-
 jq(document).ready(function(){
-/* Below script works on click event. It opens the add member modal */
+    /* Below script works on click event. It opens the add member modal */
      jq(document).off('click', '#selectproLeader').on('click','#selectproLeader', function(e)
      {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
@@ -141,8 +135,6 @@ jq(document).ready(function(){
         });
     } 
 });
-
-
 
 function setFocusOnLoad() {}
 function scriptPanelLoad(){
@@ -219,12 +211,12 @@ function scriptPanelLoad(){
         unsaved = false;
         saveChangedTLDjs();
     }
-    
-    /* Below function assigns a variable to the value. */
-    function revertTLDValue(){
-        selectedDateField.value = tldOrignalValue;
+    function alignTLD(param){
+        var newTLDValue = param.value; 
+        alignTLDs(newTLDValue);
+        checkTLDDate(param); 
     }
-    
+        
     /* Below function hides the tld warning modal. */
     function hideTldWarningDialog(){
         jq('#tldWarningDialog').modal('hide'); 
@@ -297,7 +289,7 @@ jq(document).ready(function(){
             jq("#rolloutgkmpage").iFrameResize( [{autoResize: true, sizeWidth: true, checkOrigin: false}] );      
         }
     });
-});    
+});  
 
 function movetoaddrollouts(){
     var addUrl = jq('.addRolloutUrlStrClass').text();
@@ -318,8 +310,16 @@ function editRolloutFunc(){
 function saveRolloutFunc(){
     var addUrl = jq('.saveRolloutUrlStrClass').text();
     window.top.location.href = addUrl; 
-} 
+}
 jq('.userLink a').click(function(event) {
     event.preventDefault();
     window.open(jq(this).attr('href'));
 });
+function saveRolloutFuncJs() {         
+    if(validationErrorJs != '') {
+        reRenderPanels();
+    }
+    else {
+        saveRolloutFunc();
+    }
+}

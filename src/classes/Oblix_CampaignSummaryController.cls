@@ -100,7 +100,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     public String selected_asset_id {get;set;}
     public Decimal PercentToAdjust {get;set;}
     public Boolean is_enable_Adjust {get;set;}
-
+    public string sync_requested;
     public Oblix_DashboardsHandler scoresDashboard {get; set;}
     public Integer totalAssets { get; set; }
     /*******************************************************************************
@@ -110,7 +110,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     ********************************************************************************/
     public Oblix_CampaignSummaryController() {
         is_enable_Adjust = false;
-
+        sync_requested='Sync Requested';
         last_updated ='';
         p_start_date ='';
         p_completion_date ='';
@@ -470,5 +470,32 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         System.debug('### stage_identifier_pop_up.completedValueSet: ' + stage_identifier_pop_up.completedValueSet);
         return null;
     }
+    
+    //Added by suresh
+    
+      public Boolean can_see_sync_in_progress{
+        get {
+        
+            boolean inprogress = false;
+            IF(selected_project.Sync_Status__c  == 'Sync In Progress' || selected_project.Sync_Required_NFY__c == 'Sync In Progress' || selected_project.Sync_Status__c  == sync_requested || selected_project.Sync_Required_NFY__c == sync_requested || selected_project.Financial_Year__r.Sync_Status__c == sync_requested){
+                inprogress = true;
+
+            }
+            return inProgress && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
+        }
+    }
+    
+     public Boolean syncinprogres{
+        get {
+        
+            boolean inprogress = false;
+            IF(selected_project.Sync_Status__c  == 'Sync In Progress' || selected_project.Sync_Required_NFY__c == 'Sync In Progress' || selected_project.Sync_Status__c  == sync_requested || selected_project.Sync_Required_NFY__c == sync_requested || selected_project.Financial_Year__r.Sync_Status__c == sync_requested){
+                inprogress = true;
+
+            }
+            return inProgress;
+        }
+    }
+    
 
 }

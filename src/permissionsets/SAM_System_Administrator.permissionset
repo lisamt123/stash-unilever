@@ -10,7 +10,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_Email_Attachment_InvocableMethod</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_InformationController_Test</apexClass>
@@ -26,11 +26,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_NewButtonOverrideController_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_NewButtonRequestLineItemContr_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_NewButtonRequestLineItemController</apexClass>
@@ -42,7 +42,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_QLINewButtonOverrideController_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_QLITrigger_Handler</apexClass>
@@ -50,7 +50,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_QLITrigger_Util</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_RLITrigger_Handler</apexClass>
@@ -711,9 +711,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>SAM_Request__c.Record_Count_for_Report__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -731,24 +731,24 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>SAM_Request__c.chk_Is_Charging_Submitted_Once__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>SAM_Request__c.chk_Is_Quote_Submitted_Once__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>SAM_Request__c.chk_Is_Request_Quote_Approved__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>SAM_Request__c.chk_Is_Request_Sent_for_CC__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -761,7 +761,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>SAM_Request__c.date_Cross_Charge_Completion_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -848,7 +848,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SAM_Request__c.fml_SAM_demand_manager__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -961,12 +961,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>SAM_Request__c.num_Cross_Charging_Version__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>SAM_Request__c.num_Draft_Version__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -996,7 +996,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>SAM_Request__c.pkl_Ownership_Reporting__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1078,7 +1078,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SAM_Request__c.rol_Run_Cost_Detail_Validation_count__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1504,7 +1504,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>SAM_Request__c.SAM_Query_Request_SAM_Team_on_Open</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>SAM_Request__c.SAM_Query_Request_SAM_team</recordType>

@@ -336,7 +336,7 @@
     <fieldUpdates>
         <fullName>CPA_PWO_SMT_group_email</fullName>
         <field>eml_SMT_group_email__c</field>
-        <formula>&quot;Vivek.Kalidoss@unilever.com&quot;</formula>
+        <formula>&quot;ApplicationSupplier.PM@unilever.com&quot;</formula>
         <name>CPA PWO SMT group email</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -387,7 +387,7 @@
     <fieldUpdates>
         <fullName>CPA_PWO_VDM_group_email</fullName>
         <field>eml_VDM_group_email__c</field>
-        <formula>&quot;Sameer.Vaidya@unilever.com&quot;</formula>
+        <formula>&quot;Demand.Unilever@accenture.com&quot;</formula>
         <name>CPA PWO VDM group email</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

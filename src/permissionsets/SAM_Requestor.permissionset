@@ -10,7 +10,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_Email_Attachment_InvocableMethod</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_InformationController_Test</apexClass>
@@ -26,11 +26,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_NewButtonOverrideController_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_NewButtonRequestLineItemContr_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_NewButtonRequestLineItemController</apexClass>
@@ -42,7 +42,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_QLINewButtonOverrideController_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_QLITrigger_Handler</apexClass>
@@ -50,7 +50,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_QLITrigger_Util</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SAM_RLITrigger_Handler</apexClass>
@@ -1340,7 +1340,7 @@
     </objectPermissions>
     <pageAccesses>
         <apexPage>SAM_CommentPage</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>SAM_NewButtonOverridePage</apexPage>

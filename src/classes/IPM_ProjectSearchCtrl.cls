@@ -116,7 +116,7 @@ public with sharing class IPM_ProjectSearchCtrl{
         clusterCountMap = new Map<String, Integer>(); //Key = 'cluster'
         mcoCountMap = new Map<String, Integer>(); //Key = 'cluster-mco'
         countryCountMap = new Map<String, Integer>(); //Key = 'cluster-mco-country'
-        //allCountries = new list<IPM_Country__c>();
+	
         currentSort = new Map<String, String>{THISFLD_STR => IPM_PROJECT_NAME_C_STR}; //this field will actually define what is the current sorting column applies to, default is Project name
         phasesCountMap = new Map<String, Integer>();
         projectPhases = new list<String>();
@@ -330,7 +330,7 @@ public with sharing class IPM_ProjectSearchCtrl{
         }
        
        Integer noOfMonths = Integer.valueOf(Label.IPM_NoOfMonths_ForReactivation);
-   
+    
     String soql  =  'SELECT IPM_Project_Y3iTO__c,IPM_Project_Name__c,IPM_Phase__c,IPM_IsSaved__c, IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name,ownerId,IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Type__c, IPM_Stopped_Date_Time__c,';
            soql +=  'IPM_Sub_Category__c,IPM_Category_Text__c,IPM_Project_Logo__c,IPM_Bosscard__c,IPM_Bosscard_Status__c, IPM_Bosscard__r.Name,IPMProject_Span__c,Is_Archieved__c,IPM_Brand_Positioning__c,';
            soql +=  '(SELECT Year3_ITO__c,Year_3_iTO_Charter__c,Year_3_iTO_Global__c FROM IPM_Financials_Consolidated__r WHERE RecordTypeId = \'' + IPM_Utils.getFinancialRecordType('Consolidated') + '\' LIMIT 1),';

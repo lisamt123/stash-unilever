@@ -33,8 +33,7 @@ function deletecc(str) {
         keyboard: false,
         backdrop: 'static'
     });
-    var title = jq('.deleteChannel').attr('title');
-    jq('#ipmChannelDelete .modal-title').html(title);
+    jq('#ipmChannelDelete .modal-title').html('Remove Customer Channel');
     jq('#ipmChannelDelete .confirmChannel').attr('data-result', str);
     jq('#ipmChannelDelete .modal-dialog').width('600px');
     jq('#ipmChannelDelete .modal-dialog').height('170px');

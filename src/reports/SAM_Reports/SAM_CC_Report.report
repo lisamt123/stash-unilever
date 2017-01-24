@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_15743318</developerName>
+        <masterLabel>Status</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>SAM_Request__c.pkl_Status__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Charging Completed</sourceValue>
+            </sourceValues>
+            <value>Cross Charge Completed</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Charging In Progress</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Awaiting CC details (Pending with ULSMT)</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Awaiting CC details (Pending with ULEMP)</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>CC details provided (By ULEMP)</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Awaiting Charge</sourceValue>
+            </sourceValues>
+            <value>Cross Charge Pending</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Charging Rejected</sourceValue>
+            </sourceValues>
+            <value>Finance Rejected</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <aggregate>Sum</aggregate>
+            <axisBinding>y</axisBinding>
+            <column>SAM_Quote_Line_Item__c.fml_Applicable_Cross_Charge__c</column>
+        </chartSummaries>
+        <chartType>VerticalColumnStacked</chartType>
+        <enableHoverLabels>false</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>BucketField_15743318</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>SAM_Quote_Line_Item__c.pkl_Publisher__c</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Small</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>SAM_Quote_Line_Item__c.fml_Applicable_Cross_Charge__c</field>
+    </columns>
+    <currency>EUR</currency>
+    <description>Updated by Pooja</description>
+    <filter>
+        <criteriaItems>
+            <column>SAM_Request__c.pkl_Status__c</column>
+            <operator>notEqual</operator>
+            <value>Saved,Open,In Progress,On Hold,Closed,Draft Quote Provided,Quote Provided,Quote Approved,Quote Rejected,Awaiting Information,Information Provided,Details Pending,Details Provided</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_15743318</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>SAM_Quote_Line_Item__c.pkl_Publisher__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>SAM Cross Charge Report</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$SAM_Request__c$SAM_Quote_Line_Item__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>SAM_Request__c.date_Cross_Charge_Completion_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

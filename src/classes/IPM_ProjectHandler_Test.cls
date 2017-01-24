@@ -50,6 +50,7 @@ private class IPM_ProjectHandler_Test {
         technicalPLUser = IPM_TestFactory_Helper.createUser(true);
         gatekeeperUser = IPM_TestFactory_Helper.createUser(true);
         adminUser = IPM_TestFactory_Helper.createUserAdmin(true);
+        
         cluster = new IPM_Clusters__c();
         cluster.name = 'TESTCLUSTER';
         insert cluster;
@@ -468,13 +469,7 @@ private class IPM_ProjectHandler_Test {
                     betProjectList[5]
                     };
             Test.stopTest();
-            
-            system.assertEquals([select UserId__c from BET_Member_Request__c where Project_Id__c = : [Select Id from IPM_Project__c where name = 'testParentProj1'
-                                                                                                      limit 1
-                                                                                                     ].Id limit 1].UserId__c, [Select IPM_Project_Leader__c from IPM_Project__c where name = 'testPrj4'
-                                                                                                                               limit 1
-                                                                                                                              ].IPM_Project_Leader__c, 'Failed to create acess request');
-        }  
+       	}  
     }
     
 }

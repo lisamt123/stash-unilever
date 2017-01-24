@@ -61,7 +61,9 @@ public class CEC_CaseTriggerHelper{
                     else{
                         msgString = '<Html><Body> This is an automated email<BR/><BR/>CEC Carelines Account owner could not be updated. Please check the case market mapping record and take the necessary action.<BR/><BR/>Case Number: '+ c.CaseNumber+'<BR/><BR/>Thank You</Body></Html>';  
                         emailSubject = '[ERR004] Default Account Owner is either not populated or Inactive at CMM';
-                        CEC_Util.sendNotificationEmail(msgString,emailSubject);
+                        //CEC_Util.sendNotificationEmail(msgString,emailSubject);
+                        CEC_ExceptionHandling.CreateExceptionLog('Controller', 'emailMessage', 'cec_EmailMessageHelper', '', msgString+'---'+ emailSubject);
+            
                     }    
                 } 
             }
@@ -188,7 +190,9 @@ public class CEC_CaseTriggerHelper{
             if(failedCases !=''){
                 msgString = '<Html><Body> This is an automated email<BR/><BR/>CEC Carelines case could not be updated. Please check the error message and take the necessary action.<BR/><BR/>'+ failedCases+'<BR/><BR/>Thank You</Body></Html>';  
                 emailSubject = '[ERR003] Case could not be updated';
-                CEC_Util.sendNotificationEmail(msgString,emailSubject);
+                //CEC_Util.sendNotificationEmail(msgString,emailSubject);
+                CEC_ExceptionHandling.CreateExceptionLog('Controller', 'emailMessage', 'cec_EmailMessageHelper', '', msgString+'---'+ emailSubject);
+            
             }            
         }
         
@@ -440,16 +444,25 @@ This method identifies date of manufacture from the daycode
     public void updateCountryDetail(Map<Id, Case> newCaseMap){
         
         System.debug('newCaseMap~~~~~~~~'+newCaseMap);
+         set <Id> caseMarketMap = new set<Id>();
         
         for(Case caseitem:newCaseMap.values()){
             
+            caseMarketMap.add(caseitem.Country__c);
             System.debug('Case_Market_Mapping_Country__c~~~~~~~~~'+ caseitem.Case_Market_Mapping_Country__c);
             caseitem.Country_Name__c=caseitem.Case_Market_Mapping_Country__c;
             caseitem.Tag__c=caseitem.Case_Market_Tag__c;
+            caseitem.BusinessHoursId = caseitem.Case_Market_Business_Hour__C;
+            
             System.debug('Country_Name__c~~~~~~~~~'+ caseitem.Country_Name__c);
         }
         
+      
+        
+        
     }
+    
+    
     
     /* Starts-  US-097 Personal data not included in Pulse */ 
     

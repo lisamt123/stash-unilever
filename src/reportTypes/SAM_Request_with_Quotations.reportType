@@ -162,6 +162,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>fml_Cross_Charge_Amount_for_report__c</field>
+            <table>SAM_Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>txt_GL_Account__c</field>
             <table>SAM_Request__c</table>
         </columns>
@@ -174,6 +179,11 @@
             <checkedByDefault>false</checkedByDefault>
             <field>pkl_Deployments__c</field>
             <table>SAM_Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>fml_Applicable_Cross_Charge__c</field>
+            <table>SAM_Request__c.Quote_Line_Items__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>

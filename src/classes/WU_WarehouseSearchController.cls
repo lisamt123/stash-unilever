@@ -17,6 +17,7 @@ public with sharing class WU_WarehouseSearchController {
     public string sMCO{get;set;}
     public string sCountry{get;set;}
     public string sCity{get;set;}
+    public string sActiveWH{get;set;}
     // the soql without the order and limit
     private String soql {get;set;}
     PageReference currentPage;
@@ -37,7 +38,7 @@ public with sharing class WU_WarehouseSearchController {
    public void getWarehouseList(){
        soql='SELECT Id,Name,Owner.Name,WU_Procurement_Manager__r.Name,WU_Average_Current_Utilization__c,WU_Average_Pallet_Utilization_Week__c,WU_Average_Pallet_Utilization_Month__c,WU_Total_Current_Month_Utilisation__c,WU_AverageUtilization__c,WU_CityName__c,WU_Committed_Max_PalletStorage__c,'+
             'WU_Country__c,WU_Average_Pallet_Utilization_Count__c,WU_Current_Utilization__c,WU_FromDate__c,WU_MCO__c,WU_Network__c,WU_Prior_CommittedPalletStorage__c,'+
-            'WU_Region__c,WU_SAPCode_s__c,WU_SAPName_s__c,WU_ToDate__c,WU_Total_Utilization__c,WU_WarehousePOC_Email__c,'+
+            'WU_Region__c,WU_Active_WH__c,WU_SAPCode_s__c,WU_SAPName_s__c,WU_ToDate__c,WU_Total_Utilization__c,WU_WarehousePOC_Email__c,'+
             'WU_Warehouse_Capacity__c FROM WU_Master_Warehouse__c where name!=null LIMIT 10000';
  
         try{
@@ -67,7 +68,7 @@ public with sharing class WU_WarehouseSearchController {
         
          soql='SELECT Id,Name,Owner.Name,WU_Procurement_Manager__r.Name,WU_Average_Current_Utilization__c,WU_Average_Pallet_Utilization_Week__c,WU_Average_Pallet_Utilization_Month__c,WU_Total_Current_Month_Utilisation__c,WU_AverageUtilization__c,WU_CityName__c,WU_Committed_Max_PalletStorage__c,'+
             'WU_Country__c,WU_Average_Pallet_Utilization_Count__c,WU_Current_Utilization__c,WU_FromDate__c,WU_MCO__c,WU_Network__c,WU_Prior_CommittedPalletStorage__c,'+
-            'WU_Region__c,WU_SAPCode_s__c,WU_SAPName_s__c,WU_ToDate__c,WU_Total_Utilization__c,WU_WarehousePOC_Email__c,'+
+            'WU_Region__c,WU_Active_WH__c,WU_SAPCode_s__c,WU_SAPName_s__c,WU_ToDate__c,WU_Total_Utilization__c,WU_WarehousePOC_Email__c,'+
             'WU_Warehouse_Capacity__c FROM WU_Master_Warehouse__c where name!=null';
         if(warehouseCapacity!=null){
             sRegion=warehouseCapacity.WU_Region__c;
@@ -76,6 +77,7 @@ public with sharing class WU_WarehouseSearchController {
             sCountry=warehouseCapacity.WU_Country__c;
             sCity=warehouseCapacity.WU_CityName__c;
             sSAP=warehouseCapacity.WU_SAPCode_s__c;
+            sActiveWH=warehouseCapacity.WU_Active_WH__c;
           }
         system.debug('@@@warehouseCapacity --->'+warehouseCapacity + '-' + sSAP+ '-' + sRegion+ '-' + sMCO +'-'+ sCategory+'-' + sCountry+ '-' + sCity );
        
@@ -102,6 +104,10 @@ public with sharing class WU_WarehouseSearchController {
         if(!String.isEmpty(sCity)){
             soql += ' and WU_CityName__c='+':sCity';
         }
+        
+        if(!String.isEmpty(sActiveWH)){
+            soql += ' and WU_Active_WH__c='+':sActiveWH';
+        }
                 
         system.debug('@@@soql --->'+soql );
  
@@ -121,7 +127,7 @@ public with sharing class WU_WarehouseSearchController {
                 
          soql='SELECT Id,Name,Owner.Name,WU_Procurement_Manager__r.Name,WU_Average_Current_Utilization__c,WU_Average_Pallet_Utilization_Week__c,WU_Average_Pallet_Utilization_Month__c,WU_Total_Current_Month_Utilisation__c,WU_AverageUtilization__c,WU_CityName__c,WU_Committed_Max_PalletStorage__c,'+
             'WU_Country__c,WU_Current_Utilization__c,WU_FromDate__c,WU_MCO__c,WU_Network__c,WU_Prior_CommittedPalletStorage__c,'+
-            'WU_Region__c,WU_SAPCode_s__c,WU_SAPName_s__c,WU_ToDate__c,WU_Total_Utilization__c,WU_WarehousePOC_Email__c,'+
+            'WU_Region__c,WU_SAPCode_s__c,WU_Active_WH__c,WU_SAPName_s__c,WU_ToDate__c,WU_Total_Utilization__c,WU_WarehousePOC_Email__c,'+
             'WU_Warehouse_Capacity__c FROM WU_Master_Warehouse__c where name!=null';
         if(warehouseCapacity!=null){
             sRegion = warehouseCapacityLookup.Master_Region__c;
@@ -130,6 +136,7 @@ public with sharing class WU_WarehouseSearchController {
             sCountry = warehouseCapacityLookup.Master_Country__c;
             sCity = warehouseCapacityLookup.Master_city__c;
             sSAP = warehouseCapacityLookup.WU_SAPCode_s__c;
+            sActiveWH=warehouseCapacityLookup.WU_Active_WH__c;
           }
         
         system.debug('@@@warehouseCapacityLookup --->'+warehouseCapacityLookup + '-' + sSAP+ '-' + sRegion+ '-' + sMCO +'-'+ sCategory+'-' + sCountry+ '-' + sCity );
@@ -156,6 +163,12 @@ public with sharing class WU_WarehouseSearchController {
        
         if(!String.isEmpty(sCity)){
             soql += ' and Master_city__c ='+':sCity';
+            
+        }
+        
+        if(!String.isEmpty(sActiveWH))
+        {
+        soql+= 'WU_Active_WH__c='+':sActiveWH;
         }
                 
         system.debug('@@@soql --->'+soql );
@@ -257,6 +270,17 @@ public with sharing class WU_WarehouseSearchController {
             pagr.getParameters().put('pc5',Label.WU_Report_City);
             pagr.getParameters().put('pn5','eq');
             pagr.getParameters().put('pv5',warehouseCapacity.WU_CityName__c);
+        }
+        if(warehouseCapacity.WU_SAPCode_s__c != NUll){
+            pagr.getParameters().put('pc0',Label.WU_Report_SAP_Code);
+            pagr.getParameters().put('pn0','eq');
+            pagr.getParameters().put('pv0',warehouseCapacity.WU_SAPCode_s__c );
+        }
+        
+         if(warehouseCapacity.WU_SAPCode_s__c != NUll){
+            pagr.getParameters().put('pc0',Label.WU_Report_SAP_Code);
+            pagr.getParameters().put('pn0','eq');
+            pagr.getParameters().put('pv0',warehouseCapacity.WU_SAPCode_s__c );
         }
         
         return pagr;

@@ -28,7 +28,7 @@ global with sharing virtual class PBS_SFDCAccessControlResults_CC {
   
   global class AccessControlResultsException extends Exception {}
   
-  private PBS_SFDCAccessControlResults_CC() {
+  public PBS_SFDCAccessControlResults_CC() {
     // declare this function as private so it can't be used.
     // the specific Insert/Update/Delete classes should be constructed instead.
     

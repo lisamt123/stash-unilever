@@ -69,10 +69,11 @@ public with sharing class CEC_InstantAlertActionHelper {
             for(Id caseId : oldCaseMap.keySet()) {
                 allCaseNumbers.add(oldCaseMap.get(caseId).caseNumber);
             }
-            String msgBodyStr = '*** ERROR IN CEC_InstantAlertActionHelper for creating Alerts *** \n \n \n Details :: ' + e.getMessage() 
-                + '\n\n\nCaseIds are as follows\n' + String.join(allCaseNumbers, '\n');
-            CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Alert Functionality Exception');
-            System.debug('Exception in CEC_InstantAlertActionHelper -> createAlertEntries : ' +  e.getMessage());            
+           // String msgBodyStr = '*** ERROR IN CEC_InstantAlertActionHelper for creating Alerts *** \n \n \n Details :: ' + e.getMessage() 
+               // + '\n\n\nCaseIds are as follows\n' + String.join(allCaseNumbers, '\n');
+            CEC_ExceptionHandling.CreateExceptionLog('Controller', 'createAlertEntries', 'CEC_InstantAlertActionHelper', '', e.getStackTraceString() + allCaseNumbers);
+           // CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Alert Functionality Exception');
+           // System.debug('Exception in CEC_InstantAlertActionHelper -> createAlertEntries : ' +  e.getMessage());            
         }
     }
     
@@ -379,7 +380,7 @@ public with sharing class CEC_InstantAlertActionHelper {
                         uniqueId = null;
                         
                         // Create Unique Id based on the daycode check on the alert rule.
-                        if(!alertRule.Group_By_Day_Code__c && caseObj.DayCode__c == null){
+                        if(!alertRule.Group_By_Day_Code__c ){//&& caseObj.DayCode__c == null){
                             uniqueId = alertRule.Id + caseObj.Consumer_Product_Descriptor_no_size__c;
                         }else if(alertRule.Group_By_Day_Code__c && caseObj.DayCode__c != null){
                             uniqueId = alertRule.Id + caseObj.DayCode__c + caseObj.Consumer_Product_Descriptor_no_size__c;

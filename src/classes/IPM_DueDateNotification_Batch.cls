@@ -43,7 +43,7 @@ global without sharing class IPM_DueDateNotification_Batch implements Database.B
         }
         
         Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([
-        																	SELECT Name,Id, IPM_Project_Type__c, IPM_GateKeeping_Model__c, IPMProject_Span__c,IPM_Phase__c, IPM_CompanyCardText__c,Is_Archieved__c 
+        																	SELECT Name,Id, IPM_Project_Type__c, IPM_GateKeeping_Model__c, IPMProject_Span__c,IPM_Phase__c, IPM_CompanyCardText__c,Is_Archieved__c,IPM_ProjectGKM__c 
         																	FROM IPM_Project__c 
         																	where Id IN : milestoneProjSet LIMIT 50000]);
         List<IPM_Project_Resource__c> resourceList = [Select IPM_User__c,IPM_Project__c from IPM_Project_Resource__c 

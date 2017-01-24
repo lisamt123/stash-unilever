@@ -1,3 +1,4 @@
+
 public with sharing class IPM_StopProjectHelper 
 {
     // Set of all Projects which are going to be Stopped including explicit and implicit stops.
@@ -268,6 +269,8 @@ public with sharing class IPM_StopProjectHelper
         // Set of Projects Stopped by User. 
         set<Id> stoppedProjectIdSet =  new Set<Id>(archivalProjectMap.keySet()); 
         
+        // set of GKM3 global parent project ids whose regional rollouts  need deactivation
+        set<Id> globalParentProjIds =  new Set<Id>();
         while (!stoppedProjectIdSet.isEmpty())  
         {
              //query project to get its parent and child project ids
@@ -280,7 +283,7 @@ public with sharing class IPM_StopProjectHelper
         Set<Id> resultantStoppedProjectIdSet = parentToStoppedChildProjectIds.KeySet();
 
         //query all data associated with stopped/restarted project, its parent and child projects  
-        Map<Id,IPM_Project__c> stopProjectMap =  new map<Id,IPM_Project__c>([SELECT Id,Name,IPM_Cluster__c,IPM_Phase__c,IPM_Stopped_Phase__c,IPM_StoppedByProjectPhase__c,IPM_StoppedByProject__c,IPM_PreviouslyStoppedBy__c,IPM_PrepareForArchival__c,IPM_Parent_Project__c,IPM_PreviousDocumentStatus__c,IPM_Project_Rollout__c,Is_Archieved__c,IPM_Stopped_Date_Time__c,IPM_Stopped_By__c,IPM_Stopped_Comments__c,IPM_Current_Document_Status__c,IPM_Document_Update_Comments__c,IPM_Parent_Project__r.IPM_Parent_Project__c,IPMProject_Span__c,IPM_Current_Gate_Name__c,IPM_Stopped_At_Span__c,
+        Map<Id,IPM_Project__c> stopProjectMap =  new map<Id,IPM_Project__c>([SELECT Id,IPM_ProjectGKM__c,IPM_Parent_Project__c,Name,IPM_Cluster__c,IPM_Phase__c,IPM_Stopped_Phase__c,IPM_StoppedByProjectPhase__c,IPM_StoppedByProject__c,IPM_PreviouslyStoppedBy__c,IPM_PrepareForArchival__c,IPM_PreviousDocumentStatus__c,IPM_Project_Rollout__c,Is_Archieved__c,IPM_Stopped_Date_Time__c,IPM_Stopped_By__c,IPM_Stopped_Comments__c,IPM_Current_Document_Status__c,IPM_Document_Update_Comments__c,IPM_Parent_Project__r.IPM_Parent_Project__c,IPMProject_Span__c,IPM_Current_Gate_Name__c,IPM_Stopped_At_Span__c,
         (SELECT id,IPM_Stopped_Date__c,IPM_Updated_User_By__c,IPM_Stopped_Comments__c,IPM_Document_Status__c,IPM_GateDocuments__c From Project_Documents__r limit 10000),
         (SELECT id from Tasks__r where IPM_Active__c = true limit 10000), 
         (SELECT id from IPM_Countries__r where isActive__c = true limit 10000),
@@ -302,6 +305,10 @@ public with sharing class IPM_StopProjectHelper
             if(stopProjectMap.containsKey(userStoppedProjectId))
             {
                 IPM_Project__c userStoppedProject = stopProjectMap.get(userStoppedProjectId);     
+                if(userStoppedProject.IPM_ProjectGKM__c==IPM_ConstantUtils.GATE_KEEPING_MODEL_3 && userStoppedProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL )
+                {
+                	globalParentProjIds.add(userStoppedProject.IPM_Parent_Project__c);
+                }    
                
                 /* Logic for stopped Project & Documents */
                 Map<Id,IPM_Project__c> childProjectMap = new Map<Id,IPM_Project__c>();
@@ -332,6 +339,15 @@ public with sharing class IPM_StopProjectHelper
 
         updateChildProjects(relatedProjectsToStopMap);
         updateprojectRelatedRecords(relatedProjectDocToStopMap,relatedProjectResourceToStopMap,relatedFinancialsToStopMap,relatedCountryToStopMap,relatedRolloutsToStopMap,relatedProjectTaskToStopMap);  
+        IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = false; 
+        IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+        IPM_TaskHelper.SKIP_TRIGGER_EXECUTION = false;
+        IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
+        //Only for GKM3 - Deactivating the regional rollouts with no corresponding regional projects   if  all the local mco's are deactivated 
+        if(!globalParentProjIds.isEmpty())
+        {
+        	IPM_RolloutTriggerHandler.processRegRLOutsOnLocalDeactivation(globalParentProjIds);
+        }
     }
 
     public static void processProjectRelatedArchival(IPM_Project__c userStoppedProject, Map<Id,IPM_Project_Document__c> childProjectDocumentMap, Map<Id,IPM_Task__c> childProjectTaskMap,Map<Id,IPM_Project_Resource__c> childProjectResourceMap,Map<Id,IPM_Project_Rollout__c> childRolloutMap,Map<Id,IPM_Financial__c> childFinancialMap,Map<Id,IPM_Country__c>  childCountryMap) 

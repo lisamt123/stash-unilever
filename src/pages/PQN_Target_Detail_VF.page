@@ -1,0 +1,15 @@
+<apex:page standardController="PQN_Targets__c" sidebar="false" showHeader="false">
+
+<body>
+    <div id="wrapper">
+        <c:PQN_Navigation navigationName="target"/>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+            <apex:detail relatedList="false" inlineEdit="false" />
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+</body>
+</apex:page>

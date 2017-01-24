@@ -27,7 +27,7 @@
         <titleSize>18</titleSize>
     </chart>
     <columns>
-        <field>CUST_NAME</field>
+        <field>CI_R2R_Innovation__c.Project2__c</field>
     </columns>
     <format>Matrix</format>
     <groupingsAcross>

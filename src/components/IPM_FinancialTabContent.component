@@ -35,6 +35,7 @@
         isInnovation="TRUE"
         isEditMode="{!isEditMode}"
         fieldSuffix="{!fieldSuffix}"
+        exRate="{!exRate}"
     />
 
     <c:IPM_FinancialSummaryTable ipmFinancial="{!ipmFinancial}"
@@ -68,6 +69,7 @@
         isInnovation="FALSE"
         isEditMode="{!isEditMode}"
         fieldSuffix="{!fieldSuffix}"
+        exRate="{!exRate}"
     />
     </apex:outputPanel>
 </apex:component>

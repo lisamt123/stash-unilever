@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   
+
+ <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+ 
+   <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Engagement App</title>
+
+  
+  <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/demo.css">
+        <!-- Pushy CSS -->
+        <link rel="stylesheet" href="css/pushy.css">
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+   
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+  
+ <header class="site-header push"><img src="list_button.png" alt="" class="menu-btn"><h5>Aapki Pratikriya</h5></header>
+        <!-- Pushy Menu -->
+        <nav class="pushy pushy-left">
+            <ul> <li class="pushy-submenu upool"><a href="Home.html">Engagement App</a></li>
+                 <li class="pushy-submenu"><a href="question1.html">Question</a></li>
+                 <li class="pushy-submenu"><a href="feedback.html">Feedback</a></li>
+                 <li class="pushy-submenu"><a href="andoption.html">Preview</a></li>
+                <li class="pushy-submenu"><a href="popup.html">Rating</a></li>
+				<li class="pushy-submenu"><a href="thankyou.html">ThankYou</a></li>
+            </ul>
+        </nav>
+
+ <div class="site-overlay"></div>
+
+    <div class="container" id="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+  
+    <div class="jumbotron">
+  
+      <div class="logo"><img src="engagement.png" alt=""></div>
+ 
+      <form class="form-signin">
+    <label for="sel1">Select Your Location</label>
+   <select class="form-control" id="sel1" Value="Select Your Location">
+     <option Value="">Select Your Location</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+  </select> 
+     
+
+  <label for="sel1">Select Your Location Name</label>
+   <select class="form-control" id="sel1" placeholder="Select Your Location Name"> 
+     <option>Select Your Location Name</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+  </select> 
+ <button class="btn btn-lg btn-primary btn-block sub" type="submit">Start</button>
+   
+   </form>
+  
+   </div>
+
+    </div>
+ <!--<footer class="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </footer>-->
+
+
+  
+ <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+ 
+   <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+   <!--  <script src="js/pushy.min.js"></script> -->
+   <script>
+   (function ($) {
+	var pushy = $('.pushy'), //menu css class
+		body = $('body'),
+		container = $('#container'), //container css class
+		push = $('.push'), //css class to add pushy capability
+		pushyLeft = 'pushy-left', //css class for left menu position
+		pushyOpenLeft = 'pushy-open-left', //css class when menu is open (left position)
+		pushyOpenRight = 'pushy-open-right', //css class when menu is open (right position)
+		siteOverlay = $('.site-overlay'), //site overlay
+		menuBtn = $('.menu-btn, .pushy-link'), //css classes to toggle the menu
+		menuSpeed = 200, //jQuery fallback menu speed
+		menuWidth = pushy.width() + 'px', //jQuery fallback menu width
+		submenuClass = '.pushy-submenu',
+		submenuOpenClass = 'pushy-submenu-open',
+		submenuClosedClass = 'pushy-submenu-closed',
+		submenu = $(submenuClass);
+
+	function togglePushy(){
+		//add class to body based on menu position
+		if( pushy.hasClass(pushyLeft) ){
+			body.toggleClass(pushyOpenLeft);
+		}else{
+			body.toggleClass(pushyOpenRight);
+		}
+	}
+
+	function openPushyFallback(){		
+
+		//animate menu position based on CSS class
+		if( pushy.hasClass(pushyLeft) ){
+			body.addClass(pushyOpenLeft);
+			pushy.animate({left: "0px"}, menuSpeed);
+			container.animate({left: menuWidth}, menuSpeed);
+			//css class to add pushy capability
+			push.animate({left: menuWidth}, menuSpeed);
+		}else{
+			body.addClass(pushyOpenRight);
+			pushy.animate({right: '0px'}, menuSpeed);
+			container.animate({right: menuWidth}, menuSpeed);
+			push.animate({right: menuWidth}, menuSpeed);
+		}
+
+	}
+
+	function closePushyFallback(){
+
+		//animate menu position based on CSS class
+		if( pushy.hasClass(pushyLeft) ){
+			body.removeClass(pushyOpenLeft);
+			pushy.animate({left: "-" + menuWidth}, menuSpeed);
+			container.animate({left: "0px"}, menuSpeed);
+			//css class to add pushy capability
+			push.animate({left: "0px"}, menuSpeed);
+		}else{
+			body.removeClass(pushyOpenRight);
+			pushy.animate({right: "-" + menuWidth}, menuSpeed);
+			container.animate({right: "0px"}, menuSpeed);
+			push.animate({right: "0px"}, menuSpeed);
+		}
+
+	}
+
+	function toggleSubmenu(){
+		//hide submenu by default
+		$(submenuClass).addClass(submenuClosedClass);
+
+		$(submenuClass).on('click', function(){
+	        var selected = $(this);
+
+	        if( selected.hasClass(submenuClosedClass) ) {
+	            //hide opened submenus
+	            $(submenuClass).addClass(submenuClosedClass).removeClass(submenuOpenClass);
+	            //show submenu
+	            selected.removeClass(submenuClosedClass).addClass(submenuOpenClass);
+	        }else{
+	            //hide submenu
+	            selected.addClass(submenuClosedClass).removeClass(submenuOpenClass);
+	        }
+	    });
+	}
+	
+    function toggleSubmenuFallback(){
+    	//hide submenu by default
+    	$(submenuClass).addClass(submenuClosedClass);
+    	
+    	submenu.children('a').on('click', function(event){
+    		event.preventDefault();
+    		$(this).toggleClass(submenuOpenClass)
+    			   .next('.pushy-submenu ul').slideToggle(200)
+    			   .end().parent(submenuClass)
+    			   .siblings(submenuClass).children('a')
+    			   .removeClass(submenuOpenClass)
+    			   .next('.pushy-submenu ul').slideUp(200);
+    	});
+    }
+
+	//checks if 3d transforms are supported removing the modernizr dependency
+	var cssTransforms3d = (function csstransforms3d(){
+		var el = document.createElement('p'),
+		supported = false,
+		transforms = {
+		    'webkitTransform':'-webkit-transform',
+		    'OTransform':'-o-transform',
+		    'msTransform':'-ms-transform',
+		    'MozTransform':'-moz-transform',
+		    'transform':'transform'
+		};
+
+		// Add it to the body to get the computed style
+		document.body.insertBefore(el, null);
+
+		for(var t in transforms){
+		    if( el.style[t] !== undefined ){
+		        el.style[t] = 'translate3d(1px,1px,1px)';
+		        supported = window.getComputedStyle(el).getPropertyValue(transforms[t]);
+		    }
+		}
+
+		document.body.removeChild(el);
+
+		return (supported !== undefined && supported.length > 0 && supported !== "none");
+	})();
+
+	if(cssTransforms3d){
+		//make menu visible
+		pushy.css({'visibility': 'visible'});
+
+		//toggle submenu
+		toggleSubmenu();
+
+		//toggle menu
+		menuBtn.on('click', function(){
+			togglePushy();
+		});
+		//close menu when clicking site overlay
+		siteOverlay.on('click', function(){
+			togglePushy();
+		});
+	}else{
+		//add css class to body
+		body.addClass('no-csstransforms3d');
+
+		//hide menu by default
+		if( pushy.hasClass(pushyLeft) ){
+			pushy.css({left: "-" + menuWidth});
+		}else{
+			pushy.css({right: "-" + menuWidth});
+		}
+
+		//make menu visible
+		pushy.css({'visibility': 'visible'}); 
+		//fixes IE scrollbar issue
+		container.css({"overflow-x": "hidden"});
+
+		//keep track of menu state (open/close)
+		var opened = false;
+
+		//toggle submenu
+		toggleSubmenuFallback();
+
+		//toggle menu
+		menuBtn.on('click', function(){
+			if (opened) {
+				closePushyFallback();
+				opened = false;
+			} else {
+				openPushyFallback();
+				opened = true;
+			}
+		});
+
+		//close menu when clicking site overlay
+		siteOverlay.on('click', function(){
+			if (opened) {
+				closePushyFallback();
+				opened = false;
+			} else {
+				openPushyFallback();
+				opened = true;
+			}
+		});
+	}
+}(jQuery));
+   </script>
+    </body>
+</html>

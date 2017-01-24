@@ -14,11 +14,12 @@ VERSION     AUTHOR         DATE              DETAIL Description
 @IsTest
 public class MB_Controller_Charts_Test{
   public static final String Month_April = 'April 2016';
-  
+   public static String DATE_EXP = '0 0 0 14 12 ?';
   static testMethod void testControllerCharts(){
-   
+  
   Test.startTest();
-       
+  
+      
   ID adminProfileID = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].ID;
   user  userObject1 = new User(username='firstuserdb@test.com',
                                   alias = 'fu',
@@ -213,27 +214,44 @@ public class MB_Controller_Charts_Test{
   billingEntityObject12.Charge_Type__c = chargeTypeObject7.Id;
   billingEntityObject12.User__c = userObject2.Id;
   insert billingEntityObject12;
-      
+ //changes to insure coverage for New changes. 
+  MobileBillingInsights__c objMobileBillingInsights=new MobileBillingInsights__c(Country__c=userObject1.Country,Month__c=Month_April,TotalDevices__c=4500.00,TotalUsers__c=4800.00); 
+  insert objMobileBillingInsights;  
+  MobileBillingInsights__c objMobileBillingInsights1=new MobileBillingInsights__c(Country__c=userObject1.Country,Month__c='November 2015',TotalDevices__c=4500.00,TotalUsers__c=4800.00); 
+  insert objMobileBillingInsights1; 
+  MobileBillingInsights__c objMobileBillingInsights2=new MobileBillingInsights__c(Country__c=userObject1.Country,Month__c='October 2015',TotalDevices__c=4500.00,TotalUsers__c=4800.00); 
+  insert objMobileBillingInsights2;  
+  
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject2 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject2 = MB_Controller_Charts.getyourCollegueChargeType(Month_April,deviceDetailsObject.Id);
-  System.assertEquals(deviceWrapperClassObject2.totalAverageDataUsage,500.00);  
+  System.assertEquals(deviceWrapperClassObject2.totalAverageDataUsage,0.33); //new value
   //System.assertEquals(deviceWrapperClassObject2.totalAverageMessageUsage,135.00);
- 
+   
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject3 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject3 = MB_Controller_Charts.getyourCollegueChargeType('November 2015',deviceDetailsObject.Id);
   System.assertEquals(deviceWrapperClassObject3.dataVariance,null);
   
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject4 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject4 = MB_Controller_Charts.getInsights(Month_April);
-  System.assertEquals(deviceWrapperClassObject4.totalAverageCallUsageIn,75.00);     
-  System.assertEquals(deviceWrapperClassObject4.totalAverageDataUsageIn,750.00); 
+  System.assertEquals(deviceWrapperClassObject4.totalAverageCallUsageIn,0.03);//new value     
+  System.assertEquals(deviceWrapperClassObject4.totalAverageDataUsageIn,0.31); //new value
   System.assertEquals(deviceWrapperClassObject4.totalAverageIpassUsageIn,10.00);
-   
+ 
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject5 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject5 = MB_Controller_Charts.getInsights('October 2015');
   System.assertEquals(deviceWrapperClassObject5.userName,null);
-  }    
+  }
+   List<MB_Info_ReportingGA__c> lstCustSet = new List<MB_Info_ReportingGA__c>();
+         lstCustSet.add( new MB_Info_ReportingGA__c(Name='Day', Text_Value__c='30'));
+           if(!lstCustSet.isEmpty()){
+            insert lstCustSet;  
+        } 
+       Integer Year= Date.Today().Year()+1;
+        String YearCurrent=String.valueof(Year);
+        String scheduleTime=DATE_EXP+' '+ YearCurrent;
+  System.schedule('ScheduleApexClassTest',scheduleTime,new MB_Scheduler());
                          
   Test.stopTest();
+  
   }
 }

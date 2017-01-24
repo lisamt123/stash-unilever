@@ -375,6 +375,14 @@ Global with sharing class IPM_BosscardController {
         }
 		checkMandatoryFields();
         checkRequiredFields();
+        getCategoryGroup(bosscard);
+    }
+    public void getCategoryGroup(IPM_Bosscard__c bosscard){
+    	Map<String,IPM_Category__c> customSettingCategory = IPM_Category__c.getAll();    	 
+        if(bosscard.IPM_Category__c != null && customSettingCategory != null && customSettingCategory.containsKey(bosscard.IPM_Category__c))
+        {
+            bosscard.IPM_Category_Group__c = customSettingCategory.get(bosscard.IPM_Category__c).IPM_Category_Group__c;
+        } 
     }
     @Testvisible private void checkMandatoryFields()
 	{

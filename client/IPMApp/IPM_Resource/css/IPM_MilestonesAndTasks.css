@@ -614,9 +614,10 @@
 		margin-top: 10px;
 		padding-top: 10px;
 	}
-	 .Todosalign{
+	 .todosalign{
         margin-top: 22px;
 		margin-right: 10px;
+		margin-bottom:15px;
      }
 	.outputPannelalign{
         float:left;
@@ -745,3 +746,15 @@
      margin-left: -8px;
  }
  .displaynone{ display:none;}
+ .mstoneDesc{font-style: italic;color: #555;}
+ .milestoneDescContainer{width:60%;}
+@media (min-width: 1024px) and (max-width: 1150px) {
+.addmilelink {
+    width: 36%;
+}
+}
+@media (min-width: 1151px) and (max-width: 1350px) {
+.addmilelink {
+    width: 32%;
+}
+}

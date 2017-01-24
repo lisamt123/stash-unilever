@@ -36,7 +36,7 @@ public with sharing class IPM_NewTask {
     
     
     private Map<String,String> phaseGateMapping;
-    
+    public String sIPM_Type_of_Gate{get;set;}
     
     private static final Id recordTypeIdValue = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
     
@@ -257,6 +257,8 @@ public with sharing class IPM_NewTask {
             checkTaskDueDateGreaterThanMilestone(projectObject);
             
             checkTaskValidations(tasks);
+            
+            tasks.IPM_Type_of_Gate__c = getIPMTypeofGate();
                 
             if(String.isNotBlank(tasks.IPM_Task_Name__c) && validate)
             {
@@ -438,13 +440,29 @@ public with sharing class IPM_NewTask {
         //tasks.IPM_Function__c = '';
         
    }
-   
+   public List<SelectOption> getFeasibilityDocumentTypes()
+   {
+   	List<SelectOption> options = new List<SelectOption>();
+   	if(String.isBlank(sIPM_Type_of_Gate)){
+   		sIPM_Type_of_Gate = IPM_ConstantUtils.CONTRACT_GATE;
+   	}
+   	options.add(new SelectOption(IPM_ConstantUtils.CONTRACT_GATE,IPM_ConstantUtils.CONTRACT_GATE));
+   	options.add(new SelectOption(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT,IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT));
+   	return options;
+   }
    public List<SelectOption> getGateSpecificSpan()
    {
         List<SelectOption> projectSpanOptionList = new List<SelectOption>();
-            
+        string sIPMTypeOfGate = getIPMTypeofGate();
+        
+        if(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT.Equals(sIPMTypeOfGate))
+        {
+        	projectSpanOptionList.add(new SelectOption(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,IPM_ConstantUtils.PROJECT_SPAN_GLOBAL));
+        	return projectSpanOptionList;
+        }
+        
         List<IPM_Project_Type__c> associatedProjectTypeList = new List<IPM_Project_Type__c>();
-        if(String.isNotBlank(tasks.IPM_Type_of_Gate__c))
+        if(String.isNotBlank(sIPMTypeOfGate))
         {
             IPM_Project__c expectedProject = new IPM_Project__c();
             expectedProject.IPM_CompanyCardText__c = projectObject.IPM_CompanyCardText__c;
@@ -455,7 +473,7 @@ public with sharing class IPM_NewTask {
             // If type of Task is adhoc or future adhoc get the project span
             if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.ADHOC || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS)
             {
-                associatedProjectTypeList = IPM_Utils.getProjectSpanBasedOnGate(expectedProject,tasks.IPM_Type_of_Gate__c);
+                associatedProjectTypeList = IPM_Utils.getProjectSpanBasedOnGate(expectedProject,sIPMTypeOfGate);
             }
             else
             {
@@ -488,6 +506,16 @@ public with sharing class IPM_NewTask {
         getSectionlist();
     }
     
+    public string getIPMTypeofGate()
+	{
+		if (IPM_ConstantUtils.FEASIBILITY_PHASE.Equals(tasks.IPM_Phase__c) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(projectObject.IPM_GateKeeping_Model__c)){ 
+		 	return sIPM_Type_of_Gate; 
+		}
+		else{
+		 	return tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate');
+		}
+	}
+    
     /********************************************************************************
      *@Description : create dependent picklist of section sequence and section name, which is depenedent on functional role value selection
      *@Param: Present projectid
@@ -502,8 +530,8 @@ public with sharing class IPM_NewTask {
             {
             	options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
             }
-             
-            if(string.isNotBlank(tasks.IPM_Function__c)  && string.isNotBlank(tasks.IPM_Type_of_Gate__c) )
+            
+            if(string.isNotBlank(tasks.IPM_Function__c)  && (string.isNotBlank(tasks.IPM_Type_of_Gate__c)|| String.isNotBlank(sIPM_Type_of_Gate)))
             {        
                 String functionalRole = IPM_ConstantUtils.BLANK;
                 String projectType = IPM_ConstantUtils.BLANK;
@@ -513,7 +541,8 @@ public with sharing class IPM_NewTask {
                 String sSectionSequence = IPM_Utils.eightvalue + PERCENT_SIGN;
                 
                 projectType = projectObject.IPM_SourceProjectType__c;
-                
+                string sIPMTypeofGate = getIPMTypeofGate();
+                		        
                 if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS  || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_STANDARD_TASKS) 
                 {
                     for(IPM_Section__c docsections :[SELECT IPM_Document_Template__r.IPM_Document_Type__c,External_ID__c,Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_IS_Default_Section__c 
@@ -521,7 +550,7 @@ public with sharing class IPM_NewTask {
                                                     WHERE  
                                                     IPM_FunctionalRole__c =: functionalRole  
                                                     AND IPM_IS_Default_Section__c = true 
-                                                    AND IPM_Document_Template__r.IPM_Document_Type__c =: tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate')
+                                                    AND IPM_Document_Template__r.IPM_Document_Type__c =: sIPMTypeofGate                                                    
                                                     AND IPM_Document_Template__r.IPM_Project_Template__r.IPM_Template_Complexity__c =: projectObject.IPM_Complexity__c
                                                     AND IPM_Section_Type__c NOT IN (:IPM_ConstantUtils.SECTION_TYPE_HEADER,:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
                                                     AND ( NOT IPM_Section_Sequence__c like :sSectionSequence)
@@ -540,7 +569,7 @@ public with sharing class IPM_NewTask {
                  {
                     for(IPM_Project_Document_Section__c docsections : [SELECT Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Section__c,IPM_Section__r.External_ID__c,IPM_Default_Section__c 
                                                                             FROM IPM_Project_Document_Section__c 
-                                                                            WHERE IPM_Gate_Document__c=:tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate')
+                                                                            WHERE IPM_Gate_Document__c=:sIPMTypeofGate
                                                                             AND IPM_FunctionalRole__c =: FunctionalRole  
                                                                             AND IPM_Default_Section__c = true
                                                                             AND IPM_Project_Document__r.IPM_Project_Complexity__c =: projectObject.IPM_Complexity__c 
@@ -676,7 +705,8 @@ public with sharing class IPM_NewTask {
 		
     	String projectType = String.IsNotBlank(projectObject.IPM_SourceProjectType__c) ? projectObject.IPM_SourceProjectType__c : IPM_ConstantUtils.BLANK;
         String sSectionSequence = IPM_Utils.eightvalue + PERCENT_SIGN;
-        
+        string sIPMTypeofGate = getIPMTypeofGate();
+             
         //check if phase selected is future phase     
         if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS  || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_STANDARD_TASKS) 
 	    {
@@ -685,7 +715,7 @@ public with sharing class IPM_NewTask {
 	                                        FROM IPM_Section__c 
 	                                        WHERE  
 	                                        IPM_IS_Default_Section__c = true 
-	                                        AND IPM_Document_Template__r.IPM_Document_Type__c =: tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate')
+	                                        AND IPM_Document_Template__r.IPM_Document_Type__c =: sIPMTypeofGate
 	                                        AND IPM_Document_Template__r.IPM_Project_Template__r.IPM_Template_Complexity__c =: projectObject.IPM_Complexity__c
 	                                        AND IPM_Section_Type__c NOT IN (:IPM_ConstantUtils.SECTION_TYPE_HEADER,:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
 	                                        AND ( NOT IPM_Section_Sequence__c like :sSectionSequence)
@@ -704,7 +734,7 @@ public with sharing class IPM_NewTask {
 	     	//as project documnet section is present for current phase add it to option
 	        for(IPM_Project_Document_Section__c docsections : [SELECT Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Section__c,IPM_Section__r.External_ID__c,IPM_Default_Section__c 
 	                                                                FROM IPM_Project_Document_Section__c 
-	                                                                WHERE IPM_Gate_Document__c=:tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate')
+	                                                                WHERE IPM_Gate_Document__c=:sIPMTypeofGate
 	                                                                AND IPM_Default_Section__c = true
 	                                                                AND IPM_Project_Document__r.IPM_Project_Complexity__c =: projectObject.IPM_Complexity__c 
 	                                                                AND IPM_Section__r.IPM_Section_Type__c NOT IN (:IPM_ConstantUtils.SECTION_TYPE_HEADER,:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
@@ -787,8 +817,8 @@ public with sharing class IPM_NewTask {
     		string sectionExternalId = SectionToExtenalIdSectionMap.get(selectedSectionId).toUpperCase();
     		set<string> roleSet = sectionToFunctionalRoleMap.get(sectionExternalId);
     		set<string> finalRoleSet =  new set<string>();
-    		
-    		
+    		if(roleSet!=null && tasks.IPM_Function__c!=null)
+    		{ 
     		for(string role : roleSet)
     		{
     			string roleValue = role;
@@ -810,6 +840,8 @@ public with sharing class IPM_NewTask {
     		if(!finalRoleSet.isEmpty() && !finalRoleSet.contains(tasks.IPM_Function__c) && tasks.IPM_SectionExternalIDFormula__c.equalsIgnoreCase(sectionExternalId) )
     		{
     			options.add(new SelectOption(tasks.IPM_Function__c,tasks.IPM_Function__c));
+	    			finalRoleSet.add(tasks.IPM_Function__c);
+	    		} 
     		} 
     	}
 		return options;

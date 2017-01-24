@@ -380,8 +380,17 @@
         <fullName>IPM_Exemptfrom_Threshold__c</fullName>
         <description>Exempt From Threshold - Formula field (Yes/ NO)</description>
         <externalId>false</externalId>
-        <formula>IF(IPM_Exempt_from_Threshold__c, &apos;Yes&apos;,  IF( CONTAINS(IPM_Project_Name__c, &apos;(Non Key)&apos;) , &apos;&apos;, &apos;No&apos;) )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>IF(IPM_Exempt_from_Threshold__c, &apos;Yes&apos;,  
+
+		IF( CONTAINS(IPM_Project_Name__c, &apos;(Non Key)&apos;) , &apos;&apos;,  
+
+		IF(CONTAINS(IPM_Project_Span__c,&apos;Local&apos;) , &apos;&apos; ,  
+		IF(
+		AND
+		(IPM_Category_Group__c=&apos;Personal Care&apos;, IPM_Project_Type__c=&apos;Rollout&apos;),&apos;&apos;,&apos;NO&apos;) 
+		 )
+		)
+		)</formula>
         <label>IPM Exempt from Threshold</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -428,8 +437,8 @@
         <fullName>IPM_External_ID__c</fullName>
         <description>To hold the external id of the project</description>
         <externalId>false</externalId>
-        <label>IPM_External_ID</label>
-        <length>255</length>
+ 		<label>Inoplan Project ID</label>
+ 		<length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -754,6 +763,17 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>IPM_Market_Name__c</fullName>
+        <description>To Copy market name of project</description>
+        <externalId>false</externalId>
+        <label>Market Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Market_Place_Activity__c</fullName>
         <description>IPM Answer of Q1</description>
         <externalId>false</externalId>
@@ -938,6 +958,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Sector__c</fullName>
+        <description>To copy the sector of project</description>
+        <externalId>false</externalId>
+        <label>Sector</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Stopped__c</fullName>
         <description>To Indicate whether project is stopped or not</description>
         <externalId>false</externalId>
@@ -959,10 +990,12 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    
     <fields>
-        <fullName>IPM_Sub_Category__c</fullName>
+        <fullName>IPM_Sub_Sector__c</fullName>
+        <description>To copy the sub sector of project</description>
         <externalId>false</externalId>
-        <label>IPM Sub-Category</label>
+        <label>Sub Sector</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>

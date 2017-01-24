@@ -887,15 +887,16 @@
         <label>Approver of Charter</label>
         <picklist>
             <picklistValues>
-                <fullName>RCLT</fullName>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>GCLT</fullName>
+                <fullName>GCLT Leader</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1119,7 +1120,7 @@ IF(IPM_Category_Text__c = &apos;Deodorants &amp; Fragrances&apos; || IPM_Categor
 IMAGE(&apos;/resource/IPM_Resource/images/category_deo.png&apos;,&apos;DEO&apos;,21,21), 
 IF(IPM_Category_Text__c = &apos;Dressings&apos; || IPM_Category_Text__c = &apos;DRESSINGS&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_dressings.png&apos;,&apos;DRESSINGS&apos;,21,21), 
-IF(IPM_Category_Text__c = &apos;Hair&apos; || IPM_Category_Text__c = &apos;HAIR&apos;, 
+IF(IPM_Category_Text__c = &apos;Hair Care&apos; || IPM_Category_Text__c = &apos;HAIR CARE&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_hair.png&apos;,&apos;HAIR&apos;,21,21), 
 IF(IPM_Category_Text__c = &apos;Home Care&apos; || IPM_Category_Text__c = &apos;HOME CARE&apos; , 
 IMAGE(&apos;/resource/IPM_Resource/images/category_homecare.png&apos;,&apos;HOMECARE&apos;,21,21), 
@@ -1301,7 +1302,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
                 <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Ben &amp; Jerrys</fullName>
+                <fullName>Ben &amp; Jerry's</fullName>
                 <default>false</default>
                 <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
@@ -1880,17 +1881,17 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <description>Formula field which finds the Gate Keeping Module of the project</description>
         <externalId>false</externalId>
         <formula>If(ISPICKVAL(IPM_Project_Type__c, &apos;Original&apos;), 
-   If(ISPICKVAL(IPMProject_Span__c,&apos;Global&apos;),
-	  If(ISPICKVAL(IPM_GateKeeping_Model__c,&apos;GCLT &amp; RCLT&apos;),
-	     &apos;GKM1&apos;,
-	     If(ISPICKVAL(IPM_GateKeeping_Model__c,&apos;RCLT&apos;),
-	       &apos;GKM2&apos;,
-	       &apos;Indeterminable GKM&apos;
-		 )
-	  ),
-	  If(ISPICKVAL(IPMProject_Span__c,&apos;Regional&apos;),&apos;GKM4&apos;,&apos;Indeterminable GKM&apos;)
-   ), 
-   &apos;Indeterminable GKM&apos;
+If(ISPICKVAL(IPMProject_Span__c,&apos;Global&apos;), 
+If(ISPICKVAL(IPM_GateKeeping_Model__c,&apos;GCLT Leader &amp; CCVP&apos;), 
+&apos;GKM1&apos;, 
+If(ISPICKVAL(IPM_GateKeeping_Model__c,&apos;CCVP&apos;), 
+&apos;GKM2&apos;, 
+&apos;Indeterminable GKM&apos; 
+) 
+), 
+If(ISPICKVAL(IPMProject_Span__c,&apos;Regional&apos;),&apos;GKM4&apos;,&apos;Indeterminable GKM&apos;) 
+), 
+&apos;Indeterminable GKM&apos; 
 )</formula>
         <label>IPM GateKeepingModel</label>
         <required>false</required>
@@ -1906,15 +1907,16 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <label>IPM GateKeeping Model</label>
         <picklist>
             <picklistValues>
-                <fullName>RCLT</fullName>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>GCLT &amp; RCLT</fullName>
+                <fullName>GCLT Leader &amp; CCVP</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2259,16 +2261,14 @@ OwnerId))</formula>
         <externalId>false</externalId>
         <formula>IF(  ISPICKVAL( IPM_SourceProjectType__c , &apos;Original&apos;) ,
 	IF( ISPICKVAL( IPMProject_Span__c , &apos;Global&apos;) ,  BI__c ,
-	IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Local&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;), ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM4&apos;),ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM3&apos;) ),  
+	
+IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Local&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;),OR( ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM4&apos;),ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM3&apos;)) ),  
 		           IPM_Parent_Project__r.BI__c ,
-	IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Local&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;),NOT(ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM4&apos;)),NOT(ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM3&apos;))),
+
+				   IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Local&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;),NOT(ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM4&apos;)),NOT(ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM3&apos;))),
 				   IPM_Parent_Project__r.IPM_Parent_Project__r.BI__c,
 				   
-				   
-				   IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;)),IPM_Parent_Project__r.BI__c ,BI__c))))
-
-
-,&apos;&apos;)</formula>
+IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;)),IPM_Parent_Project__r.BI__c ,BI__c)))),&apos;&apos;)</formula>
         <label>Parent_BI</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -2547,13 +2547,31 @@ OwnerId))</formula>
         <fullName>IPM_Project_Based_Threshold_Status__c</fullName>
         <description>Check independently of the cluster whether the Project is below or above threshold.</description>
         <externalId>false</externalId>
-        <formula>IF(NOT(ISPICKVAL(IPM_Project_Type__c,&apos;Rollout&apos;)),
-  IF(Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Project_Y3iTO__c &lt; IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
-    IF(ISPICKVAL(IPMProject_Span__c,&apos;Regional&apos;),
-       IF(IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
-       IF(IPM_Parent_Project__r.IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;))
-       )
-  )</formula>
+        <formula>IF((OR(ISBLANK(IPM_Parent_Project__c),ISNULL(IPM_Parent_Project__c))), 
+    IF(Exempt_from_Threshold__c,
+     &apos;Exempt&apos;,
+     IF(IPM_Category_Thresh__c &lt; IPM_Project_Y3iTO__c ,
+     &apos;Above Threshold&apos;,
+     &apos;Below Threshold&apos;
+      )
+  ), 
+    IF(OR(ISBLANK(IPM_Parent_Project__r.IPM_Parent_Project__c),ISNULL(IPM_Parent_Project__r.IPM_Parent_Project__c)),
+     IF(IPM_Parent_Project__r.Exempt_from_Threshold__c,
+       &apos;Exempt&apos;,
+       IF(IPM_Parent_Project__r.IPM_Category_Thresh__c &lt; IPM_Parent_Project__r.IPM_Project_Y3iTO__c ,
+        &apos;Above Threshold&apos;,
+        &apos;Below Threshold&apos;
+      )
+     ),
+     IF(IPM_Parent_Project__r.IPM_Parent_Project__r.Exempt_from_Threshold__c,
+      &apos;Exempt&apos;,
+      IF(IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Category_Thresh__c &lt; IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Y3iTO__c ,
+        &apos;Above Threshold&apos;,
+        &apos;Below Threshold&apos;
+      )
+     )
+  )  
+)</formula>
         <label>IPM Project Based Threshold Status</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -2919,7 +2937,7 @@ OwnerId))</formula>
         <picklist>
             <picklistValues>
                 <fullName>Cleaning Tools</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Disinfectants</fullName>
@@ -3742,6 +3760,18 @@ OwnerId))</formula>
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Source_Rollout_External_Id__c</fullName>
+        <description>External Id of Source rollout</description>
+        <externalId>false</externalId>
+        <formula>IF( AND( NOT( ISBLANK(IPM_Project_Rollout__c) ), NOT(ISNULL(IPM_Project_Rollout__c)) ) , IPM_Project_Rollout__r.IPM_Rollout_Project__c, IPM_Project_Name__c )</formula>
+        <label>IPM Source Rollout External Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>IPM Project</label>
     <listViews>
         <fullName>All</fullName>
@@ -3945,11 +3975,11 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_Approver_of_Charter__c</picklist>
             <values>
-                <fullName>GCLT</fullName>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>RCLT</fullName>
+                <fullName>GCLT Leader</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4072,11 +4102,11 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_GateKeeping_Model__c</picklist>
             <values>
-                <fullName>GCLT %26 RCLT</fullName>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>RCLT</fullName>
+                <fullName>GCLT Leader %26 CCVP</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4125,7 +4155,7 @@ OwnerId))</formula>
             <picklist>IPM_Market__c</picklist>
             <values>
                 <fullName>Dishwash</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Household Cleaning</fullName>
@@ -4486,7 +4516,7 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ben %26 Jerrys</fullName>
+                <fullName>Ben %26 Jerry%E2%80%99s</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4784,12 +4814,12 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_Approver_of_Charter__c</picklist>
             <values>
-                <fullName>GCLT</fullName>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>RCLT</fullName>
-                <default>true</default>
+                <fullName>GCLT Leader</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -4919,12 +4949,12 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_GateKeeping_Model__c</picklist>
             <values>
-                <fullName>GCLT %26 RCLT</fullName>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>RCLT</fullName>
-                <default>true</default>
+                <fullName>GCLT Leader %26 CCVP</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -5298,7 +5328,7 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ben %26 Jerrys</fullName>
+                <fullName>Ben %26 Jerry%E2%80%99s</fullName>
                 <default>false</default>
             </values>
             <values>

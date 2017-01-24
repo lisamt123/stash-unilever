@@ -10,7 +10,7 @@
    <div align="center" draggable="false" >
    <apex:commandButton value="Cross Charge Information Email" action="{!reminderAction}" rendered="{!crossChargeInfoSetFlag }"/>
    </div>
-   
+       <apex:pageMessage severity="Info" strength="2" summary="{!$Label[labelStr]}"></apex:pageMessage>
       <apex:pageMessages />
       <apex:pageBlock rendered="{!mandatoryStringFlag != null}">
         <apex:pageMessage summary="{!mandatoryStringFlag}"

@@ -519,6 +519,7 @@ private class IPM_EcoDesignSection_Test
 			for(IPM_Project__c project : proList)
 			{
 				project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+                                project.IPM_ProjectGKM__c='GKM2';
 			}  
 			
 			update proList;

@@ -61,7 +61,7 @@ public with sharing class CI_R2R_Innovation_TriggerHandler implements ITrigger{
     mapsme.put('SCOA','SCOA');
     mapsme.put('Direct Tax','DT');
     mapsme.put('Indirect Tax','IDT');
-    
+    mapsme.put('SI – External','SI');
     for(CI_R2R_Innovation__c CI : [select R2R_SME_Area__c from CI_R2R_Innovation__c where ID=:cid]){
         CI_R2R_Innovation__c clist = new CI_R2R_Innovation__c(id=CI.id);
         

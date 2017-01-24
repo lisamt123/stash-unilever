@@ -5,8 +5,10 @@
   Requirement/Description: Clarity Detail Section of approval app. 
 -->
 <aura:component controller="Core_CA_ApprovalsController">
-    <ltng:require styles="/resource/CORE_CA_ApprovalsLightning,/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,/resource/Lightning_designing_style/assets/fonts/" scripts="/resource/CORE_CA_ApprovalsLightning/jquery/jquery.js" afterScriptsLoaded="{!c.doInit}"/>
-    <!-- <ltng:require styles="/resource/ApprovalsLightning,/resource/CORE_CA_ApprovalsLightning/fonts" afterScriptsLoaded="{!c.doInit}"/> -->
+  <!--  <ltng:require styles="/resource/CORE_CA_ApprovalsLightning,/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,/resource/Lightning_designing_style/assets/fonts/" scripts="/resource/CORE_CA_ApprovalsLightning/jquery/jquery.js" afterScriptsLoaded="{!c.doInit}"/> -->
+    
+    <ltng:require styles="{!join(',', $Resource.CORE_CA_ApprovalsLightning, $Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css')}" scripts="{!$Resource.CORE_CA_ApprovalsLightning + '/jquery/jquery.js'}"  afterScriptsLoaded="{!c.doInit}"/>
+   
     <aura:attribute name="ApprovalDetail" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
     <aura:attribute name="RequestId" type="String"/>
     <aura:attribute name="ApproverId" type="String"/>

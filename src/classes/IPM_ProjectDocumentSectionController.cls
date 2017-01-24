@@ -3,8 +3,13 @@
 * @date 20/02/2015
 * @description Used for editing project document section
 */
-public with sharing class IPM_ProjectDocumentSectionController extends IPM_ProjectIntermediateController{   
+public with sharing class IPM_ProjectDocumentSectionController {   
 	//Variable Declarations
+    public static IPM_Project__c project {
+        get {
+            return IPM_Utils.getProjectFullInfo(ApexPages.currentPage().getParameters().get('Id'));
+        }
+    }
 	public IPM_Project_Document__c projDoc{get; set;} //Contains Project Document
 	public IPM_Project_Document_Section__c projDocSec{get; set;} //Contains Project Document Section
 	public Id projDocSecId{get; set;} //Contains Project Document Section Id
@@ -78,6 +83,10 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 	public boolean isTaskReadOnly{get;set;}
 	public String showEntity{get;set;} // field API name of 'Show At Global /Regional / Loacal" fields. 
 	public Integer characterLimitValue{get;set;}
+ 	public boolean showBBCtable{get; set;} // flag to check the BBC table is applicble 
+        public boolean showGlobalTable{get; set;}
+	public static final String PRODUCT_SECTION_SEQ = '3.3.1';
+	private static final String PRODUCT_SECTION = 'Product'; 
 	/****************************************************************************************************************************************************************
 	* @description Fetching the Page parameters and Retrieving Project,Projerct Document and Projerct Document Section
 	*/
@@ -107,6 +116,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		showEcoDesign = false;
 		isEditMarketPerformance=false;
         isTaskReadOnly = false;
+	 	showBBCtable = false;
+		showGlobalTable = false;
 		characterLimitValue=0;  
 		Apexpages.currentPage().getHeaders().put(IPM_ConstantUtils.UA_COMPATIBLE, IPM_ConstantUtils.IE_EDGE);
 		projectResource=new list<IPM_Project_Resource__c>();
@@ -216,7 +227,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		}
 		
 		//Fetching Project Document Section
-		projDocSec=[SELECT Id,IPM_CMI_Selected_Test_Concepts__c,IPM_Summary_Character_Remaining__c,IPM_Project_Document__c,IPM_User_Id__c,Is_IPM_Global_Consolidated__c,IPM_Section_Sequence_Number__c,IPM_Project_L_eader_Email__c,IPM_DocSec_Project_Leader__c,IPM_Section_Sequence__c,IPM_GateHistory_Date__c,IPM_PDPHistoty_Date__c,IPM_GateHistory__c,IPM_PDPHistoty__c,
+        projDocSec=[SELECT Id,IPM_CMI_Selected_Test_Concepts__c,IPM_Gate_Document__c,IPM_Summary_Character_Remaining__c,IPM_Project_Document__c,IPM_User_Id__c,Is_IPM_Global_Consolidated__c,IPM_Section_Sequence_Number__c,IPM_Project_L_eader_Email__c,IPM_DocSec_Project_Leader__c,IPM_Section_Sequence__c,IPM_GateHistory_Date__c,IPM_PDPHistoty_Date__c,IPM_GateHistory__c,IPM_PDPHistoty__c,
 		IPM_Section_Name__c,IPM_Section_Help_Text_Long__c,IPM_FunctionalRole__c,IPM_Negotiable__c,IPM_Notify_Team__c,LastModifiedBy.Name,LastModifiedDate,IPM_Section__r.External_ID__c,IPM_Section__r.IPM_Section_Help_Text__c,
 		IPM_PDP_Document_Summary__c,IPM_Gate_Document_Summary__c,IPM_Count_of_Comments__c ,IPM_Master_Section_External_Id__c,IPM_Section__r.IPM_Character_Limit__c
 		FROM IPM_Project_Document_Section__c WHERE Id=:String.escapeSingleQuotes(String.valueOf(projDocSecId)) LIMIT 1];
@@ -313,10 +324,22 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		else if(projDocSec.IPM_Section_Sequence__c==lastSec){
 			showNext=false;
 		}
+		if(project.IPM_ProjectGKM__c.equals(IPM_ConstantUtils.GATE_KEEPING_MODEL_3) || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+      	        {
+        		showBBCtable = true;
+       		}
 		renderedConditions();
-		
+        if(project.IPM_ProjectGKM__c.equals(IPM_ConstantUtils.GATE_KEEPING_MODEL_3)){
+        	showGlobalClaimsComponent();
+        }
 	}
-	
+    /*To hide or show the component IPM_GlobalClaimPDL*/
+    public void showGlobalClaimsComponent(){
+    	if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && projDocSec.IPM_Gate_Document__c == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE && projDocSec.IPM_Section_Sequence__c == PRODUCT_SECTION_SEQ && projDocSec.IPM_Master_Section_External_Id__c == PRODUCT_SECTION)
+        {
+        	showGlobalTable = true;
+        } 
+    }
 	/****************************************************************************************************************************************************************
 	* @description Get user type with access permission     
 	*/
@@ -370,6 +393,10 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 			IsEditableOutC=true;
 			isEcodesignEdit=true;
 		}
+		if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_RD) && IPM_ConstantUtils.PDL_QUALITY_STANDARDS.Equals(projDocSec.IPM_Section__r.External_ID__c))
+        {
+        	IsEditableOutC=true;
+        }
 	}
 	
 	/****************************************************************************************************************************************************************
@@ -429,7 +456,15 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 			isEditGateCMI=true;
 			isEcodesignEdit=true;
 		}
-	}
+        getPDLBBBDUserPermission();
+    }
+    
+    private void getPDLBBBDUserPermission(){
+    	if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_BD) && IPM_ConstantUtils.PDL_FINACIAL_GLOBAL_CLAIMS.Equals(projDocSec.IPM_Section__r.External_ID__c))
+        {
+        	IsEditableOutC=true;
+        }
+    }
 	
 	/****************************************************************************************************************************************************************
 	* @description Get CMI User permission for editing the section    
@@ -697,17 +732,20 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 			}
 		}
 		
-		//For Storing Filled-In Percentage Calculation in Project Object 
-		Integer NonNegotiableCount=[SELECT count() FROM IPM_Project_Document_Section__c WHERE IPM_Default_Section__c=true AND IPM_Project_Document__c=:projDoc.Id 
-                                    AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
-        Integer removeoptional=[SELECT count() FROM IPM_Project_Document_Section__c WHERE IPM_Section_Status__c=:IPM_ConstantUtils.SECTION_STATUS_FILLED AND IPM_Project_Document__c=:projDoc.Id AND  IPM_Default_Section__c=true 
-                                AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
-		if(NonNegotiableCount!=0){
-			Decimal FilledinPer=math.round((Decimal.valueof(removeoptional)/decimal.valueof(NonNegotiableCount))*100);
-			project.IPM_FilledIn_Percentage__c=FilledinPer;
+		//For Storing Filled-In Percentage Calculation in Project Object
+		if(!IPM_ConstantUtils.PRODUCT_DESIGN_LOCK.Equals(projDoc.IPM_GateDocuments__c))
+		{
+			Integer NonNegotiableCount=[SELECT count() FROM IPM_Project_Document_Section__c WHERE IPM_Default_Section__c=true AND IPM_Project_Document__c=:projDoc.Id 
+										AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
+			Integer removeoptional=[SELECT count() FROM IPM_Project_Document_Section__c WHERE IPM_Section_Status__c=:IPM_ConstantUtils.SECTION_STATUS_FILLED AND IPM_Project_Document__c=:projDoc.Id AND  IPM_Default_Section__c=true 
+									AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
+			if(NonNegotiableCount!=0){
+				Decimal FilledinPer=math.round((Decimal.valueof(removeoptional)/decimal.valueof(NonNegotiableCount))*100);
+				project.IPM_FilledIn_Percentage__c=FilledinPer;
+			}
+			project.IPM_Current_Document_Status__c = projDoc.IPM_Document_Status__c;
+			update project;
 		}
-        project.IPM_Current_Document_Status__c = projDoc.IPM_Document_Status__c;
-		update project;
 	}
 	
 	/****************************************************************************************************************************************************************
@@ -925,8 +963,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		//For Making Section Filled-In
 		for(IPM_Questionnaire__c ipmQuestionaire:ipmQuestionaires){
 			if(ipmQuestionaire.IPM_GK_Answers__c<>IPM_ConstantUtils.GATEKEEPER_ANSWER && ipmQuestionaire.IPM_GK_Answers__c<> IPM_ConstantUtils.OPTION_NONE && ipmQuestionaire.IPM_GK_Answers__c<> null && ipmQuestionaire.IPM_GK_Answers__c<> ''){
-				if(projDocSec.IPM_Gate_Document_Summary__c!=null && projDocSec.IPM_Gate_Document_Summary__c!='' && integer.valueof(summary)>=15 && !projDocSec.IPM_Negotiable__c && ((projDocSec.IPM_Master_Section_External_Id__c != EXTERNAL_ID_ENVIRONMENTAL_IMPACT) || (projDocSec.IPM_Master_Section_External_Id__c == EXTERNAL_ID_ENVIRONMENTAL_IMPACT && project.IPM_Exists_AtLeast_OneAssmntPerEICountry__c && IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(project)) || (projDocSec.IPM_Master_Section_External_Id__c == EXTERNAL_ID_ENVIRONMENTAL_IMPACT && project.IPM_Exists_AtLeast_OneAssmntPerEICountry__c && !IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(project)) )){
-					projDocSec.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
+		                if(projDocSec.IPM_Gate_Document_Summary__c!=null && projDocSec.IPM_Gate_Document_Summary__c!='' && integer.valueof(summary)>=15 && !projDocSec.IPM_Negotiable__c && ((projDocSec.IPM_Master_Section_External_Id__c != EXTERNAL_ID_ENVIRONMENTAL_IMPACT) || (projDocSec.IPM_Master_Section_External_Id__c == EXTERNAL_ID_ENVIRONMENTAL_IMPACT && project.IPM_Exists_AtLeast_OneAssmntPerEICountry__c && IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(project)) || (projDocSec.IPM_Master_Section_External_Id__c == EXTERNAL_ID_ENVIRONMENTAL_IMPACT && !IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(project)) )){
+		                    projDocSec.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
 					showmsg=false;
 				}
 				else if(projDocSec.IPM_Gate_Document_Summary__c!=null && projDocSec.IPM_Gate_Document_Summary__c!='' && projDocSec.IPM_Negotiable__c){
@@ -1050,10 +1088,14 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 	} 
 	
 	@testVisible private void renderedConditions(){
-		if((project.IPM_Project_Type__c.equals(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) && projDocSec.IPM_Master_Section_External_Id__c.equals(IPM_ConstantUtils.CU_AND_COMPLEXITY))
-				||(!project.IPM_Project_Type__c.equals(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) && projDocSec.IPM_Master_Section_External_Id__c.equals(IPM_ConstantUtils.CU_AND_COMPLEXITY) && (project.IPMProject_Span__c.equals(IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL) 
-						|| project.IPMProject_Span__c.equals(IPM_ConstantUtils.PROJECT_SPAN_LOCAL)|| project.IPM_Phase__c.equals(IPM_ConstantUtils.PHASE_IDEAS)))){
-			isCUandComplexity=true;
+        if((project.IPM_Project_Type__c.equals(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) && projDocSec.IPM_Master_Section_External_Id__c.equals(IPM_ConstantUtils.CU_AND_COMPLEXITY))
+    		||(!project.IPM_Project_Type__c.equals(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) 
+				&& projDocSec.IPM_Master_Section_External_Id__c.equals(IPM_ConstantUtils.CU_AND_COMPLEXITY)  
+				&& ((project.IPMProject_Span__c.equals(IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL) 
+				|| project.IPMProject_Span__c.equals(IPM_ConstantUtils.PROJECT_SPAN_LOCAL)|| project.IPM_Phase__c.equals(IPM_ConstantUtils.PHASE_IDEAS)) 
+				|| (project.IPMProject_Span__c.equals(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) && !project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_IDEAS) 
+				&& project.IPM_ProjectGKM__c.equals(IPM_ConstantUtils.GATE_KEEPING_MODEL_3))))){
+            isCUandComplexity=true;
 		}
 	}     
 }

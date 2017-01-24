@@ -65,7 +65,7 @@ public class ICB_ReturnStock_Batch_Test
         Opportunity opp = new Opportunity(Name = 'Test Opp',
                                           AccountId = accountId,
                                           OwnerId = UserInfo.getUserId(),
-                                          StageName = 'Closed',
+                                          StageName = 'Available',
                                           CloseDate = System.today());
         insert opp;
         return opp;

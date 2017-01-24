@@ -1,0 +1,76 @@
+<apex:component controller="WWP_Losstree_Copy_Component_Ctrl"  access="global" >
+<apex:attribute name="selectType" type="String" description="Selected LossType" assignTo="{!getSelectedType}" id="att"/>
+
+<div align="center" id="di">
+    <apex:outputpanel id="pan1">
+    Enable Mass Update?
+        <apex:inputcheckbox value="{!showMassFeature}"  id="check">
+            <apex:actionSupport event="onchange" action="{!showPanelmassUpdate}" reRender="resetor,panmass,pan1,ds"/>
+            </apex:inputcheckbox>
+            <apex:outputpanel rendered="{!showfeature}" id="panmass">
+                <table  class="display table" width="50px" id="tb">
+                     <thead>
+                        <tr style="background-color:#0080ff">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="col-md-2">Loss Level 1</th>
+                            <th class="col-md-2">Loss Level 2</th>
+                            <th class="col-md-2">Loss Level 3</th>  
+                            <th>Reset</th>
+                        </tr>
+                     </thead>
+                     <tbody >
+                        <tr >
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><apex:selectList value="{!selectedbox1}" size="1" style="height:30px,width:30px" id="v1" onchange="changes1(this);return false;"><apex:selectOptions value="{!selectbox1all}"/>
+                            </apex:selectList></td>
+                            <td><apex:selectList value="{!selectedbox2}" size="1" style="height:30px,width:30px" id="v2" onchange="changes2(this);return false;"><apex:selectOptions value="{!selectbox2all}"/>
+                            </apex:selectList></td>
+                            <td><apex:selectList value="{!selectedbox3}" size="1" style="height:30px,width:30px" id="v3" onchange="changes3(this);return false;"><apex:selectOptions value="{!selectbox3all}"/>
+                            </apex:selectList></td>
+                            
+                            <td><apex:commandButton value="Reset" action="{!resetd}" style="height:25px" image="{!$Resource.WWP_ResetImage}" reRender="pan1"/></td>
+                            </tr>
+                     </tbody>   
+                </table>
+                <apex:commandbutton value="Copy above values to selected losslevels" styleclass="buttonstyle" onclick="callFunCop();return false" rerender="frm1,resetor,resetm,ds,pan1,v1,v2,v3,tb"   id="btns"> 
+            
+        </apex:commandbutton>
+           </apex:outputpanel>
+    </apex:outputpanel>
+    
+    <apex:actionFunction action="{!controls11}"  rerender="v1,v2,v3,panmass,pan1" name="AFchanges1">          
+           <apex:param name="firstParams1" value="" />           
+           </apex:actionFunction>
+           
+           <apex:actionFunction action="{!controls22}" rerender="v1,v2,v3,panmass,pan1" name="AFchanges2">          
+           <apex:param name="firstParams2" value="" />          
+           </apex:actionFunction>
+           
+           <apex:actionFunction action="{!controls33}"  rerender="v1,v2,v3,panmass,pan1" name="AFchanges3">          
+           <apex:param name="firstParams3" value="" />           
+           </apex:actionFunction>
+</div>
+<script>
+function changes1(lossname){
+    //alert(lossname.value);
+   AFchanges1(lossname.value);
+   
+}
+function changes2(lossname){
+    //alert(lossname.value);
+  AFchanges2(lossname.value);
+   
+}
+</script>
+<script>
+function changes3(lossname){
+   //alert(lossname.value); 
+   AFchanges3(lossname.value);
+   
+}
+</script>
+</apex:component>

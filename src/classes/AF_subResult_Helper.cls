@@ -31,14 +31,15 @@ public with sharing class AF_subResult_Helper{
 *  @param : queryListofSubResult,status,Lock,BonusAnnualSubResult,BonusQuarterlySubResultMap
 *  @return: none.
 *************************************************************************************/  
-    public static void subResultCalc(List<AF_Sub_Result__c> queryListofSubResult,Map<Id,String> status,Map<Id,Boolean> Lock,Set<Id>  BonusAnnualSubResult,Map<Id,String> BonusQuarterlySubResultMap,Set<String> QuaterSet,Set<Id> BonusQuarterlySubResult){
+    public static void subResultCalc(List<AF_Sub_Result__c> queryListofSubResult,
+    Map<Id,String> status,Map<Id,Boolean> Lock,Set<Id> BonusAnnualSubResult,Set<String> QuaterSet,Set<Id> BonusQuarterlySubResult){
         subResultCalcExt(queryListofSubResult);
         subResultBonusFeesCalc(queryListofSubResult);
         bonusResultList = new List<AF_Bonus_Results__c>();
-        string subResultCalc='subResultCalc';
         if(BonusAnnualSubResult.size()>0){
-            for(AF_Bonus_Results__c bonusResult : [select AF_Bonus_Thresholds__c,AF_Bonusable_Fees__c,AF_Status__c,AF_Locked__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN :BonusAnnualSubResult and RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Annual').getRecordTypeId()]){
-                bonusResult.AF_Bonusable_Fees__c = bonusfeesAnnualMap.get(bonusResult.AF_Bonus_Thresholds__c);
+               integer sum=0;
+            for(AF_Bonus_Results__c bonusResult : [select AF_Bonus_Thresholds__c,AF_totalBonus__c,AF_Bonusable_Fees__c,AF_Status__c,AF_Locked__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN :BonusAnnualSubResult and RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Annual').getRecordTypeId()]){
+                bonusResult.AF_Bonusable_Fees__c = bonusResult.AF_totalBonus__c;
                 bonusResult.AF_Total_Bonus_Value__c = totalBonusAnnualMap.get(bonusResult.AF_Bonus_Thresholds__c);
                 bonusResult.AF_Qual_Bonus_Value__c = QualBonusAnnualMap.get(bonusResult.AF_Bonus_Thresholds__c);
                 bonusResult.AF_Quant_Bonus_Value__c = quantBonusAnnualMap.get(bonusResult.AF_Bonus_Thresholds__c);
@@ -49,7 +50,16 @@ public with sharing class AF_subResult_Helper{
         }
         counter =0;
         subResultStatusCalc(BonusQuarterlySubResult,QuaterSet,status,Lock);
-        
+     }   
+        /*****************************************************************************************
+*  @Description: this method is used to Map the sub result id to string of that records
+*  @             
+*  @name : subResultMap
+*  @param : queryListofSubResult,status,Lock,BonusAnnualSubResult,BonusQuarterlySubResultMap
+*  @return: none.
+*************************************************************************************/  
+        public static void subResultMap(Map<Id,String> BonusQuarterlySubResultMap){
+        string subResultMap='subResultMap';
         if(counter ==1){
             List<AF_Bonus_Results__c> bonusquart = new List<AF_Bonus_Results__c>();
             for(Id bt:BonusQuarterlySubResultMap.keySet()){
@@ -90,7 +100,7 @@ public with sharing class AF_subResult_Helper{
                 }
                 catch(Exception e)
                 {
-                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultCalc,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultMap,e.getMessage(),e.getTypeName(),e.getStackTraceString());
                     apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
                 }
             }
@@ -101,7 +111,7 @@ public with sharing class AF_subResult_Helper{
             }
             catch(Exception e)
                 {
-                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultCalc,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultMap,e.getMessage(),e.getTypeName(),e.getStackTraceString());
                     apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
                 }
         }
@@ -111,13 +121,16 @@ public with sharing class AF_subResult_Helper{
             }
             catch(Exception e)
                 {
-                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultCalc,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultMap,e.getMessage(),e.getTypeName(),e.getStackTraceString());
                     apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
                 }
         }
-    }
+      }
     public static void subResultCalcExt(List<AF_Sub_Result__c> queryListofSubResult){
+        QualBonusAnnualMap = new Map<Id,Decimal>();
+        totalBonusAnnualMap = new Map<Id,Decimal>();
         for(AF_Sub_Result__c subResult:queryListofSubResult){
+        system.debug('----subResult--'+subResult);
             if(subResult.AF_Period__c == null){
                 Decimal BonusableFeesAnnual=0;
                 if(subResult.AF_Bonusable_Fees__c!=null){
@@ -144,16 +157,22 @@ public with sharing class AF_subResult_Helper{
                     }
                 }
                 Decimal QualBonus=0;
-                if(subResult.AF_Qual_Bonus_Value__c!=null){
+                if(subResult.AF_Qual_Bonus_Value__c!=null && subResult.AF_Qual_Bonus_Value__c!=0){
                     if(!QualBonusAnnualMap.containsKey(subResult.AF_Bonus_Threshold__c)){
+                        system.debug(QualBonus+'-not-containkey--'+subResult.AF_Qual_Bonus_Value__c);
                         QualBonus = QualBonus + subResult.AF_Qual_Bonus_Value__c;
                         QualBonusAnnualMap.put(subResult.AF_Bonus_Threshold__c,QualBonus);
+                        system.debug(QualBonusAnnualMap+'--if QualBonusAnnualMap--');
                     }
-                    else{
+                    
+                    else if(QualBonusAnnualMap.containsKey(subResult.AF_Bonus_Threshold__c)){
+                        system.debug(QualBonus+'-containskey--'+subResult.AF_Qual_Bonus_Value__c);
                         QualBonus = QualBonusAnnualMap.get(subResult.AF_Bonus_Threshold__c);
                         QualBonus = QualBonus + subResult.AF_Qual_Bonus_Value__c;
                         QualBonusAnnualMap.put(subResult.AF_Bonus_Threshold__c,QualBonus);
+                        system.debug(QualBonusAnnualMap+'--else QualBonusAnnualMap--');
                     }
+                    
                 }
                 Decimal QuantBonusAnnual=0;
                 if(subResult.AF_Quant_Bonus_Value__c!=null){

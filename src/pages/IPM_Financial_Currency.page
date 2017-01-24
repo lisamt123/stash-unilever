@@ -59,7 +59,7 @@
                                                    <apex:repeat value="{!lstRolloutWrappers}" var="rolloutWrapper">
                                                    <li>
                                                        <div class="projectContainer">
-                                                            <div class="pHead accrHead filterSubTitle {!IF(currentFinancialId == mapConsolidatedFinancials[rolloutWrapper.regionName].Id, 'selected', '')}">
+                                                            <div class="pHead accrHead filterSubTitle {!IF(project.IPMProject_Span__c != 'Local' && currentFinancialId == mapConsolidatedFinancials[rolloutWrapper.regionName].Id, 'selected', '')}">
                                                             <!--Rendered when project is not span ie it will render for all other span types-->    
                                                             <apex:outputText rendered="{!project.IPMProject_Span__c != 'Local'}" >
                                                                 <span class='expico-square fa fa-minus'></span>
@@ -193,12 +193,12 @@
                                                             <!-- Project Name Header -->
                                                             <div class="row">
                                                             <div class="col-sm-6">
-                                                                <div class="ipmfinHeading1">Financial Business Case - {!currentFinancial.Display_Name__c}</div>                                                                                                                             
+                                                                <div class="ipmfinHeading1">Financial Business Case - {!IPMFinancial.Display_Name__c}</div>                                                                                                                             
                                                             </div> 
                                                             </div> 
                                                              
                                                                 
-                                                                 <c:IPM_FinancialTable ipmFinancial="{!currentFinancial}"
+                                                                 <c:IPM_FinancialTable ipmFinancial="{!IPMFinancial}"
                                                                     finWrapper="{!financialsInnovation}"
                                                                     colSpan="{!colSpan}"
                                                                     sustainabilityPeriod="{!sustainabilityPeriod}"
@@ -219,10 +219,11 @@
                                                                     validationErrorMessageCal="{!validationErrorMessageCal}" 
                                                                     isNonkey="{!isNonkey}"
                                                                     isProjectStop="{!isProjectStop}"
+                                                                    exRate="{!exRate}"
                                                                 />
-                                                        		
                                                                 
-                                                                <c:IPM_FinancialSummaryTable ipmFinancial="{!currentFinancial}"
+                                                                
+                                                                <c:IPM_FinancialSummaryTable ipmFinancial="{!IPMFinancial}"
                                                                     fieldSuffix="{!fieldSuffix}"
                                                                     isEditMode="{!isEditMode}"
                                                                     showMisalignment="{!showMisalignment}"
@@ -248,7 +249,7 @@
                                                                 </apex:outputPanel>
                                                                 <apex:outputPanel id="financialYearCalendar">
                                                                 <!-- DEF2676 fix End --> 
-                                                                <c:IPM_FinancialTable ipmFinancial="{!currentFinancial}"
+                                                                <c:IPM_FinancialTable ipmFinancial="{!IPMFinancial}"
                                                                     finWrapper="{!financialsCalendar}"
                                                                     colSpan="{!colSpan}"
                                                                     sustainabilityPeriod="{!sustainabilityPeriod}"
@@ -268,6 +269,7 @@
                                                                     validationErrorMessageCal="{!validationErrorMessageCal}"
                                                                     isNonkey="{!isNonkey}"
                                                                     isProjectStop="{!isProjectStop}"
+                                                                    exRate="{!exRate}"
                                                                 />
                                                                 </apex:outputPanel>
                                                                  
@@ -275,24 +277,26 @@
 
                                                         <!-- Top Down Summary Tab -->
                                                         <div role="tabpanel" class="tab-pane {!IF(currentTab == 'topdown', 'active', '')}" id="topDown">
-                                                            <c:IPM_FinancialTabContent ipmFinancial="{!currentFinancial}"
+                                                            <c:IPM_FinancialTabContent ipmFinancial="{!IPMFinancial}"
                                                                 financialsInnovation="{!financialsInnovation}"
                                                                 financialsCalendar="{!financialsCalendar}"
                                                                 colSpan="{!colSpan}"
                                                                 sustainabilityPeriod="{!sustainabilityPeriod}"
                                                                 fieldSuffix="{!fieldSuffix}"
+                                                                exRate="{!exRate}"
                                                             />
                                                          
                                                         </div>
     
                                                         <!-- Rollup Summary Tab -->
                                                         <div role="tabpanel" class="tab-pane {!IF(currentTab == 'rollup', 'active', '')}" id="rollup">
-                                                            <c:IPM_FinancialTabContent ipmFinancial="{!currentFinancial}"
+                                                            <c:IPM_FinancialTabContent ipmFinancial="{!IPMFinancial}"
                                                                 financialsInnovation="{!financialsInnovation}"
                                                                 financialsCalendar="{!financialsCalendar}"
                                                                 colSpan="{!colSpan}"
                                                                 sustainabilityPeriod="{!sustainabilityPeriod}"
                                                                 fieldSuffix="{!fieldSuffix}"
+                                                                exRate="{!exRate}"
                                                             />
                                                         </div>                            
                                                     </div>

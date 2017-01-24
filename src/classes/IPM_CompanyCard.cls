@@ -283,19 +283,7 @@ public with sharing class IPM_CompanyCard {
             
         }
         
-        if(!ccRecordType.equals(IPM_ConstantUtils.CC_RECORD_TYPE_LOCAL)){
-            if(String.isBlank(selectedManagedCatagory)){
-                managedErrMsg=true;
-            }
-            else{
-                managedErrMsg=false;
-            }
-        }
-        if(IPMCompanyCard.name!=null){
-            duplicateCCName=IPM_WithoutShareController.duplicateCompanyCard(IPMCompanyCard.id,IPMCompanyCard.name); 
-        }
-        
-        if(managedErrMsg || managedErrMsgLocal || duplicateCCName || isGeoScopeLocal || isMarketClusterLocal || isMcoLocal || isMarketClusterRegional){
+        if(isDupCCNameOrIsErr()){
             return null;
         } 
         try{
@@ -319,6 +307,29 @@ public with sharing class IPM_CompanyCard {
             return null;
         } 
     }
+    /*****************************************************************
+    @Description: used to check duplicate name or error
+    @Return: boolean
+    *******************************************************************/
+    private Boolean isDupCCNameOrIsErr(){
+        if(!ccRecordType.equals(IPM_ConstantUtils.CC_RECORD_TYPE_LOCAL)){
+            if(String.isBlank(selectedManagedCatagory)){
+                managedErrMsg=true;
+            }
+            else{
+                managedErrMsg=false;
+            }
+        }
+        if(IPMCompanyCard.name!=null){
+            duplicateCCName=IPM_WithoutShareController.duplicateCompanyCard(IPMCompanyCard.id,IPMCompanyCard.name); 
+        }
+        
+        if(managedErrMsg || managedErrMsgLocal || duplicateCCName || isGeoScopeLocal || isMarketClusterLocal || isMcoLocal || isMarketClusterRegional){
+            return true;
+        }
+        return false;
+    }
+    
     /*****************************************************************
     @Description:get edit or create access for company card
     @Return: null

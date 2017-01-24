@@ -30,8 +30,9 @@ public with sharing class  CPA_getThreshold {
         map<String,double> mapThreshold = new map<String,double>();
         
         Map<string, CPA_Commercials_Threshold__c>  mapCommericalThreshold = new Map<string, CPA_Commercials_Threshold__c>();
-        string RARecordtype = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE ).getName ();
-        String Ratype = RARecordtype;
+        //string RARecordtype = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE ).getName ();
+        //swathi commented this for SonarQube warning
+        //String Ratype = RARecordtype;
         String strProjectScale='';
         String[] strPrjPhases;
         String strProjectPhases='';
@@ -130,8 +131,9 @@ public with sharing class  CPA_getThreshold {
         map<String,double> mapThreshold = new map<String,double>();
         
         Map<string, CPA_Commercials_Threshold__c>  mapCommericalThreshold = new Map<string, CPA_Commercials_Threshold__c>();
-        string RARecordtype = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE).getName ();
-        String Ratype = RARecordtype;
+        //string RARecordtype = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE).getName ();
+        //swathi commented this for sonarQube warning
+        // String Ratype = RARecordtype;
         String strProjectScale='';
         String[] strPrjPhases;
         String strProjectPhases='';

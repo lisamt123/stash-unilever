@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
+    <visibility>Public</visibility>
     <description>This is used for calculate qualitative annual bonus.</description>
     <enableFeeds>false</enableFeeds>
     <fields>
@@ -29,9 +30,9 @@
         <fullName>X3__c</fullName>
         <externalId>false</externalId>
         <label>3</label>
-        <precision>10</precision>
+        <precision>12</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -40,9 +41,9 @@
         <fullName>X4__c</fullName>
         <externalId>false</externalId>
         <label>4</label>
-        <precision>10</precision>
+        <precision>12</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -59,5 +60,4 @@
         <unique>false</unique>
     </fields>
     <label>AF_AnnualBonus_Qual</label>
-    <visibility>Public</visibility>
 </CustomObject>

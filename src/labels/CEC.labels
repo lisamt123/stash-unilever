@@ -676,6 +676,22 @@
         <shortDescription>CEC_Multilanguage_Birth</shortDescription>
         <value>Birth-Nascimento-Nacimiento-Geburt-La naissance-Nascita-誕生-Födelse-출생-分娩-Geboorte-Fødsel-syntymä-рождение</value>
     </labels>
+	<labels>
+        <fullName>CEC_No_Product_Details</fullName>
+        <categories>CEC_IRIProductLocatorController</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC No Product Details</shortDescription>
+        <value>Unable to fetch product details due to technical issue. Please contact sys admin</value>
+    </labels>
+    <labels>
+        <fullName>CEC_No_Store_Information</fullName>
+        <categories>CEC_IRIProductLocatorController</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC No Store Information</shortDescription>
+        <value>No store information is available for this product</value>
+    </labels>
     <labels>
         <fullName>CEC_Name</fullName>
         <categories>CEC: VF Page Global Display</categories>

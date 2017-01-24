@@ -29,7 +29,7 @@ public with sharing class IPM_Milestone {
     public boolean editMsNameFlag{get; set;} // Boolean to check Miestone Name 
     public boolean editPhaseFlag{get; set;} // Boolean to check Miestone Phase Name
     public boolean complDateFlag{get; set;} // Boolean to check Miestone Due Date
-	public boolean milestoneFlag{get; set;} // Boolean to check Miestone Id null or not 
+    public boolean milestoneFlag{get; set;} // Boolean to check Miestone Id null or not 
     public boolean stndMilestoneFlag{get; set;} // Boolean to check Miestone type
     public boolean adhocMilestoneFlag{get; set;} // Boolean to check Miestone type
     public boolean miniMilestoneFlag{get; set;} // Boolean to check Miestone type
@@ -75,14 +75,14 @@ public with sharing class IPM_Milestone {
             IPM_Project_Type__c projectType = IPM_Utils.retrieveProjectType(projectObject);
             if(projectType!=null)
             {
-            	sourceProjectType = projectType.Source_Project_Type__c; // Get the source Project type
-            }	
+                sourceProjectType = projectType.Source_Project_Type__c; // Get the source Project type
+            }   
             
             if(String.IsNotBlank(ApexPages.currentPage().getParameters().get(IPM_Utils.taskId)))
             {
                 milestoneId = ApexPages.currentPage().getParameters().get(IPM_Utils.taskId);
                 sObjName = milestoneId.getSObjectType().getDescribe().getName();
-                String milestoneQuery = 'SELECT Id,IPM_Category__c,IPM_Completed_On__c,IPM_Completed__c,IPM_Due_Date__c,IPM_Milestone__c,IPM_Name__c,IPM_No_of_Days__c, IPM_Phase__c,IPM_Planned_Date__c,IPM_Project__c,IPM_Type_of_gate__c,IPM_BET__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c WHERE id =\''+ milestoneId + '\' ';
+                String milestoneQuery = 'SELECT Id,IPM_Category__c,IPM_Phase_Order__c,IPM_Completed_On__c,IPM_Completed__c,IPM_Due_Date__c,IPM_Due_Date_For_Sorting__c,IPM_Milestone__c,IPM_Name__c,IPM_No_of_Days__c, IPM_Phase__c,IPM_Planned_Date__c,IPM_Project__c,IPM_Type_of_gate__c,IPM_BET__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c WHERE id =\''+ milestoneId + '\' ';
                 msObject= Database.query(milestoneQuery);
                 
                 milestoneObj = (IPM_Milestone__c)msObject;
@@ -127,10 +127,10 @@ public with sharing class IPM_Milestone {
     // To auto select Mini Milestone on change of Due date
     public void selectMiniMs()
     {
-    	Map<String,String> requestMap = Apexpages.currentPage().getParameters();
-    	if(requestMap.containsKey(SELECTED_MS) && requestMap.get(SELECTED_MS)!=null)
-    	{
-    		String miniMSId = requestMap.get(SELECTED_MS);	
+        Map<String,String> requestMap = Apexpages.currentPage().getParameters();
+        if(requestMap.containsKey(SELECTED_MS) && requestMap.get(SELECTED_MS)!=null)
+        {
+            String miniMSId = requestMap.get(SELECTED_MS);  
          for(MilestoneWrapper miniMSObj :  milestones)
          {
             if(miniMSObj.mile.Id == miniMSId)
@@ -145,7 +145,7 @@ public with sharing class IPM_Milestone {
                 }
             }
          }
-    	}
+        }
     }    
     
     /********************************************************************************
@@ -153,22 +153,22 @@ public with sharing class IPM_Milestone {
      @param1  : none
     *********************************************************************************/
     public void renderCondition(){
-    	
-    	stndMilestoneFlag = false;
-    	milestoneFlag = false;
-    	miniMilestoneFlag = false;
-    	adhocMilestoneFlag = false;
-    	if(milestoneid != null){
-    		milestoneFlag = true;
-    	}
-			
-		if(milestoneObj.IPM_Type_of_Milestone__c == IPM_ConstantUtils.STANDARD){
-			stndMilestoneFlag = true;
-		}else if(milestoneObj.IPM_Type_of_Milestone__c == IPM_ConstantUtils.ADHOC){
-			adhocMilestoneFlag = true;
-		}else if(milestoneObj.IPM_Type_of_Milestone__c == IPM_ConstantUtils.MINI){
-			miniMilestoneFlag = true;
-		} 
+        
+        stndMilestoneFlag = false;
+        milestoneFlag = false;
+        miniMilestoneFlag = false;
+        adhocMilestoneFlag = false;
+        if(milestoneid != null){
+            milestoneFlag = true;
+        }
+            
+        if(milestoneObj.IPM_Type_of_Milestone__c == IPM_ConstantUtils.STANDARD){
+            stndMilestoneFlag = true;
+        }else if(milestoneObj.IPM_Type_of_Milestone__c == IPM_ConstantUtils.ADHOC){
+            adhocMilestoneFlag = true;
+        }else if(milestoneObj.IPM_Type_of_Milestone__c == IPM_ConstantUtils.MINI){
+            miniMilestoneFlag = true;
+        } 
     }
      
     /********************************************************************************
@@ -225,7 +225,7 @@ public with sharing class IPM_Milestone {
                 
                 Map<Id,IPM_Milestone__c> masterToProjectMileStone = new Map<Id,IPM_Milestone__c>();
                 
-                for(IPM_Milestone__c projectMilestone : [SELECT Id,IPM_Due_Date__c,IPM_Category__c,IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,
+                for(IPM_Milestone__c projectMilestone : [SELECT Id,IPM_Due_Date__c,IPM_Due_Date_For_Sorting__c,IPM_Category__c,IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,
                 IPM_Type_of_gate__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c WHERE IPM_Project__c = :String.escapeSingleQuotes(String.valueOf(projectObject.Id)) 
                 AND IPM_Milestone__c in :selectedMiniMileMaster AND IPM_Phase__c in :selectedMiniMilePhases] )
                 {
@@ -234,29 +234,7 @@ public with sharing class IPM_Milestone {
                 
                 for(MilestoneWrapper incomingMileWrap : milestones)
                 {
-                    if (incomingMileWrap.checked)
-                    { 
-                        Date gateDueDate = null;
-                        Date incomingDate = incomingMileWrap.mile.IPM_Due_Date__c;
-                        Id standardMasterMileId = incomingMileWrap.mile.IPM_Milestone__c;
-                    
-                        if(masterToProjectMileStone.containsKey(standardMasterMileId) && masterToProjectMileStone.get(standardMasterMileId)!=null)
-                        {
-                            IPM_Milestone__c projectMilestone =   masterToProjectMileStone.get(standardMasterMileId);
-                            gateDueDate = projectMilestone.IPM_Due_Date__c;             
-                        }
-                    
-                        if(gateDueDate!=null && gateDueDate < incomingDate)
-                        {
-                           incomingMileWrap.errorRecord = true;
-                           errorPresent = true;                       
-                        }
-                        else
-                        {
-                            incomingMileWrap.errorRecord = false;
-                            mileStoneWrapToBeProcessed.add(incomingMileWrap); 
-                        }
-                    }
+                	errorPresent= getStandardMilestone(incomingMileWrap,masterToProjectMileStone,mileStoneWrapToBeProcessed);
                 }
                 
                 if(!errorPresent && !mileStoneWrapToBeProcessed.isEmpty())
@@ -270,7 +248,8 @@ public with sharing class IPM_Milestone {
                         msObj.IPM_Milestone__c         = selectedMiniMileWrap.mile.Id;
                         msObj.IPM_Phase__c             = selectedMiniMileWrap.mile.IPM_Phase__c;
                         msObj.IPM_Planned_Date__c      = selectedMiniMileWrap.mile.IPM_Due_Date__c;
-                        msObj.IPM_Due_Date__c      	   = selectedMiniMileWrap.mile.IPM_Due_Date__c;
+                        msObj.IPM_Due_Date__c          = selectedMiniMileWrap.mile.IPM_Due_Date__c;
+                        msObj.IPM_Due_Date_For_Sorting__c = msObj.IPM_Due_Date__c;
                         msObj.IPM_Type_of_Milestone__c = IPM_ConstantUtils.MINI;
                         msObj.IPM_Active__c            = true;
                         lstmiles.add(msObj);
@@ -289,13 +268,49 @@ public with sharing class IPM_Milestone {
         }
         catch(Exception ex)
         {
-    		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage)); 
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage)); 
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MILESTONE_STR,
                         CREATE_MILESTONES,ex.getMessage(),ex, STR_ERROR, null, null, null, null);
             
         }
         return null;  
     }
+    
+    /***************************************************************
+     *@Description: This method is created to resolve nPath Complexity issue
+     *@Return: Booean value 
+    ****************************************************************/
+    public boolean getStandardMilestone(MilestoneWrapper incomingMileWrap, Map<Id,IPM_Milestone__c> msProjectMileStone,List<MilestoneWrapper> processingMilestones)
+    	{
+    		        if (incomingMileWrap.checked)
+                    { 
+                        Date gateDueDate = null;
+                        Date incomingDate = incomingMileWrap.mile.IPM_Due_Date__c;
+                        Id standardMasterMileId = incomingMileWrap.mile.IPM_Milestone__c;
+                    
+                        if(msProjectMileStone.containsKey(standardMasterMileId) && msProjectMileStone.get(standardMasterMileId)!=null)
+                        {
+                            IPM_Milestone__c projectMilestone =   msProjectMileStone.get(standardMasterMileId);
+                            gateDueDate = projectMilestone.IPM_Due_Date__c;             
+                        }
+                    
+                        if(gateDueDate!=null && gateDueDate < incomingDate)
+                        {
+                           incomingMileWrap.errorRecord = true; 
+                           return true;                       
+                        }
+                        else
+                        {
+                            incomingMileWrap.errorRecord = false;
+                            processingMilestones.add(incomingMileWrap); 
+                        	return false;
+                        }
+                    
+                    }
+                    else{
+                    	return false;
+                    }
+    	}
     
     
     // wrapper class
@@ -316,8 +331,10 @@ public with sharing class IPM_Milestone {
             mile = c;
             if(c.IPM_BET__c && c.IPM_Name__c == IPM_Utils.BETFirstRelease){
                 mile.IPM_Due_Date__c = launchDate.month() < IPM_ConstantUtils.BET_DUEDATE_MONTH ? Date.newInstance(launchDate.year() -IPM_ConstantUtils.BET_DUEDATE_YEAR, IPM_ConstantUtils.BET_DUEDATE_H1_MONTH, IPM_ConstantUtils.BET_DUEDATE_H1_DAY):Date.newInstance(launchDate.year()-IPM_ConstantUtils.BET_DUEDATE_YEAR, IPM_ConstantUtils.BET_DUEDATE_H2_MONTH, IPM_ConstantUtils.BET_DUEDATE_H2_DAY);
+                mile.IPM_Due_Date_For_Sorting__c = mile.IPM_Due_Date__c;
             }else if(c.IPM_BET__c && c.IPM_Name__c == IPM_Utils.BETFinalReleasecompletewithApprovedCommunication){
                 mile.IPM_Due_Date__c=launchDate.addDays(-180);
+                mile.IPM_Due_Date_For_Sorting__c = mile.IPM_Due_Date__c;
             }
             checked = false;
             errorRecord = false;
@@ -333,7 +350,7 @@ public with sharing class IPM_Milestone {
             if(con == null) 
             {
                 Id mileStoneRecordType = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMMilestones).getRecordTypeId(); 
-                con = new ApexPages.StandardSetController(Database.getQueryLocator([SELECT Id,IPM_Project__c,IPM_Due_Date__c,IPM_Name__c,IPM_Category__c,IPM_Planned_Date__c,
+                con = new ApexPages.StandardSetController(Database.getQueryLocator([SELECT Id,IPM_Project__c,IPM_Due_Date__c, IPM_Due_Date_For_Sorting__c, IPM_Name__c,IPM_Category__c,IPM_Planned_Date__c,
                         IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_BET__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c,IPM_Phase_Order__c FROM IPM_Milestone__c 
                         WHERE RecordTypeId= : mileStoneRecordType AND IPM_Type_of_Milestone__c=: IPM_ConstantUtils.MINI 
                         AND IPM_Project_Type__c =: sourceProjectType order by IPM_Phase_Order__c, IPM_Name__c])); 
@@ -355,7 +372,10 @@ public with sharing class IPM_Milestone {
     public List<MilestoneWrapper> getCategories() {
         milestones = new List<MilestoneWrapper>();
         for (IPM_Milestone__c mile : (List<IPM_Milestone__c>)con.getRecords()){
-            milestones.add(new MilestoneWrapper(mile,projectObject.IPM_Target_Launch_Dates__c));
+            if (!(IPM_ConstantUtils.PERSONAL_CARE.equals(projectObject.IPM_Category_Group__c) && mile.IPM_Name__c.equals(IPM_ConstantUtils.ADDITIONAL_MILESTONE_PDL)))
+            {
+                milestones.add(new MilestoneWrapper(mile,projectObject.IPM_Target_Launch_Dates__c));
+            }
         }
         return milestones;
     }
@@ -380,11 +400,12 @@ public with sharing class IPM_Milestone {
                     {    
                         milestoneObj.IPM_Planned_Date__c=miles.IPM_Planned_Date__c;
                         milestoneObj.IPM_Due_Date__c=miles.IPM_Planned_Date__c;
+                        milestoneObj.IPM_Due_Date_For_Sorting__c = milestoneObj.IPM_Due_Date__c;
                     }
                 }
             }
         }catch(Exception ex){
-    		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MILESTONE_STR,
                         'getduedate',ex.getMessage(),ex, STR_ERROR, null, null, null, null);
         }
@@ -425,6 +446,7 @@ public with sharing class IPM_Milestone {
         try
         {
             //Perform Mandatory Checks
+            boolean validate =true;
             String resultString = mandatoryFieldChecks();
             if(!String.isBlank(resultString) )
             {
@@ -442,12 +464,12 @@ public with sharing class IPM_Milestone {
                 String stndMileStoneString = IPM_ConstantUtils.STANDARD;
                 
                 // Get the in context Milestone.
-                List<IPM_Milestone__c> incomingMileStoneList =[SELECT Id,IPM_Due_Date__c,IPM_Project__c,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Category__c,
+                List<IPM_Milestone__c> incomingMileStoneList =[SELECT Id,IPM_Due_Date__c,IPM_Due_Date_For_Sorting__c,IPM_Project__c,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Category__c,
                 IPM_Completed_On__c,IPM_Milestone__c,IPM_Milestone__r.IPM_Milestone__c,IPM_Phase__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c  
                 WHERE Id =:milestoneId ];
                 
                             
-                List<IPM_Milestone__c> projectSpecificMilestoneList = [SELECT Id,IPM_Due_Date__c,IPM_Project__c,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Category__c,
+                List<IPM_Milestone__c> projectSpecificMilestoneList = [SELECT Id,IPM_Name__c,IPM_Due_Date__c,IPM_Due_Date_For_Sorting__c,IPM_Project__c,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Category__c,
                 IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c  
                 WHERE  IPM_Type_of_Milestone__c =:stndMileStoneString AND IPM_Project__c =:projectId AND IPM_Active__c =: true];
                 
@@ -497,56 +519,8 @@ public with sharing class IPM_Milestone {
                     }
                     
                    // Check if Milestone type is standard
-                    if(IPM_Utils.IPM_Type_of_Milestone == incomingMilestone.IPM_Type_of_Milestone__c)
-                    {
-                        if(milestoneObj!=null && milestoneObj.IPM_Due_Date__c < System.today())
-                        {
-                            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,milestoneObj.IPM_Name__c + ' ' + Label.IPM_MILESTONE_DUE_DATE_LESS_THAN_TODAY);
-                            ApexPages.addMessage(myMsg); 
-                            return false; 
-                        }
-                        
-                        Set<String> previousPhases = new Set<String>();
-                        
-                    	for(String phase : IPM_ConstantUtils.phaseSequence.KeySet()){
-                    		if(phase == milestonePhase)
-                    		{
-                    			break;
-                    		}
-                    		previousPhases.add(phase);		
-                		}
-                        
-                        for(IPM_Milestone__c milestone : projectSpecificMilestoneList)
-                        {
-                        	if(milestone.IPM_Phase__c != milestonePhase)
-                        	{
-                        		// Due date validation check with previous milestones 
-	                        	if(previousPhases.contains(milestone.IPM_Phase__c))
-	                        	{
-	                        		if(milestone.IPM_Due_Date__c != null && milestone.IPM_Due_Date__c > milestoneDueDate)
-	                        		{
-	                        			String errorMessage = Label.IPM_Milestone_DueDate_Validation;
-			                            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
-			                            ApexPages.addMessage(myMsg);
-			                            return false;
-	                        		}
-	                        		
-	                        	}
-	                        	else
-	                        	{
-	                        		// Due date validation check with next milestones 
-	                        		if(milestone.IPM_Due_Date__c != null && milestone.IPM_Due_Date__c < milestoneDueDate)
-	                        		{
-	                        			String errorMessage = Label.IPM_Milestone_FutureDueDate_Validation;
-			                            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
-			                            ApexPages.addMessage(myMsg);
-			                            return false;
-	                        		}
-	                        	}
-                        	}
-                        }
-                        
-                    }
+                    validate = partialValidateMilestoneLogic( incomingMilestone, milestonePhase, milestoneDueDate, projectSpecificMilestoneList);
+                    return validate;
                 }
             }
         }
@@ -559,6 +533,92 @@ public with sharing class IPM_Milestone {
         
         return true;
     }
+    
+    /***************************************************************
+     *@Description: This method is created to resolve nPath Complexity issue
+     *@Return: Booean value 
+    ****************************************************************/
+   
+    public boolean  partialValidateMilestoneLogic(IPM_Milestone__c incomingMilestone, string milestonePhase,Date milestoneDueDate,List<IPM_Milestone__c> projectSpecificMilestoneList)
+		{
+                   	
+                    // Check if Milestone type is standard
+                    if(IPM_Utils.IPM_Type_of_Milestone == incomingMilestone.IPM_Type_of_Milestone__c)
+                    {
+                        if(milestoneObj!=null && milestoneObj.IPM_Due_Date__c < System.today())
+                        {
+                            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,milestoneObj.IPM_Name__c + ' ' + Label.IPM_MILESTONE_DUE_DATE_LESS_THAN_TODAY);
+                            ApexPages.addMessage(myMsg); 
+                            return false; 
+                        }
+                        
+                        Set<String> previousPhases = new Set<String>();
+                        
+                        for(String phase : IPM_ConstantUtils.phaseSequence.KeySet()){
+                            if(phase == milestonePhase)
+                            {
+                                break;
+                            }
+                            previousPhases.add(phase);      
+                        }
+                        
+                        for(IPM_Milestone__c milestone : projectSpecificMilestoneList)
+                        {
+                            if(milestone.IPM_Due_Date__c != null)
+                            {
+                                if(milestone.IPM_Phase__c == milestonePhase) {
+                                    if(milestone.IPM_Due_Date__c > milestoneDueDate && milestone.IPM_Name__c.equals(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK) && milestoneObj.IPM_Name__c.equals(IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE)) {
+                                        String errorMessage = Label.IPM_Contract_Due_Date_After_PDL;
+                                        ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
+                                        ApexPages.addMessage(myMsg);
+                                        return false;
+                                    }
+                                    else if(milestone.IPM_Due_Date__c < milestoneDueDate && milestoneObj.IPM_Name__c.equals(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK) && milestone.IPM_Name__c.equals(IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE)) {
+                                        String errorMessage = Label.IPM_PDL_Due_Date_Before_Contract;
+                                        ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
+                                        ApexPages.addMessage(myMsg);
+                                        return false;
+                                    }
+                                }
+                                else {
+                                    // Due date validation check with previous milestones 
+                                    if(previousPhases.contains(milestone.IPM_Phase__c))
+                                    {
+                                        if(milestone.IPM_Due_Date__c > milestoneDueDate)
+                                        {
+                                            String errorMessage = Label.IPM_Milestone_DueDate_Validation;
+                                            // Phase 2.0 changes related to REQ03114 - if charter due date is already entered and PDL due date is being edited
+                                            if(milestone.IPM_Name__c.equals(IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE) && milestoneObj.IPM_Name__c.equals(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK)){
+                                                errorMessage=Label.IPM_PDL_Due_Date_After_Charter;
+                                            }
+                                            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
+                                            ApexPages.addMessage(myMsg);
+                                            return false;
+                                        }
+                                        
+                                    }
+                                    else
+                                    {
+                                        // Due date validation check with next milestones 
+                                        if(milestone.IPM_Due_Date__c < milestoneDueDate)
+                                        {
+                                            String errorMessage = Label.IPM_Milestone_FutureDueDate_Validation;
+                                            //Phase 2.0 changes related to REQ03114 - if PDL due date is already entered and charter due date is being edited
+                                            if(milestoneObj.IPM_Name__c.equals(IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE) && milestone.IPM_Name__c.equals(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK)){
+                                                errorMessage=Label.IPM_Charter_Due_Date_Before_PDL;
+                                            }
+                                            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
+                                            ApexPages.addMessage(myMsg);
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                    return true;
+        }
      /********************************************************************************
     *@Description : To display the prompt with options to update task related to current milestone phase
      @return : Returns to milestone page
@@ -576,19 +636,19 @@ public with sharing class IPM_Milestone {
         if(!String.isBlank(milestoneObj.IPM_Type_of_Milestone__c) && milestoneObj.IPM_Type_of_Milestone__c == IPM_ConstantUtils.STANDARD && milestoneObj.IPM_Phase__c == projectObject.IPM_Phase__c && projectObject.IPM_PM_Approach__c == IPM_ConstantUtils.IPM_APPROACH_INTERNAL && !associatedPhaseTaskList.isEmpty() )
         {
 
-        	Integer taskCount = 0;
-        	// Check if related tasks have blank due date
-        	for(IPM_Task__c ipmTask : associatedPhaseTaskList){
-        		if(ipmTask.IPM_Due_Date1__c == null){
-        			taskCount++;
-        		}
-        	}
-        	// If no task has due date then Save Milestone and Update the Tasks, Promt will not be shown
-        	if(taskCount == associatedPhaseTaskList.size())
-        	{
-        		return saveMilestoneAndTasks();
-        	}
-        	
+            Integer taskCount = 0;
+            // Check if related tasks have blank due date
+            for(IPM_Task__c ipmTask : associatedPhaseTaskList){
+                if(ipmTask.IPM_Due_Date1__c == null){
+                    taskCount++;
+                }
+            }
+            // If no task has due date then Save Milestone and Update the Tasks, Promt will not be shown
+            if(taskCount == associatedPhaseTaskList.size())
+            {
+                return saveMilestoneAndTasks();
+            }
+            
             validateSuccess = validateMilestone();
             if(validateSuccess)
             {
@@ -614,8 +674,8 @@ public with sharing class IPM_Milestone {
             System.savePoint sp = Database.setSavePoint();
             try
             {
-        	saveMilestones();
-        		
+            saveMilestones();
+                
                 List<IPM_Task__c> lstTasks=[SELECT Id,IPM_Due_Date1__c, IPM_Project__c, IPM_Due_Date__c, IPM_Phase__c, IPM_Completed__c FROM IPM_Task__c WHERE IPM_Phase__c =: milestoneObj.IPM_Phase__c AND IPM_Completed__c = false AND IPM_Project__c = : milestoneObj.IPM_Project__c LIMIT 50000 ];
             
                 if(!lstTasks.isEmpty())
@@ -636,29 +696,59 @@ public with sharing class IPM_Milestone {
     }
     
      /********************************************************************************
-    *@Description : To update the current milestone details 
+    *@Description : To update the current non BET milestone details 
      @return : Returns to milestone page
     *********************************************************************************/   
+    
+    public List<IPM_Milestone__c> alignMilestonesForSorting(IPM_Milestone__c milestone){
+    	List<IPM_Milestone__c> milesListforSort = [select Id, IPM_Name__c,IPM_Phase_Order__c, IPM_Due_Date__c, IPM_Due_Date_For_Sorting__c from IPM_Milestone__c where IPM_Phase_Order__c < :milestone.IPM_Phase_Order__c and IPM_Phase_Order__c >0 and IPM_Project__c = :milestone.IPM_Project__c];
+    	if(!(milesListforSort.isEmpty())){
+	    	for(IPM_Milestone__c mstone : milesListforSort){
+	    		mstone.IPM_Due_Date_For_Sorting__c = milestone.IPM_Due_Date__c;
+	    	}
+    		return milesListforSort;
+    	}else{
+    		return null;
+    	}
+    }
+   
+   /**********************************************************************************
+   *@Description: To update IPM_Due_Date_For_Sorting__c of milestones with phase lesser 
+    than that of the current milestone
+   so that they are sorted properly.
+   ***********************************************************************************/
+   
     public PageReference saveMilestones()
     {
         validateSuccess = validateMilestone();
         if(validateSuccess)
         {
+        	List<IPM_Milestone__c> mstoneLst = new List<IPM_Milestone__c>();
             milestoneObj.RecordTypeId = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId();
             milestoneObj.IPM_Planned_Date__c = milestoneObj.IPM_Due_Date__c;
             milestoneObj.IPM_Completed__c = String.IsNotBlank(String.valueOf(milestoneObj.IPM_Completed_On__c)) ? true : false;
             milestoneObj.IPM_Active__c =true;
+            milestoneObj.IPM_Due_Date_For_Sorting__c = milestoneObj.IPM_Due_Date__c;
             if(milestoneObj.IPM_Project__c == null){
-            	milestoneObj.IPM_Project__c = projectId;
+                milestoneObj.IPM_Project__c = projectId;
             }
             
             if(milestoneObj.IPM_Type_of_Milestone__c == null)
             {
                 milestoneObj.IPM_Type_of_Milestone__c = IPM_constantUtils.ADHOC;
             }  
+			if( alignMilestonesForSorting(milestoneObj)==null){
+                mstoneLst = new list<IPM_Milestone__c>();
+            }
+            else{
+                if(milestoneObj.IPM_Name__c != IPM_ConstantUtils.PHASE_POSTLAUNCHEVAL)
+                mstoneLst = alignMilestonesForSorting(milestoneObj);    
+            }
+            mstoneLst.add(milestoneObj);
             try
             {
-                upsert milestoneObj;
+               // upsert milestoneObj;
+               upsert mstoneLst;
                 displayPopup = false;
             }
             catch(Exception ex)

@@ -5,6 +5,7 @@
 @isTest
 private class  IPM_FinancialActionStandards_Test {
     
+     private static final string TESTCOMMENT5 = 'Test Comments5';
     @testSetup static void financialSetUp() {
          List<User> userList = IPM_TestFactory_Helper.createUserList();
          
@@ -18,6 +19,7 @@ private class  IPM_FinancialActionStandards_Test {
          
         System.runAs(userList[0])
         {
+            Test.startTest();
             // Create Regional Rollouts for Created Global project.
             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,globalProjectList,new List<User>{userList[1],userList[1],userList[1]});
             insert regionalRolloutList;
@@ -70,7 +72,76 @@ private class  IPM_FinancialActionStandards_Test {
         {
             insert regionalProjectList;
         }
-         
+         Test.stopTest();
+     }
+     
+     static testMethod void retrieveParametersTest()
+     {      
+         Set<String> projectNameSet = new Set<String>{'TestComments1'};
+        User globalUser = [Select Id from User where Email ='globalUser@unilever.test.com' limit 1]; 
+        System.runAs(globalUser)
+        {
+            List<IPM_Project__c>  projectList = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
+            
+            Set<Id> projDocIdSet = new Set<Id>();
+            
+            for(IPM_Project__c project : projectList){
+                for(IPM_Project_Document__c projDoc : project.Project_Documents__r){
+                    projDocIdSet.add(projDoc.Id);
+                }
+            }
+            
+            List<IPM_Project_Document_Section__c> ipmProjDocSectionList = [Select Id from IPM_Project_Document_Section__c WHERE IPM_Project_Document__c IN: projDocIdSet];
+            
+            Test.startTest();
+            //Negative test - checking catch blcok without providing any parameters
+            ApexPages.CurrentPage().getparameters().put('projId', projectList[0].Id);
+            IPM_FinancialActionStandards ipmFinControllerNull = new IPM_FinancialActionStandards();
+            
+            PageReference pageRef = Page.IPM_Financial;            
+            Test.setCurrentPageReference(pageRef);
+            ApexPages.CurrentPage().getparameters().put('projId', projectList[0].Id);
+            ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.GATE, IPM_ConstantUtils.CHARTER_GATE);
+            ApexPages.CurrentPage().getparameters().put('secId', ipmProjDocSectionList[0].Id);
+            ApexPages.CurrentPage().getparameters().put('isEditable', IPM_ConstantUtils.IPM_false);
+            
+            IPM_FinancialActionStandards ipmFinController = new IPM_FinancialActionStandards();
+            
+            string proid=ipmFinController.projectId;
+            System.assertEquals(proid,projectList[0].Id,'parameter not set correctly');
+            string gate=ipmFinController.gateType;
+            System.assertEquals(gate,IPM_ConstantUtils.CHARTER_GATE,'parameter not set correctly');
+            string prosecid=ipmFinController.projDocSecId;
+            System.assertEquals(prosecid,ipmProjDocSectionList[0].Id,'parameter not set correctly');
+            
+            boolean isEdit=ipmFinController.isEditable;
+            isEdit=ipmFinController.editTable;
+            System.assertEquals(isEdit,false,'parameter not set correctly');
+            
+            ApexPages.CurrentPage().getparameters().put('isEditable', IPM_ConstantUtils.IPM_true);
+            isEdit=ipmFinController.isEditable;
+            isEdit=ipmFinController.editTable;
+            System.assertEquals(isEdit,true,'parameter not set correctly');
+            
+            ipmFinController.projectId=proid;
+            ipmFinController.gateType=gate;
+            ipmFinController.projDocSecId=prosecid;
+            ipmFinController.isEditable=true;
+            ipmFinController.editTable=true;
+            
+            string proids=ipmFinController.projectId;
+            System.assertEquals(proids,projectList[0].Id,'parameter not set correctly');
+            string gates=ipmFinController.gateType;
+            System.assertEquals(gates,IPM_ConstantUtils.CHARTER_GATE,'parameter not set correctly');
+            string prosecids=ipmFinController.projDocSecId;
+            System.assertEquals(prosecids,ipmProjDocSectionList[0].Id,'parameter not set correctly');
+            boolean isEdit1=ipmFinController.isEditable;
+            System.assertEquals(isEdit1,true,'parameter not set correctly');
+            boolean isEdit2=ipmFinController.editTable;
+            System.assertEquals(isEdit2,true,'parameter not set correctly');
+            
+            Test.stopTest();
+        } 
      }
     
      static testMethod void financialGlobalOrignalTest()
@@ -100,14 +171,14 @@ private class  IPM_FinancialActionStandards_Test {
             
             Test.startTest();
             
-            PageReference pageRef = Page.IPM_Financial;
+            PageReference pageRef = Page.IPM_Financial;            
             Test.setCurrentPageReference(pageRef);  
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, projectList[0].Id);
-            
+            ApexPages.CurrentPage().getparameters().put('projId', projectList[0].Id);
             
             IPM_FinancialActionStandards ipmFinController = new IPM_FinancialActionStandards();
             ipmFinController.projDocSecId = ipmProjDocSectionList[0].Id;
-            ipmFinController.setprojectId (projectList[0].Id);
+            ipmFinController.projectId =projectList[0].Id;
             ipmFinController.editTable = true;
             
             // Set the project document section content id
@@ -216,12 +287,12 @@ private class  IPM_FinancialActionStandards_Test {
             // When comment value is NPV
             ipmFinController.commentField = IPM_FinancialActionStandards.COMMENT_NPV;
             ipmFinController.isComment = true;
-            ipmFinController.comments = 'Test Comments5';
+            ipmFinController.comments = TESTCOMMENT5;
             ipmFinController.updateActionStandards();        
             proDocSectionContent = [ Select IPM_NPV_Action_Standard_Charter_Cmts__c,IPM_NPV_Action_Standard_Charter__c 
                                      from IPM_Project_Document_Section_Content__c 
                                      where id=:proDocSectionContentId ];
-            System.assertEquals('Test Comments5',proDocSectionContent.IPM_NPV_Action_Standard_Charter_Cmts__c,'IPM_NPV_Action_Standard_Charter_Cmts__c value  set properly');
+            System.assertEquals(TESTCOMMENT5,proDocSectionContent.IPM_NPV_Action_Standard_Charter_Cmts__c,'IPM_NPV_Action_Standard_Charter_Cmts__c value  set properly');
             
             ipmFinController.commentField = IPM_FinancialActionStandards.COMMENT_NPV;
             ipmFinController.numvalue = 5;
@@ -235,12 +306,12 @@ private class  IPM_FinancialActionStandards_Test {
             // When comment value is IRR
             ipmFinController.commentField = IPM_FinancialActionStandards.COMMENT_IRR;
             ipmFinController.isComment = true;
-            ipmFinController.comments = 'Test Comments5';
+            ipmFinController.comments = TESTCOMMENT5;
             ipmFinController.updateActionStandards();
             proDocSectionContent = [ Select IPM_IRR_Action_Standard_Charter_Cmts__c,IPM_IRR_Action_Standard_Charter__c 
                                      from IPM_Project_Document_Section_Content__c 
                                      where id=:proDocSectionContentId ];
-            System.assertEquals('Test Comments5',proDocSectionContent.IPM_IRR_Action_Standard_Charter_Cmts__c,'IPM_IRR_Action_Standard_Charter_Cmts__c value  set');
+            System.assertEquals(TESTCOMMENT5,proDocSectionContent.IPM_IRR_Action_Standard_Charter_Cmts__c,'IPM_IRR_Action_Standard_Charter_Cmts__c value  set');
             
             
             ipmFinController.commentField = IPM_FinancialActionStandards.COMMENT_IRR;
@@ -273,5 +344,6 @@ private class  IPM_FinancialActionStandards_Test {
                        
             Test.stopTest();
         } 
-     }
+     }     
+     
 }

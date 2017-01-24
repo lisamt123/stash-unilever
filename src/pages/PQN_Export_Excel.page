@@ -1,0 +1,72 @@
+<apex:page controller="PQN_Export_Excel" cache="true" readOnly="true" showHeader="false" sidebar="false">
+<script>
+    var tableToExcel = (function() {
+      var uri = 'data:application/vnd.ms-excel;base64,'
+        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+        , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+        , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+      return function(table, name) {
+        if (!table.nodeType) table = document.getElementById(table)
+        var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+        window.location.href = uri + base64(format(template, ctx))
+      }
+     
+     } )()
+     
+ window.onload = function() {
+     
+     tableToExcel('exportTable', 'Data Collection');
+     
+        /*var a = document.createElement('a');        
+        var data_type = 'data:application/vnd.ms-excel';
+        var table_div = document.getElementById('dvData');
+        var table_html = table_div.outerHTML.replace(/ /g, '%20');
+        a.href = data_type + ', ' + table_html;
+        a.download = '_error.xls';
+       
+        a.click();*/
+     
+ }
+</script>
+    <apex:pageBlock >
+        <div id="dvData" style="display:none">
+            <table id="exportTable">
+                <thead>
+                <tr>
+                    <th>Error Msg</th>
+                    <th>Cluster</th>
+                    <th>Loss Code #</th>
+                    <th>Description</th>
+                    <th>Delivery Note Code</th>
+                    <th>Reported Rep DC Country</th>
+                    <th>Supplier</th>                    
+                    <th>Supplier Type</th>
+                    <th>Product Number (SKU)</th>
+                    <th>Reporting DC</th>
+                    <th>Date</th>
+                    
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <apex:repeat value="{!xPQN}" var="nc">
+                    <tr>
+                        <td>{!nc.Error_Description__c}</td>
+                        <td>{!nc.Cluster__c}</td>
+                        <td>{!nc.Non_compliance_reason_code__c}</td>
+                        <td>{!nc.Description__c}</td>
+                        <td>{!nc.Delivery_Note_Number__c}</td>
+                        <td>{!nc.DC_Country__c}</td>
+                        <td>{!nc.Supplier__c}</td>
+                        <td>{!nc.Supplier_type__c}</td>
+                        <td>{!nc.SKU__c}</td>
+                        <td>{!nc.Reporting_DC__c}</td>
+                        <td></td>
+                    </tr>
+                </apex:repeat>
+                </tbody>
+          </table>
+        </div>
+        
+    </apex:pageBlock>
+</apex:page>

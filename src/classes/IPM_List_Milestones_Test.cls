@@ -93,9 +93,7 @@ private class IPM_List_Milestones_Test {
             
 	    List<IPM_Milestone__c> milestoneList = [Select Id, IPM_Phase__c, IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id];
             System.assert(milestoneList.size() > 0, 'milestones succeefully not created');
-            
-            System.assert(mileList.strLink.contains(IPM_List_Milestones.DEFAULT_TLD_LINK),'strlink is not the default link.'+mileList.strLink);            
-	        
+
             mileList.projectObj = newProject[0];
             mileList.toggleSortMilestones();
  
@@ -128,12 +126,6 @@ private class IPM_List_Milestones_Test {
             System.assert([Select Id, IPM_Completed__c from IPM_Milestone__c WHERE Id =:ipmMilestone.Id].size() == 0, 'Milestone has not been deleted.');
             Test.stopTest();
         }
-        IPM_List_Milestones mileList = new IPM_List_Milestones();
-        mileList.isEditable = true;
-        mileList.isBDuser = true;
-        mileList.isSDateEdit = true;
-        mileList.reactivateProjectFlag = true;
-        mileList.getPaginationUIDisplay();
     }
     
     
@@ -194,14 +186,13 @@ private class IPM_List_Milestones_Test {
             ipmListMilestones.postProcessing(new List < IPM_Milestone__c > {
                 projMilestoneFirst, projMilestoneFinal
             });
-			for(AbstractStandardSetExtension.sObjectPaginationWrapper wrapObj : ipmListMilestones.wrapperRecordList ){
-          		if(((IPM_Milestone__c)wrapObj.record).IPM_Type_of_Milestone__c == IPM_MilestoneType){
-	          		System.AssertEquals(wrapObj.isEditable, false, 'Failed to set  Bet milestones to read only'); 
-	          		System.AssertEquals(wrapObj.isDeletable, false, 'BET milestones are deletable!'); 
-          		}
-          	}
+            for(AbstractStandardSetExtension.sObjectPaginationWrapper wrapObj : ipmListMilestones.wrapperRecordList ){
+                if(((IPM_Milestone__c)wrapObj.record).IPM_Type_of_Milestone__c == IPM_MilestoneType){
+                    System.AssertEquals(wrapObj.isEditable, false, 'Failed to set  Bet milestones to read only'); 
+                    System.AssertEquals(wrapObj.isDeletable, false, 'BET milestones are deletable!'); 
+                }
+            }
             Test.StopTest();
-            ipmListMilestones.toggleDueDate();
         }
 
     }

@@ -243,6 +243,10 @@
                 <fullName>Market Deployment</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Product Design Lock</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>true</trackFeedHistory>
@@ -407,6 +411,7 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
+    
     <fields>
         <fullName>IPM_Stopped_Date__c</fullName>
         <description>To store project document stopped date</description>
@@ -432,6 +437,701 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+     <fields>
+	<fullName>Rollup_CD_Role__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup CD Role</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_FunctionalRole__c</field>
+		<operation>equals</operation>
+		<value>CD</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+	</fields>
+	<fields>
+	<fullName>Rollup_CMI_Role__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup CMI Role</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_FunctionalRole__c</field>
+		<operation>equals</operation>
+		<value>CMI</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+	</fields>
+	<fields>
+	<fullName>Rollup_Deployment_NN__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Deployment NN</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>False</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>4</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+	</fields>
+	<fields>
+	<fullName>Rollup_Deployment_OPT__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Deployment OPT</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>4</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+	</fields>
+	<fields>
+	<fullName>Rollup_Excluded_Sections__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Excluded Sections</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Status__c</field>
+		<operation>equals</operation>
+		<value>Excluded</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+	</fields>
+	<fields>
+	<fullName>Rollup_External_NN__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup External NN</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>False</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>2</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+	</fields>
+	<fields>
+	<fullName>Rollup_External_OPT__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup External OPT</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>2</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+	</fields>
+	<fields>
+	<fullName>Rollup_Filled_In_Sections__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Filled In Sections</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Status__c</field>
+		<operation>equals</operation>
+		<value>Filled-in</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+	</fields>
+	<fields>
+	<fullName>Rollup_Finance_NN__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Finance NN</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>False</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>6</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
+<fields>
+	<fullName>Rollup_Finance_OPT__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Finance OPT</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>6</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+	</fields>
+	<fields>
+	<fullName>Rollup_Finance_Role__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Finance Role</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_FunctionalRole__c</field>
+		<operation>equals</operation>
+		<value>Finance</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
+<fields>
+	<fullName>Rollup_Introduction_NN__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Introduction NN</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>False</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>1</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+	</fields>
+	<fields>
+	<fullName>Rollup_Introduction_OPT__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Introduction OPT</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>1</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+	</fields>
+	<fields>
+	<fullName>Rollup_MKTG_DEV_Role__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup MKTG DEV Role</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_FunctionalRole__c</field>
+		<operation>equals</operation>
+		<value>MKTG DEV</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
+<fields>
+	<fullName>Rollup_MKTG_LOCAL_Role__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup MKTG LOCAL Role</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_FunctionalRole__c</field>
+		<operation>equals</operation>
+		<value>MKTG LOCAL</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
+<fields>
+	<fullName>Rollup_Mix_NN__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Mix NN</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>False</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>3</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
+<fields>
+	<fullName>Rollup_Mix_OPT__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Mix OPT</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>3</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
+<fields>
+	<fullName>Rollup_Not_Started_Sections__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Not Started Sections</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Status__c</field>
+		<operation>equals</operation>
+		<value>Not Started</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
+<fields>
+	<fullName>Rollup_PL_Role__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup PL Role</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_FunctionalRole__c</field>
+		<operation>equals</operation>
+		<value>PL</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
+<fields>
+	<fullName>Rollup_Project_Management_NN__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Project Management NN</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>False</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>7</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
+<fields>
+	<fullName>Rollup_Project_Management_OPT__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Project Management OPT</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>7</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
+<fields>
+	<fullName>Rollup_RD_Role__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup RD Role</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_FunctionalRole__c</field>
+		<operation>equals</operation>
+		<value>R&amp;D</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
+<fields>
+	<fullName>Rollup_SC_Role__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup SC Role</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_FunctionalRole__c</field>
+		<operation>equals</operation>
+		<value>SC</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
+<fields>
+	<fullName>Rollup_Technical_NN__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Technical NN</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>False</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>5</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
+<fields>
+	<fullName>Rollup_Technical_OPT__c</fullName>
+	<externalId>false</externalId>
+	<label>Rollup Technical OPT</label>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+		<operation>notContain</operation>
+		<value>Header</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+		<operation>equals</operation>
+		<value>True</value>
+	</summaryFilterItems>
+	<summaryFilterItems>
+		<field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+		<operation>startsWith</operation>
+		<value>5</value>
+	</summaryFilterItems>
+	<summaryForeignKey>IPM_Project_Document_Section__c.IPM_Project_Document__c</summaryForeignKey>
+	<summaryOperation>count</summaryOperation>
+	<trackHistory>false</trackHistory>
+	<trackTrending>false</trackTrending>
+	<type>Summary</type>
+</fields>
     <label>IPM Project Document</label>
     <listViews>
         <fullName>All</fullName>

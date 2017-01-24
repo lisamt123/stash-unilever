@@ -62,12 +62,12 @@
         <fullName>Activist_Action_To_Date__c</fullName>
         <externalId>false</externalId>
         <label>Activist Action To Date</label>
-        <length>800</length>
+        <length>131000</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <visibleLines>8</visibleLines>
     </fields>
     <fields>
         <fullName>Backup_Contact__c</fullName>
@@ -109,6 +109,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -298,6 +299,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -343,6 +345,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -809,6 +812,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -864,56 +868,57 @@
             <controllingField>Global_Priority__c</controllingField>
             <picklistValues>
                 <fullName>1</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>2</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>3</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>4</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>5</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>6</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>7</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>8</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>9</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>10</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -953,6 +958,17 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_local_media_statement_available__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Please confirm by ticking this box if a local media statement is available</inlineHelpText>
+        <label>Is local media statement available?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Issue_Description__c</fullName>
@@ -1010,6 +1026,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1042,6 +1059,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1066,6 +1084,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1090,6 +1109,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1101,27 +1121,92 @@
         <label>Issue Subject Group</label>
         <picklist>
             <picklistValues>
-                <fullName>Sustainability</fullName>
+                <fullName>Diet &amp; Health – Food Taxes</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Obesity &amp; Health</fullName>
+                <fullName>Diet &amp; Health – Labelling</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Acting responsibly</fullName>
+                <fullName>Diet &amp; Health – Marketing to children</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Consumer safety</fullName>
+                <fullName>Diet &amp; Health – Sugar, Salt, Fat</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Innovation</fullName>
+                <fullName>Diet &amp; Health – Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Human &amp; Labour Rights</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging &amp; Waste</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Quality / Incidents</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Responsible Marketing – Skin lightening</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Responsible Marketing – Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Science &amp; Innovation – Animal Testing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Science &amp; Innovation – GMO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Science &amp; Innovation – Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sustainable sourcing – Animal Welfare</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sustainable sourcing – Deforestation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sustainable sourcing – Palm Oil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sustainable sourcing – Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tax Transparency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trust in Ingredients – Foods &amp; Refreshments</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trust in Ingredients – HPC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1234,6 +1319,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1258,12 +1344,9 @@
                 <fullName>New Created</fullName>
                 <default>true</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Global and R&amp;D</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1314,6 +1397,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1338,6 +1422,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1372,6 +1457,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1586,6 +1672,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1663,12 +1750,12 @@ CASE( Issue_Severity_on_submission__c ,
         <fullName>Protagonist__c</fullName>
         <externalId>false</externalId>
         <label>Protagonist</label>
-        <length>800</length>
+        <length>131000</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <visibleLines>8</visibleLines>
     </fields>
     <fields>
         <fullName>R_D_Issue__c</fullName>
@@ -1785,10 +1872,34 @@ CASE( Issue_Severity_on_submission__c ,
         <type>Url</type>
     </fields>
     <fields>
+        <fullName>Report_Issue_To_Email_2__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>With ‘submitting’ the issue, it will automatically be sent to the Core Issue Management Team (CIMT). In the case you want to inform anyone else, please add their email address in the available field here. NOTE it must be a Unilever @unilever.com address.</inlineHelpText>
+        <label>Add additional recipient 2</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Report_Issue_To_Email_3__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>With ‘submitting’ the issue, it will automatically be sent to the Core Issue Management Team (CIMT). In the case you want to inform anyone else, please add their email address in the available field here. NOTE it must be a Unilever @unilever.com address.</inlineHelpText>
+        <label>Add additional recipient 3</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Report_Issue_To_Email__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>This issue will automatically be sent to the CIMT and CIPG do you want to inform anyone else? If so please add their email address here - Note: Must be a Unilever (@unilever) email address</inlineHelpText>
-        <label>Report Issue To (Email)</label>
+        <inlineHelpText>With ‘submitting’ the issue, it will automatically be sent to the Core Issue Management Team (CIMT). In the case you want to inform anyone else, please add their email address in the available field here. NOTE it must be a Unilever @unilever.com address.</inlineHelpText>
+        <label>Add additional recipient 1</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1845,6 +1956,7 @@ CASE( Severity_Movement__c,
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1858,61 +1970,62 @@ CASE( Severity_Movement__c,
             <controllingField>On_Social_Media__c</controllingField>
             <picklistValues>
                 <fullName>Bebo</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Facebook</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Google+</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hyves</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>LinkedIn</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>MySpace</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Pintrest</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Tumblr</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Twitter</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>WeBo</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Youtube</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1931,6 +2044,29 @@ CASE( Severity_Movement__c,
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Social_media_local_monitoring_available__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Please confirm by ticking this box if local social monitoring is in place</inlineHelpText>
+        <label>Local social media monitoring in place?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Social_media_local_monitoring_formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF((  Social_media_local_monitoring_available__c = True), &apos;Yes&apos;, &apos;No&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Social media local monitoring formula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Submitted__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -1944,23 +2080,23 @@ CASE( Severity_Movement__c,
         <fullName>Unilever_Readiness_To_Response__c</fullName>
         <externalId>false</externalId>
         <label>Unilever Readiness To Response</label>
-        <length>800</length>
+        <length>131000</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <visibleLines>8</visibleLines>
     </fields>
     <fields>
         <fullName>Unilever_Risk_Opportunity__c</fullName>
         <externalId>false</externalId>
         <label>Unilever Risk/Opportunity</label>
-        <length>800</length>
+        <length>131000</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <visibleLines>8</visibleLines>
     </fields>
     <fields>
         <fullName>Unilever_position_in_social_media__c</fullName>
@@ -1988,12 +2124,38 @@ CASE( Severity_Movement__c,
         <fullName>Way_Forward__c</fullName>
         <externalId>false</externalId>
         <label>Way Forward</label>
-        <length>800</length>
+        <length>131000</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <visibleLines>8</visibleLines>
+    </fields>
+    <fields>
+        <fullName>im_Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY() - Date_Raised__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Issue Age(In Days)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>local_media_statement_available_formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(( Is_local_media_statement_available__c = True), &apos;Yes&apos;, &apos;No&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>local media statement available formula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>severity_RAG__c</fullName>
@@ -2017,42 +2179,33 @@ CASE(Issue_Severity__c ,
     <label>Issue</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>im_Age__c</columns>
         <columns>NAME</columns>
-        <columns>Issue_Type__c</columns>
         <columns>Date_Raised__c</columns>
-        <columns>Issue_Status__c</columns>
+        <columns>Country__c</columns>
+        <columns>Brand_Category__c</columns>
         <columns>severity_RAG__c</columns>
         <columns>Original_Flag__c</columns>
         <columns>LAST_UPDATE</columns>
+        <columns>Issue_Status__c</columns>
         <filterScope>Everything</filterScope>
         <label>All Issues</label>
-    </listViews>
-    <listViews>
-        <fullName>Global_Issues</fullName>
-        <columns>NAME</columns>
-        <columns>Global_Priority_reporting__c</columns>
-        <columns>Issue_Status__c</columns>
-        <columns>severity_RAG__c</columns>
-        <columns>LAST_UPDATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Issue_Type__c</field>
-            <operation>equals</operation>
-            <value>Global and R&amp;D</value>
-        </filters>
-        <label>Global &amp; R&amp;D Issues</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>My_Issues</fullName>
+        <columns>im_Age__c</columns>
         <columns>NAME</columns>
-        <columns>Issue_Type__c</columns>
         <columns>Date_Raised__c</columns>
-        <columns>Issue_Status__c</columns>
+        <columns>Country__c</columns>
+        <columns>Brand_Category__c</columns>
         <columns>severity_RAG__c</columns>
         <columns>Original_Flag__c</columns>
         <columns>LAST_UPDATE</columns>
+        <columns>Issue_Status__c</columns>
         <filterScope>Mine</filterScope>
         <label>My Issues</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Issue Name</label>
@@ -2866,23 +3019,87 @@ CASE(Issue_Severity__c ,
         <picklistValues>
             <picklist>Issue_Subject_Group__c</picklist>
             <values>
-                <fullName>Acting responsibly</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Food Taxes</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Consumer safety</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Labelling</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Innovation</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Marketing to children</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Obesity %26 Health</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Other</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sustainability</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Sugar%2C Salt%2C Fat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human %26 Labour Rights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Packaging %26 Waste</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality %2F Incidents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Skin lightening</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Animal Testing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 GMO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Animal Welfare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Deforestation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Palm Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Transparency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 Foods %26 Refreshments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 HPC</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2991,10 +3208,6 @@ CASE(Issue_Severity__c ,
         </picklistValues>
         <picklistValues>
             <picklist>Issue_Type__c</picklist>
-            <values>
-                <fullName>Global and R%26D</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>New Created</fullName>
                 <default>true</default>
@@ -4065,23 +4278,87 @@ CASE(Issue_Severity__c ,
         <picklistValues>
             <picklist>Issue_Subject_Group__c</picklist>
             <values>
-                <fullName>Acting responsibly</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Food Taxes</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Consumer safety</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Labelling</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Innovation</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Marketing to children</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Obesity %26 Health</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Other</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sustainability</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Sugar%2C Salt%2C Fat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human %26 Labour Rights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Packaging %26 Waste</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality %2F Incidents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Skin lightening</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Animal Testing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 GMO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Animal Welfare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Deforestation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Palm Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Transparency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 Foods %26 Refreshments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 HPC</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4186,13 +4463,6 @@ CASE(Issue_Severity__c ,
             <values>
                 <fullName>Volatile Organic Compounds</fullName>
                 <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Issue_Type__c</picklist>
-            <values>
-                <fullName>Global and R%26D</fullName>
-                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -5253,23 +5523,87 @@ CASE(Issue_Severity__c ,
         <picklistValues>
             <picklist>Issue_Subject_Group__c</picklist>
             <values>
-                <fullName>Acting responsibly</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Food Taxes</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Consumer safety</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Labelling</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Innovation</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Marketing to children</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Obesity %26 Health</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Other</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sustainability</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Sugar%2C Salt%2C Fat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human %26 Labour Rights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Packaging %26 Waste</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality %2F Incidents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Skin lightening</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Animal Testing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 GMO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Animal Welfare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Deforestation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Palm Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Transparency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 Foods %26 Refreshments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 HPC</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5378,10 +5712,6 @@ CASE(Issue_Severity__c ,
         </picklistValues>
         <picklistValues>
             <picklist>Issue_Type__c</picklist>
-            <values>
-                <fullName>Global and R%26D</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>New Created</fullName>
                 <default>true</default>
@@ -6445,23 +6775,87 @@ CASE(Issue_Severity__c ,
         <picklistValues>
             <picklist>Issue_Subject_Group__c</picklist>
             <values>
-                <fullName>Acting responsibly</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Food Taxes</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Consumer safety</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Labelling</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Innovation</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Marketing to children</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Obesity %26 Health</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Other</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sustainability</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Sugar%2C Salt%2C Fat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human %26 Labour Rights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Packaging %26 Waste</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality %2F Incidents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Skin lightening</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Animal Testing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 GMO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Animal Welfare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Deforestation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Palm Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Transparency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 Foods %26 Refreshments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 HPC</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6570,10 +6964,6 @@ CASE(Issue_Severity__c ,
         </picklistValues>
         <picklistValues>
             <picklist>Issue_Type__c</picklist>
-            <values>
-                <fullName>Global and R%26D</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>New Created</fullName>
                 <default>true</default>
@@ -6856,13 +7246,18 @@ CASE(Issue_Severity__c ,
         <lookupDialogsAdditionalFields>RECORDTYPE</lookupDialogsAdditionalFields>
         <searchFilterFields>NAME</searchFilterFields>
         <searchFilterFields>Issue_Type__c</searchFilterFields>
-        <searchFilterFields>CREATEDBY_USER</searchFilterFields>
-        <searchFilterFields>CREATED_DATE</searchFilterFields>
         <searchFilterFields>severity_RAG__c</searchFilterFields>
-        <searchResultsAdditionalFields>Issue_Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+        <searchFilterFields>Cluster__c</searchFilterFields>
+        <searchFilterFields>Country__c</searchFilterFields>
+        <searchFilterFields>Brand_Category__c</searchFilterFields>
+        <searchFilterFields>Issue_Subject_Group__c</searchFilterFields>
+        <searchResultsAdditionalFields>Date_Raised__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Country__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Brand_Category__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>severity_RAG__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Original_Flag__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Issue_Status__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <startsWith>Vowel</startsWith>
@@ -6885,6 +7280,18 @@ CASE(Issue_Severity__c ,
         <fullName>Submitted_To_Unilever_Person</fullName>
         <active>true</active>
         <errorConditionFormula>AND(RIGHT(Report_Issue_To_Email__c, 13) &lt;&gt; &quot;@unilever.com&quot;,  Report_Issue_To_Email__c  &lt;&gt; &quot;&quot;)</errorConditionFormula>
+        <errorMessage>You can only submit to a Unilever colleague with a &apos;@Unilever.com&apos; email address</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Submitted_To_Unilever_Person2</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(RIGHT(Report_Issue_To_Email_2__c, 13) &lt;&gt; &quot;@unilever.com&quot;,  Report_Issue_To_Email_2__c &lt;&gt; &quot;&quot;)</errorConditionFormula>
+        <errorMessage>You can only submit to a Unilever colleague with a &apos;@Unilever.com&apos; email address</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Submitted_To_Unilever_Person3</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(RIGHT(Report_Issue_To_Email_3__c, 13) &lt;&gt; &quot;@unilever.com&quot;,  	Report_Issue_To_Email_3__c &lt;&gt; &quot;&quot;)</errorConditionFormula>
         <errorMessage>You can only submit to a Unilever colleague with a &apos;@Unilever.com&apos; email address</errorMessage>
     </validationRules>
     <webLinks>

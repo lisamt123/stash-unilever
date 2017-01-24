@@ -278,9 +278,9 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
     <fields>
         <fullName>FAU_Completeness_Flag__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( FAU_Personal_Details_Flag__c &amp;&amp; 
-     FAU_Line_Manager_Details_Flag__c, 
-True, False)</formula>
+        <formula>IF(FAU_Program_Wave__r.RecordType.DeveloperName = &apos;UL2020&apos;,
+FAU_UL2020_Travel_details__c, IF(FAU_Personal_Details_Flag__c &amp;&amp; FAU_Line_Manager_Details_Flag__c, 
+True, False))</formula>
         <label>Registration Flag</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -359,6 +359,7 @@ True, False)</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -510,6 +511,7 @@ Completed - The Participant Completed</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -727,6 +729,47 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>FAU_PII__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Created to check the participant is UL2020 Participant or not .</description>
+        <externalId>false</externalId>
+        <label>PII</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>FAU_PII__c.FAU_Program__c</field>
+                <operation>equals</operation>
+                <valueField>$Source.FAU_Program_Wave__c</valueField>
+            </filterItems>
+            <filterItems>
+                <field>$Source.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>UL2020 Participant</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>FAU_PII__c</referenceTo>
+        <relationshipLabel>Participants</relationshipLabel>
+        <relationshipName>Participants</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FAU_Participant_Chatter_Group_Id__c</fullName>
+        <description>Created for Participant Chatter Group Id from PII.</description>
+        <externalId>false</externalId>
+        <formula>FAU_PII__r.FAU_Participant_Chatter_Group_Id__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Participant Chatter Group Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FAU_Participants_Workbook__c</fullName>
         <externalId>false</externalId>
         <formula>IF( ISPICKVAL(FAU_Invite_State__c,&apos;Declined&apos;),&apos;Invitation declined&apos;,HYPERLINK(LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260)) + &apos;apex/FAU_LandingPage?id=&apos; + Id, &apos;Participants Workbook&apos;))</formula>
@@ -875,7 +918,7 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
     <fields>
         <fullName>FAU_Program_Banner_URL__c</fullName>
         <externalId>false</externalId>
-        <formula>FAU_Program_Wave__r.FAU_Program_Banner_URL__c</formula>
+        <formula>IF((FAU_Program_Wave__r.RecordType.DeveloperName=&apos;UL2020&apos;),&apos;resource/FAU_UL2020_Logo&apos;,FAU_Program_Wave__r.FAU_Program_Banner_URL__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Program Banner URL</label>
         <required>false</required>
@@ -919,6 +962,19 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FAU_Program_Group_Chatter_Id__c</fullName>
+        <description>Created for Program Group Chatter Id</description>
+        <externalId>false</externalId>
+        <formula>FAU_Program_Wave__r.FAU_Participant_Chatter_Group_Id__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Program Group Chatter Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FAU_Program_Id__c</fullName>
@@ -993,6 +1049,7 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
     <fields>
         <fullName>FAU_Program_Wave__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Created to check program record type is Core, Franchise,UL2020 or not.</description>
         <externalId>false</externalId>
         <label>Program</label>
         <lookupFilter>
@@ -1000,7 +1057,7 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
             <filterItems>
                 <field>FAU_Program__c.RecordType.DeveloperName</field>
                 <operation>equals</operation>
-                <value>Core, Franchise</value>
+                <value>Core, Franchise, UL2020</value>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>
@@ -1011,6 +1068,17 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FAU_Purpose_Statement__c</fullName>
+        <description>This is the &apos;Purpose Statement&apos; section of BIO form linked to Participation Workbook</description>
+        <externalId>false</externalId>
+        <label>Purpose Statement</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>FAU_RSVP_Deadline__c</fullName>
@@ -1058,9 +1126,20 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FAU_UL2020_Travel_details__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox is checked for UL2020 program participants when the travel details are filled by participants.</description>
+        <externalId>false</externalId>
+        <label>FAU UL2020 Travel details</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>FAU_Unilever_Career__c</fullName>
@@ -1161,6 +1240,58 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
+    <fields>
+        <fullName>PA_Email_and_PA_Email__c</fullName>
+        <description>Created for E-mail And PA E-mail.</description>
+        <externalId>false</externalId>
+        <formula>IF( FAU_Is_deferred_To_PA__c = True,  FAU_Email_Address__c  + &quot;,&quot; +  FAU_Personal_Assistant_s_Email__c ,  FAU_Email_Address__c )</formula>
+        <label>Email and PA Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PII_Chatter_Group_Link__c</fullName>
+        <description>Link To PII Chatter group for email template</description>
+        <externalId>false</externalId>
+        <formula>FAU_PII__r.FAU_PII_Chatter_Group__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PII Chatter Group Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PII_Chatter_Group__c</fullName>
+        <description>Created for PII Chatter Group Id from PII.</description>
+        <externalId>false</externalId>
+        <formula>FAU_PII__r.FAU_PII_Chatter_Group_Id__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PII Chatter Group</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PII_Table_Chatter_Group_Link__c</fullName>
+        <description>Created for PII Table Chatter Group Link from PII.</description>
+        <externalId>false</externalId>
+        <formula>FAU_PII__r.FAU_Participant_Chatter_Group__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Link for PII table</inlineHelpText>
+        <label>PII Table Chatter Group Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>Participant</label>
     <listViews>
         <fullName>All</fullName>
@@ -1199,6 +1330,164 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Participants</pluralLabel>
+    <recordTypes>
+        <fullName>Program_participant</fullName>
+        <active>true</active>
+        <description>Core/Franchise Participant</description>
+        <label>Program participant</label>
+        <picklistValues>
+            <picklist>FAU_Decline_Reason__c</picklist>
+            <values>
+                <fullName>Going on Leave</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leaving Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moving Roles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Budget</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Schedule Contrainsts</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FAU_Invite_State__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invited</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not yet invited</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FAU_Title__c</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>UL2020_Participant</fullName>
+        <active>true</active>
+        <description>UL2020 Participant</description>
+        <label>UL2020 Participant</label>
+        <picklistValues>
+            <picklist>FAU_Decline_Reason__c</picklist>
+            <values>
+                <fullName>Going on Leave</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leaving Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moving Roles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Budget</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Schedule Contrainsts</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FAU_Invite_State__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invited</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not yet invited</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FAU_Title__c</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>FAU_First_Name__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>FAU_Last_Name__c</customTabListAdditionalFields>
@@ -1273,6 +1562,23 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
         <errorConditionFormula>TEXT(FAU_Program_Wave__r.FAU_Status__c) &lt;&gt; &apos;Active&apos; &amp;&amp; ISNEW()</errorConditionFormula>
         <errorMessage>Participants can only be added to Active Programs.
 Change the program status to &apos;Active&apos; to continue.</errorMessage>
+    </validationRules>
+    
+    <validationRules>
+        <fullName>UL2020_PII_should_belong_to_same_progra</fullName>
+        <active>true</active>
+        <description>Participants can only be added to UL2020 program.</description>
+        <errorConditionFormula>RecordType.DeveloperName=&apos;UL2020_Participant&apos; &amp;&amp; (FAU_PII__r.FAU_Program__r.Id!= FAU_Program_Wave__c )</errorConditionFormula>
+        <errorMessage>PII should belong to same program as participant belong.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL2020_Participant_PII_Same_record_type</fullName>
+        <active>true</active>
+        <description>Participants can select UL2020 record type only.</description>
+        <errorConditionFormula>(RecordType.DeveloperName=&quot;UL2020_Participant&quot; &amp;&amp; FAU_Program_Wave__r.RecordType.DeveloperName!=&quot;UL2020&quot;)
+||
+ (RecordType.DeveloperName!=&quot;UL2020_Participant&quot; &amp;&amp; FAU_Program_Wave__r.RecordType.DeveloperName==&quot;UL2020&quot;)</errorConditionFormula>
+        <errorMessage>Please select the UL2020 Record</errorMessage>
     </validationRules>
     <webLinks>
         <fullName>FAU_Send_Email</fullName>

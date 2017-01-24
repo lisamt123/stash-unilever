@@ -4,7 +4,7 @@
     <encodingKey>UTF-8</encodingKey>
     <name>FS Stage before 7 days of Oppty Closed</name>
     <style>none</style>
-    <subject>Notification of stage before one week</subject>
+    <subject>{!Opportunity.Name} Notification of stage before one week</subject>
     <textOnly>Hi {!Opportunity.OwnerFullName},  This is a notification for opportunity one week before the closed date This Opportunity for {!Opportunity.Account} is at Stage {!Opportunity.StageName} and the Close Date is one week away.  {!Opportunity.Link}</textOnly>
     <type>custom</type>
 </EmailTemplate>

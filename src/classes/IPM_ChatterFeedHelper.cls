@@ -23,7 +23,7 @@ public without sharing class IPM_ChatterFeedHelper {
     private static final String TO_NOT_FAST_TRACK_STR =' to Not Fast track';
     private static final String FINANCIALS_STR1='The financials for ';
     private static final String FINANCIALS_STR2=' projects and ';
-    private static final String FINANCIALS_STR3=' are no longer aligned. Please contact your BD/BB Finance partner to re-align the business cases';
+    private static final String FINANCIALS_STR3=' are no longer aligned. Please contact your Finance partner to re-align the business cases';
     private static final String FINANCIALS_STR5=' are succesfully aligned.';
     private static final String PLANNED_STR='Planned ';
 
@@ -498,7 +498,7 @@ public without sharing class IPM_ChatterFeedHelper {
      List<IPM_Project__c> tldUpdatedProjects = [SELECT IPMProject_Span__c,id,IPM_Project_Leader__c,Deputy_Project_Leader__c,IPM_Finance_Lead__c,IPM_Project_Name__c,
                                 IPM_Parent_Project__r.IPM_Project_Leader__c,IPM_Parent_Project__r.Deputy_Project_Leader__c,
                                 IPM_Parent_Project__r.IPM_Finance_Lead__c,IPM_Parent_Project__r.IPM_Project_Name__c,
-                                Rollout_Plan_Target_Launch_Date__c,IPM_Target_Launch_Dates__c
+                                Rollout_Plan_Target_Launch_Date__c,IPM_Target_Launch_Dates__c,IPM_ProjectGKM__c
                                 FROM IPM_Project__c
                                 WHERE id IN :updatedProjects
                                 LIMIT:IPM_ConstantUtils.MaxLimit];
@@ -527,10 +527,15 @@ public without sharing class IPM_ChatterFeedHelper {
             localUserSet.remove(null);     
             projectIdUserSetMap.put(localProj.IPM_Parent_Project__c,regionalUserSet);
             projectIdUserSetMap.put(localProj.id,localUserSet);
-                
-            chatterPostMessage=System.label.IPM_Target_Launch_Date_Msg+IPM_ConstantUtils.IPM_SPACE+localProj.IPM_Project_Name__c+
-            IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_TLD_Misaligned+IPM_ConstantUtils.IPM_SPACE+localProj.IPM_Parent_Project__r.IPM_Project_Name__c;
-                
+            if(localProj.IPM_ProjectGKM__c != IPM_ConstantUtils.GATE_KEEPING_MODEL_3)    {
+	    	chatterPostMessage=System.label.IPM_Target_Launch_Date_Msg+IPM_ConstantUtils.IPM_SPACE+localProj.IPM_Project_Name__c+
+		IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_TLD_Misaligned+IPM_ConstantUtils.REGIONAL_PROJECT+IPM_ConstantUtils.IPM_SPACE+localProj.IPM_Parent_Project__r.IPM_Project_Name__c;
+            }else
+            {
+            	chatterPostMessage=System.label.IPM_Target_Launch_Date_Msg+IPM_ConstantUtils.IPM_SPACE+localProj.IPM_Project_Name__c+
+		IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_TLD_Misaligned+IPM_ConstantUtils.GLOBAL_PROJECT+IPM_ConstantUtils.IPM_SPACE+localProj.IPM_Parent_Project__r.IPM_Project_Name__c;
+            	
+            }   
             subjectIdMessageMap.put(localProj.IPM_Parent_Project__c,chatterPostMessage); 
             subjectIdMessageMap.put(localProj.id,chatterPostMessage);     
                 

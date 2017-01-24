@@ -19,4 +19,5 @@
     <tab>CEC_Retrieval_Request__c</tab>
     <tab>CEC_E_Voucher_Details__c</tab>
     <tab>CEC_Agents_List</tab>
+	<tab>CEC_Exception_Log__c</tab>
 </CustomApplication>

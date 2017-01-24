@@ -3,7 +3,7 @@ Name: SAM_TriggerUtilMethods_Test()
 Copyright © 2016 Salesforce
 ======================================================
 ======================================================
-Purpose: This is the util class of rest of the test classes.
+Purpose: This is the util class of rest of the test classes
 -------
 ======================================================
 ======================================================
@@ -135,6 +135,55 @@ private class SAM_TriggerUtilMethods_Test {
         }       
         
     }
+     /*******************************************************************
+    Purpose: This method is used to cover SAM_Email_Attachment_InvocableMethod class
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void SAM_EmailInvocableClass_Test(){ 
+        SAM_StatusMsgCustomSetting();                        
+        SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();
+        User u = SAM_TestRequestClass_util.createTestUser();
+        if(u != null)
+        {
+        objRequest.lkp_Assign_To__c= u.id;  
+        objRequest.pkl_Software_Purchase_Req__c  = null;    
+        insert objRequest;
+        }       
+        if(objRequest.Id != null)
+        {
+        objRequest.txt_SA_Clarity_Id__c = '67890';
+        update objRequest;
+        
+        SAM_Request_Line_Item__c ObjRLI =  SAM_TestRequestClass_util.createProductDetails(objRequest);
+        insert ObjRLI;
+        
+        objRequest.pkl_SAM_team_Status__c = SAM_Constants.INPROGRESS;
+        objRequest.pkl_Software_Purchase_Req__c = 'Yes';
+        objRequest.chk_Is_Quote_Submitted_Once__c = false;
+        update objRequest;      
+        
+        SAM_Quote_Line_Item__c ObjQLI =  SAM_TestRequestClass_util.createQuotationDetails(objRequest);       
+        insert ObjQLI;
+        SAM_TestRequestClass_util.addApproval_EmailsAttachmentToQLI(ObjQLI.id);
+        ObjQLI.pkl_Charging_Type__c = SAM_Constants.DO_PO_APPLICABLE;
+        ObjQLI.pkl_DO_PO_Details_Applicable__c = 'Yes';
+        update  ObjQLI;
+        ObjQLI.pkl_Line_Status__c = 'Completed';           
+        update ObjQLI;
+      Test.startTest();   
+        list<SAM_Email_Attachment_InvocableMethod.SendEmailClassVariable> sendEmailAttachments = new list<SAM_Email_Attachment_InvocableMethod.SendEmailClassVariable>();
+        SAM_Email_Attachment_InvocableMethod.SendEmailClassVariable sendEmailAttachment = new SAM_Email_Attachment_InvocableMethod.SendEmailClassVariable();
+        sendEmailAttachment.recordId = objRequest.id;
+        sendEmailAttachment.templateDeveloperName = 'SAM_FinalQuoteReSubmitted_To_Requester';
+        sendEmailAttachments.add(sendEmailAttachment);
+        SAM_Email_Attachment_InvocableMethod.SendEmailWithAttachment(sendEmailAttachments);
+     Test.stopTest();
+        List<Attachment> attachments=[select id, name from Attachment where parent.id=:ObjQLI.id];      
+        System.assertEquals(1, attachments.size());
+    }
+  }
     /*******************************************************************
     Purpose: This method is used to cover trigger utilities
     Parameters: 
@@ -225,7 +274,7 @@ private class SAM_TriggerUtilMethods_Test {
                         
         SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();  
         insert objRequest;
-		List<string> reqId = new List<string>();
+        List<string> reqId = new List<string>();
         reqId.add(objRequest.id);
         SAM_Request_GroupMemberShipUtils.GetPublicGroups(reqId);
                
@@ -254,7 +303,7 @@ private class SAM_TriggerUtilMethods_Test {
         insert ObjQLI;
         
         Test.startTest(); 
-		List<string> reqId = new List<string>();
+        List<string> reqId = new List<string>();
         reqId.add(objRequest.id);
         SAM_Request_PublisherFieldUpdate.UpdatePublisherField(reqId);
                

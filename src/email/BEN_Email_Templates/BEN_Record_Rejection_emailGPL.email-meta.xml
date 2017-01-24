@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Category detail rejected</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TO_Letter_Head</letterhead>
+    <name>BEN Record Rejection emailGPL</name>
+    <style>freeForm</style>
+    <subject>{!BEN_Category_Details__c.Name}Test Result is Rejected</subject>
+    <textOnly>Hi,
+
+Test result &apos;{!BEN_Category_Details__c.Name} &apos; : Title : &apos;{!BEN_Category_Details__c.txt_Title__c}&apos; is rejected by {!BEN_Category_Details__c.LastModifiedBy}
+
+You can access the result via the link below;
+https://unilever--benchmrkng.cs52.my.salesforce.com/{!BEN_Category_Details__c.Id}
+
+This is an automatically generated email, please do not reply
+
+Thanks,
+{!BEN_Category_Details__c.LastModifiedBy}</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -30,6 +30,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     public String regionalUnselectedCountry{get; set;} //Collection of (comma seperated) unselected regional country codes passed from Visualforce
     public String regionalNoRoll{get; set;} //Collection of (comma seperated) selected regional no rollouts country codes passed from Visualforce
     public String regionalUnselectedNoRoll{get; set;} //Collection of (comma seperated) unselected regional no rollouts country codes passed from Visualforce
+    public String retainedCountries{get; set;}
     
     @TestVisible private Map<String, MDO_Geography__c> mapUnileverCountries; //Map of Unilever Countries - generated from mdm_Geography__c object //change-1
     public Map<String, IPM_Country__c> mapIPMCountries{get;set;} //Map of counries that have already been added to this project
@@ -59,6 +60,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     
     @TestVisible private Map<String, IPM_Project_Rollout__c> mapUpsertRegionalRollouts; //Map of Regional Rollouts that need to be upserted
     @TestVisible private Map<String, IPM_Project_Rollout__c> mapUpsertRollouts; //Map of Local Rollouts that need to be upserted
+    @TestVisible private Map<String, IPM_Project_Rollout__c> mapUpsertKeyNKRollouts; //Map of Local Rollouts Key/Non-Key to be updated for GKM3
     @TestVisible private Map<String,IPM_Country__c> mapUpsertCountries; //List of countries that need to be upserted
     
     @TestVisible private Map<String,IPM_Project_Rollout__c> deleteRolloutsMap; //List of Rollouts that need to be deleted
@@ -82,6 +84,9 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     @TestVisible private static final String GET_REGIONAL_ROLLOUT_NAME = 'getRegionalRolloutName'; //Method Name for Exception Logging
     @TestVisible private static final String GET_KEY_MCO_ROLLOUT_NAME = 'getKeyMCORolloutName'; //Method Name for Exception Logging
     @TestVisible private static final String SelectQueryString ='Id,parent_L2__r.name,parent_L2__r.mdm_id__c,parent_L2__r.geography_type__c,parent_L2__r.parent_L2__c,parent_L2__r.parent_L2__r.Name,parent_L2__r.parent_L2__r.mdm_id__c,parent_L2__r.parent_L2__r.geography_type__c FROM MDO_Geography__c';
+    @TestVisible private static final Map<String, Schema.SObjectField> rolloutFieldMap = Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap();
+    private static final String STR_ROLLOUT = 'Rollout';
+    private static final String STR_COUNTRY = 'Country';
     public String searchCountry{get;set;}// Hold country name to search
     public Boolean isNoResult{get;set;}//checking for rollout search
     private Set<String> existingPrjList =new Set <String>(); //list of ids of existing   projects associated with rollouts 
@@ -98,8 +103,32 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     public Set<Id> projPurgeIdSet = new Set<Id>();
     public Map<String,IPM_Country__c> existingRelatedCountriesMap;
     public Map<String,Set<String>> relatedMCOAndCountry;
+    Set<String> phaseTobeIncluded = new Set<String>{IPM_ConstantUtils.PHASE_IDEAS, IPM_ConstantUtils.PHASE_FEASIBILITY, IPM_ConstantUtils.PHASE_CAPABILITY};
+    public Boolean isProjectGKM3{get {
+            if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3) {
+                return true;
+            } else{ 
+                return false; 
+            }
+        } set;}
+    public String strMCOKeyHelp{get {
+            if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3) {
+                if(phaseTobeIncluded.contains(project.IPM_Phase__c)){
+                    return Label.IPM_KEY_MCO_NEEDS_GKM3;
+                }else{
+                    return '';
+                }
+                 
+            }else{ 
+                return Label.IPM_KEY_MCO_NEEDS;
+            }
+        }
+        set;
+    }
+    // Boolean used to disable the MCO selection- Currently It has been used only for GKM3
+    public Boolean disableMCOSelection{get; set;}
     
-        public String marketClusterName{get {
+    public String marketClusterName{get {
             if(project.Market_Cluster_Name__c != '') {
                 return project.Market_Cluster_Name__c;
             } else{ 
@@ -122,6 +151,14 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         localProjCnt = 0;
         invokedFromRollouts = false;
         initializeRollouts();
+        // To disable the MCO selection on Add/Manage Rollout Screen
+        IPM_Project_Type__c currentProjecttype = IPM_Utils.retrieveProjectType(project);
+        
+        if(currentProjecttype != null && currentProjecttype.IPM_Disable_Key_NonKey__c){
+        	disableMCOSelection = true;
+        }else {
+        	disableMCOSelection = false; 
+        }
     }
     /**
     *  @Description Method invoked from class constructor
@@ -167,7 +204,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 //MDM Geography . //change-2
                 for (String field : Schema.SObjectType.MDO_Geography__c.fields.getMap().KeySet())
                 {
-                    if (field != IPM_ConstantUtils.SF_ID)
+                    if (!field.equalsIgnoreCase(IPM_ConstantUtils.SF_ID))
                     {
                         queryString+= field + ', ';
                     }
@@ -200,9 +237,10 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 }
                 else
                 {
-                    lstClusterWrappers.clear();
-                    lstMCOWrappers.clear();
-                    lstCountryWrappers.clear();
+                    
+                    lstClusterWrappers = new List<GeographyWrapper>();
+                    lstMCOWrappers = new List<GeographyWrapper>();
+                    lstCountryWrappers = new List<GeographyWrapper>();
                     isNoResult=true;
                 }
             }
@@ -215,9 +253,9 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,SEARCH_ROLLOUT_COUNTRY,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             
-            lstClusterWrappers.clear();
-            lstMCOWrappers.clear();
-            lstCountryWrappers.clear();
+            lstClusterWrappers = new List<GeographyWrapper>();
+            lstMCOWrappers = new List<GeographyWrapper>();
+            lstCountryWrappers = new List<GeographyWrapper>();
             isNoResult=true;
         }
     }
@@ -237,7 +275,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         //MDM Geography  MDO
         For (String field : Schema.SObjectType.MDO_Geography__c.fields.getMap().KeySet())
         { //change-3
-            if (field != IPM_ConstantUtils.SF_ID)
+            if (!field.equalsIgnoreCase(IPM_ConstantUtils.SF_ID))
             {
                 queryString+= field + ', ';
             }
@@ -284,15 +322,15 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             //IPM Country
             for (String field : Schema.SObjectType.IPM_Country__c.fields.getMap().KeySet())
             {
-                if (field != IPM_ConstantUtils.SF_ID)
+                if (!field.equalsIgnoreCase(IPM_ConstantUtils.SF_ID))
                 {
                     queryString+= field + ', ';
                 }
             }
-            queryString+= 'IPM_Local_Project__r.IPM_No_Rollout_Disabled__c,Local_Rollout__r.KeyMCO__c, Local_Rollout__r.Market_Cluster__c, Local_Rollout__r.MCO__c, ';
+            queryString+= 'IPM_Local_Project__r.IPM_No_Rollout_Disabled__c,Local_Rollout__r.KeyMCO__c,Local_Rollout__r.IPM_Project_Job_Status__c, Local_Rollout__r.Market_Cluster__c, Local_Rollout__r.MCO__c, ';
             queryString+= 'Id FROM IPM_Country__c ';
             
-            if(project.IPMProject_Span__c.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL))
+            if(project.IPMProject_Span__c != null && project.IPMProject_Span__c.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL))
             {
                 queryString+= 'WHERE IPM_Regional_Project__c=:projectId AND IsActive__c = true LIMIT 50000';
             }
@@ -313,7 +351,20 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
 	          noRolloutDisabledCountrycodeSet.add(ipmCountry.Country_Code__c);
 	        }
             }
-
+		generateWrapperHelper();
+    }
+	       /**
+    *  @Description Method to Used for creating Wrapper which contains MCO related information and corresponding Countries.This wrapper is fetcing MCO based on
+    *               the project type having isActive flag true.It will fecth respective cluster,MCO and country from Geography wrapper.Then prepare a map for rollout generation for selected Geography. 
+       The selected geogrpahy is updated in formula field of country object.This will check for already selected MCO or new MCO for wrapper generation.
+        Used for displaying selected countries and Whether MCO needs to be enabled or disabled based on various conditions.
+    *  @name generateWrappersHelper
+    *  @param NONE
+    *  @return NONE
+    *  @throws Exception
+    */
+	private void generateWrapperHelper()
+	{
             mapClusterWrappers = new Map<String, GeographyWrapper>();
             mapMCOWrappers = new Map<String, GeographyWrapper>();
             mapCountryWrappers = new Map<String, GeographyWrapper>();
@@ -321,7 +372,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             lstClusterWrappers = new List<GeographyWrapper>();
             
             Set<String> setDisabledClusterCodes = new Set<String>();
-            Set<String> setDisabledMCOCodes = new Set<String>();
+            Map<String,String> mapClusterToMCOCode = new map<String,String>();
             
             setCountryCodesGlobal = new Set<String>();
             setCountryCodes = new Set<String>();
@@ -356,8 +407,46 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     
                     //Country
                     GeographyWrapper countryWrapper = new GeographyWrapper(country.ISO_3166_1_Code__c, country.Name, MDOMCOCode);
-                    
-                    
+                // call the function
+                setDisabledClusterCodes = updateWrapperListOnCountrySelection(clusterWrapper,mcoWrapper,countryWrapper,country,MDOClusterCode,MDOMCOCode,mapClusterToMCOCode);
+
+
+				if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c) && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
+				{
+					if(MDOClusterCode.equalsIgnoreCase(project.Market_Cluster__c))
+					{
+						mapClusterWrappers.put(MDOClusterCode, clusterWrapper);
+					}
+				} 
+				else
+				{
+					mapClusterWrappers.put(MDOClusterCode, clusterWrapper);
+				}
+			
+				mapMCOWrappers.put(MDOMCOCode, mcoWrapper);
+				mapCountryWrappers.put(country.ISO_3166_1_Code__c, countryWrapper);
+			}
+		  }// null check    
+		}
+		 prepareGeographyWrappeprData(mapClusterToMCOCode,setDisabledClusterCodes);
+		
+
+	}
+	       /**
+    *  @Description Method to Used for creating Wrapper which contains MCO related information and corresponding Countries.This wrapper is fetcing MCO based on
+    *               the project type having isActive flag true.It will fecth respective cluster,MCO and country from Geography wrapper.Then prepare a map for rollout generation for selected Geography. 
+       The selected geogrpahy is updated in formula field of country object.This will check for already selected MCO or new MCO for wrapper generation.
+        Used for displaying selected countries and Whether MCO needs to be enabled or disabled based on various conditions.
+    *  @name updateWrapperListOnCountrySelection
+    *  @param  clusterWrapper,mcoWrapper,countryWrapper,country,MDOClusterCode,MDOMCOCode, mapClusterToMCOCode
+    *  @return Set<String>
+    *  @throws Exception
+    */
+	private Set<String> updateWrapperListOnCountrySelection(GeographyWrapper clusterWrapper, GeographyWrapper mcoWrapper, GeographyWrapper countryWrapper,MDO_Geography__c country,String MDOClusterCode,String MDOMCOCode,Map<String,String> mapClusterToMCOCode)
+	{
+		Set<String> setDisabledClusterCodes = new Set<String>(); 
+        Set<String> underProcessingMCOCodes = new Set<String>();
+                    // If country has been selected update the wrapper list
                     if(mapIPMCountries.containsKey(country.ISO_3166_1_Code__c))
                     {
                         //Key MCO
@@ -378,7 +467,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         }
                         
                         mcoWrapper.key = countryObj.Local_Rollout__r.KeyMCO__c;
-                        countryWrapper.selected = TRUE; // selected country -------------------------------------------
+                        countryWrapper.selected = TRUE; // selected country 
                         countryWrapper.rolloutStatus = countryObj.IPM_Rollout_Status__c;
                         setCountryCodesGlobal.add(country.ISO_3166_1_Code__c);
                         
@@ -386,30 +475,26 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         //Existing Regional Rollouts for Global Projects
                         if(countryObj.IPM_Regional_Project__c != null && project.IPMProject_Span__c.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL))
                         {
-                            setDisabledClusterCodes.add(MDOClusterCode);  
+                        	setDisabledClusterCodes.add(MDOClusterCode);
+                        }
+                        else if(countryObj.Local_Rollout__c !=null && (countryObj.Local_Rollout__r.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE || countryObj.Local_Rollout__r.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_PROCESSING) )
+                        {
+                        	underProcessingMCOCodes.add(countryObj.MCO_Code__c);
+                        }
+                        if(countryObj.IPM_Local_Project__c!=null && project.IPM_ProjectGKM__c=='GKM3' )
+                        {
+                        	mapClusterToMCOCode.put(countryObj.MCO_Code__c,countryObj.Market_Cluster_Name__c);
                         }
                     }
                     
-                    if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c) && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
-                    {
-                        if(MDOClusterCode.equalsIgnoreCase(project.Market_Cluster__c))
-                        {
-                            mapClusterWrappers.put(MDOClusterCode, clusterWrapper);
-                        }
-                    } 
-                    else
-                    {
-                        mapClusterWrappers.put(MDOClusterCode, clusterWrapper);
-                    }
-                
-                    mapMCOWrappers.put(MDOMCOCode, mcoWrapper);
-                    mapCountryWrappers.put(country.ISO_3166_1_Code__c, countryWrapper);
-                }
-              }// null check    
-            }
-            
-           
-             
+        return setDisabledClusterCodes;
+	}
+	
+	 private void prepareGeographyWrappeprData( Map<String,String> mapClusterToMCOCode, Set<String> setDisabledClusterCodes)
+	{   
+        //Set<String> setDisabledClusterCodes = new Set<String>();
+		Set<String> underProcessingMCOCodes = new Set<String>();
+		Set<String> setDisabledMCOCodes = new Set<String>();
             For(GeographyWrapper clusterWrapper : mapClusterWrappers.values())
             {
                 if(setDisabledClusterCodes.contains(clusterWrapper.code))
@@ -426,6 +511,16 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     mapMCOWrappers.put(mcoWrapper.code, mcoWrapper);
                     setDisabledMCOCodes.add(mcoWrapper.code);
                 }
+                if(!mapClusterToMCOCode.isEmpty() && mapClusterToMCOCode.containskey(mcoWrapper.code))
+                {
+                	mcoWrapper.mcoDisabled = true;
+                	mapMCOWrappers.put(mcoWrapper.code, mcoWrapper);
+                	setDisabledMCOCodes.addAll(mapClusterToMCOCode.values());
+                }
+                if(underProcessingMCOCodes.contains(mcoWrapper.code))
+                {
+                	mcoWrapper.mcoDisabled = true;
+                }
             }
             For (GeographyWrapper countryWrapper : mapCountryWrappers.values())
             {
@@ -436,9 +531,16 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 }
             }
             lstClusterWrappers = sortWrappersByName(mapClusterWrappers.values());
-            
-            //SELECT FIRST SELECTED CLUSTER
-            
+		selectFirstSelectedCluster();
+
+	}
+	/**
+    *  @Description Method to Used for selection of first selected cluster and set the value for selected cluster
+    *  @name updateWrapperListOnCountrySelection
+    *  @param None
+    */	 
+	private void selectFirstSelectedCluster()
+	{
             if(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equalsIgnoreCase(project.IPM_Project_Type__c) && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)){
                 List<IPM_Project_Rollout__c> lstRegionalRollout = new List<IPM_Project_Rollout__c>();
                 lstRegionalRollout = [SELECT Id, MCO__c, Market_Cluster__c, IPM_Project__c 
@@ -597,8 +699,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     
                 }
             }
-            
-            
             lstCountryWrappers = sortWrappersByName(lstCountryWrappers);
             if(selectedMCO!=null)
             {
@@ -823,19 +923,43 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             {
                 setCountryNoRollsUnselected = new Set<String>();
             }
-            
-            
+			
+			processCountryCodeListHelper();
+   
+    }
+	/**
+    *  @Description Method to process various country codes selected as part of User operation.
+         setCountryCodesGlobal - Contains information about selected MCO's at global level.
+         setCountryCodesMCOs - Contains selection of Countries selected by user in VF Page.
+         Eventually we will have the list which contains selections for MCO, Countries from User.
+    *  @name processCountryCodeListsHelper
+    *  @param NONE
+    *  @return NONE
+    */
+	private void processCountryCodeListHelper()
+	{
             //PROCESS GLOBAL - ADD the values to the existing list
-            if(globalCountries!=null && globalCountries!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
-            {
-                List<String> lstTemp = globalCountries.split(IPM_ConstantUtils.COMMA); 
-                setCountryCodesGlobal.addAll(lstTemp);
-            }
-            
             if(globalUnselectedCountries!=null && globalUnselectedCountries!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
             {
                 List<String> lstTemp = globalUnselectedCountries.split(IPM_ConstantUtils.COMMA); 
                 setCountryCodesGlobalUnselected.addAll(lstTemp);
+            }
+            if(globalCountries!=null && globalCountries!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
+            {
+                List<String> lstTemp = globalCountries.split(IPM_ConstantUtils.COMMA); 
+                setCountryCodesGlobal.addAll(lstTemp);
+                
+                if(!lstTemp.isEmpty())
+                {
+                	setCountryCodesGlobal.addAll(lstTemp);
+                	for(String countryCode : lstTemp)
+                	{                	
+                		if(setCountryCodesGlobalUnselected.contains(countryCode))
+                		{
+                			setCountryCodesGlobalUnselected.remove(countryCode);	
+                		}	
+                	}
+                }
             }
             
             setCountryCodesGlobal.removeAll(setCountryCodesGlobalUnselected);
@@ -855,6 +979,19 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             }
             
             setCountryCodesMCOs.removeAll(setCountryCodesMCOsUnselected);
+          // Call function which will process the rollout for country code 
+		  processRolloutForCountryCode();
+	}
+	/**
+    *  @Description Method to process various country codes selected as part of User operation.
+         Process the rollout for country code.
+         Eventually we will have the list which contains selections for MCO, Countries from User.
+    *  @name processCountryCodeListsHelper
+    *  @param NONE
+    *  @return NONE
+    */
+	private void processRolloutForCountryCode()
+	{
             
             // COUNTRY LEVEL ROLLOUT PROCESS 
             if(regionalCountry!=null && regionalCountry!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
@@ -905,6 +1042,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         mapExistingCountries = new Map<String,IPM_Country__c>();
         mapUpsertRegionalRollouts = new Map<String, IPM_Project_Rollout__c>();
         mapUpsertRollouts = new Map<String, IPM_Project_Rollout__c>();
+        mapUpsertKeyNKRollouts = new Map<String, IPM_Project_Rollout__c>();
         mapUpsertCountries = new Map<String,IPM_Country__c>();
         deleteRolloutsMap = new Map<String,IPM_Project_Rollout__c>();
         actualDeleteRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
@@ -913,37 +1051,39 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         localRolloutProjectIds = new Set<Id>();
         
         //Existing Rollouts
-        String queryString = 'SELECT Id,name,Local_Project__c, IPM_Rollout_Project__c,Regional_Project__c,Type__c,Added_At_Stage__c,isActive__c,KeyMCO__c,IPM_CharterApproved__c,';
-        queryString+= '(SELECT Id, Country_Code__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Countries_Local__r) ';
-        queryString+= 'FROM IPM_Project_Rollout__c ';
-        if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
+      String rolloutQuery = ' SELECT ';        
+        for(String rolloutFieldAPIName  : rolloutFieldMap.keySet())
         {
-            queryString+= ' WHERE IPM_Project__c =: projectId LIMIT 10000';
+            Schema.DescribeFieldResult fieldDescribe = rolloutFieldMap.get(rolloutFieldAPIName).getDescribe();
+            if(fieldDescribe.isCustom()  && rolloutFieldAPIName != 'Id')
+            {
+                rolloutQuery += ' '+rolloutFieldAPIName+',';
+            }
         }
-        else if (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
+        rolloutQuery += 'Id,Name,RecordTypeId,';
+        rolloutQuery+= '(SELECT Id, Country_Code__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Countries_Local__r) ';
+        rolloutQuery+= 'FROM IPM_Project_Rollout__c ';
+        rolloutQuery+= filterCondition(project.IPMProject_Span__c, STR_ROLLOUT);
+        
+        Set<String> regionalLocalRegional = new Set<String>();
+        for(IPM_Project_Rollout__c ipmRollout : Database.query(rolloutQuery))
         {
-            queryString+= ' WHERE Regional_Project__c =: projectId LIMIT 10000';
-        }
-		
-	Set<String> regionalLocalRegional = new Set<String>();
-        for(IPM_Project_Rollout__c ipmRollout : Database.query(queryString))
-        {
+        	
+        	// To update the Key/Non-Key for all the local rollouts under MCO
+        	if(isProjectGKM3 && ipmRollout.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS){
+        		Boolean KeyMCO = mapMCOWrappers.get(ipmRollout.MCO__c).key;
+        		ipmRollout.KeyMCO__c = KeyMCO;
+        		mapUpsertKeyNKRollouts.put(ipmRollout.IPM_Rollout_Project__c,ipmRollout);
+        		
+        	}
             mapExistingRollouts.put(ipmRollout.IPM_Rollout_Project__c, ipmRollout);
             regionalLocalRegional.add(ipmRollout.name);
             existingPrjList.add(ipmRollout.Local_Project__c);
         }
         
         //Countries
-        queryString = null;
-        queryString = 'SELECT Id, IPM_Local_Project__c, Country_Code__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Country__c ';
-        if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
-        {
-            queryString+= 'WHERE IPM_Project__c =: projectId LIMIT 10000';
-        }
-        else if (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
-        {
-            queryString+= 'WHERE IPM_Regional_Project__c =: projectId LIMIT 10000';        
-        }
+        String queryString = 'SELECT Id, IPM_Local_Project__c, Country_Code__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Country__c ';
+        queryString+= filterCondition(project.IPMProject_Span__c, STR_COUNTRY);
           
         for (IPM_Country__c country : Database.query(queryString))
         {
@@ -953,23 +1093,43 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             }
         }
        
-        
-        if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c) || ( ( IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c ) ) && ( IPM_ConstantUtils.PHASE_IDEAS.equalsIgnoreCase(project.IPM_phase__c) ) ) )
-        { 
-            processUnSelectedCountries(setCountryCodesGlobalUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
-        
-            processGlobalMCORollouts();
-        } 
-        else if (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)) 
-        {      
+        if(project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
+        {
+        	if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c) || 
+        		( ( IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c ) ) && ( IPM_ConstantUtils.PHASE_IDEAS.equalsIgnoreCase(project.IPM_phase__c) ) ) )
+	        { 
+	            processUnSelectedCountries(setCountryCodesGlobalUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
+	        
+	            processGlobalMCORollouts();
+	        } 
+	        else if (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)) 
+	        {      
                 processUnSelectedCountries(setCountryCodesMCOsUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
                 processUnSelectedCountries(setCountryCodesUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY);
                 processUnSelectedCountries(setCountryNoRolls,IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY);
                 
                 processRegionalMCORollouts();
                 processRegionalCountryRollouts(); 
+	        }		
         }
-        
+        else
+        {
+            if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c) && IPM_ConstantUtils.PHASE_IDEAS.equalsIgnoreCase(project.IPM_phase__c)) 
+            {
+            	processUnSelectedCountries(setCountryCodesGlobalUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
+	            processGlobalMCORollouts();
+            }
+            else
+            {
+	            processUnSelectedCountries(setCountryCodesMCOsUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
+	            processUnSelectedCountries(setCountryCodesUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY);
+	            processUnSelectedCountries(setCountryNoRolls,IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY);
+	  			
+	        	processGlobalMCORollouts();
+	            processRegionalMCORollouts();
+	            processRegionalCountryRollouts(); 
+            }
+        }
        
         filterRollouts();
         //Call Your method to check if there are projects available which are already stopped.
@@ -980,7 +1140,32 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         processCountry();
         deleteRollout();
     }
-        
+    
+    /**
+    *  @Description This helper method provides filter condition for Global or Regional projects
+    *  @name filterCondition
+    *  @param NONE
+    *  @return NONE
+    **/
+    private string filterCondition(string span, string strObj){
+        string addCondition = IPM_ConstantUtils.BLANK;
+        if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(span))
+        {
+            addCondition = 'WHERE IPM_Project__c =: projectId AND isActive__c = true LIMIT 10000'; 
+        }
+        else if (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(span))
+        {
+        	if(strObj == STR_ROLLOUT)
+        	{
+            addCondition = 'WHERE Regional_Project__c =: projectId AND isActive__c = true LIMIT 10000';  
+        	}else if(strObj == STR_COUNTRY){
+            addCondition = 'WHERE IPM_Regional_Project__c =: projectId AND isActive__c = true LIMIT 10000';
+        	}
+                    
+        }
+        return addCondition;        
+    }
+    
     /**
     *  @Description This is a helper method which filters Rollouts depends on whether it has been attached in Charter document(Ideas) phase or not
     *  @name filterRollouts
@@ -990,9 +1175,20 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     @TestVisible private void filterRollouts()
     {
         // Rollouts that might have deleted as part of Trigger Logic of updating Key Rollouts To Non Keys.
-        List<IPM_Project_Rollout__c> rolloutListToDelete = [Select Id,Name,Local_Project__c,IPM_Rollout_Project__c,IPM_CharterApproved__c,isActive__c from IPM_Project_Rollout__c where IPM_Rollout_Project__c  in :deleteRolloutsMap.KeySet() AND isActive__c = true  ];
+        
+        Set<String> deleteRolloutSet = deleteRolloutsMap.KeySet();
+        String rolloutQuery = ' SELECT ';        
+        for(String rolloutFieldAPIName  : rolloutFieldMap.keySet())
+        {
+            Schema.DescribeFieldResult fieldDescribe = rolloutFieldMap.get(rolloutFieldAPIName).getDescribe();
             
-        for(IPM_Project_Rollout__c rollout : rolloutListToDelete)
+            if(fieldDescribe.isCustom()  && rolloutFieldAPIName != 'Id')
+            {
+                rolloutQuery += ' '+rolloutFieldAPIName+',';
+            }
+        }
+        rolloutQuery += 'Id,Name,RecordTypeId from IPM_Project_Rollout__c where IPM_Rollout_Project__c  in :deleteRolloutSet AND isActive__c = true';
+        for(IPM_Project_Rollout__c rollout : database.query(rolloutQuery))
         {
             if(rollout.IPM_CharterApproved__c || rollout.Local_Project__c!=null)
              {
@@ -1022,18 +1218,13 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     	List<IPM_Project__c>  purgeProjList = new List<IPM_Project__c>();
     	Map<String,IPM_Project__c> purgeProjMap = new Map<String,IPM_Project__c>();
     	Set<String> purgeProjNameSet = new Set<String>();
-    	Map<String, Schema.SobjectField> finFldMap = Schema.SObjectType.IPM_Financial__c.fields.getMap();
-    	List<IPM_Financial__c> finList = new List<IPM_Financial__c>();
-    	Set<Id> finIdSet = new Set<Id>();
-    	Map<String, Schema.SobjectField> finYearFldMap = Schema.SObjectType.IPM_Financial_Year__c.fields.getMap();
-    	List<IPM_Financial_Year__c> finYearList = new List<IPM_Financial_Year__c>();
     	for(IPM_Project_Rollout__c rolloutProj : mapUpsertRollouts.values())
     	{
     		if(rolloutProj.Regional_Project__c != null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
     		{
     			projPurgeIdSet.add(rolloutProj.Regional_Project__c);
     		}
-    		if(rolloutProj.Local_Project__c != null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+    		if(rolloutProj.Local_Project__c != null && ( project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL || isProjectGKM3 ))
     		{
     			projPurgeIdSet.add(rolloutProj.Local_Project__c);
     		}		
@@ -1061,6 +1252,23 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
 	    		rollout.put('Added_At_Stage__c',null);	
     		}   		
     	}
+		  processPurgeFunctionalityHelper(purgeProjNameSet,purgeProjMap,purgeProjList);
+
+   }  
+         /**
+    *  @Description This is a helper method which does actual purging of the Regional or Local Project if Stpped Rollout is selected in Rollout Plans
+    *  @name processPurgeFunctionalityHelper
+    *  @param purgeProjNameSet,purgeProjMap,purgeProjList
+    *  @return NONE
+    */ 
+    private void processPurgeFunctionalityHelper(Set<String> purgeProjNameSet,Map<String,IPM_Project__c> purgeProjMap,List<IPM_Project__c>  purgeProjList)
+    {
+        List<IPM_Financial__c> finList = new List<IPM_Financial__c>();
+        Set<Id> finIdSet = new Set<Id>();
+        Map<String, Schema.SobjectField> finFldMap = Schema.SObjectType.IPM_Financial__c.fields.getMap();
+        Map<String, Schema.SobjectField> finYearFldMap = Schema.SObjectType.IPM_Financial_Year__c.fields.getMap();
+        List<IPM_Financial_Year__c> finYearList = new List<IPM_Financial_Year__c>();
+        
     	for(IPM_Project_Rollout__c rolloutReg :  mapUpsertRegionalRollouts.values())
     	{
 			if(purgeProjNameSet.contains(rolloutReg.IPM_Rollout_Project__c))
@@ -1101,6 +1309,17 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
 			}
 			finYearList.add(finYear);	
     	}
+        updateFinYearFinListPurgeProjList(finYearList,finList,purgeProjList);
+        
+    }
+	         /**
+    *  @Description UPdate the financial year list for purge functionality 
+    *  @name updateFinYearFinListPurgeProjList
+    *  @param finYearList,finList,purgeProjList
+    *  @return NONE
+    */
+	private void updateFinYearFinListPurgeProjList(List<IPM_Financial_Year__c> finYearList,List<IPM_Financial__c> finList,List<IPM_Project__c> purgeProjList)
+	{
     	if(!finYearList.isEmpty())
     	{
     		update finYearList;
@@ -1129,7 +1348,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     {
         if(!actualDeleteRolloutMap.isEmpty())
         {
-            delete actualDeleteRolloutMap.values();
+            List<IPM_Project_Rollout__c> deleteRolloutList = [SELECT ID FROM IPM_Project_Rollout__c where Id in :actualDeleteRolloutMap.values()]; 
+            delete deleteRolloutList;
         }
     }
     
@@ -1148,11 +1368,21 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             {
                 regionalRollout.Id = null;
             }
-            upsert mapUpsertRegionalRollouts.values() IPM_Rollout_Project__c;
+            try
+            {
+              checkForRolloutChanges(mapUpsertRegionalRollouts);
+            	upsert mapUpsertRegionalRollouts.values() IPM_Rollout_Project__c;	
+            }
+            catch (Exception ex) 
+	        {
+	            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,GET_KEY_MCO_ROLLOUT_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+	            isError = TRUE;
+	            errorMessage = Label.IPM_Generic_ErrorMessage;
+	        }
         }
     }
-	
-	/**
+  
+  /**
     *  @Description This is a helper method which processes Local Rollout and upserts with external id IPM_Rollout_Project__c
     *  @name processLocalRollouts
     *  @param NONE
@@ -1162,13 +1392,78 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     { 
 	 	if(!mapUpsertRollouts.isEmpty())
         {
+            
+            if(isProjectGKM3 && !mapUpsertKeyNKRollouts.isEmpty()){
+              for(IPM_Project_Rollout__c localRollout : mapUpsertKeyNKRollouts.values())
+              {
+	                if(!mapUpsertRollouts.containsKey(localRollout.IPM_Rollout_Project__c))
+	                {
+            			mapUpsertRollouts.put(localRollout.IPM_Rollout_Project__c, localRollout);
+            		}
+            	}
+            }
+             
             // Remove Id from Upsert call in case it is an insert that might happen for record which got deleted as part of above operation
             for(IPM_Project_Rollout__c localRollout : mapUpsertRollouts.values())
             {
                 localRollout.Id = null;
+                if(localRollout.Regional_Rollout__c != null){
+                  localRollout.Regional_Rollout__r = null;
+                }
             }
-            upsert mapUpsertRollouts.values() IPM_Rollout_Project__c;
+            try
+		{
+		      checkForRolloutChanges(mapUpsertRollouts);
+			upsert mapUpsertRollouts.values() IPM_Rollout_Project__c;
+		}
+		catch (Exception ex) 
+		{
+			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,GET_REGIONAL_ROLLOUT_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+			isError = TRUE;
+			errorMessage = Label.IPM_Generic_ErrorMessage; 
+		} 
+        } 
+    }
+    @TestVisible private void  checkForRolloutChanges(Map<String, IPM_Project_Rollout__c> mapUpsertRollouts)
+    {
+      Set<String> customRolloutFieldSet = new Set<String>();  
+      Map<String,IPM_Project_Rollout__c> DBRolloutMap = new Map<String,IPM_Project_Rollout__c>();
+      List<String> rolloutUniqueKey = new List<String>(mapUpsertRollouts.keySet());
+      String rolloutQuery = ' SELECT ';        
+        for(String rolloutFieldAPIName  : rolloutFieldMap.keySet())
+        {
+            Schema.DescribeFieldResult fieldDescribe = rolloutFieldMap.get(rolloutFieldAPIName).getDescribe();
+            if(fieldDescribe.isCustom()  && rolloutFieldAPIName != 'Id')
+            {
+              customRolloutFieldSet.add(rolloutFieldAPIName);
+                rolloutQuery += ' '+rolloutFieldAPIName+',';
+            }
         }
+        rolloutQuery += 'Id,Name FROM IPM_Project_Rollout__c where IPM_Rollout_Project__c in :rolloutUniqueKey LIMIT 50000';
+      for(IPM_Project_Rollout__c  DBprojectRollout : database.query(rolloutQuery))
+      {
+        DBRolloutMap.put(DBprojectRollout.IPM_Rollout_Project__c,DBprojectRollout);
+      }  
+      for(IPM_Project_Rollout__c incomingRollout : mapUpsertRollouts.values())
+      {
+        if(DBRolloutMap.containsKey(incomingRollout.IPM_Rollout_Project__c))
+        {
+          IPM_Project_Rollout__c DBrollout = DBRolloutMap.get(incomingRollout.IPM_Rollout_Project__c);
+          Boolean isChanged = false;
+          for (String fieldAPIName : customRolloutFieldSet)
+          {
+            if(DBrollout.get(fieldAPIName) != incomingRollout.get(fieldAPIName))
+            {
+              isChanged = true;
+              break;
+            }
+          }
+          if(!isChanged)
+          {
+            mapUpsertRollouts.remove(incomingRollout.IPM_Rollout_Project__c);
+          }
+        }
+      }
     }
     
     /**
@@ -1236,7 +1531,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
           	
     	List<IPM_Project__c> toBeArchievedRolloutProjects =  database.query(childProjectQuery);
 
-		// checking if the stopped/achieved has an associated gate doc, if it is make rollout active
+	// checking if the stopped/achieved has an associated gate doc, if it is make rollout active
         if(toBeArchievedRolloutProjects!=null && !toBeArchievedRolloutProjects.isEmpty())
         {
        		for(IPM_Project__c rollOutProj : toBeArchievedRolloutProjects) 
@@ -1275,12 +1570,28 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     */
     @TestVisible private void processGlobalMCORollouts()
     {    
-        for (String countryCodeGlobal : setCountryCodesGlobal)
+    	Set<String> allSelectionExceptNoRollout = new Set<String>();
+    	
+    	if(isProjectGKM3 && project.IPM_phase__c != IPM_ConstantUtils.PHASE_IDEAS)
+    	{
+	    	allSelectionExceptNoRollout.addAll(setCountryCodesMCOs);
+	    	allSelectionExceptNoRollout.addAll(setCountryCodes);	
+    	}
+    	else
+    	{
+    		allSelectionExceptNoRollout.addAll(setCountryCodesGlobal);
+    	}
+    	for (String countryCodeGlobal : allSelectionExceptNoRollout)
         {
             MDO_Geography__c geography = mapUnileverCountries.get(countryCodeGlobal);
             
             // Get Local Rollout Name.
-            String mcoRolloutName = getKeyMCORolloutName(countryCodeGlobal);
+            String mcoExternalId = getKeyMCORolloutName(countryCodeGlobal);
+            String mcoRolloutName = mcoExternalId;
+            if(isProjectGKM3)
+            {
+            	mcoRolloutName = getGKM3KeyMCOName(countryCodeGlobal);
+            }
             Boolean KeyMCO = mapMCOWrappers.get(geography.parent_L2__r.mdm_id__c).key;
             
             // Get Regional Rollout Name.
@@ -1289,9 +1600,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             String countryExternalId = getCountryExternalId(countryCodeGlobal);
            
             IPM_Project_Rollout__c regionalRollout = null;
-            IPM_Project_Rollout__c mcoRollout = null;
-            IPM_Country__c ipmCountry = null;
-           
+
             // Check if it is an existing Regional Rollout. If yes check if it inactive, make it active.
             if(mapExistingRollouts.containsKey(regionalRolloutName) )
             {
@@ -1344,17 +1653,34 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 }
                 
             }
-            
+            processGlobalMCORolloutsHelper(mcoExternalId,countryCodeGlobal,countryExternalId,mcoRolloutName,geography,regionalRolloutName,keyMCO);
+
+         }
+    }
+	 /**
+    *  @Description Method to process Global MCO Rollouts. This specifies the Top Level Project MCO Selection where we process selected and unselected MCO List.
+        Creates regional Rollouts based on User Selected MCO's. Also local Rollouts are created based on User Selection. 
+        Neccessary data and relationships between rollout,country and Projects are created here.
+        Deletion of Unselected MCO and countries are performed as well.
+    *  @name processGlobalMCORolloutsHelper
+    *  @param mcoExternalId,mcoRolloutName,geography,regionalRolloutName
+    *  @return NONE
+    */
+  private void processGlobalMCORolloutsHelper(String mcoExternalId,String countryCodeGlobal,String countryExternalId,String mcoRolloutName,MDO_Geography__c geography,String regionalRolloutName, Boolean keyMCO)
+    {
+	    IPM_Project_Rollout__c mcoRollout = null;
             // Check if there is an existing Local Rollout.
-            if (mapExistingRollouts.containsKey(mcoRolloutName) ) 
+      	if(!setCountryCodes.contains(countryCodeGlobal))
+      	{	
+            if (mapExistingRollouts.containsKey(mcoExternalId) ) 
             {
-                mcoRollout = mapExistingRollouts.get(mcoRolloutName);
+                mcoRollout = mapExistingRollouts.get(mcoExternalId);
             }
             else
             {
-                if(mapUpsertRollouts.containsKey(mcoRolloutName))
+                if(mapUpsertRollouts.containsKey(mcoExternalId))
                 {
-                    mcoRollout = mapUpsertRollouts.get(mcoRolloutName);
+                    mcoRollout = mapUpsertRollouts.get(mcoExternalId);
                 }
                 else
                 {
@@ -1365,7 +1691,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         Added_At_Stage__c = project.IPM_Phase__c,
                         Type__c = IPM_ConstantUtils.ROLLOUT_TYPE_MCO,                
                         IPM_Rollout_Span__c = IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL,               
-                        IPM_Rollout_Project__c = mcoRolloutName,
+                        IPM_Rollout_Project__c = mcoExternalId,
                         Target_Launch_Date__c = project.IPM_Target_Launch_Dates__c
                     );
                 }
@@ -1383,7 +1709,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 mcoRollout.Market_Cluster__c = geography.parent_L2__r.parent_L2__r.mdm_id__c;
                 mcoRollout.Market_Cluster_Name__c = geography.parent_L2__r.parent_L2__r.name;
                 
-                
+                    
                 if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
                 {
                     mcoRollout.IPM_Project__c = project.Id;
@@ -1405,16 +1731,29 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     }
                     mcoRollout.isActive__c = true;
                     mcoRollout.Added_At_Stage__c = project.IPM_Phase__c;
-                    mapUpsertRollouts.put(mcoRolloutName, mcoRollout);
+                    mapUpsertRollouts.put(mcoExternalId, mcoRollout); 
                 }
-                if(mcoRollout.KeyMCO__c == null || (mcoRollout.KeyMCO__c != KeyMCO) )
+                
+                if(mcoRollout.KeyMCO__c != KeyMCO)
                 {
-                    mcoRollout.KeyMCO__c = mapMCOWrappers.get(geography.parent_L2__r.mdm_id__c).key;
-                    mapUpsertRollouts.put(mcoRolloutName, mcoRollout);  
+                    mcoRollout.KeyMCO__c = KeyMCO;
+                    mapUpsertRollouts.put(mcoExternalId, mcoRollout);  
                 }
+                
             }
-            
-            
+            associateCountryAndRolloutInGlobalMCORollouts(countryExternalId,mcoExternalId,geography);
+      		}
+        }
+    	 /**
+    *  @Description Neccessary data and relationships between rollout,country and Projects are created here.
+        Deletion of Unselected MCO and countries are performed as well.
+    *  @name associateCountryAndRolloutInGlobalMCORollouts
+    *  @param countryExternalId, mcoExternalId,geography
+    *  @return NONE
+    */
+    private void associateCountryAndRolloutInGlobalMCORollouts(String countryExternalId,String mcoExternalId,MDO_Geography__c geography)
+	{
+		IPM_Country__c ipmCountry = null;
             if(mapExistingCountries.containsKey(countryExternalId))
             {
                 ipmCountry = mapExistingCountries.get(countryExternalId);
@@ -1432,7 +1771,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     (
                         Project_Country__c = countryExternalId,
                         AddedAtStage__c = project.IPM_Phase__c,
-                        Local_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = mcoRolloutName)
+                        Local_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = mcoExternalId)
                     );
                 }
             }
@@ -1463,7 +1802,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 }
                 mapUpsertCountries.put(ipmCountry.Project_Country__c,ipmCountry);
             }                
-        }
+   
     }
     
     /**
@@ -1482,23 +1821,31 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             MDO_Geography__c geography = mapUnileverCountries.get(countryCodeMCO);
             
             // Get Rollout Name.
-            String mcoRolloutName = getKeyMCORolloutName(countryCodeMCO);
+            
+            String regionalRolloutName = getRegionalRolloutName(countryCodeMCO); 
+            String mcoExternalId = getKeyMCORolloutName(countryCodeMCO);
+            String mcoRolloutName = mcoExternalId;
+            
+            if(isProjectGKM3)
+            {
+            	mcoRolloutName = getGKM3KeyMCOName(countryCodeMCO);
+            }
             String countryExternalId = getCountryExternalId(countryCodeMCO);
             
+            Boolean KeyMCO = mapMCOWrappers.get(geography.parent_L2__r.mdm_id__c).key;
             
-            IPM_Country__c ipmCountry = null;
             IPM_Project_Rollout__c newMCORollout = null; 
 
             // Check if rollout Already Exists. If yes check whether it is active or not.
-            if(mapExistingRollouts.containsKey(mcoRolloutName))
+            if(!mapExistingRollouts.isEmpty() && mapExistingRollouts.containsKey(mcoExternalId))
             {
-                newMCORollout = mapExistingRollouts.get(mcoRolloutName);
+                newMCORollout = mapExistingRollouts.get(mcoExternalId);
             }
             else 
             {
-                if(mapUpsertRollouts.containsKey(mcoRolloutName))
+                if(!mapUpsertRollouts.isEmpty() && mapUpsertRollouts.containsKey(mcoExternalId))
                 {
-                    newMCORollout = mapUpsertRollouts.get(mcoRolloutName);
+                    newMCORollout = mapUpsertRollouts.get(mcoExternalId);
                 }
                 else
                 {
@@ -1506,19 +1853,35 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     (
                         RecordTypeId = LOCAL_ROLLOUT_RECORDTYPE,
                         Name = mcoRolloutName,
-                        IPM_Rollout_Project__c = mcoRolloutName,
+                        IPM_Rollout_Project__c = mcoExternalId,
                         Added_At_Stage__c = project.IPM_Phase__c,
                         Target_Launch_Date__c = project.IPM_Target_Launch_Dates__c
                     );
                     
-                    if(project.IPM_phase__c != IPM_ConstantUtils.PHASE_IDEAS)
+                    newMCORollout.KeyMCO__c = KeyMCO;
+                    if(project.IPM_phase__c != IPM_ConstantUtils.PHASE_IDEAS && !isProjectGKM3)
                     {
                         newMCORollout.KeyMCO__c = true; 
                     }
                 }
             }
-            
-            if(newMCORollout!=null)
+			processRegionalMCORolloutsHelper(newMCORollout,mcoExternalId,countryExternalId,geography,regionalRolloutName,newMCORollout.KeyMCO__c);
+
+           }
+    }
+	 /**
+    *  @Description Helper method for processregionalRollouts method.
+     	Used for creating MCO rollouts at regional Level based on user selected and unselected MCO List.
+        Creates local Rollouts based on User Selected MCO's. Checks if there was a switch made between 'Country specific', 'No Rollout' to 'Part of MCO Rollout' 
+        Neccessary data and relationships between rollout,country and Projects are created here.
+    *  @name processRegionalMCORolloutsHelper
+    *  @param newMCORollout,mcoExternalId,countryExternalId,geography,regionalRolloutName,keyMCO
+    *  @return NONE
+    */
+	private void processRegionalMCORolloutsHelper(IPM_Project_Rollout__c newMCORollout,String mcoExternalId, String countryExternalId,MDO_Geography__c geography,String regionalRolloutName,Boolean KeyMCO)
+	{
+	    IPM_Country__c ipmCountry = null;
+	    if(newMCORollout!=null)
             {
                 newMCORollout.IPM_Rollout_Span__c = IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL;
                 newMCORollout.Type__c = IPM_ConstantUtils.ROLLOUT_TYPE_MCO;
@@ -1526,10 +1889,23 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 newMCORollout.MCO_Name__c = geography.parent_L2__r.name;
                 newMCORollout.Market_Cluster__c = geography.parent_L2__r.parent_L2__r.mdm_id__c;
                 newMCORollout.Market_Cluster_Name__c = geography.parent_L2__r.parent_L2__r.name;
-                newMCORollout.Regional_Project__c = project.Id;
+              	if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
+                {
+                	newMCORollout.Regional_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = regionalRolloutName);
+                }
+                
+                newMCORollout.KeyMCO__c = KeyMCO;	
                 
                 
-                if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
+                if(!isProjectGKM3)
+                {
+                	newMCORollout.Regional_Project__c = project.Id;
+                }
+                else{
+                	newMCORollout.IPM_Project__c = project.Id;
+                }
+                
+                if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && !isProjectGKM3)
                 {
                     newMCORollout.IPM_Project__c = project.IPM_Parent_Project__c;
                 }
@@ -1546,14 +1922,27 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     }
                     newMCORollout.isActive__c = true;
                     newMCORollout.Added_At_Stage__c = project.IPM_Phase__c;
-                    if(project.IPM_phase__c != IPM_ConstantUtils.PHASE_IDEAS)
-                    {
-                        newMCORollout.KeyMCO__c = true; 
-                    }
-                    mapUpsertRollouts.put(mcoRolloutName, newMCORollout);
+                    
+                    mapUpsertRollouts.put(mcoExternalId, newMCORollout);
                 }
-                mapUpsertRollouts.put(mcoRolloutName, newMCORollout);
+                mapUpsertRollouts.put(mcoExternalId, newMCORollout);
             }
+             // call function to Associate the country with rollout
+			 associateCountryWithRollout(mcoExternalId,countryExternalId,geography);
+
+	}
+		 /**
+    *  @Description Helper method for processregionalRollouts method.
+     	Checks if there was a switch made between 'Country specific', 'No Rollout' to 'Part of MCO Rollout' 
+        Neccessary data and relationships between rollout,country and Projects are created here.
+        Deletion of Unselected MCO and countries are performed as well.
+    *  @name associateCountryWithRollout
+    *  @param mcoExternalId,countryExternalId,geography
+    *  @return NONE
+    */
+    private void associateCountryWithRollout(String mcoExternalId, String countryExternalId,MDO_Geography__c geography)
+    {
+        IPM_Country__c ipmCountry = null;
             // Check if Country Exists. If yes validate whether it is associated with country Rollout
             if(mapExistingCountries.containsKey(countryExternalId))
             {
@@ -1581,9 +1970,16 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 ipmCountry.isActive__c = true;
                 ipmCountry.MDO_Geography__c = geography.Id;
                 ipmCountry.IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO;
-                ipmCountry.IPM_Regional_Project__c = project.Id;
-                ipmCountry.Local_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = mcoRolloutName);
-                ipmCountry.IPM_Project__c = project.IPM_Parent_Project__c;
+                if(!isProjectGKM3){
+                	ipmCountry.IPM_Regional_Project__c = project.Id;
+                }else{
+                	ipmCountry.IPM_Project__c = project.Id;
+                }
+                
+                ipmCountry.Local_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = mcoExternalId);
+                if(!isProjectGKM3){
+                	ipmCountry.IPM_Project__c = project.IPM_Parent_Project__c;
+                }
                 
                 if(deleteCountriesMap.containsKey(ipmCountry.Project_Country__c))
                 {
@@ -1596,7 +1992,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 }
                 mapUpsertCountries.put(ipmCountry.Project_Country__c,ipmCountry);
             }
-        }
+        
     }
     
     /**
@@ -1614,21 +2010,28 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         for(string countryCode : setCountryCodes)
         { 
             MDO_Geography__c geography = mapUnileverCountries.get(countryCode); 
-            String countryRolloutName = getCountryExternalId(countryCode);
-                
-            IPM_Country__c ipmCountry = null;
+            String countryExternalId = getCountryExternalId(countryCode);            
+            String countryRolloutName  = countryExternalId;
+            if(isProjectGKM3)
+            {
+            	countryRolloutName = project.IPM_Project_Name__c + IPM_ConstantUtils.UNDERSCORE + countryCode;
+            }
+            
+            String regionalRolloutName = getRegionalRolloutName(countryCode);  
+            Boolean KeyMCO = mapMCOWrappers.get(geography.parent_L2__r.mdm_id__c).key;
+            
             IPM_Project_Rollout__c newCountryRollout = null;
             
             // Check if Country Rollout exists for this Country. If yes update it else insert it.
-            if(mapExistingRollouts.containsKey(countryRolloutName))
+            if(mapExistingRollouts.containsKey(countryExternalId))
             {
-                newCountryRollout = mapExistingRollouts.get(countryRolloutName);
+                newCountryRollout = mapExistingRollouts.get(countryExternalId);
             } 
             else
             {
-                if(mapUpsertRollouts.containsKey(countryRolloutName))
+                if(mapUpsertRollouts.containsKey(countryExternalId))
                 {
-                    newCountryRollout = mapUpsertRollouts.get(countryRolloutName);
+                    newCountryRollout = mapUpsertRollouts.get(countryExternalId);
                 }
                 else
                 {
@@ -1636,18 +2039,29 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                    (
                         RecordTypeId=LOCAL_ROLLOUT_RECORDTYPE,
                         Name = countryRolloutName,
-                        IPM_Rollout_Project__c = countryRolloutName,
+                        IPM_Rollout_Project__c = countryExternalId,
                         Added_At_Stage__c = project.IPM_Phase__c,
                         Target_Launch_Date__c = project.IPM_Target_Launch_Dates__c
                     );
                     
-                    if(project.IPM_phase__c != IPM_ConstantUtils.PHASE_IDEAS)
+                    if(project.IPM_phase__c != IPM_ConstantUtils.PHASE_IDEAS && !isProjectGKM3)
                     {
                         newCountryRollout.KeyMCO__c = true; 
                     } 
                 }
             }
-            
+             processRegionalCountryRolloutsHelper(newCountryRollout,countryExternalId,regionalRolloutName,geography,KeyMCO);
+       }   
+     }
+    /**
+    *  @Description Helper method for processRegionalCountryRollouts method.It is creating the country rollout and deleting
+    *               the country rollout.
+    *  @name processRegionalCountryRolloutsHelper
+    *  @param newCountryRollout,countryExternalId,regionalRolloutName,geography,KeyMCO
+    *  @return Regional Rollout Name
+    */
+	 private void processRegionalCountryRolloutsHelper(IPM_Project_Rollout__c newCountryRollout,String countryExternalId,String regionalRolloutName,MDO_Geography__c geography,Boolean KeyMCO)
+	 {
             if(newCountryRollout!=null)
             {
 
@@ -1657,10 +2071,20 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 newCountryRollout.MCO_Name__c = geography.parent_L2__r.name;
                 newCountryRollout.Market_Cluster__c = geography.parent_L2__r.parent_L2__r.mdm_id__c;
                 newCountryRollout.Market_Cluster_Name__c = geography.parent_L2__r.parent_L2__r.name;
-                newCountryRollout.Regional_Project__c = project.Id;
-                 
+                if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
+                {
+                	newCountryRollout.Regional_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = regionalRolloutName);
+                }
                 
-                if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT) 
+                if(!isProjectGKM3){
+                	newCountryRollout.Regional_Project__c = project.Id;	
+                }else{
+                	newCountryRollout.IPM_Project__c = project.Id;
+                }
+                
+                newCountryRollout.KeyMCO__c = KeyMCO;
+                
+                if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && !isProjectGKM3) 
                 {
                     newCountryRollout.IPM_Project__c = project.IPM_Parent_Project__c;
                 }
@@ -1678,31 +2102,40 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     newCountryRollout.isActive__c = true;
                     newCountryRollout.Added_At_Stage__c = project.IPM_Phase__c;
                 
-                    if(project.IPM_phase__c != IPM_ConstantUtils.PHASE_IDEAS)
-                    {
-                        newCountryRollout.KeyMCO__c = true; 
-                    } 
-                mapUpsertRollouts.put(countryRolloutName, newCountryRollout);
+                    
+                    mapUpsertRollouts.put(countryExternalId, newCountryRollout);
                 }
                 
             }
-            
+		  mapRegionalCountryRolloutsWithCountry(countryExternalId,geography);
+		  	
+	}
+	 /**
+    *  @Description Method to map the rollout with country, and assign the values from rollout into the country.
+    *  @name mapRegionalCountryRolloutsWithCountry
+    *  @param countryExternalId,geography
+    *  @return Regional Rollout Name
+    */
+	private void mapRegionalCountryRolloutsWithCountry(String countryExternalId,MDO_Geography__c geography)
+    {
+
+		IPM_Country__c ipmCountry = null;
             //Check if Country exists. If it already exists update Status and reference of Local Rollout as separate Country Rollout.
-            if(mapExistingCountries.containsKey(countryRolloutName))
+            if(mapExistingCountries.containsKey(countryExternalId))
             {
-                ipmCountry = mapExistingCountries.get(countryRolloutName);
+                ipmCountry = mapExistingCountries.get(countryExternalId);
             }
             else 
             {
-               if(mapUpsertCountries.containsKey(countryRolloutName))
+               if(mapUpsertCountries.containsKey(countryExternalId))
                {
-                  ipmCountry =  mapUpsertCountries.get(countryRolloutName);
+                  ipmCountry =  mapUpsertCountries.get(countryExternalId);
                } 
                else
                { 
                     ipmCountry = new IPM_Country__c
                     (
-                        Project_Country__c = countryRolloutName,
+                        Project_Country__c = countryExternalId,
                         AddedAtStage__c = project.IPM_Phase__c
                     );
                }
@@ -1712,12 +2145,16 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
            {
                 ipmCountry.isActive__c = true;
                 ipmCountry.MDO_Geography__c = geography.Id;
-                ipmCountry.IPM_Regional_Project__c = project.Id;
-                ipmCountry.Local_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = countryRolloutName);
+                if(!isProjectGKM3){
+                	ipmCountry.IPM_Regional_Project__c = project.Id;
+                }else{
+                	ipmCountry.IPM_Project__c = project.Id;
+                }
+                ipmCountry.Local_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = countryExternalId);
                 ipmCountry.IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE;
                 ipmCountry.IPM_Local_Project__c=null;//added to cover the source data for DEF3821
                 
-                if(project.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+                if(project.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && !isProjectGKM3) 
                 {
                     ipmCountry.IPM_Project__c = project.IPM_Parent_Project__c;
                 }
@@ -1731,9 +2168,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     ipmCountry.AddedAtStage__c = project.IPM_Phase__c;
                 }
                 mapUpsertCountries.put(ipmCountry.Project_Country__c,ipmCountry);
-           }
-            
-            
         }   
     }
     
@@ -1783,7 +2217,13 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             
             String shortName = IPM_MCO_Short_Names__c.getValues(geography.parent_L2__r.mdm_id__c).Short_Name__c;
             
-            return getRegionalRolloutName(countryCode) + IPM_ConstantUtils.UNDERSCORE + shortName;
+            String rolloutName = '';
+            
+            
+            rolloutName = getRegionalRolloutName(countryCode); 
+            
+            
+            return rolloutName + IPM_ConstantUtils.UNDERSCORE + shortName;
         }
         catch (Exception ex) 
         {
@@ -1795,13 +2235,37 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     }
     
     /**
+    *  @Description Method to get key MCO Rollout Name
+    *  @name getKeyMCORolloutName
+    *  @param countryCode    Country code for which the key MCO rollout name needs o be generated
+    *  @return key MCO Rollout Name
+    */
+    @TestVisible private String getGKM3KeyMCOName(String countryCode)
+    { 
+        try
+        {
+            MDO_Geography__c geography = mapUnileverCountries.get(countryCode);
+            String shortName = IPM_MCO_Short_Names__c.getValues(geography.parent_L2__r.mdm_id__c).Short_Name__c;
+            return project.IPM_Project_Name__c + IPM_ConstantUtils.UNDERSCORE + shortName;
+        }
+        catch (Exception ex) 
+        {
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,GET_KEY_MCO_ROLLOUT_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            isError = TRUE;
+            errorMessage = Label.IPM_Generic_ErrorMessage;
+            return null;
+        }          
+    }
+    /**
     *  @Description Method to get Country External Id
     *  @name getCountryExternalId
     *  @param countryCode    Country code for which the Country External Id needs o be generated
     *  @return Country External Id
     */
-    @TestVisible private String getCountryExternalId(String countryCode){        
-        return getRegionalRolloutName(countryCode) + IPM_ConstantUtils.UNDERSCORE + countryCode;
+    @TestVisible private String getCountryExternalId(String countryCode){  
+        String externalId = '';
+            externalId = getRegionalRolloutName(countryCode) + IPM_ConstantUtils.UNDERSCORE + countryCode; 
+        return externalId;   
     }
     
     /**
@@ -1888,11 +2352,11 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         for(IPM_Project_Rollout__c ipmRollout : mapExistingRollouts.values())
         {
 
-            if(IPM_ConstantUtils.ROLLOUT_TYPE_MCO.equalsIgnoreCase(rolloutType) && !mcoRollNameToCountryCodeMap.isEmpty())
+            if(IPM_ConstantUtils.ROLLOUT_TYPE_MCO.equalsIgnoreCase(rolloutType))
             {
                 removeReferences(mcoRollNameToCountryCodeMap,ipmRollout);
             }
-            else if(IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY.equalsIgnoreCase(rolloutType) && !countryRollNameToCountryCodeMap.isEmpty())
+            else if(IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY.equalsIgnoreCase(rolloutType))
             {
                 removeReferences(countryRollNameToCountryCodeMap,ipmRollout);
             } 
@@ -1964,7 +2428,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
 	{
 		for (IPM_Country__c country : Database.query(queryStringCountries))
         {
-            if(IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(searchCountry) && country.Local_Rollout__c != null)
+            if(country.Local_Rollout__c != null)
             {
                 existingRelatedCountriesMap.put(country.Project_Country__c, country);
                 if(relatedMCOAndCountry.containsKey(country.Local_Rollout__c)){

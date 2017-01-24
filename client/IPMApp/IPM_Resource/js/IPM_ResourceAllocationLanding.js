@@ -26,6 +26,18 @@ jq(document).ready(function() {
   jq('.teamSearch1 input').clearSearch();
   jq('.teamSearch2 input').clearSearch();
   jq('.teamSearch3 input').clearSearch();
+  jq( ".ldrProbutton" ).each(function() {
+      if(jq(this).hasClass('checked'))
+      {
+          jq(this).addClass('rchecked');
+          jq('.rchecked').prop('checked','yes');
+      }
+    else
+      {
+         jq(this).removeClass('rchecked');
+         jq('.rchecked').prop('checked','no')
+      }
+  });
 });
 /* Below function performs the search functionality. Based on the type of condition, if it is true it calls a function. */
 function callsearch(){
@@ -65,3 +77,11 @@ function closepopup(){
  function skipValidation() {
      unsaved = false;
  }
+function callSearchPerCare(){
+          if (document.getElementById('myMCO').checked) { 
+            searchTeamMem();  
+           }
+          if (document.getElementById('myCat').checked) {
+            searchallTeamMem();
+           } 
+        } 

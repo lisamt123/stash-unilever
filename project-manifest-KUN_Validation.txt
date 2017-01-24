@@ -78,7 +78,6 @@ src/reports/KUN_Community_Reports/KUn_data_Vietnam.report
 src/reports/KUN_Community_Reports-meta.xml
 src/reportTypes
 src/reportTypes/KUN_Profiles_with_User_Info.reportType
-
 src/staticresources
 src/staticresources/KUN.resource
 src/staticresources/KUN.resource-meta.xml
@@ -92,3 +91,4 @@ src/triggers/KUN_ProfileTrigger.trigger
 src/triggers/KUN_ProfileTrigger.trigger-meta.xml
 src/objects
 src/objects/KUN_GA__c.object
+src/objects/KUN_Profile__c.object

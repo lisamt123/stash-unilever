@@ -138,10 +138,6 @@ public class IPM_BBCountryList_Test{
             update project;
             projlList=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
             System.assertEquals(projlList[0].Name,TEST_COMMENTS_STR,'project not created');//positive test
-            
-            
-            
-            
         }
     }
     

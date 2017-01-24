@@ -5,33 +5,13 @@
         <description>Alert CIMT of New Issue</description>
         <protected>false</protected>
         <recipients>
-            <field>Report_Issue_To_Email__c</field>
+            <field>Report_Issue_To_Email_2__c</field>
             <type>email</type>
         </recipients>
         <recipients>
-            <recipient>IM_Core_Issue_Management_Team</recipient>
-            <type>group</type>
+            <field>Report_Issue_To_Email_3__c</field>
+            <type>email</type>
         </recipients>
-        <recipients>
-            <type>owner</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Workflow_Emails/New_Issue_submitted</template>
-    </alerts>
-    <alerts>
-        <fullName>Issue_status_is_reviewed_inform_reporter</fullName>
-        <description>Issue: status is reviewed inform reporter</description>
-        <protected>false</protected>
-        <recipients>
-            <type>creator</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Workflow_Emails/Issue_Reviewed</template>
-    </alerts>
-    <alerts>
-        <fullName>New_Issue_Alert</fullName>
-        <description>New Issue Alert</description>
-        <protected>false</protected>
         <recipients>
             <field>Report_Issue_To_Email__c</field>
             <type>email</type>
@@ -47,8 +27,8 @@
         <template>Workflow_Emails/New_Issue_submitted</template>
     </alerts>
     <alerts>
-        <fullName>Submitted_Issue_Alert</fullName>
-        <description>Submitted Issue Alert</description>
+        <fullName>Alert_CIMT_of_New_Issue_old</fullName>
+        <description>Alert CIMT of New Issue</description>
         <protected>false</protected>
         <recipients>
             <field>Report_Issue_To_Email__c</field>
@@ -76,154 +56,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Change_Record_Type_to_Global</fullName>
-        <description>Change Record Type to Global and R&amp;D</description>
+        <fullName>Change_Record_Type_to_Assigned_to_CIMT_O</fullName>
+        <description>Change Record Type to Assigned to CIMT</description>
         <field>RecordTypeId</field>
-        <lookupValue>Global_Issue</lookupValue>
+        <lookupValue>Assigned_to_CIMT</lookupValue>
         <lookupValueType>RecordType</lookupValueType>
-        <name>Change Record Type to Global</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Flag_Severity_Escalation</fullName>
-        <field>Severity_Movement__c</field>
-        <literalValue>Down</literalValue>
-        <name>Flag Severity Escalation</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Issue_Severity_Escalation</fullName>
-        <field>Severity_Movement__c</field>
-        <literalValue>Up</literalValue>
-        <name>Issue Severity Escalation</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Reviewed</fullName>
-        <field>Issue_Status__c</field>
-        <literalValue>Reviewed</literalValue>
-        <name>Reviewed</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Set_Issue_Status_to_Blank</fullName>
-        <field>Issue_Status__c</field>
-        <name>Set Issue Status to Blank</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Severity_Default_Green</fullName>
-        <field>Issue_Severity__c</field>
-        <literalValue>Green</literalValue>
-        <name>Severity Default Green</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_global_issue</fullName>
-        <description>Update global issue checkbox</description>
-        <field>Global_Issue__c</field>
-        <literalValue>1</literalValue>
-        <name>Update global issue</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_issue_status_to_reviewed</fullName>
-        <field>Issue_Status__c</field>
-        <literalValue>Reviewed</literalValue>
-        <name>Update issue status to reviewed</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_issue_status_to_submitted</fullName>
-        <description>Update the issue status to submitted</description>
-        <field>Issue_Status__c</field>
-        <literalValue>Submitted</literalValue>
-        <name>Update issue status to submitted</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_record_type_to_Reviewed_Issue</fullName>
-        <description>Update record type to  Reviewed Issue</description>
-        <field>RecordTypeId</field>
-        <lookupValue>Reviewed_Issue</lookupValue>
-        <lookupValueType>RecordType</lookupValueType>
-        <name>Update record type to  Reviewed Issue</name>
+        <name>Change Record Type to Assigned to CIMT</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <rules>
-        <fullName>IM - Set Issue Status to Blank for Global Issue</fullName>
-        <actions>
-            <name>Set_Issue_Status_to_Blank</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>im_Issue__c.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Global and R&amp;D Issue</value>
-        </criteriaItems>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>Issue%3A De-Escalation Update</fullName>
-        <actions>
-            <name>Flag_Severity_Escalation</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <formula>IF  (  ISPICKVAL(Issue_Severity__c, &quot;Green&quot;),  OR  (  ISPICKVAL(PRIORVALUE(Issue_Severity__c), &quot;Crisis&quot;),  ISPICKVAL(PRIORVALUE(Issue_Severity__c), &quot;Red&quot;),  ISPICKVAL(PRIORVALUE(Issue_Severity__c), &quot;Amber&quot;)  ),  IF  (  ISPICKVAL(Issue_Severity__c, &quot;Amber&quot;),  OR  (  ISPICKVAL(PRIORVALUE(Issue_Severity__c), &quot;Crisis&quot;),  ISPICKVAL(PRIORVALUE(Issue_Severity__c), &quot;Red&quot;)  ),  IF  (  ISPICKVAL(Issue_Severity__c, &quot;Red&quot;),  OR  (  ISPICKVAL(PRIORVALUE(Issue_Severity__c), &quot;Crisis&quot;)  ),  ISPICKVAL(Issue_Severity__c,&quot;&quot;)  )  )  )</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Issue%3A Escalation Update</fullName>
-        <actions>
-            <name>Issue_Severity_Escalation</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <formula>IF  (  ISPICKVAL(Issue_Severity__c, &quot;Crisis&quot;),  OR  (  ISPICKVAL(PRIORVALUE(Issue_Severity__c), &quot;Red&quot;),  ISPICKVAL(PRIORVALUE(Issue_Severity__c), &quot;Amber&quot;),  ISPICKVAL(PRIORVALUE(Issue_Severity__c), &quot;Green&quot;)  ),  IF  (  ISPICKVAL(Issue_Severity__c, &quot;Red&quot;),  OR  (  ISPICKVAL(PRIORVALUE(Issue_Severity__c), &quot;Amber&quot;),  ISPICKVAL(PRIORVALUE(Issue_Severity__c), &quot;Green&quot;) ), IF  (  ISPICKVAL(Issue_Severity__c, &quot;Amber&quot;),  OR  (  ISPICKVAL(PRIORVALUE(Issue_Severity__c), &quot;Green&quot;)  ), ISPICKVAL(Issue_Severity__c,&quot;&quot;) ) ) )</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Issue%3A Reviewed Actions</fullName>
-        <actions>
-            <name>Issue_status_is_reviewed_inform_reporter</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Update_record_type_to_Reviewed_Issue</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>im_Issue__c.Issue_Status__c</field>
-            <operation>equals</operation>
-            <value>Reviewed</value>
-        </criteriaItems>
-        <description>Issue: Reviewed Actions</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
     <rules>
         <fullName>Issue%3A Submission Actions Not on Social Media</fullName>
         <actions>
@@ -246,9 +88,32 @@
             <value>False</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Issue%3A Submission Actions Not on Social Media Old</fullName>
+        <actions>
+            <name>Alert_CIMT_of_New_Issue_old</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Change_Record_Type_to_Assigned_to_CIMT_O</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>im_Issue__c.Issue_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>im_Issue__c.On_Social_Media__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>12</timeLength>
@@ -256,7 +121,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>5</timeLength>
@@ -264,7 +129,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>108</timeLength>
@@ -272,7 +137,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>1</timeLength>
@@ -280,7 +145,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>3</timeLength>
@@ -288,7 +153,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>4</timeLength>
@@ -296,7 +161,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>60</timeLength>
@@ -304,7 +169,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>2</timeLength>
@@ -312,7 +177,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>36</timeLength>
@@ -349,9 +214,32 @@
             <value>True</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Issue%3A Submission Actions On Social Media old</fullName>
+        <actions>
+            <name>Alert_CIMT_of_New_Issue_old</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Change_Record_Type_to_Assigned_to_CIMT_O</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>im_Issue__c.Issue_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>im_Issue__c.On_Social_Media__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>2</timeLength>
@@ -359,7 +247,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>20</timeLength>
@@ -367,7 +255,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>10</timeLength>
@@ -375,7 +263,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>16</timeLength>
@@ -383,7 +271,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>14</timeLength>
@@ -391,7 +279,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>12</timeLength>
@@ -399,7 +287,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>18</timeLength>
@@ -407,7 +295,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>4</timeLength>
@@ -415,7 +303,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>6</timeLength>
@@ -423,30 +311,11 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Alert_CIMT_of_New_Issue</name>
+                <name>Alert_CIMT_of_New_Issue_old</name>
                 <type>Alert</type>
             </actions>
             <timeLength>8</timeLength>
             <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
-    </rules>
-    <rules>
-        <fullName>Issue%3A is changed to Global and R%26D</fullName>
-        <actions>
-            <name>Change_Record_Type_to_Global</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_global_issue</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>im_Issue__c.Issue_Type__c</field>
-            <operation>equals</operation>
-            <value>Global and R&amp;D</value>
-        </criteriaItems>
-        <description>Issue is changed to Global and R&amp;D</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

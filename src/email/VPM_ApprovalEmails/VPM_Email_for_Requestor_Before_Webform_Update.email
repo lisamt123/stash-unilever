@@ -1,0 +1,12 @@
+<div>
+Vendor <strong>{!VPM_PurchasingRequests__c.VPM_VendorName1__c}</strong>  has updated request <Insert Request ID> via the web form with the below details:
+</div><br>
+
+<div>
+<a href="{!VPM_PurchasingRequests__c.VPM_VendorWebformURL__c}">Completed Vendor Web Form</a>
+</div>
+<br>
+
+<div>The details submitted by the Vendor have now replaced the values previously submitted in the request. </div> <br>
+
+<footer><strong>Disclaimer: Please do not reply to this mail, the sending mail box is not monitored.</strong></footer>

@@ -5,6 +5,6 @@
     <encodingKey>UTF-8</encodingKey>
     <name>FS TPR Opportunity Approval Action Email Template</name>
     <style>none</style>
-    <subject>TPR Request</subject>
+    <subject>{!Opportunity.Name} TPR Request</subject>
     <type>text</type>
 </EmailTemplate>

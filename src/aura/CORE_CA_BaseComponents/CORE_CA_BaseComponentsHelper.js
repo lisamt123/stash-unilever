@@ -26,6 +26,8 @@
             destination = "markup://c:CORE_CA_ClarityDetail";}
         if(sourceSystem == 'Invoice'){
             destination = "markup://c:CORE_CA_InvoiceDetail";}
+        if(sourceSystem == 'CLM'){
+            destination = "markup://c:CORE_CA_CLMDetail";}
         
         $A.componentService.newComponentAsync(this, function(view) {
             var content = component.find("content");

@@ -10,6 +10,20 @@ public with sharing class PC_ForumController_CC
      *
      * @return PC_Group__c Plancraft group object if available
      */
+     
+    Public String groupId {get;set;} 
+    
+    public PC_ForumController_CC(){
+        
+        PC_Group__c PBS=getPBSForumGroupId();
+        if(PBS!=null){
+            collaGroupId(PBS.Id);
+        }
+        
+    
+    }
+    
+         
     public PC_Group__c getPlancraftGroup() {
         List<PC_Group__c> result = [
             SELECT
@@ -71,6 +85,7 @@ public with sharing class PC_ForumController_CC
      * @return PC_Group__c Plancraft group object if available
      */
     public PC_Group__c getPBSForumGroupId() {
+        
         List<PC_Group__c> result = [
             SELECT
                 Id, Title__c, Name, Background_Location__c, Chatter_Group_ID__c,
@@ -85,7 +100,7 @@ public with sharing class PC_ForumController_CC
                 Name ASC
             LIMIT 1
         ];
-
+        
         return result.isEmpty() ? null : result.get(0);
     }
      /**
@@ -204,18 +219,34 @@ public with sharing class PC_ForumController_CC
         return result.isEmpty() ? null : result.get(0);
     }
     
+    public void refreshGroupId(){
+        //system.debug('GroupId--->>'+apexpages.currentpage().getparameters().get('groupId'));
+        String grpId = apexpages.currentpage().getparameters().get('groupId');
+        collaGroupId(grpId);
+           
+    } 
     
+    private void collaGroupId(String grpId){
+        // query for PC_Group
+        List<PC_Group__c> pcList = [SELECT Chatter_Group_ID__c,Data_Categories__c FROM PC_Group__c WHERE Id = :grpId AND Published__c = true Limit 1 ];
+        if(pcList!= null){
+            if(pcList.get(0).Chatter_Group_ID__c != null) {
+                List<CollaborationGroup> groupList = [
+                    SELECT
+                        AnnouncementId, CanHaveGuests, CollaborationType, CreatedById, CreatedDate, Description, FullPhotoUrl, GroupEmail, HasPrivateFieldsAccess, Id, InformationBody, InformationTitle, IsArchived, IsAutoArchiveDisabled, LastModifiedById, LastModifiedDate, MemberCount, Name, NetworkId, OwnerId, SmallPhotoUrl
+                    FROM
+                        CollaborationGroup
+                    WHERE
+                        id = :pcList.get(0).Chatter_Group_ID__c
+                    LIMIT 1
+                ];
     
+                if (!groupList.isEmpty()) {
+                    groupId= groupList.get(0).Id;
+                }
+            }
+        }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }
     
 }

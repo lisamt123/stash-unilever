@@ -106,7 +106,7 @@ private class CPA_Contract_UtilMethods_Test {
             
             CPA_CR__c objCR = CPA_testContractClass.createCR(objPWO);
             insert objCR;
-            CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
+            //CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
             objCR.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
             objCR.num_Effort_Cost__c =20;
             update objCR;
@@ -196,13 +196,31 @@ private class CPA_Contract_UtilMethods_Test {
         Test.startTest(); 
             CPA_HLE_Request__c objHLERequest = CPA_testContractClass.CreateHLERequest();
             insert objHLERequest;
-            /*objHLERequest.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
+            objHLERequest.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
             update objHLERequest;
-           CPA_HLERequest_TriggerUtil.isSubmitted  = false;*/
-           objHLERequest.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
+           /* User u = [Select id from User where name='CPA VDM'];
+            objHLERequest.OwnerID= u.id;
+            system.runAs(u)
+            {
+            objHLERequest.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
+            CPA_HLERequest_TriggerUtil.isSubmitted  = false;
             update objHLERequest;
-            System.assertNotEquals(CPA_ConstantsForContractingAppClasses.CANCELLED, objHLERequest.ID);  
+            }
+            System.debug('Current User: ' + UserInfo.getUserName());
+            System.debug('Current Profile: ' + UserInfo.getProfileId()); 
+            */                
+             System.assertNotEquals(CPA_ConstantsForContractingAppClasses.CANCELLED, objHLERequest.ID);  
              System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED != objHLERequest.pkl_Status__c);
+             //code coverage
+           /* CPA_HLE_Request__c objHLERequest1 = CPA_testContractClass.CreateHLERequest();
+            insert objHLERequest1;
+            objHLERequest1.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
+            update objHLERequest1;
+            CPA_HLERequest_TriggerUtil.isSubmitted  = false;
+            objHLERequest1.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
+            update objHLERequest1;
+            System.assertNotEquals(CPA_ConstantsForContractingAppClasses.CANCELLED, objHLERequest1.ID);  
+            System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED != objHLERequest1.pkl_Status__c);*/
              
         Test.stopTest();    
     }
@@ -296,6 +314,7 @@ private class CPA_Contract_UtilMethods_Test {
             CPA_CR__c objCR = CPA_testContractClass.createCR(objPWO);
             insert objCR;
             CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
+        System.assert(pwo!=null);
             objCR.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
             objCR.num_Effort_Cost__c =20;
             update objCR;
@@ -305,7 +324,7 @@ private class CPA_Contract_UtilMethods_Test {
             CPA_CR__c objCR1 = CPA_testContractClass.createCR(objPWO);
             insert objCR1; 
             //objCR1.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
-        	//CPA_CR_TriggerUtil.isSubmitted  = true;
+          //CPA_CR_TriggerUtil.isSubmitted  = true;
             //objCR1.num_Effort_Cost__c =20;
             //update objCR1;
             
@@ -313,4 +332,41 @@ private class CPA_Contract_UtilMethods_Test {
             System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED != objPworf14.pkl_Status__c);
             System.assert (CPA_ConstantsForContractingAppClasses.ACCEPTED == objPWO.pkl_Status__c);        
     }
-}
+    public Static testMethod  void  TestCPA_HLERequest_TriggerUtil(){ 
+        CPA_StatusMsgCustomSetting();
+        CPA_Trigger_Pattern__c HLERequestTriggerPattern = CPA_testCustomSettingClass_util.createTest_HLERequestTriggerPattern();
+        insert HLERequestTriggerPattern;
+      
+        CPA_HLE_Request_SLAs__c HLEReqSLA = CPA_testCustomSettingClass_util.createTest_HLEReqSLA();
+        insert HLEReqSLA;
+      
+        Test.startTest();  
+           {
+                CPA_HLE_Request__c objHLERequest = CPA_testContractClass.CreateHLERequest();
+                objHLERequest.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SAVED;
+                insert objHLERequest;         
+                             
+                objHLERequest.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
+                //objHLERequest.pkl_Approval_Comment_Check__c = CPA_ConstantsForContractingAppClasses.REQUIRED;
+                update objHLERequest; 
+                
+                 objHLERequest.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
+                //objHLERequest.pkl_Approval_Comment_Check__c = CPA_ConstantsForContractingAppClasses.REQUIRED;
+                  update objHLERequest; 
+                System.assert (CPA_ConstantsForContractingAppClasses.CANCELLED == objHLERequest.pkl_Status__c); 
+                
+                CPA_HLERequest_TriggerUtil.DontDelete(new list<CPA_HLE_Request__c>{objHLERequest});                
+                try{
+                    objHLERequest.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ACCEPTED;
+                    objHLERequest.pkl_Approval_Comment_Check__c = CPA_ConstantsForContractingAppClasses.REQUIRED;
+                    update objHLERequest;                 
+                }catch(Exception e){
+                   
+                System.assertNotEquals('false', 'Exception ' + e);      
+                }                
+            }
+            
+        Test.stopTest();    
+    }
+   
+    }

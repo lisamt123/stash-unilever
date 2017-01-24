@@ -406,40 +406,75 @@
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
-    <editable>true</editable>
-    <field>cec_Enclosure__c.Country__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>false</editable>
-    <field>cec_Enclosure__c.Enclosure_Quantity__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>false</editable>
-    <field>cec_Enclosure__c.Total_Inventory_Quantity__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>false</editable>
-    <field>cec_Enclosure__c.Total_Used_Quantity__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>true</editable>
-    <field>cec_Enclosure__c.Company__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>true</editable>
-    <field>cec_Enclosure__c.Enclosure_Code__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>true</editable>
-    <field>cec_Enclosure__c.Category__c</field>
-    <readable>true</readable>
-</fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Enclosure__c.Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Enclosure__c.Brand__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Enclosure__c.Category__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Enclosure__c.Company__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Enclosure__c.Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Enclosure__c.Enclosure_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Enclosure__c.Enclosure_Quantity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Enclosure__c.FileName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Enclosure__c.ItemValue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Enclosure__c.MailItemName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Enclosure__c.MaximumQty__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Enclosure__c.Total_Inventory_Quantity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Enclosure__c.Total_Used_Quantity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Enclosure__c.Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 <fieldPermissions>
     <editable>true</editable>
     <field>cec_Store__c.Country__c</field>
@@ -454,6 +489,16 @@
     <editable>true</editable>
     <field>mdm_Global_Listening_Tree__c.Exclude_From_CSAT__c</field>
     <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+	<editable>true</editable>
+	<field>CEC_Case_Market_Mapping__c.Brand_Ambassador_Brands__c</field>
+	<readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+	<editable>true</editable>
+	<field>CEC_Case_Market_Mapping__c.Business_Hours__c</field>
+	<readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
     <editable>true</editable>
@@ -550,6 +595,11 @@
     <field>CEC_Case_Market_Mapping__c.Company_Phone__c</field>
     <readable>true</readable>
 </fieldPermissions>
+<fieldPermissions>
+        <editable>true</editable>
+        <field>CEC_Case_Market_Mapping__c.TimeZone_Difference_GMT__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 <fieldPermissions>
     <editable>true</editable>
     <field>cec_Case_QC_Mapping__c.Product__c</field>

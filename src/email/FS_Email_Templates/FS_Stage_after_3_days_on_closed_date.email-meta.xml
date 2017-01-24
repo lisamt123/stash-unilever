@@ -4,7 +4,7 @@
     <encodingKey>UTF-8</encodingKey>
     <name>FS Stage after 3 days on closed date</name>
     <style>none</style>
-    <subject>Stage after 3 days on close date</subject>
+    <subject>{!Opportunity.Name} Stage after 3 days on close date</subject>
     <textOnly>This Opportunity for  {!Opportunity.Account} is at Stage {!Opportunity.StageName} after 3 days on close date. {!Opportunity.Link}</textOnly>
     <type>custom</type>
 </EmailTemplate>

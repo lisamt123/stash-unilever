@@ -17,6 +17,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CI_R2R_Budget_Trigger_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CI_R2R_GetHistory</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -44,6 +48,10 @@
         <apexClass>CI_R2R_SME_GetHistory_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>CI_R2R_Admin</name>
+    </customPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>CI_Accounting_Treatment__c.Actuals__c</field>
@@ -100,7 +108,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CI_R2R_Budget__c.Cost_Centre__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -359,6 +367,11 @@
         <field>CI_SMS_Weekly_Update__c.Target_Closure__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_SMS_Weekly_Update__c.Unique_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <label>CI_R2R Admin</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -422,6 +435,18 @@
         <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
+        <recordType>CI_R2R_Innovation__c.CI_R2R_Innovation_with_SME</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CI_R2R_Innovation__c.CI_R2R_Innovation_with_SME_Read_Only</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CI_SMS_Weekly_Update__c.CI_R2R_SME_Read_Only</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>CI_SMS_Weekly_Update__c.CI_SME_with_CI</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -429,7 +454,7 @@
         <recordType>CI_SMS_Weekly_Update__c.CI_SME_without_CI</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <tabSettings>
+	<tabSettings>
         <tab>CI_R2R_Budget__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>

@@ -34,7 +34,7 @@ public  class CPA_InformationController_Test {
         Test.setCurrentPage(new PageReference('CPA_PWORF_Information_Display_Page'));
         System.currentPageReference().getParameters().put('id', objPworf.id);
         CPA_PWORFInformationController  controller = new CPA_PWORFInformationController (new ApexPages.StandardController(objPworf));
-        
+        System.assert(controller!=null);
         CPA_PWORF__c objPworf1 = new CPA_PWORF__c();
         objPworf1.pkl_Status__c =  CPA_ConstantsForContractingAppClasses.SAVED;
         objPworf1.Business_Case__c = null;
@@ -58,9 +58,26 @@ public  class CPA_InformationController_Test {
         System.currentPageReference().getParameters().put('id', objPworf2.id);
         CPA_PWORFInformationController  controller2 = new CPA_PWORFInformationController (new ApexPages.StandardController(objPworf2));
         
-        CPA_PWORFInformationController act = new CPA_PWORFInformationController();     
+        CPA_PWORFInformationController act = new CPA_PWORFInformationController();
+        System.assert(act!=null);
         boolean flage = CPA_PWORFInformationController.checkIsValidated(objPworf2.Id );
-        
+        //Codecoverage
+        CPA_PWORF__c objPworf3 = CPA_testPWORFClass_util.createTest_RA_PWORF();
+        objPworf3.name = 'Test--->'+system.now()+ ' 3';
+        objPworf3.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SAVED;
+        objPworf3.Travel_Arrangements__c = null;
+        objPworf3.pkl_Large_Project_Discount__c=CPA_ConstantsForContractingAppClasses.YES;
+        objPworf3.txt_Large_Project_discount_details__c= null;
+        objPworf3.pkl_Request_Type__c =CPA_ConstantsForContractingAppClasses.OTHER;
+        objPworf3.txta_Other_Request_Type__c = null;
+        objPworf3.Interface_to_the_system__c =CPA_ConstantsForContractingAppClasses.YES;
+        objPworf3.Interface_to_the_system_Detail__c= null;
+        objPworf3.pkl_Process_Office_Area_E2E__c=CPA_ConstantsForContractingAppClasses.OTHER;
+        objPworf3.txt_otherProcessOfficeAreaE2E__c= null;
+        insert objPworf3;
+        boolean flage1 = CPA_PWORFInformationController.checkIsValidated(objPworf3.Id );
+        System.assert(flage1!=null);
+        System.assert(flage!=null);
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPworf2.pkl_Status__c);    
         System.assert (controller2.objectMap.get(CPA_ConstantsForContractingAppClasses.RESOURCELOCATION ) == null);
         System.assert (controller2.objectMap.get(CPA_ConstantsForContractingAppClasses.RESOURCELOCATION ) != CPA_ConstantsForContractingAppClasses.MANDATORY);
@@ -110,8 +127,10 @@ public  class CPA_InformationController_Test {
         System.currentPageReference().getParameters().put('id', objPwo1.id);
         CPA_ContractInformationController   controller1 = new CPA_ContractInformationController  (new ApexPages.StandardController(objPwo1));
        
-        CPA_ContractInformationController act = new CPA_ContractInformationController ();     
+        CPA_ContractInformationController act = new CPA_ContractInformationController ();
+                System.assert(act!=null);
         boolean flage = CPA_ContractInformationController.checkIsValidated(objPwo1.Id );
+                System.assert(flage!=null);
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPwo1.pkl_Status__c);
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPwo1.pkl_Status__c);
         System.assert (controller1.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.PWOTITLE ) != null);
@@ -170,8 +189,10 @@ public  class CPA_InformationController_Test {
         System.currentPageReference().getParameters().put('id', objLOI1.id);
         CPA_LOI_InformationController   controller1 = new CPA_LOI_InformationController  (new ApexPages.StandardController(objLOI1));
 
-        CPA_LOI_InformationController act = new CPA_LOI_InformationController();     
+        CPA_LOI_InformationController act = new CPA_LOI_InformationController();
+        System.assert(act!=null);
         boolean flage = CPA_LOI_InformationController.checkIsValidated(objLOI1.Id );
+        System.assert(flage!=null);
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objLOI1.pkl_Status__c);
          System.assert (controller1.mandatoryStringFlag != null);        
         System.assert (controller1.mandatoryStringFlag == System.Label.CPA_Mandatory_Fields_Message);
@@ -209,7 +230,7 @@ public  class CPA_InformationController_Test {
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.Accepted;
         update objPWO;
         System.assert(CPA_ConstantsForContractingAppClasses.Accepted == objPWO.pkl_Status__c);
-        List<CPA_CR__c> lst  =new List<CPA_CR__c>();
+        //List<CPA_CR__c> lst  =new List<CPA_CR__c>();
         
         CPA_CR__c objCR1 = new CPA_CR__c ();
         objCR1.pkl_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
@@ -232,9 +253,10 @@ public  class CPA_InformationController_Test {
         
         
         
-        CPA_CRInformationController act = new CPA_CRInformationController();     
+        CPA_CRInformationController act = new CPA_CRInformationController(); 
+        System.assert(act!=null);
         boolean flage = CPA_CRInformationController.checkIsValidated(objCR1.Id );
-        
+        System.assert(flage!=null);
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objCR1.pkl_Status__c);
         System.assert (controller.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.ULCAEMAIL ) != null);
         System.assert (controller.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.ULCAEMAIL ) == CPA_ConstantsForContractingAppClasses.MANDATORY);
@@ -269,7 +291,7 @@ public  class CPA_InformationController_Test {
         System.assert(CPA_ConstantsForContractingAppClasses.SAVED == objPWO.pkl_Status__c);
         Test.setCurrentPage(new PageReference('CPA_PWO_Information_Display_Page'));
         System.currentPageReference().getParameters().put('id', objPWO.id);
-        CPA_ContractInformationController   controller = new CPA_ContractInformationController  (new ApexPages.StandardController(objPWO));   
+        //CPA_ContractInformationController   controller = new CPA_ContractInformationController  (new ApexPages.StandardController(objPWO));   
             
         objPWO.CNF_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
         
@@ -317,7 +339,7 @@ public  class CPA_InformationController_Test {
         
         Test.setCurrentPage(new PageReference('CPA_PWO_Information_Display_Page'));
         System.currentPageReference().getParameters().put('id', objPWO.id);
-        CPA_ContractInformationController   controller = new CPA_ContractInformationController  (new ApexPages.StandardController(objPWO));   
+        //CPA_ContractInformationController   controller = new CPA_ContractInformationController  (new ApexPages.StandardController(objPWO));   
             
         objPWO.TNF_Status__c=CPA_ConstantsForContractingAppClasses.SAVED ;
         ID TNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_TNF_RecordTypeId  ).getRecordTypeId();
