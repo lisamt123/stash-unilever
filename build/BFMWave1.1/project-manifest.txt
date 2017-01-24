@@ -272,6 +272,8 @@ src/triggers/BFM_Shipment.trigger
 src/triggers/BFM_Shipment.trigger-meta.xml
 src/triggers/BFM_UserCreationRequest.trigger
 src/triggers/BFM_UserCreationRequest.trigger-meta.xml
+src/triggers/BFM_NFEvalidation.trigger
+src/triggers/BFM_NFEvalidation.trigger-meta.xml
 src/workflows
 src/workflows/BFM_AccountAccessRequest__c.workflow
 src/workflows/BFM_Bank_Information__c.workflow
