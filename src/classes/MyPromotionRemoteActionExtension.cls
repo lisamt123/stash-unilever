@@ -205,25 +205,27 @@ Throws : N/A
             List<ACCL__Promotion__c> promoLst = new List<ACCL__Promotion__c>() ;
             List<Id> approverIdsLst = new List<Id>() ;
                     
-            promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;
+            promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c, ACCL__Promotion_Template__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;
             approverIdsLst.add(promoLst[0].createdbyid) ;
             THViolate = promoLst[0].UL_ThresholdViolated__c ;
 			
 			
 			
-			if(Mode == 'Submitted for Approval'){
-                Map<String, Boolean> tacticMandatory = new Map<String, Boolean>();
-                for(ACCL__Promotion_Template_Tactic_Template__c promTactTempJunc : [SELECT ACCL__Promotion_Template__c, ACCL__Tactic_Template__c, isMandatory__c FROM ACCL__Promotion_Template_Tactic_Template__c WHERE ACCL__Promotion_Template__c = :promoLst[0].ACCL__Promotion_Template__c LIMIT 1]){
-                    tacticMandatory.put(promTactTempJunc.ACCL__Promotion_Template__c+'-'+promTactTempJunc.ACCL__Tactic_Template__c, promTactTempJunc.isMandatory__c);
-                }
-                
+			/*****TPM 1599 STARTS*****/
+            if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMITTED_FOR_APPROVAL)){
+                Set<String> tacticMandatory = new Set<String>();
                 for(ACCL__Tactic__c tctic : [SELECT ACCL__Tactic_Template__c FROM ACCL__Tactic__c WHERE ACCL__Promotion__c = :promoId]){
-                    if(tacticMandatory.containsKey(promoLst[0].ACCL__Promotion_Template__c+'-'+tctic.ACCL__Tactic_Template__c) && !tacticMandatory.get(promoLst[0].ACCL__Promotion_Template__c+'-'+tctic.ACCL__Tactic_Template__c)){
-                        system.debug('Throw Error');
-                        throw new UL_CustomException('Promotion with not isMandatory tactic is found');
-                    }
+                    tacticMandatory.add(promoLst[0].ACCL__Promotion_Template__c+'-'+tctic.ACCL__Tactic_Template__c);
                 }
+
+                
+                for(ACCL__Promotion_Template_Tactic_Template__c promTactTempJunc : [SELECT ACCL__Promotion_Template__c, ACCL__Tactic_Template__c FROM ACCL__Promotion_Template_Tactic_Template__c WHERE ACCL__Promotion_Template__c = :promoLst[0].ACCL__Promotion_Template__c AND isMandatory__c = True]){
+                    if(!tacticMandatory.contains(promTactTempJunc.ACCL__Promotion_Template__c+'-'+promTactTempJunc.ACCL__Tactic_Template__c)){
+                        throw new UL_CustomException(Label.Requires_All_Mandatory_Tactic_for_Promotion);
+                    }
+                }                
             }
+            /*****TPM 1599 ENDS*****/
             
             
             // for UKSO or Ireland So
