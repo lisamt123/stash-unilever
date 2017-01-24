@@ -572,11 +572,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>UL_SoCo_Account_Level_Past_Dated_Urgent</fullName>
+                <fullName>SoCo - Account Level / Child Banded Pack</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SoCo - Account Level / Child Banded Pack</fullName>
+                <fullName>SoCo - Account Level Past-Dated/Urgent</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
