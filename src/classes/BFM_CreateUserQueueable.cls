@@ -91,7 +91,7 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
             acc.id = ar.account__c;     
         }
       //  if(userRequest.cnpj__c!=null){
-      //      acc = [select id,cnpj__c,parentid from account where cnpj__c Like: userRequest.cnpj__c+'%' limit 1];      
+      //      acc = [select id,BFM_cnpj__c,parentid from account where BFM_cnpj__c Like: userRequest.cnpj__c+'%' limit 1];      
       //  }
         if(acc.id!=null){
             con.lastname = userRequest.lastName__c;

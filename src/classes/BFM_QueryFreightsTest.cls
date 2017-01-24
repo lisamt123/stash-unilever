@@ -5,9 +5,9 @@ static testMethod void testBFM_QueryFreights(){
  Set<String> shipnum=new Set<String>(); 
  Account acc1 = new account();
      acc1.name='carrier'; 
-        acc1.cnpj__c = '03189042000100';
-        acc1.Vendor__c='18';
-        acc1.Company_Code__c='19';
+        acc1.BFM_cnpj__c = '03189042000100';
+        acc1.BFM_Vendor__c='18';
+        acc1.BFM_Company_Code__c='19';
         insert acc1;
         
         BFM_Shipment__c ship1=new BFM_Shipment__c();

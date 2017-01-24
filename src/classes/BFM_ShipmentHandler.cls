@@ -68,7 +68,7 @@ public class BFM_ShipmentHandler implements ITrigger {
         RecordType rt = [Select Id,DeveloperName from RecordType where DeveloperName = 'Standard'];
         
         if(shipmentNew.Company_Code__c != null) {
-            List<Account> lstAcc = [SELECT id, name, Company_Name__c from Account where Company_Code__c  =: shipmentNew.Company_Code__c AND RecordTypeId =: rt.id];
+            List<Account> lstAcc = [SELECT id, name, BFM_Company_Name__c from Account where BFM_Company_Code__c  =: shipmentNew.Company_Code__c AND RecordTypeId =: rt.id];
             
             if(lstAcc.size() > 0) {
                 shipmentNew.Unilever_Company__c = lstAcc.get(0).id; // Should take the first retrieved account (Business rule)

@@ -59,7 +59,7 @@ public with sharing class BFM_SearchOccurrenceController_CC{
         
 
        
-        String OccurenceString = 'SELECT id,name,Occurrence_Number__c,Created_date__c,Carrier_Vendor_Code__c,Status__c,Carrier_Account__r.Name,Carrier_Account__r.CNPJ__c,Occurrence_Code__c,Range_of_Extent_of_Occurrence_From__c,Range_of_Extent_of_Occurrence_To__c,Last_Occurrence_Update__c  FROM BFM_Occurrence__c ';
+        String OccurenceString = 'SELECT id,name,Occurrence_Number__c,Created_date__c,Carrier_Vendor_Code__c,Status__c,Carrier_Account__r.Name,Carrier_Account__r.BFM_CNPJ__c,Occurrence_Code__c,Range_of_Extent_of_Occurrence_From__c,Range_of_Extent_of_Occurrence_To__c,Last_Occurrence_Update__c  FROM BFM_Occurrence__c ';
         String searchClauses = 'WHERE'; 
         
         if(!String.isEmpty(occurNumber)){
@@ -88,7 +88,7 @@ public with sharing class BFM_SearchOccurrenceController_CC{
         }
         
         if(String.isNotEmpty(occFromAccount)){
-            searchClauses += ' Carrier_Account__r.CNPJ__c Like \'%' +occFromAccount +'%\' AND ';
+            searchClauses += ' Carrier_Account__r.BFM_CNPJ__c Like \'%' +occFromAccount +'%\' AND ';
         }
         system.debug('===>'+occurStart);
         if(occurStart!=null){

@@ -14,7 +14,7 @@ private class BFM_SendEmailToCarrierApproverTest{
         
          Account accountOne = BFM_TestUtils.createCarrierAccount();
         accountOne.name = 'Carrier 1';
-        accountOne.CNPJ__c = '94657755000107';
+        accountOne.BFM_CNPJ__c = '94657755000107';
         Account accountTwo = BFM_TestUtils.createCarrierAccount();
         accountTwo.Name = 'Carrier 2';
         List<Account> accountsList = new List<Account>{accountOne, accountTwo};

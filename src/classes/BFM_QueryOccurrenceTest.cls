@@ -6,9 +6,9 @@ private static testMethod void testBFM_QueryOccurrence (){
  List<String> ocrnums=new List<String>();
  Account acc1 = new account();
         acc1.name='carrier'; 
-        acc1.cnpj__c = '03189042000100';
-        acc1.Vendor__c='18';
-        acc1.Company_Code__c='19';
+        acc1.BFM_cnpj__c = '03189042000100';
+        acc1.BFM_Vendor__c='18';
+        acc1.BFM_Company_Code__c='19';
         insert acc1;
         system.assertEquals('18',acc1.Vendor__c);
         BFM_Shipment__c ship1=new BFM_Shipment__c();

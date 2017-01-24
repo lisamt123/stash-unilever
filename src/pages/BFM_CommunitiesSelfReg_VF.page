@@ -193,7 +193,7 @@
                                             {!$ObjectType.Account.fields.Name.Label}
                                         </th>
                                         <th>
-                                            {!$ObjectType.Account.fields.CNPJ__c.Label}
+                                            {!$ObjectType.Account.fields.BFM_CNPJ__c.Label}
                                         </th>
                                     </tr>
                                     <apex:repeat value="{!requestLines}"  var="requestLineId" id="branchTable">
@@ -205,7 +205,7 @@
                                                 <apex:outputText value="{!requestLines[requestLineId].branch.Name}"/>
                                             </td>
                                             <td>
-                                                <apex:outputText value="{!requestLines[requestLineId].branch.CNPJ__c}"/>
+                                                <apex:outputText value="{!requestLines[requestLineId].branch.BFM_CNPJ__c}"/>
                                             </td>
                                         </tr>
                                     </apex:repeat>                                      

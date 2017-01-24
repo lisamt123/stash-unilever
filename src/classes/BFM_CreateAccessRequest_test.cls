@@ -13,7 +13,7 @@ private class BFM_CreateAccessRequest_test {
         
         Account accountOne = new Account();
         accountOne.name = 'Carrier 1';
-        accountOne.cnpj__c ='12345678909090';
+        accountOne.BFM_cnpj__c ='12345678909090';
         Account accountTwo = new Account();
         accountTwo.Name = 'Carrier 2';
         List<Account> accountsList = new List<Account>{accountOne, accountTwo};

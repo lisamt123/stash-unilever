@@ -1222,7 +1222,7 @@
         <field>BFM_User_Creation_Request_Error__c.Error_Message__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <label>BFM Api Super User</label>
+    <label>BFM View All Data User</label>
 	<objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>

@@ -118,7 +118,7 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
         }
         if(String.isNotEmpty(shipFromAccount)){
             String val1 = '\'%' + String.escapeSingleQuotes(shipFromAccount.trim()) + '%\'';
-            searchClauses += ' Carrier_Account__r.CNPJ__c LIKE ' +val1 + ' AND ';
+            searchClauses += ' Carrier_Account__r.BFM_CNPJ__c LIKE ' +val1 + ' AND ';
         }
         system.debug('plant===>'+stageplantcode);
         if(String.isNotEmpty(stageplantcode)){
