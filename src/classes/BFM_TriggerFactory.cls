@@ -32,6 +32,7 @@ public without sharing class BFM_TriggerFactory
      *
      * Arguments:   ITrigger handler - A Trigger Handler to execute
      */ 
+	@TestVisible
     private static void execute(ITrigger handler)
     {
         // Before Trigger
@@ -108,6 +109,7 @@ public without sharing class BFM_TriggerFactory
      *
      * Returns:     ITrigger - A trigger handler if one exists or null.
      */
+	@TestVisible
     private static ITrigger getHandler(Schema.sObjectType soType)
     {
         if (soType == BFM_UserCreationRequest__c.sObjectType){
@@ -124,5 +126,4 @@ public without sharing class BFM_TriggerFactory
         }     
         return null;
     }
-
 }
