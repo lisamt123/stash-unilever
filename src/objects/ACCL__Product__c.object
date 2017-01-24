@@ -1912,13 +1912,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>ACCL__Sales_Org</picklist>
-            <values>
-                <fullName>0001</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>ACCL__State__c</picklist>
             <values>
                 <fullName>0</fullName>
@@ -2362,21 +2355,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>ACCL__Sales_Org</picklist>
-            <values>
-                <fullName>0001</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ireland SO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UK SO</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>ACCL__State__c</picklist>
             <values>
                 <fullName>0</fullName>
@@ -2600,21 +2578,6 @@
             <picklist>ACCL__Product_Type__c</picklist>
             <values>
                 <fullName>Special Product</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Sales_Org</picklist>
-            <values>
-                <fullName>0001</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ireland SO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UK SO</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2848,13 +2811,6 @@
             <values>
                 <fullName>Special Product</fullName>
                 <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Sales_Org</picklist>
-            <values>
-                <fullName>0001</fullName>
-                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
