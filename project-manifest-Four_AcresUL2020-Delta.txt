@@ -1,6 +1,3 @@
 src
-src/permissionsets/FAU_Participant_Platform.permissionset
-src/workflows/FAU_Email__c.workflow
 src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation.email
 src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation.email-meta.xml
-src/permissionsets/FAU_Participant_Salesforce.permissionset

@@ -1,11 +1,3 @@
 src
-src/email/FAU_UL2020_Dynamic_Template-meta.xml
-src/email/FAU_UL2020_Dynamic_Template
 src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation.email
 src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation.email-meta.xml
-src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder.email
-src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder.email-meta.xml
-src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation.email
-src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation.email-meta.xml
-src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Travel_Details.email
-src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Travel_Details.email-meta.xml
