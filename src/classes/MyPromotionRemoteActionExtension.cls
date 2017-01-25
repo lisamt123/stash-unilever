@@ -102,6 +102,8 @@ Throws : N/A
                 }
                 //To get products(including Manual products from Heroku -- Chandrababu
                 herokuProducts = UL_TacticUtility.readLOExtProduct(txId,content);
+                System.Debug ('Ashish Test' + content);
+                //herokuProducts = readLOExtProduct(txId,content);
                 System.Debug ('Ashish Test Heroku Product' + herokuProducts);
                 
                 if(herokuProducts.size()>0){
@@ -216,13 +218,11 @@ Throws : N/A
             List<ACCL__Promotion__c> promoLst = new List<ACCL__Promotion__c>() ;
             List<Id> approverIdsLst = new List<Id>() ;
                     
-            promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c, ACCL__Promotion_Template__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;
+            promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c, ACCL__Promotion_Template__c FROM ACCL__Promotion__c WHERE Id =: promoId] ;
             approverIdsLst.add(promoLst[0].createdbyid) ;
-            THViolate = promoLst[0].UL_ThresholdViolated__c ;
-			
-			
-			
-			/*****TPM 1599 STARTS*****/
+            THViolate = promoLst[0].UL_ThresholdViolated__c ; 
+             
+            /*****TPM 1599 STARTS*****/
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMITTED_FOR_APPROVAL)){
                 Set<String> tacticMandatory = new Set<String>();
                 for(ACCL__Tactic__c tctic : [SELECT ACCL__Tactic_Template__c FROM ACCL__Tactic__c WHERE ACCL__Promotion__c = :promoId]){
@@ -268,8 +268,6 @@ Throws : N/A
             }
             if ((promoLst[0].ACCL__Sales_Org__c == UL_Utility.SalesOrg.AR01.Name()) || (promoLst[0].ACCL__Sales_Org__c == UL_Utility.SalesOrg.CL01.Name()) ||
             (promoLst[0].ACCL__Sales_Org__c == UL_Utility.SalesOrg.CL03.Name())){
-			
-            
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.toUpperCase())){
                 
                 //Before submitting promotion for approval, check if each tactic has a fund associated
@@ -375,6 +373,7 @@ global static EARUI getEARightsBOPromotion_SoCo(String txId, String objectId){
                 promoObject.Type = 'Attribute';
                 promoObject.visible = false;
                 earBOPromotion.add(promoObject); 
+                
 
             //Added to control the visibility of the Lift% on the Tactic Panel . 
                 //Ashish - Added - 18/01/2017
@@ -392,7 +391,7 @@ global static EARUI getEARightsBOPromotion_SoCo(String txId, String objectId){
     
     
     
-     /*******************************************************************
+    /*******************************************************************
 Purpose:   
 Version 1.0
 Parameters: Transaction Id, Promotion Id
@@ -532,7 +531,6 @@ Throws : N/A
         system.debug('bansitest..'+earBOPromotion);
         return earBOPromotion; 
     }        
-          
     
     /*@RemoteAction
 global static List<EARUI> getEARightsLOTactic(String txId, String objectId){
@@ -608,6 +606,7 @@ Throws : N/A
                     tacticObject.visible = false; 
                     System.debug('tacticObject.visible'); 
                     earBOTactic.add(tacticObject);
+                    
                 //}   
             }
             
@@ -1079,7 +1078,7 @@ Throws : N/A
                         if(product.ACCL__Criterion_2_Product__c!=null){
                             categorytLevelSet.add(product.ACCL__Criterion_2_Product__c);
                         }
-						System.debug('Category::::'+product.ACCL__Criterion_2_Product__c);
+                        System.debug('Category::::'+product.ACCL__Criterion_2_Product__c);
                     }
                     
                     //populating Market Field
@@ -1819,6 +1818,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
     
 
     
+    
     private static Boolean hasTacticAssignedFund(Id promotionId){
         Boolean result = UL_Utility.BOOLEAN_FALSE;
         
@@ -1853,8 +1853,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         return result;    
     }
     
-    
-    @RemoteAction
+            @RemoteAction
    global static List<Map<String,Object>> readLOFilteredFunds(String txId, String promotionContent) {
         List<Map<String,Object>> result =  ACCL.PromotionRemoteActionExtension.readLOFilteredFunds('txId',promotionContent);
         system.debug(result);
@@ -1943,7 +1942,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
     }
       
     
-      //VERISON OF 23.1
+        //VERISON OF 23.1
      public static void writeLOTacticFund(String promoParams){
          Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(promoParams);//deserializing the JSON from UI        
          Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');//Get the promotion in Map format 
@@ -2031,6 +2030,8 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         delete tacFundTodelete;
     
 }
+        
+
  /***************************************************************    
 Name: AuditData
 Copyright © 2016 Accenture
@@ -2049,6 +2050,7 @@ VERSION     AUTHOR        DATE           DETAIL                 Description
         public String userName;
         public String dt ;
     }
+    
     /*******************************************************************
 Purpose:   
 Version 1.0

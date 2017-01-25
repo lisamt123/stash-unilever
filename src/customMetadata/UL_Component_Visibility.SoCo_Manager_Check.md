@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>UL_Components__c</field>
-        <value xsi:type="xsd:string">TOOLBAR_BTN_ADDTACTIC;TACTIC_BTN_MANAGE_PRODS;TACTIC_BTN_MANAGE_FUNDS;TACTIC_BTN_MANAGE_TIERS;TACTIC_FUNDS_CHECKBOX</value>
+        <value xsi:type="xsd:string">TOOLBAR_BTN_ADDTACTIC;TACTIC_BTN_MANAGE_PRODS;TACTIC_BTN_MANAGE_FUNDS;TACTIC_BTN_MANAGE_TIERS;TACTIC_FUNDS_CHECKBOX;TOOLBAR_BTN_SUBMIT;TOOLBAR_BTN_ENDDATE</value>
     </values>
     <values>
         <field>UL_Sales_Org__c</field>
