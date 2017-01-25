@@ -10,7 +10,7 @@ History
 VERSION     AUTHOR        DATE           DETAIL                 Description
 1.0         Alok Pandey   05/01/2017     INITIAL DEV            Promotion Type Atrribute functionality implemented.
 ***************************************************************/
-public class UL_CreatePromotionControllerSoCo{  
+public with sharing class UL_CreatePromotionControllerSoCo{  
     public final ACCL__Promotion__c relatedRecord { get;  set; }    
     public static string promotionTypeValue{get;set;}
     private List<ACCL__Promotion_Template__c> promotionMasterList = null;
@@ -19,7 +19,7 @@ public class UL_CreatePromotionControllerSoCo{
     private Map<Id,String> salesOrgs = new Map<Id,String>();
     public Boolean AnchorTypeCustomer{get;set;}
     private static Map<Id, String> promotionTemplateAnchorTypes;
-    private final static String PROMOTION_REDIRECT_PAGE_KEY = 'SoCo after Promotion creation redirect';
+    private final static String PROMOTION_REDIRECT_PAGE_KEY = 'UKI after Promotion creation redirect';
     public UL_CreatePromotionControllerSoCo(ApexPages.StandardController ctr)
     {
         relatedRecord = (ACCL__Promotion__c) ctr.getRecord(); 
@@ -241,7 +241,9 @@ public class UL_CreatePromotionControllerSoCo{
     public PageReference save() {
         PageReference pr;
         
-        try {database.insert(this.relatedRecord);
+        try {
+			this.relatedRecord.ACCL__Commit_Date__c = this.relatedRecord.ACCL__Date_From__c;
+			database.insert(this.relatedRecord);
             Id promotionId=this.relatedRecord.id;           
             ApexPages.StandardController ctr = new ApexPages.StandardController(this.relatedRecord);
             String recordTypeDevName = [SELECT RecordType.DeveloperName FROM ACCL__Promotion__c where Id = :this.relatedRecord.Id].RecordType.DeveloperName;
