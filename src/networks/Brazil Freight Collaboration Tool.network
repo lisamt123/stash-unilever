@@ -33,7 +33,6 @@
         <profile>partner community login user</profile>
         <profile>bfm partner community user</profile>
     </networkMemberGroups>
-    <picassoSite>Brazil_Freight_Collaboration_Tool1</picassoSite>
     <selfRegistration>true</selfRegistration>
     <sendWelcomeEmail>true</sendWelcomeEmail>
     <site>Brazil_Freight_Collaboration_Tool</site>
@@ -41,28 +40,14 @@
     <tabs>
         <customTab>BFM_Search_Shipment</customTab>
         <customTab>BFM_Search_Occurrence</customTab>
-        <customTab>BFM_CC_e__c</customTab>
-        <customTab>BFM_CT_e__c</customTab>
-        <customTab>BFM_MDF_e__c</customTab>
-        <customTab>BFM_POD__c</customTab>
         <customTab>BFM_Stage__c</customTab>
         <customTab>BFM_SES__c</customTab>
         <customTab>BFM_NF_e__c</customTab>
-        <customTab>BFM_Bank_Information__c</customTab>
-        <customTab>BFM_Debit_Note__c</customTab>
+        <customTab>BFM_Bank_Information__c</customTab>        
         <customTab>BFM_Delivery__c</customTab>
         <customTab>BFM_Email_Information__c</customTab>
         <customTab>BFM_Error_Log__c</customTab>
-        <customTab>BFM_File__c</customTab>
-        <customTab>BFM_MIRO_Header__c</customTab>
-        <customTab>BFM_MIRO_Item__c</customTab>
-        <customTab>BFM_NF_e_DF__c</customTab>
-        <customTab>BFM_NFS__c</customTab>
-        <customTab>BFM_OCR_Template__c</customTab>
         <customTab>BFM_Occurrence__c</customTab>
-        <customTab>BFM_Withhold_Tax__c</customTab>
-        <customTab>BFM_MIRO_Item_Tax__c</customTab>
-        <customTab>BFM_Payment_Method__c</customTab>
         <defaultTab>01r8A0000000I05</defaultTab>
         <standardTab>Account</standardTab>
         <standardTab>Contact</standardTab>
