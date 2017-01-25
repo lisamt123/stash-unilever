@@ -1031,6 +1031,7 @@ Throws : N/A
 ********************************************************************/    
     public static String populateCannibalisationRate(String content, Set<String> productIdSet){
         try{
+            content = UL_PromotionContentReplace.replaceFieldContent(content);
             Map<String, Object> tacticDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(content);
             List<String> productIdList = new List<String>();
             Map<String, Object> boPromotion = (Map<String, Object>) tacticDeserializedMap.get(UtilityEnum.BOPromotion.Name());
