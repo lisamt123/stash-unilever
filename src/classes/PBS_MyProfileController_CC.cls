@@ -38,6 +38,7 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
     
      // created by Nag for R001.001.001
     public string workLevel{get;set;}
+    public string workLevel2{get;set;}
     public PBS_Profile__c Profilenew;
     public List<PBS_Standard_Job_Profile__c> JobProfileOptions;
     public List<AchievementTypeWrapper> getAchievementTypes(){
@@ -55,7 +56,16 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
     public List<string> workleveloptionsnew= new list<string>();
     public PBS_MyProfileController_CC(){
     
-     
+          init();
+        
+        
+    }
+   
+
+    public void init()
+    {
+        
+        
         workleveloptionsnew=PBS_ProfileService.getPicklistOptions('PBS_Profile__c', 'Work_Level__c', false);
         Profilenew= new PBS_Profile__c();
         Profilenew=PBS_ProfileService.getCurrentUserProfile();
@@ -207,11 +217,12 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
             acw.achievements = achievementRecs;
             lcategories.add(acw);
         }
+   
         
         
     }
-   
-
+    
+    
     public PageReference changeAchievementType(){
         String paramAchievementType = ApexPages.currentPage().getParameters().get('type');
         String isSubTab = ApexPages.currentPage().getParameters().get('subtab');
@@ -256,6 +267,7 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
     {   
         List<PBS_Standard_Job_Profile__c> jobprofileOptionsnew = new List<PBS_Standard_Job_Profile__c>(); 
         system.debug('@@@Worklevel'+worklevel);
+        system.debug('@@@Worklevel2'+worklevel2);
         for(PBS_Standard_Job_Profile__c psp: [SELECT Id, Name  FROM PBS_Standard_Job_Profile__c  ORDER BY Name limit:integer.valueof(System.Label.PBS_soqllimit)]){
           System.debug('@@psp'+ psp);
             if((workLevel=='Guest' || Worklevel=='') && psp.Name=='Guest' ){

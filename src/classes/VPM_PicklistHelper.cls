@@ -33,8 +33,9 @@ public with sharing class VPM_PicklistHelper {
     public static final string IND_WITHHOLD_TAX = 'Indicator WithHolding Tax';
     public static final string INS_KEYDATA_EXCHANGE = 'Instruction Data Exchange';
     public static final string CONF_CONTROL = 'Confirmation Control';
+    public static final string MODE_OF_TRANSPORT = 'Mode Of Transport';
     
-		
+        
     /********************************************************************  
     Created By   : Piyush Mathur
     Created Date : 05th June 2016

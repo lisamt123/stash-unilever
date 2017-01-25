@@ -67,6 +67,7 @@
       <runTest>UserTrigger_Test</runTest>
 	   <runTest>WWP_Losstree_Copy_Component_Ctrl_test</runTest>
       <runTest>WWP_LossTree_Test</runTest>
+	  <runTest>WWP_LossTree_CC21_Test</runTest>
     </sf:deploy>
   </target>  
 

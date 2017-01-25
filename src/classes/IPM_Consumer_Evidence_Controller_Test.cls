@@ -174,7 +174,7 @@ private class IPM_Consumer_Evidence_Controller_Test {
             ipmConsumerEvidencon.projDocSecConId=projDocSecCon.Id;
             ipmConsumerEvidencon.comments=COMMENTS_STR;
             ipmConsumerEvidencon.saveConcept();
-            List<IPM_Project_Document_Section_Content__c>conList=[select IPM_Consumer_Evidence_Comments__c from IPM_Project_Document_Section_Content__c where IPM_Project_Document_Section__c=:ipmConsumerEvidencon.projDocSec.Id];
+            List<IPM_Project_Document_Section_Content__c>conList=[select IPM_Consumer_Evidence_Comments__c from IPM_Project_Document_Section_Content__c where IPM_Project_Document_Section__c=:projectDocSecListObj[0].ID];
             System.assertEquals(conList[0].IPM_Consumer_Evidence_Comments__c,COMMENTS_STR,'save successfully');
             
             for(Integer i=0;i<32770;i++){
@@ -226,6 +226,7 @@ private class IPM_Consumer_Evidence_Controller_Test {
             ipmConsumerEvidencon.deleteCountry='';
             ipmConsumerEvidencon.deleteConcept();    
             ipmConsumerEvidencon.deleteCountry=CONSUMER_COUYNTRY;
+            ipmConsumerEvidencon.projDocSecId=projectDocSecListObj[0].ID;
             ipmConsumerEvidencon.deleteConcept();
             
             List<IPM_Project_Document_Section_Content__c>conList=[select Id,IPM_Content_Type__c from IPM_Project_Document_Section_Content__c where Id=:ipmConsumerEvidencon.projDocSecConId];
@@ -243,6 +244,23 @@ private class IPM_Consumer_Evidence_Controller_Test {
         initializeTestMethodData();
         system.RunAs(globalUser){
             test.startTest();
+            
+            Apexpages.currentpage().getparameters().put('getSecid',projectDocSecListObj[0].ID);
+        	Id projDocSecId = ipmConsumerEvidencon.projDocSecId;
+        	
+        	Id projectId = ipmConsumerEvidencon.projectId;
+        	Apexpages.currentpage().getparameters().put('getProjectId',project.Id);
+        	projectId = ipmConsumerEvidencon.projectId;
+        	
+        	Boolean isEditable = ipmConsumerEvidencon.isEditable;
+        	ipmConsumerEvidencon.isEditable = true;
+        	isEditable = ipmConsumerEvidencon.isEditable;
+        	
+        	String gateType = ipmConsumerEvidencon.gateType;
+        	Apexpages.currentpage().getparameters().put('gate','Charter');
+        	gateType = ipmConsumerEvidencon.gateType;
+            
+            ipmConsumerEvidencon.priorityNumber = 1;
             ipmConsumerEvidencon.projDocSecConId=project.Id;
             ipmConsumerEvidencon.deleteImage();
             ipmConsumerEvidencon.projDocSecConId=projDocSecCon.Id;

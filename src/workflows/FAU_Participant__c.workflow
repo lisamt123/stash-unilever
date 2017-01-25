@@ -89,6 +89,28 @@
         <template>FAU_Program_Protected/FAU_PA_Introduction</template>
     </alerts>
     <alerts>
+        <fullName>FAU_UL2020_Program_Invitation_Reminder</fullName>
+        <description>FAU UL2020 Program Invitation - Reminder</description>
+        <protected>false</protected>
+        <recipients>
+            <field>FAU_User__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation</template>
+    </alerts>
+    <alerts>
+        <fullName>FAU_UL2020_Program_Invitation_to_PA_Reminder</fullName>
+        <description>FAU UL2020 Program Invitation to PA - Reminder</description>
+        <protected>false</protected>
+        <recipients>
+            <field>FAU_Personal_Assistant__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation</template>
+    </alerts>
+    <alerts>
         <fullName>UL2020_Biography_Details_Request</fullName>
         <description>UL2020 Biography Details Request</description>
         <protected>false</protected>
@@ -108,10 +130,6 @@
         <description>UL2020 Program Invitation</description>
         <protected>false</protected>
         <recipients>
-            <field>FAU_Personal_Assistant__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
             <field>FAU_User__c</field>
             <type>userLookup</type>
         </recipients>
@@ -124,10 +142,6 @@
         <protected>false</protected>
         <recipients>
             <field>FAU_Personal_Assistant__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>FAU_User__c</field>
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
@@ -169,6 +183,42 @@
         <field>FAU_Last_Email_Sent__c</field>
         <formula>&quot;FAU Program Invitation to PA - Reminder 2&quot;</formula>
         <name>FAU Program Invitation to PA Reminder 2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>FAU_UL_Program_Invite_to_PA_Reminder_1</fullName>
+        <field>FAU_Last_Email_Sent__c</field>
+        <formula>&quot;FAU Program Invitation to PA - Reminder 1&quot;</formula>
+        <name>FAU UL Program Invite to PA Reminder 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>FAU_UL_Program_Invite_to_PA_Reminder_2</fullName>
+        <field>FAU_Last_Email_Sent__c</field>
+        <formula>&quot;FAU Program Invitation to PA - Reminder 2&quot;</formula>
+        <name>FAU UL Program Invite to PA Reminder 2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>FAU_UL_Update_Email_Invite_Participant_1</fullName>
+        <field>FAU_Last_Email_Sent__c</field>
+        <formula>&quot;Send Initial Program invitation to participant 1st&quot;</formula>
+        <name>FAU UL Update Email Invite Participant 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>FAU_UL_Update_Email_Invite_Participant_2</fullName>
+        <field>FAU_Last_Email_Sent__c</field>
+        <formula>&quot;Send Initial Program invitation to participant 2nd&quot;</formula>
+        <name>FAU UL Update Email Invite Participant 2</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -742,6 +792,110 @@
         </criteriaItems>
         <description>EMAIL: Send invitation to participant PA</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>FAU UL2020 Send PA Invite - Reminders</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>UL2020 Participant</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Invite_State__c</field>
+            <operation>equals</operation>
+            <value>Invited</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Program_Don_t_Send_Reminders__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Is_deferred_To_PA__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>EMAIL: Send intial program invitation to participant&apos;s PA</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>FAU_UL2020_Program_Invitation_to_PA_Reminder</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>FAU_UL_Program_Invite_to_PA_Reminder_1</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>FAU_Participant__c.FAU_RSVP_Deadline__c</offsetFromField>
+            <timeLength>-7</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>FAU_UL2020_Program_Invitation_to_PA_Reminder</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>FAU_UL_Program_Invite_to_PA_Reminder_2</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>FAU_Participant__c.FAU_RSVP_Deadline__c</offsetFromField>
+            <timeLength>-1</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>FAU UL2020 Send Program Invite - Reminders</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>FAU_Participant__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>UL2020 Participant</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Invite_State__c</field>
+            <operation>equals</operation>
+            <value>Invited</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Program_Don_t_Send_Reminders__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Is_deferred_To_PA__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <description>EMAIL: Send Initial Program invitation to participant</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>FAU_UL2020_Program_Invitation_Reminder</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>FAU_UL_Update_Email_Invite_Participant_2</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>FAU_Participant__c.FAU_RSVP_Deadline__c</offsetFromField>
+            <timeLength>-1</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>FAU_UL2020_Program_Invitation_Reminder</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>FAU_UL_Update_Email_Invite_Participant_1</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>FAU_Participant__c.FAU_RSVP_Deadline__c</offsetFromField>
+            <timeLength>-7</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
     </rules>
     <rules>
         <fullName>FAU Update BIo to Complete</fullName>

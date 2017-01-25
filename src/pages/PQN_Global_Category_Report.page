@@ -1,0 +1,208 @@
+<apex:page controller="PQN_GlobalCategoryReport" contentType="{!If($CurrentPage.parameters.export=='yes' ,'application/vnd.ms-excel#PQN_Global_Category_Report.xls','')}" showHeader="false" readOnly="true">
+<div style="padding-left:200px;">
+    <!--<apex:chart height="400" width="1000" data="{!xChartdata}">
+       <!--<apex:axis type="Numeric" position="left" fields="chartdata" title="Record Count"/>
+        <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Region"/>
+        <apex:barSeries orientation="vertical" axis="left" xField="chartXAxis" yField="chartdata"/>
+    </apex:chart>-->
+        <!--<apex:axis type="Numeric" position="left" fields="linedata,linedata" title="Trend %" grid="true"/>
+        <apex:axis type="Numeric" position="right" fields="chartdata" title="NC Current Year"/>
+          <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Category"/>
+          <apex:lineSeries axis="left" fill="true" xField="chartXAxis" yField="linedata" markerType="cross" markerSize="4" markerFill="#FF0000"/>
+          <!--<apex:lineSeries axis="left" xField="chartXAxis" yField="linedata" markerType="circle" markerSize="4" markerFill="#8E35EF"/>-->
+        <!--<apex:barSeries orientation="vertical" axis="right" xField="chartXAxis" yField="chartdata"/>
+    </apex:chart>-->
+    </div>
+/*<style>
+        
+
+        table {
+            width: 100%!important;
+        }
+
+        thead, tbody, tr, td, th { display: block; }
+
+        tr:after {
+            content: ' ';
+            display: block!important;
+            visibility: hidden!important;
+            clear: both!important;
+        }
+
+        thead th {
+            height: 60px!important;
+        }
+        
+        tbody td {
+            height: 30px!important;
+            //text-align: center;
+            
+        }
+
+        tbody {
+            height: 500px!important;
+            overflow-y: auto!important;
+        }
+
+        thead {
+            /* fallback */
+        }
+        tbody td, thead th {
+            width: 6%!important;
+            float: left!important;
+            white-space: normal!important;
+            
+        }
+
+        tbody td:first-child, thead th:first-child {
+            width: 15%!important;
+            float: left!important;
+        }
+        
+        tr.headerRow{
+            width:99.6%!important;
+        }
+        
+        tr.dataRow{
+            width:101%!important;
+        }
+</style>*/
+<style>
+
+      tbody td, thead th {
+           white-space: normal!important;
+            text-align: center;   
+        }
+         thead th {
+           color:white!important;  
+           height: 80px!important;
+        }
+        body .pbBody table.list tr.dataRow td:first-child {
+          text-align: left;
+        }
+        .RedBack{
+            background-color:#FF0000!important;
+        }
+        .GreenBack{
+            background-color:#00B050!important;
+        }
+        .Amber{
+            background-color:#FFC000!important;
+        }
+        .Cyan{
+            background-color:#00A1DA!important;
+        }
+        .Blue{
+            background-color:#3C44E8!important;
+        }
+        .Pink{
+            background-color:#EA00AD!important;
+        }
+        .Gray{
+            background-color:#7F7F7F!important;
+        }
+        .row{
+            background-color:#DBE5F1!important;
+        }
+        .odd { 
+        background-color: #FCF7F7;
+        }
+        .even {
+        background-color: #E3DCDB;
+        }
+        
+</style>
+ <body>
+    <div id="wrapper">
+    <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+        <c:PQN_Navigation navigationName="Reports" subNavName="gcategory"/>
+    </apex:outputPanel>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+ <apex:form >
+     <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+            <a class="btn" href="./PQN_Global_Geography_Report?export=yes" target="_blank" role="button">Export Report</a>
+     </apex:outputPanel>
+      <apex:pageBlock >
+          <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" >
+              <apex:column headerClass="Gray" headerValue="Category breakdown by hierarchy" >
+                  <apex:outputText value="{!xD.Category}-Global" style="font-weight:800" rendered="{!xD.child}"/>
+                  <apex:outputText value="{!empty}" rendered="{!xD.child}" />
+                  
+                   &nbsp;<apex:outputText value="{!xD.Region}" rendered="{!xD.childCluster}"/>
+                   &nbsp;<apex:outputText value="{!empty}" rendered="{!xD.childCluster}" />
+                  
+                   &nbsp; &nbsp;<apex:outputText value="{!xD.Cluster}" rendered="{!xD.childsubCluster}"/>
+                   &nbsp; &nbsp;<apex:outputText value="{!empty}" rendered="{!xD.childsubCluster}" />
+                  
+                  <apex:outputText value="{!xD.SubCluster}" />
+              </apex:column>            
+              <apex:column headerClass="Cyan" headerValue="%SU NC {!preYear}" value="{!xD.preYearPercent}%" />
+               <apex:column headerClass="Cyan" headerValue="# SU NC {!preYear}">
+                  <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.preYeardata}"/>
+                  </apex:outputText> 
+              </apex:column> 
+              <apex:column headerClass="Cyan" headerValue="# TOTAL NC {!preYear}">
+                  <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.preYeardatatot}"/>
+                  </apex:outputText> 
+              </apex:column>
+              <apex:column headerClass="Pink" headerValue="{!cuYear} Target % SU NC" value="{!xD.cuYeartarper}" />
+              <apex:column headerClass="Pink" headerValue="{!cuYear} Target #NC">
+                  <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.preYeardata}"/>
+                  </apex:outputText> 
+              </apex:column>
+              <apex:column headerClass="Blue" headerValue="{!cuMonth} {!cuYear} # SU NC">
+                 <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.cumnthdata}"/>
+                  </apex:outputText> 
+              </apex:column>
+              <apex:column headerClass="Blue" headerValue="{!cuMonth} {!cuYear} # DC to DC NC">
+                 <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.cumnthdcdata}"/>
+                  </apex:outputText> 
+              </apex:column>
+              <apex:column headerClass="Blue" headerValue="{!cuMonth} {!cuYear} Imported NC">
+                 <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.cumnthIEdata}"/>
+                  </apex:outputText> 
+              </apex:column>
+              <apex:column headerClass="Blue" headerValue="{!cuMonth} {!cuYear} #TOTAL NC">
+                 <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.cumnthtotdata}"/>
+                  </apex:outputText> 
+              </apex:column>
+              <apex:column headerClass="Blue" headerValue="{!cuMonth} {!cuYear} %SU NC" value="{!xD.cumnthPercent}%"/>
+              <apex:column headerClass="Blue" headerValue="# Total NC {!cuYear}">
+                <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.cuYeardatatot}"/>
+                  </apex:outputText> 
+              </apex:column>
+              <apex:column headerClass="Blue" headerValue="#SU NC {!cuYear}">
+                <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.cuYeardata}"/>
+                  </apex:outputText> 
+              </apex:column>
+              <apex:column headerClass="Pink" headerValue="%SU NC {!cuYear}" value="{!xD.cuYearPercent}%" />
+              
+              <apex:column headerClass="Pink" headerValue="Trend %" value="{!xD.Trendper}%" styleClass="{!if(xD.Trendper!=null, if(xD.cuYearPercent>xD.preYearPercent,'RedBack','GreenBack'),'empty')}" />
+              
+                            
+          </apex:pageblockTable>
+      </apex:pageBlock>
+      
+</apex:form>
+</div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+</body> 
+<style>
+        [hidden],template {
+            display: block!important;
+        }
+    </style>
+</apex:page>

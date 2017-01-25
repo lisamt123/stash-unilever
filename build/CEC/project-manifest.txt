@@ -10,6 +10,7 @@ src/permissionsets
 src/queues
 src/roles
 src/sharingRules
+src/workflows
 src/approvalProcesses/TH1__Draft__c.CEC_Hong_Kong_TH_Quality_Check.approvalProcess
 src/approvalProcesses/TH1__Draft__c.CEC_Korea_TH_Quality_Check.approvalProcess
 src/approvalProcesses/TH1__Draft__c.CEC_Taiwan_TH_Quality_Check.approvalProcess
@@ -29,6 +30,8 @@ src/classes/CEC_AlertActionHelperTest.cls
 src/classes/CEC_AlertActionHelperTest.cls-meta.xml
 src/classes/CEC_CaseActionControllerTest.cls
 src/classes/CEC_CaseActionControllerTest.cls-meta.xml
+src/classes/CEC_IRIProductLocator_CalloutMock.cls
+src/classes/CEC_IRIProductLocator_CalloutMock.cls-meta.xml
 src/email/CEC_Emails_Hong_Kong-meta.xml
 src/email/CEC_Emails_Korea-meta.xml
 src/email/CEC_Emails_Taiwan-meta.xml
@@ -43,6 +46,8 @@ src/objects/cec_Fulfilment__c.object
 src/objects/User.object
 src/pages/CEC_IRIProductLocator.page
 src/pages/CEC_IRIProductLocator.page-meta.xml
+src/pages/CEC_NewAccountContact.page
+src/pages/CEC_NewAccountContact.page-meta.xml
 src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_Social_Media_Salesforce.permissionset
 src/permissionsets/CEC_User.permissionset
@@ -84,4 +89,3 @@ src/sharingRules/LiveChatTranscript.sharingRules
 src/sharingRules/mdm_Case_Product__c.sharingRules
 src/sharingRules/mdm_Reason_Code__c.sharingRules
 src/sharingRules/Third_Party_Survey__c.sharingRules
-

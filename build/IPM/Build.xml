@@ -66,8 +66,6 @@
         <runTest>UserTestUtil</runTest>
         <runTest>UserTrigger_Test</runTest>
 	<runTest>ExceptionLoggingHelper_Test</runTest>
-			<runTest>IPM_BD_BB_Report_Batch_Test</runTest>
-			<runTest>IPM_BD_BB_Report_BatchSchedule_Test</runTest>
 	</sf:deploy>
   </target>  
 

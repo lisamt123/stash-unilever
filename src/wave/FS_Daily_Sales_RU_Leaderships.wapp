@@ -4,12 +4,18 @@
     <masterLabel>FS Daily Sales - RU - Leaderships</masterLabel>
     <shares>
         <accessLevel>Manage</accessLevel>
-        <sharedTo>pamela.carbonara@accenture.com</sharedTo>
-		<sharedToType>User</sharedToType>
-    </shares>
-	 <shares>
-        <accessLevel>Manage</accessLevel>
         <sharedTo>foodsolutions.integration.user@unilever.com</sharedTo>
         <sharedToType>User</sharedToType>
+    </shares>
+	
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>FS_DailySales_Admin</sharedTo>
+        <sharedToType>Group</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>FS_DailySales_Sales_Manager_RU</sharedTo>
+        <sharedToType>Group</sharedToType>
     </shares>
 </WaveApplication>

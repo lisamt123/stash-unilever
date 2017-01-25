@@ -5,7 +5,7 @@
   Requirement/Project Name: Unilever Salesforce Engagement
   Requirement/Description: This service class retrives the ariba and GTES Header detail and and the send the
                            Response as following wrapper
-*/
+                           */
 
 global with sharing class Core_CA_MyApprovalData {
     
@@ -111,9 +111,9 @@ global with sharing class Core_CA_MyApprovalData {
                  string Action = penddingExpense.Action__c;
                  string Status = penddingExpense.Status__c;
                  
-                 if(Action == 'APPR' || (Status == 'Approved' && Action != 'REWO' && Action != 'APPR' && Action != 'REJC'))
+                 if(Action == 'APPR' || (Status == 'Approved' && Action != 'REWO' && Action != 'APPR' && Action != 'REJC' && Action != 'NA'))
                      objExpensedata.Req_Status ='APPR';
-                 if((Action == 'REJC' && penddingExpense.Source_System__c!=strSystemInvoice)||(penddingExpense.Source_System__c!=strSystemInvoice && Status == 'Rejected' && Action != 'REWO' && Action != 'APPR' && Action != 'REJC' ))
+                 if((Action == 'REJC' && penddingExpense.Source_System__c!=strSystemInvoice)||(penddingExpense.Source_System__c!=strSystemInvoice && Status == 'Rejected' && Action != 'REWO' && Action != 'APPR' && Action != 'REJC' && Action != 'NA'))
                      objExpensedata.Req_Status ='REJC';
                  if(Action == 'REWO' || (Status == 'Rework' && Action != 'REWO' && Action != 'APPR' && Action != 'REJC'))
                      objExpensedata.Req_Status ='Rework';
@@ -121,6 +121,8 @@ global with sharing class Core_CA_MyApprovalData {
                      objExpensedata.Req_Status ='RETOAP';
                  if(Action == 'QUER' || Status == 'Query With Vendor')    
                      objExpensedata.Req_Status ='QUER';
+                 if(Action == 'NA' && penddingExpense.Source_System__c ==strSystemClm)    
+                     objExpensedata.Req_Status ='NA';
                  
                  objExpensedata.ExpenseID = mapHeaderRecord.get(penddingExpense.Approval_Header__c).External_System_Id__c;                
                  objExpensedata.Amount = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Total_amount__c;
@@ -229,7 +231,7 @@ global with sharing class Core_CA_MyApprovalData {
                                                               OR (Source_System__c=:strSystemGtes    AND Role__c = 'APP' AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Rejected' AND (Approval_Header__c not in :recalledExpenseID))
                                                               OR (Source_System__c=:'Clarity' AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Rejected' AND Status__c!='Rework'AND (Role__c = 'APP' OR Role__c = 'END')) 
                                                               OR (Source_System__c=:strSystemInvoice AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Return to AP' AND Status__c!='Query with Vendor' AND  Role__c = 'APP')
-                                                              OR(Is_Active__c=: true and Source_System__c=: strSystemClm AND Action__c = 'ACTV' AND Action__c != 'APPR' AND Action__c != 'REJC' AND Status__c !='Approved' AND Status__c!='Rejected' ))  
+                                                              OR(Is_Active__c=: true and Source_System__c=: strSystemClm AND Action__c = 'ACTV' AND Action__c != 'APPR' AND Action__c != 'REJC' AND Action__c != 'NA' AND Status__c !='Approved' AND Status__c!='Rejected' ))  
                                                               ORDER BY TF_CreatedDate__c DESC];  
                                                               
                 lstQueryWithVendor=[SELECT Approval_Header__c,CreatedDate,Action__c,Header_ExternalId__c,Source_System__c,Status__c,TF_Header_Status__c,TF_Requestor_Name__c FROM Core_Approver_Details__c where Interested_Party__c=:UserInfo.getUserId() 
@@ -272,7 +274,7 @@ global with sharing class Core_CA_MyApprovalData {
                                                               (Role__c = 'APP' AND Source_System__c=:strSystemGtes AND  (Action__c = 'APPR' OR Action__c = 'REJC' OR  Status__c ='Approved' OR Status__c='Rejected') AND (Approval_Header__c not in : setRecalledExpenseID) ) OR
                                                               (Source_System__c=:'Clarity' AND (Role__c = 'APP' OR Role__c = 'END' ) AND (Action__c = 'APPR' OR Action__c = 'REJC' OR Action__c = 'REWO' OR Status__c ='Approved' OR Status__c='Rejected' OR Status__c='Rework'))OR
                                                               (Source_System__c=:strSystemInvoice AND Role__c = 'APP' AND (Status__c ='Approved' OR Status__c='Return to AP'))OR
-                                                              (Source_System__c=: strSystemClm AND (Action__c = 'APPR' OR Action__c = 'REJC' OR Status__c ='Approved' OR Status__c='Rejected')))
+                                                              (Source_System__c=: strSystemClm AND (Action__c = 'APPR' OR Action__c = 'REJC' OR Action__c = 'NA' OR Status__c ='Approved' OR Status__c='Rejected')))
                                                               ORDER BY LastModifiedDate DESC ];
             }
             else if(ExpenseTye.equalsIgnoreCase('PurchaseRequest')){

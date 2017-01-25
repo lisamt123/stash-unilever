@@ -4,495 +4,6 @@
         <application>VPM_PurchasingRequests</application>
         <visible>false</visible>
     </applicationVisibilities>
-    <classAccesses>
-        <apexClass>VPM_ApprovalSubmit</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_ApprovalSubmitTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_CheckRecursive</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_CreateVendorFetchFieldDetails</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_CreateVendorFieldDetailsWrapper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_CreateVendorServiceHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_CreateVendorServiceHelper_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_ECCMaintainExtendHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_ECCVendorSearchServiceOutput</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_FetchVendorDetailsHttpMock</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_FetchVendorDetailsHttpMockCodeMatch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_FetchVendorsDetails</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_FetchVendorsDetails_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_GoldenDataController2</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_GoldenDataController2Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_HttpUtil</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_MaintainGlobalVendorServiceHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_MaintainGlobalVendorService_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_MaintainVendorFetchFieldDetails</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_PicklistHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_ProcurementCentralController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_ProcurementCentralController_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_PurchaseRequestsControllerExtension</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_PurchaseRequestsExtensionTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_RecordTypeHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_RegionalMaintainVendor</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_RegionalMaintainVendorTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_SearchVendor1</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_SearchVendor1Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_TestDataFactory</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_VendorDetailsServicesHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_maintainGlobalVendorCalloutMock</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <description>Vendor Process Management API User</description>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.User_License__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_Approver10__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_Approver1__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_Approver2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_Approver3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_Approver4__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_Approver5__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_Approver6__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_Approver7__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_Approver8__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_Approver9__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_CommodityClass__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_CommodityCountryUnique__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_ConfiguredApprovers__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_Country__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApprover10__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApprover1__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApprover2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApprover3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApprover4__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApprover6__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApprover7__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApprover8__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApprover9__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApproverDate10__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApproverDate1__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApproverDate2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApproverDate3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApproverDate4__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApproverDate5__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApproverDate6__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApproverDate7__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApproverDate8__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_TempApproverDate9__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_isCurrentUserApprover10__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_isCurrentUserApprover1__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_isCurrentUserApprover2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_isCurrentUserApprover3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_isCurrentUserApprover4__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_isCurrentUserApprover5__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_isCurrentUserApprover6__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_isCurrentUserApprover7__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_isCurrentUserApprover8__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPM_isCurrentUserApprover9__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityApprover__c.VPm_TempApprover5__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityCode__c.VPM_AuthorisationGroup__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityCode__c.VPM_CSBVendor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityCode__c.VPM_CommodityCode__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityCode__c.VPM_CommodityFamily__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityCode__c.VPM_CommodityRegionUnique__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityCode__c.VPM_Region__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CommodityCode__c.VPM_VendorType__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CompanyCode__c.Company_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CompanyCode__c.ECC__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CompanyCode__c.VPM_CompanyCode__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CompanyCode__c.VPM_CountryCode__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CompanyCode__c.VPM_Country__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_CompanyCode__c.VPM_IsInactive__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingOrganisation__c.VPM_CompanyCodeException1__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingOrganisation__c.VPM_CompanyCodeException2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingOrganisation__c.VPM_CompanyCodeException3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingOrganisation__c.VPM_CompanyCodeText__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingOrganisation__c.VPM_CompanyCode__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingOrganisation__c.VPM_CountryText__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingOrganisation__c.VPM_Country__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingOrganisation__c.VPM_IsInactive__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingOrganisation__c.VPM_POSystemText__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingOrganisation__c.VPM_POSystem__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ABCIndicator__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_AbortReason__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_AbortTrue__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_AccNumOfAlternativePayee__c</field>
@@ -534,19 +45,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_AccountingNote__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_AccountingText__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_AchillesExceptionDetails__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -574,19 +75,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmittedTime__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitted__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitter__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -609,94 +100,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ApprovalStatus__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ApprovalSubmitter__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ApprovalWorkerID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ApprovalWorker__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ApprovalsCompleted__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Approver10__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Approver1__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Approver2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Approver3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Approver4__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Approver5__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Approver6__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Approver7__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Approver8__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Approver9__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CreatorIsCurrentUser__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ArabiaOldNumber__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_AuthorisationGroupFormula__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -734,31 +140,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BankDataValidationRequired__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BankDataValidationSubmitted__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BankDetailsChanged__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BankDetailsChanges__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BankDetailsScreen__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_BankKey__c</field>
         <readable>true</readable>
@@ -767,46 +148,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_BankName__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BankNumber__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BankValidatorApproval__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BankValidatorReworks__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BeneficiaryAddress1__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BeneficiaryAddress2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BeneficiaryAddress3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BeneficiaryCountry__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BeneficiaryName__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -829,26 +170,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CENVAT__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CRVT__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CSTno__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CalculateTotalNoOfHours__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_CarFreightGroup__c</field>
         <readable>true</readable>
@@ -860,58 +181,13 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CertificateWithholdingTaxExemption__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CertificationDate__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ChangedBy__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Changedon__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CheckCompanyCodeDigit__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_CheckDigit__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CheckDoubleInvoices__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CheckForFieldUpdate__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CheckHours__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ChkCashing__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CityInt__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -934,11 +210,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ClicktoolsSourceCountry__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_CollectionAuthorization__c</field>
         <readable>true</readable>
@@ -949,39 +220,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Commissionerate__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CommodityClassCode__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Commodity_Family__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Commodity__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CompanyCodeECC__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_CompanyPostCode__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Company_Code_Value__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -999,16 +240,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CountryInt__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CountryRegionUpdate__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_CountryRequestingVendor__c</field>
         <readable>true</readable>
@@ -1019,19 +250,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CreatedDateFormulaField__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_CreditInfoNumber__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_CurrentUserIsAssignedProcApprover__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1059,16 +280,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_DaysOpen__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_DeletionBlockFlag__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_DepartmentNumber__c</field>
         <readable>true</readable>
@@ -1077,21 +288,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_Description__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_DetailsOfPlannedActivitiesQual__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_DetailsOfPlannedActivitiesSour2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_DetailsOfPlannedActivitiesSour__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1134,34 +330,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ECCNo__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ECCSystem__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ECC_InsertUpdateStatusMessage__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ECC_InsertUpdateStatus__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ECC__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_E_Invoicing_Agreed__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1174,11 +350,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_EmailCompanyCode__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_EmailOfWebformSender__c</field>
         <readable>true</readable>
@@ -1189,29 +360,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ExcIndVendor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ExceptionType__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ExciseDivision__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ExciseRange__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ExciseRegNo__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1239,34 +390,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ExtensionPhone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ExtensionType__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ExternalMFG__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FLSApproval__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FLSInCountryReqVen__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FLSReworks__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1279,24 +405,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Fieldtype__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_FinanceApprovalRequired__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FinanceApproval__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FinanceReworls__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1309,49 +420,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FinancialFieldsChanged__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_FiscalAddress__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ForaNewPartnerLinktoexistingTrade__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FreeText1__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FreeText2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FreightApprovalRequired__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FreightApproval__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FreightReworks__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FreightSubmitted__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1359,29 +430,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_GeneralVendorDetailsChanged__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_GlobalAuthorisationGroup__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_GlobalFieldChanged__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_GrantDiscInKind__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_GroupingKeyDunning__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1409,11 +465,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithFreight__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithMDMOps__c</field>
         <readable>true</readable>
@@ -1424,11 +475,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithRussianCustomTax__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_HouseBank__c</field>
         <readable>true</readable>
@@ -1437,11 +483,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_HouseNumSupplement__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_HouseNumberInt__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1484,19 +525,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_IndicatorAlternativePayeeAllowed__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_IndicatorClearingBetwCustomerNVendor__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_IndicatorCollectionAuthorization__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1509,39 +540,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_IndicatorPlantLevelRelevant__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_IndicatorSubjectToWithholdingTax__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_IndicatorVendorSubRangeRelevant__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_IndividualPayment__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_IndividualSpec__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_IndonesiaOldVendorNumber__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_IndustryType__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1569,24 +575,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Interestcalculationindicator__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_InternationalVersion__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_IsChangedVAT__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_IsInApprovalProcess__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1599,21 +590,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_IsMDMPISaved__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_IsMaintain2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_IsNaturalPerson__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_IsVendorException__c</field>
         <readable>true</readable>
@@ -1624,24 +600,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_IsraelOldNumber__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_LLDCode__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_LSTno__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_LanguageKeyCOCode__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1724,16 +685,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_MDMOpsFirstSubmittedToSAP__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_MDMOpsReview__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_MDMOpsSubmitted__c</field>
         <readable>true</readable>
@@ -1749,11 +700,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Minority_Diversity_vendor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_MobilePhone__c</field>
         <readable>true</readable>
@@ -1764,19 +710,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_MyProcurementApproval__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_NODEL__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_NPIVendor__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1787,21 +723,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_Name4__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_NoOfDays__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Now__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_NumberofApprovalsRequired__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1829,29 +750,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_OtherCommunication__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_OurAccNumWithVendor__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_OwnerFormulaField__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PANNumber__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PANreference__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1867,11 +768,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_POBox__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_POCreationSystem__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1899,11 +795,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PayableLocation__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_PaymentBlock__c</field>
         <readable>true</readable>
@@ -1914,26 +805,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PaymentMethodWeb__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PaymentMethod__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PaymentTermsAndPurchasingDataChanged__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PaymentTermsIfNoneSelected__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_PaymentTermsKeyCreditMemos__c</field>
         <readable>true</readable>
@@ -1942,11 +813,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_PaymentTerms__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PermittedPayee__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1969,13 +835,29 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PostCodeInt__c</field>
-        <readable>false</readable>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_PostalCode2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>	
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_UserSurveyComments__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PostalCode2__c</field>
+        <field>VPM_PurchasingRequests__c.VPM_OverallExperienceRating15__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_EaseOfUseRating15__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_UserSurveyStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1994,16 +876,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ProcurementApproval__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ProcurementReworks__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ProcurementSection__c</field>
         <readable>true</readable>
@@ -2019,31 +891,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ProvidedBankDetails__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ProvidedBlockDelete__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ProvidedFinancialSensitive__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ProvidedPaymentTerms__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ProvidedUnblockUndelete__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_PurchaseOrderText__c</field>
         <readable>true</readable>
@@ -2052,11 +899,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_PurchasingGroup__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PurchasingOrg__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2089,49 +931,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Record_Age__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ReferenceSpecificationsBankDetail__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_RegStGrp__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_RegionalFieldChanged__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_RegionalFieldsChanged__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Regions__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_RelevantForPriceDet__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_RequestCompleted__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_RequestFromFLSOrBR__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2142,11 +949,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_RequestType__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2170,31 +972,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_RunWFRForPaymentTerms__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_RussiaSubmitted__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_RussianCustomTaxReworks__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_RussianCustomsTaxApporval__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_RussianTaxApprovalRequired__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_SAPBPMRequestID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2209,19 +986,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SMSIndicator__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_SRVBasedVendorID__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SSIStatus__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2239,39 +1006,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SearchTerm1Int__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SearchTerm2Int__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_SearchTerm2__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SearchTerm_1__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SerRegNo__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ServiceAgent__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Set_Approver_Name__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2287,16 +1029,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ShowWarning__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SocialInsuranceCodeSoc__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SocialInsurance__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2319,39 +1051,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_StandardNumber__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SAPInsertUpdateStatusMessage__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyCountry__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_StoreHours__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_StoreText__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Street1Int__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2359,29 +1061,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Street2Int__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_Street2__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Street3Int__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_Street3__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Street4Int__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2394,74 +1081,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SubmissionToFLS__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SubsequentSettlementIndex__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SubsequentSettlement__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SupAudDetailsOfPlannedActivities__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SupPosAssExcepDetailsQual__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SupPosAssExcepDetailsSour__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_SupplierAchillesRegistration__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SupplierAssessmentQuestionnaireQual__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SupplierAssessmentQuestionnaireSour__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SupplierAuditQuality__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SupplierAuditSourcing__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_SupplierFinancialStabilityCheck__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SupplierPositiveAssuranceQuality__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SupplierPositiveAssuranceSourcing__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2474,11 +1101,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_TargetCompletion__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_TargetECC__c</field>
         <readable>true</readable>
@@ -2487,11 +1109,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_TaxBase__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_TaxInformationChanges__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2534,11 +1151,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_TaxOfficeIdentification__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_TaxSplit__c</field>
         <readable>true</readable>
@@ -2567,36 +1179,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_TextToInput__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ThaiOldVendorNumber__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyAddress1__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyAddress2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyAddress3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyAddress4__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyName__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2634,24 +1216,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_TurkeyOldNumber__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_TypeofVendor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_UnitOfMeasureGrp__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_VATCountry__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2679,11 +1246,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_VendorCodeLookup__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_VendorCode__c</field>
         <readable>true</readable>
@@ -2694,24 +1256,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_VendorContactDetailsChanges__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_VendorName1Int__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_VendorName1__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_VendorName2Int__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2719,29 +1266,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_VendorName3Int__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_VendorName4Int__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_VendorNameAddressChanges__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_VendorPhone__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_VendorSLA__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2752,16 +1279,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_VendorSubRange__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_VendorSubType__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_VendorTypeFormula__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2777,11 +1294,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_VendorWebformURL__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_VendordoesntExistFlag__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2811,56 +1323,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ZIPPostcode__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_companyCodeMatch__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_fieldUpdated__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_isProcureAtAGlanceScreen__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_isVendorCached__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_purchasingOrgMatch__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VendorCodeFormula__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_Region__c.VPM_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_Region__c.VPM_Country__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>mdm_Vendors__c.VPM_FullDetails__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>mdm_Vendors__c.VPM_TaxDetails__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2904,11 +1366,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>mdm_Vendors__c.mdm_RemoteKey__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>mdm_Vendors__c.mdm_Street__c</field>
         <readable>true</readable>
@@ -2937,11 +1394,6 @@
         <editable>true</editable>
         <field>mdm_Vendors__c.mdm_VATRegNum__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>mdm_Vendors__c.mdm_ecc__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

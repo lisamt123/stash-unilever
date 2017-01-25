@@ -1,4 +1,3 @@
 src
-src/permissionsets/FAU_Program_Administrator_Platform.permissionset
-src/pages/FAU_LandingPage.page
-src/pages/FAU_LandingPage.page-meta.xml
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation.email
+src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation.email-meta.xml

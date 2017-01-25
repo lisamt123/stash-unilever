@@ -9,7 +9,8 @@
 <apex:component controller="IPM_AssortmentStrategy" allowDML="true">
 <apex:attribute name="ProSecID" assignTo="{!prodocSecId}" type="string"   description="Get section id"/>
 <apex:attribute name="Editable" description="Used for security" type="Boolean" assignTo="{!isEditable}"/>
-     <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay"/>
+     <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay"/> 
+     <apex:outputpanel layout="none">{!InvokeMethodsForComponent}</apex:outputpanel>
      <apex:actionFunction name="CustomChannels" status="Loading" action="{!holdCustomesChannels}" reRender="assortmentScript">
      <apex:param name="firstParam" assignTo="{!channelName}" value=""/>
      </apex:actionFunction>     

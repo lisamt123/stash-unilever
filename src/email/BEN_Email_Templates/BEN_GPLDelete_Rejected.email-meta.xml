@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>BEN If Gpl rejects deletion email to editor</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TO_Letter_Head</letterhead>
+    <name>BEN GPLDelete Rejected</name>
+    <style>freeForm</style>
+    <subject>Test Result For Deletion is Rejected</subject>
+    <textOnly>Hi {!BEN_Category_Details__c.CreatedBy},
+
+Test result &apos;{!BEN_Category_Details__c.Name} &apos; Deletion is rejected by
+{!User.Name}  Reason sited for rejection is {!ApprovalRequest.Comments}&quot;.
+
+You can access the result via the link below;{!BEN_Category_Details__c.Link}
+
+
+
+
+This is an automatically generated email, please do not reply
+
+Thanks,
+{!User.Name}</textOnly>
+    <type>html</type>
+</EmailTemplate>
