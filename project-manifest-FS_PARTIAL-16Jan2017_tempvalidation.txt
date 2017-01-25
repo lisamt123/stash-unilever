@@ -51,3 +51,7 @@ src/flows/FS_AccountOperatorSegmentRussia-2.flow
 src/flows/FS_UpdateRegionandZonebasedoncityforRussia-15.flow
 src/layouts/Account-Feed Based Operator.layout
 src/workflows/OpportunityLineItem.workflow
+src/classes/FS_UpdateChildAccounts.cls
+src/classes/FS_UpdateChildAccounts.cls-meta.xml
+src/classes/FS_UpdateChildAccountsTest.cls
+src/classes/FS_UpdateChildAccountsTest.cls-meta.xml

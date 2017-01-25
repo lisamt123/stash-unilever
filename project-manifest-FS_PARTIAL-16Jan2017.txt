@@ -24,3 +24,9 @@ src/objects/Product2.object
 src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
 src/layouts/Account-Feed Based Operator.layout
 src/workflows/OpportunityLineItem.workflow
+src/classes/FS_UpdateChildAccounts.cls
+src/classes/FS_UpdateChildAccounts.cls-meta.xml
+src/classes/FS_UpdateChildAccountsTest.cls
+src/classes/FS_UpdateChildAccountsTest.cls-meta.xml
+src/classes/FS_Utility.cls
+src/classes/FS_Utility.cls-meta.xml
