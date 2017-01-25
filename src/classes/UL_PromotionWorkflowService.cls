@@ -136,12 +136,8 @@
             Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
             req.setComments('Request Approved');
             req.setAction(UL_Utility.STATUS_APPROVE);
-            
-            if(!promotionLst[0].UL_ThresholdViolated__c && promotionLst[0].UL_Threshold_Window_Result__c != null){
-                req.setNextApproverIds(new Id[] {promotionLst[0].CreatedById});
-            }
-            
-            if((promotionLst[0].UL_ThresholdViolated__c || (!promotionLst[0].UL_ThresholdViolated__c && promotionLst[0].UL_Threshold_Window_Result__c == null))){
+           
+            if((promotionLst[0].UL_ThresholdViolated__c)){
                 //processInstanceNodeLst = [SELECT ProcessNodeName, ProcessNodeid, ProcessInstanceId,NodeStatus FROM ProcessInstanceNode WHERE Processinstance.targetobjectid =: promoId 
                   //                  AND ProcessNode.DeveloperName =: UtilityEnum.UL_Finance_Check.Name() AND NodeStatus =: UL_Utility.STATUS_PENDING LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())] ;
                 processInstanceNodeLst = [SELECT ProcessNodeName, ProcessNodeid, ProcessNode.DeveloperName,ProcessInstanceId,NodeStatus FROM ProcessInstanceNode WHERE Processinstance.targetobjectid =: promoId 
@@ -152,6 +148,9 @@
                         if(procInstNode.ProcessNode.DeveloperName.equalsIgnoreCase(UtilityEnum.UL_Finance_Check.Name())){
                             if(currentStatus!=null && currentStatus.containsIgnoreCase(UL_Utility.STATUS_FINANCE_CHECK.toLowerCase())){        
                                nextApproverId = getApproverIds(promoId, UL_Utility.ROLE_ACCOUNT_MANAGER);
+                               if(nextApproverId==null || nextApproverId.isempty()){
+                                throw new ul_customexception(label.UL_UserNotSetup );
+                               }
                                queueId = addApproverstoQueue(promoId,nextApproverId, UL_Utility.ROLE_ACCOUNT_MANAGER.capitalize());                            
                             }
                             req.setNextApproverIds(new list<id>{queueId});
@@ -177,6 +176,9 @@
                     } 
                 }
             }
+            else {
+            req.setNextApproverIds(new list<id>{userinfo.getuserid()});
+            }
             
             workItemId = getWorkItemId(promoId);        
             if(workItemId != null){
@@ -185,8 +187,8 @@
                 Approval.ProcessResult result =  Approval.process(req);
                 workItemId = getWorkItemId(promoId);
                 if(workItemId != null 
-                && (promotionLst[0].UL_ThresholdViolated__c || (!promotionLst[0].UL_ThresholdViolated__c && promotionLst[0].UL_Threshold_Window_Result__c == null))
-                && processInstanceNodeLst[0].ProcessNode.DeveloperName.equalsIgnoreCase(UtilityEnum.UL_Finance_Check.Name())){
+                && (!promotionLst.isempty() && promotionLst[0].UL_ThresholdViolated__c || (!promotionLst[0].UL_ThresholdViolated__c && promotionLst[0].UL_Threshold_Window_Result__c == null))
+                && !processInstanceNodeLst.isempty() && processInstanceNodeLst[0].ProcessNode.DeveloperName.equalsIgnoreCase(UtilityEnum.UL_Finance_Check.Name())){
                     sendEmail(promoId, mainApproverId, UL_Utility.STATUS_APPROVE.toLowerCase()) ;
                 }
             }
