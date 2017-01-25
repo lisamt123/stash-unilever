@@ -71,12 +71,13 @@ Throws : N/A
         String result = UL_Utility.STRING_NULL;
         Map<string,set<string>> prodIdTacticSet = new Map<string,set<string>>();
         Set<String> tacticSet;
+        Set<Id> productIdSet; 
         try{
             /*Remove namespace from the custom fields.*/ 
             //content=content.replace('ACCL__UL_','UL_');
-            system.debug('before content-'+content);
+           
             content = UL_PromotionContentReplace.replaceFieldContent(content);
-            system.debug('after content-'+content);
+            
             Map<String, Object> tacticDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(content);
             string contentTarget = (string) tacticDeserializedMap.get(UtilityEnum.target.Name());
             Map<String, Object> boPromotion = (Map<String, Object>) tacticDeserializedMap.get('BOPromotion');
@@ -106,7 +107,10 @@ Throws : N/A
                 System.Debug ('Ashish Test Heroku Product' + herokuProducts);
                 
                 if(herokuProducts.size()>0){
+                    productIdSet = new Set<Id>(); 
+                    prodIdTacticSet = new Map<string,set<string>>();
                     for(Map<String,Object> prods : herokuProducts){
+                        productIdSet.add((Id)prods.get(UtilityEnum.productid.Name()));
                         list<UL_TacticUtility.TacticWrapper> tacwrap = (list<UL_TacticUtility.TacticWrapper>)prods.get(UtilityEnum.Tactics.Name());
                         tacticSet = new Set<String>();
                         for(UL_TacticUtility.TacticWrapper eachTactic : tacwrap){
@@ -116,29 +120,21 @@ Throws : N/A
                         }
                         prodIdTacticSet.put((string)prods.get(UtilityEnum.productid.Name()),tacticSet);
                     }
-                }
-                //Validatation-At least one dummy product per each off-invoice payment method Tactic.
-                //UL_TacticUtility.validateDummyProdsonTactics(txId,content);
-                
-                //Validate Products at Tactics level and vaidate Tactics Overlap
-                UL_TacticUtility.validateTacticsProducts(txId,content,prodIdTacticSet);
-                
-                //Insert record to Promotion Category
-                Set<Id> productIdSet = null;
-                if(prodIdTacticSet != null){
-                    productIdSet = new Set<Id>();
-                    for(String strProductId : prodIdTacticSet.keySet()){ 
-                        productIdSet.add(Id.valueOf(strProductId)); 
+                    
+                    //Insert record to Promotion Category
+                    if(!productIdSet.isEmpty()){
+                        UL_PromotionUtility.updatePromotionProduct(objectId, productIdSet);
                     }
                 }
-                UL_PromotionUtility.updatePromotionProduct(objectId, productIdSet);
+               
+                //Validate Products at Tactics level and vaidate Tactics Overlap
+                UL_TacticUtility.validateTacticsProducts(txId,content,prodIdTacticSet);
                 
                 content = populateCannibalisationRate(content, prodIdTacticSet.keySet());
                 //add new promo_acc_rel__c 
                 writePromoAccRel(txId,content);
                 result = ACCL.PromotionRemoteActionExtension.writeBOPromotion(txId,objectId,content);
-                system.debug('tacticWithTiersList'+tacticWithTiersList);
-                system.debug('content'+content);
+                
                 Map<String,String> tactIdTiersMap = new Map<String,String>();
          for(Object o:tacticWithTiersList){
              Map<String,Object> tempMap = (Map<String,Object>) o;
@@ -164,7 +160,7 @@ Throws : N/A
                 
             }
             else{
-                result = null;
+                 result = ACCL.PromotionRemoteActionExtension.writeBOPromotion(txId,objectId,content);
             }
         }catch(Exception ex){
             throw ex;
@@ -216,8 +212,6 @@ Throws : N/A
         
         try{
             Id promoId = Id.valueOf(objectId);
-            system.debug('promoId ::: '+promoId);
-            system.debug('Mode ::: '+Mode);
             String thresholdResult = UL_Utility.EMPTY_STRING;
             Boolean THViolate;
             Id apprFuncRet = UL_Utility.NULL_ID;
@@ -602,7 +596,7 @@ Throws : N/A
             
             promo=[Select Id,UL_EnableChild__c, UL_Current_Status__c, UL_Parent_Push_Id__c, UL_PromotionTemplateType__c from ACCL__Promotion__c where ID =:tacticParentId LIMIT 1];
             List<ACCL__tactic__c> taclst = new List<ACCL__tactic__c>();
-            System.debug('promo.UL_PromotionTemplateType__c::::::::::'+promo.UL_PromotionTemplateType__c);
+            //System.debug('promo.UL_PromotionTemplateType__c::::::::::'+promo.UL_PromotionTemplateType__c);
             //for hiding lift field from Tactic page if tactic template is Long Term Agreement
             if(promo.UL_PromotionTemplateType__c == 'LTA'){
                 //for(List<ACCL__tactic__c> tactList : [SELECT Id, ACCL__Tactic_Template__r.Name,ACCL__Promotion__c FROM ACCL__tactic__c WHERE ACCL__Tactic_Template__r.Name = 'Long Term Agreement AR']){
@@ -1018,6 +1012,7 @@ Throws : N/A
             }
         }catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
+			throw ex;
         }
         return result;
     }
@@ -1823,27 +1818,25 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
     
 
     
+    
     private static Boolean hasTacticAssignedFund(Id promotionId){
-        Boolean result = UL_Utility.BOOLEAN_TRUE;
+        Boolean result = UL_Utility.BOOLEAN_FALSE;
         
         if(promotionId != null){        
             //Get promotion sales org
-            ACCL__Promotion__c promotion = [SELECT ACCL__Sales_Org__c, (SELECT id FROM ACCL__Tactics__r) FROM ACCL__Promotion__c WHERE id=:promotionId AND ACCL__Promotion_Template__r.UL_Is_Tactic_Fund_Required__c = true];
+            ACCL__Promotion__c promotion = [SELECT ACCL__Sales_Org__c, (SELECT id FROM ACCL__Tactics__r) FROM ACCL__Promotion__c WHERE id=:promotionId];
             
             //Get parent sales org. E.g for AR01, parent sales org is SoCo
             String parentSalesOrg = UL_Utility.getParentSalesOrg(promotion.ACCL__Sales_Org__c);
             
             //Validate only for SoCo org
-            if(promotion != null && String.isNotEmpty(promotion.ACCL__Sales_Org__c) && UL_Utility.SalesOrg.SoCo.Name().equalsIgnoreCase(parentSalesOrg)){    
+            if(String.isNotEmpty(promotion.ACCL__Sales_Org__c) && UL_Utility.SalesOrg.SoCo.Name().equalsIgnoreCase(parentSalesOrg)){    
                 Set<id> tacticIdSet = null;
                 if(promotion.ACCL__Tactics__r != null){
                     tacticIdSet = new Set<id>();
                     for(ACCL__Tactic__c tactic: promotion.ACCL__Tactics__r){
                         tacticIdSet.add(tactic.id);
                     }
-                }
-                else{
-                    result = UL_Utility.BOOLEAN_FALSE;
                 }
                 
                 if(tacticIdSet != null && tacticIdSet.size() > 0){
@@ -1852,7 +1845,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                     }
                 
                     if(tacticIdSet.size() == 0){
-                        result = UL_Utility.BOOLEAN_FALSE;
+                        result = UL_Utility.BOOLEAN_TRUE;
                     }
                 }
             }
@@ -1892,7 +1885,17 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         return result;
     }
     
-        private static Map<String,ACCL__Tactic_Fund__c> readLoTacticFund(String promoParams){
+    global static List<ACCL__Tactic_Fund__c> readLoTacticFund(String txId, String promoParams){
+        
+        List<ACCL__Tactic_Fund__c> result = new List<ACCL__Tactic_Fund__c>();
+        Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(promoParams);//deserializing the JSON from UI        
+        Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');//Get the promotion in Map format  
+        String promoid = String.valueOf(boPromotion.get('Id'));
+        result =[SELECT id,ACCL__Fund__c,UL_Allocation__c,UL_Amount_Allocated__c,ACCL__Fund__r.ACCL__Description__c FROM ACCL__Tactic_Fund__c WHERE ACCL__Tactic__r.ACCL__Promotion__c =: promoid ];
+        return result;    
+    }
+    
+    private static Map<String,ACCL__Tactic_Fund__c> readLoTacticFund(String promoParams){
         Map<String,ACCL__Tactic_Fund__c> result2= new Map<String,ACCL__Tactic_Fund__c>();
         List<ACCL__Tactic_Fund__c> result = new List<ACCL__Tactic_Fund__c>();
          Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(promoParams);//deserializing the JSON from UI        
