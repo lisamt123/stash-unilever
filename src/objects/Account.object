@@ -25450,7 +25450,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
 			<values>
-                <fullName>Consumer & Customer Response</fullName>
+                <fullName>Consumer %26 Customer Response</fullName>
                 <default>false</default>
             </values>
 			<values>
@@ -26874,7 +26874,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
 			<values>
-                <fullName>Consumer & Customer Response</fullName>
+                <fullName>Consumer %26 Customer Response</fullName>
                 <default>false</default>
             </values>
 			<values>
