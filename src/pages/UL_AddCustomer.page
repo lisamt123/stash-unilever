@@ -1,4 +1,5 @@
-<apex:page controller="UL_AddNewCustomer" action="{!doPageLoad}">
+<apex:page standardController="ACCL__Account_Set_Account__c" extensions="UL_AddNewCustomer" action="{!doPageLoad}">
+
 <style>
 .setComponent {
 width:100%
@@ -23,18 +24,22 @@ width:100%
 <apex:pageBlock title="{!$Label.UL_ADD_CUSTOMER_TO} {!setName}">
 <apex:pageMessages ></apex:pageMessages>
     <apex:pageBlockButtons >
-            <apex:commandButton action="{!Submit}" value="{!$Label.ACCL__SAVE}" rendered="{!customerList.size > 0}"/>
-            <apex:commandButton action="{!backToParent}" value="{!$Label.ACCL__BACK}"/>
+            <apex:commandButton action="{!Submit}" value="{!$Label.accl__save}" rendered="{!customerList.size > 0}"/>
+            <apex:commandButton action="{!backToParent}" value="{!$Label.accl__back}"/>
     </apex:pageBlockButtons>
     
-    <table class="setComponent" style="padding-bottom:20px"><tr>
-            <td style='20%'><apex:outputLabel value="{!$Label.UL_CUSTOMER_GROUP}:" for="field1"/>&nbsp;<apex:inputText value="{!field1}"/> </td>
-            <td style='20%'><apex:outputLabel value="{!$Label.UL_MARKET_CHANNEL}:" for="field2"/>&nbsp;<apex:inputText value="{!field2}"/></td>
-            <td style='20%'><apex:outputLabel value="{!$Label.UL_MARKET}:" for="field3"/>&nbsp;<apex:inputText value="{!field3}"/></td> 
-            <td style='40%'><apex:inputCheckbox value="{!isInclusive}"/><apex:outputLabel value="{!$Label.INCLUSIVE}"/>&nbsp;&nbsp;&nbsp;<apex:commandButton action="{!doSearch}" value="{!$Label.ACCL__SEARCH}"/>&nbsp;<apex:commandButton action="{!doClearFilter}" rendered="{!isFltApplied}" value="{!$Label.CLEAR_FILTER}"/></td>
-   </tr></table>
+    <table id="searchPanel" class="setComponent" style="padding-bottom:20px; width:100%">
+        <tr>
+            <td style='width:16%'><apex:outputLabel value="{!$Label.UL_ACTIVITY_SECTOR}:" for="field4"/>&nbsp;<apex:inputText value="{!field4}"/></td>
+            <td style='width:16%'><apex:outputLabel value="{!$Label.UL_TERRITORY}:" for="field5"/><apex:inputText value="{!field5}"/></td>
+            <td style='width:16%'><apex:outputLabel value="{!$Label.UL_CUSTOMER_GROUP}:" for="field1"/>&nbsp;<apex:inputText value="{!field1}"/></td>
+            <td style='width:16%'><apex:outputLabel value="{!$Label.UL_MARKET_CHANNEL}:" for="field2"/>&nbsp;<apex:inputText value="{!field2}"/></td>
+            <td style='width:16%'><apex:outputLabel value="{!$Label.UL_MARKET}:" for="field3"/>&nbsp;<apex:inputText value="{!field3}"/></td> 
+            <td style='width:15%;padding-top:10px'><apex:inputCheckbox value="{!isInclusive}"/><apex:outputLabel value="{!$Label.INCLUSIVE}"/>&nbsp;&nbsp;&nbsp;<apex:commandButton id="searchBtn"  action="{!doSearch}"  value="{!$Label.accl__search}"/>&nbsp;<apex:commandButton action="{!doClearFilter}" rendered="{!isFltApplied}" value="{!$Label.CLEAR_FILTER}"/></td>
+       </tr>
+   </table>
             
-            <apex:outputText value="{!$Label.ACCL__NO_REC_TO_DISPLAY}" rendered="{!customerList.size==0}" styleClass="noData" />
+            <apex:outputText value="{!$Label.accl__no_rec_to_display}" rendered="{!customerList.size==0}" styleClass="noData" />
             <table width="99%" class="tableStyle"><tr><td width="2%"><apex:inputCheckbox id="selAllChkBox" onchange="checkAll(this)"></apex:inputCheckbox></td><td width="10%">{!$Label.UL_CUSTOMER_NAME}</td><td width="29%">{!$Label.UL_CUSTOMER_GROUP}</td><td width="29%">{!$Label.UL_MARKET_CHANNEL}</td><td width="30%">{!$Label.UL_MARKET}</td></tr></table>
             <div style="width:100%; overflow-y:scroll;height:400px">
                 <apex:pageBlockTable id="customerBlockTable" value="{!customerList}" var="item" rendered="{!customerList.size > 0}" columns="5"  columnsWidth="2%,10%,29%,29%,30%">       
@@ -48,6 +53,8 @@ width:100%
 </apex:pageBlock> 
 </apex:form>
 <script>
+
+
         
         function checkAll(cb)
         {

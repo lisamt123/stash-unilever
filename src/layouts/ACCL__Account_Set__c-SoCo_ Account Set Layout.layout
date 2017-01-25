@@ -88,13 +88,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-   <!-- <relatedLists>
-        <customButtons>Add_Customer</customButtons>
-        <excludeButtons>New</excludeButtons>
-        <fields>ACCL__Record_Link__c</fields>
-        <fields>Account.NAME</fields>
-        <relatedList>ACCL__Account_Set_Account__c.ACCL__Account_Set__c</relatedList>
-    </relatedLists>-->
     <relatedLists>
         <fields>ACCL__Record_Link__c</fields>
         <fields>ACCL__User__c</fields>
@@ -102,6 +95,10 @@
         <fields>ACCL__Valid_Thru__c</fields>
         <fields>ACCL__Active__c</fields>
         <relatedList>ACCL__Account_Set_Manager__c.ACCL__Account_Set__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>ACCL__Account_Set_Account__c.ACCL__Account_Set__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>ACCL__Record_Link__c</fields>
@@ -113,7 +110,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h58000001pVsn</masterLabel>
+        <masterLabel>00h4C000000ZTqo</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

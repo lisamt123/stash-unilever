@@ -39,11 +39,10 @@ private class UL_AddNewCustomer_Test{
         Test.setCurrentPage(pageRef);
         
         ACCL__Account_Set__c accSet = [SELECT Id,ACCL__Sales_Org__c FROM ACCL__Account_Set__c  WHERE ACCL__Sales_Org__c = 'AR01'];
-        ApexPages.currentPage().getParameters().put('setId', accSet.id);
-        ApexPages.currentPage().getParameters().put('orgId', accSet.ACCL__Sales_Org__c);
-        ApexPages.currentPage().getParameters().put('referer', Null);
-    
-        UL_AddNewCustomer controller = new UL_AddNewCustomer();
+        ACCL__Account_Set_Account__c accountSetAccount = new ACCL__Account_Set_Account__c();
+        accountSetAccount.ACCL__Account_Set__c = accSet.Id;
+        ApexPages.StandardController accountSetController = new ApexPages.StandardController(accountSetAccount);
+        UL_AddNewCustomer controller = new UL_AddNewCustomer(accountSetController);
         controller.doPageLoad();
         system.assertEquals(controller.customerList.size(),1);
     } 
@@ -55,14 +54,17 @@ private class UL_AddNewCustomer_Test{
         Test.setCurrentPage(pageRef);
         
         ACCL__Account_Set__c accSet = [SELECT Id,ACCL__Sales_Org__c FROM ACCL__Account_Set__c  WHERE ACCL__Sales_Org__c = 'AR01'];
-        ApexPages.currentPage().getParameters().put('setId', accSet.id);
-        ApexPages.currentPage().getParameters().put('orgId', accSet.ACCL__Sales_Org__c);
-        ApexPages.currentPage().getParameters().put('referer', Null);
-    
-        UL_AddNewCustomer controller = new UL_AddNewCustomer();
-        //Do search without setting any search criteria
+        ACCL__Account_Set_Account__c accountSetAccount = new ACCL__Account_Set_Account__c();
+        accountSetAccount.ACCL__Account_Set__c = accSet.Id;
+        ApexPages.StandardController accountSetController = new ApexPages.StandardController(accountSetAccount);
+        UL_AddNewCustomer controller = new UL_AddNewCustomer(accountSetController);
+        
+        controller.doPageLoad();
+        
+        //Do search with non-available field value
+        controller.field1 = 'Customer Group - AR01';
         controller.doSearch();
-        system.assertEquals(controller.customerList, null);
+        system.assertEquals(controller.customerList.size(), 0);
     
         //Set search criteria
         controller.field1 = 'Customer Group';
@@ -72,6 +74,8 @@ private class UL_AddNewCustomer_Test{
         controller.field1 = 'Customer Group123';
         controller.field2 = 'Customer Group123';
         controller.field3 = 'Customer Group123';
+        controller.field4 = 'Customer Group123';
+        controller.field5 = 'Customer Group123';
         controller.isInclusive = true;
         controller.doSearch();
         system.assertEquals(controller.customerList.size(),0);
@@ -88,11 +92,10 @@ private class UL_AddNewCustomer_Test{
         Test.setCurrentPage(pageRef);
         
         ACCL__Account_Set__c accSet = [SELECT Id,ACCL__Sales_Org__c FROM ACCL__Account_Set__c  WHERE ACCL__Sales_Org__c = 'AR01'];
-        ApexPages.currentPage().getParameters().put('setId', accSet.id);
-        ApexPages.currentPage().getParameters().put('orgId', accSet.ACCL__Sales_Org__c);
-        ApexPages.currentPage().getParameters().put('referer', Null);
-    
-        UL_AddNewCustomer controller = new UL_AddNewCustomer();
+        ACCL__Account_Set_Account__c accountSetAccount = new ACCL__Account_Set_Account__c();
+        accountSetAccount.ACCL__Account_Set__c = accSet.Id;
+        ApexPages.StandardController accountSetController = new ApexPages.StandardController(accountSetAccount);
+        UL_AddNewCustomer controller = new UL_AddNewCustomer(accountSetController);
         controller.doPageLoad();
         system.assertEquals(controller.customerList.size(),1);
         
