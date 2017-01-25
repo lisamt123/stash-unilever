@@ -232,14 +232,26 @@ Throws : N/A
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMITTED_FOR_APPROVAL)){
                 Set<String> tacticMandatory = new Set<String>();
                 for(ACCL__Tactic__c tctic : [SELECT ACCL__Tactic_Template__c FROM ACCL__Tactic__c WHERE ACCL__Promotion__c = :promoId]){
-                        tacticMandatory.add(promoLst[0].ACCL__Promotion_Template__c+'-'+tctic.ACCL__Tactic_Template__c);
+                        tacticMandatory.add(promoLst[0].ACCL__Promotion_Template__c+UL_Utility.HYPHEN+tctic.ACCL__Tactic_Template__c);
                 }
 
-                
-                for(ACCL__Promotion_Template_Tactic_Template__c promTactTempJunc : [SELECT ACCL__Promotion_Template__c, ACCL__Tactic_Template__c FROM ACCL__Promotion_Template_Tactic_Template__c WHERE ACCL__Promotion_Template__c = :promoLst[0].ACCL__Promotion_Template__c AND isMandatory__c = True]){
-                    if(!tacticMandatory.contains(promTactTempJunc.ACCL__Promotion_Template__c+'-'+promTactTempJunc.ACCL__Tactic_Template__c)){
-                        throw new UL_CustomException(Label.Requires_All_Mandatory_Tactic_for_Promotion);
+                Boolean tacticMandatoryEmpty = false;
+                if(tacticMandatory.isEmpty()){
+                    tacticMandatoryEmpty = true;
+                }
+
+                String missingTactics = UL_Utility.EMPTY_STRING;
+                for(ACCL__Promotion_Template_Tactic_Template__c promTactTempJunc : [SELECT ACCL__Promotion_Template__c, ACCL__Tactic_Template__c, ACCL__Tactic_Template__r.Name FROM ACCL__Promotion_Template_Tactic_Template__c WHERE ACCL__Promotion_Template__c = :promoLst[0].ACCL__Promotion_Template__c AND isMandatory__c = True]){
+                    if(!tacticMandatory.contains(promTactTempJunc.ACCL__Promotion_Template__c+UL_Utility.HYPHEN+promTactTempJunc.ACCL__Tactic_Template__c) ||
+                        tacticMandatoryEmpty){
+                        missingTactics = missingTactics + promTactTempJunc.ACCL__Tactic_Template__r.Name + UL_Utility.FIELD_SPLITTER;
                     }
+                }
+
+                if(!string.isBlank(missingTactics)){
+                    //Splits the custom label based on character ,
+                    List<String> splitMsg = Label.Requires_All_Mandatory_Tactic_for_Promotion.split(UL_Utility.FIELD_SPLITTER);
+                    throw new UL_CustomException(splitMsg[0]+UL_Utility.SPACE+UL_Utility.ESCAPE_QUOTE+missingTactics.removeEnd(UL_Utility.FIELD_SPLITTER)+UL_Utility.ESCAPE_QUOTE+UL_Utility.SPACE+splitMsg[1]);
                 }                
             }
             /*****TPM 1599 ENDS*****/

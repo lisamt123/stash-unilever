@@ -1029,7 +1029,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Requires_All_Mandatory_Tactic_for_Promotion</shortDescription>
-        <value>All isMandatory Tactic are required for Promotion for Approval</value>
+        <value>Please add,before proceeding for approval</value>
     </labels>
 	<labels>
         <fullName>UL_Fund_Open_Promotion_Error</fullName>
