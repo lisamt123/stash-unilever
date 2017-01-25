@@ -171,7 +171,7 @@
             <filterItems>
                 <field>ACCL__Product__c.ACCL__Product_Level__c</field>
                 <operation>equals</operation>
-                <value>Commodity</value>
+                <value>3</value>
             </filterItems>
             <filterItems>
                 <field>ACCL__Product__c.UL_Generic_Product__c</field>

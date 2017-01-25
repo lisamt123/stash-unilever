@@ -20,6 +20,9 @@
     static final String MEASURE_CODES = 'measurecodes';
     static final String TRANSACTION_ID = 'txId';
     static Integer MAX_ROWS = 0;
+    static final string pass = 'pass';
+    static final string save = 'save';
+    static final string fail = 'fail';
     /*******************************************************************
     Purpose: Represent action results
     Version: 1.0
@@ -124,6 +127,7 @@
         boolean thresholdPass;
         boolean thresholdviolate = UL_Utility.BOOLEAN_FALSE;
         String approvalProcess=UL_Utility.EMPTY_STRING;
+        
         Map<String, Double> promoKPIValueMap = new Map<String, Double>();
         MAX_ROWS = LIMITS.getLimitQueryRows()-LIMITS.getQueryRows();
         list<ACCL__Promotion__c> promotionList = [select id,UL_Account__c,ACCL__Promotion_Template__c,UL_Threshold_Window_Result__c, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c from ACCL__Promotion__c where id=:promId LIMIT :MAX_ROWS];
@@ -202,12 +206,14 @@
                     break;
                 }
             }
-          /*  if(mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.tolowerCase())){
+            if(mode.equalsIgnoreCase(Save)){
                 ACCL__Promotion__c promobj = new ACCL__Promotion__c();
                 promobj.id = promId;
-                promobj.UL_Threshold_Result__c = thresholdRes;
-                promobj.UL_Threshold_Window_Result__c = JSON.serialize(thresholdcheck);
                 
+                promobj.UL_Threshold_Window_Result__c = JSON.serialize(thresholdcheck);
+                if(promobj.UL_Threshold_Window_Result__c!=null && promobj.UL_Threshold_Window_Result__c.containsIgnoreCase(fail)){
+                 promobj.UL_ThresholdViolated__c=true;
+                }
                try{
                     Database.update(promobj);
                 }
@@ -215,7 +221,7 @@
                   throw new UL_CustomException('Error while promotion save-'+ex.getmessage());
                   UL_Utility.logError(ex, UserInfo.getUserId());
                 } 
-            } Commented as its not required */ 
+            } 
         }
         if(thresholdviolate && !workflowThreIds.isEmpty() && !promoKPIValueMap.keySet().isempty() && mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.toUpperCase())){
         //call for only submittion
