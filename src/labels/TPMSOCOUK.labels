@@ -3585,7 +3585,7 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>WinAtPOS File Upload msg</shortDescription>
-        <value>To upload your file – click on &apos;File&apos; and then select either &apos;Select a file from Salesforce&apos; or &apos;Upload a file from your Computer&apos;. After you have selected your file click on &apos;Share&apos;. Once the upload is finished click on &apos;Store&apos;.</value>
+        <value>To upload your file -- click on &apos;File&apos; and then select either &apos;Select a file from Salesforce&apos; or &apos;Upload a file from your Computer&apos;. After you have selected your file click on &apos;Share&apos;. Once the upload is finished click on &apos;Store&apos;.</value>
     </labels>
     <labels>
         <fullName>WinAtPOS_Helper_link_tooltip</fullName>
