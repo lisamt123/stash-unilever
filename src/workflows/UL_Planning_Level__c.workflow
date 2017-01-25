@@ -12,7 +12,7 @@
     <fieldUpdates>
         <fullName>UL_Update_Promotion_Name</fullName>
         <field>Name</field>
-        <formula>UL_Customer__r.Name &amp;&apos;-PL&apos; &amp;  TEXT(UL_Customer__r.UL_Planning_Level_Rollup__c+1)</formula>
+        <formula>UL_Customer__r.Name</formula>
         <name>UL_Update_Promotion_Name</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
