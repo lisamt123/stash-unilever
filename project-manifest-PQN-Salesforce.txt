@@ -176,6 +176,7 @@ src/permissionsets/PQN_DC_User.permissionset
 src/permissionsets/PQN_DC_Community_Set.permissionset
 src/permissionsets/PQN_Cluster_Community_Set.permissionset
 src/permissionsets/PQN_Internal_User.permissionset
+src/permissionsets/PQN_Super_Set.permissionset
 src/profiles/PQN Customer Community Profile.profile
 src/queues/PQN_User_Creation_Request_Approvers.queue
 src/sites/PQN_Customer_Community2.site
@@ -192,7 +193,6 @@ src/tabs/PQN_Pallet_Quality_Non_Conformance__c.tab
 src/tabs/PQN_Targets__c.tab
 src/tabs/Pallet_Quality_Non_Conformance_VF.tab
 src/tabs/PQN_Sourcing_Unit__c.tab
-src/tabs/PQN_Supplier_Details__c.tab
 src/tabs/PQN_User_Creation_Request__c.tab
 src/tabs/PQN_Supplier__c.tab
 src/applications/Pallet_Quality_Non_Conformance.app
