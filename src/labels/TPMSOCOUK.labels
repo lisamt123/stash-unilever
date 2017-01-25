@@ -1047,3 +1047,17 @@
         <shortDescription>Fund Open Transaction Error</shortDescription>
         <value>This fund is present in a transaction which is pending for Approval and cannot be closed</value>
     </labels>
+	<labels>
+        <fullName>UL_ACTIVITY_SECTOR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Activity sector label for add customer page</shortDescription>
+        <value>Sector de Actividad</value>
+    </labels>
+    <labels>
+        <fullName>UL_TERRITORY</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Territory label for add customer page</shortDescription>
+        <value>Territorio</value>
+    </labels>

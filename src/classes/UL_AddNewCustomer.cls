@@ -11,16 +11,24 @@ VERSION     AUTHOR         DATE              DETAIL            Description
 1.0         Ketan Mehta    24/10/2016        INITIAL DEV       Initial data load and search functionality implemented.
 ***************************************************************/
 public with sharing class UL_AddNewCustomer{
+
     //Static variables
     private final static String LIMIT_CLAUSE = ' LIMIT 900';
     private final static String LIKE_CLAUSE_START = '\'%';
     private final static String LIKE_CLAUSE_END = '%\' ';
     private final static String FILTER_OR_CLAUSE = ' OR ';
     
+    /*******************************************************************
+    Purpose: Generic enum
+    Version: 1.0
+    Parameters: N/A
+    Returns: Void
+    Throws N/A
+    ********************************************************************/
     private enum Params{
         setId,
         orgId,
-        referer,
+        retURL,
         setName
     }
     
@@ -30,12 +38,14 @@ public with sharing class UL_AddNewCustomer{
     public String field1 {get;set;}
     public String field2 {get;set;}
     public String field3 {get;set;}
+    public String field4 {get;set;}
+    public String field5 {get;set;}
     public Boolean isInclusive {get;set;}
     public Boolean isFltApplied {get;set;}
-    public final String setName {get;set;}
+    public String setName {get;set;}
     
     private final Id setId {get;set;}
-    private final String salesOrgId {get;set;}
+    private String salesOrgId {get;set;}
     private String referer{get{return UL_Utility.FORWARD_SLASH + referer;} set;}
     
     /*******************************************************************
@@ -45,16 +55,12 @@ public with sharing class UL_AddNewCustomer{
     Returns: Void
     Throws N/A
     ********************************************************************/
-    public UL_AddNewCustomer(){
-        //setId = ApexPages.currentPage().getParameters().get('setId');
-        setId = ApexPages.currentPage().getParameters().get(Params.setId.name());
-        salesOrgId = ApexPages.currentPage().getParameters().get(Params.orgId.name());
-        referer = ApexPages.currentPage().getParameters().get(Params.referer.name());
-        setName = ApexPages.currentPage().getParameters().get(Params.setName.name());
+    public UL_AddNewCustomer(ApexPages.StandardController controller) {
+        setId = ((ACCL__Account_Set_Account__c)controller.getRecord()).ACCL__Account_Set__c;
         isInclusive = false;
-        isFltApplied=false;
-        
+        isFltApplied=false; 
     }
+
     
     /*******************************************************************
     Purpose: Load default set of record - called from page load event 
@@ -65,6 +71,7 @@ public with sharing class UL_AddNewCustomer{
     ********************************************************************/
     public PageReference doPageLoad(){
         try{  
+          setCustomerSetParam();
           getResultSet();
         }catch(Exception ex){
           UL_Utility.logError(ex, UserInfo.getUserId());
@@ -80,7 +87,7 @@ public with sharing class UL_AddNewCustomer{
     Throws: System Exception
     ********************************************************************/
     public PageReference doSearch(){
-      if(string.isEmpty(field1) && string.isEmpty(field2) && string.isEmpty(field3)){
+      if(string.isEmpty(field1) && string.isEmpty(field2) && string.isEmpty(field3) && string.isEmpty(field4) && string.isEmpty(field5)){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.WARNING, Label.NO_SEARCH_CRITERIA));
       }else{
           try{
@@ -104,9 +111,12 @@ public with sharing class UL_AddNewCustomer{
        field1=null;
        field2=null;
        field3=null;
+       field4=null;
+       field5=null;
+       
        isFltApplied = false;
        try{
-       getResultSet();
+           getResultSet();
        }catch(Exception ex){
          UL_Utility.logError(ex, UserInfo.getUserId());
        }
@@ -162,8 +172,13 @@ public with sharing class UL_AddNewCustomer{
     Throws N/A
     ********************************************************************/
     public PageReference backToParent(){
-        PageReference pageRef = new PageReference(referer);
+        PageReference pageRef = null; 
+        try{ 
+        pageRef = new PageReference(referer);
         pageRef.setRedirect(true);
+        }catch(Exception ex){
+            UL_Utility.logError(ex, userInfo.getUserId());
+        }
         return pageRef;
     }
 
@@ -180,25 +195,39 @@ public with sharing class UL_AddNewCustomer{
         String searchQuery = 'SELECT Id, Name, UL_Customer_Group_Description__c, UL_Market_Channel_Description__c,UL_Market_Description__c FROM Account ' + getFilterClause();
         List<sObject> sobjList = Database.query(searchQuery);
         if(!sobjList.isEmpty()){
-        Account tempAccount;
-        Map<Id, Account> accMap = new Map<Id, Account>();
-           for(sObject obj: sobjList){
-               tempAccount = (Account)obj;
-               accMap.put(tempAccount.id, tempAccount);            
-           }
-           
-           //Filter out existing Account(s) in junction object
-           for(ACCL__Account_Set_Account__c accSet: [SELECT ACCL__Account__c FROM ACCL__Account_Set_Account__c WHERE ACCL__Account__c IN :accMap.keySet() AND ACCL__Account_Set__c=:setId]){
-               accMap.remove(accSet.ACCL__Account__c);
-           } 
-           
-           //Create wrapper object list
-           for(Account acc: accMap.values()){
-            customerList.add(new AccountSetWrapper(acc));
-           }
+            Account tempAccount;
+            Map<Id, Account> accMap = new Map<Id, Account>();
+               for(sObject obj: sobjList){
+                   tempAccount = (Account)obj;
+                   accMap.put(tempAccount.id, tempAccount);            
+               }
+               
+               //Filter out existing Account(s) in junction object
+               for(ACCL__Account_Set_Account__c accSet: [SELECT ACCL__Account__c FROM ACCL__Account_Set_Account__c WHERE ACCL__Account__c IN :accMap.keySet() AND ACCL__Account_Set__c=:setId]){
+                   accMap.remove(accSet.ACCL__Account__c);
+               } 
+               
+               //Create wrapper object list
+               for(Account acc: accMap.values()){
+                customerList.add(new AccountSetWrapper(acc));
+               }
         }
     }
-
+    
+    /*******************************************************************
+    Purpose: Method to retrive customer set details and set intenal params 
+    Version: 1.0
+    Parameters: N/A
+    Returns: void
+    Throws N/A
+    ********************************************************************/
+    private void setCustomerSetParam(){
+        ACCL__Account_Set__c customerSet = [SELECT Name, ACCL__Sales_Org__c FROM ACCL__Account_Set__c WHERE id=:setId]; 
+        salesOrgId = customerSet.ACCL__Sales_Org__c;
+        setName = customerSet.Name;
+        referer = ApexPages.currentPage().getParameters().get(Params.retURL.name());
+    }
+    
     /*******************************************************************
     Purpose: Method to builds dynamic SOQL where clause 
     Version: 1.0
@@ -225,6 +254,20 @@ public with sharing class UL_AddNewCustomer{
             filterClause += FILTER_OR_CLAUSE;
          }
          filterClause += ' UL_Market_Description__c LIKE ' + LIKE_CLAUSE_START + String.escapeSingleQuotes(field3.trim()) + LIKE_CLAUSE_END;
+       }
+       
+       if(string.isNotEmpty(field4)){
+         if(string.isNotEmpty(filterClause)){
+            filterClause += FILTER_OR_CLAUSE;
+         }
+         filterClause += ' UL_Activity_Sector_Division_Description__c LIKE ' + LIKE_CLAUSE_START + String.escapeSingleQuotes(field4.trim()) + LIKE_CLAUSE_END;
+       }
+       
+       if(string.isNotEmpty(field5)){
+         if(string.isNotEmpty(filterClause)){
+            filterClause += FILTER_OR_CLAUSE;
+         }
+         filterClause += ' UL_Territory_Description__c LIKE ' + LIKE_CLAUSE_START + String.escapeSingleQuotes(field5.trim()) + LIKE_CLAUSE_END;
        }
        
         if(string.isNotEmpty(filterClause)){

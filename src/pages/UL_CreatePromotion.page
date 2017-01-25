@@ -96,7 +96,7 @@
                         <apex:outputPanel styleClass="requiredBlock" layout="block" id="soldCustPanel"/>
                         <apex:actionRegion id="sold_reg" >
                             <apex:selectList value="{!defaultsoldto}"
-                                             multiselect="false" size="1" required="true" id="soldto_list">
+                                             multiselect="false" size="1" id="soldto_list">
                                 <apex:actionSupport event="onchange" rerender=""  action="{!DafaultSoldToSet}" status="defaultCustomer" id="soldto_supp"/>  
                                 <apex:selectOptions value="{!defultsoldtocustomers}" id="soldCust"/>
                             </apex:selectList>
@@ -129,7 +129,7 @@
                         <apex:inputField showDatePicker="true" value="{!relatedRecord.ACCL__Placement_Date_From__c}" required="true" id="Date_From">
                             <apex:actionSupport id="df_supp" event="onchange" rerender="AnchorLabelBlock,AnchorListBlock,DefaultListBlock,Del_profile"  action="{!loadCustomers}"/>  
                         </apex:inputField>
-                    </apex:actionRegion>    
+                    </apex:actionRegion>   
                     
                 </apex:pageBlockSectionItem>
                 

@@ -6,8 +6,8 @@
     <label>UL_AddCustomer</label>
     <packageVersions>
         <majorNumber>1</majorNumber>
-        <minorNumber>3</minorNumber>
-        <namespace>ACSFUL001</namespace>
+        <minorNumber>0</minorNumber>
+        <namespace>ACCL</namespace>
     </packageVersions>
     <packageVersions>
         <majorNumber>1</majorNumber>
