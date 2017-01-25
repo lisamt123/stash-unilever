@@ -279,6 +279,7 @@ src/triggers/BFM_UserCreationRequest.trigger
 src/triggers/BFM_UserCreationRequest.trigger-meta.xml
 src/triggers/BFM_NFEvalidation.trigger
 src/triggers/BFM_NFEvalidation.trigger-meta.xml
+src/networks/Brazil Freight Collaboration Tool.network
 src/workflows
 src/workflows/BFM_AccountAccessRequest__c.workflow
 src/workflows/BFM_Bank_Information__c.workflow
