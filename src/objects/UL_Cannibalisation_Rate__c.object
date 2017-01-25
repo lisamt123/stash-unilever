@@ -25,10 +25,6 @@
         <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -113,21 +109,23 @@
         <fullName>UL_Feature__c</fullName>
         <externalId>false</externalId>
         <label>Feature</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Off-Shelf</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Shelf</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Off-Shelf</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Shelf</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>UL_IsAllCustomers__c</fullName>
@@ -190,11 +188,14 @@
     <fields>
         <fullName>UL_Sales_Organization__c</fullName>
         <externalId>false</externalId>
-        <globalPicklist>ACCL__Sales_Org</globalPicklist>
         <label>Sales Organization</label>
         <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>ACCL__Sales_Org</valueSetName>
+        </valueSet>
     </fields>
     <fields>
         <fullName>UL_Valid_From__c</fullName>
@@ -222,19 +223,16 @@
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>UL_Cannibalisation_Rate__c</columns>
+        <columns>UL_Sales_Organization__c</columns>
         <columns>UL_Customer__c</columns>
         <columns>UL_Product__c</columns>
+        <columns>UL_Feature__c</columns>
+        <columns>UL_Cannibalisation_Rate__c</columns>
         <columns>UL_Valid_From__c</columns>
         <columns>UL_Valid_Thru__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>All1</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
     </listViews>
     <nameField>
         <displayFormat>CR-{0000}</displayFormat>
@@ -258,6 +256,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>UL_Feature</picklist>
+            <values>
+                <fullName>Shelf</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>UL_Feature__c</picklist>
             <values>
                 <fullName>Off-Shelf</fullName>
@@ -273,10 +278,12 @@
         <customTabListAdditionalFields>UL_Sales_Organization__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Customer__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Product__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UL_Feature__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Cannibalisation_Rate__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Valid_From__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Valid_Thru__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
         <lookupFilterFields>NAME</lookupFilterFields>
         <lookupFilterFields>UL_Sales_Organization__c</lookupFilterFields>
         <lookupFilterFields>UL_Cannibalisation_Rate__c</lookupFilterFields>
