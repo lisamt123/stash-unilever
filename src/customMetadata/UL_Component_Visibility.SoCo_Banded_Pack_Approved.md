@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>UL_Components__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">TOOLBAR_BTN_SUBMIT;TOOLBAR_BTN_ENDDATE</value>
     </values>
     <values>
         <field>UL_Sales_Org__c</field>
