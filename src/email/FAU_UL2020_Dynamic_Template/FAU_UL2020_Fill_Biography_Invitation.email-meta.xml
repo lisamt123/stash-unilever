@@ -20,7 +20,7 @@ To make the experience more enjoyable we would like you to help us prepare a sho
 
 Immediate Action Required:
 
-For participants to get to know each other, please prepare a short biography by clicking on this {!FAU_Participant__c.FAU_Bio_Page_Link__c} on or before {!FAU_Participant__c.FAU_Invitation_ResponseDeadline__c}.
+For participants to get to know each other, please prepare a short biography by clicking on this {!FAU_Participant__c.FAU_Bio_Page_Link__c} on or before {!FAU_Participant__c.FAU_RSVP_Deadline__c}.
 
 What’s coming next:
 
