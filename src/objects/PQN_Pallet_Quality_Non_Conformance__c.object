@@ -162,91 +162,91 @@
         <externalId>false</externalId>
         <label>DC Country</label>
         <picklist>
-            <controllingField>MCO__c</controllingField>
+            <controllingField>Cluster__c</controllingField>
             <picklistValues>
                 <fullName>Abu Dhabi</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Albania</fullName>
                 <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Algeria</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Argentina</fullName>
                 <default>false</default>
-                <controllingFieldValues>SoCo</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Armenia</fullName>
                 <default>false</default>
-                <controllingFieldValues>TUI&amp;I</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Australia</fullName>
                 <default>false</default>
-                <controllingFieldValues>ANZ</controllingFieldValues>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Austria</fullName>
                 <default>false</default>
-                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Azerbaijan</fullName>
                 <default>false</default>
-                <controllingFieldValues>TUI&amp;I</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bahrain</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bangladesh</fullName>
                 <default>false</default>
-                <controllingFieldValues>Bangladesh</controllingFieldValues>
+                <controllingFieldValues>South Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Belarus</fullName>
                 <default>false</default>
-                <controllingFieldValues>RUB</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Belgium</fullName>
                 <default>false</default>
-                <controllingFieldValues>Benelux</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bolivia</fullName>
                 <default>false</default>
-                <controllingFieldValues>SoCo</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bosnia</fullName>
                 <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Brazil</fullName>
                 <default>false</default>
-                <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bulgaria</fullName>
                 <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cambodia</fullName>
                 <default>false</default>
-                <controllingFieldValues>Thailand &amp; MCLM</controllingFieldValues>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Canada</fullName>
@@ -256,101 +256,102 @@
             <picklistValues>
                 <fullName>Chile</fullName>
                 <default>false</default>
-                <controllingFieldValues>SoCo</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>China</fullName>
                 <default>false</default>
-                <controllingFieldValues>China</controllingFieldValues>
+                <controllingFieldValues>North Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Colombia</fullName>
                 <default>false</default>
-                <controllingFieldValues>MAR</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Costa Rica</fullName>
                 <default>false</default>
-                <controllingFieldValues>MAR</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cote D&apos;Ivoire</fullName>
                 <default>false</default>
-                <controllingFieldValues>West Africa</controllingFieldValues>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cuba</fullName>
                 <default>false</default>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cyprus</fullName>
                 <default>false</default>
-                <controllingFieldValues>Greece</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Czech Republic</fullName>
                 <default>false</default>
-                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Denmark</fullName>
                 <default>false</default>
-                <controllingFieldValues>Nordics</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dominican Republic</fullName>
                 <default>false</default>
-                <controllingFieldValues>Greater Caribbean</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ecuador</fullName>
                 <default>false</default>
-                <controllingFieldValues>MAR</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Egypt</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Eire</fullName>
                 <default>false</default>
-                <controllingFieldValues>UK/IE</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>El Salvador</fullName>
                 <default>false</default>
-                <controllingFieldValues>MAR</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Fiji</fullName>
                 <default>false</default>
-                <controllingFieldValues>ANZ</controllingFieldValues>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Finland</fullName>
                 <default>false</default>
-                <controllingFieldValues>Nordics</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>France</fullName>
                 <default>false</default>
-                <controllingFieldValues>France</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Georgia</fullName>
                 <default>false</default>
-                <controllingFieldValues>TUI&amp;I</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Germany</fullName>
                 <default>false</default>
-                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ghana</fullName>
                 <default>false</default>
-                <controllingFieldValues>West Africa</controllingFieldValues>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Global</fullName>
@@ -360,381 +361,382 @@
             <picklistValues>
                 <fullName>Greece</fullName>
                 <default>false</default>
-                <controllingFieldValues>Greece</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Guatemala</fullName>
                 <default>false</default>
-                <controllingFieldValues>MAR</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Honduras</fullName>
                 <default>false</default>
-                <controllingFieldValues>MAR</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hong Kong</fullName>
                 <default>false</default>
-                <controllingFieldValues>Hong Kong,Korea &amp; Taiwan</controllingFieldValues>
+                <controllingFieldValues>North Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hungary</fullName>
                 <default>false</default>
-                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>India</fullName>
                 <default>false</default>
-                <controllingFieldValues>India</controllingFieldValues>
+                <controllingFieldValues>South Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Indonesia</fullName>
                 <default>false</default>
-                <controllingFieldValues>Indonesia</controllingFieldValues>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Iran</fullName>
                 <default>false</default>
-                <controllingFieldValues>TUI&amp;I</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Iraq</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Israel</fullName>
                 <default>false</default>
-                <controllingFieldValues>TUI&amp;I</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Italy</fullName>
                 <default>false</default>
-                <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Japan</fullName>
                 <default>false</default>
-                <controllingFieldValues>Japan</controllingFieldValues>
+                <controllingFieldValues>North Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Jordan</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Kazakhstan</fullName>
                 <default>false</default>
-                <controllingFieldValues>TUI&amp;I</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Kenya</fullName>
                 <default>false</default>
-                <controllingFieldValues>East Africa</controllingFieldValues>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Korea</fullName>
                 <default>false</default>
-                <controllingFieldValues>Hong Kong,Korea &amp; Taiwan</controllingFieldValues>
+                <controllingFieldValues>North Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Kosovo</fullName>
                 <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Kuwait</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Kyrgyzstan</fullName>
                 <default>false</default>
-                <controllingFieldValues>TUI&amp;I</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Laos</fullName>
                 <default>false</default>
-                <controllingFieldValues>Thailand &amp; MCLM</controllingFieldValues>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lebanon</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Libya</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Luxembourg</fullName>
                 <default>false</default>
-                <controllingFieldValues>Benelux</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Macedonia</fullName>
                 <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Malawi</fullName>
                 <default>false</default>
-                <controllingFieldValues>Southern Africa</controllingFieldValues>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Malaysia</fullName>
                 <default>false</default>
-                <controllingFieldValues>Malaysia &amp; Singapore</controllingFieldValues>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Maldives</fullName>
                 <default>false</default>
-                <controllingFieldValues>Maldives</controllingFieldValues>
+                <controllingFieldValues>South Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mexico</fullName>
                 <default>false</default>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Moldova</fullName>
                 <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Montenegro</fullName>
                 <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Morocco</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mozambique</fullName>
                 <default>false</default>
-                <controllingFieldValues>Southern Africa</controllingFieldValues>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Myanmar</fullName>
                 <default>false</default>
-                <controllingFieldValues>Thailand &amp; MCLM</controllingFieldValues>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Nepal</fullName>
                 <default>false</default>
-                <controllingFieldValues>Nepal</controllingFieldValues>
+                <controllingFieldValues>South Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Netherlands</fullName>
                 <default>false</default>
-                <controllingFieldValues>Benelux</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>New Zealand</fullName>
                 <default>false</default>
-                <controllingFieldValues>ANZ</controllingFieldValues>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Nicaragua</fullName>
                 <default>false</default>
-                <controllingFieldValues>MAR</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Nigeria</fullName>
                 <default>false</default>
-                <controllingFieldValues>Nigeria</controllingFieldValues>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Northern Cyprus</fullName>
                 <default>false</default>
-                <controllingFieldValues>TUI&amp;I</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Norway</fullName>
                 <default>false</default>
-                <controllingFieldValues>Nordics</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Oman</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Pakistan</fullName>
                 <default>false</default>
-                <controllingFieldValues>Pakistan</controllingFieldValues>
+                <controllingFieldValues>South Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Palestine</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Panama</fullName>
                 <default>false</default>
-                <controllingFieldValues>MAR</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Paraguay</fullName>
                 <default>false</default>
-                <controllingFieldValues>SoCo</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Peru</fullName>
                 <default>false</default>
-                <controllingFieldValues>SoCo</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Philippines</fullName>
                 <default>false</default>
-                <controllingFieldValues>Philippines</controllingFieldValues>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Portugal</fullName>
                 <default>false</default>
-                <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Puerto Rico</fullName>
                 <default>false</default>
-                <controllingFieldValues>Greater Caribbean</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Qatar</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Romania</fullName>
                 <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Russia</fullName>
                 <default>false</default>
-                <controllingFieldValues>RUB</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Saudi Arabia</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Serbia</fullName>
                 <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Singapore</fullName>
                 <default>false</default>
-                <controllingFieldValues>Malaysia &amp; Singapore</controllingFieldValues>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Slovakia</fullName>
                 <default>false</default>
-                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Slovenia</fullName>
                 <default>false</default>
-                <controllingFieldValues>South Central Europe</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>South Africa</fullName>
                 <default>false</default>
-                <controllingFieldValues>South Africa</controllingFieldValues>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Spain</fullName>
                 <default>false</default>
-                <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sri Lanka</fullName>
                 <default>false</default>
-                <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>South Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sudan</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sweden</fullName>
                 <default>false</default>
-                <controllingFieldValues>Nordics</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Switzerland</fullName>
                 <default>false</default>
-                <controllingFieldValues>Czech Republic &amp; Slovakia</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Syria</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Taiwan</fullName>
                 <default>false</default>
-                <controllingFieldValues>Hong Kong,Korea &amp; Taiwan</controllingFieldValues>
+                <controllingFieldValues>North Asia</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Tajikistan</fullName>
                 <default>false</default>
-                <controllingFieldValues>TUI&amp;I</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Tanzania</fullName>
                 <default>false</default>
-                <controllingFieldValues>East Africa</controllingFieldValues>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Thailand</fullName>
                 <default>false</default>
-                <controllingFieldValues>Thailand &amp; MCLM</controllingFieldValues>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Trinidad &amp; Tobago</fullName>
                 <default>false</default>
-                <controllingFieldValues>Greater Caribbean</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Tunisia</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Turkey</fullName>
                 <default>false</default>
-                <controllingFieldValues>TUI&amp;I</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Turkmenistan</fullName>
                 <default>false</default>
-                <controllingFieldValues>TUI&amp;I</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Uganda</fullName>
                 <default>false</default>
-                <controllingFieldValues>East Africa</controllingFieldValues>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ukraine</fullName>
                 <default>false</default>
-                <controllingFieldValues>RUB</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>United Arab Emirates</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>United Kingdom</fullName>
                 <default>false</default>
-                <controllingFieldValues>UK/IE</controllingFieldValues>
+                <controllingFieldValues>Europe</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>United States</fullName>
@@ -744,37 +746,37 @@
             <picklistValues>
                 <fullName>Uruguay</fullName>
                 <default>false</default>
-                <controllingFieldValues>SoCo</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Uzbekistan</fullName>
                 <default>false</default>
-                <controllingFieldValues>TUI&amp;I</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Venezuela</fullName>
                 <default>false</default>
-                <controllingFieldValues>MAR</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Vietnam</fullName>
                 <default>false</default>
-                <controllingFieldValues>Vietnam</controllingFieldValues>
+                <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Yemen</fullName>
                 <default>false</default>
-                <controllingFieldValues>NAME</controllingFieldValues>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Zambia</fullName>
                 <default>false</default>
-                <controllingFieldValues>Southern Africa</controllingFieldValues>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Zimbabwe</fullName>
                 <default>false</default>
-                <controllingFieldValues>Southern Africa</controllingFieldValues>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
@@ -1071,7 +1073,6 @@
             <picklistValues>
                 <fullName>Poland &amp; Baltics</fullName>
                 <default>false</default>
-                <controllingFieldValues>CEE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Portugal</fullName>
@@ -1091,17 +1092,16 @@
             <picklistValues>
                 <fullName>South Africa</fullName>
                 <default>false</default>
-                <controllingFieldValues>South Africa</controllingFieldValues>
+                <controllingFieldValues>Southern Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>South Central Europe</fullName>
                 <default>false</default>
-                <controllingFieldValues>CEE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Southern Africa</fullName>
                 <default>false</default>
-                <controllingFieldValues>Southern Africa</controllingFieldValues>
+                <controllingFieldValues>South Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Spain</fullName>
@@ -1389,6 +1389,7 @@
             <picklistValues>
                 <fullName>North America</fullName>
                 <default>false</default>
+                <controllingFieldValues>NAMET&amp;RUB</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
             </picklistValues>
             <picklistValues>
@@ -1474,6 +1475,7 @@
             <picklistValues>
                 <fullName>Southern Africa</fullName>
                 <default>false</default>
+                <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Japan</fullName>
