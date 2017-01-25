@@ -43,10 +43,6 @@
         <customTab>BFM_Stage__c</customTab>
         <customTab>BFM_SES__c</customTab>
         <customTab>BFM_NF_e__c</customTab>
-        <customTab>BFM_Bank_Information__c</customTab>        
-        <customTab>BFM_Delivery__c</customTab>
-        <customTab>BFM_Email_Information__c</customTab>
-        <customTab>BFM_Error_Log__c</customTab>
         <customTab>BFM_Occurrence__c</customTab>
         <defaultTab>01r8A0000000I05</defaultTab>
         <standardTab>Account</standardTab>
