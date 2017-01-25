@@ -17,6 +17,9 @@ Public with sharing class UL_PromotionInstoreDates{
     public static final string ATTCOUNT = 'attCount';
     public static final string SUBMITTED_FOR_APPROVAL = 'Submitted for Approval';
     public static final string LTA = 'LTA';
+	public static final string UKSO = 'UK SO';
+    public static final string IRELANDSO = 'Ireland SO';
+    public static final string ZERO= '0';
     /*******************************************************************
 Purpose: this method update the instore dates 
 Version: 1.0
