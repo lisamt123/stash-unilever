@@ -9,6 +9,7 @@ History
 -------
 VERSION     AUTHOR        DATE           DETAIL                 Description
 1.0         Badri         16/12/2016     INITIAL DEV            
+2.0         Eleonora Dotz 24.01.2017     Add a function "readLOCalPromotions" to get special Event displayed in Trade Calendar   TPM-243 
 ***************************************************************/
 global class MyPromotionRemoteActionExtension {
     
@@ -74,12 +75,14 @@ Throws : N/A
         try{
             /*Remove namespace from the custom fields.*/ 
             //content=content.replace('ACCL__UL_','UL_');
-             
+           
+            content = UL_PromotionContentReplace.replaceFieldContent(content);
             
             Map<String, Object> tacticDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(content);
             string contentTarget = (string) tacticDeserializedMap.get(UtilityEnum.target.Name());
             Map<String, Object> boPromotion = (Map<String, Object>) tacticDeserializedMap.get('BOPromotion');
-            List<Object> tacticWithTiersList = (List<Object>) boPromotion.get('LOTactic');
+            List<Object> tacticWithTiersList = (List<Object>) boPromotion.get('LOExtTacticTiers');
+             List<Object> LOfund = (List<Object>) boPromotion.get('LOFund'); // add on 23.1 
             if(contentTarget!=null && contentTarget==UtilityEnum.Salesforce.Name()){
                 
                 //Update Workflow Threshold on every save to see latest Threshold values --Chandrababu
@@ -131,20 +134,27 @@ Throws : N/A
                 result = ACCL.PromotionRemoteActionExtension.writeBOPromotion(txId,objectId,content);
                 
                 Map<String,String> tactIdTiersMap = new Map<String,String>();
-                for(Object o:tacticWithTiersList){
-                    Map<String,Object> tempMap = (Map<String,Object>) o;
-                    String tactId = String.valueOf(tempMap.get('Id'));
-                    String tiers = String.valueOf(tempMap.get('ACCL__UL_Tier_Definition__c'));
-                    SYSTEM.DEBUG('tiers'+tiers);
-                    tactIdTiersMap.put(tactId,tiers);
-                }
-                
-                List<ACCL__Tactic__c> tacticListToUpdate = [SELECT id,UL_Tier_Definition__c FROM ACCL__Tactic__c WHERE id IN: tactIdTiersMap.keySet()];
-                For(ACCL__Tactic__c tact : tacticListToUpdate){
-                    tact.UL_Tier_Definition__c=tactIdTiersMap.get(tact.id);
-                }
-                
+         for(Object o:tacticWithTiersList){
+             Map<String,Object> tempMap = (Map<String,Object>) o;
+             String tactId = String.valueOf(tempMap.get('tacticId'));
+             String tiers = JSON.serialize(tempMap.get('JSONTier'));
+             SYSTEM.DEBUG('tiers'+tiers);
+             tactIdTiersMap.put(tactId,tiers);
+         }
+         
+         List<ACCL__Tactic__c> tacticListToUpdate = [SELECT id,UL_Tier_Definition__c FROM ACCL__Tactic__c WHERE id IN: tactIdTiersMap.keySet()];
+         For(ACCL__Tactic__c tact : tacticListToUpdate){
+             tact.UL_Tier_Definition__c=tactIdTiersMap.get(tact.id);
+         }
                 update tacticListToUpdate;
+                // add on 23.1 
+         system.debug('LOfund '+LOfund);
+                  if(!LOfund.isEmpty()){
+                writeLOTacticFund(content);
+                
+             }
+                
+                
                 
             }
             else{
@@ -196,6 +206,7 @@ Throws : N/A
     @RemoteAction
     global static String invokeWfBOPromotion(String txId, String objectId, String Mode, String Content) {        
         String result = 'test';
+        String STATUS_BANDED_PACK = 'Banded Pack Approved';
         
         try{
             Id promoId = Id.valueOf(objectId);
@@ -215,14 +226,26 @@ Throws : N/A
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMITTED_FOR_APPROVAL)){
                 Set<String> tacticMandatory = new Set<String>();
                 for(ACCL__Tactic__c tctic : [SELECT ACCL__Tactic_Template__c FROM ACCL__Tactic__c WHERE ACCL__Promotion__c = :promoId]){
-                    tacticMandatory.add(promoLst[0].ACCL__Promotion_Template__c+'-'+tctic.ACCL__Tactic_Template__c);
+                        tacticMandatory.add(promoLst[0].ACCL__Promotion_Template__c+UL_Utility.HYPHEN+tctic.ACCL__Tactic_Template__c);
                 }
 
-                
-                for(ACCL__Promotion_Template_Tactic_Template__c promTactTempJunc : [SELECT ACCL__Promotion_Template__c, ACCL__Tactic_Template__c FROM ACCL__Promotion_Template_Tactic_Template__c WHERE ACCL__Promotion_Template__c = :promoLst[0].ACCL__Promotion_Template__c AND isMandatory__c = True]){
-                    if(!tacticMandatory.contains(promTactTempJunc.ACCL__Promotion_Template__c+'-'+promTactTempJunc.ACCL__Tactic_Template__c)){
-                        throw new UL_CustomException(Label.Requires_All_Mandatory_Tactic_for_Promotion);
+                Boolean tacticMandatoryEmpty = false;
+                if(tacticMandatory.isEmpty()){
+                    tacticMandatoryEmpty = true;
+                }
+
+                String missingTactics = UL_Utility.EMPTY_STRING;
+                for(ACCL__Promotion_Template_Tactic_Template__c promTactTempJunc : [SELECT ACCL__Promotion_Template__c, ACCL__Tactic_Template__c, ACCL__Tactic_Template__r.Name FROM ACCL__Promotion_Template_Tactic_Template__c WHERE ACCL__Promotion_Template__c = :promoLst[0].ACCL__Promotion_Template__c AND isMandatory__c = True]){
+                    if(!tacticMandatory.contains(promTactTempJunc.ACCL__Promotion_Template__c+UL_Utility.HYPHEN+promTactTempJunc.ACCL__Tactic_Template__c) ||
+                        tacticMandatoryEmpty){
+                        missingTactics = missingTactics + promTactTempJunc.ACCL__Tactic_Template__r.Name + UL_Utility.FIELD_SPLITTER;
                     }
+                }
+
+                if(!string.isBlank(missingTactics)){
+                    //Splits the custom label based on character ,
+                    List<String> splitMsg = Label.Requires_All_Mandatory_Tactic_for_Promotion.split(UL_Utility.FIELD_SPLITTER);
+                    throw new UL_CustomException(splitMsg[0]+UL_Utility.SPACE+UL_Utility.ESCAPE_QUOTE+missingTactics.removeEnd(UL_Utility.FIELD_SPLITTER)+UL_Utility.ESCAPE_QUOTE+UL_Utility.SPACE+splitMsg[1]);
                 }                
             }
             /*****TPM 1599 ENDS*****/
@@ -250,12 +273,12 @@ Throws : N/A
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT.toUpperCase())){
                 
                 //Before submitting promotion for approval, check if each tactic has a fund associated
-               /* if(!hasTacticAssignedFund(promoId)){
-                    throw new UL_CustomException(Label.UL_TACTIC_FUND_ASSOCIATION);
-                } */
-				
-				 //Validatation-At least one dummy product per each off-invoice payment method Tactic.
-                //UL_TacticUtility.validateDummyProdsonTactics(txId,content);
+                if(!hasTacticAssignedFund(promoId)){
+                    //throw new UL_CustomException(Label.UL_TACTIC_FUND_ASSOCIATION);
+                }
+                
+                 //Validatation-At least one dummy product per each off-invoice payment method Tactic.
+                UL_TacticUtility.validateDummyProdsonTactics(txId,content);
                 
                 UL_ThresholdEngine.getThresholdKPI(txId,promoId,Mode);
                 
@@ -265,7 +288,8 @@ Throws : N/A
                         do{ 
                             apprFuncRet = UL_PromotionWorkflowService.approveWorkflow(promoId,promoLst,null,false) ;
                             promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name,CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c,  ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;        
-                        } while(apprFuncRet != null && !THViolate && promoLst[0].UL_Current_Status__c != UL_Utility.STATUS_APPROVED);
+                        } while(apprFuncRet != null && !THViolate && promoLst[0].UL_Current_Status__c != UL_Utility.STATUS_APPROVED
+                        && promoLst[0].UL_Current_Status__c != STATUS_BANDED_PACK);
                     }
                 }
             }
@@ -276,9 +300,31 @@ Throws : N/A
             
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_REJECT.toUpperCase())){
                 UL_PromotionWorkflowService.rejectWorkflow(promoId,promoLst,false);
-            }       
+            }
+            if(Mode.equalsIgnoreCase('EndDate')){           
+                //throw new UL_CustomException('end date....');
+                try{
+                    ACCL__Promotion__c promoObj = new ACCL__Promotion__c() ;
+                    List<ProcessInstance> procInstLst = new List<ProcessInstance>() ;
+                    
+                    promoObj = [SELECT UL_Threshold_Window_Result__c,Id, Name,CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c,  ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;        
+                    procInstLst = [SELECT Id,TargetObjectId,ProcessDefinition.Name From ProcessInstance Where TargetObjectId =: promoId] ;
+                    
+                    if(promoObj.UL_Current_Status__c == 'Approved' && promoObj.ACCL__Date_From__c <= system.Today() && promoObj.ACCL__Date_Thru__c >= system.Today()
+                        && procInstLst[0].ProcessDefinition.Name.containsIgnoreCase('parent')){
+                        promoObj.UL_Current_Status__c = 'End Date';
+                        update promoObj ;
+                    }
+                    else{
+                        throw new UL_CustomException('You can only End Date a non-parent promotion, which is in Approved state and currently running') ;
+                    }
+                }
+                catch(Exception excObj){
+                    throw excObj;
+                }
+            }      
+          }
         }
-		}
         catch(Exception ex){
             throw ex ;
           UL_Utility.logError(ex, UserInfo.getUserId());
@@ -372,7 +418,7 @@ Throws : N/A
             if(promoList[0].UL_PromotionTemplateType__c == 'LTA'){
                 //for(List<ACCL__Promotion__c> promList : [SELECT Id, ACCL__Promotion_Template__r.Name FROM ACCL__Promotion__c WHERE ACCL__Promotion_Template__r.Name = 'LTA - Long Term Agreement AR01']){
                     EARUI promoObject = new EARUI();
-                    promoObject.Name = 'Lift__c';
+                    promoObject.Name = 'UL_Lift__c';
                     promoObject.Type = UtilityEnum.Attribute.Name();
                     promoObject.visible = false;
                     earBOPromotion.add(promoObject);
@@ -421,14 +467,21 @@ Throws : N/A
                 }
                 
                 //Ketan - added the following code since 'Promotion Name' should always be readonly even Promotion is not in approval process.
-                /*Commenting for TPM-2316
-				EARUI promoObject = new EARUI();
+                /* Making Slogan editable for SoCo
+                EARUI promoObject = new EARUI();
                 promoObject.Name = Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Slogan__c.getName();
                 promoObject.Type = UtilityEnum.Attribute.Name();
                 promoObject.editable = false;  
                 earBOPromotion.add(promoObject);
                 */
-				
+                //------Hiding UKI Main layout----------
+                EARUI UKI_KPI = new EARUI();
+                UKI_KPI.Name = 'TILE_PROMO_MAIN_UKI';
+                UKI_KPI.Type = UtilityEnum.UIElement.Name();
+                UKI_KPI.Visible = false;  
+                earBOPromotion.add(UKI_KPI);
+                
+                
                 if(promoList[0].UL_EnableChild__c == true){
                     Map<String, Schema.SObjectField> fldObjMap = schema.SObjectType.ACCL__Promotion__c.fields.getMap();
                     for(String s : fldObjMap.keySet())
@@ -457,6 +510,14 @@ Throws : N/A
                     }
                 }
                 
+            }
+            else if(promoList[0].ACCL__Sales_Org__c == UL_Utility.UK_SO || promoList[0].ACCL__Sales_Org__c == UL_Utility.Ireland_SO){
+                //------Hiding SoCo Main Layout----------
+                EARUI SoCo_KPI = new EARUI();
+                SoCo_KPI.Name = 'TILE_PROMO_MAIN_SOCO';
+                SoCo_KPI.Type = UtilityEnum.UIElement.Name();
+                SoCo_KPI.Visible = false;  
+                earBOPromotion.add(SoCo_KPI);
             }
             //Added by Abhishek for the visibility control of buttons for UKI 
              List<EARUI> btList = new List<EARUI>();
@@ -941,7 +1002,7 @@ Returns: N/A
 Throws : N/A 
 ********************************************************************/     
     @RemoteAction
-    global static String invokePromotionThresholdCheckBOPromotion(String txId, String objectId){
+    global static String invokePromotionThresholdCheckBOPromotion(String txId, String objectId, String Mode){
         String result=UL_Utility.EMPTY_STRING;
         try{
             UL_ThresholdEngine.getThresholdKPI(txId,id.valueof(objectId),UtilityEnum.save.Name());
@@ -966,6 +1027,7 @@ Throws : N/A
 ********************************************************************/    
     public static String populateCannibalisationRate(String content, Set<String> productIdSet){
         try{
+            content = UL_PromotionContentReplace.replaceFieldContent(content);
             Map<String, Object> tacticDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(content);
             List<String> productIdList = new List<String>();
             Map<String, Object> boPromotion = (Map<String, Object>) tacticDeserializedMap.get(UtilityEnum.BOPromotion.Name());
@@ -982,7 +1044,7 @@ Throws : N/A
             }
             System.debug('productIdSet::::::'+productIdSet);
             if(!productIdSet.isEmpty()){
-                Map<Id, ACCL__Product__c> productMap = new Map<Id, ACCL__Product__c>([SELECT Id, ACCL__Product_Level__c, ACCL__Criterion_2_Product__c, ACCL__Criterion_2_Product__r.Name, ACCL__Criterion_3_Product__r.Name, ACCL__Criterion_4_Product__r.Name FROM ACCL__Product__c WHERE Id IN:productIdSet]);
+                Map<Id, ACCL__Product__c> productMap = new Map<Id, ACCL__Product__c>([SELECT Id, ACCL__Product_Level__c, ACCL__Criterion_2_Product__c, ACCL__Criterion_2_Product__r.Name, ACCL__Criterion_3_Product__c, ACCL__Criterion_3_Product__r.Name, ACCL__Criterion_4_Product__c, ACCL__Criterion_4_Product__r.Name FROM ACCL__Product__c WHERE Id IN:productIdSet]);
                 
                 if(!productMap.isEmpty()){
                     Set<Id> marketLevelIds = new Set<Id>();
@@ -1506,7 +1568,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                         tactFundsMap.put(tactFund.ACCL__Tactic__c,listFund);
                 }
                 else{
-                    List< ACCL__Tactic_Fund__c> listFund =tactFundsMap.get(tactFund.ACCL__Tactic__c);
+                    List< ACCL__Tactic_Fund__c> listFund =tactFundsMap.get('tactFund.ACCL__Tactic__c');
                     listFund.add(tactFund);
                     tactFundsMap.put(tactFund.ACCL__Tactic__c,listFund);
                 }
@@ -1591,6 +1653,9 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                 system.debug('e'+e);  
             }
         }
+        else{
+            Throw new updateException('There is no Child Promotion Templates with Push Usage');
+        }
         
         return child;
         
@@ -1633,7 +1698,9 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(promoParams);//deserializing the JSON from UI        
         Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');//Get the promotion in Map format        
         Long DateFromString =Long.valueOf(String.valueof(boPromotion.get('ACCL__Date_From__c')));
+        Long DateThrutring =Long.valueOf(String.valueof(boPromotion.get('ACCL__Date_Thru__c')));
         DateTime DateFrom = DateTime.newInstance(DateFromString);
+        DateTime DateThru = DateTime.newInstance(DateThrutring);
         List<Promotion_Acc_Rel__c> allPromoAccList=new List<Promotion_Acc_Rel__c>();
         allPromoAccList= getPromotionAccRel(promoParams);
         system.debug('DateFrom'+DateFrom);
@@ -1651,7 +1718,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         if(allIsCompleted==false){
             Throw new updateException('One of the Promotion Acc Rel Status is not completed');
         }
-        if(DateFrom > system.today() || (DateFrom < system.today() && promotemp.UL_Allow_past_Promotions__c== true)){
+        if(DateThru > system.today() || (DateThru < system.today() && promotemp.UL_Allow_past_Promotions__c== true)){
             List <ACCL__Promotion__c> childPromotions = new List <ACCL__Promotion__c>();
             ACCL__Promotion__c promo = new ACCL__Promotion__c();
             childPromotions=[SELECT id,UL_Parent_Push_Id__c,UL_EnableChild__c FROM ACCL__Promotion__c 
@@ -1673,6 +1740,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         // Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(promoParams);//deserializing the JSON from UI        
         //   Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');//Get the promotion in Map format 
         // List<Object> tacticList = (List<Object>) boPromotion.get('LOTactic');//Get the promotion in Map format 
+        system.debug('promoParams'+promoParams);
         List<Object> tacticTiersListFromJson = (List<Object>) JSON.deserializeUntyped(promoParams);
         List <TacticTier> tacticTiersList = new List <TacticTier>();
         for(Object obj : tacticTiersListFromJson){
@@ -1691,7 +1759,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
             if(!(tacticTiersList[i].fromValue < tacticTiersList[i].toValue)){
                 Throw new updateException('There is Minimum is bigger than maximum on line '+i);
             }
-            if(i!=j){
+            if(i!=((j-1))){
                 if(tacticTiersList[i+1].fromValue-tacticTiersList[i].toValue!= 1)
                     Throw new updateException('There is a gap between line '+(i+1)+' and line'+(i+2));
             }
@@ -1705,10 +1773,12 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
     global static List<LOExTacticTier> readLOExtTacticTiers(String txId,String readParams){
         List<LOExTacticTier> result = new List<LOExTacticTier>();
         Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(readParams);//deserializing the JSON from UI        
-        Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');//Get the promotion in Map format
+      /*  Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');//Get the promotion in Map format
         
         if (boPromotion != null) {
-            String promoID= String.valueOf(boPromotion.get('Id'));
+            String promoID= String.valueOf(boPromotion.get('Id'));*/
+            if (promoContentDeserializedMap != null) {
+            String promoID = String.valueOf(promoContentDeserializedMap.get('parentId'));
             
             if (promoID!=null) {
                 List <ACCL__Tactic__c> tacticList = new List<ACCL__Tactic__c>();
@@ -1716,7 +1786,11 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                 for(ACCL__Tactic__c tact : tacticList){
                     LOExTacticTier temp = new LOExTacticTier();
                     temp.tacticId=tact.id;
-                    temp.JSONTier=tact.UL_Tier_Definition__c;
+                    if (tact.UL_Tier_Definition__c != null) {
+                        temp.JSONTier = tact.UL_Tier_Definition__c;
+                    } else {
+                        temp.JSONTier = '[]';
+                    }
                     system.debug(temp);
                     result.add(temp);
                 }
@@ -1741,23 +1815,44 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         Decimal amount;
     }
     
-    @RemoteAction
-    global static void validateLOTacticFunds(String txId, String tacticFundParams){
-        List<Object> tacticFundList = (List<Object>) JSON.deserializeUntyped(tacticFundParams); //should change when the UI will sent the JSON example
-        Double sum=0;
-        for(Object o:tacticFundList){
-            Map<String,Object> temp = (Map<String,Object>)o;
-            if(double.valueOf(temp.get('UL_Allocation__c'))!=0){
-                sum=sum+(double.valueOf(temp.get('UL_Allocation__c')));
-                if(sum > 100){
-                    Throw new updateException('The allocation % is up then 100');
-                    
+
+    
+
+    
+    private static Boolean hasTacticAssignedFund(Id promotionId){
+        Boolean result = UL_Utility.BOOLEAN_FALSE;
+        
+        if(promotionId != null){        
+            //Get promotion sales org
+            ACCL__Promotion__c promotion = [SELECT ACCL__Sales_Org__c, (SELECT id FROM ACCL__Tactics__r) FROM ACCL__Promotion__c WHERE id=:promotionId];
+            
+            //Get parent sales org. E.g for AR01, parent sales org is SoCo
+            String parentSalesOrg = UL_Utility.getParentSalesOrg(promotion.ACCL__Sales_Org__c);
+            
+            //Validate only for SoCo org
+            if(String.isNotEmpty(promotion.ACCL__Sales_Org__c) && UL_Utility.SalesOrg.SoCo.Name().equalsIgnoreCase(parentSalesOrg)){    
+                Set<id> tacticIdSet = null;
+                if(promotion.ACCL__Tactics__r != null){
+                    tacticIdSet = new Set<id>();
+                    for(ACCL__Tactic__c tactic: promotion.ACCL__Tactics__r){
+                        tacticIdSet.add(tactic.id);
+                    }
                 }
-                else
-                    Throw new updateException('The fund' + String.valueOf(temp.get('ACCL__Fund__c')) + ' is selected and the allocation is 0%');
+                
+                if(tacticIdSet != null && tacticIdSet.size() > 0){
+                    for(ACCL__Tactic_Fund__c tacticFund : [SELECT ACCL__Tactic__c FROM ACCL__Tactic_Fund__c WHERE ACCL__Tactic__c IN :tacticIdSet]){
+                        tacticIdSet.remove(tacticFund.ACCL__Tactic__c);
+                    }
+                
+                    if(tacticIdSet.size() == 0){
+                        result = UL_Utility.BOOLEAN_TRUE;
+                    }
+                }
             }
-        } 
+        }
+        return result;    
     }
+    
     
     @RemoteAction
    global static List<Map<String,Object>> readLOFilteredFunds(String txId, String promotionContent) {
@@ -1826,39 +1921,166 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         return result2;    
     }
     
-    private static Boolean hasTacticAssignedFund(Id promotionId){
-        Boolean result = UL_Utility.BOOLEAN_FALSE;
-        
-        if(promotionId != null){        
-            //Get promotion sales org
-            ACCL__Promotion__c promotion = [SELECT ACCL__Sales_Org__c, (SELECT id FROM ACCL__Tactics__r) FROM ACCL__Promotion__c WHERE id=:promotionId];
-            
-            //Get parent sales org. E.g for AR01, parent sales org is SoCo
-            String parentSalesOrg = UL_Utility.getParentSalesOrg(promotion.ACCL__Sales_Org__c);
-            
-            //Validate only for SoCo org
-            if(String.isNotEmpty(promotion.ACCL__Sales_Org__c) && UL_Utility.SalesOrg.SoCo.Name().equalsIgnoreCase(parentSalesOrg)){    
-                Set<id> tacticIdSet = null;
-                if(promotion.ACCL__Tactics__r != null){
-                    tacticIdSet = new Set<id>();
-                    for(ACCL__Tactic__c tactic: promotion.ACCL__Tactics__r){
-                        tacticIdSet.add(tactic.id);
-                    }
-                }
-                
-                if(tacticIdSet != null && tacticIdSet.size() > 0){
-                    for(ACCL__Tactic_Fund__c tacticFund : [SELECT ACCL__Tactic__c FROM ACCL__Tactic_Fund__c WHERE ACCL__Tactic__c IN :tacticIdSet]){
-                        tacticIdSet.remove(tacticFund.ACCL__Tactic__c);
-                    }
-                
-                    if(tacticIdSet.size() == 0){
-                        result = UL_Utility.BOOLEAN_TRUE;
-                    }
-                }
+     @RemoteAction
+    global static void validateLOFund(String txId, String tacticFundParams){
+        List<Object> tacticFundList = (List<Object>) JSON.deserializeUntyped(tacticFundParams); //should change when the UI will sent the JSON example
+        Double sum=0;
+        system.debug(''+tacticFundList);
+        for(Object o:tacticFundList){
+            Map<String,Object> temp = (Map<String,Object>)o;
+            system.debug('o'+o);
+            if(double.valueOf(temp.get('UL_Allocation__c'))!=0.0){
+            sum=sum+(double.valueOf(temp.get('UL_Allocation__c')));
+            if(sum > 100){
+                 Throw new updateException('The allocation % is up then 100');
+
             }
-        }
-        return result;    
+            else
+                if(temp.get('UL_Allocation__c')==0.0)
+                Throw new updateException('The fund' + String.valueOf(temp.get('ACCL__Fund__c')) + ' is selected and the allocation is 0%');
+            }
+        } 
     }
+      
+    
+      //VERISON OF 23.1
+     public static void writeLOTacticFund(String promoParams){
+         Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(promoParams);//deserializing the JSON from UI        
+         Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');//Get the promotion in Map format 
+        List<Object> fundList = (List<Object>) boPromotion.get('LOFund');//Get the Fund in Map format 
+        String promoid = String.valueOf(boPromotion.get('Id'));
+        List<ACCL__Tactic_Fund__c>tacFundresult =[SELECT id,ACCL__Fund__c,UL_Allocation__c,UL_Amount_Allocated__c,ACCL__Tactic__c FROM ACCL__Tactic_Fund__c WHERE ACCL__Tactic__r.ACCL__Promotion__c =:  promoid ];
+        Map<String,Map<String,ACCL__Tactic_Fund__c>> tactFundfromJSON = new Map<String,Map<String,ACCL__Tactic_Fund__c>>();
+        Map<String,ACCL__Tactic_Fund__c> tacfunmap = new Map<String,ACCL__Tactic_Fund__c>();
+        Map<String,Map<String,ACCL__Tactic_Fund__c>> tacfunmap2 = new Map<String,Map<String,ACCL__Tactic_Fund__c>>();
+                List<ACCL__Tactic_Fund__c> tacFundToaddOrUpdate = new List<ACCL__Tactic_Fund__c>();
+        
+        List<ACCL__Tactic_Fund__c> tacFundTodelete = new List<ACCL__Tactic_Fund__c>();
+        For(ACCL__Tactic_Fund__c acc:tacFundresult ){
+            Map<String,ACCL__Tactic_Fund__c> temp =New Map<String,ACCL__Tactic_Fund__c>();
+            if(tacfunmap2.containsKey(acc.ACCL__Fund__c)){
+                temp=tacfunmap2.get(acc.ACCL__Fund__c);
+                temp.put(acc.ACCL__Tactic__c,acc);
+                }
+            else
+                temp.put(acc.ACCL__Tactic__c,acc);
+            tacfunmap2.put(acc.ACCL__Fund__c,temp);
+        }
+        
+        Map<String,Object> tactfundMap = new Map<String,Object>();
+        For(Object o : fundList){
+            Map<String, Object> temp = (Map<String, Object>) o;
+            String fundId = String.valueOf(temp.get('Id'));
+            //Tactics is received like 'tactics'
+            //List<Object> taclist= (List<Object>) temp.get('Tactics');
+            List<Object> taclist= (List<Object>) temp.get('tactics');
+            system.debug('temp tactics '+temp.get('tactics'));
+            for(Object tacto:taclist){
+                Map<String, Object> temp2 = (Map<String, Object>) tacto;
+                String tactId = String.valueOf(temp2.get('tacticId'));                
+                if(tacfunmap2.containsKey(fundId)){
+                    if(tacfunmap2.get(fundId).containsKey(tactId)){
+                        ACCL__Tactic_Fund__c newtac = new ACCL__Tactic_Fund__c();
+                        newtac=tacfunmap2.get(fundId).get(tactId);
+                        
+                        newtac.UL_Allocation__c=Decimal.valueOf(String.valueOf(temp2.get('UL_Allocation__c')));
+                        String allocated=String.valueOf(temp2.get('UL_Amount_Allocated__c'));
+                        String amountAllocated='';
+                        if(allocated.contains(','))
+                            amountAllocated=allocated.remove(',');
+                        else
+                            amountAllocated=allocated;
+                        newtac.UL_Amount_Allocated__c=Decimal.valueOf(amountAllocated);
+                        //newtac.UL_Amount_Allocated__c=150;
+                        //newtac.UL_Allocation__c=40;
+                        tacFundToaddOrUpdate.add(newtac);
+                        tacfunmap.put(newtac.id,newtac);
+                    }
+                }
+                else{
+                    ACCL__Tactic_Fund__c newtac = new ACCL__Tactic_Fund__c();
+                    newtac.UL_Allocation__c=Decimal.valueOf(String.valueOf(temp2.get('UL_Allocation__c')));
+                        String allocated=String.valueOf(temp2.get('UL_Amount_Allocated__c'));
+                        String amountAllocated='';
+                        if(allocated.contains(','))
+                            amountAllocated=allocated.remove(',');
+                        else
+                            amountAllocated=allocated;
+                        newtac.UL_Amount_Allocated__c=Decimal.valueOf(amountAllocated);
+                    //newtac.UL_Amount_Allocated__c=120;
+                    //newtac.UL_Allocation__c=80;
+                    newtac.ACCL__Tactic__c=tactId;
+                    newtac.ACCL__Fund__c=fundId;
+                    tacFundToaddOrUpdate.add(newtac);                  
+               }
+            
+            }
+            
+        }
+
+        
+        For(ACCL__Tactic_Fund__c tacfund : tacFundresult){
+            if(!tacfunmap.containsKey(tacfund.id)){
+                tacFundTodelete.add(tacfund);
+            }
+
+        }
+        
+        system.debug(tacFundToaddOrUpdate);
+        upsert tacFundToaddOrUpdate;
+        delete tacFundTodelete;
+    
+}
+ /***************************************************************    
+Name: AuditData
+Copyright © 2016 Accenture
+======================================================
+Purpose:
+Wrapper class to send Audit content to SmartUI
+======================================================
+History
+-------
+VERSION     AUTHOR        DATE           DETAIL                 Description
+1.0         Abhishek      18/01/2017     INITIAL DEV            
+***************************************************************/
+    global class AuditData{
+        public String newValue;
+        public String oldValue;
+        public String userName;
+        public String dt ;
+    }
+    /*******************************************************************
+Purpose:   
+Version 1.0
+Parameters: Transaction Id, Promotion Id
+Returns: List of Audit Data custom object
+Throws : N/A 
+********************************************************************/
+   @RemoteAction
+    global static List<AuditData> invokeAuditTrailBOPromotion(String txId, String objectId, String Mode){
+        List<AuditData> auditDataList = new List<AuditData>();
+            try{
+            
+            //Map<String, Object> unTypedMap = (Map<String, Object>)JSON.deserializeUntyped(objectId);
+            //Id promoId = (Id)unTypedMap.get(UtilityEnum.Id.Name()); 
+              Id promoId = objectId;
+            
+                for(ACCL__Promotion__History promHis: [SELECT CreatedBy.name,CreatedDate,NewValue,OldValue FROM ACCL__Promotion__History  where parentid = :promoId]){
+                    if(promHis.NewValue != Null && promHis.OldValue != Null){
+                        AuditData auditContent = new AuditData();
+                        auditContent.newValue = (string)promHis.NewValue;
+                        auditContent.oldValue = (string)promHis.OldValue;
+                        auditContent.userName = promHis.CreatedBy.name;
+                        auditContent.dt = String.Valueof(promHis.CreatedDate);
+                        auditDataList.add(auditContent); 
+                    }
+                }
+              
+            }catch(Exception ex){
+            UL_Utility.logError(ex, UserInfo.getUserId());
+            }
+             return  auditDataList;
+       }
     /** readLOExtProducts method reads Ext product
      *  @name   :  readLOExtProducts
      *  @param  :  PromotionId  PromotionId
