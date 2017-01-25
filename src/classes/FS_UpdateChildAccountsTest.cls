@@ -17,7 +17,7 @@ private class FS_UpdateChildAccountsTest{
             accVar.FS_supplyCost__c=1.43;
             insert accVar;
             
-            FS_UpdateChildAccounts.updateChildAccounts(accVar.id,accVar.FS_onInvoice__c,accVar.FS_offInvoice__c,accVar.FS_supplyCost__c);
+            FS_UpdateChildAccounts.updateChildAccounts(accVar.id);
             
             Account accVarChild = new Account();
             accVarChild.name = 'FS Test Child Record';
@@ -29,7 +29,7 @@ private class FS_UpdateChildAccountsTest{
             insert accVarChild;
             Test.StopTest();
             
-            FS_UpdateChildAccounts.updateChildAccounts(accVar.id,accVar.FS_onInvoice__c,accVar.FS_offInvoice__c,accVar.FS_supplyCost__c);
+            FS_UpdateChildAccounts.updateChildAccounts(accVar.id);
        }    
     }
  }

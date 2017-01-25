@@ -9,3 +9,5 @@ src/objects/Account.object
 src/layouts/Account-Feed Based Distributor Russia.layout
 src/permissionsets/FS_Admin.permissionset
 src/permissionsets/FS_RussiaSalesRep.permissionset
+src/classes/FS_Utility.cls
+src/classes/FS_Utility.cls-meta.xml
