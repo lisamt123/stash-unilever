@@ -6006,6 +6006,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
 	<fields>
+        <fullName>BFM_Active_CNPJ__c</fullName>
+        <externalId>true</externalId>
+        <label>BFM_Active_CNPJ</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+	<fields>
         <fullName>BFM_CNPJ__c</fullName>
         <externalId>true</externalId>
         <label>CNPJ</label>
