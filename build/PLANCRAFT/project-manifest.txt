@@ -74,3 +74,10 @@ src/pages/PBS_TrainingTrackDetail.page
 src/pages/PBS_TrainingTrackDetail.page-meta.xml
 src/pages/PBS_TrainingCatalogDetail.page
 src/pages/PBS_TrainingCatalogDetail.page-meta.xml
+src/pages/PBS_CustomReportPage.page
+src/pages/PBS_CustomReportPage.page-meta.xml
+src/classes/PBS_CustomReport.cls
+src/classes/PBS_CustomReport.cls-meta.xml
+src/permissionsets
+src/permissionsets/PBS_LMS_User.permissionset
+src/permissionsets/PBS_LMS_Admin.permissionset

@@ -1,0 +1,71 @@
+<apex:page controller="PBS_CustomReport" showHeader="false" sidebar="true" standardStylesheets="false">
+    <apex:form >
+    <html>
+        <head>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+            <style>
+            	thead {background-color: #1ACCE3;}
+            </style>
+        </head>
+        <body>
+            <div class="table-responsive">
+              <table class="table">
+                  <thead>
+                  	  <th>Training Track Name</th>
+                      <th>Created Date</th>
+                      <th>Expected Completion Date</th>
+                      <th>Status</th>
+                      <th>Completed On</th>
+                      <th>Duration</th>
+                      <th>Thirty Days Completed</th>
+                      <th>PC_Category</th>
+                      <th>Country</th>
+                      <th>Manager</th>
+                      <th>Geography</th>
+                      <th>Work Level</th>
+                      <th>User Role</th>
+                  </thead>
+                  <tbody>
+                       <apex:repeat value="{!tpAssignmentMap}" var="tpa">
+                          <apex:repeat value="{!reportDataMap[tpa]}" var="p">
+                                  <tr>
+                                     <td>{!ttlavelitemMap2[tpa].Training_Track_Level__r.Training_Track__r.name}</td>
+                                     <td>
+                                         <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+											<apex:param value="{!tpAssignmentMap[tpa].CreatedDate}" />
+										</apex:outputText>
+                                         </td>
+                                     <td>
+										<apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+											<apex:param value="{!tpAssignmentMap[tpa].Expected_Completion_Date__c}" />
+										</apex:outputText>
+									</td>
+                                      <td>{!tpAssignmentMap[tpa].Status__c}</td>
+                                     <td>
+										<apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+											<apex:param value="{!tpAssignmentMap[tpa].Completed_On__c}" />
+										</apex:outputText>
+									 </td>
+                                     <td>{!tpAssignmentMap[tpa].Duration__c}</td>
+                                     <td>{!tpAssignmentMap[tpa].Thirty_Days_Completed__c}</td>
+                                     <td>{!reportDataMap[tpa][p].Category__c}</td>
+                                     <td>{!reportDataMap[tpa][p].User__r.Country}</td>
+									 <td>{!reportDataMap[tpa][p].User__r.Manager.Name}</td>
+                                     <td>{!reportDataMap[tpa][p].Geography__c}</td>
+                                     <td>{!reportDataMap[tpa][p].Work_Level__c}</td>
+                                     <td>{!reportDataMap[tpa][p].user_role__r.Name}</td>
+                                 </tr>
+                          </apex:repeat>
+                      </apex:repeat>
+                    </tbody>
+              </table>
+            </div>
+            
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            
+        </body>
+    </html> 
+    </apex:form>
+</apex:page>
