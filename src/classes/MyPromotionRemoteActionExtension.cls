@@ -1366,7 +1366,7 @@ childIdList.add(String.valueOf(oMap.get('ChildAccountID')));
         Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(objectContent);//deserializing the JSON from UI        
         Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');//Get the promotion in Map format
         String promoID= String.valueOf(boPromotion.get('Id'));
-        String promoSlogan= String.valueOf(boPromotion.get('Slogan_Language_1__c'));
+        String promoSlogan= String.valueOf(boPromotion.get('ACCL__Slogan_Language_1__c'));
         
         if(boPromotion.get('ACCL__Anchor_Account__c') !=null)
             parentAccountId=String.valueOf(boPromotion.get('ACCL__Anchor_Account__c'));
@@ -1567,7 +1567,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                         tactFundsMap.put(tactFund.ACCL__Tactic__c,listFund);
                 }
                 else{
-                    List< ACCL__Tactic_Fund__c> listFund =tactFundsMap.get('tactFund.ACCL__Tactic__c');
+                    List< ACCL__Tactic_Fund__c> listFund =tactFundsMap.get(tactFund.ACCL__Tactic__c);
                     listFund.add(tactFund);
                     tactFundsMap.put(tactFund.ACCL__Tactic__c,listFund);
                 }
@@ -1611,11 +1611,21 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                         ACCL__Tactic__c newt = t.clone();
                         newT.ACCL__Promotion__c= clonepromo.id;
                         tactToInsert.put(newt,t.id);
-                        
+                         insert newT;
+                        List<ACCL__Tactic_Fund__c> tactFuntocopy = new List<ACCL__Tactic_Fund__c>();
+                          if(tactFundsMap.containsKey(t.id)){
+                                tactFuntocopy=tactFundsMap.get(t.id);
+                                for(ACCL__Tactic_Fund__c tf : tactFuntocopy){
+                                    ACCL__Tactic_Fund__c tfclone = tf.clone();
+                                    tfclone.ACCL__Tactic__c=newT.id;
+                                    tactFundsListToInsert.add(tfclone);
+                                    system.debug('tactFundsListToInsert'+tactFundsListToInsert);   
+                                }
+                            }
                     }}
                 // }
                 List<ACCL__Tactic__c> tactToInsertlist = new List<ACCL__Tactic__c> (tactToInsert.keySet());
-                if(!tactToInsertlist.isEmpty()){
+              /*  if(!tactToInsertlist.isEmpty()){
                     insert tactToInsertlist;
                     
                     if(!tactFundsListToInsert.isEmpty()){
@@ -1631,7 +1641,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                             }
                         }
                     }
-                }
+                }*/
                 if(!tactFundsListToInsert.isEmpty()){ 
                     insert tactFundsListToInsert;
                 }
@@ -1922,9 +1932,11 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
     
      @RemoteAction
     global static void validateLOFund(String txId, String tacticFundParams){
+        tacticFundParams=UL_PromotionContentReplace.replaceFieldContent(tacticFundParams);
         List<Object> tacticFundList = (List<Object>) JSON.deserializeUntyped(tacticFundParams); //should change when the UI will sent the JSON example
         Double sum=0;
         system.debug(''+tacticFundList);
+        if(!tacticFundList.isEmpty()){
         for(Object o:tacticFundList){
             Map<String,Object> temp = (Map<String,Object>)o;
             system.debug('o'+o);
@@ -1938,12 +1950,17 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                 if(temp.get('UL_Allocation__c')==0.0)
                 Throw new updateException('The fund' + String.valueOf(temp.get('ACCL__Fund__c')) + ' is selected and the allocation is 0%');
             }
-        } 
+        }
+            if(sum != 100){
+                 Throw new updateException('The allocation % is different then 100');
+
+            }
+        }
     }
-      
     
         //VERISON OF 23.1
      public static void writeLOTacticFund(String promoParams){
+         promoParams=UL_PromotionContentReplace.replaceFieldContent(promoParams);
          Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(promoParams);//deserializing the JSON from UI        
          Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');//Get the promotion in Map format 
         List<Object> fundList = (List<Object>) boPromotion.get('LOFund');//Get the Fund in Map format 
