@@ -29,6 +29,13 @@
         <shortDescription>use in Workflow Threshold Engine</shortDescription>
         <value>Planner or Self can&apos;t be approve. Only assignee of this Promotion to advance it to next Workflow State</value>
     </labels>
+	<labels>
+        <fullName>Maximum_LTA_Duration</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Maximum_LTA_Duration</shortDescription>
+        <value>LTA duration is exceeding maximum permissible value</value>
+    </labels>
     <labels>
         <fullName>Duplicate_for_Delivery_profile</fullName>
         <language>en_GB</language>
