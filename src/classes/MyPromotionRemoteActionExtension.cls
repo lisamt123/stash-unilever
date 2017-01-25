@@ -479,12 +479,7 @@ Throws : N/A
                 promoObject.editable = false;  
                 earBOPromotion.add(promoObject);
                 */
-                
-<<<<<<< HEAD
                 //------Hiding UKI Main layout----------
-=======
-                //------Hiding UKI KPIs----------
->>>>>>> 109a71670804439092df13a6846484365f3dbf5f
                 EARUI UKI_KPI = new EARUI();
                 UKI_KPI.Name = 'TILE_PROMO_MAIN_UKI';
                 UKI_KPI.Type = UtilityEnum.UIElement.Name();
@@ -522,11 +517,7 @@ Throws : N/A
                 
             }
             else if(promoList[0].ACCL__Sales_Org__c == UL_Utility.UK_SO || promoList[0].ACCL__Sales_Org__c == UL_Utility.Ireland_SO){
-<<<<<<< HEAD
                 //------Hiding SoCo Main Layout----------
-=======
-                //------Hiding SoCo KPIs----------
->>>>>>> 109a71670804439092df13a6846484365f3dbf5f
                 EARUI SoCo_KPI = new EARUI();
                 SoCo_KPI.Name = 'TILE_PROMO_MAIN_SOCO';
                 SoCo_KPI.Type = UtilityEnum.UIElement.Name();
@@ -1056,7 +1047,7 @@ Throws : N/A
             }
             System.debug('productIdSet::::::'+productIdSet);
             if(!productIdSet.isEmpty()){
-                Map<Id, ACCL__Product__c> productMap = new Map<Id, ACCL__Product__c>([SELECT Id, ACCL__Product_Level__c, ACCL__Criterion_2_Product__c, ACCL__Criterion_2_Product__r.Name, ACCL__Criterion_3_Product__r.Name, ACCL__Criterion_4_Product__r.Name FROM ACCL__Product__c WHERE Id IN:productIdSet]);
+                Map<Id, ACCL__Product__c> productMap = new Map<Id, ACCL__Product__c>([SELECT Id, ACCL__Product_Level__c, ACCL__Criterion_2_Product__c, ACCL__Criterion_2_Product__r.Name, ACCL__Criterion_3_Product__c, ACCL__Criterion_3_Product__r.Name, ACCL__Criterion_4_Product__c, ACCL__Criterion_4_Product__r.Name FROM ACCL__Product__c WHERE Id IN:productIdSet]);
                 
                 if(!productMap.isEmpty()){
                     Set<Id> marketLevelIds = new Set<Id>();
