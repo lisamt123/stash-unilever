@@ -283,7 +283,7 @@
         <readable>false</readable>
     </fieldPermissions>
 	<fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>BFM_Email_Information__c.Carrier_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>

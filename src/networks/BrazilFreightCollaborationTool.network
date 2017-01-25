@@ -35,7 +35,7 @@
     </networkMemberGroups>
     <selfRegistration>true</selfRegistration>
     <sendWelcomeEmail>true</sendWelcomeEmail>
-    <site>Brazil_Freight_Collaboration_Tool</site>
+    <site>BrazilFreightCollaborationTool</site>
     <status>Live</status>
     <tabs>
         <customTab>BFM_Search_Shipment</customTab>

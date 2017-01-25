@@ -243,7 +243,6 @@ src/profiles/BFM Internal User.profile
 src/profiles/BFM Partner Community User.profile
 src/queues/BFM_User_Creation_Request_Approvers.queue
 src/quickActions/BFM_Shipment__c.Mark_6th_Flag.quickAction
-src/sites/BrazilFreightCollaborationTool.site
 src/staticresources/BFM_Bootstrap.resource
 src/staticresources/BFM_Bootstrap.resource-meta.xml
 src/staticresources/BFM_Green.resource
@@ -279,7 +278,8 @@ src/triggers/BFM_UserCreationRequest.trigger
 src/triggers/BFM_UserCreationRequest.trigger-meta.xml
 src/triggers/BFM_NFEvalidation.trigger
 src/triggers/BFM_NFEvalidation.trigger-meta.xml
-src/networks/Brazil Freight Collaboration Tool.network
+src/sites/BrazilFreightCollaborationTool.site
+src/networks/BrazilFreightCollaborationTool.network
 src/workflows
 src/workflows/BFM_AccountAccessRequest__c.workflow
 src/workflows/BFM_Bank_Information__c.workflow
