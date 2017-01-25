@@ -282,11 +282,6 @@
         <field>BFM_Email_Information__c.Address_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
-	<fieldPermissions>
-        <editable>false</editable>
-        <field>BFM_Email_Information__c.Carrier_Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_Email_Information__c.Contact_Number__c</field>

@@ -3,8 +3,6 @@
     <allowMembersToFlag>false</allowMembersToFlag>
     <branding>
         <loginFooterText>salesforce.com</loginFooterText>
-        <loginLogo>Communities_Shared_Document_Folder/BFM_UnileverLogo1_jpg2.jpg</loginLogo>
-        <pageHeader>Communities_Shared_Document_Folder/UnileverNew.jpg</pageHeader>
         <primaryColor>#1797C0</primaryColor>
         <primaryComplementColor>#FFFFFF</primaryComplementColor>
         <quaternaryColor>#7BB8F5</quaternaryColor>
@@ -17,7 +15,7 @@
     </branding>
     <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
     <emailSenderAddress>leena.nandimandalam@capgemini.com</emailSenderAddress>
-    <emailSenderName>Brazil Freight Collaboration Tool</emailSenderName>
+    <emailSenderName>BrazilFreightCollaborationTool</emailSenderName>
     <enableGuestChatter>false</enableGuestChatter>
     <enableInvitation>false</enableInvitation>
     <enableKnowledgeable>false</enableKnowledgeable>
@@ -30,8 +28,7 @@
         <permissionSet>BFM_Carriers_Administrative</permissionSet>
         <permissionSet>BFM_Carrier_Operational_User</permissionSet>
         <profile>admin</profile>
-        <profile>partner community login user</profile>
-        <profile>bfm partner community user</profile>
+        <profile>BFM Partner Community User</profile>
     </networkMemberGroups>
     <selfRegistration>true</selfRegistration>
     <sendWelcomeEmail>true</sendWelcomeEmail>
