@@ -1,7 +1,7 @@
 public class BFM_CreateContactFromEmailInformation {
     public static void createContactsFromEmails(List<BFM_Email_Information__c> emailsInserted){
         List<Contact> contacts = new LisT<Contact>();
-        RecordType carrierContact = [SELECT Id FROM RecordType WHERE DeveloperName = 'Carrier_Contact' LIMIT 1];
+        RecordType carrierContact = [SELECT Id FROM RecordType WHERE DeveloperName = 'BFM_Carrier_Contact' LIMIT 1];
         for(BFM_Email_Information__c emailInserted: emailsInserted){
             Contact c;
             if(emailInserted.email__c != null){

@@ -5984,7 +5984,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Checkbox</type>
     </fields>
 	<fields>
-        <fullName>Carrier_Name__c</fullName>
+        <fullName>BFM_Carrier_Name__c</fullName>
         <externalId>false</externalId>
         <label>Carrier Name</label>
         <length>255</length>

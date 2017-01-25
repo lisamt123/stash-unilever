@@ -5407,7 +5407,7 @@
         </picklistValues>
     </recordTypes>
 	<recordTypes>
-        <fullName>Carrier_Contact</fullName>
+        <fullName>BFM_Carrier_Contact</fullName>
         <active>true</active>
         <description>Contact representing one Carrier User.</description>
         <label>Carrier Contact</label>
