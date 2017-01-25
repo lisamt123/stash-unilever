@@ -19469,7 +19469,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <listViews>
         <fullName>IPM_a7I0L000000H5qc_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000H5qc</label>
+        <label>IPM_U GRANDCTRL CA</label>
         <queue>IPM_a7I0L000000H5qc</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -21638,7 +21638,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <listViews>
         <fullName>IPM_a7I0L000000HAhY_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000HAhY</label>
+        <label>IPM_D KHALEESI</label>
         <queue>IPM_a7I0L000000HAhY</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -21667,6 +21667,69 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <filterScope>Queue</filterScope>
         <label>IPM_a7I0L000000HAhn</label>
         <queue>IPM_a7I0L000000HAhn</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HAhs_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000HAhs</label>
+        <queue>IPM_a7I0L000000HAhs</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HAi7_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000HAi7</label>
+        <queue>IPM_a7I0L000000HAi7</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HAiC_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000HAiC</label>
+        <queue>IPM_a7I0L000000HAiC</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HAiq_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000HAiq</label>
+        <queue>IPM_a7I0L000000HAiq</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HAiv_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000HAiv</label>
+        <queue>IPM_a7I0L000000HAiv</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HAj0_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_HEART CORE W2_N&amp;R</label>
+        <queue>IPM_a7I0L000000HAj0</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HAj5_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MTX BOND_EU</label>
+        <queue>IPM_a7I0L000000HAj5</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

@@ -17,7 +17,7 @@
         <name>Brand_Centre_Management</name>
     </customApplications>
     <customApplications>
-        <label><!-- CEC Admin --></label>
+        <label>CEC Yöneticisi</label>
         <name>CEC_Admin</name>
     </customApplications>
     <customApplications>
@@ -1025,19 +1025,19 @@
         <name>Business_Case_Update_Needed_Value</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Account_Site --></label>
+        <label>Hesap sayfası</label>
         <name>CEC_Account_Site</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Address --></label>
+        <label>Adres</label>
         <name>CEC_Address</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_AlertActionSchedulerName --></label>
+        <label>CEC AlarmAksiyon Planlayıcı</label>
         <name>CEC_AlertActionSchedulerName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Brand --></label>
+        <label>Marka</label>
         <name>CEC_Brand</name>
     </customLabels>
     <customLabels>
@@ -1049,131 +1049,131 @@
         <name>CEC_CBM_NotificationBodyHeader</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CBM_NotificationSubject --></label>
+        <label>CEC Alarmı: Eksik VakaMarkaHaritası değeri</label>
         <name>CEC_CBM_NotificationSubject</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseAccountMissing --></label>
+        <label>Vakaya eklenmiş Kayıt olmadan oluşturulamaz</label>
         <name>CEC_CaseAccountMissing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseAccountPersonDetailsError --></label>
+        <label>Gerçekleştirme için Sokak/Şehir/Ülke/Posta Kodu bilgilerinden biri olmalı</label>
         <name>CEC_CaseAccountPersonDetailsError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseCountryVerbitimMessage --></label>
+        <label>Ülke ve Açıklama zorunlu</label>
         <name>CEC_CaseCountryVerbitimMessage</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseNumber --></label>
+        <label>Vaka#</label>
         <name>CEC_CaseNumber</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC CaseRefreshAlertError --></label>
+        <label>Lütfen değişiklikleri vaka dosyanıza kaydedin ve Anketler için \&apos;Vaka Aksiyonu\&apos; sekmesini kontrol edin</label>
         <name>CEC_CaseRefreshAlertError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Case_Factory_Survey_Reference --></label>
+        <label>Fabrika Analiz Anketi</label>
         <name>CEC_Case_Factory_Survey_Reference</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab cannot be opened --></label>
+        <label>Hata: İlk sekme açılamıyor</label>
         <name>CEC_Case_TabNotOpened</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Category --></label>
+        <label>Kategori</label>
         <name>CEC_Category</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_ChequeNo_Already_Added --></label>
+        <label>Çek numarası daha önce eklendi</label>
         <name>CEC_ChequeBook_ChequeNo_Already_Added</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_DetailsMissing --></label>
+        <label>Bu Marka &amp; Ürün Kategorisi için aktif çek süreci yok</label>
         <name>CEC_ChequeBook_DetailsMissing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_MaxLimt_reached --></label>
+        <label>Çek defteri maksimum limitine ulaşıldı</label>
         <name>CEC_ChequeBook_MaxLimt_reached</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_Input_Fields_Missing --></label>
+        <label>Marka, Ülke veya Ürün Kategorisi bilgisi eksik</label>
         <name>CEC_ChequeBook_input_fields_missing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_City --></label>
+        <label>Şehir</label>
         <name>CEC_City</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ClickHere --></label>
+        <label>Buraya Basın!</label>
         <name>CEC_ClickHere</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab not refresh --></label>
+        <label>Lütfen yeni bir tüketici eklemeden önce vakanızdaki değişiklikleri kaydedin</label>
         <name>CEC_Console_Message1</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab cannot be opened --></label>
+        <label>Birincil sekme açılamıyor</label>
         <name>CEC_Console_Message2</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error Occured --></label>
+        <label>Hata: Bir Hata Oluştu</label>
         <name>CEC_Console_Message3</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerCreateContactButtonDisplay --></label>
+        <label>Yeni bir kayıt oluştur</label>
         <name>CEC_ConsumerCreateContactButtonDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerInfoDisplay --></label>
+        <label>Bilgi: Tüketici Vakaya önceden eklendi</label>
         <name>CEC_ConsumerInfoDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerNotFoundInfo --></label>
+        <label>Tüketici bulunamadı?</label>
         <name>CEC_ConsumerNotFoundInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsDisplay --></label>
+        <label>Sonuçlar</label>
         <name>CEC_ConsumerResultsDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsNoMatchTitle --></label>
+        <label>Eşleşme Bulunamadı</label>
         <name>CEC_ConsumerResultsNoMatchTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsTitleDisplay --></label>
+        <label>Arama sonuçları:</label>
         <name>CEC_ConsumerResultsTitleDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerSearchDisplay --></label>
+        <label>Arama</label>
         <name>CEC_ConsumerSearchDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Consumer Duplicate Error --></label>
+        <label>Çift kayıt nedeniyle tüketici yaratılamadı</label>
         <name>CEC_Consumer_Duplicate_Error</name>
     </customLabels>
     <customLabels>
-        <label><!-- To Display Click Ok to replace the existing Consumer or Cancel to return to the --></label>
+        <label>Varolan Tüketiciyi değiştirmek için OK&apos;a veya Konsol Sayfasına dönmek için İptal&apos;e basın</label>
         <name>CEC_Consumer_Message1</name>
     </customLabels>
     <customLabels>
-        <label><!-- Update action cannot be performed. --></label>
+        <label>Güncelleme yapılamıyor. Tüketici kaydı, daha önceden vaka kaydı ile kaydedildi.</label>
         <name>CEC_Consumer_Record_Update</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Country --></label>
+        <label>Ülke</label>
         <name>CEC_Country</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Country_region --></label>
+        <label>Ülke/bölge</label>
         <name>CEC_Country_region</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CreateContactDisplay --></label>
+        <label>Kayıt Oluştur</label>
         <name>CEC_CreateContactDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- Create_Button --></label>
+        <label>Oluştur</label>
         <name>CEC_Create_Button</name>
     </customLabels>
     <customLabels>
@@ -1193,255 +1193,255 @@
         <name>CEC_DebitCardDetails_No_Active_DebitCard_For_Country</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Detail_Request_Info --></label>
+        <label>Lütfen hangi ayrıntıların bilinmekte olduğunu belirtin</label>
         <name>CEC_Detail_Request_Info</name>
     </customLabels>
     <customLabels>
-        <label><!-- records are being displayed --></label>
+        <label>Kayıtlar gösteriliyor</label>
         <name>CEC_Display_Records</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Distance --></label>
+        <label>Uzaklık</label>
         <name>CEC_Distance</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Email required message --></label>
+        <label>Mail: Değer girmelisiniz</label>
         <name>CEC_Email</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Email_Label --></label>
+        <label>Mail</label>
         <name>CEC_Email_Label</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_FirstName --></label>
+        <label>Dosya Adı</label>
         <name>CEC_FirstName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Fulfilment_PostOption_Complaints --></label>
+        <label>Şikayet</label>
         <name>CEC_Fulfilment_PostOption_Complaints</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Fulfilment_PostOption_otherwise --></label>
+        <label>aksi takdirde</label>
         <name>CEC_Fulfilment_PostOption_otherwise</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_InvalidChatterGroupName --></label>
+        <label>Geçersiz Chatter Grup Adı :</label>
         <name>CEC_InvalidChatterGroupName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Action --></label>
+        <label>Aksiyon</label>
         <name>CEC_Label_Action</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Knowledge Articles --></label>
+        <label>Bilgi metinleri</label>
         <name>CEC_Label_Knowledge_Articles</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Subject --></label>
+        <label>Konu</label>
         <name>CEC_Label_Subject</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Type --></label>
+        <label>Tip</label>
         <name>CEC_Label_Type</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Last_Name --></label>
+        <label>Soyadı</label>
         <name>CEC_Last_Name</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Last Name required message --></label>
+        <label>Soyadı: Arama yapmak için soyadı girmelisiniz</label>
         <name>CEC_Lastname</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Latitude --></label>
+        <label>Enlem</label>
         <name>CEC_Latitude</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Local Indentifier --></label>
+        <label>Yerel Algılayıcı</label>
         <name>CEC_Local_Indentifier</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Longitude --></label>
+        <label>Boylam</label>
         <name>CEC_Longitude</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Marketing_Opt_in --></label>
+        <label>Pazarlama Opt in</label>
         <name>CEC_Marketing_Opt_in</name>
     </customLabels>
     <customLabels>
-        <label><!-- Consumer record could not be created --></label>
+        <label>[ERR002] Tüketici kaydı oluşturulamadı</label>
         <name>CEC_MatchingResponse_AccountNotCreated</name>
     </customLabels>
     <customLabels>
-        <label><!-- If Duplicate accounts found display this error message --></label>
+        <label>[ERR001] Aynı mail ile birden fazla tüketici kaydı var, manuel düzeltilmesi gerekli</label>
         <name>CEC_MatchingResponse_DuplicateAccount</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Missing_Information --></label>
+        <label>Eksik Bilgi</label>
         <name>CEC_Missing_Information</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Name --></label>
+        <label>Adı</label>
         <name>CEC_Name</name>
     </customLabels>
     <customLabels>
-        <label><!-- Case Error Message --></label>
+        <label>Hata: Yeni Kayıt yaratılamadı</label>
         <name>CEC_NewCaseError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC NewCaseError BeforeAddNewArticle --></label>
+        <label>Lütfen yeni bir makale eklemeden önce vakanızdaki değişiklikleri kaydedin</label>
         <name>CEC_NewCaseError_BeforeAddNewArticle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Save case record before add a new consumer. --></label>
+        <label>Lütfen öncelikle vakanızda bekleyen değişiklikleri kaydedin ve  vakanızla eşleştirmek üzere tüketici aramasını yapın. Eğer bu işlemde yeni bir tüketici yaratma girişiminde bulunulursa, bu Tüketici Arama ile tekrar bulunabilir.</label>
         <name>CEC_NewCaseError_BeforeAddNewConsumer</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC No Cases are available based on the skill --></label>
+        <label>Bu beceriye göre Durum Yok</label>
         <name>CEC_No_Cases_are_available_based_on_the_skill</name>
     </customLabels>
     <customLabels>
-        <label><!-- No matching consumers --></label>
+        <label>Eşleşen Tüketici Yok</label>
         <name>CEC_No_Matching_Consumer</name>
     </customLabels>
     <customLabels>
-        <label><!-- To displayOrigin as required message --></label>
+        <label>Orijin: Doğrulama hatası: Değer gerekli.</label>
         <name>CEC_Origin</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_OtherDetailsSection --></label>
+        <label>Diğer Detaylar</label>
         <name>CEC_OtherDetailsSection</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PageSize --></label>
+        <label>SayfaBoyutu</label>
         <name>CEC_PageSize</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ParentCaseNumber --></label>
+        <label>AileVakası#</label>
         <name>CEC_ParentCaseNumber</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Phone --></label>
+        <label>Telefon</label>
         <name>CEC_Phone</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PhoneSearchValidationError --></label>
+        <label>Telefon araması 6 karakter olmalıdır</label>
         <name>CEC_PhoneSearchValidationError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PostCode --></label>
+        <label>Posta Kodu</label>
         <name>CEC_PostCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Product --></label>
+        <label>Ürün</label>
         <name>CEC_Product</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ProductCategory --></label>
+        <label>Ürün Kategorisi</label>
         <name>CEC_ProductCategory</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ProductCode --></label>
+        <label>ÜrünKodu</label>
         <name>CEC_ProductCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ProductLocator --></label>
+        <label>Ürün Bulucu</label>
         <name>CEC_ProductLocator</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Product_Hierarchy --></label>
+        <label>Ürün Hiyerarşisi</label>
         <name>CEC_Product_Hierarchy</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Product_Tag --></label>
+        <label>Ürün Etiketi</label>
         <name>CEC_Product_Tag</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Quick Code Change Error --></label>
+        <label>Lütfen Hızlı Kod&apos;u değiştirmek için Ülke kodunu girin!</label>
         <name>CEC_Quick_Code_Change_Error</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Reason --></label>
+        <label>Neden</label>
         <name>CEC_Reason</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ReasonCode --></label>
+        <label>Başvuru Nedeni Kodu</label>
         <name>CEC_ReasonCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Reason_Hierarchy --></label>
+        <label>Başvuru Nedeni Hiyerarşisi</label>
         <name>CEC_Reason_Hierarchy</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_RecommendedProducts --></label>
+        <label>Ürün Tavsiye Et</label>
         <name>CEC_RecommendedProducts</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_RelatedCases --></label>
+        <label>İlgili Vakalar</label>
         <name>CEC_RelatedCases</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SearchValidationError --></label>
+        <label>Doğrulama Hatası: Lütfen arama formunda en az bir alanı doldurun</label>
         <name>CEC_SearchValidationError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Search_Button --></label>
+        <label>Arama</label>
         <name>CEC_Search_Button</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Specify Details in Missing Info --></label>
+        <label>Lütfen hangi ayrıntıların bilinmekte olduğunu belirtin</label>
         <name>CEC_Specify_Details_in_Missing_Info</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_State --></label>
+        <label>Ülke</label>
         <name>CEC_State</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Case Status as required message --></label>
+        <label>Durum: Doğrulama Hatası: Değer gerekli.</label>
         <name>CEC_Status</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Street --></label>
+        <label>Sokak</label>
         <name>CEC_Street</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SurveyLink --></label>
+        <label>Anket Linki</label>
         <name>CEC_SurveyLink</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SurveyName --></label>
+        <label>Anket Adı</label>
         <name>CEC_SurveyName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SurveyResults --></label>
+        <label>Anket Sonuçları</label>
         <name>CEC_SurveyResults</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Title --></label>
+        <label>Başlık</label>
         <name>CEC_Title</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ValidChatterTemplate --></label>
+        <label>Geçersiz Chatter Taslak Adı :</label>
         <name>CEC_ValidChatterTemplate</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ValidEmailTemplate --></label>
+        <label>Lütfen geçerli bir mail taslağı adı girin</label>
         <name>CEC_ValidEmailTemplate</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ZipCode --></label>
+        <label>Posta Kodu</label>
         <name>CEC_ZipCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isFormKnown --></label>
+        <label>Form Biliniyor mu?</label>
         <name>CEC_isFormKnown</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isPacksizeKnown --></label>
+        <label>Boyut Biliniyor mu?</label>
         <name>CEC_isPacksizeKnown</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isVariantKnown --></label>
+        <label>Varyant Biliniyor mu?</label>
         <name>CEC_isVariantKnown</name>
     </customLabels>
     <customLabels>
@@ -10034,7 +10034,7 @@
             <name>Cases</name>
         </sections>
         <sections>
-            <label><!-- Fulfilment --></label>
+            <label>Tamamlama</label>
             <name>Fulfilment</name>
         </sections>
     </reportTypes>
@@ -10148,7 +10148,7 @@
         <label><!-- CEC Fulfillment &amp; Enclosure --></label>
         <name>CEC_Fulfillment_Enclosure</name>
         <sections>
-            <label><!-- Fulfilment --></label>
+            <label>Tamamlama</label>
             <name>Fulfilment</name>
         </sections>
     </reportTypes>
