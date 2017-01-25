@@ -16,7 +16,7 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Created_Date__c</field>
             </layoutItems>
             <layoutItems>
@@ -24,7 +24,7 @@
                 <field>Shipment_Number__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Shipment_Type__c</field>
             </layoutItems>
             <layoutItems>
@@ -52,18 +52,18 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Company_Code__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Unilever_Company__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Shipment_Start__c</field>
             </layoutItems>
             <layoutItems>
@@ -73,7 +73,7 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Pricing_Calculation_Date__c</field>
             </layoutItems>
         </layoutColumns>
