@@ -11,7 +11,7 @@
     font-size: 10px;
 }
 .THIS.profile-div{
-   border: 1px solid #d2d2d2;
+   border: 1px solid #f0f0f0;
     margin: 10px;
     background: white;
 }
@@ -30,4 +30,18 @@
         width: 94%;
     margin: 3%;
     border-radius: 5px;
+}
+.THIS.slds-tabs--default__link:focus {
+    border-bottom-width: 0px !important;
+    /* border-color: #0070d2; */
+
+}
+.THIS .icon-font1 {
+    color: grey;
+}
+.THIS .events-cards {
+    margin: -14px 10px 0 !important;
+}
+.THIS.profile-parent {
+    background: transparent !important;
 }

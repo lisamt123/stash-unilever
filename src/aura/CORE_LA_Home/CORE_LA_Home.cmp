@@ -1,80 +1,53 @@
 <aura:component implements="flexipage:availableForAllPageTypes,force:appHostable">
-	<ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" />
-	<aura:handler name="init" value="{!this}" action="{!c.defaultPanel}" />
-	<!-- <aura:handler event="c:LA_HandleEvent" action="{!c.navigateWithinComponent}" /> -->
-	<!-- <aura:attribute name="showspinner" type="boolean" default="true"/> -->
+    <ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" />
+    <aura:handler name="init" value="{!this}" action="{!c.defaultPanel}" />
+    <!-- <aura:handler event="c:LA_HandleEvent" action="{!c.navigateWithinComponent}" /> -->
+    <!-- <aura:attribute name="showspinner" type="boolean" default="true"/> -->
     <aura:attribute name="isFeedbackPopup" type="boolean"/>
     <aura:attribute name="isFromFeedback" type="boolean"/> 
-	<div class="parent" aura:id="parentDiv">
-		<div class="slds-tabs--default">
-			<!--Primary Tabs-->
-			<ul class="slds-tabs--default__nav tabUi" role="tablist">
-				<li aura:id="tab-profile" class="slds-tabs--default__item slds" title="Item One" role="presentation"  onclick="{!c.profileDisplay}">
-					<a class="slds-tabs--default__link"  role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">MY PROFILE</a>
-				</li>
-				<li aura:id="tab-default" role="presentation" class="slds-tabs--default__item slds" onclick="{!c.upcomingDisplay}">
-					<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">UP COMING</a>
-				</li>
-				<li aura:id="tab-past" class="slds-tabs--default__item slds" title="Item Three" role="presentation" onclick="{!c.pastDisplay}">
-					<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">PAST</a>
-				</li>
-			</ul>
-			<!--Primary Tabs-->
-			<div id="tab-default-1" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-1__item" aura:id="profileContent">
-				<div class="profile-parent">
-					<c:CORE_LA_Profile />
-				</div>
-				<!--Sub Tab Section-->
-				<div class="slds-tabs--default">
-					<ul class="slds-tabs--default__nav tabUi " role="tablist">
-						<li aura:id="tab-upcoming" class="slds-tabs--default__item slds-text-title--caps  " title="Item Two" role="presentation"  onclick="{!c.upcomingEventDisplay}">
-							<a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">REGISTERED EVENTS</a>
-						</li>						
- 
-
-					</ul>
-					<div aura:id="upcomingTabContent" id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item" >
-						<div  class="events-cards">Data Visualization 
-		
-							<span class="lang">(English)</span>
-							<br></br>
-							<span class="num-attendees">30 Attending</span>
-							<img class="events-facility" src="/resource/CORE_LA_StaticResource/event_app/images/facility.png"></img>
-							<hr></hr>
-							<img class="events-bannerUpcoming" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy.png"></img>
-							<br></br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        
-		
-							<hr></hr>
-							<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
-							<span class="date-adress"> 24th December 2016 from 14:00 to 18:00</span>
-							<br></br>
-							<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/check_60.png"></img>
-							<span class="date-adress"> Senate House Malet Street, London</span>
-							<img class="icons_group1" src="/resource/Lightning_designing_style/assets/icons/utility/check_60.png"></img>
-						</div>
-					</div>
-					<div aura:id="feedContent" id="tab-default-3" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item" >
-						<!--<article class="slds-card">
-							<forceChatter:feed type="news"/>
-                            
-						</article> -->
-					</div>
-				</div>
-				<!--Tab Section-->
-			</div>
-			<div id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item" aura:id="upcomingContent">
-				<c:CORE_LA_Upcoming />
-			</div>
-			<div id="tab-default-3" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item" aura:id="pastContent">
-				<c:CORE_LA_Past />
-			</div>
-		</div>
-	</div>
+    <!--aura:attribute name="isCreateEventPopup" type="boolean" default="False" description="Flag to manage create event popup" /-->
+    
+    <style>
+        .slds-tabs--default__item {
+        	padding: 0 0rem !important
+        }
+    </style>
+    <div class="parent" aura:id="parentDiv">
+        <div class="slds-tabs--default">
+            <!--Primary Tabs-->
+            <ul class="slds-tabs--default__nav tabUi" role="tablist">
+                <li aura:id="tab-profile" class="slds-tabs--default__item slds" title="My Profile" role="presentation"  onclick="{!c.profileDisplay}">
+                    <a class="slds-tabs--default__link"  role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">MY PROFILE</a>
+                </li>
+                <li aura:id="tab-default" role="presentation" title="Upcoming Events" class="slds-tabs--default__item slds" onclick="{!c.upcomingDisplay}">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">EVENT LIST</a>
+                </li>
+                <li aura:id="tab-past" class="slds-tabs--default__item slds" title="Past Events" role="presentation" onclick="{!c.pastDisplay}">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">CREATE EVENT</a>
+                </li>
+            </ul>
+            <!--Primary Tabs-->
+            <div id="tab-default-1" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-1__item" aura:id="profileContent">
+                <div class="profile-parent">
+                    <c:CORE_LA_Profile />
+                </div>
+                <c:CORE_LA_EventCardListComponent filterType="Registered" sortType="Date" limitRecords="2" offsetValue="0" />
+                
+            </div>
+            <div id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item" aura:id="upcomingContent">
+                <c:CORE_LA_UpcomingTab />
+            </div>
+            <div id="tab-default-3" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item" aura:id="pastContent">
+                <c:CORE_LA_Past />
+            </div>
+        </div>
+    </div>
     <!-- Feedback Popup -->
     <aura:if isTrue="{!v.isFeedbackPopup}">
-                <div class="slds-backdrop slds-backdrop--open">
-                    <c:CORE_LA_Feedback ></c:CORE_LA_Feedback>
-                </div>
-        </aura:if>
+        <div class="slds-backdrop slds-backdrop--open">
+           <!-- <c:CORE_LA_Feedback ></c:CORE_LA_Feedback> -->
+        </div>
+    </aura:if>
+    <!-- Feedback Popup -->
+    
 </aura:component>

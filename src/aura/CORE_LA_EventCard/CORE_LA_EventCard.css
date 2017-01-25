@@ -1,0 +1,42 @@
+.THIS.events-cards{
+    padding: 11px;
+    background: white;
+    border: 1px solid #d2d2d2;
+    margin: 10px;
+    min-height: 360px;
+    border-radius: 3px;
+}
+.THIS .num-attendees{
+    font-size: 11px;
+    color: #005fb2;
+    margin-right: 4px;
+}
+.THIS .event-banner{
+    margin :10px 0 15px;
+    height:200px;
+}
+.THIS hr{
+    margin: 0.5rem -12px !important; 
+}
+.THIS .icons_group2{
+    width:11px;
+    height:11px;
+}
+.THIS .date-address{
+    color: #afafaf;
+    font-size: 10px;
+    margin-left: 3px;
+}
+.THIS .desc{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    width: 250px;
+    margin: 0 0 1em 0;
+    overflow: hidden;
+}
+.THIS .status-event{
+    float: right;
+    color: #4bca81;
+    font-size: 12px;
+}

@@ -59,13 +59,13 @@
     font-size: 0.825rem;
 }
 .THIS .close-button{
-    position: absolute;
-    top: 20px;
-    right: 10px;
-    font-size: 18px;
-    color: #DCDCDC;
+position: absolute;
+    top: 15px;
+    right: 2px;
+    font-size: 22px;
+    color: white;
     font-family: sans-serif;
-    width: 20px;
+    width: 25px;
 }
 .THIS .success-icon{
     width: 6%;
@@ -139,4 +139,13 @@
 }
 .THIS .slds-select_container .slds-select {
     font-size: 12px;
+}
+.THIS .event-banner{
+    height:80px;
+}
+.THIS .event-banner1{
+    min-height:20px;
+    background-color:black;
+    opacity:0.75;
+    padding: 6px;
 }

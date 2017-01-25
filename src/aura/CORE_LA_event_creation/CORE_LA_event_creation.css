@@ -1,0 +1,36 @@
+.THIS .back{
+    float:left;
+    width:100%;
+    margin-bottom: 10px;
+}
+.THIS .title{
+    width: 100%;
+    text-align: center;
+    margin-top: -24px;
+}
+.THIS .main-part{
+    clear:both;
+    padding: 10px;
+}
+.THIS .status{
+    float: left;
+    border-radius: 50px;
+    background-color: #c3c3c3;
+    min-width: 30px;
+    MIN-HEIGHT: 30PX;
+    MARGIN-RIGHT: 15PX;
+}
+.THIS .status-completed{
+    background-color: orange !important;
+}
+.THIS .add, .THIS .post{
+    width:94%;
+    margin: 10px 0;
+}
+.THIS .cancel, .THIS .save{
+    width:48%;
+        margin: 10px 0;
+}
+.THIS p{
+margin-bottom:2px !important;
+}

@@ -5,7 +5,7 @@
     padding: 8px;
     background: white;
     min-height: 360px;
-    margin-bottom: -33px;
+    margin-bottom: -48px;
 }
 .THIS .banner-image{
     margin:10px 0;
@@ -45,14 +45,15 @@
 }
 .THIS .event-banner{
     height:200px;
+    margin: 10px 0;
 }
 .THIS .tabUi{
     background: white;
     margin: 0 -10px;
 }
 .THIS .tabUi li{
-    width: 50%;
-    margin: 0 auto;
+    width: 54%;
+    margin: 5px -10px;
     text-align: center;
 }
 .THIS .body-content{
@@ -122,4 +123,94 @@
 }
 .THIS .slds-page-header1 {
     margin: -9px;
+}
+.THIS .facility{
+    width: 48%;
+}
+.THIS .loc{
+    margin-top:10px;
+}
+.THIS .top-register{
+    float:right;
+    margin-top: -11px;
+}
+.THIS .top-register img{
+    width:20px;
+    text-align:center;
+}
+.THIS .slds-text-body--small {
+    font-size: .5rem !important;
+    color: #54698d;
+    text-align: center;
+}
+.THIS .slds-tabs--default__link:focus {
+    border-bottom-width: 2px !important;
+    width: 100%;
+    border-color: #0070d2;
+}
+.THIS .events-imagePadding{
+    padding: 10px;
+    border: white;
+}
+
+.THIS .events-captionPadding{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background: white;
+    margin: 6px;
+}
+
+
+.THIS .events-attendeList{
+    background: white;
+}
+
+.THIS .events-font-color{
+    color: #0070d2;
+}
+
+.THIS .events-slds-color{
+    color: rgba(0, 0, 0, 0.4);
+}
+.THIS .slds-image__crop img {
+    max-width: 100% !important;
+}
+.THIS .slds-icon1 {
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: 2rem !important;
+    fill: #fff;
+}
+.THIS .trainer1 {
+    height: 82px;
+    background: white;
+    margin-bottom: 1px;
+}
+.THIS .trainer-detail1{
+    position: absolute;
+    left: 83px;
+    margin-top: 28px;
+}
+.THIS .trainer-detail p {
+    font-size: 10px;
+    margin-top: 44px;
+}
+.THIS .slds-button{
+    width: 94%;
+    margin: 10px 10px;
+}
+.THIS .slds-post {
+    background: #fff;
+    padding: 0.5rem 1rem;
+    BORDER: 1px solid rgb(216, 221, 230);
+}
+.THIS .trainer-photo {
+    clear:both !important;
+    width: 18%;
+    margin: 12px;
+}
+.THIS .back-button{
+    padding: 1rem .75rem;
+    border-bottom: 1px solid #d8dde6;
+    background: #f7f9fb;
 }

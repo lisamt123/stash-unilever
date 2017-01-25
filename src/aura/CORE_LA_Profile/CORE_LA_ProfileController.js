@@ -1,4 +1,16 @@
 ({
+   doInit :function(component, event, helper)  {
+       
+   var runningUserInfo = component.get("c.getLoggedInUser"); 
+        runningUserInfo.setCallback(this, function(response) {
+            component.set("v.runningUserInfo", response.getReturnValue()); 
+           component.set("v.runningUserInfoId",response.getReturnValue().Id);
+
+        });
+        $A.enqueueAction(runningUserInfo);
+        
+    } , 
+     
     defaultContent :function(component, event, helper)  {
             var defaultSubTab=component.find('tab-upcoming');
             $A.util.addClass(defaultSubTab,'slds-active');
@@ -6,11 +18,11 @@
             $A.util.addClass(cmpTarget,'slds-show');
         
     } ,
-    doInit : function(component, event, helper) {  
-       // var reportId = component.find("recordId").get("v.value");
+    runningUserStandardDetails : function(component, event, helper) {  
+    
         var navToSObjEvt = $A.get("e.force:navigateToSObject");
         navToSObjEvt.setParams({
-            recordId: "005V0000003PpCBIA0",
+            recordId: component.get("v.runningUserInfoId"),
             slideDevName: "detail"
         }); 
         navToSObjEvt.fire();      

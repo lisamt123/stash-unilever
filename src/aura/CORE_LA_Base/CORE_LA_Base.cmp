@@ -1,20 +1,34 @@
 <aura:component implements="flexipage:availableForAllPageTypes,force:appHostable">
-   
-    <ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" /> 
-     <ltng:require scripts="{!$Resource.AA_Agent_LightningAppStatic + '/libs/jquery-3.0.0.min.js'}" /> 
-   
-	<aura:handler name="init" value="{!this}" action="{!c.homePageLoad}" />
-	<aura:handler event="c:CORE_LA_HandleEvent" action="{!c.navigateWithinComponent}" />
-	<aura:attribute name="showspinner" type="Boolean"/>
-    <aura:attribute name="isFeedbackPopup" type="boolean"/>
-	<!-- <aura:attribute name="showspinner" type="boolean" default="true"/> -->
-	<div aura:id="content"/>
-	<aura:if isTrue="{!v.showspinner}">
-		<div class="slds-spinner_container">
-			<div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
-				<div class="slds-spinner__dot-a"></div>
-				<div class="slds-spinner__dot-b"></div>
-			</div>
-		</div>
-	</aura:if>
+    
+<ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" /> 
+<ltng:require scripts="{!$Resource.AA_Agent_LightningAppStatic + '/libs/jquery-3.0.0.min.js'}" /> 
+<aura:attribute name='event' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
+<aura:attribute name="trainers" type="CORE_LA_EventWrapperClass.TrainerWrapper" description='Contains detail of the Trainer Based On EventId'/> 
+<aura:attribute name="trainerId" type="String" />  
+<aura:handler name="init" value="{!this}" action="{!c.homePageLoad}" />
+<aura:handler event="c:CORE_LA_HandleEvent" action="{!c.navigateWithinComponent}" />
+<aura:handler name="openCreateEventLandingPage" event="c:CORE_LA_HandleCreateEvent" action="{!c.handleOpenCreateEventLandingPage}" />
+    
+<aura:attribute name="showspinner" type="Boolean"/>
+<aura:attribute name="isFeedbackPopup" type="boolean"/>
+<aura:attribute name="eventId" type="String" />
+<aura:attribute name="externalEmail" type="String" />
+    
+    <!-- <aura:attribute name="showspinner" type="boolean" default="true"/> -->
+    <div aura:id="content"/>
+    <style>
+        @media (max-width: 48em){
+        .slds-post {
+        border-top: 1px solid transparent !important; 
+        }
+        }
+    </style>
+    <aura:if isTrue="{!v.showspinner}">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
 </aura:component>

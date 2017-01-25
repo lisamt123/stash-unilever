@@ -1,3 +1,129 @@
-<aura:component >
-	Past goes here ....
+<aura:component controller="CORE_LA_Controller">
+    <aura:attribute name="selectedEventFilter" type="String"/>
+    <aura:attribute name="showFilter" type="boolean" default="false"/>
+    <aura:attribute name="showSort" type="boolean" default="false"/>
+    <aura:attribute name="showShareList" type="boolean" default="false"/>
+    <aura:attribute name="isCreateEventPopup" type="boolean" default="false" description="Flag to manage create event popup" />
+    <aura:handler name="closeCreateEventPopup" event="c:CORE_LA_CloseCreatePopupEvent" action="{!c.handleCloseCreatePopupEvent}" />
+    
+    
+    
+    <style>
+        .slds-button--icon-border1{
+        width: 1rem;
+        height: 1.2rem;
+        }
+    </style>
+    <!--button class="slds-button slds-button neutral test">Create New Event</button -->
+    <ui:button class="slds-button slds-button--neutral test" label="Create New Event" press="{!c.openCreateEventPopup}"></ui:button>
+    <div class="heading">All Past Events
+        <div>
+            <div class="slds-button-group filter-sort" role="group">
+                <button class="slds-button slds-button--icon-more" aria-haspopup="true" title="More Actions" onclick="{!c.showSortMenu}">
+                    <img class="icons_group" src="/resource/Lightning_designing_style/assets/icons/utility/sort_60.png"></img>
+                </button>
+            </div>
+            <aura:if isTrue="{!v.showSort}">
+                <div  id="sortOptions" class="slds-dropdown slds-dropdown--right events-sortdropdown">
+                    <ul class="slds-dropdown__list" role="menu" >
+                        <li class="slds-dropdown__item events-bold" role="presentation">
+                            <a href="javascript:void(0);" role="menuitem" tabindex="0">
+                                <span class="slds-truncate">Date (Chronological)</span>
+                            </a>
+                        </li>
+                        <li class="slds-dropdown__item" role="presentation">
+                            <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                <span class="slds-truncate">Event name (A-Z)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aura:if>   
+        </div>
+    </div>
+    <div  class="events-cards">
+      
+        
+        Data Visualization 
+        <span class="lang">(English)</span>
+        <br></br>
+        <!-- Start -->
+        <aura:if isTrue="{!v.showShareList}">
+            <div  id="ShareOptions" class="slds-dropdown slds-dropdown--right events-sharedropdown">
+                <ul class="slds-dropdown__list" role="menu" >
+                    <li class="slds-dropdown__item" role="presentation">
+                        <a href="javascript:void(0);" role="menuitem" tabindex="0">
+                            <span class="slds-truncate">Share on Chatter</span>
+                        </a>
+                    </li>
+                    <li class="slds-dropdown__item" role="presentation">
+                        <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                            <span class="slds-truncate">Email</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aura:if>
+        
+        <!-- End -->
+        <span class="num-attendees">30 Attending</span>
+        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/facility.png"></img>
+        <hr></hr>
+        <img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy1.png"></img>
+        <br></br>You will learn how to design technologies that bring people joy, rather than frustration. You'll learn how to generate design ideas, techniques for quickly prototyping them, and how to use prototypes to get feedback from other stakeholders like your teammates, clients, and users. You'll also learn principles of visual design, perception, and cognition that inform effective interaction design.
+        
+        <hr></hr>
+        <img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
+        <span class="date-adress"> 24th December 2016 from 14:00 to 18:00</span>
+        <br></br>
+        <img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
+        <span class="date-adress"> Senate House Malet Street, London</span>
+       
+        
+    </div>
+    <div  class="events-cards">Interactive Design 
+        <span class="lang">(English)</span>
+        <br></br>
+        <span class="num-attendees">30 Attending</span>
+        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/facility.png"></img>
+        <hr></hr>
+        <div class="recurring">Recurring</div>
+        <img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy2.png"></img>
+        <br></br>This event covers the concepts and tools you'll need throughout the entire data science pipeline, from asking the right kinds of questions to making inferences and publishing results. In the final Capstone Project, you’ll apply the skills learned by building a data product using real-world data. At completion, students will have a portfolio demonstrating their mastery of the material.
+        
+        <hr></hr>
+        <img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
+        <span class="date-adress"> 24th December 2016 from 14:00 to 18:00</span>
+        <br></br>
+        <img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
+        <span class="date-adress"> Senate House Malet Street, London</span>
+        
+    </div>
+    <div  class="events-cards">Creative Writing
+        <span class="lang">(English)</span>
+        <br></br>
+        <span class="num-attendees">30 Attending</span>
+        <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/facility.png"></img>
+        <hr></hr>
+        <img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy3.png"></img>
+        <br></br>This event covers elements of three major creative writing genres: short story, narrative essay, and memoir. You will master the techniques that good writers use to compose a bracing story, populated with memorable characters in an interesting setting, written in a fresh descriptive style. You will analyze and constructively evaluate peer writing. In the Capstone, you will draft, rewrite, and complete a substantial original story in the genre of your choosing.
+        
+        <hr></hr>
+        <img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
+        <span class="date-adress"> 24th December 2016 from 14:00 to 18:00</span>
+        <br></br>
+        <img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
+        <span class="date-adress"> Senate House Malet Street, London</span>
+       
+    </div>
+    <button class="slds-button slds-button--neutral show-more"> View more</button>
+    
+    
+    <!-- Create Event Popup -->
+    <aura:if isTrue="{!v.isCreateEventPopup}">
+        <div class="slds-backdrop slds-backdrop--open">
+           <c:CORE_LA_event_popup isCreateEventPopup="{!v.isCreateEventPopup}"></c:CORE_LA_event_popup>
+        </div>
+    </aura:if>
+    <!-- Create Event Popup -->
 </aura:component>

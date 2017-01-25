@@ -1,0 +1,18 @@
+.THIS .slds-icon_container--circle img{
+    width:20px;
+    height:20px;
+}
+.THIS .slds-text-body--small {
+    font-size: .50rem !important;
+    color: #54698d;
+    text-align: center;
+}
+.THIS.action-bar{
+    margin: 10px -11px -11px;;
+    padding: 5px;
+    background: rgba(247, 247, 247, 0.26);
+    border: 1px solid #f3f3f3;
+}
+.THIS .slds-p-top--x-small {
+    padding-top: .2rem !important;
+}

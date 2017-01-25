@@ -1,0 +1,81 @@
+<aura:component controller="CORE_LA_EventController" implements="force:appHostable" access="global">
+    <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
+    <ltng:require styles="/resource/CORE_FB_Feedback_App/assets/styles/star-css.css" />
+    <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
+    <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
+    
+    <aura:attribute name="success_toast" type="boolean" default="false"></aura:attribute>
+    <aura:attribute name="showError" type="boolean"></aura:attribute>
+    
+    <aura:attribute name="isCreateEventPopup" type="boolean"/>
+    <aura:attribute name="newEvent" type="CORE_LA_Event__c" />
+    <aura:attribute name="newEventError" type="String"/>
+	 
+
+    <aura:registerEvent name="closeCreateEventPopup" type="c:CORE_LA_CloseCreatePopupEvent"/>
+    <aura:registerEvent name="openCreateEventLandingPage" type="c:CORE_LA_HandleCreateEvent"/>
+    
+    
+    
+    <!--aura:handler name="init" value="{!this}" action="{!c.doInit}"/-->
+    
+    
+    <style>
+        body{
+        font: 100%/1.5 "Salesforce Sans",Arial,sans-serif !important;
+        background: #c7c3c3;
+        height:700px;
+        }
+        ::-webkit-input-placeholder {
+        color: #A8B8D0;
+        }
+        
+        :-moz-placeholder { /* Firefox 18- */
+        color: #A8B8D0;  
+        }
+        
+        ::-moz-placeholder {  /* Firefox 19+ */
+        color: #A8B8D0;  
+        }
+        
+        :-ms-input-placeholder {  
+        color: #A8B8D0;  
+        }
+        .slds-modal__content{
+        text-align: left;
+        padding-left: 1rem;
+        }
+        .slds-modal__header {
+        border-radius: .25rem;
+        padding: 2rem 1rem !important;
+        }
+    </style>
+    <div class="create">Create New Event</div>
+    <div class="close-button" aura:id="closeCrossButton" onclick="{!c.closeCreateEventPopup}">
+        X
+    </div>
+    <div class="feedback_container">
+        <div class="slds-form-element" style="margin: 16% auto;">
+            <label class="slds-form-element__label" for="text-input-01">Title</label>
+            <div class="slds-form-element__control">
+                <!--input type="text" id="text-input-01" class="slds-input" placeholder="Event Name" /-->
+                <ui:inputText aura:id="eventName" class="slds-form-element__control slds-input" placeholder="Event Name" required="true"/>
+
+            </div>
+        </div> 
+        
+        <hr></hr>
+        <div class="feedback-buttons"  >
+            <ui:button class="slds-button slds-button--neutral slds-not-selected" press="{!c.closeCreateEventPopup}">
+                <span class="slds-text-not-selected">
+                    Cancel
+                </span>
+            </ui:button>
+            <ui:button class="slds-button slds-button--brand slds-button--neutral slds-not-selected" press="{!c.submitEvent}" >
+                <span class="slds-text-not-selected">
+                    Create 
+                </span>
+            </ui:button>
+        </div>
+    </div>
+</aura:component>

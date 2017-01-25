@@ -1,0 +1,38 @@
+<aura:component implements="force:appHostable" controller="CORE_LA_EventController">
+    <aura:attribute name="recordId" type="String" default="aDjV00000004Cv0KAE"/>
+    <aura:attribute name="eventRecordDetails" type="CORE_LA_Event__c"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:registerEvent name="openCreateEventLandingPage" type="c:CORE_LA_HandleCreateEvent"/>
+    
+    <ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" /> 
+    <ltng:require scripts="{!$Resource.AA_Agent_LightningAppStatic + '/libs/jquery-3.0.0.min.js'}" /> 
+    
+    <div class="heading">
+        <div class="slds-page-header back" data-aura-rendered-by="4:299;a" role="banner" data-aura-class="cCORE_LA_UpcomingDetail">
+            <div class="slds-media slds-media--center" data-aura-rendered-by="5:299;a">
+                <img class="slds-icon slds-avatar--small" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" aria-hidden="true" data-aura-rendered-by="7:396;a"/>
+                <div class="slds-media__body" data-aura-rendered-by="8:299;a">
+                </div>
+            </div>
+            <div class="slds-text-heading--medium title">New Event</div>
+        </div>
+        <div class="main-part">
+        <ul class="slds-has-dividers--around-space">
+            <li class="slds-item" aura:id="eventDetailItem" onclick="{!c.callEventDetailPage}"><div class="status" aura:id="eventDetailTap"></div><p>Event Detail</p><p>{!v.eventRecordDetails.Name}</p><p>{!v.eventRecordDetails.From_Date__c} - {!v.eventRecordDetails.To_Date__c}</p></li>
+            <li class="slds-item" aura:id="eventVenueItem" onclick="{!c.callEventVenuePage}"><div class="status" aura:id="eventVenueTap"></div><p>Venue Detail</p><p> Sanate House, London</p></li>
+            <li class="slds-item" aura:id="eventAddAdminItem" onclick="{!c.callEventAddAdminPage}"><div class="status" aura:id="eventAddAdminTap"></div><p>Add Admin</p><p>1 admin</p></li>
+            <li class="slds-item" aura:id="eventFacilityItem" onclick="{!c.callEventFacilityPage}"><div class="status" aura:id="eventFacilityTap"></div><p>Facility</p><p>Dr James</p></li>
+            <li class="slds-item" aura:id="eventAttendeeItem" onclick="{!c.callEventAttendeePage}"><div class="status" aura:id="eventAttendeeTap"></div><p>Attendee</p><p>23 Attendee Invited</p></li>
+            <li class="slds-item" aura:id="eventPrerequisteItem" onclick="{!c.callEventPrerequistePage}"><div class="status" aura:id="eventPrerequisteTap"></div><p>Prerequiste Material</p><p>Information and Material department</p></li>
+		</ul>
+            <div>
+        <button class="slds-button slds-button--neutral cancel">Cancel</button><button class="slds-button slds-button--neutral save">Save</button>
+                    <button class="slds-button slds-button--neutral add">Add occurrence</button>
+            <button class="slds-button slds-button--neutral slds-button--brand post">Post</button>
+                </div>
+        </div>
+
+    </div>   
+    <div class="slds-has-dividers--bottom-space"></div>
+    
+</aura:component>

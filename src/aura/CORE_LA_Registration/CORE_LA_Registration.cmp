@@ -1,10 +1,15 @@
-<aura:component implements="force:appHostable">
-	<ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
-	<ltng:require styles="/resource/CORE_FB_Feedback_App/assets/styles/star-css.css" />
-	<ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
-	<ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
+<aura:component controller="Core_LA_BaseController" implements="force:appHostable">
+    <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
+    <aura:attribute name='event' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
+    <ltng:require styles="/resource/CORE_FB_Feedback_App/assets/styles/star-css.css" />
+    <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
+    <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
     <aura:attribute name="isRegistrationConfirmationPopup" type="boolean"/> 
-	<style>
+    <aura:attribute name="isRequired1" type="Boolean"/>
+    <aura:attribute name="isRequired2" type="Boolean"/>
+    
+ 
+    <style>
         body{
         font: 100%/1.5 "Salesforce Sans",Arial,sans-serif !important;
         background: #c7c3c3;
@@ -38,81 +43,78 @@
         padding: 2rem 1rem !important;
         }
     </style>
-	<div class="close-button" onclick="{!c.rateLater}">
-		<img src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png"></img>
-	</div>
-	<div class="register_container">
-		<div class="slds-text-body--regular feedback-text">
+    
+    <div class="close-button" onclick="{!c.rateLater}">
+        X
+    </div>
+    <div class="register_container">
+        <div class="slds-text-body--regular feedback-text">
             Hi Tom!
-			<br></br>
+            <br></br>
             Thanks for your interest in the following event:
             
-			<br></br>
-			<div class="event-banner">
-                Data Visualization (English)
-				<br></br>
-                24th December 2016 from 14:00 to 18:00    
-            
-			</div>
-		</div>
-		<div class="register-text">
-			<div class="register-rate-star">
-				<form id="registerForm">
-					<div class="slds-form-element">
-						<label class="slds-form-element__label" for="select-01">
-                            Would you like to attend the after party ?</label>
-						<div class="slds-form-element__control">
-							<div class="slds-select_container">
-								<select id="select-01" class="slds-select">
-									<option>Select Option</option>
-                                    <option>Yes</option>
-									<option>No</option>
-								</select>
-							</div>
-						</div>
-						<div class="slds-form-element__control">
-							<div class="slds-select_container">
-								<select id="select-01" class="slds-select">
-									<option>Select dietary option</option>
-									<option>Vegetraian</option>
-									<option>Non-Vegetraian</option>
-								</select>
-							</div>
-						</div>
-						<div class="feedback-comment">
-							<div class="feedback-comment-textarea">
-								<div class="slds-form-element">
-									<div class="slds-form-element__control">
-										<textarea id="textarea-input-02" class="slds-textarea" placeholder="Please tell us what are you looking forward to achive afer this workshop within 250 characters" maxlength="500" required="required"></textarea>
-										<span class="note">**This form is electronically signed when you click submit. By Submitting you are conforming that the information provided by you reflects your wishes and intent.</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-		<hr></hr>
-		<div class="feedback-buttons"  >
-			<button class="slds-button slds-button--neutral slds-not-selected" aria-live="assertive" onclick="{!c.cancel}" >
-				<span class="slds-text-not-selected">
+            <br></br>
+            <div class="event-banner event-banner1">
+                <div class="event-banner1">Data Visualization (English)
+                    <br></br>
+                    24th December 2016 from 14:00 to 18:00    
+                </div>
+            </div>
+        </div>
+        <div class="register-text">
+            <div class="register-rate-star">
+                <form id="registerForm">
+                    <div class="slds-form-element">
+                        
+                        <lightning:select aura:id="levels1" label="Would you like to attend the after party ?" >
+                            <option>choose one...</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </lightning:select>
+                        <textarea id="comment1" class="slds-textarea" placeholder="Your Request..." maxlength="255"></textarea> 
+                        
+                        <aura:if isTrue="{!v.isRequired1}" >
+                            <span class="slds-text-body--regular Required">{!$Label.c.CORE_LBL_APPREJ_REQUIRED_VALUE_MESSAGE}</span>
+                        </aura:if>
+                        <lightning:select aura:id="levels2" label="Select dietary option" >
+                            <option>choose one...</option>
+                            <option>Vegetraian</option>
+                            <option>Non-Vegetraian</option>
+                        </lightning:select>
+                        <div class="feedback-comment">
+                            <div class="feedback-comment-textarea">
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <textarea id="textarea-input-02" class="slds-textarea" placeholder="Please tell us what are you looking forward to achive afer this workshop within 250 characters" maxlength="500" required="required"></textarea>
+                                        <span class="note">**This form is electronically signed when you click submit. By Submitting you are conforming that the information provided by you reflects your wishes and intent.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr></hr>
+        <div class="feedback-buttons"  >
+            <button class="slds-button slds-button--neutral slds-not-selected" aria-live="assertive" onclick="{!c.cancel}" >
+                <span class="slds-text-not-selected">
                     Cancel
                 </span>
-			</button>
-			<button class="slds-button slds-button--brand slds-button--neutral slds-not-selected" aria-live="assertive" onclick="{!c.registration}">
-				<span class="slds-text-not-selected">
-                        Register 
-                    </span>
-			</button>
-		</div>
-	</div>
+            </button>
+            <button class="slds-button slds-button--brand slds-button--neutral slds-not-selected" aria-live="assertive" onclick="{!c.registration}">
+                <span class="slds-text-not-selected">
+                    Register 
+                </span>
+            </button>
+        </div>
+    </div>
     
     <!-- Registration Confirmation Popup -->
     <aura:if isTrue="{!v.isRegistrationConfirmationPopup}">
-                <div class="slds-backdrop slds-backdrop--open">
-                    <c:CORE_LA_Confirm ></c:CORE_LA_Confirm>
-                </div>
-        </aura:if>
-
+        <div class="slds-backdrop slds-backdrop--open">
+            <c:CORE_LA_Confirm ></c:CORE_LA_Confirm>
+        </div>
+    </aura:if>
+    
 </aura:component>

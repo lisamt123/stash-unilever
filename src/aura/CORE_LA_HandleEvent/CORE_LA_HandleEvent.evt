@@ -1,4 +1,8 @@
 <aura:event type="APPLICATION" description="Event template" >
 <aura:attribute name="componentName" type="String"/>
 <aura:attribute name="isFromFeedback" type="boolean"/>
+<aura:attribute name='event' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
+<aura:attribute name="trainerId" type="String" description="Used in Trainer Detail Page"/>  
+<aura:attribute name="trainers" type="CORE_LA_EventWrapperClass.TrainerWrapper" description='Contains detail of Trainer for an Event'/>
+<aura:attribute name="externalEmail" type="String"/>    
 </aura:event>

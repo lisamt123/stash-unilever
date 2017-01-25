@@ -1,97 +1,143 @@
 ({
-    
-    defaultAboutSection:function(component,event,helper){
-        var defaultTab=component.find('tab-feed');
-        $A.util.addClass(defaultTab,'slds-active')
+
+    defaultAboutSection: function(component, event, helper) {
+        var defaultTab = component.find('tab-feed');
+        $A.util.addClass(defaultTab, 'slds-active')
         var defaultDivDisplay = component.find('feedContent');
         $A.util.addClass(defaultDivDisplay, 'slds-show');
-        
+
     },
-    gotoShare:function(component,event,helper){
+
+    detailPageLoad: function(component, event, helper) {
+        var EventId = component.get("v.event");
+        //alert(EventId.eventId);
+        var action = component.get("c.getEventDetail");
+        action.setParams({
+            "eventId": EventId.eventId
+        });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                if (response.getReturnValue() !== '') {
+                    component.set("v.eventArticle", response.getReturnValue()[0]);
+                    //alert(response.getReturnValue()[0].eventName);
+
+                }
+            }
+
+        });
+        $A.enqueueAction(action);
+        var EventId = component.get("v.event");
+        var actionTrainerList = component.get("c.getTrainerWrapper");
+        actionTrainerList.setParams({
+            "eventId": EventId.eventId
+
+        });
+        actionTrainerList.setCallback(this, function(response) {
+            var state = response.getState();
+            if (component.isValid() && state === "SUCCESS") {
+                component.set("v.trainers", response.getReturnValue());
+                //alert(response.getReturnValue()[0].Participant_Name__r.Name);
+            }
+        });
+        $A.enqueueAction(actionTrainerList);
+    },
+
+
+    gotoShare: function(component, event, helper) {
+        /*
        var selectEvent = $A.get("e.c:CORE_LA_HandleEvent");
         selectEvent.setParams({"componentName":"c:CORE_LA_share"}).fire();
+        */
+        component.set("v.isSharePopup", true);
     },
-    gotoHomePage : function(component,event,helper){
-       var selectEvent = $A.get("e.c:CORE_LA_HandleEvent");
-        selectEvent.setParams({"componentName":"c:CORE_LA_Home"}).fire();
-     },
-    gotoRegistraion: function(component,event,helper){
+    gotoHomePage: function(component, event, helper) {
+        var selectEvent = $A.get("e.c:CORE_LA_HandleEvent");
+        selectEvent.setParams({
+            "componentName": "c:CORE_LA_Home"
+        }).fire();
+    },
+    gotoRegistraion: function(component, event, helper) {
         /*
         var selectEvent= $A.get("e.c:CORE_LA_HandleEvent");
         selectEvent.setParams({"componentName":"c:CORE_LA_Registration"}).fire();
         */
-        component.set("v.isRegistrationPopup",true); 
-        
+        component.set("v.isRegistrationPopup", true);
+
     },
-     navigateTrainerDetails:function(component,event,helper){
+    navigateTrainerDetails: function(component, event, helper) {
         var selectEvent = $A.get("e.c:CORE_LA_HandleEvent");
-        selectEvent.setParams({"componentName":"c:CORE_LA_TrainerProfile"}).fire();
-     },
-    feedDisplay : function(component, event, helper) { 
-          var defaultTarget = component.find('tab-upcoming');
-           $A.util.removeClass(defaultTarget,'slds-active');
-          var defaultProfiletab=component.find('tab-profile');
-           $A.util.addClass(defaultProfiletab,'slds-active');
-           var removeTarget1=component.find('upcomingTabContent');
-           $A.util.removeClass(removeTarget1,'slds-show');
-           var cmpTarget = component.find('feedContent');
-           $A.util.addClass(cmpTarget,'slds-show');
-      
-	},
-    
-       upcomingEventDisplay : function(component, event, helper) { 
-           var removeTarget1=component.find('feedContent');
-           $A.util.removeClass(removeTarget1,'slds-show');
-            var defaultTab=component.find('tab-feed');
-           $A.util.removeClass(defaultTab,'slds-active');
-           var cmpTarget = component.find('upcomingTabContent');
-           $A.util.addClass(cmpTarget,'slds-show');
-      
-	},
-    showDiv : function(component, event, helper) {
+        selectEvent.setParams({
+            "componentName": "c:CORE_LA_TrainerProfile",
+            "event": component.get("v.event")
+        }).fire();
+
+    },
+    feedDisplay: function(component, event, helper) {
+        var defaultTarget = component.find('tab-upcoming');
+        $A.util.removeClass(defaultTarget, 'slds-active');
+        var defaultProfiletab = component.find('tab-profile');
+        $A.util.addClass(defaultProfiletab, 'slds-active');
+        var removeTarget1 = component.find('upcomingTabContent');
+        $A.util.removeClass(removeTarget1, 'slds-show');
+        var cmpTarget = component.find('feedContent');
+        $A.util.addClass(cmpTarget, 'slds-show');
+
+    },
+
+    upcomingEventDisplay: function(component, event, helper) {
+        var removeTarget1 = component.find('feedContent');
+        $A.util.removeClass(removeTarget1, 'slds-show');
+        var defaultTab = component.find('tab-feed');
+        $A.util.removeClass(defaultTab, 'slds-active');
+        var cmpTarget = component.find('upcomingTabContent');
+        $A.util.addClass(cmpTarget, 'slds-show');
+
+    },
+    showDiv: function(component, event, helper) {
         var toggleText = component.find("text");
-        component.set("v.showDiv",true); 
+        component.set("v.showDiv", true);
         $A.util.toggleClass(toggleText, "slds-hide");
-        var img=component.find("myimg1");
+        var img = component.find("myimg1");
         $A.util.toggleClass(img, "slds-hide");
-        var img2=component.find("myimg2");
+        var img2 = component.find("myimg2");
         $A.util.toggleClass(img2, "slds-show");
     },
-    showDiv1 : function(component, event, helper) {
+    showDiv1: function(component, event, helper) {
         var toggleText = component.find("text1");
-        component.set("v.showDiv1",true); 
+        component.set("v.showDiv1", true);
         $A.util.toggleClass(toggleText, "slds-hide");
-        var img=component.find("myimg3");
+        var img = component.find("myimg3");
         $A.util.toggleClass(img, "slds-hide");
-        var img2=component.find("myimg4");
+        var img2 = component.find("myimg4");
         $A.util.toggleClass(img2, "slds-show");
     },
-    showDiv2 : function(component, event, helper) {
+    showDiv2: function(component, event, helper) {
         var toggleText = component.find("text2");
-        component.set("v.showDiv2",true); 
+        component.set("v.showDiv2", true);
         $A.util.toggleClass(toggleText, "slds-hide");
-        var img=component.find("myimg5");
+        var img = component.find("myimg5");
         $A.util.toggleClass(img, "slds-hide");
-        var img2=component.find("myimg6");
+        var img2 = component.find("myimg6");
         $A.util.toggleClass(img2, "slds-show");
     },
-    showDiv3 : function(component, event, helper) {
+    showDiv3: function(component, event, helper) {
         var toggleText = component.find("text3");
-        component.set("v.showDiv3",true); 
+        component.set("v.showDiv3", true);
         $A.util.toggleClass(toggleText, "slds-hide");
-        var img=component.find("myimg7");
+        var img = component.find("myimg7");
         $A.util.toggleClass(img, "slds-hide");
-        var img2=component.find("myimg8");
+        var img2 = component.find("myimg8");
         $A.util.toggleClass(img2, "slds-show");
     },
-    showDiv4 : function(component, event, helper) {
+    showDiv4: function(component, event, helper) {
         var toggleText = component.find("text4");
-        component.set("v.showDiv4",true); 
+        component.set("v.showDiv4", true);
         $A.util.toggleClass(toggleText, "slds-hide");
-        var img=component.find("myimg9");
+        var img = component.find("myimg9");
         $A.util.toggleClass(img, "slds-hide");
-        var img2=component.find("myimg10");
+        var img2 = component.find("myimg10");
         $A.util.toggleClass(img2, "slds-show");
     },
-    
+
 })

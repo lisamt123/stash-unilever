@@ -1,0 +1,76 @@
+<aura:component implements="force:appHostable" controller="CORE_Bharath_Event">
+	<aura:attribute name="eventList" type="CORE_LA_EventWrapperClass.Event[]" description="Contains detail of the event" />
+    <aura:attribute name="filterType" type="String" description="the filter type applied on the page" default="All Events" />
+    <aura:attribute name="sortType" type="String" description="the sort type applied on the page" default="Date" />
+    <aura:attribute name="limitRecords" type="Integer" description="the number of events to be populated on the page" default="2"/>
+    <aura:attribute name="offsetValue" type="Integer" description="the offset value for the page" default="0" />
+    <aura:attribute name="selectedEventFilter" type="String"/>
+    <aura:attribute name="showFilter" type="boolean" default="false"/>
+    <aura:attribute name="showSort" type="boolean" default="false"/>
+ 
+    <div class="heading">{!v.filterType}
+        <div>
+            <div class="slds-button-group filter-sort" role="group">
+                <button class="slds-button slds-button--icon-border" title="Filter List" onclick="{!c.showFilterMenu}">
+                    <img class="icons_group" src="/resource/Lightning_designing_style/assets/icons/utility/filterList_60.png"></img>
+                </button>
+                <button class="slds-button slds-button--icon-more" aria-haspopup="true" title="More Actions" onclick="{!c.showSortMenu}">
+                    <img class="icons_group" src="/resource/Lightning_designing_style/assets/icons/utility/sort_60.png"></img>
+                </button>
+            </div>
+            <aura:if isTrue="{!v.showFilter}">
+                <div  aura:id="filterOptions" class="slds-dropdown slds-dropdown--right events-filterdropdown">
+                    <ul class="slds-dropdown__list" role="menu" >
+                        <li class="slds-dropdown__item events-bold" aura:id="allEvents" role="presentation" onclick="{!c.getAllEvents}">
+                            <a href="javascript:void(0);" role="menuitem" tabindex="0">
+                                <span class="slds-truncate">All Event</span>
+                            </a>
+                        </li>
+                        <li class="slds-dropdown__item" aura:id="recurring" role="presentation" onclick="{!c.getRecurringEvents}">
+                            <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                <span class="slds-truncate">Recurring</span>
+                            </a>
+                        </li>
+                        <li class="slds-dropdown__item" aura:id="nonRecurring" role="presentation" onclick="{!c.getNonRecurringEvents}">
+                            <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                <span class="slds-truncate">Non-recurring</span>
+                            </a>
+                        </li>
+                        <li class="slds-dropdown__item" aura:id="registered" role="presentation" onclick="{!c.getRegisteredEvents}">
+                            <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                <span class="slds-truncate">My Registered Events</span>
+                            </a>
+                        </li>
+                        <li class="slds-dropdown__item" aura:id="saved" role="presentation" onclick="{!c.getSavedEvents}">
+                            <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                <span class="slds-truncate">Saved</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!v.showSort}">
+                <div  aura:id="sortOptions" class="slds-dropdown slds-dropdown--right events-sortdropdown">
+                    <ul class="slds-dropdown__list" role="menu" >
+                        <li class="slds-dropdown__item events-bold" aura:id="dateSort" role="presentation" onclick="{!c.getDateSortEvents}">
+                            <a href="javascript:void(0);" role="menuitem" tabindex="0">
+                                <span class="slds-truncate">Date</span>
+                            </a>
+                        </li>
+                        <li class="slds-dropdown__item" aura:id="eventNameSort" role="presentation" onclick="{!c.getNameSortEvents}">
+                            <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                <span class="slds-truncate">Event name</span>
+                            </a>
+                        </li>
+                        <!--<li class="slds-dropdown__item" role="presentation">
+                            <a href="javascript:void(0);" role="menuitem" tabindex="-1">
+                                <span class="slds-truncate">Number of attendees</span>
+                            </a>
+                        </li>-->
+                    </ul>
+                </div>
+            </aura:if>   
+        </div>
+    </div>   
+    <c:CORE_LA_EventCardListComponent filterType="All Events" sortType="Date"/>
+</aura:component>

@@ -1,8 +1,12 @@
-<aura:component implements="force:appHostable">
+<aura:component controller="Core_LA_BaseController" implements="force:appHostable">
 	<ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
 	<ltng:require styles="/resource/CORE_FB_Feedback_App/assets/styles/star-css.css" />
 	<ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
 	<ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
+    
+    <aura:attribute name="success_toast" type="boolean" default="false"></aura:attribute>
+    <aura:attribute name="showError" type="boolean"></aura:attribute>
+    
 	<style>
         body{
         font: 100%/1.5 "Salesforce Sans",Arial,sans-serif !important;
@@ -34,7 +38,7 @@
         }
     </style>
 	<div class="close-button" onclick="{!c.rateLater}">
-		<img src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png"></img>
+		X
 	</div>
 	<div class="feedback_container">
 		<div class="slds-text-body--regular feedback-text">
@@ -44,18 +48,19 @@
             
 			<br></br>
 			<br></br>
-			<div class="event-banner">
+			<div class="event-banner1">
+                <div class="event-banner2">
                 Data Visualization (English)
 				<br></br>
-                24th December 2016 from 14:00 to 18:00    
-            
+                on 24th December 2016  
+            </div>
 			</div>
             We’d like to get your feedback... 
             
         
 		</div>
 		<div class="feedback-text">
-			<div class="slds-text-heading--small feedback-rate-text">Rate this event </div>
+			<div class="slds-text-heading--small feedback-rate-text">Rate this event. </div>
 			<div class="feedback-rate-star">
 				<form id="ratingsForm">
 					<div class="stars">

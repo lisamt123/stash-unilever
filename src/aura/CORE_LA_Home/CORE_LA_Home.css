@@ -6,6 +6,9 @@
     margin: 0 auto;
     text-align: center;
 }
+.THIS .tabUi li a{
+ font-size:12px;
+}
 .THIS .body-content{
     padding: 20px;
     background: white;
@@ -16,7 +19,5 @@
     margin-bottom: 8px;
 }
 .THIS .profile-parent{
-        border: 1px solid white;
-    background: white;
     margin-top: -17px;
 }

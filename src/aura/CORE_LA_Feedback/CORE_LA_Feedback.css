@@ -59,13 +59,13 @@
     font-size: 0.825rem;
 }
 .THIS .close-button{
-    position: absolute;
-    top: 20px;
-    right: 10px;
-    font-size: 18px;
-    color: #DCDCDC;
+position: absolute;
+    top: 15px;
+    right: 2px;
+    font-size: 22px;
+    color: white;
     font-family: sans-serif;
-    width: 20px;
+    width: 25px;
 }
 .THIS .success-icon{
     width: 6%;
@@ -101,11 +101,11 @@
     border: 0px solid rgb(216, 221, 230);
 }
 .THIS.close-button{
-    position: absolute;
-    top: 12px;
-    right: 10px;
-    font-size: 18px;
-    color: #DCDCDC;
+position: absolute;
+    top: 15px;
+    right: 2px;
+    font-size: 22px;
+    color: white;
     font-family: sans-serif;
     width: 25px;
 }
@@ -139,10 +139,16 @@
     width: 79%;
     left: 18%;
 }
-.THIS .event-banner{
+.THIS .event-banner1{
     background: URL('/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy.png') no-repeat;
     color: white;
     min-height: 80px;
     padding: 20px;
     margin-bottom: 10px;
+}
+.THIS .event-banner2{
+    background-color:black;
+    opacity:0.75;
+    min-height:20px;
+    padding:10px;
 }

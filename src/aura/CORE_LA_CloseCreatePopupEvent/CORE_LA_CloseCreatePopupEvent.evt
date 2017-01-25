@@ -1,0 +1,5 @@
+<aura:event type="COMPONENT" description="Event template">
+    <aura:attribute name="isCreateEventPopup" type="boolean"/>
+    <aura:attribute name="targetAction" type="String"/>
+    <aura:attribute name="eventId" type="String"/>
+</aura:event>

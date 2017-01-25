@@ -1,0 +1,93 @@
+<aura:component controller="CORE_LA_Controller">
+     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+     <aura:attribute name="externalInfo" type="CORE_LA_EventWrapperClass.TrainerWrapper" Description='External Details'/>
+     <aura:attribute name="trainerInfo" type="User" />
+     <aura:attribute name="trainerInfoId" type="String" />
+     <aura:attribute name="trainerId" type="String" />
+     <aura:attribute name="externalEmail" type="String" />
+     <aura:attribute name="trainers" type="CORE_LA_EventWrapperClass.TrainerWrapper" description='Internal Trainer Data'/> 
+     <aura:attribute name='event' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
+    <style>
+    .slds-tabs--default__link:focus {
+    border-bottom-width: 0px !important;
+   
+   }
+        .tabUi li {
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;   
+   }
+    </style>
+    
+  <div class="event-trainer-Parent" >
+    <div class="slds-page-header" role="banner"  >
+        <div class="slds-media slds-media--center"   onclick="{!c.gotoHomePage}">
+            <img aria-hidden="true" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png"
+               onclick="{!c.gotoHomePage}" class="slds-icon slds-avatar--small">
+            </img>            
+        </div>
+    </div>
+    <div class="profile-div">
+         <!--External trainer Details-->
+      <div aura:id="externalTrainerSpecific">
+        <div class="trainer">
+            <div class="trainer-photo" >
+                <img src="{!v.externalInfo.ExternalImage}"></img>
+            </div>
+            <div class="trainer-detail">
+                <p>
+                     <span style="font-size: 15px;">{!v.externalInfo.ExternalName}</span>
+                    <br></br>
+                    <div style="font-size:12px;padding-bottom: 4px;">{!v.externalInfo.ExternalTitle }</div>
+                    <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png">
+                    </img>
+                    <span class="icon-font1">{!v.externalInfo.ExternalLocation }</span>
+                </p>
+                <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/call_60.png">
+                </img>
+                <a class="icon-font icon-font1" >{!v.externalInfo.ExternalContact}</a>                     
+                  <br />
+                 <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/email_60.png">
+                 </img>
+                <a class="icon-font icon-font1" >{!v.externalInfo.ExternalEmail}</a>
+                <br/>
+            </div>
+        </div>
+      </div>   
+        <!--Internal trainer Details-->
+        <div aura:id="InternalTrainerSpecific">
+             <div class="trainer">
+            <div class="trainer-photo" >
+                <img src="{!v.trainerInfo.MediumPhotoUrl}"></img>
+            </div>
+            <div class="trainer-detail">
+                <p>
+                    <span style="font-size: 15px;">{!v.trainerInfo.Name}</span> 
+                    <br></br>
+                    <div style="font-size:12px;padding-bottom: 4px;">{!v.trainerInfo.Title}</div>
+                    <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png">
+                    </img>
+                    <span class="icon-font1">{!v.trainerInfo.State}{!v.trainerInfo.Country}</span>
+                </p>
+                <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/call_60.png">
+                </img>
+                <a class="icon-font icon-font1" >{!v.trainerInfo.MobilePhone}</a>                     
+                  <br />
+                 <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/email_60.png">
+                  </img>
+                <a class="icon-font icon-font1" >{!v.trainerInfo.Email}</a>
+                <br/>
+            </div>
+        </div>
+            <div class="about-me line-clamp icon-font1">{!v.trainerInfo.AboutMe}
+            </div>
+		  <div >
+           <button class="slds-bitton slds-button--neutral button1" onclick="{!c.runningUserStandardDetails}">Full Profile</button>
+          </div>  
+        </div>
+    </div>
+    <div class="slds-tabs--default">
+	   <a style="margin-bottom: 10px;" class="slds-tabs--default__link" >Up-coming events</a>
+	</div>
+ </div>  
+</aura:component>

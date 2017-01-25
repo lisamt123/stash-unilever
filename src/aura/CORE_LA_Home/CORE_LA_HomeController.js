@@ -3,7 +3,7 @@
     defaultPanel: function(component, event, helper) {
        if(component.get("v.isFromFeedback") != true)
        {
-      	 component.set("v.isFeedbackPopup",true);
+      	// component.set("v.isFeedbackPopup",true);
        } 
        var defaultPrimaryTab=component.find('tab-default');
        $A.util.addClass(defaultPrimaryTab,'slds-active');
@@ -53,27 +53,7 @@
 
     },
     
-      feedDisplay : function(component, event, helper) { 
-          var defaultTarget = component.find('tab-upcoming');
-           $A.util.removeClass(defaultTarget,'slds-active');
-          var defaultProfiletab=component.find('tab-profile');
-           $A.util.addClass(defaultProfiletab,'slds-active');
-           var removeTarget1=component.find('upcomingTabContent');
-           $A.util.removeClass(removeTarget1,'slds-show');
-           var cmpTarget = component.find('feedContent');
-           $A.util.addClass(cmpTarget,'slds-show');
-      
-	},
-    
-       upcomingEventDisplay : function(component, event, helper) { 
-           var removeTarget1=component.find('feedContent');
-           $A.util.removeClass(removeTarget1,'slds-show');
-           var defaultProfiletab=component.find('tab-profile');
-           $A.util.addClass(defaultProfiletab,'slds-active');
-           var cmpTarget = component.find('upcomingTabContent');
-           $A.util.addClass(cmpTarget,'slds-show');
-      
-	},
+  
     
 
 

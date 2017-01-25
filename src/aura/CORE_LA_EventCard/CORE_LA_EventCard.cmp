@@ -1,0 +1,20 @@
+<aura:component implements="force:appHostable" >
+    <aura:attribute name='event' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
+    <div  class="events-cards" aura:id="eventCard">
+        <div class="slds-text-heading--small" onclick="{!c.getEventDetail}">{!v.event.eventName}</div>
+        <span class="num-attendees">{!v.event.numberOfAttendees} Attending </span>
+        <div class="status-event">{!v.event.userRegistrationStatus}</div>
+       <!-- <img class="event-banner" src="{!v.event.contentURLBannerImage}"></img>-->
+        <img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy2.png"></img>
+        <div class="slds-text-body--regular"  >{!v.event.shortDescription}</div>
+        <div>
+            <img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
+            <span class="date-adress">{!v.event.fromDate}  from {!v.event.toDate}</span>
+        </div>
+        <div>
+            <img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
+            <span class="date-adress">{!v.event.Location}</span>
+        </div>
+        <c:CORE_LA_CommonActionBar event="{!v.event}" userRegistrationStatus="{!v.event.userRegistrationStatus}"/>
+    </div>
+</aura:component>

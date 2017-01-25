@@ -1,0 +1,85 @@
+.THIS.heading{
+    padding: 8px 11px;   
+}
+.THIS .events-filterdropdown{
+    right: 44px;
+    width: 160px;
+}
+.THIS .events-bold{
+    font-weight:bold ;
+}
+.THIS .events-sortdropdown{
+    right: 10px;
+    width: 160px;
+}
+.THIS .events-sharedropdown{
+    right: 18px;
+    width: 130px;
+}
+.THIS .events-cards{
+    padding: 8px;
+    background: white;
+    border: 1px solid #d2d2d2;
+    margin: 10px;
+    min-height: 360px;
+}
+.THIS .icons_group{
+    width:17px;
+    height:17px;
+}
+.THIS .icons_group2{
+    width:11px;
+    height:11px;
+}
+.THIS .filter-sort{
+    float: right;
+    margin-top: -30px;
+}
+.THIS hr{
+    margin: 0.5rem -9px !important; 
+}
+.THIS .icons_group1{
+    float: right;
+    margin-top: -14px;
+    height: 25px;
+}
+.THIS .lang{
+    font-size: 10px;
+    color: #afafaf;
+}
+.THIS .num-attendees{
+    font-size: 11px;
+    color: rgb(0, 136, 255);
+    margin-right: 4px;
+}
+.THIS .date-adress{
+    font-size:11px;
+    color: #afafaf;
+}
+.THIS .event-banner{
+    height:200px;
+}
+.THIS .facility {
+    width: 66px;
+    height: 27px;
+    margin-right: 4px;
+}
+.THIS .recurring{
+    width: 80px;
+    background: rgb(240,178,33);
+    border-radius: 10px;
+    padding: 0 13px 2px;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 12px;
+}
+.THIS.show-more{
+    width: 94%;
+    margin: 3%;
+}
+.THIS .share-dropdown{
+    float: right;
+}
+.THIS .toggle {
+    display: none;
+}

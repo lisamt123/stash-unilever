@@ -1,30 +1,47 @@
-<aura:component >
-    <!-- <aura:handler name="init" value="{!this}" action="{!c.defaultContent}" />-->
-    
-    
+<aura:component controller="CORE_LA_Controller">
+    <aura:attribute name="runningUserInfo" type="User" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="runningUserInfoId" type="String" />
+    <style>
+    .slds-tabs--default__link:focus {
+    border-bottom-width: 2px !important;
+
+     }
+        .tabUi li {
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+   
+}
+    </style>
+  
     <div class="profile-div">
         <div class="trainer">
             <div class="trainer-photo" >
-                <img src="/resource/Lightning_designing_style/assets/images/avatar1.jpg"></img>
+                <img src="{!v.runningUserInfo.MediumPhotoUrl}"></img>
             </div>
             <div class="trainer-detail">
                 <p>
-                    <span style="font-size: 15px;">Dr James Moth</span><br></br>
-                    <div style="font-size:12px;padding-bottom: 4px;">Data Scientist Kean University</div>
+                    <span class="slds-text-heading--small">{!v.runningUserInfo.Name}</span><br></br>
+                    <div class="slds-text-body--small">{!v.runningUserInfo.Title}</div>
                     <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png">
-                    </img>London, United Kingdom</p>
-                <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/email_60.png">
-                </img><a class="icon-font" href="mailto:james.moth@univeler.com">james.moth@unilever.com</a><br />
-                <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/call_60.png">
-                </img><a class="icon-font" href="tel:+44 77127593998">+44 77127593998</a><br />
+                    </img><span class="icon-font1 slds-text-color--weak">{!v.runningUserInfo.State},{!v.runningUserInfo.Country}</span></p>
                 
+                <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/call_60.png">
+                </img>
+                <span class="icon-font icon-font1" id="mblToDial">{!v.runningUserInfo.MobilePhone}</span>
+                <br/>
+                <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/email_60.png">
+                </img>
+                <span class="icon-font icon-font1" id="toMail">{!v.runningUserInfo.Email}</span>
+                <br/>    
             </div>
         </div>
-        <div class="about-me line-clamp">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        
+        <div class="about-me line-clamp icon-font1 slds-text-heading--regular">
+         {!v.runningUserInfo.AboutMe}
 		</div>
 		<div>
-        <button class="slds-bitton slds-button--neutral button1" onclick="{!c.doInit}">Full Profile</button>
+        <button class="slds-bitton slds-button--neutral button1" onclick="{!c.runningUserStandardDetails}">Full Profile</button>
         </div>
         
     </div>

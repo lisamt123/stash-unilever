@@ -35,8 +35,9 @@
     margin-right: 4px;
 }
 .THIS .date-adress{
-    font-size:11px;
+	font-size: 10px;
     color: #afafaf;
+    margin-left: 3px;
 }
 .THIS .events-bannerUpcoming{
     height:200px;
@@ -53,16 +54,16 @@
 
 .THIS .trainer-detail p{
     font-size:10px;
-    margin-top: -10px;
+    margin-top: -9px;
 }
 
 .THIS .trainer{
-    height: 134px;
+    height: 113px;
     background: white;
 }
 .THIS .trainer-photo{
     float: left;
-    width: 27%;
+    width: 18%;
     margin: 12px;
 }
 
@@ -75,7 +76,4 @@
 }
 .THIS .slds-button {
     font-size: 3.3vmin !important;
-}
-.THIS .slds-tabs--default__item.slds-active .slds-tabs--default__link{
-font-size:10px !important;
 }

@@ -1,72 +1,87 @@
-<aura:component > 
-    <div class="events-trainerParent">   
-        <div class="slds-page-header" role="banner">
-            <div class="slds-media slds-media--center">
-                <div class="slds-media__figure">
-                    <img aria-hidden="true" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png"
-                         onclick="{!c.gotoUpcomingDetail}" class="slds-icon slds-avatar--small">
-                    </img>
-                </div>    
+<aura:component controller="CORE_LA_Controller"> 
+    <aura:attribute name="eventIdneeded" type="String" />
+    <aura:attribute name="attendees" type="CORE_LA_Participant__c[]"/>
+    <aura:attribute name="trainers" type="CORE_LA_EventWrapperClass.TrainerWrapper" description='Contains detail of the Trainer Based On EventId'/>
+    <aura:attribute name="limitAttendeeRecords" type="Integer" default="2" />
+    <aura:attribute name="OffsetLimitAttendee" type="Integer" default="0"/>
+    <aura:attribute name="externalTrainerExists" type="Boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.defaultSection}" />
+    <aura:attribute name='event' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
+   
+    <div class="events-trainerParent"> 
+       <div class="back-button" onclick="{!c.goToEventDetail}">
+            <div class="slds-media slds-media--center" >
+                <img class="slds-icon slds-avatar--small" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" aria-hidden="true" >
+                </img>   
             </div>
-            <br></br>
-            <div class="slds-media__body">
-                <p class="slds-page-header__title slds-truncate " title="Rohde Corp - 80,000 Widgets">Trainer</p>
-            </div>
-        </div>
-        <div class="trainer1">
-            <div class="trainer-photo"><img src="/resource/Lightning_designing_style/assets/images/avatar2.jpg"></img></div>
-            <div class="trainer-detail1"><p><span style="font-size:15px;font-weight: bold;">Dr James Moth</span><br></br><span style="font-size:15px;">Data Scientist Kean University</span></p></div>
-        </div>
-        <div class="slds-page-header" role="banner">
-            <div class="slds-media__body">
-                <p class="slds-page-header__title slds-truncate" title="Rohde Corp - 80,000 Widgets">Attendees</p>
-            </div>
-        </div>
-        <article class="slds-post" data-aura-rendered-by="48:289;a"><header class="slds-post__header slds-media slds-media--center" data-aura-rendered-by="49:289;a">
-            <div class="slds-media__figure" data-aura-rendered-by="50:289;a">
-                <a class="slds-avatar slds-avatar--circle slds-avatar--large" href="javascript:void(0);" title="Jason Rodgers" data-aura-rendered-by="51:289;a">
-                    <img src="/resource/Lightning_designing_style/assets/images/avatar1.jpg" data-aura-rendered-by="52:289;a" />
-                </a>
-            </div>
-            <div class="slds-media__body" data-aura-rendered-by="53:289;a" >
-                <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate" onclick="{!c.nextPage}" >
-                    <p data-aura-rendered-by="55:289;a">
-                        <a href="javascript:void(0);" title="Jason Rodgers" data-aura-rendered-by="56:289;a">Parineeta Behera</a>
-                    </p>
-                </div>
-                <p class="slds-text-body--small" data-aura-rendered-by="58:289;a">
-                    <a class="slds-text-link--reset" href="javascript:void(0);" title="Click for single-item view of this post" data-aura-rendered-by="59:289;a">Business Analyst</a>
-                </p>
-            </div></header></article>
-        <!---tO bE DELETED-->
+       </div>
         
-        <article class="slds-post" data-aura-rendered-by="48:289;a"><header class="slds-post__header slds-media slds-media--center" data-aura-rendered-by="49:289;a">
-            <div class="slds-media__figure" >
-                
-                <a class="slds-avatar slds-avatar--circle slds-avatar--large" href="javascript:void(0);" title="Jason Rodgers" data-aura-rendered-by="51:289;a">
-                    <img src="/resource/Lightning_designing_style/assets/images/avatar1.jpg" data-aura-rendered-by="52:289;a"/>
-                </a>
+        <div class="slds-page-header" role="banner">
+            <div class="slds-media__body">
+                <p class="slds-page-header__title slds-truncate " >Trainer</p>
             </div>
-            <div class="slds-media__body" data-aura-rendered-by="53:289;a">
-                <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate" onclick="{!c.doInit1}" >
-                    <p data-aura-rendered-by="55:289;a"><a href="javascript:void(0);" title="Jason Rodgers" data-aura-rendered-by="56:289;a">Sankalp Tripathi</a>
-                    </p>
-                </div><p class="slds-text-body--small" data-aura-rendered-by="58:289;a"><a class="slds-text-link--reset" href="javascript:void(0);" title="Click for single-item view of this post" data-aura-rendered-by="59:289;a">Data Analyst</a></p></div></header></article>
-        <article class="slds-post" data-aura-rendered-by="48:289;a"><header class="slds-post__header slds-media slds-media--center" data-aura-rendered-by="49:289;a"><div class="slds-media__figure" data-aura-rendered-by="50:289;a" >
-            <a class="slds-avatar slds-avatar--circle slds-avatar--large" href="javascript:void(0);" title="Jason Rodgers" data-aura-rendered-by="51:289;a">
-                <img src="/resource/Lightning_designing_style/assets/images/avatar1.jpg" data-aura-rendered-by="52:289;a" />
-            </a>
-            </div>
-            <div class="slds-media__body"  data-aura-rendered-by="53:289;a">
-            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate" onclick="{!c.doInit2}" >
-                <p data-aura-rendered-by="55:289;a">
-                    <a href="javascript:void(0);" title="Jason Rodgers" data-aura-rendered-by="56:289;a">Somnath Sharma</a>
-                </p>
+        </div>
+        <!--**********Trainer List Starts**********-->
+        <div aura:id="listTrainer" class="event-trainercard">
+            <aura:iteration items="{!v.trainers}" var="trainerList">				   
+              <div class="trainer1" >
+                <div class="trainer-photo">
+                     <ul>
+                         <li aura:id="TrainerImage" data-record="{!trainerList.ExternalEmail}" onclick="{!c.goToTrainerExternalDetail}">
+                             <img title="{!trainerList.ExternalName }" src="{!trainerList.ExternalImage }" ></img> 
+                         </li>
+                         <li style="margin-top: -24px;" data-record="{!trainerList.Participant_Id}"  onclick="{!c.goToTrainerDetail}">
+                                <img title="{!trainerList.Participant_Name}" src="{!trainerList.Participant_SmallPhotoUrl}"></img>
+                         </li>                
+                     </ul>   
+                    </div>
+                    <div class="trainer-detail1">
+                        <a>
+                            <span style="font-size:15px;font-weight: bold;color:#0070d2">{!trainerList.Participant_Name}
+                                {!trainerList.ExternalName }
+                            </span>
+                        </a>
+                        <br></br>
+                        
+                        <span style="font-size:13px;">{!trainerList.Participant_Title}
+                            {!trainerList.ExternalTitle }
+                        </span>      
+                        
+                    </div>
                 </div>
-                <p class="slds-text-body--small" data-aura-rendered-by="58:289;a">
-                    <a class="slds-text-link--reset" href="javascript:void(0);" title="Click for single-item view of this post" data-aura-rendered-by="59:289;a">UX Consultant</a>
-                </p>
-            </div></header></article>
-        
+            </aura:iteration>
+        </div>	    
+                              <!--**********Trainer List Ends**************-->
+        <div class="slds-page-header" role="banner">
+            <div class="slds-media__body">
+                <p class="slds-page-header__title slds-truncate" >Attendees</p>
+            </div>
+        </div>
+                                 <!--***********Attendee List Starts**************-->
+        <div aura:id="listAttende" class="event-attendediv">
+            <aura:iteration items="{!v.attendees}" var="attendeeList">	
+                <article class="slds-post" data-aura-rendered-by="48:289;a">
+                    <header class="slds-post__header slds-media slds-media--center" data-aura-rendered-by="49:289;a">
+                        <div class="slds-media__figure" data-aura-rendered-by="50:289;a">
+                            <a class="slds-avatar slds-avatar--circle slds-avatar--medium" href="javascript:void(0);"  data-aura-rendered-by="51:289;a">
+                                <img src="{!attendeeList.Participant_Name__r.SmallPhotoUrl}" data-aura-rendered-by="52:289;a" />
+                            </a>
+                        </div>
+                        <div class="slds-media__body" data-aura-rendered-by="53:289;a" >
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate"  >
+                                <p data-aura-rendered-by="55:289;a">
+                                    <a href="javascript:void(0);" title="{!attendeeList.Participant_Name__r.Name}" data-aura-rendered-by="56:289;a">{!attendeeList.Participant_Name__r.Name}</a>
+                                </p>
+                            </div>
+                            <p class="slds-text-body--small" data-aura-rendered-by="58:289;a">
+                                <a class="slds-text-link--reset" href="javascript:void(0);"  data-aura-rendered-by="59:289;a">{!attendeeList.Participant_Name__r.Title}</a>
+                            </p>
+                        </div>
+                    </header>
+                </article>
+            </aura:iteration>           
+        </div>
+        <!--***********Attendee List Ends*******************-->
+        <ui:button aura:id="button" buttonTitle="Show More" class="button slds-button slds-button--neutral show-more" label="Show More" press="{!c.showMoreAttendees}"/>                                 
     </div>     
 </aura:component>

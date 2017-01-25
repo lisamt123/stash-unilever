@@ -1,0 +1,95 @@
+<aura:component implements="force:appHostable" >
+    <ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" /> 
+    <aura:attribute name="EventId" type="ID" description="Id of the event"/>
+    <aura:attribute name="userRegistrationStatus" type="String" description="registration status of the event by user" default="Saved"/>
+    <aura:attribute name="isRegistrationPopup" type="boolean"/>
+   	<aura:attribute name='event' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
+    <div class="slds-grid slds-grid--align-space action-bar">
+        <!--Register event Icon: custom18_60
+     Cancel Registration Icon: remove_60
+     Save event Icon: bookmark_60 \utility
+     Unsave Event Icon: unmatched_60 icons\standard
+     Share Icon: share_60  icons\utility
+    -->
+        
+        <aura:if isTrue="{!v.userRegistrationStatus == 'Invited'}">
+            <div>
+                <span onclick="{!c.registerEvent}">
+                    <figure>
+                        <span class="slds-icon_container slds-icon-action-follow slds-icon_container--circle">
+                            <img src="/resource/Lightning_designing_style/assets/icons/action/approval_60.png"></img>
+                        </span>
+                        <figcaption class="slds-p-top--x-small slds-text-body--small">Register</figcaption></figure>
+                </span>
+            </div>   
+            <div>
+                <span onclick="{!c.saveEvent}">
+                    <figure>
+                        <span class="slds-icon_container slds-icon-action-follow slds-icon_container--circle">
+                            <img src="/resource/Lightning_designing_style/assets/icons/utility/new_custom11_60.png"></img>
+                        </span>
+                    <figcaption class="slds-p-top--x-small slds-text-body--small">Save</figcaption></figure>
+                </span>
+            </div>   
+        </aura:if>
+        <aura:if isTrue="{!v.userRegistrationStatus == 'Registered'}">
+            <div>
+                <span onclick="{!c.unRegisterEvent}">
+                    <figure>
+                        <span class="slds-icon_container slds-icon-action-update-status slds-icon_container--circle">
+                            <img src="/resource/Lightning_designing_style/assets/icons/action/unmatched_60.png"></img>
+                        </span>
+                  
+                     <figcaption class="slds-p-top--x-small slds-text-body--small">Cancel</figcaption></figure>
+                   
+                </span>
+            </div>
+            <div>
+                <span>                   
+                    <figure>
+                        <span class="slds-icon_container slds-icon-action-update-status slds-icon_container--circle">
+                            <img src="/resource/Lightning_designing_style/assets/icons/action/unmatched_60.png"></img>
+                        </span>
+                    <figcaption class="slds-p-top--x-small slds-text-body--small">Save</figcaption></figure>
+                </span>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.userRegistrationStatus == 'Saved'}">
+            <div>
+                <span onclick="{!c.registerEvent}">
+                    <figure>
+                        <span class="slds-icon_container slds-icon-action-update-status slds-icon_container--circle">
+                            <img src="/resource/Lightning_designing_style/assets/icons/action/following_60.png"></img>
+                        </span>
+                        <figcaption class="slds-p-top--x-small slds-text-body--small">Register</figcaption></figure>
+                    
+                </span>
+            </div>
+            <div>
+                <span onclick="{!c.unSaveEvent}">
+                    <figure>
+                        <span class="slds-icon_container slds-icon-action-follow slds-icon_container--circle">
+                            <img src="/resource/Lightning_designing_style/assets/icons/action/edit_groups_60.png"></img>
+                        </span>
+                        <figcaption class="slds-p-top--x-small slds-text-body--small">Save</figcaption></figure>
+                </span>
+            </div>
+        </aura:if>
+        <div>
+            <span onclick="{!c.shareEvent}">
+                <figure>
+                    <span class="slds-icon_container slds-icon-action-share slds-icon_container--circle">
+                        <img src="/resource/Lightning_designing_style/assets/icons/action/share_60.png"></img>
+                    </span>
+                    <figcaption class="slds-p-top--x-small slds-text-body--small">Share</figcaption></figure>
+                
+            </span>
+        </div>
+    </div>
+    	<!-- Registration Popup -->
+	<aura:if isTrue="{!v.isRegistrationPopup}">
+		<div class="slds-backdrop slds-backdrop--open">
+			<c:CORE_LA_Registration event="{!c.event}" ></c:CORE_LA_Registration>
+		</div>
+	</aura:if>
+</aura:component>
