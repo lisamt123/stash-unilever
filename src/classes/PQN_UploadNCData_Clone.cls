@@ -4,6 +4,7 @@ global without sharing class PQN_UploadNCData_Clone{
     public List<selectoption> filetype{get; set;}
   
     public PQN_UploadNCData_Clone (){
+        selectedfile = apexpages.currentpage().getparameters().get('fileType');
         filetype = new List<selectOption>();
         filetype.add(new SelectOption('Unilever','Unilever'));
         filetype.add(new SelectOption('Cannock','Cannock'));
@@ -12,7 +13,7 @@ global without sharing class PQN_UploadNCData_Clone{
     
     @RemoteAction
     global static Database.UpsertResult[] getSheetData(List<PQN_Pallet_Quality_Non_Conformance__c> xPQN, String selectedFileType,String timeStamp) {
-        Delete [select id From PQN_Pallet_Quality_Non_Conformance__c where Multi_Timestamp__c=:timeStamp AND Is_Error__c=true];
+        Delete [select id From PQN_Pallet_Quality_Non_Conformance__c where Multi_Timestamp__c=:timeStamp AND Is_Error__c=true and createdbyid=:UserInfo.getUserId()];
         system.debug(xPQN);
         List<PQN_Pallet_Quality_Non_Conformance__c> xPQNLIST= xPQN;
         String errorDesc = '';
@@ -164,7 +165,7 @@ global without sharing class PQN_UploadNCData_Clone{
     
     @RemoteAction
     global static List<PQN_Pallet_Quality_Non_Conformance__c> sheetErrors(String timeStamp) {
-      return [select id,Reporting_DC__c,Delivery_Note_Number__c,Description__c,SKU__c,Supplier__c,Supplier_Number__c, Non_compliance_reason_code__c,Number_of_Pallets_Per_SKU_Non_Compliant__c,Date_Pallet_Received__c,Comments__c,Error_Description__c,Account__c  From PQN_Pallet_Quality_Non_Conformance__c where Multi_Timestamp__c=:timeStamp AND Is_Error__c=true];
+      return [select id,Reporting_DC__c,Delivery_Note_Number__c,Description__c,SKU__c,Supplier__c,Supplier_Number__c, Non_compliance_reason_code__c,Number_of_Pallets_Per_SKU_Non_Compliant__c,Date_Pallet_Received__c,Comments__c,Error_Description__c,Account__c  From PQN_Pallet_Quality_Non_Conformance__c where Multi_Timestamp__c=:timeStamp AND Is_Error__c=true and createdbyid=:userinfo.getuserid()];
     }
     
     
