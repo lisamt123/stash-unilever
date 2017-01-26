@@ -244,6 +244,14 @@ src/permissionsets/BFM_View_All_Data_User.permissionset
 src/profiles/BFM Partner Community User.profile
 src/queues/BFM_User_Creation_Request_Approvers.queue
 src/quickActions/BFM_Shipment__c.Mark_6th_Flag.quickAction
+src/reports
+src/reports/Relatorios_BFM/BFM_Ct_e_Issuing.report
+src/reports/Relatorios_BFM/BFM_CT_e_Issuing_Occurrence.report
+src/reportTypes
+src/reportTypes/BFM_Accounts_with_Shipments_with_Stages_with_SESs.reportType
+src/reportTypes/BFM_Conta_com_Equipe_de_Contas.reportType
+src/reportTypes/BFM_OccurrencexOccuSESxNFe.reportType
+src/reportTypes/BFM_ShipmentxStagexDeliveryxNFe.reportType
 src/staticresources/BFM_Bootstrap.resource
 src/staticresources/BFM_Bootstrap.resource-meta.xml
 src/staticresources/BFM_Green.resource
