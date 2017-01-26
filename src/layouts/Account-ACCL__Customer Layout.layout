@@ -32,10 +32,6 @@
                 <field>AnnualRevenue</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__ExternalId__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>UL_Planning_Level_Rollup__c</field>
             </layoutItems>
@@ -68,14 +64,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Type</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Activity_Sector_Division_Code__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Distribution_Channel_Code__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -189,7 +177,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>UL_Customer_Role_Valid_From__c</field>
+                <field>UL_Currency__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UL_Direct_Indirect_Flag__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UL_Customer_Hierarchy_Level__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UL_Generic_Customer__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -231,11 +231,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>UL_Customer_Role_Valid_Thru__c</field>
+                <field>UL_Activity_Sector_Division_Code__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>UL_Customer_Hierarchy_Level__c</field>
+                <field>UL_Distribution_Channel_Code__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -277,10 +277,69 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>UL_Planning_Level_Start_Date__c</fields>
-        <fields>UL_Planning_Level_End_Date__c</fields>
-        <fields>UL_Account__c</fields>
+        <relatedList>ACCL__Account_Set_Account__c.ACCL__Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <relatedList>UL_Planning_Level__c.UL_Customer__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>FULL_NAME</fields>
+        <fields>CONTACT.PHONE1</fields>
+        <fields>CONTACT.PHONE3</fields>
+        <relatedList>RelatedContactList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__User__c</fields>
+        <fields>ACCL__Management_Type__c</fields>
+        <fields>ACCL__Valid_From__c</fields>
+        <fields>ACCL__Valid_Thru__c</fields>
+        <fields>ACCL__Main__c</fields>
+        <relatedList>ACCL__Account_Manager__c.ACCL__Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__Wholesaler__c</fields>
+        <fields>ACCL__Valid_From__c</fields>
+        <fields>ACCL__Valid_Thru__c</fields>
+        <fields>ACCL__Main__c</fields>
+        <relatedList>ACCL__Account_Wholesaler__c.ACCL__Receiver__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__Parent_Account__c</fields>
+        <fields>ACCL__Valid_From__c</fields>
+        <fields>ACCL__Valid_Thru__c</fields>
+        <relatedList>ACCL__Account_Trade_Org_Hierarchy__c.ACCL__Child_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__Delivery_Recipient__c</fields>
+        <fields>ACCL__Valid_From__c</fields>
+        <fields>ACCL__Valid_Thru__c</fields>
+        <fields>ACCL__Main__c</fields>
+        <relatedList>ACCL__Account_Delivery_Recipient__c.ACCL__Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__Duration__c</fields>
+        <fields>ACCL__Frequency__c</fields>
+        <fields>ACCL__Day_Of_Week__c</fields>
+        <fields>ACCL__Management_Type__c</fields>
+        <fields>ACCL__Planning_Mode__c</fields>
+        <fields>ACCL__Start_Week__c</fields>
+        <fields>ACCL__Time_Of_Day__c</fields>
+        <fields>ACCL__Valid_From__c</fields>
+        <fields>ACCL__Valid_Thru__c</fields>
+        <relatedList>ACCL__Account_Call_Setting__c.ACCL__Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__Org_Unit__c</fields>
+        <fields>ACCL__Valid_From__c</fields>
+        <fields>ACCL__Valid_Thru__c</fields>
+        <relatedList>ACCL__Account_Org_Unit__c.ACCL__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>ACCL__Record_Link__c</fields>
@@ -289,84 +348,68 @@
         <relatedList>ACCL__Account_Extension__c.ACCL__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__Condition_Template__c</fields>
+        <fields>ACCL__Valid_From__c</fields>
+        <fields>ACCL__Valid_Thru__c</fields>
+        <relatedList>ACCL__Account_Condition__c.ACCL__Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__Payer__c</fields>
+        <fields>ACCL__Valid_From__c</fields>
+        <fields>ACCL__Valid_Thru__c</fields>
+        <fields>ACCL__Main__c</fields>
         <relatedList>ACCL__Account_Payer__c.ACCL__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__Bill_To__c</fields>
+        <fields>ACCL__Valid_From__c</fields>
+        <fields>ACCL__Valid_Thru__c</fields>
+        <fields>ACCL__Main__c</fields>
         <relatedList>ACCL__Account_Bill_To__c.ACCL__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>TASK.SUBJECT</fields>
-        <fields>TASK.WHO_NAME</fields>
-        <fields>TASK.WHAT_NAME</fields>
-        <fields>ACTIVITY.TASK</fields>
-        <fields>TASK.DUE_DATE</fields>
-        <fields>TASK.STATUS</fields>
-        <fields>TASK.PRIORITY</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <relatedList>RelatedActivityList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>TASK.SUBJECT</fields>
-        <fields>TASK.WHO_NAME</fields>
-        <fields>TASK.WHAT_NAME</fields>
-        <fields>ACTIVITY.TASK</fields>
-        <fields>TASK.DUE_DATE</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <fields>TASK.LAST_UPDATE</fields>
-        <relatedList>RelatedHistoryList</relatedList>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__Time_From__c</fields>
+        <fields>ACCL__Time_Thru__c</fields>
+        <fields>ACCL__Mon__c</fields>
+        <fields>ACCL__Tue__c</fields>
+        <fields>ACCL__Wed__c</fields>
+        <fields>ACCL__Thu__c</fields>
+        <fields>ACCL__Fri__c</fields>
+        <fields>ACCL__Sat__c</fields>
+        <fields>ACCL__Sun__c</fields>
+        <relatedList>ACCL__Account_Opening_Hours__c.ACCL__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>ACCL__Description__c</fields>
-        <fields>ACCL__Fund_Template__c</fields>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__Phase__c</fields>
+        <fields>ACCL__Order_Date__c</fields>
+        <relatedList>ACCL__Order__c.ACCL__Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__Condition_Template__c</fields>
         <fields>ACCL__Valid_From__c</fields>
         <fields>ACCL__Valid_Thru__c</fields>
-        <fields>ACCL__Anchor_Product__c</fields>
-        <fields>ACCL__Status__c</fields>
-        <fields>ACCL__Sales_Org__c</fields>
-        <relatedList>ACCL__Fund__c.ACCL__Anchor_Account__c</relatedList>
+        <fields>ACCL__Price_Type__c</fields>
+        <fields>ACCL__Value__c</fields>
+        <relatedList>ACCL__Account_Specific_Product_Condition__c.ACCL__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>UL_Promotion_ID__c</fields>
-        <fields>UL_Promotion_Name_URL__c</fields>
-        <fields>UL_Current_Status__c</fields>
-        <fields>UL_Sub_Mechanic__c</fields>
-        <fields>UL_Feature__c</fields>
-        <fields>UL_Free_Text__c</fields>
-        <fields>ACCL__Delivery_Date_From__c</fields>
-        <fields>ACCL__Placement_Date_From__c</fields>
-        <fields>UL_Category__c</fields>
-        <fields>UL_Brand__c</fields>
-        <relatedList>ACCL__Promotion__c.UL_Account__c</relatedList>
+        <fields>ACCL__Record_Link__c</fields>
+        <fields>ACCL__Product__c.NAME</fields>
+        <fields>ACCL__Call_Template__c</fields>
+        <relatedList>ACCL__Historic_Product__c.ACCL__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>UL_Sales_Organization__c</fields>
-        <fields>UL_Product__c</fields>
-        <fields>UL_Cannibalisation_Rate__c</fields>
-        <fields>UL_Valid_From__c</fields>
-        <fields>UL_Valid_Thru__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>UL_Cannibalisation_Rate__c.UL_Customer__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>UL_Delivery_Profile_Name__c</fields>
-        <fields>UL_Product__c</fields>
-        <fields>UL_Valid_From__c</fields>
-        <fields>UL_Valid_Thru__c</fields>
-        <fields>UL_Sales_Organisation__c</fields>
-        <fields>CREATEDBY_USER</fields>
-        <relatedList>UL_Delivery_Profile__c.UL_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>UL_Workflow_Threshold__c.UL_Customer__c</relatedList>
+        <relatedList>IIBBTax__c.Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -375,7 +418,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h58000001pUbZ</masterLabel>
+        <masterLabel>00h4C000000ZTKi</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

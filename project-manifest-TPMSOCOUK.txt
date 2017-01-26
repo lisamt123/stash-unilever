@@ -232,6 +232,7 @@ src/layouts/UL_Workflow_Threshold_Template__c-WorkflowThresholdTemplateLayout.la
 src/layouts/Account-UL_SoCo_Account_Layout.layout
 src/layouts/ACCL__Promotion_Template__c-SoCo_Promotion_Template_Layout.layout
 src/layouts/IIBBTax__c-IIBBTax_Layout.layout
+src/layouts/Account-ACCL__Customer Layout.layout
 src/groups
 src/groups/UL_Account_Manager_AR01.group
 src/groups/UL_AccountManager_AR01.group
