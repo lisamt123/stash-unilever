@@ -494,11 +494,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>NFS__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Address_Number_Destination__c</field>
             <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
         </columns>
