@@ -38,7 +38,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>BFM_Region__c</field>
+                <field>BFM_Carrier_Region__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
