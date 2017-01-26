@@ -389,11 +389,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>CT_e__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>CurrencyIsoCode</field>
             <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
         </columns>
