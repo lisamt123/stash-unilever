@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>UL_Components__c</field>
-        <value xsi:type="xsd:string">TOOLBAR_BTN_SUBMIT;TOOLBAR_BTN_APPROVE;TOOLBAR_BTN_REJECT;TOOLBAR_BTN_PUSH;TOOLBAR_BTN_RELEASE;TOOLBAR_BTN_ENDDATE</value>
+        <value xsi:type="xsd:string">TOOLBAR_BTN_SUBMIT;TOOLBAR_BTN_APPROVE;TOOLBAR_BTN_REJECT;TOOLBAR_BTN_PUSH;TOOLBAR_BTN_RELEASE;TOOLBAR_BTN_ENDDATE;TOOLBAR_BTN_THRESHOLD;TOOLBAR_BTN_CLOSE</value>
     </values>
     <values>
         <field>UL_Sales_Org__c</field>
@@ -20,6 +20,10 @@
     </values>
     <values>
         <field>UL_Status__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>UL_Visible_Components__c</field>
         <value xsi:nil="true"/>
     </values>
 </CustomMetadata>

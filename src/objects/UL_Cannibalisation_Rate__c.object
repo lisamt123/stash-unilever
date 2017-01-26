@@ -253,7 +253,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>UL_Feature</picklist>
+            <picklist>UL_Feature__c</picklist>
             <values>
                 <fullName>Shelf</fullName>
                 <default>false</default>
