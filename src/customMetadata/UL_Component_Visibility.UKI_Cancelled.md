@@ -22,4 +22,8 @@
         <field>UL_Status__c</field>
         <value xsi:type="xsd:string">Cancelled</value>
     </values>
+    <values>
+        <field>UL_Visible_Components__c</field>
+        <value xsi:type="xsd:string">TOOLBAR_BTN_SIMULATION;TOOLBAR_BTN_MODEL;TOOLBAR_BTN_PLANNED</value>
+    </values>
 </CustomMetadata>

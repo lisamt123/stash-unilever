@@ -22,4 +22,8 @@
         <field>UL_Status__c</field>
         <value xsi:type="xsd:string">Planning</value>
     </values>
+    <values>
+        <field>UL_Visible_Components__c</field>
+        <value xsi:nil="true"/>
+    </values>
 </CustomMetadata>
