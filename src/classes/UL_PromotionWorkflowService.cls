@@ -1,4 +1,4 @@
-/***************************************************************
+﻿/***************************************************************
     Name: UL_PromotionWorkflowService
     Copyright © 2016 Accenture
     ======================================================
@@ -84,7 +84,7 @@
                             if(promotionLst[0].UL_Threshold_Window_Result__c == null){                        
                                 listNextapprover = UL_PromotionWorkflowService.getApproverIds(promoId,'Finance User');
                                 if(listNextapprover !=null && listNextapprover.isempty()){
-                                  throw new UL_CustomException('Finance analyst/managers not setup properly');
+                                  throw new UL_CustomException('role-Finance User '+label.UL_UserNotSetup);
                                 }
                                 queueId = UL_PromotionWorkflowService.addApproverstoQueue(promoId,listNextapprover,'finance'); 
                                 req1.setNextApproverIds(new list<id> {queueid});
@@ -93,6 +93,10 @@
                                 req1.setNextApproverIds(new list<id> {UserInfo.getUserId()});
                             }
                         }
+                        else {
+                          req1.setNextApproverIds(new list<id> {queueid});
+                        }
+                       
                         // Submit the approval request for the account
                         Approval.ProcessResult result = Approval.process(req1);
                         

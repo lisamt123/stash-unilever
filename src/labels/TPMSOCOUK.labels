@@ -26871,13 +26871,13 @@ the campaign covers more than 15 countries</value>
         <shortDescription>UL_MaxStoreDate</shortDescription>
         <value>91</value>
     </labels>
-    <labels>
+    <!--<labels>
         <fullName>UL_Multiple_Brands</fullName>
         <language>en_GB</language>
         <protected>false</protected>
         <shortDescription>UL_Multiple_Brands</shortDescription>
         <value>Multiple Brands</value>
-    </labels>
+    </labels>-->
     <labels>
         <fullName>UL_Multiple_Categories</fullName>
         <language>en_GB</language>
@@ -27133,7 +27133,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Users data not setup properly</shortDescription>
-        <value>Finance analyst/Finance managers not setup properly</value>
+        <value>Role User is not setup properly</value>
     </labels>
     <labels>
         <fullName>UW_ASSET_IN_TOOLKIT</fullName>

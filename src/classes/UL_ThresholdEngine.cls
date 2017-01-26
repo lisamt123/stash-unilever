@@ -1,4 +1,4 @@
-/***************************************************************
+﻿/***************************************************************
     Name: UL_ThresholdEngine()
     Copyright © 2015 Salesforce
     ======================================================
@@ -71,7 +71,13 @@
         List<KpiValueDescriptor> result = new List<KpiValueDescriptor>();
         Map<String,Object> postParameters = new Map<String,Object>();
         postParameters.put(PROMOTION_ID, promId);
-        postParameters.put(MEASURE_CODES, UL_Utility.KPI_REQUEST);
+        list<string> kpiCodes = new list<string>();
+            list<UL_KPI_Configuration__mdt> KPIData = [select Active__c,KPI_Code__c from UL_KPI_Configuration__mdt where Active__c=true];
+            for(UL_KPI_Configuration__mdt KPIs : KPIData)
+            {
+               kpiCodes.add(KPIs.KPI_Code__c); 
+            }
+        postParameters.put(MEASURE_CODES, kpiCodes);
         HttpRequest req = new HttpRequest();
         String body = JSON.serialize(postParameters);
 
