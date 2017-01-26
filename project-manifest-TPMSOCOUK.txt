@@ -82,6 +82,7 @@ src/objects/UL_Utility__c.object
 src/objects/IIBBTax__c.object
 src/objects/UL_Component_Visibility__mdt.object
 src/objects/ACCL__Promotion_Template_Tactic_Template__c.object
+src/objects/UL_KPI_Configuration__mdt.object
 src/customMetadata
 src/customMetadata/UL_Component_Visibility.SoCo_Approved.md
 src/customMetadata/UL_Component_Visibility.SoCo_Banded_Pack_Approved.md
@@ -102,6 +103,10 @@ src/customMetadata/UL_Component_Visibility.UKI_Planned.md
 src/customMetadata/UL_Component_Visibility.UKI_Rejected.md
 src/customMetadata/UL_Component_Visibility.UKI_Simulation.md
 src/customMetadata/UL_Component_Visibility.UKI_Stopped.md
+src/customMetadata/UL_KPI_Configuration.Gross_Margin.md
+src/customMetadata/UL_KPI_Configuration.Investement_Cost.md
+src/customMetadata/UL_KPI_Configuration.Invoice_Type.md
+src/customMetadata/UL_KPI_Configuration.ROI.md
 src/objectTranslations
 src/objectTranslations/ACCL__Account_Bill_To__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Account_Call_Setting__c-en_US.objectTranslation
@@ -540,3 +545,5 @@ src/permissionsets/SoCo_Finance_Admin.permissionset
 src/permissionsets/SoCo_Finance_Director.permissionset
 src/permissionsets/SoCo_Process_Officer.permissionset
 src/permissionsets/SoCo_System_Admin.permissionset
+src/sharingRules
+src/sharingRules/ACCL__Fund_Template__c.sharingRules
