@@ -1237,7 +1237,7 @@
         <field>BFM_User_Creation_Request_Error__c.Error_Message__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <label>BFM-Governance Super User</label>
+    <label>BFM API User</label>
 	<objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
