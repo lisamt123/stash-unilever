@@ -26871,13 +26871,13 @@ the campaign covers more than 15 countries</value>
         <shortDescription>UL_MaxStoreDate</shortDescription>
         <value>91</value>
     </labels>
-    <labels>
+    <!--<labels>
         <fullName>UL_Multiple_Brands</fullName>
         <language>en_GB</language>
         <protected>false</protected>
         <shortDescription>UL_Multiple_Brands</shortDescription>
         <value>Multiple Brands</value>
-    </labels>
+    </labels>-->
     <labels>
         <fullName>UL_Multiple_Categories</fullName>
         <language>en_GB</language>
