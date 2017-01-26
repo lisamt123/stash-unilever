@@ -20,8 +20,8 @@ public class BFM_GeneralServiceCalls {
         request.setEndpoint(customSettingEndpoint);
         request.setHeader('Authorization', 'OAuth '+UserInfo.getSessionId());
         request.setHeader('Content-Type', 'application/json');
-        request.setHeader('client_id', 'test');
-        request.setHeader('client_secret', 'test1');
+        request.setHeader('client_id', '8c12b13b98c949969c3a622686efeb88');
+        request.setHeader('client_secret', 'f0a1a7efee6e40879BDFB0B23088043C');
         request.setMethod('POST');
         BFM_QueryFreightsRequest requestBody = new BFM_QueryFreightsRequest(shipmentNumber, queryType);
         request.setBody(JSON.serialize(requestBody));
@@ -44,8 +44,8 @@ public class BFM_GeneralServiceCalls {
         request.setEndpoint(customSettingEndpoint);
         request.setHeader('Authorization', 'OAuth '+UserInfo.getSessionId());
         request.setHeader('Content-Type', 'application/json');
-        request.setHeader('client_id', 'dummyId');
-        request.setHeader('client_secret', 'dummySecret');
+      request.setHeader('client_id', '8c12b13b98c949969c3a622686efeb88');
+        request.setHeader('client_secret', 'f0a1a7efee6e40879BDFB0B23088043C');
         request.setMethod('POST');
         BFM_QueryOccurrencesRequest requestBody = new BFM_QueryOccurrencesRequest(occurrenceNumbers, queryType);
         request.setBody(JSON.serialize(requestBody));
@@ -242,8 +242,8 @@ public class BFM_GeneralServiceCalls {
         BFM_Mulesoft_Endpoint__mdt customSettingEndpoint = [SELECT Endpoint_URL__c FROM BFM_Mulesoft_Endpoint__mdt 
                                                                     WHERE QualifiedAPIName = 'Update_Freight_Data' LIMIT 1];
         String endpoint = customSettingEndpoint.endpoint_URL__c + request.UpdateFreightData.shipment.shipmentID;
-        hRequest.setHeader('client_id', 'client_id');
-        hRequest.setHeader('client_secret', 'client_secret');
+          hRequest.setHeader('client_id', '8c12b13b98c949969c3a622686efeb88');
+        hRequest.setHeader('client_secret', 'f0a1a7efee6e40879BDFB0B23088043C');
         hRequest.setHeader('Content-Type', 'application/json');
         hRequest.setMethod('PUT');
         hRequest.setEndpoint(endpoint);
@@ -270,8 +270,8 @@ public class BFM_GeneralServiceCalls {
         BFM_Mulesoft_Endpoint__mdt customSettingEndpoint = [SELECT Endpoint_URL__c FROM BFM_Mulesoft_Endpoint__mdt 
                                                                     WHERE QualifiedAPIName = 'Update_Freight_Data' LIMIT 1];
         String endpoint = customSettingEndpoint.endpoint_URL__c + shipOrOccNumber;
-        request.setHeader('client_id', 'client_id');
-        request.setHeader('client_secret', 'client_secret');
+              request.setHeader('client_id', '8c12b13b98c949969c3a622686efeb88');
+        request.setHeader('client_secret', 'f0a1a7efee6e40879BDFB0B23088043C');
         request.setHeader('Content-Type', 'application/json');
         request.setMethod('PUT');
         request.setEndpoint(endpoint);
