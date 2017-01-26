@@ -27133,7 +27133,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Users data not setup properly</shortDescription>
-        <value>Finance analyst/Finance managers not setup properly</value>
+        <value>Role User is not setup properly</value>
     </labels>
     <labels>
         <fullName>UW_ASSET_IN_TOOLKIT</fullName>

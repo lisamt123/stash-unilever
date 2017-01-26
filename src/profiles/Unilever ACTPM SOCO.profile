@@ -52324,6 +52324,12 @@
         <recordType>uw_Links__c.HUB_Working_Resources</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
+        <recordType>ACCL__Product__c.UL_Product_SoCo</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>uw_Links__c.Pinnovate_Wall_Link</recordType>

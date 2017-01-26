@@ -155,11 +155,7 @@
         <label>User Role</label>
         <picklist>
             <picklistValues>
-                <fullName>TPM Argentina AR01 Finance Manager</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TPM Argentina AR01 Finance Analyst</fullName>
+                <fullName>Finance User</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>

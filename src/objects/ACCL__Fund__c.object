@@ -477,14 +477,14 @@ ACCL__Description_Language_1__c)</formula>
         <customTabListAdditionalFields>ACCL__Anchor_Product__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCL__Status__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCL__Sales_Org__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Status__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCL__Description__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>ACCL__Fund_Template__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>UL_Available_to_Spend__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Anchor_Product__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Anchor_Account__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCL__Valid_From__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCL__Valid_Thru__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>ACCL__Anchor_Account__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>ACCL__Anchor_Product__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>ACCL__Status__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>ACCL__Sales_Org__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCL__Fund_Template__c</lookupDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCL__Description__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCL__Fund_Template__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCL__Valid_From__c</lookupPhoneDialogsAdditionalFields>
