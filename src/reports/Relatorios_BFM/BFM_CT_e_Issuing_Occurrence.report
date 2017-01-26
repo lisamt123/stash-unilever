@@ -31,12 +31,11 @@
         <language>pt_BR</language>
     </filter>
     <format>Tabular</format>
-    <name>CT-e Issuing - Occurrence</name>
+    <name>BFM CT-e Issuing - Occurrence</name>
     <params>
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>BFM_OccurrencexOccuSESxNFe__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>

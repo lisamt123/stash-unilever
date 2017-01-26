@@ -83,12 +83,11 @@
         <field>BFM_Shipment__c.Stages__r.Deliveries__r$Delivery_Number__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Ct-e Issuing</name>
+    <name>BFM Ct-e Issuing</name>
     <params>
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>BFM_ShipmentxStagexDeliveryxNFe__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
