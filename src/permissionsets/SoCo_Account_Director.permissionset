@@ -4246,11 +4246,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>ACCL__Promotion_Template_Hierarchy__c.UL_Usage__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>ACCL__Promotion_Template_Hierarchy__c.UL_Usage__c</field>
         <readable>true</readable>
@@ -4261,9 +4256,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>ACCL__Promotion_Template_Tactic_Template__c.isMandatory__c</field>
-        <readable>true</readable>
+        <readable>false</readable> 
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4273,6 +4268,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>ACCL__Promotion_Template__c.ACCL__Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>ACCL__Promotion_Template__c.UL_Is_Tactic_Fund_Required__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4416,16 +4416,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>ACCL__Promotion_Template__c.UL_Is_Tactic_Fund_Required__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>ACCL__Promotion_Template__c.UL_Is_Tactic_Fund_Required__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>ACCL__Promotion_Template__c.UL_Promotion_Template_Type__c</field>
         <readable>true</readable>
@@ -4553,6 +4543,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>ACCL__Promotion__c.ACCL__Promotion_Template__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>ACCL__Promotion__c.UL_Is_Tactic_Fund_Required__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5096,9 +5091,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>ACCL__Sales_Organization__c.UL_S_OP_Window_In_Weeks__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -5506,12 +5501,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ACCL__Tactic__c.ACCL__Record_Link__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>ACCL__Tactic__c.ACCL__Sales_Org__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -7507,11 +7502,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.UL_Is_Payer__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Account.UL_Level_1__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -7671,29 +7661,29 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Promotion_Attachment_Link__c.Promotion_Attachment__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Promotion_Attachment__c.Description_Language_1__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Promotion_Attachment__c.Description_Language_2__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Promotion_Attachment__c.Description_Language_3__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Promotion_Attachment__c.Description_Language_4__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -7701,14 +7691,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Promotion_Attachment__c.Size__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Promotion_Attachment__c.Type__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -7969,11 +7959,6 @@
         <editable>false</editable>
         <field>UL_UserCustomerProduct__c.AccessType__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>UL_UserCustomerProduct__c.Account__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

@@ -4,7 +4,7 @@
         <editable>true</editable>
         <field>ACCL__ACSF_Service_Schedule__c.ACCL__Promotion_Loader__c</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions> 
     <fieldPermissions>
         <editable>true</editable>
         <field>ACCL__Account_Bill_To__c.ACCL__Bill_To__c</field>
