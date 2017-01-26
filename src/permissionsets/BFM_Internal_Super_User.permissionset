@@ -405,7 +405,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BFM_NF_e__c.Country_name_destination__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
