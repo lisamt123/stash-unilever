@@ -171,6 +171,7 @@ public with sharing class PBS_LMSService_CC{
             'Id'
             ,'Name'
             ,DESCRIPTION_C
+            ,'Training_Plan_URLs_Name__c'  // added by prasanth
             ,'Enable_Self_Registration__c'
             ,'Self_Registration_Access__c'
             ,'Enforce_Sequence__c'
@@ -1572,6 +1573,7 @@ public with sharing class PBS_LMSService_CC{
         relatedFieldsObjects.put(PBS_Training_Plan__c.sObjectType,new List<String>{
             'Name'
             ,DESCRIPTION_C
+            ,'Training_Plan_URLs_Name__c'  // added by prasanth
             ,'Enable_Self_Registration__c'
             ,'Self_Registration_Access__c'
             ,STATUS_C
