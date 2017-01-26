@@ -83,6 +83,6 @@ src/classes/PBS_CustomReport_Test.cls-meta.xml
 src/permissionsets
 src/permissionsets/PBS_LMS_User.permissionset
 src/permissionsets/PBS_LMS_Admin.permissionset
-src/classes/PBS_TrainingPlanWithAchievement_CC.cls.cls
-src/classes/PBS_TrainingPlanWithAchievement_CC.cls.cls-meta.xml
+src/classes/PBS_TrainingPlanWithAchievement_CC.cls
+src/classes/PBS_TrainingPlanWithAchievement_CC.cls-meta.xml
 src/objects/PBS_Training_Plan__c.object

@@ -76,10 +76,6 @@
         <apexClass>PBS_WikiFeedbackViewController_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-	<classAccesses>
-        <apexClass>PBS_CustomReport</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <description>Almond - Permission Set used for internal users</description>
     <fieldPermissions>
         <editable>true</editable>
@@ -442,10 +438,6 @@
     </pageAccesses>
 	<pageAccesses>
         <apexPage>PC_Forum_clone</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-	<pageAccesses>
-        <apexPage>PBS_CustomReportPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <tabSettings>
