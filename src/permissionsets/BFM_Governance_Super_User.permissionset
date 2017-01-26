@@ -1348,7 +1348,7 @@
         <apexPage>BFM_ShipmentDocumentGeneration</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-    <tabSettings>
+	<tabSettings>
         <tab>BFM_Bank_Information__c</tab>
         <visibility>None</visibility>
     </tabSettings>
