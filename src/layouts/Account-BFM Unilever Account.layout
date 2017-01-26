@@ -15,7 +15,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Customer_Number__c</field>
+                <field>BFM_Customer_Number__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -31,19 +31,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Vendor__c</field>
+                <field>BFM_Vendor__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Vendor_Account_Group__c</field>
+                <field>BFM_Vendor_Account_Group__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Region__c</field>
+                <field>BFM_Carrier_Region__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Plant_Code__c</field>
+                <field>BFM_Plant_Code__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -65,11 +65,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CNPJ__c</field>
+                <field>BFM_CNPJ__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Company_Code__c</field>
+                <field>BFM_Company_Code__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -109,7 +109,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Tax_Jurisdiction__c</field>
+                <field>BFM_Tax_Jurisdiction__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>
@@ -123,15 +123,15 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Central_Posting_Block__c</field>
+                <field>BFM_Central_Posting_Block__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Central_Deletion_Flag_for_Master_Record__c</field>
+                <field>BFM_Central_Del_Flag_Master_Record__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Centrally_Imposed_Purchasing_Block__c</field>
+                <field>BFM_Centrally_Imposed_Purchasing_Block__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -274,35 +274,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>BFM_Payment_Method__c.Unilever_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BFM_Payment_Method__c.Carrier_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BFM_Withhold_Tax__c.Unilever_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Company_Code__c</fields>
-        <fields>Withholding_Tax_Type__c</fields>
-        <fields>Withholding_Tax_Code__c</fields>
-        <fields>Withholding_Tax_Flag__c</fields>
-        <relatedList>BFM_Withhold_Tax__c.Carrier_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BFM_Bank_Information__c.Carrier_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>BFM_Email_Information__c.Carrier_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BFM_CT_e__c.Carrier_Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -311,18 +283,6 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>BFM_NF_e__c.Taker_Name__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BFM_POD__c.Carrier_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BFM_MDF_e__c.Carrier_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BFM_MDF_e__c.Unilever_Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

@@ -169,6 +169,8 @@ src/flows/BFM_Free_Freight_update_CTE-1.flow
 src/flows/BFM_Update_Shipment_in_CTe-1.flow
 src/groups/BFM_Governance.group
 src/homePageLayouts/BFM Home Page.homePageLayout
+src/layouts/Account-BFM Unilever Account.layout
+src/layouts/Account-Carrier.layout
 src/layouts/BFM_AccountAccessRequest__c-BFM Account Access Request Layout.layout
 src/layouts/BFM_Bank_Information__c-BFM Bank Information Layout.layout
 src/layouts/BFM_Company_Code__c-Company Code Layout.layout
