@@ -473,12 +473,6 @@ Throws : N/A
                 promoObject.editable = false;  
                 earBOPromotion.add(promoObject);
                 */
-                //------Hiding UKI Main layout----------
-                EARUI UKI_KPI = new EARUI();
-                UKI_KPI.Name = 'TILE_PROMO_MAIN_UKI';
-                UKI_KPI.Type = UtilityEnum.UIElement.Name();
-                UKI_KPI.Visible = false;  
-                earBOPromotion.add(UKI_KPI);
                 
                 
                 if(promoList[0].UL_EnableChild__c == true){
@@ -509,14 +503,6 @@ Throws : N/A
                     }
                 }
                 
-            }
-            else if(promoList[0].ACCL__Sales_Org__c == UL_Utility.UK_SO || promoList[0].ACCL__Sales_Org__c == UL_Utility.Ireland_SO){
-                //------Hiding SoCo Main Layout----------
-                EARUI SoCo_KPI = new EARUI();
-                SoCo_KPI.Name = 'TILE_PROMO_MAIN_SOCO';
-                SoCo_KPI.Type = UtilityEnum.UIElement.Name();
-                SoCo_KPI.Visible = false;  
-                earBOPromotion.add(SoCo_KPI);
             }
             //Added by Abhishek for the visibility control of buttons for UKI 
              List<EARUI> btList = new List<EARUI>();
@@ -594,7 +580,7 @@ Throws : N/A
             }*/
 
             
-            promo=[Select Id,UL_EnableChild__c, UL_Current_Status__c, UL_Parent_Push_Id__c, UL_PromotionTemplateType__c from ACCL__Promotion__c where ID =:tacticParentId LIMIT 1];
+            promo=[Select Id,UL_EnableChild__c, UL_Current_Status__c, ACCL__Sales_Org__c, UL_Parent_Push_Id__c, UL_PromotionTemplateType__c from ACCL__Promotion__c where ID =:tacticParentId LIMIT 1];
             List<ACCL__tactic__c> taclst = new List<ACCL__tactic__c>();
             //System.debug('promo.UL_PromotionTemplateType__c::::::::::'+promo.UL_PromotionTemplateType__c);
             //for hiding lift field from Tactic page if tactic template is Long Term Agreement
@@ -609,7 +595,9 @@ Throws : N/A
                     
                 //}   
             }
-            
+            List<EARUI> btList = new List<EARUI>();
+            btList = UL_ComponentVisibility.hideButtons(promo.ACCL__Sales_Org__c, promo.UL_Current_Status__c);
+            earBOTactic.addall(btList);
             
             
             taclst = [Select Id, ACCL__Tactic_Template__r.UL_Redemption_Required__c from ACCL__tactic__c where ACCL__Promotion__c =:tacticParentId LIMIT 1];
