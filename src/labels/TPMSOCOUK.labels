@@ -1,4 +1,4 @@
- <labels>
+<labels>
         <fullName>BaselineVolume</fullName>
         <categories>KPI</categories>
         <language>en_US</language>
@@ -3620,7 +3620,7 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>WinatPOS Upload Error No Chatter File</shortDescription>
-        <value>No File has been uploaded. Please ensure that you upload your file ñ click on &apos;File&apos; and then select either &apos;Select a file from Salesforce&apos; or &apos;Upload a file from your Computer&apos;. After you have selected your file click on &apos;Share&apos;. Once the upload is finished click on &apos;Store&apos;.</value>
+        <value>No File has been uploaded. Please ensure that you upload your file ÷†click on &apos;File&apos; and then select either &apos;Select a file from Salesforce&apos; or &apos;Upload a file from your Computer&apos;. After you have selected your file click on &apos;Share&apos;. Once the upload is finished click on &apos;Store&apos;.</value>
     </labels>
     <labels>
         <fullName>Write</fullName>
@@ -3678,7 +3678,7 @@ Please action the following to continue:</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Delete warning message</shortDescription>
-        <value>OopsÖ&lt;br/&gt;
+        <value>Oops≈¶lt;br/&gt;
 You don&apos;t have permission to delete this event. Get in contact with the project lead.</value>
     </labels>
     <labels>
@@ -3687,7 +3687,7 @@ You don&apos;t have permission to delete this event. Get in contact with the pro
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Edit warning message</shortDescription>
-        <value>OopsÖ&lt;br/&gt;
+        <value>Oops≈¶lt;br/&gt;
 You don&apos;t have permission to edit this event. Get in contact with the project lead.</value>
     </labels>
     <labels>
@@ -3696,7 +3696,7 @@ You don&apos;t have permission to edit this event. Get in contact with the proje
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Event Already Activated Warning</shortDescription>
-        <value>OopsÖ&lt;br/&gt;
+        <value>Oops≈¶lt;br/&gt;
 This event has already been activated, no action required.</value>
     </labels>
     <labels>
@@ -3722,7 +3722,7 @@ Please contact with your Administrator.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Global Approval Error</shortDescription>
-        <value>Your local event does not require global approval. Exit this message and click the ëLOCAL save and exití button.</value>
+        <value>Your local event does not require global approval. Exit this message and click the “åOCAL save and exit“†button.</value>
     </labels>
     <labels>
         <fullName>cp_LocalSaveError</fullName>
@@ -3730,7 +3730,7 @@ Please contact with your Administrator.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Local Save Error</shortDescription>
-        <value>Your global event requires approval (re-approval is also required if you have updated the activation dates or event status). Exit this message and click the ëGLOBAL save and submití button.</value>
+        <value>Your global event requires approval (re-approval is also required if you have updated the activation dates or event status). Exit this message and click the “áLOBAL save and submit“†button.</value>
     </labels>
     <labels>
         <fullName>cp_NoPlannerSelected</fullName>
@@ -3740,14 +3740,14 @@ Please contact with your Administrator.</value>
         <shortDescription>No planner selected</shortDescription>
         <value>Who is activating this event? Please select the relevant Planners.
 
-If you are representing a Central team, donít forget to select the respective Central Planners too.</value>
+If you are representing a Central team, don”¥ forget to select the respective Central Planners too.</value>
     </labels>
     <labels>
         <fullName>cp_OptOutNoReason</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Opt out no reason</shortDescription>
-        <value>OopsÖ&lt;br/&gt;
+        <value>Oops≈¶lt;br/&gt;
 Please leave a few words explaining why you are opting out of this Planner event.</value>
     </labels>
     <labels>
@@ -3756,8 +3756,8 @@ Please leave a few words explaining why you are opting out of this Planner event
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Opt Out Warning Message</shortDescription>
-        <value>OopsÖ&lt;br/&gt;
-You canít opt out of this event as your Planner has not been invited to activate.</value>
+        <value>Oops≈¶lt;br/&gt;
+You can”¥ opt out of this event as your Planner has not been invited to activate.</value>
     </labels>
     <labels>
         <fullName>cp_Planner_Code_AT_I_Approced_Statuses</fullName>
@@ -3789,7 +3789,7 @@ You canít opt out of this event as your Planner has not been invited to activate
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>User Preference Validation Message</shortDescription>
-        <value>OopsÖ
+        <value>Oops≈ç
 Which Communications team do you represent? You must be associated to one Planner.</value>
     </labels>
     <labels>
@@ -3874,7 +3874,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ipmFinSummaryGMbpsHelp</shortDescription>
-        <value>This is the difference between the Y1 GM of the project, compared against the average GM of the products (CUs) that are being replaced on shelf. Calculation: GM Y1 ñ DNDS GM Y1</value>
+        <value>This is the difference between the Y1 GM of the project, compared against the average GM of the products (CUs) that are being replaced on shelf. Calculation: GM Y1 ÷†DNDS GM Y1</value>
     </labels>
     <labels>
         <fullName>ipmFinSummaryIRR</fullName>
