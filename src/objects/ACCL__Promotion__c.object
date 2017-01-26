@@ -4197,7 +4197,7 @@ Id=VLOOKUP
  IF((ACCL__Date_Thru__c - ACCL__Date_From__c)&gt; ACCL__Promotion_Template__r.UL_Calculate_for_Max_Min_Dates__c || 
  (ACCL__Date_Thru__c - ACCL__Date_From__c)&lt;0 , true, false),false)</errorConditionFormula>
         <errorDisplayField>ACCL__Active__c</errorDisplayField>
-        <errorMessage>In store dates range should be more than 1 day or below 91 days</errorMessage>
+        <errorMessage>Dates range should be more than 1 day or below 91 days</errorMessage>
     </validationRules>
     <webLinks>
         <fullName>ACCL__Derive</fullName>
