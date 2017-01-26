@@ -86,3 +86,5 @@ src/permissionsets/PBS_LMS_Admin.permissionset
 src/classes/PBS_TrainingPlanWithAchievement_CC.cls
 src/classes/PBS_TrainingPlanWithAchievement_CC.cls-meta.xml
 src/objects/PBS_Training_Plan__c.object
+src/classes/PBS_TrainingPlansSearchController_CC.cls
+src/classes/PBS_TrainingPlansSearchController_CC.cls-meta.xml
