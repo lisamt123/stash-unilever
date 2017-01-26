@@ -28,7 +28,7 @@ public with sharing class BFM_SearchOccurrenceController_CC{
         recordsize.add(new SelectOption('50','50'));
         recordsize.add(new SelectOption('100','100'));
         recordsize.add(new SelectOption('200','200')); 
-            List<Report> reportsList = [SELECT Id FROM Report WHERE DeveloperName = 'Ct_e_Issuing_Occurrence'];
+            List<Report> reportsList = [SELECT Id FROM Report WHERE DeveloperName = 'BFM_Ct_e_Issuing_Occurrence'];
         if(reportsList.size() == 1){
             cteIssuingReport = reportsList[0];
         }
