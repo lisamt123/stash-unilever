@@ -322,7 +322,7 @@
         <fullName>BusinessInternalOwner__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Business Internal Owner</label>
+        <label>Business Owner</label>
         <referenceTo>User</referenceTo>
         <relationshipName>Business_Solutions3</relationshipName>
         <required>false</required>
@@ -335,22 +335,8 @@
         <fullName>BusinessProjectLead__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Business Internal Project Lead</label>
+        <label>Business Project Lead</label>
         <referenceTo>User</referenceTo>
-        <relationshipName>Business_Solutions4</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Business_Owner__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Business Owner</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Business Solutions (Business Owner)</relationshipLabel>
         <relationshipName>Business_Solutions4</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -408,20 +394,6 @@
         <trackTrending>false</trackTrending>
         <type>Html</type>
         <visibleLines>10</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Business_Project_Lead__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Business Project Lead</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Business Solutions (Business Project Lead)</relationshipLabel>
-        <relationshipName>Business_Solutions5</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Business_Value__c</fullName>
@@ -696,7 +668,7 @@
         <fullName>DeliveryInternalPartnerLead__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Delivery Internal Partner Lead</label>
+        <label>Delivery Partner Lead</label>
         <referenceTo>User</referenceTo>
         <relationshipName>Business_Solutions2</relationshipName>
         <required>false</required>
@@ -955,8 +927,8 @@
         <externalId>false</externalId>
         <label>Function</label>
         <referenceTo>Programme__c</referenceTo>
-        <relationshipLabel>Business Solutions</relationshipLabel>
-        <relationshipName>Business_Solutions</relationshipName>
+        <relationshipLabel>Business Solution</relationshipLabel>
+        <relationshipName>Business_Solution</relationshipName>
         <required>true</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1052,7 +1024,7 @@
         <fullName>ITBusinessInternalPartner__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>IT Business Internal Partner</label>
+        <label>IT Business Partner</label>
         <referenceTo>User</referenceTo>
         <relationshipName>Business_Solutions6</relationshipName>
         <required>false</required>
@@ -1062,16 +1034,15 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>IT_Business_Partner_Contact__c</fullName>
+        <fullName>ITProjectInternalLead__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>IT Business Partner</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Business Solutions (IT Business Partner)</relationshipLabel>
-        <relationshipName>Business_Solutions2</relationshipName>
+        <label>IT Project Lead</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Business_Solutions7</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -1133,20 +1104,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Key_Contact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>IT Project Lead</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Business Solutions</relationshipLabel>
-        <relationshipName>Business_Solutions</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Likely_Cost__c</fullName>
@@ -1429,7 +1386,7 @@
         <fullName>ProjectInternalSponsor__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Project Internal Sponsor</label>
+        <label>Project Sponsor</label>
         <referenceTo>User</referenceTo>
         <relationshipName>Business_Solutions5</relationshipName>
         <required>false</required>
@@ -1473,20 +1430,6 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Project_Sponsor_Contact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Project Sponsor</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Business Solutions (Project Sponsor)</relationshipLabel>
-        <relationshipName>Business_Solutions3</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Quality__c</fullName>
@@ -1640,13 +1583,25 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Service_Introduction_Contact__c</fullName>
+        <fullName>ServiceInternalOwner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Service Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Business_Solutions9</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ServiceIntroductionInternalContact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Service Introduction Contact</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Business Solutions (Service Introduction Contact)</relationshipLabel>
-        <relationshipName>Business_Solutions9</relationshipName>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Business_Solutions8</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1667,13 +1622,12 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Service_Owner__c</fullName>
+        <fullName>SolutionActivationInternalPM__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Service Owner</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Business Solutions (Service Owner)</relationshipLabel>
-        <relationshipName>Business_Solutions6</relationshipName>
+        <label>Solution PM</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Business_SolutionsUbtd</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1691,20 +1645,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Solution_Activation_PM__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Solution Activation PM</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Business Solutions (Solution Activation PM)</relationshipLabel>
-        <relationshipName>Business_Solutions8</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Stage__c</fullName>
@@ -2043,8 +1983,6 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
@@ -2065,8 +2003,6 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
@@ -2089,12 +2025,10 @@
         <columns>Status__c</columns>
         <columns>Geographies_Impacted__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
         <columns>Approximate_Budget__c</columns>
         <columns>Internal_Users__c</columns>
         <columns>Start_Date__c</columns>
         <columns>Target_Date__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Function__c</columns>
         <columns>Project_Manager__c</columns>
         <columns>Delivery_Partner__c</columns>
@@ -2116,8 +2050,6 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
@@ -2138,8 +2070,6 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
@@ -2160,8 +2090,6 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
@@ -2182,8 +2110,6 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
@@ -2204,8 +2130,6 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
@@ -2226,8 +2150,6 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
@@ -2248,8 +2170,6 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
@@ -2270,8 +2190,6 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
@@ -2292,8 +2210,6 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
@@ -2314,8 +2230,6 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
@@ -2336,8 +2250,6 @@
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
@@ -2360,10 +2272,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Target_Date__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Delivery_Partner__c</columns>
-        <columns>Service_Owner__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Platform__c</field>
@@ -2379,10 +2288,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Target_Date__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Delivery_Partner__c</columns>
-        <columns>Service_Owner__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Phase__c</field>
@@ -2403,8 +2309,6 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Target_Date__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Delivery_Partner__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -2425,8 +2329,6 @@
         <columns>Function__c</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <filterScope>Everything</filterScope>
         <label>Lotus Notes</label>
@@ -2437,8 +2339,6 @@
         <columns>Function__c</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <filterScope>Everything</filterScope>
         <label>MSL/MCo</label>
@@ -2452,8 +2352,6 @@
         <columns>Phase__c</columns>
         <columns>Target_Date__c</columns>
         <columns>Project_Manager__c</columns>
-        <columns>IT_Business_Partner_Contact__c</columns>
-        <columns>Key_Contact__c</columns>
         <columns>Project_Scope__c</columns>
         <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>

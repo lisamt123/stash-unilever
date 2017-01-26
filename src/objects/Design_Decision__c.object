@@ -132,6 +132,11 @@
         <visibleLines>3</visibleLines>
     </fields>
     <label>Design Decision</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>DD-{0}</displayFormat>
         <label>DD Id</label>
